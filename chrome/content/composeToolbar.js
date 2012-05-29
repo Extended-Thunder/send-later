@@ -7,7 +7,7 @@ var Sendlater3ComposeToolbar = {
     SetRecurring: function(recurring) {
 	var bar = document.getElementById("sendlater3_toolbar");
 	if (bar) {
-	    SL3U.SetTreeAttribute(bar, "disabled", recurring);
+	    bar.disabled = recurring;
 	}
     },
 
@@ -240,9 +240,7 @@ var Sendlater3ComposeToolbar = {
 		    .setAttribute("disabled", Sendlater3Composing.prevXSendLater ? false : true);
 	    }
 
-	    if (Sendlater3Composing.prevRecurring) {
-		Sendlater3ComposeToolbar.SetRecurring(true);
-	    }
+	    Sendlater3ComposeToolbar.SetRecurring(Sendlater3Composing.prevRecurring ? true : false);
 	}
 	SL3U.Leaving("Sendlater3ComposeToolbar.SetOnLoad");
     },

@@ -18,3 +18,4 @@
 <!ENTITY sendlater.prompt.yearly.label "yearly">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Send Later">
 <!ENTITY sendlater.toolbar.textbox.emptytext "send time">
+<!ENTITY sendlater.prompt.every.label "Every">

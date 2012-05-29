@@ -234,16 +234,7 @@ var Sendlater3Composing = {
     },
 
     RecurHeader: function(sendat, recur) {
-	var header = "X-Send-Later-Recur: " + recur;
-	switch (recur) {
-	case "monthly":
-	    header += " " + sendat.getDate();
-	    break;
-	case "yearly":
-	    header += " " + sendat.getMonth() + " " + sendat.getDate();
-	    break;
-	}
-	header += "\r\n";
+	var header = "X-Send-Later-Recur: " + recur + "\r\n";
 	return header;
     },
 

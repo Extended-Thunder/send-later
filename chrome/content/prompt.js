@@ -12,8 +12,45 @@ var Sendlater3Prompt = {
 	}
     },
 
-    CheckRecurring: function() {
-	Sendlater3Prompt.SetRecurring(!document.getElementById("sendlater3-recur-none").selected);
+    CheckRecurring: function(dateObj) {
+	var group = document.getElementById("sendlater3-recur-group");
+	var selected = group.selectedItem;
+	var which = selected.id.replace(/sendlater3-recur-/, "");
+	var recurring = which != "none";
+	Sendlater3Prompt.SetRecurring(recurring);
+	document.getElementById("sendlater3-recur-every-deck").selectedIndex =
+	    recurring ? 0 : -1;
+	var everyLabel = document
+	    .getElementById("sendlater3-recur-every-unit");
+	if (! dateObj) {
+	    dateObj = Sendlater3Prompt.updateSummary();
+	}
+	var desc;
+	if (dateObj) {
+	    var dayName = SL3U.PromptBundleGet("day" + dateObj.getDay());
+	    var ordName = SL3U.PromptBundleGet("ord" + Math.ceil(dateObj.getDate()/7));
+	    desc = SL3U.PromptBundleGetFormatted("everymonthly",
+						 [ordName, dayName]);
+	}
+	else {
+	    desc = SL3U.PromptBundleGet("everyempty");
+	}
+	document.getElementById("sendlater3-recur-every-month-checkbox").label =
+	    desc;
+	if (recurring) {
+	    everyLabel.value = SL3U.PromptBundleGet("every_" + which);
+	    var checkbox = document
+		.getElementById("sendlater3-recur-every-checkbox");
+	    var textbox = document
+		.getElementById("sendlater3-recur-every-value");
+	    textbox.disabled = ! checkbox.checked;
+	    var monthCheckbox = document
+		.getElementById("sendlater3-recur-every-month-checkbox");
+	    monthCheckbox.disabled = (which != "monthly") || ! dateObj;
+	}
+	else {
+	    everyLabel.value = "";
+	}
     },
 
     StealControlReturn: function(ev) {
@@ -103,12 +140,41 @@ var Sendlater3Prompt = {
 	Sendlater3Prompt.SetRecurring(prevRecurring);
 	if (prevRecurring) {
 	    var settings = prevRecurring.split(" ");
+	    var recur = settings[0];
+	    settings.splice(0,1);
 	    var group = document.getElementById("sendlater3-recur-group");
-	    group.selectedItem = document.getElementById("sendlater3-recur-"+settings[0]);
+	    group.selectedItem = document.getElementById("sendlater3-recur-"+recur);
+	    if (recur == "monthly") {
+		settings.splice(0,1);
+		if ((settings.length > 0) && settings[0].match(/^[0-9]+/)) {
+		    document
+			.getElementById("sendlater3-recur-every-month-checkbox")
+			.checked = true;
+		    settings.splice(0,1);
+		}
+	    }
+	    else if (recur == "yearly") {
+		settings.splice(0,2);
+	    }
+	    if ((settings.length > 1) && (settings[0] == "/")) {
+		settings.splice(0,1);
+		document.getElementById("sendlater3-recur-every-checkbox")
+		    .checked = true;
+		document.getElementById("sendlater3-recur-every-value")
+		    .value = settings[0];
+		settings.splice(0,1);
+	    }
+	    if (settings.length > 0) {
+		SL3U.warn("Unexpected recur setting fields: " +
+			  settings.toString());
+	    }
 	}
 	    
 	var prevXSendLater = window.arguments[0].previouslyTimed;
 	if (prevXSendLater) {
+	   document.getElementById("sendlater3-time-text").value =
+	       prevXSendLater.toLocaleDateString() + " " +
+	       prevXSendLater.toLocaleTimeString();
 	   document.getElementById("sendlater3-yearvalue").value =
 	       prevXSendLater.getFullYear();
 	   document.getElementById("sendlater3-monthvalue").value =
@@ -119,6 +185,7 @@ var Sendlater3Prompt = {
 	       prevXSendLater.getHours();
 	   document.getElementById("sendlater3-minvalue").value =
 	       prevXSendLater.getMinutes();
+	    
 	}
 	if (document.getElementById("sendlater3-time-deck").selectedIndex == 0) {
 	    document.getElementById("sendlater3-time-text").focus();
@@ -259,6 +326,7 @@ var Sendlater3Prompt = {
 	if (dateObj) {
 	    button.label = SL3U.PromptBundleGet("sendaround") + " "
 		+ dateObj.toLocaleString();
+	    Sendlater3Prompt.CheckRecurring(dateObj);
 	}
 	else {
 	    button.label = SL3U.PromptBundleGet("entervalid");
@@ -311,14 +379,54 @@ var Sendlater3Prompt = {
 	return today.getDate();
     },
 
+    // Format:
+    //
+    // First field is none/daily/weekly/monthly/yearly
+    //
+    // If first field is monthly, then it is followed by either one or
+    // two numbers. If one, then it's a single number for the day of
+    // the month; otherwise, it's the day of the week followed by its
+    // place within the month, e.g., "1 3" means the third Monday of
+    // each month.
+    //
+    // If the first field is yearly, then the second and third fields
+    // are the month and date numbers for the yearly occurrence.
+    //
+    // After all of the above, "/ #" indicates a skip value, e.g., "/
+    // 2" means every 2, "/ 3" means every 3, etc. For example, "daily
+    // / 3" means every 3 days, while "monthly 2 2 / 2" means every
+    // other month on the second Tuesday of the month.
+
+    GetRecurString: function(dateObj) {
+	var recur = document.getElementById("sendlater3-recur-group")
+	    .selectedItem.id.replace(/sendlater3-recur-/, "");
+	if (recur == "none") {
+	    return null;
+	}
+	if (recur == "monthly") {
+	    recur += " ";
+	    if (document.getElementById("sendlater3-recur-every-month-checkbox").checked) {
+		recur += dateObj.getDay() + " " +
+		    Math.ceil(dateObj.getDate()/7);
+	    }
+	    else {
+		recur += dateObj.getDate();
+	    }
+	}
+	if (recur == "yearly") {
+	    recur += " " + dateObj.getMonth() + " " + dateObj.getDate();
+	}
+	if (document.getElementById("sendlater3-recur-every-checkbox").checked){
+	    recur += " / " + document
+		.getElementById("sendlater3-recur-every-value").value;
+	}
+	return recur;
+    },
+
     CallSendAt: function() {
         SL3U.Entering("Sendlater3Prompt.CallSendAt");
 	var sendat = Sendlater3Prompt.updateSummary();
-	var recur = document.getElementById("sendlater3-recur-group").selectedItem.id
-	    .replace(/sendlater3-recur-/, "");
-	if (recur == "none") {
-	    recur = null;
-	}
+	var recur = Sendlater3Prompt.GetRecurString(sendat);
 	window.arguments[0].finishCallback(sendat, recur);
         SL3U.Leaving("Sendlater3Prompt.CallSendAt");
     }
