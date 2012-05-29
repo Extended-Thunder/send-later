@@ -45,7 +45,7 @@ var Sendlater3ComposeToolbar = {
     },
 
     CheckTextEnter: function(event) {
-	if (event.keyCode == KeyEvent.DOM_VK_RETURN and
+	if (event.keyCode == KeyEvent.DOM_VK_RETURN &&
 	    ! (event.altKey || event.ctrlKey || event.ShiftKey)) {
 	    if (Sendlater3ComposeToolbar.updateSummary()) {
 		Sendlater3ComposeToolbar.CallSendAt();
