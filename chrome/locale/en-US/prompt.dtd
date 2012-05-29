@@ -1,0 +1,16 @@
+<!ENTITY sendlater.prompt.sendlater.label "Put in Outbox">
+<!ENTITY sendlater.prompt.sendlater.tooltip "Rather than scheduling delivery for a specific time, move the message to the Outbox folder for delivery next time unsent messages are sent.">
+<!ENTITY sendlater.prompt.sendnow.label "Send Now">
+<!ENTITY sendlater.prompt.sendnow.accesskey "N">
+<!ENTITY sendlater.prompt.close.label "Cancel">
+<!ENTITY sendlater.prompt.close.tooltip "Go back to editing the message.">
+<!ENTITY sendlater.prompt.title.label "Send this email later">
+<!ENTITY sendlater.prompt.sendat.label "Send Later at time(s) specified above">
+<!ENTITY sendlater.prompt.sendat.tooltip "Save message in Drafts folder for automatic delivery at the time set above.">
+<!ENTITY sendlater.prompt.recur.label "Recur:">
+<!ENTITY sendlater.prompt.none.label "none">
+<!ENTITY sendlater.prompt.daily.label "daily">
+<!ENTITY sendlater.prompt.weekly.label "weekly">
+<!ENTITY sendlater.prompt.monthly.label "monthly">
+<!ENTITY sendlater.prompt.yearly.label "yearly">
+<!ENTITY sendlater.toolbar.sendlater.button.label "Send Later">

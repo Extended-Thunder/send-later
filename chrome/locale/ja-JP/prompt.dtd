@@ -1,0 +1,16 @@
+<!ENTITY sendlater.prompt.sendlater.label "[送信トレイ] に置く">
+<!ENTITY sendlater.prompt.sendlater.tooltip "送信時間を指定せず、メッ セージを [送信トレイ] へ移し、次の機会に未送信のメッセージを送信します。">
+<!ENTITY sendlater.prompt.sendnow.label "今すぐ送信する">
+<!ENTITY sendlater.prompt.sendnow.accesskey "i">
+<!ENTITY sendlater.prompt.close.label "キャンセル">
+<!ENTITY sendlater.prompt.close.tooltip "メッセージの編集に戻ります。">
+<!ENTITY sendlater.prompt.title.label "このメールを後で送信する">
+<!ENTITY sendlater.prompt.sendat.label "指定した予定日時に送信する">
+<!ENTITY sendlater.prompt.sendat.tooltip "上で設定した日時に自動的に送信するために、[下書き] フォルダへメッセージを保存します。">
+<!ENTITY sendlater.prompt.recur.label "定期:">
+<!ENTITY sendlater.prompt.none.label "なし">
+<!ENTITY sendlater.prompt.daily.label "毎日">
+<!ENTITY sendlater.prompt.weekly.label "毎週">
+<!ENTITY sendlater.prompt.monthly.label "毎月">
+<!ENTITY sendlater.prompt.yearly.label "毎年">
+<!ENTITY sendlater.toolbar.sendlater.button.label "後で送信">

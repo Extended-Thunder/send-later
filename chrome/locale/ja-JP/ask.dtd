@@ -1,0 +1,17 @@
+<!ENTITY sendlater.ask.title.label "Send Later 3 を支援してください">
+
+<!ENTITY sendlater.ask.message1 "無数の時間がこのアドオンの開発、メンテナンス、サポートに費やされています。">
+<!ENTITY sendlater.ask.message2 "今後も開発を続けていくためにも寄付をよろしくお願いします！">
+<!ENTITY sendlater.ask.message3 "ありがとう！">
+
+<!ENTITY sendlater.ask.donate.key   "I">
+<!ENTITY sendlater.ask.donate.label "今すぐ寄付する">
+
+<!ENTITY sendlater.ask.remind.key   "M">
+<!ENTITY sendlater.ask.remind.label "また知らせてください">
+
+<!ENTITY sendlater.ask.already.key   "S">
+<!ENTITY sendlater.ask.already.label "すでに寄付しました">
+
+<!ENTITY sendlater.ask.stop.key   "U">
+<!ENTITY sendlater.ask.stop.label "もう聞かないでください">

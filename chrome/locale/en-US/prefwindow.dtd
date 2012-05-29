@@ -1,0 +1,33 @@
+<!ENTITY prefwindow.title "Send Later 3 preferences">
+<!ENTITY pane1.title "Send Later 3 preferences">
+<!ENTITY checktimepref.label "Check every :">
+<!ENTITY checktimepref2.label "milliseconds">
+<!ENTITY checktimepref.tooltip "Interval, in milliseconds, between checks for drafts whose delivery time has arrived. Increase this value if your drafts sometimes aren't sent on time or the pending message count in your status bar sometimes doesn't reflect all scheduled drafts.">
+<!ENTITY checktimepref.accesskey "C">
+<!ENTITY general.caption "General">
+<!ENTITY quickoption1.caption "Shortcut 1">
+<!ENTITY quickoption2.caption "Shortcut 2">
+<!ENTITY quickoption3.caption "Shortcut 3">
+<!ENTITY quickoptionname.label "Button Label :">
+<!ENTITY quickoptionvalue.label "Minutes :">
+<!ENTITY showtoolbarbutton.caption "Show in toolbar">
+<!ENTITY showsendlatercolumn.caption "Show Send Later Column">
+<!ENTITY showsendlatercolumn.tooltip "Whether to show the &quot;Send Later&quot; column when viewing draft folders">
+<!ENTITY showsendlaterheader.caption "Show Send Later Header">
+<!ENTITY showsendlaterheader.tooltip "Whether to show the &quot;X-Send-Later-At&quot; header, i.e., the time when a draft is scheduled to be sent, in the header when viewing a message.">
+<!ENTITY showsendlaterstatus.caption "Show Send Later 3 In Status Bar">
+<!ENTITY showsendlaterprogress.caption "Show Background Progress In Status Bar">
+<!ENTITY showsendlaterdropdowns.caption "Show Dropdowns In Toolbar">
+<!ENTITY showsendlaterunsentmessages.caption "Trigger unsent message delivery from Outbox">
+<!ENTITY showsendlaterunsentmessages.tooltip "If you unset this option, then Send Later 3 will not fully deliver messages, but instead will just put them in your Outbox when they are scheduled for delivery. Unset this option, for example, if you use some other extension, e.g., BlunderDelay, to periodically send messages from your Outbox. Note that when this option is set, then whenever Send Later 3 delivers a message, ALL messages in your Outbox will be delivered.">
+<!ENTITY sendlatersendbutton.caption "&quot;Send&quot; does &quot;Send Later&quot;">
+<!ENTITY sendlatersendbutton.tooltip "With this option enabled, the &quot;Send&quot; command (either the button or typing Ctrl-Enter) acts the same as &quot;Send Later&quot;.">
+<!ENTITY altbinding.caption "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter">
+<!ENTITY advanced.caption "Advanced">
+<!ENTITY dumplevel.caption "Dump log level:">
+<!ENTITY consolelevel.caption "Console log level:">
+<!ENTITY contactauthor.tooltip "Send a mail message to the author of Send Later 3.">
+<!ENTITY contactauthor.value "Contact the author">
+<!ENTITY helplink.tooltip "View the Send Later 3 documentation.">
+<!ENTITY helplink.value "User guide">
+<!ENTITY donatelink.value "Donate">

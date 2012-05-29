@@ -1,0 +1,21 @@
+content	sendlater3	chrome/content/
+resource sendlater3	chrome/resource/
+locale	sendlater3	de-DE	chrome/locale/de-DE/
+locale	sendlater3	en-US	chrome/locale/en-US/
+locale	sendlater3	es-ES	chrome/locale/es-ES/
+locale	sendlater3	fi-FI	chrome/locale/fi-FI/
+locale	sendlater3	fr	chrome/locale/fr/
+locale	sendlater3	it-IT	chrome/locale/it-IT/
+locale	sendlater3	ja-JP	chrome/locale/ja-JP/
+locale	sendlater3	nl	chrome/locale/nl/
+locale	sendlater3	pl-PL	chrome/locale/pl-PL/
+locale	sendlater3	sv-SE	chrome/locale/sv-SE/
+locale	sendlater3	zh-CN	chrome/locale/zh-CN/
+overlay	chrome://messenger/content/messenger.xul	chrome://sendlater3/content/backgrounding.xul
+overlay	chrome://messenger/content/messenger.xul	chrome://sendlater3/content/headerView.xul application={3550f703-e582-4d05-9a08-453d09bdfdc6} appversion>=3.0
+overlay	chrome://messenger/content/messenger.xul	chrome://sendlater3/content/headerViewPostbox.xul application=postbox@postbox-inc.com
+overlay	chrome://messenger/content/messenger.xul	chrome://sendlater3/content/headerViewTB2.xul application={3550f703-e582-4d05-9a08-453d09bdfdc6} appversion<3.0
+overlay chrome://messenger/content/messengercompose/messengercompose.xul chrome://sendlater3/content/composing.xul
+overlay chrome://messenger/content/messengercompose/messengercompose.xul chrome://sendlater3/content/composeToolbar.xul application={3550f703-e582-4d05-9a08-453d09bdfdc6} appversion>=3.0
+overlay chrome://messenger/content/messengercompose/messengercompose.xul chrome://sendlater3/content/composeToolbar.xul application=postbox@postbox-inc.com
+overlay chrome://messenger/content/messengercompose/messengercompose.xul chrome://sendlater3/content/composeToolbarTB2.xul application={3550f703-e582-4d05-9a08-453d09bdfdc6} appversion<3.0

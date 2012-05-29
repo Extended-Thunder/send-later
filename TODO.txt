@@ -1,0 +1,93 @@
+Share common code between toolbar and popup.
+
+Stupid interval should be in seconds, not milliseconds.
+
+Send Later column doesn't work in unified Drafts folder.
+
+Bug: You shouldn't be allowed to schedule a message with no recopients
+for future sending.
+
+Send Later 3 should replicate Thunderbird behavior (after confirming
+that in fact TB behaves this way) of adding "To:
+undisclosed-recipients:;" to messages that are only being BCC'd.
+
+Bug: Send Later column display doesn't work in TB2 when there are no
+messages in the folder (produces an error about gDBView not having any
+properties). This is fine until you save a message into the folder, at
+which point the Send Later column should become visible but
+doesn't. If you leave and come back to the folder once or twice the
+problem solves itself. Not sure this is worth fixing.
+
+Scheduling entry improvements:
+
+* Use sugarjs (sugarjs.com) to allow free-form date entry in a text box?
+
+* Add buttons on pop-up to copy current date/time setting to clipboard
+  and fetch setting from current clipboard contents, to make it easy
+  to schedule multiple messages to be sent at the same time.
+
+* Calendar control pop-up for selecting scheduled date?
+
+* Look into whether it might be possible to use a slider to send the
+  scheduled send time instead of drop-downs. (idea from Daniel N. Lang
+  [daniel@sonnefueralle.de]).
+
+* Prompt for confirmation if the user tries to "schedule" a message
+  but the time specified is now or in the past.
+
+* Allow user to specify period of recurrence, e.g., every 2 weeks
+  instead of weekly, every 6 months instead of monthly, or perhaps
+  even ever 0.5 weeks.
+
+Need to figure out why Enigmail is bypassed when Send Later 3 is used.
+
+Make the shortcut buttons and detailed drop-downs separate toolbar
+customization items rather than one big chunk, so that people can
+decide by drag-and-drop which buttons to include (rather than using
+checkboxes in the prefs) and put the buttons wherever they want on the
+toolbar.
+
+Enable the standard "Send Later" button, which is currently only
+enabled when working offline.
+
+Fix Send Later 3 to work when Thunderbird is in offline mode.
+
+Investigate why DispMUA 1.6.5 doesn't work in TB2 when Send Later 3 is
+installed.
+
+If user has not yet entered master password in current Thunderbird
+setting when message is scheduled to be sent, user gets prompted for
+it, and if he's not there, the mail won't get sent. Need to look into
+prompting for master password if needed when message is
+scheduled. Other issue: can't save the password, so what if user
+schedules message and then exits Thunderbird and restarts it later
+without entering master password? Maybe need to have the backgrounding
+process notice that master password is needed and prompt for it
+whenever there are scheduled messages.
+
+Seamonkey compatibility?
+
+Add section to user guide about how to use Send Later 3 as
+BlunderDelay. Even better, make it really easy to use Send Later 3
+like BlunderDelay by adding a preference to override the Send button
+and Ctrl-Return to automatically delay messages by a fixed amount of
+time.
+
+Use compose-send-message event rather than hijacking the send later
+command, to play nicely with other add-ons that do stuff during
+message send (e.g., UseBccInstead).
+
+Make the add-on compatible with Tag Toolbar, in particular with
+tagging replies / forwards with the same tags as their prior messages.
+
+Bug: If you search in your drafts folder, then the "Send Later" column
+in the search results isn't populated for matching drafts that are
+scheduled to be sent later. It remains unpopulated when you cancel the
+search, until you leave and return to the folder. Need to investigate
+this!
+
+Make format of Send Later date column configurable, a la
+mail.ui.display.dateformat.
+
+Compatibility with Mail Merge extension, i.e., the ability to schedule
+mail-merged messages.

@@ -1,0 +1,17 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY sendlater.prompt.sendlater.label "Placer dans &quot;Messages en attente&quot;">
+<!ENTITY sendlater.prompt.sendlater.tooltip "Plutôt que de programmer l'envoi à une date précise, placer le message dans le dossier &quot;Messages en attente&quot; pour envoi la prochaine fois que les messages non envoyés sont expédiés.">
+<!ENTITY sendlater.prompt.sendnow.label "Envoyer maintenant">
+<!ENTITY sendlater.prompt.sendnow.accesskey "M">
+<!ENTITY sendlater.prompt.close.label "Annuler">
+<!ENTITY sendlater.prompt.close.tooltip "Revenir à la rédaction du message">
+<!ENTITY sendlater.prompt.title.label "Programmation d'envoi différé de courriel">
+<!ENTITY sendlater.prompt.sendat.label "Envoyer au moment indiqué">
+<!ENTITY sendlater.prompt.sendat.tooltip "Enregistre le message dans &quot;Brouillons&quot; jusqu'au moment prévu ci-dessus">
+<!ENTITY sendlater.prompt.recur.label "Répétition :">
+<!ENTITY sendlater.prompt.none.label "aucune">
+<!ENTITY sendlater.prompt.daily.label "quotidienne">
+<!ENTITY sendlater.prompt.weekly.label "hebdomadaire">
+<!ENTITY sendlater.prompt.monthly.label "mensuelle">
+<!ENTITY sendlater.prompt.yearly.label "annuelle">
+<!ENTITY sendlater.toolbar.sendlater.button.label "Envoyer plus tard">

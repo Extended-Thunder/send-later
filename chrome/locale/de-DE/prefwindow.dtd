@@ -1,0 +1,34 @@
+<!ENTITY prefwindow.title "&quot;Send Later 3&quot; Präferenzen">
+<!ENTITY pane1.title "&quot;Send Later 3&quot; Präferenzen">
+<!ENTITY checktimepref.label "Überprüfe alle :">
+<!ENTITY checktimepref2.label "Millisekunden">
+<!ENTITY checktimepref.tooltip "Intervall, in Millisekunden, zwischen dem Überprüfen der Entwürfe, ob deren Lieferzeit erreicht ist. Erhöhe diesen Wert, wenn die Entwürfe manchmal nicht rechtzeitig gesendet werden oder der Mitteilungszähler in der Statuszeile nicht alle zeitlich geplanten Entwürfe wiedergibt.">
+<!ENTITY checktimepref.accesskey "C">
+<!ENTITY general.caption "Allgemein">
+<!ENTITY quickoption1.caption "Schnelltaste 1">
+<!ENTITY quickoption2.caption "Schnelltaste 2">
+<!ENTITY quickoption3.caption "Schnelltaste 3">
+<!ENTITY quickoptionname.label "Knopf Beschriftung :">
+<!ENTITY quickoptionvalue.label "Minuten :">
+<!ENTITY showtoolbarbutton.caption "Zeige in der Werkzeugleiste">
+<!ENTITY showsendlatercolumn.caption "Zeige SendeSpäter Spalte">
+<!ENTITY showsendlatercolumn.tooltip "Zeigen, die &quot;SendeSpäter&quot; Spalte beim Ansehen des Ordners Entwürfe">
+<!ENTITY showsendlaterheader.caption "Zeige SendeSpäter Kopfzeile">
+<!ENTITY showsendlaterheader.tooltip "Zeigen, die &quot;X-Send-Later-At:&quot; Kopfzeile, z.B. die Zeit, wann ein Entwurf zum Senden geplant ist, in der Kopfzeile beim Ansehen einer Nachricht.">
+<!ENTITY showsendlaterstatus.caption "Zeige &quot;Send Later 3&quot; in der Symbolleiste">
+<!ENTITY showsendlaterprogress.caption "Zeige Hintergrund-Fortschritt in der Symbolleiste">
+<!ENTITY showsendlaterdropdowns.caption "Zeige das Dropdownmenü in der Symbolleiste">
+<!ENTITY showsendlaterunsentmessages.caption "Auslösen des Versands der pendenten Nachrichten aus dem Postausgangsordner">
+<!ENTITY showsendlaterunsentmessages.tooltip "Wird diese Option zurückgesetzt, dann wird &quot;Send Later 3&quot; die Nachrichten nicht in vollem Umfang ausliefern, stattdessen werden sie für die geplante Lieferung direkt in den Postausgang verschoben. Setze diese Option zurück, wenn eine andere Erweiterung, wie z.B. BlunderDelay, verwendet wird, um periodisch Nachrichten aus dem Postausgang zu versenden. Beachte: ist diese Option gesetzt, wird &quot;Send Later 3&quot;, wann immer es Nachrichten ausliefert, melden: ALLE Nachrichten im Postausgang wurden ausgeliefert.">
+<!ENTITY sendlatersendbutton.caption "&quot;Sende&quot; vollzieht &quot;SendeSpäter&quot;">
+<!ENTITY sendlatersendbutton.tooltip "Ist diese Option aktiviert, bewirkt dieser &quot;Sende&quot; Befehl (entweder Taste oder Ctrl-Enter) das Gleiche wie &quot;SendeSpäter&quot;.">
+<!ENTITY altbinding.caption "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter">
+<!ENTITY advanced.caption "Erweiterte">
+<!ENTITY dumplevel.caption "Dump Log Level:">
+<!ENTITY consolelevel.caption "Konsolen Log Level:">
+<!ENTITY contactauthor.tooltip "Senden Sie eine Mail-Nachricht an den Autor Send Later 3 (in englischer Sprache bitte!).">
+<!ENTITY contactauthor.value "Kontakt zum Autor">
+<!ENTITY helplink.tooltip "Sehen Sie sich die Dokumentation Send Later 3 (in Englisch).">
+<!ENTITY helplink.value "Gebrauchsanweisung">
+<!ENTITY donatelink.value "Spende">
+

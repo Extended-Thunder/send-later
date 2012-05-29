@@ -1,0 +1,17 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY sendlater.prompt.sendlater.label "Siirrä Lähetettyihin">
+<!ENTITY sendlater.prompt.sendlater.tooltip "Ajastamisen sijasta siirrä Lähetetyt-kansioon lähetettäväksi seuraavalla kerralla kun viestejä lähetetään.">
+<!ENTITY sendlater.prompt.sendnow.label "Lähetä heti">
+<!ENTITY sendlater.prompt.sendnow.accesskey "H">
+<!ENTITY sendlater.prompt.close.label "Peruuta">
+<!ENTITY sendlater.prompt.close.tooltip "Palaa viestinkirjoittamiseen.">
+<!ENTITY sendlater.prompt.title.label "Lähetä tämä viesti myöhemmin">
+<!ENTITY sendlater.prompt.sendat.label "Lähetä myöhemmin ylläolevan aikamääritteen mukaan">
+<!ENTITY sendlater.prompt.sendat.tooltip "Tallenna viesti Luonnokset-kansioon lähetettäväksi automaattisesti yllä olevan aikamääritteen mukaan.">
+<!ENTITY sendlater.prompt.recur.label "Toisto:">
+<!ENTITY sendlater.prompt.none.label "ei">
+<!ENTITY sendlater.prompt.daily.label "päivittäin">
+<!ENTITY sendlater.prompt.weekly.label "viikoittain">
+<!ENTITY sendlater.prompt.monthly.label "kuukausittain">
+<!ENTITY sendlater.prompt.yearly.label "vuosittain">
+<!ENTITY sendlater.toolbar.sendlater.button.label "Lähetä myöhemmin">

@@ -1,0 +1,12 @@
+<!ENTITY sendlater.ask.title.label "Ondersteuning Send Later 3">
+<!ENTITY sendlater.ask.message1 "Vele uren zijn gaan zitten in de ontwikkeling, het onderhoud en de ondersteuning van deze add-on.">
+<!ENTITY sendlater.ask.message2 "Overweeg een donatie te doen voor de verdere ontwikkeling!">
+<!ENTITY sendlater.ask.message3 "Dank u!">
+<!ENTITY sendlater.ask.donate.key "D">
+<!ENTITY sendlater.ask.donate.label "Nu doneren">
+<!ENTITY sendlater.ask.remind.key "H">
+<!ENTITY sendlater.ask.remind.label "Mij later herinneren">
+<!ENTITY sendlater.ask.already.key "I">
+<!ENTITY sendlater.ask.already.label "Ik heb al gedoneerd">
+<!ENTITY sendlater.ask.stop.key "V">
+<!ENTITY sendlater.ask.stop.label "Mij niet meer vragen">

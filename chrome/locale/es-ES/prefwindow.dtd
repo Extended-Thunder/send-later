@@ -1,0 +1,34 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY prefwindow.title "Preferencias de &quot;Send Later 3&quot;">
+<!ENTITY pane1.title "Preferencias de &quot;Send Later 3&quot;">
+<!ENTITY checktimepref.label "Comprobar cada :">
+<!ENTITY checktimepref2.label "milisegundos">
+<!ENTITY checktimepref.tooltip "Intervalo, en milisegundos, entre comprobaciones de borradores cuyo tiempo de entrega ha llegado. Incrementa este valor si tus borradores no se envían en algunas ocasiones o el conteo de mensajes pendientes en tu barra de estado no suele reflejar todos los borradores programados.">
+<!ENTITY checktimepref.accesskey "C">
+<!ENTITY general.caption "General">
+<!ENTITY quickoption1.caption "Atajo 1">
+<!ENTITY quickoption2.caption "Atajo 2">
+<!ENTITY quickoption3.caption "Atajo 3">
+<!ENTITY quickoptionname.label "Etiqueta del Botón :">
+<!ENTITY quickoptionvalue.label "Minutos :">
+<!ENTITY showtoolbarbutton.caption "Mostrar en la barra de herramientas">
+<!ENTITY showsendlatercolumn.caption "Mostrar la columna de Enviar Después">
+<!ENTITY showsendlatercolumn.tooltip "Ya sea para mostrar &quot;Send Later&quot; columna cuando está viendo la carpeta de Borradores">
+<!ENTITY showsendlaterheader.caption "Mostrar el encabezado de Enviar Después">
+<!ENTITY showsendlaterheader.tooltip "Ya sea para mostrar &quot;X-Send-Later-At&quot; encabezado, i.e., la hora en la que el borrador está programado para ser enviado, en el encabezado cuando está viendo el mensaje.">
+<!ENTITY showsendlaterstatus.caption "Mostrar &quot;Send Later 3&quot; en la barra de estado">
+<!ENTITY showsendlaterprogress.caption "Mostrar el progreso de fondo en la Barra de Estado">
+<!ENTITY showsendlaterdropdowns.caption "Mostrar dropdowns en la barra de herramientas">
+<!ENTITY showsendlaterunsentmessages.caption "Lanza la entrega de mensajes sin enviar dde la Bandeja de Salida">
+<!ENTITY showsendlaterunsentmessages.tooltip "Si desactivas esta opción, entonces &quot;Send Later 3&quot; no enviará los mensajes completamente, sin embargo los pondrá en la Bandeja de Salida cuando estén programados para ser enviados. Desactiva esta opción, por ejemplo, si usas alguna otra extensión como &quot;BlunderDelay&quot; para enviar mensajes periódicamente desde la Bandeja de Salida. Ten en cuenta que cuando esta opción está activa y &quot;Send Later 3&quot; envía un mensaje, todos los mensajes de tu Bandeja de Salida serán enviados.">
+<!ENTITY sendlatersendbutton.caption "&quot;Enviar&quot; significa &quot;Enviar más tarde&quot;">
+<!ENTITY sendlatersendbutton.tooltip "Con esta opción activada, el comando &quot;Enviar&quot; (ya sea el botón o tecleando Ctrl-Enter) actúa de la misma como &quot;Enviar más tarde&quot;.">
+<!ENTITY altbinding.caption "Asignar Alt-Shift-Enter en lugar de Ctrl-Shift-Enter">
+<!ENTITY advanced.caption "Avanzado">
+<!ENTITY dumplevel.caption "Vaciar nivel de log:">
+<!ENTITY consolelevel.caption "Nivel de log en la consola:">
+<!ENTITY contactauthor.tooltip "Enviar un mensaje electrónico al autor de Send Later 3 (en Inglés, por favor!).">
+<!ENTITY contactauthor.value "Póngase en contacto con el autor">
+<!ENTITY helplink.tooltip "Ver la documentación para Send Later 3 (en Inglés).">
+<!ENTITY helplink.value "Instrucciones de uso">
+<!ENTITY donatelink.value "Donar">

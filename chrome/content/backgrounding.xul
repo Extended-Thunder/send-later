@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<overlay id="sendlater3-backgrounding-overlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script src="util.js"/>
+  <script src="backgrounding.js"/>
+  <statusbar id="status-bar"> 
+<stringbundleset id="sendlater3-strbundles">
+	<stringbundle id="sendlater3-backgroundstrings" src="chrome://sendlater3/locale/background.properties"/>
+</stringbundleset>
+    <deck selectedIndex="1" id="sendlater3-deck" insertafter="statusTextBox" insertbefore="unreadMessageCount" style="width:120px" hidden="true">
+    <progressmeter id="sendlater3-anim" mode="determined" />
+    <label id="sendlater3-status" value="Send Later 3" style="width:100%;text-align:center;margin:4px" />
+    </deck>
+  </statusbar>
+  
+</overlay>

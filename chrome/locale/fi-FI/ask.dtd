@@ -1,0 +1,13 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY sendlater.ask.title.label "Tue Send Later 3:n kehitystä">
+<!ENTITY sendlater.ask.message1 "Lukematon määrä tunteja on mennyt kehitystyöhön, ylläpitoon ja tämän laajennuksen tukemiseen.">
+<!ENTITY sendlater.ask.message2 "Harkitsethan lahjoittamista tukemaan tämän kehitystyötä!">
+<!ENTITY sendlater.ask.message3 "Kiitos!">
+<!ENTITY sendlater.ask.donate.key "L">
+<!ENTITY sendlater.ask.donate.label "Lahjoita nyt">
+<!ENTITY sendlater.ask.remind.key "M">
+<!ENTITY sendlater.ask.remind.label "Muistuta myöhemmin">
+<!ENTITY sendlater.ask.already.key "J">
+<!ENTITY sendlater.ask.already.label "Olen jo lahjoittanut">
+<!ENTITY sendlater.ask.stop.key "Ä">
+<!ENTITY sendlater.ask.stop.label "Älä kysy enää">

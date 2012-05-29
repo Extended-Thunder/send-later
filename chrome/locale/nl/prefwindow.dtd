@@ -1,0 +1,33 @@
+<!ENTITY prefwindow.title "Send Later 3-voorkeuren">
+<!ENTITY pane1.title "Send Later 3-voorkeuren">
+<!ENTITY checktimepref.label "Controleren elke:">
+<!ENTITY checktimepref2.label "milliseconden">
+<!ENTITY checktimepref.tooltip "Interval, in milliseconden, tussen de controles van de concepten die verstuurd moeten worden. Vergroot deze waarde als uw concepten niet altijd op tijd verstuurd worden of als het aantal af te handelen berichten in uw statusbalk niet altijd overeenkomt met het werkelijke aantal.">
+<!ENTITY checktimepref.accesskey "C">
+<!ENTITY general.caption "Algemeen">
+<!ENTITY quickoption1.caption "Sneltoets 1">
+<!ENTITY quickoption2.caption "Sneltoets 2">
+<!ENTITY quickoption3.caption "Sneltoets 3">
+<!ENTITY quickoptionname.label "Knoptekst:">
+<!ENTITY quickoptionvalue.label "Minuten:">
+<!ENTITY showtoolbarbutton.caption "In werkbalk weergeven">
+<!ENTITY showsendlatercolumn.caption "Kolom Later verzenden weergeven">
+<!ENTITY showsendlatercolumn.tooltip "Of de kolom “Later verzenden” getoond moet worden in de map Concepten">
+<!ENTITY showsendlaterheader.caption "Header Later verzenden weergeven">
+<!ENTITY showsendlaterheader.tooltip "Of de header “X-Send-Later-At” getoond moet worden als een bericht bekeken wordt, namelijk de tijd waarop een concept gepland staat verzonden te worden.">
+<!ENTITY showsendlaterstatus.caption "Send Later 3 in de statusbalk weergeven">
+<!ENTITY showsendlaterprogress.caption "Voortgang in de statusbalk weergeven">
+<!ENTITY showsendlaterdropdowns.caption "Dropdownknoppen in werkbalk weergeven">
+<!ENTITY showsendlaterunsentmessages.caption "Niet-verzonden berichten vanuit Postvak UIT verzenden">
+<!ENTITY showsendlaterunsentmessages.tooltip "Als u deze optie uitvinkt, zal Send Later 3 de berichten niet versturen, maar ze op het moment van versturen in uw Postvak UIT plaatsen. Vink deze optie uit, bijvoorbeeld, als u een andere extensie gebruikt, zoals bijvoorbeeld BlunderDelay, die periodiek berichten uit uw Postvak UIT verstuurt. Merk op dat als deze optie aangevinkt is, Send Later 3 samen met het geplande bericht ALLE berichten in uw Postvak UIT verstuurt.">
+<!ENTITY sendlatersendbutton.caption "“Verzenden” doet “Later verzenden”">
+<!ENTITY sendlatersendbutton.tooltip "Met deze optie ingeschakeld, werkt de opdracht “Verzenden” (danwel de knop danwel het intoetsen van Ctrl-Enter) hetzelfde als “Later verzenden”.">
+<!ENTITY altbinding.caption "Alt-Shift-Enter binden in plaats van Ctrl-Shift-Enter">
+<!ENTITY advanced.caption "Geavanceerd">
+<!ENTITY dumplevel.caption "Dumplogniveau:">
+<!ENTITY consolelevel.caption "Consolelogniveau:">
+<!ENTITY contactauthor.tooltip "Verstuur een mail naar de schrijver van Send Later 3 (in het Engels).">
+<!ENTITY contactauthor.value "Neem contact op met de schrijver">
+<!ENTITY helplink.tooltip "Bekijk de documentatie voor Send Later 3 (in het Engels).">
+<!ENTITY helplink.value "Handleiding">
+<!ENTITY donatelink.value "Doneren">

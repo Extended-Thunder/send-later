@@ -1,0 +1,17 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY sendlater.prompt.sendlater.label "Metti nella &quot;Posta in uscita&quot;">
+<!ENTITY sendlater.prompt.sendlater.tooltip "Anziché inviarlo in automatico a un orario specifico, sposta il messaggio nella cartella &quot;Posta in uscita&quot; per inviarlo non appena i messaggi da inviare verranno spediti.">
+<!ENTITY sendlater.prompt.sendnow.label "Invia Ora">
+<!ENTITY sendlater.prompt.sendnow.accesskey "O">
+<!ENTITY sendlater.prompt.close.label "Annulla">
+<!ENTITY sendlater.prompt.close.tooltip "Torna a modificare il messaggio.">
+<!ENTITY sendlater.prompt.title.label "Invia questa e-mail dopo">
+<!ENTITY sendlater.prompt.sendat.label "Invia dopo, all'orario sopra indicato">
+<!ENTITY sendlater.prompt.sendat.tooltip "Salva il messaggio nella cartella &quot;Bozze&quot; per l'invio automatico all'orario sopra impostato.">
+<!ENTITY sendlater.prompt.recur.label "Periodicità">
+<!ENTITY sendlater.prompt.none.label "nessuna">
+<!ENTITY sendlater.prompt.daily.label "giornaliera">
+<!ENTITY sendlater.prompt.weekly.label "settimanale">
+<!ENTITY sendlater.prompt.monthly.label "mensile">
+<!ENTITY sendlater.prompt.yearly.label "annuale">
+<!ENTITY sendlater.toolbar.sendlater.button.label "Invia dopo">

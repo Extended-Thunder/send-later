@@ -1,0 +1,13 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY sendlater.ask.title.label "Stöd Send Later 3">
+<!ENTITY sendlater.ask.message1 "Oräkneliga timmar har lagts ner på utveckling, underhåll och teknisk support för detta tillägg.">
+<!ENTITY sendlater.ask.message2 "Vi vore tacksamma om du övervägde att göra en donation för att stödja dess fortsatta utveckling!">
+<!ENTITY sendlater.ask.message3 "Tack för ditt stöd!">
+<!ENTITY sendlater.ask.donate.key "D">
+<!ENTITY sendlater.ask.donate.label "Donera nu">
+<!ENTITY sendlater.ask.remind.key "P">
+<!ENTITY sendlater.ask.remind.label "Påminn mig senare">
+<!ENTITY sendlater.ask.already.key "J">
+<!ENTITY sendlater.ask.already.label "Jag har redan donerat">
+<!ENTITY sendlater.ask.stop.key "S">
+<!ENTITY sendlater.ask.stop.label "Sluta fråga">

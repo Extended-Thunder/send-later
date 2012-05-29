@@ -1,0 +1,16 @@
+<!ENTITY sendlater.prompt.sendlater.label "放到发件箱">
+<!ENTITY sendlater.prompt.sendlater.tooltip "不设定日程在指定的时间投递，而是移动消息到发件箱，等待下一次投递未发送邮件时被发送。">
+<!ENTITY sendlater.prompt.sendnow.label "立即发送">
+<!ENTITY sendlater.prompt.sendnow.accesskey "N">
+<!ENTITY sendlater.prompt.close.label "取消">
+<!ENTITY sendlater.prompt.close.tooltip "回到 编写消息。">
+<!ENTITY sendlater.prompt.title.label "延期发送这封电子邮件">
+<!ENTITY sendlater.prompt.sendat.label "按照上面指定的时间延期发送">
+<!ENTITY sendlater.prompt.sendat.tooltip "保存消息到草稿箱，以在上述时间自动投递该消息。">
+<!ENTITY sendlater.prompt.recur.label "循环周期：">
+<!ENTITY sendlater.prompt.none.label "无">
+<!ENTITY sendlater.prompt.daily.label "每天">
+<!ENTITY sendlater.prompt.weekly.label "每周">
+<!ENTITY sendlater.prompt.monthly.label "每月">
+<!ENTITY sendlater.prompt.yearly.label "每年">
+<!ENTITY sendlater.toolbar.sendlater.button.label "延期发送">

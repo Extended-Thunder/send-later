@@ -1,0 +1,34 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY prefwindow.title "Preferenze Send Later 3">
+<!ENTITY pane1.title "Preferenze Send Later 3">
+<!ENTITY checktimepref.label "Controlla ogni:">
+<!ENTITY checktimepref2.label "millisecondi">
+<!ENTITY checktimepref.tooltip "Frequenza in millisecondi con cui viene verificata la presenza nella cartella &quot;Bozze&quot; di e-mail di cui è arrivato l'orario di invio. Aumentare questo valore se qualche volta le mail programmate per l'invio non partono o se qualche volta il numero dei messaggi in coda indicato nella barra di stato non corrisponde a quello di tutti i messaggi pianificati.">
+<!ENTITY checktimepref.accesskey "C">
+<!ENTITY general.caption "Generali">
+<!ENTITY quickoption1.caption "Scelta rapida 1">
+<!ENTITY quickoption2.caption "Scelta rapida 2">
+<!ENTITY quickoption3.caption "Scelta rapida 3">
+<!ENTITY quickoptionname.label "Etichetta pulsante:">
+<!ENTITY quickoptionvalue.label "Minuti:">
+<!ENTITY showtoolbarbutton.caption "Mostra nella barra degli strumenti">
+<!ENTITY showsendlatercolumn.caption "Mostra colonna Invia dopo">
+<!ENTITY showsendlatercolumn.tooltip "Mostra la colonna &quot;Invia dopo&quot; nella cartella &quot;Bozze&quot;">
+<!ENTITY showsendlaterheader.caption "Mostra l'intestazione di Invia dopo">
+<!ENTITY showsendlaterheader.tooltip "Mostra l'intestazione &quot;X-Send-Later-At&quot;, cioè l'orario a cui la mail in &quot;Bozze&quot; è pianificata per l'invio, nell'intestazione quando guardi un messaggio.">
+<!ENTITY showsendlaterstatus.caption "Mostra Send Later 3 nella Barra di Stato">
+<!ENTITY showsendlaterprogress.caption "Mostra nella Barra di Stato la progressione degli invii in background">
+<!ENTITY showsendlaterdropdowns.caption "Mostra le caselle di riepilogo a discesa nella Barra degli Strumenti">
+<!ENTITY showsendlaterunsentmessages.caption "Invia i messaggi in attesa in &quot;Posta in Uscita&quot;">
+<!ENTITY showsendlaterunsentmessages.tooltip "Se non spunti questa opzione, Send Later 3 non provvederà all'invio del messaggio, ma quando arriverà l'ora pianificata per la spedizione, lo parcheggerà semplicemente nella &quot;Posta in Uscita&quot;. Togliere la spunta nel caso di utilizzo con altri componenti aggiuntivi come ad esempio BlunderDelay, per inviare i messaggi presenti nella &quot;Posta in Uscita&quot; periodicamente. Da notare che se questa opzione è selezionata, quando Send Later 3 invia un messaggio, anche TUTTI gli altri messaggi presenti nella &quot;Posta in Uscita&quot; verranno inviati.">
+<!ENTITY sendlatersendbutton.caption "&quot;Invia&quot; diventa &quot;Invia dopo&quot;">
+<!ENTITY sendlatersendbutton.tooltip "Con questa opzione attivata, il comando &quot;Invia&quot; (sia il pulsante che la pressione di Ctrl-Invio) si comporta come &quot;Invia dopo&quot;.">
+<!ENTITY altbinding.caption "Associa a Alt-Maiusc-Invio anziché a Ctrl-Maiusc-Invio">
+<!ENTITY advanced.caption "Avanzate">
+<!ENTITY dumplevel.caption "Livello log Dump:">
+<!ENTITY consolelevel.caption "Livello log Console:">
+<!ENTITY contactauthor.tooltip "Invia una e-mail all'autore di Send Later 3.">
+<!ENTITY contactauthor.value "Contatta l'autore">
+<!ENTITY helplink.tooltip "Visualizza la documentazione di Send Later 3.">
+<!ENTITY helplink.value "Manuale utente">
+<!ENTITY donatelink.value "Donazioni">

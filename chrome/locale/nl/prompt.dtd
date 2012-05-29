@@ -1,0 +1,16 @@
+<!ENTITY sendlater.prompt.sendlater.label "In Postvak UIT plaatsen">
+<!ENTITY sendlater.prompt.sendlater.tooltip "Niet een tijdstip voor verzending kiezen, maar in het Postvak UIT plaatsen voor verzending wanneer de nog onverzonden berichten verzonden worden.">
+<!ENTITY sendlater.prompt.sendnow.label "Nu verzenden">
+<!ENTITY sendlater.prompt.sendnow.accesskey "N">
+<!ENTITY sendlater.prompt.close.label "Annuleren">
+<!ENTITY sendlater.prompt.close.tooltip "Terug naar bewerken van het bericht.">
+<!ENTITY sendlater.prompt.title.label "Dit e-mailbericht later verzenden">
+<!ENTITY sendlater.prompt.sendat.label "Later op bovengenoemd(e) tijdstip(pen) verzenden">
+<!ENTITY sendlater.prompt.sendat.tooltip "Bericht opslaan in de map Concepten voor automatisch verzenden op het hierboven aangegeven tijdstip.">
+<!ENTITY sendlater.prompt.recur.label "Herhaling:">
+<!ENTITY sendlater.prompt.none.label "geen">
+<!ENTITY sendlater.prompt.daily.label "dagelijks">
+<!ENTITY sendlater.prompt.weekly.label "wekelijks">
+<!ENTITY sendlater.prompt.monthly.label "maandelijks">
+<!ENTITY sendlater.prompt.yearly.label "jaarlijks">
+<!ENTITY sendlater.toolbar.sendlater.button.label "Later verzenden">

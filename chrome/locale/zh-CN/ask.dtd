@@ -1,0 +1,12 @@
+<!ENTITY sendlater.ask.title.label "支持 Send Later 3">
+<!ENTITY sendlater.ask.message1 "此附加组件的开发、维护和支持已经花去了无数个小时。">
+<!ENTITY sendlater.ask.message2 "请考虑一下捐赠，以支持其继续发展。">
+<!ENTITY sendlater.ask.message3 "谢谢！">
+<!ENTITY sendlater.ask.donate.key "D">
+<!ENTITY sendlater.ask.donate.label "马上捐赠">
+<!ENTITY sendlater.ask.remind.key "R">
+<!ENTITY sendlater.ask.remind.label "以后再提醒我">
+<!ENTITY sendlater.ask.already.key "a">
+<!ENTITY sendlater.ask.already.label "我已经捐赠了">
+<!ENTITY sendlater.ask.stop.key "S">
+<!ENTITY sendlater.ask.stop.label "别再问了">

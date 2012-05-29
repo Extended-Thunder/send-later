@@ -1,0 +1,17 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY sendlater.prompt.sendlater.label "Lägg i Utkorgen">
+<!ENTITY sendlater.prompt.sendlater.tooltip "Istället för att schemalägga sändningen till en särskild tid flyttas meddelandet till Utkorgen och skickas nästa gång osända meddelanden skickas.">
+<!ENTITY sendlater.prompt.sendnow.label "Skicka Nu">
+<!ENTITY sendlater.prompt.sendnow.accesskey "N">
+<!ENTITY sendlater.prompt.close.label "Avbryt">
+<!ENTITY sendlater.prompt.close.tooltip "Gå tillbaka för att redigera meddelandet.">
+<!ENTITY sendlater.prompt.title.label "Skicka detta e-brev senare">
+<!ENTITY sendlater.prompt.sendat.label "Skicka senare vid den/de tidpunkt(er) som anges ovan">
+<!ENTITY sendlater.prompt.sendat.tooltip "Spara meddelandet i Utkast-mappen för automatisk sändning vid ovan angivna tidpunkt.">
+<!ENTITY sendlater.prompt.recur.label "Upprepning:">
+<!ENTITY sendlater.prompt.none.label "ingen">
+<!ENTITY sendlater.prompt.daily.label "varje dag">
+<!ENTITY sendlater.prompt.weekly.label "varje vecka">
+<!ENTITY sendlater.prompt.monthly.label "varje månad">
+<!ENTITY sendlater.prompt.yearly.label "varje år">
+<!ENTITY sendlater.toolbar.sendlater.button.label "Skicka senare">
