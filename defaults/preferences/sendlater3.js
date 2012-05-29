@@ -1,4 +1,4 @@
-pref("extensions.sendlater3.checktimepref", 60000);
+pref("extensions.sendlater3.checktimepref", 1);
 // See http://kb.mozillazine.org/Localize_extension_descriptions
 pref("extensions.sendlater3@kamens.us.description", "chrome://sendlater3/locale/sendlater3.properties");
 pref("extensions.sendlater3.quickoptions.1.label","<from locale>");

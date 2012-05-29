@@ -45,7 +45,11 @@
 	<tabpanel>
 	  <vbox>
 	    <hbox align="center" tooltiptext="&checktimepref.tooltip;">
-	      <label align="bottom" accesskey="&checktimepref.accesskey;" control="sendlater3-textintpref">&checktimepref.label;</label><textbox id="sendlater3-textintpref" preference="sendlater3-checktimepref"/><label >&checktimepref2.label;</label>
+	      <label align="bottom" accesskey="&checktimepref.accesskey;" control="sendlater3-textintpref">&checktimepref.label;</label>
+	      <textbox id="sendlater3-textintpref"
+		       preference="sendlater3-checktimepref"
+		       type="number" min="1" size="4"/>
+	      <label >&checktimepref2.label;</label>
 	    </hbox>
 	    <separator label="-"/>
 	    <hbox id="sendlater3-sendbutton_hbox" align="center" tooltiptext="&sendlatersendbutton.tooltip;">

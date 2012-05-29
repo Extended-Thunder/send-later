@@ -234,8 +234,17 @@ var Sendlater3Backgrounding = function() {
 
     function checkTimeout() {
 	var timeout = SL3U.getIntPref("checktimepref");
-	if (timeout < 5000) timeout = 60000;
-	return timeout;
+	var milli = false;
+	try {
+	    milli = SL3U.getBoolPref("checktimepref.is_milliseconds");
+	}
+	catch (ex) {}
+	if (milli) {
+	    return timeout;
+	}
+	else {
+	    return timeout * 60000;
+	}
     }
 
     function displayprogressbar() {
@@ -1063,6 +1072,17 @@ var Sendlater3Backgrounding = function() {
 			SL3U.PrefService.clearUserPref(SL3U.pref("dropdowns.showintoolbar"));
 		    }
 		    catch (ex) {}
+
+		    var numbers = relnotes.split(".");
+		    if ((numbers[0] < 4) &&
+			SL3U.PrefService.prefHasUserValue(SL3U.pref("checktimepref"))) {
+			var old = SL3U.getIntPref("checktimepref");
+			if (old < 60000) {
+			    old = 60000;
+			}
+			var converted = Math.floor(old / 60000);
+			SL3U.setIntPref("checktimepref", converted);
+		    }			
 		}
 	    }	
 	}
