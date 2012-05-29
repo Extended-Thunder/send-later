@@ -1,7 +1,5 @@
 Share common code between toolbar and popup.
 
-Stupid interval should be in seconds, not milliseconds.
-
 Send Later column doesn't work in unified Drafts folder.
 
 Bug: You shouldn't be allowed to schedule a message with no recopients
@@ -11,16 +9,7 @@ Send Later 3 should replicate Thunderbird behavior (after confirming
 that in fact TB behaves this way) of adding "To:
 undisclosed-recipients:;" to messages that are only being BCC'd.
 
-Bug: Send Later column display doesn't work in TB2 when there are no
-messages in the folder (produces an error about gDBView not having any
-properties). This is fine until you save a message into the folder, at
-which point the Send Later column should become visible but
-doesn't. If you leave and come back to the folder once or twice the
-problem solves itself. Not sure this is worth fixing.
-
 Scheduling entry improvements:
-
-* Use sugarjs (sugarjs.com) to allow free-form date entry in a text box?
 
 * Add buttons on pop-up to copy current date/time setting to clipboard
   and fetch setting from current clipboard contents, to make it easy
@@ -34,10 +23,6 @@ Scheduling entry improvements:
 
 * Prompt for confirmation if the user tries to "schedule" a message
   but the time specified is now or in the past.
-
-* Allow user to specify period of recurrence, e.g., every 2 weeks
-  instead of weekly, every 6 months instead of monthly, or perhaps
-  even ever 0.5 weeks.
 
 Need to figure out why Enigmail is bypassed when Send Later 3 is used.
 
