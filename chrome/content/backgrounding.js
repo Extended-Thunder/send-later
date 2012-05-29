@@ -1082,6 +1082,14 @@ var Sendlater3Backgrounding = function() {
 			.getMostRecentWindow("mail:3pane")
 			.document.getElementById("tabmail")
 			.openTab("contentTab", {contentPage: url});
+
+		    // Migrate old preferences
+		    try {
+			var value = SL3U.getBoolPref("dropdowns.showintoolbar");
+			SL3U.setBoolPref("entry.showintoolbar", value);
+			SL3U.PrefService.clearUserPref(SL3U.pref("dropdowns.showintoolbar"));
+		    }
+		    catch (ex) {}
 		}
 	    }	
 	}

@@ -1,3 +1,5 @@
+Components.utils.import("resource://sendlater3/dateparse.jsm");
+
 var Sendlater3ComposeToolbar = {
     timer: null,
     origCustomizeDone: null,
@@ -6,6 +8,49 @@ var Sendlater3ComposeToolbar = {
 	var bar = document.getElementById("sendlater3_toolbar");
 	if (bar) {
 	    SL3U.SetTreeAttribute(bar, "disabled", recurring);
+	}
+    },
+
+    updateSummary: function() {
+        SL3U.Entering("Sendlater3ComposeToolbar.updateSummary");
+	var whichUI = document.getElementById("sendlater3-toolbar-text-hbox").hidden == false;
+	var dateObj;
+	if (whichUI) {
+	    var dateStr = document.getElementById("sendlater3-toolbar-text").value;
+	    if (dateStr) {
+		try {
+		    var dateObj = dateparse(dateStr);
+		}
+		catch (ex) {
+		}
+		if (! (dateObj && dateObj.isValid())) {
+		    dateObj = null;
+		}
+	    }
+	}
+	else {
+	    var selectedyear =  document.getElementById("sendlater3-yearvalue").value;
+	    var selectedmonth =  document.getElementById("sendlater3-monthvalue").value;
+	    var selecteddate =  document.getElementById("sendlater3-dayvalue").value;
+	    var selectedhour =  document.getElementById("sendlater3-hourvalue").value;
+	    var selectedmin =  document.getElementById("sendlater3-minvalue").value;
+	    dateObj = new SL3U.toSendDate(selectedyear, selectedmonth,
+					  selecteddate, selectedhour,
+					  selectedmin);
+	}
+	document.getElementById("sendlater3-toolbarbutton")
+	    .setAttribute("disabled", ! dateObj);
+        SL3U.Returning("Sendlater3ComposeToolbar.updateSummary", dateObj);
+	return dateObj;
+    },
+
+    CheckTextEnter: function(event) {
+	if (event.keyCode == KeyEvent.DOM_VK_RETURN) {
+	    if (Sendlater3ComposeToolbar.updateSummary()) {
+		Sendlater3ComposeToolbar.CallSendAt();
+		return true;
+	    }
+	    return false;
 	}
     },
 
@@ -111,7 +156,7 @@ var Sendlater3ComposeToolbar = {
 		break;
 	    }
 
-	    if (SL3U.getBoolPref("dropdowns.showintoolbar")) {
+	    if (SL3U.getBoolPref("entry.showintoolbar")) {
 		// I tried putting these all inside one big box and just hiding
 		// or showing that, but then theyall grew to fill the height of
 		// the box and it was ugly, and I couldn't figure out how to
@@ -125,7 +170,7 @@ var Sendlater3ComposeToolbar = {
 		document.getElementById("sendlater3-monthvalue").hidden = false;
 		document.getElementById("sendlater3-dayvalue").hidden = false;
 		document.getElementById("sendlater3-toolsep").hidden = false;
-		document.getElementById("sendlater3-toolbarbutton").hidden = false;
+		document.getElementById("sendlater3-toolbarbutton-hbox").hidden = false;
 		document.getElementById("sendlater3-quicksep").hidden = false;
 	    }
 	    else {
@@ -138,7 +183,7 @@ var Sendlater3ComposeToolbar = {
 		document.getElementById("sendlater3-monthvalue").hidden = true;
 		document.getElementById("sendlater3-dayvalue").hidden = true;
 		document.getElementById("sendlater3-toolsep").hidden = true;
-		document.getElementById("sendlater3-toolbarbutton").hidden = true;
+		document.getElementById("sendlater3-toolbarbutton-hbox").hidden = true;
 		document.getElementById("sendlater3-quicksep").hidden = true;
 	    }
 
@@ -178,11 +223,20 @@ var Sendlater3ComposeToolbar = {
 		    Sendlater3Composing.prevXSendLater.getHours();
 		document.getElementById("sendlater3-minvalue").value =
 		    Sendlater3Composing.prevXSendLater.getMinutes();
+		document.getElementById("sendlater3-toolbar-text").value =
+		    Sendlater3Composing.prevXSendLater.toLocaleDateString() + " " +
+		    Sendlater3Composing.prevXSendLater.toLocaleTimeString();
 	    }
 	    else {
 		SL3U.dump("No previous time");
 		t.setTimer();
+		document.getElementById("sendlater3-toolbar-text").value = "";
 	    }
+	    if (! document.getElementById("sendlater3-toolbar-text-hbox").hidden) {
+		document.getElementById("sendlater3-toolbarbutton")
+		    .setAttribute("disabled", Sendlater3Composing.prevXSendLater ? false : true);
+	    }
+
 	    if (Sendlater3Composing.prevRecurring) {
 		Sendlater3ComposeToolbar.SetRecurring(true);
 	    }
@@ -346,16 +400,13 @@ var Sendlater3ComposeToolbar = {
 
     CallSendAt: function() {
 	SL3U.Entering("Sendlater3ComposeToolbar.CallSendAt");
-	var selectedyear =  document.getElementById("sendlater3-yearvalue").value;
-	var selectedmonth =  document.getElementById("sendlater3-monthvalue").value;
-	var selecteddate =  document.getElementById("sendlater3-dayvalue").value;
-	var selectedhour =  document.getElementById("sendlater3-hourvalue").value;
-	var selectedmin =  document.getElementById("sendlater3-minvalue").value;
-	var sendat = new SL3U.toSendDate(selectedyear, selectedmonth,
-					 selecteddate, selectedhour,
-					 selectedmin);
-
-	Sendlater3Composing.SendAtTime(sendat);
+	var sendat = Sendlater3ComposeToolbar.updateSummary();
+	if (sendat) {
+	    Sendlater3Composing.SendAtTime(sendat);
+	}
+	else {
+	    SL3U.warn("Sendlater3ComposeToolbar.CallSendAt unexpectedly called when there is no valid send time");
+	}
 	SL3U.Leaving("Sendlater3ComposeToolbar.CallSendAt");
     },
 

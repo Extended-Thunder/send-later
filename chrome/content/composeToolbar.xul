@@ -23,35 +23,44 @@
 	  <image  src="chrome://sendlater3/content/timeIcon.png" />
 	  <separator flex="1" />
 	</hbox>
-	<menulist label="HH" id="sendlater3-hourvalue" style="margin: 0px;" >
-	  <menupopup id="sendlater3-hours">
-	  </menupopup>
-	</menulist>
-	<description id="sendlater3-colon">:</description>
-	<menulist label="MM" id="sendlater3-minvalue" style="margin: 0px;">
-	  <menupopup id="sendlater3-mins">
-	  </menupopup>
-	</menulist>
-	<separator id="sendlater3-calsep" flex="1" width="4" />
-	<hbox id="sendlater3-toolbarcalicon" width="28" >
-	  <image src="chrome://sendlater3/content/calIcon.png"  />
-	  <separator flex="1" />
+	<hbox id="sendlater3-toolbar-text-hbox">
+	  <textbox id="sendlater3-toolbar-text" width="200px"
+		   oninput="Sendlater3ComposeToolbar.updateSummary();"
+		   emptytext="send time"
+		   tooltiptext="Enter a date and time. Free-form entry such as &quot;next Tuesday at 3:00pm&quot; is also supported."
+		   onkeypress="Sendlater3ComposeToolbar.CheckTextEnter(event);"/>
 	</hbox>
-	<menulist label="Years" id="sendlater3-yearvalue" style="margin: 0px;">
-	  <menupopup id="sendlater3-years">
-	  </menupopup>
-	</menulist>
-	<menulist label="Months" id="sendlater3-monthvalue" style="margin: 0px;">
-	  <menupopup id="sendlater3-months">
-	  </menupopup>
-	</menulist>
-	<menulist label="Days" id="sendlater3-dayvalue" style="margin: 0px;">
-	  <menupopup id="sendlater3-days">
-	  </menupopup>
-	</menulist>
+	<hbox id="sendlater3-toolbar-dropdowns-hbox" hidden="true">
+	  <menulist label="HH" id="sendlater3-hourvalue" style="margin: 0px;" >
+	    <menupopup id="sendlater3-hours">
+	    </menupopup>
+	  </menulist>
+	  <description id="sendlater3-colon">:</description>
+	  <menulist label="MM" id="sendlater3-minvalue" style="margin: 0px;">
+	    <menupopup id="sendlater3-mins">
+	    </menupopup>
+	  </menulist>
+	  <separator id="sendlater3-calsep" flex="1" width="4" />
+	  <hbox id="sendlater3-toolbarcalicon" width="28" >
+	    <image src="chrome://sendlater3/content/calIcon.png"  />
+	    <separator flex="1" />
+	  </hbox>
+	  <menulist label="Years" id="sendlater3-yearvalue" style="margin: 0px;">
+	    <menupopup id="sendlater3-years">
+	    </menupopup>
+	  </menulist>
+	  <menulist label="Months" id="sendlater3-monthvalue" style="margin: 0px;">
+	    <menupopup id="sendlater3-months">
+	    </menupopup>
+	  </menulist>
+	  <menulist label="Days" id="sendlater3-dayvalue" style="margin: 0px;">
+	    <menupopup id="sendlater3-days">
+	    </menupopup>
+	  </menulist>
+	</hbox>
 	<separator id="sendlater3-toolsep" flex="1" width="8px" /> 
-	<hbox id="sendlater3-toolbarbutton" style="border: groove 1px" tooltiptext="&sendlater.toolbar.sendlater.button.label;">
-	  <toolbarbutton orient="horizontal" image="chrome://sendlater3/content/sendlater3icon20.png" label="&sendlater.toolbar.sendlater.button.label;" oncommand="Sendlater3ComposeToolbar.CallSendAt();"  />
+	<hbox id="sendlater3-toolbarbutton-hbox" style="border: groove 1px" tooltiptext="&sendlater.toolbar.sendlater.button.label;">
+	  <toolbarbutton id="sendlater3-toolbarbutton" orient="horizontal" image="chrome://sendlater3/content/sendlater3icon20.png" label="&sendlater.toolbar.sendlater.button.label;" oncommand="Sendlater3ComposeToolbar.CallSendAt();"  />
 	</hbox>
 	<separator id="sendlater3-quicksep" flex="1" width="8px" /> 
 	<button key="sendlater3-quickbutton1-key" id="sendlater3-shortcutbtn_1" flex="1" label="15 mins" oncommand="Sendlater3ComposeToolbar.CallSendAfter(15);close();"/>

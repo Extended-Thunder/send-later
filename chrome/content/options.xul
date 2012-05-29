@@ -26,7 +26,7 @@
       <preference id="sendlater3_showcolumn" name="extensions.sendlater3.showcolumn" type="bool"/>
       <preference id="sendlater3_showstatus" name="extensions.sendlater3.showstatus" type="bool"/>
       <preference id="sendlater3_showprogress" name="extensions.sendlater3.showprogress" type="bool"/>
-      <preference id="sendlater3_showdropdowns" name="extensions.sendlater3.dropdowns.showintoolbar" type="bool"/>
+      <preference id="sendlater3_showentry" name="extensions.sendlater3.entry.showintoolbar" type="bool"/>
       <preference id="sendlater3_sendunsentmessages" name="extensions.sendlater3.sendunsentmessages" type="bool"/>
       <preference id="sendlater3_dumplevel" name="extensions.sendlater3.logging.dump" type="string"/>
       <preference id="sendlater3_consolelevel" name="extensions.sendlater3.logging.console" type="string"/>
@@ -67,7 +67,7 @@
 	      <checkbox id="sendlater3-showprogresspref" preference="sendlater3_showprogress" label="&showsendlaterprogress.caption;" />
 	    </hbox>
 	    <hbox align="center" >
-	      <checkbox id="sendlater3-showdropdownspref" preference="sendlater3_showdropdowns" label="&showsendlaterdropdowns.caption;" />
+	      <checkbox id="sendlater3-showentrypref" preference="sendlater3_showentry" label="&showsendlaterentry.caption;" />
 	    </hbox>
 	    <hbox align="center" tooltiptext="&showsendlaterunsentmessages.tooltip;">
 	      <checkbox id="sendlater3-sendunsentmessagespref" preference="sendlater3_sendunsentmessages" label="&showsendlaterunsentmessages.caption;" />
