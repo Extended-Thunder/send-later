@@ -22,7 +22,7 @@
       <deck id="sendlater3-time-deck" selectedIndex="0">
 	<hbox align="center">
 	  <label value="Send at:"/>
-	  <textbox id="sendlater3-time-text" width="100%" flex="1" tabindex="1"
+	  <textbox id="sendlater3-time-text" width="100%" flex="1"
 		   oninput="Sendlater3Prompt.updateSummary();"
 		   emptytext="ex: &quot;3:00pm Thursday&quot;, &quot;12/31/2012 15:27&quot;"
 		   tooltiptext="Enter a date and time. Free-form entry such as &quot;next Tuesday at 3:00pm&quot; is also supported."
