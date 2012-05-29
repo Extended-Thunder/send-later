@@ -257,10 +257,11 @@ var Sendlater3Prompt = {
 	}
 	var button = document.getElementById("sendlater3-callsendat");
 	if (dateObj) {
-	    button.label = "Send around " + dateObj.toLocaleString();
+	    button.label = SL3U.PromptBundleGet("sendaround") + " "
+		+ dateObj.toLocaleString();
 	}
 	else {
-	    button.label = "Enter a valid date above";
+	    button.label = SL3U.PromptBundleGet("entervalid");
 	}
 //	document.getElementById("sendlater3-summary").value =
 //	    SL3U.PromptBundleGet("willsendat") + " " + displayStr;

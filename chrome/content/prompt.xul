@@ -21,11 +21,11 @@
     <vbox style="border:solid #00C000 3px; padding-top: 2px; font-size: 125%;" >
       <deck id="sendlater3-time-deck" selectedIndex="0">
 	<hbox align="center">
-	  <label value="Send at:"/>
+	  <label value="&sendlater.prompt.textbox.label;"/>
 	  <textbox id="sendlater3-time-text" width="100%" flex="1"
 		   oninput="Sendlater3Prompt.updateSummary();"
-		   emptytext="ex: &quot;3:00pm Thursday&quot;, &quot;12/31/2012 15:27&quot;"
-		   tooltiptext="Enter a date and time. Free-form entry such as &quot;next Tuesday at 3:00pm&quot; is also supported."
+		   emptytext="&sendlater.prompt.textbox.emptytext;"
+		   tooltiptext="&sendlater.prompt.textbox.tooltip;"
 		   onkeypress="Sendlater3Prompt.CheckTextEnter(event) &amp;&amp; close();"/>
 	</hbox>
 	<hbox>

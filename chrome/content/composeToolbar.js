@@ -45,7 +45,8 @@ var Sendlater3ComposeToolbar = {
     },
 
     CheckTextEnter: function(event) {
-	if (event.keyCode == KeyEvent.DOM_VK_RETURN) {
+	if (event.keyCode == KeyEvent.DOM_VK_RETURN and
+	    ! (event.altKey || event.ctrlKey || event.ShiftKey)) {
 	    if (Sendlater3ComposeToolbar.updateSummary()) {
 		Sendlater3ComposeToolbar.CallSendAt();
 		return true;
@@ -170,6 +171,7 @@ var Sendlater3ComposeToolbar = {
 		document.getElementById("sendlater3-monthvalue").hidden = false;
 		document.getElementById("sendlater3-dayvalue").hidden = false;
 		document.getElementById("sendlater3-toolsep").hidden = false;
+		document.getElementById("sendlater3-toolbar-text-hbox").hidden = false;
 		document.getElementById("sendlater3-toolbarbutton-hbox").hidden = false;
 		document.getElementById("sendlater3-quicksep").hidden = false;
 	    }
@@ -183,6 +185,7 @@ var Sendlater3ComposeToolbar = {
 		document.getElementById("sendlater3-monthvalue").hidden = true;
 		document.getElementById("sendlater3-dayvalue").hidden = true;
 		document.getElementById("sendlater3-toolsep").hidden = true;
+		document.getElementById("sendlater3-toolbar-text-hbox").hidden = true;
 		document.getElementById("sendlater3-toolbarbutton-hbox").hidden = true;
 		document.getElementById("sendlater3-quicksep").hidden = true;
 	    }

@@ -26,8 +26,8 @@
 	<hbox id="sendlater3-toolbar-text-hbox">
 	  <textbox id="sendlater3-toolbar-text" width="200px"
 		   oninput="Sendlater3ComposeToolbar.updateSummary();"
-		   emptytext="send time"
-		   tooltiptext="Enter a date and time. Free-form entry such as &quot;next Tuesday at 3:00pm&quot; is also supported."
+		   emptytext="&sendlater.toolbar.textbox.emptytext;"
+		   tooltiptext="&sendlater.prompt.textbox.tooltip;"
 		   onkeypress="Sendlater3ComposeToolbar.CheckTextEnter(event);"/>
 	</hbox>
 	<hbox id="sendlater3-toolbar-dropdowns-hbox" hidden="true">
