@@ -76,3 +76,6 @@ mail.ui.display.dateformat.
 
 Compatibility with Mail Merge extension, i.e., the ability to schedule
 mail-merged messages.
+
+Pluggable recurrence, i.e., the ability to specify a function for
+calculating the next time the message should be sent.
