@@ -275,6 +275,214 @@ var Sendlater3Util = {
 	return s;
     },
 
+    NextRecurTest: function() {
+	var tests = new Array(
+	    new Array("1/1/2012", "daily", "1/1/2012", "1/2/2012"),
+	    new Array("1/2/2012", "weekly", "1/10/2012", "1/16/2012"),
+	    new Array("1/5/2012", "monthly 5", "1/5/2012", "2/5/2012"),
+	    new Array("3/1/2012", "monthly 30", "3/1/2012", "3/30/2012"),
+	    new Array("4/15/2012", "monthly 0 3", "4/15/2012", "5/20/2012"),
+	    new Array("1/29/2012", "monthly 0 5", "1/30/2012", "4/29/2012"),
+	    new Array("2/29/2012", "yearly 1 29", "2/29/2012", "3/1/2013"),
+	    new Array("3/1/2013", "yearly 1 29 / 3", "3/1/2013", "2/29/2016")
+	);
+
+	var i;
+	for (i in tests) {
+	    var test = tests[i];
+	    var result = SL3U.NextRecurDate(new Date(test[0]),
+					    test[1],
+					    new Date(test[2]));
+	    var expected = new Date(test[3]);
+	    if (result.getTime() == expected.getTime()) {
+		SL3U.warn("NextRecurTest: PASS " + i);
+	    }
+	    else {
+		SL3U.warn("NextRecurTest: FAIL " + i + ", expected " +
+			  expected + ", got " + result);
+	    }
+	}
+    },
+
+    NextRecurDate: function(next, recurSpec, now) {
+	// Make sure we don't modify our input!
+	next = new Date(next.getTime());
+
+	var type, dayOfMonth, dayOfWeek, weekOfMonth, monthOfYear, recurCount;
+
+	var recurArray = recurSpec.split(" ");
+	type = recurArray[0];
+	recurArray.splice(0, 1);
+	if (type == "monthly") {
+	    dayOfMonth = recurArray[0];
+	    recurArray.splice(0, 1);
+	    if ((recurArray.length > 0) && recurArray[0].match(/^[0-9]+/)) {
+		dayOfWeek = dayOfMonth;
+		dayOfMonth = null;
+		weekOfMonth = recurArray[0];
+		recurArray.splice(0, 1);
+	    }
+	}
+	else if (type == "yearly") {
+	    monthOfYear = recurArray[0];
+	    dayOfMonth = recurArray[1];
+	    recurArray.splice(0,2);
+	}
+	if ((recurArray.length > 1) && (recurArray[0] == "/")) {
+	    recurCount = recurArray[1];
+	    recurArray.splice(0, 2);
+	}
+	else {
+	    recurCount = 1;
+	}
+	if (recurArray.length > 0) {
+	    throw "Send Later 3 internal error: extra recurrence args: " + recurArray.toString();
+	}
+
+	if (! now) {
+	    now = new Date();
+	}
+
+	var redo = false;
+
+	// test 0: next < now
+	// test 1: next > now
+	// test 0: recurCount == 1
+	// test 7: recurCount == 3
+	while ((next <= now) || (recurCount > 0) || redo) {
+	    redo = false;
+	    switch (type) {
+	    // test 0
+	    case "daily":
+		next.setDate(next.getDate()+1);
+		break;
+	    // test 1
+	    case "weekly":
+		next.setDate(next.getDate()+7);
+		break;
+	    case "monthly":
+		// Two different algorithms are in play here,
+		// depending on whether we're supposed to schedule on
+		// a day of the month or a weekday of a week of the
+		// month.
+		//
+		// If the former, then either the current day
+		// of the month is the same as the one we want, in
+		// which case we just move to the next month, or it's
+		// not, in which case the "correct" month didn't have
+		// that day (i.e., it's 29, 30, or 31 on a month
+		// without that many days), so we ended up rolling
+		// over. In that case, we set the day of the month of
+		// the _current_ month, because we're already in the
+		// right month.
+		//
+		// If the latter, then first check if we're at the
+		// correct weekday and week of the month. If so, then
+		// go to the first day of the next month. After that,
+		// move forward to the correct week of the month and
+		// weekday.  If that pushes us past the end of the
+		// month, that means the month in question doesn't
+		// have, e.g., a "5th Tuesday", so we need to set the
+		// redo flag indicating that we need to go through the
+		// loop again because we didn't successfully find a
+		// date.
+
+		if (dayOfMonth != null) {
+		    // test 2
+		    if (next.getDate() == dayOfMonth) {
+			next.setMonth(next.getMonth()+1);
+		    }
+		    // test 3
+		    else {
+			next.setDate(dayOfMonth);
+		    }
+		}
+		else {
+		    // test 4
+		    if ((next.getDay() == dayOfWeek) &&
+			(Math.ceil(next.getDate()/7) == weekOfMonth)) {
+			next.setDate(1);
+			next.setMonth(next.getMonth()+1);
+		    }
+		    else {
+			// test 5
+		    }
+		    next.setDate((weekOfMonth-1)*7+1);
+		    while (next.getDay() != dayOfWeek) {
+			next.setDate(next.getDate()+1);
+		    }
+		    if (Math.ceil(next.getDate()/7) != weekOfMonth) {
+			redo = true;
+		    }
+		}
+		break;
+	    case "yearly":
+		// test 6
+		// test 7
+		next.setFullYear(next.getFullYear()+1);
+		next.setMonth(monthOfYear);
+		next.setDate(dayOfMonth);
+		break;
+	    default:
+		throw "Send Later 3 internal error: unrecognized recurrence type: " + type;
+		break;
+	    }
+		
+	    recurCount--;
+	}
+
+	return next;
+    },
+
+    FormatRecur: function(recurSpec) {
+	var type, dayOfMonth, dayOfWeek, weekOfMonth, monthOfYear, recurCount;
+	var str = "";
+
+	var recurArray = recurSpec.split(" ");
+	type = recurArray[0];
+	recurArray.splice(0, 1);
+	if (type == "monthly") {
+	    dayOfMonth = recurArray[0];
+	    recurArray.splice(0, 1);
+	    if ((recurArray.length > 0) && recurArray[0].match(/^[0-9]+/)) {
+		dayOfWeek = dayOfMonth;
+		dayOfMonth = null;
+		weekOfMonth = recurArray[0];
+		recurArray.splice(0, 1);
+	    }
+	}
+	else if (type == "yearly") {
+	    monthOfYear = recurArray[0];
+	    dayOfMonth = recurArray[1];
+	    recurArray.splice(0,2);
+	}
+	if ((recurArray.length > 1) && (recurArray[0] == "/")) {
+	    recurCount = recurArray[1];
+	    recurArray.splice(0, 2);
+	}
+	else {
+	    recurCount = 1;
+	}
+	if (recurArray.length > 0) {
+	    throw "Send Later 3 internal error: extra recurrence args: " + recurArray.toString();
+	}
+
+	if (recurCount == 1) {
+	    str = SL3U.PromptBundleGet(type);
+	}
+	else {
+	    str = SL3U.PromptBundleGetFormatted("every_"+type, [recurCount]);
+	}
+	
+	if (dayOfWeek != null) {
+	    str += ", " + SL3U.PromptBundleGetFormatted("everymonthly_short",
+							[SL3U.PromptBundleGet("ord"+weekOfMonth),
+							 SL3U.PromptBundleGet("day"+dayOfWeek)]);
+	}
+
+	return str;
+    },
+
     logger: null,
 
     warn: function(msg) {

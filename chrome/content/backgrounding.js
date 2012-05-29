@@ -1,6 +1,8 @@
 var Sendlater3Backgrounding = function() {
     SL3U.Entering("Sendlater3Backgrounding");
 
+    SL3U.initUtil();
+
     var msgWindow = Components.classes["@mozilla.org/messenger/msgwindow;1"]
 	.createInstance();
     msgWindow = msgWindow.QueryInterface(Components.interfaces.nsIMsgWindow);
@@ -376,36 +378,7 @@ var Sendlater3Backgrounding = function() {
 	    }
 	    SetAnimTimer(3000);
 	    if (recur) {
-		var settings = recur.split(" ");
-		var next = new Date(sendat);
-		var now = new Date();
-		while (next < now) {
-		    switch (settings[0]) {
-		    case "daily":
-			next.setDate(next.getDate()+1);
-			break;
-		    case "weekly":
-			next.setDate(next.getDate()+7);
-			break;
-		    case "monthly":
-			if (next.getDate() == settings[1]) {
-			    next.setMonth(next.getMonth()+1);
-			}
-			else {
-			    // Wrapped around end of previous month
-			    next.setDate(settings[1]);
-			}
-			break;
-		    case "yearly":
-			next.setFullYear(next.getFullYear()+1);
-			next.setMonth(settings[1]);
-			next.setDate(settings[2]);
-			break;
-		    default:
-			throw "Send Later 3 internal error: unrecognized recurrence type: " + settings[0];
-			break;
-		    }
-		}
+		var next = SL3U.NextRecurDate(new Date(sendat), recur);
 		var content = this._content;
 		content = content.replace(/\r\n\r\n/, "\r\nX-Send-Later-At: " +
 					  SL3U.FormatDateTime(next, true) +

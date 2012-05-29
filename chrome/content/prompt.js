@@ -38,7 +38,7 @@ var Sendlater3Prompt = {
 	document.getElementById("sendlater3-recur-every-month-checkbox").label =
 	    desc;
 	if (recurring) {
-	    everyLabel.value = SL3U.PromptBundleGet("every_" + which);
+	    everyLabel.value = SL3U.PromptBundleGet("plural_" + which);
 	    var checkbox = document
 		.getElementById("sendlater3-recur-every-checkbox");
 	    var textbox = document
@@ -165,8 +165,8 @@ var Sendlater3Prompt = {
 		settings.splice(0,1);
 	    }
 	    if (settings.length > 0) {
-		SL3U.warn("Unexpected recur setting fields: " +
-			  settings.toString());
+		throw "Send Later 3 internal error: unexpected recur setting fields: " +
+		    settings.toString();
 	    }
 	}
 	    
@@ -390,7 +390,7 @@ var Sendlater3Prompt = {
     // each month.
     //
     // If the first field is yearly, then the second and third fields
-    // are the month and date numbers for the yearly occurrence.
+    // are the month (0-11) and date numbers for the yearly occurrence.
     //
     // After all of the above, "/ #" indicates a skip value, e.g., "/
     // 2" means every 2, "/ 3" means every 3, etc. For example, "daily

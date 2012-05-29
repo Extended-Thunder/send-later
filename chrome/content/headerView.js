@@ -24,8 +24,7 @@ var Sendlater3HeaderView = function() {
 				    retdate.getMinutes(),
 				    0);
 		if (recur) {
-		    var settings = recur.split(" ");
-		    val += " (" + SL3U.PromptBundleGet(settings[0]) + ")";
+		    val += " (" + SL3U.FormatRecur(recur) + ")";
 		}
 		SL3U.Returning("Sendlater3HeaderView.sendlater3columnHandler.getCellText", val);
 		return val;
@@ -146,9 +145,7 @@ var Sendlater3HeaderView = function() {
 			    var recur = msghdr
 				.getStringProperty("x-send-later-recur");
 			    if (recur) {
-				var settings = recur.split(" ");
-				val += " (" + Sendlater3Util
-				    .PromptBundleGet(settings[0]) + ")";
+				val += " (" + SL3U.FormatRecur(recur) + ")";
 			    }
 			    document
 				.getElementById("sendlater3-expanded-Box")
