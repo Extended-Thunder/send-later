@@ -200,7 +200,7 @@ var Sendlater3Composing = {
 		SL3U.setIntPref(p1, now);
 		SL3U.setIntPref(p2, 0);
 		window.openDialog("chrome://sendlater3/content/ask.xul",
-				  "AskWindow", "modal,chrome,centerscreen", {});
+				  "AskWindow", "chrome,centerscreen", {});
 	    }
 	    else if (sent > -1) {
 		if (last_ask == 0) {
