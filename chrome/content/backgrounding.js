@@ -39,9 +39,6 @@ var Sendlater3Backgrounding = function() {
 		    if (! MailOfflineMgr.isOnline()) {
 			SL3U.warn("Deferring sendUnsentMessages while offline");
 		    }
-		    else if (SL3U.IsThunderbird2()) {
-			messenger.sendUnsentMessages(null, msgWindow);
-		    }
 		    else {
 			var msgSendLater = Components
 			    .classes["@mozilla.org/messengercompose/sendlater;1"]
@@ -67,9 +64,6 @@ var Sendlater3Backgrounding = function() {
 		SL3U.debug("Deferring sendUnsentMessages");
 		needToSendUnsentMessages = true;
 	    }
-	    else if (SL3U.IsThunderbird2()) {
-		messenger.sendUnsentMessages(null, msgWindow);
-	    }
 	    else {
 		var msgSendLater = Components
 		    .classes["@mozilla.org/messengercompose/sendlater;1"]
@@ -88,12 +82,7 @@ var Sendlater3Backgrounding = function() {
 	var msgSendLater = Components
 	    .classes["@mozilla.org/messengercompose/sendlater;1"]
 	    .getService(Components.interfaces.nsIMsgSendLater);
-	if (SL3U.IsThunderbird2()) {
-	    msgSendLater.AddListener(sendUnsentMessagesListener);
-	}
-	else {
-	    msgSendLater.addListener(sendUnsentMessagesListener);
-	}
+	msgSendLater.addListener(sendUnsentMessagesListener);
 	SL3U.Leaving("Sendlater3Backgrounding.addMsgSendLaterListener");
     }
     function removeMsgSendLaterListener() {
@@ -101,12 +90,7 @@ var Sendlater3Backgrounding = function() {
 	var msgSendLater = Components
 	    .classes["@mozilla.org/messengercompose/sendlater;1"]
 	    .getService(Components.interfaces.nsIMsgSendLater);
-	if (SL3U.IsThunderbird2()) {
-	    msgSendLater.RemoveListener(sendUnsentMessagesListener);
-	}
-	else {
-	    msgSendLater.removeListener(sendUnsentMessagesListener);
-	}
+	msgSendLater.removeListener(sendUnsentMessagesListener);
 	SL3U.Leaving("Sendlater3Backgrounding.removeMsgSendLaterListener");
     }
 
@@ -366,7 +350,7 @@ var Sendlater3Backgrounding = function() {
 	    var recur = this._recur;
 	    var folder = messageHDR.folder;
 	    var dellist;
-	    if (SL3U.IsThunderbird2() || SL3U.IsPostbox()) {
+	    if (SL3U.IsPostbox()) {
 		dellist = Components.classes["@mozilla.org/supports-array;1"]
 		    .createInstance(Components.interfaces.nsISupportsArray);
 		dellist.AppendElement(messageHDR);
@@ -441,8 +425,7 @@ var Sendlater3Backgrounding = function() {
 		.classes["@mozilla.org/messenger/msgnotificationservice;1"]
 		.getService(Components.interfaces
 			    .nsIMsgFolderNotificationService);
-	    if (UndigestifyKamensUs.IsThunderbird2() ||
-		UndigestifyKamensUs.IsPostbox()) {
+	    if (SL3U.IsPostbox()) {
 		notificationService.addListener(listener);
 	    }
 	    else {
@@ -770,7 +753,7 @@ var Sendlater3Backgrounding = function() {
 		// necessary, so I'm disabling them in the spirit of
 		// optimizing performance by making plugins do as little as
 		// possible.
-		// if (SL3U.IsThunderbird2() || SL3U.IsPostbox()) {
+		// if (SL3U.IsPostbox()) {
 		//     folder.endFolderLoading();
 		// }
 		SL3U.debug("FOLDER LOADED - " + folder.URI);
@@ -785,7 +768,7 @@ var Sendlater3Backgrounding = function() {
 		    var thisfolder = folder
 			.QueryInterface(Components.interfaces.nsIMsgFolder);
 		    var messageenumerator;
-		    if (SL3U.IsThunderbird2() || SL3U.IsPostbox()) {
+		    if (SL3U.IsPostbox()) {
 			messageenumerator = thisfolder.getMessages(msgWindow);
 		    }
 		    else {
@@ -807,7 +790,7 @@ var Sendlater3Backgrounding = function() {
 				.QueryInterface(Components.interfaces
 						.nsIMsgDBHdr);
 			    var flags;
-			    if (SL3U.IsThunderbird2() || SL3U.IsPostbox()) {
+			    if (SL3U.IsPostbox()) {
 				flags = 2097152 | 8; // Better way to do this?
 			    }
 			    else {
@@ -870,7 +853,7 @@ var Sendlater3Backgrounding = function() {
 	    folderstocheck.push(SL3U.FindSubFolder(fdrlocal, "Drafts").URI);
 	    ProgressAdd("local Drafts folder");
 	    SL3U.dump("SCHEDULE local folder - " + folderstocheck[0]);
-	    // if (SL3U.IsThunderbird2() || SL3U.IsPostbox()) {
+	    // if (SL3U.IsPostbox()) {
 	    // 	var sub = SL3U.FindSubFolder(fdrlocal, "Drafts");
 	    // 	sub.endFolderLoading();
 	    // 	sub.startFolderLoading();
@@ -960,7 +943,7 @@ var Sendlater3Backgrounding = function() {
 				    pref_value;
 				if (pref_value) {
 				    SL3U.dump("SCHEDULE - " + thisfolder.URI );
-				    // if (SL3U.IsThunderbird2() || SL3U.IsPostbox()) {
+				    // if (SL3U.IsPostbox()) {
 				    // 	thisfolder.endFolderLoading();
 				    // 	thisfolder.startFolderLoading();
 				    // }
@@ -1039,7 +1022,7 @@ var Sendlater3Backgrounding = function() {
     }
 
     function DisplayReleaseNotes() {
-	if (! (SL3U.IsPostbox() || SL3U.IsThunderbird2())) {
+	if (! SL3U.IsPostbox()) {
 	    var enabledItems;
 	    try {
 		var enabledItems = SL3U.PrefService
@@ -1126,7 +1109,7 @@ Sendlater3Backgrounding.markReadListener.prototype = {
     msgAdded: function(aMsgHdr) {
 	if (this._folder == aMsgHdr.folder &&
 	    this._key == aMsgHdr.messageKey) {
-	    if (SL3U.IsThunderbird2() || SL3U.IsPostbox()) {
+	    if (SL3U.IsPostbox()) {
 		readlist = Components.classes["@mozilla.org/supports-array;1"]
 		    .createInstance(Components.interfaces.nsISupportsArray);
 		readlist.AppendElement(aMsgHdr);

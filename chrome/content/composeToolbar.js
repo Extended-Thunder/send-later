@@ -107,18 +107,6 @@ var Sendlater3ComposeToolbar = {
 	}
 
 	if (document.getElementById('sendlater3_toolbar')) {
-	    // This is disgusting. We need to change the style
-	    // attributes in TB2 on Linux, but we can't do it in
-	    // chrome because chrome.manifest in TB2 doesn't support
-	    // the os attribute. So we need to do it here. Ugh.
-	    if (SL3U.IsThunderbird2() && SL3U.IsLinux()) {
-		document.getElementById("sendlater3-hourvalue").style.paddingRight = "15px";
-		document.getElementById("sendlater3-minvalue").style.paddingRight = "15px";
-		document.getElementById("sendlater3-yearvalue").style.paddingRight = "15px";
-		document.getElementById("sendlater3-monthvalue").style.paddingRight = "15px";
-		document.getElementById("sendlater3-dayvalue").style.paddingRight = "15px";
-	    }
-
 	    document.getElementById("sendlater3-yearvalue")
 		.removeEventListener("ValueChange", t.populateMonths, false);
 	    document.getElementById("sendlater3-monthvalue")

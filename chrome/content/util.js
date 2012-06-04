@@ -51,23 +51,6 @@ var Sendlater3Util = {
 
     _PromptBundle: null,
 
-    IsLinux: function() {
-	return Components.classes["@mozilla.org/xre/app-info;1"]
-	    .getService(Components.interfaces.nsIXULRuntime).OS == "Linux";
-    },
-
-    IsThunderbird2: function() {
-	var appInfo = Components.classes["@mozilla.org/xre/app-info;1"]
-            .getService(Components.interfaces.nsIXULAppInfo);
-	if (appInfo.name != "Thunderbird") {
-	    return false;
-	}
-	var versionChecker = Components
-	    .classes["@mozilla.org/xpcom/version-comparator;1"]
-            .getService(Components.interfaces.nsIVersionComparator);
-	return(versionChecker.compare(appInfo.version, "3.0") < 0);
-    },
-
     IsPostbox: function() {
 	var appInfo = Components.classes["@mozilla.org/xre/app-info;1"]
             .getService(Components.interfaces.nsIXULAppInfo);
@@ -75,21 +58,11 @@ var Sendlater3Util = {
     },
 
     FindSubFolder: function(folder, name) {
-	if (Sendlater3Util.IsThunderbird2() ||
-	    Sendlater3Util.IsPostbox()) {
+	if (Sendlater3Util.IsPostbox()) {
 	    return folder.FindSubFolder(name);
 	}
 	else {
 	    return folder.findSubFolder(name);
-	}
-    },
-
-    HeaderRowId: function() {
-	if (Sendlater3Util.IsThunderbird2()) {
-	    return "sendlater3-expanded-Box";
-	}
-	else {
-	    return "sendlater3-expanded-Row";
 	}
     },
 
@@ -653,15 +626,6 @@ var Sendlater3Util = {
 	if (Sendlater3Util.IsPostbox()) {
 	    Sendlater3Util.copyService.CopyFileMessage(sfile, folder, 0, "",
 						       listener, msgWindow);
-	}
-	else if (Sendlater3Util.IsThunderbird2()) {
-	    var fileSpc = Components.classes["@mozilla.org/filespec;1"]
-		.createInstance();
-	    fileSpc = fileSpc.QueryInterface(Components.interfaces.nsIFileSpec);
-	    fileSpc.nativePath = filePath;
-	    Sendlater3Util.copyService.CopyFileMessage(fileSpc, folder, null,
-						       false, 0, listener,
-						       msgWindow);
 	}
 	else {
 	    Sendlater3Util.copyService.CopyFileMessage(sfile, folder, null,

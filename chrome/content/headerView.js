@@ -168,7 +168,7 @@ var Sendlater3HeaderView = function() {
 	    else {
 		SL3U.debug("headerView.js: dispHeader: showheader is false");
 	    }
-	    document.getElementById(SL3U.HeaderRowId()).hidden = hidden;
+	    document.getElementById("sendlater3-expanded-Row").hidden = hidden;
 	    SL3U.Leaving("Sendlater3HeaderView.sendlater3_HeaderDisplay.dispHeader");
 	},
 	noop: function() { }
