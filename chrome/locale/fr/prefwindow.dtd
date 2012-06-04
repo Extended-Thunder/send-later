@@ -2,8 +2,8 @@
 <!ENTITY prefwindow.title "Préférences de &quot;Send Later 3&quot;">
 <!ENTITY pane1.title "Préférences de &quot;Send Later 3&quot;">
 <!ENTITY checktimepref.label "Vérifier toutes les :">
-<!ENTITY checktimepref2.label "ms">
-<!ENTITY checktimepref.tooltip "Intervalle (en millisecondes) des vérifications de messages à expédier. Augmenter cette valeur si vos messages ne sont pas expédiés à l'heure prévue ou si le nombre de message en attente est erroné.">
+<!ENTITY checktimepref2.label "minutes">
+<!ENTITY checktimepref.tooltip "Intervalle (en minutes) des vérifications de messages à expédier. Augmenter cette valeur si les messages ne sont pas expédiés à temps ou si le nombre de message en attente est erroné.">
 <!ENTITY checktimepref.accesskey "C">
 <!ENTITY general.caption "Général">
 <!ENTITY quickoption1.caption "1er raccourci">
@@ -18,7 +18,7 @@
 <!ENTITY showsendlaterheader.tooltip "Autorise l'affichage de l'en-tête &quot;x-send-later-at&quot;, c.à.d., le moment prévu d'envoi du message">
 <!ENTITY showsendlaterstatus.caption "Afficher &quot;Send Later 3&quot; dans la barre d'état">
 <!ENTITY showsendlaterprogress.caption "Afficher les tâches en arrière-plan dans la barre d'état">
-<!ENTITY showsendlaterdropdowns.caption "Afficher les listes déroulantes dans la barre de menu">
+<!ENTITY showsendlaterentry.caption "Afficher le champs de planification dans la barre d'outils">
 <!ENTITY showsendlaterunsentmessages.caption "Expédier automatiquement les messages programmés">
 <!ENTITY showsendlaterunsentmessages.tooltip "Effectue les envois planifiés sans les placer dans &quot;Message en attente&quot;. Désactiver l'option, par exemple, lors de l'utilisation d'une extension automatisant l'envoi des messages en attente (tel que BlunderDelay). Remarque : si cette option est activée ; quand &quot;Send Later 3&quot; déclenche un envoi, TOUS les messages en attente sont expédiés">
 <!ENTITY sendlatersendbutton.caption "Remplacer &quot;Envoyer&quot; par &quot;Envoyer plus tard&quot;">

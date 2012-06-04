@@ -17,8 +17,8 @@
 <!ENTITY showsendlaterheader.caption "Näytä &quot;Lähetä myöhemmin&quot; -otsikko">
 <!ENTITY showsendlaterheader.tooltip "Näyttääkö &quot;X-Send-Later-At&quot; otsikko, esim. silloin kun luonnos on ajastettu lähtemään. Näkymään otsikkoon viestin selausikkunaan.">
 <!ENTITY showsendlaterstatus.caption "Näytä tilapalkissa Send Later 3">
-<!ENTITY showsendlaterprogress.caption "Näytä tilapalkissa Taustaeteneminen">
-<!ENTITY showsendlaterdropdowns.caption "Näytä alasvetovalikot työkalupalkissa">
+<!ENTITY showsendlaterprogress.caption "Näytä tilapalkissa taustaeteneminen">
+<!ENTITY showsendlaterentry.caption "Näytä työkalupalkissa ajan määritys">
 <!ENTITY showsendlaterunsentmessages.caption "Käynnistä lähetetyt kansiosta lähettämättömät viestit">
 <!ENTITY showsendlaterunsentmessages.tooltip "Jättämällä tämän kohdan valitsematta Send Later 3 ei tule vielä lähettämään viestejä, vaan tulee siirtämään ne vain lähetetyt kansioon ajankohtana, kun ne on määritetty lähtemään. Jätä tämä kohta valitsematta, jos käytät toista ohjelmaa, kuten BlunderDelay:ta lähettämään viestit lähetetyt-kansiosta määritettyinä aikoina. Huomaa, että kun tämä kohta on valittuna ja kun Send Later 3 lähettää viestin, tullaan samalla kaikki viestit lähettämään lähetetyt-kansiosta.">
 <!ENTITY sendlatersendbutton.caption "&quot;Lähetä&quot;-toiminto on &quot;Lähetä myöhemmin&quot;">

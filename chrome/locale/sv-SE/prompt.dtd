@@ -6,6 +6,9 @@
 <!ENTITY sendlater.prompt.close.label "Avbryt">
 <!ENTITY sendlater.prompt.close.tooltip "Gå tillbaka för att redigera meddelandet.">
 <!ENTITY sendlater.prompt.title.label "Skicka detta e-brev senare">
+<!ENTITY sendlater.prompt.textbox.label "Sändningstid:">
+<!ENTITY sendlater.prompt.textbox.tooltip "Ange datum och klockslag. Fria format som t.ex. &quot;nästa tisdag kl. 15:00&quot; stöds också.">
+<!ENTITY sendlater.prompt.textbox.emptytext "T.ex. &quot;3:00pm torsdag&quot;, &quot;12/31/2012 15:27&quot;">
 <!ENTITY sendlater.prompt.sendat.label "Skicka senare vid den/de tidpunkt(er) som anges ovan">
 <!ENTITY sendlater.prompt.sendat.tooltip "Spara meddelandet i Utkast-mappen för automatisk sändning vid ovan angivna tidpunkt.">
 <!ENTITY sendlater.prompt.recur.label "Upprepning:">
@@ -15,3 +18,5 @@
 <!ENTITY sendlater.prompt.monthly.label "varje månad">
 <!ENTITY sendlater.prompt.yearly.label "varje år">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Skicka senare">
+<!ENTITY sendlater.toolbar.textbox.emptytext "sändningstid">
+<!ENTITY sendlater.prompt.every.label "Var">
