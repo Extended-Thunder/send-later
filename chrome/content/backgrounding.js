@@ -35,20 +35,20 @@ var Sendlater3Backgrounding = function() {
 	    SL3U.Entering("Sendlater3Backgrounding.sendUnsentMessagesListener.onStopSending");
 	    sendingUnsentMessages = false;
 	    if (needToSendUnsentMessages) {
-		try {
-		    if (! MailOfflineMgr.isOnline()) {
-			SL3U.warn("Deferring sendUnsentMessages while offline");
-		    }
-		    else {
+		if (! SL3U.isOnline()) {
+		    SL3U.warn("Deferring sendUnsentMessages while offline");
+		}
+		else {
+		    try {
 			var msgSendLater = Components
 			    .classes["@mozilla.org/messengercompose/sendlater;1"]
 			    .getService(Components.interfaces.nsIMsgSendLater);
 			msgSendLater.sendUnsentMessages(null);
 		    }
-		}
-		catch (ex) {
-		    SL3U.alert(window, null,
-			       SL3U.PromptBundleGet("SendingUnsentError"));
+		    catch (ex) {
+			SL3U.alert(window, null,
+				   SL3U.PromptBundleGet("SendingUnsentError"));
+		    }
 		}
 	    }
 	    SL3U.Leaving("Sendlater3Backgrounding.sendUnsentMessagesListener.onStopSending");
@@ -56,24 +56,24 @@ var Sendlater3Backgrounding = function() {
     }
     function queueSendUnsentMessages() {
 	SL3U.Entering("Sendlater3Backgrounding.queueSendUnsentMessages");
-	try {
-	    if (! MailOfflineMgr.isOnline()) {
-		SL3U.warn("Deferring sendUnsentMessages while offline");
-	    }
-	    else if (sendingUnsentMessages) {
-		SL3U.debug("Deferring sendUnsentMessages");
-		needToSendUnsentMessages = true;
-	    }
-	    else {
+	if (! SL3U.isOnline()) {
+	    SL3U.warn("Deferring sendUnsentMessages while offline");
+	}
+	else if (sendingUnsentMessages) {
+	    SL3U.debug("Deferring sendUnsentMessages");
+	    needToSendUnsentMessages = true;
+	}
+	else {
+	    try {
 		var msgSendLater = Components
 		    .classes["@mozilla.org/messengercompose/sendlater;1"]
 		    .getService(Components.interfaces.nsIMsgSendLater);
 		msgSendLater.sendUnsentMessages(null);
 	    }
-	}
-	catch (ex) {
-	    SL3U.alert(window, null,
-		       SL3U.PromptBundleGet("SendingUnsentError"));
+	    catch (ex) {
+		SL3U.alert(window, null,
+			   SL3U.PromptBundleGet("SendingUnsentError"));
+	    }
 	}
 	SL3U.Leaving("Sendlater3Backgrounding.queueSendUnsentMessages");
     }
@@ -830,7 +830,7 @@ var Sendlater3Backgrounding = function() {
 	    }
 
 	    if (! (SL3U.getBoolPref("send_while_offline") ||
-		   MailOfflineMgr.isOnline())) {
+		   SL3U.isOnline())) {
 		SL3U.debug("Deferring send while offline");
 		SL3U.Returning("Sendlater3Backgrounding.CheckForSendLaterCallback.notify", "");
 		return;

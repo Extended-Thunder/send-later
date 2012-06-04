@@ -4,9 +4,6 @@
   <script src="util.js"/>
   <script src="composing.js"/>
 
-  <commandset id="composeCommands">
-  <command id="cmd_sendLater" oncommand="Sendlater3Composing.CheckSendAt2('cmd_sendLater binding created in composing.xul');"/>
-  </commandset>
   <keyset id="tasksKeys">
   <key oncommand="Sendlater3Composing.CheckSendAt2('key_sendLater binding created in composing.xul')" id="key_sendLater"
      keycode="VK_RETURN" observes="" modifiers="accel, shift"/>

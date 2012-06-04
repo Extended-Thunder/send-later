@@ -50,8 +50,6 @@ without entering master password? Maybe need to have the backgrounding
 process notice that master password is needed and prompt for it
 whenever there are scheduled messages.
 
-Seamonkey compatibility?
-
 Add section to user guide about how to use Send Later 3 as
 BlunderDelay. Even better, make it really easy to use Send Later 3
 like BlunderDelay by adding a preference to override the Send button

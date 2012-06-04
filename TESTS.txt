@@ -4,39 +4,25 @@ changes I don't execute all of the test cases, but I do try to execute
 any of them which have any likelihood of being impacted by the
 changes.
 
-Send later with Ctrl-Shift-Enter.
+Send later with Ctrl-Shift-Enter when alt_binding disabled.
+No send later with Ctrl-Shift-Enter when alt_binding enabled.
+Send later with Alt-Shift-Enter when alt_binding enabled.
 Send later with File > Send Later.
-Popup: Change hour - summary updates
-Popup: Change minute - summary updates
-Popup: Change year - months and summary change.
-Popup: Change month - summary and days change.
-Popup: February days are correct leap year vs. not
-Popup: Change day - summary changes
 Popup: Send at specified time
 Popup: Send in 15 minutes
 Popup: Send in 30 minutes
 Popup: Send in 2 hours
 Popup: Passthrough to Send Later
+Popup: Send Now
 Popup: Cancel
 Popup: Empty subject prompt send anyway works
 Popup: Empty subject cancel works
 No recipients handled correctly (currently known broken, see TODO.txt)
-Add toolbar works and dropdowns are populated
-Toolbar: Initial values populated with current date & time
-Toolbar: ticks
-Toolbar: stops ticking when modified
-Toolbar: Change year - months change
-Toolbar: Change month - days change
-Toolbar: February days are correct leap year vs. not
+Add toolbar works
 Toolbar: Send at specified time
 Toolbar: Send in 15 minutes
 toolbar: Send in 30 minutes
 Toolbar: Send in 2 hours
-Toolbar: Hour values visible in drop-down
-Toolbar: Minute values visible in drop-down
-Toolbar: Year values visible in drop-down
-Toolbar: Month values visible in drop-down
-Toolbar: Day values visible in drop-down
 Show Send Later column enabled works
 Show Send Later column disabled works
 Show Background Progress in Statusbar enabled works
@@ -58,6 +44,7 @@ Pending count works
 Displaying header in draft works without error
 Hiding header (empty) in draft works without error
 Hiding header (disabled) in draft works without error
+Messages are delivered at specified time.
 Spell check enabled: called once with Send Button -> send at specified time
 Spell check enabled: called once with Send Button -> pass through
 Spell check enabled: called once with Send Button -> send now
@@ -73,3 +60,23 @@ Spell check disabled: not called with Send Later -> send now
 Scheduled draft is auto-saved without schedule when loaded for editing.
 Alert is popped up about scheduled draft being auto-saved when edited.
 Old send later header is found when draft is edited.
+Replied flag is set
+Forwarded flag is set
+Recurrence daily sets properly
+Recurrence daily schedules next properly
+Recurrence every other day sets properly
+Recurrence every other day schedules next properly
+Recurrence weekly sets properly
+Recurrence weekly schedules next properly
+Recurrence every three weeks sets properly
+Recurrence every three weeks schedules next properly
+Recurrence monthly sets properly
+Recurrence monthly schedules next properly
+Recurrence every four months sets properly
+Recurrence every four months schedules next properly
+Recurrence monthly by-day-and-week sets properly
+Recurrence monthly by-day-and-week schedules next properly
+Recurrence yearly sets properly
+Recurrence yearly schedules next properly
+Recurrence every five years sets properly
+Recurrence every five years schedules next properly

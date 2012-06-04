@@ -25,8 +25,7 @@ var Sendlater3Composing = {
 	observe: function() {
 	    if (! SL3U.getBoolPref("alt_binding")) {
 		document.getElementById("key_sendLater")
-		    .setAttribute("oncommand",
-				  "Sendlater3Composing.CheckSendAt2('key_sendLater binding created in Sendlater3Composing.setBindings.observe')");
+		    .setAttribute("oncommand", "goDoCommand('cmd_sendLater')");
 		document.getElementById("sendlater3-key_sendLater3")
 		    .setAttribute("disabled", true);
 	    }
@@ -93,7 +92,7 @@ var Sendlater3Composing = {
 	    SL3U.Leaving("Sendlater3Composing.main.CheckforXSendLater");
 	}                            
 
-	var mysleventListener = {
+	var windowInitListener = {
 	    handleEvent : function(event) {
 		var msgcomposeWindow = document
 		    .getElementById("msgcomposeWindow");
@@ -109,6 +108,7 @@ var Sendlater3Composing = {
 		    .getElementById("msgcomposeWindow");
 		if (msgcomposeWindow.getAttribute("sending_later")) {
 		    msgcomposeWindow.removeAttribute("sending_later");
+		    Sendlater3Composing.PrepMessage2();
 		    return;
 		}
 		var msgtype = msgcomposeWindow.getAttribute("msgtype");
@@ -127,9 +127,9 @@ var Sendlater3Composing = {
 
 	var msgcomposeWindow = document.getElementById("msgcomposeWindow");
 	msgcomposeWindow.addEventListener("compose-window-init",
-					  mysleventListener, false);
+					  windowInitListener, false);
 	// When window is first loaded compose-window-init is not generated.
-	mysleventListener.handleEvent(null);
+	windowInitListener.handleEvent(null);
 	// This doesn't work on Thunderbird 2, since its
 	// GenericSendFunction doesn't check PreventDefault.
 	msgcomposeWindow.addEventListener("compose-send-message",
@@ -209,7 +209,12 @@ var Sendlater3Composing = {
 
 	    gCloseWindowAfterSave = true;
 	    var identity = getCurrentIdentity();
-	    if (SL3U.IsPostbox()) {
+	    if (SL3U.IsSeaMonkey()) {
+		Sendlater3Composing.PrepMessage(sendat, recur);
+		GenericSendMessage(nsIMsgCompDeliverMode.SaveAsDraft);
+		Sendlater3Composing.PostSendMessage();
+	    }
+	    else if (SL3U.IsPostbox()) {
 		Sendlater3Composing.GenericSendMessagePostbox(
 		    nsIMsgCompDeliverMode.SaveAsDraft,
 		    sendat, recur);
@@ -268,7 +273,12 @@ var Sendlater3Composing = {
 	SL3U.Leaving("Sendlater3Composing.ContinueSendLater");
     },
 
-    CancelSendLater: function() {},
+    CancelSendLater: function() {
+	var msgcomposeWindow = document
+	    .getElementById("msgcomposeWindow");
+	msgcomposeWindow.removeAttribute("sending_later");
+	msgcomposeWindow.removeAttribute("sl3_send_button");
+    },
 
     prevXSendLater: false,
     prevRecurring: false,
@@ -305,15 +315,6 @@ var Sendlater3Composing = {
 	if (msgCompFields)
 	{
 	  Recipients2CompFields(msgCompFields);
-
-	  // BEGIN SENDLATER3 ADDED
-	  var head = "X-Send-Later-At: " + SL3U.FormatDateTime(sendat,true) +
-		"\r\n" + "X-Send-Later-Uuid: " + SL3U.getInstanceUuid() +"\r\n";
-	  if (recur) {
-	      head += Sendlater3Composing.RecurHeader(sendat, recur);
-	  }
-	  msgCompFields.otherRandomHeaders += head;
-	  // END SENDLATER3 ADDED
 
 	  var subject = GetMsgSubjectElement().value;
 	  // if the subject has changed, clear the references.
@@ -629,6 +630,41 @@ var Sendlater3Composing = {
 	dump("###SendMessage Error: composeAppCore is null!\n");
     },
 
+    PrepMessage: function(sendat, recur) {
+	var msgcomposeWindow = document.getElementById("msgcomposeWindow");
+	msgcomposeWindow.setAttribute("sending_later", true);
+	msgcomposeWindow.sendLater3SendAt = sendat;
+	msgcomposeWindow.sendLater3Recur = recur;
+	msgcomposeWindow.sendLater3Type = gMsgCompose.type;
+	msgcomposeWindow.sendLater3OriginalURI = gMsgCompose.originalMsgURI;
+    },
+
+    PrepMessage2: function() {
+	var compWin = document.getElementById("msgcomposeWindow");
+	var sendat = compWin.sendLater3SendAt;
+	var recur = compWin.sendLater3Recur;
+	var msgCompFields = gMsgCompose.compFields;
+	if (sendat) {
+	    var head = "X-Send-Later-At: " + SL3U.FormatDateTime(sendat,true) +
+		"\r\n" + "X-Send-Later-Uuid: " + SL3U.getInstanceUuid() +
+		"\r\n";
+	    if (recur) {
+		head += Sendlater3Composing.RecurHeader(sendat, recur);
+	    }
+	    msgCompFields.otherRandomHeaders += head;
+	}
+    },
+	
+    PostSendMessage: function() {
+	var compWin = document.getElementById("msgcomposeWindow");
+	Sendlater3Composing.SetReplyForwardedFlag(compWin.sendLater3Type,
+						  compWin.sendLater3OriginalURI);
+	compWin.sendLaterSendAt = null;
+	compWin.sendLaterRecur = null;
+	compWin.sendLaterType = null;
+	compWin.sendLaterOriginalURI = null;
+    },
+
     // Copied from mail/components/compose/content/MsgComposeCommands.js
     // in Thunderbird 3.1 source. Unfortunately, I can't find a better way
     // than this to interpose Send Later into the message send flow.
@@ -643,16 +679,6 @@ var Sendlater3Composing = {
 	    if (msgCompFields)
 	    {
 		Recipients2CompFields(msgCompFields);
-
-		// BEGIN SENDLATER3 ADDED
-		var head = "X-Send-Later-At: " +
-		    SL3U.FormatDateTime(sendat,true) + "\r\n" +
-		    "X-Send-Later-Uuid: " + SL3U.getInstanceUuid() + "\r\n";
-		if (recur) {
-		    head += Sendlater3Composing.RecurHeader(sendat, recur);
-		}
-		msgCompFields.otherRandomHeaders += head;
-		// END SENDLATER3 ADDED
 
 		var subject = GetMsgSubjectElement().value;
 		msgCompFields.subject = subject;

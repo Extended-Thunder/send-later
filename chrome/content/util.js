@@ -51,6 +51,24 @@ var Sendlater3Util = {
 
     _PromptBundle: null,
 
+    isOnline: function() {
+	if (Sendlater3Util.IsSeaMonkey()) {
+	    // MailOfflineMgr doesn't exist in SeaMonkey
+	    var ioService = Components.classes["@mozilla.org/network/io-service;1"]
+                .getService(Components.interfaces.nsIIOService);
+	    return (!ioService.offline);
+	}
+	else {
+	    return MailOfflineMgr.isOnline();
+	}
+    },
+
+    IsSeaMonkey: function() {
+	var appInfo = Components.classes["@mozilla.org/xre/app-info;1"]
+            .getService(Components.interfaces.nsIXULAppInfo);
+	return(appInfo.name == "SeaMonkey");
+    },
+
     IsPostbox: function() {
 	var appInfo = Components.classes["@mozilla.org/xre/app-info;1"]
             .getService(Components.interfaces.nsIXULAppInfo);
@@ -63,6 +81,15 @@ var Sendlater3Util = {
 	}
 	else {
 	    return folder.findSubFolder(name);
+	}
+    },
+
+    HeaderRowId: function() {
+	if (Sendlater3Util.IsSeaMonkey()) {
+	    return "sendlater3-expanded-Box";
+	}
+	else {
+	    return "sendlater3-expanded-Row";
 	}
     },
 

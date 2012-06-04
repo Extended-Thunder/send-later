@@ -1,4 +1,4 @@
-all: send_later3.xpi
+all: send_later3.xpi send_later3-translatable.xpi
 
 CMD=find . \( -name '.??*' -prune \) -o \! -name '*~' \
     \! -name '.\#*' \! -name '*,v' \! -name Makefile \! -name '*.xpi' \
