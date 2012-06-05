@@ -4,7 +4,6 @@
 <!ENTITY checktimepref.label "Tarkista joka :">
 <!ENTITY checktimepref2.label "millisekunnin välein">
 <!ENTITY checktimepref.tooltip "Aika millisekunteina luonnoksien tarkistuksille, joiden toimitusaika on alkanut. Kasvata tätä arvoa, jos luonnoksesi ei aina lähde ajallaan, koska odottavan viestin laskuri ei aina näytä ajastuksia oikein.">
-<!ENTITY checktimepref.accesskey "T">
 <!ENTITY general.caption "Yleiset">
 <!ENTITY quickoption1.caption "Pikapainike 1">
 <!ENTITY quickoption2.caption "Pikapainike 2">

@@ -4,7 +4,6 @@
 <!ENTITY checktimepref.label "Vérifier toutes les :">
 <!ENTITY checktimepref2.label "minutes">
 <!ENTITY checktimepref.tooltip "Intervalle (en minutes) des vérifications de messages à expédier. Augmenter cette valeur si les messages ne sont pas expédiés à temps ou si le nombre de message en attente est erroné.">
-<!ENTITY checktimepref.accesskey "C">
 <!ENTITY general.caption "Général">
 <!ENTITY quickoption1.caption "1er raccourci">
 <!ENTITY quickoption2.caption "2me raccourci">

@@ -1,3 +1,4 @@
+<!-- -*- coding: utf-8 -*- -->
 <!ENTITY sendlater.prompt.sendlater.label "Umieść w skrzynce nadawczej">
 <!ENTITY sendlater.prompt.sendlater.tooltip "Zamiast wysyłki o planowanym czasie przenosi wiadomość do folderu Skrzynka nadawcza, aby wysłać ją następnym razem wraz z innymi wiadomościami oczekującymi na wysyłkę.">
 <!ENTITY sendlater.prompt.sendnow.label "Wyślij Teraz">
@@ -9,8 +10,10 @@
 <!ENTITY sendlater.prompt.sendat.tooltip "Zapisz wiadomość w folderze &quot;Szkice&quot;, aby dostarczyć ją w wyznaczonym powyżej czasie.">
 <!ENTITY sendlater.prompt.recur.label "Powtarzać się:">
 <!ENTITY sendlater.prompt.none.label "żaden">
-<!ENTITY sendlater.prompt.daily.label "na dobę">
+<!ENTITY sendlater.prompt.daily.label "dziennie">
 <!ENTITY sendlater.prompt.weekly.label "tygodniowo">
 <!ENTITY sendlater.prompt.monthly.label "miesięcznie">
 <!ENTITY sendlater.prompt.yearly.label "rocznie">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Wyślij później">
+<!ENTITY sendlater.toolbar.textbox.emptytext "czas wysyłki">
+<!ENTITY sendlater.prompt.every.label "Każdego">

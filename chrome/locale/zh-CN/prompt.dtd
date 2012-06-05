@@ -1,3 +1,4 @@
+<!-- -*- coding: utf-8 -*- -->
 <!ENTITY sendlater.prompt.sendlater.label "放到发件箱">
 <!ENTITY sendlater.prompt.sendlater.tooltip "不设定日程在指定的时间投递，而是移动消息到发件箱，等待下一次投递未发送邮件时被发送。">
 <!ENTITY sendlater.prompt.sendnow.label "立即发送">

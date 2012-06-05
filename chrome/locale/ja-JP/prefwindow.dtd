@@ -1,9 +1,9 @@
+<!-- -*- coding: utf-8 -*- -->
 <!ENTITY prefwindow.title "Send Later 3 設定">
 <!ENTITY pane1.title "Send Later 3 設定">
-<!ENTITY checktimepref.label "チェック間隔 :">
-<!ENTITY checktimepref2.label "ミリ秒">
-<!ENTITY checktimepref.tooltip "送信時間になった下書きがないかどうかをチェックする間隔（ミリ秒）。時間通りに送信されない場合や、ステータスバーに表示されている [送信待ち] のメッセージ数と、送信予定の下書きの数が一致していない場合には、この値を増やしてください。">
-<!ENTITY checktimepref.accesskey "C">
+<!ENTITY checktimepref.label "チェック間隔:">
+<!ENTITY checktimepref2.label "分">
+<!ENTITY checktimepref.tooltip "送信すべき下書きがないかどうかをチェックする間隔（分単位）。時間通りに送信されない場合や、ステータスバーに表示されている [送信待ち] のメッセージ数と、送信予定の下書きの数が一致していない場合には、この値を増やしてください。">
 <!ENTITY general.caption "一般">
 <!ENTITY quickoption1.caption "ショートカット 1">
 <!ENTITY quickoption2.caption "ショートカット 2">
@@ -17,12 +17,12 @@
 <!ENTITY showsendlaterheader.tooltip "メッセージを開く際に、&quot;X-Send-Later-At&quot; ヘッダー（下書きの送信予定日時）を表示するかどうかを設定します。">
 <!ENTITY showsendlaterstatus.caption "Send Later 3 をステータスバーに表示する">
 <!ENTITY showsendlaterprogress.caption "バックグラウンドの動きをステータスバーに表示する">
-<!ENTITY showsendlaterdropdowns.caption "ドロップダウンをツールバーに表示する">
+<!ENTITY showsendlaterentry.caption "日時入力欄をツールバーに表示する">
 <!ENTITY showsendlaterunsentmessages.caption "未送信メッセージを [送信トレイ] から送信する">
 <!ENTITY showsendlaterunsentmessages.tooltip "このオプションを無効にすると、Send Later 3 はメッセージを送信せず、送信予定日時になると [送信トレイ] へメッセージを移します。他の拡張機能（たとえば BlunderDelay）を使って、メッセージを [送信トレイ] から定期的に送信するようにしている場合には、このオプションを無効にしてください。注意: このオプションを有効にすると、メッセージを送信する際に、Send Later 3 は [送信トレイ] にあるすべてのメッセージを送信します。">
 <!ENTITY sendlatersendbutton.caption "&quot;送信&quot; を &quot;後で送信&quot; にする">
 <!ENTITY sendlatersendbutton.tooltip "このオプションを有効にすると、&quot;送信&quot; コマンド（ボタンと Ctrl-Enter の両方とも）は &quot;後で送信&quot; と同じ動作をします。">
-<!ENTITY altbinding.caption "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter">
+<!ENTITY altbinding.caption "Ctrl+Shift+Enter ではなく Alt+Shift+Enter に割り当てる">
 <!ENTITY advanced.caption "詳細">
 <!ENTITY dumplevel.caption "出力ログレベル:">
 <!ENTITY consolelevel.caption "コンソールログレベル:">

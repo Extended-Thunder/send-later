@@ -1,3 +1,4 @@
+<!-- -*- coding: utf-8 -*- -->
 <!ENTITY sendlater.prompt.sendlater.label "Put in Outbox">
 <!ENTITY sendlater.prompt.sendlater.tooltip "Rather than scheduling delivery for a specific time, move the message to the Outbox folder for delivery next time unsent messages are sent.">
 <!ENTITY sendlater.prompt.sendnow.label "Send Now">

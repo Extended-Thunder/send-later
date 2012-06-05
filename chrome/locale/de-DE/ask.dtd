@@ -1,18 +1,13 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY sendlater.ask.title.label "Unterstütze &quot;Send Later 3&quot;">
-
 <!ENTITY sendlater.ask.message1 "Unzählige Stunden wurden in Entwicklung, Unterhalt und Unterstützung für dieses Add-on investiert.">
 <!ENTITY sendlater.ask.message2 "Bitte erwäge eine Spende, um die weitere Entwicklung zu unterstützen!">
 <!ENTITY sendlater.ask.message3 "Besten Dank!">
-
-<!ENTITY sendlater.ask.donate.key   "S">
+<!ENTITY sendlater.ask.donate.key "S">
 <!ENTITY sendlater.ask.donate.label "Spende jetzt">
-
-<!ENTITY sendlater.ask.remind.key   "E">
+<!ENTITY sendlater.ask.remind.key "E">
 <!ENTITY sendlater.ask.remind.label "Erinnere mich später">
-
-<!ENTITY sendlater.ask.already.key   "I">
+<!ENTITY sendlater.ask.already.key "I">
 <!ENTITY sendlater.ask.already.label "Ich habe bereits gespendet">
-
-<!ENTITY sendlater.ask.stop.key   "N">
+<!ENTITY sendlater.ask.stop.key "N">
 <!ENTITY sendlater.ask.stop.label "Nicht mehr fragen">

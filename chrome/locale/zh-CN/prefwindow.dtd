@@ -1,9 +1,9 @@
+<!-- -*- coding: utf-8 -*- -->
 <!ENTITY prefwindow.title "Send Later 3 首选项">
 <!ENTITY pane1.title "Send Later 3 首选项">
 <!ENTITY checktimepref.label "检查间隔：">
 <!ENTITY checktimepref2.label "毫秒">
 <!ENTITY checktimepref.tooltip "检查草稿投递时间是否已到的时间间隔，单位为毫秒。如果您的草稿有时没能按时地发送，或者有时您的状态栏没能反映所有的待发送草稿时，请增加这个值。">
-<!ENTITY checktimepref.accesskey "C">
 <!ENTITY general.caption "常规">
 <!ENTITY quickoption1.caption "捷径 1">
 <!ENTITY quickoption2.caption "捷径 2">
@@ -17,7 +17,6 @@
 <!ENTITY showsendlaterheader.tooltip "查看消息时是否显示&quot;X-Send-Later-At&quot;头，也就是计划的发送草稿的时间。">
 <!ENTITY showsendlaterstatus.caption "在状态栏中显示 Send Later 3">
 <!ENTITY showsendlaterprogress.caption "在状态栏中显示后台进展">
-<!ENTITY showsendlaterdropdowns.caption "在工具栏中显示下拉菜单">
 <!ENTITY showsendlaterunsentmessages.caption "触发投递发件箱中的未发送消息">
 <!ENTITY showsendlaterunsentmessages.tooltip "如果您不设置此选项，那么当它们按日程需要被投递时，Send Later 3 将不会完全投递消息，而只是会将它们放到您的发件箱里。如果您使用一些其他的扩展，像是 BlunderDelay 来定期地发送您发件箱里的消息，请不设置此选项。注意，设置了此选项时，每当 Send Later 3 投递消息，您发件箱里的“所有”消息都将被发送出去。">
 <!ENTITY sendlatersendbutton.caption "“发送”变成“延期发送”">
