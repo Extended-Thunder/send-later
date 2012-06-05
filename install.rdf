@@ -9,16 +9,17 @@
     <em:creator>Jonathan Kamens</em:creator>
     <em:developer>Karthik Sivaram</em:developer>
     <em:contributor>Andrew Plummer (SugarJS)</em:contributor>
-    <em:translator>Didier Journois</em:translator><!-- French -->
-    <em:translator>"Bigpapa"</em:translator><!-- French -->
     <em:translator>Suzanne Iseli</em:translator><!-- Part of German -->
     <em:translator>Daniel S.</em:translator><!-- Part of German -->
     <em:translator>Milcom.es</em:translator><!-- Spanish -->
+    <em:translator>Samtron-Translations</em:translator><!-- Finnish -->
+    <em:translator>Didier Journois</em:translator><!-- French -->
+    <em:translator>"Bigpapa"</em:translator><!-- French -->
+    <em:translator>Cesare</em:translator><!-- Italian -->
+    <em:translator>Ryo Matsui</em:translator><!-- Japanese -->
+    <em:translator>markh from BabelZilla</em:translator><!-- Dutch -->
     <em:translator>Maciej Kobuszewski</em:translator><!-- Polish -->
     <em:translator>Mikael Hiort af Ornäs</em:translator><!-- Swedish -->
-    <em:translator>Ryo Matsui</em:translator><!-- Japanese -->
-    <em:translator>Cesare</em:translator><!-- Italian -->
-    <em:translator>Samtron-Translations</em:translator><!-- Finnish -->
     <em:translator>yfdyh000 from BabelZilla</em:translator><!-- Simplified Chinese -->
     <em:description>True "Send Later" functionality to schedule the time for sending an email.</em:description>
     <em:localized>
