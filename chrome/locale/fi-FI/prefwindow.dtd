@@ -12,16 +12,16 @@
 <!ENTITY quickoptionvalue.label "Minuuttia :">
 <!ENTITY showtoolbarbutton.caption "Näytä työkalupalkissa">
 <!ENTITY showsendlatercolumn.caption "Näytä Lähetä myöhemmin -rivi">
-<!ENTITY showsendlatercolumn.tooltip "Näytä &quot;Lähetä myöhemmin&quot; -rivi selattaessa luonnoskansioita">
-<!ENTITY showsendlaterheader.caption "Näytä &quot;Lähetä myöhemmin&quot; -otsikko">
-<!ENTITY showsendlaterheader.tooltip "Näyttääkö &quot;X-Send-Later-At&quot; otsikko, esim. silloin kun luonnos on ajastettu lähtemään. Näkymään otsikkoon viestin selausikkunaan.">
+<!ENTITY showsendlatercolumn.tooltip "Näytä “Lähetä myöhemmin” -rivi selattaessa luonnoskansioita">
+<!ENTITY showsendlaterheader.caption "Näytä “Lähetä myöhemmin” -otsikko">
+<!ENTITY showsendlaterheader.tooltip "Näyttääkö “X-Send-Later-At” otsikko, esim. silloin kun luonnos on ajastettu lähtemään. Näkymään otsikkoon viestin selausikkunaan.">
 <!ENTITY showsendlaterstatus.caption "Näytä tilapalkissa Send Later 3">
 <!ENTITY showsendlaterprogress.caption "Näytä tilapalkissa taustaeteneminen">
 <!ENTITY showsendlaterentry.caption "Näytä työkalupalkissa ajan määritys">
 <!ENTITY showsendlaterunsentmessages.caption "Käynnistä lähetetyt kansiosta lähettämättömät viestit">
 <!ENTITY showsendlaterunsentmessages.tooltip "Jättämällä tämän kohdan valitsematta Send Later 3 ei tule vielä lähettämään viestejä, vaan tulee siirtämään ne vain lähetetyt kansioon ajankohtana, kun ne on määritetty lähtemään. Jätä tämä kohta valitsematta, jos käytät toista ohjelmaa, kuten BlunderDelay:ta lähettämään viestit lähetetyt-kansiosta määritettyinä aikoina. Huomaa, että kun tämä kohta on valittuna ja kun Send Later 3 lähettää viestin, tullaan samalla kaikki viestit lähettämään lähetetyt-kansiosta.">
-<!ENTITY sendlatersendbutton.caption "&quot;Lähetä&quot;-toiminto on &quot;Lähetä myöhemmin&quot;">
-<!ENTITY sendlatersendbutton.tooltip "Tämän valinnan ollessa valittuna &quot;Lähetä&quot; -komento (sekä painike, että Ctrl-Enter) toimii kuin &quot;Lähetä myöhemmin&quot;.">
+<!ENTITY sendlatersendbutton.caption "“Lähetä”-toiminto on “Lähetä myöhemmin”">
+<!ENTITY sendlatersendbutton.tooltip "Tämän valinnan ollessa valittuna “Lähetä” -komento (sekä painike, että Ctrl-Enter) toimii kuin “Lähetä myöhemmin”.">
 <!ENTITY altbinding.caption "Yhdistä Alt-Shift-Enter, yhdistelmän Ctrl-Shift-Enter -sijaan">
 <!ENTITY advanced.caption "Laajennettu">
 <!ENTITY dumplevel.caption "Dump log -kaappaus:">

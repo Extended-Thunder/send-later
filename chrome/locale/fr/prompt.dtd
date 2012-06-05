@@ -1,16 +1,16 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY sendlater.prompt.sendlater.label "Placer dans &quot;Messages en attente&quot;">
-<!ENTITY sendlater.prompt.sendlater.tooltip "Plutôt que de programmer l'envoi à une date précise, placer le message dans le dossier &quot;Messages en attente&quot; pour envoi la prochaine fois que les messages non envoyés sont expédiés.">
+<!ENTITY sendlater.prompt.sendlater.label "Placer dans “Messages en attente”">
+<!ENTITY sendlater.prompt.sendlater.tooltip "Plutôt que de programmer l'envoi à une date précise, placer le message dans le dossier “Messages en attente” pour envoi la prochaine fois que les messages non envoyés sont expédiés.">
 <!ENTITY sendlater.prompt.sendnow.label "Envoyer maintenant">
 <!ENTITY sendlater.prompt.sendnow.accesskey "M">
 <!ENTITY sendlater.prompt.close.label "Annuler">
 <!ENTITY sendlater.prompt.close.tooltip "Revenir à la rédaction du message">
 <!ENTITY sendlater.prompt.title.label "Programmation d'envoi différé de courriel">
 <!ENTITY sendlater.prompt.textbox.label "Envoyer à :">
-<!ENTITY sendlater.prompt.textbox.tooltip "Entrer un date et une heure. Les formes libres telles que &quot;Mardi prochain à 15:00&quot; sont prises en charge.">
-<!ENTITY sendlater.prompt.textbox.emptytext "ex. : &quot;15:00 Mardi&quot;, &quot;31/12/2012 15:27&quot;">
+<!ENTITY sendlater.prompt.textbox.tooltip "Entrer un date et une heure. Les formes libres telles que “Mardi prochain à 15:00” sont prises en charge.">
+<!ENTITY sendlater.prompt.textbox.emptytext "ex. : “15:00 Mardi”, “31/12/2012 15:27”">
 <!ENTITY sendlater.prompt.sendat.label "Envoyer au moment choisi">
-<!ENTITY sendlater.prompt.sendat.tooltip "Enregistre le message dans &quot;Brouillons&quot; jusqu'au moment prévu ci-dessus">
+<!ENTITY sendlater.prompt.sendat.tooltip "Enregistre le message dans “Brouillons” jusqu'au moment prévu ci-dessus">
 <!ENTITY sendlater.prompt.recur.label "Répétition :">
 <!ENTITY sendlater.prompt.none.label "aucune">
 <!ENTITY sendlater.prompt.daily.label "quotidienne">

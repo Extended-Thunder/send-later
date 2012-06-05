@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
- xmlns:em="http://www.mozilla.org/2004/em-rdf#">
-  <Description about="urn:mozilla:install-manifest">
+<?xml version=“1.0” encoding=“UTF-8”?>
+<RDF xmlns=“http://www.w3.org/1999/02/22-rdf-syntax-ns#” 
+ xmlns:em=“http://www.mozilla.org/2004/em-rdf#">
+  <Description about=”urn:mozilla:install-manifest">
     <em:type>2</em:type>
     <em:id>sendlater3@kamens.us</em:id>
     <em:name>Send Later 3</em:name>
@@ -14,33 +14,33 @@
     <em:translator>Milcom.es</em:translator><!-- Spanish -->
     <em:translator>Samtron-Translations</em:translator><!-- Finnish -->
     <em:translator>Didier Journois</em:translator><!-- French -->
-    <em:translator>"Bigpapa"</em:translator><!-- French -->
+    <em:translator>“Bigpapa”</em:translator><!-- French -->
     <em:translator>Cesare</em:translator><!-- Italian -->
     <em:translator>Ryo Matsui</em:translator><!-- Japanese -->
     <em:translator>markh from BabelZilla</em:translator><!-- Dutch -->
     <em:translator>Maciej Kobuszewski</em:translator><!-- Polish -->
     <em:translator>Mikael Hiort af Ornäs</em:translator><!-- Swedish -->
     <em:translator>yfdyh000 from BabelZilla</em:translator><!-- Simplified Chinese -->
-    <em:description>True "Send Later" functionality to schedule the time for sending an email.</em:description>
+    <em:description>True “Send Later” functionality to schedule the time for sending an email.</em:description>
     <em:localized>
       <Description>
 	<em:name>Send Later 3</em:name>
 	<em:locale>de-DE</em:locale>
-	<em:description>Eine echte "SendeSpäter" Funktionalität zur Planung der Sendezeit von Emails.</em:description>
+	<em:description>Eine echte “SendeSpäter” Funktionalität zur Planung der Sendezeit von Emails.</em:description>
       </Description>
     </em:localized>
     <em:localized>
       <Description>
 	<em:name>Send Later 3</em:name>
 	<em:locale>es-ES</em:locale>
-	<em:description>La verdadera funcionalidad de "Enviar Después" para programar el envío de tus emails.</em:description>
+	<em:description>La verdadera funcionalidad de “Enviar Después” para programar el envío de tus emails.</em:description>
       </Description>
     </em:localized>
     <em:localized>
       <Description>
 	<em:name>Send Later 3</em:name>
 	<em:locale>fi-FI</em:locale>
-	<em:description>"Lähetä myöhemmin" toiminnallisuus lähetyksien ajastamiseksi</em:description>
+	<em:description>“Lähetä myöhemmin” toiminnallisuus lähetyksien ajastamiseksi</em:description>
       </Description>
     </em:localized>
     <em:localized>
@@ -54,7 +54,7 @@
       <Description>
 	<em:name>Send Later 3</em:name>
 	<em:locale>it-IT</em:locale>
-	<em:description>Una vera funzione di "Invia dopo" per pianificare quando inviare le e-mail.</em:description>
+	<em:description>Una vera funzione di “Invia dopo” per pianificare quando inviare le e-mail.</em:description>
       </Description>
     </em:localized>
     <em:localized>
@@ -68,21 +68,21 @@
       <Description>
 	<em:name>Send Later 3</em:name>
 	<em:locale>nl</em:locale>
-	<em:description>"Send Later"-functie om het tijdstip van verzending van een email in te stellen.</em:description>
+	<em:description>“Send Later”-functie om het tijdstip van verzending van een email in te stellen.</em:description>
       </Description>
     </em:localized>
     <em:localized>
       <Description>
 	<em:name>Send Later 3</em:name>
 	<em:locale>pl</em:locale>
-	<em:description>Rozszerzenie "Wyślij później" pozwala na wysyłanie wiadomości o ustalonym wcześniej czasie.</em:description>
+	<em:description>Rozszerzenie “Wyślij później” pozwala na wysyłanie wiadomości o ustalonym wcześniej czasie.</em:description>
       </Description>
     </em:localized>
     <em:localized>
       <Description>
 	<em:name>Send Later 3</em:name>
 	<em:locale>sv-SE</em:locale>
-	<em:description>"Skicka senare"-funktion som låter användaren schemalägga tidpunkten för sändning av ett e-brev.</em:description>
+	<em:description>“Skicka senare”-funktion som låter användaren schemalägga tidpunkten för sändning av ett e-brev.</em:description>
       </Description>
     </em:localized>
     <em:homepageURL>http://blog.kamens.us/send-later-3</em:homepageURL>

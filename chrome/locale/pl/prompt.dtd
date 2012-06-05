@@ -7,7 +7,7 @@
 <!ENTITY sendlater.prompt.close.tooltip "Wróć do edycji wiadomości.">
 <!ENTITY sendlater.prompt.title.label "Wyślij tą wiadomość później">
 <!ENTITY sendlater.prompt.sendat.label "Wyślij później o określonych powyżej czasach">
-<!ENTITY sendlater.prompt.sendat.tooltip "Zapisz wiadomość w folderze &quot;Szkice&quot;, aby dostarczyć ją w wyznaczonym powyżej czasie.">
+<!ENTITY sendlater.prompt.sendat.tooltip "Zapisz wiadomość w folderze “Szkice”, aby dostarczyć ją w wyznaczonym powyżej czasie.">
 <!ENTITY sendlater.prompt.recur.label "Powtarzać się:">
 <!ENTITY sendlater.prompt.none.label "żaden">
 <!ENTITY sendlater.prompt.daily.label "dziennie">

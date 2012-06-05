@@ -1,16 +1,16 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY sendlater.prompt.sendlater.label "Metti nella &quot;Posta in uscita&quot;">
-<!ENTITY sendlater.prompt.sendlater.tooltip "Anziché inviarlo in automatico a un orario specifico, sposta il messaggio nella cartella &quot;Posta in uscita&quot; per inviarlo non appena i messaggi da inviare verranno spediti.">
+<!ENTITY sendlater.prompt.sendlater.label "Metti nella “Posta in uscita”">
+<!ENTITY sendlater.prompt.sendlater.tooltip "Anziché inviarlo in automatico a un orario specifico, sposta il messaggio nella cartella “Posta in uscita” per inviarlo non appena i messaggi da inviare verranno spediti.">
 <!ENTITY sendlater.prompt.sendnow.label "Invia Ora">
 <!ENTITY sendlater.prompt.sendnow.accesskey "O">
 <!ENTITY sendlater.prompt.close.label "Annulla">
 <!ENTITY sendlater.prompt.close.tooltip "Torna a modificare il messaggio.">
 <!ENTITY sendlater.prompt.title.label "Invia questa e-mail dopo">
 <!ENTITY sendlater.prompt.textbox.label "Invia alle:">
-<!ENTITY sendlater.prompt.textbox.tooltip "Inserire una data e un orario. Viene anche riconosciuto un inserimento in forma libera, come ad esempio &quot;Prossimo martedì alle 15:00&quot;">
-<!ENTITY sendlater.prompt.textbox.emptytext "es.: &quot;15:00 martedì&quot;, &quot;31/12/2012 15:27&quot;">
+<!ENTITY sendlater.prompt.textbox.tooltip "Inserire una data e un orario. Viene anche riconosciuto un inserimento in forma libera, come ad esempio “Prossimo martedì alle 15:00”">
+<!ENTITY sendlater.prompt.textbox.emptytext "es.: “15:00 martedì”, “31/12/2012 15:27”">
 <!ENTITY sendlater.prompt.sendat.label "Invia dopo, all'orario sopra indicato">
-<!ENTITY sendlater.prompt.sendat.tooltip "Salva il messaggio nella cartella &quot;Bozze&quot; per l'invio automatico all'orario sopra impostato.">
+<!ENTITY sendlater.prompt.sendat.tooltip "Salva il messaggio nella cartella “Bozze” per l'invio automatico all'orario sopra impostato.">
 <!ENTITY sendlater.prompt.recur.label "Periodicità">
 <!ENTITY sendlater.prompt.none.label "nessuna">
 <!ENTITY sendlater.prompt.daily.label "giornaliera">

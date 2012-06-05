@@ -7,8 +7,8 @@
 <!ENTITY sendlater.prompt.close.tooltip "Palaa viestinkirjoittamiseen.">
 <!ENTITY sendlater.prompt.title.label "Lähetä tämä viesti myöhemmin">
 <!ENTITY sendlater.prompt.textbox.label "Lähetysajankohta:">
-<!ENTITY sendlater.prompt.textbox.tooltip "Anna päiväys ja aika. Vapaamuotoinen arvo, kuten &quot;ensi Tiistaina kello 3:00pm&quot; on myös tuettu.">
-<!ENTITY sendlater.prompt.textbox.emptytext "ex: &quot;3:00pm Torstai&quot;, &quot;12/31/2012 15:27&quot;">
+<!ENTITY sendlater.prompt.textbox.tooltip "Anna päiväys ja aika. Vapaamuotoinen arvo, kuten “ensi Tiistaina kello 3:00pm” on myös tuettu.">
+<!ENTITY sendlater.prompt.textbox.emptytext "ex: “3:00pm Torstai”, “12/31/2012 15:27”">
 <!ENTITY sendlater.prompt.sendat.label "Lähetä myöhemmin ylläolevan aikamääritteen mukaan">
 <!ENTITY sendlater.prompt.sendat.tooltip "Tallenna viesti Luonnokset-kansioon lähetettäväksi automaattisesti yllä olevan aikamääritteen mukaan.">
 <!ENTITY sendlater.prompt.recur.label "Toisto:">

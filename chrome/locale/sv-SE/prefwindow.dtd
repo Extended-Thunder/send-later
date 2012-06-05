@@ -11,17 +11,17 @@
 <!ENTITY quickoptionname.label "Knappetikett:">
 <!ENTITY quickoptionvalue.label "Minuter:">
 <!ENTITY showtoolbarbutton.caption "Visa i verktygsfältet">
-<!ENTITY showsendlatercolumn.caption "Visa kolumnen &quot;Skicka senare&quot;">
-<!ENTITY showsendlatercolumn.tooltip "Visning av kolumnen &quot;Skicka senare&quot; vid granskning av utkastmappar">
-<!ENTITY showsendlaterheader.caption "Visa huvudet &quot;X-Send-Later-At&quot;">
-<!ENTITY showsendlaterheader.tooltip "Visning av huvudet &quot;X-Send-Later-At&quot;, d.v.s. den tidpunkt då ett utkast har schemalagts att skickas, i meddelandehuvudet vid granskning av ett meddelande.">
+<!ENTITY showsendlatercolumn.caption "Visa kolumnen “Skicka senare”">
+<!ENTITY showsendlatercolumn.tooltip "Visning av kolumnen “Skicka senare” vid granskning av utkastmappar">
+<!ENTITY showsendlaterheader.caption "Visa huvudet “X-Send-Later-At”">
+<!ENTITY showsendlaterheader.tooltip "Visning av huvudet “X-Send-Later-At”, d.v.s. den tidpunkt då ett utkast har schemalagts att skickas, i meddelandehuvudet vid granskning av ett meddelande.">
 <!ENTITY showsendlaterstatus.caption "Visa Send Later 3 i statusfältet">
 <!ENTITY showsendlaterprogress.caption "Visa bakgrundsförlopp i statusfältet">
 <!ENTITY showsendlaterentry.caption "Visa tidsangivelse i verktygsfältet">
 <!ENTITY showsendlaterunsentmessages.caption "Utlös sändning av ej skickade meddelanden från Utkorgen">
 <!ENTITY showsendlaterunsentmessages.tooltip "Om du avmarkerar detta alternativ, så skickar inte Send Later 3 iväg dina meddelanden, utan lägger dem i din utkorg när de har schemalagts för avsändning. Avmarkera detta alternativ om du, exempelvis, använder något annat tillägg, t.ex. BlunderDelay, för att med regelbundna intervall skicka meddelanden från Utkorgen. Observera att när detta alternativ är markerat, så skickar Send Later 3 SAMTLIGA meddelanden i din utkorg varje gång ett meddelande skall skickas.">
-<!ENTITY sendlatersendbutton.caption "&quot;Skicka&quot; innebär &quot;Skicka senare&quot;">
-<!ENTITY sendlatersendbutton.tooltip "Om detta alternativ är aktiverat, så utförs kommandot &quot;Skicka&quot; (antingen via knappen eller genom att trycka ner Ctrl+Retur) precis som &quot;Skicka senare&quot;.">
+<!ENTITY sendlatersendbutton.caption "“Skicka” innebär “Skicka senare”">
+<!ENTITY sendlatersendbutton.tooltip "Om detta alternativ är aktiverat, så utförs kommandot “Skicka” (antingen via knappen eller genom att trycka ner Ctrl+Retur) precis som “Skicka senare”.">
 <!ENTITY altbinding.caption "Tilldela Alt+Skift+Retur istället för Ctrl+Skift+Retur">
 <!ENTITY advanced.caption "Avancerat">
 <!ENTITY dumplevel.caption "Loggningsnivå för loggdump:">
