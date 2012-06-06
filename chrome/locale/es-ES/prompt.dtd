@@ -1,17 +1,22 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY sendlater.prompt.sendlater.label "Poner en Bandeja de Salida">
-<!ENTITY sendlater.prompt.sendlater.tooltip "En lugar de programar el envío para una hora en concreto, mueve el mensaje a la Bandeja de Salida para que sea enviado la próxima vez que se envíen los mensajes no enviados.">
-<!ENTITY sendlater.prompt.sendnow.label "Enviar Ahora">
-<!ENTITY sendlater.prompt.sendnow.accesskey "A">
+<!ENTITY sendlater.prompt.sendlater.label "Mover a Bandeja de Salida">
+<!ENTITY sendlater.prompt.sendlater.tooltip "En lugar de programar el envío para una hora concreta, mueve el mensaje a la Bandeja de Salida para que se envíe la próxima vez que se envíen los mensajes pendientes.">
+<!ENTITY sendlater.prompt.sendnow.label "Enviar ahora">
+<!ENTITY sendlater.prompt.sendnow.accesskey "h">
 <!ENTITY sendlater.prompt.close.label "Cancelar">
-<!ENTITY sendlater.prompt.close.tooltip "Volver a edición del mensaje.">
-<!ENTITY sendlater.prompt.title.label "Enviar este email después">
-<!ENTITY sendlater.prompt.sendat.label "Enviar Después a la hora/s especificadas arriba">
-<!ENTITY sendlater.prompt.sendat.tooltip "Guardar el mensaje en carpeta de Borradores, para un envío automático a la hora arriba indicada.">
-<!ENTITY sendlater.prompt.recur.label "Repetirse:">
-<!ENTITY sendlater.prompt.none.label "ninguno">
-<!ENTITY sendlater.prompt.daily.label "todos los días">
-<!ENTITY sendlater.prompt.weekly.label "semanales">
-<!ENTITY sendlater.prompt.monthly.label "mensuales">
-<!ENTITY sendlater.prompt.yearly.label "anuales">
-<!ENTITY sendlater.toolbar.sendlater.button.label "Enviar Después">
+<!ENTITY sendlater.prompt.close.tooltip "Volver a editar el mensaje.">
+<!ENTITY sendlater.prompt.title.label "Enviar este mensaje después">
+<!ENTITY sendlater.prompt.textbox.label "Enviar a las:">
+<!ENTITY sendlater.prompt.textbox.tooltip "Introduzca fecha y hora. También se admiten entradas sin formato como “próximo martes a las 3:00 pm”.">
+<!ENTITY sendlater.prompt.textbox.emptytext "ej: “martes 3:00pm”, “12/31/2012 15:27”">
+<!ENTITY sendlater.prompt.sendat.label "Enviar después a la(s) hora(s) arriba indicada">
+<!ENTITY sendlater.prompt.sendat.tooltip "Guardar el mensaje en la carpeta de Borradores para su envío automático a la hora arriba indicada.">
+<!ENTITY sendlater.prompt.recur.label "Repetición:">
+<!ENTITY sendlater.prompt.none.label "no">
+<!ENTITY sendlater.prompt.daily.label "diaria">
+<!ENTITY sendlater.prompt.weekly.label "semanal">
+<!ENTITY sendlater.prompt.monthly.label "mensual">
+<!ENTITY sendlater.prompt.yearly.label "anual">
+<!ENTITY sendlater.toolbar.sendlater.button.label "Enviar después">
+<!ENTITY sendlater.toolbar.textbox.emptytext "hora de envío">
+<!ENTITY sendlater.prompt.every.label "Cada">

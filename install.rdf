@@ -5,13 +5,14 @@
     <em:type>2</em:type>
     <em:id>sendlater3@kamens.us</em:id>
     <em:name>Send Later 3</em:name>
-    <em:version>4.0beta3</em:version>
+    <em:version>4.0beta4</em:version>
     <em:creator>Jonathan Kamens</em:creator>
     <em:developer>Karthik Sivaram</em:developer>
     <em:contributor>Andrew Plummer (SugarJS)</em:contributor>
     <em:translator>Suzanne Iseli</em:translator><!-- Part of German -->
     <em:translator>Daniel S.</em:translator><!-- Part of German -->
     <em:translator>Milcom.es</em:translator><!-- Spanish -->
+    <em:translator>urko from BabelZilla</em:translator><!-- Spanish -->
     <em:translator>Samtron-Translations</em:translator><!-- Finnish -->
     <em:translator>Didier Journois</em:translator><!-- French -->
     <em:translator>“Bigpapa”</em:translator><!-- French -->
