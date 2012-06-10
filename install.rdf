@@ -9,19 +9,19 @@
     <em:creator>Jonathan Kamens</em:creator>
     <em:developer>Karthik Sivaram</em:developer>
     <em:contributor>Andrew Plummer (SugarJS)</em:contributor>
-    <em:translator>Suzanne Iseli</em:translator><!-- Part of German -->
-    <em:translator>Daniel S.</em:translator><!-- Part of German -->
-    <em:translator>Milcom.es</em:translator><!-- Spanish -->
-    <em:translator>urko from BabelZilla</em:translator><!-- Spanish -->
-    <em:translator>Samtron-Translations</em:translator><!-- Finnish -->
-    <em:translator>Didier Journois</em:translator><!-- French -->
-    <em:translator>“Bigpapa”</em:translator><!-- French -->
-    <em:translator>Cesare</em:translator><!-- Italian -->
-    <em:translator>Ryo Matsui</em:translator><!-- Japanese -->
-    <em:translator>markh from BabelZilla</em:translator><!-- Dutch -->
-    <em:translator>Maciej Kobuszewski</em:translator><!-- Polish -->
-    <em:translator>Mikael Hiort af Ornäs</em:translator><!-- Swedish -->
-    <em:translator>yfdyh000 from BabelZilla</em:translator><!-- Simplified Chinese -->
+    <em:translator>Suzanne Iseli (de-DE)</em:translator>
+    <em:translator>Daniel S. (de-DE)</em:translator>
+    <em:translator>Milcom.es (es-ES)</em:translator>
+    <em:translator>urko from BabelZilla (es-ES)</em:translator>
+    <em:translator>Samtron-Translations (fi-FI)</em:translator>
+    <em:translator>Didier Journois (fr)</em:translator>
+    <em:translator>“Bigpapa” (fr)</em:translator>
+    <em:translator>Cesare (it-IT)</em:translator>
+    <em:translator>Ryo Matsui (ja-JP)</em:translator>
+    <em:translator>markh from BabelZilla (nl)</em:translator>
+    <em:translator>Maciej Kobuszewski (pl)</em:translator>
+    <em:translator>Mikael Hiort af Ornäs (sv-SE)</em:translator>
+    <em:translator>yfdyh000 from BabelZilla (zh-CN)</em:translator>
     <em:description>True “Send Later” functionality to schedule the time for sending an email.</em:description>
     <em:localized>
       <Description>
