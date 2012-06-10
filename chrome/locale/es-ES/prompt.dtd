@@ -1,6 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY sendlater.prompt.sendlater.label "Mover a Bandeja de Salida">
-<!ENTITY sendlater.prompt.sendlater.tooltip "En lugar de programar el envío para una hora concreta, mueve el mensaje a la Bandeja de Salida para que se envíe la próxima vez que se envíen los mensajes pendientes.">
+<!ENTITY sendlater.prompt.sendlater.label "Mover a Bandeja de salida">
+<!ENTITY sendlater.prompt.sendlater.tooltip "En vez de programar el envío para una hora concreta, mueve el mensaje a la Bandeja de salida para que se envíe la próxima vez que se envíen los mensajes pendientes.">
 <!ENTITY sendlater.prompt.sendnow.label "Enviar ahora">
 <!ENTITY sendlater.prompt.sendnow.accesskey "h">
 <!ENTITY sendlater.prompt.close.label "Cancelar">
