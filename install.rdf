@@ -9,8 +9,8 @@
     <em:creator>Jonathan Kamens</em:creator>
     <em:developer>Karthik Sivaram</em:developer>
     <em:contributor>Andrew Plummer (SugarJS)</em:contributor>
-    <em:translator>Suzanne Iseli (de-DE)</em:translator>
-    <em:translator>Daniel S. (de-DE)</em:translator>
+    <em:translator>Suzanne Iseli (de)</em:translator>
+    <em:translator>Daniel S. (de)</em:translator>
     <em:translator>Milcom.es (es-ES)</em:translator>
     <em:translator>urko from BabelZilla (es-ES)</em:translator>
     <em:translator>Samtron-Translations (fi-FI)</em:translator>
@@ -26,7 +26,7 @@
     <em:localized>
       <Description>
 	<em:name>Send Later 3</em:name>
-	<em:locale>de-DE</em:locale>
+	<em:locale>de</em:locale>
 	<em:description>Eine echte “SendeSpäter” Funktionalität zur Planung der Sendezeit von Emails.</em:description>
       </Description>
     </em:localized>
