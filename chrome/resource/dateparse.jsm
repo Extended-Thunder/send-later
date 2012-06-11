@@ -43,7 +43,7 @@ function getLocale() {
 function dateparse(date) {
     var locale = getLocale();
     var obj = Date.create(date, locale);
-    if (! (obj.isValid || locale.substr(0, 2) == "en")) {
+    if (! (obj.isValid() || locale.substr(0, 2) == "en")) {
 	// Fall back on English date rules
 	obj = Date.create(date);
     }
