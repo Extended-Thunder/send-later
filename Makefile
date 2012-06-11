@@ -23,7 +23,7 @@ send_later3-translatable.xpi: $(FILES)
 
 clean: ; -rm -f *.xpi
 
-locale_import: Send_Later_3_selected_locales_skipped.tar.gz
+locale_import: Send_Later_3_selected_locales_replaced.tar.gz
 	tar -C chrome/locale -xzf $<
 	./import-localized.pl
 	./locale-headers.pl

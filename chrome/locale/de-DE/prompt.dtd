@@ -6,6 +6,9 @@
 <!ENTITY sendlater.prompt.close.label "Abbruch">
 <!ENTITY sendlater.prompt.close.tooltip "Gehe zurück zum Bearbeiten der Mitteilung.">
 <!ENTITY sendlater.prompt.title.label "Sende dieses E-Mail später">
+<!ENTITY sendlater.prompt.textbox.label "Send at:">
+<!ENTITY sendlater.prompt.textbox.tooltip "Enter a date and time. Free-form entry such as “next Tuesday at 3:00pm” is also supported.">
+<!ENTITY sendlater.prompt.textbox.emptytext "ex: “3:00pm Thursday”, “12/31/2012 15:27”">
 <!ENTITY sendlater.prompt.sendat.label "Sende Später zu den oben spezifizierten Zeit(en)">
 <!ENTITY sendlater.prompt.sendat.tooltip "Speichern der Mitteilung im Order Entwürfe für den automatischen Versand zum vorher gesetzten Zeitpunkt.">
 <!ENTITY sendlater.prompt.recur.label "wiederholen:">
@@ -15,3 +18,5 @@
 <!ENTITY sendlater.prompt.monthly.label "monatlich">
 <!ENTITY sendlater.prompt.yearly.label "jährlich">
 <!ENTITY sendlater.toolbar.sendlater.button.label "SendeSpäter">
+<!ENTITY sendlater.toolbar.textbox.emptytext "send time">
+<!ENTITY sendlater.prompt.every.label "Every">

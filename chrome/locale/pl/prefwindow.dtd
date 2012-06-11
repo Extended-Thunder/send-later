@@ -17,6 +17,7 @@
 <!ENTITY showsendlaterheader.tooltip "Określa czy wyświetlać nagłówek “X-Send-Later-At”, tzn. zaplanowany czas wysłania wiadomości w nagłówku podglądu.">
 <!ENTITY showsendlaterstatus.caption "Pokaż “Send Later 3” na pasku statusu">
 <!ENTITY showsendlaterprogress.caption "Pokaż postęp działań wykonywanych w tle na pasku statusu">
+<!ENTITY showsendlaterentry.caption "Pokaż ustawienia czasu wysyłki w pasku narzędzi">
 <!ENTITY showsendlaterunsentmessages.caption "Włącz/wyłącz wysyłanie wiadomości z “Wychodzących...”">
 <!ENTITY showsendlaterunsentmessages.tooltip "Jeżeli ta opcja jest wyłączona wiadomości zamiast zostać wysłane w wyznaczonym czasie zostaną przeniesione do folderu “Wychodzące”. Wyłącz tą opcję jeżeli korzystasz z innych rozszerzeń, które okresowo wysyłają wiadomości z folderu “Wychodzące”, np. BlunderDelay. Zauważ, że jeżeli ta opcja jest włączona, to za każdym razem kiedy “Send Later 3” spróbuje wysłać zaplanowaną wiadomość WSZYSTKIE inne wiadomości z folderu “Wychodzące” zostaną wysłane.">
 <!ENTITY sendlatersendbutton.caption "“Wyślij później” zamiast “Wyślij”">

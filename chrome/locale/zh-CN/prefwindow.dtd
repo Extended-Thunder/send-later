@@ -17,6 +17,7 @@
 <!ENTITY showsendlaterheader.tooltip "查看消息时是否显示“X-Send-Later-At”头，也就是计划的发送草稿的时间。">
 <!ENTITY showsendlaterstatus.caption "在状态栏中显示 Send Later 3">
 <!ENTITY showsendlaterprogress.caption "在状态栏中显示后台进展">
+<!ENTITY showsendlaterentry.caption "Show Time Entry In Toolbar">
 <!ENTITY showsendlaterunsentmessages.caption "触发投递发件箱中的未发送消息">
 <!ENTITY showsendlaterunsentmessages.tooltip "如果您不设置此选项，那么当它们按日程需要被投递时，Send Later 3 将不会完全投递消息，而只是会将它们放到您的发件箱里。如果您使用一些其他的扩展，像是 BlunderDelay 来定期地发送您发件箱里的消息，请不设置此选项。注意，设置了此选项时，每当 Send Later 3 投递消息，您发件箱里的“所有”消息都将被发送出去。">
 <!ENTITY sendlatersendbutton.caption "“发送”变成“延期发送”">

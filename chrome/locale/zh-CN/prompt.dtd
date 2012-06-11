@@ -6,6 +6,9 @@
 <!ENTITY sendlater.prompt.close.label "取消">
 <!ENTITY sendlater.prompt.close.tooltip "回到 编写消息。">
 <!ENTITY sendlater.prompt.title.label "延期发送这封电子邮件">
+<!ENTITY sendlater.prompt.textbox.label "发送时间：">
+<!ENTITY sendlater.prompt.textbox.tooltip "请输入日期和时间。形式自由，支持像是“next Tuesday at 3:00pm”等形式。">
+<!ENTITY sendlater.prompt.textbox.emptytext "例：“3:00pm Thursday”, “12/31/2012 15:27”">
 <!ENTITY sendlater.prompt.sendat.label "按照上面指定的时间延期发送">
 <!ENTITY sendlater.prompt.sendat.tooltip "保存消息到草稿箱，以在上述时间自动投递该消息。">
 <!ENTITY sendlater.prompt.recur.label "循环周期：">
@@ -15,3 +18,5 @@
 <!ENTITY sendlater.prompt.monthly.label "每月">
 <!ENTITY sendlater.prompt.yearly.label "每年">
 <!ENTITY sendlater.toolbar.sendlater.button.label "延期发送">
+<!ENTITY sendlater.toolbar.textbox.emptytext "发送时间">
+<!ENTITY sendlater.prompt.every.label "每">

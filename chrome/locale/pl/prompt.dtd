@@ -6,6 +6,9 @@
 <!ENTITY sendlater.prompt.close.label "Anuluj">
 <!ENTITY sendlater.prompt.close.tooltip "Wróć do edycji wiadomości.">
 <!ENTITY sendlater.prompt.title.label "Wyślij tą wiadomość później">
+<!ENTITY sendlater.prompt.textbox.label "Wyślij o:">
+<!ENTITY sendlater.prompt.textbox.tooltip "Podaj datę i czas. Obsługiwany jest także tekstowy zapis, np. “następny czwartek o 15:00”.">
+<!ENTITY sendlater.prompt.textbox.emptytext "np.: “środa, 15:00”, “12/31/2012 15:27”">
 <!ENTITY sendlater.prompt.sendat.label "Wyślij później o określonych powyżej czasach">
 <!ENTITY sendlater.prompt.sendat.tooltip "Zapisz wiadomość w folderze “Szkice”, aby dostarczyć ją w wyznaczonym powyżej czasie.">
 <!ENTITY sendlater.prompt.recur.label "Powtarzać się:">
