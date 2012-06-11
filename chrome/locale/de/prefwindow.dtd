@@ -22,7 +22,6 @@
 <!ENTITY showsendlaterunsentmessages.tooltip "Wird diese Option zurückgesetzt, dann wird “Send Later 3” die Nachrichten nicht in vollem Umfang ausliefern, stattdessen werden sie für die geplante Lieferung direkt in den Postausgang verschoben. Setze diese Option zurück, wenn eine andere Erweiterung, wie z.B. BlunderDelay, verwendet wird, um periodisch Nachrichten aus dem Postausgang zu versenden. Beachte: ist diese Option gesetzt, wird “Send Later 3”, wann immer es Nachrichten ausliefert, melden: ALLE Nachrichten im Postausgang wurden ausgeliefert.">
 <!ENTITY sendlatersendbutton.caption "“Sende” vollzieht “SendeSpäter”">
 <!ENTITY sendlatersendbutton.tooltip "Ist diese Option aktiviert, bewirkt dieser “Sende” Befehl (entweder Taste oder Ctrl-Enter) das Gleiche wie “SendeSpäter”.">
-<!ENTITY altbinding.caption "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter">
 <!ENTITY advanced.caption "Erweiterte">
 <!ENTITY dumplevel.caption "Dump Log Level:">
 <!ENTITY consolelevel.caption "Konsolen Log Level:">
