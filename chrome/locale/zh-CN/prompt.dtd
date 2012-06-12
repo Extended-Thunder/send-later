@@ -1,17 +1,17 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY sendlater.prompt.sendlater.label "放到发件箱">
-<!ENTITY sendlater.prompt.sendlater.tooltip "不设定日程在指定的时间投递，而是移动消息到发件箱，等待下一次投递未发送邮件时被发送。">
+<!ENTITY sendlater.prompt.sendlater.tooltip "不指定发送时间，而是移动消息到发件箱，等待下一次发送未发送消息时发送。">
 <!ENTITY sendlater.prompt.sendnow.label "立即发送">
 <!ENTITY sendlater.prompt.sendnow.accesskey "N">
 <!ENTITY sendlater.prompt.close.label "取消">
-<!ENTITY sendlater.prompt.close.tooltip "回到 编写消息。">
+<!ENTITY sendlater.prompt.close.tooltip "回到编写消息。">
 <!ENTITY sendlater.prompt.title.label "延期发送这封电子邮件">
 <!ENTITY sendlater.prompt.textbox.label "发送时间：">
-<!ENTITY sendlater.prompt.textbox.tooltip "请输入日期和时间。形式自由，支持像是“next Tuesday at 3:00pm”等形式。">
-<!ENTITY sendlater.prompt.textbox.emptytext "例：“3:00pm Thursday”, “12/31/2012 15:27”">
-<!ENTITY sendlater.prompt.sendat.label "按照上面指定的时间延期发送">
-<!ENTITY sendlater.prompt.sendat.tooltip "保存消息到草稿箱，以在上述时间自动投递该消息。">
-<!ENTITY sendlater.prompt.recur.label "循环周期：">
+<!ENTITY sendlater.prompt.textbox.tooltip "请输入日期和时间，格式任意。例如“next Tuesday at 3:00pm”。（注意：目前对中文解析有问题，请用户尽量用英文书写或者使用标准格式）">
+<!ENTITY sendlater.prompt.textbox.emptytext "例如： “31/12/2012 15:27”">
+<!ENTITY sendlater.prompt.sendat.label "延期到指定的时间发送">
+<!ENTITY sendlater.prompt.sendat.tooltip "保存消息到草稿箱，在上面设定的时间自动发送。">
+<!ENTITY sendlater.prompt.recur.label "周期：">
 <!ENTITY sendlater.prompt.none.label "无">
 <!ENTITY sendlater.prompt.daily.label "每天">
 <!ENTITY sendlater.prompt.weekly.label "每周">
