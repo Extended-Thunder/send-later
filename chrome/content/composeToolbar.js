@@ -38,8 +38,15 @@ var Sendlater3ComposeToolbar = {
 					  selecteddate, selectedhour,
 					  selectedmin);
 	}
-	document.getElementById("sendlater3-toolbarbutton")
-	    .setAttribute("disabled", ! dateObj);
+	var button = document.getElementById("sendlater3-toolbarbutton");
+	button.setAttribute("disabled", ! dateObj);
+	if (dateObj) {
+	    button.label = SL3U.PromptBundleGet("sendaround") + " " +
+		dateObj.toLocaleString();
+	}
+	else {
+	    button.label = button.getAttribute("sl3label");
+	}
         SL3U.Returning("Sendlater3ComposeToolbar.updateSummary", dateObj);
 	return dateObj;
     },

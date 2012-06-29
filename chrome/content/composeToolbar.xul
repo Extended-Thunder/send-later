@@ -60,7 +60,7 @@
 	</hbox>
 	<separator id="sendlater3-toolsep" flex="1" width="8px" /> 
 	<hbox id="sendlater3-toolbarbutton-hbox" style="border: groove 1px" tooltiptext="&sendlater.toolbar.sendlater.button.label;">
-	  <toolbarbutton id="sendlater3-toolbarbutton" orient="horizontal" image="chrome://sendlater3/content/sendlater3icon20.png" label="&sendlater.toolbar.sendlater.button.label;" oncommand="Sendlater3ComposeToolbar.CallSendAt();"  />
+	  <toolbarbutton id="sendlater3-toolbarbutton" orient="horizontal" image="chrome://sendlater3/content/sendlater3icon20.png" label="&sendlater.toolbar.sendlater.button.label;" sl3label="&sendlater.toolbar.sendlater.button.label;" oncommand="Sendlater3ComposeToolbar.CallSendAt();"  />
 	</hbox>
 	<separator id="sendlater3-quicksep" flex="1" width="8px" /> 
 	<button key="sendlater3-quickbutton1-key" id="sendlater3-shortcutbtn_1" flex="1" label="15 mins" oncommand="Sendlater3ComposeToolbar.CallSendAfter(15);close();"/>
