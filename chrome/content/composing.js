@@ -647,6 +647,10 @@ var Sendlater3Composing = {
 		head += Sendlater3Composing.RecurHeader(sendat, recur);
 	    }
 	    msgCompFields.otherRandomHeaders += head;
+	    msgCompFields.messageId = Components
+		.classes["@mozilla.org/messengercompose/computils;1"]
+		.createInstance(Components.interfaces.nsIMsgCompUtils)
+		.msgGenerateMessageId(getCurrentIdentity());
 	}
     },
 	

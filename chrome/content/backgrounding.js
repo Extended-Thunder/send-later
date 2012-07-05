@@ -575,34 +575,8 @@ var Sendlater3Backgrounding = function() {
 	    content = content.replace(/\nX-Send-Later-Recur:.*\n/i,
 				      "\n");
 
-	    var ids = content.match(/\nX-Identity-Key:\s*(\S+)/i);
-	    var messageId;
-	    try {
-		var identity;
-		identity = Components
-		    .classes["@mozilla.org/messenger/account-manager;1"]
-		    .getService(Components.interfaces.nsIMsgAccountManager)
-		    .getIdentity(ids[1]);
-		var compUtils = Components
-		    .classes["@mozilla.org/messengercompose/computils;1"]
-		    .createInstance(Components.interfaces.nsIMsgCompUtils);
-		messageId = compUtils.msgGenerateMessageId(identity);
-	    }
-	    catch (ex) {}
-
 	    // Remove extra newline -- see comment above.
 	    content = content.slice(1);
-
-	    if (messageId) {
-		// It's safe to assume there will be a newline before
-		// Messgae-ID because if messageId is non-null than
-		// X-Identity-Key matched, and it's always at the top
-		// of the message, so Message-ID must be below it and
-		// preceded by a newline.
-		content = content.replace(/\nMessage-ID:.*\n/i,
-					  "\n");
-		content = "Message-ID: " + messageId + "\n" + content;
-	    }
 
 	    // There is a bug in Thunderbird (3.1, at least) where when
 	    // a message is being sent from the user's Outbox and then
