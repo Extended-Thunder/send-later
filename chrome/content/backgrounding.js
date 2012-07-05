@@ -776,11 +776,28 @@ var Sendlater3Backgrounding = function() {
 			    messageenumerator = thisfolder.messages;
 			}
 			catch (e) {
-			    SL3U.alert(window, null,
-				       SL3U.PromptBundleGetFormatted(
-					   "CorruptFolderError",
-					   [folder.URI]));
-			    throw e;
+			    var lmf;
+			    try {
+				lmf = thisfolder
+				    .QueryInterface(Components.interfaces
+						    .nsIMsgLocalMailFolder);
+			    }
+			    catch (ex) {}
+			    if (e.result == 0x80550005 && lmf) {
+				SL3U.warn("Rebuilding out-of-date summary: " +
+					  folder.URI);
+				try {
+				    lmf.getDatabaseWithReparse(null, null);
+				}
+				catch (ex) {}
+			    }
+			    else {
+				SL3U.alert(window, null,
+					   SL3U.PromptBundleGetFormatted(
+					       "CorruptFolderError",
+					       [folder.URI]));
+				throw e;
+			    }
 			}
 		    }
 		    if ( messageenumerator ) {
