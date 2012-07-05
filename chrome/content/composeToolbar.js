@@ -235,6 +235,8 @@ var Sendlater3ComposeToolbar = {
 		    .setAttribute("disabled", Sendlater3Composing.prevXSendLater ? false : true);
 	    }
 
+	    Sendlater3ComposeToolbar.updateSummary();
+
 	    Sendlater3ComposeToolbar.SetRecurring(Sendlater3Composing.prevRecurring ? true : false);
 	}
 	SL3U.Leaving("Sendlater3ComposeToolbar.SetOnLoad");
