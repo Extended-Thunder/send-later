@@ -1,12 +1,12 @@
 var EXPORTED_SYMBOLS = ["dateparse"];
 
 // Using mozIJSSubScriptLoader instead of Cu.import because I want to
-// preserve sugar-1.2.5.min.js unmodified from the official
+// preserve sugar.min.js unmodified from the official
 // distribution, and it doesn't define EXPORTED_SYMBOLS, which is
 // required by CU.import.
 var loader = Components.classes["@mozilla.org/moz/jssubscript-loader;1"]
                        .getService(Components.interfaces.mozIJSSubScriptLoader); 
-loader.loadSubScript("resource://sendlater3/sugar-1.2.5.min.js"); 
+loader.loadSubScript("resource://sendlater3/sugar.min.js"); 
 
 var didLocale = false;
 var locale;
@@ -42,10 +42,10 @@ function getLocale() {
 
 function dateparse(date) {
     var locale = getLocale();
-    var obj = Date.create(date, locale);
+    var obj = Date.future(date, locale);
     if (! (obj.isValid() || locale.substr(0, 2) == "en")) {
 	// Fall back on English date rules
-	obj = Date.create(date);
+	obj = Date.future(date);
     }
     return obj;
 }
