@@ -551,6 +551,8 @@ var Sendlater3Util = {
 	},
     },
 
+    // The Mail Merge add-on is using this, so don't change it without letting
+    // the author know what's changing!
     getInstanceUuid: function() {
 	var instance_uuid = Sendlater3Util.getCharPref("instance.uuid");
 	if (! instance_uuid) {
