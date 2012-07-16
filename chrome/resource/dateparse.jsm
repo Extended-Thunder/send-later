@@ -17,23 +17,15 @@ function getLocale() {
             .getService(Components.interfaces.nsILocaleService);
 	var localeObj = localeService.getApplicationLocale();
 	locale = localeObj.getCategory("NSILOCALE_TIME");
-	// Sugar may want just the first two characters of the locale.
-	// And it may not recognize the locale at all. It throws an
-	// error when an unrecognized locale is passed in and the
-	// locale is needed.
+	// Sugar may not recognize the locale. It throws an error when
+	// an unrecognized locale is passed in and the locale is
+	// needed.
+
 	try {
 	    Date.create().format(null, locale);
 	}
 	catch (ex) {
-	    // Try just first two characters.
-	    locale = locale.substr(0, 2);
-	    try {
-		Date.create().format(null, locale);
-	    }
-	    catch (ex) {
-		// Even that is unrecognized, so use no locale.
-		locale = null;
-	    }
+	    locale = null;
 	}
 	didLocale = true;
     }
