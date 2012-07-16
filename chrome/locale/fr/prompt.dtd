@@ -1,16 +1,16 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY sendlater.prompt.sendlater.label "Placer dans “Messages en attente”">
-<!ENTITY sendlater.prompt.sendlater.tooltip "Plutôt que de programmer l'envoi à une date précise, placer le message dans le dossier “Messages en attente” pour envoi la prochaine fois que les messages non envoyés sont expédiés.">
+<!ENTITY sendlater.prompt.sendlater.label "Placer en attente">
+<!ENTITY sendlater.prompt.sendlater.tooltip "Plutôt que de programmer l'envoi à une date précise, placer le message dans le dossier « Messages en attente » pour faire partie de la prochaine expédition des messages non envoyés.">
 <!ENTITY sendlater.prompt.sendnow.label "Envoyer maintenant">
 <!ENTITY sendlater.prompt.sendnow.accesskey "M">
 <!ENTITY sendlater.prompt.close.label "Annuler">
 <!ENTITY sendlater.prompt.close.tooltip "Revenir à la rédaction du message">
 <!ENTITY sendlater.prompt.title.label "Programmation d'envoi différé de courriel">
 <!ENTITY sendlater.prompt.textbox.label "Programmer pour :">
-<!ENTITY sendlater.prompt.textbox.tooltip "Entrer un date et une heure. Les formes libres comme “31-12/2012 1527” sont acceptées.">
-<!ENTITY sendlater.prompt.textbox.emptytext "ex. : “31/12/2012 15:27”, “31-12/2012 1527”">
+<!ENTITY sendlater.prompt.textbox.tooltip "Entrer un date et une heure. Les formes libres comme « 31-12/2012 15:27 » sont acceptées.">
+<!ENTITY sendlater.prompt.textbox.emptytext "(ex. : « 15:00 mardi » ou « 31-12/2012 15:27 »)">
 <!ENTITY sendlater.prompt.sendat.label "Envoyer au moment choisi">
-<!ENTITY sendlater.prompt.sendat.tooltip "Enregistre le message dans “Brouillons” jusqu'au moment prévu indiqué.">
+<!ENTITY sendlater.prompt.sendat.tooltip "Enregistre le message dans « Brouillons » jusqu'au moment prévu indiqué.">
 <!ENTITY sendlater.prompt.recur.label "Répétition :">
 <!ENTITY sendlater.prompt.none.label "aucune">
 <!ENTITY sendlater.prompt.daily.label "quotidienne">

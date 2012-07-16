@@ -7,8 +7,8 @@
 <!ENTITY sendlater.prompt.close.tooltip "メッセージの編集に戻ります。">
 <!ENTITY sendlater.prompt.title.label "このメールを後で送信する">
 <!ENTITY sendlater.prompt.textbox.label "送信日時:">
-<!ENTITY sendlater.prompt.textbox.tooltip "日時を入力してください。“next Tuesday at 3:00pm” のような形式もサポートしています。">
-<!ENTITY sendlater.prompt.textbox.emptytext "例: “3:00pm Thursday”, “12/31/2012 15:27”">
+<!ENTITY sendlater.prompt.textbox.tooltip "日時を入力してください。“来週火曜日午後3:00” のような形式もサポートしています。">
+<!ENTITY sendlater.prompt.textbox.emptytext "例: “木曜日午後3:00”, “2012年12月31日15:27”">
 <!ENTITY sendlater.prompt.sendat.label "指定した日時に送信する">
 <!ENTITY sendlater.prompt.sendat.tooltip "指定した日時に自動的に送信するために [下書き] フォルダへメッセージを保存します。">
 <!ENTITY sendlater.prompt.recur.label "定期:">

@@ -7,8 +7,8 @@
 <!ENTITY sendlater.prompt.close.tooltip "回到编写消息。">
 <!ENTITY sendlater.prompt.title.label "延期发送这封电子邮件">
 <!ENTITY sendlater.prompt.textbox.label "发送时间：">
-<!ENTITY sendlater.prompt.textbox.tooltip "请输入日期和时间，格式任意。例如“next Tuesday at 3:00pm”。（注意：目前对中文解析有问题，请用户尽量用英文书写或者使用标准格式）">
-<!ENTITY sendlater.prompt.textbox.emptytext "例如： “31/12/2012 15:27”">
+<!ENTITY sendlater.prompt.textbox.tooltip "请输入日期和时间，格式任意。像“下星期六 下午3:00”这种时间格式也可以被支持。">
+<!ENTITY sendlater.prompt.textbox.emptytext "例如： “2012/12/31 15:27”">
 <!ENTITY sendlater.prompt.sendat.label "延期到指定的时间发送">
 <!ENTITY sendlater.prompt.sendat.tooltip "保存消息到草稿箱，在上面设定的时间自动发送。">
 <!ENTITY sendlater.prompt.recur.label "周期：">
