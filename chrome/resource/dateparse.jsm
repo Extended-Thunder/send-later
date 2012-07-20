@@ -13,10 +13,10 @@ var locale;
 
 Date.setLocale('pl', {
   hasPlural: true,
-  months: ['Styczeń|Stycznia','Luty|Lutego','Marzec|Marca','Kwiecień|Kwietnia','Maj|Maja','Czerwiec|Czerwca','Lipiec|Lipca','Sierpień|Sierpnia','Wrzesień|Września','Październik|Października','Listopad|Listopada','Grudzień|Grudnia'],
-  weekdays: ['Niedziela|Niedzielę','Poniedziałek','Wtorek','Środa|Środę','Czwartek','Piątek','Sobota|Sobotę'],
-  units: ['milisekund:a|y|','sekund:a|y|','minut:a|y|','godzin:a|y|','dzień|dni','tydzień|tygodnie|tygodni','miesiące|miesiące|miesięcy','rok|lata|lat'],
-  numbers: ['jeden|jedną','dwa|dwie','trzy','cztery','pięć','sześć','siedem','osiem','dziewięć','dziesięć'],
+  months: ['Stycze\u0144|Stycznia','Luty|Lutego','Marzec|Marca','Kwiecie\u0144|Kwietnia','Maj|Maja','Czerwiec|Czerwca','Lipiec|Lipca','Sierpie\u0144|Sierpnia','Wrzesie\u0144|Wrze\u015bnia','Pa\u017adziernik|Pa\u017adziernika','Listopad|Listopada','Grudzie\u0144|Grudnia'],
+  weekdays: ['Niedziela|Niedziel\u0119','Poniedzia\u0142ek','Wtorek','\U015Aroda|\U015Arod\u0119','Czwartek','Pi\u0105tek','Sobota|Sobot\u0119'],
+  units: ['milisekund:a|y|','sekund:a|y|','minut:a|y|','godzin:a|y|','dzie\u0144|dni','tydzie\u0144|tygodnie|tygodni','miesi\u0105ce|miesi\u0105ce|miesi\u0119cy','rok|lata|lat'],
+  numbers: ['jeden|jedn\u0105','dwa|dwie','trzy','cztery','pi\u0119\u0107','sze\u015b\u0107','siedem','osiem','dziewi\u0119\u0107','dziesi\u0119\u0107'],
   optionals: ['w|we', 'roku'],
   timeFormat : '{H}:{mm}:{ss}',
   shortFormat: '{d} {Month} {yyyy}',
@@ -28,13 +28,13 @@ Date.setLocale('pl', {
   modifiers: [
     { name: 'day', src: 'przedwczoraj', value: -2 },
     { name: 'day', src: 'wczoraj', value: -1 },
-    { name: 'day', src: 'dzisiaj|dziś', value: 0 },
+    { name: 'day', src: 'dzisiaj|dzi\u015b', value: 0 },
     { name: 'day', src: 'jutro', value: 1 },
     { name: 'day', src: 'pojutrze', value: 2 },
     { name: 'sign', src: 'temu|przed', value: -1 },
     { name: 'sign', src: 'za', value: 1 },
-    { name: 'shift', src: 'zeszły|zeszła|ostatni|ostatnia', value: -1 },
-    { name: 'shift', src: 'następny|następna|następnego|przyszły|przyszła|przyszłego', value: 1 }
+    { name: 'shift', src: 'zesz\u0142y|zesz\u0142a|ostatni|ostatnia', value: -1 },
+    { name: 'shift', src: 'nast\u0119pny|nast\u0119pna|nast\u0119pnego|przysz\u0142y|przysz\u0142a|przysz\u0142ego', value: 1 }
   ],
   formats: [
     '{num} {unit} {sign}',
