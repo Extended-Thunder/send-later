@@ -11,7 +11,7 @@ loader.loadSubScript("resource://sendlater3/sugar.min.js");
 var didLocale = false;
 var locale;
 
-var pl = {
+Date.setLocale('pl', {
   hasPlural: true,
   months: ['Styczeń|Stycznia','Luty|Lutego','Marzec|Marca','Kwiecień|Kwietnia','Maj|Maja','Czerwiec|Czerwca','Lipiec|Lipca','Sierpień|Sierpnia','Wrzesień|Września','Październik|Października','Listopad|Listopada','Grudzień|Grudnia'],
   weekdays: ['Niedziela|Niedzielę','Poniedziałek','Wtorek','Środa|Środę','Czwartek','Piątek','Sobota|Sobotę'],
@@ -24,6 +24,7 @@ var pl = {
   fullFormat : '{Weekday}, {d} {Month} {yyyy} {H}:{mm}:{ss}',
   pastFormat: '{num} {unit} {sign}',
   futureFormat: '{sign} {num} {unit}',
+  '12hr': ['am','pm'],
   modifiers: [
     { name: 'day', src: 'przedwczoraj', value: -2 },
     { name: 'day', src: 'wczoraj', value: -1 },
@@ -47,11 +48,8 @@ var pl = {
     '{0} {shift?} {weekday}'
   ],
   timeSuffixes: []
-};
-
-pl["12hr"] = ['am','pm'];
-
-Date.setLocale('pl', pl);
+});
+Date.setLocale('en');
 
 function getLocale() {
     if (! didLocale) {
