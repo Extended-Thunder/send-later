@@ -25,6 +25,7 @@ Date.setLocale('pl', {
   pastFormat: '{num} {unit} {sign}',
   futureFormat: '{sign} {num} {unit}',
   '12hr': ['am','pm'],
+  timeMarkers: ['o'],
   modifiers: [
     { name: 'day', src: 'przedwczoraj', value: -2 },
     { name: 'day', src: 'wczoraj', value: -1 },
