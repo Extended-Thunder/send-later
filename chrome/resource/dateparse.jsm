@@ -7,8 +7,6 @@ var EXPORTED_SYMBOLS = ["dateparse"];
 var loader = Components.classes["@mozilla.org/moz/jssubscript-loader;1"]
                        .getService(Components.interfaces.mozIJSSubScriptLoader); 
 loader.loadSubScript("resource://sendlater3/sugar.min.js"); 
-loader.loadSubScript("resource://sendlater3/sugar-pl.js"); 
-loader.loadSubScript("resource://sendlater3/sugar-sv.js"); 
 
 var didLocale = false;
 var locale;
