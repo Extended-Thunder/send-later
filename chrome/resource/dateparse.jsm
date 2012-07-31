@@ -1,4 +1,4 @@
-var EXPORTED_SYMBOLS = ["dateparse"];
+var EXPORTED_SYMBOLS = ["dateparse", "dateToSugarDate"];
 
 // Using mozIJSSubScriptLoader instead of Cu.import because I want to
 // preserve sugar.min.js unmodified from the official
@@ -40,4 +40,8 @@ function dateparse(date) {
 	obj = Date.future(date);
     }
     return obj;
+}
+
+function dateToSugarDate(date) {
+    return Date.create(date);
 }

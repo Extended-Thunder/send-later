@@ -42,7 +42,7 @@ var Sendlater3ComposeToolbar = {
 	button.setAttribute("disabled", ! dateObj);
 	if (dateObj) {
 	    button.label = SL3U.PromptBundleGet("sendaround") + " " +
-		dateObj.toLocaleString();
+		dateToSugarDate(dateObj).long();
 	}
 	else {
 	    button.label = button.getAttribute("sl3label");

@@ -325,7 +325,7 @@ var Sendlater3Prompt = {
 	var button = document.getElementById("sendlater3-callsendat");
 	if (dateObj) {
 	    button.label = SL3U.PromptBundleGet("sendaround") + " "
-		+ dateObj.toLocaleString();
+		+ dateToSugarDate(dateObj).long();
 	    Sendlater3Prompt.CheckRecurring(dateObj);
 	}
 	else {
