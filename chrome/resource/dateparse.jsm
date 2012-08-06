@@ -1,4 +1,4 @@
-var EXPORTED_SYMBOLS = ["dateparse", "dateToSugarDate"];
+var EXPORTED_SYMBOLS = ["dateParse", "dateToSugarDate", "sugarLocale"];
 
 // Using mozIJSSubScriptLoader instead of Cu.import because I want to
 // preserve sugar.min.js unmodified from the official
@@ -32,7 +32,7 @@ function getLocale() {
     return locale;
 }
 
-function dateparse(date) {
+function dateParse(date) {
     var locale = getLocale();
     var obj = Date.future(date, locale);
     if (! (obj.isValid() || locale.substr(0, 2) == "en")) {
@@ -44,4 +44,8 @@ function dateparse(date) {
 
 function dateToSugarDate(date) {
     return Date.create(date);
+}
+
+function sugarLocale(date) {
+    return getLocale();
 }

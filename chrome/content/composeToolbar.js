@@ -19,7 +19,7 @@ var Sendlater3ComposeToolbar = {
 	    var dateStr = document.getElementById("sendlater3-toolbar-text").value;
 	    if (dateStr) {
 		try {
-		    var dateObj = dateparse(dateStr);
+		    var dateObj = dateParse(dateStr);
 		}
 		catch (ex) {
 		}
@@ -42,7 +42,7 @@ var Sendlater3ComposeToolbar = {
 	button.setAttribute("disabled", ! dateObj);
 	if (dateObj) {
 	    button.label = SL3U.PromptBundleGet("sendaround") + " " +
-		dateToSugarDate(dateObj).long();
+		dateToSugarDate(dateObj).format('long', sugarLocale());
 	}
 	else {
 	    button.label = button.getAttribute("sl3label");
