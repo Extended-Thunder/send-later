@@ -7,8 +7,8 @@
 <!ENTITY sendlater.prompt.close.tooltip "Torna a modificare il messaggio.">
 <!ENTITY sendlater.prompt.title.label "Invia questa e-mail dopo">
 <!ENTITY sendlater.prompt.textbox.label "Invia alle:">
-<!ENTITY sendlater.prompt.textbox.tooltip "Inserire un orario, oppure una data e un orario.">
-<!ENTITY sendlater.prompt.textbox.emptytext "es.: “15:00”, “31/12/2012 15:27”">
+<!ENTITY sendlater.prompt.textbox.tooltip "Inserire un orario, oppure una data e un orario. Vengono anche riconosciute alcune indicazioni in forma colloquiale come ad esempio “prossimo martedì alle 15:00”">
+<!ENTITY sendlater.prompt.textbox.emptytext "es.: “15:00 giovedì”, “31/12/2012 15:27”">
 <!ENTITY sendlater.prompt.sendat.label "Invia dopo, all'orario sopra indicato">
 <!ENTITY sendlater.prompt.sendat.tooltip "Salva il messaggio nella cartella “Bozze” per l'invio automatico all'orario sopra impostato.">
 <!ENTITY sendlater.prompt.recur.label "Periodicità:">
