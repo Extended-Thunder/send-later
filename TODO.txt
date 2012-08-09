@@ -75,4 +75,16 @@ mail.ui.display.dateformat.
 Pluggable recurrence, i.e., the ability to specify a function for
 calculating the next time the message should be sent.
 
-TODO: Transient notifications when Send Later 3 delivers messages.
+Transient notifications when Send Later 3 delivers messages.
+
+Compatibility with "tag toolbar" and "copy send to current":
+
+  Would it be possible to make sendlater "tags" aware? I also
+  intensively use the "tag toolbar" and a typical workflow for me is
+  to tag an outgoing mail and "copy send to current" copies a copy of
+  the sent mail to a special folder.
+
+  If i send the mail immediately the sent mail is copied to the
+  special folder and the tags are preserved. If i send the mail using
+  "sendlater" the mail gets copied to the special folder too but the
+  tags are not preserved.
