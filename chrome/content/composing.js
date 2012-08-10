@@ -209,13 +209,13 @@ var Sendlater3Composing = {
 
 	    gCloseWindowAfterSave = true;
 	    var identity = getCurrentIdentity();
+	    Sendlater3Composing.PrepMessage(sendat, recur);
 	    if (SL3U.IsPostbox()) {
 		Sendlater3Composing.GenericSendMessagePostbox(
 		    nsIMsgCompDeliverMode.SaveAsDraft,
 		    sendat, recur);
 	    }
 	    else {
-		Sendlater3Composing.PrepMessage(sendat, recur);
 		GenericSendMessage(nsIMsgCompDeliverMode.SaveAsDraft);
 		Sendlater3Composing.PostSendMessage();
 	    }
