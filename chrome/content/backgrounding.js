@@ -972,11 +972,14 @@ var Sendlater3Backgrounding = function() {
 						   thisfolder.URI + " failed");
 				    }
 				}
-				else {
-				    SL3U.dump("IMMEDIATE - " + thisfolder.URI);
-				    folderLoadListener.OnItemEvent(thisfolder,
-								   "FolderLoaded");
-				}
+				// We need to do an immediate scan always, even
+				// if we'll also do a scan when the folder is
+				// finished loading, because sometimes
+				// updateFolder doesn't generate a folder
+				// loaded event. *sigh*
+				SL3U.dump("IMMEDIATE - " + thisfolder.URI);
+				folderLoadListener.OnItemEvent(thisfolder,
+							       "FolderLoaded");
 			    }
 			    else {
 				SL3U.debug("Already scheduled - " +
