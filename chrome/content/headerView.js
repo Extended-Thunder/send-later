@@ -4,8 +4,7 @@ var Sendlater3HeaderView = function() {
     var sendlater3columnHandler = {
 	getCellText: function(row, col) {
 	    SL3U.Entering("Sendlater3HeaderView.sendlater3columnHandler.getCellText", row, col);
-	    var key = gDBView.getKeyAt(row);
-	    var hdr = gDBView.db.GetMsgHdrForKey(key);
+	    var hdr = gDBView.getMsgHdrAt(row);
 	    var retval = hdr.getStringProperty("x-send-later-at");
 	    if (retval != "") {
 		var recur = hdr.getStringProperty("x-send-later-recur");
@@ -70,12 +69,18 @@ var Sendlater3HeaderView = function() {
 	    return false;
 	}
 
+	if (msgFolder.isSpecialFolder(Components.interfaces.nsMsgFolderFlags.Drafts, false)) {
+	    SL3U.Returning("Sendlater3HeaderView.IsThisDraft", "true (special)");
+	    return true;
+	}
+
 	var accountManager = Components
 	    .classes["@mozilla.org/messenger/account-manager;1"]
 	    .getService(Components.interfaces.nsIMsgAccountManager);
 	
 	var fdrlocal = accountManager.localFoldersServer.rootFolder;
 	if (SL3U.FindSubFolder(fdrlocal, "Drafts").URI == msgFolder.URI) {
+	    SL3U.Returning("Sendlater3HeaderView.IsThisDraft", "true (local)");
 	    return true;
 	}
 	if (SL3U.PrefService.getCharPref('mail.identity.default.draft_folder')
