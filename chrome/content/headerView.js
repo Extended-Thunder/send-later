@@ -4,7 +4,15 @@ var Sendlater3HeaderView = function() {
     var sendlater3columnHandler = {
 	getCellText: function(row, col) {
 	    SL3U.Entering("Sendlater3HeaderView.sendlater3columnHandler.getCellText", row, col);
-	    var hdr = gDBView.getMsgHdrAt(row);
+	    var hdr;
+	    if (SL3U.IsPostbox()) {
+		var key = gDBView.getKeyAt(row);
+		var folder = gDBView.getFolderForViewIndex(row);
+		hdr = folder.GetMessageHeader(key);
+	    }
+	    else {
+		hdr = gDBView.getMsgHdrAt(row);
+	    }
 	    var retval = hdr.getStringProperty("x-send-later-at");
 	    if (retval != "") {
 		var recur = hdr.getStringProperty("x-send-later-recur");
@@ -69,7 +77,16 @@ var Sendlater3HeaderView = function() {
 	    return false;
 	}
 
-	if (msgFolder.isSpecialFolder(Components.interfaces.nsMsgFolderFlags.Drafts, false)) {
+	var flag;
+	try {
+	    flag = Components.interfaces.nsMsgFolderFlags.Drafts;
+	}
+	catch (ex) {
+	    // Postbox
+	    flag = 0x0400;
+	}
+
+	if (msgFolder.isSpecialFolder(flag, false)) {
 	    SL3U.Returning("Sendlater3HeaderView.IsThisDraft", "true (special)");
 	    return true;
 	}
