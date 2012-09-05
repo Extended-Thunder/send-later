@@ -1,7 +1,5 @@
 Share common code between toolbar and popup.
 
-Send Later column doesn't work in unified Drafts folder.
-
 Bug: You shouldn't be allowed to schedule a message with no recopients
 for future sending.
 
