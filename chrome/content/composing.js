@@ -651,6 +651,9 @@ var Sendlater3Composing = {
 		.classes["@mozilla.org/messengercompose/computils;1"]
 		.createInstance(Components.interfaces.nsIMsgCompUtils)
 		.msgGenerateMessageId(getCurrentIdentity());
+	    if (! SL3U.IsPostbox()) {
+		gMsgCompose.checkAndPopulateRecipients(true, false, new Object);
+	    }
 	}
     },
 	

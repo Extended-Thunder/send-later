@@ -484,8 +484,28 @@ var Sendlater3Util = {
     },
 
     logger: null,
+    log_filter_string: null,
+
+    log_filter: function(msg) {
+	var filter_string = Sendlater3Util.getCharPref("logging.filter");
+	if (filter_string != Sendlater3Util.log_filter_string) {
+	    if (filter_string) {
+		Sendlater3Util.log_filter_re = new RegExp(filter_string);
+	    }
+	    Sendlater3Util.log_filter_string = filter_string;
+	}
+	if (filter_string) {
+	    return Sendlater3Util.log_filter_re.test(msg);
+	}
+	else {
+	    return true;
+	}
+    },
 
     warn: function(msg) {
+	if (! Sendlater3Util.log_filter(msg)) {
+	    return;
+	}
 	try {
             Sendlater3Util.initLogging();
             Sendlater3Util.logger.warn(msg);
@@ -495,6 +515,9 @@ var Sendlater3Util = {
     },
 
     dump: function(msg) {
+	if (! Sendlater3Util.log_filter(msg)) {
+	    return;
+	}
 	try {
             Sendlater3Util.initLogging();
             Sendlater3Util.logger.info(msg);
@@ -504,6 +527,9 @@ var Sendlater3Util = {
     },
 
     debug: function(msg) {
+	if (! Sendlater3Util.log_filter(msg)) {
+	    return;
+	}
 	try {
             Sendlater3Util.initLogging();
     	    Sendlater3Util.logger.debug(msg);
@@ -513,6 +539,9 @@ var Sendlater3Util = {
     },
 
     trace: function(msg) {
+	if (! Sendlater3Util.log_filter(msg)) {
+	    return;
+	}
 	try {
             Sendlater3Util.initLogging();
     	    Sendlater3Util.logger.trace(msg);

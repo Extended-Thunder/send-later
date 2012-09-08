@@ -1,4 +1,5 @@
 pref("extensions.sendlater3.checktimepref", 1);
+pref("extensions.sendlater3.checktimepref.is_milliseconds", false);
 // See http://kb.mozillazine.org/Localize_extension_descriptions
 pref("extensions.sendlater3@kamens.us.description", "chrome://sendlater3/locale/sendlater3.properties");
 pref("extensions.sendlater3.quickoptions.1.label","<from locale>");
@@ -18,6 +19,7 @@ pref("extensions.sendlater3.quickoptions.3.showintoolbar",false);
 // "Info" for terse logging, "Debug" for verbose logging, "Trace" for everything
 pref("extensions.sendlater3.logging.console","Warn");
 pref("extensions.sendlater3.logging.dump","Fatal");
+pref("extensions.sendlater3.logging.filter","");
 pref("extensions.sendlater3.sendunsentmessages",true);
 pref("extensions.sendlater3.senddrafts",true);
 pref("extensions.sendlater3.sendbutton",false);

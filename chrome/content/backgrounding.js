@@ -747,15 +747,6 @@ var Sendlater3Backgrounding = function() {
 	    var eventType = event.toString();
 
 	    if (eventType == "FolderLoaded" && folder) {
-		// I don't know why there are endFolderLoading and
-		// startFolderLoading calls scattered throughout this
-		// file. In my simple tests, they don't seem to be
-		// necessary, so I'm disabling them in the spirit of
-		// optimizing performance by making plugins do as little as
-		// possible.
-		// if (SL3U.IsPostbox()) {
-		//     folder.endFolderLoading();
-		// }
 		SL3U.debug("FOLDER LOADED - " + folder.URI);
 		var where = folderstocheck.indexOf(folder.URI);
 		if (where >= 0) {
@@ -867,54 +858,74 @@ var Sendlater3Backgrounding = function() {
 
 	    folderstocheck = new Array();
 	    foldersdone = new Array();
-	    folderstocheck.push(SL3U.FindSubFolder(fdrlocal, "Drafts").URI);
-	    ProgressAdd("local Drafts folder");
-	    SL3U.dump("SCHEDULE local folder - " + folderstocheck[0]);
-	    // if (SL3U.IsPostbox()) {
-	    // 	var sub = SL3U.FindSubFolder(fdrlocal, "Drafts");
-	    // 	sub.endFolderLoading();
-	    // 	sub.startFolderLoading();
-	    // }
-	    try {
-		// Documentation for nsiMsgFolder says, "Note: Even if the
-		// folder doesn't currently exist, a nsIMsgFolder may be
-		// returned." When that happens, the following line generates
-		// an error. I can't find any way to check whether the folder
-		// currently exists before calling this, so I'm just discarding
-		// the error.
-		SL3U.FindSubFolder(fdrlocal, "Drafts").updateFolder(msgWindow);
-	    }
-	    catch (e) {
-		SL3U.debug("updateFolder on local Drafts folder failed");
+
+	    SL3U.debug("Progress Animation SET");
+	    if (displayprogressbar()) {
+		document.getElementById("sendlater3-deck").selectedIndex = 0;
 	    }
 
+	    var CheckFolder = function(folder, schedule, msg) {
+		var uri = folder.URI;
+		if (folderstocheck.indexOf(uri)>=0 ||
+		    foldersdone.indexOf(uri)>=0) {
+		    SL3U.debug("Already done - " + uri);
+		    return;
+		}
+		if (schedule) {
+		    folderstocheck.push(uri);
+		    SL3U.dump("SCHEDULE " + msg + " - " + uri);
+		    ProgressAdd(msg);
+		    try {
+			// Documentation for nsiMsgFolder says, "Note:
+			// Even if the folder doesn't currently exist,
+			// a nsIMsgFolder may be returned." When that
+			// happens, the following line generates an
+			// error. I can't find any way to check
+			// whether the folder currently exists before
+			// calling this, so I'm just discarding the
+			// error.
+			folder.updateFolder(msgWindow);
+		    }
+		    catch (e) {
+			SL3U.debug("updateFolder on " + uri + " failed");
+		    }
+		}
+		else {
+		    foldersdone.push(uri);
+		}
+		// We need to do an immediate scan always, even if
+		// we're also doing a scheduled scan, because
+		// sometimes updateFolder doesn't generate a folder
+		// loaded event. *sigh*
+		SL3U.dump("IMMEDIATE " + msg + " - " + uri);
+		folderLoadListener.OnItemEvent(folder, "FolderLoaded");
+	    }
+	    
+	    CheckFolder(SL3U.FindSubFolder(fdrlocal, "Drafts"), true,
+			"local Drafts folder");
 	    // Local Drafts folder might have different name, e.g., in other
 	    // locales.
 	    var local_draft_pref = SL3U.PrefService
 		.getComplexValue('mail.identity.default.draft_folder',
 				 Components.interfaces.nsISupportsString).data;
 	    SL3U.debug("mail.identity.default.draft_folder=" +local_draft_pref);
-	    if (local_draft_pref != null &&
-		folderstocheck.indexOf(local_draft_pref)<0 &&
-		foldersdone.indexOf(local_draft_pref)<0) {
-		SL3U.debug("SCHEDULE default.draft_folder - " + local_draft_pref);
-		folderstocheck.push(local_draft_pref);
+	    if (local_draft_pref) {
+		var folder;
+		// Will fail if folder doesn't exist
 		try {
-		    GetMsgFolderFromUri(local_draft_pref).updateFolder(msgWindow);
+		    folder = GetMsgFolderFromUri(local_draft_pref);
 		}
 		catch (e) {
-		    SL3U.debug("updateFolder on " + local_draft_pref + " failed");
+		    SL3U.debug("default Drafts folder " + local_draft_pref +
+			       " does not exist?");
 		}
-		ProgressAdd("default Drafts folder");
+		if (folder) {
+		    CheckFolder(folder, true, "default Drafts folder");
+		}
 	    }
-
 	    var allaccounts = accountManager.accounts;
 
 	    var acindex;
-	    SL3U.debug("Progress Animation SET");
-	    if (displayprogressbar()) {
-		document.getElementById("sendlater3-deck").selectedIndex = 0;
-	    }
 
 	    for (acindex = 0;acindex < allaccounts.Count();acindex++) {
 		SetAnimTimer(5000);
@@ -940,51 +951,22 @@ var Sendlater3Backgrounding = function() {
 						.nsIMsgIdentity);
 			    var thisfolder =
 				GetMsgFolderFromUri(identity.draftFolder);
-			    if (folderstocheck.indexOf(thisfolder.URI)<0 &&
-				foldersdone.indexOf(thisfolder.URI)<0) {
-				folderstocheck.push (thisfolder.URI);
-				ProgressAdd("identity "+acindex+"."+identityNum+
-					    " Drafts folder");
-				var pref = "mail.server." + thisaccount
-				    .incomingServer.key + ".check_new_mail"
-				var pref_value;
-				try {
-				    pref_value = SL3U.PrefService
-					.getBoolPref(pref);
-				}
-				catch (e) {
-				    // If unset, defaults to true
-				    pref_value = true;
-				}
-				pref_value = SL3U.GetUpdatePref(identity.key) ||
-				    pref_value;
-				if (pref_value) {
-				    SL3U.dump("SCHEDULE - " + thisfolder.URI );
-				    // if (SL3U.IsPostbox()) {
-				    // 	thisfolder.endFolderLoading();
-				    // 	thisfolder.startFolderLoading();
-				    // }
-				    try {
-					thisfolder.updateFolder(msgWindow);
-				    }
-				    catch (e) {
-					SL3U.debug("updateFolder " +
-						   thisfolder.URI + " failed");
-				    }
-				}
-				// We need to do an immediate scan always, even
-				// if we'll also do a scan when the folder is
-				// finished loading, because sometimes
-				// updateFolder doesn't generate a folder
-				// loaded event. *sigh*
-				SL3U.dump("IMMEDIATE - " + thisfolder.URI);
-				folderLoadListener.OnItemEvent(thisfolder,
-							       "FolderLoaded");
+			    var msg = "identity "+acindex+"."+identityNum+
+				" Drafts folder";
+			    var pref = "mail.server." + thisaccount
+				.incomingServer.key + ".check_new_mail"
+			    var pref_value;
+			    try {
+				pref_value = SL3U.PrefService
+				    .getBoolPref(pref);
 			    }
-			    else {
-				SL3U.debug("Already scheduled - " +
-					   thisfolder.URI);
+			    catch (e) {
+				// If unset, defaults to true
+				pref_value = true;
 			    }
+			    pref_value = SL3U.GetUpdatePref(identity.key) ||
+				pref_value;
+			    CheckFolder(thisfolder, pref_value, msg);
 			}
 			break;
 		    default:
