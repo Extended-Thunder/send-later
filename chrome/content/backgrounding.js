@@ -774,8 +774,11 @@ var Sendlater3Backgrounding = function() {
 						    .nsIMsgLocalMailFolder);
 			    }
 			    catch (ex) {}
-			    if (e.result == 0x80550005 && lmf) {
-				SL3U.warn("Rebuilding out-of-date summary: " +
+			    if ( // NS_MSG_ERROR_FOLDER_SUMMARY_OUT_OF_DATE
+				(e.result == 0x80550005 ||
+				 // NS_MSG_ERROR_FOLDER_SUMMARY_MISSING
+				 e.result == 0x80550006) && lmf) {
+				SL3U.warn("Rebuilding summary: " +
 					  folder.URI);
 				try {
 				    lmf.getDatabaseWithReparse(null, null);
