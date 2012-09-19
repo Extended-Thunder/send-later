@@ -1040,7 +1040,7 @@ var Sendlater3Backgrounding = function() {
 
 	    var matches = enabledItems.match(/sendlater3(@|%40)kamens\.us:([^,]+)/);
 	    if (matches) {
-		var current_version = matches[1];
+		var current_version = matches[2];
 		var relnotes = SL3U.getCharPref("relnotes");
 		SL3U.setCharPref("relnotes", current_version);
 		if (relnotes && current_version != relnotes) {
