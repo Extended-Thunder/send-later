@@ -4,8 +4,7 @@ var Sendlater3Composing = {
     composeListener: {
 	NotifyComposeBodyReady: function() {
 	    gContentChanged = true;
-	    AutoSave();
-	    gContentChanged = false;
+	    SaveAsDraft();
 	    if (SL3U.getBoolPref("show_edit_alert")) {
 		SL3U.alert(window, null,
 			   SL3U.PromptBundleGet("draftSaveWarning"));
