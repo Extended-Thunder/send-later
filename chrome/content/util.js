@@ -114,6 +114,17 @@ var Sendlater3Util = {
 	catch (ex) {}
     },
 
+    SetTreeProperty: function(object, property, value) {
+	try {
+	    object[property] = value;
+	    var i;
+	    for (i = 0; i < object.childNodes.length; i++) {
+		this.SetTreeProperty(object.childNodes[i], property, value);
+	    }
+	}
+	catch (ex) {}
+    },
+
     PromptBundleGet: function(name) {
 	Sendlater3Util.Entering("Sendlater3Util.PromptBundleGet", name);
 	if (Sendlater3Util._PromptBundle == null) {

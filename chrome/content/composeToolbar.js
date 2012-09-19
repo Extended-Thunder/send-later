@@ -7,7 +7,7 @@ var Sendlater3ComposeToolbar = {
     SetRecurring: function(recurring) {
 	var bar = document.getElementById("sendlater3_toolbar");
 	if (bar) {
-	    bar.disabled = recurring;
+	    SL3U.SetTreeProperty(bar, "disabled", recurring);
 	}
     },
 
