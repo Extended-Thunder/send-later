@@ -1038,7 +1038,7 @@ var Sendlater3Backgrounding = function() {
 		    .getCharPref("extensions.enabledItems");
 	    }
 
-	    var matches = enabledItems.match(/sendlater3@kamens\.us:([^,]+)/);
+	    var matches = enabledItems.match(/sendlater3(@|%40)kamens\.us:([^,]+)/);
 	    if (matches) {
 		var current_version = matches[1];
 		var relnotes = SL3U.getCharPref("relnotes");
