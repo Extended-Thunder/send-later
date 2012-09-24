@@ -173,8 +173,7 @@ var Sendlater3Prompt = {
 	var prevXSendLater = window.arguments[0].previouslyTimed;
 	if (prevXSendLater) {
 	   document.getElementById("sendlater3-time-text").value =
-	       prevXSendLater.toLocaleDateString() + " " +
-	       prevXSendLater.toLocaleTimeString();
+	       prevXSendLater.format("long", sugarLocale());
 	   document.getElementById("sendlater3-yearvalue").value =
 	       prevXSendLater.getFullYear();
 	   document.getElementById("sendlater3-monthvalue").value =

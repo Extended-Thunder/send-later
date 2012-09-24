@@ -222,8 +222,8 @@ var Sendlater3ComposeToolbar = {
 		document.getElementById("sendlater3-minvalue").value =
 		    Sendlater3Composing.prevXSendLater.getMinutes();
 		document.getElementById("sendlater3-toolbar-text").value =
-		    Sendlater3Composing.prevXSendLater.toLocaleDateString() + " " +
-		    Sendlater3Composing.prevXSendLater.toLocaleTimeString();
+		    Sendlater3Composing.prevXSendLater.format("long",
+							      sugarLocale());
 	    }
 	    else {
 		SL3U.dump("No previous time");

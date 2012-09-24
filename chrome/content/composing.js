@@ -1,3 +1,5 @@
+Components.utils.import("resource://sendlater3/dateparse.jsm");
+
 var Sendlater3Composing = {
     sComposeMsgsBundle: null,
 
@@ -70,7 +72,8 @@ var Sendlater3Composing = {
 		    var messageHDR = messenger.msgHdrFromURI(messageURI);
 		    var hdr = messageHDR.getStringProperty("x-send-later-at");
 		    if (hdr) {
-			Sendlater3Composing.prevXSendLater = new Date(hdr);
+			Sendlater3Composing.prevXSendLater = 
+			    dateToSugarDate(new Date(hdr));
 			gMsgCompose.RegisterStateListener(Sendlater3Composing
 							  .composeListener);
 		    }

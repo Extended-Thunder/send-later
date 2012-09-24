@@ -79,9 +79,16 @@ function dateParse(date) {
 }
 
 function dateToSugarDate(date) {
-    return Date.create(date);
+    try {
+	return Date.create(date);
+    }
+    catch (e) {
+	var d = new Date();
+	d.setTime(date.getTime());
+	return d;
+    }
 }
 
-function sugarLocale(date) {
+function sugarLocale() {
     return getLocale();
 }
