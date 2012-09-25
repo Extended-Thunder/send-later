@@ -86,3 +86,5 @@ Compatibility with "tag toolbar" and "copy send to current":
   special folder and the tags are preserved. If i send the mail using
   "sendlater" the mail gets copied to the special folder too but the
   tags are not preserved.
+
+Shortcut labels should be dynamically generated.
