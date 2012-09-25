@@ -19,58 +19,42 @@
   </keyset>
   <vbox style="margin: 10px;">
     <vbox style="border:solid #00C000 3px; padding-top: 2px; font-size: 125%;" >
-      <deck id="sendlater3-time-deck" selectedIndex="0">
-	<hbox align="center">
-	  <label value="&sendlater.prompt.textbox.label;"/>
-	  <textbox id="sendlater3-time-text" width="100%" flex="1"
-		   oninput="Sendlater3Prompt.updateSummary();"
-		   emptytext="&sendlater.prompt.textbox.emptytext;"
-		   tooltiptext="&sendlater.prompt.textbox.tooltip;"
-		   onkeypress="Sendlater3Prompt.CheckTextEnter(event) &amp;&amp; close();"/>
-	</hbox>
-	<hbox>
-	  <hbox  align="center"  >
-	    <separator flex="1" width="8" />
-	    <hbox id="sendlater3-toolbartimeicon" width="24" >
-	      <image  src="chrome://sendlater3/content/timeIcon.png" />
-	      <separator flex="1" />
+      <grid align="center">
+	<columns>
+	  <column align="right"/>
+	  <column flex="1" align="center"/>
+	</columns>
+	<rows>
+	  <row>
+	    <hbox>
+	      <!-- can't figure out how get align="right" to work, but this
+		   works instead -->
+	      <separator flex="1"/>
+	      <label align="right" value="&sendlater.prompt.textbox.label;"/>
 	    </hbox>
-	    <menulist label="HH" id="sendlater3-hourvalue" style="margin: 0px;" >
-	      <menupopup id="sendlater3-hours">
-	      </menupopup>
-	    </menulist>
-	    <description >:</description>
-	    <menulist label="MM" id="sendlater3-minvalue" style="margin: 0px;">
-	      <menupopup id="sendlater3-mins">
-	      </menupopup>
-	    </menulist>
-	    <separator flex="1" width="4" />
-	    <hbox id="sendlater3-toolbarcalicon" width="28" >
-	      <image src="chrome://sendlater3/content/calIcon.png"  />
-	      <separator flex="1" />
+	    <textbox id="sendlater3-time-text" width="100%" flex="1"
+		     oninput="Sendlater3Prompt.updateSummary();"
+		     emptytext="&sendlater.prompt.textbox.emptytext;"
+		     tooltiptext="&sendlater.prompt.textbox.tooltip;"
+		     onkeypress="Sendlater3Prompt.CheckTextEnter(event) &amp;&amp; close();"/>
+	  </row>
+	  <row>
+	    <hbox>
+	      <separator flex="1"/>
+	      <label align="right" value="&sendlater.prompt.or.label;"/>
 	    </hbox>
-	    <menulist label="Years" id="sendlater3-yearvalue"  style="margin: 0px;">
-	      <menupopup id="sendlater3-years">
-	      </menupopup>
-	    </menulist>
-	    <menulist label="Months" id="sendlater3-monthvalue" style="margin: 0px;">
-	      <menupopup id="sendlater3-months">
-	      </menupopup>
-	    </menulist>
-	    <menulist label="Days" id="sendlater3-dayvalue" style="margin: 0px;">
-	      <menupopup id="sendlater3-days">
-	      </menupopup>
-	    </menulist>
-	    <separator flex="1" width="8px" /> 
-	  </hbox>
-	</hbox>
-      </deck>
-      <!--
-	  <hbox >
-	  <description style="text-align:center;" flex="1" id="sendlater3-summary"></description>
-	  </hbox>
-      -->
-
+	    <hbox>
+	      <separator flex="1"/>
+	      <datepicker id="sendlater3-datepicker" type="popup"
+			  onchange="Sendlater3Prompt.pickersToText();"/>
+	      <timepicker id="sendlater3-timepicker"
+			  onchange="Sendlater3Prompt.pickersToText();"
+			  hideseconds="true"/>
+	      <separator flex="1"/>
+	    </hbox>
+	  </row>
+	</rows>
+      </grid>
       <hbox align="center">
 	<description flex="1"></description>
 	<label valign="center" value="&sendlater.prompt.recur.label;"/>

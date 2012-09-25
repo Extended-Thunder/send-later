@@ -7,6 +7,7 @@
 <!ENTITY sendlater.prompt.close.tooltip "Zurück zum Verfassen der Nachricht">
 <!ENTITY sendlater.prompt.title.label "Diese Nachricht später senden">
 <!ENTITY sendlater.prompt.textbox.label "Senden am/um:">
+<!ENTITY sendlater.prompt.or.label "oder:">
 <!ENTITY sendlater.prompt.textbox.tooltip "Geben Sie ein Datum und eine Uhrzeit ein. Formlose Eingaben wie “Dienstag”, “17:30” oder “7. August 2014” werden ebenfalls unterstützt.">
 <!ENTITY sendlater.prompt.textbox.emptytext "Bsp.: “Dienstag”, “24.06.2012 17:30”, “17”, “7. August 2014”">
 <!ENTITY sendlater.prompt.sendat.label "Später senden zu den oben spezifizierten Zeiten">

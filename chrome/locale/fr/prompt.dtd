@@ -7,6 +7,7 @@
 <!ENTITY sendlater.prompt.close.tooltip "Revenir à la rédaction du message">
 <!ENTITY sendlater.prompt.title.label "Programmation d'envoi différé de courriel">
 <!ENTITY sendlater.prompt.textbox.label "Programmer pour :">
+<!ENTITY sendlater.prompt.or.label "ou:">
 <!ENTITY sendlater.prompt.textbox.tooltip "Entrer un date et une heure. Les formes libres comme « 31-12/2012 15:27 » sont acceptées.">
 <!ENTITY sendlater.prompt.textbox.emptytext "(ex. : « 15:00 mardi » ou « 31-12/2012 15:27 »)">
 <!ENTITY sendlater.prompt.sendat.label "Envoyer au moment choisi">

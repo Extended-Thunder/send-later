@@ -7,6 +7,7 @@
 <!ENTITY sendlater.prompt.close.tooltip "Go back to editing the message.">
 <!ENTITY sendlater.prompt.title.label "Send this email later">
 <!ENTITY sendlater.prompt.textbox.label "Send at:">
+<!ENTITY sendlater.prompt.or.label "or:">
 <!ENTITY sendlater.prompt.textbox.tooltip "Enter a date and time. Free-form entry such as “next Tuesday at 3:00pm” is also supported.">
 <!ENTITY sendlater.prompt.textbox.emptytext "ex: “3:00pm Thursday”, “12/31/2012 15:27”">
 <!ENTITY sendlater.prompt.sendat.label "Send Later at time(s) specified above">

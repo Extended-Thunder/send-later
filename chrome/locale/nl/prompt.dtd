@@ -7,6 +7,7 @@
 <!ENTITY sendlater.prompt.close.tooltip "Terug naar bewerken van het bericht.">
 <!ENTITY sendlater.prompt.title.label "Dit e-mailbericht later verzenden">
 <!ENTITY sendlater.prompt.textbox.label "Verzenden om:">
+<!ENTITY sendlater.prompt.or.label "or:">
 <!ENTITY sendlater.prompt.textbox.tooltip "Voer een datum en tijdstip in. Vrije tekst als ‘aanstaande donderdag om 15:00 uur’ wordt ook ondersteund.">
 <!ENTITY sendlater.prompt.textbox.emptytext "b.v.: ‘15:00 donderdag’, ‘31-12-2012 15:27’">
 <!ENTITY sendlater.prompt.sendat.label "Later op bovengenoemd(e) tijdstip(pen) verzenden">
