@@ -67,7 +67,7 @@
       <Description>
 	<em:locale>nl</em:locale>
 	<em:name>Later Verzenden</em:name>
-	<em:description>“Send Later”-functie om het tijdstip van verzending van een email in te stellen.</em:description>
+	<em:description>“Later Verzenden”-functie om het tijdstip van verzending van een email in te stellen.</em:description>
       </Description>
     </em:localized>
     <em:localized>
