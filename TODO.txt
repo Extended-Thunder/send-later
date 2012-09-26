@@ -82,3 +82,14 @@ Compatibility with "tag toolbar" and "copy send to current":
   tags are not preserved.
 
 Shortcut labels should be dynamically generated.
+
+"Is it possible to not have to do sendlater as the last thing?
+Currently, once you use send later the msg is saved to drafts folder
+and the write window closes. Often I find I am writing something and
+think to myself I better put the delay time on now so that I don't
+forget and accidentally send it now, but then I have to repoen to
+continue and then have the previous problem. It would be nice to be
+able to enter the sendlater time, then continue writing and when you
+hit send or sendlater buttons it just acts like you've hit the
+non-delayed sendnow button, in that it just 'goes away' and does its
+thing later"
