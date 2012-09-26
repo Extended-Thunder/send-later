@@ -1,6 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY prefwindow.title "Send Later 3 - Asetukset">
-<!ENTITY pane1.title "Send Later 3 - Asetukset">
+<!ENTITY prefwindow.title "Lähetä Myöhemmin - Asetukset">
+<!ENTITY pane1.title "Lähetä Myöhemmin - Asetukset">
 <!ENTITY checktimepref.label "Tarkista joka :">
 <!ENTITY checktimepref2.label "millisekunnin välein">
 <!ENTITY checktimepref.tooltip "Aika millisekunteina luonnoksien tarkistuksille, joiden toimitusaika on alkanut. Kasvata tätä arvoa, jos luonnoksesi ei aina lähde ajallaan, koska odottavan viestin laskuri ei aina näytä ajastuksia oikein.">
@@ -15,19 +15,19 @@
 <!ENTITY showsendlatercolumn.tooltip "Näytä “Lähetä myöhemmin” -rivi selattaessa luonnoskansioita">
 <!ENTITY showsendlaterheader.caption "Näytä “Lähetä myöhemmin” -otsikko">
 <!ENTITY showsendlaterheader.tooltip "Näyttääkö “X-Send-Later-At” otsikko, esim. silloin kun luonnos on ajastettu lähtemään. Näkymään otsikkoon viestin selausikkunaan.">
-<!ENTITY showsendlaterstatus.caption "Näytä tilapalkissa Send Later 3">
+<!ENTITY showsendlaterstatus.caption "Näytä tilapalkissa Lähetä Myöhemmin">
 <!ENTITY showsendlaterprogress.caption "Näytä tilapalkissa taustaeteneminen">
 <!ENTITY showsendlaterentry.caption "Näytä työkalupalkissa ajan määritys">
 <!ENTITY showsendlaterunsentmessages.caption "Käynnistä lähetetyt kansiosta lähettämättömät viestit">
-<!ENTITY showsendlaterunsentmessages.tooltip "Jättämällä tämän kohdan valitsematta Send Later 3 ei tule vielä lähettämään viestejä, vaan tulee siirtämään ne vain lähetetyt kansioon ajankohtana, kun ne on määritetty lähtemään. Jätä tämä kohta valitsematta, jos käytät toista ohjelmaa, kuten BlunderDelay:ta lähettämään viestit lähetetyt-kansiosta määritettyinä aikoina. Huomaa, että kun tämä kohta on valittuna ja kun Send Later 3 lähettää viestin, tullaan samalla kaikki viestit lähettämään lähetetyt-kansiosta.">
+<!ENTITY showsendlaterunsentmessages.tooltip "Jättämällä tämän kohdan valitsematta Lähetä Myöhemmin ei tule vielä lähettämään viestejä, vaan tulee siirtämään ne vain lähetetyt kansioon ajankohtana, kun ne on määritetty lähtemään. Jätä tämä kohta valitsematta, jos käytät toista ohjelmaa, kuten BlunderDelay:ta lähettämään viestit lähetetyt-kansiosta määritettyinä aikoina. Huomaa, että kun tämä kohta on valittuna ja kun Lähetä Myöhemmin lähettää viestin, tullaan samalla kaikki viestit lähettämään lähetetyt-kansiosta.">
 <!ENTITY sendlatersendbutton.caption "“Lähetä”-toiminto on “Lähetä myöhemmin”">
 <!ENTITY sendlatersendbutton.tooltip "Tämän valinnan ollessa valittuna “Lähetä” -komento (sekä painike, että Ctrl-Enter) toimii kuin “Lähetä myöhemmin”.">
 <!ENTITY altbinding.caption "Yhdistä Alt-Shift-Enter, yhdistelmän Ctrl-Shift-Enter -sijaan">
 <!ENTITY advanced.caption "Laajennettu">
 <!ENTITY dumplevel.caption "Dump log -kaappaus:">
 <!ENTITY consolelevel.caption "Console log -kaappaus:">
-<!ENTITY contactauthor.tooltip "Lähetä Send Later 3:n tekijälle sähköpostia.">
+<!ENTITY contactauthor.tooltip "Lähetä Lähetä Myöhemmin:n tekijälle sähköpostia.">
 <!ENTITY contactauthor.value "Ota yhteyttä tekijään">
-<!ENTITY helplink.tooltip "Selaa Send Later 3 -ohjeistusta.">
+<!ENTITY helplink.tooltip "Selaa Lähetä Myöhemmin -ohjeistusta.">
 <!ENTITY helplink.value "Käyttäjän opas">
 <!ENTITY donatelink.value "Lahjoita">

@@ -1,6 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY prefwindow.title "Options de « Send Later 3 »">
-<!ENTITY pane1.title "Options de « Send Later 3 »">
+<!ENTITY prefwindow.title "Options de « Envoyer Plus Tard »">
+<!ENTITY pane1.title "Options de « Envoyer Plus Tard »">
 <!ENTITY checktimepref.label "Vérifier toutes les :">
 <!ENTITY checktimepref2.label "minutes">
 <!ENTITY checktimepref.tooltip "Intervalle (en minutes) des vérifications de messages à expédier. Augmenter cette valeur si les messages ne sont pas expédiés à temps ou si le nombre de message en attente est erroné.">
@@ -15,19 +15,19 @@
 <!ENTITY showsendlatercolumn.tooltip "Ajoute la colonne « Envoi différé » pour les messages dans le dossier « Brouillons ».">
 <!ENTITY showsendlaterheader.caption "Afficher l'en-tête d'envoi différé">
 <!ENTITY showsendlaterheader.tooltip "Autorise l'affichage de l'en-tête « x-send-later-at », c.à.d., le moment prévu d'envoi du message.">
-<!ENTITY showsendlaterstatus.caption "Afficher « Send Later 3 » dans la barre d'état">
+<!ENTITY showsendlaterstatus.caption "Afficher « Envoyer Plus Tard » dans la barre d'état">
 <!ENTITY showsendlaterprogress.caption "Afficher les tâches en arrière-plan dans la barre d'état">
 <!ENTITY showsendlaterentry.caption "Afficher le champs de planification dans la barre d'outils">
 <!ENTITY showsendlaterunsentmessages.caption "Expédier automatiquement les messages programmés">
-<!ENTITY showsendlaterunsentmessages.tooltip "Effectue les envois planifiés sans les placer dans « Message en attente ». Désactiver l'option, par exemple, lors de l'utilisation d'une extension automatisant l'envoi des messages en attente (tel que BlunderDelay). Remarque : si cette option est activée ; quand « Send Later 3 » déclenche un envoi, TOUS les messages en attente sont expédiés.">
+<!ENTITY showsendlaterunsentmessages.tooltip "Effectue les envois planifiés sans les placer dans « Message en attente ». Désactiver l'option, par exemple, lors de l'utilisation d'une extension automatisant l'envoi des messages en attente (tel que BlunderDelay). Remarque : si cette option est activée ; quand « Envoyer Plus Tard » déclenche un envoi, TOUS les messages en attente sont expédiés.">
 <!ENTITY sendlatersendbutton.caption "Remplacer « Envoyer » par « Envoyer plus tard »">
 <!ENTITY sendlatersendbutton.tooltip "Remplace l'action par défaut d'« Envoyer » (bouton ou raccourci « Ctrl+Entrée ») par celle d'« Envoyer plus tard ».">
 <!ENTITY altbinding.caption "Utiliser Alt+Maj+Entrée à la place de Ctrl+Maj+Entrée">
 <!ENTITY advanced.caption "Avancé">
 <!ENTITY dumplevel.caption "Niveau de journalisation :">
 <!ENTITY consolelevel.caption "Console de journalisation :">
-<!ENTITY contactauthor.tooltip "Envoyer un message à l'auteur de Send Later 3 (en anglais, s'il vous plaît !)">
+<!ENTITY contactauthor.tooltip "Envoyer un message à l'auteur de Envoyer Plus Tard (en anglais, s'il vous plaît !)">
 <!ENTITY contactauthor.value "Contacter l'auteur">
-<!ENTITY helplink.tooltip "Ouvre la documentation en ligne pour Send Later 3 (en anglais).">
+<!ENTITY helplink.tooltip "Ouvre la documentation en ligne pour Envoyer Plus Tard (en anglais).">
 <!ENTITY helplink.value "Guide de l'utilisateur">
 <!ENTITY donatelink.value "Faire un don">

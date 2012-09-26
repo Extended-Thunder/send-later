@@ -469,7 +469,7 @@ var Sendlater3Backgrounding = function() {
 		    status = strbundle.getString("DisabledMessage");
 		}
 
-		StatusReportMsg("SENDLATER3 [" + status + "]");
+		StatusReportMsg(strbundle.getString("MessageTag") + " [" + status + "]");
 	    }
 	    SL3U.Leaving("Sendlater3Backgrounding.AnimCallback.notify");
 	}
