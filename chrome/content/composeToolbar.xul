@@ -9,68 +9,58 @@
     <key id="sendlater3-quickbutton3-key" modifiers="control alt" key="3"/>
   </keyset>
 
-  <toolbarpalette id="MsgComposeToolbarPalette">
-    <toolbaritem id="sendlater3_toolbar" class="chromeclass-toolbar" context="toolbar-context-menu" 
-		 hidden="false"  >
-      <stringbundleset id="sendlater3-strbundles">
-	<stringbundle id="sendlater3-promptstrings" src="chrome://sendlater3/locale/prompt.properties"/>
-      </stringbundleset>
-      <script src="util.js"/>
-      <script src="chrome://sendlater3/content/composeToolbar.js"/>
-      <hbox id="sendlater3-toolbarbox" align="center"  >
-	<separator flex="1" width="8" />			
-	<hbox id="sendlater3-toolbartimeicon" width="24" >
-	  <image  src="chrome://sendlater3/content/timeIcon.png" />
-	  <separator flex="1" />
-	</hbox>
-	<hbox id="sendlater3-toolbar-text-hbox">
-	  <textbox id="sendlater3-toolbar-text" width="200px"
-		   oninput="Sendlater3ComposeToolbar.updateSummary();"
-		   emptytext="&sendlater.toolbar.textbox.emptytext;"
-		   tooltiptext="&sendlater.prompt.textbox.tooltip;"
-		   onkeypress="Sendlater3ComposeToolbar.CheckTextEnter(event);"/>
-	</hbox>
-	<hbox id="sendlater3-toolbar-dropdowns-hbox" hidden="true">
-	  <menulist label="HH" id="sendlater3-hourvalue" style="margin: 0px;" >
-	    <menupopup id="sendlater3-hours">
-	    </menupopup>
-	  </menulist>
-	  <description id="sendlater3-colon">:</description>
-	  <menulist label="MM" id="sendlater3-minvalue" style="margin: 0px;">
-	    <menupopup id="sendlater3-mins">
-	    </menupopup>
-	  </menulist>
-	  <separator id="sendlater3-calsep" flex="1" width="4" />
-	  <hbox id="sendlater3-toolbarcalicon" width="28" >
-	    <image src="chrome://sendlater3/content/calIcon.png"  />
-	    <separator flex="1" />
-	  </hbox>
-	  <menulist label="Years" id="sendlater3-yearvalue" style="margin: 0px;">
-	    <menupopup id="sendlater3-years">
-	    </menupopup>
-	  </menulist>
-	  <menulist label="Months" id="sendlater3-monthvalue" style="margin: 0px;">
-	    <menupopup id="sendlater3-months">
-	    </menupopup>
-	  </menulist>
-	  <menulist label="Days" id="sendlater3-dayvalue" style="margin: 0px;">
-	    <menupopup id="sendlater3-days">
-	    </menupopup>
-	  </menulist>
-	</hbox>
-	<separator id="sendlater3-toolsep" flex="1" width="8px" /> 
-	<hbox id="sendlater3-toolbarbutton-hbox" style="border: groove 1px" tooltiptext="&sendlater.toolbar.sendlater.button.label;">
-	  <toolbarbutton id="sendlater3-toolbarbutton" orient="horizontal" image="chrome://sendlater3/content/sendlater3icon20.png" label="&sendlater.toolbar.sendlater.button.label;" sl3label="&sendlater.toolbar.sendlater.button.label;" oncommand="Sendlater3ComposeToolbar.CallSendAt();"  />
-	</hbox>
-	<separator id="sendlater3-quicksep" flex="1" width="8px" /> 
-	<button key="sendlater3-quickbutton1-key" id="sendlater3-shortcutbtn_1" flex="1" label="15 mins" oncommand="Sendlater3ComposeToolbar.CallSendAfter(15);close();"/>
-	<button key="sendlater3-quickbutton2-key" id="sendlater3-shortcutbtn_2" flex="1" label="30 mins" oncommand="Sendlater3ComposeToolbar.CallSendAfter(30);close();"/>
-	<button key="sendlater3-quickbutton3-key" id="sendlater3-shortcutbtn_3" flex="1" label="2 hours" oncommand="Sendlater3ComposeToolbar.CallSendAfter(120);close();"/>
-	<separator flex="1" width="8px" /> 
-	
-	
+  <stringbundleset id="stringbundleset">
+    <stringbundle id="sendlater3-promptstrings"
+		  src="chrome://sendlater3/locale/prompt.properties"/>
+  </stringbundleset>
+  <script src="util.js"/>
+  <script src="composeToolbar.js"/>
 
-      </hbox>
+  <toolbarpalette id="MsgComposeToolbarPalette">
+    <toolbarbutton id="sendlater3-toolbarbutton" orient="horizontal"
+		   image="chrome://sendlater3/content/sendlater3icon20.png"
+		   label="&sendlater.toolbar.sendlater.button.label;"
+		   sl3label="&sendlater.toolbar.sendlater.button.label;" 
+		   oncommand="Sendlater3ComposeToolbar.CallSendAt();"  />
+    <toolbaritem id="sendlater3-toolbar-text-item" class="chromeclass-toolbar"
+		 context="toolbar-context-menu" hidden="false">
+      <textbox id="sendlater3-toolbar-text" width="200px"
+	       oninput="Sendlater3ComposeToolbar.updateSummary();"
+	       emptytext="&sendlater.toolbar.textbox.emptytext;"
+	       tooltiptext="&sendlater.prompt.textbox.tooltip;"
+	       onkeypress="Sendlater3ComposeToolbar.CheckTextEnter(event);"/>
+    </toolbaritem>
+    <toolbaritem id="sendlater3-toolbar-picker-item" class="chromeclass-toolbar"
+		 context="toolbar-context-menu" hidden="false">
+      <datepicker id="sendlater3-toolbar-datepicker" type="popup"
+		  onchange="Sendlater3ComposeToolbar.pickersToText();"/>
+      <timepicker id="sendlater3-toolbar-timepicker"
+		  onchange="Sendlater3ComposeToolbar.pickersToText();"
+		  hideseconds="true"/>
+    </toolbaritem>
+    <toolbaritem id="sendlater3-toolbar-quickbutton1-item"
+		 class="chromeclass-toolbar"
+		 context="toolbar-context-menu" hidden="false">
+      <button key="sendlater3-quickbutton1-key" id="sendlater3-shortcutbtn_1"
+	      flex="1" label="&sendlater.button1.label;"
+	      sl3label="&sendlater.button1.label;"
+	      oncommand="Sendlater3ComposeToolbar.CallSendAfter(15);close();"/>
+    </toolbaritem>
+    <toolbaritem id="sendlater3-toolbar-quickbutton2-item"
+		 class="chromeclass-toolbar"
+		 context="toolbar-context-menu" hidden="false">
+      <button key="sendlater3-quickbutton2-key" id="sendlater3-shortcutbtn_2"
+	      flex="1" label="&sendlater.button2.label;"
+	      sl3label="&sendlater.button2.label;"
+	      oncommand="Sendlater3ComposeToolbar.CallSendAfter(15);close();"/>
+    </toolbaritem>
+    <toolbaritem id="sendlater3-toolbar-quickbutton3-item"
+		 class="chromeclass-toolbar"
+		 context="toolbar-context-menu" hidden="false">
+      <button key="sendlater3-quickbutton3-key" id="sendlater3-shortcutbtn_3"
+	      flex="1" label="&sendlater.button3.label;"
+	      sl3label="&sendlater.button3.label;"
+	      oncommand="Sendlater3ComposeToolbar.CallSendAfter(15);close();"/>
     </toolbaritem>
   </toolbarpalette>
 </overlay>

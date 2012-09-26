@@ -21,3 +21,6 @@
 <!ENTITY sendlater.toolbar.sendlater.button.label "Later verzenden">
 <!ENTITY sendlater.toolbar.textbox.emptytext "verzendtijdstip">
 <!ENTITY sendlater.prompt.every.label "Elke">
+<!ENTITY sendlater.button1.label "15 minuten later">
+<!ENTITY sendlater.button2.label "30 minuten later">
+<!ENTITY sendlater.button3.label "2 uur later">

@@ -12,10 +12,6 @@ pref("extensions.sendlater3.showheader",true);
 pref("extensions.sendlater3.showcolumn",true);
 pref("extensions.sendlater3.showstatus",true);
 pref("extensions.sendlater3.showprogress",true);
-pref("extensions.sendlater3.entry.showintoolbar",true);
-pref("extensions.sendlater3.quickoptions.1.showintoolbar",false);
-pref("extensions.sendlater3.quickoptions.2.showintoolbar",false);
-pref("extensions.sendlater3.quickoptions.3.showintoolbar",false);
 // "Info" for terse logging, "Debug" for verbose logging, "Trace" for everything
 pref("extensions.sendlater3.logging.console","Warn");
 pref("extensions.sendlater3.logging.dump","Fatal");

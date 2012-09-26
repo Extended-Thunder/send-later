@@ -21,3 +21,6 @@
 <!ENTITY sendlater.toolbar.sendlater.button.label "延期发送">
 <!ENTITY sendlater.toolbar.textbox.emptytext "发送时间">
 <!ENTITY sendlater.prompt.every.label "每">
+<!ENTITY sendlater.button1.label "15 分钟后">
+<!ENTITY sendlater.button2.label "30 分钟后">
+<!ENTITY sendlater.button3.label "2 小时后">

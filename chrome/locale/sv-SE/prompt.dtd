@@ -21,3 +21,6 @@
 <!ENTITY sendlater.toolbar.sendlater.button.label "Skicka senare">
 <!ENTITY sendlater.toolbar.textbox.emptytext "sändningstid">
 <!ENTITY sendlater.prompt.every.label "Var">
+<!ENTITY sendlater.button1.label "15 min. senare">
+<!ENTITY sendlater.button2.label "30 min. senare">
+<!ENTITY sendlater.button3.label "2 tim. senare">

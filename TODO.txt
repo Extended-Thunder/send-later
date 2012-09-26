@@ -24,12 +24,6 @@ Scheduling entry improvements:
 
 Need to figure out why Enigmail is bypassed when Send Later 3 is used.
 
-Make the shortcut buttons and detailed drop-downs separate toolbar
-customization items rather than one big chunk, so that people can
-decide by drag-and-drop which buttons to include (rather than using
-checkboxes in the prefs) and put the buttons wherever they want on the
-toolbar.
-
 Enable the standard "Send Later" button, which is currently only
 enabled when working offline.
 

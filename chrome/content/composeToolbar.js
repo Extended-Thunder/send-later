@@ -5,50 +5,90 @@ var Sendlater3ComposeToolbar = {
     origCustomizeDone: null,
 
     SetRecurring: function(recurring) {
-	var bar = document.getElementById("sendlater3_toolbar");
-	if (bar) {
-	    SL3U.SetTreeProperty(bar, "disabled", recurring);
+	var ids = ["sendlater3-toolbar-text",
+		   "sendlater3-toolbar-datepicker",
+		   "sendlater3-toolbar-timepicker",
+		   "sendlater3-toolbarbutton"];
+	for (idnum in ids) {
+	    var obj = document.getElementById(ids[idnum]);
+	    if (obj) {
+		obj["disabled"] = recurring;
+	    }
 	}
     },
 
-    updateSummary: function() {
+    updateSummary: function(fromPicker) {
         SL3U.Entering("Sendlater3ComposeToolbar.updateSummary");
-	var whichUI = document.getElementById("sendlater3-toolbar-text-hbox").hidden == false;
+	var textField = document.getElementById("sendlater3-toolbar-text");
+	var button = document.getElementById("sendlater3-toolbarbutton");
+	var dateStr;
+	if (textField) {
+	    dateStr = textField.value;
+	}
+	else if (fromPicker) {
+	    dateStr = fromPicker;
+	}
+	else {
+	    dateStr = Sendlater3ComposeToolbar.pickersToText(true);
+	}
 	var dateObj;
-	if (whichUI) {
-	    var dateStr = document.getElementById("sendlater3-toolbar-text").value;
-	    if (dateStr) {
-		try {
-		    var dateObj = dateParse(dateStr);
-		}
-		catch (ex) {
-		}
-		if (! (dateObj && dateObj.isValid())) {
-		    dateObj = null;
-		}
+	if (dateStr) {
+	    try {
+		var dateObj = dateParse(dateStr);
+	    }
+	    catch (ex) {}
+	    if (! (dateObj && dateObj.isValid())) {
+		dateObj = null;
+	    }
+	    if (dateObj && ! fromPicker) {
+		Sendlater3ComposeToolbar.dateToPickers(dateObj);
 	    }
 	}
-	else {
-	    var selectedyear =  document.getElementById("sendlater3-yearvalue").value;
-	    var selectedmonth =  document.getElementById("sendlater3-monthvalue").value;
-	    var selecteddate =  document.getElementById("sendlater3-dayvalue").value;
-	    var selectedhour =  document.getElementById("sendlater3-hourvalue").value;
-	    var selectedmin =  document.getElementById("sendlater3-minvalue").value;
-	    dateObj = new SL3U.toSendDate(selectedyear, selectedmonth,
-					  selecteddate, selectedhour,
-					  selectedmin);
-	}
-	var button = document.getElementById("sendlater3-toolbarbutton");
-	button.setAttribute("disabled", ! dateObj);
-	if (dateObj) {
-	    button.label = SL3U.PromptBundleGet("sendaround") + " " +
-		dateToSugarDate(dateObj).format('long', sugarLocale());
-	}
-	else {
-	    button.label = button.getAttribute("sl3label");
+	if (button) {
+	    var disabled = Sendlater3Composing.prevRecurring 
+		? true : (! dateObj);
+	    button.setAttribute("disabled", disabled);
+	    if (dateObj && textField) {
+		button.label = SL3U.PromptBundleGet("sendaround") + " " +
+		    dateToSugarDate(dateObj).format('long', sugarLocale());
+	    }
+	    else {
+		button.label = button.getAttribute("sl3label");
+	    }
 	}
         SL3U.Returning("Sendlater3ComposeToolbar.updateSummary", dateObj);
 	return dateObj;
+    },
+
+    dateToPickers: function(dateObj) {
+	var datePicker = document.getElementById("sendlater3-toolbar-datepicker");
+	var timePicker = document.getElementById("sendlater3-toolbar-timepicker");
+	if (datePicker) {
+	    datePicker.value = dateObj.format("{yyyy}-{MM}-{dd}");
+	    timePicker.value = dateObj.format("{HH}:{mm}");
+	}
+    },
+
+    pickersToText: function(fromUpdate) {
+	SL3U.Entering("Sendlater3ComposeToolbar.pickersToText");
+	var textField = document.getElementById("sendlater3-toolbar-text");
+	var datePicker = document.getElementById("sendlater3-toolbar-datepicker");
+	var timePicker = document.getElementById("sendlater3-toolbar-timepicker");
+	if (! datePicker) {
+	    SL3U.Returning("Sendlater3ComposeToolbar.pickersToText", false);
+	    return false;
+	}
+	var date = datePicker.value;
+	var time = timePicker.value;
+	// Strip seconds from time
+	time = time.replace(/(.*:.*):.*/, "$1");
+	var val = date + " " + time;
+	if (textField && ! fromUpdate) {
+	    textField.value = val;
+	    Sendlater3ComposeToolbar.updateSummary(val);
+	}
+	SL3U.Returning("Sendlater3ComposeToolbar.pickersToText", val);
+	return val;
     },
 
     CheckTextEnter: function(event) {
@@ -59,43 +99,6 @@ var Sendlater3ComposeToolbar = {
 		return true;
 	    }
 	    return false;
-	}
-    },
-
-    updateModified: function() {
-	var t = Sendlater3ComposeToolbar;
-	SL3U.Entering("Sendlater3ComposeToolbar.updateModified");
-	if (t.timer != null) {
-	    SL3U.debug("Sendlater3ComposeToolbar.updateModified: canceling timer");
-	    t.timer.cancel();
-	    t.timer = null;
-	}
-	SL3U.Leaving("Sendlater3ComposeToolbar.updateModified");
-    },
-
-    setTimer: function() {
-	SL3U.Entering("Sendlater3ComposeToolbar.setTimer");
-	var now = new Date();
-	var then = new Date(now.getTime());
-	then.setMinutes(now.getMinutes()+1)
-	then.setSeconds(0);
-	if (this.timer != null) {
-	    this.timer.cancel();
-	}
-	var ms = then.getTime() - now.getTime();
-	this.timer = Components.classes["@mozilla.org/timer;1"]
-	    .createInstance(Components.interfaces.nsITimer);
-	this.timer.initWithCallback(this.TimerCallback, ms,
-				    Components.interfaces.nsITimer.TYPE_ONE_SHOT);
-	SL3U.debug("Currently " + now + ", next tick is " +then+ ", ms = " +ms);
-	SL3U.Leaving("Sendlater3ComposeToolbar.setTimer");
-    },
-
-    TimerCallback: {
-	notify: function(timer) {
-	    SL3U.Entering("Sendlater3ComposeToolbar.TimerCallback.notify");
-	    Sendlater3ComposeToolbar.SetOnLoad();
-	    SL3U.Leaving("Sendlater3ComposeToolbar.TimerCallback.notify");
 	}
     },
 
@@ -113,268 +116,52 @@ var Sendlater3ComposeToolbar = {
 	    document.getElementById(name).customizeDone = t.CustomizeDone;
 	}
 
-	if (document.getElementById('sendlater3_toolbar')) {
-	    document.getElementById("sendlater3-yearvalue")
-		.removeEventListener("ValueChange", t.populateMonths, false);
-	    document.getElementById("sendlater3-monthvalue")
-		.removeEventListener("ValueChange", t.populateDays, false);
-	    document.getElementById("sendlater3-yearvalue")
-		.addEventListener("ValueChange", t.populateMonths, false);
-	    document.getElementById("sendlater3-monthvalue")
-		.addEventListener("ValueChange", t.populateDays, false);
-
-	    document.getElementById("sendlater3-dayvalue")
-		.addEventListener("ValueChange", t.updateModified, false);
-	    document.getElementById("sendlater3-hourvalue")
-		.addEventListener("ValueChange", t.updateModified, false);
-	    document.getElementById("sendlater3-minvalue")
-		.addEventListener("ValueChange", t.updateModified, false);
-	    t.populateYears();
-	    t.populateHours();
-	    t.populateMins();
-	    var hhmm = new Date();
-	    document.getElementById("sendlater3-hourvalue").value = hhmm.getHours();
-	    document.getElementById("sendlater3-minvalue").value = hhmm.getMinutes();
-	    switch (document.getElementById("sendlater3_toolbar")
-		    .parentNode.getAttribute("mode")) {
-	    case "full":
-	    case "icons":
-		document.getElementById("sendlater3-toolbartimeicon")
-		    .hidden = false;
-		document.getElementById("sendlater3-toolbarcalicon")
-		    .hidden = false;
-		break;
-	    default:
-		document.getElementById("sendlater3-toolbartimeicon")
-		    .hidden = true;
-		document.getElementById("sendlater3-toolbarcalicon")
-		    .hidden = true;
-		break;
-	    }
-
-	    if (SL3U.getBoolPref("entry.showintoolbar")) {
-		// I tried putting these all inside one big box and just hiding
-		// or showing that, but then theyall grew to fill the height of
-		// the box and it was ugly, and I couldn't figure out how to
-		// make that stop.
-		document.getElementById("sendlater3-hourvalue").hidden = false;
-		document.getElementById("sendlater3-colon").hidden = false;
-		document.getElementById("sendlater3-minvalue").hidden = false;
-		document.getElementById("sendlater3-calsep").hidden = false;
-		document.getElementById("sendlater3-toolbarcalicon").hidden = false;
-		document.getElementById("sendlater3-yearvalue").hidden = false;
-		document.getElementById("sendlater3-monthvalue").hidden = false;
-		document.getElementById("sendlater3-dayvalue").hidden = false;
-		document.getElementById("sendlater3-toolsep").hidden = false;
-		document.getElementById("sendlater3-toolbar-text-hbox").hidden = false;
-		document.getElementById("sendlater3-toolbarbutton-hbox").hidden = false;
-		document.getElementById("sendlater3-quicksep").hidden = false;
-	    }
-	    else {
-		document.getElementById("sendlater3-hourvalue").hidden = true;
-		document.getElementById("sendlater3-colon").hidden = true;
-		document.getElementById("sendlater3-minvalue").hidden = true;
-		document.getElementById("sendlater3-calsep").hidden = true;
-		document.getElementById("sendlater3-toolbarcalicon").hidden = true;
-		document.getElementById("sendlater3-yearvalue").hidden = true;
-		document.getElementById("sendlater3-monthvalue").hidden = true;
-		document.getElementById("sendlater3-dayvalue").hidden = true;
-		document.getElementById("sendlater3-toolsep").hidden = true;
-		document.getElementById("sendlater3-toolbar-text-hbox").hidden = true;
-		document.getElementById("sendlater3-toolbarbutton-hbox").hidden = true;
-		document.getElementById("sendlater3-quicksep").hidden = true;
-	    }
-
-	    var i;
-	    for (i = 1; i <= 3; i++) {
-		var btn = "sendlater3-shortcutbtn_" + i;
-		var minutes = SL3U.ShortcutValue(i);
-		if (t.showquickbutton(i) && minutes != undefined) {
+	var i;
+	for (i = 1; i <= 3; i++) {
+	    var btnName = "sendlater3-shortcutbtn_" + i;
+	    var btn = document.getElementById(btnName);
+	    var keyName = "sendlater3-quickbutton" + i + "-key";
+	    var key = document.getElementById(keyName);
+	    var minutes = SL3U.ShortcutValue(i);
+	    if (minutes != undefined) {
+		if (btn) {
 		    var cmd = "Sendlater3ComposeToolbar.CallSendAfter(" +
 			minutes + ");"
-		    document.getElementById(btn).label = SL3U.ButtonLabel(i);
+		    btn.label = SL3U.ButtonLabel(i, btn);
 		    // See comment about removeAttribute above similar code
 		    // in prompt.js.
-		    document.getElementById(btn).removeAttribute("oncommand");
-		    document.getElementById("sendlater3-quickbutton" + i + "-key")
-			.removeAttribute("oncommand");
-		    document.getElementById(btn).setAttribute("oncommand", cmd);
-		    document.getElementById("sendlater3-quickbutton" + i + "-key")
-			.setAttribute("oncommand", cmd);
-		    document.getElementById(btn).hidden = false;
+		    btn.removeAttribute("oncommand");
+		    btn.setAttribute("oncommand", cmd);
 		}
-		else {
-		    document.getElementById(btn).hidden = true;
+		if (key) {
+		    key.removeAttribute("oncommand");
+		    key.setAttribute("oncommand", cmd);
 		}
 	    }
-
-	    if (Sendlater3Composing.prevXSendLater) {
-		SL3U.dump("PrevXSendlater is Set to " +
-			  Sendlater3Composing.prevXSendLater);
-		document.getElementById("sendlater3-yearvalue").value =
-		    Sendlater3Composing.prevXSendLater.getFullYear();
-		document.getElementById("sendlater3-monthvalue").value =
-		    Sendlater3Composing.prevXSendLater.getMonth();
-		document.getElementById("sendlater3-dayvalue").value =
-		    Sendlater3Composing.prevXSendLater.getDate();
-		document.getElementById("sendlater3-hourvalue").value =
-		    Sendlater3Composing.prevXSendLater.getHours();
-		document.getElementById("sendlater3-minvalue").value =
-		    Sendlater3Composing.prevXSendLater.getMinutes();
-		document.getElementById("sendlater3-toolbar-text").value =
+	}
+	 
+	var textField = document.getElementById("sendlater3-toolbar-text");
+	if (Sendlater3Composing.prevXSendLater) {
+	    SL3U.dump("PrevXSendlater is set to " +
+		      Sendlater3Composing.prevXSendLater);
+	    if (textField) {
+		textField.value =
 		    Sendlater3Composing.prevXSendLater.format("long",
 							      sugarLocale());
 	    }
-	    else {
-		SL3U.dump("No previous time");
-		t.setTimer();
-		document.getElementById("sendlater3-toolbar-text").value = "";
-	    }
-	    if (! document.getElementById("sendlater3-toolbar-text-hbox").hidden) {
-		document.getElementById("sendlater3-toolbarbutton")
-		    .setAttribute("disabled", Sendlater3Composing.prevXSendLater ? false : true);
-	    }
-
-	    Sendlater3ComposeToolbar.updateSummary();
-
-	    Sendlater3ComposeToolbar.SetRecurring(Sendlater3Composing.prevRecurring ? true : false);
+	    Sendlater3ComposeToolbar.dateToPickers(
+		Sendlater3Composing.prevXSendLater);
 	}
+	else {
+	    SL3U.dump("No previous time");
+	    if (textField) {
+		textField.value = "";
+	    }
+	}
+	Sendlater3ComposeToolbar.SetRecurring(Sendlater3Composing.prevRecurring
+					      ? true : false);
+	Sendlater3ComposeToolbar.updateSummary();
 	SL3U.Leaving("Sendlater3ComposeToolbar.SetOnLoad");
-    },
-
-    showquickbutton: function(num) {
-	return SL3U.getBoolPref("quickoptions." + num + ".showintoolbar");
-    },
-
-    populateHours: function() {
-	SL3U.Entering("Sendlater3ComposeToolbar.populateHours");
-	var t = Sendlater3ComposeToolbar;
-	var container = document.getElementById("sendlater3-hours");
-	t.clearChildren(container);
-	var i;
-	for (i=0;i<24;i++) {
-	    var newitem = document.createElement("menuitem");
-	    newitem.setAttribute("label",SL3U.DZFormat(i));
-	    newitem.setAttribute("value",i.toString());
-	    container.appendChild(newitem);
-	}
-	SL3U.Leaving("Sendlater3ComposeToolbar.populateHours");
-    },
-
-    populateMins: function() {
-	SL3U.Entering("Sendlater3ComposeToolbar.populateMins");
-	var t = Sendlater3ComposeToolbar;
-	var container = document.getElementById("sendlater3-mins");
-	t.clearChildren(container);
-	var i;
-	for (i=0;i<60;i++) {
-	    var newitem = document.createElement("menuitem");
-	    newitem.setAttribute("label",SL3U.DZFormat(i));
-	    newitem.setAttribute("value",i.toString());
-	    container.appendChild(newitem);
-	}
-	SL3U.Leaving("Sendlater3ComposeToolbar.populateMins");
-    },
-
-    populateYears: function() {
-	SL3U.Entering("Sendlater3ComposeToolbar.populateYears");
-	var today = new Date();
-	var t = Sendlater3ComposeToolbar;
-	var container = document.getElementById("sendlater3-years");
-	t.clearChildren(container);
-	var i;
-	for (i=0;i<5;i++) {
-	    var newitem = document.createElement("menuitem");
-	    newitem.setAttribute("label",
-				 (today.getFullYear()+i).toString());
-	    newitem.setAttribute("value",
-				 (today.getFullYear()+i).toString());
-	    container.appendChild(newitem);
-	}
-
-	document.getElementById("sendlater3-yearvalue").selectedIndex = 0;
-	SL3U.Leaving("Sendlater3ComposeToolbar.populateYears");
-    },
-
-    clearChildren: function(element) {
-	SL3U.Entering("Sendlater3ComposeToolbar.clearChildren");
-	while (element.childNodes.length>0) {
-	    element.removeChild(element.childNodes[0]);
-	}
-	SL3U.Leaving("Sendlater3ComposeToolbar.clearChildren");
-    },
-
-    populateMonths: function() {
-	var t = Sendlater3ComposeToolbar;
-	SL3U.Entering("Sendlater3ComposeToolbar.populateMonths");
-	var selectedyear =  document.getElementById("sendlater3-yearvalue").value;
-	var today = new Date();
-	var monthStr = [ SL3U.PromptBundleGet("January"),
-			 SL3U.PromptBundleGet("February"),
-			 SL3U.PromptBundleGet("March"),
-			 SL3U.PromptBundleGet("April"),
-			 SL3U.PromptBundleGet("May"),
-			 SL3U.PromptBundleGet("June"),
-			 SL3U.PromptBundleGet("July"),
-			 SL3U.PromptBundleGet("August"),
-			 SL3U.PromptBundleGet("September"),
-			 SL3U.PromptBundleGet("October"),
-			 SL3U.PromptBundleGet("November"),
-			 SL3U.PromptBundleGet("December") ];
-	var container = document.getElementById("sendlater3-months");
-	t.clearChildren(container);
-	var i = 0;
-	if (selectedyear == today.getFullYear()) {
-	    i = today.getMonth();
-	}
-	for (;i<12;i++) {
-	    var newitem = document.createElement("menuitem");
-	    newitem.setAttribute("label",monthStr[i]);
-	    newitem.setAttribute("value",i);
-	    container.appendChild(newitem);
-	}
-	document.getElementById("sendlater3-monthvalue").selectedIndex = 0;
-	SL3U.Leaving("Sendlater3ComposeToolbar.populateMonths");
-    },
-
-    getMaxDays: function(year,month) {
-	SL3U.Entering("Sendlater3ComposeToolbar.getMaxDays");
-	var oneDay = (1000 * 60 * 60 * 24);
-	var today = new Date();
-	today.setFullYear(parseInt(year));
-	today.setDate(1);
-	month++;
-	today.setMonth(month);
-	var bt = today.toString();
-	today.setTime(today.valueOf() - oneDay);
-	SL3U.Returning("Sendlater3ComposeToolbar.getMaxDays", today.getDate());
-	return today.getDate();
-    },
-
-    populateDays: function() {
-	var t = Sendlater3ComposeToolbar;
-	SL3U.Entering("Sendlater3ComposeToolbar.populateDays");
-	var today = new Date();
-
-	var selectedyear =  document.getElementById("sendlater3-yearvalue").value;
-	var selectedmonth =  document.getElementById("sendlater3-monthvalue").value;
-
-	var container = document.getElementById("sendlater3-days");
-	t.clearChildren(container);
-	var i=0;
-	if ((selectedyear == today.getFullYear()) &&
-	    (selectedmonth == today.getMonth())) {
-	    i = today.getDate() - 1;
-	}
-	var max = t.getMaxDays(selectedyear,selectedmonth);
-	for (;i<max;i++) {
-	    var newitem = document.createElement("menuitem");
-	    newitem.setAttribute("label",(i+1).toString());
-	    newitem.setAttribute("value",(i+1).toString());
-	    container.appendChild(newitem);
-	}
-	document.getElementById("sendlater3-dayvalue").selectedIndex = 0;
-	SL3U.Leaving("Sendlater3ComposeToolbar.populateDays");
     },
 
     CustomizeDone: function(aToolboxChanged) {

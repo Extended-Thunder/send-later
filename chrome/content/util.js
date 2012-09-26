@@ -176,14 +176,14 @@ var Sendlater3Util = {
 	return value;
     },
 
-    ButtonLabel: function(num) {
-	Sendlater3Util.Entering("Sendlater3Util.ButtonLabel", num);
+    ButtonLabel: function(num, btn) {
+	Sendlater3Util.Entering("Sendlater3Util.ButtonLabel", num, btn);
     	var label = Sendlater3Util.PrefService.
 	    getComplexValue(Sendlater3Util.pref("quickoptions." + num +
 						".label"),
 			    Components.interfaces.nsISupportsString).data;
 	if (label == "<from locale>") {
-	    label = Sendlater3Util.PromptBundleGet("Button" + num + "Label");
+	    label = btn.getAttribute("sl3label");
 	}
 	Sendlater3Util.Returning("Sendlater3Util.ButtonLabel", label);
 	return label;

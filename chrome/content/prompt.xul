@@ -87,9 +87,21 @@
 
       <button id="sendlater3-callsendat" width="100%" flex="1" label="&sendlater.prompt.sendat.label;" tooltiptext="&sendlater.prompt.sendat.tooltip;" oncommand="Sendlater3Prompt.CallSendAt();close();"/>
       <hbox>
-	<button key="sendlater3-quickbutton1-key" id="sendlater3-shortcutbtn_1" style="font-size: 80%;" flex="1" label="15 mins" oncommand="Sendlater3Prompt.CallSendAfter(15);close();"/>
-	<button key="sendlater3-quickbutton2-key" id="sendlater3-shortcutbtn_2" style="font-size: 80%;" flex="1" label="30 mins" oncommand="Sendlater3Prompt.CallSendAfter(30);close();"/>
-	<button key="sendlater3-quickbutton3-key" id="sendlater3-shortcutbtn_3" style="font-size: 80%;" flex="1" label="2 hours" oncommand="Sendlater3Prompt.CallSendAfter(120);close();"/>
+	<button key="sendlater3-quickbutton1-key" id="sendlater3-shortcutbtn_1"
+		style="font-size: 80%;" flex="1"
+		label="&sendlater.button1.label;"
+		sl3label="&sendlater.button1.label;"
+		oncommand="Sendlater3Prompt.CallSendAfter(15);close();"/>
+	<button key="sendlater3-quickbutton2-key" id="sendlater3-shortcutbtn_2"
+		style="font-size: 80%;" flex="1"
+		label="&sendlater.button2.label;"
+		sl3label="&sendlater.button2.label;"
+		oncommand="Sendlater3Prompt.CallSendAfter(30);close();"/>
+	<button key="sendlater3-quickbutton3-key" id="sendlater3-shortcutbtn_3"
+		style="font-size: 80%;" flex="1"
+		label="&sendlater.button3.label;"
+		sl3label="&sendlater.button3.label;"
+		oncommand="Sendlater3Prompt.CallSendAfter(120);close();"/>
       </hbox>
 
     </vbox>

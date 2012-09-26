@@ -21,3 +21,6 @@
 <!ENTITY sendlater.toolbar.sendlater.button.label "Invia dopo">
 <!ENTITY sendlater.toolbar.textbox.emptytext "Orario di invio">
 <!ENTITY sendlater.prompt.every.label "Ogni">
+<!ENTITY sendlater.button1.label "Tra 15 minuti">
+<!ENTITY sendlater.button2.label "Tra 30 minuti">
+<!ENTITY sendlater.button3.label "Tra 2 ore">

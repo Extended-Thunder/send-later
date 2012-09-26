@@ -80,10 +80,11 @@ var Sendlater3Prompt = {
 			     Sendlater3Prompt.updateSummary, false);
 	var i;
 	for (i = 1; i <= 3; i++) {
-	    document.getElementById("sendlater3-shortcutbtn_"+i).label=SL3U.ButtonLabel(i);
+	    var btn = document.getElementById("sendlater3-shortcutbtn_"+i);
+	    btn.label=SL3U.ButtonLabel(i, btn);
 	    var value = SL3U.ShortcutValue(i);
 	    if (value == undefined) {
-		document.getElementById("sendlater3-shortcutbtn_" + i).hidden = true;
+		btn.hidden = true;
 	    }
 	    else {
 		var cmd = "Sendlater3Prompt.CallSendAfter(" + value +
@@ -103,15 +104,13 @@ var Sendlater3Prompt = {
 		// suppose now that I've got it working, it'll do, but I sure
 		// wish I understood what's going on here inside the JavaScript
 		// interpreter.
-		document.getElementById("sendlater3-shortcutbtn_" + i)
-		    .removeAttribute("oncommand");
+		btn.removeAttribute("oncommand");
 		document.getElementById("sendlater3-quickbutton" + i + "-key")
 		    .removeAttribute("oncommand");
-		document.getElementById("sendlater3-shortcutbtn_" + i)
-		    .setAttribute("oncommand", cmd);
+		btn.setAttribute("oncommand", cmd);
 		document.getElementById("sendlater3-quickbutton" + i + "-key")
 		    .setAttribute("oncommand", cmd);
-		document.getElementById("sendlater3-shortcutbtn_" + i).hidden = false;
+		btn.hidden = false;
 	    }
 	}
 
@@ -153,6 +152,7 @@ var Sendlater3Prompt = {
 	if (prevXSendLater) {
 	   document.getElementById("sendlater3-time-text").value =
 	       prevXSendLater.format("long", sugarLocale());
+	    Sendlater3Prompt.updateSummary();
 	}
 	document.getElementById("sendlater3-time-text").focus();
 	Sendlater3Prompt.AddControlReturnListeners(document);

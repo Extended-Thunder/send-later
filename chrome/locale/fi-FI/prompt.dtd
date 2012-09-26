@@ -21,3 +21,6 @@
 <!ENTITY sendlater.toolbar.sendlater.button.label "Lähetä myöhemmin">
 <!ENTITY sendlater.toolbar.textbox.emptytext "lähetysaika">
 <!ENTITY sendlater.prompt.every.label "Joka">
+<!ENTITY sendlater.button1.label "15 min myöhemmin">
+<!ENTITY sendlater.button2.label "30 min myöhemmin">
+<!ENTITY sendlater.button3.label "2 tuntia myöhemmin">
