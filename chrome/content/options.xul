@@ -71,7 +71,7 @@
 	    </hbox>
 	    <separator label="-"/>
 	    <hbox>
-	      <label id="sendlater3-contact_author" tooltiptext="&contactauthor.tooltip;" value="&contactauthor.value;" class="text-link" onclick="Components.classes['@mozilla.org/messengercompose;1'].getService(Components.interfaces.nsIMsgComposeService).OpenComposeWindowWithURI(null, Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService).newURI('mailto:jik+sendlater3@kamens.us?subject=Send%20Later%203', null, null));"/>
+	      <label id="sendlater3-contact_author" tooltiptext="&contactauthor.tooltip;" value="&contactauthor.value;" class="text-link" onclick="Components.classes['@mozilla.org/messengercompose;1'].getService(Components.interfaces.nsIMsgComposeService).OpenComposeWindowWithURI(null, Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService).newURI('mailto:jik+sendlater3@kamens.us?subject=Send%20Later', null, null));"/>
 	      <!-- Postbox, Thunderbird 3+ -->
 	      <label id="sendlater3-help_link" tooltiptext="&helplink.tooltip;" value="&helplink.value;" class="text-link" onclick="Components.classes['@mozilla.org/uriloader/external-protocol-service;1'].getService(Components.interfaces.nsIExternalProtocolService).loadURI(Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService).newURI('http://blog.kamens.us/send-later-3/', null, null));"/>
 	      <!-- Thunderbird 2 -->
