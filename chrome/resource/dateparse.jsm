@@ -8,42 +8,6 @@ var loader = Components.classes["@mozilla.org/moz/jssubscript-loader;1"]
                        .getService(Components.interfaces.mozIJSSubScriptLoader); 
 loader.loadSubScript("resource://sendlater3/sugar.min.js"); 
 
-Date.addLocale('nl', {
-  'plural': true,
-  'months': 'januari,februari,maart,april,mei,juni,juli,augustus,september,oktober,november,december',
-  'weekdays': 'zondag|zo,maandag|ma,dinsdag|di,woensdag|woe|wo,donderdag|do,vrijdag|vrij|vr,zaterdag|za',
-  'units': 'milliseconde:|n,seconde:|n,minu:ut|ten,uur,dag:|en,we:ek|ken,maand:|en,jaar',
-  'numbers': 'een,twee,drie,vier,vijf,zes,zeven,acht,negen',
-  'optionals': '',
-  'short':'{d} {Month} {yyyy}',
-  'long': '{d} {Month} {yyyy} {H}:{mm}',
-  'full': '{Weekday} {d} {Month} {yyyy} {H}:{mm}:{ss}',
-  'past': '{num} {unit} {sign}',
-  'future': '{num} {unit} {sign}',
-  'duration': '{num} {unit}',
-  'timeMarker': "'s|om",
-  'ampm': 'am,pm', // I don't think Dutch actually uses am or pm
-  'modifiers': [
-    { 'name': 'day', 'src': 'gisteren', 'value': -1 },
-    { 'name': 'day', 'src': 'vandaag', 'value': 0 },
-    { 'name': 'day', 'src': 'morgen', 'value': 1 },
-    { 'name': 'day', 'src': 'overmorgen', 'value': 2 },
-    { 'name': 'sign', 'src': 'geleden', 'value': -1 },
-    { 'name': 'sign', 'src': 'vanaf nu', 'value': 1 },
-    { 'name': 'shift', 'src': 'laatste|vorige|afgelopen', 'value': -1 },
-    { 'name': 'shift', 'src': 'volgend:|e', 'value': 1 }
-  ],
-  'dateParse': [
-    '{num} {unit} {sign}',
-    '{0} {unit=5-7} {shift}',
-    '{0} {shift} {unit=5-7}'
-  ],
-  'timeParse': [
-    '{weekday?} {date?} {month} {year?}',
-    '{shift} {weekday}'
-  ]
-});
-
 var didLocale = false;
 var locale;
 
