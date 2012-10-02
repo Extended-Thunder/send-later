@@ -184,6 +184,7 @@ var Sendlater3Composing = {
 	    SL3U.Entering("Sendlater3Composing.ReallySendAtCallback.notify", timer);
 	    var sendat = Sendlater3Composing.ReallySendAtClosure.at;
 	    var recur = Sendlater3Composing.ReallySendAtClosure.recur;
+	    var args = Sendlater3Composing.ReallySendAtClosure.args;
 
 	    // If it has been at least a week since we last asked the
 	    // user to donate, and the user has scheduled at least
@@ -211,11 +212,10 @@ var Sendlater3Composing = {
 
 	    gCloseWindowAfterSave = true;
 	    var identity = getCurrentIdentity();
-	    Sendlater3Composing.PrepMessage(sendat, recur);
+	    Sendlater3Composing.PrepMessage(sendat, recur, args);
 	    if (SL3U.IsPostbox()) {
 		Sendlater3Composing.GenericSendMessagePostbox(
-		    nsIMsgCompDeliverMode.SaveAsDraft,
-		    sendat, recur);
+		    nsIMsgCompDeliverMode.SaveAsDraft);
 	    }
 	    else {
 		GenericSendMessage(nsIMsgCompDeliverMode.SaveAsDraft);
@@ -228,15 +228,11 @@ var Sendlater3Composing = {
 	}
     },
 
-    RecurHeader: function(sendat, recur) {
-	var header = "X-Send-Later-Recur: " + recur + "\r\n";
-	return header;
-    },
-
-    SendAtTime: function(sendat, recur_value) {
-	SL3U.Entering("Sendlater3Composing.SendAtTime", sendat, recur_value);
+    SendAtTime: function(sendat, recur_value, args) {
+	SL3U.Entering("Sendlater3Composing.SendAtTime", sendat, recur_value, args);
 	Sendlater3Composing.ReallySendAtClosure = { at: sendat,
-						    recur: recur_value };
+						    recur: recur_value,
+						    args: args };
 	Sendlater3Composing.ReallySendAtTimer = Components
 	    .classes["@mozilla.org/timer;1"]
 	    .createInstance(Components.interfaces.nsITimer);
@@ -293,10 +289,8 @@ var Sendlater3Composing = {
 
     // Copied from mail/components/compose/content/MsgComposeCommands.js
     // in Postbox 2 source.
-    // SENDLATER3 CHANGED: Added "Postbox" to end of function name; added
-    // "sendat", "recur" arguments.
-    GenericSendMessagePostbox: function(msgType, sendat, recur,
-				  aDontClearReferencesOnSubjectChange)
+    // SENDLATER3 CHANGED: Added "Postbox" to end of function name
+    GenericSendMessagePostbox: function(msgType, aDontClearReferencesOnSubjectChange)
     {
       dump("GenericSendMessage from XUL\n");
 
@@ -627,11 +621,12 @@ var Sendlater3Composing = {
 	dump("###SendMessage Error: composeAppCore is null!\n");
     },
 
-    PrepMessage: function(sendat, recur) {
+    PrepMessage: function(sendat, recur, args) {
 	var msgcomposeWindow = document.getElementById("msgcomposeWindow");
 	msgcomposeWindow.setAttribute("sending_later", true);
 	msgcomposeWindow.sendLater3SendAt = sendat;
 	msgcomposeWindow.sendLater3Recur = recur;
+	msgcomposeWindow.sendLater3Args = args;
 	msgcomposeWindow.sendLater3Type = gMsgCompose.type;
 	msgcomposeWindow.sendLater3OriginalURI = gMsgCompose.originalMsgURI;
     },
@@ -640,13 +635,14 @@ var Sendlater3Composing = {
 	var compWin = document.getElementById("msgcomposeWindow");
 	var sendat = compWin.sendLater3SendAt;
 	var recur = compWin.sendLater3Recur;
+	var args = compWin.sendLater3Args;
 	var msgCompFields = gMsgCompose.compFields;
 	if (sendat) {
 	    var head = "X-Send-Later-At: " + SL3U.FormatDateTime(sendat,true) +
 		"\r\n" + "X-Send-Later-Uuid: " + SL3U.getInstanceUuid() +
 		"\r\n";
 	    if (recur) {
-		head += Sendlater3Composing.RecurHeader(sendat, recur);
+		head += SL3U.RecurHeader(sendat, recur, args);
 	    }
 	    msgCompFields.otherRandomHeaders += head;
 	    msgCompFields.messageId = Components
@@ -663,10 +659,11 @@ var Sendlater3Composing = {
 	var compWin = document.getElementById("msgcomposeWindow");
 	Sendlater3Composing.SetReplyForwardedFlag(compWin.sendLater3Type,
 						  compWin.sendLater3OriginalURI);
-	compWin.sendLaterSendAt = null;
-	compWin.sendLaterRecur = null;
-	compWin.sendLaterType = null;
-	compWin.sendLaterOriginalURI = null;
+	compWin.sendLater3SendAt = null;
+	compWin.sendLater3Recur = null;
+	compWin.sendLater3Args = null;
+	compWin.sendLater3Type = null;
+	compWin.sendLater3OriginalURI = null;
     },
 
     SetReplyForwardedFlag: function(type, originalURI) {

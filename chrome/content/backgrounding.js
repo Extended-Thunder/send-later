@@ -211,6 +211,11 @@ var Sendlater3Backgrounding = function() {
 	installedCustomHeaders += " x-send-later-recur";
 	changed = true;
     }
+    if (installedCustomHeaders.indexOf("x-send-later-args")<0) {
+	SL3U.dump("Installing Custom X-Send-Later-Args Header\n");
+	installedCustomHeaders += " x-send-later-args";
+	changed = true;
+    }
     if (changed) {
 	SL3U.PrefService.setCharPref('mailnews.customDBHeaders',
 				     installedCustomHeaders);
@@ -296,11 +301,12 @@ var Sendlater3Backgrounding = function() {
 	ProgressSet("ProgressFinish", where);
     }
 
-    function CopyUnsentListener(content, hdr, sendat, recur) {
+    function CopyUnsentListener(content, hdr, sendat, recur, args) {
 	this._content = content;
 	this._hdr = hdr;
 	this._sendat = sendat;
 	this._recur = recur;
+	this._args = args;
     }
 
     CopyUnsentListener.prototype = {
@@ -348,6 +354,7 @@ var Sendlater3Backgrounding = function() {
 	    var messageHDR = this._hdr;
 	    var sendat = this._sendat;
 	    var recur = this._recur;
+	    var args = this._args;
 	    var folder = messageHDR.folder;
 	    var dellist;
 	    if (SL3U.IsPostbox()) {
@@ -371,21 +378,24 @@ var Sendlater3Backgrounding = function() {
 	    }
 	    SetAnimTimer(3000);
 	    if (recur) {
-		var next = SL3U.NextRecurDate(new Date(sendat), recur);
+		var next = SL3U.NextRecurDate(new Date(sendat), recur, null,
+					      JSON.parse(args));
 		if (! next) {
 		    return;
 		}
 		if (next instanceof Array) {
+		    args = next;
 		    recur = next[1];
 		    next = next[0];
+		    args.splice(0,2);
 		}
 		var content = this._content;
 		var header = "\r\nX-Send-Later-At: " + SL3U.FormatDateTime(next, true) +
-		    "\r\nX-Send-Later-Uuid: " + SL3U.getInstanceUuid() + "\r\n\r\n";
+		    "\r\nX-Send-Later-Uuid: " + SL3U.getInstanceUuid() + "\r\n";
 		if (recur) {
-		    header = "\r\nX-Send-Later-Recur: " + recur + header;
+		    header += SL3U.RecurHeader(next, recur, args);
 		}
-		content = content.replace(/\r\n\r\n/, header);
+		content = content.replace(/\r\n\r\n/, header + "\r\n");
 		content = content.replace(/^From .*\r\n/, "");
 		var listener = new CopyRecurListener(folder);
 		SL3U.CopyStringMessageToFolder(content, folder, listener);
@@ -534,6 +544,7 @@ var Sendlater3Backgrounding = function() {
 	this._messageHDR = messageHDR;
 	this._header = messageHDR.getStringProperty("x-send-later-at");
 	this._recur = messageHDR.getStringProperty("x-send-later-recur");
+	this._args = messageHDR.getStringProperty("x-send-later-args");
 	SL3U.Leaving("Sendlater3Backgrounding.UriStreamListener");
     }
 
@@ -581,6 +592,8 @@ var Sendlater3Backgrounding = function() {
 				      "\n");
 	    content = content.replace(/\nX-Send-Later-Recur:.*\n/i,
 				      "\n");
+	    content = content.replace(/\nX-Send-Later-Args:.*\n/i,
+				      "\n");
 
 	    // Remove extra newline -- see comment above.
 	    content = content.slice(1);
@@ -615,7 +628,8 @@ var Sendlater3Backgrounding = function() {
 	    var fdrunsent = msgSendLater.getUnsentMessagesFolder(null);
 	    var listener = new CopyUnsentListener(content, messageHDR,
 						  this._header,
-						  this._recur)
+						  this._recur,
+						  this._args)
 	    SL3U.CopyStringMessageToFolder(content, fdrunsent,listener);
 	    ProgressFinish("finish streaming message");
 	    SL3U.Leaving("Sendlater3Backgrounding.UriStreamListener.onStopRequest");

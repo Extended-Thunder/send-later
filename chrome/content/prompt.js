@@ -226,15 +226,18 @@ var Sendlater3Prompt = {
         SL3U.Entering("Sendlater3Prompt.CallSendAfter", mins);
 	var sendat = new Date();
 	var recur;
+	var args;
 	if (mins instanceof Array) {
-	    recur = mins[1]
-	    mins = mins[0]
+	    args = mins;
+	    recur = mins[1];
+	    mins = mins[0];
+	    args.splice(0,2);
 	}
 	if (mins == -1) {
 	    return false;
 	}
 	sendat.setTime(sendat.getTime()+mins*60*1000);
-	window.arguments[0].finishCallback(sendat, recur);
+	window.arguments[0].finishCallback(sendat, recur, args);
         SL3U.Leaving("Sendlater3Prompt.CallSendAfter");
 	return true;
     },

@@ -318,11 +318,11 @@ var Sendlater3Util = {
 	window['Test1'] = function Test1() { return; };
 	window['Test2'] = function Test2() { return "foo"; };
 	window['Test3'] = function Test3() { return new Array(); };
-	window['Test4'] = function Test4() { return new Array(1, "monthly", "extra"); };
-	window['Test5'] = function Test5() { return new Array("monthly", "extra"); };
-	window['Test6'] = function Test6() { return -1; };
-	window['Test7'] = function Test7() { return 5; };
-	window['Test8'] = function Test8() { return new Array(7, "monthly 5"); };
+	window['Test4'] = function Test4() { return new Array("monthly", "extra"); };
+	window['Test5'] = function Test5() { return -1; };
+	window['Test6'] = function Test6() { return 5; };
+	window['Test7'] = function Test7() { return new Array(7, "monthly 5"); };
+	window['Test8'] = function Test8() { return new Array(7, "monthly 5", "freeble"); };
 	var d1 = new Date();
 	d1.setTime((new Date("10/3/2012")).getTime()+5*60*1000);
 	var d2 = new Date();
@@ -341,11 +341,11 @@ var Sendlater3Util = {
 	    new Array("10/3/2012", "function Test1", "10/3/2012", "error did not return a value"),
 	    new Array("10/3/2012", "function Test2", "10/3/2012", "error did not return number or array"),
 	    new Array("10/3/2012", "function Test3", "10/3/2012", "error is too short"),
-	    new Array("10/3/2012", "function Test4", "10/3/2012", "error is too long"),
-	    new Array("10/3/2012", "function Test5", "10/3/2012", "error did not start with a number"),
-	    new Array("10/3/2012", "function Test6", "10/3/2012", null),
-	    new Array("10/3/2012", "function Test7", "10/4/2012", new Array(d1, null)),
-	    new Array("10/3/2012", "function Test8", "10/4/2012", new Array(d2, "monthly 5"))
+	    new Array("10/3/2012", "function Test4", "10/3/2012", "error did not start with a number"),
+	    new Array("10/3/2012", "function Test5", "10/3/2012", null),
+	    new Array("10/3/2012", "function Test6", "10/4/2012", new Array(d1, null)),
+	    new Array("10/3/2012", "function Test7", "10/4/2012", new Array(d2, "monthly 5")),
+	    new Array("10/3/2012", "function Test8", "10/4/2012", new Array(d2, "monthly 5", "freeble"))
 	);
 
 	var i;
@@ -400,7 +400,8 @@ var Sendlater3Util = {
 	}
     },
 
-    NextRecurDate: function(next, recurSpec, now) {
+    NextRecurDate: function(next, recurSpec, now, args) {
+	Sendlater3Util.Entering("NextRecurDate", next, recurSpec, now, args);
 	// Make sure we don't modify our input!
 	next = new Date(next.getTime());
 
@@ -424,7 +425,7 @@ var Sendlater3Util = {
 		throw new Error("Send Later: Invalid recurrence specification '" + 
 				recurSpec + ": '" + funcName + "' is not a function");
 	    }
-	    var nextRecur = func(next);
+	    var nextRecur = func(next, args);
 	    if (! nextRecur) {
 		// test 10
 		throw new Error("Send Later: Recurrence function '" + funcName +
@@ -432,11 +433,11 @@ var Sendlater3Util = {
 	    }
 	    if (typeof(nextRecur) == "number") {
 		if (nextRecur == -1) {
-		    // test 15
+		    // test 14
 		    return null;
 		}
 		else {
-		    // test 16
+		    // test 15
 		    next.setTime(next.getTime()+nextRecur*60*1000);
 		    return new Array(next, null);
 		}
@@ -452,18 +453,13 @@ var Sendlater3Util = {
 		    throw new Error("Send Later: Array returned by recurrence " +
 				    "function '" + funcName + "' is too short");
 		}
-		if (nextRecur.length > 2) {
-		    // test 13
-		    throw new Error("Send Later: Array returned by recurrence " +
-				    "function '" + funcName + "' is too long");
-		}
 		if (typeof(nextRecur[0]) != "number") {
-		    // test 14
+		    // test 13
 		    throw new Error("Send Later: Array " + nextRecur + " returned by recurrence " +
 				    "function '" + funcName + "' did not start with " +
 				    "a number");
 		}
-		// test 17
+		// test 16
 		next.setTime(next.getTime()+nextRecur[0]*60*1000);
 		nextRecur[0] = next;
 		return nextRecur;
@@ -643,6 +639,15 @@ var Sendlater3Util = {
 	}
 
 	return str;
+    },
+
+    RecurHeader: function(sendat, recur, args) {
+	var header = "X-Send-Later-Recur: " + recur + "\r\n";
+	if (args) {
+	    header = header + "X-Send-Later-Args: " + JSON.stringify(args) +
+		"\r\n";
+	}
+	return header;
     },
 
     logger: null,

@@ -199,16 +199,19 @@ var Sendlater3ComposeToolbar = {
 	SL3U.Entering("Sendlater3ComposeToolbar.CallSendAfter");
 	var sendat = new Date();
 	var recur;
+	var args;
 	if (mins instanceof Array) {
-	    recur = mins[1]
-	    mins = mins[0]
+	    args = mins;
+	    recur = mins[1];
+	    mins = mins[0];
+	    args.splice(0,2);
 	}
 	if (mins == -1) {
 	    return false;
 	}
 	sendat.setTime(sendat.getTime()+mins*60*1000);
-	Sendlater3Composing.SendAtTime(sendat, recur);
-	SL3U.Leaving("Sendlater3ComposeToolbar.CallSendAfter");
+	Sendlater3Composing.SendAtTime(sendat, recur, args);
+	SL3U.Returning("Sendlater3ComposeToolbar.CallSendAfter", true);
 	return true;
     },
 
