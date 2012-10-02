@@ -148,3 +148,17 @@ Toolbar +Text entry +Pickers +Button button enabled editing scheduled draft
 Toolbar +Text entry +Pickers +Button editing text updates pickers
 Toolbar +Text entry +Pickers +Button editing pickers updates text
 Toolbar +Text entry +Pickers +Button button schedules correct time
+
+Dynamic recurrence:
+  Pop-up returns -1
+  Pop-up final recurrence
+  Pop-up perpetuates itself
+  Pop-up changes to something else
+  Toolbar returns -1
+  Toolbar final recurrence
+  Toolbar perpetuates itself
+  Toolbar changes to something else
+  Schedule next returns -1
+  Schedule next final occurrence
+  Schedule next perpetuates itself
+  Schedule next changes to something else

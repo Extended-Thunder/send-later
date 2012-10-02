@@ -372,13 +372,20 @@ var Sendlater3Backgrounding = function() {
 	    SetAnimTimer(3000);
 	    if (recur) {
 		var next = SL3U.NextRecurDate(new Date(sendat), recur);
+		if (! next) {
+		    return;
+		}
+		if (next instanceof Array) {
+		    recur = next[1];
+		    next = next[0];
+		}
 		var content = this._content;
-		content = content.replace(/\r\n\r\n/, "\r\nX-Send-Later-At: " +
-					  SL3U.FormatDateTime(next, true) +
-					  "\r\n" + "X-Send-Later-Uuid: " +
-					  SL3U.getInstanceUuid() + "\r\n" +
-					  "X-Send-Later-Recur: " + recur +
-					  "\r\n\r\n");
+		var header = "\r\nX-Send-Later-At: " + SL3U.FormatDateTime(next, true) +
+		    "\r\nX-Send-Later-Uuid: " + SL3U.getInstanceUuid() + "\r\n\r\n";
+		if (recur) {
+		    header = "\r\nX-Send-Later-Recur: " + recur + header;
+		}
+		content = content.replace(/\r\n\r\n/, header);
 		content = content.replace(/^From .*\r\n/, "");
 		var listener = new CopyRecurListener(folder);
 		SL3U.CopyStringMessageToFolder(content, folder, listener);

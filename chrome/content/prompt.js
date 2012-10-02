@@ -88,7 +88,7 @@ var Sendlater3Prompt = {
 	    }
 	    else {
 		var cmd = "Sendlater3Prompt.CallSendAfter(" + value +
-		    ");close();";
+		    ") && close();";
 		// For the life of me, I can't figure out why I have to remove
 		// these attributes before setting them, but if I don't, then
 		// sometimes when the user changes one of the button values in
@@ -225,9 +225,18 @@ var Sendlater3Prompt = {
     CallSendAfter: function(mins) {
         SL3U.Entering("Sendlater3Prompt.CallSendAfter", mins);
 	var sendat = new Date();
+	var recur;
+	if (mins instanceof Array) {
+	    recur = mins[1]
+	    mins = mins[0]
+	}
+	if (mins == -1) {
+	    return false;
+	}
 	sendat.setTime(sendat.getTime()+mins*60*1000);
-	window.arguments[0].finishCallback(sendat);
+	window.arguments[0].finishCallback(sendat, recur);
         SL3U.Leaving("Sendlater3Prompt.CallSendAfter");
+	return true;
     },
 
     clearChildren: function(element) {
@@ -254,7 +263,7 @@ var Sendlater3Prompt = {
 
     // Format:
     //
-    // First field is none/daily/weekly/monthly/yearly
+    // First field is none/daily/weekly/monthly/yearly/function
     //
     // If first field is monthly, then it is followed by either one or
     // two numbers. If one, then it's a single number for the day of
@@ -265,10 +274,26 @@ var Sendlater3Prompt = {
     // If the first field is yearly, then the second and third fields
     // are the month (0-11) and date numbers for the yearly occurrence.
     //
-    // After all of the above, "/ #" indicates a skip value, e.g., "/
-    // 2" means every 2, "/ 3" means every 3, etc. For example, "daily
-    // / 3" means every 3 days, while "monthly 2 2 / 2" means every
-    // other month on the second Tuesday of the month.
+    // After all of the above except function, "/ #" indicates a skip
+    // value, e.g., "/ 2" means every 2, "/ 3" means every 3, etc. For
+    // example, "daily / 3" means every 3 days, while "monthly 2 2 /
+    // 2" means every other month on the second Tuesday of the month.
+    //
+    // If the first field is function, then the second field is the
+    // name of a global function which will be called with one
+    // argument, the previous scheduled send time (as a Date
+    // object). It has three legal return values:
+    //
+    //   -1 - stop recurring, i.e., don't schedule any later instances
+    //     of this message
+    //
+    //   integer 0 or greater - schedule this message the specified
+    //     number of minutes into the future, then stop recurring
+    //
+    //   array [integer 0 or greater, recur-spec] - schedule this
+    //     message the specified number of minutes into the future,
+    //     with the specified recurrence specification for instances
+    //     after this one
 
     GetRecurString: function(dateObj) {
 	var recur = document.getElementById("sendlater3-recur-group")

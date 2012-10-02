@@ -198,9 +198,18 @@ var Sendlater3ComposeToolbar = {
     CallSendAfter: function(mins) {
 	SL3U.Entering("Sendlater3ComposeToolbar.CallSendAfter");
 	var sendat = new Date();
+	var recur;
+	if (mins instanceof Array) {
+	    recur = mins[1]
+	    mins = mins[0]
+	}
+	if (mins == -1) {
+	    return false;
+	}
 	sendat.setTime(sendat.getTime()+mins*60*1000);
-	Sendlater3Composing.SendAtTime(sendat);
+	Sendlater3Composing.SendAtTime(sendat, recur);
 	SL3U.Leaving("Sendlater3ComposeToolbar.CallSendAfter");
+	return true;
     },
 
     main: function() {
