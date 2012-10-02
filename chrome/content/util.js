@@ -600,7 +600,7 @@ var Sendlater3Util = {
 	recurArray.splice(0, 1);
 
 	if (type == "function") {
-	    return recurArray[1];
+	    return recurArray[0];
 	}
 
 	if (type == "monthly") {
