@@ -189,16 +189,17 @@ var Sendlater3Util = {
 	return label;
     },
 
-    ShortcutValue: function(num, validate) {
-	Sendlater3Util.Entering("Sendlater3Util.ShortcutValue", num, validate);
+    ShortcutClosure: function(num, validate) {
+	Sendlater3Util.Entering("Sendlater3Util.ShortcutClosure", num, validate);
 	if (validate == undefined) {
 	    validate = false;
 	}
 	var raw = Sendlater3Util.getCharPref("quickoptions." + num +
 					     ".valuestring");
 	if (raw.match(/^[0-9]+$/)) {
-	    Sendlater3Util.Returning("Sendlater3Util.ShortcutValue", raw);
-	    return raw;
+	    var func = function() { return raw; };
+	    Sendlater3Util.Returning("Sendlater3Util.ShortcutClosure", func);
+	    return func;
 	}
 	else if (raw.match(/^[A-Za-z_$][A-Za-z0-9_$]*$/)) {
 	    var func = window[raw];
@@ -222,9 +223,8 @@ var Sendlater3Util = {
 		    return; // undefined
 		}
 	    }
-	    v = raw + "()";
-	    Sendlater3Util.Returning("Sendlater3Util.ShortcutValue", v);
-	    return v;
+	    Sendlater3Util.Returning("Sendlater3Util.ShortcutClosure", func);
+	    return func;
 	}
 	Sendlater3Util.warn("Invalid setting for quick option " + num + ": \"" +
 			    raw + "\" is neither a number nor a function " +

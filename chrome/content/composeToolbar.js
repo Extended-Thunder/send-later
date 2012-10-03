@@ -122,21 +122,25 @@ var Sendlater3ComposeToolbar = {
 	    var btn = document.getElementById(btnName);
 	    var keyName = "sendlater3-quickbutton" + i + "-key";
 	    var key = document.getElementById(keyName);
-	    var minutes = SL3U.ShortcutValue(i);
-	    if (minutes != undefined) {
+	    var closure = SL3U.ShortcutClosure(i);
+	    if (closure != undefined) {
+		// See http://stackoverflow.com/a/3273223
+		var cmd = function(c) {
+		    return function() {
+			Sendlater3ComposeToolbar.CallSendAfter(c());
+		    };
+		}(closure);
 		if (btn) {
-		    var cmd = "Sendlater3ComposeToolbar.CallSendAfter(" +
-			minutes + ");"
 		    btn.label = SL3U.ButtonLabel(i, btn);
-		    // See comment about removeAttribute above similar code
-		    // in prompt.js.
+		    // Setting .oncommand property doesn't seem to work.
 		    btn.removeAttribute("oncommand");
-		    btn.setAttribute("oncommand", cmd);
+		    btn.addEventListener("command", cmd, false);
 		}
 		if (key) {
 		    key.removeAttribute("oncommand");
-		    key.setAttribute("oncommand", cmd);
+		    key.addEventListener("command", cmd, false);
 		}
+		cmd = undefined;
 	    }
 	}
 	 

@@ -2,7 +2,7 @@ var Sendlater3Options = {
     ValidatePrefs: function() {
 	var i;
 	for (i = 1; i <= 3; i++) {
-	    if (SL3U.ShortcutValue(i, true) == undefined) {
+	    if (SL3U.ShortcutClosure(i, true) == undefined) {
 		var value = SL3U.getCharPref("quickoptions."+i+".valuestring");
 		var msg = SL3U.PromptBundleGetFormatted(
 		    "OptionShortcutAlertText",

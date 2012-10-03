@@ -82,35 +82,26 @@ var Sendlater3Prompt = {
 	for (i = 1; i <= 3; i++) {
 	    var btn = document.getElementById("sendlater3-shortcutbtn_"+i);
 	    btn.label=SL3U.ButtonLabel(i, btn);
-	    var value = SL3U.ShortcutValue(i);
-	    if (value == undefined) {
+	    var key = document.getElementById("sendlater3-quickbutton" + i +
+					      "-key")
+	    var closure = SL3U.ShortcutClosure(i);
+	    if (closure == undefined) {
 		btn.hidden = true;
 	    }
 	    else {
-		var cmd = "Sendlater3Prompt.CallSendAfter(" + value +
-		    ") && close();";
-		// For the life of me, I can't figure out why I have to remove
-		// these attributes before setting them, but if I don't, then
-		// sometimes when the user changes one of the button values in
-		// the middle of a session, the new value doesn't take effect
-		// immediately. I found a Web page claiming that setAttribute
-		// is unreliable because it sets the "default value" for the
-		// attribute rather than the actual value, and that therefore
-		// attributes should be set as properties (as shown for setting
-		// the "hidden" attribute just below), but I tried using
-		// ".oncommand = ..." instead of ".setAttribute("oncommand",
-		// ...)" and it did not solve the problem. Only removing and
-		// recreating the attribute seems to solve the problem. I
-		// suppose now that I've got it working, it'll do, but I sure
-		// wish I understood what's going on here inside the JavaScript
-		// interpreter.
+		// See http://stackoverflow.com/a/3273223
+		var cmd = function(c) {
+		    return function() {
+			Sendlater3Prompt.CallSendAfter(c()) && close();
+		    };
+		}(closure);
 		btn.removeAttribute("oncommand");
-		document.getElementById("sendlater3-quickbutton" + i + "-key")
-		    .removeAttribute("oncommand");
-		btn.setAttribute("oncommand", cmd);
-		document.getElementById("sendlater3-quickbutton" + i + "-key")
-		    .setAttribute("oncommand", cmd);
+		// Setting .oncommand property doesn't seem to work.
+		btn.addEventListener("command", cmd, false);
+		btn.oncommand = cmd;
 		btn.hidden = false;
+		key.removeAttribute("oncommand");
+		key.addEventListener("command", cmd, false);
 	    }
 	}
 
