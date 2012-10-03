@@ -216,7 +216,9 @@ var Sendlater3Util = {
 	    }
 	    if (validate) {
 		var v = func();
-		if (typeof(v) != "number") {
+		if ((typeof(v) != "number") &&
+		    ! (v instanceof Array && v.length &&
+		       typeof(v[0]) == "number")) {
 		    Sendlater3Util.warn("Invalid setting for quick option " + 
 					num + ": \"" + raw + 
 					"()\" does not return a number");
