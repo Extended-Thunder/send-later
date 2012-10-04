@@ -24,11 +24,16 @@
 		   oncommand="Sendlater3ComposeToolbar.CallSendAt();"  />
     <toolbaritem id="sendlater3-toolbar-text-item" class="chromeclass-toolbar"
 		 context="toolbar-context-menu" hidden="false">
-      <textbox id="sendlater3-toolbar-text" width="200px"
-	       oninput="Sendlater3ComposeToolbar.updateSummary();"
-	       emptytext="&sendlater.toolbar.textbox.emptytext;"
-	       tooltiptext="&sendlater.prompt.textbox.tooltip;"
-	       onkeypress="Sendlater3ComposeToolbar.CheckTextEnter(event);"/>
+      <!-- For some reason, putting the textbox inside a stack causes the
+	   emptytext to display properly in the Customize Toolbar window,
+	   making it clearer what this item in that window is for. -->
+      <stack>
+	<textbox id="sendlater3-toolbar-text" width="200px"
+		 oninput="Sendlater3ComposeToolbar.updateSummary();"
+		 emptytext="&sendlater.toolbar.textbox.emptytext;"
+		 tooltiptext="&sendlater.prompt.textbox.tooltip;"
+		 onkeypress="Sendlater3ComposeToolbar.CheckTextEnter(event);"/>
+      </stack>
     </toolbaritem>
     <toolbaritem id="sendlater3-toolbar-picker-item" class="chromeclass-toolbar"
 		 context="toolbar-context-menu" hidden="false">
