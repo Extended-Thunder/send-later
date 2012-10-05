@@ -98,7 +98,6 @@ var Sendlater3Prompt = {
 		btn.removeAttribute("oncommand");
 		// Setting .oncommand property doesn't seem to work.
 		btn.addEventListener("command", cmd, false);
-		btn.oncommand = cmd;
 		btn.hidden = false;
 		key.removeAttribute("oncommand");
 		key.addEventListener("command", cmd, false);
