@@ -14,7 +14,7 @@
     <key id="sendlater3-quickbutton2-key" modifiers="alt" key="2"/>
     <key id="sendlater3-quickbutton3-key" modifiers="alt" key="3"/>
     <key id="sendlater3-cancel-esc" modifiers="" keycode="VK_ESCAPE" oncommand="window.arguments[0].cancelCallback();close();"/>
-    <key id="sendlater3-call-return" modifiers="accel" keycode="VK_RETURN" oncommand="Sendlater3Prompt.CallSendAt();close();"/>
+    <key id="sendlater3-call-return" modifiers="accel" keycode="VK_RETURN" oncommand="Sendlater3Prompt.CallSendAt()&amp;&amp;close();"/>
     <key id="sendlater3-send-now-key" modifiers="alt" key="&sendlater.prompt.sendnow.accesskey;" oncommand="window.arguments[0].sendCallback();close();"/>
   </keyset>
   <vbox style="margin: 10px;">
@@ -85,7 +85,7 @@
 	</hbox>
       </deck>
 
-      <button id="sendlater3-callsendat" width="100%" flex="1" label="&sendlater.prompt.sendat.label;" tooltiptext="&sendlater.prompt.sendat.tooltip;" oncommand="Sendlater3Prompt.CallSendAt();close();"/>
+      <button id="sendlater3-callsendat" width="100%" flex="1" label="&sendlater.prompt.sendat.label;" tooltiptext="&sendlater.prompt.sendat.tooltip;" oncommand="Sendlater3Prompt.CallSendAt()&amp;&amp;close();"/>
       <hbox>
 	<button key="sendlater3-quickbutton1-key" id="sendlater3-shortcutbtn_1"
 		style="font-size: 80%;" flex="1"

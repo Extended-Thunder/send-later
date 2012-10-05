@@ -54,8 +54,8 @@ var Sendlater3Prompt = {
     },
 
     StealControlReturn: function(ev) {
-	if (ev.type == "keydown" && ev.ctrlKey && ev.keyCode == 13) {
-	    Sendlater3Prompt.CallSendAt();
+	if (ev.type == "keydown" && ev.ctrlKey && ev.keyCode == 13 &&
+	    Sendlater3Prompt.CallSendAt()) {
 	    close();
 	    ev.preventDefault();
 	}
@@ -205,11 +205,7 @@ var Sendlater3Prompt = {
 
     CheckTextEnter: function(event) {
 	if (event.keyCode == KeyEvent.DOM_VK_RETURN) {
-	    if (Sendlater3Prompt.updateSummary()) {
-		Sendlater3Prompt.CallSendAt();
-		return true;
-	    }
-	    return false;
+	    return Sendlater3Prompt.CallSendAt();
 	}
     },
 
@@ -318,9 +314,14 @@ var Sendlater3Prompt = {
     CallSendAt: function() {
         SL3U.Entering("Sendlater3Prompt.CallSendAt");
 	var sendat = Sendlater3Prompt.updateSummary();
-	var recur = Sendlater3Prompt.GetRecurString(sendat);
-	window.arguments[0].finishCallback(sendat, recur);
-        SL3U.Leaving("Sendlater3Prompt.CallSendAt");
+	var ret = false;
+	if (sendat) {
+	    var recur = Sendlater3Prompt.GetRecurString(sendat);
+	    window.arguments[0].finishCallback(sendat, recur);
+	    ret = true;
+	}
+        SL3U.Returning("Sendlater3Prompt.CallSendAt", ret);
+	return ret;
     }
 }
 

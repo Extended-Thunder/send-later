@@ -94,11 +94,7 @@ var Sendlater3ComposeToolbar = {
     CheckTextEnter: function(event) {
 	if (event.keyCode == KeyEvent.DOM_VK_RETURN &&
 	    ! (event.altKey || event.ctrlKey || event.ShiftKey)) {
-	    if (Sendlater3ComposeToolbar.updateSummary()) {
-		Sendlater3ComposeToolbar.CallSendAt();
-		return true;
-	    }
-	    return false;
+	    return Sendlater3ComposeToolbar.CallSendAt();
 	}
     },
 
@@ -190,13 +186,13 @@ var Sendlater3ComposeToolbar = {
     CallSendAt: function() {
 	SL3U.Entering("Sendlater3ComposeToolbar.CallSendAt");
 	var sendat = Sendlater3ComposeToolbar.updateSummary();
+	var ret = false;
 	if (sendat) {
 	    Sendlater3Composing.SendAtTime(sendat);
+	    ret = true;
 	}
-	else {
-	    SL3U.warn("Sendlater3ComposeToolbar.CallSendAt unexpectedly called when there is no valid send time");
-	}
-	SL3U.Leaving("Sendlater3ComposeToolbar.CallSendAt");
+	SL3U.Returning("Sendlater3ComposeToolbar.CallSendAt", ret);
+	return ret;
     },
 
     CallSendAfter: function(mins) {
