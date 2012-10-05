@@ -204,8 +204,9 @@ var Sendlater3Prompt = {
     },
 
     CheckTextEnter: function(event) {
-	if (event.keyCode == KeyEvent.DOM_VK_RETURN) {
-	    return Sendlater3Prompt.CallSendAt();
+	if (event.keyCode == KeyEvent.DOM_VK_RETURN &&
+	    ! (event.altKey || event.ctrlKey || event.ShiftKey)) {
+	    return Sendlater3ComposeToolbar.CallSendAt();
 	}
     },
 
