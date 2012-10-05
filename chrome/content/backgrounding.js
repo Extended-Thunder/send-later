@@ -756,91 +756,105 @@ var Sendlater3Backgrounding = function() {
     var folderstocheck = new Array();
     var foldersdone = new Array();
 
+    function CheckLoadedFolder(folder) {
+	SetAnimTimer(3000);
+	var thisfolder = folder
+	    .QueryInterface(Components.interfaces.nsIMsgFolder);
+	var messageenumerator;
+	if (SL3U.IsPostbox()) {
+	    messageenumerator = thisfolder.getMessages(msgWindow);
+	}
+	else {
+	    try {
+		messageenumerator = thisfolder.messages;
+	    }
+	    catch (e) {
+		var lmf;
+		try {
+		    lmf = thisfolder
+			.QueryInterface(Components.interfaces
+					.nsIMsgLocalMailFolder);
+		}
+		catch (ex) {}
+		if ( // NS_MSG_ERROR_FOLDER_SUMMARY_OUT_OF_DATE
+		    (e.result == 0x80550005 ||
+		     // NS_MSG_ERROR_FOLDER_SUMMARY_MISSING
+		     e.result == 0x80550006) && lmf) {
+		    SL3U.warn("Rebuilding summary: " +
+			      folder.URI);
+		    try {
+			lmf.getDatabaseWithReparse(null, null);
+		    }
+		    catch (ex) {}
+		}
+		else {
+		    SL3U.alert(window, null,
+			       SL3U.PromptBundleGetFormatted(
+				   "CorruptFolderError",
+				   [folder.URI]));
+		    throw e;
+		}
+	    }
+	}
+	if ( messageenumerator ) {
+	    SL3U.dump ("Got Enumerator\n");
+	    while ( messageenumerator.hasMoreElements() ) {
+		var messageDBHDR = messageenumerator.getNext()
+		    .QueryInterface(Components.interfaces
+				    .nsIMsgDBHdr);
+		var flags;
+		if (SL3U.IsPostbox()) {
+		    flags = 2097152 | 8; // Better way to do this?
+		}
+		else {
+		    var f = Components.interfaces.nsMsgMessageFlags;
+		    flags = f.IMAPDeleted | f.Expunged;
+		}
+		if (! (messageDBHDR.flags & flags)) {
+		    var messageURI = thisfolder
+			.getUriForMsg(messageDBHDR);
+		    CheckThisURIQueueAdd(messageURI);
+		}
+	    }
+	}
+	else {
+	    SL3U.dump("No Enumerator\n");
+	}
+    };
+
     var folderLoadListener = {
 	OnItemEvent: function(folder, event) {
-	    SL3U.Entering("Sendlater3Backgrounding.folderLoadListener.OnItemEvent");
+	    if (! folder) {
+		SL3U.Returning("Sendlater3Backgrounding.folderLoadListener.OnItemEvent", "no folder");
+		return;
+	    }
+	    SL3U.Entering("Sendlater3Backgrounding.folderLoadListener.OnItemEvent", folder.URI, event);
 
 	    if (! checkUuid(false)) {
-		SL3U.Returning("Sendlater3Backgrounding.folderLoadListener.OnItemEvent", "");
+		SL3U.Returning("Sendlater3Backgrounding.folderLoadListener.OnItemEvent", "! checkUuid");
 		return;
 	    }
 
 	    var eventType = event.toString();
 
-	    if (eventType == "FolderLoaded" && folder) {
-		SL3U.debug("FOLDER LOADED - " + folder.URI);
+	    if (eventType == "FolderLoaded") {
 		var where = folderstocheck.indexOf(folder.URI);
 		if (where >= 0) {
 		    SetAnimTimer(3000);
-
-		    SL3U.dump("FOLDER MONITORED - "+folder.URI+"\n");
+		    SL3U.dump("FolderLoaded checking: "+folder.URI);
 		    folderstocheck.splice(where, 1);
 		    foldersdone.push(folder.URI);
+		    CheckLoadedFolder(folder);
 		    ProgressFinish("finish checking folder");
-		    var thisfolder = folder
-			.QueryInterface(Components.interfaces.nsIMsgFolder);
-		    var messageenumerator;
-		    if (SL3U.IsPostbox()) {
-			messageenumerator = thisfolder.getMessages(msgWindow);
-		    }
-		    else {
-			try {
-			    messageenumerator = thisfolder.messages;
-			}
-			catch (e) {
-			    var lmf;
-			    try {
-				lmf = thisfolder
-				    .QueryInterface(Components.interfaces
-						    .nsIMsgLocalMailFolder);
-			    }
-			    catch (ex) {}
-			    if ( // NS_MSG_ERROR_FOLDER_SUMMARY_OUT_OF_DATE
-				(e.result == 0x80550005 ||
-				 // NS_MSG_ERROR_FOLDER_SUMMARY_MISSING
-				 e.result == 0x80550006) && lmf) {
-				SL3U.warn("Rebuilding summary: " +
-					  folder.URI);
-				try {
-				    lmf.getDatabaseWithReparse(null, null);
-				}
-				catch (ex) {}
-			    }
-			    else {
-				SL3U.alert(window, null,
-					   SL3U.PromptBundleGetFormatted(
-					       "CorruptFolderError",
-					       [folder.URI]));
-				throw e;
-			    }
-			}
-		    }
-		    if ( messageenumerator ) {
-			SL3U.dump ("Got Enumerator\n");
-			while ( messageenumerator.hasMoreElements() ) {
-			    var messageDBHDR = messageenumerator.getNext()
-				.QueryInterface(Components.interfaces
-						.nsIMsgDBHdr);
-			    var flags;
-			    if (SL3U.IsPostbox()) {
-				flags = 2097152 | 8; // Better way to do this?
-			    }
-			    else {
-				var f = Components.interfaces.nsMsgMessageFlags;
-				flags = f.IMAPDeleted | f.Expunged;
-			    }
-			    if (! (messageDBHDR.flags & flags)) {
-				var messageURI = thisfolder
-				    .getUriForMsg(messageDBHDR);
-				CheckThisURIQueueAdd(messageURI);
-			    }
-			}
-		    }
-		    else {
-			SL3U.dump("No Enumerator\n");
-		    }
 		}
-	    } 
+	    }
+	    else if (eventType == "Immediate") {
+		SetAnimTimer(3000);
+		SL3U.dump("Immediate checking: "+folder.URI);
+		CheckLoadedFolder(folder);
+		ProgressFinish("finish checking folder");
+	    }
+
 	    SL3U.Leaving("Sendlater3Backgrounding.folderLoadListener.OnItemEvent");
 	}
     };
@@ -922,7 +936,8 @@ var Sendlater3Backgrounding = function() {
 		// sometimes updateFolder doesn't generate a folder
 		// loaded event. *sigh*
 		SL3U.dump("IMMEDIATE " + msg + " - " + uri);
-		folderLoadListener.OnItemEvent(folder, "FolderLoaded");
+		ProgressAdd(msg + " immediate");
+		folderLoadListener.OnItemEvent(folder, "Immediate");
 	    }
 	    
 	    CheckFolder(SL3U.FindSubFolder(fdrlocal, "Drafts"), true,
