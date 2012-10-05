@@ -204,10 +204,14 @@ var Sendlater3Prompt = {
     },
 
     CheckTextEnter: function(event) {
+	SL3U.Entering("Sendlater3Prompt.CheckTextEnter");
+	var ret = false;
 	if (event.keyCode == KeyEvent.DOM_VK_RETURN &&
 	    ! (event.altKey || event.ctrlKey || event.ShiftKey)) {
-	    return Sendlater3ComposeToolbar.CallSendAt();
+	    ret = Sendlater3Prompt.CallSendAt();
 	}
+	SL3U.Returning("Sendlater3Prompt.CheckTextEnter", ret);
+	return ret;
     },
 
     CallSendAfter: function(mins) {
