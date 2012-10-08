@@ -45,10 +45,11 @@
 	    </hbox>
 	    <hbox>
 	      <separator flex="1"/>
+	      <!-- setTimeout used because of https://bugzilla.mozilla.org/show_bug.cgi?id=799219 -->
 	      <datepicker id="sendlater3-datepicker" type="popup"
-			  onchange="Sendlater3Prompt.pickersToText();"/>
+			  onchange="window.setTimeout(Sendlater3Prompt.pickersToText, 0);"/>
 	      <timepicker id="sendlater3-timepicker"
-			  onchange="Sendlater3Prompt.pickersToText();"
+			  onchange="window.setTimeout(Sendlater3Prompt.pickersToText, 0);"
 			  hideseconds="true"/>
 	      <separator flex="1"/>
 	    </hbox>

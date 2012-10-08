@@ -37,10 +37,11 @@
     </toolbaritem>
     <toolbaritem id="sendlater3-toolbar-picker-item" class="chromeclass-toolbar"
 		 context="toolbar-context-menu" hidden="false">
+      <!-- setTimeout used because of https://bugzilla.mozilla.org/show_bug.cgi?id=799219 -->
       <datepicker id="sendlater3-toolbar-datepicker" type="popup"
-		  onchange="Sendlater3ComposeToolbar.pickersToText();"/>
+		  onchange="window.setTimeout(Sendlater3ComposeToolbar.pickersToText, 0);"/>
       <timepicker id="sendlater3-toolbar-timepicker"
-		  onchange="Sendlater3ComposeToolbar.pickersToText();"
+		  onchange="window.setTimeout(Sendlater3ComposeToolbar.pickersToText, 0);"
 		  hideseconds="true"/>
     </toolbaritem>
     <toolbaritem id="sendlater3-toolbar-quickbutton1-item"
