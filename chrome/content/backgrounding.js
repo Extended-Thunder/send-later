@@ -309,6 +309,8 @@ var Sendlater3Backgrounding = function() {
 	this._args = args;
     }
 
+    var MessagesInProgress = new Object();
+
     CopyUnsentListener.prototype = {
 	QueryInterface : function(iid) {
 	    SL3U.Entering("Sendlater3Backgrounding.CopyUnsentListener.QueryInterface");
@@ -369,6 +371,7 @@ var Sendlater3Backgrounding = function() {
 	    }
 	    messageHDR.folder.deleteMessages(dellist, msgWindow, true, false,
 					     null, false);
+	    delete MessagesInProgress[messageHDR.folder.getUriForMsg(messageHDR)];
 	    if (SL3U.getBoolPref("sendunsentmessages")) {
 		queueSendUnsentMessages();
 		SL3U.dump ("Sending Message.");
@@ -682,7 +685,13 @@ var Sendlater3Backgrounding = function() {
 	    }
 
 	    var messageURI = CheckThisURIQueue.shift();
-	    SL3U.debug("Checking message : " + messageURI + "\n");
+	    SL3U.debug("Checking message : " + messageURI);
+
+	    if (MessagesInProgress[messageURI]) {
+		SL3U.debug("Skipping " + messageURI + " already in progress");
+		SL3U.Returning("Sendlater3Backgrounding.CheckThisUriCallback.notify", "");
+		return;
+	    }
 
 	    var MsgService = messenger.messageServiceFromURI(messageURI);
 	    var messageHDR = messenger.msgHdrFromURI(messageURI);
@@ -710,6 +719,7 @@ var Sendlater3Backgrounding = function() {
 		    break;
 		}
 		ProgressAdd("start streaming message");
+		MessagesInProgress[messageURI] = 1;
 		MsgService.streamMessage(messageURI,
 					 new UriStreamListener(messageHDR),
 					 msgWindow, null, false, null);
@@ -741,8 +751,8 @@ var Sendlater3Backgrounding = function() {
 	SL3U.Leaving("Sendlater3Backgrounding.CheckThisURIQueueAdd");
     }
 
-    // folderstocheck is a list of folders waiting to be checked in this
-    // cycle. foldersdone is a list of folders we've already checked in this
+    // folderstocheck is a hash of folders waiting to be checked in this
+    // cycle. foldersdone is a hash of folders we've already checked in this
     // cycle. folderstocheck grows when we scan all the draft folders in
     // CheckForSendLaterCallback. folderstocheck shrinks and foldersdone grows
     // when we process a folder in the folderLoadListener. We need to keep
@@ -753,8 +763,8 @@ var Sendlater3Backgrounding = function() {
     // accounts were pointing at the same Drafts folder, then we could end up
     // processing that Drafts folder multiple times and miscounting pending
     // messages.
-    var folderstocheck = new Array();
-    var foldersdone = new Array();
+    var folderstocheck = new Object();
+    var foldersdone = new Object();
 
     function CheckLoadedFolder(folder) {
 	SetAnimTimer(3000);
@@ -838,12 +848,11 @@ var Sendlater3Backgrounding = function() {
 	    var eventType = event.toString();
 
 	    if (eventType == "FolderLoaded") {
-		var where = folderstocheck.indexOf(folder.URI);
-		if (where >= 0) {
+		if (folderstocheck[folder.URI]) {
 		    SetAnimTimer(3000);
 		    SL3U.dump("FolderLoaded checking: "+folder.URI);
-		    folderstocheck.splice(where, 1);
-		    foldersdone.push(folder.URI);
+		    delete folderstocheck[folder.URI];
+		    foldersdone[folder.URI] = 1;
 		    CheckLoadedFolder(folder);
 		    ProgressFinish("finish checking folder");
 		}
@@ -894,8 +903,8 @@ var Sendlater3Backgrounding = function() {
 		.getService(Components.interfaces.nsIMsgAccountManager);
 	    var fdrlocal = accountManager.localFoldersServer.rootFolder;
 
-	    folderstocheck = new Array();
-	    foldersdone = new Array();
+	    folderstocheck = new Object();
+	    foldersdone = new Object();
 
 	    SL3U.debug("Progress Animation SET");
 	    if (displayprogressbar()) {
@@ -904,13 +913,12 @@ var Sendlater3Backgrounding = function() {
 
 	    var CheckFolder = function(folder, schedule, msg) {
 		var uri = folder.URI;
-		if (folderstocheck.indexOf(uri)>=0 ||
-		    foldersdone.indexOf(uri)>=0) {
+		if (folderstocheck[uri] || foldersdone[uri]) {
 		    SL3U.debug("Already done - " + uri);
 		    return;
 		}
 		if (schedule) {
-		    folderstocheck.push(uri);
+		    folderstocheck[uri] = 1;
 		    SL3U.dump("SCHEDULE " + msg + " - " + uri);
 		    ProgressAdd(msg);
 		    try {
@@ -929,7 +937,7 @@ var Sendlater3Backgrounding = function() {
 		    }
 		}
 		else {
-		    foldersdone.push(uri);
+		    foldersdone[uri] = 1;
 		}
 		// We need to do an immediate scan always, even if
 		// we're also doing a scheduled scan, because
