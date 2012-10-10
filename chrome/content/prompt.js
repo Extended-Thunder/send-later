@@ -95,11 +95,15 @@ var Sendlater3Prompt = {
 			Sendlater3Prompt.CallSendAfter(c()) && close();
 		    };
 		}(closure);
+		// Setting .oncommand property and attribute works
+		// irregularly, so wipe both and use an event handler
+		// instead.
 		btn.removeAttribute("oncommand");
-		// Setting .oncommand property doesn't seem to work.
+		delete btn.oncommand;
 		btn.addEventListener("command", cmd, false);
 		btn.hidden = false;
 		key.removeAttribute("oncommand");
+		delete key.oncommand;
 		key.addEventListener("command", cmd, false);
 	    }
 	}
@@ -224,12 +228,17 @@ var Sendlater3Prompt = {
 	    mins = mins[0];
 	    args.splice(0,2);
 	}
-	if (mins == -1) {
+	if (mins instanceof Date) {
+	    sendat.setTime(mins.getTime());
+	}
+	else if (mins == -1) {
 	    return false;
 	}
-	sendat.setTime(sendat.getTime()+mins*60*1000);
+	else {
+	    sendat.setTime(sendat.getTime()+mins*60*1000);
+	}
 	window.arguments[0].finishCallback(sendat, recur, args);
-        SL3U.Leaving("Sendlater3Prompt.CallSendAfter");
+	SL3U.Leaving("Sendlater3Prompt.CallSendAfter");
 	return true;
     },
 

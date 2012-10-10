@@ -128,12 +128,16 @@ var Sendlater3ComposeToolbar = {
 		}(closure);
 		if (btn) {
 		    btn.label = SL3U.ButtonLabel(i, btn);
-		    // Setting .oncommand property doesn't seem to work.
+		    // Setting .oncommand property and attribute works
+		    // irregularly, so wipe both and use an event
+		    // handler instead.
 		    btn.removeAttribute("oncommand");
+		    delete btn.oncommand;
 		    btn.addEventListener("command", cmd, false);
 		}
 		if (key) {
 		    key.removeAttribute("oncommand");
+		    delete key.oncommand;
 		    key.addEventListener("command", cmd, false);
 		}
 		cmd = undefined;
@@ -206,10 +210,15 @@ var Sendlater3ComposeToolbar = {
 	    mins = mins[0];
 	    args.splice(0,2);
 	}
-	if (mins == -1) {
+	if (mins instanceof Date) {
+	    sendat.setTime(mins.getTime());
+	}
+	else if (mins == -1) {
 	    return false;
 	}
-	sendat.setTime(sendat.getTime()+mins*60*1000);
+	else {
+	    sendat.setTime(sendat.getTime()+mins*60*1000);
+	}
 	Sendlater3Composing.SendAtTime(sendat, recur, args);
 	SL3U.Returning("Sendlater3ComposeToolbar.CallSendAfter", true);
 	return true;
