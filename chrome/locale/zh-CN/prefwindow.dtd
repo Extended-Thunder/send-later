@@ -1,6 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY prefwindow.title "以后发送 首选项">
-<!ENTITY pane1.title "以后发送 首选项">
+<!ENTITY prefwindow.title "以后发送首选项">
+<!ENTITY pane1.title "以后发送首选项">
 <!ENTITY checktimepref.label "检查间隔：">
 <!ENTITY checktimepref2.label "分钟">
 <!ENTITY checktimepref.tooltip "检查是否已到草稿的发送时间的时间间隔，单位为分钟。如果草稿没能及时发送，或者状态栏的待发送消息数比实际少时，请增大这个值。">
@@ -15,7 +15,7 @@
 <!ENTITY showsendlatercolumn.tooltip "查看草稿箱时是否显示延期发送列">
 <!ENTITY showsendlaterheader.caption "显示延期发送消息头">
 <!ENTITY showsendlaterheader.tooltip "查看消息时是否显示“X-Send-Later-At”头，即草稿预定要发送的时间。">
-<!ENTITY showsendlaterstatus.caption "在状态栏中显示 以后发送">
+<!ENTITY showsendlaterstatus.caption "在状态栏中显示以后发送">
 <!ENTITY showsendlaterprogress.caption "在状态栏中显示后台进度">
 <!ENTITY showsendlaterentry.caption "在工具栏中显示时间项">
 <!ENTITY showsendlaterunsentmessages.caption "发送发件箱中的未发送消息">
@@ -26,8 +26,8 @@
 <!ENTITY advanced.caption "高级">
 <!ENTITY dumplevel.caption "转储日志级别：">
 <!ENTITY consolelevel.caption "控制台日志级别：">
-<!ENTITY contactauthor.tooltip "发邮件给 以后发送 的作者。">
+<!ENTITY contactauthor.tooltip "发邮件给以后发送的作者。">
 <!ENTITY contactauthor.value "联系作者">
-<!ENTITY helplink.tooltip "查看 以后发送 文档。">
+<!ENTITY helplink.tooltip "查看以后发送文档。">
 <!ENTITY helplink.value "用户指南">
 <!ENTITY donatelink.value "捐赠">
