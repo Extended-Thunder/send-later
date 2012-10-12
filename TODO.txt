@@ -93,3 +93,5 @@ able to enter the sendlater time, then continue writing and when you
 hit send or sendlater buttons it just acts like you've hit the
 non-delayed sendnow button, in that it just 'goes away' and does its
 thing later"
+
+TODO: Shortcut buttons don't trigger spell-checking.
