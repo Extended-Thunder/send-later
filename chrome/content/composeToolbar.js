@@ -133,12 +133,20 @@ var Sendlater3ComposeToolbar = {
 		    // handler instead.
 		    btn.removeAttribute("oncommand");
 		    delete btn.oncommand;
+		    if (btn.sl3EventListener)
+			btn.removeEventListener("command", btn.sl3EventListener,
+						false);
 		    btn.addEventListener("command", cmd, false);
+		    btn.sl3EventListener = cmd;
 		}
 		if (key) {
 		    key.removeAttribute("oncommand");
 		    delete key.oncommand;
+		    if (key.sl3EventListener)
+			key.removeEventListener("command", key.sl3EventListener,
+						false);
 		    key.addEventListener("command", cmd, false);
+		    key.sl3EventListener = cmd;
 		}
 		cmd = undefined;
 	    }
