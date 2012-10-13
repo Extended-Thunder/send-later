@@ -309,7 +309,8 @@ var Sendlater3Backgrounding = function() {
 	this._args = args;
     }
 
-    var MessagesInProgress = new Object();
+    var MessagesChecked = new Object();
+    var MessagesSent = new Object();
 
     CopyUnsentListener.prototype = {
 	QueryInterface : function(iid) {
@@ -369,9 +370,9 @@ var Sendlater3Backgrounding = function() {
 		    .createInstance(Components.interfaces.nsIMutableArray);
 		dellist.appendElement(messageHDR, false);
 	    }
+	    MessagesSent[messageHDR.folder.getUriForMsg(messageHDR)] = 1;
 	    messageHDR.folder.deleteMessages(dellist, msgWindow, true, false,
 					     null, false);
-	    delete MessagesInProgress[messageHDR.folder.getUriForMsg(messageHDR)];
 	    if (SL3U.getBoolPref("sendunsentmessages")) {
 		queueSendUnsentMessages();
 		SL3U.dump ("Sending Message.");
@@ -687,11 +688,14 @@ var Sendlater3Backgrounding = function() {
 	    var messageURI = CheckThisURIQueue.shift();
 	    SL3U.debug("Checking message : " + messageURI);
 
-	    if (MessagesInProgress[messageURI]) {
-		SL3U.debug("Skipping " + messageURI + " already in progress");
-		SL3U.Returning("Sendlater3Backgrounding.CheckThisUriCallback.notify", "");
+	    if (MessagesChecked[messageURI]) {
+		ProgressFinish("finish checking message");
+		SL3U.debug("Skipping " + messageURI + " already checked");
+		SL3U.Returning("Sendlater3Backgrounding.CheckThisUriCallback.notify", "(found in MessagesChecked)");
 		return;
 	    }
+
+	    MessagesChecked[messageURI] = 1;
 
 	    var MsgService = messenger.messageServiceFromURI(messageURI);
 	    var messageHDR = messenger.msgHdrFromURI(messageURI);
@@ -719,7 +723,6 @@ var Sendlater3Backgrounding = function() {
 		    break;
 		}
 		ProgressAdd("start streaming message");
-		MessagesInProgress[messageURI] = 1;
 		MsgService.streamMessage(messageURI,
 					 new UriStreamListener(messageHDR),
 					 msgWindow, null, false, null);
@@ -906,6 +909,15 @@ var Sendlater3Backgrounding = function() {
 	    folderstocheck = new Object();
 	    foldersdone = new Object();
 
+	    for (uri in MessagesSent) {
+		if (! MessagesChecked[uri]) {
+		    delete MessagesSent[uri];
+		    SL3U.debug("Removed from MessagesSent: " + uri);
+		}
+	    }
+	    MessagesChecked = new Object();
+
+	    
 	    SL3U.debug("Progress Animation SET");
 	    if (displayprogressbar()) {
 		document.getElementById("sendlater3-deck").selectedIndex = 0;
