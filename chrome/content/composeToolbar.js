@@ -9,7 +9,7 @@ var Sendlater3ComposeToolbar = {
 		   "sendlater3-toolbar-datepicker",
 		   "sendlater3-toolbar-timepicker",
 		   "sendlater3-toolbarbutton"];
-	for (idnum in ids) {
+	for (var idnum in ids) {
 	    var obj = document.getElementById(ids[idnum]);
 	    if (obj) {
 		obj["disabled"] = recurring;
@@ -34,7 +34,7 @@ var Sendlater3ComposeToolbar = {
 	var dateObj;
 	if (dateStr) {
 	    try {
-		var dateObj = dateParse(dateStr);
+		var dateObj = sendlater3DateParse(dateStr);
 	    }
 	    catch (ex) {}
 	    if (! (dateObj && dateObj.isValid())) {
@@ -50,7 +50,8 @@ var Sendlater3ComposeToolbar = {
 	    button.setAttribute("disabled", disabled);
 	    if (dateObj && textField) {
 		button.label = SL3U.PromptBundleGet("sendaround") + " " +
-		    dateToSugarDate(dateObj).format('long', sugarLocale());
+		    sendlater3DateToSugarDate(dateObj)
+		    .format('long', sendlater3SugarLocale());
 	    }
 	    else {
 		button.label = button.getAttribute("sl3label");
@@ -158,8 +159,8 @@ var Sendlater3ComposeToolbar = {
 		      Sendlater3Composing.prevXSendLater);
 	    if (textField) {
 		textField.value =
-		    Sendlater3Composing.prevXSendLater.format("long",
-							      sugarLocale());
+		    Sendlater3Composing.prevXSendLater
+		    .format("long", sendlater3SugarLocale());
 	    }
 	    Sendlater3ComposeToolbar.dateToPickers(
 		Sendlater3Composing.prevXSendLater);

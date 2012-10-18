@@ -145,7 +145,7 @@ var Sendlater3Prompt = {
 	var prevXSendLater = window.arguments[0].previouslyTimed;
 	if (prevXSendLater) {
 	   document.getElementById("sendlater3-time-text").value =
-	       prevXSendLater.format("long", sugarLocale());
+	       prevXSendLater.format("long", sendlater3SugarLocale());
 	    Sendlater3Prompt.updateSummary();
 	}
 	document.getElementById("sendlater3-time-text").focus();
@@ -180,7 +180,7 @@ var Sendlater3Prompt = {
 	var dateStr = document.getElementById("sendlater3-time-text").value;
 	if (dateStr) {
 	    try {
-		var dateObj = dateParse(dateStr);
+		var dateObj = sendlater3DateParse(dateStr);
 	    }
 	    catch (ex) {
 	    }
@@ -191,7 +191,8 @@ var Sendlater3Prompt = {
 	var button = document.getElementById("sendlater3-callsendat");
 	if (dateObj) {
 	    button.label = SL3U.PromptBundleGet("sendaround") + " "
-		+ dateToSugarDate(dateObj).format('long', sugarLocale());
+		+ sendlater3DateToSugarDate(dateObj)
+		.format('long', sendlater3SugarLocale());
 	    Sendlater3Prompt.CheckRecurring(dateObj);
 	    if (! fromPicker) {
 		Sendlater3Prompt.dateToPickers(dateObj);

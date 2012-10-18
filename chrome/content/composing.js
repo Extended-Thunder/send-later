@@ -1,8 +1,6 @@
 Components.utils.import("resource://sendlater3/dateparse.jsm");
 
 var Sendlater3Composing = {
-    sComposeMsgsBundle: null,
-
     composeListener: {
 	NotifyComposeBodyReady: function() {
 	    gContentChanged = true;
@@ -48,8 +46,6 @@ var Sendlater3Composing = {
     main: function() {
 	SL3U.initUtil();
 
-	sComposeMsgsBundle = document.getElementById("bundle_composeMsgs");
-
 	function CheckForXSendLater() {
 	    SL3U.Entering("Sendlater3Composing.main.CheckforXSendLater");
 	    Sendlater3Composing.prevXSendLater = false;
@@ -73,7 +69,7 @@ var Sendlater3Composing = {
 		    var hdr = messageHDR.getStringProperty("x-send-later-at");
 		    if (hdr) {
 			Sendlater3Composing.prevXSendLater = 
-			    dateToSugarDate(new Date(hdr));
+			    sendlater3DateToSugarDate(new Date(hdr));
 			gMsgCompose.RegisterStateListener(Sendlater3Composing
 							  .composeListener);
 		    }
@@ -292,6 +288,9 @@ var Sendlater3Composing = {
     // SENDLATER3 CHANGED: Added "Postbox" to end of function name
     GenericSendMessagePostbox: function(msgType, aDontClearReferencesOnSubjectChange)
     {
+      // SENDLATER3 ADDED - sComposeMsgsBundle initialization
+      var sComposeMsgsBundle = document.getElementById("bundle_composeMsgs");
+
       dump("GenericSendMessage from XUL\n");
 
       dump("Identity = " + getCurrentIdentity() + "\n");
@@ -558,7 +557,7 @@ var Sendlater3Composing = {
 	    var event = document.createEvent('UIEvents');
 	    event.initEvent('compose-send-message', false, true);
 	    var msgcomposeWindow = document.getElementById("msgcomposeWindow");
-	    // SENDLATER3 ADDED
+	    // BEGIN SENDLATER3 ADDED
 	    msgcomposeWindow.setAttribute("sending_later", true);
 	    // END SENDLATER3 ADDED
 	    msgcomposeWindow.setAttribute("msgtype", msgType);
