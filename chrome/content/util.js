@@ -455,15 +455,17 @@ var Sendlater3Util = {
 		    throw new Error("Send Later: Array returned by recurrence " +
 				    "function '" + funcName + "' is too short");
 		}
-		if (typeof(nextRecur[0]) != "number") {
+		if (typeof(nextRecur[0]) != "number" && ! (nextRecur[0] instanceof Date)) {
 		    // test 13
 		    throw new Error("Send Later: Array " + nextRecur + " returned by recurrence " +
 				    "function '" + funcName + "' did not start with " +
-				    "a number");
+				    "a number or Date");
 		}
-		// test 16
-		next.setTime(next.getTime()+nextRecur[0]*60*1000);
-		nextRecur[0] = next;
+		if (! (nextRecur[0] instanceof Date)) {
+		    // test 16
+		    next.setTime(next.getTime()+nextRecur[0]*60*1000);
+		    nextRecur[0] = next;
+		}
 		return nextRecur;
 	    }
 	}
