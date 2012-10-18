@@ -307,6 +307,9 @@ var Sendlater3Backgrounding = function() {
 	this._sendat = sendat;
 	this._recur = recur;
 	this._args = args;
+	SL3U.debug("Sendlater3Backgrounding.CopyUnsentListener: _sendat=" + 
+		   this._sendat + ", _recur=" +  this._recur + ", _args=" + 
+		   this._args);
     }
 
     var MessagesChecked = new Object();
@@ -401,6 +404,7 @@ var Sendlater3Backgrounding = function() {
 		}
 		content = content.replace(/\r\n\r\n/, header + "\r\n");
 		content = content.replace(/^From .*\r\n/, "");
+		SL3U.debug("Sendlater3Backgrounding.CopyUnsentListener.OnStopCopy: header=" + header);
 		var listener = new CopyRecurListener(folder);
 		SL3U.CopyStringMessageToFolder(content, folder, listener);
 	    }
@@ -549,6 +553,9 @@ var Sendlater3Backgrounding = function() {
 	this._header = messageHDR.getStringProperty("x-send-later-at");
 	this._recur = messageHDR.getStringProperty("x-send-later-recur");
 	this._args = messageHDR.getStringProperty("x-send-later-args");
+	SL3U.debug("Sendlater3Backgrounding.UriStreamListener: _header=" +
+		   this._header + ", _recur=" + this._recur + ", _args=" +
+		   this._args);
 	SL3U.Leaving("Sendlater3Backgrounding.UriStreamListener");
     }
 
