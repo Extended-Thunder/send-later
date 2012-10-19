@@ -1,5 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY sendlater.prompt.sendlater.label "放到发件箱">
+<!ENTITY sendlater.prompt.sendlater.accesskey "O">
 <!ENTITY sendlater.prompt.sendlater.tooltip "不指定发送时间，而是移动消息到发件箱，等待下一次发送未发送消息时发送。">
 <!ENTITY sendlater.prompt.sendnow.label "立即发送">
 <!ENTITY sendlater.prompt.sendnow.accesskey "N">

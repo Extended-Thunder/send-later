@@ -1,5 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY sendlater.prompt.sendlater.label "Umieść w skrzynce nadawczej">
+<!ENTITY sendlater.prompt.sendlater.accesskey "U">
 <!ENTITY sendlater.prompt.sendlater.tooltip "Zamiast wysyłki o planowanym czasie przenosi wiadomość do folderu Skrzynka nadawcza, aby wysłać ją następnym razem wraz z innymi wiadomościami oczekującymi na wysyłkę.">
 <!ENTITY sendlater.prompt.sendnow.label "Wyślij Teraz">
 <!ENTITY sendlater.prompt.sendnow.accesskey "T">

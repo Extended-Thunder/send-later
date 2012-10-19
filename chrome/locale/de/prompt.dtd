@@ -1,5 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY sendlater.prompt.sendlater.label "In den Postausgang verschieben">
+<!ENTITY sendlater.prompt.sendlater.accesskey "P">
 <!ENTITY sendlater.prompt.sendlater.tooltip "Statt eine bestimmte Sendezeit anzugeben, wird die Nachricht in den Postausgang verschiebt, und beim nächsten Versenden ungelesener Nachrichten mitversendet.">
 <!ENTITY sendlater.prompt.sendnow.label "Jetzt senden">
 <!ENTITY sendlater.prompt.sendnow.accesskey "J">

@@ -1,5 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY sendlater.prompt.sendlater.label "Siirrä Lähetettyihin">
+<!ENTITY sendlater.prompt.sendlater.accesskey "S">
 <!ENTITY sendlater.prompt.sendlater.tooltip "Ajastamisen sijasta siirrä Lähetetyt-kansioon lähetettäväksi seuraavalla kerralla kun viestejä lähetetään.">
 <!ENTITY sendlater.prompt.sendnow.label "Lähetä heti">
 <!ENTITY sendlater.prompt.sendnow.accesskey "H">

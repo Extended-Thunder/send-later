@@ -1,5 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY sendlater.prompt.sendlater.label "Lägg i Utkorgen">
+<!ENTITY sendlater.prompt.sendlater.accesskey "U">
 <!ENTITY sendlater.prompt.sendlater.tooltip "Istället för att schemalägga sändningen till en särskild tid flyttas meddelandet till Utkorgen och skickas nästa gång osända meddelanden skickas.">
 <!ENTITY sendlater.prompt.sendnow.label "Skicka Nu">
 <!ENTITY sendlater.prompt.sendnow.accesskey "N">

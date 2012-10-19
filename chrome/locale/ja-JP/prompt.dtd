@@ -1,5 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY sendlater.prompt.sendlater.label "[送信トレイ] に置く">
+<!ENTITY sendlater.prompt.sendlater.accesskey "O">
 <!ENTITY sendlater.prompt.sendlater.tooltip "送信日時を指定せず、メッセージを [送信トレイ] へ移し、次の機会に未送信のメッセージを送信します。">
 <!ENTITY sendlater.prompt.sendnow.label "今すぐ送信する">
 <!ENTITY sendlater.prompt.sendnow.accesskey "i">

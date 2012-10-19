@@ -1,5 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY sendlater.prompt.sendlater.label "Metti nella “Posta in uscita”">
+<!ENTITY sendlater.prompt.sendlater.accesskey "P">
 <!ENTITY sendlater.prompt.sendlater.tooltip "Anziché inviarlo in automatico a un orario specifico, sposta il messaggio nella cartella “Posta in uscita” per inviarlo non appena i messaggi da inviare verranno spediti.">
 <!ENTITY sendlater.prompt.sendnow.label "Invia Ora">
 <!ENTITY sendlater.prompt.sendnow.accesskey "O">

@@ -114,7 +114,10 @@
       <description flex="1"></description>
     </hbox>
     <hbox align="center" style="border:solid red 2px; font-size: 90%;">
-      <button label="&sendlater.prompt.sendlater.label;" tooltiptext="&sendlater.prompt.sendlater.tooltip;" oncommand="window.arguments[0].continueCallback();close();"/>
+      <button label="&sendlater.prompt.sendlater.label;"
+	      accesskey="&sendlater.prompt.sendlater.accesskey;"
+	      tooltiptext="&sendlater.prompt.sendlater.tooltip;"
+	      oncommand="window.arguments[0].continueCallback();close();"/>
       <description flex="1"></description>
       <button label="&sendlater.prompt.sendnow.label;" accesskey="&sendlater.prompt.sendnow.accesskey;" oncommand="window.arguments[0].sendCallback();close();"/>
       <description flex="1"></description>

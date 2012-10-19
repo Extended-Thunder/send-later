@@ -1,5 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY sendlater.prompt.sendlater.label "In Postvak UIT plaatsen">
+<!ENTITY sendlater.prompt.sendlater.accesskey "U">
 <!ENTITY sendlater.prompt.sendlater.tooltip "Niet een tijdstip voor verzending kiezen, maar in het Postvak UIT plaatsen voor verzending wanneer de nog onverzonden berichten verzonden worden.">
 <!ENTITY sendlater.prompt.sendnow.label "Nu verzenden">
 <!ENTITY sendlater.prompt.sendnow.accesskey "N">
