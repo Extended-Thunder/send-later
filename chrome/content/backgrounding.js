@@ -385,8 +385,12 @@ var Sendlater3Backgrounding = function() {
 	    }
 	    SetAnimTimer(3000);
 	    if (recur) {
+		if (args) {
+		    args = JSON.parse(args);
+		}
 		var next = SL3U.NextRecurDate(new Date(sendat), recur, null,
-					      JSON.parse(args));
+					      args);
+		SL3U.debug("Got from NextRecurDate: " + next)
 		if (! next) {
 		    return;
 		}
