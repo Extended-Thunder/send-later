@@ -288,119 +288,119 @@ var Sendlater3Util = {
 	return s;
     },
 
-    NextRecurTest: function() {
-	function DeepCompare(a, b) {
-	    if (a instanceof Array) {
-		if (b instanceof Array) {
-		    if (a.length != b.length) {
-			return false;
-		    }
-		    var i;
-		    for (i = 0; i < a.length; i++) {
-			if (! DeepCompare(a[i], b[i])) {
-			    return false;
-			}
-		    }
-		    return true;
-		}
-		return false;
-	    }
-	    if (b instanceof Array) {
-		return false;
-	    }
-	    if (a instanceof Date) {
-		if (b instanceof Date) {
-		    return a.getTime() == b.getTime();
-		}
-		return false;
-	    }
-	    return a == b;
-	}
+    // NextRecurTest: function() {
+    // 	function DeepCompare(a, b) {
+    // 	    if (a instanceof Array) {
+    // 		if (b instanceof Array) {
+    // 		    if (a.length != b.length) {
+    // 			return false;
+    // 		    }
+    // 		    var i;
+    // 		    for (i = 0; i < a.length; i++) {
+    // 			if (! DeepCompare(a[i], b[i])) {
+    // 			    return false;
+    // 			}
+    // 		    }
+    // 		    return true;
+    // 		}
+    // 		return false;
+    // 	    }
+    // 	    if (b instanceof Array) {
+    // 		return false;
+    // 	    }
+    // 	    if (a instanceof Date) {
+    // 		if (b instanceof Date) {
+    // 		    return a.getTime() == b.getTime();
+    // 		}
+    // 		return false;
+    // 	    }
+    // 	    return a == b;
+    // 	}
 
-	window['Test1'] = function Test1() { return; };
-	window['Test2'] = function Test2() { return "foo"; };
-	window['Test3'] = function Test3() { return new Array(); };
-	window['Test4'] = function Test4() { return new Array("monthly", "extra"); };
-	window['Test5'] = function Test5() { return -1; };
-	window['Test6'] = function Test6() { return 5; };
-	window['Test7'] = function Test7() { return new Array(7, "monthly 5"); };
-	window['Test8'] = function Test8() { return new Array(7, "monthly 5", "freeble"); };
-	var d1 = new Date();
-	d1.setTime((new Date("10/3/2012")).getTime()+5*60*1000);
-	var d2 = new Date();
-	d2.setTime((new Date("10/3/2012")).getTime()+7*60*1000);
-	var tests = new Array(
-	    new Array("1/1/2012", "daily", "1/1/2012", "1/2/2012"),
-	    new Array("1/2/2012", "weekly", "1/10/2012", "1/16/2012"),
-	    new Array("1/5/2012", "monthly 5", "1/5/2012", "2/5/2012"),
-	    new Array("3/1/2012", "monthly 30", "3/1/2012", "3/30/2012"),
-	    new Array("4/15/2012", "monthly 0 3", "4/15/2012", "5/20/2012"),
-	    new Array("1/29/2012", "monthly 0 5", "1/30/2012", "4/29/2012"),
-	    new Array("2/29/2012", "yearly 1 29", "2/29/2012", "3/1/2013"),
-	    new Array("3/1/2013", "yearly 1 29 / 3", "3/1/2013", "2/29/2016"),
-	    new Array("10/3/2012", "function foo", "10/3/2012", "error is not defined"),
-	    new Array("10/3/2012", "function Sendlater3Util", "10/3/2012", "error is not a function"),
-	    new Array("10/3/2012", "function Test1", "10/3/2012", "error did not return a value"),
-	    new Array("10/3/2012", "function Test2", "10/3/2012", "error did not return number or array"),
-	    new Array("10/3/2012", "function Test3", "10/3/2012", "error is too short"),
-	    new Array("10/3/2012", "function Test4", "10/3/2012", "error did not start with a number"),
-	    new Array("10/3/2012", "function Test5", "10/3/2012", null),
-	    new Array("10/3/2012", "function Test6", "10/4/2012", new Array(d1, null)),
-	    new Array("10/3/2012", "function Test7", "10/4/2012", new Array(d2, "monthly 5")),
-	    new Array("10/3/2012", "function Test8", "10/4/2012", new Array(d2, "monthly 5", "freeble"))
-	);
+    // 	window['Test1'] = function Test1() { return; };
+    // 	window['Test2'] = function Test2() { return "foo"; };
+    // 	window['Test3'] = function Test3() { return new Array(); };
+    // 	window['Test4'] = function Test4() { return new Array("monthly", "extra"); };
+    // 	window['Test5'] = function Test5() { return -1; };
+    // 	window['Test6'] = function Test6() { return 5; };
+    // 	window['Test7'] = function Test7() { return new Array(7, "monthly 5"); };
+    // 	window['Test8'] = function Test8() { return new Array(7, "monthly 5", "freeble"); };
+    // 	var d1 = new Date();
+    // 	d1.setTime((new Date("10/3/2012")).getTime()+5*60*1000);
+    // 	var d2 = new Date();
+    // 	d2.setTime((new Date("10/3/2012")).getTime()+7*60*1000);
+    // 	var tests = new Array(
+    // 	    new Array("1/1/2012", "daily", "1/1/2012", "1/2/2012"),
+    // 	    new Array("1/2/2012", "weekly", "1/10/2012", "1/16/2012"),
+    // 	    new Array("1/5/2012", "monthly 5", "1/5/2012", "2/5/2012"),
+    // 	    new Array("3/1/2012", "monthly 30", "3/1/2012", "3/30/2012"),
+    // 	    new Array("4/15/2012", "monthly 0 3", "4/15/2012", "5/20/2012"),
+    // 	    new Array("1/29/2012", "monthly 0 5", "1/30/2012", "4/29/2012"),
+    // 	    new Array("2/29/2012", "yearly 1 29", "2/29/2012", "3/1/2013"),
+    // 	    new Array("3/1/2013", "yearly 1 29 / 3", "3/1/2013", "2/29/2016"),
+    // 	    new Array("10/3/2012", "function foo", "10/3/2012", "error is not defined"),
+    // 	    new Array("10/3/2012", "function Sendlater3Util", "10/3/2012", "error is not a function"),
+    // 	    new Array("10/3/2012", "function Test1", "10/3/2012", "error did not return a value"),
+    // 	    new Array("10/3/2012", "function Test2", "10/3/2012", "error did not return number or array"),
+    // 	    new Array("10/3/2012", "function Test3", "10/3/2012", "error is too short"),
+    // 	    new Array("10/3/2012", "function Test4", "10/3/2012", "error did not start with a number"),
+    // 	    new Array("10/3/2012", "function Test5", "10/3/2012", null),
+    // 	    new Array("10/3/2012", "function Test6", "10/4/2012", new Array(d1, null)),
+    // 	    new Array("10/3/2012", "function Test7", "10/4/2012", new Array(d2, "monthly 5")),
+    // 	    new Array("10/3/2012", "function Test8", "10/4/2012", new Array(d2, "monthly 5", "freeble"))
+    // 	);
 
-	var i;
-	for (i in tests) {
-	    var test = tests[i];
-	    var errmsg = null;
-	    var result = null;
-	    try {
-		result = SL3U.NextRecurDate(new Date(test[0]),
-					    test[1],
-					    new Date(test[2]));
-	    }
-	    catch (ex) {
-		errmsg = ex.message;
-	    }
-	    if (errmsg) {
-		if (test[3] && test[3].match(/^error /)) {
-		    var expected = test[3].substring(6);
-		    if (errmsg.match(expected)) {
-			SL3U.warn("NextRecurTest: PASS " + i);
-		    }
-		    else {
-			SL3U.warn("NextRecurTest: FAIL " + i + 
-				  ", error string '" + errmsg + "' does not match '" +
-				 expected + "'");
-		    }
-		}
-		else {
-		    SL3U.warn("NextRecurTest: FAIL " + i +
-			      ", unexpected exception: " + errmsg);
-		}
-	    }
-	    else if (test[1].match(/^function/)) {
-		if (DeepCompare(result, test[3])) {
-		    SL3U.warn("NextRecurTest: PASS " + i);
-		}
-		else {
-		    SL3U.warn("NextRecurTest: FAIL " + i + ", expected DC " +
-			      test[3] + ", got " + result);
-		}
-	    }   
-	    else {
-		var expected = new Date(test[3]);
-		if (result.getTime() == expected.getTime()) {
-		    SL3U.warn("NextRecurTest: PASS " + i);
-		}
-		else {
-		    SL3U.warn("NextRecurTest: FAIL " + i + ", expected " +
-			      expected + ", got " + result);
-		}
-	    }
-	}
-    },
+    // 	var i;
+    // 	for (i in tests) {
+    // 	    var test = tests[i];
+    // 	    var errmsg = null;
+    // 	    var result = null;
+    // 	    try {
+    // 		result = SL3U.NextRecurDate(new Date(test[0]),
+    // 					    test[1],
+    // 					    new Date(test[2]));
+    // 	    }
+    // 	    catch (ex) {
+    // 		errmsg = ex.message;
+    // 	    }
+    // 	    if (errmsg) {
+    // 		if (test[3] && test[3].match(/^error /)) {
+    // 		    var expected = test[3].substring(6);
+    // 		    if (errmsg.match(expected)) {
+    // 			SL3U.warn("NextRecurTest: PASS " + i);
+    // 		    }
+    // 		    else {
+    // 			SL3U.warn("NextRecurTest: FAIL " + i + 
+    // 				  ", error string '" + errmsg + "' does not match '" +
+    // 				 expected + "'");
+    // 		    }
+    // 		}
+    // 		else {
+    // 		    SL3U.warn("NextRecurTest: FAIL " + i +
+    // 			      ", unexpected exception: " + errmsg);
+    // 		}
+    // 	    }
+    // 	    else if (test[1].match(/^function/)) {
+    // 		if (DeepCompare(result, test[3])) {
+    // 		    SL3U.warn("NextRecurTest: PASS " + i);
+    // 		}
+    // 		else {
+    // 		    SL3U.warn("NextRecurTest: FAIL " + i + ", expected DC " +
+    // 			      test[3] + ", got " + result);
+    // 		}
+    // 	    }   
+    // 	    else {
+    // 		var expected = new Date(test[3]);
+    // 		if (result.getTime() == expected.getTime()) {
+    // 		    SL3U.warn("NextRecurTest: PASS " + i);
+    // 		}
+    // 		else {
+    // 		    SL3U.warn("NextRecurTest: FAIL " + i + ", expected " +
+    // 			      expected + ", got " + result);
+    // 		}
+    // 	    }
+    // 	}
+    // },
 
     NextRecurDate: function(next, recurSpec, now, args) {
 	Sendlater3Util.Entering("NextRecurDate", next, recurSpec, now, args);
