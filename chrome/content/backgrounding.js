@@ -48,6 +48,7 @@ var Sendlater3Backgrounding = function() {
 		    catch (ex) {
 			SL3U.alert(window, null,
 				   SL3U.PromptBundleGet("SendingUnsentError"));
+			SL3U.warn(ex);
 		    }
 		}
 	    }
@@ -73,6 +74,7 @@ var Sendlater3Backgrounding = function() {
 	    catch (ex) {
 		SL3U.alert(window, null,
 			   SL3U.PromptBundleGet("SendingUnsentError"));
+		SL3U.warn(ex);
 	    }
 	}
 	SL3U.Leaving("Sendlater3Backgrounding.queueSendUnsentMessages");
