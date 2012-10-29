@@ -1,6 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY prefwindow.title "Inställningar för Skicka Senare">
-<!ENTITY pane1.title "Inställningar för Skicka Senare">
+<!ENTITY prefwindow.title "Inställningar för Skicka senare">
+<!ENTITY pane1.title "Inställningar för Skicka senare">
 <!ENTITY checktimepref.label "Kontrollera var:">
 <!ENTITY checktimepref2.label "ms">
 <!ENTITY checktimepref.tooltip "Intervall, i millisekunder, mellan sökningar efter utkast vars sändtid har kommit. Öka detta värde om dina utkast ibland inte skickas på utsatt tid eller antalet väntande meddelanden i ditt statusfält inte speglar alla schemalagda utkast.">
@@ -15,19 +15,19 @@
 <!ENTITY showsendlatercolumn.tooltip "Visning av kolumnen “Skicka senare” vid granskning av utkastmappar">
 <!ENTITY showsendlaterheader.caption "Visa huvudet “X-Send-Later-At”">
 <!ENTITY showsendlaterheader.tooltip "Visning av huvudet “X-Send-Later-At”, d.v.s. den tidpunkt då ett utkast har schemalagts att skickas, i meddelandehuvudet vid granskning av ett meddelande.">
-<!ENTITY showsendlaterstatus.caption "Visa Skicka Senare i statusfältet">
+<!ENTITY showsendlaterstatus.caption "Visa Skicka senare i statusfältet">
 <!ENTITY showsendlaterprogress.caption "Visa bakgrundsförlopp i statusfältet">
 <!ENTITY showsendlaterentry.caption "Visa tidsangivelse i verktygsfältet">
 <!ENTITY showsendlaterunsentmessages.caption "Utlös sändning av ej skickade meddelanden från Utkorgen">
-<!ENTITY showsendlaterunsentmessages.tooltip "Om du avmarkerar detta alternativ, så skickar inte Skicka Senare iväg dina meddelanden, utan lägger dem i din utkorg när de har schemalagts för avsändning. Avmarkera detta alternativ om du, exempelvis, använder något annat tillägg, t.ex. BlunderDelay, för att med regelbundna intervall skicka meddelanden från Utkorgen. Observera att när detta alternativ är markerat, så skickar Skicka Senare SAMTLIGA meddelanden i din utkorg varje gång ett meddelande skall skickas.">
+<!ENTITY showsendlaterunsentmessages.tooltip "Om du avmarkerar detta alternativ, så skickar inte Skicka senare iväg dina meddelanden, utan lägger dem i din utkorg när de har schemalagts för avsändning. Avmarkera detta alternativ om du, exempelvis, använder något annat tillägg, t.ex. BlunderDelay, för att med regelbundna intervall skicka meddelanden från Utkorgen. Observera att när detta alternativ är markerat, så skickar Skicka senare SAMTLIGA meddelanden i din utkorg varje gång ett meddelande skall skickas.">
 <!ENTITY sendlatersendbutton.caption "“Skicka” innebär “Skicka senare”">
 <!ENTITY sendlatersendbutton.tooltip "Om detta alternativ är aktiverat, så utförs kommandot “Skicka” (antingen via knappen eller genom att trycka ner Ctrl+Retur) precis som “Skicka senare”.">
 <!ENTITY altbinding.caption "Tilldela Alt+Skift+Retur istället för Ctrl+Skift+Retur">
 <!ENTITY advanced.caption "Avancerat">
 <!ENTITY dumplevel.caption "Loggningsnivå för loggdump:">
 <!ENTITY consolelevel.caption "Loggningsnivå för konsol:">
-<!ENTITY contactauthor.tooltip "Skicka ett e-brev till skaparen av Skicka Senare.">
+<!ENTITY contactauthor.tooltip "Skicka ett e-brev till skaparen av Skicka senare.">
 <!ENTITY contactauthor.value "Kontakta skaparen">
-<!ENTITY helplink.tooltip "Visa dokumentationen för Skicka Senare.">
+<!ENTITY helplink.tooltip "Visa dokumentationen för Skicka senare.">
 <!ENTITY helplink.value "Användarhandbok">
 <!ENTITY donatelink.value "Donera">
