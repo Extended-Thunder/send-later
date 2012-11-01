@@ -2,8 +2,8 @@
 <!ENTITY prefwindow.title "Inställningar för Skicka senare">
 <!ENTITY pane1.title "Inställningar för Skicka senare">
 <!ENTITY checktimepref.label "Kontrollera var:">
-<!ENTITY checktimepref2.label "ms">
-<!ENTITY checktimepref.tooltip "Intervall, i millisekunder, mellan sökningar efter utkast vars sändtid har kommit. Öka detta värde om dina utkast ibland inte skickas på utsatt tid eller antalet väntande meddelanden i ditt statusfält inte speglar alla schemalagda utkast.">
+<!ENTITY checktimepref2.label "minuter">
+<!ENTITY checktimepref.tooltip "Intervall, i minuter, mellan sökningar efter utkast vars sändtid har kommit. Öka detta värde om dina utkast ibland inte skickas på utsatt tid eller antalet väntande meddelanden i ditt statusfält inte speglar alla schemalagda utkast.">
 <!ENTITY general.caption "Allmänt">
 <!ENTITY quickoption1.caption "Genväg 1">
 <!ENTITY quickoption2.caption "Genväg 2">

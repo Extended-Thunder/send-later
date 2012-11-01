@@ -2,8 +2,8 @@
 <!ENTITY prefwindow.title "Later Verzenden-voorkeuren">
 <!ENTITY pane1.title "Later Verzenden-voorkeuren">
 <!ENTITY checktimepref.label "Controleren elke:">
-<!ENTITY checktimepref2.label "milliseconden">
-<!ENTITY checktimepref.tooltip "Interval, in milliseconden, tussen de controles van de concepten die verstuurd moeten worden. Vergroot deze waarde als uw concepten niet altijd op tijd verstuurd worden of als het aantal af te handelen berichten in uw statusbalk niet altijd overeenkomt met het werkelijke aantal.">
+<!ENTITY checktimepref2.label "minuten">
+<!ENTITY checktimepref.tooltip "Interval, in minuten, tussen de controles van de concepten die verstuurd moeten worden. Vergroot deze waarde als uw concepten niet altijd op tijd verstuurd worden of als het aantal af te handelen berichten in uw statusbalk niet altijd overeenkomt met het werkelijke aantal.">
 <!ENTITY general.caption "Algemeen">
 <!ENTITY quickoption1.caption "Sneltoets 1">
 <!ENTITY quickoption2.caption "Sneltoets 2">
