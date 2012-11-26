@@ -1,27 +1,27 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY sendlater.prompt.sendlater.label "העבר לתיבת דואר יוצא">
-<!ENTITY sendlater.prompt.sendlater.accesskey "י">
-<!ENTITY sendlater.prompt.sendlater.tooltip "במקום לקבוע מועד משלוח מוגדר, העבר את ההודעה לתיבת הדואר היוצא כדי לשלוח אותה בפעם הבאה, יחד עם שאר ההודעות הממתינות למשלוח">
-<!ENTITY sendlater.prompt.sendnow.label "שלח כעת">
-<!ENTITY sendlater.prompt.sendnow.accesskey "כ">
-<!ENTITY sendlater.prompt.close.label "בטל">
-<!ENTITY sendlater.prompt.close.tooltip "חזור להמשך עריכת ההודעה">
-<!ENTITY sendlater.prompt.title.label "שלח הודעת דוא&quot;ל זו מאוחר יותר">
-<!ENTITY sendlater.prompt.textbox.label "שלח ב:">
-<!ENTITY sendlater.prompt.or.label "‫דוג: ‬‪'3:00pm Thursday'‬‫, ‬‪'12/27/2012 15:17'‬">
-<!ENTITY sendlater.prompt.textbox.tooltip "‫הגדר תאריך ושעה למשלוח. רישום חופשי כמו ‬‪'next Tuesday at 3:00pm'‬‫ נתמך אף הוא.‬">
-<!ENTITY sendlater.prompt.textbox.emptytext "">
-<!ENTITY sendlater.prompt.sendat.label "שלח מאוחר יותר במועד(ים) שהוגדרו לעיל">
-<!ENTITY sendlater.prompt.sendat.tooltip "שמור את ההודעה בתיקית הטיוטות למשלוח אוטומטי במועד שהוגדר לעיל">
-<!ENTITY sendlater.prompt.recur.label "חזור שוב">
-<!ENTITY sendlater.prompt.none.label "ללא">
-<!ENTITY sendlater.prompt.daily.label "השהה">
-<!ENTITY sendlater.prompt.weekly.label "שבועי">
-<!ENTITY sendlater.prompt.monthly.label "חודשי">
-<!ENTITY sendlater.prompt.yearly.label "שנתי">
-<!ENTITY sendlater.toolbar.sendlater.button.label "שלח מאוחר יותר">
-<!ENTITY sendlater.toolbar.textbox.emptytext "זמן המשלוח">
-<!ENTITY sendlater.prompt.every.label "כל">
-<!ENTITY sendlater.button1.label "15 דקות מאוחר יותר">
-<!ENTITY sendlater.button2.label "30 דקות מאוחר יותר">
-<!ENTITY sendlater.button3.label "שעתיים מאוחר יותר">
+<!ENTITY sendlater.prompt.sendlater.label "‫העבר לתיבת דואר יוצא‬">
+<!ENTITY sendlater.prompt.sendlater.accesskey "‫י‬">
+<!ENTITY sendlater.prompt.sendlater.tooltip "‫במקום לקבוע מועד משלוח מוגדר, העבר את ההודעה לתיבת הדואר היוצא כדי לשלוח אותה בפעם הבאה, יחד עם שאר ההודעות הממתינות למשלוח‬">
+<!ENTITY sendlater.prompt.sendnow.label "‫שלח כעת‬">
+<!ENTITY sendlater.prompt.sendnow.accesskey "‫כ‬">
+<!ENTITY sendlater.prompt.close.label "‫בטל‬">
+<!ENTITY sendlater.prompt.close.tooltip "‫חזור להמשך עריכת ההודעה‬">
+<!ENTITY sendlater.prompt.title.label "‫שלח הודעת דוא&quot;ל זו מאוחר יותר‬">
+<!ENTITY sendlater.prompt.textbox.label "‫שלח ב:‬">
+<!ENTITY sendlater.prompt.or.label "‫דוג: '3:00pm Thursday', '12/27/2012 15:17'‬">
+<!ENTITY sendlater.prompt.textbox.tooltip "‫הגדר תאריך ושעה למשלוח. רישום חופשי כמו 'next Tuesday at 3:00pm' נתמך אף הוא.‬">
+<!ENTITY sendlater.prompt.textbox.emptytext "‫‬">
+<!ENTITY sendlater.prompt.sendat.label "‫שלח מאוחר יותר במועד(ים) שהוגדרו לעיל‬">
+<!ENTITY sendlater.prompt.sendat.tooltip "‫שמור את ההודעה בתיקית הטיוטות למשלוח אוטומטי במועד שהוגדר לעיל‬">
+<!ENTITY sendlater.prompt.recur.label "‫חזור שוב‬">
+<!ENTITY sendlater.prompt.none.label "‫ללא‬">
+<!ENTITY sendlater.prompt.daily.label "‫השהה‬">
+<!ENTITY sendlater.prompt.weekly.label "‫שבועי‬">
+<!ENTITY sendlater.prompt.monthly.label "‫חודשי‬">
+<!ENTITY sendlater.prompt.yearly.label "‫שנתי‬">
+<!ENTITY sendlater.toolbar.sendlater.button.label "‫שלח מאוחר יותר‬">
+<!ENTITY sendlater.toolbar.textbox.emptytext "‫זמן המשלוח‬">
+<!ENTITY sendlater.prompt.every.label "‫כל‬">
+<!ENTITY sendlater.button1.label "‫15 דקות מאוחר יותר‬">
+<!ENTITY sendlater.button2.label "‫30 דקות מאוחר יותר‬">
+<!ENTITY sendlater.button3.label "‫שעתיים מאוחר יותר‬">

@@ -1,33 +1,33 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY prefwindow.title "העדפות שלח מאוחר יותר">
-<!ENTITY pane1.title "העדפות שלח מאוחר יותר">
-<!ENTITY checktimepref.label "בדוק כל :">
-<!ENTITY checktimepref2.label "דקות">
-<!ENTITY checktimepref.tooltip "המרווח, בדקות, בין הבדיקות להודעות טיוטה שמועד שליחתן הגיע. הגדל ערך זה אם קורה לעיטים שהטיוטות שהכנת אינן נשלחות במועדן או שלפעמים מספר ההודעות הממתינות, המופיע בשורת המצב, אינו תואם למספר הטיוטות המיועדות למשלוח בפועל">
-<!ENTITY general.caption "כללי">
-<!ENTITY quickoption1.caption "קיצור דרך 1">
-<!ENTITY quickoption2.caption "קיצור דרך 2">
-<!ENTITY quickoption3.caption "קיצור דרך 3">
-<!ENTITY quickoptionname.label "תווית הכפתור :">
-<!ENTITY quickoptionvalue.label "דקות:">
-<!ENTITY showtoolbarbutton.caption "הצג בסרגל הכלים">
+<!ENTITY prefwindow.title "‫העדפות שלח מאוחר יותר‬">
+<!ENTITY pane1.title "‫העדפות שלח מאוחר יותר‬">
+<!ENTITY checktimepref.label "‫בדוק כל :‬">
+<!ENTITY checktimepref2.label "‫דקות‬">
+<!ENTITY checktimepref.tooltip "‫המרווח, בדקות, בין הבדיקות להודעות טיוטה שמועד שליחתן הגיע. הגדל ערך זה אם קורה לעיטים שהטיוטות שהכנת אינן נשלחות במועדן או שלפעמים מספר ההודעות הממתינות, המופיע בשורת המצב, אינו תואם למספר הטיוטות המיועדות למשלוח בפועל‬">
+<!ENTITY general.caption "‫כללי‬">
+<!ENTITY quickoption1.caption "‫קיצור דרך 1‬">
+<!ENTITY quickoption2.caption "‫קיצור דרך 2‬">
+<!ENTITY quickoption3.caption "‫קיצור דרך 3‬">
+<!ENTITY quickoptionname.label "‫תווית הכפתור :‬">
+<!ENTITY quickoptionvalue.label "‫דקות:‬">
+<!ENTITY showtoolbarbutton.caption "‫הצג בסרגל הכלים‬">
 <!ENTITY showsendlatercolumn.caption "‫הצג את הטור 'שלח מאוחר יותר'‬">
-<!ENTITY showsendlatercolumn.tooltip "האם להציג את הטור 'שלח מאוחר יותר' כאשר צופים בתיקית הטיוטות">
+<!ENTITY showsendlatercolumn.tooltip "‫האם להציג את הטור 'שלח מאוחר יותר' כאשר צופים בתיקית הטיוטות‬">
 <!ENTITY showsendlaterheader.caption "‫הצג את הכותרת 'שלח מאוחר יותר'‬">
-<!ENTITY showsendlaterheader.tooltip "האם להציג את הכותרת 'X-Send-Later-At', כלומר הזמן בו מיועדת הטיוטה להישלח, בשורת הכותרת כאשר צופים בהודעה">
-<!ENTITY showsendlaterstatus.caption "הצג את 'שלח מאוחר יותר' בשורת המצב">
-<!ENTITY showsendlaterprogress.caption "הצג את התהליכים שברקע בשורת המצב">
-<!ENTITY showsendlaterentry.caption "הצג את תיבת הזמן בסרגל הכלים">
-<!ENTITY showsendlaterunsentmessages.caption "הפעל שליחת הודעה שלא נשלחה מתיבת דואר יוצא">
+<!ENTITY showsendlaterheader.tooltip "‫האם להציג את הכותרת 'X-Send-Later-At', כלומר הזמן בו מיועדת הטיוטה להישלח, בשורת הכותרת כאשר צופים בהודעה‬">
+<!ENTITY showsendlaterstatus.caption "‫הצג את 'שלח מאוחר יותר' בשורת המצב‬">
+<!ENTITY showsendlaterprogress.caption "‫הצג את התהליכים שברקע בשורת המצב‬">
+<!ENTITY showsendlaterentry.caption "‫הצג את תיבת הזמן בסרגל הכלים‬">
+<!ENTITY showsendlaterunsentmessages.caption "‫הפעל שליחת הודעה שלא נשלחה מתיבת דואר יוצא‬">
 <!ENTITY showsendlaterunsentmessages.tooltip "‫במידה ולא תסומן אפשרות זו, 'שלח מאוחר יותר' לא ישלח את ההודעות בפועל, אלא רק יעביר אותן לתיבת הדואר היוצא במועד המשלוח המתוכנן שלהן. אל תסמן אפשרות זו, למשל, אם יש לעיטים שימוש בתוסף אחר למשלוח הודעות מתיבת הדואר היוצא. שים לב שאם נבחרה האפשרות הזו ישלח 'שלח מאוחר יותר' את כל ההודעות מתיבת הדואר היוצא בעת שליחת הודעה מתוכננת,‬">
 <!ENTITY sendlatersendbutton.caption "‫הפוך את 'שלח' ל 'שלח מאוחר יותר'‬">
 <!ENTITY sendlatersendbutton.tooltip "‫בחירה באפשרות זו תהפוך את פקודת ה 'שלח' (גם הלחצן וגם צרוף המקשים) לפקודה 'שלח מאוחר יותר'‬">
-<!ENTITY altbinding.caption "‫השתמש בצרוף המקשים ‬‪Alt-Shift-Enter‫‬ במקום הצרוף ‪Ctrl-Shift-Enter‬‬">
-<!ENTITY advanced.caption "מתקדם">
-<!ENTITY dumplevel.caption "רמת ההתראות לתיעוד במסוף הג'אווה">
-<!ENTITY consolelevel.caption "רמת ההתראות לתיעוד במסוף הבקרה">
-<!ENTITY contactauthor.tooltip "‫שלח הודעת דוא‪&quot;‬ל למפתח של 'שלח מאוחר יותר'‬">
-<!ENTITY contactauthor.value "צור קשר עם המפתח">
-<!ENTITY helplink.tooltip "צפה במסמכי התיעוד של 'שלח מאוחר יותר'">
-<!ENTITY helplink.value "מדריך למשתמש">
-<!ENTITY donatelink.value "תרום">
+<!ENTITY altbinding.caption "‫השתמש בצרוף המקשים Alt-Shift-Enter במקום הצרוף Ctrl-Shift-Enter‬">
+<!ENTITY advanced.caption "‫מתקדם‬">
+<!ENTITY dumplevel.caption "‫רמת ההתראות לתיעוד במסוף הג'אווה‬">
+<!ENTITY consolelevel.caption "‫רמת ההתראות לתיעוד במסוף הבקרה‬">
+<!ENTITY contactauthor.tooltip "‫שלח הודעת דוא&quot;ל למפתח של 'שלח מאוחר יותר'‬">
+<!ENTITY contactauthor.value "‫צור קשר עם המפתח‬">
+<!ENTITY helplink.tooltip "‫צפה במסמכי התיעוד של 'שלח מאוחר יותר'‬">
+<!ENTITY helplink.value "‫מדריך למשתמש‬">
+<!ENTITY donatelink.value "‫תרום‬">
