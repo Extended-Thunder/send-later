@@ -1095,6 +1095,26 @@ var Sendlater3Backgrounding = function() {
 	SL3U.uninitUtil();
     }
 
+    function ShouldDisplayReleaseNotes(old, current) {
+	if (! old)
+	    return false;
+	if (old == current)
+	    return false;
+	if (current.indexOf("b") > -1)
+	    // beta release
+	    return true;
+	var old_numbers = old.split(".");
+	var current_numbers = current.split(".");
+	if (old_numbers.length != current_numbers.length)
+	    return true;
+	if (old_numbers < 2)
+	    return true;
+	if (old_numbers[0] != current_numbers[0] ||
+	    old_numbers[1] != current_numbers[1])
+	    return true;
+	return false;
+    }
+    
     function DisplayReleaseNotes() {
 	if (! SL3U.IsPostbox()) {
 	    var enabledItems;
@@ -1112,7 +1132,7 @@ var Sendlater3Backgrounding = function() {
 		var current_version = matches[2];
 		var relnotes = SL3U.getCharPref("relnotes");
 		SL3U.setCharPref("relnotes", current_version);
-		if (relnotes && current_version != relnotes) {
+		if (ShouldDisplayReleaseNotes(relnotes, current_version)) {
 		    var url = "http://blog.kamens.us/send-later-3/#notes-" +
 			current_version;
 		    Components
