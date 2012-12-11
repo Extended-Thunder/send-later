@@ -787,39 +787,39 @@ var Sendlater3Backgrounding = function() {
 	var thisfolder = folder
 	    .QueryInterface(Components.interfaces.nsIMsgFolder);
 	var messageenumerator;
-	if (SL3U.IsPostbox()) {
-	    messageenumerator = thisfolder.getMessages(msgWindow);
-	}
-	else {
-	    try {
+	try {
+	    if (SL3U.IsPostbox()) {
+		messageenumerator = thisfolder.getMessages(msgWindow);
+	    }
+	    else {
 		messageenumerator = thisfolder.messages;
 	    }
-	    catch (e) {
-		var lmf;
+	}
+	catch (e) {
+	    var lmf;
+	    try {
+		lmf = thisfolder
+		    .QueryInterface(Components.interfaces
+				    .nsIMsgLocalMailFolder);
+	    }
+	    catch (ex) {}
+	    if ( // NS_MSG_ERROR_FOLDER_SUMMARY_OUT_OF_DATE
+		(e.result == 0x80550005 ||
+		 // NS_MSG_ERROR_FOLDER_SUMMARY_MISSING
+		 e.result == 0x80550006) && lmf) {
+		SL3U.warn("Rebuilding summary: " +
+			  folder.URI);
 		try {
-		    lmf = thisfolder
-			.QueryInterface(Components.interfaces
-					.nsIMsgLocalMailFolder);
+		    lmf.getDatabaseWithReparse(null, null);
 		}
 		catch (ex) {}
-		if ( // NS_MSG_ERROR_FOLDER_SUMMARY_OUT_OF_DATE
-		    (e.result == 0x80550005 ||
-		     // NS_MSG_ERROR_FOLDER_SUMMARY_MISSING
-		     e.result == 0x80550006) && lmf) {
-		    SL3U.warn("Rebuilding summary: " +
-			      folder.URI);
-		    try {
-			lmf.getDatabaseWithReparse(null, null);
-		    }
-		    catch (ex) {}
-		}
-		else {
-		    SL3U.alert(window, null,
-			       SL3U.PromptBundleGetFormatted(
-				   "CorruptFolderError",
-				   [folder.URI]));
-		    throw e;
-		}
+	    }
+	    else {
+		SL3U.alert(window, null,
+			   SL3U.PromptBundleGetFormatted(
+			       "CorruptFolderError",
+			       [folder.URI]));
+		throw e;
 	    }
 	}
 	if ( messageenumerator ) {
