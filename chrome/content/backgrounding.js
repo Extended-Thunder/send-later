@@ -997,30 +997,65 @@ var Sendlater3Backgrounding = function() {
 	    }
 	    var allaccounts = accountManager.accounts;
 
-	    var acindex;
+	    var acindex, numAccounts;
 
-	    for (acindex = 0;acindex < allaccounts.Count();acindex++) {
+	    try {
+		// Before Thunderbird 20
+		numAccounts = allaccounts.Count();
+	    }
+	    catch (e) {
+		numAccounts = allaccounts.length;
+	    }
+
+	    for (acindex = 0;acindex < numAccounts;acindex++) {
 		SetAnimTimer(5000);
 		SL3U.debug("Progress Animation RESET");
-		var thisaccount = allaccounts.GetElementAt(acindex);
+		var thisaccount;
+		try {
+		    thisaccount =  allaccounts
+			.queryElementAt(acindex, Components.interfaces
+					.nsIMsgAccount);
+		}
+		catch (e) {
+		    // Before Thunderbird 20
+		    thisaccount = allaccounts.GetElementAt(acindex);
+ 		    if (thisaccount) {
+			thisaccount = thisaccount
+			    .QueryInterface(Components.interfaces
+					    .nsIMsgAccount);
+		    }
+		}
 		if (thisaccount) {
-		    thisaccount = thisaccount
-			.QueryInterface(Components.interfaces.nsIMsgAccount);
-
+		    var numIdentities;
+		    try {
+			// Before Thunderbird 20
+			numIdentities = thisaccount.identities.Count();
+		    }
+		    catch (e) {
+			numIdentities = thisaccount.identities.length;
+		    }
 		    SL3U.debug(thisaccount.incomingServer.type + 
-			       " - Identities [" +
-			       thisaccount.identities.Count() + "]");
+			       " - Identities [" + numIdentities + "]");
 		    switch (thisaccount.incomingServer.type) {
 		    case "pop3":
 		    case "imap":
 			var identityNum;
-			for (identityNum = 0;
-			     identityNum < thisaccount.identities.Count();
+			for (identityNum = 0; identityNum < numIdentities;
 			     identityNum++) {
-			    var identity = thisaccount.identities
-				.GetElementAt(identityNum)
-				.QueryInterface(Components.interfaces
-						.nsIMsgIdentity);
+			    var identity;
+			    try {
+				identity = thisaccount.identities
+				    .queryElementAt(identityNum,
+						    Components.interfaces
+						    .nsIMsgIdentity);
+			    }
+			    catch (e) {
+				// Before Thunderbird 20
+				identity = thisaccount.identities
+				    .GetElementAt(identityNum)
+				    .QueryInterface(Components.interfaces
+						    .nsIMsgIdentity);
+			    }
 			    var thisfolder =
 				GetMsgFolderFromUri(identity.draftFolder);
 			    var msg = "identity "+acindex+"."+identityNum+

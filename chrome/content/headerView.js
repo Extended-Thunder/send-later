@@ -94,7 +94,6 @@ var Sendlater3HeaderView = function() {
 	var accountManager = Components
 	    .classes["@mozilla.org/messenger/account-manager;1"]
 	    .getService(Components.interfaces.nsIMsgAccountManager);
-	
 	var fdrlocal = accountManager.localFoldersServer.rootFolder;
 	if (SL3U.FindSubFolder(fdrlocal, "Drafts").URI == msgFolder.URI) {
 	    SL3U.Returning("Sendlater3HeaderView.IsThisDraft", "true (local)");
@@ -106,14 +105,40 @@ var Sendlater3HeaderView = function() {
 	    return true;	
 	}
 
-	var identities = accountManager
-	    .GetIdentitiesForServer(msgFolder.server);
-	
+	var identities;
+	try {
+	    identities = accountManager
+		.getIdentitiesForServer(msgFolder.server);
+	}
+	catch (e) {
+	    // Before Thunderbird 20
+	    identities = accountManager
+		.GetIdentitiesForServer(msgFolder.server);
+	}
+
 	var idindex;
-	for (idindex = 0;idindex < identities.Count(); idindex++) {
-	    if (identities.GetElementAt(idindex)
-		.QueryInterface(Components.interfaces.nsIMsgIdentity)
-		.draftFolder==msgFolder.URI) {
+	var numIdentities;
+	try {
+	    // Before Thunderbird 20
+	    numIdentities = identities.Count();
+	}
+	catch (e) {
+	    numIdentities = identities.length;
+	}
+
+	for (idindex = 0;idindex < numIdentities; idindex++) {
+	    var identity;
+	    try {
+		identity = identities
+		    .queryElementAt(idindex,
+				    Components.interfaces.nsIMsgIdentity);
+	    }
+	    catch (e) {
+		// Before Thunderbird 20
+		identity = identities.GetElementAt(idindex)
+		    .QueryInterface(Components.interfaces.nsIMsgIdentity);
+	    }
+	    if (identity.draftFolder == msgFolder.URI) {
 		SL3U.Returning("Sendlater3HeaderView.IsThisDraft",
 			       "true (identity)");
 		return true;
