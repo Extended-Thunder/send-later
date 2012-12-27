@@ -46,7 +46,9 @@ Add section to user guide about how to use Send Later 3 as
 BlunderDelay. Even better, make it really easy to use Send Later 3
 like BlunderDelay by adding a preference to override the Send button
 and Ctrl-Return to automatically delay messages by a fixed amount of
-time.
+time. Also -- maybe add a menu command to send all scheduled messages
+now, and an optional prompt for whether to send scheduled messages
+when Thunderbird is closed.
 
 Use compose-send-message event rather than hijacking the send later
 command, to play nicely with other add-ons that do stuff during
