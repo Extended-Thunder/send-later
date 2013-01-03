@@ -2,7 +2,8 @@ all: send_later.xpi send_later-translatable.xpi
 
 CMD=find . \( -name '.??*' -prune \) -o \! -name '*~' \
     \! -name '.\#*' \! -name '*,v' \! -name Makefile \! -name '*.xpi' \
-    \! -name '\#*' \! -name '*.pl' \! -name core -type f -print
+    \! -name '\#*' \! -name '*.pl' \! -name core \! -name '*.tmp' \
+    -type f -print
 FILES=$(shell $(CMD))
 
 send_later.xpi: $(FILES) check-locales.pl
