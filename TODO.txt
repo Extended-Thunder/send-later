@@ -96,7 +96,8 @@ hit send or sendlater buttons it just acts like you've hit the
 non-delayed sendnow button, in that it just 'goes away' and does its
 thing later"
 
-Shortcut buttons don't trigger spell-checking.
+Shortcut buttons don't trigger spell-checking or check for missing
+Subject.
 
 Interacts badly with "Place replies in the folder of the message being
 replied to" option -- messages end up being filed in Inbox. Need to
