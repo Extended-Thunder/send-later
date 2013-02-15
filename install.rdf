@@ -5,7 +5,7 @@
     <em:type>2</em:type>
     <em:id>sendlater3@kamens.us</em:id>
     <em:name>Send Later</em:name>
-    <em:version>4.1.7beta1</em:version>
+    <em:version>4.1.7beta2</em:version>
     <em:creator>Jonathan Kamens</em:creator>
     <em:developer>Karthik Sivaram</em:developer>
     <em:contributor>Andrew Plummer (SugarJS)</em:contributor>
@@ -21,6 +21,7 @@
     <em:translator>Maciej Kobuszewski (pl)</em:translator>
     <em:translator>Mikael Hiort af Ornäs (sv-SE)</em:translator>
     <em:translator>Wang.H.K from BabelZilla (zh-CN)</em:translator>
+    <em:translator>Mike (zh-TW)</em:translator>
     <em:description>True “Send Later” functionality to schedule the time for sending an email.</em:description>
     <em:localized>
       <Description>
@@ -97,6 +98,13 @@
 	<em:locale>zh-CN</em:locale>
 	<em:name>以后发送</em:name>
 	<em:description>以后发送用来预定发送消息的时间并延期发送</em:description>
+      </Description>
+    </em:localized>
+    <em:localized>
+      <Description>
+	<em:locale>zh-TW</em:locale>
+	<em:name>延期發信</em:name>
+	<em:description>用來預定傳送信件的時間寄信</em:description>
       </Description>
     </em:localized>
     <em:homepageURL>http://blog.kamens.us/send-later-3</em:homepageURL>

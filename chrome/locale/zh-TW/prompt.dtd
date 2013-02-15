@@ -1,0 +1,27 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY sendlater.prompt.sendlater.label "存至寄件匣">
+<!ENTITY sendlater.prompt.sendlater.accesskey "O">
+<!ENTITY sendlater.prompt.sendlater.tooltip "不指定發送時間，而是移動信件至寄件匣，等待下一次傳送信件。">
+<!ENTITY sendlater.prompt.sendnow.label "立即寄出">
+<!ENTITY sendlater.prompt.sendnow.accesskey "N">
+<!ENTITY sendlater.prompt.close.label "取消">
+<!ENTITY sendlater.prompt.close.tooltip "回到編輯郵件。">
+<!ENTITY sendlater.prompt.title.label "延期發送這封電子郵件">
+<!ENTITY sendlater.prompt.textbox.label "發信時間：">
+<!ENTITY sendlater.prompt.or.label "或:">
+<!ENTITY sendlater.prompt.textbox.tooltip "請輸入日期和時間，格式任意。像”下星期六 下午3:00”這種時間格式也可以被支援。">
+<!ENTITY sendlater.prompt.textbox.emptytext "例如： “2012/12/31 15:27”">
+<!ENTITY sendlater.prompt.sendat.label "延期到指定的時間發信">
+<!ENTITY sendlater.prompt.sendat.tooltip "儲存信件至草稿，在上面設定的時間自動發信。">
+<!ENTITY sendlater.prompt.recur.label "週期：">
+<!ENTITY sendlater.prompt.none.label "無">
+<!ENTITY sendlater.prompt.daily.label "每天">
+<!ENTITY sendlater.prompt.weekly.label "每週">
+<!ENTITY sendlater.prompt.monthly.label "每月">
+<!ENTITY sendlater.prompt.yearly.label "每年">
+<!ENTITY sendlater.toolbar.sendlater.button.label "延期發信">
+<!ENTITY sendlater.toolbar.textbox.emptytext "發信時間">
+<!ENTITY sendlater.prompt.every.label "每">
+<!ENTITY sendlater.button1.label "15 分鐘後">
+<!ENTITY sendlater.button2.label "30 分鐘後">
+<!ENTITY sendlater.button3.label "2 小時後">

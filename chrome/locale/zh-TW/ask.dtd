@@ -1,0 +1,13 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY sendlater.ask.title.label "贊助延期發信">
+<!ENTITY sendlater.ask.message1 "此附加元件的開發、維護和支持花費了大量時間。">
+<!ENTITY sendlater.ask.message2 "請考慮贊助，以支持其繼續發展。">
+<!ENTITY sendlater.ask.message3 "謝謝！">
+<!ENTITY sendlater.ask.donate.key "D">
+<!ENTITY sendlater.ask.donate.label "馬上贊助">
+<!ENTITY sendlater.ask.remind.key "R">
+<!ENTITY sendlater.ask.remind.label "以後提醒我">
+<!ENTITY sendlater.ask.already.key "a">
+<!ENTITY sendlater.ask.already.label "我已贊助">
+<!ENTITY sendlater.ask.stop.key "S">
+<!ENTITY sendlater.ask.stop.label "不再詢問">
