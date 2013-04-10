@@ -128,8 +128,6 @@ var Sendlater3Composing = {
 					  windowInitListener, false);
 	// When window is first loaded compose-window-init is not generated.
 	windowInitListener.handleEvent(null);
-	// This doesn't work on Thunderbird 2, since its
-	// GenericSendFunction doesn't check PreventDefault.
 	msgcomposeWindow.addEventListener("compose-send-message",
 					  sendMessageListener, false);
 
