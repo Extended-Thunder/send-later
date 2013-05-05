@@ -1,0 +1,13 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY sendlater.ask.title.label "Աջակցեք Send Later-ին">
+<!ENTITY sendlater.ask.message1 "Բավական երկար ժամանակ է ծախսվել այս հավելման ստեղծման, սպասարկման և աջակցման համար:">
+<!ENTITY sendlater.ask.message2 "Խնդրում ենք կատարել փոքրիկ նվիրատվություն՝ աջակցելու ծրագրի զարգացմանը:">
+<!ENTITY sendlater.ask.message3 "Շնորհակալություն">
+<!ENTITY sendlater.ask.donate.key "D">
+<!ENTITY sendlater.ask.donate.label "Նվիրատվություն">
+<!ENTITY sendlater.ask.remind.key "R">
+<!ENTITY sendlater.ask.remind.label "Հիշեցնել ավելի ուշ">
+<!ENTITY sendlater.ask.already.key "a">
+<!ENTITY sendlater.ask.already.label "Ես արդեն օգնել եմ">
+<!ENTITY sendlater.ask.stop.key "S">
+<!ENTITY sendlater.ask.stop.label "Չհարցնել">

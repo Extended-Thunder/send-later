@@ -5,7 +5,7 @@
     <em:type>2</em:type>
     <em:id>sendlater3@kamens.us</em:id>
     <em:name>Send Later</em:name>
-    <em:version>4.1.7</em:version>
+    <em:version>4.1.8beta1</em:version>
     <em:creator>Jonathan Kamens</em:creator>
     <em:developer>Karthik Sivaram</em:developer>
     <em:contributor>Andrew Plummer (SugarJS)</em:contributor>
@@ -15,6 +15,7 @@
     <em:translator>Samtron-Translations (http://translations.samipupu.com/) (fi-FI)</em:translator>
     <em:translator>Bigpapa from BabelZilla (fr)</em:translator>
     <em:translator>Shai65 from BabelZilla (he)</em:translator>
+    <em:translator>HrantOhanyan from BabelZilla (hy-AM)</em:translator>
     <em:translator>Cesare from BabelZilla (it-IT)</em:translator>
     <em:translator>Amigomr from BabelZilla (ja-JP)</em:translator>
     <em:translator>markh from BabelZilla (nl)</em:translator>
@@ -56,6 +57,13 @@
 	<em:locale>he</em:locale>
 	<em:name>שלח מאוחר יותר</em:name>
 	<em:description>‫'שלח מאוחר יותר' משמש לשליחת הודעות במועד עתידי‬</em:description>
+      </Description>
+    </em:localized>
+    <em:localized>
+      <Description>
+	<em:locale>hy-AM</em:locale>
+	<em:name>Send Later</em:name>
+	<em:description>“Send Later”-ը ապահովում է նամակների ուղարկումը ավելի ուշ</em:description>
       </Description>
     </em:localized>
     <em:localized>

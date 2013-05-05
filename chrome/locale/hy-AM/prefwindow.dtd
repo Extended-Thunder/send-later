@@ -1,0 +1,33 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY prefwindow.title "Send Later-ի կարգավորումները">
+<!ENTITY pane1.title "Send Later-ի կարգավորումները">
+<!ENTITY checktimepref.label "Ստուգել ամեն՝">
+<!ENTITY checktimepref2.label "րոպե">
+<!ENTITY checktimepref.tooltip "Դադարը րոպեներով՝ ստուգելու համար սևագրերի այն նամակները, որոնց ուղարկելու ժամանակ եկել է: Նվազեցրեք դադարը, եթե սևագրերը երբեմն չեն ուղարկվում ժամանակին կամ ոչ բոլոր պլանավորված նամակներն են ցուցադրվում:">
+<!ENTITY general.caption "Գլխավորը">
+<!ENTITY quickoption1.caption "Պիտակ 1">
+<!ENTITY quickoption2.caption "Պիտակ 2">
+<!ENTITY quickoption3.caption "Պիտակ 3">
+<!ENTITY quickoptionname.label "Կոճակի անունը.">
+<!ENTITY quickoptionvalue.label "Րոպե.">
+<!ENTITY showtoolbarbutton.caption "Ցուցադրել գործիքներում">
+<!ENTITY showsendlatercolumn.caption "Ցուցադրել Send Later-ի սյունը">
+<!ENTITY showsendlatercolumn.tooltip "Անկախ ամեն ինչից ցուցադրել “Send Later”-ի սյունը՝ սևագրերը դիտելիս">
+<!ENTITY showsendlaterheader.caption "Ցուցադրել Send Later-ի գլխագիրը">
+<!ENTITY showsendlaterheader.tooltip "Անկախ ամեն ինչից ցուցադրել “X-Send-Later-At” գլխագիրը, այսինքն՝ ժամանակը, երբ սևագիրը պետք է ուղարկվի, գլխագրում՝ նամակը դիտելիս:">
+<!ENTITY showsendlaterstatus.caption "Ցուցադրել Send Later-ը Վիճակի տողում">
+<!ENTITY showsendlaterprogress.caption "Ցուցադրել խորապատկերի ընթացքը Վիճակի տողում">
+<!ENTITY showsendlaterentry.caption "Ցուցադրել Ժամանակը Գործիքներում">
+<!ENTITY showsendlaterunsentmessages.caption "Սկսել չուղարկված նամակների առաքումը Ելքայինից">
+<!ENTITY showsendlaterunsentmessages.tooltip "Եթե ապանշեք այս ընտրանքը, ապա Send Later-ը ամբողջությամբ չի առաքի նամակները, այլ դրանք կդնի Ելքայինում: Մի նշեք այս ընտրանքը, եթե օգտագործում եք նմանատիպ այլ հավելումներ:">
+<!ENTITY sendlatersendbutton.caption "“Send”-ը “Send Later”-ն է">
+<!ENTITY sendlatersendbutton.tooltip "Եթե միացված է՝ “Ուղարկել” հրամանը (և կոճակը և Ctrl-Enter սեղմելիս) կնշանակի նույնը՝ “Ուղարկել ավելի ուշ”:">
+<!ENTITY altbinding.caption "Կապել Alt-Shift-Enter-ը՝ Ctrl-Shift-Enter-ի փոխարեն">
+<!ENTITY advanced.caption "Լրացուցիչ">
+<!ENTITY dumplevel.caption "Dump մատյանի աստիճանը՝">
+<!ENTITY consolelevel.caption "Console մատյանի աստիճանը՝">
+<!ENTITY contactauthor.tooltip "Ուղարկել նամակ Send Later-ի հեղինակին:">
+<!ENTITY contactauthor.value "Կապնվեք հեղինակի հետ">
+<!ENTITY helplink.tooltip "Send Later-ի թղթաբանությունը:">
+<!ENTITY helplink.value "Օգտվողի ուղեցույցը">
+<!ENTITY donatelink.value "Նվիրատվութուն">

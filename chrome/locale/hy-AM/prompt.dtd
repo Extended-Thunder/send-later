@@ -1,0 +1,27 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY sendlater.prompt.sendlater.label "Դնել Ելքայինում">
+<!ENTITY sendlater.prompt.sendlater.accesskey "O">
+<!ENTITY sendlater.prompt.sendlater.tooltip "Ուղարկելը որոշակի ժամանակում պլանավորելու փոխարեն՝ տեղափոխեք նամակը Ելքային թղթապանակ՝ հաջորդ անգամ չուղարկած նամակները ուղարկելիս այն ևս ուղարկելու համար:">
+<!ENTITY sendlater.prompt.sendnow.label "Ուղարկել հիմա">
+<!ENTITY sendlater.prompt.sendnow.accesskey "N">
+<!ENTITY sendlater.prompt.close.label "Չեղարկել">
+<!ENTITY sendlater.prompt.close.tooltip "Վերադառնալ խմբագրմանը:">
+<!ENTITY sendlater.prompt.title.label "Ուղարկել նամակը ավելի ուշ">
+<!ENTITY sendlater.prompt.textbox.label "Ուղարկել՝">
+<!ENTITY sendlater.prompt.or.label "կամ՝">
+<!ENTITY sendlater.prompt.textbox.tooltip "Նշեք ամսաթիվը և ժամանակը: Կարող եք նշել նաև “հաջորդ Հինգշաբթի 3:00pm”:">
+<!ENTITY sendlater.prompt.textbox.emptytext "օր.՝ “3:00pm Հինգշաբթի”, “12/31/2012 15:27”">
+<!ENTITY sendlater.prompt.sendat.label "Ուղարկել նշված ժամանակ">
+<!ENTITY sendlater.prompt.sendat.tooltip "Պահպանել նամակը Սևագրում՝ հետո նշված ժամանակում այն ուղարկելու համար:">
+<!ENTITY sendlater.prompt.recur.label "Վերադառնալ՝">
+<!ENTITY sendlater.prompt.none.label "ոչ մի">
+<!ENTITY sendlater.prompt.daily.label "օրական">
+<!ENTITY sendlater.prompt.weekly.label "շաբաթական">
+<!ENTITY sendlater.prompt.monthly.label "ամսական">
+<!ENTITY sendlater.prompt.yearly.label "տարեկան">
+<!ENTITY sendlater.toolbar.sendlater.button.label "Ուղարկել ավելի ուշ">
+<!ENTITY sendlater.toolbar.textbox.emptytext "ուղարկելու ժամանակը">
+<!ENTITY sendlater.prompt.every.label "Ամեն՝">
+<!ENTITY sendlater.button1.label "15 րոպե անց">
+<!ENTITY sendlater.button2.label "30 րոպե անց">
+<!ENTITY sendlater.button3.label "2 ժամ անց">
