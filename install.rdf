@@ -62,8 +62,8 @@
     <em:localized>
       <Description>
 	<em:locale>hy-AM</em:locale>
-	<em:name>Send Later</em:name>
-	<em:description>“Send Later”-ը ապահովում է նամակների ուղարկումը ավելի ուշ</em:description>
+	<em:name>Ուղարկել ավելի ուշ</em:name>
+	<em:description>«Ուղարկել ավելի ուշ»-ը ապահովում է նամակները ավելի ուշ ուղարկելու հնարավորություն</em:description>
       </Description>
     </em:localized>
     <em:localized>

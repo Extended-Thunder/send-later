@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY sendlater.prompt.sendlater.label "Դնել Ելքայինում">
+<!ENTITY sendlater.prompt.sendlater.label "Պահել Ելքայինում">
 <!ENTITY sendlater.prompt.sendlater.accesskey "O">
 <!ENTITY sendlater.prompt.sendlater.tooltip "Ուղարկելը որոշակի ժամանակում պլանավորելու փոխարեն՝ տեղափոխեք նամակը Ելքային թղթապանակ՝ հաջորդ անգամ չուղարկած նամակները ուղարկելիս այն ևս ուղարկելու համար:">
 <!ENTITY sendlater.prompt.sendnow.label "Ուղարկել հիմա">
