@@ -117,7 +117,7 @@
       <button label="&sendlater.prompt.sendlater.label;"
 	      accesskey="&sendlater.prompt.sendlater.accesskey;"
 	      tooltiptext="&sendlater.prompt.sendlater.tooltip;"
-	      oncommand="window.arguments[0].continueCallback();close();"/>
+	      oncommand="if (window.arguments[0].continueCallback()) close();"/>
       <description flex="1"></description>
       <button label="&sendlater.prompt.sendnow.label;" accesskey="&sendlater.prompt.sendnow.accesskey;" oncommand="window.arguments[0].sendCallback();close();"/>
       <description flex="1"></description>

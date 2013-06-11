@@ -141,6 +141,25 @@ var Sendlater3Composing = {
 	}
     },
 
+    confirmPutInOutbox: function() {
+	if (! SL3U.getBoolPref("show_outbox_alert")) {
+	    return true;
+	}
+	var prompts = Components.
+	    classes["@mozilla.org/embedcomp/prompt-service;1"]
+            .getService(Components.interfaces.nsIPromptService);
+	var check = {value: true};
+	var title = SL3U.PromptBundleGet("OutboxConfirmTitle");
+	var message = SL3U.PromptBundleGet("OutboxConfirmMessage");
+	var askagain = SL3U.PromptBundleGet("OutboxConfirmAgain");
+	var result = prompts.confirmCheck(null, title, message, askagain,
+					  check);
+	if (! check.value) {
+	    SL3U.setBoolPref("show_outbox_alert", false);
+	}
+	return result;
+    },
+
     CheckSendAt: function(send_button) {
 	SL3U.Entering("Sendlater3Composing.CheckSendAt");
 	if (send_button)
@@ -153,10 +172,14 @@ var Sendlater3Composing = {
 			  "SendAtWindow", "modal,chrome,centerscreen", 
 			  { finishCallback: Sendlater3Composing.SendAtTime,
 			    continueCallback: function() {
+				if (! Sendlater3Composing.confirmPutInOutbox()){
+				    return false;
+				}
 				var w = document
 				    .getElementById("msgcomposeWindow");
 				w.setAttribute("sending_later", true);
-			      Sendlater3Composing.ContinueSendLater();
+				Sendlater3Composing.ContinueSendLater();
+				return true;
 			    },
 			    sendCallback: function() {
 				var w = document
