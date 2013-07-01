@@ -66,6 +66,10 @@ this!
 Make format of Send Later date column configurable, a la
 mail.ui.display.dateformat.
 
+If Thunderbird is prompting for email format to use (html or text) for
+a particular message, then it prompts twice, once before the Send
+Later dialog pops up and once after you click the send button.
+
 Pluggable recurrence, i.e., the ability to specify a function for
 calculating the next time the message should be sent.
 
