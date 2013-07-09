@@ -107,3 +107,6 @@ Interacts badly with "Place replies in the folder of the message being
 replied to" option -- messages end up being filed in Inbox. Need to
 look into the mechanics of how that option works and see if there's a
 way to fix the behavior.
+
+Change the "Send around" button into a button plus a label next to it
+to make it clearer that it's a button.
