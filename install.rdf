@@ -115,7 +115,7 @@
 	<em:description>用來預定傳送信件的時間寄信</em:description>
       </Description>
     </em:localized>
-    <em:homepageURL>http://blog.kamens.us/send-later-3</em:homepageURL>
+    <em:homepageURL>http://blog.kamens.us/send-later/</em:homepageURL>
     <em:optionsURL>chrome://sendlater3/content/options.xul</em:optionsURL>
     <em:iconURL>chrome://sendlater3/content/sendlater3icon.png</em:iconURL>
     <em:targetApplication>
