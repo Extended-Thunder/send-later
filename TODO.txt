@@ -70,9 +70,6 @@ If Thunderbird is prompting for email format to use (html or text) for
 a particular message, then it prompts twice, once before the Send
 Later dialog pops up and once after you click the send button.
 
-Pluggable recurrence, i.e., the ability to specify a function for
-calculating the next time the message should be sent.
-
 Transient notifications when Send Later 3 delivers messages.
 
 Compatibility with "tag toolbar" and "copy send to current":
@@ -110,3 +107,6 @@ way to fix the behavior.
 
 Change the "Send around" button into a button plus a label next to it
 to make it clearer that it's a button.
+
+Add an option to prompt the user whether to send overdue messages when
+Thunderbird starts up.
