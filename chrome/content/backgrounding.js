@@ -885,6 +885,26 @@ var Sendlater3Backgrounding = function() {
     };
 
 
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=889022
+    if (! SL3U.IsPostbox()) {
+	Components.utils.import("resource:///modules/MailUtils.js");
+    }
+
+    function getMsgFolderFromUri(uri, checkFolderAttributes) {
+	let msgfolder = null;
+	if (typeof MailUtils != 'undefined') {
+	    return MailUtils.getFolderForURI(uri, checkFolderAttributes);
+	}
+	let resource = GetResourceFromUri(uri);
+	msgfolder = resource.QueryInterface(Components.interfaces.nsIMsgFolder);
+	if (checkFolderAttributes) {
+	    if (!(msgfolder && (msgfolder.parent || msgfolder.isServer))) {
+		msgfolder = null;
+	    }
+	}
+	return msgfolder;
+    };
+
     var CheckForSendLaterCallback = {
 	notify: function (timer) {
 	    SL3U.Entering("Sendlater3Backgrounding.CheckForSendLaterCallback.notify");
@@ -985,7 +1005,7 @@ var Sendlater3Backgrounding = function() {
 		var folder;
 		// Will fail if folder doesn't exist
 		try {
-		    folder = GetMsgFolderFromUri(local_draft_pref);
+		    folder = getMsgFolderFromUri(local_draft_pref);
 		}
 		catch (e) {
 		    SL3U.debug("default Drafts folder " + local_draft_pref +
@@ -1057,7 +1077,7 @@ var Sendlater3Backgrounding = function() {
 						    .nsIMsgIdentity);
 			    }
 			    var thisfolder =
-				GetMsgFolderFromUri(identity.draftFolder);
+				getMsgFolderFromUri(identity.draftFolder);
 			    var msg = "identity "+acindex+"."+identityNum+
 				" Drafts folder";
 			    var pref = "mail.server." + thisaccount
