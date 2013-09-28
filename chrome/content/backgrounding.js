@@ -891,11 +891,11 @@ var Sendlater3Backgrounding = function() {
     }
 
     function getMsgFolderFromUri(uri, checkFolderAttributes) {
-	let msgfolder = null;
+	var msgfolder = null;
 	if (typeof MailUtils != 'undefined') {
 	    return MailUtils.getFolderForURI(uri, checkFolderAttributes);
 	}
-	let resource = GetResourceFromUri(uri);
+	var resource = GetResourceFromUri(uri);
 	msgfolder = resource.QueryInterface(Components.interfaces.nsIMsgFolder);
 	if (checkFolderAttributes) {
 	    if (!(msgfolder && (msgfolder.parent || msgfolder.isServer))) {
