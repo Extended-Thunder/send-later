@@ -110,3 +110,5 @@ to make it clearer that it's a button.
 
 Add an option to prompt the user whether to send overdue messages when
 Thunderbird starts up.
+
+Compatibility with the www.spamfighter.com Thunderbird add-on.
