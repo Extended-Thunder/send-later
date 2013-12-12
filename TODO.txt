@@ -22,7 +22,10 @@ Scheduling entry improvements:
 * Prompt for confirmation if the user tries to "schedule" a message
   but the time specified is now or in the past.
 
-Need to figure out why Enigmail is bypassed when Send Later 3 is used.
+Need to figure out why Enigmail is bypassed when Send Later 3 is
+used. UPDATE: It actually appears that in at least in some cases it is
+working, but there's another problem -- the timestamp on the digital
+signature is when the message was scheduled, not when it gets sent.
 
 Enable the standard "Send Later" button, which is currently only
 enabled when working offline.
