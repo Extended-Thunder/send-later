@@ -1,7 +1,5 @@
 #!/usr/bin/perl -i
 
-@ARGV = glob("chrome/locale/*/*.{properties,dtd}");
-
 $last = "";
 
 while (<>) {

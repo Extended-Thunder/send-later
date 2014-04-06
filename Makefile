@@ -27,5 +27,5 @@ clean: ; -rm -f *.xpi
 locale_import: Send_Later_selected_locales_skipped.tar.gz
 	tar -C chrome/locale -xzf $<
 	./import-localized.pl
-	./locale-headers.pl
+	./locale-headers.pl chrome/locale/*/*.{properties,dtd}
 	rm -f chrome/locale/BZ_localized.txt $<
