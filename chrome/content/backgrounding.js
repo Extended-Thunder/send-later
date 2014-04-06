@@ -3,6 +3,10 @@ var Sendlater3Backgrounding = function() {
 
     SL3U.initUtil();
 
+    var sentLastTime = {};
+    var sentThisTime = {};
+    var sentAlerted = {};
+
     var msgWindow = Components.classes["@mozilla.org/messenger/msgwindow;1"]
 	.createInstance();
     msgWindow = msgWindow.QueryInterface(Components.interfaces.nsIMsgWindow);
@@ -128,11 +132,11 @@ var Sendlater3Backgrounding = function() {
 
     // If there are multiple open Thunderbird windows, then each of them is
     // going to load this overlay, which will wreak havoc when multiple windows
-    // try to run our background proceses at the same time. To avoid this
+    // try to run our background processes at the same time. To avoid this
     // problem, we assign each instance of this overlay a unique ID, and we
     // store the ID of the currently active instance in the user's preferences,
     // along with the time when the active instance last started a background
-    // pass. Every entry point function (e.g., event handlers, etc.)  checks to
+    // pass. Every entry point function (e.g., event handlers, etc.) checks to
     // see if its unique ID is the one in the preferences. If so, then it
     // processed as normal -- it has the conch. Otherwise, if it's the main
     // callback function (CheckForSendLaterCallback) AND the last active
@@ -303,8 +307,9 @@ var Sendlater3Backgrounding = function() {
 	ProgressSet("ProgressFinish", where);
     }
 
-    function CopyUnsentListener(content, hdr, sendat, recur, args) {
+    function CopyUnsentListener(content, uri, hdr, sendat, recur, args) {
 	this._content = content;
+	this._uri = uri;
 	this._hdr = hdr;
 	this._sendat = sendat;
 	this._recur = recur;
@@ -315,7 +320,6 @@ var Sendlater3Backgrounding = function() {
     }
 
     var MessagesChecked = new Object();
-    var MessagesSent = new Object();
 
     CopyUnsentListener.prototype = {
 	QueryInterface : function(iid) {
@@ -359,6 +363,8 @@ var Sendlater3Backgrounding = function() {
 		SL3U.Returning("Sendlater3Backgrounding.CopyUnsentListener.OnStopCopy", "");
 		return;
 	    }
+	    sentThisTime[this._uri] = 1;
+
 	    var messageHDR = this._hdr;
 	    var sendat = this._sendat;
 	    var recur = this._recur;
@@ -375,7 +381,6 @@ var Sendlater3Backgrounding = function() {
 		    .createInstance(Components.interfaces.nsIMutableArray);
 		dellist.appendElement(messageHDR, false);
 	    }
-	    MessagesSent[messageHDR.folder.getUriForMsg(messageHDR)] = 1;
 	    messageHDR.folder.deleteMessages(dellist, msgWindow, true, false,
 					     null, false);
 	    if (SL3U.getBoolPref("sendunsentmessages")) {
@@ -551,16 +556,17 @@ var Sendlater3Backgrounding = function() {
 
     var cycle = 0;
 
-    function UriStreamListener(messageHDR) {
+    function UriStreamListener(uri, messageHDR) {
 	SL3U.Entering("Sendlater3Backgrounding.UriStreamListener", messageHDR);
     	this._content = "";
 	this._cycle = cycle;
+	this._uri = uri;
 	this._messageHDR = messageHDR;
 	this._header = messageHDR.getStringProperty("x-send-later-at");
 	this._recur = messageHDR.getStringProperty("x-send-later-recur");
 	this._args = messageHDR.getStringProperty("x-send-later-args");
-	SL3U.debug("Sendlater3Backgrounding.UriStreamListener: _header=" +
-		   this._header + ", _recur=" + this._recur + ", _args=" +
+	SL3U.debug("Sendlater3Backgrounding.UriStreamListener: _uri=" + this._uri +
+		   ", _header=" + this._header + ", _recur=" + this._recur + ", _args=" +
 		   this._args);
 	SL3U.Leaving("Sendlater3Backgrounding.UriStreamListener");
     }
@@ -643,7 +649,9 @@ var Sendlater3Backgrounding = function() {
 		.classes["@mozilla.org/messengercompose/sendlater;1"]
 		.getService(Components.interfaces.nsIMsgSendLater);
 	    var fdrunsent = msgSendLater.getUnsentMessagesFolder(null);
-	    var listener = new CopyUnsentListener(content, messageHDR,
+	    var listener = new CopyUnsentListener(content,
+						  this._uri,
+						  messageHDR,
 						  this._header,
 						  this._recur,
 						  this._args)
@@ -735,9 +743,20 @@ var Sendlater3Backgrounding = function() {
 		    SL3U.debug(messageURI + ": senddrafts is false");
 		    break;
 		}
+		if (sentLastTime[messageURI]) {
+		    sentThisTime[messageURI] = 1;
+		    if (! sentAlerted[messageURI]) {
+		    	SL3U.alert(window, null,
+		    		   SL3U.PromptBundleGetFormatted("MessageResendError",
+		    						 [messageHDR.folder.URI]));
+		    	sentAlerted[messageURI] = 1;
+		    }
+		    SL3U.warn("Skipping " + messageURI + " -- resend!");
+		    break;
+		}
 		ProgressAdd("start streaming message");
 		MsgService.streamMessage(messageURI,
-					 new UriStreamListener(messageHDR),
+					 new UriStreamListener(messageURI, messageHDR),
 					 msgWindow, null, false, null);
 		break;
 	    }
@@ -939,15 +958,18 @@ var Sendlater3Backgrounding = function() {
 		.getService(Components.interfaces.nsIMsgAccountManager);
 	    var fdrlocal = accountManager.localFoldersServer.rootFolder;
 
-	    folderstocheck = new Object();
-	    foldersdone = new Object();
+	    sentLastTime = sentThisTime;
+	    sentThisTime = {};
 
-	    for (uri in MessagesSent) {
+	    for (uri in sentAlerted) {
 		if (! MessagesChecked[uri]) {
-		    delete MessagesSent[uri];
-		    SL3U.debug("Removed from MessagesSent: " + uri);
+		    delete sentAlerted[uri];
+		    SL3U.debug("Removed from sentAlerted: " + uri);
 		}
 	    }
+
+	    folderstocheck = new Object();
+	    foldersdone = new Object();
 	    MessagesChecked = new Object();
 
 	    
