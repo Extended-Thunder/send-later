@@ -121,3 +121,10 @@ trying to close the draft window without rescheduling cause a pop-up
 asking the user to confirm? The thing we want to avoid is having
 someone save an edited, previously scheduled draft, intending for it
 to be rescheduled but forgetting to do so.
+
+"It would be nice to be able to specify a random number in a range be
+added to the send time for recurring messages. E.g., if the message
+was scheduled to be sent at 9am and 10 was specified as the range and
+the '+/-' box was checked, then the message would be sent at a random
+time between 10 minutes before 9 and 10 minutes after 9. The idea is
+to avoid the appearance that the message is being scheduled."
