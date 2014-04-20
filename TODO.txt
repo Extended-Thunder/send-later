@@ -115,3 +115,9 @@ Add an option to prompt the user whether to send overdue messages when
 Thunderbird starts up.
 
 Compatibility with the www.spamfighter.com Thunderbird add-on.
+
+Better user experience when editing a scheduled draft. E.g., should
+trying to close the draft window without rescheduling cause a pop-up
+asking the user to confirm? The thing we want to avoid is having
+someone save an edited, previously scheduled draft, intending for it
+to be rescheduled but forgetting to do so.
