@@ -617,6 +617,8 @@ var Sendlater3Backgrounding = function() {
 				      "\n");
 	    content = content.replace(/\nX-Send-Later-Args:.*\n/i,
 				      "\n");
+	    content = content.replace(/\nX-Enigmail-Draft-Status:.*\n/i,
+				      "\n");
 
 	    // Remove extra newline -- see comment above.
 	    content = content.slice(1);
