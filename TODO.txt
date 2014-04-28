@@ -128,3 +128,9 @@ was scheduled to be sent at 9am and 10 was specified as the range and
 the '+/-' box was checked, then the message would be sent at a random
 time between 10 minutes before 9 and 10 minutes after 9. The idea is
 to avoid the appearance that the message is being scheduled."
+
+  "I've refined my idea a little. Instead of a check box, it would be a
+  radio box with the options +, - and +/-. So, for example, the
+  following three scenarios would work: send at a random time at or
+  after 9am, send at a random time until 5pm, and send at a random
+  time before or after noon."
