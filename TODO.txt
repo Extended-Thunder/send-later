@@ -134,3 +134,5 @@ to avoid the appearance that the message is being scheduled."
   following three scenarios would work: send at a random time at or
   after 9am, send at a random time until 5pm, and send at a random
   time before or after noon."
+
+Options => Delivery Format => Plain Text doesn't work.
