@@ -828,8 +828,7 @@ var Sendlater3Backgrounding = function() {
 		(e.result == 0x80550005 ||
 		 // NS_MSG_ERROR_FOLDER_SUMMARY_MISSING
 		 e.result == 0x80550006) && lmf) {
-		SL3U.warn("Rebuilding summary: " +
-			  folder.URI);
+		SL3U.debug("Rebuilding summary: " + folder.URI);
 		try {
 		    lmf.getDatabaseWithReparse(null, null);
 		}
