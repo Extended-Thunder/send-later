@@ -1,18 +1,18 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY sendlater.prompt.sendlater.label "Siirrä Lähetettyihin">
+<!ENTITY sendlater.prompt.sendlater.label "Siirrä Lähteviin">
 <!ENTITY sendlater.prompt.sendlater.accesskey "S">
-<!ENTITY sendlater.prompt.sendlater.tooltip "Ajastamisen sijasta siirrä Lähetetyt-kansioon lähetettäväksi seuraavalla kerralla kun viestejä lähetetään.">
+<!ENTITY sendlater.prompt.sendlater.tooltip "Ajastamisen sijasta siirrä Lähtevät-kansioon lähetettäväksi seuraavalla kerralla, kun muitakin viestejä lähetetään.">
 <!ENTITY sendlater.prompt.sendnow.label "Lähetä heti">
 <!ENTITY sendlater.prompt.sendnow.accesskey "H">
 <!ENTITY sendlater.prompt.close.label "Peruuta">
-<!ENTITY sendlater.prompt.close.tooltip "Palaa viestinkirjoittamiseen.">
+<!ENTITY sendlater.prompt.close.tooltip "Palaa viestin muokkaamiseen.">
 <!ENTITY sendlater.prompt.title.label "Lähetä tämä viesti myöhemmin">
 <!ENTITY sendlater.prompt.textbox.label "Lähetysajankohta:">
 <!ENTITY sendlater.prompt.or.label "tai:">
-<!ENTITY sendlater.prompt.textbox.tooltip "Anna päiväys ja aika. Vapaamuotoinen arvo, kuten “ensi Tiistaina kello 3:00pm” on myös tuettu.">
-<!ENTITY sendlater.prompt.textbox.emptytext "ex: “3:00pm Torstai”, “12/31/2012 15:27”">
-<!ENTITY sendlater.prompt.sendat.label "Lähetä myöhemmin ylläolevan aikamääritteen mukaan">
-<!ENTITY sendlater.prompt.sendat.tooltip "Tallenna viesti Luonnokset-kansioon lähetettäväksi automaattisesti yllä olevan aikamääritteen mukaan.">
+<!ENTITY sendlater.prompt.textbox.tooltip "Anna päiväys (ja aika). Vapaamuotoiset suomen- tai (parhaiten) englanninkieliset ilmaukset käyvät, esim. ”tii 15”, ”tiistai 15”, ”Tuesday 3:00pm”, ”joulukuu” tai ”December 15 12:00” käyvät myös. Katso dokumentaatiosta tarkemmin.">
+<!ENTITY sendlater.prompt.textbox.emptytext "esim.: ”tiistai 15”, “31/12/2016 12:00”">
+<!ENTITY sendlater.prompt.sendat.label "Lähetä myöhemmin yllä määriteltyinä ajankohtina">
+<!ENTITY sendlater.prompt.sendat.tooltip "Tallenna viesti Luonnokset-kansioon lähetettäväksi automaattisesti yllä määriteltynä ajankohtana.">
 <!ENTITY sendlater.prompt.recur.label "Toisto:">
 <!ENTITY sendlater.prompt.none.label "ei">
 <!ENTITY sendlater.prompt.daily.label "päivittäin">
@@ -21,7 +21,7 @@
 <!ENTITY sendlater.prompt.yearly.label "vuosittain">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Lähetä myöhemmin">
 <!ENTITY sendlater.toolbar.textbox.emptytext "lähetysaika">
-<!ENTITY sendlater.prompt.every.label "Joka">
+<!ENTITY sendlater.prompt.every.label "joka">
 <!ENTITY sendlater.button1.label "15 min myöhemmin">
 <!ENTITY sendlater.button2.label "30 min myöhemmin">
 <!ENTITY sendlater.button3.label "2 tuntia myöhemmin">
