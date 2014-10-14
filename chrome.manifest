@@ -3,7 +3,7 @@ resource sendlater3	chrome/resource/
 locale	sendlater3	de	chrome/locale/de/
 locale	sendlater3	en-US	chrome/locale/en-US/
 locale	sendlater3	es-ES	chrome/locale/es-ES/
-locale	sendlater3	fi-FI	chrome/locale/fi-FI/
+locale	sendlater3	fi	chrome/locale/fi/
 locale	sendlater3	fr	chrome/locale/fr/
 locale	sendlater3	he	chrome/locale/he/
 locale	sendlater3	hy-AM	chrome/locale/hy-AM/

@@ -12,7 +12,8 @@
     <em:translator>Dtrieb from BabelZilla (de)</em:translator>
     <em:translator>Erwin D. Glockner (de)</em:translator>
     <em:translator>urko from BabelZilla (es-ES)</em:translator>
-    <em:translator>Samtron-Translations (http://translations.samipupu.com/) (fi-FI)</em:translator>
+    <em:translator>Samtron-Translations (http://translations.samipupu.com/) (fi)</em:translator>
+    <em:translator>Kari Eveli (fi)</em:translator>
     <em:translator>Bigpapa from BabelZilla (fr)</em:translator>
     <em:translator>Shai65 from BabelZilla (he)</em:translator>
     <em:translator>HrantOhanyan from BabelZilla (hy-AM)</em:translator>
@@ -40,7 +41,7 @@
     </em:localized>
     <em:localized>
       <Description>
-	<em:locale>fi-FI</em:locale>
+	<em:locale>fi</em:locale>
 	<em:name>Lähetä Myöhemmin</em:name>
 	<em:description>“Lähetä myöhemmin” toiminnallisuus lähetyksien ajastamiseksi</em:description>
       </Description>
