@@ -3,18 +3,18 @@
 <!ENTITY pane1.title "Lähetä myöhemmin - Asetukset">
 <!ENTITY checktimepref.label "Tarkista joka">
 <!ENTITY checktimepref2.label "minuutin välein">
-<!ENTITY checktimepref.tooltip "Aikaväli minuuteissa sen tarkistamiseksi, onko luonnoskansiossa viestejä, jotka olisi jo aika lähettää. Kasvata tätä arvoa, jos kaikki viestisi eivät aina lähde ajallaan tai jos jonossa olevien viestien laskuri ei aina täsmää.">
+<!ENTITY checktimepref.tooltip "Aikaväli minuuteissa sen tarkistamiseksi, onko luonnoskansiossa viestejä, jotka olisi jo aika lähettää. Kasvata tätä arvoa, jos kaikki viestisi eivät aina lähde ajallaan tai jos lähetysjonossa olevien viestien laskuri ei aina täsmää.">
 <!ENTITY general.caption "Yleiset">
 <!ENTITY quickoption1.caption "Pikapainike 1">
 <!ENTITY quickoption2.caption "Pikapainike 2">
 <!ENTITY quickoption3.caption "Pikapainike 3">
-<!ENTITY quickoptionname.label "Painikkeen teksti :">
-<!ENTITY quickoptionvalue.label "Minuuttia :">
+<!ENTITY quickoptionname.label "Painikkeen teksti:">
+<!ENTITY quickoptionvalue.label "Minuuttia:">
 <!ENTITY showtoolbarbutton.caption "Näytä työkalupalkissa">
 <!ENTITY showsendlatercolumn.caption "Näytä Lähetä myöhemmin -sarake">
 <!ENTITY showsendlatercolumn.tooltip "Näytetäänkö Lähetä myöhemmin -sarake selattaessa luonnoskansioita">
 <!ENTITY showsendlaterheader.caption "Näytä Lähetä myöhemmin -otsake">
-<!ENTITY showsendlaterheader.tooltip "Näytetäänkö ”X-Send-Later-At” -otsake, esim. silloin kun luonnos on ajastettu lähtemään, viestin otsakkeessa viestiä selatessa.">
+<!ENTITY showsendlaterheader.tooltip "Näytetäänkö ”X-Send-Later-At” -otsake, esim. silloin kun viestiluonnos on ajastettu lähtemään, viestin otsakkeessa viestiä selatessa.">
 <!ENTITY showsendlaterstatus.caption "Näytä tilapalkissa Lähetä myöhemmin">
 <!ENTITY showsendlaterprogress.caption "Näytä tilapalkissa taustaeteneminen">
 <!ENTITY showsendlaterentry.caption "Näytä työkalupalkissa ajan syöttö">
