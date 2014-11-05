@@ -1,6 +1,9 @@
 Pop-up when user tries to exit from Thunderbird, warning about
 scheduled messages.
 
+Allow drafts to be saved in a subfolder of a drafts folder, and check
+subfolders for scheduled messages.
+
 Share common code between toolbar and popup.
 
 Bug: You shouldn't be allowed to schedule a message with no recopients
