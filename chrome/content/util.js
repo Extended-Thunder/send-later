@@ -778,7 +778,7 @@ var Sendlater3Util = {
     initUtil: function() {
 	Sendlater3Util.Entering("Sendlater3Util.initUtil");
         Sendlater3Util._PromptBundle =
-            document.getElementById("sendlater3-promptstrings"),
+            document.getElementById("sendlater3-promptstrings");
 	Sendlater3Util.PrefService
 	    .QueryInterface(Components.interfaces.nsIPrefBranch2);
 	Sendlater3Util.consoleObserver =
