@@ -1,28 +1,33 @@
 all: send_later.xpi send_later-translatable.xpi
 
-CMD=find . \( -name '.??*' -prune \) -o \! -name '*~' \
-    \! -name '.\#*' \! -name '*,v' \! -name Makefile \! -name '*.xpi' \
-    \! -name '\#*' \! -name '*.pl' \! -name core \! -name '*.tmp' \
-    -type f -print
-FILES=$(shell $(CMD))
-
-send_later.xpi: $(FILES) check-locales.pl
-	./check-locales.pl
-	./fix-addon-ids.pl --check
-	rm -f $@.tmp
-	zip -r $@.tmp $(FILES)
+manifest: $(shell find . -type f \! -name manifest \! -name '*.xpi' -print)
+	find . \( \( -name '.??*' -o -name '*~' -o -name '.\#*' \
+		-o -name '*,v' -o -name Makefile -o -name '*.xpi' \
+		-o -name '\#*' -o -name '*.pl' -o -name core \
+		-o -name '*.tmp' -o -name 'manifest' \) -prune \) -o -type f -print >\
+	    $@.tmp
 	mv $@.tmp $@
+
+send_later.xpi: check-locales.pl Makefile manifest
+	./fix-addon-ids.pl --check
+	-rm -rf $@.tmp
+	mkdir $@.tmp
+	tar c --files-from manifest | tar -C $@.tmp -x
+	cd $@.tmp; ../check-locales.pl --replace
+	cd $@.tmp; zip -q -r $@.tmp -@ < ../manifest
+	mv $@.tmp/$@.tmp $@
+	rm -rf $@.tmp
 
 translatable: send_later-translatable.xpi
 .PHONY: translatable
 
-send_later-translatable.xpi: $(FILES)
+send_later-translatable.xpi: Makefile manifest
 	./fix-addon-ids.pl --check
 	rm -f $@.tmp
-	zip -r $@.tmp $(FILES)
+	zip -q -r $@.tmp -@ < manifest
 	mv $@.tmp $@
 
-clean: ; -rm -f *.xpi
+clean: ; -rm -f *.xpi manifest
 
 locale_import: Send_Later_selected_locales_skipped.tar.gz
 	tar -C chrome/locale -xzf $<
