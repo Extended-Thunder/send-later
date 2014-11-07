@@ -315,6 +315,9 @@ var Sendlater3Composing = {
 	var args = compWin.sendLater3Args;
 	var msgCompFields = gMsgCompose.compFields;
 	if (sendat) {
+            if ('expandMailingLists' in gMsgCompose) {
+                gMsgCompose.expandMailingLists();
+            }
 	    var head = "X-Send-Later-At: " + SL3U.FormatDateTime(sendat,true) +
 		"\r\n" + "X-Send-Later-Uuid: " + SL3U.getInstanceUuid() +
 		"\r\n";
