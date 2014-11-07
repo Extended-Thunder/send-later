@@ -151,7 +151,7 @@ var Sendlater3Composing = {
 	var check = {value: true};
 	var title = SL3U.PromptBundleGet("OutboxConfirmTitle");
 	var message = SL3U.PromptBundleGet("OutboxConfirmMessage");
-	var askagain = SL3U.PromptBundleGet("OutboxConfirmAgain");
+	var askagain = SL3U.PromptBundleGet("ConfirmAgain");
 	var result = prompts.confirmCheck(null, title, message, askagain,
 					  check);
 	if (! check.value) {

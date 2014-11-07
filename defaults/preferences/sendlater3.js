@@ -29,4 +29,5 @@ pref("extensions.sendlater3.activescanner.time",0);
 pref("extensions.sendlater3.instance.uuid","");
 pref("extensions.sendlater3.ask.time", 0);
 pref("extensions.sendlater3.ask.sent", 0);
+pref("extensions.sendlater3.ask.quit",true);
 pref("extensions.sendlater3.relnotes","");

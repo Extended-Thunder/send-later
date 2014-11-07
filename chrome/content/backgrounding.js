@@ -3,6 +3,84 @@ var Sendlater3Backgrounding = function() {
 
     SL3U.initUtil();
 
+    var lastMessagesPending = 0;
+    var quitConfirmed = false;
+    // We need to fetch these here because the prompt bundle doesn't
+    // work while the app is being shut down.
+    var scheduledMessagesWarningTitle =
+        SL3U.PromptBundleGet("ScheduledMessagesWarningTitle");
+    var scheduledMessagesWarningQuitRequest =
+        SL3U.PromptBundleGetFormatted(
+            "ScheduledMessagesWarningQuitRequested", [SL3U.appName()]);
+    var scheduledMessagesWarningQuit =
+        SL3U.PromptBundleGetFormatted(
+            "ScheduledMessagesWarningQuit", [SL3U.appName()]);
+    var confirmAgain = SL3U.PromptBundleGet("ConfirmAgain");
+
+    var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+        .getService(Components.interfaces.nsIPromptService);
+
+    var quitRequestedObserver = {
+        observe: function(subject, topic, data) {
+            if (! checkUuid(false)) {
+                return;
+            }
+            if (! lastMessagesPending) {
+                return;
+            }
+            if (! SL3U.getBoolPref("ask.quit")) {
+                return;
+            }
+            quitConfirmed = true;
+            var check = {value: true};
+            var result = prompts.confirmCheck(
+                null,
+                scheduledMessagesWarningTitle,
+                scheduledMessagesWarningQuitRequest,
+                confirmAgain,
+                check);
+            if (! check.value) {
+                SL3U.setBoolPref("ask.quit", false);
+            }
+            if (! result) {
+                subject.QueryInterface(
+                    Components.interfaces.nsISupportsPRBool);
+                subject.data = true;
+            }
+        }
+    }
+
+    var quitObserver = {
+        observe: function(subject, topic, data) {
+            if (! checkUuid(false)) {
+                return;
+            }
+            if (quitConfirmed || ! lastMessagesPending) {
+                return;
+            }
+            if (! SL3U.getBoolPref("ask.quit")) {
+                return;
+            }
+            var check = {value: true};
+            prompts.alertCheck(
+                null,
+                scheduledMessagesWarningTitle,
+                scheduledMessagesWarningQuit,
+                confirmAgain,
+                check);
+            if (! check.value) {
+                SL3U.setBoolPref("ask.quit", false);
+            }
+        }
+    }
+
+    var observerService =  Components.classes["@mozilla.org/observer-service;1"]
+        .getService(Components.interfaces.nsIObserverService);
+    observerService.addObserver(quitRequestedObserver,
+                                "quit-application-requested", false);
+    observerService.addObserver(quitObserver,
+                                "quit-application-granted", false);
+
     var sentLastTime = {};
     var sentThisTime = {};
     var sentAlerted = {};
@@ -498,12 +576,15 @@ var Sendlater3Backgrounding = function() {
 		    status = strbundle.getString("PendingMessage") + " " +
 			MessagesPending;
 		}
-		else if (Sendlater3Backgrounding.BackgroundTimer) {
-		    status = strbundle.getString("IdleMessage");
-		}
 		else {
-		    status = strbundle.getString("DisabledMessage");
-		}
+                    lastMessagesPending = 0;
+                    if (Sendlater3Backgrounding.BackgroundTimer) {
+		        status = strbundle.getString("IdleMessage");
+		    }
+		    else {
+		        status = strbundle.getString("DisabledMessage");
+		    }
+                }
 
 		StatusReportMsg(strbundle.getString("MessageTag") + " [" + status + "]");
 	    }
@@ -736,7 +817,7 @@ var Sendlater3Backgrounding = function() {
 		SL3U.debug(messageURI + ": good uuid=" + h_uuid);
 		if (new Date() < new Date(h_at)) {
 		    SL3U.debug(messageURI + ": early x-send-later-at=" + h_at);
-		    MessagesPending++;
+		    lastMessagesPending = ++MessagesPending;
 		    SL3U.dump(MessagesPending + " messages still pending");
 		    break;
 		}
@@ -948,6 +1029,27 @@ var Sendlater3Backgrounding = function() {
 	    }		
 
 	    SL3U.debug("One cycle of checking");
+
+            // The reason why this is needed is incredibly annoying
+            // and reflects a deficiency in Thunderbird...
+            // 1. User asks to quit the application with File | Quit.
+            // 2. There are pending scheduled messages.
+            // 3. quitRequestedObserver above sets quitConfirmed to
+            //    true.
+            // 4. Some other quite-application-requested listener
+            //    aborts the quit.
+            // 5. Some time later, the user clicks the little red X to
+            //    close the window.
+            // 6. Because the user clicked the little red X instead of
+            //    executing File | Quit, quiteRequestedObserver is
+            //    _not_ called.
+            // 7. quitObserver is called.
+            // 8. quitRequested is true from earlier, so quiteObserver
+            //    doesn't prompt for confirmation. D'oh.
+            // Unfortunately, there's no event to which we can listen
+            // to find out when a quit is aborted, so the next time
+            // through our check loop, we clear this value. *sigh*
+            quitConfirmed = false;
 
 	    MessagesPending = 0;
 	    ProgressClear("CheckForSendLaterCallback.notify");

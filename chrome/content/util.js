@@ -63,16 +63,18 @@ var Sendlater3Util = {
 	}
     },
 
-    IsSeaMonkey: function() {
+    appName: function() {
 	var appInfo = Components.classes["@mozilla.org/xre/app-info;1"]
             .getService(Components.interfaces.nsIXULAppInfo);
-	return(appInfo.name == "SeaMonkey");
+        return appInfo.name;
+    },
+
+    IsSeaMonkey: function() {
+	return(Sendlater3Util.appName() == "SeaMonkey");
     },
 
     IsPostbox: function() {
-	var appInfo = Components.classes["@mozilla.org/xre/app-info;1"]
-            .getService(Components.interfaces.nsIXULAppInfo);
-	return(appInfo.name == "Postbox");
+	return(Sendlater3Util.appName() == "Postbox");
     },
 
     FindSubFolder: function(folder, name) {
@@ -127,10 +129,6 @@ var Sendlater3Util = {
 
     PromptBundleGet: function(name) {
 	Sendlater3Util.Entering("Sendlater3Util.PromptBundleGet", name);
-	if (Sendlater3Util._PromptBundle == null) {
-	    Sendlater3Util._PromptBundle =
-		document.getElementById("sendlater3-promptstrings");
-	}
 	Sendlater3Util.Returning("Sendlater3Util.PromptBundleGet",
 				 Sendlater3Util._PromptBundle.getString(name));
 	return Sendlater3Util._PromptBundle.getString(name);
@@ -139,10 +137,6 @@ var Sendlater3Util = {
     PromptBundleGetFormatted: function(name, params) {
 	Sendlater3Util.Entering("Sendlater3Util.PromptBundleGetFormatted", name,
 				params, length);
-	if (Sendlater3Util._PromptBundle == null) {
-	    Sendlater3Util._PromptBundle =
-		document.getElementById("sendlater3-promptstrings");
-	}
 	var formatted = Sendlater3Util._PromptBundle
 	    .getFormattedString(name, params)
 	Sendlater3Util.Returning("Sendlater3Util.PromptBundleGetFormatted",
@@ -783,6 +777,8 @@ var Sendlater3Util = {
 
     initUtil: function() {
 	Sendlater3Util.Entering("Sendlater3Util.initUtil");
+        Sendlater3Util._PromptBundle =
+            document.getElementById("sendlater3-promptstrings"),
 	Sendlater3Util.PrefService
 	    .QueryInterface(Components.interfaces.nsIPrefBranch2);
 	Sendlater3Util.consoleObserver =
