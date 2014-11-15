@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY sendlater.ask.title.label "Soporte Enviar Más Tarde">
+<!ENTITY sendlater.ask.title.label "Ayudar a Enviar después">
 <!ENTITY sendlater.ask.message1 "Se han invertido muchísimas horas en el desarrollo, mantenimiento y soporte de esta extensión.">
 <!ENTITY sendlater.ask.message2 "Por favor, considere la posibilidad de donar para apoyar la continuidad de su desarrollo.">
 <!ENTITY sendlater.ask.message3 "Gracias!">
@@ -10,4 +10,4 @@
 <!ENTITY sendlater.ask.already.key "Y">
 <!ENTITY sendlater.ask.already.label "Ya he donado">
 <!ENTITY sendlater.ask.stop.key "N">
-<!ENTITY sendlater.ask.stop.label "No preguntar más">
+<!ENTITY sendlater.ask.stop.label "No volver a preguntar">
