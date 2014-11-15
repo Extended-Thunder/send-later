@@ -1,9 +1,13 @@
 #!/usr/bin/perl
 
 use File::Basename;
+use Getopt::Long;
 
 $debug = 0;
 $errors = 0;
+$replace = 0;
+
+die if (! GetOptions("replace" => \$replace));
 
 @locales = glob("chrome/locale/*");
 ($master) = grep($_ eq "chrome/locale/en-US", @locales);
@@ -43,6 +47,7 @@ sub check_generic {
 	}
 	push(@keys, $1);
 	&debug("Read key $1 from $master/$file\n");
+        $master_keys->{$file}->{$1} = $_;
     }
     close(MASTER);
     foreach my $locale (@locales) {
@@ -76,8 +81,16 @@ sub check_generic {
 	}
 	close(SLAVE);
 	foreach my $key (sort keys %keys) {
-	    warn "Missing key $key in $locale/$file\n";
-	    $errors++;
+	    warn("Missing key $key in $locale/$file",
+                 ($replace ? " (replaced)" : ""), "\n");
+            if ($replace) {
+                open(SLAVE, ">>", "$locale/$file") or die;
+                print(SLAVE $master_keys->{$file}->{$key}) or die;
+                close(SLAVE) or die;
+            }
+            else {
+                $errors++;
+            }
 	}
     }
 }
