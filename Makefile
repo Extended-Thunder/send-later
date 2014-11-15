@@ -1,3 +1,5 @@
+SHELL=/bin/bash
+
 all: send_later.xpi send_later-translatable.xpi
 
 manifest: $(shell find . -type f \! -name manifest \! -name '*.xpi' -print)
