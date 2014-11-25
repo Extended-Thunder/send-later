@@ -33,10 +33,17 @@ var Sendlater3Prompt = {
 						 [ordName, dayName]);
 	}
 	else {
-	    desc = SL3U.PromptBundleGet("everyempty");
+            try {
+	        desc = SL3U.PromptBundleGet("everyempty");
+            }
+            catch (ex) {
+                // Still initializing
+            }
 	}
-	document.getElementById("sendlater3-recur-every-month-checkbox").label =
-	    desc;
+        if (desc) {
+	    document.getElementById("sendlater3-recur-every-month-checkbox").label =
+	        desc;
+        }
 	if (recurring) {
 	    everyLabel.value = SL3U.PromptBundleGet("plural_" + which);
 	    var checkbox = document
@@ -104,6 +111,8 @@ var Sendlater3Prompt = {
 		btn.hidden = false;
 		key.removeAttribute("oncommand");
 		delete key.oncommand;
+                // http://stackoverflow.com/questions/16779316/how-to-set-an-xul-key-dynamically-and-securely
+                key.setAttribute("oncommand", "//");
 		key.addEventListener("command", cmd, false);
 	    }
 	}
@@ -199,7 +208,12 @@ var Sendlater3Prompt = {
 	    }
 	}
 	else {
-	    button.label = SL3U.PromptBundleGet("entervalid");
+            try {
+	        button.label = SL3U.PromptBundleGet("entervalid");
+            }
+            catch (ex) {
+                // Still initializing
+            }
 	}
 	document.getElementById("sendlater3-callsendat")
 	    .setAttribute("disabled", ! dateObj);
