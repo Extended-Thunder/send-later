@@ -329,7 +329,7 @@ var Sendlater3Composing = {
 		.classes["@mozilla.org/messengercompose/computils;1"]
 		.createInstance(Components.interfaces.nsIMsgCompUtils)
 		.msgGenerateMessageId(getCurrentIdentity());
-	    if (! SL3U.IsPostbox()) {
+	    if ('checkAndPopulateRecipients' in gMsgCompose) {
 		gMsgCompose.checkAndPopulateRecipients(true, false, new Object);
 	    }
 	}
@@ -378,7 +378,7 @@ var Sendlater3Composing = {
     },
 
     uninit: function() {
-	SL3U.PrefService.RemoveObserver(SL3U.pref("alt_binding"),
+	SL3U.PrefService.removeObserver(SL3U.pref("alt_binding"),
 					Sendlater3Composing.setBindings);
 	SL3U.uninitUtil();
     }
