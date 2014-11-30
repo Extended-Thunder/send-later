@@ -3,7 +3,7 @@
 <!DOCTYPE window SYSTEM "chrome://sendlater3/locale/prompt.dtd">
 
 <window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
-        title="&sendlater.prompt.title.label;" onload="Sendlater3Prompt.SetOnLoad();">
+        title="&sendlater.prompt.title.label;">
   <stringbundleset id="sendlater3-strbundles">
     <stringbundle id="sendlater3-promptstrings" src="chrome://sendlater3/locale/prompt.properties"/>
   </stringbundleset>

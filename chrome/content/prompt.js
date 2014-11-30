@@ -1,6 +1,8 @@
 Components.utils.import("resource://sendlater3/dateparse.jsm");
 
 var Sendlater3Prompt = {
+    loaded: false,
+
     // Disable preset buttons if recurrence is enabled, or vice versa
     SetRecurring: function(recurring) {
 	var dis = !!recurring;
@@ -13,6 +15,12 @@ var Sendlater3Prompt = {
     },
 
     CheckRecurring: function(dateObj) {
+        SL3U.Entering("Sendlater3Prompt.CheckRecurring", dateObj);
+        if (! Sendlater3Prompt.loaded) {
+            SL3U.Returning("Sendlater3Prompt.CheckRecurring",
+                           "not loaded yet");
+            return;
+        }
 	var group = document.getElementById("sendlater3-recur-group");
 	var selected = group.selectedItem;
 	var which = selected.id.replace(/sendlater3-recur-/, "");
@@ -33,12 +41,7 @@ var Sendlater3Prompt = {
 						 [ordName, dayName]);
 	}
 	else {
-            try {
-	        desc = SL3U.PromptBundleGet("everyempty");
-            }
-            catch (ex) {
-                // Still initializing
-            }
+	    desc = SL3U.PromptBundleGet("everyempty");
 	}
         if (desc) {
 	    document.getElementById("sendlater3-recur-every-month-checkbox").label =
@@ -58,6 +61,7 @@ var Sendlater3Prompt = {
 	else {
 	    everyLabel.value = "";
 	}
+        SL3U.Leaving("Sendlater3Prompt.CheckRecurring");
     },
 
     StealControlReturn: function(ev) {
@@ -82,6 +86,8 @@ var Sendlater3Prompt = {
 
     SetOnLoad: function() {
         SL3U.Entering("Sendlater3Prompt.SetOnLoad");
+        SL3U.initUtil();
+        Sendlater3Prompt.loaded = true;
 	document.getElementById("sendlater3-time-text")
 	    .addEventListener("ValueChange",
 			     Sendlater3Prompt.updateSummary, false);
@@ -185,6 +191,10 @@ var Sendlater3Prompt = {
 
     updateSummary: function(fromPicker) {
         SL3U.Entering("Sendlater3Prompt.updateSummary");
+        if (! Sendlater3Prompt.loaded) {
+            SL3U.Returning("Sendlater3Prompt.updateSummary", "not yet loaded");
+            return;
+        }
 	var dateObj;
 	var dateStr = document.getElementById("sendlater3-time-text").value;
 	if (dateStr) {
@@ -208,12 +218,7 @@ var Sendlater3Prompt = {
 	    }
 	}
 	else {
-            try {
-	        button.label = SL3U.PromptBundleGet("entervalid");
-            }
-            catch (ex) {
-                // Still initializing
-            }
+	    button.label = SL3U.PromptBundleGet("entervalid");
 	}
 	document.getElementById("sendlater3-callsendat")
 	    .setAttribute("disabled", ! dateObj);
@@ -353,5 +358,5 @@ var Sendlater3Prompt = {
     }
 }
 
-window.addEventListener("load", SL3U.initUtil, false);
+window.addEventListener("load", Sendlater3Prompt.SetOnLoad, false);
 window.addEventListener("unload", SL3U.uninitUtil, false);
