@@ -5,7 +5,7 @@
     <em:type>2</em:type>
     <em:id>sendlater3@kamens.us</em:id>
     <em:name>Send Later</em:name>
-    <em:version>4.3.1</em:version>
+    <em:version>4.4beta1</em:version>
     <em:creator>Jonathan Kamens</em:creator>
     <em:developer>Karthik Sivaram</em:developer>
     <em:contributor>Andrew Plummer (SugarJS)</em:contributor>
@@ -123,7 +123,7 @@
       <Description>
         <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id> <!-- thunderbird -->
         <em:minVersion>8.0a1</em:minVersion>
-        <em:maxVersion>37.0</em:maxVersion>
+        <em:maxVersion>38.0</em:maxVersion>
       </Description>
     </em:targetApplication>
     <em:targetApplication>
@@ -139,7 +139,7 @@
       <Description>
         <em:id>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</em:id>
         <em:minVersion>2.9</em:minVersion>
-        <em:maxVersion>2.34</em:maxVersion>
+        <em:maxVersion>2.35</em:maxVersion>
       </Description>
     </em:targetApplication>
   </Description>
