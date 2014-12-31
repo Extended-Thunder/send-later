@@ -10,12 +10,12 @@
   <script src="util.js"/>
   <script src="chrome://sendlater3/content/prompt.js"/>
   <keyset>
-    <key id="sendlater3-quickbutton1-key" modifiers="alt" key="1"/>
-    <key id="sendlater3-quickbutton2-key" modifiers="alt" key="2"/>
-    <key id="sendlater3-quickbutton3-key" modifiers="alt" key="3"/>
+    <key id="sendlater3-quickbutton1-key" modifiers="accel" key="1"/>
+    <key id="sendlater3-quickbutton2-key" modifiers="accel" key="2"/>
+    <key id="sendlater3-quickbutton3-key" modifiers="accel" key="3"/>
     <key id="sendlater3-cancel-esc" modifiers="" keycode="VK_ESCAPE" oncommand="window.arguments[0].cancelCallback();close();"/>
     <key id="sendlater3-call-return" modifiers="accel" keycode="VK_RETURN" oncommand="Sendlater3Prompt.CallSendAt()&amp;&amp;close();"/>
-    <key id="sendlater3-send-now-key" modifiers="alt" key="&sendlater.prompt.sendnow.accesskey;" oncommand="window.arguments[0].sendCallback();close();"/>
+    <key id="sendlater3-send-now-key" modifiers="accel" key="&sendlater.prompt.sendnow.accesskey;" oncommand="window.arguments[0].sendCallback();close();"/>
   </keyset>
   <vbox style="margin: 10px;">
     <vbox style="border:solid #00C000 3px; padding-top: 2px; font-size: 125%;" >
