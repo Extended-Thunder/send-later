@@ -318,13 +318,27 @@ var Sendlater3Composing = {
             if ('expandMailingLists' in gMsgCompose) {
                 gMsgCompose.expandMailingLists();
             }
-	    var head = "X-Send-Later-At: " + SL3U.FormatDateTime(sendat,true) +
-		"\r\n" + "X-Send-Later-Uuid: " + SL3U.getInstanceUuid() +
-		"\r\n";
-	    if (recur) {
-		head += SL3U.RecurHeader(sendat, recur, args);
-	    }
-	    msgCompFields.otherRandomHeaders += head;
+            var headers = {}
+            headers['X-Send-Later-At'] = SL3U.FormatDateTime(sendat,true)
+            headers['X-Send-Later-Uuid'] = SL3U.getInstanceUuid()
+            if (recur) {
+                var recurheaders = SL3U.RecurHeader(sendat, recur, args);
+                for (header in recurheaders) {
+                    headers[header] = recurheaders[header];
+                }
+            }
+            if ('setHeader' in msgCompFields) {
+                for (header in headers) {
+                    msgCompFields.setHeader(header, headers[header]);
+                }
+            }
+            else {
+                var head = '';
+                for (header in headers) {
+                    head += header + ": " + headers[header] + "\r\n";
+                }
+	        msgCompFields.otherRandomHeaders += head;
+            }
 	    msgCompFields.messageId = Components
 		.classes["@mozilla.org/messengercompose/computils;1"]
 		.createInstance(Components.interfaces.nsIMsgCompUtils)

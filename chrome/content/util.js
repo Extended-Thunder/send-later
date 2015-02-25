@@ -640,10 +640,9 @@ var Sendlater3Util = {
     },
 
     RecurHeader: function(sendat, recur, args) {
-	var header = "X-Send-Later-Recur: " + recur + "\r\n";
+	var header = {'X-Send-Later-Recur': recur};
 	if (args) {
-	    header = header + "X-Send-Later-Args: " + JSON.stringify(args) +
-		"\r\n";
+            header['X-Send-Later-Args'] = JSON.stringify(args);
 	}
 	return header;
     },

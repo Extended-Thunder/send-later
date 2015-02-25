@@ -489,7 +489,10 @@ var Sendlater3Backgrounding = function() {
 		var header = "\r\nX-Send-Later-At: " + SL3U.FormatDateTime(next, true) +
 		    "\r\nX-Send-Later-Uuid: " + SL3U.getInstanceUuid() + "\r\n";
 		if (recur) {
-		    header += SL3U.RecurHeader(next, recur, args);
+		    recurheader = SL3U.RecurHeader(next, recur, args);
+                    for (name in recurheader) {
+                        header += name + ": " + recurheader[name] + "\r\n";
+                    }
 		}
 		content = content.replace(/\r\n\r\n/, header + "\r\n");
 		content = content.replace(/^From .*\r\n/, "");
