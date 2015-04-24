@@ -487,7 +487,7 @@ var Sendlater3Util = {
 	    recurCount = 1;
 	}
 	if (recurArray.length > 0) {
-	    throw "Send Later 3 internal error: extra recurrence args: " + recurArray.toString();
+	    throw "Send Later internal error: extra recurrence args: " + recurArray.toString();
 	}
 
 	if (! now) {
@@ -575,7 +575,7 @@ var Sendlater3Util = {
 		next.setDate(dayOfMonth);
 		break;
 	    default:
-		throw "Send Later 3 internal error: unrecognized recurrence type: " + type;
+		throw "Send Later internal error: unrecognized recurrence type: " + type;
 		break;
 	    }
 		
@@ -620,7 +620,7 @@ var Sendlater3Util = {
 	    recurCount = 1;
 	}
 	if (recurArray.length > 0) {
-	    throw "Send Later 3 internal error: extra recurrence args: " + recurArray.toString();
+	    throw "Send Later internal error: extra recurrence args: " + recurArray.toString();
 	}
 
 	if (recurCount == 1) {

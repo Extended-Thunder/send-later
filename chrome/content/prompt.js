@@ -152,7 +152,7 @@ var Sendlater3Prompt = {
 		settings.splice(0,1);
 	    }
 	    if (settings.length > 0) {
-		throw "Send Later 3 internal error: unexpected recur setting fields: " +
+		throw "Send Later internal error: unexpected recur setting fields: " +
 		    settings.toString();
 	    }
 	}
