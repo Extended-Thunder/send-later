@@ -142,3 +142,14 @@ to avoid the appearance that the message is being scheduled."
   time before or after noon."
 
 Options => Delivery Format => Plain Text doesn't work.
+
+Interacs badly with "Send & File" add-on. From a user: ... but it
+seems to have a compatibility problem with the "Send & File" 0.3.1
+add-on - maybe you've seen this? When I click "File | Send Later", the
+Send & File add-on allows me to select which folder I'd like the email
+stored, and then the Send Later dialog box prompts me to select when
+to send the email.  This works perfectly when I select a custom
+date/time or one the presets in Send Later. However, when I click "Put
+in Outbox", it prompts me a second time for which folder to store the
+email. Do you know whether the output of these actions are treated
+differently by Thunderbird?"
