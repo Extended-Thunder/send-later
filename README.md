@@ -13,8 +13,8 @@ http://blog.kamens.us/send-later/)
 Mailing list: [https://groups.google.com/forum/#!forum/send-later-users](
 https://groups.google.com/forum/#!forum/send-later-users)
 
-Author: Jonathan Kamens [jik+sendlater3@kamens.us](
-mailto:jik+sendlater3@kamens.us)
+Author: Jonathan Kamens <[jik+sendlater3@kamens.us](
+mailto:jik+sendlater3@kamens.us)>
 
 Copyright (c) 2010-2015 Jonathan Kamens.
 
