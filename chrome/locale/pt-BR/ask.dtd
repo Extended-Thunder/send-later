@@ -1,0 +1,13 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY sendlater.ask.title.label "Contribua com Send Later">
+<!ENTITY sendlater.ask.message1 "Muitas horas foram dispendidas para desenvolvimento, manutenção e suporte deste add-on.">
+<!ENTITY sendlater.ask.message2 "Por favor, considere a alternativa de fazer uma doação para dar continuidade ao projeto e seu desenvolvimento!">
+<!ENTITY sendlater.ask.message3 "Obrigado!">
+<!ENTITY sendlater.ask.donate.key "D">
+<!ENTITY sendlater.ask.donate.label "Contribua Agora">
+<!ENTITY sendlater.ask.remind.key "R">
+<!ENTITY sendlater.ask.remind.label "Lembre-me mais tarde">
+<!ENTITY sendlater.ask.already.key "a">
+<!ENTITY sendlater.ask.already.label "Já fiz minha contribuição">
+<!ENTITY sendlater.ask.stop.key "S">
+<!ENTITY sendlater.ask.stop.label "Não pergunte mais">

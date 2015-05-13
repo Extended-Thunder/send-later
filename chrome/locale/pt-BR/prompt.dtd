@@ -1,0 +1,27 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY sendlater.prompt.sendlater.label "Por na Caixa de Saída">
+<!ENTITY sendlater.prompt.sendlater.accesskey "O">
+<!ENTITY sendlater.prompt.sendlater.tooltip "Ao invés de agendar o envio para uma hora específica, mover a mensagem para pasta de Saída para envio na próxima vez em que mensagens não enviadas forem enviadas.">
+<!ENTITY sendlater.prompt.sendnow.label "Enviar Agora">
+<!ENTITY sendlater.prompt.sendnow.accesskey "N">
+<!ENTITY sendlater.prompt.close.label "Cancela">
+<!ENTITY sendlater.prompt.close.tooltip "Voltar e editar mensagem.">
+<!ENTITY sendlater.prompt.title.label "Enviar este email mais tarde">
+<!ENTITY sendlater.prompt.textbox.label "Enviar às ... h">
+<!ENTITY sendlater.prompt.or.label "ou:">
+<!ENTITY sendlater.prompt.textbox.tooltip "Insira dia e hora. Formato livre como &quot;próxima terça às 3 da tarde&quot; também é suportado.">
+<!ENTITY sendlater.prompt.textbox.emptytext "ex: &quot;15h 3a feira&quot;, &quot;31/12/2012 15:27&quot;">
+<!ENTITY sendlater.prompt.sendat.label "Enviar mais tarde no horário especificado acima">
+<!ENTITY sendlater.prompt.sendat.tooltip "Salvar mensagem na pasta de rascunho para envio automático na hora escolhida acima.">
+<!ENTITY sendlater.prompt.recur.label "Recorrência:">
+<!ENTITY sendlater.prompt.none.label "nunca">
+<!ENTITY sendlater.prompt.daily.label "diariamente">
+<!ENTITY sendlater.prompt.weekly.label "semanalmente">
+<!ENTITY sendlater.prompt.monthly.label "mensalmente">
+<!ENTITY sendlater.prompt.yearly.label "anualmente">
+<!ENTITY sendlater.toolbar.sendlater.button.label "Enviar mais Tarde">
+<!ENTITY sendlater.toolbar.textbox.emptytext "hora de envio">
+<!ENTITY sendlater.prompt.every.label "a cada...">
+<!ENTITY sendlater.button1.label "15m mais tarde">
+<!ENTITY sendlater.button2.label "30m mais tarde">
+<!ENTITY sendlater.button3.label "2h mais tarde">
