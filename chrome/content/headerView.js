@@ -176,62 +176,65 @@ var Sendlater3HeaderView = function() {
 	SL3U.Leaving("Sendlater3HeaderView.addSENDLATER3ColumnHandler");
     }
 
-    var sendlater3_HeaderDisplay = {
-	dispHeader: function () {
-	    SL3U.Entering("Sendlater3HeaderView.sendlater3_HeaderDisplay.dispHeader");
-	    var hidden = true;
-	    if (SL3U.getBoolPref("showheader")) {
-		SL3U.debug("headerView.js: dispHeader: showheader is true");
-		if (IsThisDraft(gDBView.viewFolder)) {
-		    var msghdr = gDBView.hdrForFirstSelectedMessage;
-		    if (msghdr!=null) {
-			var sendat =msghdr.getStringProperty("x-send-later-at");
-			if (sendat) {
-			    var xsendlater = new Date(sendat);
-			    var val = xsendlater.toLocaleString();
-			    var recur = msghdr
-				.getStringProperty("x-send-later-recur");
-			    if (recur) {
-				val += " (" + SL3U.FormatRecur(recur) + ")";
-			    }
-			    document
-				.getElementById("sendlater3-expanded-Box")
-				.headerValue = val;
-			    hidden = false;
-			    SL3U.debug("headerView.js: dispHeader: showing header");
-			}	
-			else {
-			    SL3U.debug("headerView.js: dispHeader: hiding header (empty)");
-			}
-		    }
-		    else {
-			SL3U.debug("headerView.js: dispHeader: hiding header (null msghdr)");
-		    }
-		}
-		else {
-		    SL3U.debug("headerView.js: dispHeader: hiding header (not draft)");
-		}
-	    }
-	    else {
-		SL3U.debug("headerView.js: dispHeader: showheader is false");
-	    }
-	    document.getElementById(SL3U.HeaderRowId()).hidden = hidden;
-	    SL3U.Leaving("Sendlater3HeaderView.sendlater3_HeaderDisplay.dispHeader");
-	},
-	noop: function() { }
-
+    function onBeforeShowHeaderPane() {
+        SL3U.Entering("Sendlater3HeaderView.onBeforeShowHeaderPane");
+        var hidden = true;
+        if (SL3U.getBoolPref("showheader")) {
+            SL3U.debug("headerView.js: onBeforeShowHeaderPane: showheader is true");
+            if (IsThisDraft(gDBView.viewFolder)) {
+                var msghdr = gDBView.hdrForFirstSelectedMessage;
+                if (msghdr!=null) {
+                    var sendat =msghdr.getStringProperty("x-send-later-at");
+                    if (sendat) {
+                        var xsendlater = new Date(sendat);
+                        var val = xsendlater.toLocaleString();
+                        var recur = msghdr
+                            .getStringProperty("x-send-later-recur");
+                        if (recur) {
+                            val += " (" + SL3U.FormatRecur(recur) + ")";
+                        }
+                        document
+                            .getElementById("sendlater3-expanded-Box")
+                            .headerValue = val;
+                        hidden = false;
+                        SL3U.debug("headerView.js: onBeforeShowHeaderPane: showing header");
+                    }	
+                    else {
+                        SL3U.debug("headerView.js: onBeforeShowHeaderPane: hiding header (empty)");
+                    }
+                }
+                else {
+                    SL3U.debug("headerView.js: onBeforeShowHeaderPane: hiding header (null msghdr)");
+                }
+            }
+            else {
+                SL3U.debug("headerView.js: onBeforeShowHeaderPane: hiding header (not draft)");
+            }
+        }
+        else {
+            SL3U.debug("headerView.js: onBeforeShowHeaderPane: showheader is false");
+        }
+        document.getElementById(SL3U.HeaderRowId()).hidden = hidden;
+        SL3U.Leaving("Sendlater3HeaderView.sendlater3_HeaderDisplay.onBeforeShowHeaderPane");
     }
 
-    function sendlater3_HeaderView_SetupListener() {
-	var listener = {};
-	listener.onStartHeaders	= sendlater3_HeaderDisplay.noop;
-	listener.onEndHeaders	= sendlater3_HeaderDisplay.dispHeader;
-	gMessageListeners.push(listener);
-	window.document.getElementById('folderTree')
-	    .addEventListener("select",addSENDLATER3ColumnHandler,false);
+    function onBeforeShowHeaderPaneWrapper() {
+        SL3U.debug("headerView.js: onBeforeShowHeaderPaneWrapper: Discarding " +
+                   "onEndHeaders and replacing onBeforeShowHeaderPane")
+        headerListener.onEndHeaders = function() {};
+        headerListener.onBeforeShowHeaderPane = onBeforeShowHeaderPane;
+        onBeforeShowHeaderPane();
     }
-
-    sendlater3_HeaderView_SetupListener();
+        
+    var headerListener = {
+        onStartHeaders: function() {},
+        onEndHeaders: onBeforeShowHeaderPane,
+        onBeforeShowHeaderPane: onBeforeShowHeaderPaneWrapper
+    };
+    
+    gMessageListeners.push(headerListener);
+    window.document.getElementById('folderTree')
+	.addEventListener("select",addSENDLATER3ColumnHandler,false);
 }
 
 window.addEventListener("load", Sendlater3HeaderView, false);
