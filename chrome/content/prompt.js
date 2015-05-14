@@ -163,6 +163,7 @@ var Sendlater3Prompt = {
 	       prevXSendLater.format("long", sendlater3SugarLocale());
 	    Sendlater3Prompt.updateSummary();
 	}
+        Sendlater3Prompt.CheckRecurring();
 	document.getElementById("sendlater3-time-text").focus();
 	Sendlater3Prompt.AddControlReturnListeners(document);
         SL3U.Leaving("Sendlater3Prompt.SetOnLoad");
