@@ -153,3 +153,5 @@ date/time or one the presets in Send Later. However, when I click "Put
 in Outbox", it prompts me a second time for which folder to store the
 email. Do you know whether the output of these actions are treated
 differently by Thunderbird?"
+
+It should be possible to enter an end date for recurring messages.
