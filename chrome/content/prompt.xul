@@ -46,10 +46,13 @@
 	    <hbox>
 	      <separator flex="1"/>
 	      <!-- setTimeout used because of https://bugzilla.mozilla.org/show_bug.cgi?id=799219 -->
+              <!-- The add-on validator requires the first argument to
+                   setTimeout to be a function expression rather than a
+                   function. -->
 	      <datepicker id="sendlater3-datepicker" type="popup"
-			  onchange="window.setTimeout(Sendlater3Prompt.pickersToText, 0);"/>
+			  onchange="window.setTimeout(function(){Sendlater3Prompt.pickersToText()}, 0);"/>
 	      <timepicker id="sendlater3-timepicker"
-			  onchange="window.setTimeout(Sendlater3Prompt.pickersToText, 0);"
+			  onchange="window.setTimeout(function(){Sendlater3Prompt.pickersToText()}, 0);"
 			  hideseconds="true"/>
 	      <separator flex="1"/>
 	    </hbox>
