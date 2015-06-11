@@ -108,17 +108,8 @@ var Sendlater3Prompt = {
 			Sendlater3Prompt.CallSendAfter(c()) && close();
 		    };
 		}(closure);
-		// Setting .oncommand property and attribute works
-		// irregularly, so wipe both and use an event handler
-		// instead.
-		btn.removeAttribute("oncommand");
-		delete btn.oncommand;
 		btn.addEventListener("command", cmd, false);
 		btn.hidden = false;
-		key.removeAttribute("oncommand");
-		delete key.oncommand;
-                // http://stackoverflow.com/questions/16779316/how-to-set-an-xul-key-dynamically-and-securely
-                key.setAttribute("oncommand", "//");
 		key.addEventListener("command", cmd, false);
 	    }
 	}

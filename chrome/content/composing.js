@@ -22,18 +22,24 @@ var Sendlater3Composing = {
 
     setBindings: {
 	observe: function() {
-	    if (! SL3U.getBoolPref("alt_binding")) {
-		document.getElementById("key_sendLater")
-		    .setAttribute("oncommand", "goDoCommand('cmd_sendLater')");
-		document.getElementById("sendlater3-key_sendLater3")
-		    .setAttribute("disabled", true);
+            main_key = document.getElementById("key_sendLater");
+            alt_key = document.getElementById("sendlater3-key_sendLater3");
+            if (main_key.sl3EventListener) {
+                main_key.removeEventListener("command", main_key.sl3EventListener, false);
+                alt_key.removeEventListener("command", alt_key.sl3EventListener, false);
+            }
+	    if (SL3U.getBoolPref("alt_binding")) {
+                main_key.sl3EventListener = Sendlater3Composing.builtInSendLater;
+                alt_key.sl3EventListener = Sendlater3Composing.mySendLater;
+                alt_key.setAttribute("disabled", false);
 	    }
 	    else {
-		document.getElementById("key_sendLater")
-		    .setAttribute("oncommand", "Sendlater3Composing.builtInSendLater();");
-		document.getElementById("sendlater3-key_sendLater3")
-		    .setAttribute("disabled", false);
+                main_key.sl3EventListener = Sendlater3Composing.mySendLater;
+                alt_key.sl3EventListener = Sendlater3Composing.builtInSendLater;
+                alt_key.setAttribute("disabled", true);
 	    }
+            main_key.addEventListener("command", main_key.sl3EventListener, false);
+            alt_key.addEventListener("command", alt_key.sl3EventListener, false);
 	}
     },
 
@@ -41,6 +47,10 @@ var Sendlater3Composing = {
 	document.getElementById("msgcomposeWindow")
 	    .setAttribute("sending_later", true);
 	goDoCommand("cmd_sendLater");
+    },
+
+    mySendLater: function() {
+        goDoCommand("cmd_sendLater");
     },
 
     main: function() {

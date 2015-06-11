@@ -5,9 +5,9 @@
   <script src="composing.js"/>
 
   <keyset id="tasksKeys">
-  <key oncommand="Sendlater3Composing.CheckSendAt2('key_sendLater binding created in composing.xul')" id="key_sendLater"
+  <key oncommand="//" id="key_sendLater"
      keycode="VK_RETURN" observes="" modifiers="accel, shift"/>
-  <key oncommand="Sendlater3Composing.CheckSendAt2('sendlater3-key_sendLater3 binding created in composing.xul')" id="sendlater3-key_sendLater3"
+  <key oncommand="//" id="sendlater3-key_sendLater3"
      keycode="VK_RETURN" modifiers="alt, shift"
      disabled="true"/>
   </keyset>

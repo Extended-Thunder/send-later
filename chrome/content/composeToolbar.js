@@ -132,8 +132,6 @@ var Sendlater3ComposeToolbar = {
 		    // Setting .oncommand property and attribute works
 		    // irregularly, so wipe both and use an event
 		    // handler instead.
-		    btn.removeAttribute("oncommand");
-		    delete btn.oncommand;
 		    if (btn.sl3EventListener)
 			btn.removeEventListener("command", btn.sl3EventListener,
 						false);
@@ -141,8 +139,6 @@ var Sendlater3ComposeToolbar = {
 		    btn.sl3EventListener = cmd;
 		}
 		if (key) {
-		    key.removeAttribute("oncommand");
-		    delete key.oncommand;
 		    if (key.sl3EventListener)
 			key.removeEventListener("command", key.sl3EventListener,
 						false);

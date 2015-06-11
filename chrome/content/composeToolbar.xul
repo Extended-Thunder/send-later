@@ -4,9 +4,9 @@
 <overlay id="sendlater3-toolbar-overlay"
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
   <keyset>
-    <key id="sendlater3-quickbutton1-key" modifiers="control alt" key="1"/>
-    <key id="sendlater3-quickbutton2-key" modifiers="control alt" key="2"/>
-    <key id="sendlater3-quickbutton3-key" modifiers="control alt" key="3"/>
+    <key id="sendlater3-quickbutton1-key" modifiers="control alt" key="1" oncommand="//"/>
+    <key id="sendlater3-quickbutton2-key" modifiers="control alt" key="2" oncommand="//"/>
+    <key id="sendlater3-quickbutton3-key" modifiers="control alt" key="3" oncommand="//"/>
   </keyset>
 
   <stringbundleset id="stringbundleset">
@@ -53,7 +53,7 @@
       <button key="sendlater3-quickbutton1-key" id="sendlater3-shortcutbtn_1"
 	      flex="1" label="&sendlater.button1.label;"
 	      sl3label="&sendlater.button1.label;"
-	      oncommand="Sendlater3ComposeToolbar.CallSendAfter(15);"/>
+	      oncommand="//"/>
     </toolbaritem>
     <toolbaritem id="sendlater3-toolbar-quickbutton2-item"
 		 class="chromeclass-toolbar"
@@ -61,7 +61,7 @@
       <button key="sendlater3-quickbutton2-key" id="sendlater3-shortcutbtn_2"
 	      flex="1" label="&sendlater.button2.label;"
 	      sl3label="&sendlater.button2.label;"
-	      oncommand="Sendlater3ComposeToolbar.CallSendAfter(15);"/>
+	      oncommand="//"/>
     </toolbaritem>
     <toolbaritem id="sendlater3-toolbar-quickbutton3-item"
 		 class="chromeclass-toolbar"
@@ -69,7 +69,7 @@
       <button key="sendlater3-quickbutton3-key" id="sendlater3-shortcutbtn_3"
 	      flex="1" label="&sendlater.button3.label;"
 	      sl3label="&sendlater.button3.label;"
-	      oncommand="Sendlater3ComposeToolbar.CallSendAfter(15);"/>
+	      oncommand="//"/>
     </toolbaritem>
   </toolbarpalette>
 </overlay>
