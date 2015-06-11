@@ -240,6 +240,12 @@ var Sendlater3Backgrounding = function() {
 	    "active_uuid="  + active_uuid  + ", " +
 	    "active_time="  + active_time  + ", " +
 	    "timeout="      + timeout;
+        if (active_time && active_time > current_time) {
+            SL3U.warn("Detected window active time in the future (" +
+                      active_time + " > " + current_time + ")! Resetting.");
+	    SL3U.setIntPref("activescanner.time", current_time);
+            active_time = current_time;
+        }
 	if (active_uuid && active_uuid != "" && active_uuid != uuid) {
 	    if (current_time - active_time > 2 * timeout) {
 		if (capturable) {
