@@ -495,7 +495,7 @@ var Sendlater3Backgrounding = function() {
 		var header = "\r\nX-Send-Later-At: " + SL3U.FormatDateTime(next, true) +
 		    "\r\nX-Send-Later-Uuid: " + SL3U.getInstanceUuid() + "\r\n";
 		if (recur) {
-		    recurheader = SL3U.RecurHeader(next, recur, args);
+		    var recurheader = SL3U.RecurHeader(next, recur, args);
                     for (name in recurheader) {
                         header += name + ": " + recurheader[name] + "\r\n";
                     }
@@ -1390,6 +1390,7 @@ Sendlater3Backgrounding.markReadListener.prototype = {
 
     // Thunderbird 3
     msgAdded: function(aMsgHdr) {
+        var readlist;
 	if (this._folder == aMsgHdr.folder &&
 	    this._key == aMsgHdr.messageKey) {
 	    if (SL3U.IsPostbox()) {

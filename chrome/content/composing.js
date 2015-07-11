@@ -22,8 +22,8 @@ var Sendlater3Composing = {
 
     setBindings: {
 	observe: function() {
-            main_key = document.getElementById("key_sendLater");
-            alt_key = document.getElementById("sendlater3-key_sendLater3");
+            var main_key = document.getElementById("key_sendLater");
+            var alt_key = document.getElementById("sendlater3-key_sendLater3");
             if (main_key.sl3EventListener) {
                 main_key.removeEventListener("command", main_key.sl3EventListener, false);
                 alt_key.removeEventListener("command", alt_key.sl3EventListener, false);
