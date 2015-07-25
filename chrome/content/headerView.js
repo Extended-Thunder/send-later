@@ -150,15 +150,25 @@ var Sendlater3HeaderView = function() {
 	return false;
     }
 
-    function addSENDLATER3ColumnHandler() {
-	SL3U.Entering("Sendlater3HeaderView.addSENDLATER3ColumnHandler");
+    var addColumnHandler = {
+        // Components.interfaces.nsIObserver
+        observe: function(aMsgFolder, aTopic, aData) {
+	    SL3U.Entering("Sendlater3HeaderView.addColumnHandler.observe");
+	    gDBView.addColumnHandler("sendlater3-colXSendLaterAt",
+				     sendlater3columnHandler);
+	    SL3U.Leaving("Sendlater3HeaderView.addColumnHandler.observe");
+        }
+    }
+
+    function hideShowColumn() {
+	SL3U.Entering("Sendlater3HeaderView.hideShowColumn");
 	var folder;
 	try {
 	    folder = gDBView.viewFolder;
 	}
 	catch (ex) {
 	    // TB2 bug
-	    SL3U.warn("addSENDLATER3ColumnHandler: gDBView problem");
+	    SL3U.warn("hideShowColumn: gDBView problem");
 	    return;
 	}
 	if ( IsThisDraft(folder) ) {
@@ -168,13 +178,11 @@ var Sendlater3HeaderView = function() {
 	    else {
 		document.getElementById("sendlater3-colXSendLaterAt").hidden = true;
 	    }
-	    gDBView.addColumnHandler("sendlater3-colXSendLaterAt",
-				     sendlater3columnHandler);
 	}
 	else {
 	    document.getElementById("sendlater3-colXSendLaterAt").hidden = true;
 	}
-	SL3U.Leaving("Sendlater3HeaderView.addSENDLATER3ColumnHandler");
+	SL3U.Leaving("Sendlater3HeaderView.hideShowColumn");
     }
 
     function onBeforeShowHeaderPane() {
@@ -234,8 +242,11 @@ var Sendlater3HeaderView = function() {
     };
     
     gMessageListeners.push(headerListener);
+    var ObserverService = Components.classes["@mozilla.org/observer-service;1"]
+        .getService(Components.interfaces.nsIObserverService);
+    ObserverService.addObserver(addColumnHandler, "MsgCreateDBView", false);
     window.document.getElementById('folderTree')
-	.addEventListener("select",addSENDLATER3ColumnHandler,false);
+	.addEventListener("select",hideShowColumn,false);
 }
 
 window.addEventListener("load", Sendlater3HeaderView, false);
