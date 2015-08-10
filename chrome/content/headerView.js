@@ -202,11 +202,21 @@ var Sendlater3HeaderView = function() {
                         if (recur) {
                             val += " (" + SL3U.FormatRecur(recur) + ")";
                         }
-                        document
-                            .getElementById("sendlater3-expanded-Box")
-                            .headerValue = val;
-                        hidden = false;
-                        SL3U.debug("headerView.js: onBeforeShowHeaderPane: showing header");
+                        try {
+                            document
+                                .getElementById("sendlater3-expanded-Box")
+                                .headerValue = val;
+                            hidden = false;
+                            SL3U.debug("headerView.js: " +
+                                       "onBeforeShowHeaderPane: " +
+                                       "showing header");
+                        }
+                        catch (e) {
+                            if (onBeforeShowHeaderPane.warning) {
+                                SL3U.warn(onBeforeShowHeaderPane.warning);
+                                onBeforeShowHeaderPane.warning = null;
+                            }
+                        }
                     }	
                     else {
                         SL3U.debug("headerView.js: onBeforeShowHeaderPane: hiding header (empty)");
@@ -223,9 +233,20 @@ var Sendlater3HeaderView = function() {
         else {
             SL3U.debug("headerView.js: onBeforeShowHeaderPane: showheader is false");
         }
-        document.getElementById(SL3U.HeaderRowId()).hidden = hidden;
+        try { document.getElementById(SL3U.HeaderRowId()).hidden = hidden; }
+        catch (e) {
+            if (onBeforeShowHeaderPane.warning) {
+                SL3U.warn(onBeforeShowHeaderPane.warning);
+                onBeforeShowHeaderPane.warning = null;
+            }
+        }
         SL3U.Leaving("Sendlater3HeaderView.sendlater3_HeaderDisplay.onBeforeShowHeaderPane");
     }
+
+    onBeforeShowHeaderPane.warning =
+        "headerView.js: onBeforeShowHeaderPane: Error accessing header row; " +
+        "are you using an add-on like Mnenhy that changes how message " +
+        "headers are displayed? Further warnings will be suppressed.";
 
     function onBeforeShowHeaderPaneWrapper() {
         SL3U.debug("headerView.js: onBeforeShowHeaderPaneWrapper: Discarding " +
