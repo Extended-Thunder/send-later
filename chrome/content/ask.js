@@ -29,5 +29,10 @@ function Sendlater3AskStop() {
     window.close();
 }
 
-window.addEventListener("load", SL3U.initUtil, false);
+function Sendlater3AskInit() {
+    window.removeEventListener("load", Sendlater3AskInit, false);
+    SL3U.initUtil();
+}
+
+window.addEventListener("load", Sendlater3AskInit, false);
 window.addEventListener("unload", SL3U.uninitUtil, false);

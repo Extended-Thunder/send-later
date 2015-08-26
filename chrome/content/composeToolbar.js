@@ -231,6 +231,7 @@ var Sendlater3ComposeToolbar = {
 
     main: function() {
     	SL3U.Entering("Sendlater3ComposeToolbar.main");
+        window.removeEventListener("load", Sendlater3ComposeToolbar.main, false);
 	SL3U.initUtil();
 	Sendlater3ComposeToolbar.SetOnLoad();
 	document.getElementById("msgcomposeWindow").addEventListener("compose-window-reopen", Sendlater3ComposeToolbar.SetOnLoad, false);

@@ -1,4 +1,5 @@
 var Sendlater3HeaderView = function() {
+    window.removeEventListener("load", Sendlater3HeaderView, false);
     SL3U.initUtil();
 
     var sendlater3columnHandler = {

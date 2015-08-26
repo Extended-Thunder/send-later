@@ -1,6 +1,7 @@
 var Sendlater3Backgrounding = function() {
     SL3U.Entering("Sendlater3Backgrounding");
 
+    window.removeEventListener("load", Sendlater3Backgrounding, false);
     SL3U.initUtil();
 
     var lastMessagesPending = 0;

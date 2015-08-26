@@ -86,6 +86,7 @@ var Sendlater3Prompt = {
 
     SetOnLoad: function() {
         SL3U.Entering("Sendlater3Prompt.SetOnLoad");
+        window.removeEventListener("load", Sendlater3Prompt.SetOnLoad, false);
         SL3U.initUtil();
         Sendlater3Prompt.loaded = true;
 	document.getElementById("sendlater3-time-text")

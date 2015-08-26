@@ -17,6 +17,7 @@ var Sendlater3Options = {
     },
 
     SetOnLoad: function() {
+        window.removeEventListener("load", Sendlater3Options.SetOnLoad, false);
 	SL3U.initUtil();
 	document.getElementById("sendlater3-help_text").hidden = true;
     }

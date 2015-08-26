@@ -56,6 +56,8 @@ var Sendlater3Composing = {
     main: function() {
 	SL3U.initUtil();
 
+        window.removeEventListener("load", Sendlater3Composing.main, false);
+
 	function CheckForXSendLater() {
 	    SL3U.Entering("Sendlater3Composing.main.CheckforXSendLater");
 	    Sendlater3Composing.prevXSendLater = false;
