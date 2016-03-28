@@ -884,6 +884,21 @@ var Sendlater3Util = {
 			       .TYPE_REPEATING_SLACK);
     },
 
+    alert_for_enigmail: function() {
+        if (typeof Enigmail !== 'undefined') {
+            if (SL3U.getBoolPref("disabled_for_enigmail"))
+                // Already disabled, no need to alert.
+                return true;
+            SL3U.alert(null, SL3U.PromptBundleGet("EnigmailWarningTitle"),
+                       SL3U.PromptBundleGet("EnigmailWarningText"));
+            SL3U.setBoolPref("disabled_for_enigmail", true);
+            return true;
+        }
+        if (SL3U.getBoolPref("disabled_for_enigmail"))
+            SL3U.setBoolPref("disabled_for_enigmail", false);
+        return false;
+    },
+
     Entering: function() {
     	var func = arguments[0];
 	var msg = "Entering " + func;

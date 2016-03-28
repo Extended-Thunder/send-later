@@ -4,6 +4,14 @@ var Sendlater3ComposeToolbar = {
     timer: null,
     origCustomizeDone: null,
 
+    elements: ["sendlater3-toolbar-text",
+	       "sendlater3-toolbar-datepicker",
+	       "sendlater3-toolbar-timepicker",
+	       "sendlater3-toolbarbutton",
+               "sendlater3-shortcutbtn_1",
+               "sendlater3-shortcutbtn_2",
+               "sendlater3-shortcutbtn_3"],
+
     SetRecurring: function(recurring) {
 	var ids = ["sendlater3-toolbar-text",
 		   "sendlater3-toolbar-datepicker",
@@ -230,6 +238,17 @@ var Sendlater3ComposeToolbar = {
     },
 
     main: function() {
+        if (SL3U.alert_for_enigmail()) {
+            for (var id in Sendlater3ComposeToolbar.elements) {
+                id = Sendlater3ComposeToolbar.elements[id]
+                var element = document.getElementById(id);
+                if (element) {
+                    element.setAttribute("disabled", true);
+                }
+            }
+            return;
+        }
+
     	SL3U.Entering("Sendlater3ComposeToolbar.main");
         window.removeEventListener("load", Sendlater3ComposeToolbar.main, false);
 	SL3U.initUtil();

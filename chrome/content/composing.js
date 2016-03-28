@@ -21,12 +21,17 @@ var Sendlater3Composing = {
     },
 
     setBindings: {
-	observe: function() {
+	observe: function(disabled) {
             var main_key = document.getElementById("key_sendLater");
             var alt_key = document.getElementById("sendlater3-key_sendLater3");
             if (main_key.sl3EventListener) {
                 main_key.removeEventListener("command", main_key.sl3EventListener, false);
                 alt_key.removeEventListener("command", alt_key.sl3EventListener, false);
+            }
+            if (disabled) {
+                main_key.sl3EventListener = Sendlater3Composing.builtInSendLater;
+                alt_key.sl3EventListener = Sendlater3Composing.builtInSendLater;
+                alt_key.setAttribute("disabled", true);
             }
 	    if (SL3U.getBoolPref("alt_binding")) {
                 main_key.sl3EventListener = Sendlater3Composing.builtInSendLater;
@@ -58,6 +63,11 @@ var Sendlater3Composing = {
 
         window.removeEventListener("load", Sendlater3Composing.main, false);
 
+        if (SL3U.alert_for_enigmail()) {
+	    Sendlater3Composing.setBindings.observe(true);
+            return;
+        }
+        
 	function CheckForXSendLater() {
 	    SL3U.Entering("Sendlater3Composing.main.CheckforXSendLater");
 	    Sendlater3Composing.prevXSendLater = false;
