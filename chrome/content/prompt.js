@@ -57,6 +57,9 @@ var Sendlater3Prompt = {
 	    var monthCheckbox = document
 		.getElementById("sendlater3-recur-every-month-checkbox");
 	    monthCheckbox.disabled = (which != "monthly") || ! dateObj;
+            if (monthCheckbox.disabled) {
+                monthCheckbox.checked = false;
+            }
 	}
 	else {
 	    everyLabel.value = "";
