@@ -212,6 +212,11 @@ var Sendlater3Prompt = {
 	}
 	else {
 	    button.label = SL3U.PromptBundleGet("entervalid");
+	    var monthCheckbox = document.
+                getElementById("sendlater3-recur-every-month-checkbox");
+            monthCheckbox.disabled = true;
+            monthCheckbox.label = SL3U.PromptBundleGet("everyempty")
+            monthCheckbox.checked = false;
 	}
 	document.getElementById("sendlater3-callsendat")
 	    .setAttribute("disabled", ! dateObj);
