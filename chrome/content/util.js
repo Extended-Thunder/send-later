@@ -198,13 +198,13 @@ var Sendlater3Util = {
 	else if (raw.match(/^[A-Za-z_$][A-Za-z0-9_$]*$/)) {
 	    var func = window[raw];
 	    if (typeof(func) == "undefined") {
-		Sendlater3Util.warn("Invalid setting for quick option " + num + 
-				    ": function \"" + raw + 
+		Sendlater3Util.warn("Invalid setting for quick option " + num +
+				    ": function \"" + raw +
 				    "\" is not defined");
 		return; // undefined
 	    }
 	    else if (typeof(func) != "function") {
-		Sendlater3Util.warn("Invalid setting for quick option " + num + 
+		Sendlater3Util.warn("Invalid setting for quick option " + num +
 				    ": \"" + raw + "\" is not a function");
 		return; // undefined
 	    }
@@ -213,8 +213,8 @@ var Sendlater3Util = {
 		if ((typeof(v) != "number") &&
 		    ! (v instanceof Array && v.length &&
 		       typeof(v[0]) == "number")) {
-		    Sendlater3Util.warn("Invalid setting for quick option " + 
-					num + ": \"" + raw + 
+		    Sendlater3Util.warn("Invalid setting for quick option " +
+					num + ": \"" + raw +
 					"()\" does not return a number");
 		    return; // undefined
 		}
@@ -261,7 +261,7 @@ var Sendlater3Util = {
 	s+=val;
 	if (includeTZ) {
 	    s += " ";
-	    if (offset < 0) 
+	    if (offset < 0)
 	    {
 		offset *= -1;
 		s += "+";
@@ -417,12 +417,12 @@ var Sendlater3Util = {
 	    var func = window[funcName];
 	    if (typeof(func) == "undefined") {
 		// test 8
-		throw new Error("Send Later: Invalid recurrence specification '" + 
+		throw new Error("Send Later: Invalid recurrence specification '" +
 				recurSpec + ": '" + funcName + "' is not defined");
 	    }
 	    else if (typeof(func) != "function") {
 		// test 9
-		throw new Error("Send Later: Invalid recurrence specification '" + 
+		throw new Error("Send Later: Invalid recurrence specification '" +
 				recurSpec + ": '" + funcName + "' is not a function");
 	    }
 	    var nextRecur = func(next, args);
@@ -585,7 +585,7 @@ var Sendlater3Util = {
 		throw "Send Later internal error: unrecognized recurrence type: " + type;
 		break;
 	    }
-		
+
 	    recurCount--;
 	}
 
@@ -636,7 +636,7 @@ var Sendlater3Util = {
 	else {
 	    str = SL3U.PromptBundleGetFormatted("every_"+type, [recurCount]);
 	}
-	
+
 	if (dayOfWeek != null) {
 	    str += ", " + SL3U.PromptBundleGetFormatted("everymonthly_short",
 							[SL3U.PromptBundleGet("ord"+weekOfMonth),
@@ -756,7 +756,7 @@ var Sendlater3Util = {
     getInstanceUuid: function() {
 	var instance_uuid = Sendlater3Util.getCharPref("instance.uuid");
 	if (! instance_uuid) {
-	    var uuidGenerator = 
+	    var uuidGenerator =
 		Components.classes["@mozilla.org/uuid-generator;1"]
 		.getService(Components.interfaces.nsIUUIDGenerator);
 	    instance_uuid = uuidGenerator.generateUUID().toString();
