@@ -15,6 +15,7 @@
 <!ENTITY sendlater.prompt.sendat.tooltip "Save message in Drafts folder for automatic delivery at the time set above.">
 <!ENTITY sendlater.prompt.recur.label "Recur:">
 <!ENTITY sendlater.prompt.none.label "none">
+<!ENTITY sendlater.prompt.minutely.label "minutely">
 <!ENTITY sendlater.prompt.daily.label "daily">
 <!ENTITY sendlater.prompt.weekly.label "weekly">
 <!ENTITY sendlater.prompt.monthly.label "monthly">

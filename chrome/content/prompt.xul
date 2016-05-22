@@ -66,6 +66,7 @@
 		    onselect="Sendlater3Prompt.CheckRecurring();">
 	  <radio id="sendlater3-recur-none" label="&sendlater.prompt.none.label;"
 		 selected="true"/>
+	  <radio id="sendlater3-recur-minutely" label="&sendlater.prompt.minutely.label;"/>
 	  <radio id="sendlater3-recur-daily" label="&sendlater.prompt.daily.label;"/>
 	  <radio id="sendlater3-recur-weekly" label="&sendlater.prompt.weekly.label;"/>
 	  <radio id="sendlater3-recur-monthly" label="&sendlater.prompt.monthly.label;"/>

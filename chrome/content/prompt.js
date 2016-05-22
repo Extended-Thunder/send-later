@@ -287,7 +287,7 @@ var Sendlater3Prompt = {
 
     // Format:
     //
-    // First field is none/daily/weekly/monthly/yearly/function
+    // First field is none/minutely/daily/weekly/monthly/yearly/function
     //
     // If first field is monthly, then it is followed by either one or
     // two numbers. If one, then it's a single number for the day of
