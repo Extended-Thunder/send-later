@@ -685,6 +685,18 @@ var Sendlater3Util = {
 	}
     },
 
+    info: function(msg) {
+	if (! Sendlater3Util.log_filter(msg)) {
+	    return;
+	}
+	try {
+            Sendlater3Util.initLogging();
+            Sendlater3Util.logger.info(msg);
+	}
+	catch (ex) {
+	}
+    },
+
     dump: function(msg) {
 	if (! Sendlater3Util.log_filter(msg)) {
 	    return;
