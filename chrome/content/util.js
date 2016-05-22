@@ -282,7 +282,39 @@ var Sendlater3Util = {
         return s;
     },
 
-    NextRecurTest: function() {
+    UnitTests: [],
+
+    AddTest: function(test_name, test_function, test_args) {
+        SL3U.UnitTests.push([test_name, test_function, test_args]);
+    },
+
+    RunTests: function() {
+        for (var i in Sendlater3Util.UnitTests) {
+            var params = Sendlater3Util.UnitTests[i];
+            var name = params[0]
+            var func = params[1]
+            var args = params[2]
+            try {
+                var result = func.apply(null, args);
+            }
+            catch (ex) {
+                Sendlater3Util.warn("TEST " + name + " EXCEPTION: " +
+                                    ex.message);
+                continue;
+            }
+            if (result === true) {
+                Sendlater3Util.info("TEST " + name + " PASS");
+            }
+            else if (result === false) {
+                Sendlater3Util.warn("TEST " + name + " FAIL");
+            }
+            else {
+                Sendlater3Util.warn("TEST " + name + " FAIL " + result);
+            }
+        }
+    },
+
+    NextRecurTests: function() {
         function DeepCompare(a, b) {
             if (a instanceof Array) {
                 if (b instanceof Array) {
@@ -311,93 +343,155 @@ var Sendlater3Util = {
             return a == b;
         }
 
-    	window['Test1'] = function Test1() { return; };
-    	window['Test2'] = function Test2() { return "foo"; };
-    	window['Test3'] = function Test3() { return new Array(); };
-    	window['Test4'] = function Test4() { return new Array("monthly", "extra"); };
-    	window['Test5'] = function Test5() { return -1; };
-    	window['Test6'] = function Test6() { return 5; };
-    	window['Test7'] = function Test7() { return new Array(7, "monthly 5"); };
-    	window['Test8'] = function Test8() { return new Array(7, "monthly 5", "freeble"); };
-    	var d1 = new Date();
-    	d1.setTime((new Date("10/3/2012")).getTime()+5*60*1000);
-    	var d2 = new Date();
-    	d2.setTime((new Date("10/3/2012")).getTime()+7*60*1000);
-    	var tests = new Array(
-    	    new Array("1/1/2012", "daily", "1/1/2012", "1/2/2012"),
-    	    new Array("1/2/2012", "weekly", "1/10/2012", "1/16/2012"),
-    	    new Array("1/5/2012", "monthly 5", "1/5/2012", "2/5/2012"),
-    	    new Array("3/1/2012", "monthly 30", "3/1/2012", "3/30/2012"),
-    	    new Array("4/15/2012", "monthly 0 3", "4/15/2012", "5/20/2012"),
-    	    new Array("1/29/2012", "monthly 0 5", "1/30/2012", "4/29/2012"),
-    	    new Array("2/29/2012", "yearly 1 29", "2/29/2012", "3/1/2013"),
-    	    new Array("3/1/2013", "yearly 1 29 / 3", "3/1/2013", "2/29/2016"),
-    	    new Array("10/3/2012", "function foo", "10/3/2012", "error is not defined"),
-    	    new Array("10/3/2012", "function Sendlater3Util", "10/3/2012", "error is not a function"),
-    	    new Array("10/3/2012", "function Test1", "10/3/2012", "error did not return a value"),
-    	    new Array("10/3/2012", "function Test2", "10/3/2012", "error did not return number or array"),
-    	    new Array("10/3/2012", "function Test3", "10/3/2012", "error is too short"),
-    	    new Array("10/3/2012", "function Test4", "10/3/2012", "error did not start with a number"),
-    	    new Array("10/3/2012", "function Test5", "10/3/2012", null),
-    	    new Array("10/3/2012", "function Test6", "10/4/2012", new Array(d1, null)),
-    	    new Array("10/3/2012", "function Test7", "10/4/2012", new Array(d2, "monthly 5")),
-    	    new Array("10/3/2012", "function Test8", "10/4/2012", new Array(d2, "monthly 5", "freeble")),
-            new Array("1/1/2012 11:26:37", "minutely", "1/1/2012 11:26:50", "1/1/2012 11:27:37"),
-            new Array("1/1/2012 11:26:37", "minutely", "1/1/2012 11:29:50", "1/1/2012 11:30:37"),
-            new Array("1/1/2012 11:26:37", "minutely / 5", "1/1/2012 11:26:50", "1/1/2012 11:31:37"),
-            new Array("1/1/2012 11:26:37", "minutely / 5", "1/1/2012 11:35:05", "1/1/2012 11:35:37")
-    	);
-
-    	var i;
-    	for (i in tests) {
-    	    var test = tests[i];
-    	    var errmsg = null;
-    	    var result = null;
+        function NextRecurNormalTest(sendat, recur, now, expected) {
             try {
-    		result = SL3U.NextRecurDate(new Date(test[0]),
-    					    test[1],
-    					    new Date(test[2]));
+                result = SL3U.NextRecurDate(
+                    new Date(sendat), recur, new Date(now));
             }
             catch (ex) {
-    		errmsg = ex.message;
+                return "Unexpected error: " + ex.message;
             }
-    	    if (errmsg) {
-    		if (test[3] && test[3].match(/^error /)) {
-    		    var expected = test[3].substring(6);
-    		    if (errmsg.match(expected)) {
-    			SL3U.warn("NextRecurTest: PASS " + i);
+            expected = new Date(expected);
+            if (result.getTime() == expected.getTime()) {
+                return true;
             }
-    		    else {
-    			SL3U.warn("NextRecurTest: FAIL " + i + 
-    				  ", error string '" + errmsg + "' does not match '" +
-    				 expected + "'");
+            return "expected " + expected + ", got " + result;
         }
+
+        function NextRecurExceptionTest(sendat, recur, now, expected) {
+            try {
+                result = SL3U.NextRecurDate(
+                    new Date(sendat), recur, new Date(now));
+                return "Expected exception, got " + result;
             }
-    		else {
-    		    SL3U.warn("NextRecurTest: FAIL " + i +
-    			      ", unexpected exception: " + errmsg);
+            catch (ex) {
+                if (ex.message.match(expected)) {
+                    return true;
                 }
+                return "Expected exception matching " + expected + ", got " +
+                    ex.message;
             }
-    	    else if (test[1].match(/^function/)) {
-    		if (DeepCompare(result, test[3])) {
-    		    SL3U.warn("NextRecurTest: PASS " + i);
         }
-    		else {
-    		    SL3U.warn("NextRecurTest: FAIL " + i + ", expected DC " +
-    			      test[3] + ", got " + result);
+
+        function NextRecurFunctionTest(sendat, recur, now, args, func_name,
+                                       func, expected) {
+            window[func_name] = func;
+            try {
+                result = SL3U.NextRecurDate(
+                    new Date(sendat), recur, new Date(now), args);
+                delete window[func_name];
             }
+            catch (ex) {
+                delete window[func_name];
+                return "Unexpected error: " + ex.message;
             }
-    	    else {
-    		var expected = new Date(test[3]);
-    		if (result.getTime() == expected.getTime()) {
-    		    SL3U.warn("NextRecurTest: PASS " + i);
+            if (DeepCompare(result, expected)) {
+                return true;
             }
-    		else {
-    		    SL3U.warn("NextRecurTest: FAIL " + i + ", expected " +
-    			      expected + ", got " + result);
+            return "expected " + expected + ", got " + result;
         }
+
+        function NextRecurFunctionExceptionTest(sendat, recur, now, func_name,
+                                                func, expected) {
+            window[func_name] = func;
+            try {
+                result = SL3U.NextRecurDate(
+                    new Date(sendat), recur, new Date(now));
+                delete window[func_name];
+                return "Expected exception, got " + result;
             }
+            catch (ex) {
+                delete window[func_name];
+                if (ex.message.match(expected)) {
+                    return true;
                 }
+                return "Expected exception matching " + expected + ", got " +
+                    ex.message;
+            }
+        }
+
+        SL3U.AddTest("NextRecurDate daily", NextRecurNormalTest,
+                     ["1/1/2012", "daily", "1/1/2012", "1/2/2012"]);
+        SL3U.AddTest("NextRecurDate weekly", NextRecurNormalTest,
+                     ["1/2/2012", "weekly", "1/10/2012", "1/16/2012"]);
+        SL3U.AddTest("NextRecurDate monthly 5", NextRecurNormalTest,
+                     ["1/5/2012", "monthly 5", "1/5/2012", "2/5/2012"]);
+        SL3U.AddTest("NextRecurDate monthly 30", NextRecurNormalTest,
+                     ["3/1/2012", "monthly 30", "3/1/2012", "3/30/2012"]);
+        SL3U.AddTest("NextRecurDate monthly 0 3", NextRecurNormalTest,
+                     ["4/15/2012", "monthly 0 3", "4/15/2012", "5/20/2012"]);
+        SL3U.AddTest("NextRecurDate monthly 0 5", NextRecurNormalTest,
+                     ["1/29/2012", "monthly 0 5", "1/30/2012", "4/29/2012"]);
+        SL3U.AddTest("NextRecurDate yearly 1 29", NextRecurNormalTest,
+                     ["2/29/2012", "yearly 1 29", "2/29/2012", "3/1/2013"]);
+        SL3U.AddTest("NextRecurDate yearly 1 29 / 3", NextRecurNormalTest,
+                     ["3/1/2013", "yearly 1 29 / 3", "3/1/2013", "2/29/2016"]);
+        SL3U.AddTest("NextRecurDate minutely timely", NextRecurNormalTest,
+                     ["1/1/2012 11:26:37", "minutely", "1/1/2012 11:26:50",
+                      "1/1/2012 11:27:37"]);
+        SL3U.AddTest("NextRecurDate minutely late", NextRecurNormalTest,
+                     ["1/1/2012 11:26:37", "minutely", "1/1/2012 11:29:50",
+                      "1/1/2012 11:30:37"]);
+        SL3U.AddTest("NextRecurDate minutely / 5 timely", NextRecurNormalTest,
+                     ["1/1/2012 11:26:37", "minutely / 5", "1/1/2012 11:26:50",
+                      "1/1/2012 11:31:37"]);
+        SL3U.AddTest("NextRecurDate minutely / 5 late", NextRecurNormalTest,
+                     ["1/1/2012 11:26:37", "minutely / 5", "1/1/2012 11:35:05",
+                      "1/1/2012 11:35:37"]);
+
+        SL3U.AddTest("NextRecurDate nonexistent function",
+                     NextRecurExceptionTest,
+                     ["10/3/2012", "function foo", "10/3/2012",
+                      "is not defined"]);
+        SL3U.AddTest("NextRecurDate bad function type", NextRecurExceptionTest,
+                     ["10/3/2012", "function Sendlater3Util", "10/3/2012",
+                      "is not a function"]);
+        SL3U.AddTest("NextRecurDate function doesn't return a value",
+                     NextRecurFunctionExceptionTest,
+                     ["10/3/2012", "function Test1", "10/3/2012", "Test1",
+                      function() { return; }, "did not return a value"]);
+        SL3U.AddTest("NextRecurDate function doesn't return number or array",
+                     NextRecurFunctionExceptionTest,
+                     ["10/3/2012", "function Test2", "10/3/2012", "Test2",
+                      function() { return "foo"; },
+                      "did not return number or array"]);
+        SL3U.AddTest("NextRecurDate function returns too-short array",
+                     NextRecurFunctionExceptionTest,
+                     ["10/3/2012", "function Test3", "10/3/2012", "Test3",
+                      function() { return new Array(); }, "is too short"]);
+        SL3U.AddTest("NextRecurDate function did not start with a number",
+                     NextRecurFunctionExceptionTest,
+                     ["10/3/2012", "function Test4", "10/3/2012", "Test4",
+                      function() { return new Array("monthly", "extra"); },
+                      "did not start with a number"]);
+        SL3U.AddTest("NextRecurDate function finished recurring",
+                     NextRecurFunctionTest,
+                     ["10/3/2012", "function Test5", "10/3/2012", null, "Test5",
+                      function() { return -1; }, null]);
+
+        var d1 = new Date();
+        d1.setTime((new Date("10/3/2012")).getTime()+5*60*1000);
+        SL3U.AddTest("NextRecurDate function returning minutes",
+                     NextRecurFunctionTest,
+                     ["10/3/2012", "function Test6", "10/4/2012", null, "Test6",
+                      function() { return 5; }, [d1, null]]);
+
+        var d2 = new Date();
+        d2.setTime((new Date("10/3/2012")).getTime()+7*60*1000);
+        SL3U.AddTest("NextRecurDate function returning array",
+                     NextRecurFunctionTest,
+                     ["10/3/2012", "function Test7", "10/4/2012", null, "Test7",
+                      function() { return new Array(7, "monthly 5"); },
+                      [d2, "monthly 5"]]);
+        SL3U.AddTest("NextRecurDate function returning array with args",
+                     NextRecurFunctionTest,
+                     ["10/3/2012", "function Test8", "10/4/2012",
+                      ["froodle"], "Test8", function(prev, args) {
+                          if (args[0] != "froodle") {
+                              throw "bad args: " + args;
+                          }
+                          return [7, "monthly 5", "freeble"];
+                      }, [d2, "monthly 5", "freeble"]]);
     },
 
     NextRecurDate: function(next, recurSpec, now, args) {
