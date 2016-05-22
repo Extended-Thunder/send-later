@@ -418,7 +418,7 @@ var Sendlater3Util = {
 	    if (typeof(func) == "undefined") {
 		// test 8
 		throw new Error("Send Later: Invalid recurrence specification '" +
-				recurSpec + ": '" + funcName + "' is not defined");
+				recurSpec + "': '" + funcName + "' is not defined");
 	    }
 	    else if (typeof(func) != "function") {
 		// test 9
