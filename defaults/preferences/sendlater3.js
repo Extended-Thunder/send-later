@@ -32,3 +32,4 @@ pref("extensions.sendlater3.ask.sent", 0);
 pref("extensions.sendlater3.ask.quit",true);
 pref("extensions.sendlater3.relnotes","");
 pref("extensions.sendlater3.disabled_for_enigmail",false);
+pref("extensions.sendlater3.enforce_restrictions", false);

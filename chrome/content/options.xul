@@ -28,6 +28,7 @@
       <preference id="sendlater3_consolelevel" name="extensions.sendlater3.logging.console" type="string"/>
       <preference id="sendlater3_sendbutton" name="extensions.sendlater3.sendbutton" type="bool"/>
       <preference id="sendlater3_altbinding" name="extensions.sendlater3.alt_binding" type="bool"/>
+      <preference id="sendlater3_enforce_restrictions" name="extensions.sendlater3.enforce_restrictions" type="bool"/>
     </preferences>
     <tabbox>
       <tabs>
@@ -68,6 +69,9 @@
 	    </hbox>
 	    <hbox align="center" tooltiptext="&showsendlaterunsentmessages.tooltip;">
 	      <checkbox id="sendlater3-sendunsentmessagespref" preference="sendlater3_sendunsentmessages" label="&showsendlaterunsentmessages.caption;" />
+	    </hbox>
+	    <hbox align="center" tooltiptext="&enforcerestrictions.tooltip;">
+	      <checkbox id="sendlater3-enforce-restrictions-pref" preference="sendlater3_enforce_restrictions" label="&enforcerestrictions.caption;" />
 	    </hbox>
 	    <separator label="-"/>
 	    <hbox>

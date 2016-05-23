@@ -288,12 +288,16 @@ var Sendlater3Util = {
         SL3U.UnitTests.push([test_name, test_function, test_args]);
     },
 
-    RunTests: function() {
+    RunTests: function(names) {
         for (var i in Sendlater3Util.UnitTests) {
             var params = Sendlater3Util.UnitTests[i];
             var name = params[0]
             var func = params[1]
             var args = params[2]
+
+            if (names && names.indexOf(name) == -1)
+                continue;
+
             try {
                 var result = func.apply(null, args);
             }
@@ -314,6 +318,170 @@ var Sendlater3Util = {
         }
     },
 
+    // Takes a recurrence specification string, returns a parsed version of it.
+    // Eventually, this should be used everywhere that parses recurrence
+    // strings, but it was added after much of that code was written, and I'm
+    // not going to go back and refactor all of it now. However, it should
+    // definitely be used for all newly added code that parses recurrence
+    // strings.
+    ParseRecurSpec: function(spec) {
+        var params = spec.split(/\s+/);
+        var parsed = {};
+        parsed.type = params.shift();
+        if (! /^(none|minutely|daily|weekly|monthly|yearly|function)$/.test(
+            parsed.type))
+            throw "Invalid recurrence type in " + spec;
+        if (parsed.type == "none") {
+            if (params.length)
+                throw "Extra arguments in " + spec;
+            return null;
+        }
+        if (parsed.type == "monthly") {
+            if (! /^\d+$/.test(params[0]))
+                throw "Invalid first monthly argument in " + spec;
+            if (/^[1-9]\d*$/.test(params[1])) {
+                parsed.monthly_day = {day: params.shift(),
+                                      week: params.shift()};
+                if (parsed.monthly_day.day > 6)
+                    throw "Invalid monthly day argument in " + spec;
+                if (parsed.monthly_day.week > 5)
+                    throw "Invalid monthly week argument in " + spec;
+            }
+            else {
+                parsed.monthly = params.shift();
+                if (parsed.monthly > 31)
+                    throw "Invalid monthly date argument in " + spec;
+            }
+        }
+        else if (parsed.type == "yearly") {
+            if (! /^\d+$/.test(params[0]))
+                throw "Invalid first yearly argument in " + spec;
+            if (! /^\d+$/.test(params[1]))
+                throw "Invalid second yearly argument in " + spec;
+            parsed.yearly = {month: params.shift(), date: params.shift()};
+            if (parsed.yearly.month > 11)
+                throw "Invalid yearly month argument in " + spec;
+            if (parsed.yearly.date > 31)
+                throw "Invalid yearly date argument in " + spec;
+        }
+        if (parsed.type == "function") {
+            if (params.length != 1)
+                throw "Invalid function recurrence spec " + spec;
+            parsed.function = params.shift();
+        }
+        else {
+            var slashIndex = params.indexOf("/");
+            if (slashIndex > -1) {
+                multiplier = params[slashIndex + 1];
+                if (! /^\d+$/.test(multiplier))
+                    throw "Invalid multiplier argument in " + spec;
+                parsed.multiplier = multiplier;
+                params.splice(slashIndex, slashIndex + 2);
+            }
+            var betweenIndex = params.indexOf("between");
+            if (betweenIndex > -1) {
+                startTime = params[betweenIndex + 1];
+                if (! /^\d{3,4}$/.test(startTime))
+                    throw "Invalid between start in " + spec;
+                endTime = params[betweenIndex + 2];
+                if (! /^\d{3,4}$/.test(endTime))
+                    throw "Invalid between end in " + spec;
+                parsed.between = {start: startTime, end: endTime};
+                params.splice(betweenIndex, betweenIndex + 3);
+            }
+        }
+        if (params.length)
+            throw "Extra arguments in " + spec;
+        return parsed;
+    },
+
+    ParseRecurTests: function() {
+        function CompareRecurs(a, b) {
+            if (!a && !b) return true;
+            if (!a || !b) return false;
+            if (a.type != b.type) return false;
+            if (!a.monthly_day != !b.monthly_day) return false;
+            if (a.monthly_day && (a.monthly_day.day != b.monthly_day.day ||
+                                  a.monthly_day.week != b.monthly_day.week))
+                return false;
+            if (a.monthly != b.monthly) return false;
+            if (!a.yearly != !b.yearly) return false;
+            if (a.yearly && (a.yearly.month != b.yearly.month ||
+                             a.yearly.date != b.yearly.date))
+                return false;
+            if (a.function != b.function) return false;
+            if (a.multiplier != b.multiplier) return false;
+            if (!a.between != !b.between) return false;
+            if (a.between && (a.between.start != b.between.start ||
+                              a.between.end != b.between.end))
+                return false;
+            return true;
+        }
+
+        function ParseRecurGoodTest(spec, expected) {
+            var out = SL3U.ParseRecurSpec(spec);
+            if (CompareRecurs(out, expected))
+                return true;
+            return("expected " + JSON.stringify(expected) + ", got " +
+                   JSON.stringify(out));
+            
+        }
+
+        var goodTests = [
+            ["none", null],
+            ["minutely", {type: "minutely"}],
+            ["daily", {type: "daily"}],
+            ["weekly", {type: "weekly"}],
+            ["monthly 3", {type: "monthly", monthly: 3}],
+            ["monthly 0 3", {type: "monthly", monthly_day: {day: 0, week: 3}}],
+            ["yearly 10 5", {type: "yearly", yearly: {month: 10, date: 5}}],
+            ["function froodle", {type: "function", "function": "froodle"}],
+            ["minutely / 5", {type: "minutely", multiplier: 5}],
+            ["minutely between 830 1730", {type: "minutely",
+                                           between: {start: 830, end: 1730}}]
+        ];
+        for (var i in goodTests) {
+            var test = goodTests[i];
+            SL3U.AddTest("ParseRecurSpec " + test[0], ParseRecurGoodTest, test);
+        }
+
+        function ParseRecurBadTest(spec, expected) {
+            try {
+                var out = SL3U.ParseRecurSpec(spec);
+                return "expected exception, got " + JSON.stringify(out);
+            }
+            catch (ex) {
+                if (! ex.match(expected))
+                    return "exception " + ex + " did not match " + expected;
+                return true;
+            }
+        }
+
+        var badTests = [
+            ["bad-recurrence-type", "Invalid recurrence type"],
+            ["none extra-arg", "Extra arguments"],
+            ["monthly bad", "Invalid first monthly argument"],
+            ["monthly 7 3", "Invalid monthly day argument"],
+            ["monthly 4 6", "Invalid monthly week argument"],
+            ["monthly 32", "Invalid monthly date argument"],
+            ["yearly bad", "Invalid first yearly argument"],
+            ["yearly 10 bad", "Invalid second yearly argument"],
+            ["yearly 20 3", "Invalid yearly month argument"],
+            ["yearly 10 40", "Invalid yearly date argument"],
+            ["function", "Invalid function recurrence spec"],
+            ["function foo bar", "Invalid function recurrence spec"],
+            ["daily / bad", "Invalid multiplier argument"],
+            ["minutely between 11111 1730", "Invalid between start"],
+            ["daily between 1100 17305", "Invalid between end"],
+            ["daily extra-argument", "Extra arguments"]
+        ];
+
+        for (var i in badTests) {
+            var test = badTests[i];
+            SL3U.AddTest("ParseRecurSpec " + test[0], ParseRecurBadTest, test);
+        }
+    },
+            
     NextRecurTests: function() {
         function DeepCompare(a, b) {
             if (a instanceof Array) {
@@ -349,7 +517,7 @@ var Sendlater3Util = {
                     new Date(sendat), recur, new Date(now));
             }
             catch (ex) {
-                return "Unexpected error: " + ex.message;
+                return "Unexpected error: " + ex;
             }
             expected = new Date(expected);
             if (result.getTime() == expected.getTime()) {
@@ -492,6 +660,56 @@ var Sendlater3Util = {
                           }
                           return [7, "monthly 5", "freeble"];
                       }, [d2, "monthly 5", "freeble"]]);
+
+        SL3U.AddTest("NextRecurDate between before", NextRecurNormalTest,
+                     ["3/1/2016 17:00", "minutely / 600 between 0900 1700",
+                      "3/1/2016 17:01", "3/2/2016 9:00"]);
+        SL3U.AddTest("NextRecurDate between after", NextRecurNormalTest,
+                     ["3/1/2016 16:45", "minutely / 60 between 0900 1700",
+                      "3/1/2016 16:45", "3/2/2016 9:00"]);
+        SL3U.AddTest("NextRecurDate between ok", NextRecurNormalTest,
+                     ["3/1/2016 12:45", "minutely / 60 between 0900 1700",
+                      "3/1/2016 12:46", "3/1/2016 13:45"]);
+    },
+
+    NextRecurFunction: function(next, recurSpec, args, recurArray) {
+        var error;
+        var funcName = recurArray[0];
+        var func = window[funcName];
+        if (typeof(func) == "undefined")
+            throw new Error("Send Later: Invalid recurrence specification '" +
+                            recurSpec + "': '" + funcName + "' is not defined");
+        else if (typeof(func) != "function")
+            throw new Error("Send Later: Invalid recurrence specification '" +
+                            recurSpec + ": '" + funcName +
+                            "' is not a function");
+        var nextRecur = func(next, args);
+        if (! nextRecur)
+            throw new Error("Send Later: Recurrence function '" + funcName +
+                            "' did not return a value");
+        if (typeof(nextRecur) == "number") {
+            if (nextRecur == -1)
+                return null;
+            next.setTime(next.getTime()+nextRecur*60*1000);
+            return new Array(next, null);
+        }
+
+        if (! (nextRecur instanceof Array))
+            throw new Error("Send Later: Recurrence function '" + funcName +
+                            "' did not return number or array");
+        if (nextRecur.length < 2)
+            throw new Error("Send Later: Array returned by recurrence " +
+                            "function '" + funcName + "' is too short");
+        if (typeof(nextRecur[0]) != "number" &&
+            ! (nextRecur[0] instanceof Date))
+            throw new Error("Send Later: Array " + nextRecur +
+                            " returned by recurrence function '" + funcName +
+                            "' did not start with a number or Date");
+        if (! (nextRecur[0] instanceof Date)) {
+            next.setTime(next.getTime()+nextRecur[0]*60*1000);
+            nextRecur[0] = next;
+        }
+        return nextRecur;
     },
 
     NextRecurDate: function(next, recurSpec, now, args) {
@@ -499,68 +717,22 @@ var Sendlater3Util = {
         // Make sure we don't modify our input!
         next = new Date(next.getTime());
 
-        var type, dayOfMonth, dayOfWeek, weekOfMonth, monthOfYear, recurCount;
-
-        var recurArray = recurSpec.split(" ");
-        type = recurArray[0];
+        var recurArray = recurSpec.split(/\s+/);
+        var type = recurArray[0];
         recurArray.splice(0, 1);
 
-        if (type == "function") {
-            var error;
-            var funcName = recurArray[0];
-            var func = window[funcName];
-            if (typeof(func) == "undefined") {
-                // test 8
-                throw new Error("Send Later: Invalid recurrence specification '" +
-                                recurSpec + "': '" + funcName + "' is not defined");
-            }
-            else if (typeof(func) != "function") {
-                // test 9
-                throw new Error("Send Later: Invalid recurrence specification '" +
-                                recurSpec + ": '" + funcName + "' is not a function");
-            }
-            var nextRecur = func(next, args);
-            if (! nextRecur) {
-                // test 10
-                throw new Error("Send Later: Recurrence function '" + funcName +
-                                "' did not return a value");
-            }
-            if (typeof(nextRecur) == "number") {
-                if (nextRecur == -1) {
-                    // test 14
-                    return null;
-                }
-                else {
-                    // test 15
-                    next.setTime(next.getTime()+nextRecur*60*1000);
-                    return new Array(next, null);
-                }
-            }
-            else {
-                if (! (nextRecur instanceof Array)) {
-                    // test 11
-                    throw new Error("Send Later: Recurrence function '" + funcName +
-                                    "' did not return number or array");
-                }
-                if (nextRecur.length < 2) {
-                    // test 12
-                    throw new Error("Send Later: Array returned by recurrence " +
-                                    "function '" + funcName + "' is too short");
-                }
-                if (typeof(nextRecur[0]) != "number" && ! (nextRecur[0] instanceof Date)) {
-                    // test 13
-                    throw new Error("Send Later: Array " + nextRecur + " returned by recurrence " +
-                                    "function '" + funcName + "' did not start with " +
-                                    "a number or Date");
-                }
-                if (! (nextRecur[0] instanceof Date)) {
-                    // test 16
-                    next.setTime(next.getTime()+nextRecur[0]*60*1000);
-                    nextRecur[0] = next;
-                }
-                return nextRecur;
-            }
+        if (type == "function")
+            return SL3U.NextRecurFunction(next, recurSpec, args, recurArray);
+
+        var betweenIndex, betweenStart, betweenEnd;
+        betweenIndex = recurArray.indexOf("between");
+        if (betweenIndex > -1) {
+            betweenStart = recurArray[betweenIndex + 1];
+            betweenEnd = recurArray[betweenIndex + 2 ];
+            recurArray.splice(betweenIndex, betweenIndex + 3);
         }
+
+        var dayOfMonth, dayOfWeek, weekOfMonth, monthOfYear, recurCount;
 
         if (type == "monthly") {
             dayOfMonth = recurArray[0];
@@ -581,107 +753,87 @@ var Sendlater3Util = {
             recurCount = recurArray[1];
             recurArray.splice(0, 2);
         }
-        else {
+        else
             recurCount = 1;
-        }
-        if (recurArray.length > 0) {
-            throw "Send Later internal error: extra recurrence args: " + recurArray.toString();
-        }
-
-        if (! now) {
+        if (recurArray.length > 0)
+            throw "Send Later internal error: extra recurrence args: " +
+                recurArray.toString();
+        if (! now)
             now = new Date();
-        }
 
         var redo = false;
 
-        // test 0: next < now
-        // test 1: next > now
-        // test 0: recurCount == 1
-        // test 7: recurCount == 3
         while ((next <= now) || (recurCount > 0) || redo) {
             redo = false;
             switch (type) {
             case "minutely":
                 next.setMinutes(next.getMinutes()+1)
                 break;
-            // test 0
             case "daily":
                 next.setDate(next.getDate()+1);
                 break;
-            // test 1
             case "weekly":
                 next.setDate(next.getDate()+7);
                 break;
             case "monthly":
-                // Two different algorithms are in play here,
-                // depending on whether we're supposed to schedule on
-                // a day of the month or a weekday of a week of the
-                // month.
+                // Two different algorithms are in play here, depending on
+                // whether we're supposed to schedule on a day of the month or
+                // a weekday of a week of the month.
                 //
-                // If the former, then either the current day
-                // of the month is the same as the one we want, in
-                // which case we just move to the next month, or it's
-                // not, in which case the "correct" month didn't have
-                // that day (i.e., it's 29, 30, or 31 on a month
-                // without that many days), so we ended up rolling
-                // over. In that case, we set the day of the month of
-                // the _current_ month, because we're already in the
-                // right month.
+                // If the former, then either the current day of the month is
+                // the same as the one we want, in which case we just move to
+                // the next month, or it's not, in which case the "correct"
+                // month didn't have that day (i.e., it's 29, 30, or 31 on a
+                // month without that many days), so we ended up rolling
+                // over. In that case, we set the day of the month of the
+                // _current_ month, because we're already in the right month.
                 //
-                // If the latter, then first check if we're at the
-                // correct weekday and week of the month. If so, then
-                // go to the first day of the next month. After that,
-                // move forward to the correct week of the month and
-                // weekday.  If that pushes us past the end of the
-                // month, that means the month in question doesn't
-                // have, e.g., a "5th Tuesday", so we need to set the
-                // redo flag indicating that we need to go through the
-                // loop again because we didn't successfully find a
-                // date.
+                // If the latter, then first check if we're at the correct
+                // weekday and week of the month. If so, then go to the first
+                // day of the next month. After that, move forward to the
+                // correct week of the month and weekday.  If that pushes us
+                // past the end of the month, that means the month in question
+                // doesn't have, e.g., a "5th Tuesday", so we need to set the
+                // redo flag indicating that we need to go through the loop
+                // again because we didn't successfully find a date.
 
                 if (dayOfMonth != null) {
-                    // test 2
-                    if (next.getDate() == dayOfMonth) {
+                    if (next.getDate() == dayOfMonth)
                         next.setMonth(next.getMonth()+1);
-                    }
-                    // test 3
-                    else {
+                    else
                         next.setDate(dayOfMonth);
-                    }
                 }
                 else {
-                    // test 4
                     if ((next.getDay() == dayOfWeek) &&
                         (Math.ceil(next.getDate()/7) == weekOfMonth)) {
                         next.setDate(1);
                         next.setMonth(next.getMonth()+1);
                     }
-                    else {
-                        // test 5
-                    }
+                    else {}
                     next.setDate((weekOfMonth-1)*7+1);
-                    while (next.getDay() != dayOfWeek) {
+                    while (next.getDay() != dayOfWeek)
                         next.setDate(next.getDate()+1);
-                    }
-                    if (Math.ceil(next.getDate()/7) != weekOfMonth) {
+                    if (Math.ceil(next.getDate()/7) != weekOfMonth)
                         redo = true;
-                    }
                 }
                 break;
             case "yearly":
-                // test 6
-                // test 7
                 next.setFullYear(next.getFullYear()+1);
                 next.setMonth(monthOfYear);
                 next.setDate(dayOfMonth);
                 break;
             default:
-                throw "Send Later internal error: unrecognized recurrence type: " + type;
+                throw "Send Later internal error: unrecognized recurrence " +
+                    "type: " + type;
                 break;
             }
 
             recurCount--;
         }
+
+        if (betweenIndex > -1)
+            next = SL3U.AdjustDateForRestrictions(
+                next, betweenStart, betweenEnd, null);
 
         return next;
     },
@@ -690,6 +842,18 @@ var Sendlater3Util = {
         var type, dayOfMonth, dayOfWeek, weekOfMonth, monthOfYear, recurCount;
         var str = "";
 
+        var regex = /\s+between\s+(\d+)(\d\d)\s+(\d+)(\d\d)/
+        var match = regex.exec(recurSpec);
+        var betw_string = "";
+        if (match) {
+            betw_string = " " + SL3U.PromptBundleGetFormatted(
+                "betw_times", [match[1], match[2], match[3], match[4]])
+            recurSpec = recurSpec.replace(regex, "");
+        }
+        else {
+            betw_string = "";
+        }
+        
         var recurArray = recurSpec.split(" ");
         type = recurArray[0];
         recurArray.splice(0, 1);
@@ -737,7 +901,7 @@ var Sendlater3Util = {
                                                          SL3U.PromptBundleGet("day"+dayOfWeek)]);
         }
 
-        return str;
+        return str + betw_string;
     },
 
     RecurHeader: function(sendat, recur, args) {
@@ -746,6 +910,103 @@ var Sendlater3Util = {
             header['X-Send-Later-Args'] = JSON.stringify(args);
         }
         return header;
+    },
+
+    // dt is a Date object for the scheduled send time we need to adjust.
+    // start_time and end_time are numbers like YYMM, e.g., 10:00am is
+    // 1000, 5:35pm is 1735, or null if there is no time restriction.
+    // days is an array of numbers, with 0 being Sunday and 6 being Saturday,
+    // or null if there is no day restriction.
+    // Algorithm:
+    // 1) Copy args so we don't modify them.
+    // 2) If there is a time restriction and the scheduled time is before it,
+    //    change it to the beginning of the time restriction.
+    // 3) If there is a time restriction and the scheduled time is after it,
+    //    change it to the beginning of the time restriction the next day.
+    // 4) If there is a day restriction and the scheduled day isn't in it,
+    //    change the day to the smallest day in the restriction that is larger
+    //    than the scheduled day, or if there is none, then the smallest day in
+    //    the restriction overall.
+    AdjustDateForRestrictions: function(dt, start_time, end_time, days) {
+        // 1)
+        dt = new Date(dt);
+        if (days) {
+            days = days.slice();
+        }
+        else {
+            days = [];
+        }
+        var scheduled_time = dt.getHours() * 100 + dt.getMinutes();
+        // 2)
+        if (start_time && scheduled_time < start_time) {
+            dt.setHours(Math.floor(start_time / 100));
+            dt.setMinutes(start_time % 100);
+        }
+        // 3)
+        else if (end_time && scheduled_time > end_time) {
+            dt.setDate(dt.getDate()+1);
+            dt.setHours(Math.floor(start_time / 100));
+            dt.setMinutes(start_time % 100);
+        }
+        // 4)
+        if (days.length && days.indexOf(dt.getDay()) == -1) {
+            days.sort();
+            var want_day = days[days.indexOf(dt.getDay())+1];
+            if (! want_day) {
+                want_day = days[0];
+            }
+            while (dt.getDay() != want_day) {
+                dt.setDate(dt.getDate()+1);
+            }
+        }
+        return dt;
+    },
+
+    AdjustDateForRestrictionsTests: function() {
+        function NormalTest(dt, start_time, end_time, days, expected) {
+            var orig_dt = new Date(dt);
+            var orig_days;
+            if (days) {
+                orig_days = days.slice();
+            }
+            result = SL3U.AdjustDateForRestrictions(dt, start_time, end_time,
+                                                    days);
+            if (orig_dt.getTime() != dt.getTime()) {
+                throw "AdjustDateForRestrictions modified dt!";
+            }
+            if (orig_days && String(orig_days) != String(days)) {
+                throw "AdjustedDateForRestrictions modified days!";
+            }
+            return expected.getTime() == result.getTime();
+        }
+
+        SL3U.AddTest("AdjustDateForRestrictions no-op", NormalTest,
+                     [new Date("1/1/2016 10:37:00"), null, null, null,
+                      new Date("1/1/2016 10:37:00")]);
+        SL3U.AddTest("AdjustDateForRestrictions before start", NormalTest,
+                     [new Date("1/1/2016 05:30:37"), 830, 1700, null,
+                      new Date("1/1/2016 08:30:37")]);
+        SL3U.AddTest("AdjustDateForRestrictions after end", NormalTest,
+                     [new Date("1/1/2016 18:30:37"), 830, 1700, null,
+                      new Date("1/2/2016 08:30:37")]);
+        SL3U.AddTest("AdjustDateForRestrictions OK time", NormalTest,
+                     [new Date("1/1/2016 12:37:00"), 830, 1700, null,
+                      new Date("1/1/2016 12:37:00")]);
+        SL3U.AddTest("AdjustDateForRestrictions start edge", NormalTest,
+                     [new Date("1/1/2016 8:30:00"), 830, 1700, null,
+                      new Date("1/1/2016 8:30:00")]);
+        SL3U.AddTest("AdjustDateForRestrictions end edge", NormalTest,
+                     [new Date("1/1/2016 17:00:00"), 830, 1700, null,
+                      new Date("1/1/2016 17:00:00")]);
+        SL3U.AddTest("AdjustDateForRestrictions OK day", NormalTest,
+                     [new Date("1/1/2016 8:30:00"), null, null, [5],
+                      new Date("1/1/2016 8:30:00")]);
+        SL3U.AddTest("AdjustDateForRestrictions later day", NormalTest,
+                     [new Date("1/1/2016 8:30:00"), null, null, [6],
+                      new Date("1/2/2016 8:30:00")]);
+        SL3U.AddTest("AdjustDateForRestrictions earlier day", NormalTest,
+                     [new Date("1/1/2016 8:30:00"), null, null, [1, 2, 3],
+                      new Date("1/4/2016 8:30:00")]);
     },
 
     logger: null,
@@ -1040,3 +1301,7 @@ var Sendlater3Util = {
 };
 
 var SL3U = Sendlater3Util;
+//SL3U.NextRecurTests();
+//SL3U.AdjustDateForRestrictionsTests();
+//SL3U.ParseRecurTests();
+//SL3U.RunTests();

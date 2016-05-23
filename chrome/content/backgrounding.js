@@ -814,6 +814,9 @@ var Sendlater3Backgrounding = function() {
 	    var MsgService = messenger.messageServiceFromURI(messageURI);
 	    var messageHDR = messenger.msgHdrFromURI(messageURI);
 	    var h_at = messageHDR.getStringProperty("x-send-later-at");
+            var recur = messageHDR.getStringProperty("x-send-later-recur");
+            if (recur)
+                recur = SL3U.ParseRecurSpec(recur);
 	    while (1) {
 		if (! h_at) {
 		    SL3U.debug(messageURI + ": no x-send-later-at");
@@ -831,6 +834,19 @@ var Sendlater3Backgrounding = function() {
 		    SL3U.dump(MessagesPending + " messages still pending");
 		    break;
 		}
+                if (recur && recur.between &&
+                    SL3U.getBoolPref("enforce_restrictions")) {
+                    now = new Date();
+                    adjusted = SL3U.AdjustDateForRestrictions(
+                        now, recur.between.start, recur.between.end, null);
+                    if (now.getTime() != adjusted.getTime()) {
+                        SL3U.debug(messageURI + ": enforcing restrictions on " +
+                                   now + " until " + adjusted);
+                        lastMessagesPending = ++MessagesPending;
+                        SL3U.dump(MessagesPending + " messages still pending");
+                        break;
+                    }                        
+                }
 		SL3U.debug(messageURI + ": due x-send-later-at=" + h_at);
 		if (! SL3U.getBoolPref("senddrafts")) {
 		    SL3U.debug(messageURI + ": senddrafts is false");

@@ -3,6 +3,40 @@ Components.utils.import("resource://sendlater3/dateparse.jsm");
 var Sendlater3Prompt = {
     loaded: false,
 
+    BetweenStartUpdate: function() {
+        document.getElementById("sendlater3-recur-between-checkbox").
+            checked = true;
+        return;
+        // I wish it made sense to do the following, but it doesn't because the
+        // timepicker is crap. Maybe some day.
+        var startPicker = document.
+            getElementById("sendlater3-recur-between-start");
+        var endPicker = document.getElementById("sendlater3-recur-between-end");
+        var startTime = startPicker.hour * 100 + startPicker.minute;
+        var endTime = endPicker.hour * 100 + endPicker.minute;
+        if (endTime < startTime) {
+            endPicker.hour = startPicker.hour;
+            endPicker.minute = startPicker.minute;
+        }
+    },
+
+    BetweenEndUpdate: function() {
+        document.getElementById("sendlater3-recur-between-checkbox").
+            checked = true;
+        return;
+        // I wish it made sense to do the following, but it doesn't because the
+        // timepicker is crap. Maybe some day.
+        var startPicker = document.
+            getElementById("sendlater3-recur-between-start");
+        var endPicker = document.getElementById("sendlater3-recur-between-end");
+        var startTime = startPicker.hour * 100 + startPicker.minute;
+        var endTime = endPicker.hour * 100 + endPicker.minute;
+        if (endTime < startTime) {
+            startPicker.hour = endPicker.hour;
+            startPicker.minute = endPicker.minute;
+        }
+    },        
+    
     // Disable preset buttons if recurrence is enabled, or vice versa
     SetRecurring: function(recurring) {
 	var dis = !!recurring;
@@ -121,7 +155,7 @@ var Sendlater3Prompt = {
 	var prevRecurring = window.arguments[0].previouslyRecurring;
 	Sendlater3Prompt.SetRecurring(prevRecurring);
 	if (prevRecurring) {
-	    var settings = prevRecurring.split(" ");
+	    var settings = prevRecurring.split(/\s+/);
 	    var recur = settings[0];
 	    settings.splice(0,1);
 	    var group = document.getElementById("sendlater3-recur-group");
@@ -146,6 +180,22 @@ var Sendlater3Prompt = {
 		    .value = settings[0];
 		settings.splice(0,1);
 	    }
+            var betweenIndex = settings.indexOf("between");
+            if (betweenIndex > -1) {
+                var betweenStart = settings[betweenIndex + 1];
+                var betweenEnd = settings[betweenIndex + 2];
+                settings.splice(betweenIndex, betweenIndex + 3);
+                document.getElementById("sendlater3-recur-between-checkbox").
+                    checked = true;
+                var startPicker = document.getElementById(
+                    "sendlater3-recur-between-start");
+                var endPicker = document.getElementById(
+                    "sendlater3-recur-between-end");
+                startPicker.hour = Math.floor(betweenStart / 100);
+                startPicker.minute = betweenStart % 100;
+                endPicker.hour = Math.floor(betweenEnd / 100);
+                endPicker.minute = betweenEnd % 100;
+            }
 	    if (settings.length > 0) {
 		throw "Send Later internal error: unexpected recur setting fields: " +
 		    settings.toString();
@@ -323,8 +373,39 @@ var Sendlater3Prompt = {
 	var recur = document.getElementById("sendlater3-recur-group")
 	    .selectedItem.id.replace(/sendlater3-recur-/, "");
 	if (recur == "none") {
-	    return null;
+	    return [dateObj, null];
 	}
+        var startTime, endTime;
+        if (document.getElementById("sendlater3-recur-between-checkbox").
+            checked) {
+            var startPicker = document.
+                getElementById("sendlater3-recur-between-start");
+            var endPicker = document.
+                getElementById("sendlater3-recur-between-end");
+            startTime = startPicker.hour * 100 + startPicker.minute;
+            endTime = endPicker.hour * 100 + endPicker.minute;
+            if (endTime < startTime) {
+                SL3U.alert(null, SL3U.PromptBundleGet("endTimeWarningTitle"),
+                           SL3U.PromptBundleGet("endTimeWarningBody"));
+                throw "end time before start time";
+            }
+        }
+        if (startTime != undefined) {
+            adjusted = SL3U.AdjustDateForRestrictions(dateObj, startTime,
+                                                      endTime, null);
+            if (adjusted.getTime() != dateObj.getTime()) {
+                var title = SL3U.PromptBundleGet("TimeMismatchConfirmTitle");
+                var body = SL3U.PromptBundleGetFormatted(
+                    "TimeMismatchConfirmBody", [dateObj, adjusted]);
+                var prompts = Components.classes[
+                    "@mozilla.org/embedcomp/prompt-service;1"]
+                    .getService(Components.interfaces.nsIPromptService);
+                if (! prompts.confirm(null, title, body)) {
+                    throw "Scheduled send cancelled because of send time restriction mismatch";
+                }
+                dateObj = adjusted;
+            }                
+        }
 	if (recur == "monthly") {
 	    recur += " ";
 	    if (document.getElementById("sendlater3-recur-every-month-checkbox").checked) {
@@ -342,7 +423,10 @@ var Sendlater3Prompt = {
 	    recur += " / " + document
 		.getElementById("sendlater3-recur-every-value").value;
 	}
-	return recur;
+        if (startTime != undefined) {
+            recur += " between " + String(startTime) + " " + String(endTime);
+        }
+	return [dateObj, recur];
     },
 
     CallSendAt: function() {
@@ -350,7 +434,9 @@ var Sendlater3Prompt = {
 	var sendat = Sendlater3Prompt.updateSummary();
 	var ret = false;
 	if (sendat) {
-	    var recur = Sendlater3Prompt.GetRecurString(sendat);
+	    var recurArray = Sendlater3Prompt.GetRecurString(sendat);
+            sendat = recurArray[0];
+            var recur = recurArray[1];
 	    window.arguments[0].finishCallback(sendat, recur);
 	    ret = true;
 	}

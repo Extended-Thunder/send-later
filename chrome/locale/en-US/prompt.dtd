@@ -23,6 +23,7 @@
 <!ENTITY sendlater.toolbar.sendlater.button.label "Send Later">
 <!ENTITY sendlater.toolbar.textbox.emptytext "send time">
 <!ENTITY sendlater.prompt.every.label "Every">
+<!ENTITY sendlater.prompt.between.label "Between">
 <!ENTITY sendlater.button1.label "15 mins later">
 <!ENTITY sendlater.button2.label "30 mins later">
 <!ENTITY sendlater.button3.label "2 hours later">

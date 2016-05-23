@@ -76,18 +76,33 @@
       </hbox>
 
       <deck id="sendlater3-recur-every-deck">
-	<hbox align="center" id="sendlater3-recur-every-hbox">
-	  <separator width="20"/>
-	  <checkbox id="sendlater3-recur-every-checkbox"
-		    label="&sendlater.prompt.every.label;"
-		    oncommand="Sendlater3Prompt.CheckRecurring();"/>
-	  <textbox id="sendlater3-recur-every-value" type="number"
-		   min="2" size="2"/>
-	  <label id="sendlater3-recur-every-unit"/>
+        <hbox>
+          <separator width="20"/>
+          <vbox>
+	    <hbox align="center" id="sendlater3-recur-every-hbox">
+	      <checkbox id="sendlater3-recur-every-checkbox"
+		        label="&sendlater.prompt.every.label;"
+		        oncommand="Sendlater3Prompt.CheckRecurring();"/>
+	      <textbox id="sendlater3-recur-every-value" type="number"
+		       min="2" size="2"/>
+	      <label id="sendlater3-recur-every-unit"/>
 
-	  <checkbox id="sendlater3-recur-every-month-checkbox"
-		    oncommand="Sendlater3Prompt.CheckRecurring();"/>
-	</hbox>
+	      <checkbox id="sendlater3-recur-every-month-checkbox"
+		        oncommand="Sendlater3Prompt.CheckRecurring();"/>
+	    </hbox>
+            <hbox align="center" id="sendlater3-recur-between-hbox">
+              <checkbox id="sendlater3-recur-between-checkbox"
+                        label="&sendlater.prompt.between.label;"/>
+              <timepicker id="sendlater3-recur-between-start"
+                          hideseconds="true" value="00:00"
+                          onchange="window.setTimeout(function(){Sendlater3Prompt.BetweenStartUpdate()}, 0);"/>
+              <label value="-"/>
+              <timepicker id="sendlater3-recur-between-end"
+                          hideseconds="true" value="23:59"
+                          onchange="window.setTimeout(function(){Sendlater3Prompt.BetweenEndUpdate()}, 0);"/>
+            </hbox>
+          </vbox>
+        </hbox>
       </deck>
 
       <button id="sendlater3-callsendat" width="100%" flex="1" label="&sendlater.prompt.sendat.label;" tooltiptext="&sendlater.prompt.sendat.tooltip;" oncommand="Sendlater3Prompt.CallSendAt()&amp;&amp;close();"/>
