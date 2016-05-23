@@ -33,3 +33,6 @@
 <!ENTITY donatelink.value "Donate">
 <!ENTITY enforcerestrictions.tooltip "If a message that is due to be delivered is outside its time or day restrictions, e.g., because Thunderbird was not running at its scheduled delivery time, then delay its delivery until the time and day restrictions are met.">
 <!ENTITY enforcerestrictions.caption "Enforce time and day restrictions at delivery time">
+<!ENTITY blocklatemessages.tooltip "Don't deliver scheduled messages that have been delayed past their scheduled time, e.g., because Thunderbird wasn't running at that time.">
+<!ENTITY blocklatemessages.label1 "Don't deliver messages more than">
+<!ENTITY blocklatemessages.label2 "minutes late">

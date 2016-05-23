@@ -86,6 +86,9 @@ var Sendlater3Backgrounding = function() {
     var sentThisTime = {};
     var sentAlerted = {};
 
+    var lateLastTime = {};
+    var lateThisTime = {};
+
     var msgWindow = Components.classes["@mozilla.org/messenger/msgwindow;1"]
 	.createInstance();
     msgWindow = msgWindow.QueryInterface(Components.interfaces.nsIMsgWindow);
@@ -448,7 +451,7 @@ var Sendlater3Backgrounding = function() {
 		SL3U.Returning("Sendlater3Backgrounding.CopyUnsentListener.OnStopCopy", "");
 		return;
 	    }
-	    sentThisTime[this._uri] = 1;
+	    sentThisTime[this._uri] = true;
 
 	    var messageHDR = this._hdr;
 	    var sendat = this._sendat;
@@ -834,6 +837,23 @@ var Sendlater3Backgrounding = function() {
 		    SL3U.dump(MessagesPending + " messages still pending");
 		    break;
 		}
+                SL3U.warn("Dorkle diff=" + ((new Date() - new Date(h_at)) / 1000 / 60));
+                SL3U.warn("Dorkle late_grace_period=" + SL3U.getIntPref("late_grace_period"));
+                SL3U.warn("Dorkle block_late_messages=" + SL3U.getBoolPref("block_late_messages"));
+                if ((new Date() - new Date(h_at)) / 1000 / 60 >
+                    SL3U.getIntPref("late_grace_period") &&
+                    SL3U.getBoolPref("block_late_messages")) {
+                    lateThisTime[messageURI] = true;
+                    if (! lateLastTime[messageURI])
+                        SL3U.alert(window, null,
+                                   SL3U.PromptBundleGetFormatted(
+                                       "BlockedLateMessage",
+                                       [messageHDR.getStringProperty("subject"),
+                                        messageHDR.folder.URI,
+                                        SL3U.getIntPref("late_grace_period")]));
+		    lastMessagesPending = ++MessagesPending;
+                    break;
+                }
                 if (recur && (recur.between || recur.days) &&
                     SL3U.getBoolPref("enforce_restrictions")) {
                     now = new Date();
@@ -854,7 +874,7 @@ var Sendlater3Backgrounding = function() {
 		    break;
 		}
 		if (sentLastTime[messageURI]) {
-		    sentThisTime[messageURI] = 1;
+		    sentThisTime[messageURI] = true;
 		    if (! sentAlerted[messageURI]) {
 		    	SL3U.alert(window, null,
 		    		   SL3U.PromptBundleGetFormatted("MessageResendError",
@@ -1090,6 +1110,9 @@ var Sendlater3Backgrounding = function() {
 
 	    sentLastTime = sentThisTime;
 	    sentThisTime = {};
+
+            lateLastTime = lateThisTime;
+            lateThisTime = {};
 
 	    for (uri in sentAlerted) {
 		if (! MessagesChecked[uri]) {

@@ -20,6 +20,10 @@ var Sendlater3Options = {
         window.removeEventListener("load", Sendlater3Options.SetOnLoad, false);
 	SL3U.initUtil();
 	document.getElementById("sendlater3-help_text").hidden = true;
+    },
+
+    EnableLateBlock: function() {
+        SL3U.setBoolPref("block_late_messages", true);
     }
 };
 

@@ -33,3 +33,5 @@ pref("extensions.sendlater3.ask.quit",true);
 pref("extensions.sendlater3.relnotes","");
 pref("extensions.sendlater3.disabled_for_enigmail",false);
 pref("extensions.sendlater3.enforce_restrictions", false);
+pref("extensions.sendlater3.block_late_messages", false);
+pref("extensions.sendlater3.late_grace_period", 5);

@@ -53,6 +53,10 @@
                   name="extensions.sendlater3.sendbutton" type="bool"/>
       <preference id="sendlater3_altbinding"
                   name="extensions.sendlater3.alt_binding" type="bool"/>
+      <preference id="sendlater3_block_late_messages"
+                  name="extensions.sendlater3.block_late_messages" type="bool"/>
+      <preference id="sendlater3_late_messages_grace_period"
+                  name="extensions.sendlater3.late_grace_period" type="int"/>
       <preference id="sendlater3_enforce_restrictions"
                   name="extensions.sendlater3.enforce_restrictions"
                   type="bool"/>
@@ -115,6 +119,17 @@
                         preference="sendlater3_sendunsentmessages"
                         label="&showsendlaterunsentmessages.caption;" />
 	    </hbox>
+            <hbox align="center" tooltiptext="&blocklatemessages.tooltip;">
+              <checkbox id="sendlater3-block-late-messages-pref"
+                        preference="sendlater3_block_late_messages"
+                        label="&blocklatemessages.label1;"/>
+              <textbox id="sendlater3-late-messages-grace-period-pref"
+                       preference="sendlater3_late_messages_grace_period"
+                       type="number" min="1" size="1"
+                       oncommand="Sendlater3Options.EnableLateBlock();"
+                       onchange="Sendlater3Options.EnableLateBlock();"/>
+              <label value="&blocklatemessages.label2;"/>
+            </hbox>
 	    <hbox align="center" tooltiptext="&enforcerestrictions.tooltip;">
 	      <checkbox id="sendlater3-enforce-restrictions-pref"
                         preference="sendlater3_enforce_restrictions"
