@@ -856,8 +856,8 @@ var Sendlater3Backgrounding = function() {
                 }
                 if (recur && (recur.between || recur.days) &&
                     SL3U.getBoolPref("enforce_restrictions")) {
-                    now = new Date();
-                    adjusted = SL3U.AdjustDateForRestrictions(
+                    var now = new Date();
+                    var adjusted = SL3U.AdjustDateForRestrictions(
                         now, recur.between.start, recur.between.end,
                         recur.days);
                     if (now.getTime() != adjusted.getTime()) {

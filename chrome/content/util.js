@@ -367,7 +367,7 @@ var Sendlater3Util = {
         else {
             var slashIndex = params.indexOf("/");
             if (slashIndex > -1) {
-                multiplier = params[slashIndex + 1];
+                var multiplier = params[slashIndex + 1];
                 if (! /^[1-9]\d*$/.test(multiplier))
                     throw "Invalid multiplier argument in " + spec;
                 parsed.multiplier = multiplier;
@@ -375,10 +375,10 @@ var Sendlater3Util = {
             }
             var betweenIndex = params.indexOf("between");
             if (betweenIndex > -1) {
-                startTime = params[betweenIndex + 1];
+                var startTime = params[betweenIndex + 1];
                 if (! /^\d{3,4}$/.test(startTime))
                     throw "Invalid between start in " + spec;
-                endTime = params[betweenIndex + 2];
+                var endTime = params[betweenIndex + 2];
                 if (! /^\d{3,4}$/.test(endTime))
                     throw "Invalid between end in " + spec;
                 parsed.between = {start: startTime, end: endTime};
@@ -389,7 +389,7 @@ var Sendlater3Util = {
                 parsed.days = [];
                 params.splice(onIndex, onIndex + 1);
                 while (/^\d$/.test(params[onIndex])) {
-                    day = params.splice(onIndex, onIndex + 1)[0];
+                    var day = params.splice(onIndex, onIndex + 1)[0];
                     if (day > 6)
                         throw "Bad restriction day in " + spec;
                     parsed.days.push(Number(day));
@@ -527,7 +527,7 @@ var Sendlater3Util = {
 
         function NextRecurNormalTest(sendat, recur, now, expected) {
             try {
-                result = SL3U.NextRecurDate(
+                var result = SL3U.NextRecurDate(
                     new Date(sendat), recur, new Date(now));
             }
             catch (ex) {
@@ -542,7 +542,7 @@ var Sendlater3Util = {
 
         function NextRecurExceptionTest(sendat, recur, now, expected) {
             try {
-                result = SL3U.NextRecurDate(
+                var result = SL3U.NextRecurDate(
                     new Date(sendat), recur, new Date(now));
                 return "Expected exception, got " + result;
             }
@@ -559,7 +559,7 @@ var Sendlater3Util = {
                                        func, expected) {
             window[func_name] = func;
             try {
-                result = SL3U.NextRecurDate(
+                var result = SL3U.NextRecurDate(
                     new Date(sendat), recur, new Date(now), args);
                 delete window[func_name];
             }
@@ -577,7 +577,7 @@ var Sendlater3Util = {
                                                 func, expected) {
             window[func_name] = func;
             try {
-                result = SL3U.NextRecurDate(
+                var result = SL3U.NextRecurDate(
                     new Date(sendat), recur, new Date(now));
                 delete window[func_name];
                 return "Expected exception, got " + result;
@@ -858,7 +858,7 @@ var Sendlater3Util = {
                                recur.between.end % 100])
 
         if (recur.days) {
-            days = [];
+            var days = [];
             for (var i in recur.days)
                 days.push(SL3U.PromptBundleGet("day" + recur.days[i]));
             days = days.join(", ");
@@ -870,7 +870,7 @@ var Sendlater3Util = {
 
     FormatRecurTests: function() {
         function FormatRecurTest(spec, expected) {
-            out = SL3U.FormatRecur(spec);
+            var out = SL3U.FormatRecur(spec);
             if (out == expected)
                 return true;
             return "expected " + expected + ", got " + out;
@@ -959,8 +959,8 @@ var Sendlater3Util = {
             if (days) {
                 orig_days = days.slice();
             }
-            result = SL3U.AdjustDateForRestrictions(dt, start_time, end_time,
-                                                    days);
+            var result = SL3U.AdjustDateForRestrictions(dt, start_time,
+                                                        end_time, days);
             if (orig_dt.getTime() != dt.getTime()) {
                 throw "AdjustDateForRestrictions modified dt!";
             }
