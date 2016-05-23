@@ -13,12 +13,9 @@ var Sendlater3ComposeToolbar = {
                "sendlater3-shortcutbtn_3"],
 
     SetRecurring: function(recurring) {
-	var ids = ["sendlater3-toolbar-text",
-		   "sendlater3-toolbar-datepicker",
-		   "sendlater3-toolbar-timepicker",
-		   "sendlater3-toolbarbutton"];
-	for (var idnum in ids) {
-	    var obj = document.getElementById(ids[idnum]);
+	for (var idnum in Sendlater3ComposeToolbar.elements) {
+            elt = Sendlater3ComposeToolbar.elements[idnum];
+	    var obj = document.getElementById(elt);
 	    if (obj) {
 		obj["disabled"] = recurring;
 	    }
