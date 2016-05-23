@@ -1,34 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <!DOCTYPE prefwindow SYSTEM "chrome://sendlater3/locale/prefwindow.dtd">
-<prefwindow id="sendlater3-Preferences"
-	    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="&prefwindow.title;"
-	    ondialogaccept="return Sendlater3Options.ValidatePrefs();"
-	    ondialogcancel="return Sendlater3Options.ValidatePrefs();">
+<prefwindow
+    id="sendlater3-Preferences"
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+    title="&prefwindow.title;"
+    ondialogaccept="return Sendlater3Options.ValidatePrefs();"
+    ondialogcancel="return Sendlater3Options.ValidatePrefs();">
   <stringbundleset id="sendlater3-strbundles">
-    <stringbundle id="sendlater3-promptstrings" src="chrome://sendlater3/locale/prompt.properties"/>
+    <stringbundle id="sendlater3-promptstrings"
+                  src="chrome://sendlater3/locale/prompt.properties"/>
   </stringbundleset>
   <script src="util.js"/>
   <script src="options.js"/>
   <prefpane id="sendlater3-pane1" label="&pane1.title;">
     <preferences>
-      <preference id="sendlater3-checktimepref" name="extensions.sendlater3.checktimepref" type="int"/>
-      <preference id="sendlater3_quickoption_label1" name="extensions.sendlater3.quickoptions.1.label" type="unichar"/>
-      <preference id="sendlater3_quickoption_label2" name="extensions.sendlater3.quickoptions.2.label" type="unichar"/>
-      <preference id="sendlater3_quickoption_label3" name="extensions.sendlater3.quickoptions.3.label" type="unichar"/>
-      <preference id="sendlater3_quickoption_value1" name="extensions.sendlater3.quickoptions.1.valuestring" type="string"/>
-      <preference id="sendlater3_quickoption_value2" name="extensions.sendlater3.quickoptions.2.valuestring" type="string"/>
-      <preference id="sendlater3_quickoption_value3" name="extensions.sendlater3.quickoptions.3.valuestring" type="string"/>
-      <preference id="sendlater3_showheader" name="extensions.sendlater3.showheader" type="bool"/>
-      <preference id="sendlater3_showcolumn" name="extensions.sendlater3.showcolumn" type="bool"/>
-      <preference id="sendlater3_showstatus" name="extensions.sendlater3.showstatus" type="bool"/>
-      <preference id="sendlater3_showprogress" name="extensions.sendlater3.showprogress" type="bool"/>
-      <preference id="sendlater3_sendunsentmessages" name="extensions.sendlater3.sendunsentmessages" type="bool"/>
-      <preference id="sendlater3_dumplevel" name="extensions.sendlater3.logging.dump" type="string"/>
-      <preference id="sendlater3_consolelevel" name="extensions.sendlater3.logging.console" type="string"/>
-      <preference id="sendlater3_sendbutton" name="extensions.sendlater3.sendbutton" type="bool"/>
-      <preference id="sendlater3_altbinding" name="extensions.sendlater3.alt_binding" type="bool"/>
-      <preference id="sendlater3_enforce_restrictions" name="extensions.sendlater3.enforce_restrictions" type="bool"/>
+      <preference id="sendlater3-checktimepref"
+                  name="extensions.sendlater3.checktimepref" type="int"/>
+      <preference id="sendlater3_quickoption_label1"
+                  name="extensions.sendlater3.quickoptions.1.label"
+                  type="unichar"/>
+      <preference id="sendlater3_quickoption_label2"
+                  name="extensions.sendlater3.quickoptions.2.label"
+                  type="unichar"/>
+      <preference id="sendlater3_quickoption_label3"
+                  name="extensions.sendlater3.quickoptions.3.label"
+                  type="unichar"/>
+      <preference id="sendlater3_quickoption_value1"
+                  name="extensions.sendlater3.quickoptions.1.valuestring"
+                  type="string"/>
+      <preference id="sendlater3_quickoption_value2"
+                  name="extensions.sendlater3.quickoptions.2.valuestring"
+                  type="string"/>
+      <preference id="sendlater3_quickoption_value3"
+                  name="extensions.sendlater3.quickoptions.3.valuestring"
+                  type="string"/>
+      <preference id="sendlater3_showheader"
+                  name="extensions.sendlater3.showheader" type="bool"/>
+      <preference id="sendlater3_showcolumn"
+                  name="extensions.sendlater3.showcolumn" type="bool"/>
+      <preference id="sendlater3_showstatus"
+                  name="extensions.sendlater3.showstatus" type="bool"/>
+      <preference id="sendlater3_showprogress"
+                  name="extensions.sendlater3.showprogress" type="bool"/>
+      <preference id="sendlater3_sendunsentmessages"
+                  name="extensions.sendlater3.sendunsentmessages" type="bool"/>
+      <preference id="sendlater3_dumplevel"
+                  name="extensions.sendlater3.logging.dump" type="string"/>
+      <preference id="sendlater3_consolelevel"
+                  name="extensions.sendlater3.logging.console" type="string"/>
+      <preference id="sendlater3_sendbutton"
+                  name="extensions.sendlater3.sendbutton" type="bool"/>
+      <preference id="sendlater3_altbinding"
+                  name="extensions.sendlater3.alt_binding" type="bool"/>
+      <preference id="sendlater3_enforce_restrictions"
+                  name="extensions.sendlater3.enforce_restrictions"
+                  type="bool"/>
     </preferences>
     <tabbox>
       <tabs>
@@ -42,78 +69,135 @@
 	<tabpanel>
 	  <vbox>
 	    <hbox align="center" tooltiptext="&checktimepref.tooltip;">
-	      <label align="bottom" control="sendlater3-textintpref">&checktimepref.label;</label>
+	      <label align="bottom"
+                     control="sendlater3-textintpref"
+                     value="&checktimepref.label;"/>
 	      <textbox id="sendlater3-textintpref"
 		       preference="sendlater3-checktimepref"
 		       type="number" min="1" size="4"/>
-	      <label >&checktimepref2.label;</label>
+	      <label value="&checktimepref2.label;"/>
 	    </hbox>
 	    <separator label="-"/>
-	    <hbox id="sendlater3-sendbutton_hbox" align="center" tooltiptext="&sendlatersendbutton.tooltip;">
-	      <checkbox id="sendlater3-sendbuttonpref" preference="sendlater3_sendbutton" label="&sendlatersendbutton.caption;" />
+	    <hbox id="sendlater3-sendbutton_hbox"
+                  align="center" tooltiptext="&sendlatersendbutton.tooltip;">
+	      <checkbox id="sendlater3-sendbuttonpref"
+                        preference="sendlater3_sendbutton"
+                        label="&sendlatersendbutton.caption;" />
 	    </hbox>
 	    <hbox id="sendlater3-altbinding_hbox" align="center">
-	      <checkbox id="sendlater3-altbindingpref" preference="sendlater3_altbinding" label="&altbinding.caption;" />
+	      <checkbox id="sendlater3-altbindingpref"
+                        preference="sendlater3_altbinding"
+                        label="&altbinding.caption;" />
 	    </hbox>
 	    <hbox align="center" tooltiptext="&showsendlatercolumn.tooltip;">
-	      <checkbox id="sendlater3-showcolumnpref" preference="sendlater3_showcolumn" label="&showsendlatercolumn.caption;" />
+	      <checkbox id="sendlater3-showcolumnpref"
+                        preference="sendlater3_showcolumn"
+                        label="&showsendlatercolumn.caption;" />
 	    </hbox>
 	    <hbox align="center" tooltiptext="&showsendlaterheader.tooltip;">
-	      <checkbox id="sendlater3-showheaderpref" preference="sendlater3_showheader" label="&showsendlaterheader.caption;" />
+	      <checkbox id="sendlater3-showheaderpref"
+                        preference="sendlater3_showheader"
+                        label="&showsendlaterheader.caption;" />
 	    </hbox>
 	    <hbox align="center" >
-	      <checkbox id="sendlater3-showstatuspref" preference="sendlater3_showstatus" label="&showsendlaterstatus.caption;" />
+	      <checkbox id="sendlater3-showstatuspref"
+                        preference="sendlater3_showstatus"
+                        label="&showsendlaterstatus.caption;" />
 	    </hbox>
 	    <hbox align="center" >
-	      <checkbox id="sendlater3-showprogresspref" preference="sendlater3_showprogress" label="&showsendlaterprogress.caption;" />
+	      <checkbox id="sendlater3-showprogresspref"
+                        preference="sendlater3_showprogress"
+                        label="&showsendlaterprogress.caption;" />
 	    </hbox>
-	    <hbox align="center" tooltiptext="&showsendlaterunsentmessages.tooltip;">
-	      <checkbox id="sendlater3-sendunsentmessagespref" preference="sendlater3_sendunsentmessages" label="&showsendlaterunsentmessages.caption;" />
+	    <hbox align="center"
+                  tooltiptext="&showsendlaterunsentmessages.tooltip;">
+	      <checkbox id="sendlater3-sendunsentmessagespref"
+                        preference="sendlater3_sendunsentmessages"
+                        label="&showsendlaterunsentmessages.caption;" />
 	    </hbox>
 	    <hbox align="center" tooltiptext="&enforcerestrictions.tooltip;">
-	      <checkbox id="sendlater3-enforce-restrictions-pref" preference="sendlater3_enforce_restrictions" label="&enforcerestrictions.caption;" />
+	      <checkbox id="sendlater3-enforce-restrictions-pref"
+                        preference="sendlater3_enforce_restrictions"
+                        label="&enforcerestrictions.caption;" />
 	    </hbox>
 	    <separator label="-"/>
 	    <hbox>
-	      <label id="sendlater3-contact_author" tooltiptext="&contactauthor.tooltip;" value="&contactauthor.value;" class="text-link" onclick="Components.classes['@mozilla.org/messengercompose;1'].getService(Components.interfaces.nsIMsgComposeService).OpenComposeWindowWithURI(null, Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService).newURI('mailto:jik+sendlater3@kamens.us?subject=Send%20Later', null, null));"/>
+	      <label
+                  id="sendlater3-contact_author"
+                  tooltiptext="&contactauthor.tooltip;"
+                  value="&contactauthor.value;" class="text-link"
+                  onclick="Components.classes['@mozilla.org/messengercompose;1'].getService(Components.interfaces.nsIMsgComposeService).OpenComposeWindowWithURI(null, Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService).newURI('mailto:jik+sendlater3@kamens.us?subject=Send%20Later', null, null));"/>
 	      <!-- Postbox, Thunderbird 3+ -->
-	      <label id="sendlater3-help_link" tooltiptext="&helplink.tooltip;" value="&helplink.value;" class="text-link" onclick="Components.classes['@mozilla.org/uriloader/external-protocol-service;1'].getService(Components.interfaces.nsIExternalProtocolService).loadURI(Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService).newURI('http://blog.kamens.us/send-later-3/', null, null));"/>
+	      <label
+                  id="sendlater3-help_link"
+                  tooltiptext="&helplink.tooltip;"
+                  value="&helplink.value;" class="text-link"
+                  onclick="Components.classes['@mozilla.org/uriloader/external-protocol-service;1'].getService(Components.interfaces.nsIExternalProtocolService).loadURI(Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService).newURI('http://blog.kamens.us/send-later-3/', null, null));"/>
 	      <!-- Thunderbird 2 -->
-	      <label id="sendlater3-help_text" value="&helplink.value;: http://blog.kamens.us/send-later-3/"/>
-	      <label id="sendlater3-donate_link" value="&donatelink.value;" class="text-link" onclick="Components.classes['@mozilla.org/uriloader/external-protocol-service;1'].getService(Components.interfaces.nsIExternalProtocolService).loadURI(Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService).newURI('https://addons.mozilla.org/thunderbird/addon/send-later-3/contribute/roadblock/?src=prefwindow', null, null));"/>
+	      <label
+                  id="sendlater3-help_text"
+                  value="&helplink.value;: http://blog.kamens.us/send-later-3/"/>
+	      <label
+                  id="sendlater3-donate_link"
+                  value="&donatelink.value;" class="text-link"
+                  onclick="Components.classes['@mozilla.org/uriloader/external-protocol-service;1'].getService(Components.interfaces.nsIExternalProtocolService).loadURI(Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService).newURI('https://addons.mozilla.org/thunderbird/addon/send-later-3/contribute/roadblock/?src=prefwindow', null, null));"/>
 	    </hbox>
 	  </vbox>
 	</tabpanel>
 	<tabpanel>
 	  <vbox>
 	    <hbox align="center">
-	      <label align="bottom" control="sendlater3-quickoption_label1">&quickoptionname.label;</label><textbox id="sendlater3-quickoption_label1" preference="sendlater3_quickoption_label1"/>
-	      <label align="bottom" control="sendlater3-quickoption_value1">&quickoptionvalue.label;</label><textbox id="sendlater3-quickoption_value1" preference="sendlater3_quickoption_value1"/>
+	      <label align="bottom"
+                     control="sendlater3-quickoption_label1"
+                     value="&quickoptionname.label;"/>
+              <textbox id="sendlater3-quickoption_label1"
+                       preference="sendlater3_quickoption_label1"/>
+	      <label align="bottom"
+                     control="sendlater3-quickoption_value1"
+                     value="&quickoptionvalue.label;"/>
+              <textbox id="sendlater3-quickoption_value1"
+                       preference="sendlater3_quickoption_value1"/>
 	    </hbox>
 	  </vbox>
 	</tabpanel>
 	<tabpanel>
 	  <vbox>
 	    <hbox align="center">
-	      <label align="bottom" control="sendlater3-quickoption_label2">&quickoptionname.label;</label><textbox id="sendlater3-quickoption_label2" preference="sendlater3_quickoption_label2"/>
-	      <label align="bottom" control="sendlater3-quickoption_value2">&quickoptionvalue.label;</label><textbox id="sendlater3-quickoption_value2" preference="sendlater3_quickoption_value2"/>
+	      <label align="bottom"
+                     control="sendlater3-quickoption_label2"
+                     value="&quickoptionname.label;"/>
+              <textbox id="sendlater3-quickoption_label2"
+                       preference="sendlater3_quickoption_label2"/>
+	      <label align="bottom"
+                     control="sendlater3-quickoption_value2"
+                     value="&quickoptionvalue.label;"/>
+              <textbox id="sendlater3-quickoption_value2"
+                       preference="sendlater3_quickoption_value2"/>
 	    </hbox>
 	  </vbox>
 	</tabpanel>
 	<tabpanel>
 	  <vbox>
 	    <hbox align="center">
-	      <label align="bottom" control="sendlater3-quickoption_label3">&quickoptionname.label;</label><textbox id="sendlater3-quickoption_label3" preference="sendlater3_quickoption_label3"/>
-	      <label align="bottom" control="sendlater3-quickoption_value3">&quickoptionvalue.label;</label><textbox id="sendlater3-quickoption_value3" preference="sendlater3_quickoption_value3"/>
+	      <label align="bottom"
+                     control="sendlater3-quickoption_label3"
+                     value="&quickoptionname.label;"/>
+              <textbox id="sendlater3-quickoption_label3"
+                       preference="sendlater3_quickoption_label3"/>
+	      <label align="bottom"
+                     control="sendlater3-quickoption_value3"
+                     value="&quickoptionvalue.label;"/>
+              <textbox id="sendlater3-quickoption_value3"
+                       preference="sendlater3_quickoption_value3"/>
 	    </hbox>
 	  </vbox>
-
 	</tabpanel>
 	<tabpanel>
 	  <vbox>
 	    <hbox align="center">
 	      <label>&dumplevel.caption;</label>
-	      <menulist id="sendlater3_dumplevel_menu" preference="sendlater3_dumplevel">
+	      <menulist id="sendlater3_dumplevel_menu"
+                        preference="sendlater3_dumplevel">
 		<menupopup>
 		  <menuitem name="dumplevel" label="Fatal"  value="Fatal" />
 		  <menuitem name="dumplevel" label="Error"  value="Error" />
@@ -128,7 +212,8 @@
 	    </hbox>
 	    <hbox align="center">
 	      <label>&consolelevel.caption;</label>
-	      <menulist id="sendlater3_consolelevel_menu" preference="sendlater3_consolelevel">
+	      <menulist id="sendlater3_consolelevel_menu"
+                        preference="sendlater3_consolelevel">
 		<menupopup>
 		  <menuitem name="consolelevel" label="Fatal"  value="Fatal" />
 		  <menuitem name="consolelevel" label="Error"  value="Error" />
