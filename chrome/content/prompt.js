@@ -36,6 +36,10 @@ var Sendlater3Prompt = {
             startPicker.minute = endPicker.minute;
         }
     },        
+
+    DayUpdate: function() {
+        document.getElementById("sendlater3-recur-on-checkbox").checked = true;
+    },
     
     // Disable preset buttons if recurrence is enabled, or vice versa
     SetRecurring: function(recurring) {
@@ -155,51 +159,42 @@ var Sendlater3Prompt = {
 	var prevRecurring = window.arguments[0].previouslyRecurring;
 	Sendlater3Prompt.SetRecurring(prevRecurring);
 	if (prevRecurring) {
-	    var settings = prevRecurring.split(/\s+/);
-	    var recur = settings[0];
-	    settings.splice(0,1);
-	    var group = document.getElementById("sendlater3-recur-group");
-	    group.selectedItem = document.getElementById("sendlater3-recur-"+recur);
-	    if (recur == "monthly") {
-		settings.splice(0,1);
-		if ((settings.length > 0) && settings[0].match(/^[0-9]+/)) {
-		    document
-			.getElementById("sendlater3-recur-every-month-checkbox")
-			.checked = true;
-		    settings.splice(0,1);
-		}
-	    }
-	    else if (recur == "yearly") {
-		settings.splice(0,2);
-	    }
-	    if ((settings.length > 1) && (settings[0] == "/")) {
-		settings.splice(0,1);
+	    var settings = SL3U.ParseRecurSpec(prevRecurring);
+            if (settings.type != "function") {
+	        var group = document.getElementById("sendlater3-recur-group");
+	        group.selectedItem = document.getElementById(
+                    "sendlater3-recur-" + settings.type);
+            }
+	    if (settings.monthly_day)
+		document.
+                getElementById("sendlater3-recur-every-month-checkbox").
+		checked = true;
+            if (settings.multiplier) {
 		document.getElementById("sendlater3-recur-every-checkbox")
 		    .checked = true;
 		document.getElementById("sendlater3-recur-every-value")
-		    .value = settings[0];
-		settings.splice(0,1);
+		    .value = settings.multiplier;
 	    }
-            var betweenIndex = settings.indexOf("between");
-            if (betweenIndex > -1) {
-                var betweenStart = settings[betweenIndex + 1];
-                var betweenEnd = settings[betweenIndex + 2];
-                settings.splice(betweenIndex, betweenIndex + 3);
+            if (settings.between) {
                 document.getElementById("sendlater3-recur-between-checkbox").
                     checked = true;
                 var startPicker = document.getElementById(
                     "sendlater3-recur-between-start");
                 var endPicker = document.getElementById(
                     "sendlater3-recur-between-end");
-                startPicker.hour = Math.floor(betweenStart / 100);
-                startPicker.minute = betweenStart % 100;
-                endPicker.hour = Math.floor(betweenEnd / 100);
-                endPicker.minute = betweenEnd % 100;
+                startPicker.hour = Math.floor(settings.between.start / 100);
+                startPicker.minute = settings.between.start % 100;
+                endPicker.hour = Math.floor(settings.between.end / 100);
+                endPicker.minute = settings.between.end % 100;
             }
-	    if (settings.length > 0) {
-		throw "Send Later internal error: unexpected recur setting fields: " +
-		    settings.toString();
-	    }
+            if (settings.days) {
+                document.getElementById("sendlater3-recur-on-checkbox").
+                    checked = true;
+                for (var i = 0; i <= 6; i++)
+                    if (settings.days.indexOf(i) > -1)
+                        document.getElementById("sendlater3-recur-on-day" + i).
+                            checked = true;
+            }
 	}
 	    
 	var prevXSendLater = window.arguments[0].previouslyTimed;
@@ -368,6 +363,9 @@ var Sendlater3Prompt = {
     //     message the specified number of minutes into the future,
     //     with the specified recurrence specification for instances
     //     after this one
+    //
+    // The other fields can be followed by " between YYMM YYMM" to indicate a
+    // time restriction or " on # ..." to indicate a day restriction.
 
     GetRecurString: function(dateObj) {
 	var recur = document.getElementById("sendlater3-recur-group")
@@ -390,9 +388,25 @@ var Sendlater3Prompt = {
                 throw "end time before start time";
             }
         }
-        if (startTime != undefined) {
+
+        var days;
+        if (document.getElementById("sendlater3-recur-on-checkbox").checked) {
+            days = [];
+            for (var i = 0; i <= 6; i++)
+                if (document.getElementById("sendlater3-recur-on-day" + i).
+                    checked)
+                    days.push(i);
+            if (! days.length) {
+                SL3U.alert(null,
+                           SL3U.PromptBundleGet("missingDaysWarningTitle"),
+                           SL3U.PromptBundleGet("missingDaysWarningBody"));
+                throw "day restriction enabled with no days specified";
+            }
+        }
+
+        if ((startTime != undefined) || days) {
             adjusted = SL3U.AdjustDateForRestrictions(dateObj, startTime,
-                                                      endTime, null);
+                                                      endTime, days);
             if (adjusted.getTime() != dateObj.getTime()) {
                 var title = SL3U.PromptBundleGet("TimeMismatchConfirmTitle");
                 var body = SL3U.PromptBundleGetFormatted(
@@ -406,6 +420,7 @@ var Sendlater3Prompt = {
                 dateObj = adjusted;
             }                
         }
+
 	if (recur == "monthly") {
 	    recur += " ";
 	    if (document.getElementById("sendlater3-recur-every-month-checkbox").checked) {
@@ -425,6 +440,9 @@ var Sendlater3Prompt = {
 	}
         if (startTime != undefined) {
             recur += " between " + String(startTime) + " " + String(endTime);
+        }
+        if (days) {
+            recur += " on " + days.join(' ');
         }
 	return [dateObj, recur];
     },

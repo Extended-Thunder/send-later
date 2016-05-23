@@ -25,3 +25,10 @@
 <!ENTITY sendlater.button1.label "15分後">
 <!ENTITY sendlater.button2.label "30分後">
 <!ENTITY sendlater.button3.label "2時間後">
+<!ENTITY sendlater.prompt.day0 "日曜日">
+<!ENTITY sendlater.prompt.day1 "月曜日">
+<!ENTITY sendlater.prompt.day2 "火曜日">
+<!ENTITY sendlater.prompt.day3 "水曜日">
+<!ENTITY sendlater.prompt.day4 "木曜日">
+<!ENTITY sendlater.prompt.day5 "金曜日">
+<!ENTITY sendlater.prompt.day6 "土曜日">

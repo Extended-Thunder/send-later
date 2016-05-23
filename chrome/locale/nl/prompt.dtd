@@ -25,3 +25,10 @@
 <!ENTITY sendlater.button1.label "15 minuten later">
 <!ENTITY sendlater.button2.label "30 minuten later">
 <!ENTITY sendlater.button3.label "2 uur later">
+<!ENTITY sendlater.prompt.day0 "Zondag">
+<!ENTITY sendlater.prompt.day1 "Maandag">
+<!ENTITY sendlater.prompt.day2 "Dinsdag">
+<!ENTITY sendlater.prompt.day3 "Woensdag">
+<!ENTITY sendlater.prompt.day4 "Donderdag">
+<!ENTITY sendlater.prompt.day5 "Vrijdag">
+<!ENTITY sendlater.prompt.day6 "Zaterdag">

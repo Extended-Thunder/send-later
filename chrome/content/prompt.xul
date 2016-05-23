@@ -101,6 +101,39 @@
                           hideseconds="true" value="23:59"
                           onchange="window.setTimeout(function(){Sendlater3Prompt.BetweenEndUpdate()}, 0);"/>
             </hbox>
+            <hbox align="top" id="sendlater3-recur-on-hbox">
+              <checkbox id="sendlater3-recur-on-checkbox"
+                        label="&sendlater.prompt.on.label;"/>
+              <vbox>
+                <checkbox id="sendlater3-recur-on-day0"
+                          label="&sendlater.prompt.day0;"
+                          oncommand="Sendlater3Prompt.DayUpdate();"/>
+                <checkbox id="sendlater3-recur-on-day4"
+                          label="&sendlater.prompt.day4;"
+                          oncommand="Sendlater3Prompt.DayUpdate();"/>
+              </vbox>
+              <vbox>
+                <checkbox id="sendlater3-recur-on-day1"
+                          label="&sendlater.prompt.day1;"
+                          oncommand="Sendlater3Prompt.DayUpdate();"/>
+                <checkbox id="sendlater3-recur-on-day5"
+                          label="&sendlater.prompt.day5;"
+                          oncommand="Sendlater3Prompt.DayUpdate();"/>
+              </vbox>
+              <vbox>
+                <checkbox id="sendlater3-recur-on-day2"
+                          label="&sendlater.prompt.day2;"
+                          oncommand="Sendlater3Prompt.DayUpdate();"/>
+                <checkbox id="sendlater3-recur-on-day6"
+                          label="&sendlater.prompt.day6;"
+                          oncommand="Sendlater3Prompt.DayUpdate();"/>
+              </vbox>
+              <vbox>
+                <checkbox id="sendlater3-recur-on-day3"
+                          label="&sendlater.prompt.day3;"
+                          oncommand="Sendlater3Prompt.DayUpdate();"/>
+              </vbox>
+            </hbox>
           </vbox>
         </hbox>
       </deck>

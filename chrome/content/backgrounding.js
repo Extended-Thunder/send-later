@@ -834,11 +834,12 @@ var Sendlater3Backgrounding = function() {
 		    SL3U.dump(MessagesPending + " messages still pending");
 		    break;
 		}
-                if (recur && recur.between &&
+                if (recur && (recur.between || recur.days) &&
                     SL3U.getBoolPref("enforce_restrictions")) {
                     now = new Date();
                     adjusted = SL3U.AdjustDateForRestrictions(
-                        now, recur.between.start, recur.between.end, null);
+                        now, recur.between.start, recur.between.end,
+                        recur.days);
                     if (now.getTime() != adjusted.getTime()) {
                         SL3U.debug(messageURI + ": enforcing restrictions on " +
                                    now + " until " + adjusted);

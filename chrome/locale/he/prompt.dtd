@@ -25,3 +25,10 @@
 <!ENTITY sendlater.button1.label "‫15 דקות מאוחר יותר‬">
 <!ENTITY sendlater.button2.label "‫30 דקות מאוחר יותר‬">
 <!ENTITY sendlater.button3.label "‫שעתיים מאוחר יותר‬">
+<!ENTITY sendlater.prompt.day0 "‫יום ראשון‬">
+<!ENTITY sendlater.prompt.day1 "‫יום שני‬">
+<!ENTITY sendlater.prompt.day2 "‫יום שלישי‬">
+<!ENTITY sendlater.prompt.day3 "‫יום רביעי‬">
+<!ENTITY sendlater.prompt.day4 "‫יום חמישי‬">
+<!ENTITY sendlater.prompt.day5 "‫יום שישי‬">
+<!ENTITY sendlater.prompt.day6 "‫יום שבת‬">
