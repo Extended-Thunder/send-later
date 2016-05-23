@@ -117,9 +117,6 @@ way to fix the behavior.
 Change the "Send around" button into a button plus a label next to it
 to make it clearer that it's a button.
 
-Add an option to prompt the user whether to send overdue messages when
-Thunderbird starts up.
-
 Compatibility with the www.spamfighter.com Thunderbird add-on.
 
 Better user experience when editing a scheduled draft. E.g., should
