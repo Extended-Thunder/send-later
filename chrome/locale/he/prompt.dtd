@@ -13,8 +13,9 @@
 <!ENTITY sendlater.prompt.textbox.emptytext "‫‬">
 <!ENTITY sendlater.prompt.sendat.label "‫שלח מאוחר יותר במועד(ים) שהוגדרו לעיל‬">
 <!ENTITY sendlater.prompt.sendat.tooltip "‫שמור את ההודעה בתיקית הטיוטות למשלוח אוטומטי במועד שהוגדר לעיל‬">
-<!ENTITY sendlater.prompt.recur.label "‫חזור שוב‬">
+<!ENTITY sendlater.prompt.recur.label "‫מחזור">
 <!ENTITY sendlater.prompt.none.label "‫ללא‬">
+<!ENTITY sendlater.prompt.minutely.label "דקתי">
 <!ENTITY sendlater.prompt.daily.label "‫השהה‬">
 <!ENTITY sendlater.prompt.weekly.label "‫שבועי‬">
 <!ENTITY sendlater.prompt.monthly.label "‫חודשי‬">
@@ -22,9 +23,11 @@
 <!ENTITY sendlater.toolbar.sendlater.button.label "‫שלח מאוחר יותר‬">
 <!ENTITY sendlater.toolbar.textbox.emptytext "‫זמן המשלוח‬">
 <!ENTITY sendlater.prompt.every.label "‫כל‬">
+<!ENTITY sendlater.prompt.between.label "בין">
 <!ENTITY sendlater.button1.label "‫15 דקות מאוחר יותר‬">
 <!ENTITY sendlater.button2.label "‫30 דקות מאוחר יותר‬">
 <!ENTITY sendlater.button3.label "‫שעתיים מאוחר יותר‬">
+<!ENTITY sendlater.prompt.on.label "רק כאשר">
 <!ENTITY sendlater.prompt.day0 "‫יום ראשון‬">
 <!ENTITY sendlater.prompt.day1 "‫יום שני‬">
 <!ENTITY sendlater.prompt.day2 "‫יום שלישי‬">

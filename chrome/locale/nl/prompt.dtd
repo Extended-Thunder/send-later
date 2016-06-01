@@ -15,6 +15,7 @@
 <!ENTITY sendlater.prompt.sendat.tooltip "Bericht opslaan in de map Concepten voor automatisch verzenden op het hierboven aangegeven tijdstip.">
 <!ENTITY sendlater.prompt.recur.label "Herhaling:">
 <!ENTITY sendlater.prompt.none.label "geen">
+<!ENTITY sendlater.prompt.minutely.label "per minuut">
 <!ENTITY sendlater.prompt.daily.label "dagelijks">
 <!ENTITY sendlater.prompt.weekly.label "wekelijks">
 <!ENTITY sendlater.prompt.monthly.label "maandelijks">
@@ -22,9 +23,11 @@
 <!ENTITY sendlater.toolbar.sendlater.button.label "Later verzenden">
 <!ENTITY sendlater.toolbar.textbox.emptytext "verzendtijdstip">
 <!ENTITY sendlater.prompt.every.label "Elke">
+<!ENTITY sendlater.prompt.between.label "Tussen">
 <!ENTITY sendlater.button1.label "15 minuten later">
 <!ENTITY sendlater.button2.label "30 minuten later">
 <!ENTITY sendlater.button3.label "2 uur later">
+<!ENTITY sendlater.prompt.on.label "Alleen op">
 <!ENTITY sendlater.prompt.day0 "Zondag">
 <!ENTITY sendlater.prompt.day1 "Maandag">
 <!ENTITY sendlater.prompt.day2 "Dinsdag">

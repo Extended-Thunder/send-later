@@ -15,6 +15,7 @@
 <!ENTITY sendlater.prompt.sendat.tooltip "Salva il messaggio nella cartella “Bozze” per l'invio automatico all'orario sopra impostato.">
 <!ENTITY sendlater.prompt.recur.label "Periodicità:">
 <!ENTITY sendlater.prompt.none.label "nessuna">
+<!ENTITY sendlater.prompt.minutely.label "di minuti">
 <!ENTITY sendlater.prompt.daily.label "giornaliera">
 <!ENTITY sendlater.prompt.weekly.label "settimanale">
 <!ENTITY sendlater.prompt.monthly.label "mensile">
@@ -22,9 +23,11 @@
 <!ENTITY sendlater.toolbar.sendlater.button.label "Invia dopo">
 <!ENTITY sendlater.toolbar.textbox.emptytext "Orario di invio">
 <!ENTITY sendlater.prompt.every.label "Ogni">
+<!ENTITY sendlater.prompt.between.label "Tra">
 <!ENTITY sendlater.button1.label "Tra 15 minuti">
 <!ENTITY sendlater.button2.label "Tra 30 minuti">
 <!ENTITY sendlater.button3.label "Tra 2 ore">
+<!ENTITY sendlater.prompt.on.label "Solo di">
 <!ENTITY sendlater.prompt.day0 "domenica">
 <!ENTITY sendlater.prompt.day1 "lunedì">
 <!ENTITY sendlater.prompt.day2 "martedì">

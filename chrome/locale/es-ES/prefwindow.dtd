@@ -31,3 +31,8 @@
 <!ENTITY helplink.tooltip "Ver la documentación de &quot;Enviar después&quot; (inglés).">
 <!ENTITY helplink.value "Manual de usuario">
 <!ENTITY donatelink.value "Donar">
+<!ENTITY enforcerestrictions.tooltip "Si un mensaje que debe ser enviado está fuera de sus restricciones horarios o diarias, por ejemplo porque Thunderbird no se estaba ejecutando durante el tiempo de envío programado, se retrasará su envío hasta que que cumplan las restricciones horarias y diarias.">
+<!ENTITY enforcerestrictions.caption "Obligar a cumplir las restricciones horarias y diarias al enviar">
+<!ENTITY blocklatemessages.tooltip "No enviar mensajes programados que se han retrasado respecto a su hora programado, por ejemplo porque Thunderbird no estaba ejecutándose en ese momento.">
+<!ENTITY blocklatemessages.label1 "No enviar mensajes con más de">
+<!ENTITY blocklatemessages.label2 "minutos de retraso">

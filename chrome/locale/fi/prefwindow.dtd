@@ -31,3 +31,8 @@
 <!ENTITY helplink.tooltip "Selaa Lähetä myöhemmin -ohjetta.">
 <!ENTITY helplink.value "Käyttäjän opas">
 <!ENTITY donatelink.value "Lahjoita">
+<!ENTITY enforcerestrictions.tooltip "Mikäli sanoma, joka pitäisi toimittaa, joutuu aika- tai päivärajoitustensa ulkopuolelle, esim. siksi, että Thunderbird ei ollut käynnissä ajastettuna lähetysaikana, viivästytä lähetystä siihen saakka kunnes aika- ja päiväehdot sopivat sanomaan.">
+<!ENTITY enforcerestrictions.caption "Pidä kiinni aika- ja päivärajoituksista lähetyshetkellä">
+<!ENTITY blocklatemessages.tooltip "Älä toimita ajastettuja sanomia, joiden lähetys on viivästynyt ajastushetkensä yli, esim. koska Thunderbird ei ollut tuolloin käynnissä.">
+<!ENTITY blocklatemessages.label1 "Älä toimita viestejä, jotka ovat enemmän kuin">
+<!ENTITY blocklatemessages.label2 "minuuttia myöhässä">

@@ -15,6 +15,7 @@
 <!ENTITY sendlater.prompt.sendat.tooltip "Guardar el mensaje en la carpeta de Borradores para su envío automático a la hora arriba indicada.">
 <!ENTITY sendlater.prompt.recur.label "Repetición:">
 <!ENTITY sendlater.prompt.none.label "no">
+<!ENTITY sendlater.prompt.minutely.label "cada minuto">
 <!ENTITY sendlater.prompt.daily.label "diaria">
 <!ENTITY sendlater.prompt.weekly.label "semanal">
 <!ENTITY sendlater.prompt.monthly.label "mensual">
@@ -22,9 +23,11 @@
 <!ENTITY sendlater.toolbar.sendlater.button.label "Enviar después">
 <!ENTITY sendlater.toolbar.textbox.emptytext "hora de envío">
 <!ENTITY sendlater.prompt.every.label "Cada">
+<!ENTITY sendlater.prompt.between.label "Entre">
 <!ENTITY sendlater.button1.label "15 min después">
 <!ENTITY sendlater.button2.label "30 min después">
 <!ENTITY sendlater.button3.label "2 horas después">
+<!ENTITY sendlater.prompt.on.label "Sólo en">
 <!ENTITY sendlater.prompt.day0 "Domingo">
 <!ENTITY sendlater.prompt.day1 "Lunes">
 <!ENTITY sendlater.prompt.day2 "Martes">

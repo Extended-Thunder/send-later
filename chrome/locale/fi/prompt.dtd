@@ -15,6 +15,7 @@
 <!ENTITY sendlater.prompt.sendat.tooltip "Tallenna viesti Luonnokset-kansioon lähetettäväksi automaattisesti yllä määriteltynä ajankohtana.">
 <!ENTITY sendlater.prompt.recur.label "Toisto:">
 <!ENTITY sendlater.prompt.none.label "ei">
+<!ENTITY sendlater.prompt.minutely.label "minuuteittain">
 <!ENTITY sendlater.prompt.daily.label "päivittäin">
 <!ENTITY sendlater.prompt.weekly.label "viikoittain">
 <!ENTITY sendlater.prompt.monthly.label "kuukausittain">
@@ -22,9 +23,11 @@
 <!ENTITY sendlater.toolbar.sendlater.button.label "Lähetä myöhemmin">
 <!ENTITY sendlater.toolbar.textbox.emptytext "lähetysaika">
 <!ENTITY sendlater.prompt.every.label "joka">
+<!ENTITY sendlater.prompt.between.label "Aikaväli:">
 <!ENTITY sendlater.button1.label "15 min myöhemmin">
 <!ENTITY sendlater.button2.label "30 min myöhemmin">
 <!ENTITY sendlater.button3.label "2 tuntia myöhemmin">
+<!ENTITY sendlater.prompt.on.label "Vain:">
 <!ENTITY sendlater.prompt.day0 "sunnuntai">
 <!ENTITY sendlater.prompt.day1 "maanantai">
 <!ENTITY sendlater.prompt.day2 "tiistai">

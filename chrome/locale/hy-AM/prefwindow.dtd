@@ -31,3 +31,8 @@
 <!ENTITY helplink.tooltip "«Ուղարկել ավելի ուշ»-ի թղթաբանությունը:">
 <!ENTITY helplink.value "Օգտվողի ուղեցույցը">
 <!ENTITY donatelink.value "Նվիրատվութուն">
+<!ENTITY enforcerestrictions.tooltip "Եթե նամակը պլանավորված ժամանակ չի ուղարկվել կամ օրվա սահմանափակման պատճառով, ապա ուշացնել նամակի ուղարկումը՝ մինչև համապատասխանի ժամանակի և օրվա սահմանափակումներին:">
+<!ENTITY enforcerestrictions.caption "Ապահովել ժամանակը և օրվա սահմանափակումները՝ ուղարկելու ժամանակ">
+<!ENTITY blocklatemessages.tooltip "Չուղարկել պլանավորված նամակները, որոնք ուշացվել են:">
+<!ENTITY blocklatemessages.label1 "Չուղարկել նամակները, որոնք՝">
+<!ENTITY blocklatemessages.label2 "րոպե ուշ">

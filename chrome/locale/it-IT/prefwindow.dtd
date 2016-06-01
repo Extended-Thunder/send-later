@@ -31,3 +31,8 @@
 <!ENTITY helplink.tooltip "Visualizza la documentazione di Invia Dopo.">
 <!ENTITY helplink.value "Manuale utente">
 <!ENTITY donatelink.value "Donazioni">
+<!ENTITY enforcerestrictions.tooltip "Se un messaggio che deve essere inviato si trova al di fuori delle sue restrizioni di orario e giorno impostate, ad esempio perché Thunderbird non era in esecuzione all'orario di invio pianificato, ritarda il suo invio finché non vengono soddisfatte le restrizioni di orario e giorno.">
+<!ENTITY enforcerestrictions.caption "Imponi le restrizioni di orario e giorno all'orario di invio">
+<!ENTITY blocklatemessages.tooltip "Non inviare messaggi pianificati che sono stati ritardati oltre il loro orario pianificato, ad esempio perché Thunderbird non era in esecuzione a quell'ora.">
+<!ENTITY blocklatemessages.label1 "Non inviare messaggi più di">
+<!ENTITY blocklatemessages.label2 "minuti dopo">

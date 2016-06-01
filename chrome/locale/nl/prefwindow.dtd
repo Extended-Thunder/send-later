@@ -31,3 +31,8 @@
 <!ENTITY helplink.tooltip "Bekijk de documentatie voor Send Later (in het Engels).">
 <!ENTITY helplink.value "Handleiding">
 <!ENTITY donatelink.value "Doneren">
+<!ENTITY enforcerestrictions.tooltip "Als een bericht dat afgeleverd dient te worden buiten de tijds- of dagrestricties komt, bijvoorbeeld omdat Thunderbird ten tijde van de geplande aflevertijd niet actief was, vertraag dan de aflevering totdat aan de tijds- en dagrestricties wordt voldaan.">
+<!ENTITY enforcerestrictions.caption "Tijds- en dagrestricties bij aflevertijd afdwingen">
+<!ENTITY blocklatemessages.tooltip "Geplande berichten die voorbij hun geplande tijd vertraagd zijn, bijvoorbeeld omdat Thunderbird niet actief was, niet afleveren.">
+<!ENTITY blocklatemessages.label1 "Berichten niet meer dan">
+<!ENTITY blocklatemessages.label2 "minuten te laat afleveren">

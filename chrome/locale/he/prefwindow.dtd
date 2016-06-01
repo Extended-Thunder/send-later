@@ -31,3 +31,8 @@
 <!ENTITY helplink.tooltip "‫צפה במסמכי התיעוד של 'שלח מאוחר יותר'‬">
 <!ENTITY helplink.value "‫מדריך למשתמש‬">
 <!ENTITY donatelink.value "‫תרום‬">
+<!ENTITY enforcerestrictions.tooltip "במידה ומגבלות הזמן או היום שנקבעו למשלוח ההודעה חרגו מעבר להגדרה המקורית, למשל בגלל שתנדרבירד לא פעל במועד המתוכנן, דחה את משלוח ההודעה בהתאם מגבלות הזמן והיום המקוריות שנקבעו.">
+<!ENTITY enforcerestrictions.caption "כפה הגבלות יום ושעה על מועד המשלוח">
+<!ENTITY blocklatemessages.tooltip "אל תשלח הודעות מתוזמנות שמועד המשלוח המתוכנן שלהן חלף, למשל בגלל שתנדרבירד לא פעל במועד המתוכנן.">
+<!ENTITY blocklatemessages.label1 "אל תשתלח הודעה יותר מ">
+<!ENTITY blocklatemessages.label2 "דקות מאוחר יותר">
