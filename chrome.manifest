@@ -2,6 +2,7 @@ content	sendlater3	chrome/content/
 resource sendlater3	chrome/resource/
 locale	sendlater3	de	chrome/locale/de/
 locale	sendlater3	en-US	chrome/locale/en-US/
+locale	sendlater3	es	chrome/locale/es/
 locale	sendlater3	es-ES	chrome/locale/es-ES/
 locale	sendlater3	fi	chrome/locale/fi/
 locale	sendlater3	fr	chrome/locale/fr/
@@ -12,6 +13,7 @@ locale	sendlater3	ja-JP	chrome/locale/ja-JP/
 locale	sendlater3	nl	chrome/locale/nl/
 locale	sendlater3	pl	chrome/locale/pl/
 locale	sendlater3	pt-BR	chrome/locale/pt-BR/
+locale	sendlater3	pt-PT	chrome/locale/pt-PT/
 locale	sendlater3	sv-SE	chrome/locale/sv-SE/
 locale	sendlater3	zh-CN	chrome/locale/zh-CN/
 locale	sendlater3	zh-TW	chrome/locale/zh-TW/

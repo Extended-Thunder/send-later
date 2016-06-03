@@ -35,6 +35,13 @@
     </em:localized>
     <em:localized>
       <Description>
+	<em:locale>es</em:locale>
+	<em:name>Enviar Más Tarde</em:name>
+	<em:description>La verdadera funcionalidad de “Enviar Después” para programar el envío de tus emails.</em:description>
+      </Description>
+    </em:localized>
+    <em:localized>
+      <Description>
 	<em:locale>es-ES</em:locale>
 	<em:name>Enviar Más Tarde</em:name>
 	<em:description>La verdadera funcionalidad de “Enviar Después” para programar el envío de tus emails.</em:description>
@@ -99,6 +106,13 @@
     <em:localized>
       <Description>
 	<em:locale>pt-BR</em:locale>
+	<em:name>Send Later</em:name>
+	<em:description>ferramenta "Send Later" para programar o horário de envio</em:description>
+      </Description>
+    </em:localized>
+    <em:localized>
+      <Description>
+	<em:locale>pt-PT</em:locale>
 	<em:name>Send Later</em:name>
 	<em:description>ferramenta "Send Later" para programar o horário de envio</em:description>
       </Description>

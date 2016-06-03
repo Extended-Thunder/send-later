@@ -15,6 +15,7 @@
 <!ENTITY sendlater.prompt.sendat.tooltip "保存消息到草稿箱，在上面设定的时间自动发送。">
 <!ENTITY sendlater.prompt.recur.label "周期：">
 <!ENTITY sendlater.prompt.none.label "无">
+<!ENTITY sendlater.prompt.minutely.label "每分钟">
 <!ENTITY sendlater.prompt.daily.label "每天">
 <!ENTITY sendlater.prompt.weekly.label "每周">
 <!ENTITY sendlater.prompt.monthly.label "每月">
@@ -22,9 +23,11 @@
 <!ENTITY sendlater.toolbar.sendlater.button.label "延期发送">
 <!ENTITY sendlater.toolbar.textbox.emptytext "发送时间">
 <!ENTITY sendlater.prompt.every.label "每">
+<!ENTITY sendlater.prompt.between.label "时间段">
 <!ENTITY sendlater.button1.label "15 分钟后">
 <!ENTITY sendlater.button2.label "30 分钟后">
 <!ENTITY sendlater.button3.label "2 小时后">
+<!ENTITY sendlater.prompt.on.label "指定时间">
 <!ENTITY sendlater.prompt.day0 "星期日">
 <!ENTITY sendlater.prompt.day1 "星期一">
 <!ENTITY sendlater.prompt.day2 "星期二">

@@ -22,9 +22,11 @@
 <!ENTITY sendlater.toolbar.sendlater.button.label "Enviar mais Tarde">
 <!ENTITY sendlater.toolbar.textbox.emptytext "hora de envio">
 <!ENTITY sendlater.prompt.every.label "a cada...">
+<!ENTITY sendlater.prompt.between.label "Entre">
 <!ENTITY sendlater.button1.label "15m mais tarde">
 <!ENTITY sendlater.button2.label "30m mais tarde">
 <!ENTITY sendlater.button3.label "2h mais tarde">
+<!ENTITY sendlater.prompt.on.label "Apenas em">
 <!ENTITY sendlater.prompt.day0 "domingo">
 <!ENTITY sendlater.prompt.day1 "segunda-feira">
 <!ENTITY sendlater.prompt.day2 "terça-feira">

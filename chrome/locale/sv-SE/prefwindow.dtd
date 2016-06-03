@@ -31,3 +31,8 @@
 <!ENTITY helplink.tooltip "Visa dokumentationen för Skicka senare.">
 <!ENTITY helplink.value "Användarhandbok">
 <!ENTITY donatelink.value "Donera">
+<!ENTITY enforcerestrictions.tooltip "Om Thunderbird inte var igång och ett schemalagt meddelande nu är utanför tid- och datuminställning, avvakta sändning tills tid- och datuminställning överensstämmer igen.">
+<!ENTITY enforcerestrictions.caption "Tid- och datuminställning är tvingande för att skicka">
+<!ENTITY blocklatemessages.tooltip "Skicka inte schemalagda meddelanden som blivit försenade, pga att Thunderbird inte var igång, och nu är utanför inställning för tid och datum">
+<!ENTITY blocklatemessages.label1 "Skicka inte meddelanden mer än">
+<!ENTITY blocklatemessages.label2 "minuter sent">

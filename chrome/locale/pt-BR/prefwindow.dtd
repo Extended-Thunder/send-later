@@ -31,3 +31,8 @@
 <!ENTITY helplink.tooltip "Ver a documentação do Send Later">
 <!ENTITY helplink.value "Manual">
 <!ENTITY donatelink.value "Contribua">
+<!ENTITY enforcerestrictions.tooltip "Se uma mensagem a ser enviada estiver fora das restrições de hora ou dia, por exemplo devido ao Thunderbird não estar a correr na altura do envio, então adie o seu envio até que as restrições estejam cumpridas.">
+<!ENTITY enforcerestrictions.caption "Impor restrições de hora e dia à data de envio">
+<!ENTITY blocklatemessages.tooltip "Não enviar mensagens que foram adiadas para além da sua hora programada, por exemplo, pelo Thunderbird não estar a correr no momento do envio programado.">
+<!ENTITY blocklatemessages.label1 "Não enviem mensagens superiores a">
+<!ENTITY blocklatemessages.label2 "minutos atrasado">

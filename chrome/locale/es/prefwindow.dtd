@@ -1,0 +1,38 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY prefwindow.title "Preferencias Enviar Luego">
+<!ENTITY pane1.title "Preferencias Enviar Luego">
+<!ENTITY checktimepref.label "Verificar cada:">
+<!ENTITY checktimepref2.label "minutos">
+<!ENTITY checktimepref.tooltip "Intervalo, en minutos, entre verificaciones para borradores cuya hora de envío ha llegado. Aumenta este valor si los borradores a veces no son enviados a tiempo o si la cuenta de mensajes pendientes en la barra de status no refleja todos los envíos programados.">
+<!ENTITY general.caption "General">
+<!ENTITY quickoption1.caption "Atajo 1">
+<!ENTITY quickoption2.caption "Atajo 2">
+<!ENTITY quickoption3.caption "Atajo 3">
+<!ENTITY quickoptionname.label "Etiqueta de Botón">
+<!ENTITY quickoptionvalue.label "Minutos">
+<!ENTITY showtoolbarbutton.caption "Mostrar en Barra de Herramientas">
+<!ENTITY showsendlatercolumn.caption "Mostrar Columna de Enviar Luego">
+<!ENTITY showsendlatercolumn.tooltip "Mostrar o no la columna de &quot;Enviar Luego&quot; cuando se ven las carpetas de borradores">
+<!ENTITY showsendlaterheader.caption "Mostrar Encabezado de Enviar Luego">
+<!ENTITY showsendlaterheader.tooltip "Mostrar o no el encabezado &quot;X-Enviar-Luego-A&quot;, es decir, la hora en que se programó un envío en el encabezado mientras se ve un mensaje">
+<!ENTITY showsendlaterstatus.caption "Mostrar Enviar Luego en la Barra de Estatus">
+<!ENTITY showsendlaterprogress.caption "Mostrar Progreso en el Fondo en la Barra de Estatus">
+<!ENTITY showsendlaterentry.caption "Mostrar la Hora de Entrada en la Barra de Herramientas">
+<!ENTITY showsendlaterunsentmessages.caption "Activar entrega de mensajes no enviados desde la Bandeja de Salida">
+<!ENTITY showsendlaterunsentmessages.tooltip "Si no se marca esta opción, entonces Enviar Luego no entregará los mensajes, sino que los colocará en la Bandeja de Salida cuando estén programados para ser enviados. Cancele esta opción, por ejemplo, si usa otra extensión, por ej., BlunderDelay, para enviar mensajes desde la Bandeja de Salida periódicamente. Recuerde que al establecerse esta opción, entonces cuando sea que Enviar Luego envíe un mensaje, TODOS los mensajes en la Bandeja de Salida serán enviados.">
+<!ENTITY sendlatersendbutton.caption "&quot;Enviar&quot; sí &quot;Envía Luego&quot;">
+<!ENTITY sendlatersendbutton.tooltip "Con esta opción escogida, el comando &quot;Enviar&quot; (tanto el botón o apretar Ctrl-Enter) actúan del mismo modo que &quot;Enviar Luego&quot;.">
+<!ENTITY altbinding.caption "Ligar Alt-Shift-Enter en vez de Ctrl-Shift-Enter">
+<!ENTITY advanced.caption "Avanzado">
+<!ENTITY dumplevel.caption "Nivel de registro de descarga:">
+<!ENTITY consolelevel.caption "Nivel de registro de consola:">
+<!ENTITY contactauthor.tooltip "Enviar un mensaje al autor de Enviar Luego.">
+<!ENTITY contactauthor.value "Ponerse en contacto con el autor">
+<!ENTITY helplink.tooltip "Ver la documentación de Enviar Luego">
+<!ENTITY helplink.value "Guía del usuario">
+<!ENTITY donatelink.value "Donar">
+<!ENTITY enforcerestrictions.tooltip "Si un mensaje que debe ser enviado está fuera de sus restricciones de hora o día, por ej., porque Thunderbird no funcionaba en el horario de envío programado, entonces demore la entrega hasta que las restricciones de hora y día se cumplan.">
+<!ENTITY enforcerestrictions.caption "Cumplir con las restricciones de hora y día en el momento de envío">
+<!ENTITY blocklatemessages.tooltip "No enviar los mensajes programados que han sido demorados más allá de la hora programada, por ej., porque Thunderbird no funcionaba en ese momento.">
+<!ENTITY blocklatemessages.label1 "No entregar mensajes más de">
+<!ENTITY blocklatemessages.label2 "minutos tarde">

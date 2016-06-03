@@ -31,3 +31,8 @@
 <!ENTITY helplink.tooltip "查看以后发送文档。">
 <!ENTITY helplink.value "用户指南">
 <!ENTITY donatelink.value "捐赠">
+<!ENTITY enforcerestrictions.tooltip "如果预定发送的消息超出了它的时间和日期限制，比如雷鸟在消息预定发送时间没有在运行，那么延迟发送消息直到满足它的发送时间和日期限制。">
+<!ENTITY enforcerestrictions.caption "强制执行发送的时间和日期限制">
+<!ENTITY blocklatemessages.tooltip "如果预定发送的消息被延迟超过了它们预定的时间，比如雷鸟客户端当时没有在运行，则不发送这些消息。">
+<!ENTITY blocklatemessages.label1 "如果已经比预定时间晚了">
+<!ENTITY blocklatemessages.label2 "分钟则不要发送消息">

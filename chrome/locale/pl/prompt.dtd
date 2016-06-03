@@ -11,10 +11,11 @@
 <!ENTITY sendlater.prompt.or.label "lub:">
 <!ENTITY sendlater.prompt.textbox.tooltip "Podaj datę i czas. Obsługiwany jest także tekstowy zapis, np. “następny czwartek, 12:00”.">
 <!ENTITY sendlater.prompt.textbox.emptytext "np.: “środa 15:00”, “12/31/2012 15:27”">
-<!ENTITY sendlater.prompt.sendat.label "Wyślij później o określonych powyżej czasie">
+<!ENTITY sendlater.prompt.sendat.label "Wyślij później o określonym powyżej czasie">
 <!ENTITY sendlater.prompt.sendat.tooltip "Zapisz wiadomość w folderze “Szkice”, aby dostarczyć ją w wyznaczonym powyżej czasie.">
-<!ENTITY sendlater.prompt.recur.label "Powtarzać się:">
-<!ENTITY sendlater.prompt.none.label "żaden">
+<!ENTITY sendlater.prompt.recur.label "Powtarzaj:">
+<!ENTITY sendlater.prompt.none.label "wcale">
+<!ENTITY sendlater.prompt.minutely.label "minutowo">
 <!ENTITY sendlater.prompt.daily.label "dziennie">
 <!ENTITY sendlater.prompt.weekly.label "tygodniowo">
 <!ENTITY sendlater.prompt.monthly.label "miesięcznie">
@@ -22,9 +23,11 @@
 <!ENTITY sendlater.toolbar.sendlater.button.label "Wyślij później">
 <!ENTITY sendlater.toolbar.textbox.emptytext "czas wysyłki">
 <!ENTITY sendlater.prompt.every.label "Każdego">
-<!ENTITY sendlater.button1.label "15 minut później">
-<!ENTITY sendlater.button2.label "30 minut później">
-<!ENTITY sendlater.button3.label "2 godziny później">
+<!ENTITY sendlater.prompt.between.label "Pomiędzy">
+<!ENTITY sendlater.button1.label "za 15 minut">
+<!ENTITY sendlater.button2.label "za 30 minut">
+<!ENTITY sendlater.button3.label "za 2 godziny">
+<!ENTITY sendlater.prompt.on.label "Tylko w">
 <!ENTITY sendlater.prompt.day0 "Niedziela">
 <!ENTITY sendlater.prompt.day1 "Poniedziałek">
 <!ENTITY sendlater.prompt.day2 "Wtorek">
