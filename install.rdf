@@ -119,6 +119,13 @@
     </em:localized>
     <em:localized>
       <Description>
+	<em:locale>sv-FI</em:locale>
+	<em:name>Skicka Senare</em:name>
+	<em:description>“Skicka senare”-funktion som låter användaren schemalägga tidpunkten för sändning av ett e-brev.</em:description>
+      </Description>
+    </em:localized>
+    <em:localized>
+      <Description>
 	<em:locale>sv-SE</em:locale>
 	<em:name>Skicka Senare</em:name>
 	<em:description>“Skicka senare”-funktion som låter användaren schemalägga tidpunkten för sändning av ett e-brev.</em:description>
