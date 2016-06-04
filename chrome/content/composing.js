@@ -144,15 +144,6 @@ var Sendlater3Composing = {
 	windowInitListener.handleEvent(null);
 	msgcomposeWindow.addEventListener("compose-send-message",
 					  sendMessageListener, false);
-
-	if (typeof(DoSpellCheckBeforeSend) == 'function' &&
-	    DoSpellCheckBeforeSend !=
-	    Sendlater3Composing.MyDoSpellCheckBeforeSend) {
-	    Sendlater3Composing.OldDoSpellCheckBeforeSend =
-		DoSpellCheckBeforeSend;
-	    DoSpellCheckBeforeSend =
-		Sendlater3Composing.MyDoSpellCheckBeforeSend;
-	}
     },
 
     confirmPutInOutbox: function() {
@@ -177,7 +168,6 @@ var Sendlater3Composing = {
     CheckSendAt: function() {
 	SL3U.Entering("Sendlater3Composing.CheckSendAt");
         var msgwindow = document.getElementById("msgcomposeWindow")
-        msgwindow.setAttribute("sl3_send_button", true);
         var preset = msgwindow.sendlater3likethis;
         if (preset) {
             msgwindow.sendlater3likethis = null;
@@ -298,22 +288,10 @@ var Sendlater3Composing = {
 	var msgcomposeWindow = document
 	    .getElementById("msgcomposeWindow");
 	msgcomposeWindow.removeAttribute("sending_later");
-	msgcomposeWindow.removeAttribute("sl3_send_button");
     },
 
     prevXSendLater: false,
     prevRecurring: false,
-
-    MyDoSpellCheckBeforeSend: function() {
-	var msgcomposeWindow = document
-	    .getElementById("msgcomposeWindow");
-	if (msgcomposeWindow.getAttribute("sl3_send_button"))
-	    return false;
-	if (Sendlater3Composing.OldDoSpellCheckBeforeSend === undefined)
-	    return SL3U.PrefService.getBoolPref("mail.SpellCheckBeforeSend");
-	else
-	    return Sendlater3Composing.OldDoSpellCheckBeforeSend();
-    },
 
     PrepMessage: function(sendat, recur, args) {
 	var msgcomposeWindow = document.getElementById("msgcomposeWindow");
