@@ -15,11 +15,6 @@ var Sendlater3Composing = {
 	SaveInFolderDone: function() {}
     },
 
-    CheckSendAt2: function(where, send_button) {
-	SL3U.Entering("Sendlater3Composing.CheckSendAt2(from " + where + ")");
-	Sendlater3Composing.CheckSendAt(send_button);
-    },
-
     setBindings: {
 	observe: function(disabled) {
             var main_key = document.getElementById("key_sendLater");
@@ -117,7 +112,6 @@ var Sendlater3Composing = {
 		var msgcomposeWindow = document
 		    .getElementById("msgcomposeWindow");
 		msgcomposeWindow.removeAttribute("sending_later");
-		msgcomposeWindow.removeAttribute("sl3_send_button");
 		msgcomposeWindow.sendlater3likethis = null;
 		CheckForXSendLater(); 
 	    } 
@@ -133,14 +127,11 @@ var Sendlater3Composing = {
 		    return;
 		}
 		var msgtype = msgcomposeWindow.getAttribute("msgtype");
-		if ((msgtype == nsIMsgCompDeliverMode.Now ||
-		     msgtype == nsIMsgCompDeliverMode.Background) &&
-		    SL3U.getBoolPref("sendbutton")) {
-		    Sendlater3Composing.CheckSendAt2("Sendlater3Composing.main.sendMessageListener.handleEvent condition #1", true);
-		    event.preventDefault();
-		}
-		if (msgtype == nsIMsgCompDeliverMode.Later) {
-		    Sendlater3Composing.CheckSendAt2("Sendlater3Composing.main.sendMessageListener.handleEvent condition #2", true);
+		if ((msgtype == nsIMsgCompDeliverMode.Later) ||
+                    ((msgtype == nsIMsgCompDeliverMode.Now ||
+		      msgtype == nsIMsgCompDeliverMode.Background) &&
+		     SL3U.getBoolPref("sendbutton"))) {
+		    Sendlater3Composing.CheckSendAt();
 		    event.preventDefault();
 		}
 	    }
@@ -183,13 +174,10 @@ var Sendlater3Composing = {
 	return result;
     },
 
-    CheckSendAt: function(send_button) {
+    CheckSendAt: function() {
 	SL3U.Entering("Sendlater3Composing.CheckSendAt");
         var msgwindow = document.getElementById("msgcomposeWindow")
-	if (send_button)
-	    msgwindow.setAttribute("sl3_send_button", true);
-	else
-	    msgwindow.removeAttribute("sl3_send_button");
+        msgwindow.setAttribute("sl3_send_button", true);
         var preset = msgwindow.sendlater3likethis;
         if (preset) {
             msgwindow.sendlater3likethis = null;
