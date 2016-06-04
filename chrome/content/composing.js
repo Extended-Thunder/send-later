@@ -118,6 +118,7 @@ var Sendlater3Composing = {
 		    .getElementById("msgcomposeWindow");
 		msgcomposeWindow.removeAttribute("sending_later");
 		msgcomposeWindow.removeAttribute("sl3_send_button");
+		msgcomposeWindow.sendlater3likethis = null;
 		CheckForXSendLater(); 
 	    } 
 	}
@@ -184,35 +185,41 @@ var Sendlater3Composing = {
 
     CheckSendAt: function(send_button) {
 	SL3U.Entering("Sendlater3Composing.CheckSendAt");
+        var msgwindow = document.getElementById("msgcomposeWindow")
 	if (send_button)
-	    document.getElementById("msgcomposeWindow")
-		.setAttribute("sl3_send_button", true);
+	    msgwindow.setAttribute("sl3_send_button", true);
 	else
-	    document.getElementById("msgcomposeWindow")
-		.removeAttribute("sl3_send_button");
-	window.openDialog("chrome://sendlater3/content/prompt.xul",
-			  "SendAtWindow", "modal,chrome,centerscreen", 
-			  { finishCallback: Sendlater3Composing.SendAtTime,
-			    continueCallback: function() {
-				if (! Sendlater3Composing.confirmPutInOutbox()){
-				    return false;
-				}
-				var w = document
-				    .getElementById("msgcomposeWindow");
-				w.setAttribute("sending_later", true);
-				Sendlater3Composing.ContinueSendLater();
-				return true;
-			    },
-			    sendCallback: function() {
-				var w = document
-				    .getElementById("msgcomposeWindow");
-				w.setAttribute("sending_later", true);
-				SendMessage();
-			    },
-			    cancelCallback: Sendlater3Composing.CancelSendLater,
-			    previouslyTimed: Sendlater3Composing.prevXSendLater,
-			    previouslyRecurring: Sendlater3Composing.prevRecurring,
- });
+	    msgwindow.removeAttribute("sl3_send_button");
+        var preset = msgwindow.sendlater3likethis;
+        if (preset) {
+            msgwindow.sendlater3likethis = null;
+            Sendlater3Composing.SendAtTime.apply(null, preset);
+        }
+        else
+	    window.openDialog(
+                "chrome://sendlater3/content/prompt.xul",
+	        "SendAtWindow", "modal,chrome,centerscreen", 
+		{ finishCallback: Sendlater3Composing.SendAtTime,
+		  continueCallback: function() {
+		      if (! Sendlater3Composing.confirmPutInOutbox()){
+			  return false;
+		      }
+		      var w = document
+			  .getElementById("msgcomposeWindow");
+		      w.setAttribute("sending_later", true);
+		      Sendlater3Composing.ContinueSendLater();
+		      return true;
+		  },
+		  sendCallback: function() {
+		      var w = document
+			  .getElementById("msgcomposeWindow");
+		      w.setAttribute("sending_later", true);
+		      SendMessage();
+		  },
+		  cancelCallback: Sendlater3Composing.CancelSendLater,
+		  previouslyTimed: Sendlater3Composing.prevXSendLater,
+		  previouslyRecurring: Sendlater3Composing.prevRecurring,
+                });
 	SL3U.Leaving("Sendlater3Composing.CheckSendAt");
     },
 
