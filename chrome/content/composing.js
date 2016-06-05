@@ -127,14 +127,50 @@ var Sendlater3Composing = {
 		    return;
 		}
 		var msgtype = msgcomposeWindow.getAttribute("msgtype");
-		if ((msgtype == nsIMsgCompDeliverMode.Later) ||
-                    ((msgtype == nsIMsgCompDeliverMode.Now ||
-		      msgtype == nsIMsgCompDeliverMode.Background) &&
-		     SL3U.getBoolPref("sendbutton"))) {
-		    Sendlater3Composing.CheckSendAt();
-		    event.preventDefault();
-		}
-	    }
+                var later = msgtype == nsIMsgCompDeliverMode.Later;
+		if (! (later ||
+                       ((msgtype == nsIMsgCompDeliverMode.Now ||
+		         msgtype == nsIMsgCompDeliverMode.Background) &&
+		        SL3U.getBoolPref("sendbutton"))))
+                    return;
+                var preset = msgcomposeWindow.sendlater3likethis;
+                if (preset) {
+                    msgcomposeWindow.sendlater3likethis = null;
+                    Sendlater3Composing.SendAtTime.apply(null, preset);
+                    event.preventDefault();
+                    return;
+                }
+                var args = {
+                    finishCallback: Sendlater3Composing.SendAtTime,
+                    continueCallback: null,
+                    sendCallback: null,
+                    cancelCallback: Sendlater3Composing.CancelSendLater,
+                    allowDefault: false,
+                    previouslyTimed: Sendlater3Composing.prevXSendLater,
+                    previouslyRecurring: Sendlater3Composing.prevRecurring,
+                };
+                if (later) {
+                    args.continueCallback = function() {
+                        if (! Sendlater3Composing.confirmPutInOutbox()){
+                            return false;
+                        }
+                        args.allowDefault = true;
+                        return true;
+                    };
+                }
+                else {
+                    args.sendCallback = function() {
+                        args.allowDefault = true;
+                        return true;
+                    };
+                }
+                window.openDialog(
+                    "chrome://sendlater3/content/prompt.xul",
+                    "SendAtWindow", "modal,chrome,centerscreen",
+                    args);
+                if (! args.allowDefault)
+                    event.preventDefault();
+            }
 	}
 
 	var msgcomposeWindow = document.getElementById("msgcomposeWindow");
@@ -163,42 +199,6 @@ var Sendlater3Composing = {
 	    SL3U.setBoolPref("show_outbox_alert", false);
 	}
 	return result;
-    },
-
-    CheckSendAt: function() {
-	SL3U.Entering("Sendlater3Composing.CheckSendAt");
-        var msgwindow = document.getElementById("msgcomposeWindow")
-        var preset = msgwindow.sendlater3likethis;
-        if (preset) {
-            msgwindow.sendlater3likethis = null;
-            Sendlater3Composing.SendAtTime.apply(null, preset);
-        }
-        else
-	    window.openDialog(
-                "chrome://sendlater3/content/prompt.xul",
-	        "SendAtWindow", "modal,chrome,centerscreen", 
-		{ finishCallback: Sendlater3Composing.SendAtTime,
-		  continueCallback: function() {
-		      if (! Sendlater3Composing.confirmPutInOutbox()){
-			  return false;
-		      }
-		      var w = document
-			  .getElementById("msgcomposeWindow");
-		      w.setAttribute("sending_later", true);
-		      Sendlater3Composing.ContinueSendLater();
-		      return true;
-		  },
-		  sendCallback: function() {
-		      var w = document
-			  .getElementById("msgcomposeWindow");
-		      w.setAttribute("sending_later", true);
-		      SendMessage();
-		  },
-		  cancelCallback: Sendlater3Composing.CancelSendLater,
-		  previouslyTimed: Sendlater3Composing.prevXSendLater,
-		  previouslyRecurring: Sendlater3Composing.prevRecurring,
-                });
-	SL3U.Leaving("Sendlater3Composing.CheckSendAt");
     },
 
     ReallySendAtTimer: null,
@@ -260,28 +260,6 @@ var Sendlater3Composing = {
 	    Components.interfaces.nsITimer.TYPE_ONE_SHOT
 	);
 	SL3U.Leaving("Sendlater3Composing.SendAtTime");
-    },
-
-    ContinueSendLaterTimer: null,
-    ContinueSendLaterCallback: {
-	notify: function (timer) {
-	    SL3U.Entering("Sendlater3Composing.ContinueSendLaterCallback.notify");
-	    goDoCommand('cmd_sendLater');
-	    SL3U.Leaving("Sendlater3Composing.ContinueSendLaterCallback.notify");
-	}
-    },
-
-    ContinueSendLater: function() {
-	SL3U.Entering("Sendlater3Composing.ContinueSendLater");
-	Sendlater3Composing.ContinueSendLaterTimer = Components
-	    .classes["@mozilla.org/timer;1"]
-	    .createInstance(Components.interfaces.nsITimer);
-	Sendlater3Composing.ContinueSendLaterTimer.initWithCallback(
-	    Sendlater3Composing.ContinueSendLaterCallback,
-	    500,
-	    Components.interfaces.nsITimer.TYPE_ONE_SHOT
-	);
-	SL3U.Leaving("Sendlater3Composing.ContinueSendLater");
     },
 
     CancelSendLater: function() {
