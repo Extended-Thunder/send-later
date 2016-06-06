@@ -130,7 +130,12 @@ var Sendlater3Prompt = {
         window.removeEventListener("load", Sendlater3Prompt.SetOnLoad, false);
         SL3U.initUtil();
         Sendlater3Prompt.loaded = true;
-	document.getElementById("sendlater3-time-text")
+        document.getElementById("sendlater3-outbox-button").disabled =
+            ! window.arguments[0].continueCallback;
+        document.getElementById("sendlater3-send-now-key").disabled =
+            document.getElementById("sendlater3-sendnow-button").disabled =
+            ! window.arguments[0].sendCallback;
+        document.getElementById("sendlater3-time-text")
 	    .addEventListener("ValueChange",
 			     Sendlater3Prompt.updateSummary, false);
 	var i;

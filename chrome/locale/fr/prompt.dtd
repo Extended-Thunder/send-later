@@ -15,6 +15,7 @@
 <!ENTITY sendlater.prompt.sendat.tooltip "Enregistre le message dans « Brouillons » jusqu'au moment prévu indiqué.">
 <!ENTITY sendlater.prompt.recur.label "Répétition :">
 <!ENTITY sendlater.prompt.none.label "aucune">
+<!ENTITY sendlater.prompt.minutely.label "à la minute">
 <!ENTITY sendlater.prompt.daily.label "quotidienne">
 <!ENTITY sendlater.prompt.weekly.label "hebdomadaire">
 <!ENTITY sendlater.prompt.monthly.label "mensuelle">
@@ -22,9 +23,11 @@
 <!ENTITY sendlater.toolbar.sendlater.button.label "Envoyer plus tard">
 <!ENTITY sendlater.toolbar.textbox.emptytext "Date et horaire d'envoi">
 <!ENTITY sendlater.prompt.every.label "Chaque">
+<!ENTITY sendlater.prompt.between.label "entre">
 <!ENTITY sendlater.button1.label "Dans 15 minutes">
 <!ENTITY sendlater.button2.label "Dans 30 minutes">
 <!ENTITY sendlater.button3.label "Dans 2 heures">
+<!ENTITY sendlater.prompt.on.label "seulement les">
 <!ENTITY sendlater.prompt.day0 "Dimanche">
 <!ENTITY sendlater.prompt.day1 "Lundi">
 <!ENTITY sendlater.prompt.day2 "Mardi">

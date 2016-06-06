@@ -197,12 +197,18 @@ var Sendlater3ComposeToolbar = {
 	SL3U.Leaving("Sendlater3ComposeToolbar.CustomizeDone");
     },
 
-    CallSendAt: function() {
+    CallSendAt: function(sendat) {
 	SL3U.Entering("Sendlater3ComposeToolbar.CallSendAt");
-	var sendat = Sendlater3ComposeToolbar.updateSummary();
+        if (! sendat) {
+	    sendat = Sendlater3ComposeToolbar.updateSummary();
+            if (sendat)
+                sendat = [sendat];
+        }
 	var ret = false;
 	if (sendat) {
-	    Sendlater3Composing.SendAtTime(sendat);
+            var msgwindow = document.getElementById("msgcomposeWindow");
+            msgwindow.sendlater3likethis = sendat;
+            Sendlater3Composing.mySendLater();
 	    ret = true;
 	}
 	SL3U.Returning("Sendlater3ComposeToolbar.CallSendAt", ret);
@@ -229,7 +235,7 @@ var Sendlater3ComposeToolbar = {
 	else {
 	    sendat.setTime(sendat.getTime()+mins*60*1000);
 	}
-	Sendlater3Composing.SendAtTime(sendat, recur, args);
+        Sendlater3ComposeToolbar.CallSendAt([sendat, recur, args]);
 	SL3U.Returning("Sendlater3ComposeToolbar.CallSendAfter", true);
 	return true;
     },

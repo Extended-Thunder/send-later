@@ -1251,11 +1251,21 @@ var Sendlater3Util = {
 
     alert_for_enigmail: function() {
         if (typeof Enigmail !== 'undefined') {
+            try {
+                if (Enigmail.msg.handleSendMessageEvent)
+                    // No hijacking required!
+                    return false;
+                if (Enigmail.msg.sendMessageListener)
+                    // The function is where we expect it to be, so hijack
+                    // away!
+                    return false;
+            }
+            catch (ex) {}
             if (SL3U.getBoolPref("disabled_for_enigmail"))
                 // Already disabled, no need to alert.
                 return true;
-            SL3U.alert(null, SL3U.PromptBundleGet("EnigmailWarningTitle"),
-                       SL3U.PromptBundleGet("EnigmailWarningText"));
+            SL3U.alert(null, SL3U.PromptBundleGet("EnigmailIncompatTitle"),
+                       SL3U.PromptBundleGet("EnigmailIncompatText"));
             SL3U.setBoolPref("disabled_for_enigmail", true);
             return true;
         }

@@ -15,7 +15,9 @@
     <key id="sendlater3-quickbutton3-key" modifiers="accel" key="3" oncommand="//"/>
     <key id="sendlater3-cancel-esc" modifiers="" keycode="VK_ESCAPE" oncommand="window.arguments[0].cancelCallback();close();"/>
     <key id="sendlater3-call-return" modifiers="accel" keycode="VK_RETURN" oncommand="Sendlater3Prompt.CallSendAt()&amp;&amp;close();"/>
-    <key id="sendlater3-send-now-key" modifiers="accel" key="&sendlater.prompt.sendnow.accesskey;" oncommand="window.arguments[0].sendCallback();close();"/>
+    <key id="sendlater3-send-now-key" modifiers="accel"
+         key="&sendlater.prompt.sendnow.accesskey;"
+         oncommand="if (window.arguments[0].sendCallback()) close();"/>
   </keyset>
   <vbox style="margin: 10px;">
     <vbox style="border:solid #00C000 3px; padding-top: 2px; font-size: 125%;" >
@@ -166,12 +168,16 @@
       <description flex="1"></description>
     </hbox>
     <hbox align="center" style="border:solid red 2px; font-size: 90%;">
-      <button label="&sendlater.prompt.sendlater.label;"
+      <button id="sendlater3-outbox-button"
+              label="&sendlater.prompt.sendlater.label;"
 	      accesskey="&sendlater.prompt.sendlater.accesskey;"
 	      tooltiptext="&sendlater.prompt.sendlater.tooltip;"
 	      oncommand="if (window.arguments[0].continueCallback()) close();"/>
       <description flex="1"></description>
-      <button label="&sendlater.prompt.sendnow.label;" accesskey="&sendlater.prompt.sendnow.accesskey;" oncommand="window.arguments[0].sendCallback();close();"/>
+      <button id="sendlater3-sendnow-button"
+              label="&sendlater.prompt.sendnow.label;"
+              accesskey="&sendlater.prompt.sendnow.accesskey;"
+              oncommand="if (window.arguments[0].sendCallback()) close();"/>
       <description flex="1"></description>
       <button id="sendlater3-cancelButton" key="sendlater3-cancel-esc" label="&sendlater.prompt.close.label;" tooltiptext="&sendlater.prompt.close.tooltip;" oncommand="window.arguments[0].cancelCallback();close();"/>
     </hbox>
