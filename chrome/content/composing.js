@@ -45,7 +45,7 @@ var Sendlater3Composing = {
 
     builtInSendLater: function() {
 	document.getElementById("msgcomposeWindow")
-	    .setAttribute("sending_later", true);
+	    .setAttribute("do_not_send_later", true);
 	goDoCommand("cmd_sendLater");
     },
 
@@ -111,7 +111,12 @@ var Sendlater3Composing = {
 	    handleEvent : function(event) {
 		var msgcomposeWindow = document
 		    .getElementById("msgcomposeWindow");
+                // Paranoia: If everything is working properly, neither of
+                // these attributes should be set, since Send Later clears them
+                // automatically when it's done using them, but what if
+                // something went wrong? Be careful.
 		msgcomposeWindow.removeAttribute("sending_later");
+		msgcomposeWindow.removeAttribute("do_not_send_later");
 		msgcomposeWindow.sendlater3likethis = null;
 		CheckForXSendLater(); 
 	    } 
@@ -121,6 +126,10 @@ var Sendlater3Composing = {
 	    handleEvent: function(event) {
 		var msgcomposeWindow = document
 		    .getElementById("msgcomposeWindow");
+                if (msgcomposeWindow.getAttribute("do_not_send_later")) {
+		    msgcomposeWindow.removeAttribute("do_not_send_later");
+                    return;
+                }
 		if (msgcomposeWindow.getAttribute("sending_later")) {
 		    msgcomposeWindow.removeAttribute("sending_later");
 		    Sendlater3Composing.PrepMessage2();
