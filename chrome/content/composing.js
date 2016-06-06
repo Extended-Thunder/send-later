@@ -60,6 +60,8 @@ var Sendlater3Composing = {
         } catch (ex) {
             return;
         }
+        if (m.handleSendMessageEvent)
+            return;
         if (m.sendlater3SendMessageListener)
             return;
         m.sendLater3SendMessageListener = m.sendMessageListener;
@@ -73,7 +75,10 @@ var Sendlater3Composing = {
         } catch (ex) {
             return true;
         }
-        m.sendLater3SendMessageListener(event);
+        if (m.handleSendMessageEvent)
+            m.handleSendMessageEvent(event);
+        else
+            m.sendLater3SendMessageListener(event);
         return !event.defaultPrevented;
     },
 

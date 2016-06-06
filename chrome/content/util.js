@@ -1252,11 +1252,13 @@ var Sendlater3Util = {
     alert_for_enigmail: function() {
         if (typeof Enigmail !== 'undefined') {
             try {
-                if (Enigmail.msg.sendMessageListener) {
+                if (Enigmail.msg.handleSendMessageEvent)
+                    // No hijacking required!
+                    return false;
+                if (Enigmail.msg.sendMessageListener)
                     // The function is where we expect it to be, so hijack
                     // away!
                     return false;
-                }
             }
             catch (ex) {}
             if (SL3U.getBoolPref("disabled_for_enigmail"))
