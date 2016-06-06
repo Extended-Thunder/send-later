@@ -439,7 +439,8 @@ var Sendlater3Prompt = {
 		.getElementById("sendlater3-recur-every-value").value;
 	}
         if (startTime != undefined) {
-            recur += " between " + String(startTime) + " " + String(endTime);
+            recur += " between " + SL3U.zeroPad(startTime, 3) + " " +
+                SL3U.zeroPad(endTime, 3);
         }
         if (days) {
             recur += " on " + days.join(' ');
