@@ -853,9 +853,9 @@ var Sendlater3Util = {
         if (recur.between)
             str += " " + SL3U.PromptBundleGetFormatted(
                 "betw_times", [Math.floor(recur.between.start / 100),
-                               recur.between.start % 100,
+                               SL3U.zeroPad(recur.between.start % 100, 2),
                                Math.floor(recur.between.end / 100),
-                               recur.between.end % 100])
+                               SL3U.zeroPad(recur.between.end % 100, 2)]);
 
         if (recur.days) {
             var days = [];
@@ -1168,10 +1168,11 @@ var Sendlater3Util = {
         Sendlater3Util.Leaving("Sendlater3Util.uninitUtil");
     },
 
-    DZFormat: function(val) {
-        var ret;
-        if (val < 10) ret = "0" + val; else ret = val;
-        return ret;
+    zeroPad: function(val, digits) {
+        val = "" + val;
+        while (val.length < digits)
+            val = "0" + val;
+        return val;
     },
 
     copyService: null,
