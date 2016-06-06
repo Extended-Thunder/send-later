@@ -53,10 +53,36 @@ var Sendlater3Composing = {
         goDoCommand("cmd_sendLater");
     },
 
+    hijackEnigmail: function() {
+        var m;
+        try {
+            m = Enigmail.msg;
+        } catch (ex) {
+            return;
+        }
+        if (m.sendlater3SendMessageListener)
+            return;
+        m.sendLater3SendMessageListener = m.sendMessageListener;
+        m.sendMessageListener = function() {};
+    },
+
+    callEnigmail: function(event) {
+        var m;
+        try {
+            m = Enigmail.msg;
+        } catch (ex) {
+            return true;
+        }
+        m.sendLater3SendMessageListener(event);
+        return !event.defaultPrevented;
+    },
+
     main: function() {
 	SL3U.initUtil();
 
         window.removeEventListener("load", Sendlater3Composing.main, false);
+
+        Sendlater3Composing.hijackEnigmail();
 
         if (SL3U.alert_for_enigmail()) {
 	    Sendlater3Composing.setBindings.observe(true);
@@ -128,6 +154,7 @@ var Sendlater3Composing = {
 		    .getElementById("msgcomposeWindow");
                 if (msgcomposeWindow.getAttribute("do_not_send_later")) {
 		    msgcomposeWindow.removeAttribute("do_not_send_later");
+                    Sendlater3Composing.callEnigmail(event);
                     return;
                 }
 		if (msgcomposeWindow.getAttribute("sending_later")) {
@@ -140,17 +167,26 @@ var Sendlater3Composing = {
 		if (! (later ||
                        ((msgtype == nsIMsgCompDeliverMode.Now ||
 		         msgtype == nsIMsgCompDeliverMode.Background) &&
-		        SL3U.getBoolPref("sendbutton"))))
+		        SL3U.getBoolPref("sendbutton")))) {
+                    Sendlater3Composing.callEnigmail(event);
                     return;
+                }
                 var preset = msgcomposeWindow.sendlater3likethis;
                 if (preset) {
                     msgcomposeWindow.sendlater3likethis = null;
+                    if (! Sendlater3Composing.callEnigmail(event))
+                        return;
                     Sendlater3Composing.SendAtTime.apply(null, preset);
                     event.preventDefault();
                     return;
                 }
+                var finishCallback = function (sendat, recur_value, args) {
+                    if (! Sendlater3Composing.callEnigmail(event))
+                        return;
+                    Sendlater3Composing.SendAtTime(sendat, recur_value, args);
+                };
                 var args = {
-                    finishCallback: Sendlater3Composing.SendAtTime,
+                    finishCallback: finishCallback,
                     continueCallback: null,
                     sendCallback: null,
                     cancelCallback: Sendlater3Composing.CancelSendLater,
@@ -163,13 +199,13 @@ var Sendlater3Composing = {
                         if (! Sendlater3Composing.confirmPutInOutbox()){
                             return false;
                         }
-                        args.allowDefault = true;
+                        args.allowDefault = Sendlater3Composing.callEnigmail();
                         return true;
                     };
                 }
                 else {
                     args.sendCallback = function() {
-                        args.allowDefault = true;
+                        args.allowDefault = Sendlater3Composing.callEnigmail();
                         return true;
                     };
                 }
