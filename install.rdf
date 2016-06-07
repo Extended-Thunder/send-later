@@ -107,7 +107,7 @@
       <Description>
 	<em:locale>pt-BR</em:locale>
 	<em:name>Send Later</em:name>
-	<em:description>ferramenta "Send Later" para programar o horário de envio</em:description>
+	<em:description>“Enviar mais tarde” agenda o dia e hora que deseja que o e-mail seja enviado</em:description>
       </Description>
     </em:localized>
     <em:localized>
