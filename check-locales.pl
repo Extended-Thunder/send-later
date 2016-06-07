@@ -1,100 +1,133 @@
 #!/usr/bin/perl
 
+use strict;
+use warnings;
 use File::Basename;
 use Getopt::Long;
 
-$debug = 0;
-$errors = 0;
-$replace = 0;
+my $debug = 0;
+my $errors = 0;
+my $replace = 0;
 
-die if (! GetOptions("replace" => \$replace));
+my(%inheritance_chains) = (
+    "es" => ["es-ES"],
+    "es-ES" => ["es"],
+    "pt-BR" => ["pt-PT"],
+    "pt-PT" => ["pt-BR"],
+    "zh-CN" => ["zh-TW"],
+    "zh-TW" => ["zh-CN"],
+);
 
-@locales = glob("chrome/locale/*");
-($master) = grep($_ eq "chrome/locale/en-US", @locales);
-die if (! $master);
-@locales = grep($_ ne $master, @locales);
-
-for $file (map(basename($_), glob("$master/*.dtd"))) {
-    &check_dtd($file);
+my $locale_dir = "chrome/locale";
+my(@locales) = map(basename($_), glob("chrome/locale/*"));
+my $master = "en-US";
+foreach my $locale (@locales) {
+    if (! $inheritance_chains{$locale}) {
+        $inheritance_chains{$locale} = [];
+    }
 }
 
-for $file (map(basename($_), glob("$master/*.properties"))) {
-    &check_properties($file);
+die if (! GetOptions("replace" => \$replace,
+                     "debug" => \$debug));
+
+foreach my $locale (sort keys %inheritance_chains) {
+    foreach my $file (map(basename($_), glob("$locale_dir/$master/*.dtd"))) {
+        &check_dtd($locale, $file);
+    }
+
+    foreach my $file (map(basename($_), glob("$locale_dir/$master/*.properties"))) {
+        &check_properties($locale, $file);
+    }
 }
 
 exit($errors);
 
 sub check_dtd {
-    my($file) = @_;
-    &check_generic($file, qr/^<!ENTITY\s+(\S+)/, qr/\&(?!quot)(?!;)/);
+    my($locale, $file) = @_;
+    &check_generic($locale, $file, qr/^<!ENTITY\s+(\S+)/, qr/\&(?!quot)(?!;)/);
 }
 
 sub check_properties {
-    my($file) = @_;
-    &check_generic($file, qr/^([^=]+)=/, qr/\&(?!quot)(?!;)/);
+    my($locale, $file) = @_;
+    &check_generic($locale, $file, qr/^([^=]+)=/, qr/\&(?!quot)(?!;)/);
 }
 
+my(%replaced);
+
 sub check_generic {
-    my($file, $pattern, $error_pattern) = @_;
-    my(@keys);
-    &debug("Reading $master/$file\n");
-    open(MASTER, "<", "$master/$file") or die;
-    while (<MASTER>) {
-	next if (/^$/);
-	next if (/-\*-.*-\*-/);
-	if (! /$pattern/) {
-	    die "Unrecognized line $. of $master/$file: $_";
-	}
-	push(@keys, $1);
-	&debug("Read key $1 from $master/$file\n");
-        $master_keys->{$file}->{$1} = $_;
-    }
-    close(MASTER);
-    foreach my $locale (@locales) {
-	my(%keys);
-	map($keys{$_}++, @keys);
-	&debug("Checking $locale/$file\n");
-	if (! open(SLAVE, "<", "$locale/$file")) {
-	    warn "Can't open $locale/$file: $!\n";
-	    $errors++;
-	    next;
-	}
-	while (<SLAVE>) {
-	    next if (/^$/);
-	    next if (/-\*-.*-\*-/);
+    my($locale, $file, $pattern, $error_pattern) = @_;
+    my(@keys, %strings);
+    foreach my $ancestor ($locale, @{$inheritance_chains{$locale}}, $master) {
+        my $fname = "$locale_dir/$ancestor/$file";
+        if (! -f $fname) {
+            &error("$file does not exist (ancestor of $locale)");
+            next;
+        }
+        &debug("Reading $fname");
+        open(MASTER, "<", $fname) or die;
+        while (<MASTER>) {
+            next if (/^$/);
+            next if (/-\*-.*-\*-/);
+            if (! /$pattern/) {
+                &error("Unrecognized line $. of $ancestor/$file: $_");
+                next;
+            }
 	    if ($error_pattern and /$error_pattern/) {
-		warn "Bad content on line $. of $locale/$file: $_";
-		$errors++;
+		&error("Bad content on line $. of $ancestor/$file: $_");
+                next;
 	    }
-	    if (! /$pattern/) {
-		warn "Unrecognized line $. of $locale/$file: $_";
-		$errors++;
-		next;
-	    }
-	    my $key = $1;
-	    if (! delete $keys{$key}) {
-		warn "Extra or unrecognized key $key in $locale/$file\n";
-		$errors++;
-		next;
-	    }
-	    &debug("Good key $key in $locale/$file\n");
-	}
-	close(SLAVE);
-	foreach my $key (sort keys %keys) {
-	    warn("Missing key $key in $locale/$file",
-                 ($replace ? " (replaced)" : ""), "\n");
-            if ($replace) {
-                open(SLAVE, ">>", "$locale/$file") or die;
-                print(SLAVE $master_keys->{$file}->{$key}) or die;
-                close(SLAVE) or die;
+            if ($replaced{"$ancestor/$file/$1"}) {
+                &debug("Ignoring replaced key $1 in $ancestor/$file");
+                next;
+            }
+            &debug("Read key $1 from $ancestor/$file");
+            my $n = {value => $_, locale => $ancestor};
+            if ($strings{$1}) {
+                push(@{$strings{$1}}, $n);
             }
             else {
-                $errors++;
+                push(@keys, $1);
+                $strings{$1} = [$n];
             }
-	}
+        }
+        close(MASTER);
+    }
+    foreach my $key (@keys) {
+        if ($strings{$key}->[-1]->{"locale"} ne $master) {
+            &error("Extra key $key in $locale/$file");
+            next;
+        }
+        if ($strings{$key}->[0]->{"locale"} eq $locale) {
+            &debug("Good key $key in $locale/$file");
+            next;
+        }
+        if ($replace) {
+            open(F, ">>", "$locale_dir/$locale/$file") or die;
+            print(F $strings{$key}->[0]->{"value"}) or die;
+            close(F) or die;
+            $replaced{"$locale/$file/$key"} = 1;
+            &warning("Replaced $key in $locale/$file from $strings{$key}->[0]->{'locale'}");
+            next;
+        }
+        &error("Key $key is missing from $locale/$file");
     }
 }
 
 sub debug {
-    print(@_) if ($debug);
+    print(@_, "\n") if ($debug);
+}
+
+my(%warned);
+
+sub warning {
+    my($msg) = @_;
+    return if ($warned{$msg});
+    warn("$msg\n");
+    $warned{$msg} = 1;
+}
+
+sub error {
+    my($msg) = @_;
+    &warning($msg);
+    $errors++;
 }
