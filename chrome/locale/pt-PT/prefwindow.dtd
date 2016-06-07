@@ -1,1 +1,22 @@
 <!-- -*- coding: utf-8 -*- -->
+<!ENTITY prefwindow.title "Definições do Send Later">
+<!ENTITY pane1.title "Definições do Send Later">
+<!ENTITY checktimepref.label "Verificar a cada:">
+<!ENTITY checktimepref2.label "minutos">
+<!ENTITY checktimepref.tooltip "Intervalo, em minutos, entre verificações de rascunhos cuja data de entrega já chegou. Aumente este valor se os seus rascunhos por vezes não são enviados a tempo ou se a contagem de mensagem pendente na sua barra de estado nem sempre reflecte todos os rascunhos agendados.">
+<!ENTITY general.caption "Geral">
+<!ENTITY quickoption1.caption "Atalho1">
+<!ENTITY quickoption2.caption "Atalho2">
+<!ENTITY quickoption3.caption "Atalho3">
+<!ENTITY quickoptionname.label "Etiqueta do botão:">
+<!ENTITY quickoptionvalue.label "Minutos:">
+<!ENTITY showtoolbarbutton.caption "Mostrar na barra de ferramentas">
+<!ENTITY showsendlatercolumn.caption "Mostrar coluna do Send Later">
+<!ENTITY showsendlaterheader.caption "Mostrar cabeçalho do Send Later">
+<!ENTITY showsendlaterstatus.caption "Mostrar o Send Later na barra de estado">
+<!ENTITY sendlatersendbutton.tooltip "Com esta opção activa, o comando &quot;Enviar&quot; (através do botão ou pressionando Ctrl-Enter) actua da mesma forma que &quot;Enviar mais tarde&quot;.">
+<!ENTITY advanced.caption "Avançado">
+<!ENTITY contactauthor.value "Contactar o autor">
+<!ENTITY helplink.value "Guia do utilizador">
+<!ENTITY donatelink.value "Doar">
+<!ENTITY blocklatemessages.tooltip "Não entregar mensagens agendadas que tenham sido adiadas para depois do tempo agendado, porque, por exemplo, o Thunderbird não estava a correr nessa altura.">
