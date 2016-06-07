@@ -204,7 +204,8 @@ var Sendlater3Composing = {
                         if (! Sendlater3Composing.confirmAction(
                             "Outbox", "show_outbox_alert"))
                             return false;
-                        args.allowDefault = Sendlater3Composing.callEnigmail();
+                        args.allowDefault =
+                            Sendlater3Composing.callEnigmail(event);
                         return true;
                     };
                 }
@@ -213,7 +214,8 @@ var Sendlater3Composing = {
                         if (! Sendlater3Composing.confirmAction(
                             "SendNow", "show_sendnow_alert"))
                             return false;
-                        args.allowDefault = Sendlater3Composing.callEnigmail();
+                        args.allowDefault =
+                            Sendlater3Composing.callEnigmail(event);
                         return true;
                     };
                 }
