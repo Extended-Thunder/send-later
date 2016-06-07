@@ -130,11 +130,21 @@ var Sendlater3Prompt = {
         window.removeEventListener("load", Sendlater3Prompt.SetOnLoad, false);
         SL3U.initUtil();
         Sendlater3Prompt.loaded = true;
-        document.getElementById("sendlater3-outbox-button").disabled =
-            ! window.arguments[0].continueCallback;
-        document.getElementById("sendlater3-send-now-key").disabled =
-            document.getElementById("sendlater3-sendnow-button").disabled =
-            ! window.arguments[0].sendCallback;
+        var hb = document.getElementById("sendlater3-ancillary-buttons-hbox");
+        if (! window.arguments[0].continueCallback) {
+            var bt = document.getElementById("sendlater3-outbox-button");
+            var flex = document.getElementById("sendlater3-outbox-flex");
+            hb.removeChild(bt);
+            hb.removeChild(flex);
+        }
+        if (! window.arguments[0].sendCallback) {
+            var key = document.getElementById("sendlater3-send-now-key");
+            var bt = document.getElementById("sendlater3-sendnow-button");
+            var flex = document.getElementById("sendlater3-sendnow-flex");
+            key.disabled = true;
+            hb.removeChild(bt);
+            hb.removeChild(flex);
+        }
         document.getElementById("sendlater3-time-text")
 	    .addEventListener("ValueChange",
 			     Sendlater3Prompt.updateSummary, false);

@@ -167,18 +167,19 @@
     <hbox>	
       <description flex="1"></description>
     </hbox>
-    <hbox align="center" style="border:solid red 2px; font-size: 90%;">
+    <hbox id="sendlater3-ancillary-buttons-hbox"
+          align="center" style="border:solid red 2px; font-size: 90%;">
       <button id="sendlater3-outbox-button"
               label="&sendlater.prompt.sendlater.label;"
 	      accesskey="&sendlater.prompt.sendlater.accesskey;"
 	      tooltiptext="&sendlater.prompt.sendlater.tooltip;"
 	      oncommand="if (window.arguments[0].continueCallback()) close();"/>
-      <description flex="1"></description>
+      <description id="sendlater3-outbox-flex" flex="1"></description>
       <button id="sendlater3-sendnow-button"
               label="&sendlater.prompt.sendnow.label;"
               accesskey="&sendlater.prompt.sendnow.accesskey;"
               oncommand="if (window.arguments[0].sendCallback()) close();"/>
-      <description flex="1"></description>
+      <description id="sendlater3-sendnow-flex" flex="1"></description>
       <button id="sendlater3-cancelButton" key="sendlater3-cancel-esc" label="&sendlater.prompt.close.label;" tooltiptext="&sendlater.prompt.close.tooltip;" oncommand="window.arguments[0].cancelCallback();close();"/>
     </hbox>
   </vbox>
