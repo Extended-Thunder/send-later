@@ -21,6 +21,7 @@ pref("extensions.sendlater3.senddrafts",true);
 pref("extensions.sendlater3.sendbutton",false);
 pref("extensions.sendlater3.show_edit_alert",true);
 pref("extensions.sendlater3.show_outbox_alert",true);
+pref("extensions.sendlater3.show_sendnow_alert",true);
 pref("extensions.sendlater3.alt_binding",false);
 pref("extensions.sendlater3.send_while_offline",true);
 // Internal settings not to be messed with

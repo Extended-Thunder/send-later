@@ -178,6 +178,7 @@
       <button id="sendlater3-sendnow-button"
               label="&sendlater.prompt.sendnow.label;"
               accesskey="&sendlater.prompt.sendnow.accesskey;"
+              tooltiptext="&sendlater.prompt.sendnow.tooltip;"
               oncommand="if (window.arguments[0].sendCallback()) close();"/>
       <description id="sendlater3-sendnow-flex" flex="1"></description>
       <button id="sendlater3-cancelButton" key="sendlater3-cancel-esc" label="&sendlater.prompt.close.label;" tooltiptext="&sendlater.prompt.close.tooltip;" oncommand="window.arguments[0].cancelCallback();close();"/>

@@ -201,15 +201,18 @@ var Sendlater3Composing = {
                 };
                 if (later) {
                     args.continueCallback = function() {
-                        if (! Sendlater3Composing.confirmPutInOutbox()){
+                        if (! Sendlater3Composing.confirmAction(
+                            "Outbox", "show_outbox_alert"))
                             return false;
-                        }
                         args.allowDefault = Sendlater3Composing.callEnigmail();
                         return true;
                     };
                 }
                 else {
                     args.sendCallback = function() {
+                        if (! Sendlater3Composing.confirmAction(
+                            "SendNow", "show_sendnow_alert"))
+                            return false;
                         args.allowDefault = Sendlater3Composing.callEnigmail();
                         return true;
                     };
@@ -232,22 +235,20 @@ var Sendlater3Composing = {
 					  sendMessageListener, false);
     },
 
-    confirmPutInOutbox: function() {
-	if (! SL3U.getBoolPref("show_outbox_alert")) {
+    confirmAction: function(action, preference) {
+	if (! SL3U.getBoolPref(preference))
 	    return true;
-	}
 	var prompts = Components.
 	    classes["@mozilla.org/embedcomp/prompt-service;1"]
             .getService(Components.interfaces.nsIPromptService);
 	var check = {value: true};
-	var title = SL3U.PromptBundleGet("OutboxConfirmTitle");
-	var message = SL3U.PromptBundleGet("OutboxConfirmMessage");
+	var title = SL3U.PromptBundleGet("AreYouSure");
+	var message = SL3U.PromptBundleGet(action + "ConfirmMessage");
 	var askagain = SL3U.PromptBundleGet("ConfirmAgain");
 	var result = prompts.confirmCheck(null, title, message, askagain,
-					  check);
-	if (! check.value) {
-	    SL3U.setBoolPref("show_outbox_alert", false);
-	}
+                                          check);
+	if (! check.value)
+	    SL3U.setBoolPref(preference, false);
 	return result;
     },
 
