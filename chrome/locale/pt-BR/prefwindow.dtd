@@ -11,24 +11,24 @@
 <!ENTITY quickoptionname.label "Identificação do Botão:">
 <!ENTITY quickoptionvalue.label "Minutos:">
 <!ENTITY showtoolbarbutton.caption "Mostrar na Barra de Ferramentas">
-<!ENTITY showsendlatercolumn.caption "Mostrar Coluna Send Later">
-<!ENTITY showsendlatercolumn.tooltip "Mostrar coluna &quot;Send Later&quot; apenas quando visualizar pasta de rascunhos">
-<!ENTITY showsendlaterheader.caption "Mostrar Cabeçalho de Send Later">
+<!ENTITY showsendlatercolumn.caption "Mostrar Coluna Enviar mais tarde">
+<!ENTITY showsendlatercolumn.tooltip "Mostrar coluna &quot;Enviar mais tarde&quot; apenas quando visualizar pasta de rascunhos">
+<!ENTITY showsendlaterheader.caption "Mostrar Cabeçalho de Enviar mais tarde">
 <!ENTITY showsendlaterheader.tooltip "Exibe ou não &quot;enviarX-mais-tarde-em...&quot;, isto é, a hora programada em que o rascunho será enviado, no cabeçalho ao ver a mensagem.">
-<!ENTITY showsendlaterstatus.caption "Mostrar Send Later na Barra de Status">
+<!ENTITY showsendlaterstatus.caption "Mostrar Enviar mais tarde na Barra de Status">
 <!ENTITY showsendlaterprogress.caption "Exibir progresso em segundo plano, na barra de status">
 <!ENTITY showsendlaterentry.caption "Exibir Entrada da Hora na Barra de Ferramentas">
 <!ENTITY showsendlaterunsentmessages.caption "Acionar envio de mensagens guardadas na Caixa de Saída">
-<!ENTITY showsendlaterunsentmessages.tooltip "Ao desativar essa opção, Send Later não entregará todas as mensagens; em vez disso, irá colocá-los na caixa de saída quando agendadas para envio. Desative essa opção por exemplo, ao usar alguma outra extensão como BlunderDelay para enviar periodicamente mensagens de sua caixa de saída. Observe que, quando essa opção for definida, sempre que Send Later envia uma mensagem, TODAS as mensagens na caixa de saída serão enviadas.">
+<!ENTITY showsendlaterunsentmessages.tooltip "Ao desativar essa opção, Enviar mais tarde não entregará todas as mensagens; em vez disso, irá colocá-los na caixa de saída quando agendadas para envio. Desative essa opção por exemplo, ao usar alguma outra extensão como BlunderDelay para enviar periodicamente mensagens de sua caixa de saída. Observe que, quando essa opção for definida, sempre que Enviar mais tarde envia uma mensagem, TODAS as mensagens na caixa de saída serão enviadas.">
 <!ENTITY sendlatersendbutton.caption "&quot;Enviar&quot; significa &quot;Enviar Mais Tarde&quot;">
 <!ENTITY sendlatersendbutton.tooltip "Ao ativar esta opção, o comando &quot;Enviar&quot; (idem o ícone ou teclando Ctrl+Enter) age da mesma forma que &quot;Envie Mais Tarde&quot;.">
 <!ENTITY altbinding.caption "Combinar Alt+Shift+Enter em vez de Ctrl+Shift+Enter">
 <!ENTITY advanced.caption "Avançado">
 <!ENTITY dumplevel.caption "Nível de log de descarga:">
 <!ENTITY consolelevel.caption "Nível de log do console:">
-<!ENTITY contactauthor.tooltip "Envie uma mensagem ao desenvolvedor de Send Later.">
+<!ENTITY contactauthor.tooltip "Envie uma mensagem ao desenvolvedor de Enviar mais tarde.">
 <!ENTITY contactauthor.value "Contate o autor">
-<!ENTITY helplink.tooltip "Ver a documentação do Send Later">
+<!ENTITY helplink.tooltip "Ver a documentação do Enviar mais tarde">
 <!ENTITY helplink.value "Manual">
 <!ENTITY donatelink.value "Contribua">
 <!ENTITY enforcerestrictions.tooltip "Se uma mensagem a ser enviada estiver fora das restrições de hora ou dia, por exemplo devido ao Thunderbird não estar a correr na altura do envio, então adie o seu envio até que as restrições estejam cumpridas.">

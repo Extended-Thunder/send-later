@@ -4,7 +4,7 @@
 <!ENTITY sendlater.prompt.sendlater.tooltip "Ao invés de agendar o envio para uma hora específica, mover a mensagem para pasta de Saída para envio na próxima vez em que mensagens não enviadas forem enviadas.">
 <!ENTITY sendlater.prompt.sendnow.label "Enviar Agora">
 <!ENTITY sendlater.prompt.sendnow.accesskey "N">
-<!ENTITY sendlater.prompt.sendnow.tooltip "Enviar imediatamente, ignorando &quot;Send Later&quot;.">
+<!ENTITY sendlater.prompt.sendnow.tooltip "Enviar imediatamente, ignorando &quot;Enviar mais tarde&quot;.">
 <!ENTITY sendlater.prompt.close.label "Cancelar">
 <!ENTITY sendlater.prompt.close.tooltip "Voltar e editar mensagem.">
 <!ENTITY sendlater.prompt.title.label "Enviar este email mais tarde">
