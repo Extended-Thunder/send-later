@@ -1,18 +1,19 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY sendlater.prompt.sendlater.label "In den Postausgang verschieben">
 <!ENTITY sendlater.prompt.sendlater.accesskey "P">
-<!ENTITY sendlater.prompt.sendlater.tooltip "Statt eine bestimmte Sendezeit anzugeben, wird die Nachricht in den Postausgang verschoben, und beim nächsten Versenden ungelesener Nachrichten ebenfalls versendet.">
+<!ENTITY sendlater.prompt.sendlater.tooltip "Die Nachricht in den Postausgang verschieben und beim nächsten Senden ungesendeter Nachrichten versenden.">
 <!ENTITY sendlater.prompt.sendnow.label "Jetzt senden">
 <!ENTITY sendlater.prompt.sendnow.accesskey "J">
+<!ENTITY sendlater.prompt.sendnow.tooltip "Die Nachricht sofort senden statt zum angegebenen Zeitpunkt.">
 <!ENTITY sendlater.prompt.close.label "Abbrechen">
-<!ENTITY sendlater.prompt.close.tooltip "Zurück zum Verfassen der Nachricht">
+<!ENTITY sendlater.prompt.close.tooltip "Zurück zum Verfassen der Nachricht.">
 <!ENTITY sendlater.prompt.title.label "Diese Nachricht später senden">
 <!ENTITY sendlater.prompt.textbox.label "Senden am/um:">
 <!ENTITY sendlater.prompt.or.label "oder:">
 <!ENTITY sendlater.prompt.textbox.tooltip "Geben Sie ein Datum und eine Uhrzeit ein. Formlose Eingaben wie „Dienstag”, „17:30” oder „7. August 2014” werden ebenfalls unterstützt.">
-<!ENTITY sendlater.prompt.textbox.emptytext "Bsp.: „Dienstag”, „24.06.2012 17:30”, „17”, „7. August 2014”">
+<!ENTITY sendlater.prompt.textbox.emptytext "Beispiel: „Dienstag”, „24.06.2012 17:30”, „17”, „7. August 2014”">
 <!ENTITY sendlater.prompt.sendat.label "Später senden, zu den oben festgelegten Zeiten">
-<!ENTITY sendlater.prompt.sendat.tooltip "Nachrichten im Entwürfe-Ordner speichern, um sie zum oben angegeben Zeitpunkt automatisch zu versenden.">
+<!ENTITY sendlater.prompt.sendat.tooltip "Nachrichten im Entwürfe-Ordner speichern, um sie zum oben angegebenen Zeitpunkt automatisch zu versenden.">
 <!ENTITY sendlater.prompt.recur.label "Wiederholen:">
 <!ENTITY sendlater.prompt.none.label "nie">
 <!ENTITY sendlater.prompt.minutely.label "minütlich">

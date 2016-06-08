@@ -4,6 +4,7 @@
 <!ENTITY sendlater.prompt.sendlater.tooltip "Zamiast wysyłki o planowanym czasie przenosi wiadomość do folderu Skrzynka nadawcza, aby wysłać ją następnym razem wraz z innymi wiadomościami oczekującymi na wysyłkę.">
 <!ENTITY sendlater.prompt.sendnow.label "Wyślij Teraz">
 <!ENTITY sendlater.prompt.sendnow.accesskey "T">
+<!ENTITY sendlater.prompt.sendnow.tooltip "Wyślij wiadomość TERAZ, pomijając funkcjonalność dodatku &quot;Wyślij Później&quot;.">
 <!ENTITY sendlater.prompt.close.label "Anuluj">
 <!ENTITY sendlater.prompt.close.tooltip "Wróć do edycji wiadomości.">
 <!ENTITY sendlater.prompt.title.label "Wyślij tę wiadomość później">
@@ -22,7 +23,7 @@
 <!ENTITY sendlater.prompt.yearly.label "rocznie">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Wyślij później">
 <!ENTITY sendlater.toolbar.textbox.emptytext "czas wysyłki">
-<!ENTITY sendlater.prompt.every.label "Każdego">
+<!ENTITY sendlater.prompt.every.label "Co Każde">
 <!ENTITY sendlater.prompt.between.label "Pomiędzy">
 <!ENTITY sendlater.button1.label "za 15 minut">
 <!ENTITY sendlater.button2.label "za 30 minut">
