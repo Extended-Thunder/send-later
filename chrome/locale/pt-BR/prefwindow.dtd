@@ -3,7 +3,7 @@
 <!ENTITY pane1.title "Preferências">
 <!ENTITY checktimepref.label "Verificar a cada:">
 <!ENTITY checktimepref2.label "minutos">
-<!ENTITY checktimepref.tooltip "Intervalo, em minutos, entre as checagens para rascunhos com envio dentro do prazo. Aumente este valor se às vezes os rascunhos permanecem retidos ou se o limite de tempo de envio informado na barra de status diferir do agendamento das mensagens.">
+<!ENTITY checktimepref.tooltip "Intervalo, em minutos, entre a checagem de rascunhos que atingiram o horário de envio. Caso rascunhos não tenham sido enviados no horário definido ou se a informação do contador de mensagens pendentes na barra de status divergir do agendamento de rascunhos, amplie este intervalo.">
 <!ENTITY general.caption "Geral">
 <!ENTITY quickoption1.caption "Atalho 1">
 <!ENTITY quickoption2.caption "Atalho 2">
@@ -11,28 +11,28 @@
 <!ENTITY quickoptionname.label "Identificação do Botão:">
 <!ENTITY quickoptionvalue.label "Minutos:">
 <!ENTITY showtoolbarbutton.caption "Mostrar na Barra de Ferramentas">
-<!ENTITY showsendlatercolumn.caption "Mostrar Coluna Enviar mais tarde">
-<!ENTITY showsendlatercolumn.tooltip "Mostrar coluna &quot;Enviar mais tarde&quot; apenas quando visualizar pasta de rascunhos">
-<!ENTITY showsendlaterheader.caption "Mostrar Cabeçalho de Enviar mais tarde">
-<!ENTITY showsendlaterheader.tooltip "Exibe ou não &quot;enviarX-mais-tarde-em...&quot;, isto é, a hora programada em que o rascunho será enviado, no cabeçalho ao ver a mensagem.">
-<!ENTITY showsendlaterstatus.caption "Mostrar Enviar mais tarde na Barra de Status">
-<!ENTITY showsendlaterprogress.caption "Exibir progresso em segundo plano, na barra de status">
-<!ENTITY showsendlaterentry.caption "Exibir Entrada da Hora na Barra de Ferramentas">
-<!ENTITY showsendlaterunsentmessages.caption "Acionar envio de mensagens guardadas na Caixa de Saída">
-<!ENTITY showsendlaterunsentmessages.tooltip "Ao desativar essa opção, Enviar mais tarde não entregará todas as mensagens; em vez disso, irá colocá-los na caixa de saída quando agendadas para envio. Desative essa opção por exemplo, ao usar alguma outra extensão como BlunderDelay para enviar periodicamente mensagens de sua caixa de saída. Observe que, quando essa opção for definida, sempre que Enviar mais tarde envia uma mensagem, TODAS as mensagens na caixa de saída serão enviadas.">
-<!ENTITY sendlatersendbutton.caption "&quot;Enviar&quot; significa &quot;Enviar Mais Tarde&quot;">
-<!ENTITY sendlatersendbutton.tooltip "Ao ativar esta opção, o comando &quot;Enviar&quot; (idem o ícone ou teclando Ctrl+Enter) age da mesma forma que &quot;Envie Mais Tarde&quot;.">
+<!ENTITY showsendlatercolumn.caption "Exibir Coluna de Send Later">
+<!ENTITY showsendlatercolumn.tooltip "Exibir coluna &quot;Send Later&quot; apenas quando visualizar pasta de rascunhos">
+<!ENTITY showsendlaterheader.caption "Send Later exibir Cabeçalho">
+<!ENTITY showsendlaterheader.tooltip "Exibe ou não cabeçalho &quot;enviar X-mais-tarde-em...&quot;, isto é, ao visualizar a mensagem, no cabeçalho a hora programada de envio do rascunho.">
+<!ENTITY showsendlaterstatus.caption "Exibir Send Later na Barra de Status">
+<!ENTITY showsendlaterprogress.caption "Exibir na barra de status progresso em segundo plano">
+<!ENTITY showsendlaterentry.caption "Exibir na Barra de Ferramentas a Hora inserida">
+<!ENTITY showsendlaterunsentmessages.caption "Acionar envio de mensagens salvas na Caixa de Saída">
+<!ENTITY showsendlaterunsentmessages.tooltip "Ao desativar essa opção, Send Later não enviará todas as mensagens; em vez disso, transfere-a para a caixa de saída quando agendadas para envio. Desative esta opção caso use outras extensões como p.ex. BlunderDelay para o envio periódico de mensagens em sua caixa de saída. Observe que, quando essa opção estiver ativa, sempre que Send Later enviar uma mensagem, TODAS as outra mensagens em sua caixa de saída serão enviadas.">
+<!ENTITY sendlatersendbutton.caption "&quot;Enviar Mais Tarde&quot; substitui &quot;Enviar&quot;">
+<!ENTITY sendlatersendbutton.tooltip "Ao ativar esta opção, o comando &quot;Enviar&quot; (tanto seu ícone quanto teclando Ctrl+Enter) age da mesma forma que &quot;Envie Mais Tarde&quot;.">
 <!ENTITY altbinding.caption "Combinar Alt+Shift+Enter em vez de Ctrl+Shift+Enter">
 <!ENTITY advanced.caption "Avançado">
 <!ENTITY dumplevel.caption "Nível de log de descarga:">
 <!ENTITY consolelevel.caption "Nível de log do console:">
-<!ENTITY contactauthor.tooltip "Envie uma mensagem ao desenvolvedor de Enviar mais tarde.">
+<!ENTITY contactauthor.tooltip "Envie uma mensagem ao desenvolvedor de Send Later.">
 <!ENTITY contactauthor.value "Contate o autor">
-<!ENTITY helplink.tooltip "Ver a documentação do Enviar mais tarde">
+<!ENTITY helplink.tooltip "Ver a documentação de Send Later">
 <!ENTITY helplink.value "Manual">
 <!ENTITY donatelink.value "Contribua">
-<!ENTITY enforcerestrictions.tooltip "Se uma mensagem a ser enviada estiver fora das restrições de hora ou dia, por exemplo devido ao Thunderbird não estar a correr na altura do envio, então adie o seu envio até que as restrições estejam cumpridas.">
+<!ENTITY enforcerestrictions.tooltip "Se uma mensagem a ser enviada estiver fora das restrições de hora ou dia, devido p.ex. ao Thunderbird não estar rodando na hora do envio, adie o envio até que as restrições sejam cumpridas.">
 <!ENTITY enforcerestrictions.caption "Impor restrições de hora e dia à data de envio">
-<!ENTITY blocklatemessages.tooltip "Não enviar mensagens que foram adiadas para além da sua hora programada, por exemplo, pelo Thunderbird não estar a correr no momento do envio programado.">
-<!ENTITY blocklatemessages.label1 "Não enviem mensagens superiores a">
-<!ENTITY blocklatemessages.label2 "minutos atrasado">
+<!ENTITY blocklatemessages.tooltip "Não enviar mensagens agendadas para além da hora programada, p.ex., devido ao Thunderbird não estar rodando àquela hora.">
+<!ENTITY blocklatemessages.label1 "Não envie mensagens com mais de">
+<!ENTITY blocklatemessages.label2 "minutos de atraso">

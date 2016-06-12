@@ -1,6 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY prefwindow.title "Ustawienia “Wyślij Później”">
-<!ENTITY pane1.title "Ustawienia “Wyślij Później”">
+<!ENTITY prefwindow.title "Ustawienia “Send Later”">
+<!ENTITY pane1.title "Ustawienia “Send Later”">
 <!ENTITY checktimepref.label "Sprawdzaj co:">
 <!ENTITY checktimepref2.label "minut">
 <!ENTITY checktimepref.tooltip "Odstęp czasu w minutach określający częstość z jaką program będzie sprawdzał, czy nie należy wysłać zaplanowanych do wysyłki wiadomości. Zwiększ tą wartość, jezeli zaplanowane do wysyłki wiadomości nie są wysyłane o czasie lub jeśli licznik wiadomości na pasku statusu wskazuje mniejszą niż w rzeczywistości liczbę zaplanowanych do wysłania wiadomości.">
@@ -15,7 +15,7 @@
 <!ENTITY showsendlatercolumn.tooltip "Czy wyświetlać kolumnę “Wyślij później” podczas przeglądania folderu Szkice">
 <!ENTITY showsendlaterheader.caption "Pokaż nagłówek “Wyślij później”">
 <!ENTITY showsendlaterheader.tooltip "Określa czy wyświetlać nagłówek “X-Send-Later-At”, tzn. zaplanowany czas wysłania wiadomości w nagłówku podglądu.">
-<!ENTITY showsendlaterstatus.caption "Pokaż “Wyślij Później” na pasku statusu">
+<!ENTITY showsendlaterstatus.caption "Pokaż “Send Later” na pasku statusu">
 <!ENTITY showsendlaterprogress.caption "Pokaż postęp działań wykonywanych w tle na pasku statusu">
 <!ENTITY showsendlaterentry.caption "Pokaż ustawienia czasu wysyłki w pasku narzędzi">
 <!ENTITY showsendlaterunsentmessages.caption "Włącz/wyłącz wysyłanie wiadomości z “Wychodzących...”">
@@ -26,9 +26,9 @@
 <!ENTITY advanced.caption "Zaawansowane">
 <!ENTITY dumplevel.caption "Poziom logowania do pliku:">
 <!ENTITY consolelevel.caption "Poziom logowania w konsoli:">
-<!ENTITY contactauthor.tooltip "Wyślij wiadomość e-mail do autora “Wyślij Później” (w języku angielskim, proszę!).">
+<!ENTITY contactauthor.tooltip "Wyślij wiadomość e-mail do autora “Send Later” (w języku angielskim, proszę!).">
 <!ENTITY contactauthor.value "Skontaktuj się z autorem">
-<!ENTITY helplink.tooltip "Pokaż dokumentację &quot;Wyślij Później&quot;">
+<!ENTITY helplink.tooltip "Pokaż dokumentację &quot;Send Later&quot;">
 <!ENTITY helplink.value "Podręcznik użytkownika">
 <!ENTITY donatelink.value "Wspomóż">
 <!ENTITY enforcerestrictions.tooltip "Jeśli wiadomości nie wysłano np., ponieważ Thunderbird nie był uruchomiony w zaplanowanym czasie wysyłki, to zaczekaj z wysyłaniem aż ograniczenia czasu i dnia będą spełnione.">
