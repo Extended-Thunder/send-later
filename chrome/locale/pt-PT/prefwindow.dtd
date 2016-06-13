@@ -5,18 +5,27 @@
 <!ENTITY checktimepref2.label "minutos">
 <!ENTITY checktimepref.tooltip "Intervalo, em minutos, entre verificações de rascunhos cuja data de entrega já chegou. Aumente este valor se os seus rascunhos por vezes não são enviados a tempo ou se a contagem de mensagem pendente na sua barra de estado nem sempre reflecte todos os rascunhos agendados.">
 <!ENTITY general.caption "Geral">
-<!ENTITY quickoption1.caption "Atalho1">
-<!ENTITY quickoption2.caption "Atalho2">
-<!ENTITY quickoption3.caption "Atalho3">
+<!ENTITY quickoption1.caption "Atalho 1">
+<!ENTITY quickoption2.caption "Atalho 2">
+<!ENTITY quickoption3.caption "Atalho 3">
 <!ENTITY quickoptionname.label "Etiqueta do botão:">
 <!ENTITY quickoptionvalue.label "Minutos:">
 <!ENTITY showtoolbarbutton.caption "Mostrar na barra de ferramentas">
 <!ENTITY showsendlatercolumn.caption "Mostrar coluna do Send Later">
 <!ENTITY showsendlaterheader.caption "Mostrar cabeçalho do Send Later">
 <!ENTITY showsendlaterstatus.caption "Mostrar o Send Later na barra de estado">
+<!ENTITY showsendlaterprogress.caption "Mostrar Progresso Em Segundo Plano Na Barra de Estado">
+<!ENTITY showsendlaterunsentmessages.tooltip "Se desmarcar esta opção, o Send Later em vez de entregar as mensagens, coloca-as na sua Caixa de Saída quando estas estiverem agendadas para entrega. Desmarque esta opção se, por exemplo, usar outra extensão como o BlunderDelay para enviar periodicamente as mensagens na sua Caixa de Saída. No caso de esta opção estar marcada, sempre que o Send Later entrega uma mensagem, TODAS as mensagens na sua Caixa de Saída serão entregues.">
 <!ENTITY sendlatersendbutton.tooltip "Com esta opção activa, o comando &quot;Enviar&quot; (através do botão ou pressionando Ctrl-Enter) actua da mesma forma que &quot;Enviar mais tarde&quot;.">
 <!ENTITY advanced.caption "Avançado">
+<!ENTITY consolelevel.caption "Nível de registo da consola:">
+<!ENTITY contactauthor.tooltip "Enviar uma mensagem de correio para o autor do Send Later.">
 <!ENTITY contactauthor.value "Contactar o autor">
+<!ENTITY helplink.tooltip "Ver a documentação do Send Later">
 <!ENTITY helplink.value "Guia do utilizador">
 <!ENTITY donatelink.value "Doar">
+<!ENTITY enforcerestrictions.tooltip "Se uma mensagem que devia ser entregue estiver fora das restrições de data ou horário por, por exemplo, o Thunderbird não estar a correr na altura para a qual estava agendada a sua entrega, então atrase a sua entrega até que as restrições de horário e a data sejam cumpridas.">
+<!ENTITY enforcerestrictions.caption "Forçar restrições de horário e data na hora de entrega.">
 <!ENTITY blocklatemessages.tooltip "Não entregar mensagens agendadas que tenham sido adiadas para depois do tempo agendado, porque, por exemplo, o Thunderbird não estava a correr nessa altura.">
+<!ENTITY blocklatemessages.label1 "Não entregar mensagens mais do que">
+<!ENTITY blocklatemessages.label2 "minutos atrasadas">

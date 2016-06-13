@@ -4,6 +4,7 @@
 <!ENTITY sendlater.prompt.sendlater.tooltip "Istället för att schemalägga sändningen till en särskild tid flyttas meddelandet till Utkorgen och skickas nästa gång osända meddelanden skickas.">
 <!ENTITY sendlater.prompt.sendnow.label "Skicka nu">
 <!ENTITY sendlater.prompt.sendnow.accesskey "N">
+<!ENTITY sendlater.prompt.sendnow.tooltip "Skicka meddelandet omedelbart oavsett inställningar i &quot;Send Later&quot;.">
 <!ENTITY sendlater.prompt.close.label "Avbryt">
 <!ENTITY sendlater.prompt.close.tooltip "Gå tillbaka för att redigera meddelandet.">
 <!ENTITY sendlater.prompt.title.label "Skicka detta e-brev senare">
