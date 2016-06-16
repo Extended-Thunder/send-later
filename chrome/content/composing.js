@@ -199,7 +199,8 @@ var Sendlater3Composing = {
                     previouslyTimed: Sendlater3Composing.prevXSendLater,
                     previouslyRecurring: Sendlater3Composing.prevRecurring,
                 };
-                if (later) {
+                var always = SL3U.getBoolPref("always_show_buttons");
+                if (always || later) {
                     args.continueCallback = function() {
                         if (! Sendlater3Composing.confirmAction(
                             "Outbox", "show_outbox_alert"))
@@ -209,7 +210,7 @@ var Sendlater3Composing = {
                         return true;
                     };
                 }
-                else {
+                if (always || ! later) {
                     args.sendCallback = function() {
                         if (! Sendlater3Composing.confirmAction(
                             "SendNow", "show_sendnow_alert"))
