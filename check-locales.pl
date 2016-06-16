@@ -26,6 +26,14 @@ foreach my $locale (@locales) {
         $inheritance_chains{$locale} = [];
     }
 }
+foreach my $locale (keys %inheritance_chains) {
+    my $base = substr($locale, 0, 2);
+    foreach my $other (grep(/^$base/, @locales)) {
+        next if ($other eq $locale);
+        next if (grep(/^$other$/, @{$inheritance_chains{$locale}}));
+        push(@{$inheritance_chains{$locale}}, $other);
+    }
+}
 
 die if (! GetOptions("replace" => \$replace,
                      "debug" => \$debug));
