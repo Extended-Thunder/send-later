@@ -4,6 +4,7 @@
 <!ENTITY sendlater.prompt.sendlater.tooltip "Niet een tijdstip voor verzending kiezen, maar in het Postvak UIT plaatsen voor verzending wanneer de nog onverzonden berichten verzonden worden.">
 <!ENTITY sendlater.prompt.sendnow.label "Nu verzenden">
 <!ENTITY sendlater.prompt.sendnow.accesskey "N">
+<!ENTITY sendlater.prompt.sendnow.tooltip "Bericht onmiddellijk sturen zonder ‘Send Later’">
 <!ENTITY sendlater.prompt.close.label "Annuleren">
 <!ENTITY sendlater.prompt.close.tooltip "Terug naar bewerken van het bericht.">
 <!ENTITY sendlater.prompt.title.label "Dit e-mailbericht later verzenden">

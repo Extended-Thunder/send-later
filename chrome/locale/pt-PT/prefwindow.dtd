@@ -16,8 +16,11 @@
 <!ENTITY showsendlaterstatus.caption "Mostrar o Send Later na barra de estado">
 <!ENTITY showsendlaterprogress.caption "Mostrar Progresso Em Segundo Plano Na Barra de Estado">
 <!ENTITY showsendlaterunsentmessages.tooltip "Se desmarcar esta opção, o Send Later em vez de entregar as mensagens, coloca-as na sua Caixa de Saída quando estas estiverem agendadas para entrega. Desmarque esta opção se, por exemplo, usar outra extensão como o BlunderDelay para enviar periodicamente as mensagens na sua Caixa de Saída. No caso de esta opção estar marcada, sempre que o Send Later entrega uma mensagem, TODAS as mensagens na sua Caixa de Saída serão entregues.">
+<!ENTITY sendlatersendbutton.caption "&quot;Enviar mais tarde&quot; substitui &quot;Enviar&quot;">
 <!ENTITY sendlatersendbutton.tooltip "Com esta opção activa, o comando &quot;Enviar&quot; (através do botão ou pressionando Ctrl-Enter) actua da mesma forma que &quot;Enviar mais tarde&quot;.">
+<!ENTITY altbinding.caption "Combinar Alt-Shift-Enter em vez de Ctrl-Shift-Enter">
 <!ENTITY advanced.caption "Avançado">
+<!ENTITY dumplevel.caption "Nível de registo de descarga:">
 <!ENTITY consolelevel.caption "Nível de registo da consola:">
 <!ENTITY contactauthor.tooltip "Enviar uma mensagem de correio para o autor do Send Later.">
 <!ENTITY contactauthor.value "Contactar o autor">
