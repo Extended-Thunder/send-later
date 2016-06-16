@@ -23,8 +23,6 @@
 <!ENTITY sendlatersendbutton.caption "“Send” does “Send Later”">
 <!ENTITY sendlatersendbutton.tooltip "With this option enabled, the “Send” command (either the button or typing Ctrl-Enter) acts the same as “Send Later”.">
 <!ENTITY altbinding.caption "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter">
-<!ENTITY buttons.label "Always show “Send Now” and “Put in Outbox” buttons">
-<!ENTITY buttons.tooltip "Always show both the “Send Now” and “Put in Outbox” buttons in the Send Later dialog, rather than only showing one of them based on how the dialog was opened.">
 <!ENTITY advanced.caption "Advanced">
 <!ENTITY dumplevel.caption "Dump log level:">
 <!ENTITY consolelevel.caption "Console log level:">

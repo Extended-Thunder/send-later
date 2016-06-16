@@ -60,9 +60,6 @@
       <preference id="sendlater3_enforce_restrictions"
                   name="extensions.sendlater3.enforce_restrictions"
                   type="bool"/>
-      <preference id="sendlater3_always_show_buttons"
-                  name="extensions.sendlater3.always_show_buttons"
-                  type="bool"/>
     </preferences>
     <tabbox>
       <tabs>
@@ -96,10 +93,6 @@
                         preference="sendlater3_altbinding"
                         label="&altbinding.caption;" />
 	    </hbox>
-            <checkbox id="sendlater3-always_show_buttons_pref"
-                      tooltiptext="&buttons.tooltip;"
-                      preference="sendlater3_always_show_buttons"
-                      label="&buttons.label;" />
 	    <hbox align="center" tooltiptext="&showsendlatercolumn.tooltip;">
 	      <checkbox id="sendlater3-showcolumnpref"
                         preference="sendlater3_showcolumn"
