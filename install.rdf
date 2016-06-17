@@ -28,9 +28,23 @@
     <em:description>True “Send Later” functionality to schedule the time for sending an email.</em:description>
     <em:localized>
       <Description>
+	<em:locale>ca</em:locale>
+	<em:name>Send Later</em:name>
+	<em:description>"Enviar més tard" és la funció per programar quan vols fer l'enviament.</em:description>
+      </Description>
+    </em:localized>
+    <em:localized>
+      <Description>
 	<em:locale>de</em:locale>
 	<em:name>Später Senden</em:name>
 	<em:description>Eine echte “SendeSpäter” Funktionalität zur Planung der Sendezeit von Emails.</em:description>
+      </Description>
+    </em:localized>
+    <em:localized>
+      <Description>
+	<em:locale>el</em:locale>
+	<em:name>Send Later</em:name>
+	<em:description>True “Send Later” functionality to schedule the time for sending an email.</em:description>
       </Description>
     </em:localized>
     <em:localized>
@@ -45,6 +59,13 @@
 	<em:locale>es-ES</em:locale>
 	<em:name>Enviar Más Tarde</em:name>
 	<em:description>La verdadera funcionalidad de “Enviar Después” para programar el envío de tus emails.</em:description>
+      </Description>
+    </em:localized>
+    <em:localized>
+      <Description>
+	<em:locale>es-AR</em:locale>
+	<em:name>Send Later</em:name>
+	<em:description>“Enviar luego” funcionalidad para programar la hora de envío</em:description>
       </Description>
     </em:localized>
     <em:localized>

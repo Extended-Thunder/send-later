@@ -1,0 +1,13 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY sendlater.ask.title.label "Dóna suport a Send Later">
+<!ENTITY sendlater.ask.message1 "S'han anat moltes hores en el desenvolupament, manteniment i suport d'aquest complement.">
+<!ENTITY sendlater.ask.message2 "Si us plau, considereu fer una donació per donar suport al seu continu desenvolupament!">
+<!ENTITY sendlater.ask.message3 "Gràcies!">
+<!ENTITY sendlater.ask.donate.key "D">
+<!ENTITY sendlater.ask.donate.label "Donar ara">
+<!ENTITY sendlater.ask.remind.key "R">
+<!ENTITY sendlater.ask.remind.label "Recordeu-m'ho més tard">
+<!ENTITY sendlater.ask.already.key "J">
+<!ENTITY sendlater.ask.already.label "Ja he donat">
+<!ENTITY sendlater.ask.stop.key "D">
+<!ENTITY sendlater.ask.stop.label "Deixar de demanar-m'ho">
