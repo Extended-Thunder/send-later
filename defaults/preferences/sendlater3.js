@@ -37,3 +37,4 @@ pref("extensions.sendlater3.ask.quit",true);
 pref("extensions.sendlater3.relnotes","");
 pref("extensions.sendlater3.disabled_for_enigmail",false);
 pref("extensions.sendlater3.editor.first_use", true);
+pref("extensions.sendlater3.prompt.defaults", "");

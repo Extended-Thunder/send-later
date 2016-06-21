@@ -15,6 +15,8 @@
 <!ENTITY sendlater.prompt.textbox.emptytext "ex: “3:00pm Thursday”, “12/31/2012 15:27”">
 <!ENTITY sendlater.prompt.sendat.label "Send Later at time(s) specified above">
 <!ENTITY sendlater.prompt.sendat.tooltip "Save message in Drafts folder for automatic delivery at the time set above.">
+<!ENTITY sendlater.prompt.savedefaults "Save these values as the defaults">
+<!ENTITY sendlater.prompt.cleardefaults "Clear defaults">
 <!ENTITY sendlater.prompt.recur.label "Recur:">
 <!ENTITY sendlater.prompt.none.label "once">
 <!ENTITY sendlater.prompt.minutely.label "minutely">

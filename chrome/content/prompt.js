@@ -162,6 +162,7 @@ var Sendlater3Prompt = {
         window.removeEventListener("load", Sendlater3Prompt.SetOnLoad, false);
         SL3U.initUtil();
         Sendlater3Prompt.loaded = true;
+        document.getElementById("defaults-group").selectedIndex = -1;
         var picker = document.getElementById("recur-menu");
         var funclist = sl3uf.list();
         for (var i in funclist) {
@@ -211,7 +212,24 @@ var Sendlater3Prompt = {
 	    }
 	}
 
-	var prevRecurring = window.arguments[0].previouslyRecurring;
+	var prevXSendLater = window.arguments[0].previouslyTimed;
+
+        if (prevXSendLater) {
+	    var prevRecurring = window.arguments[0].previouslyRecurring;
+	    var prevArgs = window.arguments[0].previousArgs;
+            prevXSendLater = prevXSendLater.format(
+                "long", sendlater3SugarLocale());
+        }
+        else {
+            var defaultsJson = SL3U.getCharPref("prompt.defaults");
+            if (defaultsJson) {
+                var defaults = JSON.parse(defaultsJson);
+                prevXSendLater = defaults[0];
+                prevRecurring = defaults[1];
+                prevArgs = defaults[2];
+            }
+        }
+
 	Sendlater3Prompt.SetRecurring(prevRecurring);
 	if (prevRecurring) {
 	    var settings = SL3U.ParseRecurSpec(prevRecurring);
@@ -262,16 +280,14 @@ var Sendlater3Prompt = {
             }
 	}
 
-	var prevArgs = window.arguments[0].previousArgs;
         if (prevArgs) {
             document.getElementById("function-args").value =
                 sl3uf.unparseArgs(prevArgs);
         }
 
-	var prevXSendLater = window.arguments[0].previouslyTimed;
 	if (prevXSendLater) {
-	   document.getElementById("sendlater3-time-text").value =
-	       prevXSendLater.format("long", sendlater3SugarLocale());
+	    document.getElementById("sendlater3-time-text").value =
+                prevXSendLater;
 	    Sendlater3Prompt.updateSummary();
 	}
         Sendlater3Prompt.CheckRecurring();
@@ -515,6 +531,26 @@ var Sendlater3Prompt = {
 
     CallSendAt: function() {
         SL3U.Entering("Sendlater3Prompt.CallSendAt");
+        if (document.getElementById("save-defaults").selected) {
+            try {
+                var results = this.GetRecurStructure(new Date(), true);
+                var sendat;
+                if (results[1].type == "function")
+                    sendat = "";
+                else {
+                    sendat = document.getElementById("sendlater3-time-text").
+                        value;
+                }
+                var spec = SL3U.unparseRecurSpec(results[1]);
+                var args = document.getElementById("function-args").value;
+                args = eval("[" + args + "]");
+                SL3U.setCharPref("prompt.defaults", JSON.stringify(
+                    [sendat, spec, args]));
+            }
+            catch (ex) {}
+        }
+        else if (document.getElementById("clear-defaults").selected)
+            SL3U.setCharPref("prompt.defaults", "");
         var sendat, spec, args;
         var functionName = this.fullyFunctional();
         if (functionName) {
@@ -537,8 +573,8 @@ var Sendlater3Prompt = {
             }
             [sendat, spec] = Sendlater3Prompt.GetRecurStructure(sendat);
         }
-	window.arguments[0].finishCallback(
-            sendat, SL3U.unparseRecurSpec(spec), args);
+        spec = SL3U.unparseRecurSpec(spec);
+	window.arguments[0].finishCallback(sendat, spec, args);
         SL3U.Returning("Sendlater3Prompt.CallSendAt", true);
 	return true;
     },

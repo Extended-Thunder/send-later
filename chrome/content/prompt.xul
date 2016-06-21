@@ -163,6 +163,14 @@
         </hbox>
       </deck>
 
+      <hbox>
+        <separator width="20"/>
+        <radiogroup id="defaults-group" orient="horizontal">
+          <radio id="save-defaults" label="&sendlater.prompt.savedefaults;"/>
+          <radio id="clear-defaults" label="&sendlater.prompt.cleardefaults;"/>
+        </radiogroup>
+      </hbox>
+      
       <button id="sendlater3-callsendat" width="100%" flex="1" label="&sendlater.prompt.sendat.label;" tooltiptext="&sendlater.prompt.sendat.tooltip;" oncommand="Sendlater3Prompt.CallSendAt()&amp;&amp;close();"/>
       <hbox>
 	<button key="sendlater3-quickbutton1-key" id="sendlater3-shortcutbtn_1"
