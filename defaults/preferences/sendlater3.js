@@ -24,6 +24,9 @@ pref("extensions.sendlater3.show_outbox_alert",true);
 pref("extensions.sendlater3.show_sendnow_alert",true);
 pref("extensions.sendlater3.alt_binding",false);
 pref("extensions.sendlater3.send_while_offline",true);
+pref("extensions.sendlater3.enforce_restrictions", false);
+pref("extensions.sendlater3.block_late_messages", false);
+pref("extensions.sendlater3.late_grace_period", 5);
 // Internal settings not to be messed with
 pref("extensions.sendlater3.activescanner.uuid","");
 pref("extensions.sendlater3.activescanner.time",0);
@@ -33,7 +36,4 @@ pref("extensions.sendlater3.ask.sent", 0);
 pref("extensions.sendlater3.ask.quit",true);
 pref("extensions.sendlater3.relnotes","");
 pref("extensions.sendlater3.disabled_for_enigmail",false);
-pref("extensions.sendlater3.enforce_restrictions", false);
-pref("extensions.sendlater3.block_late_messages", false);
-pref("extensions.sendlater3.late_grace_period", 5);
 pref("extensions.sendlater3.editor.first_use", true);
