@@ -197,47 +197,67 @@ var Sendlater3Util = {
             Sendlater3Util.Returning("Sendlater3Util.ShortcutClosure", func);
             return func;
         }
-        else if (raw.match(/^ufunc:\w+$/)) {
-            if (! sl3uf.exists(raw.slice(6))) {
+        var match = /^(.*\S)\s*\((.*)\)[\s;]*$/.exec(raw);
+        var namepart;
+        var args = null;
+        if (match) {
+            namepart = match[1];
+            args = match[2];
+            try {
+                args = eval("[" + args + "]");
+            }
+            catch (ex) {
+                SL3U.warn("Invalid setting for quick option " + num +
+                          ": invalid argument list in \"" + raw + "\"");
+                return;
+            }
+        }
+        else {
+            namepart = raw;
+        }
+        if (namepart.match(/^ufunc:\w+$/)) {
+            if (! sl3uf.exists(namepart.slice(6))) {
                 Sendlater3Util.warn("Invalid setting for quick option " + num +
-                                    ": function \"" + raw +
+                                    ": function \"" + namepart +
                                     "\" does not exist");
                 return; // undefined;
             }
             return function() {
-                return sl3uf.callByName(raw.slice(6));
+                return sl3uf.callByName(namepart.slice(6), null, args);
             };
         }
-        else if (raw.match(/^[A-Za-z_$][A-Za-z0-9_$]*$/)) {
-            var func = window[raw];
+        else if (namepart.match(/^[A-Za-z_$][A-Za-z0-9_$]*$/)) {
+            var func = window[namepart];
             if (typeof(func) == "undefined") {
                 Sendlater3Util.warn("Invalid setting for quick option " + num +
-                                    ": function \"" + raw +
+                                    ": function \"" + namepart +
                                     "\" is not defined");
                 return; // undefined
             }
             else if (typeof(func) != "function") {
                 Sendlater3Util.warn("Invalid setting for quick option " + num +
-                                    ": \"" + raw + "\" is not a function");
+                                    ": \"" + namepart + "\" is not a function");
                 return; // undefined
             }
             if (validate) {
-                var v = func();
+                var v = func(null, args);
                 if ((typeof(v) != "number") &&
                     ! (v && v.splice && v.length &&
                        typeof(v[0]) == "number")) {
                     Sendlater3Util.warn("Invalid setting for quick option " +
-                                        num + ": \"" + raw +
+                                        num + ": \"" + namepart +
                                         "()\" does not return a number");
                     return; // undefined
                 }
             }
             Sendlater3Util.Returning("Sendlater3Util.ShortcutClosure", func);
-            return func;
+            return function() {
+                return func(null, args);
+            };
         }
         Sendlater3Util.warn("Invalid setting for quick option " + num + ": \"" +
-                            raw + "\" is neither a number nor a function " +
-                            "that returns a number");
+                            namepart + "\" is neither a number nor a " +
+                            "function that returns a number");
         return; // undefined
     },
 
