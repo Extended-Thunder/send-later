@@ -7,34 +7,34 @@ var Sendlater3Prompt = {
         document.getElementById("sendlater3-recur-between-checkbox").
             checked = true;
         return;
-        // I wish it made sense to do the following, but it doesn't because the
-        // timepicker is crap. Maybe some day.
-        var startPicker = document.
-            getElementById("sendlater3-recur-between-start");
-        var endPicker = document.getElementById("sendlater3-recur-between-end");
-        var startTime = startPicker.hour * 100 + startPicker.minute;
-        var endTime = endPicker.hour * 100 + endPicker.minute;
-        if (endTime < startTime) {
-            endPicker.hour = startPicker.hour;
-            endPicker.minute = startPicker.minute;
-        }
+        // // I wish it made sense to do the following, but it doesn't because the
+        // // timepicker is crap. Maybe some day.
+        // var startPicker = document.
+        //     getElementById("sendlater3-recur-between-start");
+        // var endPicker = document.getElementById("sendlater3-recur-between-end");
+        // var startTime = startPicker.hour * 100 + startPicker.minute;
+        // var endTime = endPicker.hour * 100 + endPicker.minute;
+        // if (endTime < startTime) {
+        //     endPicker.hour = startPicker.hour;
+        //     endPicker.minute = startPicker.minute;
+        // }
     },
 
     BetweenEndUpdate: function() {
         document.getElementById("sendlater3-recur-between-checkbox").
             checked = true;
         return;
-        // I wish it made sense to do the following, but it doesn't because the
-        // timepicker is crap. Maybe some day.
-        var startPicker = document.
-            getElementById("sendlater3-recur-between-start");
-        var endPicker = document.getElementById("sendlater3-recur-between-end");
-        var startTime = startPicker.hour * 100 + startPicker.minute;
-        var endTime = endPicker.hour * 100 + endPicker.minute;
-        if (endTime < startTime) {
-            startPicker.hour = endPicker.hour;
-            startPicker.minute = endPicker.minute;
-        }
+        // // I wish it made sense to do the following, but it doesn't because the
+        // // timepicker is crap. Maybe some day.
+        // var startPicker = document.
+        //     getElementById("sendlater3-recur-between-start");
+        // var endPicker = document.getElementById("sendlater3-recur-between-end");
+        // var startTime = startPicker.hour * 100 + startPicker.minute;
+        // var endTime = endPicker.hour * 100 + endPicker.minute;
+        // if (endTime < startTime) {
+        //     startPicker.hour = endPicker.hour;
+        //     startPicker.minute = endPicker.minute;
+        // }
     },        
 
     DayUpdate: function() {
