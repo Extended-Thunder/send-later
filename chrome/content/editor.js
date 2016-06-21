@@ -20,7 +20,7 @@ sl3e = {
             if (! sl3uf.exists("BusinessHours"))
                 sl3uf.save("BusinessHours",
                            SL3U.PromptBundleGet("BusinessHoursHelp"),
-                           SL3U.PromptBundleGet("BusinessHoursCode"));
+                           SL3U.PromptBundleGet("_BusinessHoursCode"));
             if (! sl3uf.exists("DaysInARow"))
                 sl3uf.save("DaysInARow",
                            SL3U.PromptBundleGet("DaysInARowHelp"),

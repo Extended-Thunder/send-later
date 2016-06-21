@@ -52,18 +52,19 @@ exit($errors);
 
 sub check_dtd {
     my($locale, $file) = @_;
-    &check_generic($locale, $file, qr/^<!ENTITY\s+(\S+)/, qr/\&(?!quot)(?!;)/);
+    &check_generic($locale, $file, qr/^<!ENTITY\s+(\S+)/, qr/\&(?!quot)(?!;)/,
+                   qr/^<!--/);
 }
 
 sub check_properties {
     my($locale, $file) = @_;
-    &check_generic($locale, $file, qr/^([^=]+)=/, qr/\&(?!quot)(?!;)/);
+    &check_generic($locale, $file, qr/^([^=]+)=/, qr/^[^_].*\&(?!quot)(?!;)/);
 }
 
 my(%replaced);
 
 sub check_generic {
-    my($locale, $file, $pattern, $error_pattern) = @_;
+    my($locale, $file, $pattern, $error_pattern, $ignore_pattern) = @_;
     my(@keys, %strings);
     foreach my $ancestor ($locale, @{$inheritance_chains{$locale}}, $master) {
         my $fname = "$locale_dir/$ancestor/$file";
@@ -76,6 +77,7 @@ sub check_generic {
         while (<MASTER>) {
             next if (/^$/);
             next if (/-\*-.*-\*-/);
+            next if ($ignore_pattern && /$ignore_pattern/);
             if (! /$pattern/) {
                 &error("Unrecognized line $. of $ancestor/$file: $_");
                 next;

@@ -120,9 +120,6 @@ if (%convert) {
     print "things that shouldn't have changed, e.g., if you have preference\n";
     print "names that are the same as ids.\n";
 }
-else {
-    print "\nNothing to translate!\n";
-}
 
 if ($save_ignored && $ignore_changed) {
     open(NEW, ">", "$ignore_file.new") or die;
@@ -137,6 +134,8 @@ sub scan_xul {
     local($_);
 
     return if ($xul_file !~ /\.xul$/i);
+    # Windows that belong to us don't have to use fully qualified identifiers.
+    return if ($xul_file =~ m,/(?:editor|prompt)\.xul$,i);
     if ($scan_stopped) {
 	$File::Find::prune = 1;
 	return;
