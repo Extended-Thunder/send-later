@@ -1088,7 +1088,7 @@ var Sendlater3Backgrounding = function() {
             // 5. Some time later, the user clicks the little red X to
             //    close the window.
             // 6. Because the user clicked the little red X instead of
-            //    executing File | Quit, quiteRequestedObserver is
+            //    executing File | Quit, quitRequestedObserver is
             //    _not_ called.
             // 7. quitObserver is called.
             // 8. quitRequested is true from earlier, so quiteObserver
