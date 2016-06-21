@@ -98,6 +98,7 @@ var Sendlater3Composing = {
 	    SL3U.Entering("Sendlater3Composing.main.CheckforXSendLater");
 	    Sendlater3Composing.prevXSendLater = false;
 	    Sendlater3Composing.prevRecurring = false;
+	    Sendlater3Composing.prevArgs = null;
 	    if (gMsgCompose != null) {
 		var msgCompFields = gMsgCompose.compFields;
 		if (msgCompFields && msgCompFields.draftId!="") {
@@ -125,10 +126,16 @@ var Sendlater3Composing = {
 		    if (hdr)
 			Sendlater3Composing.prevRecurring = hdr;
 			
+		    hdr = messageHDR.getStringProperty("x-send-later-args");
+		    if (hdr)
+			Sendlater3Composing.prevArgs = JSON.parse(hdr);
+			
 		    SL3U.dump("prevXSendLater= " +
 			      Sendlater3Composing.prevXSendLater +
 			      ", prevRecurring=" +
-			      Sendlater3Composing.prevRecurring);
+			      Sendlater3Composing.prevRecurring +
+                              ", prevArgs=" +
+                              Sendlater3Composing.prevArgs);
 		}
 	    }
 	    SL3U.PrefService.addObserver(SL3U.pref("alt_binding"),
@@ -198,6 +205,7 @@ var Sendlater3Composing = {
                     allowDefault: false,
                     previouslyTimed: Sendlater3Composing.prevXSendLater,
                     previouslyRecurring: Sendlater3Composing.prevRecurring,
+                    previousArgs: Sendlater3Composing.prevArgs
                 };
                 if (later) {
                     args.continueCallback = function() {
@@ -323,6 +331,7 @@ var Sendlater3Composing = {
 
     prevXSendLater: false,
     prevRecurring: false,
+    prevArgs: null,
 
     PrepMessage: function(sendat, recur, args) {
 	var msgcomposeWindow = document.getElementById("msgcomposeWindow");

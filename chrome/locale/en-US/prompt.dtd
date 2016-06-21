@@ -16,12 +16,15 @@
 <!ENTITY sendlater.prompt.sendat.label "Send Later at time(s) specified above">
 <!ENTITY sendlater.prompt.sendat.tooltip "Save message in Drafts folder for automatic delivery at the time set above.">
 <!ENTITY sendlater.prompt.recur.label "Recur:">
-<!ENTITY sendlater.prompt.none.label "none">
+<!ENTITY sendlater.prompt.none.label "once">
 <!ENTITY sendlater.prompt.minutely.label "minutely">
 <!ENTITY sendlater.prompt.daily.label "daily">
 <!ENTITY sendlater.prompt.weekly.label "weekly">
 <!ENTITY sendlater.prompt.monthly.label "monthly">
 <!ENTITY sendlater.prompt.yearly.label "yearly">
+<!ENTITY sendlater.prompt.function.label "function:">
+<!ENTITY sendlater.prompt.functionargs.label "Function arguments:">
+<!ENTITY sendlater.prompt.calculate.label "Calculate">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Send Later">
 <!ENTITY sendlater.toolbar.textbox.emptytext "send time">
 <!ENTITY sendlater.prompt.every.label "Every">

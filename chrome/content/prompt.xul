@@ -61,22 +61,38 @@
 	  </row>
 	</rows>
       </grid>
-      <hbox align="center">
-	<description flex="1"></description>
-	<label valign="center" value="&sendlater.prompt.recur.label;"/>
-	<radiogroup id="sendlater3-recur-group" valign="center" orient="horizontal"
-		    onselect="Sendlater3Prompt.CheckRecurring();">
-	  <radio id="sendlater3-recur-none" label="&sendlater.prompt.none.label;"
-		 selected="true"/>
-	  <radio id="sendlater3-recur-minutely" label="&sendlater.prompt.minutely.label;"/>
-	  <radio id="sendlater3-recur-daily" label="&sendlater.prompt.daily.label;"/>
-	  <radio id="sendlater3-recur-weekly" label="&sendlater.prompt.weekly.label;"/>
-	  <radio id="sendlater3-recur-monthly" label="&sendlater.prompt.monthly.label;"/>
-	  <radio id="sendlater3-recur-yearly" label="&sendlater.prompt.yearly.label;"/>
-	</radiogroup>
-	<description flex="1"></description>
+      <hbox align="beginning">
+        <label valign="center" value="&sendlater.prompt.recur.label;"/>
+        <radiogroup id="sendlater3-recur-group" valign="center"
+                    orient="vertical"
+                    onselect="Sendlater3Prompt.CheckRecurring();">
+          <hbox>
+            <radio id="sendlater3-recur-none"
+                   label="&sendlater.prompt.none.label;"
+                   selected="true"/>
+            <radio id="sendlater3-recur-minutely"
+                   label="&sendlater.prompt.minutely.label;"/>
+            <radio id="sendlater3-recur-daily"
+                   label="&sendlater.prompt.daily.label;"/>
+            <radio id="sendlater3-recur-weekly"
+                   label="&sendlater.prompt.weekly.label;"/>
+            <radio id="sendlater3-recur-monthly"
+                   label="&sendlater.prompt.monthly.label;"/>
+            <radio id="sendlater3-recur-yearly"
+                   label="&sendlater.prompt.yearly.label;"/>
+          </hbox>
+          <hbox align="center">
+            <radio id="sendlater3-recur-function"
+                   label="&sendlater.prompt.function.label;"/>
+            <menulist id="recur-menu"
+                      oncommand="Sendlater3Prompt.onMenuChange();">
+              <menupopup/>
+            </menulist>
+            <image id="recur-menu-help" hidden="true"
+                   src="chrome://mozapps/skin/plugins/pluginHelp-16.png"/>
+          </hbox>
+        </radiogroup>
       </hbox>
-
       <deck id="sendlater3-recur-every-deck">
         <hbox>
           <separator width="20"/>
@@ -135,6 +151,13 @@
                           label="&sendlater.prompt.day3;"
                           oncommand="Sendlater3Prompt.DayUpdate();"/>
               </vbox>
+            </hbox>
+            <hbox align="center" width="100%">
+              <label value="&sendlater.prompt.functionargs.label;"/>
+              <textbox id="function-args" disabled="true" flex="1"/>
+              <button id="calculate" disabled="true"
+                      label="&sendlater.prompt.calculate.label;"
+                      oncommand="Sendlater3Prompt.onCalculate();"/>
             </hbox>
           </vbox>
         </hbox>

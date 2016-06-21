@@ -349,6 +349,80 @@ var Sendlater3Util = {
         }
     },
 
+    // Format:
+    //
+    // First field is none/minutely/daily/weekly/monthly/yearly/function
+    //
+    // If first field is monthly, then it is followed by either one or
+    // two numbers. If one, then it's a single number for the day of
+    // the month; otherwise, it's the day of the week followed by its
+    // place within the month, e.g., "1 3" means the third Monday of
+    // each month.
+    //
+    // If the first field is yearly, then the second and third fields
+    // are the month (0-11) and date numbers for the yearly occurrence.
+    //
+    // After all of the above except function, "/ #" indicates a skip
+    // value, e.g., "/ 2" means every 2, "/ 3" means every 3, etc. For
+    // example, "daily / 3" means every 3 days, while "monthly 2 2 /
+    // 2" means every other month on the second Tuesday of the month.
+    //
+    // If the first field is function, then the second field is the
+    // name of a global function which will be called with one
+    // argument, the previous scheduled send time (as a Date
+    // object). It has three legal return values:
+    //
+    //   -1 - stop recurring, i.e., don't schedule any later instances
+    //     of this message
+    //
+    //   integer 0 or greater - schedule this message the specified
+    //     number of minutes into the future, then stop recurring
+    //
+    //   array [integer 0 or greater, recur-spec] - schedule this
+    //     message the specified number of minutes into the future,
+    //     with the specified recurrence specification for instances
+    //     after this one
+    //
+    // The other fields can be followed by " between YYMM YYMM" to indicate a
+    // time restriction or " on # ..." to indicate a day restriction.
+
+    unparseRecurSpec: function(parsed) {
+        if (parsed.type == "none")
+            return null;
+
+        var spec = "";
+        spec += parsed.type;
+
+        if (parsed.type == "monthly") {
+            if (parsed.monthly_day) {
+                spec += " " + parsed.monthly_day.day + " " +
+                    parsed.monthly_day.week;
+            }
+            else {
+                spec += parsed.monthly;
+            }
+        }
+        else if (parsed.type == "yearly") {
+            spec += " " + parsed.yearly.month + " " + parsed.yearly.date;
+        }
+        else if (parsed.type == "function") {
+            spec += " " + parsed.function;
+        }
+
+        if (parsed.multiplier)
+            spec += " / " + parsed.multiplier;
+
+        if (parsed.between) {
+            spec += " between " + SL3U.zeroPad(parsed.between.start, 3) + " " +
+                SL3U.zeroPad(parsed.between.end, 3);
+        }
+
+        if (parsed.days)
+            spec += " on " + parsed.days.join(' ');
+
+        return spec;
+    },
+        
     ParseRecurSpec: function(spec) {
         var params = spec.split(/\s+/);
         var parsed = {};
@@ -390,8 +464,6 @@ var Sendlater3Util = {
                 throw "Invalid yearly date argument in " + spec;
         }
         if (parsed.type == "function") {
-            if (params.length != 1)
-                throw "Invalid function recurrence spec " + spec;
             parsed.function = params.shift();
         }
         else {
@@ -403,30 +475,31 @@ var Sendlater3Util = {
                 parsed.multiplier = multiplier;
                 params.splice(slashIndex, slashIndex + 2);
             }
-            var betweenIndex = params.indexOf("between");
-            if (betweenIndex > -1) {
-                var startTime = params[betweenIndex + 1];
-                if (! /^\d{3,4}$/.test(startTime))
-                    throw "Invalid between start in " + spec;
-                var endTime = params[betweenIndex + 2];
-                if (! /^\d{3,4}$/.test(endTime))
-                    throw "Invalid between end in " + spec;
-                parsed.between = {start: startTime, end: endTime};
-                params.splice(betweenIndex, betweenIndex + 3);
+        }
+        
+        var betweenIndex = params.indexOf("between");
+        if (betweenIndex > -1) {
+            var startTime = params[betweenIndex + 1];
+            if (! /^\d{3,4}$/.test(startTime))
+                throw "Invalid between start in " + spec;
+            var endTime = params[betweenIndex + 2];
+            if (! /^\d{3,4}$/.test(endTime))
+                throw "Invalid between end in " + spec;
+            parsed.between = {start: startTime, end: endTime};
+            params.splice(betweenIndex, betweenIndex + 3);
+        }
+        var onIndex = params.indexOf("on");
+        if (onIndex > -1) {
+            parsed.days = [];
+            params.splice(onIndex, onIndex + 1);
+            while (/^\d$/.test(params[onIndex])) {
+                var day = params.splice(onIndex, onIndex + 1)[0];
+                if (day > 6)
+                    throw "Bad restriction day in " + spec;
+                parsed.days.push(Number(day));
             }
-            var onIndex = params.indexOf("on");
-            if (onIndex > -1) {
-                parsed.days = [];
-                params.splice(onIndex, onIndex + 1);
-                while (/^\d$/.test(params[onIndex])) {
-                    var day = params.splice(onIndex, onIndex + 1)[0];
-                    if (day > 6)
-                        throw "Bad restriction day in " + spec;
-                    parsed.days.push(Number(day));
-                }
-                if (! parsed.days.length)
-                    throw "Day restriction with no days";
-            }
+            if (! parsed.days.length)
+                throw "Day restriction with no days";
         }
         if (params.length)
             throw "Extra arguments in " + spec;
@@ -769,6 +842,17 @@ var Sendlater3Util = {
             next.setTime(next.getTime()+nextRecur[0]*60*1000);
             nextRecur[0] = next;
         }
+
+        if (nextRecur[1]) {
+            // Merge restrictions from old spec into this one.
+            var functionSpec = SL3U.ParseRecurSpec(nextRecur[1]);
+            if (recur.between)
+                functionSpec.between = recur.between;
+            if (recur.days)
+                functionSpec.days = recur.days;
+            nextRecur[1] = SL3U.unparseRecurSpec(functionSpec);
+        }
+
         return nextRecur;
     },
 
@@ -778,8 +862,14 @@ var Sendlater3Util = {
         next = new Date(next.getTime());
         var recur = SL3U.ParseRecurSpec(recurSpec);
 
-        if (recur.type == "function")
-            return SL3U.NextRecurFunction(next, recurSpec, recur, args);
+        if (recur.type == "function") {
+            var results = SL3U.NextRecurFunction(next, recurSpec, recur, args);
+            if (results && results[0] && (recur.between || recur.days))
+                results[0] = SL3U.AdjustDateForRestrictions(
+                    results[0], recur.between && recur.between.start,
+                    recur.between && recur.between.end, recur.days);
+            return results;
+        }
 
         if (! now)
             now = new Date();
@@ -869,19 +959,20 @@ var Sendlater3Util = {
     FormatRecur: function(recurSpec) {
         var recur = SL3U.ParseRecurSpec(recurSpec);
 
-        if (recur.type == "function")
-            return recur.type;
-
-        if (! recur.multiplier)
-            recur.multiplier = 1;
-
         var str = "";
 
-        if (recur.multiplier == 1)
-            str = SL3U.PromptBundleGet(recur.type);
-        else
-            str = SL3U.PromptBundleGetFormatted("every_"+recur.type,
-                                                [recur.multiplier]);
+        if (recur.type == "function")
+            str = "function " + recur.function.replace(/^ufunc:/, "");
+        else {
+            if (! recur.multiplier)
+                recur.multiplier = 1;
+
+            if (recur.multiplier == 1)
+                str = SL3U.PromptBundleGet(recur.type);
+            else
+                str = SL3U.PromptBundleGetFormatted("every_"+recur.type,
+                                                    [recur.multiplier]);
+        }
 
         if (recur.monthly_day)
             str += ", " + SL3U.PromptBundleGetFormatted(
