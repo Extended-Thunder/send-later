@@ -229,7 +229,7 @@ sl3e = {
             if (nextargs && ! nextargs.splice)
                 throw new Error(SL3U.PromptBundleGetFormatted(
                     "BadNextArgsError", [nextargs]));
-            window.tested = true;
+            this.tested = true;
             results = String([next, nextspec, nextargs]);
         } catch (ex) {
             resultsBox.value = "Error: " + ex;
