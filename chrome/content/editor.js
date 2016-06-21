@@ -150,13 +150,7 @@ sl3e = {
 
     argumentsOk: function() {
         var field = document.getElementById("test-arguments");
-        var valid = ! field.value;
-        if (! valid) {
-            try {
-                eval("[" + field.value + "]");
-                valid = true;
-            } catch (ex) {}
-        }
+        var valid = sl3uf.argsOk(field.value);
         if (valid)
             field.removeAttribute("style");
         else
@@ -246,7 +240,7 @@ sl3e = {
             timeBox.value = sendlater3DateToSugarDate(next)
                 .format("long", sendlater3SugarLocale());
             if (nextargs)
-                argBox.value = String(nextargs);
+                argBox.value = sl3uf.unparseArgs(nextargs);
             else
                 argBox.value = "";
         }

@@ -118,6 +118,36 @@ sl3uf = {
         }
     },
 
+    argsOk: function(argstring) {
+        try {
+            var args = eval("[" + argstring + "]");
+            this.unparseArgs(args);
+            return true;
+        }
+        catch (ex) {
+            return false;
+        }
+    },
+
+    unparseArgs: function(args) {
+        if (! args)
+            return "";
+        argstring = "";
+        for (var i in args) {
+            val = args[i];
+            if (val && val.splice)
+                argstring += "[" + this.unparseArgs(val) + "],";
+            else if (typeof(val) == "number")
+                argstring += val + ",";
+            else if (typeof(val) == "string")
+                argstring += '"' + val.replace(/(["\\])/g, "\\$1") + '",';
+            else
+                throw new Error("Function arguments can only contain " +
+                                "arrays, numbers, and strings.");
+        }
+        return argstring.slice(0,-1);
+    },
+
     directory: function() {
         // Returns an nsIFile for the ufuncs storage directory
         var directoryService =
