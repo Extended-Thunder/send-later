@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://sendlater3/locale/editor.dtd">
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+        title="&windowtitle;" onclose="return sl3e.onClose(true);">
+  <stringbundleset id="sendlater3-strbundles">
+    <stringbundle id="sendlater3-promptstrings" src="chrome://sendlater3/locale/prompt.properties"/>
+  </stringbundleset>
+  <script src="util.js"/>
+  <script src="editor.js"/>
+  <keyset>
+    <key id="close-key" modifiers="accel" key="&closekey;"
+         oncommand="sl3e.onClose();"/>
+  </keyset>
+  <hbox align="center">
+    <hbox align="center" tooltiptext="&selectfunctiontip;">
+      <label value="&selectfunction;"/>
+      <menulist id="function-picker" value="" oncommand="sl3e.onPickerChange();">
+        <menupopup id="function-picker-popup">
+          <menuitem id="function-picker-new" label="&createnewfunction;"
+                    value="(new)"/>
+        </menupopup>
+      </menulist>
+    </hbox>
+    <description flex="1"/>
+    <button id="delete" label="&deletefunctionbutton;" accesskey="&deletekey;"
+            oncommand="sl3e.onDelete();"/>
+  </hbox>
+  <hbox align="center" tooltiptext="&functionnametip;">
+    <label value="function"/>
+    <textbox id="function-name" onchange="sl3e.onNameChange();"
+             placeholder="&functionnameplaceholder;"/>
+    <label value="(specname, prev, args) {"/>
+  </hbox>
+  <hbox>
+    <description width="10"/>
+    <vbox tooltiptext="&codetip;">
+      <label value="var next, nextspec, nextargs;"/>
+      <textbox id="code" class="monospace" multiline="true"
+               placeholder="&codeplaceholder;" rows="25" cols="80" wrap="off"
+               onchange="sl3e.onCodeChange(event);"/>
+      <label value="return([next, nextspec, nextargs]);"/>
+    </vbox>
+  </hbox>
+  <label value="}"/>
+  <vbox tooltiptext="&helptexttip;">
+    <label value="&helptextheader;"/>
+    <textbox id="help-text" multiline="true" rows="5" cols="80"
+             onchange="sl3e.onHelpChange();"
+             placeholder="&helptextplaceholder;"/>
+  </vbox>
+  <hbox align="beginning" width="100%">
+    <hbox align="center">
+      <button id="run-test" label="&runbutton;" oncommand="sl3e.onRunButton();"
+              disabled="true" accesskey="&runkey;"/>
+    </hbox>
+    <vbox flex="1">
+      <hbox align="center" tooltiptext="&inputtimetip;">
+        <label value="&inputtime;"/>
+        <textbox id="test-time" flex="1" onchange="sl3e.onTimeChange();"
+                 placeholder="&inputtimeplaceholder;"/>
+      </hbox>
+      <hbox align="center" tooltiptext="&inputargstip;">
+        <label value="&inputargs;"/>
+        <textbox id="test-arguments" flex="1"
+                 onchange="sl3e.onArgumentsChange()"
+                 placeholder="&inputargsplaceholder;"/>
+      </hbox>
+      <hbox align="center">
+        <label value="&output;"/>
+        <textbox id="test-results" disabled="true" flex="1"/>
+      </hbox>
+    </vbox>
+  </hbox>
+  <hbox width="100%">
+    <button id="import" label="&importbutton;" oncommand="sl3e.onImport();"
+            tooltiptext="&importtip;" accesskey="&importkey;"/>
+    <button id="export" label="&exportbutton;" oncommand="sl3e.onExport();"
+            tooltiptext="&exporttip;" accesskey="&exportkey;"/>
+    <description flex="1"/>
+    <button id="reset" label="&resetbutton;" oncommand="sl3e.onDiscard();"
+            accesskey="&resetkey;"/>
+    <button id="save" label="&savebutton;" oncommand="sl3e.onSave();"
+            accesskey="&savekey;"/>
+    <description flex="1"/>
+    <button id="close" label="&closebutton;" oncommand="sl3e.onClose();"
+            accesskey="&closekey;"/>
+  </hbox>
+</window>

@@ -36,3 +36,5 @@
 <!ENTITY blocklatemessages.tooltip "Don't deliver scheduled messages that have been delayed past their scheduled time, e.g., because Thunderbird wasn't running at that time.">
 <!ENTITY blocklatemessages.label1 "Don't deliver messages more than">
 <!ENTITY blocklatemessages.label2 "minutes late">
+<!ENTITY editorbutton "Open dynamic function editor...">
+<!ENTITY editortip "Open a window for creating and editing JavaScript functions implementing complex scheduling logic.">

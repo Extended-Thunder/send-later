@@ -241,6 +241,8 @@
 		</menupopup>
 	      </menulist>
 	    </hbox>
+            <button label="&editorbutton;" tooltiptext="&editortip;"
+                    oncommand="Sendlater3Options.funcEditor();"/>
 	  </vbox>
 	</tabpanel>
       </tabpanels>

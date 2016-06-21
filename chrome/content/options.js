@@ -24,6 +24,11 @@ var Sendlater3Options = {
 
     EnableLateBlock: function() {
         SL3U.setBoolPref("block_late_messages", true);
+    },
+
+    funcEditor: function() {
+        window.open("chrome://sendlater3/content/editor.xul",
+                    "SendLaterFunctionEditor", "chrome");
     }
 };
 
