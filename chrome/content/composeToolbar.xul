@@ -18,7 +18,7 @@
 
   <toolbarpalette id="MsgComposeToolbarPalette">
     <toolbarbutton id="sendlater3-toolbarbutton" orient="horizontal"
-		   image="chrome://sendlater3/content/sendlater3icon20.png"
+		   image="chrome://sendlater3/content/toolbarButton.png"
 		   label="&sendlater.toolbar.sendlater.button.label;"
 		   sl3label="&sendlater.toolbar.sendlater.button.label;" 
 		   oncommand="Sendlater3ComposeToolbar.CallSendAt();"  />

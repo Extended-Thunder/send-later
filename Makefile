@@ -6,8 +6,8 @@ manifest: $(shell find . -type f \! -name manifest \! -name '*.xpi' -print)
 	find . \( \( -name '.??*' -o -name '*~' -o -name '.\#*' \
 		-o -name '*,v' -o -name Makefile -o -name '*.xpi' \
 		-o -name '\#*' -o -name '*.pl' -o -name core \
-		-o -name '*.tmp' -o -name 'manifest' \) -prune \) -o -type f -print >\
-	    $@.tmp
+		-o -name '*.tmp' -o -name 'manifest' -o -name src \) -prune \) \
+                -o -type f -print > $@.tmp
 	mv $@.tmp $@
 
 send_later.xpi: check-locales.pl Makefile manifest
