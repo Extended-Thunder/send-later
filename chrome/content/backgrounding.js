@@ -837,9 +837,6 @@ var Sendlater3Backgrounding = function() {
 		    SL3U.dump(MessagesPending + " messages still pending");
 		    break;
 		}
-                SL3U.warn("Dorkle diff=" + ((new Date() - new Date(h_at)) / 1000 / 60));
-                SL3U.warn("Dorkle late_grace_period=" + SL3U.getIntPref("late_grace_period"));
-                SL3U.warn("Dorkle block_late_messages=" + SL3U.getBoolPref("block_late_messages"));
                 if ((new Date() - new Date(h_at)) / 1000 / 60 >
                     SL3U.getIntPref("late_grace_period") &&
                     SL3U.getBoolPref("block_late_messages")) {
