@@ -1,9 +1,6 @@
 Components.utils.import("resource://sendlater3/ufuncs.jsm");
 Components.utils.import("resource://sendlater3/dateparse.jsm");
 
-const Cc = Components.classes, Ci = Components.interfaces;
-const nsIFilePicker = Ci.nsIFilePicker;
-
 sl3e = {
     dirty: false,
     tested: true,
@@ -261,8 +258,9 @@ sl3e = {
         if (newSelected == this.selectedIndex)
             return;
         if (this.dirty) {
-            var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"].
-                getService(Ci.nsIPromptService);
+            var prompts = Components.classes[
+                "@mozilla.org/embedcomp/prompt-service;1"].
+                getService(Components.interfaces.nsIPromptService);
             var discard = prompts.confirm(
                 window,
                 SL3U.PromptBundleGet("DiscardConfirmTitle"),
@@ -306,8 +304,9 @@ sl3e = {
     },
 
     onDelete: function() {
-        var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"].
-            getService(Ci.nsIPromptService);
+        var prompts = Components.classes[
+            "@mozilla.org/embedcomp/prompt-service;1"].
+            getService(Components.interfaces.nsIPromptService);
         var do_delete = prompts.confirm(
             window, SL3U.PromptBundleGet("AreYouSure"),
             SL3U.PromptBundleGet("FunctionDeleteConfirmBody"));
@@ -320,8 +319,9 @@ sl3e = {
 
     onImport: function() {
         if (this.dirty) {
-            var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"].
-                getService(Ci.nsIPromptService);
+            var prompts = Components.classes[
+                "@mozilla.org/embedcomp/prompt-service;1"].
+                getService(Components.interfaces.nsIPromptService);
             var discard = prompts.confirm(
                 window,
                 SL3U.PromptBundleGet("DiscardConfirmTitle"),
@@ -329,7 +329,9 @@ sl3e = {
             if (! discard)
                 return;
         }
-        var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
+        var nsIFilePicker = Components.interfaces.nsIFilePicker;
+        var fp = Components.classes["@mozilla.org/filepicker;1"].
+            createInstance(nsIFilePicker);
         fp.init(window, SL3U.PromptBundleGet("ImportTitle"),
                 nsIFilePicker.modeOpen);
         fp.appendFilter(SL3U.PromptBundleGet("SLJFilterLabel"), "*.slj");
@@ -367,8 +369,9 @@ sl3e = {
             return;
         }
         if (! this.tested) {
-            var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"].
-                getService(Ci.nsIPromptService);
+            var prompts = Components.classes[
+                "@mozilla.org/embedcomp/prompt-service;1"].
+                getService(Components.interfaces.nsIPromptService);
             var proceed = prompts.confirm(
                 window,
                 SL3U.PromptBundleGet("UntestedSaveTitle"),
@@ -376,7 +379,9 @@ sl3e = {
             if (! proceed)
                 return;
         }
-        var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
+        var nsIFilePicker = Components.interfaces.nsIFilePicker;
+        var fp = Components.classes["@mozilla.org/filepicker;1"].
+            createInstance(nsIFilePicker);
         fp.init(window, SL3U.PromptBundleGet("ExportTitle"),
                 nsIFilePicker.modeSave);
         fp.appendFilter(SL3U.PromptBundleGet("SLJFilterLabel"), "*.slj");
@@ -399,8 +404,9 @@ sl3e = {
                        SL3U.PromptBundleGet("BadSaveBody"));
             return;
         }
-        var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"].
-            getService(Ci.nsIPromptService);
+        var prompts = Components.classes[
+            "@mozilla.org/embedcomp/prompt-service;1"].
+            getService(Components.interfaces.nsIPromptService);
         if (! this.tested) {
             var proceed = prompts.confirm(
                 window,
@@ -463,8 +469,9 @@ sl3e = {
     },
 
     onDiscard: function() {
-        var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"].
-            getService(Ci.nsIPromptService);
+        var prompts = Components.classes[
+            "@mozilla.org/embedcomp/prompt-service;1"].
+            getService(Components.interfaces.nsIPromptService);
         var proceed = prompts.confirm(
             window,
             SL3U.PromptBundleGet("DiscardConfirmTitle"),
@@ -478,8 +485,9 @@ sl3e = {
 
     onClose: function(is_event) {
         if (this.dirty) {
-            var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"].
-                getService(Ci.nsIPromptService);
+            var prompts = Components.classes[
+                "@mozilla.org/embedcomp/prompt-service;1"].
+                getService(Components.interfaces.nsIPromptService);
             var proceed = prompts.confirm(
                 window,
                 SL3U.PromptBundleGet("DiscardConfirmTitle"),
