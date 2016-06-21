@@ -959,10 +959,7 @@ var Sendlater3Util = {
     AdjustDateForRestrictions: function(dt, start_time, end_time, days) {
         // 1)
         dt = new Date(dt);
-        if (days) {
-            days = days.slice();
-        }
-        else {
+        if (! days) {
             days = [];
         }
         var scheduled_time = dt.getHours() * 100 + dt.getMinutes();
@@ -979,10 +976,19 @@ var Sendlater3Util = {
         }
         // 4)
         if (days.length && days.indexOf(dt.getDay()) == -1) {
-            days.sort();
-            var want_day = days[days.indexOf(dt.getDay())+1];
+            var current_day = dt.getDay();
+            var want_day;
+            for (var i = current_day + 1; i <= 6; i++)
+                if (days.indexOf(i) != -1) {
+                    want_day = i;
+                    break;
+                }
             if (! want_day) {
-                want_day = days[0];
+                for (var i = 0; i < current_day; i++)
+                    if (days.indexOf(i) != -1) {
+                        want_day = i;
+                        break;
+                    }
             }
             while (dt.getDay() != want_day) {
                 dt.setDate(dt.getDate()+1);
