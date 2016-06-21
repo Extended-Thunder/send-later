@@ -1,3 +1,5 @@
+Components.utils.import("resource://sendlater3/ufuncs.jsm");
+
 try {
     Components.utils.import("resource:///modules/gloda/log4moz.js");
 }
@@ -194,6 +196,17 @@ var Sendlater3Util = {
             var func = function() { return raw; };
             Sendlater3Util.Returning("Sendlater3Util.ShortcutClosure", func);
             return func;
+        }
+        else if (raw.match(/^ufunc:\w+$/)) {
+            if (! sl3uf.exists(raw.slice(6))) {
+                Sendlater3Util.warn("Invalid setting for quick option " + num +
+                                    ": function \"" + raw +
+                                    "\" does not exist");
+                return; // undefined;
+            }
+            return function() {
+                return sl3uf.callByName(raw.slice(6));
+            };
         }
         else if (raw.match(/^[A-Za-z_$][A-Za-z0-9_$]*$/)) {
             var func = window[raw];
@@ -696,15 +709,21 @@ var Sendlater3Util = {
     NextRecurFunction: function(next, recurSpec, recur, args) {
         var error;
         var funcName = recur.function;
-        var func = window[funcName];
-        if (typeof(func) == "undefined")
-            throw new Error("Send Later: Invalid recurrence specification '" +
-                            recurSpec + "': '" + funcName + "' is not defined");
-        else if (typeof(func) != "function")
-            throw new Error("Send Later: Invalid recurrence specification '" +
-                            recurSpec + ": '" + funcName +
-                            "' is not a function");
-        var nextRecur = func(next, args);
+        var nextRecur;
+        if (funcName.startsWith("ufunc:"))
+            nextRecur = sl3uf.callByName(funcName.slice(6), next, args);
+        else {
+            var func = window[funcName];
+            if (typeof(func) == "undefined")
+                throw new Error("Send Later: Invalid recurrence " +
+                                "specification '" + recurSpec + "': '" +
+                                funcName + "' is not defined");
+            else if (typeof(func) != "function")
+                throw new Error("Send Later: Invalid recurrence " +
+                                "specification '" + recurSpec + ": '" +
+                                funcName + "' is not a function");
+            var nextRecur = func(next, args);
+        }
         if (! nextRecur)
             throw new Error("Send Later: Recurrence function '" + funcName +
                             "' did not return a value");
@@ -713,6 +732,9 @@ var Sendlater3Util = {
                 return null;
             next.setTime(next.getTime()+nextRecur*60*1000);
             return new Array(next, null);
+        }
+        if (nextRecur.getTime) {
+            return new Array(nextRecur, null);
         }
 
         if (! nextRecur.splice)
