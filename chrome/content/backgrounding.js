@@ -489,7 +489,7 @@ var Sendlater3Backgrounding = function() {
 		if (! next) {
 		    return;
 		}
-		if (next instanceof Array) {
+		if (next.splice) {
 		    args = next;
 		    recur = next[1];
 		    next = next[0];

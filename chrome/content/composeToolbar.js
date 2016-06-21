@@ -220,13 +220,18 @@ var Sendlater3ComposeToolbar = {
 	var sendat = new Date();
 	var recur;
 	var args;
-	if (mins instanceof Array) {
+        // http://perfectionkills.com/instanceof-considered-harmful-or-how-to-write-a-robust-isarray/
+        // "Array objects created within one iframe do not share
+        // [[Prototype]]’s with arrays created within another iframe. Their
+        // constructors are different objects and so both instanceof and
+        // constructor checks fail."
+	if (mins && mins.splice) {
 	    args = mins;
 	    recur = mins[1];
 	    mins = mins[0];
 	    args.splice(0,2);
 	}
-	if (mins instanceof Date) {
+	if (mins && mins.getTime) {
 	    sendat.setTime(mins.getTime());
 	}
 	else if (mins == -1) {

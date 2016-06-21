@@ -211,7 +211,7 @@ var Sendlater3Util = {
             if (validate) {
                 var v = func();
                 if ((typeof(v) != "number") &&
-                    ! (v instanceof Array && v.length &&
+                    ! (v && v.splice && v.length &&
                        typeof(v[0]) == "number")) {
                     Sendlater3Util.warn("Invalid setting for quick option " +
                                         num + ": \"" + raw +
@@ -498,8 +498,8 @@ var Sendlater3Util = {
             
     NextRecurTests: function() {
         function DeepCompare(a, b) {
-            if (a instanceof Array) {
-                if (b instanceof Array) {
+            if (a && a.splice) {
+                if (b && b.splice) {
                     if (a.length != b.length) {
                         return false;
                     }
@@ -513,11 +513,11 @@ var Sendlater3Util = {
                 }
                 return false;
             }
-            if (b instanceof Array) {
+            if (b && b.splice) {
                 return false;
             }
-            if (a instanceof Date) {
-                if (b instanceof Date) {
+            if (a && a.getTime) {
+                if (b && b.getTime) {
                     return a.getTime() == b.getTime();
                 }
                 return false;
@@ -715,18 +715,18 @@ var Sendlater3Util = {
             return new Array(next, null);
         }
 
-        if (! (nextRecur instanceof Array))
+        if (! nextRecur.splice)
             throw new Error("Send Later: Recurrence function '" + funcName +
                             "' did not return number or array");
         if (nextRecur.length < 2)
             throw new Error("Send Later: Array returned by recurrence " +
                             "function '" + funcName + "' is too short");
         if (typeof(nextRecur[0]) != "number" &&
-            ! (nextRecur[0] instanceof Date))
+            ! (nextRecur[0] && nextRecur[0].getTime))
             throw new Error("Send Later: Array " + nextRecur +
                             " returned by recurrence function '" + funcName +
                             "' did not start with a number or Date");
-        if (! (nextRecur[0] instanceof Date)) {
+        if (! nextRecur[0].getTime) {
             next.setTime(next.getTime()+nextRecur[0]*60*1000);
             nextRecur[0] = next;
         }
