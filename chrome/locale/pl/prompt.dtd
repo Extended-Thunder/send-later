@@ -1,7 +1,7 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY sendlater.prompt.sendlater.label "Umieść w skrzynce nadawczej">
 <!ENTITY sendlater.prompt.sendlater.accesskey "U">
-<!ENTITY sendlater.prompt.sendlater.tooltip "Zamiast wysyłki o planowanym czasie przenosi wiadomość do folderu Skrzynka nadawcza, aby wysłać ją następnym razem wraz z innymi wiadomościami oczekującymi na wysyłkę.">
+<!ENTITY sendlater.prompt.sendlater.tooltip "Zamiast wysyłki o planowanym czasie umieszcza wiadomość we folderze Skrzynka nadawcza, aby wysłać ją następnym razem wraz z innymi wiadomościami oczekującymi na wysyłkę.">
 <!ENTITY sendlater.prompt.sendnow.label "Wyślij Teraz">
 <!ENTITY sendlater.prompt.sendnow.accesskey "T">
 <!ENTITY sendlater.prompt.sendnow.tooltip "Wyślij wiadomość TERAZ, pomijając funkcjonalność dodatku &quot;Send Later&quot;.">
@@ -14,16 +14,21 @@
 <!ENTITY sendlater.prompt.textbox.emptytext "np.: “środa 15:00”, “12/31/2012 15:27”">
 <!ENTITY sendlater.prompt.sendat.label "Wyślij później o określonym powyżej czasie">
 <!ENTITY sendlater.prompt.sendat.tooltip "Zapisz wiadomość w folderze “Szkice”, aby dostarczyć ją w wyznaczonym powyżej czasie.">
+<!ENTITY sendlater.prompt.savedefaults "Zapisz te ustawienia jako domyślne">
+<!ENTITY sendlater.prompt.cleardefaults "Wyzeruj ustawienia domyślne">
 <!ENTITY sendlater.prompt.recur.label "Powtarzaj:">
 <!ENTITY sendlater.prompt.none.label "wcale">
-<!ENTITY sendlater.prompt.minutely.label "minutowo">
-<!ENTITY sendlater.prompt.daily.label "dziennie">
-<!ENTITY sendlater.prompt.weekly.label "tygodniowo">
-<!ENTITY sendlater.prompt.monthly.label "miesięcznie">
-<!ENTITY sendlater.prompt.yearly.label "rocznie">
+<!ENTITY sendlater.prompt.minutely.label "co minuta">
+<!ENTITY sendlater.prompt.daily.label "co dzień">
+<!ENTITY sendlater.prompt.weekly.label "co tydzień">
+<!ENTITY sendlater.prompt.monthly.label "co miesiąc">
+<!ENTITY sendlater.prompt.yearly.label "co rok">
+<!ENTITY sendlater.prompt.function.label "wg. funkcji:">
+<!ENTITY sendlater.prompt.functionargs.label "argumenty dla funkcji:">
+<!ENTITY sendlater.prompt.calculate.label "wylicz">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Wyślij później">
 <!ENTITY sendlater.toolbar.textbox.emptytext "czas wysyłki">
-<!ENTITY sendlater.prompt.every.label "Co Każde">
+<!ENTITY sendlater.prompt.every.label "albo co:">
 <!ENTITY sendlater.prompt.between.label "Pomiędzy">
 <!ENTITY sendlater.button1.label "za 15 minut">
 <!ENTITY sendlater.button2.label "za 30 minut">

@@ -30,9 +30,12 @@
 <!ENTITY contactauthor.value "Skontaktuj się z autorem">
 <!ENTITY helplink.tooltip "Pokaż dokumentację &quot;Send Later&quot;">
 <!ENTITY helplink.value "Podręcznik użytkownika">
-<!ENTITY donatelink.value "Wspomóż">
+<!ENTITY donatelink.value "Dotacja...">
+<!ENTITY editorlink.value "Edytor funkcji spec.">
 <!ENTITY enforcerestrictions.tooltip "Jeśli wiadomości nie wysłano np., ponieważ Thunderbird nie był uruchomiony w zaplanowanym czasie wysyłki, to zaczekaj z wysyłaniem aż ograniczenia czasu i dnia będą spełnione.">
 <!ENTITY enforcerestrictions.caption "Trzymaj się ściśle ograniczeń czasu i dnia wysyłki">
 <!ENTITY blocklatemessages.tooltip "Nie wysyłaj zaplanowanych wiadomości jeśli czas opóźnienia np. z powodu wyłączenia Thunderbirda przekracza wskazaną tu wartość.">
 <!ENTITY blocklatemessages.label1 "Nie wysyłaj wiadomości później niż">
 <!ENTITY blocklatemessages.label2 "minut">
+<!ENTITY editorbutton "Otwórz edytor funkcji specjalnych">
+<!ENTITY editortip "Otwiera okno edytora zaawansowanych funkcji JavaScript umożliwiając tworzenie i edycję złożonych funkcji planowania czasu wysyłki wiadomości.">
