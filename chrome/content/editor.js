@@ -373,6 +373,7 @@ sl3e = {
             if (! proceed)
                 return;
         }
+        var name = document.getElementById("function-name").value;
         var nsIFilePicker = Components.interfaces.nsIFilePicker;
         var fp = Components.classes["@mozilla.org/filepicker;1"].
             createInstance(nsIFilePicker);
@@ -381,6 +382,7 @@ sl3e = {
         fp.appendFilter(SL3U.PromptBundleGet("SLJFilterLabel"), "*.slj");
         fp.appendFilters(nsIFilePicker.filterAll | nsIFilePicker.filterText);
         fp.defaultExtension = "slj";
+        fp.defaultString = name + ".slj";
         var rv = fp.show();
         if (! ((rv == nsIFilePicker.returnOK ||
                 rv == nsIFilePicker.returnReplace)))
