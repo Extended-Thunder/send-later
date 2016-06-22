@@ -137,13 +137,13 @@ sl3uf = {
             val = args[i];
             if (val && val.splice)
                 argstring += "[" + this.unparseArgs(val) + "],";
-            else if (typeof(val) == "number")
+            else if (typeof(val) == "number" || typeof(val) == "boolean")
                 argstring += val + ",";
             else if (typeof(val) == "string")
                 argstring += '"' + val.replace(/(["\\])/g, "\\$1") + '",';
             else
                 throw new Error("Function arguments can only contain " +
-                                "arrays, numbers, and strings.");
+                                "arrays, numbers, booleans, and strings.");
         }
         return argstring.slice(0,-1);
     },
