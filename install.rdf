@@ -63,13 +63,6 @@
     </em:localized>
     <em:localized>
       <Description>
-	<em:locale>es-AR</em:locale>
-	<em:name>Send Later</em:name>
-	<em:description>“Enviar luego” funcionalidad para programar la hora de envío</em:description>
-      </Description>
-    </em:localized>
-    <em:localized>
-      <Description>
 	<em:locale>fi</em:locale>
 	<em:name>Lähetä Myöhemmin</em:name>
 	<em:description>“Lähetä myöhemmin” toiminnallisuus lähetyksien ajastamiseksi</em:description>
