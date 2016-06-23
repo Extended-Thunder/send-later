@@ -31,8 +31,11 @@
 <!ENTITY helplink.tooltip "Ver la documentación de Enviar luego">
 <!ENTITY helplink.value "Guía de usuario">
 <!ENTITY donatelink.value "Donar">
+<!ENTITY editorlink.value "Editor de función dinámica">
 <!ENTITY enforcerestrictions.tooltip "Si un mensaje que está apto para ser entregado está fuera de las restricciones de tiempo, por ejemplo, debido a que Thunderbird no estaba ejecutándose en el instante en que debió ser enviado, entonces retraza su entrega hasta que el instante se cumpla.">
 <!ENTITY enforcerestrictions.caption "Hacer cumplir las restricciones de tiempo y día en el instante de entrega">
 <!ENTITY blocklatemessages.tooltip "No entregar mensajes programados que han sido demorados más allá de la hora programada, por ejemplo debido a que Thunderbird no estaba ejecutándose en ese instante.">
 <!ENTITY blocklatemessages.label1 "No entregar mensajes de más de">
 <!ENTITY blocklatemessages.label2 "minutos de retrazo">
+<!ENTITY editorbutton "Editor de función dinámica">
+<!ENTITY editortip "Abrir una ventana para crear y editar funciones JavaScript implementando planes logicamente complejos">

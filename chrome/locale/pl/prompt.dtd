@@ -16,8 +16,8 @@
 <!ENTITY sendlater.prompt.sendat.tooltip "Zapisz wiadomość w folderze “Szkice”, aby dostarczyć ją w wyznaczonym powyżej czasie.">
 <!ENTITY sendlater.prompt.savedefaults "Zapisz te ustawienia jako domyślne">
 <!ENTITY sendlater.prompt.cleardefaults "Wyzeruj ustawienia domyślne">
-<!ENTITY sendlater.prompt.recur.label "Powtarzaj:">
-<!ENTITY sendlater.prompt.none.label "wcale">
+<!ENTITY sendlater.prompt.recur.label "Powtarzanie:">
+<!ENTITY sendlater.prompt.none.label "tylko raz">
 <!ENTITY sendlater.prompt.minutely.label "co minuta">
 <!ENTITY sendlater.prompt.daily.label "co dzień">
 <!ENTITY sendlater.prompt.weekly.label "co tydzień">
