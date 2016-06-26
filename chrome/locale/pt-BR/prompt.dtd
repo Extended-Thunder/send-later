@@ -14,6 +14,8 @@
 <!ENTITY sendlater.prompt.textbox.emptytext "ex: &quot;15h, 3a feira&quot;, &quot;31/12/2012 15:27&quot;">
 <!ENTITY sendlater.prompt.sendat.label "Enviar mais tarde no horário especificado acima">
 <!ENTITY sendlater.prompt.sendat.tooltip "Salvar mensagem na pasta de rascunho para envio automático na hora informada acima.">
+<!ENTITY sendlater.prompt.savedefaults "Salvar estes valores como padrões">
+<!ENTITY sendlater.prompt.cleardefaults "Apagar padrões">
 <!ENTITY sendlater.prompt.recur.label "Recorrência:">
 <!ENTITY sendlater.prompt.none.label "nunca">
 <!ENTITY sendlater.prompt.minutely.label "a cada minuto">
@@ -21,6 +23,9 @@
 <!ENTITY sendlater.prompt.weekly.label "semanalmente">
 <!ENTITY sendlater.prompt.monthly.label "mensalmente">
 <!ENTITY sendlater.prompt.yearly.label "anualmente">
+<!ENTITY sendlater.prompt.function.label "função:">
+<!ENTITY sendlater.prompt.functionargs.label "Argumentos da função:">
+<!ENTITY sendlater.prompt.calculate.label "Calcular">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Send Later">
 <!ENTITY sendlater.toolbar.textbox.emptytext "hora de envio">
 <!ENTITY sendlater.prompt.every.label "A cada">

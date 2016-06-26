@@ -31,8 +31,11 @@
 <!ENTITY helplink.tooltip "Ver a documentação de Send Later">
 <!ENTITY helplink.value "Manual">
 <!ENTITY donatelink.value "Contribua">
+<!ENTITY editorlink.value "Editor de função dinâmica">
 <!ENTITY enforcerestrictions.tooltip "Se uma mensagem a ser enviada estiver fora das restrições de hora ou dia, devido p.ex. ao Thunderbird não estar rodando na hora do envio, adie o envio até que as restrições sejam cumpridas.">
 <!ENTITY enforcerestrictions.caption "Impor restrições de hora e dia à data de envio">
 <!ENTITY blocklatemessages.tooltip "Não enviar mensagens agendadas para além da hora programada, p.ex., devido ao Thunderbird não estar rodando àquela hora.">
 <!ENTITY blocklatemessages.label1 "Não envie mensagens com mais de">
 <!ENTITY blocklatemessages.label2 "minutos de atraso">
+<!ENTITY editorbutton "Abrir editor de função dinâmica...">
+<!ENTITY editortip "Abre uma janela para a criação e edição de funções JavaScript para implementação de lógica complexa de agendamento.">
