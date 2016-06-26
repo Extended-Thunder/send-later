@@ -30,6 +30,7 @@
 <!ENTITY contactauthor.value "Skontaktuj się z autorem">
 <!ENTITY helplink.tooltip "Pokaż dokumentację &quot;Send Later&quot;">
 <!ENTITY helplink.value "Podręcznik użytkownika">
+<!ENTITY releasenotes.value "Informacje o wydaniu">
 <!ENTITY donatelink.value "Dotacja...">
 <!ENTITY editorlink.value "Edytor funkcji spec.">
 <!ENTITY enforcerestrictions.tooltip "Jeśli wiadomości nie wysłano np., ponieważ Thunderbird nie był uruchomiony w zaplanowanym czasie wysyłki, to zaczekaj z wysyłaniem aż ograniczenia czasu i dnia będą spełnione.">

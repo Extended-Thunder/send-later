@@ -30,6 +30,7 @@
 <!ENTITY contactauthor.value "Contact the author">
 <!ENTITY helplink.tooltip "View the Send Later documentation.">
 <!ENTITY helplink.value "User guide">
+<!ENTITY releasenotes.value "Release notes">
 <!ENTITY donatelink.value "Donate">
 <!ENTITY editorlink.value "Dynamic function editor">
 <!ENTITY enforcerestrictions.tooltip "If a message that is due to be delivered is outside its time or day restrictions, e.g., because Thunderbird was not running at its scheduled delivery time, then delay its delivery until the time and day restrictions are met.">

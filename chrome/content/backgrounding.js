@@ -1341,55 +1341,56 @@ var Sendlater3Backgrounding = function() {
 	    return true;
 	return false;
     }
-    
+
     function DisplayReleaseNotes() {
-	if (! SL3U.IsPostbox()) {
-	    var enabledItems;
-	    try {
-		var enabledItems = SL3U.PrefService
-		    .getCharPref("extensions.enabledAddons");
-	    }
-	    catch (e) {
-		var enabledItems = SL3U.PrefService
-		    .getCharPref("extensions.enabledItems");
-	    }
+        var enabledItems;
+        try {
+            var enabledItems = SL3U.PrefService
+                .getCharPref("extensions.enabledAddons");
+        }
+        catch (e) {
+            var enabledItems = SL3U.PrefService
+                .getCharPref("extensions.enabledItems");
+        }
 
-	    var matches = enabledItems.match(/sendlater3(@|%40)kamens\.us:([^,]+)/);
-	    if (matches) {
-		var current_version = matches[2];
-		var relnotes = SL3U.getCharPref("relnotes");
-		SL3U.setCharPref("relnotes", current_version);
-		if (ShouldDisplayReleaseNotes(relnotes, current_version)) {
-		    var url = "http://blog.kamens.us/send-later-3/#notes-" +
-			current_version;
-		    Components
-			.classes['@mozilla.org/appshell/window-mediator;1']
-			.getService(Components.interfaces.nsIWindowMediator)
-			.getMostRecentWindow("mail:3pane")
-			.document.getElementById("tabmail")
-			.openTab("contentTab", {contentPage: url});
+        var matches = enabledItems.match(/sendlater3(@|%40)kamens\.us:([^,]+)/);
+        if (matches) {
+	    var current_version = matches[2];
+	    var relnotes = SL3U.getCharPref("relnotes");
+	    SL3U.setCharPref("relnotes", current_version);
+	    Sendlater3Backgrounding.notesUrl =
+                "http://blog.kamens.us/send-later-3/#notes-" + current_version;
+        }
 
-		    // Migrate old preferences
-		    try {
-			var value = SL3U.getBoolPref("dropdowns.showintoolbar");
-			SL3U.setBoolPref("entry.showintoolbar", value);
-			SL3U.PrefService.clearUserPref(SL3U.pref("dropdowns.showintoolbar"));
-		    }
-		    catch (ex) {}
+	if (Sendlater3Backgrounding.notesUrl && ! SL3U.IsPostbox()) {
+	    if (ShouldDisplayReleaseNotes(relnotes, current_version)) {
+		Components
+		    .classes['@mozilla.org/appshell/window-mediator;1']
+		    .getService(Components.interfaces.nsIWindowMediator)
+		    .getMostRecentWindow("mail:3pane")
+		    .document.getElementById("tabmail")
+		    .openTab("contentTab", {contentPage: url});
 
-		    var numbers = relnotes.split(".");
-		    if ((numbers[0] < 4) &&
-			SL3U.PrefService.prefHasUserValue(SL3U.pref("checktimepref"))) {
-			var old = SL3U.getIntPref("checktimepref");
-			if (old < 60000) {
-			    old = 60000;
-			}
-			var converted = Math.floor(old / 60000);
-			SL3U.setIntPref("checktimepref", converted);
-		    }			
+		// Migrate old preferences
+		try {
+		    var value = SL3U.getBoolPref("dropdowns.showintoolbar");
+		    SL3U.setBoolPref("entry.showintoolbar", value);
+		    SL3U.PrefService.clearUserPref(SL3U.pref("dropdowns.showintoolbar"));
 		}
-	    }	
-	}
+		catch (ex) {}
+
+		var numbers = relnotes.split(".");
+		if ((numbers[0] < 4) &&
+		    SL3U.PrefService.prefHasUserValue(SL3U.pref("checktimepref"))) {
+		    var old = SL3U.getIntPref("checktimepref");
+		    if (old < 60000) {
+			old = 60000;
+		    }
+		    var converted = Math.floor(old / 60000);
+		    SL3U.setIntPref("checktimepref", converted);
+		}			
+	    }
+	}	
     }
 
     // BackgroundTimer = Components
