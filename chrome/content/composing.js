@@ -53,19 +53,54 @@ var Sendlater3Composing = {
         goDoCommand("cmd_sendLater");
     },
 
-    hijackEnigmail: function() {
-        var m;
+    hijackOtherAddons: function() {
+        // Enigmail
         try {
-            m = Enigmail.msg;
-        } catch (ex) {
-            return;
+            var m = Enigmail.msg;
+            if (! (m.handleSendMessageEvent ||
+                   m.sendlater3SendMessageListener)) {
+                m.sendLater3SendMessageListener = m.sendMessageListener;
+                m.sendMessageListener = function() {};
+            }
+        } catch (ex) {}
+
+        // SpamFighter
+        //
+        // The SpamFighter Thunderbird add-on is distributed by the makers of
+        // SpamFighter through its own installation channels, not through
+        // addons.mozilla.org. If the makers of SpamFighter tried to distribute
+        // it through AMO, they'd fail, because it's crap code that violates
+        // all sorts of mandatory coding standards for Thunderbird add-ons. The
+        // most glaring of these is namespace pollution: the add-on creates all
+        // sorts of global functions and variables with generic names that
+        // could very easily conflict with functions and variable created by
+        // other add-ons or by Thunderbird itself. For example, the code that
+        // gets added to composition windows defines 17 global variables, and
+        // the names of only two of them can be considered in any way
+        // non-generic. In particular, the compose-send-message event handler
+        // that we need to deal with here to make Send Later compatible with
+        // SpamFighter is called "SendEventHandler". Ugh!
+        //
+        // Furthermore, this event handler invokes GenericSendMessage
+        // recursively, which wreaks havoc on other add-ons that use
+        // compose-send-message event handlers.
+        //
+        // To add insult to injury, this event handler has one and only one
+        // purpose: to add an advertising footer to the bottom of outgoing
+        // messages.
+        //
+        // If the makers of SpamFighter were following the rules, then I would
+        // go out of my way to coordinate with them to make their add-on
+        // compatible with Send Later while at the same time preserving their
+        // add-an-advertising-footer functionality. But given how rude and
+        // non-compliant their add-on is, and how useless is the functionality
+        // their event handler provides, I have no qualms about simply
+        // disabling it, so that's what the following code does.
+        if (GetSFCorePort && SendEventHandler) {
+            SL3U.info("Disabling SpamFighter compose-send-message listener");
+            window.removeEventListener("compose-send-message", SendEventHandler,
+                                       true);
         }
-        if (m.handleSendMessageEvent)
-            return;
-        if (m.sendlater3SendMessageListener)
-            return;
-        m.sendLater3SendMessageListener = m.sendMessageListener;
-        m.sendMessageListener = function() {};
     },
 
     callEnigmail: function(event) {
@@ -87,7 +122,7 @@ var Sendlater3Composing = {
 
         window.removeEventListener("load", Sendlater3Composing.main, false);
 
-        Sendlater3Composing.hijackEnigmail();
+        Sendlater3Composing.hijackOtherAddons();
 
         if (SL3U.alert_for_enigmail()) {
 	    Sendlater3Composing.setBindings.observe(true);
