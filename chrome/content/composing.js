@@ -96,11 +96,14 @@ var Sendlater3Composing = {
         // non-compliant their add-on is, and how useless is the functionality
         // their event handler provides, I have no qualms about simply
         // disabling it, so that's what the following code does.
-        if (GetSFCorePort && SendEventHandler) {
-            SL3U.info("Disabling SpamFighter compose-send-message listener");
-            window.removeEventListener("compose-send-message", SendEventHandler,
-                                       true);
+        try {
+            if (GetSFCorePort && SendEventHandler) {
+                SL3U.info("Disabling SpamFighter compose-send-message listener");
+                window.removeEventListener("compose-send-message", SendEventHandler,
+                                           true);
+            }
         }
+        catch (ex) {}
     },
 
     callEnigmail: function(event) {
