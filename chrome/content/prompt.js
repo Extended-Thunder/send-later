@@ -543,7 +543,7 @@ var Sendlater3Prompt = {
                 }
                 var spec = SL3U.unparseRecurSpec(results[1]);
                 var args = document.getElementById("function-args").value;
-                args = eval("[" + args + "]");
+                args = sl3uf.parseArgs(args);
                 SL3U.setCharPref("prompt.defaults", JSON.stringify(
                     [sendat, spec, args]));
             }
@@ -591,10 +591,8 @@ var Sendlater3Prompt = {
 
     onCalculate: function(interactive) {
         var argstring = document.getElementById("function-args").value;
-        try {
-            var args = eval("[" + argstring + "]");
-        }
-        catch (ex) {
+        args = sl3uf.parseArgs(argstring);
+        if (! args) {
             SL3U.alert(window,
                        SL3U.PromptBundleGet("InvalidArgsTitle"),
                        SL3U.PromptBundleGet("InvalidArgsBody"));

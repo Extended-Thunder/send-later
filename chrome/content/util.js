@@ -203,7 +203,7 @@ var Sendlater3Util = {
         if (match) {
             namepart = match[1];
             args = match[2];
-            if (! sl3uf.argsOk(args)) {
+            if (! sl3uf.parseArgs(args)) {
                 SL3U.warn("Invalid setting for quick option " + num +
                           ": invalid argument list in \"" + raw + "\"");
                 return;

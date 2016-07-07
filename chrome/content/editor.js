@@ -150,7 +150,7 @@ sl3e = {
 
     argumentsOk: function() {
         var field = document.getElementById("test-arguments");
-        var valid = sl3uf.argsOk(field.value);
+        var valid = sl3uf.parseArgs(field.value);
         if (valid)
             field.removeAttribute("style");
         else
@@ -201,10 +201,10 @@ sl3e = {
         var time = timeString ? sendlater3DateParse(timeString) : null;
         var argBox = document.getElementById("test-arguments");
         var argString = argBox.value;
-        var args = argString ? eval("[" + argString + "]") : null;
         var resultsBox = document.getElementById("test-results");
         var next, nextspec, nextargs, results;
         try {
+            var args = sl3uf.parseArgs(argString);
             nextargs = sl3uf.call(name, body, time, args);
             if (nextargs && nextargs.splice) {
                 next = nextargs[0];
@@ -217,20 +217,20 @@ sl3e = {
             }
             if (! next)
                 throw new Error(SL3U.PromptBundleGet("NoNextValueError"));
-            if ((typeof("next") != "number") && ! next.getTime)
+            if ((typeof(next) != "number") && ! next.getTime)
                 throw new Error(SL3U.PromptBundleGetFormatted(
                     "BadNextValueError", [next]));
             if (nextargs && ! nextargs.splice)
                 throw new Error(SL3U.PromptBundleGetFormatted(
                     "BadNextArgsError", [nextargs]));
             this.tested = true;
-            results = String([next, nextspec, nextargs]);
+            results = [next, nextspec, nextargs];
         } catch (ex) {
             resultsBox.value = "Error: " + ex;
             return;
         }
 
-        resultsBox.value = String(results);
+        resultsBox.value = JSON.stringify(results);
         if (nextspec) {
             if (typeof(next) == "number") {
                 var nextDate = new Date();

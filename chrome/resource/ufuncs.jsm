@@ -118,11 +118,13 @@ sl3uf = {
         }
     },
 
-    argsOk: function(argstring) {
+    parseArgs: function(argstring) {
+        if (argstring === "")
+            return [];
         try {
-            var args = eval("[" + argstring + "]");
-            this.unparseArgs(args);
-            return true;
+            var args = JSON.parse("[" + argstring + "]");
+            this.unparseArgs(args); // throws exception on bad args
+            return args;
         }
         catch (ex) {
             return false;
@@ -130,22 +132,28 @@ sl3uf = {
     },
 
     unparseArgs: function(args) {
-        if (! args)
+        // Convert a list into its string representation, WITHOUT the square
+        // braces around the entire list.
+        //
+        // We stringify the individual elements of the list and then join them
+        // because we want spaces after the commas for readability, and JSON.
+        // stringify won't do that, and when you try to make it do that by
+        // specifying its "space" argument, it inserts newlines as well, which
+        // we obviously don't want.
+        if (! args.length)
             return "";
-        argstring = "";
+        var arglist = [];
         for (var i in args) {
             val = args[i];
             if (val && val.splice)
-                argstring += "[" + this.unparseArgs(val) + "],";
-            else if (typeof(val) == "number" || typeof(val) == "boolean")
-                argstring += val + ",";
-            else if (typeof(val) == "string")
-                argstring += '"' + val.replace(/(["\\])/g, "\\$1") + '",';
-            else
-                throw new Error("Function arguments can only contain " +
-                                "arrays, numbers, booleans, and strings.");
+                arglist.push('[' + this.unparseArgs(val) + ']');
+            else if (! (/^(?:number|boolean|string)$/.test(typeof(val)) ||
+                        val === null))
+                throw new Error("Function arguments can only contain arrays " +
+                                "numbers, booleans, strings, and null.");
+            arglist.push(JSON.stringify(val));
         }
-        return argstring.slice(0,-1);
+        return arglist.join(', ');
     },
 
     directory: function() {
