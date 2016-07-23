@@ -1,4 +1,5 @@
 Components.utils.import("resource://sendlater3/ufuncs.jsm");
+Components.utils.import("resource://sendlater3/logging.jsm");
 
 try {
     Components.utils.import("resource:///modules/gloda/log4moz.js");
@@ -130,18 +131,18 @@ var Sendlater3Util = {
     },
 
     PromptBundleGet: function(name) {
-        Sendlater3Util.Entering("Sendlater3Util.PromptBundleGet", name);
-        Sendlater3Util.Returning("Sendlater3Util.PromptBundleGet",
+        sl3log.Entering("Sendlater3Util.PromptBundleGet", name);
+        sl3log.Returning("Sendlater3Util.PromptBundleGet",
                                  Sendlater3Util._PromptBundle.getString(name));
         return Sendlater3Util._PromptBundle.getString(name);
     },
 
     PromptBundleGetFormatted: function(name, params) {
-        Sendlater3Util.Entering("Sendlater3Util.PromptBundleGetFormatted", name,
+        sl3log.Entering("Sendlater3Util.PromptBundleGetFormatted", name,
                                 params, length);
         var formatted = Sendlater3Util._PromptBundle
             .getFormattedString(name, params)
-        Sendlater3Util.Returning("Sendlater3Util.PromptBundleGetFormatted",
+        sl3log.Returning("Sendlater3Util.PromptBundleGetFormatted",
                                  formatted);
         return formatted;
     },
@@ -151,14 +152,14 @@ var Sendlater3Util = {
     },
 
     SetUpdatePref: function(key) {
-        Sendlater3Util.Entering("Sendlater3Util.SetUpdatePref", key);
+        sl3log.Entering("Sendlater3Util.SetUpdatePref", key);
         Sendlater3Util.PrefService.setBoolPref(Sendlater3Util.UpdatePref(key),
                                                true);
-        Sendlater3Util.Leaving("Sendlater3Util.SetUpdatePref", key);
+        sl3log.Leaving("Sendlater3Util.SetUpdatePref", key);
     },
 
     GetUpdatePref: function(key) {
-        Sendlater3Util.Entering("Sendlater3Util.GetUpdatePref", key);
+        sl3log.Entering("Sendlater3Util.GetUpdatePref", key);
         var pref = Sendlater3Util.UpdatePref(key);
         var value;
         try {
@@ -168,12 +169,12 @@ var Sendlater3Util = {
         catch (ex) {
             value = false;
         }
-        Sendlater3Util.Returning("Sendlater3Util.GetUpdatePref", value);
+        sl3log.Returning("Sendlater3Util.GetUpdatePref", value);
         return value;
     },
 
     ButtonLabel: function(num, btn) {
-        Sendlater3Util.Entering("Sendlater3Util.ButtonLabel", num, btn);
+        sl3log.Entering("Sendlater3Util.ButtonLabel", num, btn);
         var label = Sendlater3Util.PrefService.
             getComplexValue(Sendlater3Util.pref("quickoptions." + num +
                                                 ".label"),
@@ -181,12 +182,12 @@ var Sendlater3Util = {
         if (label == "<from locale>") {
             label = btn.getAttribute("sl3label");
         }
-        Sendlater3Util.Returning("Sendlater3Util.ButtonLabel", label);
+        sl3log.Returning("Sendlater3Util.ButtonLabel", label);
         return label;
     },
 
     ShortcutClosure: function(num, validate) {
-        Sendlater3Util.Entering("Sendlater3Util.ShortcutClosure", num, validate);
+        sl3log.Entering("Sendlater3Util.ShortcutClosure", num, validate);
         if (validate == undefined) {
             validate = false;
         }
@@ -194,7 +195,7 @@ var Sendlater3Util = {
                                              ".valuestring");
         if (raw.match(/^[0-9]+$/)) {
             var func = function() { return raw; };
-            Sendlater3Util.Returning("Sendlater3Util.ShortcutClosure", func);
+            sl3log.Returning("Sendlater3Util.ShortcutClosure", func);
             return func;
         }
         var match = /^(.*\S)\s*\((.*)\)[\s;]*$/.exec(raw);
@@ -204,7 +205,7 @@ var Sendlater3Util = {
             namepart = match[1];
             args = match[2];
             if (! sl3uf.parseArgs(args)) {
-                SL3U.warn("Invalid setting for quick option " + num +
+                sl3log.warn("Invalid setting for quick option " + num +
                           ": invalid argument list in \"" + raw + "\"");
                 return;
             }
@@ -214,7 +215,7 @@ var Sendlater3Util = {
         }
         if (namepart.match(/^ufunc:\w+$/)) {
             if (! sl3uf.exists(namepart.slice(6))) {
-                Sendlater3Util.warn("Invalid setting for quick option " + num +
+                sl3log.warn("Invalid setting for quick option " + num +
                                     ": function \"" + namepart +
                                     "\" does not exist");
                 return; // undefined;
@@ -226,13 +227,13 @@ var Sendlater3Util = {
         else if (namepart.match(/^[A-Za-z_$][A-Za-z0-9_$]*$/)) {
             var func = window[namepart];
             if (typeof(func) == "undefined") {
-                Sendlater3Util.warn("Invalid setting for quick option " + num +
+                sl3log.warn("Invalid setting for quick option " + num +
                                     ": function \"" + namepart +
                                     "\" is not defined");
                 return; // undefined
             }
             else if (typeof(func) != "function") {
-                Sendlater3Util.warn("Invalid setting for quick option " + num +
+                sl3log.warn("Invalid setting for quick option " + num +
                                     ": \"" + namepart + "\" is not a function");
                 return; // undefined
             }
@@ -241,25 +242,25 @@ var Sendlater3Util = {
                 if ((typeof(v) != "number") &&
                     ! (v && v.splice && v.length &&
                        typeof(v[0]) == "number")) {
-                    Sendlater3Util.warn("Invalid setting for quick option " +
+                    sl3log.warn("Invalid setting for quick option " +
                                         num + ": \"" + namepart +
                                         "()\" does not return a number");
                     return; // undefined
                 }
             }
-            Sendlater3Util.Returning("Sendlater3Util.ShortcutClosure", func);
+            sl3log.Returning("Sendlater3Util.ShortcutClosure", func);
             return function() {
                 return func(null, args);
             };
         }
-        Sendlater3Util.warn("Invalid setting for quick option " + num + ": \"" +
+        sl3log.warn("Invalid setting for quick option " + num + ": \"" +
                             namepart + "\" is neither a number nor a " +
                             "function that returns a number");
         return; // undefined
     },
 
     FormatDateTime: function(thisdate,includeTZ) {
-        Sendlater3Util.Entering("Sendlater3Util.FormatDateTime", thisdate,
+        sl3log.Entering("Sendlater3Util.FormatDateTime", thisdate,
                                 includeTZ);
         var s="";
         var sDaysOfWeek = [ "Sun","Mon","Tue","Wed","Thu","Fri","Sat" ];
@@ -308,7 +309,7 @@ var Sendlater3Util = {
                 s += "0";
             s+=val;
         }
-        Sendlater3Util.Returning("Sendlater3Util.FormatDateTime", s);
+        sl3log.Returning("Sendlater3Util.FormatDateTime", s);
         return s;
     },
 
@@ -333,18 +334,18 @@ var Sendlater3Util = {
                 var result = func.apply(null, args);
             }
             catch (ex) {
-                Sendlater3Util.warn("TEST " + name + " EXCEPTION: " +
+                sl3log.warn("TEST " + name + " EXCEPTION: " +
                                     ex.message);
                 continue;
             }
             if (result === true) {
-                Sendlater3Util.info("TEST " + name + " PASS");
+                sl3log.info("TEST " + name + " PASS");
             }
             else if (result === false) {
-                Sendlater3Util.warn("TEST " + name + " FAIL");
+                sl3log.warn("TEST " + name + " FAIL");
             }
             else {
-                Sendlater3Util.warn("TEST " + name + " FAIL " + result);
+                sl3log.warn("TEST " + name + " FAIL " + result);
             }
         }
     },
@@ -857,7 +858,7 @@ var Sendlater3Util = {
     },
 
     NextRecurDate: function(next, recurSpec, now, args) {
-        Sendlater3Util.Entering("NextRecurDate", next, recurSpec, now, args);
+        sl3log.Entering("NextRecurDate", next, recurSpec, now, args);
         // Make sure we don't modify our input!
         next = new Date(next.getTime());
         var recur = SL3U.ParseRecurSpec(recurSpec);
@@ -1135,115 +1136,6 @@ var Sendlater3Util = {
                       new Date("1/4/2016 8:30:00")]);
     },
 
-    logger: null,
-    log_filter_string: null,
-
-    log_filter: function(msg) {
-        var filter_string = Sendlater3Util.getCharPref("logging.filter");
-        if (filter_string != Sendlater3Util.log_filter_string) {
-            if (filter_string) {
-                Sendlater3Util.log_filter_re = new RegExp(filter_string);
-            }
-            Sendlater3Util.log_filter_string = filter_string;
-        }
-        if (filter_string) {
-            return Sendlater3Util.log_filter_re.test(msg);
-        }
-        else {
-            return true;
-        }
-    },
-
-    warn: function(msg) {
-        if (! Sendlater3Util.log_filter(msg)) {
-            return;
-        }
-        try {
-            Sendlater3Util.initLogging();
-            Sendlater3Util.logger.warn(msg);
-        }
-        catch (ex) {
-        }
-    },
-
-    info: function(msg) {
-        if (! Sendlater3Util.log_filter(msg)) {
-            return;
-        }
-        try {
-            Sendlater3Util.initLogging();
-            Sendlater3Util.logger.info(msg);
-        }
-        catch (ex) {
-        }
-    },
-
-    dump: function(msg) {
-        if (! Sendlater3Util.log_filter(msg)) {
-            return;
-        }
-        try {
-            Sendlater3Util.initLogging();
-            Sendlater3Util.logger.info(msg);
-        }
-        catch (ex) {
-        }
-    },
-
-    debug: function(msg) {
-        if (! Sendlater3Util.log_filter(msg)) {
-            return;
-        }
-        try {
-            Sendlater3Util.initLogging();
-            Sendlater3Util.logger.debug(msg);
-        }
-        catch (ex) {
-        }
-    },
-
-    trace: function(msg) {
-        if (! Sendlater3Util.log_filter(msg)) {
-            return;
-        }
-        try {
-            Sendlater3Util.initLogging();
-            Sendlater3Util.logger.trace(msg);
-        }
-        catch (ex) {
-        }
-    },
-
-    initLogging: function() {
-        try {
-            if (Sendlater3Util.logger == null) {
-                Sendlater3Util.logger =
-                    Log4Moz.getConfiguredLogger("extensions.sendlater3",
-                                                Log4Moz.Level.Trace,
-                                                Log4Moz.Level.Info,
-                                                Log4Moz.Level.Debug);
-                Sendlater3Util.logger.debug("Initialized logging");
-            }
-        }
-        catch (ex) {
-        }
-    },
-
-    reinitLogging: {
-        observe: function() {
-            try {
-                Sendlater3Util.Entering("Sendlater3Util.reinitLogging.observe");
-                // This is really disgusting.
-                delete Log4Moz.repository._loggers["extensions.sendlater3"];
-                Sendlater3Util.logger = null;
-                Sendlater3Util.initLogging();
-                Sendlater3Util.Leaving("Sendlater3Util.reinitLogging.observe");
-            }
-            catch (ex) {
-            }
-        },
-    },
-
     // The Mail Merge add-on is using this, so don't change it without letting
     // the author know what's changing!
     getInstanceUuid: function() {
@@ -1275,33 +1167,19 @@ var Sendlater3Util = {
     },
 
     initUtil: function() {
-        Sendlater3Util.Entering("Sendlater3Util.initUtil");
+        sl3log.Entering("Sendlater3Util.initUtil");
         Sendlater3Util._PromptBundle =
             document.getElementById("sendlater3-promptstrings");
         Sendlater3Util.PrefService
             .QueryInterface(Components.interfaces.nsIPrefBranch2);
-        Sendlater3Util.consoleObserver =
-            Sendlater3Util.PrefService.addObserver(
-                Sendlater3Util.pref("logging.console"),
-                Sendlater3Util.reinitLogging, false);
-        Sendlater3Util.dumpObserver =
-            Sendlater3Util.PrefService.addObserver(
-                Sendlater3Util.pref("logging.dump"),
-                Sendlater3Util.reinitLogging, false);
-        Sendlater3Util.Leaving("Sendlater3Util.initUtil");
+        sl3log.Leaving("Sendlater3Util.initUtil");
     },
 
     uninitUtil: function() {
-        Sendlater3Util.Entering("Sendlater3Util.uninitUtil");
+        sl3log.Entering("Sendlater3Util.uninitUtil");
         Sendlater3Util.PrefService
             .QueryInterface(Components.interfaces.nsIPrefBranch2);
-        Sendlater3Util.PrefService.removeObserver(
-            Sendlater3Util.pref("logging.console"),
-            Sendlater3Util.reinitLogging);
-        Sendlater3Util.PrefService.removeObserver(
-            Sendlater3Util.pref("logging.dump"),
-            Sendlater3Util.reinitLogging);
-        Sendlater3Util.Leaving("Sendlater3Util.uninitUtil");
+        sl3log.Leaving("Sendlater3Util.uninitUtil");
     },
 
     zeroPad: function(val, digits) {
@@ -1325,7 +1203,7 @@ var Sendlater3Util = {
         sfile.appendRelativePath("tempMsg" + Sendlater3Util.getInstanceUuid()
                                  + Sendlater3Util.fileNumber++ + ".eml");
         var filePath = sfile.path;
-        Sendlater3Util.dump("Saving message to " + filePath);
+        sl3log.dump("Saving message to " + filePath);
         if (sfile.exists()) sfile.remove(true);
         sfile.create(sfile.NORMAL_FILE_TYPE, 0600);
         var stream = Components
@@ -1372,11 +1250,11 @@ var Sendlater3Util = {
                     this.file.remove(true);
                     this.timer_ref = undefined;
                     timer.cancel();
-                    Sendlater3Util.dump("Successfully deleted queued "
+                    sl3log.dump("Successfully deleted queued "
                                         + this.file.path);
                 }
                 catch (ex) {
-                    Sendlater3Util.dump("Failed to delete "
+                    sl3log.dump("Failed to delete "
                                         + this.file.path);
                 }
             }
@@ -1408,32 +1286,6 @@ var Sendlater3Util = {
         if (SL3U.getBoolPref("disabled_for_enigmail"))
             SL3U.setBoolPref("disabled_for_enigmail", false);
         return false;
-    },
-
-    Entering: function() {
-        var func = arguments[0];
-        var msg = "Entering " + func;
-        var a = new Array();
-        var i;
-        for (i = 1; i < arguments.length; i++) {
-            a.push(arguments[i]);
-        }
-        if (a.length > 0) {
-            msg = msg + "(" + a.join(", ") + ")";
-        }
-        Sendlater3Util.trace(msg);
-    },
-
-    Leaving: function(func) {
-        Sendlater3Util.trace("Leaving " + func);
-    },
-
-    Returning: function(func, value) {
-        Sendlater3Util.trace("Returning \"" + value + "\" from " + func);
-    },
-
-    Throwing: function(func, error) {
-        Sendlater3Util.trace("Throwing \"" + error + "\" from " + func);
     }
 };
 

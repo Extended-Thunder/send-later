@@ -1,4 +1,5 @@
 Components.utils.import("resource://sendlater3/dateparse.jsm");
+Components.utils.import("resource://sendlater3/logging.jsm");
 
 var Sendlater3ComposeToolbar = {
     timer: null,
@@ -23,7 +24,7 @@ var Sendlater3ComposeToolbar = {
     },
 
     updateSummary: function(fromPicker) {
-        SL3U.Entering("Sendlater3ComposeToolbar.updateSummary");
+        sl3log.Entering("Sendlater3ComposeToolbar.updateSummary");
 	var textField = document.getElementById("sendlater3-toolbar-text");
 	var button = document.getElementById("sendlater3-toolbarbutton");
 	var dateStr;
@@ -62,7 +63,7 @@ var Sendlater3ComposeToolbar = {
 		button.label = button.getAttribute("sl3label");
 	    }
 	}
-        SL3U.Returning("Sendlater3ComposeToolbar.updateSummary", dateObj);
+        sl3log.Returning("Sendlater3ComposeToolbar.updateSummary", dateObj);
 	return dateObj;
     },
 
@@ -76,12 +77,12 @@ var Sendlater3ComposeToolbar = {
     },
 
     pickersToText: function(fromUpdate) {
-	SL3U.Entering("Sendlater3ComposeToolbar.pickersToText");
+	sl3log.Entering("Sendlater3ComposeToolbar.pickersToText");
 	var textField = document.getElementById("sendlater3-toolbar-text");
 	var datePicker = document.getElementById("sendlater3-toolbar-datepicker");
 	var timePicker = document.getElementById("sendlater3-toolbar-timepicker");
 	if (! datePicker) {
-	    SL3U.Returning("Sendlater3ComposeToolbar.pickersToText", false);
+	    sl3log.Returning("Sendlater3ComposeToolbar.pickersToText", false);
 	    return false;
 	}
 	var date = datePicker.value;
@@ -93,7 +94,7 @@ var Sendlater3ComposeToolbar = {
 	    textField.value = val;
 	    Sendlater3ComposeToolbar.updateSummary(val);
 	}
-	SL3U.Returning("Sendlater3ComposeToolbar.pickersToText", val);
+	sl3log.Returning("Sendlater3ComposeToolbar.pickersToText", val);
 	return val;
     },
 
@@ -106,7 +107,7 @@ var Sendlater3ComposeToolbar = {
 
     SetOnLoad: function() {
 	var t = Sendlater3ComposeToolbar;
-	SL3U.Entering("Sendlater3ComposeToolbar.SetOnLoad");
+	sl3log.Entering("Sendlater3ComposeToolbar.SetOnLoad");
 
 	// We need to detect when the toolbar is first added to
 	// the message window, so we can populate it at that
@@ -114,7 +115,7 @@ var Sendlater3ComposeToolbar = {
 	if (! t.origCustomizeDone) {
 	    var name = SL3U.ComposeToolboxName();
 	    t.origCustomizeDone = document.getElementById(name).customizeDone;
-	    SL3U.debug("t.origCustomizeDone=" + t.origCustomizeDone);
+	    sl3log.debug("t.origCustomizeDone=" + t.origCustomizeDone);
 	    document.getElementById(name).customizeDone = t.CustomizeDone;
 	}
 
@@ -156,7 +157,7 @@ var Sendlater3ComposeToolbar = {
 	 
 	var textField = document.getElementById("sendlater3-toolbar-text");
 	if (Sendlater3Composing.prevXSendLater) {
-	    SL3U.dump("PrevXSendlater is set to " +
+	    sl3log.dump("PrevXSendlater is set to " +
 		      Sendlater3Composing.prevXSendLater);
 	    if (textField) {
 		textField.value =
@@ -167,7 +168,7 @@ var Sendlater3ComposeToolbar = {
 		Sendlater3Composing.prevXSendLater);
 	}
 	else {
-	    SL3U.dump("No previous time");
+	    sl3log.dump("No previous time");
 	    if (textField) {
 		textField.value = "";
 	    }
@@ -175,13 +176,13 @@ var Sendlater3ComposeToolbar = {
 	Sendlater3ComposeToolbar.SetRecurring(Sendlater3Composing.prevRecurring
 					      ? true : false);
 	Sendlater3ComposeToolbar.updateSummary();
-	SL3U.Leaving("Sendlater3ComposeToolbar.SetOnLoad");
+	sl3log.Leaving("Sendlater3ComposeToolbar.SetOnLoad");
     },
 
     CustomizeDone: function(aToolboxChanged) {
 	var t = Sendlater3ComposeToolbar;
 	var err;
-	SL3U.Entering("Sendlater3ComposeToolbar.CustomizeDone", aToolboxChanged);
+	sl3log.Entering("Sendlater3ComposeToolbar.CustomizeDone", aToolboxChanged);
 	try {
 	    t.origCustomizeDone(aToolboxChanged);
 	} catch (e) {
@@ -191,14 +192,14 @@ var Sendlater3ComposeToolbar = {
 	    t.SetOnLoad();
 	}
 	if (err != null) {
-	    SL3U.debug("Sendlater3ComposeToolbar.CustomizeDone: throwing exception from original customizeDone function");
+	    sl3log.debug("Sendlater3ComposeToolbar.CustomizeDone: throwing exception from original customizeDone function");
 	    throw err;
 	}
-	SL3U.Leaving("Sendlater3ComposeToolbar.CustomizeDone");
+	sl3log.Leaving("Sendlater3ComposeToolbar.CustomizeDone");
     },
 
     CallSendAt: function(sendat) {
-	SL3U.Entering("Sendlater3ComposeToolbar.CallSendAt");
+	sl3log.Entering("Sendlater3ComposeToolbar.CallSendAt");
         if (! sendat) {
 	    sendat = Sendlater3ComposeToolbar.updateSummary();
             if (sendat)
@@ -211,12 +212,12 @@ var Sendlater3ComposeToolbar = {
             Sendlater3Composing.mySendLater();
 	    ret = true;
 	}
-	SL3U.Returning("Sendlater3ComposeToolbar.CallSendAt", ret);
+	sl3log.Returning("Sendlater3ComposeToolbar.CallSendAt", ret);
 	return ret;
     },
 
     CallSendAfter: function(mins) {
-	SL3U.Entering("Sendlater3ComposeToolbar.CallSendAfter");
+	sl3log.Entering("Sendlater3ComposeToolbar.CallSendAfter");
 	var sendat = new Date();
 	var recur;
 	var args;
@@ -241,11 +242,12 @@ var Sendlater3ComposeToolbar = {
 	    sendat.setTime(sendat.getTime()+mins*60*1000);
 	}
         Sendlater3ComposeToolbar.CallSendAt([sendat, recur, args]);
-	SL3U.Returning("Sendlater3ComposeToolbar.CallSendAfter", true);
+	sl3log.Returning("Sendlater3ComposeToolbar.CallSendAfter", true);
 	return true;
     },
 
     main: function() {
+	SL3U.initUtil();
         if (SL3U.alert_for_enigmail()) {
             for (var id in Sendlater3ComposeToolbar.elements) {
                 id = Sendlater3ComposeToolbar.elements[id]
@@ -257,15 +259,13 @@ var Sendlater3ComposeToolbar = {
             return;
         }
 
-    	SL3U.Entering("Sendlater3ComposeToolbar.main");
+    	sl3log.Entering("Sendlater3ComposeToolbar.main");
         window.removeEventListener("load", Sendlater3ComposeToolbar.main, false);
-	SL3U.initUtil();
 	Sendlater3ComposeToolbar.SetOnLoad();
 	document.getElementById("msgcomposeWindow").addEventListener("compose-window-reopen", Sendlater3ComposeToolbar.SetOnLoad, false);
 
-    	SL3U.Leaving("Sendlater3ComposeToolbar.main");
+    	sl3log.Leaving("Sendlater3ComposeToolbar.main");
     }
 }
 
 window.addEventListener("load", Sendlater3ComposeToolbar.main, false);
-window.addEventListener("unload", SL3U.uninitUtil, false);

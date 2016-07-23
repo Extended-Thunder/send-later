@@ -1,5 +1,6 @@
 Components.utils.import("resource://sendlater3/dateparse.jsm");
 Components.utils.import("resource://sendlater3/ufuncs.jsm");
+Components.utils.import("resource://sendlater3/logging.jsm");
 
 var Sendlater3Prompt = {
     loaded: false,
@@ -71,9 +72,9 @@ var Sendlater3Prompt = {
     },
 
     CheckRecurring: function(dateObj) {
-        SL3U.Entering("Sendlater3Prompt.CheckRecurring", dateObj);
+        sl3log.Entering("Sendlater3Prompt.CheckRecurring", dateObj);
         if (! Sendlater3Prompt.loaded) {
-            SL3U.Returning("Sendlater3Prompt.CheckRecurring",
+            sl3log.Returning("Sendlater3Prompt.CheckRecurring",
                            "not loaded yet");
             return;
         }
@@ -134,7 +135,7 @@ var Sendlater3Prompt = {
             document.getElementById("sendlater3-recur-every-value").disabled =
             true;
 
-        SL3U.Leaving("Sendlater3Prompt.CheckRecurring");
+        sl3log.Leaving("Sendlater3Prompt.CheckRecurring");
     },
 
     StealControlReturn: function(ev) {
@@ -158,9 +159,9 @@ var Sendlater3Prompt = {
     },
 
     SetOnLoad: function() {
-        SL3U.Entering("Sendlater3Prompt.SetOnLoad");
-        window.removeEventListener("load", Sendlater3Prompt.SetOnLoad, false);
         SL3U.initUtil();
+        sl3log.Entering("Sendlater3Prompt.SetOnLoad");
+        window.removeEventListener("load", Sendlater3Prompt.SetOnLoad, false);
         Sendlater3Prompt.loaded = true;
         document.getElementById("defaults-group").selectedIndex = -1;
         var picker = document.getElementById("recur-menu");
@@ -293,11 +294,11 @@ var Sendlater3Prompt = {
         Sendlater3Prompt.CheckRecurring();
 	document.getElementById("sendlater3-time-text").focus();
 	Sendlater3Prompt.AddControlReturnListeners(document);
-        SL3U.Leaving("Sendlater3Prompt.SetOnLoad");
+        sl3log.Leaving("Sendlater3Prompt.SetOnLoad");
     },
 
     pickersToText: function() {
-	SL3U.Entering("Sendlater3Prompt.pickersToText");
+	sl3log.Entering("Sendlater3Prompt.pickersToText");
 	var textField = document.getElementById("sendlater3-time-text");
 	var datePicker = document.getElementById("sendlater3-datepicker");
 	var timePicker = document.getElementById("sendlater3-timepicker");
@@ -307,7 +308,7 @@ var Sendlater3Prompt = {
 	time = time.replace(/(.*:.*):.*/, "$1");
 	textField.value = date + " " + time;
 	Sendlater3Prompt.updateSummary(true);
-	SL3U.Leaving("Sendlater3Prompt.pickersToText");
+	sl3log.Leaving("Sendlater3Prompt.pickersToText");
     },
 
     dateToPickers: function(dateObj) {
@@ -318,9 +319,9 @@ var Sendlater3Prompt = {
     },
 
     updateSummary: function(fromPicker) {
-        SL3U.Entering("Sendlater3Prompt.updateSummary");
+        sl3log.Entering("Sendlater3Prompt.updateSummary");
         if (! Sendlater3Prompt.loaded) {
-            SL3U.Returning("Sendlater3Prompt.updateSummary", "not yet loaded");
+            sl3log.Returning("Sendlater3Prompt.updateSummary", "not yet loaded");
             return;
         }
         var functional = this.functional();
@@ -375,23 +376,23 @@ var Sendlater3Prompt = {
 	}
 	document.getElementById("sendlater3-callsendat")
 	    .setAttribute("disabled", ! enable_button);
-        SL3U.Returning("Sendlater3Prompt.updateSummary", dateObj);
+        sl3log.Returning("Sendlater3Prompt.updateSummary", dateObj);
 	return dateObj;
     },
 
     CheckTextEnter: function(event) {
-	SL3U.Entering("Sendlater3Prompt.CheckTextEnter");
+	sl3log.Entering("Sendlater3Prompt.CheckTextEnter");
 	var ret = false;
 	if (event.keyCode == KeyEvent.DOM_VK_RETURN &&
 	    ! (event.altKey || event.ctrlKey || event.ShiftKey)) {
 	    ret = Sendlater3Prompt.CallSendAt();
 	}
-	SL3U.Returning("Sendlater3Prompt.CheckTextEnter", ret);
+	sl3log.Returning("Sendlater3Prompt.CheckTextEnter", ret);
 	return ret;
     },
 
     CallSendAfter: function(mins) {
-        SL3U.Entering("Sendlater3Prompt.CallSendAfter", mins);
+        sl3log.Entering("Sendlater3Prompt.CallSendAfter", mins);
 	var sendat = new Date();
 	var recur;
 	var args;
@@ -416,20 +417,20 @@ var Sendlater3Prompt = {
 	    sendat.setTime(sendat.getTime()+mins*60*1000);
 	}
 	window.arguments[0].finishCallback(sendat, recur, args);
-	SL3U.Leaving("Sendlater3Prompt.CallSendAfter");
+	sl3log.Leaving("Sendlater3Prompt.CallSendAfter");
 	return true;
     },
 
     clearChildren: function(element) {
-        SL3U.Entering("Sendlater3Prompt.clearChildren");
+        sl3log.Entering("Sendlater3Prompt.clearChildren");
 	while (element.childNodes.length>0) {
 	    element.removeChild(element.childNodes[0]);
 	}
-        SL3U.Leaving("Sendlater3Prompt.clearChildren");
+        sl3log.Leaving("Sendlater3Prompt.clearChildren");
     },
 
     getMaxDays: function(year,month) {
-        SL3U.Entering("Sendlater3Prompt.getMaxDays");
+        sl3log.Entering("Sendlater3Prompt.getMaxDays");
 	var oneDay = (1000 * 60 * 60 * 24);
 	var today = new Date();
 	today.setFullYear(parseInt(year));
@@ -438,7 +439,7 @@ var Sendlater3Prompt = {
 	today.setMonth(month);
 	var bt = today.toString();
 	today.setTime(today.valueOf() - oneDay);
-        SL3U.Returning("Sendlater3Prompt.getMaxDays", today.getDate());
+        sl3log.Returning("Sendlater3Prompt.getMaxDays", today.getDate());
 	return today.getDate();
     },
 
@@ -530,7 +531,7 @@ var Sendlater3Prompt = {
     },
 
     CallSendAt: function() {
-        SL3U.Entering("Sendlater3Prompt.CallSendAt");
+        sl3log.Entering("Sendlater3Prompt.CallSendAt");
         if (document.getElementById("save-defaults").selected) {
             try {
                 var results = this.GetRecurStructure(new Date(), true);
@@ -556,7 +557,7 @@ var Sendlater3Prompt = {
         if (functionName) {
             var results = this.onCalculate(true);
             if (! results) {
-                SL3U.Leaving("Sendlater3Prompt.CallSendAt (bad function)",
+                sl3log.Leaving("Sendlater3Prompt.CallSendAt (bad function)",
                              false);
                 return false;
             }
@@ -567,7 +568,7 @@ var Sendlater3Prompt = {
         else {
 	    sendat = Sendlater3Prompt.updateSummary();
             if (! sendat) {
-                SL3U.Leaving("Sendlater3Prompt.CallSendAt (not scheduled)",
+                sl3log.Leaving("Sendlater3Prompt.CallSendAt (not scheduled)",
                              false);
                 return false;
             }
@@ -575,7 +576,7 @@ var Sendlater3Prompt = {
         }
         spec = SL3U.unparseRecurSpec(spec);
 	window.arguments[0].finishCallback(sendat, spec, args);
-        SL3U.Returning("Sendlater3Prompt.CallSendAt", true);
+        sl3log.Returning("Sendlater3Prompt.CallSendAt", true);
 	return true;
     },
 

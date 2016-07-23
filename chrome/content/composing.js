@@ -1,4 +1,5 @@
 Components.utils.import("resource://sendlater3/dateparse.jsm");
+Components.utils.import("resource://sendlater3/logging.jsm");
 
 var Sendlater3Composing = {
     composeListener: {
@@ -98,7 +99,7 @@ var Sendlater3Composing = {
         // disabling it, so that's what the following code does.
         try {
             if (GetSFCorePort && SendEventHandler) {
-                SL3U.info("Disabling SpamFighter compose-send-message listener");
+                sl3log.info("Disabling SpamFighter compose-send-message listener");
                 window.removeEventListener("compose-send-message", SendEventHandler,
                                            true);
             }
@@ -133,7 +134,7 @@ var Sendlater3Composing = {
         }
         
 	function CheckForXSendLater() {
-	    SL3U.Entering("Sendlater3Composing.main.CheckforXSendLater");
+	    sl3log.Entering("Sendlater3Composing.main.CheckforXSendLater");
 	    Sendlater3Composing.prevXSendLater = false;
 	    Sendlater3Composing.prevRecurring = false;
 	    Sendlater3Composing.prevArgs = null;
@@ -141,7 +142,7 @@ var Sendlater3Composing = {
 		var msgCompFields = gMsgCompose.compFields;
 		if (msgCompFields && msgCompFields.draftId!="") {
 		    var messageURI = msgCompFields.draftId.replace(/\?.*/, "");
-		    SL3U.dump("Checking " + messageURI);
+		    sl3log.dump("Checking " + messageURI);
 		    var accountManager = Components
 			.classes["@mozilla.org/messenger/account-manager;1"]
 			.getService(Components.interfaces
@@ -168,7 +169,7 @@ var Sendlater3Composing = {
 		    if (hdr)
 			Sendlater3Composing.prevArgs = JSON.parse(hdr);
 			
-		    SL3U.dump("prevXSendLater= " +
+		    sl3log.dump("prevXSendLater= " +
 			      Sendlater3Composing.prevXSendLater +
 			      ", prevRecurring=" +
 			      Sendlater3Composing.prevRecurring +
@@ -180,7 +181,7 @@ var Sendlater3Composing = {
 					 Sendlater3Composing.setBindings,
 					 false);
 	    Sendlater3Composing.setBindings.observe();
-	    SL3U.Leaving("Sendlater3Composing.main.CheckforXSendLater");
+	    sl3log.Leaving("Sendlater3Composing.main.CheckforXSendLater");
 	}                            
 
 	var windowInitListener = {
@@ -304,7 +305,7 @@ var Sendlater3Composing = {
     ReallySendAtClosure: null,
     ReallySendAtCallback: {
 	notify: function (timer) {
-	    SL3U.Entering("Sendlater3Composing.ReallySendAtCallback.notify", timer);
+	    sl3log.Entering("Sendlater3Composing.ReallySendAtCallback.notify", timer);
 	    var sendat = Sendlater3Composing.ReallySendAtClosure.at;
 	    var recur = Sendlater3Composing.ReallySendAtClosure.recur;
 	    var args = Sendlater3Composing.ReallySendAtClosure.args;
@@ -341,12 +342,12 @@ var Sendlater3Composing = {
 
 	    SL3U.SetUpdatePref(identity.key);
 	    defaultSaveOperation = "draft";
-	    SL3U.Leaving("Sendlater3Composing.ReallySendAtCallback.notify");
+	    sl3log.Leaving("Sendlater3Composing.ReallySendAtCallback.notify");
 	}
     },
 
     SendAtTime: function(sendat, recur_value, args) {
-	SL3U.Entering("Sendlater3Composing.SendAtTime", sendat, recur_value, args);
+	sl3log.Entering("Sendlater3Composing.SendAtTime", sendat, recur_value, args);
 	Sendlater3Composing.ReallySendAtClosure = { at: sendat,
 						    recur: recur_value,
 						    args: args };
@@ -358,7 +359,7 @@ var Sendlater3Composing = {
 	    500,
 	    Components.interfaces.nsITimer.TYPE_ONE_SHOT
 	);
-	SL3U.Leaving("Sendlater3Composing.SendAtTime");
+	sl3log.Leaving("Sendlater3Composing.SendAtTime");
     },
 
     CancelSendLater: function() {
@@ -460,7 +461,7 @@ var Sendlater3Composing = {
 	    }
 	}
 	catch (ex) {
-	    SL3U.debug("Failed to set flag for reply / forward");
+	    sl3log.debug("Failed to set flag for reply / forward");
 	}
     },
 
