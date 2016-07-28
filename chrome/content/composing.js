@@ -1,6 +1,12 @@
 Components.utils.import("resource://sendlater3/dateparse.jsm");
 Components.utils.import("resource://sendlater3/logging.jsm");
 
+// This variable disappeared from Seamonkey as of 2.41a1. See
+// https://bugzilla.mozilla.org/show_bug.cgi?id=1290187. Not sure what's up
+// with this, but until I find out, this seems like the most logical fix.
+if (typeof(nsIMsgCompDeliverMode) == 'undefined')
+    nsIMsgCompDeliverMode = Components.interfaces.nsIMsgCompDeliverMode;
+
 var Sendlater3Composing = {
     composeListener: {
 	NotifyComposeBodyReady: function() {
