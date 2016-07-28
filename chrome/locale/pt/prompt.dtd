@@ -1,0 +1,21 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY sendlater.prompt.sendlater.accesskey "O">
+<!ENTITY sendlater.prompt.sendnow.label "Enviar Agora">
+<!ENTITY sendlater.prompt.sendnow.accesskey "N">
+<!ENTITY sendlater.prompt.close.label "Cancelar">
+<!ENTITY sendlater.prompt.title.label "Enviar esta mensagem mais tarde">
+<!ENTITY sendlater.prompt.textbox.label "Enviar às:">
+<!ENTITY sendlater.prompt.or.label "ou:">
+<!ENTITY sendlater.prompt.daily.label "diariamente">
+<!ENTITY sendlater.prompt.weekly.label "semanalmente">
+<!ENTITY sendlater.prompt.monthly.label "mensalmente">
+<!ENTITY sendlater.prompt.calculate.label "Calcular">
+<!ENTITY sendlater.toolbar.sendlater.button.label "Enviar Mais Tarde">
+<!ENTITY sendlater.prompt.between.label "Entre">
+<!ENTITY sendlater.prompt.day0 "Domingo">
+<!ENTITY sendlater.prompt.day1 "Segunda">
+<!ENTITY sendlater.prompt.day2 "Terça">
+<!ENTITY sendlater.prompt.day3 "Quarta">
+<!ENTITY sendlater.prompt.day4 "Quinta">
+<!ENTITY sendlater.prompt.day5 "Sexta">
+<!ENTITY sendlater.prompt.day6 "Sábado">

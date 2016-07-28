@@ -99,6 +99,13 @@
     </em:localized>
     <em:localized>
       <Description>
+	<em:locale>ja</em:locale>
+	<em:name>後で送信</em:name>
+	<em:description>指定した時間にメールを送信する機能を提供します。</em:description>
+      </Description>
+    </em:localized>
+    <em:localized>
+      <Description>
 	<em:locale>ja-JP</em:locale>
 	<em:name>後で送信</em:name>
 	<em:description>指定した時間にメールを送信する機能を提供します。</em:description>
@@ -116,6 +123,13 @@
 	<em:locale>pl</em:locale>
 	<em:name>Wyślij Później</em:name>
 	<em:description>Rozszerzenie “Wyślij później” pozwala na wysyłanie wiadomości o ustalonym wcześniej czasie.</em:description>
+      </Description>
+    </em:localized>
+    <em:localized>
+      <Description>
+	<em:locale>pt</em:locale>
+	<em:name>Send Later</em:name>
+	<em:description>Funcionalidade do "Send Later" para marcar a hora de envio</em:description>
       </Description>
     </em:localized>
     <em:localized>

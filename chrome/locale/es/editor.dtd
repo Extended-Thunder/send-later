@@ -1,1 +1,35 @@
 <!-- -*- coding: utf-8 -*- -->
+<!ENTITY windowtitle "Editor de función dinámica de Send Later">
+<!ENTITY selectfunction "Seleccionar función:">
+<!ENTITY selectfunctiontip "Seleccione una función a editar o borrar, o seleccione &quot;(crear nueva función)&quot; para ídem.">
+<!ENTITY createnewfunction "(crear nueva función)">
+<!ENTITY deletefunctionbutton "Borrar">
+<!ENTITY deletekey "B">
+<!ENTITY functionnametip "Introduzca o edite un nombre de función alfanumérico. Si modifica el nombre de una función existente, cuando lo guarde se le pedirá que renombre la función o cree una nueva función con el nombre modificado.">
+<!ENTITY functionnameplaceholder "nombre de la función">
+<!ENTITY codetip "Sitúe el código fuente de su función aquí. Vea la función de ejemplo “ReadMeFirst” (leame primero) para más detalles acerca de qué debe hacer su código.">
+<!ENTITY codeplaceholder "código fuente de la función">
+<!ENTITY helptextheader "Texto de ayuda de la función:">
+<!ENTITY helptexttip "Cualquier texto que coloque aquí se mostrará cuando el usuario pase sobre el nombre de la función en el menú emergente. Úselo para explicar lo que la función hace y qué argumentos acepta.">
+<!ENTITY helptextplaceholder "texto de ayuda">
+<!ENTITY runbutton "Ejecutar función:">
+<!ENTITY runkey "E">
+<!ENTITY inputtime "Hora de entrada:">
+<!ENTITY inputtimetip "Aquí puede introducir fechas y horas en cualquier formato que el cuadro de diálogo de Send Later comprenda.">
+<!ENTITY inputtimeplaceholder "fecha y hora, en su caso, a pasar a la función para prueba">
+<!ENTITY inputargs "Argumentos de entrada:">
+<!ENTITY inputargstip "Los argumentos se deben especificar en formato JavaScript, ej. las cadenas de texto deben estar entrecomilladas.">
+<!ENTITY inputargsplaceholder "argumentos separados por comas, en su caso, a pasar a la función para prueba">
+<!ENTITY output "Salida:">
+<!ENTITY importbutton "Importar...">
+<!ENTITY importkey "I">
+<!ENTITY importtip "Importa una función dinámica previamente exportada por el editor.">
+<!ENTITY exportbutton "Exportar...">
+<!ENTITY exportkey "E">
+<!ENTITY exporttip "Exporta la función mostrada actualmente a un fichero para copia de seguridad o para compartir.">
+<!ENTITY resetbutton "Descartar cambios">
+<!ENTITY resetkey "D">
+<!ENTITY savebutton "Guardar">
+<!ENTITY savekey "G">
+<!ENTITY closebutton "Cerrar">
+<!ENTITY closekey "C">

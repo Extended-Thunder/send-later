@@ -1,0 +1,14 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY prefwindow.title "Send Later - Preferências">
+<!ENTITY pane1.title "Send Later - Preferências">
+<!ENTITY checktimepref.label "Verificar a cada:">
+<!ENTITY checktimepref2.label "minutos">
+<!ENTITY general.caption "Geral">
+<!ENTITY quickoption1.caption "Atalho 1">
+<!ENTITY quickoption2.caption "Atalho 2">
+<!ENTITY quickoption3.caption "Atalho 3">
+<!ENTITY advanced.caption "Avançado">
+<!ENTITY contactauthor.value "Contacte o autor">
+<!ENTITY helplink.value "Guia do Utilizador">
+<!ENTITY releasenotes.value "Notas de Lançamento">
+<!ENTITY donatelink.value "Doar">

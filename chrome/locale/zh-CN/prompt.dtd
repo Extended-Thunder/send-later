@@ -4,6 +4,7 @@
 <!ENTITY sendlater.prompt.sendlater.tooltip "不指定发送时间，而是移动消息到发件箱，等待下一次发送未发送消息时发送。">
 <!ENTITY sendlater.prompt.sendnow.label "立即发送">
 <!ENTITY sendlater.prompt.sendnow.accesskey "N">
+<!ENTITY sendlater.prompt.sendnow.tooltip "立即发送消息，跳过 “Send Later”。">
 <!ENTITY sendlater.prompt.close.label "取消">
 <!ENTITY sendlater.prompt.close.tooltip "回到编写消息。">
 <!ENTITY sendlater.prompt.title.label "延期发送这封电子邮件">
@@ -13,6 +14,8 @@
 <!ENTITY sendlater.prompt.textbox.emptytext "例如： “2012/12/31 15:27”">
 <!ENTITY sendlater.prompt.sendat.label "延期到指定的时间发送">
 <!ENTITY sendlater.prompt.sendat.tooltip "保存消息到草稿箱，在上面设定的时间自动发送。">
+<!ENTITY sendlater.prompt.savedefaults "将这些数值保存为默认">
+<!ENTITY sendlater.prompt.cleardefaults "清除默认">
 <!ENTITY sendlater.prompt.recur.label "周期：">
 <!ENTITY sendlater.prompt.none.label "无">
 <!ENTITY sendlater.prompt.minutely.label "每分钟">
@@ -20,6 +23,9 @@
 <!ENTITY sendlater.prompt.weekly.label "每周">
 <!ENTITY sendlater.prompt.monthly.label "每月">
 <!ENTITY sendlater.prompt.yearly.label "每年">
+<!ENTITY sendlater.prompt.function.label "函数：">
+<!ENTITY sendlater.prompt.functionargs.label "函数参数：">
+<!ENTITY sendlater.prompt.calculate.label "计算">
 <!ENTITY sendlater.toolbar.sendlater.button.label "延期发送">
 <!ENTITY sendlater.toolbar.textbox.emptytext "发送时间">
 <!ENTITY sendlater.prompt.every.label "每">

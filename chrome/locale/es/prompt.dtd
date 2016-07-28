@@ -4,6 +4,7 @@
 <!ENTITY sendlater.prompt.sendlater.tooltip "En vez de programar la entrega para una hora específica, mover el mensaje a la carpeta de Bandeja de Salida para ser entregado la próxima vez que se envíen mensajes sin enviar.">
 <!ENTITY sendlater.prompt.sendnow.label "Enviar Ahora">
 <!ENTITY sendlater.prompt.sendnow.accesskey "N">
+<!ENTITY sendlater.prompt.sendnow.tooltip "Enviar el mensaje inmediatamente, eludiendo a &quot;Send Later&quot;.">
 <!ENTITY sendlater.prompt.close.label "Cancelar">
 <!ENTITY sendlater.prompt.close.tooltip "Volver a editar el mensaje.">
 <!ENTITY sendlater.prompt.title.label "Enviar este mensaje después">
@@ -13,6 +14,8 @@
 <!ENTITY sendlater.prompt.textbox.emptytext "Ej.: &quot;Jueves 3:00pm&quot;, &quot;31/12/2012 15:27&quot;">
 <!ENTITY sendlater.prompt.sendat.label "Enviar Luego en la(s) hora(s) especificada(s) arriba">
 <!ENTITY sendlater.prompt.sendat.tooltip "Guardar mensaje en carpeta Borradores para entrega automática a la hora establecida arriba">
+<!ENTITY sendlater.prompt.savedefaults "Guardar estos valores como predeterminados">
+<!ENTITY sendlater.prompt.cleardefaults "Limpiar predeterminados">
 <!ENTITY sendlater.prompt.recur.label "Repetir:">
 <!ENTITY sendlater.prompt.none.label "ninguno">
 <!ENTITY sendlater.prompt.minutely.label "cada minuto">
@@ -20,6 +23,9 @@
 <!ENTITY sendlater.prompt.weekly.label "semanalmente">
 <!ENTITY sendlater.prompt.monthly.label "mensualmente">
 <!ENTITY sendlater.prompt.yearly.label "anualmente">
+<!ENTITY sendlater.prompt.function.label "función:">
+<!ENTITY sendlater.prompt.functionargs.label "Argumentos de la función:">
+<!ENTITY sendlater.prompt.calculate.label "Calcular">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Enviar Luego">
 <!ENTITY sendlater.toolbar.textbox.emptytext "hora de envío">
 <!ENTITY sendlater.prompt.every.label "Cada">
