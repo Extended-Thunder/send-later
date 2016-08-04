@@ -66,7 +66,7 @@ var Sendlater3Prompt = {
         if (! this.functional())
             return false;
         var selectedItem = document.getElementById("recur-menu").selectedItem;
-        if (selectedItem)
+        if (selectedItem && selectedItem.value) // Not empty string
             return selectedItem.value;
         return false;
     },
@@ -165,12 +165,19 @@ var Sendlater3Prompt = {
         Sendlater3Prompt.loaded = true;
         document.getElementById("defaults-group").selectedIndex = -1;
         var picker = document.getElementById("recur-menu");
+        picker.appendItem("", "");
+        picker.selectedIndex = 0;
         var funclist = sl3uf.list();
         for (var i in funclist) {
             var name, help, body;
             [name, help, body] = sl3uf.load(funclist[i]);
             var item = picker.appendItem(name, name);
             item.tooltipText = help;
+        }
+        if (! funclist.length) {
+            document.getElementById("sendlater3-recur-function").disabled =
+                true;
+            picker.disabled = true;
         }
         var hb = document.getElementById("sendlater3-ancillary-buttons-hbox");
         if (! window.arguments[0].continueCallback) {
@@ -240,7 +247,8 @@ var Sendlater3Prompt = {
             if (settings.type == "function") {
                 var funcname = settings.function.replace(/^ufunc:/, "");
                 var menu = document.getElementById("recur-menu");
-                for (var i = 0; i < menu.itemCount; i++) {
+                // item 0 is an empty string
+                for (var i = 1; i < menu.itemCount; i++) {
                     var item = menu.getItemAtIndex(i);
                     if (item.value == funcname) {
                         menu.selectedItem = item;
@@ -588,6 +596,8 @@ var Sendlater3Prompt = {
         var helpicon = document.getElementById("recur-menu-help");
         helpicon.tooltipText = menulist.selectedItem.tooltipText;
         helpicon.hidden = false;
+        if (! menulist.getItemAtIndex(0).value)
+            menulist.removeItemAt(0);
     },
 
     onCalculate: function(interactive) {
