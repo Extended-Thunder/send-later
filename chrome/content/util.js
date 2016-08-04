@@ -395,13 +395,11 @@ var Sendlater3Util = {
         spec += parsed.type;
 
         if (parsed.type == "monthly") {
-            if (parsed.monthly_day) {
-                spec += " " + parsed.monthly_day.day + " " +
-                    parsed.monthly_day.week;
-            }
-            else {
+            spec += " ";
+            if (parsed.monthly_day)
+                spec += parsed.monthly_day.day + " " + parsed.monthly_day.week;
+            else
                 spec += parsed.monthly;
-            }
         }
         else if (parsed.type == "yearly") {
             spec += " " + parsed.yearly.month + " " + parsed.yearly.date;
