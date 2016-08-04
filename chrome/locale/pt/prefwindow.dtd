@@ -7,8 +7,14 @@
 <!ENTITY quickoption1.caption "Atalho 1">
 <!ENTITY quickoption2.caption "Atalho 2">
 <!ENTITY quickoption3.caption "Atalho 3">
+<!ENTITY quickoptionvalue.label "Minutos:">
+<!ENTITY showtoolbarbutton.caption "Mostrar na barra de ferramentas">
+<!ENTITY showsendlatercolumn.caption "Mostrar Coluna de Send Later">
+<!ENTITY showsendlaterheader.caption "Mostrar Cabeçalho de Send Later">
+<!ENTITY showsendlaterstatus.caption "Mostrar Send Later na Barra de estado">
 <!ENTITY advanced.caption "Avançado">
 <!ENTITY contactauthor.value "Contacte o autor">
 <!ENTITY helplink.value "Guia do Utilizador">
 <!ENTITY releasenotes.value "Notas de Lançamento">
 <!ENTITY donatelink.value "Doar">
+<!ENTITY editorbutton "Abrir editor de função dinâmica...">
