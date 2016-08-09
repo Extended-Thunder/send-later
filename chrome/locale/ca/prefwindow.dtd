@@ -3,7 +3,7 @@
 <!ENTITY pane1.title "Preferències per a Send Later">
 <!ENTITY checktimepref.label "Comprovar cada:">
 <!ENTITY checktimepref2.label "minuts">
-<!ENTITY checktimepref.tooltip "Interval, en minuts, entre les comprovacions dels esborranys als que els hi arribat el moment de ser lliurats. Augmenteu aquest valor si els vostres esborranys algunes vegades no son enviats a temps o si el comptador de missatges pendents en la barra d'estat no reflecteix algun cop tots els esborranys programats.">
+<!ENTITY checktimepref.tooltip "Interval, en minuts, entre les comprovacions dels esborranys als que els ha arribat el moment de ser lliurats. Augmenteu aquest valor si els vostres esborranys algunes vegades no son enviats a temps o si el comptador de missatges pendents en la barra d'estat no reflecteix algun cop tots els esborranys programats.">
 <!ENTITY general.caption "General">
 <!ENTITY quickoption1.caption "Drecera 1">
 <!ENTITY quickoption2.caption "Drecera 2">
@@ -14,15 +14,15 @@
 <!ENTITY showsendlatercolumn.caption "Mostrar la columna Send Later">
 <!ENTITY showsendlatercolumn.tooltip "Si s'ha de mostrar la columna &quot;Send Later&quot; en la vista de les carpetes d'esborranys">
 <!ENTITY showsendlaterheader.caption "Mostrar la capçalera Send Later">
-<!ENTITY showsendlaterheader.tooltip "Si es mostra la capçalera &quot;X-Send-Later-A&quot;, p.ex., l'hora en la que l'esborrany és programat per a ser enviat, en la capçalera de visualitació del missatge.">
+<!ENTITY showsendlaterheader.tooltip "Si es mostra la capçalera &quot;X-Send-Later-A&quot;, p.ex., l'hora en la que l'esborrany és programat per a ser enviat, en la capçalera de visualització del missatge.">
 <!ENTITY showsendlaterstatus.caption "Mostrar Send Later en la Barra d'Estat">
-<!ENTITY showsendlaterprogress.caption "Mostrar el Progres de Fons en la Barra d'Estat">
+<!ENTITY showsendlaterprogress.caption "Mostrar el Progrés en segon pla en la Barra d'Estat">
 <!ENTITY showsendlaterentry.caption "Mostrar l'entrada de Temps en la Barra d'Estat">
 <!ENTITY showsendlaterunsentmessages.caption "Enviar els missatges no lliurats de la Safata de Sortida">
-<!ENTITY showsendlaterunsentmessages.tooltip "Si desmarca aquesta opció, llavors Send Later no lliurarà els missatges de manera completa, però en canvi els posarà en la Safata de Sortida quan estiguin programats per a ser lliurats. Desmarqui aquesta opció, per exemple, si usa algun altre complement. p.ex., Blunder Delay, per tal d'enviar missatges periòdicament des de la seva Safata de Sortida. Noteu que, quan aquesta opció està habilitada, llavors qualsevol vegada que Send Later lliura un missatge, TOTS els missatges de la Carpeta de Sortida seran lliurats.">
-<!ENTITY sendlatersendbutton.caption "&quot;Enviar&quot; fa &quot;Send Later&quot;">
-<!ENTITY sendlatersendbutton.tooltip "Amb aquesta opció habilitada, la comanda &quot;Enviar&quot; (tant el botó con al teclejar Ctrl-Intro) funciona igual que &quot;Send Later&quot;">
-<!ENTITY altbinding.caption "Enllaçar Alt-Mayusc-Intro en lloc de Ctrl-Mayusc-Intro">
+<!ENTITY showsendlaterunsentmessages.tooltip "Si desmarca aquesta opció, llavors Send Later no enviarà els missatges directament, sinó que els posarà en la Safata de Sortida quan estiguin programats per a ser lliurats. Desmarqui aquesta opció, per exemple, si usa algun altre complement. p.ex., Blunder Delay, per tal d'enviar missatges periòdicament des de la seva Safata de Sortida. Noteu que, quan aquesta opció està habilitada, llavors cada vegada que Send Later envia un missatge, TOTS els missatges de la Carpeta de Sortida seran enviats.">
+<!ENTITY sendlatersendbutton.caption "&quot;Enviar&quot; actua com &quot;Enviar més endavant&quot;">
+<!ENTITY sendlatersendbutton.tooltip "Amb aquesta opció habilitada, la comanda &quot;Enviar&quot; (tant el botó com al teclejar Ctrl-Intro) funciona igual que &quot;Enviar més endavant&quot;">
+<!ENTITY altbinding.caption "Enllaçar Alt-Majúscules-Intro en lloc de Ctrl-Majúscules-Intro">
 <!ENTITY advanced.caption "Avançat">
 <!ENTITY dumplevel.caption "Nivell de bolcat de registre:">
 <!ENTITY consolelevel.caption "Nivell de consola de registre:">
@@ -30,9 +30,13 @@
 <!ENTITY contactauthor.value "Contactar amb l'autor">
 <!ENTITY helplink.tooltip "Veure la documentació de Send Later.">
 <!ENTITY helplink.value "Guia d'usuari">
+<!ENTITY releasenotes.value "Notes de la versió">
 <!ENTITY donatelink.value "Fer una donació">
-<!ENTITY enforcerestrictions.tooltip "Si un missatge està en temps de ser lliurat, està fora de temps o dia per restriccions, p.ex., degut a que Thunderbird no s'estava executant en l'hora de lliurament programada, llavors es retarda el lliurament fins que s'acompleixin les restriccions de dia i hora.">
-<!ENTITY enforcerestrictions.caption "Reforçar les restriccions de dia i hora en el moment de lliurar">
-<!ENTITY blocklatemessages.tooltip "No lliurar els missatges programats que hagin estat retardats desprès del temps programat, p.ex., degut a que Thunderbird no s'estava executant en aquell moment.">
+<!ENTITY editorlink.value "Editor de funcions dinàmiques">
+<!ENTITY enforcerestrictions.tooltip "Si un missatge prèviament programat per ser enviat està fora de temps o dia per restriccions, p.ex., degut a que Thunderbird no s'estava executant en l'hora de lliurament programada, llavors es retarda el lliurament fins que s'acompleixin les restriccions de dia i hora.">
+<!ENTITY enforcerestrictions.caption "Fer complir les restriccions de dia i hora en el moment de lliurar">
+<!ENTITY blocklatemessages.tooltip "No lliurar els missatges programats que hagin sobrepassat la data i hora definides, p.ex., degut a que Thunderbird no s'estava executant en aquell moment.">
 <!ENTITY blocklatemessages.label1 "No lliurar els missatges més de">
 <!ENTITY blocklatemessages.label2 "minuts de retard">
+<!ENTITY editorbutton "Obrir l'editor de funcions dinàmiques...">
+<!ENTITY editortip "Obrir una finestra per crear i editar les funcions de JavaScrpit que implementin una lògica de programació complexa.">
