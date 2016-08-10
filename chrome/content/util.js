@@ -472,7 +472,7 @@ var Sendlater3Util = {
                 if (! /^[1-9]\d*$/.test(multiplier))
                     throw "Invalid multiplier argument in " + spec;
                 parsed.multiplier = multiplier;
-                params.splice(slashIndex, slashIndex + 2);
+                params.splice(slashIndex, 2);
             }
         }
         
@@ -485,14 +485,14 @@ var Sendlater3Util = {
             if (! /^\d{3,4}$/.test(endTime))
                 throw "Invalid between end in " + spec;
             parsed.between = {start: startTime, end: endTime};
-            params.splice(betweenIndex, betweenIndex + 3);
+            params.splice(betweenIndex, 3);
         }
         var onIndex = params.indexOf("on");
         if (onIndex > -1) {
             parsed.days = [];
-            params.splice(onIndex, onIndex + 1);
+            params.splice(onIndex, 1);
             while (/^\d$/.test(params[onIndex])) {
-                var day = params.splice(onIndex, onIndex + 1)[0];
+                var day = params.splice(onIndex, 1)[0];
                 if (day > 6)
                     throw "Bad restriction day in " + spec;
                 parsed.days.push(Number(day));
