@@ -613,7 +613,8 @@ var Sendlater3Prompt = {
         catch (ex) {
             SL3U.alert(window,
                        SL3U.PromptBundleGet("FunctionErrorTitle"),
-                       SL3U.PromptBundleGetFormatted("FunctionErrorBody", ex));
+                       SL3U.PromptBundleGetFormatted("FunctionErrorBody",
+                                                     [ex]));
             return;
         }
         var sendat = results.shift(), spec;
