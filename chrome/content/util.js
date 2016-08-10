@@ -940,7 +940,7 @@ var Sendlater3Util = {
                 break;
             default:
                 throw "Send Later internal error: unrecognized recurrence " +
-                    "type: " + type;
+                    "type: " + recur.type;
                 break;
             }
 
