@@ -333,48 +333,45 @@ var Sendlater3Prompt = {
         }
         var functional = this.functional();
         var dateObj;
-        if (! functional) {
-	    var dateStr = document.getElementById("sendlater3-time-text").value;
-            if (dateStr) {
-                try {
-                    var dateObj = sendlater3DateParse(dateStr);
-                }
-                catch (ex) {
-                }
-                if (! (dateObj && dateObj.isValid())) {
-                    dateObj = null;
-                }
+	var dateStr = document.getElementById("sendlater3-time-text").value;
+        if (dateStr) {
+            try {
+                var dateObj = sendlater3DateParse(dateStr);
             }
+            catch (ex) {}
+            if (! (dateObj && dateObj.isValid()))
+                dateObj = null;
         }
 	var button = document.getElementById("sendlater3-callsendat");
         var enable_button = false;
 	if (dateObj) {
-	    button.label = SL3U.PromptBundleGet("sendaround") + " "
-		+ sendlater3DateToSugarDate(dateObj)
-		.format('long', sendlater3SugarLocale());
-	    Sendlater3Prompt.CheckRecurring(dateObj);
-	    if (! fromPicker) {
+            if (! functional) {
+	        button.label = SL3U.PromptBundleGet("sendaround") + " "
+		    + sendlater3DateToSugarDate(dateObj)
+		    .format('long', sendlater3SugarLocale());
+	        Sendlater3Prompt.CheckRecurring(dateObj);
+                enable_button = true;
+            }
+	    if (! fromPicker)
 		Sendlater3Prompt.dateToPickers(dateObj);
-	    }
-            enable_button = true;
 	}
-	else {
-            if (functional) {
-                var fullyFunctional = this.fullyFunctional();
-                if (fullyFunctional) {
-                    button.label = SL3U.PromptBundleGetFormatted(
-                        "sendwithfunction", [fullyFunctional]);
-                    enable_button = true;
-                }
-                else {
-                    button.label = SL3U.PromptBundleGet("sendspecifyfunction");
-                    enable_button = false;
-                }
+        else if (! functional) {
+	    button.label = SL3U.PromptBundleGet("entervalid");
+            enable_button = false;
+        }
+        if (functional) {
+            var fullyFunctional = this.fullyFunctional();
+            if (fullyFunctional) {
+                button.label = SL3U.PromptBundleGetFormatted(
+                    "sendwithfunction", [fullyFunctional]);
+                enable_button = true;
             }
             else {
-	        button.label = SL3U.PromptBundleGet("entervalid");
+                button.label = SL3U.PromptBundleGet("sendspecifyfunction");
                 enable_button = false;
             }
+        }
+        if (functional || ! dateObj) {
 	    var monthCheckbox = document.
                 getElementById("sendlater3-recur-every-month-checkbox");
             monthCheckbox.disabled = true;
@@ -636,6 +633,7 @@ var Sendlater3Prompt = {
         document.getElementById("sendlater3-time-text").value =
             sendlater3DateToSugarDate(sendat).format(
                 'long', sendlater3SugarLocale());
+        this.updateSummary();
         // Returns adjusted date, parsed recurrence spec, and arguments (if
         // any) for the next invocation (if any).
         return [sendat, spec, results];
