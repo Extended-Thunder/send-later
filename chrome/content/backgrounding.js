@@ -857,7 +857,9 @@ var Sendlater3Backgrounding = function() {
                     SL3U.getBoolPref("enforce_restrictions")) {
                     var now = new Date();
                     var adjusted = SL3U.AdjustDateForRestrictions(
-                        now, recur.between.start, recur.between.end,
+                        now,
+                        recur.between ? recur.between.start : null,
+                        recur.between ? recur.between.end : null,
                         recur.days);
                     if (now.getTime() != adjusted.getTime()) {
                         sl3log.debug(messageURI + ": enforcing restrictions on " +
