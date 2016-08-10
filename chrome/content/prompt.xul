@@ -165,10 +165,10 @@
 
       <hbox>
         <separator width="20"/>
-        <radiogroup id="defaults-group" orient="horizontal">
-          <radio id="save-defaults" label="&sendlater.prompt.savedefaults;"/>
-          <radio id="clear-defaults" label="&sendlater.prompt.cleardefaults;"/>
-        </radiogroup>
+        <checkbox id="save-defaults" label="&sendlater.prompt.savedefaults;"
+                  oncommand="document.getElementById('clear-defaults').checked = false;"/>
+        <checkbox id="clear-defaults" label="&sendlater.prompt.cleardefaults;"
+                  oncommand="document.getElementById('save-defaults').checked = false;"/>
       </hbox>
       
       <button id="sendlater3-callsendat" width="100%" flex="1" label="&sendlater.prompt.sendat.label;" tooltiptext="&sendlater.prompt.sendat.tooltip;" oncommand="Sendlater3Prompt.CallSendAt()&amp;&amp;close();"/>

@@ -163,7 +163,6 @@ var Sendlater3Prompt = {
         sl3log.Entering("Sendlater3Prompt.SetOnLoad");
         window.removeEventListener("load", Sendlater3Prompt.SetOnLoad, false);
         Sendlater3Prompt.loaded = true;
-        document.getElementById("defaults-group").selectedIndex = -1;
         var picker = document.getElementById("recur-menu");
         picker.appendItem("", "");
         picker.selectedIndex = 0;
@@ -540,7 +539,7 @@ var Sendlater3Prompt = {
 
     CallSendAt: function() {
         sl3log.Entering("Sendlater3Prompt.CallSendAt");
-        if (document.getElementById("save-defaults").selected) {
+        if (document.getElementById("save-defaults").checked) {
             try {
                 var results = this.GetRecurStructure(new Date(), true);
                 var sendat;
@@ -558,7 +557,7 @@ var Sendlater3Prompt = {
             }
             catch (ex) {}
         }
-        else if (document.getElementById("clear-defaults").selected)
+        else if (document.getElementById("clear-defaults").checked)
             SL3U.setCharPref("prompt.defaults", "");
         var sendat, spec, args;
         var functionName = this.fullyFunctional();
