@@ -34,7 +34,9 @@ var Sendlater3HeaderView = function() {
 				    retdate.getMinutes(),
 				    0);
 		if (recur) {
-		    val += " (" + SL3U.FormatRecur(recur) + ")";
+                    var recurStr = SL3U.FormatRecur(recur);
+                    if (recurStr)
+		        val += " (" + recurStr + ")";
 		}
 		sl3log.Returning("Sendlater3HeaderView.sendlater3columnHandler.getCellText", val);
 		return val;

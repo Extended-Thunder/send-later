@@ -93,75 +93,75 @@
           </hbox>
         </radiogroup>
       </hbox>
-      <deck id="sendlater3-recur-every-deck">
-        <hbox>
-          <separator width="20"/>
-          <vbox>
-	    <hbox align="center" id="sendlater3-recur-every-hbox">
-	      <checkbox id="sendlater3-recur-every-checkbox"
-		        label="&sendlater.prompt.every.label;"
-		        oncommand="Sendlater3Prompt.CheckRecurring();"/>
-	      <textbox id="sendlater3-recur-every-value" type="number"
-		       min="2" size="2"/>
-	      <label id="sendlater3-recur-every-unit"/>
 
-	      <checkbox id="sendlater3-recur-every-month-checkbox"
-		        oncommand="Sendlater3Prompt.CheckRecurring();"/>
-	    </hbox>
-            <hbox align="center" id="sendlater3-recur-between-hbox">
-              <checkbox id="sendlater3-recur-between-checkbox"
-                        label="&sendlater.prompt.between.label;"/>
-              <timepicker id="sendlater3-recur-between-start"
-                          hideseconds="true" value="00:00"
-                          onchange="window.setTimeout(function(){Sendlater3Prompt.BetweenStartUpdate()}, 0);"/>
-              <label value="-"/>
-              <timepicker id="sendlater3-recur-between-end"
-                          hideseconds="true" value="23:59"
-                          onchange="window.setTimeout(function(){Sendlater3Prompt.BetweenEndUpdate()}, 0);"/>
-            </hbox>
-            <hbox align="top" id="sendlater3-recur-on-hbox">
-              <checkbox id="sendlater3-recur-on-checkbox"
-                        label="&sendlater.prompt.on.label;"/>
-              <vbox>
-                <checkbox id="sendlater3-recur-on-day0"
-                          label="&sendlater.prompt.day0;"
-                          oncommand="Sendlater3Prompt.DayUpdate();"/>
-                <checkbox id="sendlater3-recur-on-day4"
-                          label="&sendlater.prompt.day4;"
-                          oncommand="Sendlater3Prompt.DayUpdate();"/>
-              </vbox>
-              <vbox>
-                <checkbox id="sendlater3-recur-on-day1"
-                          label="&sendlater.prompt.day1;"
-                          oncommand="Sendlater3Prompt.DayUpdate();"/>
-                <checkbox id="sendlater3-recur-on-day5"
-                          label="&sendlater.prompt.day5;"
-                          oncommand="Sendlater3Prompt.DayUpdate();"/>
-              </vbox>
-              <vbox>
-                <checkbox id="sendlater3-recur-on-day2"
-                          label="&sendlater.prompt.day2;"
-                          oncommand="Sendlater3Prompt.DayUpdate();"/>
-                <checkbox id="sendlater3-recur-on-day6"
-                          label="&sendlater.prompt.day6;"
-                          oncommand="Sendlater3Prompt.DayUpdate();"/>
-              </vbox>
-              <vbox>
-                <checkbox id="sendlater3-recur-on-day3"
-                          label="&sendlater.prompt.day3;"
-                          oncommand="Sendlater3Prompt.DayUpdate();"/>
-              </vbox>
-            </hbox>
-            <hbox align="center" width="100%">
-              <label value="&sendlater.prompt.functionargs.label;"/>
-              <textbox id="function-args" disabled="true" flex="1"/>
-              <button id="calculate" disabled="true"
-                      label="&sendlater.prompt.calculate.label;"
-                      oncommand="Sendlater3Prompt.onCalculate();"/>
-            </hbox>
-          </vbox>
-        </hbox>
-      </deck>
+      <hbox>
+        <separator width="20"/>
+        <deck id="sendlater3-recur-every-deck">
+	  <hbox align="center" id="sendlater3-recur-every-hbox">
+	    <checkbox id="sendlater3-recur-every-checkbox"
+		      label="&sendlater.prompt.every.label;"
+		      oncommand="Sendlater3Prompt.CheckRecurring();"/>
+	    <textbox id="sendlater3-recur-every-value" type="number"
+		     min="2" size="2"/>
+	    <label id="sendlater3-recur-every-unit"/>
+
+	    <checkbox id="sendlater3-recur-every-month-checkbox"
+		      oncommand="Sendlater3Prompt.CheckRecurring();"/>
+	  </hbox>
+          <hbox align="center" width="100%">
+            <label value="&sendlater.prompt.functionargs.label;"/>
+            <textbox id="function-args" disabled="true" flex="1"/>
+            <button id="calculate" disabled="true"
+                    label="&sendlater.prompt.calculate.label;"
+                    oncommand="Sendlater3Prompt.onCalculate();"/>
+          </hbox>
+        </deck>
+      </hbox>
+
+      <hbox align="center" id="sendlater3-recur-between-hbox">
+        <checkbox id="sendlater3-recur-between-checkbox"
+                  label="&sendlater.prompt.between.label;"/>
+        <timepicker id="sendlater3-recur-between-start"
+                    hideseconds="true" value="00:00"
+                    onchange="window.setTimeout(function(){Sendlater3Prompt.BetweenStartUpdate()}, 0);"/>
+        <label value="-"/>
+        <timepicker id="sendlater3-recur-between-end"
+                    hideseconds="true" value="23:59"
+                    onchange="window.setTimeout(function(){Sendlater3Prompt.BetweenEndUpdate()}, 0);"/>
+      </hbox>
+      <hbox align="top" id="sendlater3-recur-on-hbox">
+        <checkbox id="sendlater3-recur-on-checkbox"
+                  label="&sendlater.prompt.on.label;"/>
+        <vbox>
+          <checkbox id="sendlater3-recur-on-day0"
+                    label="&sendlater.prompt.day0;"
+                    oncommand="Sendlater3Prompt.DayUpdate();"/>
+          <checkbox id="sendlater3-recur-on-day4"
+                    label="&sendlater.prompt.day4;"
+                    oncommand="Sendlater3Prompt.DayUpdate();"/>
+        </vbox>
+        <vbox>
+          <checkbox id="sendlater3-recur-on-day1"
+                    label="&sendlater.prompt.day1;"
+                    oncommand="Sendlater3Prompt.DayUpdate();"/>
+          <checkbox id="sendlater3-recur-on-day5"
+                    label="&sendlater.prompt.day5;"
+                    oncommand="Sendlater3Prompt.DayUpdate();"/>
+        </vbox>
+        <vbox>
+          <checkbox id="sendlater3-recur-on-day2"
+                    label="&sendlater.prompt.day2;"
+                    oncommand="Sendlater3Prompt.DayUpdate();"/>
+          <checkbox id="sendlater3-recur-on-day6"
+                    label="&sendlater.prompt.day6;"
+                    oncommand="Sendlater3Prompt.DayUpdate();"/>
+        </vbox>
+        <vbox>
+          <checkbox id="sendlater3-recur-on-day3"
+                    label="&sendlater.prompt.day3;"
+                    oncommand="Sendlater3Prompt.DayUpdate();"/>
+        </vbox>
+      </hbox>
 
       <hbox>
         <separator width="20"/>

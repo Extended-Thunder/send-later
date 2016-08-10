@@ -452,9 +452,6 @@ var Sendlater3Prompt = {
 	    .selectedItem.id.replace(/sendlater3-recur-/, "");
         var parsed = {type: recur};
 
-	if (parsed.type == "none")
-	    return [dateObj, parsed];
-
         var startTime, endTime;
         if (document.getElementById("sendlater3-recur-between-checkbox").
             checked) {
@@ -608,7 +605,7 @@ var Sendlater3Prompt = {
         var funcname = document.getElementById("recur-menu").selectedItem.value;
         try {
             var results = SL3U.NextRecurFunction(
-                null, null, {function: "ufunc:" + funcname}, args);
+                null, null, {function: "ufunc:" + funcname}, args, true);
         }
         catch (ex) {
             SL3U.alert(window,
@@ -619,17 +616,15 @@ var Sendlater3Prompt = {
         }
         var sendat = results.shift(), spec;
         [sendat, spec] = this.GetRecurStructure(sendat, !interactive);
-        var functionSpec = results.shift();
-        if (functionSpec) {
-            functionSpec = SL3U.ParseRecurSpec(functionSpec);
-            if (spec.between)
-                functionSpec.between = spec.between;
-            if (spec.days)
-                functionSpec.days = spec.days;
-            spec = functionSpec;
-        }
+        var functionRecurString = results.shift(), newSpec;
+        if (functionRecurString)
+            newSpec = SL3U.ParseRecurSpec(functionRecurString);
         else
-            spec = {type: "none"};
+            newSpec = {type: "none"};
+        if (spec.between)
+            newSpec.between = spec.between;
+        if (spec.days)
+            newSpec.days = spec.days;
 
         document.getElementById("sendlater3-time-text").value =
             sendlater3DateToSugarDate(sendat).format(
@@ -637,7 +632,7 @@ var Sendlater3Prompt = {
         this.updateSummary();
         // Returns adjusted date, parsed recurrence spec, and arguments (if
         // any) for the next invocation (if any).
-        return [sendat, spec, results];
+        return [sendat, newSpec, results];
     }
 }
 
