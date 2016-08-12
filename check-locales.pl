@@ -43,7 +43,8 @@ foreach my $locale (sort keys %inheritance_chains) {
         &check_dtd($locale, $file);
     }
 
-    foreach my $file (map(basename($_), glob("$locale_dir/$master/*.properties"))) {
+    foreach my $file (map(basename($_),
+                          glob("$locale_dir/$master/*.properties"))) {
         &check_properties($locale, $file);
     }
 }
@@ -116,7 +117,8 @@ sub check_generic {
             print(F $strings{$key}->[0]->{"value"}) or die;
             close(F) or die;
             $replaced{"$locale/$file/$key"} = 1;
-            &warning("Replaced $key in $locale/$file from $strings{$key}->[0]->{'locale'}");
+            &warning("Replaced $key in $locale/$file from " .
+                     "$strings{$key}->[0]->{'locale'}");
             next;
         }
         &error("Key $key is missing from $locale/$file");
