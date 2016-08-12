@@ -110,6 +110,7 @@ sub check_generic {
         }
         if ($strings{$key}->[0]->{"locale"} eq $locale) {
             &debug("Good key $key in $locale/$file");
+            &check_substitutions(\%strings, $key, $locale, $file);
             next;
         }
         if ($replace) {
@@ -123,6 +124,35 @@ sub check_generic {
         }
         &error("Key $key is missing from $locale/$file");
     }
+}
+
+sub check_substitutions {
+    my($strings, $key, $locale, $file) = @_;
+    return if ($locale eq $master);
+    return if ($strings->{$key}->[0]->{"locale"} ne $locale);
+    my $master_string = $strings->{$key}->[-1]->{"value"};
+    my $translated_string = $strings->{$key}->[0]->{"value"};
+    return if ($master_string eq $translated_string);
+    my(%master_subs) = &get_substitutions($master_string);
+    my(%translated_subs) = &get_substitutions($translated_string);
+    foreach my $sub (keys %master_subs) {
+        if (! $translated_subs{$sub}) {
+            &error("Key $key is missing substitution $sub in $locale/$file");
+        }
+    }
+    foreach my $sub (keys %translated_subs) {
+        if (! $master_subs{$sub}) {
+            &error("Key $key has extra substitution $sub in $locale/$file");
+        }
+    }
+}
+
+sub get_substitutions {
+    local($_) = @_;
+    my(@subs) = /(%(?:\d+$)?[Sx])/g;
+    my(%subs);
+    map($subs{$_}++, @subs);
+    %subs;
 }
 
 sub debug {
