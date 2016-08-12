@@ -1336,9 +1336,7 @@ var Sendlater3Backgrounding = function() {
 	    return true;
 	var old_numbers = old.split(".");
 	var current_numbers = current.split(".");
-	if (old_numbers.length != current_numbers.length)
-	    return true;
-	if (old_numbers < 2)
+	if (current_numbers.length < 3)
 	    return true;
 	if (old_numbers[0] != current_numbers[0] ||
 	    old_numbers[1] != current_numbers[1])
