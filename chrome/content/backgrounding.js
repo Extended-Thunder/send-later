@@ -1373,7 +1373,8 @@ var Sendlater3Backgrounding = function() {
 		    .getService(Components.interfaces.nsIWindowMediator)
 		    .getMostRecentWindow("mail:3pane")
 		    .document.getElementById("tabmail")
-		    .openTab("contentTab", {contentPage: url});
+		    .openTab("contentTab",
+                             {contentPage: Sendlater3Backgrounding.notesUrl});
 
 		// Migrate old preferences
 		try {
