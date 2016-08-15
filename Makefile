@@ -41,5 +41,6 @@ locale_import: Send_Later_selected_locales_skipped.tar.gz
 chrome/content/backgroundingPostbox.xul: chrome/content/backgrounding.xul
 	sed -e 's/statusbar id="status-bar"/vbox id="folderPaneBox"/' \
             -e 's,</statusbar>,</vbox>,' $< > $@.tmp
+	! cmp -s $< $@.tmp
 	mv -f $@.tmp $@
 
