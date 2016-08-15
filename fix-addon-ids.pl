@@ -141,7 +141,7 @@ sub scan_xul {
 	return;
     }
 
-    open(XUL, "<", $xul_file) or die;
+    open(XUL, "<", $xul_file) or die "Error opening $xul_file: $!\n";
     line: while (<XUL>) {
 	if (/\bid\s*=\s*[\"\']([^\"\']+)[\"\']/) {
 	    my $id = $1;
