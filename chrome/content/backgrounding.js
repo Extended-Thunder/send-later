@@ -1285,7 +1285,7 @@ var Sendlater3Backgrounding = function() {
     var SetUpStatusBar = {
 	observe: function() {
 	    var showStatus = SL3U.getBoolPref("showstatus");
-	    document.getElementById("sendlater3-deck")
+	    document.getElementById("sendlater3-panel")
 		.setAttribute("hidden", ! showStatus);
 	}
     };

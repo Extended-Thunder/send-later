@@ -6,14 +6,16 @@
   <script src="util.js"/>
   <script src="backgrounding.js"/>
   <statusbar id="status-bar">
-    <statusbarpanel  context="sendlater3-context-menu"
-                     popup="sendlater3-context-menu">
+    <statusbarpanel id="sendlater3-panel"
+                    context="sendlater3-context-menu"
+                    popup="sendlater3-context-menu"
+                    hidden="true">
       <stringbundleset id="sendlater3-strbundles">
         <stringbundle id="sendlater3-backgroundstrings"
                       src="chrome://sendlater3/locale/background.properties"/>
       </stringbundleset>
       <deck selectedIndex="1" id="sendlater3-deck" insertafter="statusTextBox"
-            insertbefore="unreadMessageCount" style="width:120px" hidden="true">
+            insertbefore="unreadMessageCount" style="width:120px">
         <progressmeter id="sendlater3-anim" mode="determined" />
         <label id="sendlater3-status" value="Send Later"
                style="width:100%;text-align:center;margin:4px" />
