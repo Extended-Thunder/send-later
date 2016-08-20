@@ -828,6 +828,8 @@ var Sendlater3Util = {
                                 funcName + "' is not a function");
             var nextRecur = func(next, args);
         }
+        if (! next)
+            next = new Date();
         if (! nextRecur)
             throw new Error("Send Later: Recurrence function '" + funcName +
                             "' did not return a value");
