@@ -205,7 +205,9 @@ var Sendlater3HeaderView = function() {
                         var recur = msghdr
                             .getStringProperty("x-send-later-recur");
                         if (recur) {
-                            val += " (" + SL3U.FormatRecur(recur) + ")";
+                            recur = SL3U.FormatRecur(recur);
+                            if (recur)
+                                val += " (" + recur + ")";
                         }
                         try {
                             document
