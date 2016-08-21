@@ -1,1 +1,36 @@
 <!-- -*- coding: utf-8 -*- -->
+<!ENTITY windowtitle "Send Later - Editor voor dynamische functies">
+<!ENTITY selectfunction "Selecteer functie:">
+<!ENTITY selectfunctiontip "Selecteer een te bewerken of te verwijderen functie, of ‘(nieuwe functie maken)’ om een nieuwe functie te maken.">
+<!ENTITY createnewfunction "(nieuwe functie maken)">
+<!ENTITY deletefunctionbutton "Verwijderen">
+<!ENTITY deletekey "V">
+<!ENTITY functionnametip "Bewerk of voer de naam in van een alfanumerieke functie. Als u de naam van een bestaande functie aanpast, wordt bij het opslaan gevraagd of u de functie wilt hernoemen of een nieuwe functie wilt maken met de aangepaste naam.">
+<!ENTITY functionnameplaceholder "van functie">
+<!ENTITY codetip "Plaats hier de broncode voor uw functie. Bekijk de voorbeeldfunctie ‘ReadMeFirst’ voor details over wat uw code zou moeten doen.">
+<!ENTITY codeplaceholder "broncode van functie">
+<!ENTITY helptextheader "Helptekst van functie:">
+<!ENTITY helptexttip "Tekst die u hier plaatst, wordt weergegeven als de gebruiker de muisaanwijzer boven de functienaam in het pop-upmenu houdt. Gebruik dit om uit te leggen wat de functie doet en welke argumenten deze accepteert.">
+<!ENTITY helptextplaceholder "helptekst">
+<!ENTITY runbutton "Uit te voeren functie:">
+<!ENTITY runkey "U">
+<!ENTITY inputtime "Invoertijd:">
+<!ENTITY inputtimetip "Hier kunt u datums en tijdstippen invoeren in elke notatie die het Send Later-dialoogvenster begrijpt.">
+<!ENTITY inputtimeplaceholder "datum en tijd, wanneer aanwezig, om aan functie door te geven voor testen">
+<!ENTITY inputargs "Invoerargumenten:">
+<!ENTITY inputargstip "Argumenten dienen in JavaScript-notatie te worden opgegeven; zo dienen tekenreeksen aanhalingstekens te hebben.">
+<!ENTITY inputargsplaceholder "door komma’s gescheiden argumenten, wanneer aanwezig, om door te geven voor testen">
+<!ENTITY output "Uitvoer:">
+<!ENTITY importbutton "Importeren…">
+<!ENTITY importkey "m">
+<!ENTITY importtip "Een dynamische functie importeren die eerder uit de editor is geëxporteerd">
+<!ENTITY exportbutton "Exporteren…">
+<!ENTITY exportkey "E">
+<!ENTITY exporttip "De momenteel weergegeven functie exporteren naar een bestand voor een back-up of om te delen">
+<!ENTITY resetbutton "Wijzigingen verwerpen">
+<!ENTITY resetkey "W">
+<!ENTITY savebutton "Opslaan">
+<!ENTITY savekey "O">
+<!ENTITY closebutton "Sluiten">
+<!ENTITY closekey "w">
+<!--standard close key is ctrl-w in English, a different letter in other languages?-->

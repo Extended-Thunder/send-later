@@ -1,19 +1,21 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY sendlater.prompt.sendlater.label "In Postvak UIT plaatsen">
 <!ENTITY sendlater.prompt.sendlater.accesskey "U">
-<!ENTITY sendlater.prompt.sendlater.tooltip "Niet een tijdstip voor verzending kiezen, maar in het Postvak UIT plaatsen voor verzending wanneer de nog onverzonden berichten verzonden worden.">
+<!ENTITY sendlater.prompt.sendlater.tooltip "Niet een tijdstip voor verzending kiezen, maar in het Postvak UIT plaatsen voor verzending wanneer de nog niet verzonden berichten worden verzonden">
 <!ENTITY sendlater.prompt.sendnow.label "Nu verzenden">
 <!ENTITY sendlater.prompt.sendnow.accesskey "N">
-<!ENTITY sendlater.prompt.sendnow.tooltip "Bericht onmiddellijk sturen zonder ‘Send Later’">
+<!ENTITY sendlater.prompt.sendnow.tooltip "Bericht onmiddellijk verzenden zonder ‘Send Later’">
 <!ENTITY sendlater.prompt.close.label "Annuleren">
-<!ENTITY sendlater.prompt.close.tooltip "Terug naar bewerken van het bericht.">
+<!ENTITY sendlater.prompt.close.tooltip "Terug naar bewerken van het bericht">
 <!ENTITY sendlater.prompt.title.label "Dit e-mailbericht later verzenden">
 <!ENTITY sendlater.prompt.textbox.label "Verzenden om:">
-<!ENTITY sendlater.prompt.or.label "or:">
+<!ENTITY sendlater.prompt.or.label "of:">
 <!ENTITY sendlater.prompt.textbox.tooltip "Voer een datum en tijdstip in. Vrije tekst als ‘aanstaande donderdag om 15:00 uur’ wordt ook ondersteund.">
-<!ENTITY sendlater.prompt.textbox.emptytext "b.v.: ‘15:00 donderdag’, ‘31-12-2012 15:27’">
+<!ENTITY sendlater.prompt.textbox.emptytext "bv. ‘15:00 donderdag’, ‘31-12-2012 15:27’">
 <!ENTITY sendlater.prompt.sendat.label "Later op bovengenoemd(e) tijdstip(pen) verzenden">
-<!ENTITY sendlater.prompt.sendat.tooltip "Bericht opslaan in de map Concepten voor automatisch verzenden op het hierboven aangegeven tijdstip.">
+<!ENTITY sendlater.prompt.sendat.tooltip "Bericht opslaan in de map Concepten voor automatisch verzenden op het hierboven aangegeven tijdstip">
+<!ENTITY sendlater.prompt.savedefaults "Deze waarden als de standaardwaarden opslaan">
+<!ENTITY sendlater.prompt.cleardefaults "Standaardwaarden wissen">
 <!ENTITY sendlater.prompt.recur.label "Herhaling:">
 <!ENTITY sendlater.prompt.none.label "geen">
 <!ENTITY sendlater.prompt.minutely.label "per minuut">
@@ -21,6 +23,9 @@
 <!ENTITY sendlater.prompt.weekly.label "wekelijks">
 <!ENTITY sendlater.prompt.monthly.label "maandelijks">
 <!ENTITY sendlater.prompt.yearly.label "jaarlijks">
+<!ENTITY sendlater.prompt.function.label "functie:">
+<!ENTITY sendlater.prompt.functionargs.label "Functieargumenten:">
+<!ENTITY sendlater.prompt.calculate.label "Berekenen">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Later verzenden">
 <!ENTITY sendlater.toolbar.textbox.emptytext "verzendtijdstip">
 <!ENTITY sendlater.prompt.every.label "Elke">
@@ -29,10 +34,10 @@
 <!ENTITY sendlater.button2.label "30 minuten later">
 <!ENTITY sendlater.button3.label "2 uur later">
 <!ENTITY sendlater.prompt.on.label "Alleen op">
-<!ENTITY sendlater.prompt.day0 "Zondag">
-<!ENTITY sendlater.prompt.day1 "Maandag">
-<!ENTITY sendlater.prompt.day2 "Dinsdag">
-<!ENTITY sendlater.prompt.day3 "Woensdag">
-<!ENTITY sendlater.prompt.day4 "Donderdag">
-<!ENTITY sendlater.prompt.day5 "Vrijdag">
-<!ENTITY sendlater.prompt.day6 "Zaterdag">
+<!ENTITY sendlater.prompt.day0 "zondag">
+<!ENTITY sendlater.prompt.day1 "maandag">
+<!ENTITY sendlater.prompt.day2 "dinsdag">
+<!ENTITY sendlater.prompt.day3 "woensdag">
+<!ENTITY sendlater.prompt.day4 "donderdag">
+<!ENTITY sendlater.prompt.day5 "vrijdag">
+<!ENTITY sendlater.prompt.day6 "zaterdag">

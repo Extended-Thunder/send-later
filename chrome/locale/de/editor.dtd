@@ -1,1 +1,13 @@
 <!-- -*- coding: utf-8 -*- -->
+<!ENTITY deletekey "d">
+<!ENTITY helptextplaceholder "Hilfe Text">
+<!ENTITY runkey "x">
+<!ENTITY inputtime "Zeit Eingabe:">
+<!ENTITY importbutton "Importieren...">
+<!ENTITY exportbutton "Exportieren...">
+<!ENTITY exportkey "e">
+<!ENTITY resetkey "a">
+<!ENTITY savebutton "Speichern">
+<!ENTITY savekey "s">
+<!ENTITY closebutton "Schließen">
+<!ENTITY closekey "w">
