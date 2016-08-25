@@ -30,6 +30,7 @@
 <!ENTITY resetbutton "Annulla modifiche">
 <!ENTITY resetkey "a">
 <!ENTITY savebutton "Salva">
-<!ENTITY savekey "s">
-<!ENTITY closebutton "Chiudi">
-<!ENTITY closekey "w">
+<!ENTITY savekey "S">
+<!ENTITY close.label "Chiudi">
+<!ENTITY close.accesskey "C">
+<!ENTITY close.cmdkey "w">

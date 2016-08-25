@@ -31,6 +31,6 @@
 <!ENTITY resetkey "a">
 <!ENTITY savebutton "保存">
 <!ENTITY savekey "s">
-<!ENTITY closebutton "閉じる">
-<!ENTITY closekey "w">
-<!--standard close key is ctrl-w in English, a different letter in other languages?-->
+<!ENTITY close.label "閉じる">
+<!ENTITY close.accesskey "w">
+<!ENTITY close.cmdkey "w">

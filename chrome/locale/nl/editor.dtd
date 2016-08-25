@@ -31,6 +31,6 @@
 <!ENTITY resetkey "W">
 <!ENTITY savebutton "Opslaan">
 <!ENTITY savekey "O">
-<!ENTITY closebutton "Sluiten">
-<!ENTITY closekey "S">
-<!--standard close key is ctrl-w in English, a different letter in other languages?-->
+<!ENTITY close.label "Sluiten">
+<!ENTITY close.accesskey "S">
+<!ENTITY close.cmdkey "w">

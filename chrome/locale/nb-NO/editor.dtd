@@ -10,4 +10,6 @@
 <!ENTITY importbutton "Importer ...">
 <!ENTITY exportbutton "Eksporter ...">
 <!ENTITY savebutton "Lagre">
-<!ENTITY closebutton "Lukk">
+<!ENTITY close.label "Lukk">
+<!ENTITY close.accesskey "u">
+<!ENTITY close.cmdkey "w">

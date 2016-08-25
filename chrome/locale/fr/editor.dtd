@@ -30,6 +30,7 @@
 <!ENTITY resetbutton "Ne pas modifier">
 <!ENTITY resetkey "a">
 <!ENTITY savebutton "Enregistrer">
-<!ENTITY savekey "s">
-<!ENTITY closebutton "Fermer">
-<!ENTITY closekey "w">
+<!ENTITY savekey "n">
+<!ENTITY close.label "Fermer">
+<!ENTITY close.accesskey "F">
+<!ENTITY close.cmdkey "w">

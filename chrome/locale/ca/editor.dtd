@@ -31,5 +31,6 @@
 <!ENTITY resetkey "a">
 <!ENTITY savebutton "Desar">
 <!ENTITY savekey "d">
-<!ENTITY closebutton "Tancar">
-<!ENTITY closekey "t">
+<!ENTITY close.label "Tancar">
+<!ENTITY close.accesskey "T">
+<!ENTITY close.cmdkey "w">

@@ -31,5 +31,6 @@
 <!ENTITY resetkey "a">
 <!ENTITY savebutton "保存">
 <!ENTITY savekey "s">
-<!ENTITY closebutton "关闭">
-<!ENTITY closekey "w">
+<!ENTITY close.label "关闭">
+<!ENTITY close.accesskey "w">
+<!ENTITY close.cmdkey "w">

@@ -31,5 +31,6 @@
 <!ENTITY resetkey "a">
 <!ENTITY savebutton "Guardar">
 <!ENTITY savekey "s">
-<!ENTITY closebutton "Fechar">
-<!ENTITY closekey "w">
+<!ENTITY close.label "Fechar">
+<!ENTITY close.accesskey "F">
+<!ENTITY close.cmdkey "w">

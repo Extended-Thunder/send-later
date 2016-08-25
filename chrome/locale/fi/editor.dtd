@@ -18,6 +18,7 @@
 <!ENTITY resetbutton "Hylkää muutokset">
 <!ENTITY resetkey "h">
 <!ENTITY savebutton "Tallenna">
-<!ENTITY savekey "s">
-<!ENTITY closebutton "Sulje">
-<!ENTITY closekey "w">
+<!ENTITY savekey "l">
+<!ENTITY close.label "Sulje">
+<!ENTITY close.accesskey "S">
+<!ENTITY close.cmdkey "w">

@@ -10,7 +10,7 @@
   <script src="util.js"/>
   <script src="editor.js"/>
   <keyset>
-    <key id="close-key" modifiers="accel" key="&closekey;"
+    <key id="close-key" modifiers="accel" key="&close.cmdkey;"
          oncommand="sl3e.onClose();"/>
   </keyset>
   <hbox align="center">
@@ -84,7 +84,7 @@
     <button id="save" label="&savebutton;" oncommand="sl3e.onSave();"
             accesskey="&savekey;"/>
     <description flex="1"/>
-    <button id="close" label="&closebutton;" oncommand="sl3e.onClose();"
-            accesskey="&closekey;"/>
+    <button id="close" label="&close.label;" oncommand="sl3e.onClose();"
+            accesskey="&close.accesskey;"/>
   </hbox>
 </window>

@@ -31,7 +31,6 @@
 <!ENTITY resetkey "a">
 <!ENTITY savebutton "Save">
 <!ENTITY savekey "s">
-<!ENTITY closebutton "Close">
-<!ENTITY closekey "c">
-<!--standard close key is ctrl-w in English, a different letter in other languages?-->
-<!ENTITY closekey "w">
+<!ENTITY close.label "Close">
+<!ENTITY close.accesskey "C">
+<!ENTITY close.cmdkey "w">
