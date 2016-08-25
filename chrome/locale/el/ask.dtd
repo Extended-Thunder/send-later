@@ -3,11 +3,11 @@
 <!ENTITY sendlater.ask.message1 "Αμέτρητες ώρες έχουν αφιερωθεί στην ανάπτυξη και υποστήριξη αυτού του πρόσθετου.">
 <!ENTITY sendlater.ask.message2 "Παρακαλούμε, σκεφτείτε σοβαρά να κάνετε μια δωρεά για να υποστηρίξετε την ανάπτυξή του!">
 <!ENTITY sendlater.ask.message3 "Σας ευχαριστούμε!">
-<!ENTITY sendlater.ask.donate.key "Δ">
+<!ENTITY sendlater.ask.donate.accesskey "Δ">
 <!ENTITY sendlater.ask.donate.label "Δωρεά">
-<!ENTITY sendlater.ask.remind.key "Ρ">
+<!ENTITY sendlater.ask.remind.accesskey "Ρ">
 <!ENTITY sendlater.ask.remind.label "Υπενθύμιση αργότερα">
-<!ENTITY sendlater.ask.already.key "α">
+<!ENTITY sendlater.ask.already.accesskey "α">
 <!ENTITY sendlater.ask.already.label "Έχω ήδη κάνει δωρεά">
-<!ENTITY sendlater.ask.stop.key "Σ">
+<!ENTITY sendlater.ask.stop.accesskey "Σ">
 <!ENTITY sendlater.ask.stop.label "Να μην εμφανίζεται">

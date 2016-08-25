@@ -24,7 +24,7 @@
       </menulist>
     </hbox>
     <description flex="1"/>
-    <button id="delete" label="&deletefunctionbutton;" accesskey="&deletekey;"
+    <button id="delete" label="&delete.label;" accesskey="&delete.accesskey;"
             oncommand="sl3e.onDelete();"/>
   </hbox>
   <hbox align="center" tooltiptext="&functionnametip;">
@@ -52,8 +52,8 @@
   </vbox>
   <hbox align="beginning" width="100%">
     <hbox align="center">
-      <button id="run-test" label="&runbutton;" oncommand="sl3e.onRunButton();"
-              disabled="true" accesskey="&runkey;"/>
+      <button id="run-test" label="&run.label;" oncommand="sl3e.onRunButton();"
+              disabled="true" accesskey="&run.accesskey;"/>
     </hbox>
     <vbox flex="1">
       <hbox align="center" tooltiptext="&inputtimetip;">
@@ -74,15 +74,15 @@
     </vbox>
   </hbox>
   <hbox width="100%">
-    <button id="import" label="&importbutton;" oncommand="sl3e.onImport();"
-            tooltiptext="&importtip;" accesskey="&importkey;"/>
-    <button id="export" label="&exportbutton;" oncommand="sl3e.onExport();"
-            tooltiptext="&exporttip;" accesskey="&exportkey;"/>
+    <button id="import" label="&import.label;" oncommand="sl3e.onImport();"
+            tooltiptext="&importtip;" accesskey="&import.accesskey;"/>
+    <button id="export" label="&export.label;" oncommand="sl3e.onExport();"
+            tooltiptext="&exporttip;" accesskey="&export.accesskey;"/>
     <description flex="1"/>
-    <button id="reset" label="&resetbutton;" oncommand="sl3e.onDiscard();"
-            accesskey="&resetkey;"/>
-    <button id="save" label="&savebutton;" oncommand="sl3e.onSave();"
-            accesskey="&savekey;"/>
+    <button id="reset" label="&reset.label;" oncommand="sl3e.onDiscard();"
+            accesskey="&reset.accesskey;"/>
+    <button id="save" label="&save.label;" oncommand="sl3e.onSave();"
+            accesskey="&save.accesskey;"/>
     <description flex="1"/>
     <button id="close" label="&close.label;" oncommand="sl3e.onClose();"
             accesskey="&close.accesskey;"/>

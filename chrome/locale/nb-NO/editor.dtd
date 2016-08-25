@@ -1,15 +1,15 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY selectfunction "Velg funksjon:">
 <!ENTITY createnewfunction "(lag ny funksjon)">
-<!ENTITY deletefunctionbutton "Slett">
+<!ENTITY delete.label "Slett">
 <!ENTITY functionnameplaceholder "funksjonsnavn">
 <!ENTITY codeplaceholder "funksjonens kildekode">
 <!ENTITY helptextheader "Funksjonens hjelpetekst:">
 <!ENTITY helptextplaceholder "hjelpetekst">
-<!ENTITY runbutton "Kjør funksjon:">
-<!ENTITY importbutton "Importer ...">
-<!ENTITY exportbutton "Eksporter ...">
-<!ENTITY savebutton "Lagre">
+<!ENTITY run.label "Kjør funksjon:">
+<!ENTITY import.label "Importer ...">
+<!ENTITY export.label "Eksporter ...">
+<!ENTITY save.label "Lagre">
 <!ENTITY close.label "Lukk">
 <!ENTITY close.accesskey "u">
 <!ENTITY close.cmdkey "w">

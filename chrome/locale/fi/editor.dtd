@@ -2,23 +2,23 @@
 <!ENTITY windowtitle "Lähetä Myöhemmin - Dynaaminen Aikataulueditori">
 <!ENTITY selectfunction "Valitse funktio:">
 <!ENTITY createnewfunction "(luo uusi funktio)">
-<!ENTITY deletefunctionbutton "Poista">
-<!ENTITY deletekey "p">
+<!ENTITY delete.label "Poista">
+<!ENTITY delete.accesskey "p">
 <!ENTITY functionnameplaceholder "funktion nimi">
 <!ENTITY codeplaceholder "funktion lähdekoodi">
 <!ENTITY helptextheader "Funktion ohjeteksti">
 <!ENTITY helptextplaceholder "ohjeteksti">
-<!ENTITY runbutton "Aja funktio:">
-<!ENTITY runkey "a">
+<!ENTITY run.label "Aja funktio:">
+<!ENTITY run.accesskey "a">
 <!ENTITY output "Tulos:">
-<!ENTITY importbutton "Tuo...">
-<!ENTITY importkey "t">
-<!ENTITY exportbutton "Vie...">
-<!ENTITY exportkey "v">
-<!ENTITY resetbutton "Hylkää muutokset">
-<!ENTITY resetkey "h">
-<!ENTITY savebutton "Tallenna">
-<!ENTITY savekey "l">
+<!ENTITY import.label "Tuo...">
+<!ENTITY import.accesskey "t">
+<!ENTITY export.label "Vie...">
+<!ENTITY export.accesskey "v">
+<!ENTITY reset.label "Hylkää muutokset">
+<!ENTITY reset.accesskey "h">
+<!ENTITY save.label "Tallenna">
+<!ENTITY save.accesskey "l">
 <!ENTITY close.label "Sulje">
 <!ENTITY close.accesskey "S">
 <!ENTITY close.cmdkey "w">

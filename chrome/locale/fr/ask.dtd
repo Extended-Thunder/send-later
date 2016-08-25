@@ -3,11 +3,11 @@
 <!ENTITY sendlater.ask.message1 "De nombreuses heures de travail ont été nécessaires pour développer, maintenir et aider à utiliser ce module.">
 <!ENTITY sendlater.ask.message2 "Faites un don pour aider à son développement!">
 <!ENTITY sendlater.ask.message3 "Merci!">
-<!ENTITY sendlater.ask.donate.key "F">
+<!ENTITY sendlater.ask.donate.accesskey "F">
 <!ENTITY sendlater.ask.donate.label "Faire un don">
-<!ENTITY sendlater.ask.remind.key "R">
+<!ENTITY sendlater.ask.remind.accesskey "R">
 <!ENTITY sendlater.ask.remind.label "Me rappeler">
-<!ENTITY sendlater.ask.already.key "D">
+<!ENTITY sendlater.ask.already.accesskey "D">
 <!ENTITY sendlater.ask.already.label "Don déjà effectué">
-<!ENTITY sendlater.ask.stop.key "p">
+<!ENTITY sendlater.ask.stop.accesskey "p">
 <!ENTITY sendlater.ask.stop.label "Ne plus demander">

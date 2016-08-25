@@ -1,24 +1,24 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY selectfunction "Selecionar função:">
 <!ENTITY createnewfunction "(criar nova função)">
-<!ENTITY deletefunctionbutton "Eliminar">
-<!ENTITY deletekey "d">
+<!ENTITY delete.label "Eliminar">
+<!ENTITY delete.accesskey "d">
 <!ENTITY functionnameplaceholder "nome da função">
 <!ENTITY codeplaceholder "código fonte da função">
 <!ENTITY helptextheader "Texto de ajuda da função:">
 <!ENTITY helptextplaceholder "texto de ajuda">
-<!ENTITY runbutton "Executar função:">
-<!ENTITY runkey "x">
+<!ENTITY run.label "Executar função:">
+<!ENTITY run.accesskey "x">
 <!ENTITY inputargs "Argumentos de entrada:">
 <!ENTITY output "Saída:">
-<!ENTITY importbutton "Importar...">
-<!ENTITY importkey "i">
-<!ENTITY exportbutton "Exportar...">
-<!ENTITY exportkey "e">
-<!ENTITY resetbutton "Ignorar alterações">
-<!ENTITY resetkey "a">
-<!ENTITY savebutton "Guardar">
-<!ENTITY savekey "s">
+<!ENTITY import.label "Importar...">
+<!ENTITY import.accesskey "i">
+<!ENTITY export.label "Exportar...">
+<!ENTITY export.accesskey "e">
+<!ENTITY reset.label "Ignorar alterações">
+<!ENTITY reset.accesskey "a">
+<!ENTITY save.label "Guardar">
+<!ENTITY save.accesskey "s">
 <!ENTITY close.label "Fechar">
 <!ENTITY close.accesskey "F">
 <!ENTITY close.cmdkey "w">
