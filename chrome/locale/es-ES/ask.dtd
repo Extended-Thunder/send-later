@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY sendlater.ask.title.label "Ayudar a Enviar después">
+<!ENTITY sendlater.ask.title.label "Ayudar a Send Later">
 <!ENTITY sendlater.ask.message1 "Se han invertido muchísimas horas en el desarrollo, mantenimiento y soporte de esta extensión.">
 <!ENTITY sendlater.ask.message2 "Por favor, considere la posibilidad de donar para apoyar la continuidad de su desarrollo.">
 <!ENTITY sendlater.ask.message3 "Gracias!">

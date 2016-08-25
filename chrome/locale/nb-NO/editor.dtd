@@ -1,0 +1,13 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY selectfunction "Velg funksjon:">
+<!ENTITY createnewfunction "(lag ny funksjon)">
+<!ENTITY deletefunctionbutton "Slett">
+<!ENTITY functionnameplaceholder "funksjonsnavn">
+<!ENTITY codeplaceholder "funksjonens kildekode">
+<!ENTITY helptextheader "Funksjonens hjelpetekst:">
+<!ENTITY helptextplaceholder "hjelpetekst">
+<!ENTITY runbutton "Kjør funksjon:">
+<!ENTITY importbutton "Importer ...">
+<!ENTITY exportbutton "Eksporter ...">
+<!ENTITY savebutton "Lagre">
+<!ENTITY closebutton "Lukk">

@@ -1,1 +1,23 @@
 <!-- -*- coding: utf-8 -*- -->
+<!ENTITY windowtitle "Lähetä Myöhemmin - Dynaaminen Aikataulueditori">
+<!ENTITY selectfunction "Valitse funktio:">
+<!ENTITY createnewfunction "(luo uusi funktio)">
+<!ENTITY deletefunctionbutton "Poista">
+<!ENTITY deletekey "p">
+<!ENTITY functionnameplaceholder "funktion nimi">
+<!ENTITY codeplaceholder "funktion lähdekoodi">
+<!ENTITY helptextheader "Funktion ohjeteksti">
+<!ENTITY helptextplaceholder "ohjeteksti">
+<!ENTITY runbutton "Aja funktio:">
+<!ENTITY runkey "a">
+<!ENTITY output "Tulos:">
+<!ENTITY importbutton "Tuo...">
+<!ENTITY importkey "t">
+<!ENTITY exportbutton "Vie...">
+<!ENTITY exportkey "v">
+<!ENTITY resetbutton "Hylkää muutokset">
+<!ENTITY resetkey "h">
+<!ENTITY savebutton "Tallenna">
+<!ENTITY savekey "s">
+<!ENTITY closebutton "Sulje">
+<!ENTITY closekey "w">

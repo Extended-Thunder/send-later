@@ -1,0 +1,34 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY sendlater.prompt.sendlater.label "Legg i utboks">
+<!ENTITY sendlater.prompt.sendnow.label "Send nå">
+<!ENTITY sendlater.prompt.sendnow.tooltip "Send meldingen umiddelbart ved å overstyre &quot;Send Later&quot;.">
+<!ENTITY sendlater.prompt.close.label "Avbryt">
+<!ENTITY sendlater.prompt.close.tooltip "Gå tilbake for å redigere meldingen.">
+<!ENTITY sendlater.prompt.title.label "Send denne e-posten senere">
+<!ENTITY sendlater.prompt.textbox.label "Send:">
+<!ENTITY sendlater.prompt.or.label "eller:">
+<!ENTITY sendlater.prompt.sendat.label "Send senere på tidspunkt(er) spesifisert ovenfor">
+<!ENTITY sendlater.prompt.savedefaults "Lagre disse verdiene som standardverdier">
+<!ENTITY sendlater.prompt.cleardefaults "Tøm standardverdier">
+<!ENTITY sendlater.prompt.none.label "én gang">
+<!ENTITY sendlater.prompt.minutely.label "hvert minutt">
+<!ENTITY sendlater.prompt.daily.label "daglig">
+<!ENTITY sendlater.prompt.weekly.label "ukentlig">
+<!ENTITY sendlater.prompt.monthly.label "månedlig">
+<!ENTITY sendlater.prompt.yearly.label "årlig">
+<!ENTITY sendlater.prompt.calculate.label "Kalkuler">
+<!ENTITY sendlater.toolbar.sendlater.button.label "Send Later">
+<!ENTITY sendlater.toolbar.textbox.emptytext "sendetidspunkt">
+<!ENTITY sendlater.prompt.every.label "Hver">
+<!ENTITY sendlater.prompt.between.label "Mellom">
+<!ENTITY sendlater.button1.label "15 minutter senere">
+<!ENTITY sendlater.button2.label "30 minutter senere">
+<!ENTITY sendlater.button3.label "2 timer senere">
+<!ENTITY sendlater.prompt.on.label "Bare på">
+<!ENTITY sendlater.prompt.day0 "søndag">
+<!ENTITY sendlater.prompt.day1 "mandag">
+<!ENTITY sendlater.prompt.day2 "tirsdag">
+<!ENTITY sendlater.prompt.day3 "onsdag">
+<!ENTITY sendlater.prompt.day4 "torsdag">
+<!ENTITY sendlater.prompt.day5 "fredag">
+<!ENTITY sendlater.prompt.day6 "lørdag">

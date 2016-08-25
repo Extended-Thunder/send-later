@@ -30,9 +30,13 @@
 <!ENTITY contactauthor.value "Contacter l'auteur">
 <!ENTITY helplink.tooltip "Ouvre la documentation en ligne pour Envoi différé (en anglais).">
 <!ENTITY helplink.value "Guide de l'utilisateur">
+<!ENTITY releasenotes.value "Notes de version">
 <!ENTITY donatelink.value "Faire un don">
-<!ENTITY enforcerestrictions.tooltip "En cas de dépassement du moment programmé pour la distribution,notamment si Thunderbird n'était pas ouvert, alors repousser le moment de la distribution, à condition que le moment initialement prévu soit dépassé.">
+<!ENTITY editorlink.value "Éditeur de fonction dynamique">
+<!ENTITY enforcerestrictions.tooltip "En cas de dépassement du moment programmé pour la distribution, notamment si Thunderbird n'était pas ouvert, alors repousser le moment de la distribution, à condition que le moment initialement prévu soit dépassé.">
 <!ENTITY enforcerestrictions.caption "Imposer des restrictions de temps et de jour pendant la distribution">
 <!ENTITY blocklatemessages.tooltip "Ne pas distribuer les messages qui ont dépassé le moment de l'envoi, notamment parce que Thunderbird n'était pas ouvert à ce moment-là.">
 <!ENTITY blocklatemessages.label1 "Ne pas distribuer les messages après">
 <!ENTITY blocklatemessages.label2 "minutes de retard.">
+<!ENTITY editorbutton "Ouvrir l'éditeur de fonction dynamique">
+<!ENTITY editortip "Ouvre une fenêtre pour créer et éditer des fonctions JavaScript permettant une logique de planification complexe.">

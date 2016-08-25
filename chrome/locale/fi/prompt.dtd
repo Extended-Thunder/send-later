@@ -4,6 +4,7 @@
 <!ENTITY sendlater.prompt.sendlater.tooltip "Ajastamisen sijasta siirrä Lähtevät-kansioon lähetettäväksi seuraavalla kerralla, kun muitakin viestejä lähetetään.">
 <!ENTITY sendlater.prompt.sendnow.label "Lähetä heti">
 <!ENTITY sendlater.prompt.sendnow.accesskey "H">
+<!ENTITY sendlater.prompt.sendnow.tooltip "Lähettää viestin heti, ohittaen &quot;Lähetä myöhemmin&quot; -toiminnon.">
 <!ENTITY sendlater.prompt.close.label "Peruuta">
 <!ENTITY sendlater.prompt.close.tooltip "Palaa viestin muokkaamiseen.">
 <!ENTITY sendlater.prompt.title.label "Lähetä tämä viesti myöhemmin">
@@ -13,6 +14,8 @@
 <!ENTITY sendlater.prompt.textbox.emptytext "esim.: ”31.12.2016 12:00”, ”2016-12-31”, ”tiistai kello 15”">
 <!ENTITY sendlater.prompt.sendat.label "Lähetä myöhemmin yllä määriteltyinä ajankohtina">
 <!ENTITY sendlater.prompt.sendat.tooltip "Tallenna viesti Luonnokset-kansioon lähetettäväksi automaattisesti yllä määriteltynä ajankohtana.">
+<!ENTITY sendlater.prompt.savedefaults "Tallenna nämä arvot oletusarvoiksi">
+<!ENTITY sendlater.prompt.cleardefaults "Alusta oletukset">
 <!ENTITY sendlater.prompt.recur.label "Toisto:">
 <!ENTITY sendlater.prompt.none.label "ei">
 <!ENTITY sendlater.prompt.minutely.label "minuuteittain">
@@ -20,6 +23,9 @@
 <!ENTITY sendlater.prompt.weekly.label "viikoittain">
 <!ENTITY sendlater.prompt.monthly.label "kuukausittain">
 <!ENTITY sendlater.prompt.yearly.label "vuosittain">
+<!ENTITY sendlater.prompt.function.label "funktio:">
+<!ENTITY sendlater.prompt.functionargs.label "Funktion parametrit:">
+<!ENTITY sendlater.prompt.calculate.label "Laske">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Lähetä myöhemmin">
 <!ENTITY sendlater.toolbar.textbox.emptytext "lähetysaika">
 <!ENTITY sendlater.prompt.every.label "joka">

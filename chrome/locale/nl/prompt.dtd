@@ -30,8 +30,8 @@
 <!ENTITY sendlater.toolbar.textbox.emptytext "verzendtijdstip">
 <!ENTITY sendlater.prompt.every.label "Elke">
 <!ENTITY sendlater.prompt.between.label "Tussen">
-<!ENTITY sendlater.button1.label "15 minuten later">
-<!ENTITY sendlater.button2.label "30 minuten later">
+<!ENTITY sendlater.button1.label "15 min. later">
+<!ENTITY sendlater.button2.label "30 min. later">
 <!ENTITY sendlater.button3.label "2 uur later">
 <!ENTITY sendlater.prompt.on.label "Alleen op">
 <!ENTITY sendlater.prompt.day0 "zondag">
