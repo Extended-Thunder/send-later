@@ -1,9 +1,9 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY sendlater.prompt.sendlater.label "Poner en Bandeja de Salida">
-<!ENTITY sendlater.prompt.sendlater.accesskey "O">
+<!ENTITY sendlater.prompt.sendlater.accesskey "P">
 <!ENTITY sendlater.prompt.sendlater.tooltip "En vez de programar la entrega para una hora específica, mover el mensaje a la carpeta de Bandeja de Salida para ser entregado la próxima vez que se envíen mensajes sin enviar.">
 <!ENTITY sendlater.prompt.sendnow.label "Enviar Ahora">
-<!ENTITY sendlater.prompt.sendnow.accesskey "N">
+<!ENTITY sendlater.prompt.sendnow.accesskey "A">
 <!ENTITY sendlater.prompt.sendnow.tooltip "Enviar el mensaje inmediatamente, eludiendo a &quot;Send Later&quot;.">
 <!ENTITY sendlater.prompt.close.label "Cancelar">
 <!ENTITY sendlater.prompt.close.tooltip "Volver a editar el mensaje.">

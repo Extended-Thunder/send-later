@@ -1,7 +1,8 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY sendlater.prompt.sendlater.accesskey "O">
+<!ENTITY sendlater.prompt.sendlater.label "Coloque na Caixa de saída">
+<!ENTITY sendlater.prompt.sendlater.accesskey "o">
 <!ENTITY sendlater.prompt.sendnow.label "Enviar Agora">
-<!ENTITY sendlater.prompt.sendnow.accesskey "N">
+<!ENTITY sendlater.prompt.sendnow.accesskey "A">
 <!ENTITY sendlater.prompt.close.label "Cancelar">
 <!ENTITY sendlater.prompt.title.label "Enviar esta mensagem mais tarde">
 <!ENTITY sendlater.prompt.textbox.label "Enviar às:">

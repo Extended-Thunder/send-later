@@ -5,9 +5,9 @@
 <!ENTITY sendlater.ask.message3 "Merci!">
 <!ENTITY sendlater.ask.donate.accesskey "F">
 <!ENTITY sendlater.ask.donate.label "Faire un don">
-<!ENTITY sendlater.ask.remind.accesskey "R">
+<!ENTITY sendlater.ask.remind.accesskey "r">
 <!ENTITY sendlater.ask.remind.label "Me rappeler">
 <!ENTITY sendlater.ask.already.accesskey "D">
 <!ENTITY sendlater.ask.already.label "Don déjà effectué">
-<!ENTITY sendlater.ask.stop.accesskey "p">
+<!ENTITY sendlater.ask.stop.accesskey "N">
 <!ENTITY sendlater.ask.stop.label "Ne plus demander">

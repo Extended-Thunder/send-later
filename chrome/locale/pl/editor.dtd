@@ -22,7 +22,7 @@
 <!ENTITY inputargsplaceholder "Argumenty (comma-separated) oddzielone przecinkami (jeśli podano) do użycia przy testowaniu">
 <!ENTITY output "Wynik:">
 <!ENTITY import.label "Import....">
-<!ENTITY import.accesskey "I">
+<!ENTITY import.accesskey "m">
 <!ENTITY importtip "Zaimportuj funkcję specjalną poprzednio wyeksportowaną z edytora.">
 <!ENTITY export.label "Eksport ...">
 <!ENTITY export.accesskey "E">

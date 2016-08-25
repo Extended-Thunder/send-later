@@ -3,11 +3,11 @@
 <!ENTITY sendlater.ask.message1 "Բավական երկար ժամանակ է ծախսվել այս հավելման ստեղծման, սպասարկման և աջակցման համար:">
 <!ENTITY sendlater.ask.message2 "Խնդրում ենք կատարել փոքրիկ նվիրատվություն՝ աջակցելու ծրագրի զարգացմանը:">
 <!ENTITY sendlater.ask.message3 "Շնորհակալություն">
-<!ENTITY sendlater.ask.donate.accesskey "D">
+<!ENTITY sendlater.ask.donate.accesskey "Ն">
 <!ENTITY sendlater.ask.donate.label "Նվիրատվություն">
-<!ENTITY sendlater.ask.remind.accesskey "R">
+<!ENTITY sendlater.ask.remind.accesskey "ի">
 <!ENTITY sendlater.ask.remind.label "Հիշեցնել ավելի ուշ">
-<!ENTITY sendlater.ask.already.accesskey "a">
+<!ENTITY sendlater.ask.already.accesskey "Ե
 <!ENTITY sendlater.ask.already.label "Ես արդեն օգնել եմ">
-<!ENTITY sendlater.ask.stop.accesskey "S">
+<!ENTITY sendlater.ask.stop.accesskey "Չ">
 <!ENTITY sendlater.ask.stop.label "Չհարցնել">

@@ -4,7 +4,7 @@
 <!ENTITY selectfunctiontip "Select a function to edit or delete, or “(create new function)” to create a new function.">
 <!ENTITY createnewfunction "(create new function)">
 <!ENTITY delete.label "Delete">
-<!ENTITY delete.accesskey "d">
+<!ENTITY delete.accesskey "D">
 <!ENTITY functionnametip "Enter or edit an alphanumeric function name. If you modify the name of an existing function, you will be asked when you save whether to rename the function or create a new function with the modified name.">
 <!ENTITY functionnameplaceholder "function name">
 <!ENTITY codetip "Put the source code for your function here. See the “ReadMeFirst” sample function for details about what your code should do.">
@@ -22,15 +22,15 @@
 <!ENTITY inputargsplaceholder "comma-separated arguments, if any, to pass in for testing">
 <!ENTITY output "Output:">
 <!ENTITY import.label "Import...">
-<!ENTITY import.accesskey "i">
+<!ENTITY import.accesskey "m">
 <!ENTITY importtip "Import a dynamic function previously exported from the editor.">
 <!ENTITY export.label "Export...">
-<!ENTITY export.accesskey "e">
+<!ENTITY export.accesskey "E">
 <!ENTITY exporttip "Export the currently displayed function into a file for backup or sharing.">
 <!ENTITY reset.label "Discard changes">
 <!ENTITY reset.accesskey "a">
 <!ENTITY save.label "Save">
-<!ENTITY save.accesskey "s">
+<!ENTITY save.accesskey "S">
 <!ENTITY close.label "Close">
 <!ENTITY close.accesskey "C">
 <!ENTITY close.cmdkey "w">

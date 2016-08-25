@@ -4,7 +4,7 @@
 <!ENTITY selectfunctiontip "Selecione uma função: para editar ou apagar, ou &quot;(criar nova função)&quot; para criar uma nova função">
 <!ENTITY createnewfunction "(criar nova função)">
 <!ENTITY delete.label "Apagar">
-<!ENTITY delete.accesskey "d">
+<!ENTITY delete.accesskey "A">
 <!ENTITY functionnametip "Introduza ou edite o nome de uma função alfanumérica. Se modificar o nome de uma função existente, será questionado sobre ao guardar sobre a possibilidade de mudar efetivamente o nome da função ou criar uma nova função com esse nome.">
 <!ENTITY functionnameplaceholder "nome da função">
 <!ENTITY codetip "introduza aqui o código-fonte da sua função. Veja a função de exemplo &quot;ReadMeFirst&quot; para obter infromações acerca do que o seu código deve fazer.">
@@ -22,15 +22,15 @@
 <!ENTITY inputargsplaceholder "argumentos separados por vírgulas, se houver, para passar para testes">
 <!ENTITY output "Saída:">
 <!ENTITY import.label "Importar...">
-<!ENTITY import.accesskey "i">
+<!ENTITY import.accesskey "m">
 <!ENTITY importtip "Importar uma função dinâmica anteriormente exportada através do editor.">
 <!ENTITY export.label "Exportar...">
-<!ENTITY export.accesskey "e">
+<!ENTITY export.accesskey "E">
 <!ENTITY exporttip "Exportar a função atual para um ficheiro de backup ou partilhar.">
 <!ENTITY reset.label "Descartar modificações">
-<!ENTITY reset.accesskey "a">
+<!ENTITY reset.accesskey "D">
 <!ENTITY save.label "Guardar">
-<!ENTITY save.accesskey "s">
+<!ENTITY save.accesskey "G">
 <!ENTITY close.label "Fechar">
 <!ENTITY close.accesskey "F">
 <!ENTITY close.cmdkey "w">

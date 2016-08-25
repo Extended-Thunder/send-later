@@ -4,7 +4,7 @@
 <!ENTITY selectfunctiontip "Sel·leccioni una funció per editar-la o eliminar-la, o &quot;(crear nova funció)&quot; per crear una nova funció.">
 <!ENTITY createnewfunction "(crear nova funció)">
 <!ENTITY delete.label "Eliminar">
-<!ENTITY delete.accesskey "e">
+<!ENTITY delete.accesskey "m">
 <!ENTITY functionnametip "Introdueixi o editi el nom alfanumèric de la funció. Si modifica el nom d'una funció existent, se li preguntarà al desar-la si vol canviar el nom de la funció existent o crear-ne una de nova amb el nom modificat.">
 <!ENTITY functionnameplaceholder "nom de la funció">
 <!ENTITY codetip "Escrigui el codi font de la seva funció aquí. Vegi la funció de mostra &quot;ReadMeFirst&quot; per a més detalls sobre el què el seu codi hauria de fer.">
@@ -13,7 +13,7 @@
 <!ENTITY helptexttip "Qualsevol text que posi aquí es mostrarà quan l'usuari emplaci el punter sobre el nom de la funció en el menú desplegable. Utilitzi'l per explicar què fa la funció i quins arguments accepta.">
 <!ENTITY helptextplaceholder "text d'ajuda">
 <!ENTITY run.label "Executar la funció:">
-<!ENTITY run.accesskey "x">
+<!ENTITY run.accesskey "E">
 <!ENTITY inputtime "Introduir hora:">
 <!ENTITY inputtimetip "Aquí pot introduir dates i hores en qualsevol format dels què entén Send Later.">
 <!ENTITY inputtimeplaceholder "data i hora, si s'escau, a passar a la funció per fer proves">
@@ -22,15 +22,15 @@
 <!ENTITY inputargsplaceholder "Arguments separats per comes, si s'escau, a passar per fer proves">
 <!ENTITY output "Sortida:">
 <!ENTITY import.label "Importar...">
-<!ENTITY import.accesskey "i">
+<!ENTITY import.accesskey "o">
 <!ENTITY importtip "Importar una funció dinàmica prèviament exportada des de l'editor.">
 <!ENTITY export.label "Exportar...">
-<!ENTITY export.accesskey "e">
+<!ENTITY export.accesskey "x">
 <!ENTITY exporttip "Exportar la funció que es mostra actualment en un arxiu per compartir o com a còpia de seguretat.">
 <!ENTITY reset.label "Descartar modificacions">
 <!ENTITY reset.accesskey "a">
 <!ENTITY save.label "Desar">
-<!ENTITY save.accesskey "d">
+<!ENTITY save.accesskey "D">
 <!ENTITY close.label "Tancar">
 <!ENTITY close.accesskey "T">
 <!ENTITY close.cmdkey "w">

@@ -4,7 +4,7 @@
 <!ENTITY selectfunctiontip "Seleziona una funzione da modificare o eliminare o &quot;(crea nuova funzione)&quot; per creare una nuova funzione">
 <!ENTITY createnewfunction "(crea nuova funzione)">
 <!ENTITY delete.label "Elimina">
-<!ENTITY delete.accesskey "d">
+<!ENTITY delete.accesskey "E">
 <!ENTITY functionnametip "Inserisci o modifica un nome alfanumerico per la funzione. Se modifichi il nome di una funzione esistente, al salvataggio ti verrà richiesto se rinominare la funzione esistente o creare una nuova con il nome modificato.">
 <!ENTITY functionnameplaceholder "nome funzione">
 <!ENTITY codetip "Inserisci qui il codice sorgente per la tua funzione. Leggi la funzione di esempio &quot;ReadMeFirst&quot; per dettagli su come scrivere il tuo codice.">
@@ -13,7 +13,7 @@
 <!ENTITY helptexttip "Il testo che inserisci qui verrà mostrato quando l'utente si muove con il mouse sopra il nome della funzione nel menu pop-up. Puoi usarlo per spiegare lo scopo della funzione e i parametri che accetta.">
 <!ENTITY helptextplaceholder "testo di aiuto">
 <!ENTITY run.label "Esegui funzione:">
-<!ENTITY run.accesskey "x">
+<!ENTITY run.accesskey "f">
 <!ENTITY inputtime "Inserisci orario:">
 <!ENTITY inputtimetip "Puoi inserire date e orari in qualsiasi formato riconosciuto dalla finestra di dialogo di Send Later">
 <!ENTITY inputtimeplaceholder "eventuali data e ora da passare alla funzione come test">
@@ -22,10 +22,10 @@
 <!ENTITY inputargsplaceholder "Elenco degli eventuali argomenti, separati da virgola, da passare come test">
 <!ENTITY output "Risultato:">
 <!ENTITY import.label "Importa...">
-<!ENTITY import.accesskey "i">
+<!ENTITY import.accesskey "m">
 <!ENTITY importtip "Importa una funzione dinamica precedentemente esportata dall'editor.">
 <!ENTITY export.label "Esporta...">
-<!ENTITY export.accesskey "e">
+<!ENTITY export.accesskey "o">
 <!ENTITY exporttip "Esporta la funzione attualmente visualizzata in un file come backup o per condivisione.">
 <!ENTITY reset.label "Annulla modifiche">
 <!ENTITY reset.accesskey "a">

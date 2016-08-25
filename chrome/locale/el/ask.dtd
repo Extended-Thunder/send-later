@@ -5,9 +5,9 @@
 <!ENTITY sendlater.ask.message3 "Σας ευχαριστούμε!">
 <!ENTITY sendlater.ask.donate.accesskey "Δ">
 <!ENTITY sendlater.ask.donate.label "Δωρεά">
-<!ENTITY sendlater.ask.remind.accesskey "Ρ">
+<!ENTITY sendlater.ask.remind.accesskey "Υ">
 <!ENTITY sendlater.ask.remind.label "Υπενθύμιση αργότερα">
-<!ENTITY sendlater.ask.already.accesskey "α">
+<!ENTITY sendlater.ask.already.accesskey "ω">
 <!ENTITY sendlater.ask.already.label "Έχω ήδη κάνει δωρεά">
-<!ENTITY sendlater.ask.stop.accesskey "Σ">
+<!ENTITY sendlater.ask.stop.accesskey "Ν">
 <!ENTITY sendlater.ask.stop.label "Να μην εμφανίζεται">

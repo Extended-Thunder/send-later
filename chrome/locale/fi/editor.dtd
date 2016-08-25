@@ -3,7 +3,7 @@
 <!ENTITY selectfunction "Valitse funktio:">
 <!ENTITY createnewfunction "(luo uusi funktio)">
 <!ENTITY delete.label "Poista">
-<!ENTITY delete.accesskey "p">
+<!ENTITY delete.accesskey "P">
 <!ENTITY functionnameplaceholder "funktion nimi">
 <!ENTITY codeplaceholder "funktion lähdekoodi">
 <!ENTITY helptextheader "Funktion ohjeteksti">
@@ -12,13 +12,13 @@
 <!ENTITY run.accesskey "a">
 <!ENTITY output "Tulos:">
 <!ENTITY import.label "Tuo...">
-<!ENTITY import.accesskey "t">
+<!ENTITY import.accesskey "T">
 <!ENTITY export.label "Vie...">
-<!ENTITY export.accesskey "v">
+<!ENTITY export.accesskey "V">
 <!ENTITY reset.label "Hylkää muutokset">
-<!ENTITY reset.accesskey "h">
+<!ENTITY reset.accesskey "H">
 <!ENTITY save.label "Tallenna">
-<!ENTITY save.accesskey "l">
+<!ENTITY save.accesskey "e">
 <!ENTITY close.label "Sulje">
 <!ENTITY close.accesskey "S">
 <!ENTITY close.cmdkey "w">

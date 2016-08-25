@@ -1,9 +1,9 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY sendlater.prompt.sendlater.label "‫העבר לתיבת דואר יוצא‬">
-<!ENTITY sendlater.prompt.sendlater.accesskey "‫י‬">
+<!ENTITY sendlater.prompt.sendlater.accesskey "ה">
 <!ENTITY sendlater.prompt.sendlater.tooltip "‫במקום לקבוע מועד משלוח מוגדר, העבר את ההודעה לתיבת הדואר היוצא כדי לשלוח אותה בפעם הבאה, יחד עם שאר ההודעות הממתינות למשלוח‬">
 <!ENTITY sendlater.prompt.sendnow.label "‫שלח כעת‬">
-<!ENTITY sendlater.prompt.sendnow.accesskey "‫כ‬">
+<!ENTITY sendlater.prompt.sendnow.accesskey "כ">
 <!ENTITY sendlater.prompt.close.label "‫בטל‬">
 <!ENTITY sendlater.prompt.close.tooltip "‫חזור להמשך עריכת ההודעה‬">
 <!ENTITY sendlater.prompt.title.label "‫שלח הודעת דוא&quot;ל זו מאוחר יותר‬">

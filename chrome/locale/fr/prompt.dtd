@@ -3,7 +3,7 @@
 <!ENTITY sendlater.prompt.sendlater.accesskey "P">
 <!ENTITY sendlater.prompt.sendlater.tooltip "Plutôt que d'être programmé à une date précise, le message est placé dans le dossier « Messages en attente » pour faire partie de la prochaine expédition des messages non envoyés.">
 <!ENTITY sendlater.prompt.sendnow.label "Envoyer maintenant">
-<!ENTITY sendlater.prompt.sendnow.accesskey "M">
+<!ENTITY sendlater.prompt.sendnow.accesskey "m">
 <!ENTITY sendlater.prompt.sendnow.tooltip "Envoyer le message immédiatement sans utiliser « Send Later ».">
 <!ENTITY sendlater.prompt.close.label "Annuler">
 <!ENTITY sendlater.prompt.close.tooltip "Revenir à la rédaction du message">

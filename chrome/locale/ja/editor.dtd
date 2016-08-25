@@ -22,7 +22,7 @@
 <!ENTITY inputargsplaceholder "カンマで区切られた引数があれば、テストのために渡します。">
 <!ENTITY output "出力:">
 <!ENTITY import.label "インポート...">
-<!ENTITY import.accesskey "i">
+<!ENTITY import.accesskey "m">
 <!ENTITY importtip "エディタからエクスポートされたユーザー関数をインポートします。">
 <!ENTITY export.label "エクスポート...">
 <!ENTITY export.accesskey "e">
@@ -32,5 +32,5 @@
 <!ENTITY save.label "保存">
 <!ENTITY save.accesskey "s">
 <!ENTITY close.label "閉じる">
-<!ENTITY close.accesskey "w">
+<!ENTITY close.accesskey "c">
 <!ENTITY close.cmdkey "w">

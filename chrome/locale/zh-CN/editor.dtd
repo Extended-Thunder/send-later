@@ -22,7 +22,7 @@
 <!ENTITY inputargsplaceholder "以逗号分隔的参数，如果有的话，将被输入进行测试">
 <!ENTITY output "输出：">
 <!ENTITY import.label "导入...">
-<!ENTITY import.accesskey "i">
+<!ENTITY import.accesskey "m">
 <!ENTITY importtip "导入一个之前由编辑器导出的动态函数。">
 <!ENTITY export.label "导出...">
 <!ENTITY export.accesskey "e">
@@ -33,4 +33,4 @@
 <!ENTITY save.accesskey "s">
 <!ENTITY close.label "关闭">
 <!ENTITY close.accesskey "w">
-<!ENTITY close.cmdkey "w">
+<!ENTITY close.cmdkey "c">

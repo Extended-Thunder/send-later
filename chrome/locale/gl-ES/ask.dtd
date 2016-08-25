@@ -9,5 +9,5 @@
 <!ENTITY sendlater.ask.remind.label "Recordarmo mais tarde">
 <!ENTITY sendlater.ask.already.accesskey "a">
 <!ENTITY sendlater.ask.already.label "Xa doei">
-<!ENTITY sendlater.ask.stop.accesskey "S">
+<!ENTITY sendlater.ask.stop.accesskey "P">
 <!ENTITY sendlater.ask.stop.label "Para de preguntar">

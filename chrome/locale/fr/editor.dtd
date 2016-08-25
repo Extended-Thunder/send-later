@@ -4,7 +4,7 @@
 <!ENTITY selectfunctiontip "Choisir une fonction existante à modifier ou supprimer, ou (&quot;créer une nouvelle fonction&quot;)">
 <!ENTITY createnewfunction "(&quot;créer une nouvelle fonction&quot;)">
 <!ENTITY delete.label "Supprimer">
-<!ENTITY delete.accesskey "d">
+<!ENTITY delete.accesskey "S">
 <!ENTITY functionnametip "Écrivez ou modifier le nom alphanumérique de la fonction. Si vous modifiez le nom d'une fonction existante, il vous sera demandé à l'enregistrement si vous voulez renommer la fonction ou créer une nouvelle fonction avec ce nom modifié.">
 <!ENTITY functionnameplaceholder "nom de la fonction">
 <!ENTITY codetip "Placer le code source de votre fonction ici. Lisez la fonction &quot;ReadMeFirst&quot; pour avoir des détails sur la façon de coder.">
@@ -22,7 +22,7 @@
 <!ENTITY inputargsplaceholder "si besoin : paramètres séparés par des virgules à utiliser pour le test">
 <!ENTITY output "Résultat :">
 <!ENTITY import.label "Importer...">
-<!ENTITY import.accesskey "i">
+<!ENTITY import.accesskey "m">
 <!ENTITY importtip "Importer une fonction dynamique préalablement exportée depuis l'éditeur (fichier *.slj)">
 <!ENTITY export.label "Exporter...">
 <!ENTITY export.accesskey "e">

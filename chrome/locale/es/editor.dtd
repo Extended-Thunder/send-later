@@ -22,10 +22,10 @@
 <!ENTITY inputargsplaceholder "argumentos separados por comas, en su caso, a pasar a la función para prueba">
 <!ENTITY output "Salida:">
 <!ENTITY import.label "Importar...">
-<!ENTITY import.accesskey "I">
+<!ENTITY import.accesskey "m">
 <!ENTITY importtip "Importa una función dinámica previamente exportada desde el editor">
 <!ENTITY export.label "Exportar...">
-<!ENTITY export.accesskey "E">
+<!ENTITY export.accesskey "x">
 <!ENTITY exporttip "Exporta a un fichero la función mostrada actualmente, para copia de seguridad o para compartir.">
 <!ENTITY reset.label "Descartar cambios">
 <!ENTITY reset.accesskey "D">

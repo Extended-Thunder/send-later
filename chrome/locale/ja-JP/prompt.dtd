@@ -3,7 +3,7 @@
 <!ENTITY sendlater.prompt.sendlater.accesskey "O">
 <!ENTITY sendlater.prompt.sendlater.tooltip "送信日時を指定せず、メッセージを [送信トレイ] へ移し、次の機会に未送信のメッセージを送信します。">
 <!ENTITY sendlater.prompt.sendnow.label "今すぐ送信する">
-<!ENTITY sendlater.prompt.sendnow.accesskey "i">
+<!ENTITY sendlater.prompt.sendnow.accesskey "N">
 <!ENTITY sendlater.prompt.close.label "キャンセル">
 <!ENTITY sendlater.prompt.close.tooltip "メッセージの編集に戻ります。">
 <!ENTITY sendlater.prompt.title.label "このメールを後で送信する">
