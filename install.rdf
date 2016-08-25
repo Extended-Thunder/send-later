@@ -79,6 +79,13 @@
     </em:localized>
     <em:localized>
       <Description>
+	<em:locale>gl-ES</em:locale>
+	<em:name>Send Later</em:name>
+	<em:description>"Send Later" co obxetivo de programar a hora de envío</em:description>
+      </Description>
+    </em:localized>
+    <em:localized>
+      <Description>
 	<em:locale>he</em:locale>
 	<em:name>שלח מאוחר יותר</em:name>
 	<em:description>‫'שלח מאוחר יותר' משמש לשליחת הודעות במועד עתידי‬</em:description>
