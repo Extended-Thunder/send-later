@@ -38,5 +38,5 @@
 <!ENTITY blocklatemessages.tooltip "例えば、Thunderbird がその時点で実行されていなかったといった理由で、スケジュールされた時間を過ぎてしまったときにスケジュールされたメッセージを配信しない。">
 <!ENTITY blocklatemessages.label1 "スケジュールを過ぎたメッセージを送らない">
 <!ENTITY blocklatemessages.label2 "分以上">
-<!ENTITY editorbutton "ユーザー関数エディタを開く...">
+<!ENTITY editorbutton "ユーザー関数エディタを開く…">
 <!ENTITY editortip "複雑なスケジュールロジックを実装するJavaScript関数を作成/編集するためのウィンドウを開きます。">

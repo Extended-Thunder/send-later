@@ -21,10 +21,10 @@
 <!ENTITY inputargstip "Arguments should be specified in JavaScript format, e.g., strings should be in quotation marks.">
 <!ENTITY inputargsplaceholder "comma-separated arguments, if any, to pass in for testing">
 <!ENTITY output "Output:">
-<!ENTITY import.label "Import...">
+<!ENTITY import.label "Import…">
 <!ENTITY import.accesskey "m">
 <!ENTITY importtip "Import a dynamic function previously exported from the editor.">
-<!ENTITY export.label "Export...">
+<!ENTITY export.label "Export…">
 <!ENTITY export.accesskey "E">
 <!ENTITY exporttip "Export the currently displayed function into a file for backup or sharing.">
 <!ENTITY reset.label "Discard changes">

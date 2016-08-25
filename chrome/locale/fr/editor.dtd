@@ -21,10 +21,10 @@
 <!ENTITY inputargstip "Les paramètres doivent être indiqués en format JavaScript">
 <!ENTITY inputargsplaceholder "si besoin : paramètres séparés par des virgules à utiliser pour le test">
 <!ENTITY output "Résultat :">
-<!ENTITY import.label "Importer...">
+<!ENTITY import.label "Importer…">
 <!ENTITY import.accesskey "m">
 <!ENTITY importtip "Importer une fonction dynamique préalablement exportée depuis l'éditeur (fichier *.slj)">
-<!ENTITY export.label "Exporter...">
+<!ENTITY export.label "Exporter…">
 <!ENTITY export.accesskey "e">
 <!ENTITY exporttip "Exporte la fonction de cette page dans un fichier pour la sauvegarder ou la partager.">
 <!ENTITY reset.label "Ne pas modifier">

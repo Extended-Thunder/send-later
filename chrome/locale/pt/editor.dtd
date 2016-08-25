@@ -11,9 +11,9 @@
 <!ENTITY run.accesskey "c">
 <!ENTITY inputargs "Argumentos de entrada:">
 <!ENTITY output "Saída:">
-<!ENTITY import.label "Importar...">
+<!ENTITY import.label "Importar…">
 <!ENTITY import.accesskey "m">
-<!ENTITY export.label "Exportar...">
+<!ENTITY export.label "Exportar…">
 <!ENTITY export.accesskey "x">
 <!ENTITY reset.label "Ignorar alterações">
 <!ENTITY reset.accesskey "a">

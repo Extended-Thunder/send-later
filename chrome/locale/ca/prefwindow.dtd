@@ -38,5 +38,5 @@
 <!ENTITY blocklatemessages.tooltip "No lliurar els missatges programats que hagin sobrepassat la data i hora definides, p.ex., degut a que Thunderbird no s'estava executant en aquell moment.">
 <!ENTITY blocklatemessages.label1 "No lliurar els missatges més de">
 <!ENTITY blocklatemessages.label2 "minuts de retard">
-<!ENTITY editorbutton "Obrir l'editor de funcions dinàmiques...">
+<!ENTITY editorbutton "Obrir l'editor de funcions dinàmiques…">
 <!ENTITY editortip "Obrir una finestra per crear i editar les funcions de JavaScrpit que implementin una lògica de programació complexa.">

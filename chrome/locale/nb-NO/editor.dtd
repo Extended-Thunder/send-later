@@ -7,8 +7,8 @@
 <!ENTITY helptextheader "Funksjonens hjelpetekst:">
 <!ENTITY helptextplaceholder "hjelpetekst">
 <!ENTITY run.label "Kjør funksjon:">
-<!ENTITY import.label "Importer ...">
-<!ENTITY export.label "Eksporter ...">
+<!ENTITY import.label "Importer…">
+<!ENTITY export.label "Eksporter…">
 <!ENTITY save.label "Lagre">
 <!ENTITY close.label "Lukk">
 <!ENTITY close.accesskey "u">

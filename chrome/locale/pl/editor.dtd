@@ -21,10 +21,10 @@
 <!ENTITY inputargstip "Argumenty powinny być w formaci JavScript, np.: teksty muszą być w cudzysłowach (quotation marks)">
 <!ENTITY inputargsplaceholder "Argumenty (comma-separated) oddzielone przecinkami (jeśli podano) do użycia przy testowaniu">
 <!ENTITY output "Wynik:">
-<!ENTITY import.label "Import....">
+<!ENTITY import.label "Import…">
 <!ENTITY import.accesskey "m">
 <!ENTITY importtip "Zaimportuj funkcję specjalną poprzednio wyeksportowaną z edytora.">
-<!ENTITY export.label "Eksport ...">
+<!ENTITY export.label "Eksport…">
 <!ENTITY export.accesskey "E">
 <!ENTITY exporttip "Wyeksportuj bierzącą funkcję z edytora do pliku w celach rezerwowych lub współdzielenia zasobów.">
 <!ENTITY reset.label "Rezygnacja ze zmian">

@@ -38,5 +38,5 @@
 <!ENTITY blocklatemessages.tooltip "Non inviare messaggi pianificati che sono stati ritardati oltre il loro orario pianificato, ad esempio perché Thunderbird non era in esecuzione a quell'ora.">
 <!ENTITY blocklatemessages.label1 "Non inviare messaggi più di">
 <!ENTITY blocklatemessages.label2 "minuti dopo">
-<!ENTITY editorbutton "Apri l'editor di funzioni dinamiche...">
+<!ENTITY editorbutton "Apri l'editor di funzioni dinamiche…">
 <!ENTITY editortip "Apre una finestra per creare e modificare funzioni Javascript per implementare schemi di pianificazione complessi.">

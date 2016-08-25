@@ -38,5 +38,5 @@
 <!ENTITY blocklatemessages.tooltip "No enviar mensajes programados que se han retrasado respecto a su hora programado, por ejemplo porque Thunderbird no estaba ejecutándose en ese momento.">
 <!ENTITY blocklatemessages.label1 "No enviar mensajes con más de">
 <!ENTITY blocklatemessages.label2 "minutos de retraso">
-<!ENTITY editorbutton "Abrir el editor de funciones dinámicas...">
+<!ENTITY editorbutton "Abrir el editor de funciones dinámicas…">
 <!ENTITY editortip "Abre una ventana para crear y editar funciones JavaScript implementando programación lógica compleja.">

@@ -21,10 +21,10 @@
 <!ENTITY inputargstip "I parametri devono essere specificati in formato JavaScript, ad esempio le stringhe devono essere quotate">
 <!ENTITY inputargsplaceholder "Elenco degli eventuali argomenti, separati da virgola, da passare come test">
 <!ENTITY output "Risultato:">
-<!ENTITY import.label "Importa...">
+<!ENTITY import.label "Importa…">
 <!ENTITY import.accesskey "m">
 <!ENTITY importtip "Importa una funzione dinamica precedentemente esportata dall'editor.">
-<!ENTITY export.label "Esporta...">
+<!ENTITY export.label "Esporta…">
 <!ENTITY export.accesskey "o">
 <!ENTITY exporttip "Esporta la funzione attualmente visualizzata in un file come backup o per condivisione.">
 <!ENTITY reset.label "Annulla modifiche">

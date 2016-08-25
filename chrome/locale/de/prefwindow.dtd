@@ -38,5 +38,5 @@
 <!ENTITY blocklatemessages.tooltip "Wenn eine zu sendende Nachricht die geplante Sendezeit überschritten hat, zum Beispiel weil Thunderbird zur eingestellten Zeit nicht lief, dann soll die Nachricht nicht mehr gesendet werden, wenn die geplante Sendezeit um mehr als die angegebene Zeitdauer überschritten ist.">
 <!ENTITY blocklatemessages.label1 "Nachrichten nicht mehr als">
 <!ENTITY blocklatemessages.label2 "Minuten zu spät senden">
-<!ENTITY editorbutton "Funktionseditor öffnen...">
+<!ENTITY editorbutton "Funktionseditor öffnen…">
 <!ENTITY editortip "Editorfenster für das Erstellen und Bearbeiten von JavaScript-Funktionen für komplexe Sendelogik öffnen">

@@ -38,5 +38,5 @@
 <!ENTITY blocklatemessages.tooltip "Älä toimita ajastettuja sanomia, joiden lähetys on viivästynyt ajastushetkensä yli, esim. koska Thunderbird ei ollut tuolloin käynnissä.">
 <!ENTITY blocklatemessages.label1 "Älä toimita viestejä, jotka ovat enemmän kuin">
 <!ENTITY blocklatemessages.label2 "minuuttia myöhässä">
-<!ENTITY editorbutton "Avaa dynaaminen aikataulueditori...">
+<!ENTITY editorbutton "Avaa dynaaminen aikataulueditori…">
 <!ENTITY editortip "Avaa ikkunan, jossa luodaan ja muokataan JavaScript-funktioita monimutkaisten aikataulujen toteuttamiseksi.">

@@ -11,9 +11,9 @@
 <!ENTITY run.label "Aja funktio:">
 <!ENTITY run.accesskey "a">
 <!ENTITY output "Tulos:">
-<!ENTITY import.label "Tuo...">
+<!ENTITY import.label "Tuo…">
 <!ENTITY import.accesskey "T">
-<!ENTITY export.label "Vie...">
+<!ENTITY export.label "Vie…">
 <!ENTITY export.accesskey "V">
 <!ENTITY reset.label "Hylkää muutokset">
 <!ENTITY reset.accesskey "H">

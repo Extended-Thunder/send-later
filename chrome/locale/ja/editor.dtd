@@ -21,10 +21,10 @@
 <!ENTITY inputargstip "引数は、 JavaScriptの形式で指定する必要があり、例えば、文字列は引用符で囲む必要があります。">
 <!ENTITY inputargsplaceholder "カンマで区切られた引数があれば、テストのために渡します。">
 <!ENTITY output "出力:">
-<!ENTITY import.label "インポート...">
+<!ENTITY import.label "インポート…">
 <!ENTITY import.accesskey "m">
 <!ENTITY importtip "エディタからエクスポートされたユーザー関数をインポートします。">
-<!ENTITY export.label "エクスポート...">
+<!ENTITY export.label "エクスポート…">
 <!ENTITY export.accesskey "e">
 <!ENTITY exporttip "バックアップや共有のためのファイルに現在表示されている関数をエクスポートします。">
 <!ENTITY reset.label "変更を破棄">

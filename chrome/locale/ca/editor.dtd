@@ -21,10 +21,10 @@
 <!ENTITY inputargstip "Els arguments s'haurien d'especificar en el format de JavaScript; per exemple, les cadenes de caràcters han d'anar entre cometes.">
 <!ENTITY inputargsplaceholder "Arguments separats per comes, si s'escau, a passar per fer proves">
 <!ENTITY output "Sortida:">
-<!ENTITY import.label "Importar...">
+<!ENTITY import.label "Importar…">
 <!ENTITY import.accesskey "o">
 <!ENTITY importtip "Importar una funció dinàmica prèviament exportada des de l'editor.">
-<!ENTITY export.label "Exportar...">
+<!ENTITY export.label "Exportar…">
 <!ENTITY export.accesskey "x">
 <!ENTITY exporttip "Exportar la funció que es mostra actualment en un arxiu per compartir o com a còpia de seguretat.">
 <!ENTITY reset.label "Descartar modificacions">

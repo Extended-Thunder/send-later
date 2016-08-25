@@ -14,7 +14,7 @@
 <!ENTITY showsendlatercolumn.caption "Exibir Coluna de Send Later">
 <!ENTITY showsendlatercolumn.tooltip "Exibir coluna &quot;Send Later&quot; apenas quando visualizar pasta de rascunhos">
 <!ENTITY showsendlaterheader.caption "Send Later exibir Cabeçalho">
-<!ENTITY showsendlaterheader.tooltip "Exibe ou não cabeçalho &quot;enviar X-mais-tarde-em...&quot;, isto é, ao visualizar a mensagem, no cabeçalho a hora programada de envio do rascunho.">
+<!ENTITY showsendlaterheader.tooltip "Exibe ou não cabeçalho “X-Send-Later-At”, isto é, ao visualizar a mensagem, no cabeçalho a hora programada de envio do rascunho.">
 <!ENTITY showsendlaterstatus.caption "Exibir Send Later na Barra de Status">
 <!ENTITY showsendlaterprogress.caption "Exibir na barra de status progresso em segundo plano">
 <!ENTITY showsendlaterentry.caption "Exibir na Barra de Ferramentas a Hora inserida">
@@ -38,5 +38,5 @@
 <!ENTITY blocklatemessages.tooltip "Não enviar mensagens agendadas para além da hora programada, p.ex., devido ao Thunderbird não estar rodando àquela hora.">
 <!ENTITY blocklatemessages.label1 "Não envie mensagens com mais de">
 <!ENTITY blocklatemessages.label2 "minutos de atraso">
-<!ENTITY editorbutton "Abrir editor de função dinâmica...">
+<!ENTITY editorbutton "Abrir editor de função dinâmica…">
 <!ENTITY editortip "Abre uma janela para a criação e edição de funções JavaScript para implementação de lógica complexa de agendamento.">

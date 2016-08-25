@@ -21,10 +21,10 @@
 <!ENTITY inputargstip "Argumentos deverão ser especificados no formato JavaScript, por exemplo, sequências de caracteres deverão estar entre aspas.">
 <!ENTITY inputargsplaceholder "argumentos separados por vírgula, se houver, a serem passados para teste">
 <!ENTITY output "Saída:">
-<!ENTITY import.label "Importar...">
+<!ENTITY import.label "Importar…">
 <!ENTITY import.accesskey "m">
 <!ENTITY importtip "Importar uma função dinâmica previamente exportada do editor.">
-<!ENTITY export.label "Exportar...">
+<!ENTITY export.label "Exportar…">
 <!ENTITY export.accesskey "E">
 <!ENTITY exporttip "Exporta a função atualmente mostrada para um arquivo para backup ou compartilhamento.">
 <!ENTITY reset.label "Descartar alterações.">
