@@ -1,42 +1,42 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY prefwindow.title "Preferencias Enviar Luego">
-<!ENTITY pane1.title "Preferencias Enviar Luego">
+<!ENTITY prefwindow.title "Preferencias de Send Later">
+<!ENTITY pane1.title "Preferencias de Send Later">
 <!ENTITY checktimepref.label "Verificar cada:">
 <!ENTITY checktimepref2.label "minutos">
-<!ENTITY checktimepref.tooltip "Intervalo, en minutos, entre verificaciones para borradores cuya hora de envío ha llegado. Aumenta este valor si los borradores a veces no son enviados a tiempo o si la cuenta de mensajes pendientes en la barra de status no refleja todos los envíos programados.">
+<!ENTITY checktimepref.tooltip "Intervalo, en minutos, entre comprobaciones para borradores a los que les ha llegado su hora de entrega. Aumente este valor si a veces sus borradores no se envían a tiempo o si el recuento de mensajes pendientes en su barra de estado no refleja todos los envíos programados.">
 <!ENTITY general.caption "General">
 <!ENTITY quickoption1.caption "Atajo 1">
 <!ENTITY quickoption2.caption "Atajo 2">
 <!ENTITY quickoption3.caption "Atajo 3">
-<!ENTITY quickoptionname.label "Etiqueta de Botón">
-<!ENTITY quickoptionvalue.label "Minutos">
-<!ENTITY showtoolbarbutton.caption "Mostrar en Barra de Herramientas">
-<!ENTITY showsendlatercolumn.caption "Mostrar Columna de Enviar Luego">
-<!ENTITY showsendlatercolumn.tooltip "Mostrar o no la columna de &quot;Enviar Luego&quot; cuando se ven las carpetas de borradores">
-<!ENTITY showsendlaterheader.caption "Mostrar Encabezado de Enviar Luego">
-<!ENTITY showsendlaterheader.tooltip "Mostrar o no el encabezado &quot;X-Enviar-Luego-A&quot;, es decir, la hora en que se programó un envío en el encabezado mientras se ve un mensaje">
-<!ENTITY showsendlaterstatus.caption "Mostrar Enviar Luego en la Barra de Estatus">
-<!ENTITY showsendlaterprogress.caption "Mostrar Progreso en el Fondo en la Barra de Estatus">
-<!ENTITY showsendlaterentry.caption "Mostrar la Hora de Entrada en la Barra de Herramientas">
-<!ENTITY showsendlaterunsentmessages.caption "Activar entrega de mensajes no enviados desde la Bandeja de Salida">
-<!ENTITY showsendlaterunsentmessages.tooltip "Si no se marca esta opción, entonces Enviar Luego no entregará los mensajes, sino que los colocará en la Bandeja de Salida cuando estén programados para ser enviados. Cancele esta opción, por ejemplo, si usa otra extensión, por ej., BlunderDelay, para enviar mensajes desde la Bandeja de Salida periódicamente. Recuerde que al establecerse esta opción, entonces cuando sea que Enviar Luego envíe un mensaje, TODOS los mensajes en la Bandeja de Salida serán enviados.">
-<!ENTITY sendlatersendbutton.caption "&quot;Enviar&quot; sí &quot;Envía Luego&quot;">
-<!ENTITY sendlatersendbutton.tooltip "Con esta opción escogida, el comando &quot;Enviar&quot; (tanto el botón o apretar Ctrl-Enter) actúan del mismo modo que &quot;Enviar Luego&quot;.">
-<!ENTITY altbinding.caption "Ligar Alt-Shift-Enter en vez de Ctrl-Shift-Enter">
+<!ENTITY quickoptionname.label "Etiqueta del botón :">
+<!ENTITY quickoptionvalue.label "Minutos :">
+<!ENTITY showtoolbarbutton.caption "Mostrar en la barra de herramientas">
+<!ENTITY showsendlatercolumn.caption "Mostrar columna de Send Later">
+<!ENTITY showsendlatercolumn.tooltip "Especifica si mostrar o no la columna “Enviar luego” (Send Later) al ver las carpetas de borradores">
+<!ENTITY showsendlaterheader.caption "Mostrar cabecera de Send Later">
+<!ENTITY showsendlaterheader.tooltip "Especifica si mostrar o no la cabecera &quot;X-enviar-luego-a-las&quot;, es decir, la hora para la que se programó el envío de un borrador, en la cabecera al ver un mensaje.">
+<!ENTITY showsendlaterstatus.caption "Mostrar Send Later en la barra de estado">
+<!ENTITY showsendlaterprogress.caption "Mostrar progreso en segundo plano en la barra de estado">
+<!ENTITY showsendlaterentry.caption "Mostrar entrada de hora en la barra de herramientas">
+<!ENTITY showsendlaterunsentmessages.caption "Activar envío de mensajes no enviados desde la Bandeja de Salida">
+<!ENTITY showsendlaterunsentmessages.tooltip "Si deshabilita esta opción, Send Later no completará el envío de mensajes sino que cuando esté programado su envío los colocará en la Bandeja de Salida. Deshabilite esta opción si, por ejemplo, usa otra extensión como BlunderDelay, para enviar mensajes periódicamente desde la Bandeja de Salida. Observe que cuando habilite esta opción, en el momento en que Send Later envíe un mensaje, TODOS los mensajes presentes en su Bandeja de Salida serán enviados.">
+<!ENTITY sendlatersendbutton.caption "&quot;Enviar&quot; efectúa &quot;Enviar luego&quot;">
+<!ENTITY sendlatersendbutton.tooltip "Con esta opción habilitada, el comando &quot;Enviar&quot; (con el botón o pulsando Ctrl+Intro) actúa del mismo modo que &quot;Enviar luego&quot;.">
+<!ENTITY altbinding.caption "Ligar Alt+Máyus+Intro en lugar de Ctrl+Máyus+Intro">
 <!ENTITY advanced.caption "Avanzado">
-<!ENTITY dumplevel.caption "Nivel de registro de descarga:">
-<!ENTITY consolelevel.caption "Nivel de registro de consola:">
-<!ENTITY contactauthor.tooltip "Enviar un mensaje al autor de Enviar Luego.">
-<!ENTITY contactauthor.value "Ponerse en contacto con el autor">
-<!ENTITY helplink.tooltip "Ver la documentación de Enviar Luego">
+<!ENTITY dumplevel.caption "Nivel de registro (log) de volcado:">
+<!ENTITY consolelevel.caption "Nivel de registro (log) de consola:">
+<!ENTITY contactauthor.tooltip "Envía un mensaje de correo al autor de Send Later.">
+<!ENTITY contactauthor.value "Contactar con el autor">
+<!ENTITY helplink.tooltip "Vea la documentación de Send Later.">
 <!ENTITY helplink.value "Guía del usuario">
-<!ENTITY releasenotes.value "Notas de versión">
+<!ENTITY releasenotes.value "Notas de la versión">
 <!ENTITY donatelink.value "Donar">
 <!ENTITY editorlink.value "Editor de función dinámica">
-<!ENTITY enforcerestrictions.tooltip "Si un mensaje que debe ser enviado está fuera de sus restricciones de hora o día, por ej., porque Thunderbird no funcionaba en el horario de envío programado, entonces demore la entrega hasta que las restricciones de hora y día se cumplan.">
-<!ENTITY enforcerestrictions.caption "Cumplir con las restricciones de hora y día en el momento de envío">
-<!ENTITY blocklatemessages.tooltip "No enviar los mensajes programados que han sido demorados más allá de la hora programada, por ej., porque Thunderbird no funcionaba en ese momento.">
+<!ENTITY enforcerestrictions.tooltip "Si un mensaje que debe ser enviado está fuera de sus restricciones de hora o día a causa, por ejemplo, de que Thunderbird no estuviera en marcha a la hora de envío programada, se demora su envío hasta que las restricciones de hora y día se cumplan.">
+<!ENTITY enforcerestrictions.caption "Cumplir con las restricciones de hora y día en el momento del envío">
+<!ENTITY blocklatemessages.tooltip "No envía los mensajes programados que se han demorado más allá de su hora programada, por ejemplo, a causa de que Thunderbird no estuviera en marcha en ese momento.">
 <!ENTITY blocklatemessages.label1 "No entregar mensajes más de">
 <!ENTITY blocklatemessages.label2 "minutos tarde">
-<!ENTITY editorbutton "Abrir editor de función dinámica…">
+<!ENTITY editorbutton "Abrir editor de función dinámica...">
 <!ENTITY editortip "Abre una ventana para crear y editar funciones JavaScript que implementen una lógica de planificación compleja.">
