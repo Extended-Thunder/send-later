@@ -6,6 +6,7 @@
 <!ENTITY sendlater.prompt.sendnow.accesskey "N">
 <!ENTITY sendlater.prompt.sendnow.tooltip "Bericht onmiddellijk verzenden zonder ‘Send Later’">
 <!ENTITY sendlater.prompt.close.label "Annuleren">
+<!ENTITY sendlater.prompt.close.accesskey "A">
 <!ENTITY sendlater.prompt.close.tooltip "Terug naar bewerken van het bericht">
 <!ENTITY sendlater.prompt.title.label "Dit e-mailbericht later verzenden">
 <!ENTITY sendlater.prompt.textbox.label "Verzenden om:">

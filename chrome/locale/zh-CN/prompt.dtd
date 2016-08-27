@@ -6,6 +6,7 @@
 <!ENTITY sendlater.prompt.sendnow.accesskey "N">
 <!ENTITY sendlater.prompt.sendnow.tooltip "立即发送消息，跳过 “Send Later”。">
 <!ENTITY sendlater.prompt.close.label "取消">
+<!ENTITY sendlater.prompt.close.accesskey "C">
 <!ENTITY sendlater.prompt.close.tooltip "回到编写消息。">
 <!ENTITY sendlater.prompt.title.label "延期发送这封电子邮件">
 <!ENTITY sendlater.prompt.textbox.label "发送时间：">

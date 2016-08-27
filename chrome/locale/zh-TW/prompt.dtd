@@ -6,6 +6,7 @@
 <!ENTITY sendlater.prompt.sendnow.accesskey "N">
 <!ENTITY sendlater.prompt.sendnow.tooltip "跳過Send Later, 馬上寄出訊息">
 <!ENTITY sendlater.prompt.close.label "取消">
+<!ENTITY sendlater.prompt.close.accesskey "C">
 <!ENTITY sendlater.prompt.close.tooltip "回到編輯郵件。">
 <!ENTITY sendlater.prompt.title.label "延期發送這封電子郵件">
 <!ENTITY sendlater.prompt.textbox.label "發信時間：">

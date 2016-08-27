@@ -5,6 +5,7 @@
 <!ENTITY sendlater.prompt.sendnow.accesskey "n">
 <!ENTITY sendlater.prompt.sendnow.tooltip "Send meldingen umiddelbart ved å overstyre &quot;Send Later&quot;.">
 <!ENTITY sendlater.prompt.close.label "Avbryt">
+<!ENTITY sendlater.prompt.close.accesskey "A">
 <!ENTITY sendlater.prompt.close.tooltip "Gå tilbake for å redigere meldingen.">
 <!ENTITY sendlater.prompt.title.label "Send denne e-posten senere">
 <!ENTITY sendlater.prompt.textbox.label "Send:">

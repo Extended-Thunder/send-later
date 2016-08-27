@@ -7,6 +7,7 @@
 <!ENTITY sendlater.prompt.sendnow.accesskey "N">
 <!ENTITY sendlater.prompt.sendnow.tooltip "Send the message immediately, bypassing “Send Later”.">
 <!ENTITY sendlater.prompt.close.label "Cancel">
+<!ENTITY sendlater.prompt.close.accesskey "C">
 <!ENTITY sendlater.prompt.close.tooltip "Go back to editing the message.">
 <!ENTITY sendlater.prompt.title.label "Send this email later">
 <!ENTITY sendlater.prompt.textbox.label "Send at:">

@@ -5,6 +5,7 @@
 <!ENTITY sendlater.prompt.sendnow.label "‫שלח כעת‬">
 <!ENTITY sendlater.prompt.sendnow.accesskey "כ">
 <!ENTITY sendlater.prompt.close.label "‫בטל‬">
+<!ENTITY sendlater.prompt.close.accesskey "ב">
 <!ENTITY sendlater.prompt.close.tooltip "‫חזור להמשך עריכת ההודעה‬">
 <!ENTITY sendlater.prompt.title.label "‫שלח הודעת דוא&quot;ל זו מאוחר יותר‬">
 <!ENTITY sendlater.prompt.textbox.label "‫שלח ב:‬">

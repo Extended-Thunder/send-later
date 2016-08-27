@@ -6,6 +6,7 @@
 <!ENTITY sendlater.prompt.sendnow.accesskey "h">
 <!ENTITY sendlater.prompt.sendnow.tooltip "Enviar el mensaje inmediatamente, ignorando &quot;Enviar luego&quot;.">
 <!ENTITY sendlater.prompt.close.label "Cancelar">
+<!ENTITY sendlater.prompt.close.accesskey "C">
 <!ENTITY sendlater.prompt.close.tooltip "Regresar a la edición del mensaje.">
 <!ENTITY sendlater.prompt.title.label "Enviar luego este correo">
 <!ENTITY sendlater.prompt.textbox.label "Enviar a las:">

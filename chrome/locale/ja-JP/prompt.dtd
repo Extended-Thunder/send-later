@@ -5,6 +5,7 @@
 <!ENTITY sendlater.prompt.sendnow.label "今すぐ送信する">
 <!ENTITY sendlater.prompt.sendnow.accesskey "N">
 <!ENTITY sendlater.prompt.close.label "キャンセル">
+<!ENTITY sendlater.prompt.close.accesskey "C">
 <!ENTITY sendlater.prompt.close.tooltip "メッセージの編集に戻ります。">
 <!ENTITY sendlater.prompt.title.label "このメールを後で送信する">
 <!ENTITY sendlater.prompt.textbox.label "送信日時:">

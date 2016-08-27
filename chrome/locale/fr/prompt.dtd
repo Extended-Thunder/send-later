@@ -6,6 +6,7 @@
 <!ENTITY sendlater.prompt.sendnow.accesskey "m">
 <!ENTITY sendlater.prompt.sendnow.tooltip "Envoyer le message immédiatement sans utiliser « Send Later ».">
 <!ENTITY sendlater.prompt.close.label "Annuler">
+<!ENTITY sendlater.prompt.close.accesskey "A">
 <!ENTITY sendlater.prompt.close.tooltip "Revenir à la rédaction du message">
 <!ENTITY sendlater.prompt.title.label "Programmation d'envoi différé de courriel">
 <!ENTITY sendlater.prompt.textbox.label "Programmer pour :">

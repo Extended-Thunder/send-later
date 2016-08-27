@@ -6,6 +6,7 @@
 <!ENTITY sendlater.prompt.sendnow.accesskey "n">
 <!ENTITY sendlater.prompt.sendnow.tooltip "Skicka meddelandet omedelbart oavsett inställningar i &quot;Send Later&quot;.">
 <!ENTITY sendlater.prompt.close.label "Avbryt">
+<!ENTITY sendlater.prompt.close.accesskey "A">
 <!ENTITY sendlater.prompt.close.tooltip "Gå tillbaka för att redigera meddelandet.">
 <!ENTITY sendlater.prompt.title.label "Skicka detta e-brev senare">
 <!ENTITY sendlater.prompt.textbox.label "Sändningstid:">

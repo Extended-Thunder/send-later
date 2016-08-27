@@ -6,6 +6,7 @@
 <!ENTITY sendlater.prompt.sendnow.accesskey "h">
 <!ENTITY sendlater.prompt.sendnow.tooltip "Lähettää viestin heti, ohittaen &quot;Lähetä myöhemmin&quot; -toiminnon.">
 <!ENTITY sendlater.prompt.close.label "Peruuta">
+<!ENTITY sendlater.prompt.close.accesskey "P">
 <!ENTITY sendlater.prompt.close.tooltip "Palaa viestin muokkaamiseen.">
 <!ENTITY sendlater.prompt.title.label "Lähetä tämä viesti myöhemmin">
 <!ENTITY sendlater.prompt.textbox.label "Lähetysajankohta:">

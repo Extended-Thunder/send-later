@@ -6,6 +6,7 @@
 <!ENTITY sendlater.prompt.sendnow.accesskey "Ո">
 <!ENTITY sendlater.prompt.sendnow.tooltip "Նամակը ուղարկել անմիջապես՝ շրջանցելով «Ուղարկել հետո»-ն:">
 <!ENTITY sendlater.prompt.close.label "Չեղարկել">
+<!ENTITY sendlater.prompt.close.accesskey "Չ">
 <!ENTITY sendlater.prompt.close.tooltip "Վերադառնալ խմբագրմանը:">
 <!ENTITY sendlater.prompt.title.label "Ուղարկել նամակը ավելի ուշ">
 <!ENTITY sendlater.prompt.textbox.label "Ուղարկել՝">

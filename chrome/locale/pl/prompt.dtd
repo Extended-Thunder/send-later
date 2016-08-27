@@ -6,6 +6,7 @@
 <!ENTITY sendlater.prompt.sendnow.accesskey "T">
 <!ENTITY sendlater.prompt.sendnow.tooltip "Wyślij wiadomość TERAZ, pomijając funkcjonalność dodatku &quot;Send Later&quot;.">
 <!ENTITY sendlater.prompt.close.label "Anuluj">
+<!ENTITY sendlater.prompt.close.accesskey "A">
 <!ENTITY sendlater.prompt.close.tooltip "Wróć do edycji wiadomości.">
 <!ENTITY sendlater.prompt.title.label "Wyślij tę wiadomość później">
 <!ENTITY sendlater.prompt.textbox.label "Wyślij o:">

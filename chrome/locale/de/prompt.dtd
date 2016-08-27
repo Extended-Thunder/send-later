@@ -6,6 +6,7 @@
 <!ENTITY sendlater.prompt.sendnow.accesskey "J">
 <!ENTITY sendlater.prompt.sendnow.tooltip "Die Nachricht sofort senden statt zum angegebenen Zeitpunkt.">
 <!ENTITY sendlater.prompt.close.label "Abbrechen">
+<!ENTITY sendlater.prompt.close.accesskey "A">
 <!ENTITY sendlater.prompt.close.tooltip "Zurück zum Verfassen der Nachricht.">
 <!ENTITY sendlater.prompt.title.label "Diese Nachricht später senden">
 <!ENTITY sendlater.prompt.textbox.label "Senden am/um:">

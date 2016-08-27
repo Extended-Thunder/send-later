@@ -6,6 +6,7 @@
 <!ENTITY sendlater.prompt.sendnow.accesskey "O">
 <!ENTITY sendlater.prompt.sendnow.tooltip "Invia il messaggio immediatamente, evitando &quot;Send Later&quot;.">
 <!ENTITY sendlater.prompt.close.label "Annulla">
+<!ENTITY sendlater.prompt.close.accesskey "A">
 <!ENTITY sendlater.prompt.close.tooltip "Torna a modificare il messaggio.">
 <!ENTITY sendlater.prompt.title.label "Invia questa e-mail dopo">
 <!ENTITY sendlater.prompt.textbox.label "Invia alle:">
