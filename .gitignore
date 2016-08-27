@@ -2,3 +2,4 @@
 manifest
 *.xpi
 chrome/content/backgroundingPostbox.xul
+*.tmp
