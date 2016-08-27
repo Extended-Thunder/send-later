@@ -1,6 +1,8 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY sendlater.prompt.sendlater.label "Legg i utboks">
+<!ENTITY sendlater.prompt.sendlater.accesskey "u">
 <!ENTITY sendlater.prompt.sendnow.label "Send nå">
+<!ENTITY sendlater.prompt.sendnow.accesskey "n">
 <!ENTITY sendlater.prompt.sendnow.tooltip "Send meldingen umiddelbart ved å overstyre &quot;Send Later&quot;.">
 <!ENTITY sendlater.prompt.close.label "Avbryt">
 <!ENTITY sendlater.prompt.close.tooltip "Gå tilbake for å redigere meldingen.">

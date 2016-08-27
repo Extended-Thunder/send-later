@@ -2,14 +2,17 @@
 <!ENTITY selectfunction "Velg funksjon:">
 <!ENTITY createnewfunction "(lag ny funksjon)">
 <!ENTITY delete.label "Slett">
+<!ENTITY delete.accesskey "S">
 <!ENTITY functionnameplaceholder "funksjonsnavn">
 <!ENTITY codeplaceholder "funksjonens kildekode">
 <!ENTITY helptextheader "Funksjonens hjelpetekst:">
 <!ENTITY helptextplaceholder "hjelpetekst">
 <!ENTITY run.label "Kjør funksjon:">
+<!ENTITY run.accesskey "K">
 <!ENTITY import.label "Importer…">
 <!ENTITY export.label "Eksporter…">
 <!ENTITY save.label "Lagre">
+<!ENTITY save.accesskey "L">
 <!ENTITY close.label "Lukk">
 <!ENTITY close.accesskey "u">
 <!ENTITY close.cmdkey "w">
