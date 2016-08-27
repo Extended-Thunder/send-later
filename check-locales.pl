@@ -118,8 +118,8 @@ sub check_generic {
             print(F $strings{$key}->[0]->{"value"}) or die;
             close(F) or die;
             $replaced{"$locale/$file/$key"} = 1;
-            &warning("Replaced $key in $locale/$file from " .
-                     "$strings{$key}->[0]->{'locale'}");
+            &debug("Replaced $key in $locale/$file from " .
+                   "$strings{$key}->[0]->{'locale'}");
             next;
         }
         &error("Key $key is missing from $locale/$file");
