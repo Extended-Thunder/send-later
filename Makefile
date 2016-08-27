@@ -13,11 +13,11 @@ manifest: $(shell find . -type f \! -name manifest \! -name '*.xpi' -print) \
 
 send_later.xpi: check-locales.pl Makefile manifest
 	./fix-addon-ids.pl --check
-	./check-accesskeys.py
 	-rm -rf $@.tmp
 	mkdir $@.tmp
 	tar c --files-from manifest | tar -C $@.tmp -x
 	cd $@.tmp; ../check-locales.pl --replace
+	cd $@.tmp; ../check-accesskeys.py
 	cd $@.tmp; zip -q -r $@.tmp -@ < ../manifest
 	mv $@.tmp/$@.tmp $@
 	rm -rf $@.tmp

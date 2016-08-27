@@ -5,6 +5,7 @@ from collections import OrderedDict
 import glob
 import os
 import re
+import sys
 import unicodedata
 
 
@@ -58,9 +59,12 @@ def check_file(file_name):
         if seen_keys[lower_key] != name:
             print(u"{0}: access key \"{1}\" for {2} conflicts with {3}".
                   format(file_name, access_key, name, seen_keys[lower_key]))
+    return ok
 
 
 ok = True
 
 for file_name in sorted(glob.glob("chrome/locale/*/*.dtd")):
     ok = check_file(file_name) and ok
+
+sys.exit(0 if ok else 1)
