@@ -156,6 +156,13 @@
     </em:localized>
     <em:localized>
       <Description>
+	<em:locale>ro-RO</em:locale>
+	<em:name>Trimite mai tarziu</em:name>
+	<em:description>"SendLater" funcționalitate pentru programare orei de trimitere</em:description>
+      </Description>
+    </em:localized>
+    <em:localized>
+      <Description>
 	<em:locale>sv-FI</em:locale>
 	<em:name>Skicka Senare</em:name>
 	<em:description>“Skicka senare”-funktion som låter användaren schemalägga tidpunkten för sändning av ett e-brev.</em:description>

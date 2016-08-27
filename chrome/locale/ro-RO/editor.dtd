@@ -1,0 +1,31 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY createnewfunction "(creaza functie noua)">
+<!ENTITY delete.label "Sterge">
+<!ENTITY delete.accesskey "t">
+<!ENTITY functionnameplaceholder "nume functie">
+<!ENTITY codeplaceholder "functie cod sursa">
+<!ENTITY helptextheader "Functie text ajutor:">
+<!ENTITY helptexttip "Ori ce text pus aici va fi afisat cand utilizatorul planeaza deasupra numelui functiei in meniu. Utilizat pentru a explica ce face functia si ce argumente accepta.">
+<!ENTITY helptextplaceholder "Text de ajutor">
+<!ENTITY run.label "Executa functia:">
+<!ENTITY run.accesskey "x">
+<!ENTITY inputtime "Introducere ora">
+<!ENTITY inputtimetip "Aici se pot intreoduce data si timpul in orice format inteles de SendLater.">
+<!ENTITY inputtimeplaceholder "data si ora, daca ezista, pentru a trece in functia de test">
+<!ENTITY inputargs "Introducere argumente:">
+<!ENTITY inputargstip "Argumentele trebuiesc specificate in format JavaScript, de exemplu, sirurile de caractere ar trebui să fie în ghilimele.">
+<!ENTITY inputargsplaceholder "argumente spearate prin virgula, daca exista, pentru a trece de test">
+<!ENTITY output "Iesire:">
+<!ENTITY import.label "Importa...">
+<!ENTITY import.accesskey "m">
+<!ENTITY importtip "Importa o functie dinamica exportata in prealabil din editor">
+<!ENTITY export.label "Exporta...">
+<!ENTITY export.accesskey "E">
+<!ENTITY exporttip "Exporta functia afisata intr-un fisier de back-up sau partajare">
+<!ENTITY reset.label "Renunta la modificari">
+<!ENTITY reset.accesskey "a">
+<!ENTITY save.label "Salveaza">
+<!ENTITY save.accesskey "S">
+<!ENTITY close.label "Inchide">
+<!ENTITY close.accesskey "I">
+<!ENTITY close.cmdkey "w">

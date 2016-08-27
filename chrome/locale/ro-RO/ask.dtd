@@ -1,0 +1,13 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY sendlater.ask.title.label "Ajuta Send Later">
+<!ENTITY sendlater.ask.message1 "Sunt necesare multe ore pentru realizarea, mentinerea si intretinerea acestui add-on.">
+<!ENTITY sendlater.ask.message2 "Va ruga considerati o donatie pentru a ii facilita dezvoltarea.">
+<!ENTITY sendlater.ask.message3 "Multumesc!">
+<!ENTITY sendlater.ask.donate.accesskey "D">
+<!ENTITY sendlater.ask.donate.label "Doneaza acum!">
+<!ENTITY sendlater.ask.remind.accesskey "t">
+<!ENTITY sendlater.ask.remind.label "Aminteste-mi mai tarziu">
+<!ENTITY sendlater.ask.already.accesskey "a">
+<!ENTITY sendlater.ask.already.label "Am donat deja">
+<!ENTITY sendlater.ask.stop.accesskey "N">
+<!ENTITY sendlater.ask.stop.label "Nu mai intreba">
