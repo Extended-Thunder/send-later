@@ -57,6 +57,7 @@ def check_file(file_name):
             print(u"{0}: {1}: access key \"{2}\" not in label \"{3}\"".format(
                 file_name, name, access_key, label))
         if seen_keys[lower_key] != name:
+            ok = False
             print(u"{0}: access key \"{1}\" for {2} conflicts with {3}".
                   format(file_name, access_key, name, seen_keys[lower_key]))
     return ok
