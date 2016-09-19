@@ -12,9 +12,13 @@
 <!ENTITY quickoptionvalue.label "Minutos:">
 <!ENTITY showtoolbarbutton.caption "Mostrar na barra de ferramentas">
 <!ENTITY showsendlatercolumn.caption "Mostrar coluna do Send Later">
+<!ENTITY showsendlatercolumn.tooltip "A coluna &quot;Send Later&quot; deve ser mostrada ao visualizar as pastas de rascunho">
 <!ENTITY showsendlaterheader.caption "Mostrar cabeçalho do Send Later">
+<!ENTITY showsendlaterheader.tooltip "O cabeçalho &quot;X-Send-Later-At&quot; deve ser mostrado, isto é, na altura em que o rascunho está programado para ser enviado, ao visualizar uma mensagem no cabeçalho.">
 <!ENTITY showsendlaterstatus.caption "Mostrar o Send Later na barra de estado">
 <!ENTITY showsendlaterprogress.caption "Mostrar Progresso Em Segundo Plano Na Barra de Estado">
+<!ENTITY showsendlaterentry.caption "Mostrar a hora de entrada na barra de ferramentas">
+<!ENTITY showsendlaterunsentmessages.caption "Acionar a entrega de mensagens não enviadas a partir da caixa de saída">
 <!ENTITY showsendlaterunsentmessages.tooltip "Se desmarcar esta opção, o Send Later em vez de entregar as mensagens, coloca-as na sua Caixa de Saída quando estas estiverem agendadas para entrega. Desmarque esta opção se, por exemplo, usar outra extensão como o BlunderDelay para enviar periodicamente as mensagens na sua Caixa de Saída. No caso de esta opção estar marcada, sempre que o Send Later entrega uma mensagem, TODAS as mensagens na sua Caixa de Saída serão entregues.">
 <!ENTITY sendlatersendbutton.caption "&quot;Enviar mais tarde&quot; substitui &quot;Enviar&quot;">
 <!ENTITY sendlatersendbutton.tooltip "Com esta opção activa, o comando &quot;Enviar&quot; (através do botão ou pressionando Ctrl-Enter) actua da mesma forma que &quot;Enviar mais tarde&quot;.">
@@ -26,9 +30,13 @@
 <!ENTITY contactauthor.value "Contactar o autor">
 <!ENTITY helplink.tooltip "Ver a documentação do Send Later">
 <!ENTITY helplink.value "Guia do utilizador">
+<!ENTITY releasenotes.value "Notas de lançamento">
 <!ENTITY donatelink.value "Doar">
+<!ENTITY editorlink.value "Editor de função dinamica">
 <!ENTITY enforcerestrictions.tooltip "Se uma mensagem que devia ser entregue estiver fora das restrições de data ou horário por, por exemplo, o Thunderbird não estar a correr na altura para a qual estava agendada a sua entrega, então atrase a sua entrega até que as restrições de horário e a data sejam cumpridas.">
 <!ENTITY enforcerestrictions.caption "Forçar restrições de horário e data na hora de entrega.">
 <!ENTITY blocklatemessages.tooltip "Não entregar mensagens agendadas que tenham sido adiadas para depois do tempo agendado, porque, por exemplo, o Thunderbird não estava a correr nessa altura.">
 <!ENTITY blocklatemessages.label1 "Não entregar mensagens mais do que">
 <!ENTITY blocklatemessages.label2 "minutos atrasadas">
+<!ENTITY editorbutton "Abrir o editor de função dinamica...">
+<!ENTITY editortip "Abrir uma janela para criar e editar funções JavaScript implementando uma lógica de programação complexa.">

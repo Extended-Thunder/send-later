@@ -5,7 +5,6 @@ locale	sendlater3	de	chrome/locale/de/
 locale  sendlater3      el      chrome/locale/el/
 locale	sendlater3	en-US	chrome/locale/en-US/
 locale	sendlater3	es	chrome/locale/es/
-locale	sendlater3	es-ES	chrome/locale/es-ES/
 locale	sendlater3	fi	chrome/locale/fi/
 locale	sendlater3	fr	chrome/locale/fr/
 locale  sendlater3      gl-ES   chrome/locale/gl-ES/
@@ -13,7 +12,6 @@ locale	sendlater3	he	chrome/locale/he/
 locale	sendlater3	hy-AM	chrome/locale/hy-AM/
 locale	sendlater3	it-IT	chrome/locale/it-IT/
 locale	sendlater3	ja	chrome/locale/ja/
-locale	sendlater3	ja-JP	chrome/locale/ja-JP/
 locale  sendlater3      nb-NO   chrome/locale/nb-NO/
 locale	sendlater3	nl	chrome/locale/nl/
 locale	sendlater3	pl	chrome/locale/pl/

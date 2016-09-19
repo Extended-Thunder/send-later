@@ -10,8 +10,6 @@ my $errors = 0;
 my $replace = 0;
 
 my(%inheritance_chains) = (
-    "es" => ["es-ES"],
-    "es-ES" => ["es"],
     "pt-BR" => ["pt-PT"],
     "pt-PT" => ["pt-BR"],
     "zh-CN" => ["zh-TW"],

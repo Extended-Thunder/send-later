@@ -1,13 +1,13 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY windowtitle "Editor de función dinámica de Send Later">
+<!ENTITY windowtitle "Editor de funciones dinámicas de Send Later">
 <!ENTITY selectfunction "Seleccionar función:">
-<!ENTITY selectfunctiontip "Seleccione una función a editar o borrar, o seleccione &quot;(crear nueva función)&quot; para ídem.">
+<!ENTITY selectfunctiontip "Seleccione una función a editar o borrar, o seleccione &quot;(crear nueva función)&quot;.">
 <!ENTITY createnewfunction "(crear nueva función)">
 <!ENTITY delete.label "Borrar">
 <!ENTITY delete.accesskey "B">
-<!ENTITY functionnametip "Introduzca o edite un nombre de función alfanumérico. Si modifica el nombre de una función existente, cuando lo guarde se le pedirá que o bien renombre la función o cree una nueva función con el nombre modificado.">
+<!ENTITY functionnametip "Introduzca o edite un nombre de función alfanumérico. Si modifica el nombre de una función existente, cuando la guarde se le pedirá que bien renombre la función o cree una nueva función tras modificar el nombre.">
 <!ENTITY functionnameplaceholder "nombre de la función">
-<!ENTITY codetip "Sitúe el código fuente de su función aquí. Vea la función de ejemplo “ReadMeFirst” (léame primero) para más detalles acerca de qué debe hacer su código.">
+<!ENTITY codetip "Ponga aquí el código fuente de su función. Vea la función de ejemplo “ReadMeFirst” (léame primero) para más detalles acerca de qué debe hacer su código.">
 <!ENTITY codeplaceholder "código fuente de la función">
 <!ENTITY helptextheader "Texto de ayuda de la función:">
 <!ENTITY helptexttip "Cualquier texto que introduzca aquí se mostrará cuando el usuario sitúe el ratón sobre el nombre de la función en el menú emergente. Úselo para explicar lo que hace la función y qué argumentos acepta.">
@@ -15,11 +15,11 @@
 <!ENTITY run.label "Ejecutar función:">
 <!ENTITY run.accesskey "E">
 <!ENTITY inputtime "Hora de entrada:">
-<!ENTITY inputtimetip "Aquí puede introducir fechas y horas en cualquier formato que entienda el cuadro de diálogo de Send Later.">
-<!ENTITY inputtimeplaceholder "fecha y hora, en su caso, a pasar a la función para prueba">
+<!ENTITY inputtimetip "Aquí puede introducir fechas y horas en cualquier formato comprensible para el cuadro de diálogo de Send Later.">
+<!ENTITY inputtimeplaceholder "fecha y hora, en su caso, a pasar a la función para pruebas">
 <!ENTITY inputargs "Argumentos de entrada:">
 <!ENTITY inputargstip "Los argumentos se deben especificar en formato JavaScript, ej. las cadenas de texto deben estar entrecomilladas.">
-<!ENTITY inputargsplaceholder "argumentos separados por comas, en su caso, a pasar a la función para prueba">
+<!ENTITY inputargsplaceholder "separados por comas, en su caso, a pasar para pruebas">
 <!ENTITY output "Salida:">
 <!ENTITY import.label "Importar…">
 <!ENTITY import.accesskey "m">

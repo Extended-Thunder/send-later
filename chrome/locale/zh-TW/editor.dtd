@@ -1,1 +1,10 @@
 <!-- -*- coding: utf-8 -*- -->
+<!ENTITY delete.label "刪除">
+<!ENTITY delete.accesskey "D">
+<!ENTITY functionnameplaceholder "函數名">
+<!ENTITY reset.label "放棄修改">
+<!ENTITY reset.accesskey "a">
+<!ENTITY save.label "存檔">
+<!ENTITY save.accesskey "S">
+<!ENTITY close.accesskey "C">
+<!ENTITY close.cmdkey "W">

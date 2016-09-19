@@ -11,14 +11,14 @@
     <em:contributor>Andrew Plummer (SugarJS)</em:contributor>
     <em:translator>Dtrieb from BabelZilla (de)</em:translator>
     <em:translator>Erwin D. Glockner (de)</em:translator>
-    <em:translator>urko from BabelZilla (es-ES)</em:translator>
+    <em:translator>urko from BabelZilla (es)</em:translator>
     <em:translator>Samtron-Translations (http://translations.samipupu.com/) (fi)</em:translator>
     <em:translator>Kari Eveli (fi)</em:translator>
     <em:translator>Bigpapa from BabelZilla (fr)</em:translator>
     <em:translator>Shai65 from BabelZilla (he)</em:translator>
     <em:translator>HrantOhanyan from BabelZilla (hy-AM)</em:translator>
     <em:translator>Cesare from BabelZilla (it-IT)</em:translator>
-    <em:translator>Amigomr from BabelZilla (ja-JP)</em:translator>
+    <em:translator>Amigomr from BabelZilla (ja)</em:translator>
     <em:translator>markh from BabelZilla (nl)</em:translator>
     <em:translator>Maciej Kobuszewski (pl)</em:translator>
     <em:translator>Piotr Przybylski (Gabry$) (pl)</em:translator>
@@ -52,13 +52,6 @@
     <em:localized>
       <Description>
 	<em:locale>es</em:locale>
-	<em:name>Enviar Más Tarde</em:name>
-	<em:description>La verdadera funcionalidad de “Enviar Después” para programar el envío de tus emails.</em:description>
-      </Description>
-    </em:localized>
-    <em:localized>
-      <Description>
-	<em:locale>es-ES</em:locale>
 	<em:name>Enviar Más Tarde</em:name>
 	<em:description>La verdadera funcionalidad de “Enviar Después” para programar el envío de tus emails.</em:description>
       </Description>
@@ -108,13 +101,6 @@
     <em:localized>
       <Description>
 	<em:locale>ja</em:locale>
-	<em:name>後で送信</em:name>
-	<em:description>指定した時間にメールを送信する機能を提供します。</em:description>
-      </Description>
-    </em:localized>
-    <em:localized>
-      <Description>
-	<em:locale>ja-JP</em:locale>
 	<em:name>後で送信</em:name>
 	<em:description>指定した時間にメールを送信する機能を提供します。</em:description>
       </Description>

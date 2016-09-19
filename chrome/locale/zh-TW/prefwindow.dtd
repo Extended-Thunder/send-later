@@ -30,9 +30,13 @@
 <!ENTITY contactauthor.value "聯絡作者">
 <!ENTITY helplink.tooltip "查看延期發信文件。">
 <!ENTITY helplink.value "使用說明">
+<!ENTITY releasenotes.value "發行說明">
 <!ENTITY donatelink.value "贊助">
+<!ENTITY editorlink.value "動態功能編輯器">
 <!ENTITY enforcerestrictions.tooltip "假如該寄出的訊息不在時間與日期的限制內, 比如說, 當Thunderbird沒有在預計寄出的時刻執行,就將寄出的時刻延至下次符合時間與日期的限制內">
 <!ENTITY enforcerestrictions.caption "在寄訊息時強制執行時間和日期的限制">
 <!ENTITY blocklatemessages.tooltip "不將晚於預計寄出時間的訊息寄出. 比方說, Thunderbird在該時並沒有運作">
-<!ENTITY blocklatemessages.label1 "不將晚">
+<!ENTITY blocklatemessages.label1 "不將晚了">
 <!ENTITY blocklatemessages.label2 "分鐘以上的訊息寄出">
+<!ENTITY editorbutton "開啟動態功能編輯器...">
+<!ENTITY editortip "開啟視窗以開設並編輯JavaScript函數來實施複雜的排程邏輯">
