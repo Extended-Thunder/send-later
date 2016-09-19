@@ -1,5 +1,8 @@
 SHELL=/bin/bash
 
+LOCALE_DIRS=$(filter-out %/en-US,$(wildcard chrome/locale/*))
+LOCALE_FILES=$(foreach dir,$(LOCALE_DIRS),$(wildcard $(dir)/*))
+
 all: send_later.xpi send_later-translatable.xpi
 
 manifest: $(shell find . -type f \! -name manifest \! -name '*.xpi' -print) \
@@ -33,7 +36,14 @@ send_later-translatable.xpi: Makefile manifest
 
 clean: ; -rm -f *.xpi manifest chrome/content/backgroundingPostbox.xul
 
-locale_import: Send_Later_selected_locales_skipped.tar.gz
+locale_import:
+	crowdin-cli download translations
+	sed -i -e '/^$$/d' $(LOCALE_FILES)
+	sed -i -e 's/\(<!ENTITY [^ ]* \)  */\1/' $(filter %.dtd,$(LOCALE_FILES))
+	sed -i -e '/^#X-Generator: crowdin.com/d' -e 's/\\\([#:!=]\)/\1/g' \
+		$(filter %.properties,$(LOCALE_FILES))
+
+locale_import.babelzilla: Send_Later_selected_locales_skipped.tar.gz
 	tar -C chrome/locale -xzf $<
 	./import-localized.pl
 	./locale-headers.pl chrome/locale/*/*.{properties,dtd}
