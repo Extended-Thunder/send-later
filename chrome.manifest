@@ -20,6 +20,7 @@ locale	sendlater3	pt-BR	chrome/locale/pt-BR/
 locale	sendlater3	pt-PT	chrome/locale/pt-PT/
 locale	sendlater3	ro-RO	chrome/locale/ro-RO/
 locale	sendlater3	sv	chrome/locale/sv/
+locale	sendlater3	tr	chrome/locale/tr/
 locale	sendlater3	zh-CN	chrome/locale/zh-CN/
 locale	sendlater3	zh-TW	chrome/locale/zh-TW/
 overlay	chrome://messenger/content/messenger.xul	chrome://sendlater3/content/backgrounding.xul application={3550f703-e582-4d05-9a08-453d09bdfdc6} application={92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}

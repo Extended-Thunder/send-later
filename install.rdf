@@ -156,6 +156,13 @@
     </em:localized>
     <em:localized>
       <Description>
+	<em:locale>tr</em:locale>
+	<em:name>Sonra Gönder</em:name>
+	<em:description>True “Send Later” functionality to schedule the time for sending an email.</em:description>
+      </Description>
+    </em:localized>
+    <em:localized>
+      <Description>
 	<em:locale>sv-SE</em:locale>
 	<em:name>Skicka Senare</em:name>
 	<em:description>“Skicka senare”-funktion som låter användaren schemalägga tidpunkten för sändning av ett e-brev.</em:description>
