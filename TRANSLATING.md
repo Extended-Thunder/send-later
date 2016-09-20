@@ -84,6 +84,8 @@ In prompts.properties, you will see three long strings that are blocks of source
 
 You should translate the comments in these strings but not the variable names.
 
+Oh, and contrary to what is written below, for these three specific strings you should use dumb, ugly, ASCII quotes, not pretty Unicode quotes!
+
 ### Quotation marks
 
 Please try to use the "pretty" quotation marks that are appropriate for your language whenever possible, rather than plaintext " or ' characters. For example, &ldquo;this&rdquo; looks nice in English. If you aren't working on Mac OS so your keyboard isn't kind enough to type these for you automatically ;-), then you can cut and paste them from elsewhere or launch a smart text editor like Microsoft Office or LibreOffice that has its own smart quotes implementation, type the phrase you want so that the editor substitutes the smart quotes, and then paste it into Crowdin.
