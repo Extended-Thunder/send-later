@@ -68,7 +68,6 @@ sub check_generic {
     foreach my $ancestor ($locale, @{$inheritance_chains{$locale}}, $master) {
         my $fname = "$locale_dir/$ancestor/$file";
         if (! -f $fname) {
-            &error("$file does not exist (ancestor of $locale)");
             next;
         }
         &debug("Reading $fname");
