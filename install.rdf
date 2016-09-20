@@ -156,13 +156,6 @@
     </em:localized>
     <em:localized>
       <Description>
-	<em:locale>sv-SE</em:locale>
-	<em:name>Skicka Senare</em:name>
-	<em:description>“Skicka senare”-funktion som låter användaren schemalägga tidpunkten för sändning av ett e-brev.</em:description>
-      </Description>
-    </em:localized>
-    <em:localized>
-      <Description>
 	<em:locale>zh-CN</em:locale>
 	<em:name>以后发送</em:name>
 	<em:description>以后发送用来预定发送消息的时间并延期发送</em:description>
