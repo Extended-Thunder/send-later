@@ -32,7 +32,7 @@
       <Description>
 	<em:locale>ca</em:locale>
 	<em:name>Send Later</em:name>
-	<em:description>"Enviar més tard" és la funció per programar quan vols fer l'enviament.</em:description>
+	<em:description>“Enviar més tard” és la funció per programar quan vols fer l'enviament.</em:description>
       </Description>
     </em:localized>
     <em:localized>
@@ -53,7 +53,7 @@
       <Description>
 	<em:locale>es</em:locale>
 	<em:name>Send Later</em:name>
-	<em:description>Funcionalidad "Enviar más tarde" para programar la hora de envío.</em:description>
+	<em:description>Funcionalidad “Enviar más tarde” para programar la hora de envío.</em:description>
       </Description>
     </em:localized>
     <em:localized>
@@ -74,7 +74,7 @@
       <Description>
 	<em:locale>gl-ES</em:locale>
 	<em:name>Send Later</em:name>
-	<em:description>"Send Later" co obxetivo de programar a hora de envío</em:description>
+	<em:description>“Send Later” co obxetivo de programar a hora de envío</em:description>
       </Description>
     </em:localized>
     <em:localized>
@@ -137,14 +137,14 @@
       <Description>
 	<em:locale>pt-PT</em:locale>
 	<em:name>Send Later</em:name>
-	<em:description>Funcionalidade do "Enviar mais tarde" para marcar a hora de envio</em:description>
+	<em:description>Funcionalidade do “Enviar mais tarde” para marcar a hora de envio</em:description>
       </Description>
     </em:localized>
     <em:localized>
       <Description>
 	<em:locale>ro-RO</em:locale>
 	<em:name>Send Later</em:name>
-	<em:description>"Trimite mai Tarziu" funcționalitate pentru programare orei de trimitere</em:description>
+	<em:description>“Trimite mai Tarziu” funcționalitate pentru programare orei de trimitere</em:description>
       </Description>
     </em:localized>
     <em:localized>
