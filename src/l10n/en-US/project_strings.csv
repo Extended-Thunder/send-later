@@ -1,0 +1,13 @@
+Identifier,String,Description
+AMODescription,"Changes the ""Send Later"" command (Ctrl+Shift+Return) in the message composition window, so that instead of merely copying the message into your Outbox so that it is sent the next time you go online or do ""Send Unsent Messages"", a dialog pops up which allows you to specify when the message will be sent.
+
+You can specify a specific time and date, or click ""15 mins later"", ""30 mins later"" or ""2 hours later"", or click ""Put in Outbox"" to get the built-in Thunderbird ""Send Later"" functionality (i.e., copy to Outbox).
+
+For additional information, see the <a href=""http://blog.kamens.us/send-later"">user guide</a>.
+
+Join the <a href=""http://groups.google.com/group/send-later-users"">mailing list</a>!
+
+Send Later uses <a href=""http://sugarjs.com/"">SugarJS</a> by Andrew Plummer. Thanks Andrew!",Description of the add-on that appears under “Add-on Details” on the addons.mozilla.org.
+AMOComments,"Please <a href=""mailto:jik+sendlater3@kamens.us"">email me</a> bug reports, suggestions, etc.",The text that appears under “Developer’s Comments” for the add-on on addons.mozilla.org.
+AMOWhy,"I wanted real ""Send Later"" functionality, and a search for it revealed that someone had written a version of it for Thunderbird 1.5 - 2.0. Unfortunately, I had already moved on by that point to Thunderbird 3, and it appeared that the author of the original add-on was no longer maintaining it -- comments on his blog went unposted or unanswered. I am releasing my port to Thunderbird 3+ of his add-on because it seems to be something that many people other than me want.","The text that appears in the developer profile on addons.mozilla.org, answering the question, “Why did you make this add-on?”"
+AMONext,"I run new Thunderbird versions pretty quickly after they are released, so I will do my best to ensure that this add-on is kept compatible with new Thunderbird releases. If you get to a new Thunderbird release before I do and discover that I haven't updated the add-on yet for it, please email me and let me know!","The text that appears in the developer profile on addons.mozilla.org, answering the question, “What’s next for this add-on?”"
