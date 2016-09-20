@@ -4,3 +4,4 @@ manifest
 chrome/content/backgroundingPostbox.xul
 *.tmp
 *.pyc
+crowdin.yaml
