@@ -11,14 +11,15 @@ manifest: $(shell find . -type f \! -name manifest \! -name '*.xpi' -print) \
                 -o -type f -print > $@.tmp
 	mv $@.tmp $@
 
-send_later.xpi: check-locales.pl Makefile manifest
-	./fix-addon-ids.pl --check
+send_later.xpi: utils/check-locales.pl utils/propagate_strings.py \
+    utils/check-accesskeys.py Makefile manifest
+	./utils/fix-addon-ids.pl --check
 	-rm -rf $@.tmp
 	mkdir $@.tmp
 	tar c --files-from manifest | tar -C $@.tmp -x
-	cd $@.tmp; ../check-locales.pl --replace
-	cd $@.tmp; ../propagate_strings.py
-	cd $@.tmp; ../check-accesskeys.py
+	cd $@.tmp; ../utils/check-locales.pl --replace
+	cd $@.tmp; ../utils/propagate_strings.py
+	cd $@.tmp; ../utils/check-accesskeys.py
 	cd $@.tmp; zip -q -r $@.tmp -@ < ../manifest
 	mv $@.tmp/$@.tmp $@
 	rm -rf $@.tmp
@@ -51,8 +52,8 @@ locale_export:
 
 locale_import.babelzilla: Send_Later_selected_locales_skipped.tar.gz
 	tar -C chrome/locale -xzf $<
-	./import-localized.pl
-	./locale-headers.pl chrome/locale/*/*.{properties,dtd}
+	./utils/import-localized.pl
+	./utils/locale-headers.pl chrome/locale/*/*.{properties,dtd}
 	rm -f chrome/locale/BZ_localized.txt $<
 
 chrome/content/backgroundingPostbox.xul: chrome/content/backgrounding.xul
