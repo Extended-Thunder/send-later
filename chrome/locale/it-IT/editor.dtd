@@ -1,13 +1,13 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY windowtitle "Editor delle funzioni di {NAME}">
 <!ENTITY selectfunction "Seleziona funzione">
-<!ENTITY selectfunctiontip "Seleziona una funzione da modificare o eliminare o &quot;(crea nuova funzione)&quot; per creare una nuova funzione">
+<!ENTITY selectfunctiontip "Seleziona una funzione da modificare o eliminare o “(crea nuova funzione)” per creare una nuova funzione">
 <!ENTITY createnewfunction "(crea nuova funzione)">
 <!ENTITY delete.label "Elimina">
 <!ENTITY delete.accesskey "E">
 <!ENTITY functionnametip "Inserisci o modifica un nome alfanumerico per la funzione. Se modifichi il nome di una funzione esistente, al salvataggio ti verrà richiesto se rinominare la funzione esistente o creare una nuova con il nome modificato.">
 <!ENTITY functionnameplaceholder "nome funzione">
-<!ENTITY codetip "Inserisci qui il codice sorgente per la tua funzione. Leggi la funzione di esempio &quot;ReadMeFirst&quot; per dettagli su come scrivere il tuo codice.">
+<!ENTITY codetip "Inserisci qui il codice sorgente per la tua funzione. Leggi la funzione di esempio “ReadMeFirst” per dettagli su come scrivere il tuo codice.">
 <!ENTITY codeplaceholder "codice sorgente funzione">
 <!ENTITY helptextheader "Testo di aiuto per la funzione:">
 <!ENTITY helptexttip "Il testo che inserisci qui verrà mostrato quando l'utente si muove con il mouse sopra il nome della funzione nel menu pop-up. Puoi usarlo per spiegare lo scopo della funzione e i parametri che accetta.">

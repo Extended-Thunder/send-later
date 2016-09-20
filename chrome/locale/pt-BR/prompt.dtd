@@ -4,15 +4,15 @@
 <!ENTITY sendlater.prompt.sendlater.tooltip "Ao invés de agendar o envio para uma hora específica, mova a mensagem para Caixa de Saída para envio na próxima vez em que mensagens não enviadas forem enviadas.">
 <!ENTITY sendlater.prompt.sendnow.label "Enviar Agora">
 <!ENTITY sendlater.prompt.sendnow.accesskey "E">
-<!ENTITY sendlater.prompt.sendnow.tooltip "Enviar imediatamente, ignorando &quot;{NAME}&quot;.">
+<!ENTITY sendlater.prompt.sendnow.tooltip "Enviar imediatamente, ignorando “{NAME}”.">
 <!ENTITY sendlater.prompt.close.label "Cancelar">
 <!ENTITY sendlater.prompt.close.accesskey "a">
 <!ENTITY sendlater.prompt.close.tooltip "Voltar e editar mensagem.">
 <!ENTITY sendlater.prompt.title.label "Enviar este email mais tarde">
 <!ENTITY sendlater.prompt.textbox.label "Enviar em/às:">
 <!ENTITY sendlater.prompt.or.label "ou:">
-<!ENTITY sendlater.prompt.textbox.tooltip "Insira dia e hora. Permite também formato livre como &quot;próxima terça às 3 da tarde&quot;.">
-<!ENTITY sendlater.prompt.textbox.emptytext "ex: &quot;15h, 3a feira&quot;, &quot;31/12/2012 15:27&quot;">
+<!ENTITY sendlater.prompt.textbox.tooltip "Insira dia e hora. Permite também formato livre como “próxima terça às 3 da tarde”.">
+<!ENTITY sendlater.prompt.textbox.emptytext "ex: “15h, 3a feira”, “31/12/2012 15:27”">
 <!ENTITY sendlater.prompt.sendat.label "Enviar mais tarde no horário especificado acima">
 <!ENTITY sendlater.prompt.sendat.tooltip "Salvar mensagem na pasta de rascunho para envio automático na hora informada acima.">
 <!ENTITY sendlater.prompt.savedefaults "Salvar estes valores como padrões">

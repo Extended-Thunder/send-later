@@ -28,7 +28,7 @@
 <!ENTITY consolelevel.caption "Poziom logowania w konsoli:">
 <!ENTITY contactauthor.tooltip "Wyślij wiadomość e-mail do autora “{NAME}” (w języku angielskim, proszę!).">
 <!ENTITY contactauthor.value "Skontaktuj się z autorem">
-<!ENTITY helplink.tooltip "Pokaż dokumentację &quot;{NAME}&quot;">
+<!ENTITY helplink.tooltip "Pokaż dokumentację “{NAME}”">
 <!ENTITY helplink.value "Podręcznik użytkownika">
 <!ENTITY releasenotes.value "Informacje o wydaniu">
 <!ENTITY donatelink.value "Dotacja…">

@@ -12,16 +12,16 @@
 <!ENTITY quickoptionvalue.label "Minuts:">
 <!ENTITY showtoolbarbutton.caption "Mostrar a la barra d'eines">
 <!ENTITY showsendlatercolumn.caption "Mostrar la columna {NAME}">
-<!ENTITY showsendlatercolumn.tooltip "Si s'ha de mostrar la columna &quot;{NAME}&quot; en la vista de les carpetes d'esborranys">
+<!ENTITY showsendlatercolumn.tooltip "Si s'ha de mostrar la columna “{NAME}” en la vista de les carpetes d'esborranys">
 <!ENTITY showsendlaterheader.caption "Mostrar la capçalera {NAME}">
-<!ENTITY showsendlaterheader.tooltip "Si es mostra la capçalera &quot;X-Send-Later-A&quot;, p.ex., l'hora en la que l'esborrany és programat per a ser enviat, en la capçalera de visualització del missatge.">
+<!ENTITY showsendlaterheader.tooltip "Si es mostra la capçalera “X-Send-Later-A”, p.ex., l'hora en la que l'esborrany és programat per a ser enviat, en la capçalera de visualització del missatge.">
 <!ENTITY showsendlaterstatus.caption "Mostrar {NAME} en la Barra d'Estat">
 <!ENTITY showsendlaterprogress.caption "Mostrar el Progrés en segon pla en la Barra d'Estat">
 <!ENTITY showsendlaterentry.caption "Mostrar l'entrada de Temps en la Barra d'Estat">
 <!ENTITY showsendlaterunsentmessages.caption "Enviar els missatges no lliurats de la Safata de Sortida">
 <!ENTITY showsendlaterunsentmessages.tooltip "Si desmarca aquesta opció, llavors {NAME} no enviarà els missatges directament, sinó que els posarà en la Safata de Sortida quan estiguin programats per a ser lliurats. Desmarqui aquesta opció, per exemple, si usa algun altre complement. p.ex., Blunder Delay, per tal d'enviar missatges periòdicament des de la seva Safata de Sortida. Noteu que, quan aquesta opció està habilitada, llavors cada vegada que {NAME} envia un missatge, TOTS els missatges de la Carpeta de Sortida seran enviats.">
-<!ENTITY sendlatersendbutton.caption "&quot;Enviar&quot; actua com &quot;Enviar més endavant&quot;">
-<!ENTITY sendlatersendbutton.tooltip "Amb aquesta opció habilitada, la comanda &quot;Enviar&quot; (tant el botó com al teclejar Ctrl-Intro) funciona igual que &quot;Enviar més endavant&quot;">
+<!ENTITY sendlatersendbutton.caption "“Enviar” actua com “Enviar més endavant”">
+<!ENTITY sendlatersendbutton.tooltip "Amb aquesta opció habilitada, la comanda “Enviar” (tant el botó com al teclejar Ctrl-Intro) funciona igual que “Enviar més endavant”">
 <!ENTITY altbinding.caption "Enllaçar Alt-Majúscules-Intro en lloc de Ctrl-Majúscules-Intro">
 <!ENTITY advanced.caption "Avançat">
 <!ENTITY dumplevel.caption "Nivell de bolcat de registre:">

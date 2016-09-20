@@ -4,7 +4,7 @@
 <!ENTITY sendlater.prompt.sendlater.tooltip "Ajastamisen sijasta siirrä Lähtevät-kansioon lähetettäväksi seuraavalla kerralla, kun muitakin viestejä lähetetään.">
 <!ENTITY sendlater.prompt.sendnow.label "Lähetä heti">
 <!ENTITY sendlater.prompt.sendnow.accesskey "h">
-<!ENTITY sendlater.prompt.sendnow.tooltip "Lähettää viestin heti, ohittaen &quot;{NAME}&quot; -toiminnon.">
+<!ENTITY sendlater.prompt.sendnow.tooltip "Lähettää viestin heti, ohittaen “{NAME}” -toiminnon.">
 <!ENTITY sendlater.prompt.close.label "Peruuta">
 <!ENTITY sendlater.prompt.close.accesskey "P">
 <!ENTITY sendlater.prompt.close.tooltip "Palaa viestin muokkaamiseen.">

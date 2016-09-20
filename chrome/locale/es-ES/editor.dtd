@@ -1,7 +1,7 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY windowtitle "Editor de funciones dinámicas de {NAME}">
 <!ENTITY selectfunction "Seleccionar función:">
-<!ENTITY selectfunctiontip "Seleccione una función a editar o borrar, o seleccione &quot;(crear nueva función)&quot;.">
+<!ENTITY selectfunctiontip "Seleccione una función a editar o borrar, o seleccione “(crear nueva función)”.">
 <!ENTITY createnewfunction "(crear nueva función)">
 <!ENTITY delete.label "Borrar">
 <!ENTITY delete.accesskey "B">

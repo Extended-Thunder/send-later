@@ -1,13 +1,13 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY windowtitle "Editor de Função Dinâmica do {NAME}">
 <!ENTITY selectfunction "Selecionar função:">
-<!ENTITY selectfunctiontip "Selecione uma função para editar ou apagar, ou &quot;(criar nova função)&quot; para criar uma nova função.">
+<!ENTITY selectfunctiontip "Selecione uma função para editar ou apagar, ou “(criar nova função)” para criar uma nova função.">
 <!ENTITY createnewfunction "(criar nova função)">
 <!ENTITY delete.label "Apagar">
 <!ENTITY delete.accesskey "A">
 <!ENTITY functionnametip "Insira ou edite um nome alfanumérico de função. Se modificar o nome de uma função existente, você será perguntado no momento de salvá-la se desejará renomeá-la ou criar uma nova função com o nome modificado.">
 <!ENTITY functionnameplaceholder "nome da função">
-<!ENTITY codetip "Insira o código fonte de sua função aqui. Veja a função de amostra &quot;ReadMeFirst&quot; para detalhes sobre o que seu código deverá fazer.">
+<!ENTITY codetip "Insira o código fonte de sua função aqui. Veja a função de amostra “ReadMeFirst” para detalhes sobre o que seu código deverá fazer.">
 <!ENTITY codeplaceholder "código fonte da função">
 <!ENTITY helptextheader "Texto de ajuda da função:">
 <!ENTITY helptexttip "Qualquer texto que for inserido aqui será mostrado quando o usuário pairar sobre o nome da função no menu pop-up. Use isto para explicar o que a função faz e que argumentos aceita.">

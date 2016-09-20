@@ -11,15 +11,15 @@
 <!ENTITY quickoptionvalue.label "Λεπτά :">
 <!ENTITY showtoolbarbutton.caption "Εμφάνιση στην γραμμή εργαλείων">
 <!ENTITY showsendlatercolumn.caption "Εμφάνιση της στήλης του {NAME}">
-<!ENTITY showsendlatercolumn.tooltip "Ορίζει αν θα εμφανίζεται η στήλη &quot;{NAME}&quot; όταν προβάλλεται ένας φάκελος πρόχειρων">
+<!ENTITY showsendlatercolumn.tooltip "Ορίζει αν θα εμφανίζεται η στήλη “{NAME}” όταν προβάλλεται ένας φάκελος πρόχειρων">
 <!ENTITY showsendlaterheader.caption "Εμφάνιση επικεφαλίδας {NAME}">
-<!ENTITY showsendlaterheader.tooltip "Ορίζει αν θα εμφανίζεται η επικεφλαίδα &quot;X-Send-Later-At&quot;, δηλ. ο χρόνος που έχει καθοριστεί για την αποστολή του μηνύματος, στην επικεφαλίδα όταν προβάλλεται ένα μήνυμα.">
+<!ENTITY showsendlaterheader.tooltip "Ορίζει αν θα εμφανίζεται η επικεφλαίδα “X-Send-Later-At”, δηλ. ο χρόνος που έχει καθοριστεί για την αποστολή του μηνύματος, στην επικεφαλίδα όταν προβάλλεται ένα μήνυμα.">
 <!ENTITY showsendlaterprogress.caption "Εμφάνιση παρασκηνιακών διαδικασιών στη γραμμή κατάστασης">
 <!ENTITY showsendlaterentry.caption "Εμφάνιση χρόνου στη γραμμή εργαλείων">
 <!ENTITY showsendlaterunsentmessages.caption "Να προκαλείται η παράδοση των Εξερχόμενων">
 <!ENTITY showsendlaterunsentmessages.tooltip "Αν απενεργοποιήσετε αυτή την επιλογή, τότε την καθορισμένη στιγμή αποστολής των μηνυμάτων το {NAME} δεν θα στέλνει τα μηνύματα, αλλά θα τα τοποθετεί στα Εξερχόμενα. Αυτό είναι χρήσιμο αν, για παράδειγμα, χρησιμοποιείτε κάποιο άλλο πρόσθετο, πχ το BlunderDelay, για να στέλνει περιοδικά τα μηνύματα που βρίσκονται στα Εξερχόμενά σας. Να έχετε υπόψιν ότι όταν αν η επιλογή είναι ενεργοποιημένη, τότε όποτε το {NAME} στέλνει ένα μήνυμα, στέλνονται και ΟΛΑ τα υπόλοιπα μηνύματα που βρίσκονται στα Εξερχόμενά σας.">
-<!ENTITY sendlatersendbutton.caption "Η &quot;Αποστολή&quot; στέλνει αργότερα">
-<!ENTITY sendlatersendbutton.tooltip "Με αυτή την επιλογή, η εντολή &quot;Αποστολή&quot; (είτε το κουμπί είτε ο συνδυασμός πλήκτρων Ctrl-Enter) μετατρέπεται σε &quot;Αποστολή αργότερα&quot;.">
+<!ENTITY sendlatersendbutton.caption "Η “Αποστολή” στέλνει αργότερα">
+<!ENTITY sendlatersendbutton.tooltip "Με αυτή την επιλογή, η εντολή “Αποστολή” (είτε το κουμπί είτε ο συνδυασμός πλήκτρων Ctrl-Enter) μετατρέπεται σε “Αποστολή αργότερα”.">
 <!ENTITY altbinding.caption "Δέσμευση του συνδυασμού πλήκτρων Alt-Shift-Enter αντί για Ctrl-Shift-Enter">
 <!ENTITY advanced.caption "Προχωρημένες">
 <!ENTITY contactauthor.tooltip "Στείλτε ηλεκτρονικό μήνυμα στον δημιουργό του {NAME}.">

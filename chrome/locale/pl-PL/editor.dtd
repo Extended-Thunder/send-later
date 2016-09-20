@@ -1,13 +1,13 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY windowtitle "Edytor funkcji specjalnych dla &quot;{NAME}&quot;">
+<!ENTITY windowtitle "Edytor funkcji specjalnych dla “{NAME}”">
 <!ENTITY selectfunction "Wybierz funkcję:">
-<!ENTITY selectfunctiontip "Wybór funkcji do edycji lub usunięcia, żeby stworzyć nową funkcję użyj &quot;Twórz nową&quot;">
+<!ENTITY selectfunctiontip "Wybór funkcji do edycji lub usunięcia, żeby stworzyć nową funkcję użyj “Twórz nową”">
 <!ENTITY createnewfunction "Twórz nową">
 <!ENTITY delete.label "Usuń">
 <!ENTITY delete.accesskey "U">
 <!ENTITY functionnametip "Wpisz lub edytuj alfanumeryczną nazwę funkcji. Jeśli modyfikujesz nazwę funkcji istniejącej będziesz zapytany przy zapisie czy zmieniamy nazwę czy może zapisujemy jako nowa.">
 <!ENTITY functionnameplaceholder "Nazwa Funkcji">
-<!ENTITY codetip "Umieść kod żródłowy twojej funkcji tutaj. Zajrzyj do funkcji przykładowej &quot;ReadMeFirst&quot; po szczegóły co w kodzie powinno być wykonane. (przykłady nie są tłumaczone na Polski)">
+<!ENTITY codetip "Umieść kod żródłowy twojej funkcji tutaj. Zajrzyj do funkcji przykładowej “ReadMeFirst” po szczegóły co w kodzie powinno być wykonane. (przykłady nie są tłumaczone na Polski)">
 <!ENTITY codeplaceholder "Kod źródłowy funkcji">
 <!ENTITY helptextheader "Treść podpowiedzi dla funkcji:">
 <!ENTITY helptexttip "Treść którą tu umieścisz będzie wyświetlana gdy użytkownik przesunie myszkę nad nazwę funkcji w menu podręcznym. Użyj tego do opisania co funkcja wykonuje i jakie argumenty należy przekazać do funkcji.">
@@ -15,7 +15,7 @@
 <!ENTITY run.label "Wykonaj funkcję">
 <!ENTITY run.accesskey "W">
 <!ENTITY inputtime "wprowadź czas:">
-<!ENTITY inputtimetip "Wprowadź tu datę i czas w sposób zrozumiały dla &quot;{NAME}&quot;.">
+<!ENTITY inputtimetip "Wprowadź tu datę i czas w sposób zrozumiały dla “{NAME}”.">
 <!ENTITY inputtimeplaceholder "Data i czas (jeśli podano) do użycia przy testowaniu">
 <!ENTITY inputargs "wprowadź argumenty:">
 <!ENTITY inputargstip "Argumenty powinny być w formaci JavScript, np.: teksty muszą być w cudzysłowach (quotation marks)">

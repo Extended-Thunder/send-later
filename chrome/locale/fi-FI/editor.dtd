@@ -1,13 +1,13 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY windowtitle "{NAME} - Dynaaminen Aikataulueditori">
 <!ENTITY selectfunction "Valitse funktio:">
-<!ENTITY selectfunctiontip "Valitse funktio editoitavaksi tai poistettavaksi, tai &quot;(luo uusi funktio)&quot; luodaksesi uuden funktion.">
+<!ENTITY selectfunctiontip "Valitse funktio editoitavaksi tai poistettavaksi, tai “(luo uusi funktio)” luodaksesi uuden funktion.">
 <!ENTITY createnewfunction "(luo uusi funktio)">
 <!ENTITY delete.label "Poista">
 <!ENTITY delete.accesskey "P">
 <!ENTITY functionnametip "Kirjoita tai muokkaa alfanumeerista funktion nimeä. Jos muutat olemassa olevan funktion nimeä, sinulta kysytään tallentaessasi nimeätkö funktion uudelleen vai luotko uuden funktion muutetulla nimellä.">
 <!ENTITY functionnameplaceholder "funktion nimi">
-<!ENTITY codetip "Laita funktiosi lähdekoodi tänne. Katso &quot;ReadMeFirst&quot; esimerkkifunktio nähdäksesi tarkemmin mitä koodisi pitäisi tehdä.">
+<!ENTITY codetip "Laita funktiosi lähdekoodi tänne. Katso “ReadMeFirst” esimerkkifunktio nähdäksesi tarkemmin mitä koodisi pitäisi tehdä.">
 <!ENTITY codeplaceholder "funktion lähdekoodi">
 <!ENTITY helptextheader "Funktion ohjeteksti">
 <!ENTITY helptexttip "Tähän laittamasi teksti näytetään, kun käyttäjä on funktion nimen yllä ponnahdusvalikossa. Käytä sitä selittämään mitä funktio tekee ja mitä argumentteja se hyväksyy.">

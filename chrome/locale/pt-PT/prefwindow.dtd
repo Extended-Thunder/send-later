@@ -12,16 +12,16 @@
 <!ENTITY quickoptionvalue.label "Minutos:">
 <!ENTITY showtoolbarbutton.caption "Mostrar na barra de ferramentas">
 <!ENTITY showsendlatercolumn.caption "Mostrar coluna do {NAME}">
-<!ENTITY showsendlatercolumn.tooltip "A coluna &quot;{NAME}&quot; deve ser mostrada ao visualizar as pastas de rascunho">
+<!ENTITY showsendlatercolumn.tooltip "A coluna “{NAME}” deve ser mostrada ao visualizar as pastas de rascunho">
 <!ENTITY showsendlaterheader.caption "Mostrar cabeçalho do {NAME}">
-<!ENTITY showsendlaterheader.tooltip "O cabeçalho &quot;X-Send-Later-At&quot; deve ser mostrado, isto é, na altura em que o rascunho está programado para ser enviado, ao visualizar uma mensagem no cabeçalho.">
+<!ENTITY showsendlaterheader.tooltip "O cabeçalho “X-Send-Later-At” deve ser mostrado, isto é, na altura em que o rascunho está programado para ser enviado, ao visualizar uma mensagem no cabeçalho.">
 <!ENTITY showsendlaterstatus.caption "Mostrar o {NAME} na barra de estado">
 <!ENTITY showsendlaterprogress.caption "Mostrar Progresso Em Segundo Plano Na Barra de Estado">
 <!ENTITY showsendlaterentry.caption "Mostrar a hora de entrada na barra de ferramentas">
 <!ENTITY showsendlaterunsentmessages.caption "Acionar a entrega de mensagens não enviadas a partir da caixa de saída">
 <!ENTITY showsendlaterunsentmessages.tooltip "Se desmarcar esta opção, o {NAME} em vez de entregar as mensagens, coloca-as na sua Caixa de Saída quando estas estiverem agendadas para entrega. Desmarque esta opção se, por exemplo, usar outra extensão como o BlunderDelay para enviar periodicamente as mensagens na sua Caixa de Saída. No caso de esta opção estar marcada, sempre que o {NAME} entrega uma mensagem, TODAS as mensagens na sua Caixa de Saída serão entregues.">
-<!ENTITY sendlatersendbutton.caption "&quot;Enviar mais tarde&quot; substitui &quot;Enviar&quot;">
-<!ENTITY sendlatersendbutton.tooltip "Com esta opção activa, o comando &quot;Enviar&quot; (através do botão ou pressionando Ctrl-Enter) actua da mesma forma que &quot;Enviar mais tarde&quot;.">
+<!ENTITY sendlatersendbutton.caption "“Enviar mais tarde” substitui “Enviar”">
+<!ENTITY sendlatersendbutton.tooltip "Com esta opção activa, o comando “Enviar” (através do botão ou pressionando Ctrl-Enter) actua da mesma forma que “Enviar mais tarde”.">
 <!ENTITY altbinding.caption "Combinar Alt-Shift-Enter em vez de Ctrl-Shift-Enter">
 <!ENTITY advanced.caption "Avançado">
 <!ENTITY dumplevel.caption "Nível de registo de descarga:">

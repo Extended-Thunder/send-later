@@ -15,7 +15,7 @@
 <!ENTITY sendlater.prompt.textbox.emptytext "(ex. : « 15:00 mardi » ou « 31-12/2012 15:27 »)">
 <!ENTITY sendlater.prompt.sendat.label "Envoyer au moment choisi">
 <!ENTITY sendlater.prompt.sendat.tooltip "Enregistre le message dans « Brouillons » jusqu'au moment prévu indiqué.">
-<!ENTITY sendlater.prompt.savedefaults "Enregistrer ces valeurs comme &quot;valeurs par défaut&quot;">
+<!ENTITY sendlater.prompt.savedefaults "Enregistrer ces valeurs comme “valeurs par défaut”">
 <!ENTITY sendlater.prompt.cleardefaults "Réinitialiser les valeurs par défauts">
 <!ENTITY sendlater.prompt.recur.label "Répétition :">
 <!ENTITY sendlater.prompt.none.label "aucune">
