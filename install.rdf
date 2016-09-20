@@ -39,7 +39,7 @@
       <Description>
 	<em:locale>de</em:locale>
 	<em:name>Später Senden</em:name>
-	<em:description>Eine echte “SendeSpäter” Funktionalität zur Planung der Sendezeit von Emails.</em:description>
+	<em:description>Eine erweiterte „Später senden”-Funktion zur Planung der Sendezeit</em:description>
       </Description>
     </em:localized>
     <em:localized>
@@ -52,22 +52,22 @@
     <em:localized>
       <Description>
 	<em:locale>es</em:locale>
-	<em:name>Enviar Más Tarde</em:name>
-	<em:description>La verdadera funcionalidad de “Enviar Después” para programar el envío de tus emails.</em:description>
+	<em:name>Send Later</em:name>
+	<em:description>Funcionalidad "Enviar más tarde" para programar la hora de envío.</em:description>
       </Description>
     </em:localized>
     <em:localized>
       <Description>
 	<em:locale>fi</em:locale>
-	<em:name>Lähetä Myöhemmin</em:name>
-	<em:description>“Lähetä myöhemmin” toiminnallisuus lähetyksien ajastamiseksi</em:description>
+	<em:name>Lähetä myöhemmin</em:name>
+	<em:description>Lisää mahdollisuuden ajastaa viestejä myöhemmin lähetettäviksi</em:description>
       </Description>
     </em:localized>
     <em:localized>
       <Description>
 	<em:locale>fr</em:locale>
-	<em:name>Envoyer Plus Tard</em:name>
-	<em:description>Fonction d'envoi de courrier différé permettant de programmer l'heure d'envoi d'un courriel.</em:description>
+	<em:name>Envoi différé</em:name>
+	<em:description>Véritable fonction d'« Envoi différé » pour planifier le moment exact de l'envoi.</em:description>
       </Description>
     </em:localized>
     <em:localized>
@@ -80,7 +80,7 @@
     <em:localized>
       <Description>
 	<em:locale>he</em:locale>
-	<em:name>שלח מאוחר יותר</em:name>
+	<em:name>‫שלח מאוחר יותר‬</em:name>
 	<em:description>‫'שלח מאוחר יותר' משמש לשליחת הודעות במועד עתידי‬</em:description>
       </Description>
     </em:localized>
@@ -95,55 +95,62 @@
       <Description>
 	<em:locale>it-IT</em:locale>
 	<em:name>Invia Dopo</em:name>
-	<em:description>Una vera funzione di “Invia dopo” per pianificare quando inviare le e-mail.</em:description>
+	<em:description>Funzione “Invia dopo” per pianificare l'orario degli invii</em:description>
       </Description>
     </em:localized>
     <em:localized>
       <Description>
 	<em:locale>ja</em:locale>
-	<em:name>後で送信</em:name>
-	<em:description>指定した時間にメールを送信する機能を提供します。</em:description>
+	<em:name>Send Later</em:name>
+	<em:description>“Send Later”は指定した時間にメールを送信する機能を提供します。</em:description>
+      </Description>
+    </em:localized>
+    <em:localized>
+      <Description>
+	<em:locale>nb-NO</em:locale>
+	<em:name>Send Later</em:name>
+	<em:description>True “Send Later” functionality to schedule the time for sending an email.</em:description>
       </Description>
     </em:localized>
     <em:localized>
       <Description>
 	<em:locale>nl</em:locale>
-	<em:name>Later Verzenden</em:name>
-	<em:description>“Later Verzenden”-functie om het tijdstip van verzending van een email in te stellen.</em:description>
+	<em:name>Send Later</em:name>
+	<em:description>Een functie ‘Later verzenden’ om het tijdstip van verzending te plannen</em:description>
       </Description>
     </em:localized>
     <em:localized>
       <Description>
 	<em:locale>pl</em:locale>
-	<em:name>Wyślij Później</em:name>
-	<em:description>Rozszerzenie “Wyślij później” pozwala na wysyłanie wiadomości o ustalonym wcześniej czasie.</em:description>
+	<em:name>Send Later</em:name>
+	<em:description>Dodaje funkcję “wyślij później”, aby wysyłać wiadomości w zaplanowanym czasie</em:description>
       </Description>
     </em:localized>
     <em:localized>
       <Description>
 	<em:locale>pt-BR</em:locale>
 	<em:name>Send Later</em:name>
-	<em:description>“Enviar mais tarde” agenda o dia e hora que deseja que o e-mail seja enviado</em:description>
+	<em:description>Função de “Send Later” para agendar horário de envio</em:description>
       </Description>
     </em:localized>
     <em:localized>
       <Description>
 	<em:locale>pt-PT</em:locale>
 	<em:name>Send Later</em:name>
-	<em:description>Funcionalidade do "Send Later" para marcar a hora de envio</em:description>
+	<em:description>Funcionalidade do "Enviar mais tarde" para marcar a hora de envio</em:description>
       </Description>
     </em:localized>
     <em:localized>
       <Description>
 	<em:locale>ro-RO</em:locale>
-	<em:name>Trimite mai tarziu</em:name>
-	<em:description>"SendLater" funcționalitate pentru programare orei de trimitere</em:description>
+	<em:name>Send Later</em:name>
+	<em:description>"Trimite mai Tarziu" funcționalitate pentru programare orei de trimitere</em:description>
       </Description>
     </em:localized>
     <em:localized>
       <Description>
 	<em:locale>sv</em:locale>
-	<em:name>Skicka Senare</em:name>
+	<em:name>Skicka senare</em:name>
 	<em:description>“Skicka senare”-funktion som låter användaren schemalägga tidpunkten för sändning av ett e-brev.</em:description>
       </Description>
     </em:localized>
@@ -157,7 +164,7 @@
     <em:localized>
       <Description>
 	<em:locale>zh-CN</em:locale>
-	<em:name>以后发送</em:name>
+	<em:name>Send Later</em:name>
 	<em:description>以后发送用来预定发送消息的时间并延期发送</em:description>
       </Description>
     </em:localized>

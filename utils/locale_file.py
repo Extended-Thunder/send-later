@@ -1,4 +1,5 @@
 from abc import ABCMeta, abstractmethod
+import codecs
 from errno import ENOENT
 import os
 import re
@@ -11,7 +12,7 @@ class LocaleFileMeta:
         self.file_name = file_name
         self.dirty = False
         try:
-            self.content = open(file_name).read()
+            self.content = codecs.open(file_name, 'r', 'utf-8').read()
         except IOError as e:
             if e.errno != ENOENT:
                 raise
@@ -21,7 +22,7 @@ class LocaleFileMeta:
         if not (self.dirty and self.content):
             return
         tmp_file = self.file_name + '.tmp'
-        open(tmp_file, 'w').write(self.content)
+        codecs.open(tmp_file, 'w', 'utf-8').write(self.content)
         os.rename(tmp_file, self.file_name)
         self.dirty = False
 
