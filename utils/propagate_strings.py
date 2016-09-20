@@ -3,12 +3,11 @@
 # Copies the program name -- whose canonical location is the "MessageTag"
 # property in background.properties -- into other locations that want it.
 
-from abc import ABCMeta, abstractmethod
-from errno import ENOENT
+import argparse
 import glob
 import os
-import re
 import sys
+from utils.locale_file import LocaleFile, LocaleFileMeta
 
 SUBSTITUTIONS = {
     'ask.dtd': ['sendlater.ask.title.label'],
@@ -35,127 +34,6 @@ SUBSTITUTIONS = {
 NAME_TOKEN = '{NAME}'
 
 
-class LocaleFileMeta:
-    __metaclass__ = ABCMeta
-
-    def __init__(self, file_name):
-        self.file_name = file_name
-        self.dirty = False
-        try:
-            self.content = open(file_name).read()
-        except IOError as e:
-            if e.errno != ENOENT:
-                raise
-            self.content = ''
-
-    def save(self):
-        if not (self.dirty and self.content):
-            return
-        tmp_file = self.file_name + '.tmp'
-        open(tmp_file, 'w').write(self.content)
-        os.rename(tmp_file, self.file_name)
-        self.dirty = False
-
-    @abstractmethod
-    def __getitem__(self, item):
-        pass
-
-    @abstractmethod
-    def __setitem__(self, item):
-        pass
-
-    @abstractmethod
-    def items(self):
-        pass
-
-    def __contains__(self, key):
-        try:
-            self[key]
-            return True
-        except KeyError:
-            return False
-
-    def __iter__(self):
-        for item, value in self.items():
-            yield item
-
-    def keys(self):
-        return self.__iter__()
-
-    def values(self):
-        for item, value in self.items():
-            yield value
-
-
-class DTDLocaleFile(LocaleFileMeta):
-    def __getitem__(self, item):
-        match = re.search(r'^<!ENTITY\s+' + re.escape(item) + r'\s+"(.*)"',
-                          self.content, re.MULTILINE)
-        if not match:
-            raise KeyError('Could not find {} in {}'.format(
-                item, self.file_name))
-        return match.group(1)
-
-    def __setitem__(self, item, value):
-        try:
-            old = self[item]
-            if old == value:
-                return
-        except KeyError:
-            if self.content and not self.content.endswith('\n'):
-                self.content += '\n'
-            self.content += '<!ENTITY {} "{}">\n'.format(item, value)
-        self.content = re.sub(
-            r'^(<!ENTITY\s+' + re.escape(item) + r'\s+)"(.*)"',
-            r'\1"' + value.replace('\\', '\\\\') + '"',
-            self.content, flags=re.MULTILINE)
-        self.dirty = True
-
-    def items(self):
-        for match in re.finditer(r'^<!ENTITY\s+(.*\S)\s+"(.*)"',
-                                 self.content, re.MULTILINE):
-            yield match.group(1), match.group(2)
-
-
-class PropertiesLocaleFile(LocaleFileMeta):
-    def __getitem__(self, item):
-        match = re.search(r'^' + re.escape(item) + r'\s*=\s*(\S.*)',
-                          self.content, re.MULTILINE)
-        if not match:
-            raise KeyError('Could not find {} in {}'.format(
-                item, self.file_name))
-        return match.group(1)
-
-    def __setitem__(self, item, value):
-        try:
-            old = self[item]
-            if old == value:
-                return
-        except KeyError:
-            if self.content and not self.content.endswith('\n'):
-                self.content += '\n'
-            self.content += '{}={}\n'.format(item, value)
-        self.content = re.sub(
-            r'^(' + re.escape(item) + r')\s*=\s*(.*)',
-            r'\1=' + value.replace('\\', '\\\\'),
-            self.content, flags=re.MULTILINE)
-        self.dirty = True
-
-    def items(self):
-        for match in re.finditer(r'^(\S+)\s*=\s*(.*)',
-                                 self.content, re.MULTILINE):
-            yield match.group(1), match.group(2)
-
-
-def LocaleFile(file_name):
-    if file_name.endswith('.dtd'):
-        return DTDLocaleFile(file_name)
-    elif file_name.endswith('.properties'):
-        return PropertiesLocaleFile(file_name)
-    else:
-        raise Exception('Unrecognized locale file type: {}'.format(file_name))
-
-
 def substitute_string_in_locale_file(locale_file, key, string, replacement):
     try:
         value = locale_file[key]
@@ -170,19 +48,20 @@ def substitute_string_in_locale_file(locale_file, key, string, replacement):
     return True
 
 
-def substitute_strings_in_locale_file(locale_file, keys, string, replacement):
+def substitute_strings_in_locale_file(locale_file, keys, string, replacement,
+                                      dryrun=False):
     ok = True
     if not isinstance(locale_file, LocaleFileMeta):
         locale_file = LocaleFile(locale_file)
     for key in keys:
         ok = substitute_string_in_locale_file(
             locale_file, key, string, replacement) and ok
-    if ok:
+    if ok and not dryrun:
         locale_file.save()
     return ok
 
 
-def substitute_addon_name():
+def substitute_addon_name(args):
     ok = True
     addon_name = LocaleFile('chrome/locale/en-US/background.properties')[
         'MessageTag']
@@ -191,7 +70,8 @@ def substitute_addon_name():
         for fn, keys in SUBSTITUTIONS.items():
             locale_file = LocaleFile(os.path.join(locale_dir, fn))
             ok = substitute_strings_in_locale_file(
-                locale_file, keys, NAME_TOKEN, addon_name) and ok
+                locale_file, keys, NAME_TOKEN, addon_name,
+                dryrun=args.dryrun) and ok
             for key, value in locale_file.items():
                 if NAME_TOKEN in value:
                     print('ERROR: {}: {}: "{}" contains {}'.format(
@@ -200,7 +80,21 @@ def substitute_addon_name():
     return ok
 
 
-if __name__ == '__main__':
+def parse_args():
+    parser = argparse.ArgumentParser(description='Propagate add-on name in '
+                                     'localization strings')
+    parser.add_argument('--dryrun', action='store_true', default=False,
+                        help="Don't actually modify files")
+
+    return parser.parse_args()
+
+
+def main():
+    args = parse_args()
     ok = True
-    ok = substitute_addon_name() and ok
+    ok = substitute_addon_name(args) and ok
     sys.exit(0 if ok else 1)
+
+
+if __name__ == '__main__':
+    main()

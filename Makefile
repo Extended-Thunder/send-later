@@ -1,4 +1,5 @@
 SHELL=/bin/bash
+export PYTHONPATH=$(CURDIR)
 
 all: send_later.xpi send_later-translatable.xpi
 
@@ -28,7 +29,7 @@ translatable: send_later-translatable.xpi
 .PHONY: translatable
 
 send_later-translatable.xpi: Makefile manifest
-	./fix-addon-ids.pl --check
+	./utils/fix-addon-ids.pl --check
 	rm -f $@.tmp
 	zip -q -r $@.tmp -@ < manifest
 	mv $@.tmp $@
