@@ -1,8 +1,5 @@
 SHELL=/bin/bash
 
-LOCALE_DIRS=$(filter-out %/en-US,$(wildcard chrome/locale/*))
-LOCALE_FILES=$(foreach dir,$(LOCALE_DIRS),$(wildcard $(dir)/*))
-
 all: send_later.xpi send_later-translatable.xpi
 
 manifest: $(shell find . -type f \! -name manifest \! -name '*.xpi' -print) \
@@ -39,10 +36,18 @@ clean: ; -rm -f *.xpi manifest chrome/content/backgroundingPostbox.xul
 
 locale_import:
 	crowdin-cli download translations
-	sed -i -e '/^$$/d' $(LOCALE_FILES)
-	sed -i -e 's/\(<!ENTITY [^ ]* \)  */\1/' $(filter %.dtd,$(LOCALE_FILES))
+	sed -i -e '/^$$/d' $(ls chrome/locale/*/* | grep -v /en-US/)
+	sed -i -e 's/\(<!ENTITY [^ ]* \)  */\1/' \
+	  $(ls chrome/locale/*/*.dtd | grep -v /en-US/)
 	sed -i -e '/^#X-Generator: crowdin.com/d' -e 's/\\\([#:!=]\)/\1/g' \
-		$(filter %.properties,$(LOCALE_FILES))
+	  $(ls chrome/locale/*/*.properties | grep -v /en-US/)
+	wc -l chrome/locale/*/* | awk '$$1 == 1 {print $$2}' | \
+	  xargs grep -l utf-8 | xargs --no-run-if-empty rm
+
+locale_export:
+	crowdin-cli upload source
+	crowdin-cli upload translations --auto-approve-imported \
+	  --import-duplicates --import-eq-suggestions
 
 locale_import.babelzilla: Send_Later_selected_locales_skipped.tar.gz
 	tar -C chrome/locale -xzf $<
