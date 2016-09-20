@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY windowtitle "Send Later动态函数编辑器">
+<!ENTITY windowtitle "{NAME}动态函数编辑器">
 <!ENTITY selectfunction "选择函数：">
 <!ENTITY selectfunctiontip "选择一个函数以编辑或删除，或者点击“（创建新函数）”。">
 <!ENTITY createnewfunction "（创建新函数）">
@@ -15,7 +15,7 @@
 <!ENTITY run.label "执行函数：">
 <!ENTITY run.accesskey "x">
 <!ENTITY inputtime "输入时间：">
-<!ENTITY inputtimetip "你可以在此处以任何格式输入Send Later理解的时间日期">
+<!ENTITY inputtimetip "你可以在此处以任何格式输入{NAME}理解的时间日期">
 <!ENTITY inputtimeplaceholder "时间和日期，如果有的话，会被输入函数中用于测试">
 <!ENTITY inputargs "输入参数：">
 <!ENTITY inputargstip "参数应当以JavaScript格式确定，比如字符串应该带引号。">

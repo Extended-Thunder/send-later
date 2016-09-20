@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY windowtitle "Edytor funkcji specjalnych dla &quot;SendLater&quot;">
+<!ENTITY windowtitle "Edytor funkcji specjalnych dla &quot;{NAME}&quot;">
 <!ENTITY selectfunction "Wybierz funkcję:">
 <!ENTITY selectfunctiontip "Wybór funkcji do edycji lub usunięcia, żeby stworzyć nową funkcję użyj &quot;Twórz nową&quot;">
 <!ENTITY createnewfunction "Twórz nową">
@@ -15,7 +15,7 @@
 <!ENTITY run.label "Wykonaj funkcję">
 <!ENTITY run.accesskey "W">
 <!ENTITY inputtime "wprowadź czas:">
-<!ENTITY inputtimetip "Wprowadź tu datę i czas w sposób zrozumiały dla &quot;SendLater&quot;.">
+<!ENTITY inputtimetip "Wprowadź tu datę i czas w sposób zrozumiały dla &quot;{NAME}&quot;.">
 <!ENTITY inputtimeplaceholder "Data i czas (jeśli podano) do użycia przy testowaniu">
 <!ENTITY inputargs "wprowadź argumenty:">
 <!ENTITY inputargstip "Argumenty powinny być w formaci JavScript, np.: teksty muszą być w cudzysłowach (quotation marks)">

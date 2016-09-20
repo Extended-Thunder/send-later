@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY windowtitle "Editor de funcions dinàmiques de &quot;Send Later&quot;">
+<!ENTITY windowtitle "Editor de funcions dinàmiques de &quot;{NAME}&quot;">
 <!ENTITY selectfunction "Sel·leccioni una funció:">
 <!ENTITY selectfunctiontip "Sel·leccioni una funció per editar-la o eliminar-la, o &quot;(crear nova funció)&quot; per crear una nova funció.">
 <!ENTITY createnewfunction "(crear nova funció)">
@@ -15,7 +15,7 @@
 <!ENTITY run.label "Executar la funció:">
 <!ENTITY run.accesskey "E">
 <!ENTITY inputtime "Introduir hora:">
-<!ENTITY inputtimetip "Aquí pot introduir dates i hores en qualsevol format dels què entén Send Later.">
+<!ENTITY inputtimetip "Aquí pot introduir dates i hores en qualsevol format dels què entén {NAME}.">
 <!ENTITY inputtimeplaceholder "data i hora, si s'escau, a passar a la funció per fer proves">
 <!ENTITY inputargs "Arguments d'entrada:">
 <!ENTITY inputargstip "Els arguments s'haurien d'especificar en el format de JavaScript; per exemple, les cadenes de caràcters han d'anar entre cometes.">

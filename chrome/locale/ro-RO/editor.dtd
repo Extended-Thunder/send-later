@@ -10,7 +10,7 @@
 <!ENTITY run.label "Executa functia:">
 <!ENTITY run.accesskey "x">
 <!ENTITY inputtime "Introducere ora">
-<!ENTITY inputtimetip "Aici se pot intreoduce data si timpul in orice format inteles de SendLater.">
+<!ENTITY inputtimetip "Aici se pot intreoduce data si timpul in orice format inteles de {NAME}.">
 <!ENTITY inputtimeplaceholder "data si ora, daca ezista, pentru a trece in functia de test">
 <!ENTITY inputargs "Introducere argumente:">
 <!ENTITY inputargstip "Argumentele trebuiesc specificate in format JavaScript, de exemplu, sirurile de caractere ar trebui să fie în ghilimele.">

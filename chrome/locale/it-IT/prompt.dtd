@@ -4,7 +4,7 @@
 <!ENTITY sendlater.prompt.sendlater.tooltip "Anziché inviarlo in automatico a un orario specifico, sposta il messaggio nella cartella “Posta in uscita” per inviarlo non appena i messaggi da inviare verranno spediti.">
 <!ENTITY sendlater.prompt.sendnow.label "Invia Ora">
 <!ENTITY sendlater.prompt.sendnow.accesskey "O">
-<!ENTITY sendlater.prompt.sendnow.tooltip "Invia il messaggio immediatamente, evitando &quot;Send Later&quot;.">
+<!ENTITY sendlater.prompt.sendnow.tooltip "Invia il messaggio immediatamente, evitando &quot;{NAME}&quot;.">
 <!ENTITY sendlater.prompt.close.label "Annulla">
 <!ENTITY sendlater.prompt.close.accesskey "A">
 <!ENTITY sendlater.prompt.close.tooltip "Torna a modificare il messaggio.">

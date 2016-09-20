@@ -1,6 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY prefwindow.title "Επιλογές του Send Later">
-<!ENTITY pane1.title "Επιλογές του Send Later">
+<!ENTITY prefwindow.title "Επιλογές του {NAME}">
+<!ENTITY pane1.title "Επιλογές του {NAME}">
 <!ENTITY checktimepref.label "Έλεγχος κάθε :">
 <!ENTITY checktimepref2.label "λεπτά">
 <!ENTITY checktimepref.tooltip "Χρονικό διάστημα σε λεπτά ανάμεσα σε ελέγχους για πρόχειρα μηνύματα των οποίων έφτασε ο χρόνος αποστολής. Αυξήστε το αν μερικές φορές τα μηνύματα δεν στέλνονται στην καθορισμένη ώρα ή αν η μέτρηση των μηνυμάτων στην ουρά είναι ανακριβής.">
@@ -10,22 +10,21 @@
 <!ENTITY quickoption3.caption "Συντόμευση 3">
 <!ENTITY quickoptionvalue.label "Λεπτά :">
 <!ENTITY showtoolbarbutton.caption "Εμφάνιση στην γραμμή εργαλείων">
-<!ENTITY showsendlatercolumn.caption "Εμφάνιση της στήλης του Send Later">
-<!ENTITY showsendlatercolumn.tooltip "Ορίζει αν θα εμφανίζεται η στήλη &quot;Send Later&quot; όταν προβάλλεται ένας φάκελος πρόχειρων">
-<!ENTITY showsendlaterheader.caption "Εμφάνιση επικεφαλίδας Send Later">
+<!ENTITY showsendlatercolumn.caption "Εμφάνιση της στήλης του {NAME}">
+<!ENTITY showsendlatercolumn.tooltip "Ορίζει αν θα εμφανίζεται η στήλη &quot;{NAME}&quot; όταν προβάλλεται ένας φάκελος πρόχειρων">
+<!ENTITY showsendlaterheader.caption "Εμφάνιση επικεφαλίδας {NAME}">
 <!ENTITY showsendlaterheader.tooltip "Ορίζει αν θα εμφανίζεται η επικεφλαίδα &quot;X-Send-Later-At&quot;, δηλ. ο χρόνος που έχει καθοριστεί για την αποστολή του μηνύματος, στην επικεφαλίδα όταν προβάλλεται ένα μήνυμα.">
-<!ENTITY showsendlaterstatus.caption "Εμφάνιση στην γραμμή κατάστασης">
 <!ENTITY showsendlaterprogress.caption "Εμφάνιση παρασκηνιακών διαδικασιών στη γραμμή κατάστασης">
 <!ENTITY showsendlaterentry.caption "Εμφάνιση χρόνου στη γραμμή εργαλείων">
 <!ENTITY showsendlaterunsentmessages.caption "Να προκαλείται η παράδοση των Εξερχόμενων">
-<!ENTITY showsendlaterunsentmessages.tooltip "Αν απενεργοποιήσετε αυτή την επιλογή, τότε την καθορισμένη στιγμή αποστολής των μηνυμάτων το Send Later δεν θα στέλνει τα μηνύματα, αλλά θα τα τοποθετεί στα Εξερχόμενα. Αυτό είναι χρήσιμο αν, για παράδειγμα, χρησιμοποιείτε κάποιο άλλο πρόσθετο, πχ το BlunderDelay, για να στέλνει περιοδικά τα μηνύματα που βρίσκονται στα Εξερχόμενά σας. Να έχετε υπόψιν ότι όταν αν η επιλογή είναι ενεργοποιημένη, τότε όποτε το Send Later στέλνει ένα μήνυμα, στέλνονται και ΟΛΑ τα υπόλοιπα μηνύματα που βρίσκονται στα Εξερχόμενά σας.">
+<!ENTITY showsendlaterunsentmessages.tooltip "Αν απενεργοποιήσετε αυτή την επιλογή, τότε την καθορισμένη στιγμή αποστολής των μηνυμάτων το {NAME} δεν θα στέλνει τα μηνύματα, αλλά θα τα τοποθετεί στα Εξερχόμενα. Αυτό είναι χρήσιμο αν, για παράδειγμα, χρησιμοποιείτε κάποιο άλλο πρόσθετο, πχ το BlunderDelay, για να στέλνει περιοδικά τα μηνύματα που βρίσκονται στα Εξερχόμενά σας. Να έχετε υπόψιν ότι όταν αν η επιλογή είναι ενεργοποιημένη, τότε όποτε το {NAME} στέλνει ένα μήνυμα, στέλνονται και ΟΛΑ τα υπόλοιπα μηνύματα που βρίσκονται στα Εξερχόμενά σας.">
 <!ENTITY sendlatersendbutton.caption "Η &quot;Αποστολή&quot; στέλνει αργότερα">
 <!ENTITY sendlatersendbutton.tooltip "Με αυτή την επιλογή, η εντολή &quot;Αποστολή&quot; (είτε το κουμπί είτε ο συνδυασμός πλήκτρων Ctrl-Enter) μετατρέπεται σε &quot;Αποστολή αργότερα&quot;.">
 <!ENTITY altbinding.caption "Δέσμευση του συνδυασμού πλήκτρων Alt-Shift-Enter αντί για Ctrl-Shift-Enter">
 <!ENTITY advanced.caption "Προχωρημένες">
-<!ENTITY contactauthor.tooltip "Στείλτε ηλεκτρονικό μήνυμα στον δημιουργό του Send Later.">
+<!ENTITY contactauthor.tooltip "Στείλτε ηλεκτρονικό μήνυμα στον δημιουργό του {NAME}.">
 <!ENTITY contactauthor.value "Επικοινωνία με τον δημιουργό">
-<!ENTITY helplink.tooltip "Προβολή της τεκμηρίωσης του Send Later.">
+<!ENTITY helplink.tooltip "Προβολή της τεκμηρίωσης του {NAME}.">
 <!ENTITY helplink.value "Οδηγίες χρήσης">
 <!ENTITY releasenotes.value "Σημειώσεις έκδοσης">
 <!ENTITY donatelink.value "Δωρεά">

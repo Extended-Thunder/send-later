@@ -4,7 +4,7 @@
 <!ENTITY sendlater.prompt.sendlater.tooltip "不指定發送時間，而是移動信件至寄件匣，等待下一次傳送信件。">
 <!ENTITY sendlater.prompt.sendnow.label "立即寄出">
 <!ENTITY sendlater.prompt.sendnow.accesskey "N">
-<!ENTITY sendlater.prompt.sendnow.tooltip "跳過Send Later, 馬上寄出訊息">
+<!ENTITY sendlater.prompt.sendnow.tooltip "跳過{NAME}, 馬上寄出訊息">
 <!ENTITY sendlater.prompt.close.label "取消">
 <!ENTITY sendlater.prompt.close.accesskey "C">
 <!ENTITY sendlater.prompt.close.tooltip "回到編輯郵件。">

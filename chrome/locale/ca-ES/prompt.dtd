@@ -4,7 +4,7 @@
 <!ENTITY sendlater.prompt.sendlater.tooltip "En comptes de programar el lliurament a una hora específica, moure el missatge a la Safata de Sortida per lliurar-lo el proper cop que els missatges no enviats siguin lliurats.">
 <!ENTITY sendlater.prompt.sendnow.label "Enviar ara">
 <!ENTITY sendlater.prompt.sendnow.accesskey "E">
-<!ENTITY sendlater.prompt.sendnow.tooltip "Enviar el missatge immediatament, ignorant &quot;Send later&quot;.">
+<!ENTITY sendlater.prompt.sendnow.tooltip "Enviar el missatge immediatament, ignorant &quot;{NAME}&quot;.">
 <!ENTITY sendlater.prompt.close.label "Cancel·lar">
 <!ENTITY sendlater.prompt.close.accesskey "C">
 <!ENTITY sendlater.prompt.close.tooltip "Tornar a editar el missatge.">

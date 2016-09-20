@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY sendlater.ask.title.label "Աջակցեք «Ուղարկել ավելի ուշ»-ին">
+<!ENTITY sendlater.ask.title.label "Աջակցեք «{NAME}»-ին">
 <!ENTITY sendlater.ask.message1 "Բավական երկար ժամանակ է ծախսվել այս հավելման ստեղծման, սպասարկման և աջակցման համար:">
 <!ENTITY sendlater.ask.message2 "Խնդրում ենք կատարել փոքրիկ նվիրատվություն՝ աջակցելու ծրագրի զարգացմանը:">
 <!ENTITY sendlater.ask.message3 "Շնորհակալություն">

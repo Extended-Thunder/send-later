@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY windowtitle "Send Later Editor de Função Dinamica">
+<!ENTITY windowtitle "{NAME} Editor de Função Dinamica">
 <!ENTITY selectfunction "Selecione função:">
 <!ENTITY selectfunctiontip "Selecione uma função: para editar ou apagar, ou &quot;(criar nova função)&quot; para criar uma nova função">
 <!ENTITY createnewfunction "(criar nova função)">
@@ -15,7 +15,7 @@
 <!ENTITY run.label "Executar função:">
 <!ENTITY run.accesskey "x">
 <!ENTITY inputtime "Hora de entrada:">
-<!ENTITY inputtimetip "Aqui pode introduzir datas e horas em qualquer formato que a caixa de diálogo do SendLater irá interpretar corretamente.">
+<!ENTITY inputtimetip "Aqui pode introduzir datas e horas em qualquer formato que a caixa de diálogo do {NAME} irá interpretar corretamente.">
 <!ENTITY inputtimeplaceholder "data e hora, se for o caso, para inserir na função para testes">
 <!ENTITY inputargs "Argumentos de entrada:">
 <!ENTITY inputargstip "Os argumentos devem ser especificados no formato JavaScript, por exemplo, os textos devem estar entre aspas.">

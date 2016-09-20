@@ -1,6 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY prefwindow.title "Options d'« Envoi différé »">
-<!ENTITY pane1.title "Options d'« Envoi différé »">
+<!ENTITY prefwindow.title "Options d'« {NAME} »">
+<!ENTITY pane1.title "Options d'« {NAME} »">
 <!ENTITY checktimepref.label "Vérifier toutes les :">
 <!ENTITY checktimepref2.label "minutes">
 <!ENTITY checktimepref.tooltip "Intervalle (en minutes) des vérifications de messages à expédier. Augmenter cette valeur si les messages ne sont pas expédiés à temps ou si le nombre de message en attente est erroné.">
@@ -11,24 +11,24 @@
 <!ENTITY quickoptionname.label "Texte du bouton :">
 <!ENTITY quickoptionvalue.label "Minutes :">
 <!ENTITY showtoolbarbutton.caption "Afficher dans la barre d'outils">
-<!ENTITY showsendlatercolumn.caption "Afficher la colonne d'envoi différé">
-<!ENTITY showsendlatercolumn.tooltip "Ajoute la colonne « Envoi différé » pour les messages dans le dossier « Brouillons ».">
-<!ENTITY showsendlaterheader.caption "Afficher l'en-tête d'envoi différé">
+<!ENTITY showsendlatercolumn.caption "Afficher la colonne d'{NAME}">
+<!ENTITY showsendlatercolumn.tooltip "Ajoute la colonne « {NAME} » pour les messages dans le dossier « Brouillons ».">
+<!ENTITY showsendlaterheader.caption "Afficher l'en-tête d'{NAME}">
 <!ENTITY showsendlaterheader.tooltip "Autorise l'affichage de l'en-tête « x-send-later-at », c.à.d., le moment prévu d'envoi du message.">
-<!ENTITY showsendlaterstatus.caption "Afficher « Envoi différé » dans la barre d'état">
+<!ENTITY showsendlaterstatus.caption "Afficher « {NAME} » dans la barre d'état">
 <!ENTITY showsendlaterprogress.caption "Afficher les tâches en arrière-plan dans la barre d'état">
 <!ENTITY showsendlaterentry.caption "Afficher le champs de planification dans la barre d'outils">
 <!ENTITY showsendlaterunsentmessages.caption "Expédier automatiquement les messages programmés">
-<!ENTITY showsendlaterunsentmessages.tooltip "Effectue les envois planifiés sans les placer dans « Message en attente ». Désactiver l'option, par exemple, lors de l'utilisation d'une extension automatisant l'envoi des messages en attente (tel que BlunderDelay). Remarque : si cette option est activée ; quand « Envoi différé » déclenche un envoi, TOUS les messages en attente sont expédiés.">
+<!ENTITY showsendlaterunsentmessages.tooltip "Effectue les envois planifiés sans les placer dans « Message en attente ». Désactiver l'option, par exemple, lors de l'utilisation d'une extension automatisant l'envoi des messages en attente (tel que BlunderDelay). Remarque : si cette option est activée ; quand « {NAME} » déclenche un envoi, TOUS les messages en attente sont expédiés.">
 <!ENTITY sendlatersendbutton.caption "Remplacer « Envoyer » par « Envoyer plus tard »">
 <!ENTITY sendlatersendbutton.tooltip "Remplace l'action par défaut d'« Envoyer » (bouton ou raccourci « Ctrl+Entrée ») par celle d'« Envoyer plus tard ».">
 <!ENTITY altbinding.caption "Utiliser Alt+Maj+Entrée à la place de Ctrl+Maj+Entrée">
 <!ENTITY advanced.caption "Avancé">
 <!ENTITY dumplevel.caption "Niveau de journalisation :">
 <!ENTITY consolelevel.caption "Console de journalisation :">
-<!ENTITY contactauthor.tooltip "Envoyer un message à l'auteur de Envoyer Envoi différé (en anglais, s'il vous plaît !).">
+<!ENTITY contactauthor.tooltip "Envoyer un message à l'auteur de Envoyer {NAME} (en anglais, s'il vous plaît !).">
 <!ENTITY contactauthor.value "Contacter l'auteur">
-<!ENTITY helplink.tooltip "Ouvre la documentation en ligne pour Envoi différé (en anglais).">
+<!ENTITY helplink.tooltip "Ouvre la documentation en ligne pour {NAME} (en anglais).">
 <!ENTITY helplink.value "Guide de l'utilisateur">
 <!ENTITY releasenotes.value "Notes de version">
 <!ENTITY donatelink.value "Faire un don">

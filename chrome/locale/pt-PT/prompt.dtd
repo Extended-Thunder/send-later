@@ -1,10 +1,9 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY sendlater.prompt.sendlater.label "Colocar na caixa de saida">
 <!ENTITY sendlater.prompt.sendlater.accesskey "o">
-<!ENTITY sendlater.prompt.sendlater.tooltip "Em vez de definir a entrega para uma hora especifica, mover a mensagem para a Caixa de Saída de forma a ser enviada da próxima vez que o Send Later enviar as mensagens ainda não enviadas.">
 <!ENTITY sendlater.prompt.sendnow.label "Enviar Agora">
 <!ENTITY sendlater.prompt.sendnow.accesskey "A">
-<!ENTITY sendlater.prompt.sendnow.tooltip "Envie a mensagem imediatamente, ignorando &quot;Send Later&quot;.">
+<!ENTITY sendlater.prompt.sendnow.tooltip "Envie a mensagem imediatamente, ignorando &quot;{NAME}&quot;.">
 <!ENTITY sendlater.prompt.close.label "Cancelar">
 <!ENTITY sendlater.prompt.close.accesskey "C">
 <!ENTITY sendlater.prompt.close.tooltip "Voltar à edição da mensagem.">

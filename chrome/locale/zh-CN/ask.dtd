@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY sendlater.ask.title.label "支持以后发送">
+<!ENTITY sendlater.ask.title.label "支持{NAME}">
 <!ENTITY sendlater.ask.message1 "此附加组件的开发、维护和支持花费了大量时间。">
 <!ENTITY sendlater.ask.message2 "请考虑捐赠，以支持其继续发展。">
 <!ENTITY sendlater.ask.message3 "谢谢！">

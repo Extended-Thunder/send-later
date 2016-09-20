@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY windowtitle "Send Later - Editor voor dynamische functies">
+<!ENTITY windowtitle "{NAME} - Editor voor dynamische functies">
 <!ENTITY selectfunction "Selecteer functie:">
 <!ENTITY selectfunctiontip "Selecteer een te bewerken of te verwijderen functie, of ‘(nieuwe functie maken)’ om een nieuwe functie te maken.">
 <!ENTITY createnewfunction "(nieuwe functie maken)">
@@ -15,7 +15,7 @@
 <!ENTITY run.label "Functie uitvoeren:">
 <!ENTITY run.accesskey "u">
 <!ENTITY inputtime "Invoertijd:">
-<!ENTITY inputtimetip "Hier kunt u datums en tijdstippen invoeren in elke notatie die het Send Later-dialoogvenster begrijpt.">
+<!ENTITY inputtimetip "Hier kunt u datums en tijdstippen invoeren in elke notatie die het {NAME}-dialoogvenster begrijpt.">
 <!ENTITY inputtimeplaceholder "datum en tijd, wanneer aanwezig, om aan de functie door te geven voor testen">
 <!ENTITY inputargs "Invoerargumenten:">
 <!ENTITY inputargstip "Argumenten dienen in JavaScript-notatie te worden opgegeven; zo dienen tekenreeksen aanhalingstekens te hebben.">

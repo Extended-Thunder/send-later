@@ -1,6 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY prefwindow.title "Preferencias de Send Later">
-<!ENTITY pane1.title "Preferencias de Send Later">
+<!ENTITY prefwindow.title "Preferencias de {NAME}">
+<!ENTITY pane1.title "Preferencias de {NAME}">
 <!ENTITY checktimepref.label "Comprobar cada">
 <!ENTITY checktimepref2.label "minuto(s)">
 <!ENTITY checktimepref.tooltip "Intervalo, en minutos, entre comprobaciones para borradores a los que les ha llegado su hora de envío. Aumente este valor si a veces sus borradores no se envían a tiempo o si el recuento de mensajes pendientes en su barra de estado no refleja todos los envíos programados.">
@@ -11,24 +11,24 @@
 <!ENTITY quickoptionname.label "Etiqueta del botón :">
 <!ENTITY quickoptionvalue.label "Minuto(s) :">
 <!ENTITY showtoolbarbutton.caption "Mostrar en la barra de herramientas">
-<!ENTITY showsendlatercolumn.caption "Mostrar columna de Send Later">
-<!ENTITY showsendlatercolumn.tooltip "Especifica si incluir o no la columna “Enviar más tarde” al mostrar las carpetas de borradores">
-<!ENTITY showsendlaterheader.caption "Mostrar encabezamiento de Send Later">
+<!ENTITY showsendlatercolumn.caption "Mostrar columna de {NAME}">
+<!ENTITY showsendlatercolumn.tooltip "Especifica si incluir o no la columna “{NAME}” al mostrar las carpetas de borradores">
+<!ENTITY showsendlaterheader.caption "Mostrar encabezamiento de {NAME}">
 <!ENTITY showsendlaterheader.tooltip "Especifica si mostrar o el encabezamiento “X-Send-Later-At”, que marca la hora a la que está programado el envío de un borrador, en la cabecera al ver el código de un mensaje.">
-<!ENTITY showsendlaterstatus.caption "Mostrar “Enviar más tarde” en la barra de estado">
+<!ENTITY showsendlaterstatus.caption "Mostrar “{NAME}” en la barra de estado">
 <!ENTITY showsendlaterprogress.caption "Mostrar progreso en segundo plano en la barra de estado">
 <!ENTITY showsendlaterentry.caption "Mostrar entrada de hora en la barra de herramientas">
 <!ENTITY showsendlaterunsentmessages.caption "Activar envío desde la Bandeja de Salida de mensajes no enviados">
-<!ENTITY showsendlaterunsentmessages.tooltip "Si deshabilita esta opción, Send Later no completará el envío de mensajes sino que únicamente los situará en la Bandeja de Salida cuando estén programados para su envío. Deshabilite esta opción si, por ejemplo, usa alguna otra extensión, como BlunderDelay, para enviar mensajes periódicamente desde la Bandeja de Salida. Observe que cuando se habilita esta opción, en el momento en que Send Later envíe un mensaje, TODOS los mensajes presentes en su Bandeja de Salida serán enviados.">
+<!ENTITY showsendlaterunsentmessages.tooltip "Si deshabilita esta opción, {NAME} no completará el envío de mensajes sino que únicamente los situará en la Bandeja de Salida cuando estén programados para su envío. Deshabilite esta opción si, por ejemplo, usa alguna otra extensión, como BlunderDelay, para enviar mensajes periódicamente desde la Bandeja de Salida. Observe que cuando se habilita esta opción, en el momento en que {NAME} envíe un mensaje, TODOS los mensajes presentes en su Bandeja de Salida serán enviados.">
 <!ENTITY sendlatersendbutton.caption "&quot;Enviar&quot; efectúa &quot;Enviar más tarde&quot;">
 <!ENTITY sendlatersendbutton.tooltip "Con esta opción habilitada, el comando &quot;Enviar&quot; (bien con el botón o pulsando Ctrl+Intro) actúa del mismo modo que &quot;Enviar más tarde&quot;.">
 <!ENTITY altbinding.caption "Ligar a Alt+Máyus+Intro en lugar de a Ctrl+Máyus+Intro">
 <!ENTITY advanced.caption "Avanzadas">
 <!ENTITY dumplevel.caption "Registro (log) de nivel volcado:">
 <!ENTITY consolelevel.caption "Registro (log) de nivel consola:">
-<!ENTITY contactauthor.tooltip "Envía un mensaje de correo al autor de Send Later.">
+<!ENTITY contactauthor.tooltip "Envía un mensaje de correo al autor de {NAME}.">
 <!ENTITY contactauthor.value "Contactar con el autor">
-<!ENTITY helplink.tooltip "Vea la documentación de Send Later.">
+<!ENTITY helplink.tooltip "Vea la documentación de {NAME}.">
 <!ENTITY helplink.value "Guía de usuario">
 <!ENTITY releasenotes.value "Notas de la versión">
 <!ENTITY donatelink.value "Donar">

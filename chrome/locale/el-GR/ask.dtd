@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY sendlater.ask.title.label "Υποστηρίξτε το Send Later">
+<!ENTITY sendlater.ask.title.label "Υποστηρίξτε το {NAME}">
 <!ENTITY sendlater.ask.message1 "Αμέτρητες ώρες έχουν αφιερωθεί στην ανάπτυξη και υποστήριξη αυτού του πρόσθετου.">
 <!ENTITY sendlater.ask.message2 "Παρακαλούμε, σκεφτείτε σοβαρά να κάνετε μια δωρεά για να υποστηρίξετε την ανάπτυξή του!">
 <!ENTITY sendlater.ask.message3 "Σας ευχαριστούμε!">

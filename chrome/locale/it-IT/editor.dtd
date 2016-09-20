@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY windowtitle "Editor delle funzioni di Send Later">
+<!ENTITY windowtitle "Editor delle funzioni di {NAME}">
 <!ENTITY selectfunction "Seleziona funzione">
 <!ENTITY selectfunctiontip "Seleziona una funzione da modificare o eliminare o &quot;(crea nuova funzione)&quot; per creare una nuova funzione">
 <!ENTITY createnewfunction "(crea nuova funzione)">
@@ -15,7 +15,7 @@
 <!ENTITY run.label "Esegui funzione:">
 <!ENTITY run.accesskey "f">
 <!ENTITY inputtime "Inserisci orario:">
-<!ENTITY inputtimetip "Puoi inserire date e orari in qualsiasi formato riconosciuto dalla finestra di dialogo di Send Later">
+<!ENTITY inputtimetip "Puoi inserire date e orari in qualsiasi formato riconosciuto dalla finestra di dialogo di {NAME}">
 <!ENTITY inputtimeplaceholder "eventuali data e ora da passare alla funzione come test">
 <!ENTITY inputargs "Parametri:">
 <!ENTITY inputargstip "I parametri devono essere specificati in formato JavaScript, ad esempio le stringhe devono essere quotate">

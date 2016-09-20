@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY windowtitle "Éditeur de fonction dynamique pour Send Later / Envoi différé">
+<!ENTITY windowtitle "Éditeur de fonction dynamique pour {NAME}">
 <!ENTITY selectfunction "Choisir une fonction">
 <!ENTITY selectfunctiontip "Choisir une fonction existante à modifier ou supprimer, ou (&quot;créer une nouvelle fonction&quot;)">
 <!ENTITY createnewfunction "(&quot;créer une nouvelle fonction&quot;)">
@@ -15,7 +15,7 @@
 <!ENTITY run.label "Exécuter la fonction">
 <!ENTITY run.accesskey "x">
 <!ENTITY inputtime "Date et heure :">
-<!ENTITY inputtimetip "Vous pouvez indiquer ici des dates et des horaires dans tout format compréhensible par Send Later / Envoi différé">
+<!ENTITY inputtimetip "Vous pouvez indiquer ici des dates et des horaires dans tout format compréhensible par {NAME}">
 <!ENTITY inputtimeplaceholder "si besoin : date et horaire à utiliser pour tester la fonction">
 <!ENTITY inputargs "paramètres :">
 <!ENTITY inputargstip "Les paramètres doivent être indiqués en format JavaScript">

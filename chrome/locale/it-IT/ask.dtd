@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY sendlater.ask.title.label "Sostieni Invia Dopo">
+<!ENTITY sendlater.ask.title.label "Sostieni {NAME}">
 <!ENTITY sendlater.ask.message1 "Per lo sviluppo, la manutenzione e il supporto di questo componente aggiuntivo ci sono volute innumerevoli ore.">
 <!ENTITY sendlater.ask.message2 "Per cortesia valuta se fare una donazione per sostenere il suo continuo sviluppo!">
 <!ENTITY sendlater.ask.message3 "Grazie!">

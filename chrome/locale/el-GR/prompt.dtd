@@ -4,7 +4,7 @@
 <!ENTITY sendlater.prompt.sendlater.tooltip "Αντί για την αποστολή σε συγκεκριμένη ημερομηνία, να μετακινηθεί στα Εξερχόμενα ώστε να σταλεί την επόμενη φορά που θα σταλούν τα μη απεσταλμένα μηνύματα.">
 <!ENTITY sendlater.prompt.sendnow.label "Αποστολή τώρα">
 <!ENTITY sendlater.prompt.sendnow.accesskey "π">
-<!ENTITY sendlater.prompt.sendnow.tooltip "Παρακάμπτει το “Send Later” και στέλνει το μήνυμα αμέσως.">
+<!ENTITY sendlater.prompt.sendnow.tooltip "Παρακάμπτει το “{NAME}” και στέλνει το μήνυμα αμέσως.">
 <!ENTITY sendlater.prompt.close.label "Ακύρωση">
 <!ENTITY sendlater.prompt.close.accesskey "Α">
 <!ENTITY sendlater.prompt.close.tooltip "Επιστροφή στην επεξεργασία του μηνύματος.">

@@ -20,6 +20,7 @@ send_later.xpi: check-locales.pl Makefile manifest
 	mkdir $@.tmp
 	tar c --files-from manifest | tar -C $@.tmp -x
 	cd $@.tmp; ../check-locales.pl --replace
+	cd $@.tmp; ../propagate_strings.py
 	cd $@.tmp; ../check-accesskeys.py
 	cd $@.tmp; zip -q -r $@.tmp -@ < ../manifest
 	mv $@.tmp/$@.tmp $@

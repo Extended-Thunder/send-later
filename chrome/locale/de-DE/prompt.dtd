@@ -4,7 +4,6 @@
 <!ENTITY sendlater.prompt.sendlater.tooltip "Die Nachricht in den Postausgang verschieben und beim nächsten Senden ungesendeter Nachrichten versenden.">
 <!ENTITY sendlater.prompt.sendnow.label "Jetzt senden">
 <!ENTITY sendlater.prompt.sendnow.accesskey "J">
-<!ENTITY sendlater.prompt.sendnow.tooltip "Die Nachricht sofort senden statt zum angegebenen Zeitpunkt.">
 <!ENTITY sendlater.prompt.close.label "Abbrechen">
 <!ENTITY sendlater.prompt.close.accesskey "A">
 <!ENTITY sendlater.prompt.close.tooltip "Zurück zum Verfassen der Nachricht.">

@@ -4,7 +4,7 @@
 <!ENTITY sendlater.prompt.sendlater.tooltip "Rather than scheduling delivery for a specific time, move the message to the Outbox folder for delivery next time unsent messages are sent.">
 <!ENTITY sendlater.prompt.sendnow.label "Send Now">
 <!ENTITY sendlater.prompt.sendnow.accesskey "N">
-<!ENTITY sendlater.prompt.sendnow.tooltip "Send the message immediately, bypassing “Send Later”.">
+<!ENTITY sendlater.prompt.sendnow.tooltip "Send the message immediately, bypassing “{NAME}”.">
 <!ENTITY sendlater.prompt.close.label "Cancel">
 <!ENTITY sendlater.prompt.close.accesskey "C">
 <!ENTITY sendlater.prompt.close.tooltip "Go back to editing the message.">

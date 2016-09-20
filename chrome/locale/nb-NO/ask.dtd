@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY sendlater.ask.title.label "Støtt Send Later">
+<!ENTITY sendlater.ask.title.label "Støtt {NAME}">
 <!ENTITY sendlater.ask.message1 "Uendelig mange timer har gått med til utvikling og vedlikehold av dette programtillegget, og til brukerstøtte.">
 <!ENTITY sendlater.ask.message2 "Vurder gjerne om du vil bidra med en donasjon for å sikre videre utvikling av programtillegget!">
 <!ENTITY sendlater.ask.message3 "Takk!">

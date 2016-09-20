@@ -1,6 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY prefwindow.title "Ustawienia “Send Later”">
-<!ENTITY pane1.title "Ustawienia “Send Later”">
+<!ENTITY prefwindow.title "Ustawienia “{NAME}”">
+<!ENTITY pane1.title "Ustawienia “{NAME}”">
 <!ENTITY checktimepref.label "Sprawdzaj co:">
 <!ENTITY checktimepref2.label "minut">
 <!ENTITY checktimepref.tooltip "Odstęp czasu w minutach określający częstość z jaką program będzie sprawdzał, czy nie należy wysłać zaplanowanych do wysyłki wiadomości. Zwiększ tą wartość, jezeli zaplanowane do wysyłki wiadomości nie są wysyłane o czasie lub jeśli licznik wiadomości na pasku statusu wskazuje mniejszą niż w rzeczywistości liczbę zaplanowanych do wysłania wiadomości.">
@@ -11,24 +11,24 @@
 <!ENTITY quickoptionname.label "Etykieta przycisku :">
 <!ENTITY quickoptionvalue.label "Minut :">
 <!ENTITY showtoolbarbutton.caption "Pokaż na pasku narzędzi">
-<!ENTITY showsendlatercolumn.caption "Pokaż kolumnę “Wyślij później”">
-<!ENTITY showsendlatercolumn.tooltip "Czy wyświetlać kolumnę “Wyślij później” podczas przeglądania folderu Szkice">
-<!ENTITY showsendlaterheader.caption "Pokaż nagłówek “Wyślij później”">
+<!ENTITY showsendlatercolumn.caption "Pokaż kolumnę “{NAME}”">
+<!ENTITY showsendlatercolumn.tooltip "Czy wyświetlać kolumnę “{NAME}” podczas przeglądania folderu Szkice">
+<!ENTITY showsendlaterheader.caption "Pokaż nagłówek “{NAME}”">
 <!ENTITY showsendlaterheader.tooltip "Określa czy wyświetlać nagłówek “X-Send-Later-At”, tzn. zaplanowany czas wysłania wiadomości w nagłówku podglądu.">
-<!ENTITY showsendlaterstatus.caption "Pokaż “Send Later” na pasku statusu">
+<!ENTITY showsendlaterstatus.caption "Pokaż “{NAME}” na pasku statusu">
 <!ENTITY showsendlaterprogress.caption "Pokaż postęp działań wykonywanych w tle na pasku statusu">
 <!ENTITY showsendlaterentry.caption "Pokaż ustawienia czasu wysyłki w pasku narzędzi">
 <!ENTITY showsendlaterunsentmessages.caption "Włącz/wyłącz wysyłanie wiadomości z “Wychodzących…”">
-<!ENTITY showsendlaterunsentmessages.tooltip "Jeżeli ta opcja jest wyłączona wiadomości zamiast zostać wysłane w wyznaczonym czasie zostaną przeniesione do folderu “Wychodzące”. Wyłącz tą opcję jeżeli korzystasz z innych rozszerzeń, które okresowo wysyłają wiadomości z folderu “Wychodzące”, np. BlunderDelay. Zauważ, że jeżeli ta opcja jest włączona, to za każdym razem kiedy “Wyślij Później” spróbuje wysłać zaplanowaną wiadomość WSZYSTKIE inne wiadomości z folderu “Wychodzące” zostaną wysłane.">
+<!ENTITY showsendlaterunsentmessages.tooltip "Jeżeli ta opcja jest wyłączona wiadomości zamiast zostać wysłane w wyznaczonym czasie zostaną przeniesione do folderu “Wychodzące”. Wyłącz tą opcję jeżeli korzystasz z innych rozszerzeń, które okresowo wysyłają wiadomości z folderu “Wychodzące”, np. BlunderDelay. Zauważ, że jeżeli ta opcja jest włączona, to za każdym razem kiedy “{NAME}” spróbuje wysłać zaplanowaną wiadomość WSZYSTKIE inne wiadomości z folderu “Wychodzące” zostaną wysłane.">
 <!ENTITY sendlatersendbutton.caption "“Wyślij później” zamiast “Wyślij”">
 <!ENTITY sendlatersendbutton.tooltip "Jeżeli ta opcja jest włączona, zamiast polecenia “Wyślij” (zarówno po kliknięciu przycisku, jak i po wciśnięciu Ctrl-Enter) zostanie wywołane polecenie “Wyślij później”.">
 <!ENTITY altbinding.caption "Używaj skrótu Alt-Shift-Enter zamiast Ctrl-Shift-Enter">
 <!ENTITY advanced.caption "Zaawansowane">
 <!ENTITY dumplevel.caption "Poziom logowania do pliku:">
 <!ENTITY consolelevel.caption "Poziom logowania w konsoli:">
-<!ENTITY contactauthor.tooltip "Wyślij wiadomość e-mail do autora “Send Later” (w języku angielskim, proszę!).">
+<!ENTITY contactauthor.tooltip "Wyślij wiadomość e-mail do autora “{NAME}” (w języku angielskim, proszę!).">
 <!ENTITY contactauthor.value "Skontaktuj się z autorem">
-<!ENTITY helplink.tooltip "Pokaż dokumentację &quot;Send Later&quot;">
+<!ENTITY helplink.tooltip "Pokaż dokumentację &quot;{NAME}&quot;">
 <!ENTITY helplink.value "Podręcznik użytkownika">
 <!ENTITY releasenotes.value "Informacje o wydaniu">
 <!ENTITY donatelink.value "Dotacja…">

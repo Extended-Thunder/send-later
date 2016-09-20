@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY sendlater.ask.title.label "贊助延期發信">
+<!ENTITY sendlater.ask.title.label "贊助{NAME}">
 <!ENTITY sendlater.ask.message1 "此附加元件的開發、維護和支持花費了大量時間。">
 <!ENTITY sendlater.ask.message2 "請考慮贊助，以支持其繼續發展。">
 <!ENTITY sendlater.ask.message3 "謝謝！">

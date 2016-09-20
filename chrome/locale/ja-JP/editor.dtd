@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY windowtitle "Send Later ユーザー関数エディタ">
+<!ENTITY windowtitle "{NAME} ユーザー関数エディタ">
 <!ENTITY selectfunction "関数の選択:">
 <!ENTITY selectfunctiontip "編集または削除する関数を選ぶか、“(新しい関数を作成)” で新しい関数を作成します。">
 <!ENTITY createnewfunction "(新しい関数を作成)">
@@ -15,7 +15,7 @@
 <!ENTITY run.label "関数の実行:">
 <!ENTITY run.accesskey "x">
 <!ENTITY inputtime "入力時間:">
-<!ENTITY inputtimetip "ここに Send Later ダイアログが理解できる任意のフォーマットで日付と時刻を入力してください。">
+<!ENTITY inputtimetip "ここに {NAME} ダイアログが理解できる任意のフォーマットで日付と時刻を入力してください。">
 <!ENTITY inputtimeplaceholder "日付と時刻があれば、テスト用の関数に渡します。">
 <!ENTITY inputargs "入力引数:">
 <!ENTITY inputargstip "引数は、 JavaScript の形式で指定する必要があり、例えば、文字列は引用符で囲む必要があります。">

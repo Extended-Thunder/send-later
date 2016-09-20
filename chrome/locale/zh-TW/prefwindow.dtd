@@ -1,6 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY prefwindow.title "延期發信首選項">
-<!ENTITY pane1.title "延期發信首選項">
+<!ENTITY prefwindow.title "{NAME}首選項">
+<!ENTITY pane1.title "{NAME}首選項">
 <!ENTITY checktimepref.label "檢查間隔：">
 <!ENTITY checktimepref2.label "分鐘">
 <!ENTITY checktimepref.tooltip "檢查是否已到草稿的傳送時間的間隔，單位為分鐘。如果草稿沒能及時傳送，或者狀態欄的待傳送信件數比實際少時，請增加這個值。">
@@ -11,24 +11,23 @@
 <!ENTITY quickoptionname.label "按鈕標籤：">
 <!ENTITY quickoptionvalue.label "分鐘：">
 <!ENTITY showtoolbarbutton.caption "在工具欄中顯示">
-<!ENTITY showsendlatercolumn.caption "顯示延期發信列">
-<!ENTITY showsendlatercolumn.tooltip "查看草稿箱時是否顯示延期發信列">
-<!ENTITY showsendlaterheader.caption "顯示延期傳送信件標頭">
+<!ENTITY showsendlatercolumn.caption "顯示{NAME}列">
+<!ENTITY showsendlatercolumn.tooltip "查看草稿箱時是否顯示{NAME}列">
 <!ENTITY showsendlaterheader.tooltip "查看信件時是否顯示“X-Send-Later-At”頭，即草稿預定要傳送的時間。">
-<!ENTITY showsendlaterstatus.caption "在狀態欄中顯示延期發信">
+<!ENTITY showsendlaterstatus.caption "在狀態欄中顯示{NAME}">
 <!ENTITY showsendlaterprogress.caption "在狀態欄中顯示背景進度">
 <!ENTITY showsendlaterentry.caption "在工具欄中顯示時間項">
 <!ENTITY showsendlaterunsentmessages.caption "傳送寄件匣中的未傳送的信件">
-<!ENTITY showsendlaterunsentmessages.tooltip "如果取消此選項，那麼達到信件的預定傳送時間時，延期發信 將不會完全傳送信件，只會將它們放到寄件匣。如果您使用一些其他的擴充元件，如 BlunderDelay， 來定期地發送您寄件匣的信件，請取消此選項。注意，勾選此選項後，只要 延期發信 發送信件，寄件匣的所有信件都將被傳送出去。">
+<!ENTITY showsendlaterunsentmessages.tooltip "如果取消此選項，那麼達到信件的預定傳送時間時，{NAME} 將不會完全傳送信件，只會將它們放到寄件匣。如果您使用一些其他的擴充元件，如 BlunderDelay， 來定期地發送您寄件匣的信件，請取消此選項。注意，勾選此選項後，只要 {NAME} 發送信件，寄件匣的所有信件都將被傳送出去。">
 <!ENTITY sendlatersendbutton.caption "“發送”變成“延期發送”">
 <!ENTITY sendlatersendbutton.tooltip "啟用此選項時，“傳送”命令（按鈕或 Ctrl-Enter 快捷鍵）效果會變為“延期傳送”。">
 <!ENTITY altbinding.caption "綁定快捷鍵 Alt-Shift-Enter 代替 Ctrl-Shift-Enter">
 <!ENTITY advanced.caption "進階">
 <!ENTITY dumplevel.caption "除錯紀錄層級：">
 <!ENTITY consolelevel.caption "控制台除錯紀錄層級：">
-<!ENTITY contactauthor.tooltip "發信給延期發信的作者。">
+<!ENTITY contactauthor.tooltip "發信給{NAME}的作者。">
 <!ENTITY contactauthor.value "聯絡作者">
-<!ENTITY helplink.tooltip "查看延期發信文件。">
+<!ENTITY helplink.tooltip "查看{NAME}文件。">
 <!ENTITY helplink.value "使用說明">
 <!ENTITY releasenotes.value "發行說明">
 <!ENTITY donatelink.value "贊助">

@@ -1,6 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY prefwindow.title "Später Senden - Einstellungen">
-<!ENTITY pane1.title "Später Senden - Einstellungen">
+<!ENTITY prefwindow.title "{NAME} - Einstellungen">
+<!ENTITY pane1.title "{NAME} - Einstellungen">
 <!ENTITY checktimepref.label "Überprüfen alle">
 <!ENTITY checktimepref2.label "Minuten">
 <!ENTITY checktimepref.tooltip "Intervall in Minuten zwischen den Prüfungen, welche Entwürfe für die Zustellung bereit sind. Diesen Wert erhöhen, wenn die Entwürfe manchmal nicht rechtzeitig gesendet werden oder der Mitteilungszähler in der Statuszeile nicht alle zeitlich geplanten Entwürfe wiedergibt.">
@@ -11,24 +11,24 @@
 <!ENTITY quickoptionname.label "Schaltflächen-Text:">
 <!ENTITY quickoptionvalue.label "Verzögerung in Minuten:">
 <!ENTITY showtoolbarbutton.caption "In der Symbolleiste anzeigen">
-<!ENTITY showsendlatercolumn.caption "„Später senden”-Spalte anzeigen">
-<!ENTITY showsendlatercolumn.tooltip "Auswählen, ob die „Später senden”-Spalte beim Öffnen des Entwürfe-Ordners angezeigt werden soll oder nicht.">
-<!ENTITY showsendlaterheader.caption "„Später senden”-Kopfzeile anzeigen">
+<!ENTITY showsendlatercolumn.caption "„{NAME}”-Spalte anzeigen">
+<!ENTITY showsendlatercolumn.tooltip "Auswählen, ob die „{NAME}”-Spalte beim Öffnen des Entwürfe-Ordners angezeigt werden soll oder nicht.">
+<!ENTITY showsendlaterheader.caption "„{NAME}”-Kopfzeile anzeigen">
 <!ENTITY showsendlaterheader.tooltip "Auswählen, ob die „X-Send-Later-At:”-Kopfzeile (z.B. die Zeit, wann ein Entwurf zum Senden geplant ist) im Nachrichtenkopf anzeigt werden soll oder nicht.">
-<!ENTITY showsendlaterstatus.caption "„Später Senden” in der Statusleiste anzeigen">
+<!ENTITY showsendlaterstatus.caption "„{NAME}” in der Statusleiste anzeigen">
 <!ENTITY showsendlaterprogress.caption "Hintergrund-Fortschritt in der Statusleiste anzeigen">
 <!ENTITY showsendlaterentry.caption "Zeiteingabe in der Symbolleiste anzeigen">
 <!ENTITY showsendlaterunsentmessages.caption "Benachrichtigungen für ungesendete Nachrichten im Postausgang aktivieren">
-<!ENTITY showsendlaterunsentmessages.tooltip "Wird diese Option deaktiviert, wird „Später Senden” die Nachrichten nicht im vollen Umfang senden. Stattdessen werden sie für die geplante Zustellung in den Postausgang verschoben. Diese Option deaktivieren, wenn ein anderes Add-on, wie z.B. BlunderDelay verwendet wird, um regelmäßig Nachrichten aus dem Postausgang zu versenden.\nAnmerkung: Wenn diese Option aktiviert wird, werden von „Später Senden”, immer wenn es eine Nachricht senden soll, ALLE Nachrichten im Postausgang versendet.">
+<!ENTITY showsendlaterunsentmessages.tooltip "Wird diese Option deaktiviert, wird „{NAME}” die Nachrichten nicht im vollen Umfang senden. Stattdessen werden sie für die geplante Zustellung in den Postausgang verschoben. Diese Option deaktivieren, wenn ein anderes Add-on, wie z.B. BlunderDelay verwendet wird, um regelmäßig Nachrichten aus dem Postausgang zu versenden.\nAnmerkung: Wenn diese Option aktiviert wird, werden von „Später Senden”, immer wenn es eine Nachricht senden soll, ALLE Nachrichten im Postausgang versendet.">
 <!ENTITY sendlatersendbutton.caption "„Senden” durch „Später senden” ersetzen">
 <!ENTITY sendlatersendbutton.tooltip "Wird diese Option aktiviert, bewirkt der „Senden”-Befehl (entweder die Schaltfläche oder Strg+Return) das Gleiche wie „Später senden”.">
 <!ENTITY altbinding.caption "„Alt+Umschalt+Return” anstatt „Strg+Umschalt+Return” verwenden">
 <!ENTITY advanced.caption "Erweitert">
 <!ENTITY dumplevel.caption "Log-Einträge speichern ab Protokollierungsebene:">
 <!ENTITY consolelevel.caption "Log-Einträge auf der Konsole ausgeben ab Protokollierungsebene:">
-<!ENTITY contactauthor.tooltip "Senden Sie dem Autor von „Später Senden” eine Nachricht. (auf Englisch bitte!)">
+<!ENTITY contactauthor.tooltip "Senden Sie dem Autor von „{NAME}” eine Nachricht. (auf Englisch bitte!)">
 <!ENTITY contactauthor.value "Den Autor kontaktieren">
-<!ENTITY helplink.tooltip "Sehen Sie sich die Dokumentation von „Später Senden” an. (Englisch)">
+<!ENTITY helplink.tooltip "Sehen Sie sich die Dokumentation von „{NAME}” an. (Englisch)">
 <!ENTITY helplink.value "Benutzerhandbuch">
 <!ENTITY releasenotes.value "Release Notes">
 <!ENTITY donatelink.value "Spenden">

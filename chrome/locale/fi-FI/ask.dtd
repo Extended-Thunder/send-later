@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY sendlater.ask.title.label "Tue Lähetä myöhemmin -laajennuksen kehitystä">
+<!ENTITY sendlater.ask.title.label "Tue {NAME} -laajennuksen kehitystä">
 <!ENTITY sendlater.ask.message1 "Lukematon määrä työtunteja on mennyt tämän laajennuksen kehitystyöhön, ylläpitoon ja tukeen.">
 <!ENTITY sendlater.ask.message2 "Harkitsethan lahjoitusta, jotta tämän laajennuksen kehitystyötä voidaan jatkaa!">
 <!ENTITY sendlater.ask.message3 "Kiitos!">

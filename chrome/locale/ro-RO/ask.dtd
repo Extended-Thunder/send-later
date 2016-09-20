@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY sendlater.ask.title.label "Ajuta Send Later">
+<!ENTITY sendlater.ask.title.label "Ajuta {NAME}">
 <!ENTITY sendlater.ask.message1 "Sunt necesare multe ore pentru realizarea, mentinerea si intretinerea acestui add-on.">
 <!ENTITY sendlater.ask.message2 "Va ruga considerati o donatie pentru a ii facilita dezvoltarea.">
 <!ENTITY sendlater.ask.message3 "Multumesc!">

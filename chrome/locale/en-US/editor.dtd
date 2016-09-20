@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY windowtitle "Send Later Dynamic Function Editor">
+<!ENTITY windowtitle "{NAME} Dynamic Function Editor">
 <!ENTITY selectfunction "Select function:">
 <!ENTITY selectfunctiontip "Select a function to edit or delete, or “(create new function)” to create a new function.">
 <!ENTITY createnewfunction "(create new function)">
@@ -15,7 +15,7 @@
 <!ENTITY run.label "Execute function:">
 <!ENTITY run.accesskey "x">
 <!ENTITY inputtime "Input time:">
-<!ENTITY inputtimetip "You can enter dates and times here in any format that the Send Later dialog understands.">
+<!ENTITY inputtimetip "You can enter dates and times here in any format that the {NAME} dialog understands.">
 <!ENTITY inputtimeplaceholder "date and time, if any, to pass into the function for testing">
 <!ENTITY inputargs "Input arguments:">
 <!ENTITY inputargstip "Arguments should be specified in JavaScript format, e.g., strings should be in quotation marks.">

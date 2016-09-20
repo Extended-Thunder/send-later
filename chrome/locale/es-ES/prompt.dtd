@@ -4,11 +4,11 @@
 <!ENTITY sendlater.prompt.sendlater.tooltip "En lugar de programar el envío para una hora específica, mueve el mensaje a la carpeta de Bandeja de Salida para que se envíe la próxima vez que se remitan los mensajes no enviados.">
 <!ENTITY sendlater.prompt.sendnow.label "Enviar ahora">
 <!ENTITY sendlater.prompt.sendnow.accesskey "h">
-<!ENTITY sendlater.prompt.sendnow.tooltip "Envía el mensaje inmediatamente, ignorando &quot;Enviar más tarde&quot;.">
+<!ENTITY sendlater.prompt.sendnow.tooltip "Envía el mensaje inmediatamente, ignorando &quot;{NAME}&quot;.">
 <!ENTITY sendlater.prompt.close.label "Cancelar">
 <!ENTITY sendlater.prompt.close.accesskey "C">
 <!ENTITY sendlater.prompt.close.tooltip "Regresa a la edición del mensaje.">
-<!ENTITY sendlater.prompt.title.label "Send Later — Enviar más tarde este correo">
+<!ENTITY sendlater.prompt.title.label "Enviar más tarde este correo">
 <!ENTITY sendlater.prompt.textbox.label "Enviar el:">
 <!ENTITY sendlater.prompt.or.label "o:">
 <!ENTITY sendlater.prompt.textbox.tooltip "Introduzca fecha y hora. Una entrada en formato libre como &quot;el próximo martes a las 3:00pm,&quot; también está soportada.">

@@ -1,6 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY prefwindow.title "«Ուղարկել ավելի ուշ»-ի կարգավորումները">
-<!ENTITY pane1.title "«Ուղարկել ավելի ուշ»-ի կարգավորումները">
+<!ENTITY prefwindow.title "«{NAME}»-ի կարգավորումները">
+<!ENTITY pane1.title "«{NAME}»-ի կարգավորումները">
 <!ENTITY checktimepref.label "Ստուգել ամեն՝">
 <!ENTITY checktimepref2.label "րոպե">
 <!ENTITY checktimepref.tooltip "Դադարը րոպեներով՝ ստուգելու համար սևագրերի այն նամակները, որոնց ուղարկելու ժամանակ եկել է: Նվազեցրեք դադարը, եթե սևագրերը երբեմն չեն ուղարկվում ժամանակին կամ ոչ բոլոր պլանավորված նամակներն են ցուցադրվում:">
@@ -11,24 +11,24 @@
 <!ENTITY quickoptionname.label "Կոճակի անունը.">
 <!ENTITY quickoptionvalue.label "Րոպե.">
 <!ENTITY showtoolbarbutton.caption "Ցուցադրել գործիքներում">
-<!ENTITY showsendlatercolumn.caption "Ցուցադրել «Ուղարկել ավելի ուշ»-ի սյունը">
-<!ENTITY showsendlatercolumn.tooltip "Անկախ ամեն ինչից ցուցադրել «Ուղարկել ավելի ուշ»-ի սյունը՝ սևագրերը դիտելիս">
-<!ENTITY showsendlaterheader.caption "Ցուցադրել «Ուղարկել ավելի ուշ»-ի գլխագիրը">
+<!ENTITY showsendlatercolumn.caption "Ցուցադրել «{NAME}»-ի սյունը">
+<!ENTITY showsendlatercolumn.tooltip "Անկախ ամեն ինչից ցուցադրել «{NAME}»-ի սյունը՝ սևագրերը դիտելիս">
+<!ENTITY showsendlaterheader.caption "Ցուցադրել «{NAME}»-ի գլխագիրը">
 <!ENTITY showsendlaterheader.tooltip "Անկախ ամեն ինչից ցուցադրել “X-Send-Later-At” գլխագիրը, այսինքն՝ ժամանակը, երբ սևագիրը պետք է ուղարկվի, գլխագրում՝ նամակը դիտելիս:">
-<!ENTITY showsendlaterstatus.caption "Ցուցադրել «Ուղարկել ավելի ուշ»-ը Վիճակի տողում">
+<!ENTITY showsendlaterstatus.caption "Ցուցադրել «{NAME}»-ը Վիճակի տողում">
 <!ENTITY showsendlaterprogress.caption "Ցուցադրել խորապատկերի ընթացքը Վիճակի տողում">
 <!ENTITY showsendlaterentry.caption "Ցուցադրել Ժամանակը Գործիքներում">
 <!ENTITY showsendlaterunsentmessages.caption "Սկսել չուղարկված նամակների առաքումը Ելքայինից">
-<!ENTITY showsendlaterunsentmessages.tooltip "Եթե ապանշեք այս ընտրանքը, ապա «Ուղարկել ավելի ուշ»-ը ամբողջությամբ չի առաքի նամակները, այլ դրանք կդնի Ելքայինում: Մի նշեք այս ընտրանքը, եթե օգտագործում եք նմանատիպ այլ հավելումներ:">
+<!ENTITY showsendlaterunsentmessages.tooltip "Եթե ապանշեք այս ընտրանքը, ապա «{NAME}»-ը ամբողջությամբ չի առաքի նամակները, այլ դրանք կդնի Ելքայինում: Մի նշեք այս ընտրանքը, եթե օգտագործում եք նմանատիպ այլ հավելումներ:">
 <!ENTITY sendlatersendbutton.caption "«Ուղարկելը»-ը «Ուղարկել ավելի ուշ»-ն է">
 <!ENTITY sendlatersendbutton.tooltip "Եթե միացված է՝ “Ուղարկել” հրամանը (և կոճակը և Ctrl-Enter սեղմելիս) կնշանակի նույնը՝ “Ուղարկել ավելի ուշ”:">
 <!ENTITY altbinding.caption "Կապել Alt-Shift-Enter-ը՝ Ctrl-Shift-Enter-ի փոխարեն">
 <!ENTITY advanced.caption "Լրացուցիչ">
 <!ENTITY dumplevel.caption "Dump մատյանի աստիճանը՝">
 <!ENTITY consolelevel.caption "Console մատյանի աստիճանը՝">
-<!ENTITY contactauthor.tooltip "Նամակ ուղարկել «Ուղարկել ավելի ուշ»-ի հեղինակին:">
+<!ENTITY contactauthor.tooltip "Նամակ ուղարկել «{NAME}»-ի հեղինակին:">
 <!ENTITY contactauthor.value "Կապնվեք հեղինակի հետ">
-<!ENTITY helplink.tooltip "«Ուղարկել ավելի ուշ»-ի թղթաբանությունը:">
+<!ENTITY helplink.tooltip "«{NAME}»-ի թղթաբանությունը:">
 <!ENTITY helplink.value "Օգտվողի ուղեցույցը">
 <!ENTITY donatelink.value "Նվիրատվութուն">
 <!ENTITY enforcerestrictions.tooltip "Եթե նամակը պլանավորված ժամանակ չի ուղարկվել կամ օրվա սահմանափակման պատճառով, ապա ուշացնել նամակի ուղարկումը՝ մինչև համապատասխանի ժամանակի և օրվա սահմանափակումներին:">

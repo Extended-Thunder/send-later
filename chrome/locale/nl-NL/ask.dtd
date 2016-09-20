@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY sendlater.ask.title.label "Steun Send Later">
+<!ENTITY sendlater.ask.title.label "Steun {NAME}">
 <!ENTITY sendlater.ask.message1 "Er zijn vele uren in ontwikkeling, onderhoud en ondersteuning van deze add-on gaan zitten.">
 <!ENTITY sendlater.ask.message2 "Overweeg een donatie te doen om de verdere ontwikkeling ervan te steunen!">
 <!ENTITY sendlater.ask.message3 "Dank u!">

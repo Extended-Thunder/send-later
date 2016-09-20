@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY windowtitle "Lähetä Myöhemmin - Dynaaminen Aikataulueditori">
+<!ENTITY windowtitle "{NAME} - Dynaaminen Aikataulueditori">
 <!ENTITY selectfunction "Valitse funktio:">
 <!ENTITY selectfunctiontip "Valitse funktio editoitavaksi tai poistettavaksi, tai &quot;(luo uusi funktio)&quot; luodaksesi uuden funktion.">
 <!ENTITY createnewfunction "(luo uusi funktio)">
@@ -15,7 +15,7 @@
 <!ENTITY run.label "Aja funktio:">
 <!ENTITY run.accesskey "a">
 <!ENTITY inputtime "aseta aika:">
-<!ENTITY inputtimetip "Voi kirjoittaa päivämääriä ja aikoja tänne missä tahansa muodossa minkä Send Later -dialogi ymmärtää.">
+<!ENTITY inputtimetip "Voi kirjoittaa päivämääriä ja aikoja tänne missä tahansa muodossa minkä {NAME} -dialogi ymmärtää.">
 <!ENTITY inputtimeplaceholder "päivämäärä ja aika, jos mitään, annetaan funktiolle testattavaksi">
 <!ENTITY inputargs "syötä argumentit:">
 <!ENTITY inputargstip "Argumenttien pitäisi olla JavaScript-muodossa, esimerkiksi merkkijonojen pitäisi olla lainausmerkeissä.">

@@ -1,5 +1,5 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY windowtitle "Dynamischer Funktionseditor von Send Later">
+<!ENTITY windowtitle "Dynamischer Funktionseditor von {NAME}">
 <!ENTITY selectfunction "Funktion Auswählen:">
 <!ENTITY selectfunctiontip "Wählen Sie eine Funktion aus, die Sie überarbeiten oder löschen wollen, oder wählen Sie &quot;(neue Funktion Erstellen)&quot;, um eine neue Funktion zu erstellen.">
 <!ENTITY createnewfunction "(neue Funktion Erstellen)">
@@ -15,7 +15,7 @@
 <!ENTITY run.label "Funktion Ausführen:">
 <!ENTITY run.accesskey "F">
 <!ENTITY inputtime "Zeit Eingabe:">
-<!ENTITY inputtimetip "HIer können Sie Zeit- und Datums-Angaben in allen Formaten einfügen, die von Send Later verstanden werden.">
+<!ENTITY inputtimetip "Hier können Sie Zeit- und Datums-Angaben in allen Formaten einfügen, die von {NAME} verstanden werden.">
 <!ENTITY inputtimeplaceholder "Datum und Zeit, falls vorhanden, um sie testweise in die Funktion einzugehen">
 <!ENTITY inputargs "Eingabeargumente:">
 <!ENTITY inputargstip "Argumente sollten im JavaScript-Format angegeben werden, d.h. die Strings sollten in Anführungszeichen stehen.">

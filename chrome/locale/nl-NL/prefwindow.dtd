@@ -1,6 +1,6 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY prefwindow.title "Send Later-voorkeuren">
-<!ENTITY pane1.title "Send Later-voorkeuren">
+<!ENTITY prefwindow.title "{NAME}-voorkeuren">
+<!ENTITY pane1.title "{NAME}-voorkeuren">
 <!ENTITY checktimepref.label "Elke">
 <!ENTITY checktimepref2.label "minuten controleren">
 <!ENTITY checktimepref.tooltip "Interval, in minuten, tussen controles op concepten waarvoor de aflevertijd is bereikt. Vergroot deze waarde als uw concepten niet altijd op tijd worden verzonden of als het aantal af te handelen berichten in uw statusbalk niet altijd overeenkomt met het werkelijke aantal.">
@@ -11,24 +11,24 @@
 <!ENTITY quickoptionname.label "Knoptekst:">
 <!ENTITY quickoptionvalue.label "Minuten:">
 <!ENTITY showtoolbarbutton.caption "Tonen in werkbalk">
-<!ENTITY showsendlatercolumn.caption "Kolom Later verzenden tonen">
-<!ENTITY showsendlatercolumn.tooltip "Of de kolom ‘Later verzenden’ bij het bekijken van conceptmappen moet worden getoond">
-<!ENTITY showsendlaterheader.caption "Header Later verzenden tonen">
+<!ENTITY showsendlatercolumn.caption "Kolom {NAME} tonen">
+<!ENTITY showsendlatercolumn.tooltip "Of de kolom ‘{NAME}’ bij het bekijken van conceptmappen moet worden getoond">
+<!ENTITY showsendlaterheader.caption "Header {NAME} tonen">
 <!ENTITY showsendlaterheader.tooltip "Of de header ‘X-Send-Later-At’ moet worden getoond als een bericht wordt bekeken, m.a.w. de tijd waarop een concept gepland staat om te worden verzonden.">
-<!ENTITY showsendlaterstatus.caption "Send Later in statusbalk tonen">
+<!ENTITY showsendlaterstatus.caption "{NAME} in statusbalk tonen">
 <!ENTITY showsendlaterprogress.caption "Achtergrondvoortgang in statusbalk tonen">
 <!ENTITY showsendlaterentry.caption "Tijdvermelding in werkbalk tonen">
 <!ENTITY showsendlaterunsentmessages.caption "Niet-verzonden berichten in Postvak UIT afleveren">
-<!ENTITY showsendlaterunsentmessages.tooltip "Als u deze optie uitvinkt, zal Send Later berichten niet volledig verzenden, maar deze op het moment van verzenden alleen in uw Postvak UIT plaatsen. Vink deze optie uit als u bijvoorbeeld een andere extensie gebruikt, zoals BlunderDelay, die periodiek berichten uit uw Postvak UIT verzendt. Denk eraan dat als deze optie is aangevinkt, Send Later bij het afleveren van een bericht ALLE berichten in uw Postvak UIT aflevert.">
+<!ENTITY showsendlaterunsentmessages.tooltip "Als u deze optie uitvinkt, zal {NAME} berichten niet volledig verzenden, maar deze op het moment van verzenden alleen in uw Postvak UIT plaatsen. Vink deze optie uit als u bijvoorbeeld een andere extensie gebruikt, zoals BlunderDelay, die periodiek berichten uit uw Postvak UIT verzendt. Denk eraan dat als deze optie is aangevinkt, {NAME} bij het afleveren van een bericht ALLE berichten in uw Postvak UIT aflevert.">
 <!ENTITY sendlatersendbutton.caption "‘Verzenden’ werkt als ‘Later verzenden’">
 <!ENTITY sendlatersendbutton.tooltip "Met deze optie ingeschakeld, werkt de opdracht ‘Verzenden’ (via zowel de knop als het intoetsen van Ctrl-Enter) hetzelfde als ‘Later verzenden’.">
 <!ENTITY altbinding.caption "Alt-Shift-Enter binden in plaats van Ctrl-Shift-Enter">
 <!ENTITY advanced.caption "Geavanceerd">
 <!ENTITY dumplevel.caption "Dumplogniveau:">
 <!ENTITY consolelevel.caption "Consolelogniveau:">
-<!ENTITY contactauthor.tooltip "Een e-mailbericht naar de schrijver van Send Later verzenden (in het Engels)">
+<!ENTITY contactauthor.tooltip "Een e-mailbericht naar de schrijver van {NAME} verzenden (in het Engels)">
 <!ENTITY contactauthor.value "Contact opnemen met de schrijver">
-<!ENTITY helplink.tooltip "De documentatie voor Send Later bekijken">
+<!ENTITY helplink.tooltip "De documentatie voor {NAME} bekijken">
 <!ENTITY helplink.value "Handleiding">
 <!ENTITY releasenotes.value "Uitgaveopmerkingen">
 <!ENTITY donatelink.value "Doneren">
