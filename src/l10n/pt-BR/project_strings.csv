@@ -1,4 +1,3 @@
-"Identifier","","Description"
 "AMODescription","Altera o ""Enviar mais tarde"" (Ctrl + Shift + Return) na janela de composição da mensagem, de modo que em vez de simplesmente copiar a mensagem em sua caixa de saída para que ele seja enviada na próxima vez que estiver online ou ""Enviar mensagens não enviadas"", aparece uma janela que lhe permite especificar quando a mensagem será enviada.
 
 Você pode especificar uma data e hora, ou clique em ""15 minutos mais tarde"", ""30 minutos mais tarde"" ou ""2 horas mais tarde"", ou clique em ""Coloque na Caixa de saída"" para obter o built-in Thunderbird ""Enviar mais tarde"" funcionalidade (ou seja, , copiar a caixa de saída).

@@ -1,4 +1,3 @@
-"Identifier","","Description"
 "AMODescription","Ändrar kommandot ""Skicka senare"" (Ctrl+Skift+Retur) i Skriv-fönstret. Istället för att endast kopiera meddelandet till din utkorg, så att det skickas nästa gång du ansluter till Internet eller klickar på ""Skicka meddelanden som inte är skickade"", visas ett dialogfönster som låter dig bestämma när meddelandet skall skickas.
 
 Du kan ange en viss tid och ett visst datum, klicka på de förinställda värdena ""15 min senare"", ""30 min senare"" eller ""2 timmar senare"", eller klicka på ""Lägg i utkorgen"" för att använda Thunderbirds inbyggda ""Skicka senare""-funktion (d.v.s. kopiera till utkorgen).

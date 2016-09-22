@@ -1,4 +1,3 @@
-Identifier,String,Description
 AMODescription,"Changes the ""Send Later"" command (Ctrl+Shift+Return) in the message composition window, so that instead of merely copying the message into your Outbox so that it is sent the next time you go online or do ""Send Unsent Messages"", a dialog pops up which allows you to specify when the message will be sent.
 
 You can specify a specific time and date, or click ""15 mins later"", ""30 mins later"" or ""2 hours later"", or click ""Put in Outbox"" to get the built-in Thunderbird ""Send Later"" functionality (i.e., copy to Outbox).
