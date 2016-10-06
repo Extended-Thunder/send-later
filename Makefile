@@ -39,11 +39,11 @@ clean: ; -rm -f *.xpi manifest chrome/content/backgroundingPostbox.xul
 
 locale_import: crowdin.yaml
 	crowdin-cli download translations
-	sed -i -e '/^$$/d' $(ls chrome/locale/*/* | grep -v /en-US/)
+	sed -i -e '/^$$/d' $(shell ls chrome/locale/*/* | grep -v /en-US/)
 	sed -i -e 's/\(<!ENTITY [^ ]* \)  */\1/' \
-	  $(ls chrome/locale/*/*.dtd | grep -v /en-US/)
+	  $(shell ls chrome/locale/*/*.dtd | grep -v /en-US/)
 	sed -i -e '/^#X-Generator: crowdin.com/d' -e 's/\\\([#:!=]\)/\1/g' \
-	  $(ls chrome/locale/*/*.properties | grep -v /en-US/)
+	  $(shell ls chrome/locale/*/*.properties | grep -v /en-US/)
 	wc -l chrome/locale/*/* | awk '$$1 == 1 {print $$2}' | \
 	  xargs grep -l utf-8 | xargs --no-run-if-empty rm
 
