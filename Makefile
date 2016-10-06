@@ -37,7 +37,7 @@ send_later-translatable.xpi: Makefile manifest
 
 clean: ; -rm -f *.xpi manifest chrome/content/backgroundingPostbox.xul
 
-locale_import:
+locale_import: crowdin.yaml
 	crowdin-cli download translations
 	sed -i -e '/^$$/d' $(ls chrome/locale/*/* | grep -v /en-US/)
 	sed -i -e 's/\(<!ENTITY [^ ]* \)  */\1/' \
@@ -47,10 +47,15 @@ locale_import:
 	wc -l chrome/locale/*/* | awk '$$1 == 1 {print $$2}' | \
 	  xargs grep -l utf-8 | xargs --no-run-if-empty rm
 
-locale_export:
+locale_export: crowdin.yaml
 	crowdin-cli upload source
 	crowdin-cli upload translations --auto-approve-imported \
 	  --import-duplicates --import-eq-suggestions
+
+crowdin.yaml: crowdin.yaml.template
+	set -e; echo -n "Enter Crowdin API key: "; read api_key; \
+	sed -e "s/{{api_key}}/$$api_key/" $< > $@.tmp
+	mv -f $@.tmp $@
 
 locale_import.babelzilla: Send_Later_selected_locales_skipped.tar.gz
 	tar -C chrome/locale -xzf $<
@@ -63,4 +68,3 @@ chrome/content/backgroundingPostbox.xul: chrome/content/backgrounding.xul
             -e 's,</statusbar>,</vbox>,' $< > $@.tmp
 	! cmp -s $< $@.tmp
 	mv -f $@.tmp $@
-
