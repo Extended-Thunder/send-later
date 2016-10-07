@@ -74,7 +74,7 @@ def substitute_addon_name(args):
                 dryrun=args.dryrun) and ok
             for key, value in locale_file.items():
                 if NAME_TOKEN in value:
-                    print('ERROR: {}: {}: "{}" contains {}'.format(
+                    print(u'ERROR: {}: {}: "{}" contains {}'.format(
                           locale_file.file_name, key, value, NAME_TOKEN))
                     ok = False
     return ok
