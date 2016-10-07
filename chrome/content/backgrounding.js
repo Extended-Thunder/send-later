@@ -1361,7 +1361,7 @@ var Sendlater3Backgrounding = function() {
 	    var relnotes = SL3U.getCharPref("relnotes");
 	    SL3U.setCharPref("relnotes", current_version);
 	    Sendlater3Backgrounding.notesUrl =
-                "http://blog.kamens.us/send-later-3/#notes-" + current_version;
+                "https://blog.kamens.us/send-later-3/#notes-" + current_version;
         }
 
 	if (Sendlater3Backgrounding.notesUrl && ! SL3U.IsPostbox()) {

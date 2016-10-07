@@ -1,4 +1,12 @@
-"AMODescription","","Description of the add-on that appears under “Add-on Details” on the addons.mozilla.org."
-"AMOComments","","The text that appears under “Developer’s Comments” for the add-on on addons.mozilla.org."
-"AMOWhy","","The text that appears in the developer profile on addons.mozilla.org, answering the question, “Why did you make this add-on?”"
-"AMONext","","The text that appears in the developer profile on addons.mozilla.org, answering the question, “What’s next for this add-on?”"
+"AMODescription","Verändert den „Später senden”-Befehl (Strg+Umschalt+Enter) im Entwurfs-Fenster so, dass die Nachricht nicht nur in den Postausgang kopiert und bei der nächsten Sitzung versendet wird oder mit „Nachrichten aus Postausgang senden” verschickt werden kann, sondern ein Dialog erscheint, in dem Sie genauer angeben können, wann die Nachricht versendet werden soll. 
+
+Sie können spezifische Zeit- und Datumsangaben machen oder entweder „in 15 Minuten”, „in 30 Minuten”, „in zwei Stunden” bzw. „In den Postausgang verschieben” auswählen, um die „Später senden”-Funktion von Thunderbird zu verwenden (d.h. die Nachricht in den Postausgang zu verschieben.) 
+
+Für weitere Informationen lesen Sie <a href=""https://blog.kamens.us/send-later"">das Handbuch</a>.
+
+Treten Sie der <a href=""https://groups.google.com/group/send-later-users"">Mailing-Liste</a> bei!
+
+Später senden benutzt <a href=""https://sugarjs.com/"">SugarJS</a> von Andrew Plummer. Danke Andrew!","Description of the add-on that appears under “Add-on Details” on the addons.mozilla.org."
+"AMOComments","Bitte schreiben Sie mir für Fehlerberichte, Vorschläge und Ähnliches eine <a href=""mailto:jik+sendlater3@kamens.us"">E-Mail</a>.","The text that appears under “Developer’s Comments” for the add-on on addons.mozilla.org."
+"AMOWhy","Ich wollte eine echte „Später senden”-Funktion und stellte bei einer Recherche fest, dass jemand bereits ein Add-On für Thunderbird 1.5-2.0 geschrieben hatte. Unglücklicherweise verwendete ich zu diesem Zeitpunkt bereits Thunderbird 3 und der Autor des ursprünglichen Add-Ons schien dieses nicht mehr zu pflegen – Kommentare auf seinem Blog wurden nicht veröffentlicht oder blieben unbeantwortet. Ich veröffentliche meine Portierung dieses Add-Ons auf Thunderbird 3+, da außer mir auch viele andere Leute sich so eine Funktion zu wünschen scheinen.","The text that appears in the developer profile on addons.mozilla.org, answering the question, “Why did you make this add-on?”"
+"AMONext","Ich teste neue Thunderbird-Versionen recht schnell nach Ihrer Veröffentlichung und gebe mein Bestes, dass das Add-On weiterhin funktioniert. Wenn Sie vor mir eine neue Thunderbird-Version verwenden und feststellen, dass ich das Add-On noch nicht aktualisiert habe, schreiben Sie mir bitte und geben Bescheid!","The text that appears in the developer profile on addons.mozilla.org, answering the question, “What’s next for this add-on?”"

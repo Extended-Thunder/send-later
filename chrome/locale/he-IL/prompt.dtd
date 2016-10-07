@@ -4,6 +4,7 @@
 <!ENTITY sendlater.prompt.sendlater.tooltip "‫במקום לקבוע מועד משלוח מוגדר, העבר את ההודעה לתיבת הדואר היוצא כדי לשלוח אותה בפעם הבאה, יחד עם שאר ההודעות הממתינות למשלוח‬">
 <!ENTITY sendlater.prompt.sendnow.label "‫שלח כעת‬">
 <!ENTITY sendlater.prompt.sendnow.accesskey "כ">
+<!ENTITY sendlater.prompt.sendnow.tooltip "שלח מייד את ההודעה, ועקוף את &quot;{NAME}&quot;.">
 <!ENTITY sendlater.prompt.close.label "‫בטל‬">
 <!ENTITY sendlater.prompt.close.accesskey "ב">
 <!ENTITY sendlater.prompt.close.tooltip "‫חזור להמשך עריכת ההודעה‬">
@@ -14,6 +15,8 @@
 <!ENTITY sendlater.prompt.textbox.emptytext "‫‬">
 <!ENTITY sendlater.prompt.sendat.label "‫שלח מאוחר יותר במועד(ים) שהוגדרו לעיל‬">
 <!ENTITY sendlater.prompt.sendat.tooltip "‫שמור את ההודעה בתיקית הטיוטות למשלוח אוטומטי במועד שהוגדר לעיל‬">
+<!ENTITY sendlater.prompt.savedefaults "שמור את הערכים הללו כברירת מחדל">
+<!ENTITY sendlater.prompt.cleardefaults "נקה ברירות מחדל">
 <!ENTITY sendlater.prompt.recur.label "‫מחזור">
 <!ENTITY sendlater.prompt.none.label "‫ללא‬">
 <!ENTITY sendlater.prompt.minutely.label "דקתי">
@@ -21,6 +24,9 @@
 <!ENTITY sendlater.prompt.weekly.label "‫שבועי‬">
 <!ENTITY sendlater.prompt.monthly.label "‫חודשי‬">
 <!ENTITY sendlater.prompt.yearly.label "‫שנתי‬">
+<!ENTITY sendlater.prompt.function.label "פונקציה:">
+<!ENTITY sendlater.prompt.functionargs.label "ארגומנטי פונקציה:">
+<!ENTITY sendlater.prompt.calculate.label "חשב">
 <!ENTITY sendlater.toolbar.sendlater.button.label "‫שלח מאוחר יותר‬">
 <!ENTITY sendlater.toolbar.textbox.emptytext "‫זמן המשלוח‬">
 <!ENTITY sendlater.prompt.every.label "‫כל‬">

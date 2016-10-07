@@ -30,9 +30,13 @@
 <!ENTITY contactauthor.value "Kontakta skaparen">
 <!ENTITY helplink.tooltip "Visa dokumentationen för {NAME}.">
 <!ENTITY helplink.value "Användarhandbok">
+<!ENTITY releasenotes.value "Releaseanteckningar">
 <!ENTITY donatelink.value "Donera">
+<!ENTITY editorlink.value "Dynamisk funktionseditor">
 <!ENTITY enforcerestrictions.tooltip "Om Thunderbird inte var igång och ett schemalagt meddelande nu är utanför tid- och datuminställning, avvakta sändning tills tid- och datuminställning överensstämmer igen.">
 <!ENTITY enforcerestrictions.caption "Tid- och datuminställning är tvingande för att skicka">
 <!ENTITY blocklatemessages.tooltip "Skicka inte schemalagda meddelanden som blivit försenade, pga att Thunderbird inte var igång, och nu är utanför inställning för tid och datum">
 <!ENTITY blocklatemessages.label1 "Skicka inte meddelanden mer än">
 <!ENTITY blocklatemessages.label2 "minuter sent">
+<!ENTITY editorbutton "Öppna dynamisk funktionseditor…">
+<!ENTITY editortip "Öppna ett fönster för att skapa och redigera JavaScript-funktioner som implementerar komplex schemaläggningslogik.">

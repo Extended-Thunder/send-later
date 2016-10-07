@@ -147,11 +147,11 @@
                   id="sendlater3-help_link"
                   tooltiptext="&helplink.tooltip;"
                   value="&helplink.value;" class="text-link"
-                  onclick="Components.classes['@mozilla.org/uriloader/external-protocol-service;1'].getService(Components.interfaces.nsIExternalProtocolService).loadURI(Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService).newURI('http://blog.kamens.us/send-later/', null, null));"/>
+                  onclick="Components.classes['@mozilla.org/uriloader/external-protocol-service;1'].getService(Components.interfaces.nsIExternalProtocolService).loadURI(Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService).newURI('https://blog.kamens.us/send-later/', null, null));"/>
 	      <!-- Thunderbird 2 -->
 	      <label
                   id="sendlater3-help_text"
-                  value="&helplink.value;: http://blog.kamens.us/send-later/"/>
+                  value="&helplink.value;: https://blog.kamens.us/send-later/"/>
 	      <label
                   id="sendlater3-donate_link"
                   value="&donatelink.value;" class="text-link"

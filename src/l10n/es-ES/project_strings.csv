@@ -1,4 +1,12 @@
-"AMODescription","","Description of the add-on that appears under “Add-on Details” on the addons.mozilla.org."
-"AMOComments","","The text that appears under “Developer’s Comments” for the add-on on addons.mozilla.org."
-"AMOWhy","","The text that appears in the developer profile on addons.mozilla.org, answering the question, “Why did you make this add-on?”"
-"AMONext","","The text that appears in the developer profile on addons.mozilla.org, answering the question, “What’s next for this add-on?”"
+"AMODescription","Cambia el comando ""enviar después"" (Ctrl+May+Enter) en la ventana de composición de mensajes, para que en vez de simplemente copiar el mensaje a la bandeja de salida para enviarse la siguiente vez que Vd. se conecte (o ejecute ""procesar mensajes"" no enviados), un diálogo aparezca para permitirle especificar cuándo se enviará el mensaje.
+
+Puede especificar una fecha y hora específicas o hacer click en ""15 minutos más tarde"", ""30 minutos más tarde"" o ""2 horas más tarde"", o, alternativamente, pulsar ""enviar a bandeja de salida"" para tener la funcionalidad nativa de Thunderbird para envío diferido.
+
+Para información adicional, mire la guía de usuario en: <a href=""https://blog.kamens.us/send-later"">Send Later user guide</a>.
+
+Apúntese a la ilsta de correo en: <a href=""https://groups.google.com/group/send-later-users"">mailing list</a>!
+
+EnviarDespués (SendeLater) utiliza <a href=""https://sugarjs.com/"">SugarJS</a> por Andrew Plummer. ¡Gracias Andrew!","Description of the add-on that appears under “Add-on Details” on the addons.mozilla.org."
+"AMOComments","<a href=""mailto:jik+sendlater3@kamens.us"">Envíeme un correo</a> con problemas (bugs) o sugerencias... (preferiblemente en inglés).","The text that appears under “Developer’s Comments” for the add-on on addons.mozilla.org."
+"AMOWhy","Quería una funcionalidad ""enviar después"" pero la búsqueda sólo encontró una versión Thunderbird 1.5-2.0. Como había migrado a Thunderbird 3, y la extensión original no estaba aparentemente mantenida --los comentarios en su blog no eran respondidos--, he publicado mi adaptación a Thunderbird 3+ de dicho complemento, porque parece que es una funcionalidad que mucha gente además de mí desea.","The text that appears in the developer profile on addons.mozilla.org, answering the question, “Why did you make this add-on?”"
+"AMONext","Pruebo nuevas versiones de Thunderbird rápidamente en cuanto se lanzan, por lo que haré lo que esté en mi mano para mantener compatibilidad con futuras versiones de Thunderbird. Si recibe una actualización de Thunderbird antes que yo haya actualizado el complemento para ella, ¡envíeme un correo para informarme!","The text that appears in the developer profile on addons.mozilla.org, answering the question, “What’s next for this add-on?”"

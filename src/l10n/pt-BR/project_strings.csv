@@ -1,12 +1,12 @@
 "AMODescription","Altera o ""Enviar mais tarde"" (Ctrl + Shift + Return) na janela de composição da mensagem, de modo que em vez de simplesmente copiar a mensagem em sua caixa de saída para que ele seja enviada na próxima vez que estiver online ou ""Enviar mensagens não enviadas"", aparece uma janela que lhe permite especificar quando a mensagem será enviada.
 
-Você pode especificar uma data e hora, ou clique em ""15 minutos mais tarde"", ""30 minutos mais tarde"" ou ""2 horas mais tarde"", ou clique em ""Coloque na Caixa de saída"" para obter o built-in Thunderbird ""Enviar mais tarde"" funcionalidade (ou seja, , copiar a caixa de saída).
+Você pode especificar uma data e hora, ou clique em ""15 minutos mais tarde"", ""30 minutos mais tarde"" ou ""2 horas mais tarde"", ou clique em ""Coloque na Caixa de saída"" para obter o built-in Thunderbird ""Enviar mais tarde"" funcionalidade (ou seja, copiar a caixa de saída).
 
-Para obter informações adicionais, consulte o <a href=""http://blog.kamens.us/send-later/"">guia do usuário</a>.
+Para obter informações adicionais, consulte o <a href=""https://blog.kamens.us/send-later/"">guia do usuário</a>.
 
 Junte-se à <a href=""https://groups.google.com/forum/#!forum/send-later-users"">lista de discussão</a>!
 
-Enviar mais tarde usa <a href=""http://sugarjs.com/"">SugarJS</a> por Andrew Plummer. Obrigado Andrew!","Description of the add-on that appears under “Add-on Details” on the addons.mozilla.org."
-"AMOComments","","The text that appears under “Developer’s Comments” for the add-on on addons.mozilla.org."
+Enviar mais tarde usa <a href=""https://sugarjs.com/"">SugarJS</a> por Andrew Plummer. Obrigado Andrew!","Description of the add-on that appears under “Add-on Details” on the addons.mozilla.org."
+"AMOComments","Envie-me por e-mail, relatórios de bugs, sugestões, etc, para <a href=""mailto:jik+sendlater3@kamens.us"">jik+sendlater3@kamens.us</a>.","The text that appears under “Developer’s Comments” for the add-on on addons.mozilla.org."
 "AMOWhy","Eu queria uma função real de ""Enviar mais tarde"", e em uma pesquisa encontrei que alguém tinha escrito uma versão para o Thunderbird 1,5-2,0 mas infelizmente, eu já utilizava a versão Thunderbird 3, e parecia que o autor da extensão original não manteve atualizada - muitos comentários no seu blog estavam sem resposta. Estou lançando minha porta para Thunderbird 3+ desta extensão porque parece ser algo que muitas outras pessoas desejam, assim como eu.","The text that appears in the developer profile on addons.mozilla.org, answering the question, “Why did you make this add-on?”"
 "AMONext","Eu corro com novas versões rapidamente depois que atualizações do Thunderbird são liberados, por isso vou fazer o meu melhor para garantir que esta extensão seja mantida compatível com novas versões. Se você atualizar para uma nova versão do Thunderbird antes de eu tenha feito a nova versão da extensão para ele, por favor, me avise","The text that appears in the developer profile on addons.mozilla.org, answering the question, “What’s next for this add-on?”"

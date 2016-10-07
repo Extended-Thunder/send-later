@@ -1,0 +1,14 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY prefwindow.title "Valg for {NAME}">
+<!ENTITY pane1.title "Valg for {NAME}">
+<!ENTITY checktimepref.label "Sjekk hvert:">
+<!ENTITY checktimepref2.label "minutt">
+<!ENTITY checktimepref.tooltip "Intervall, i minutter, mellom hver sjekk for utkast som er klare for levering. Øk denne verdien dersom dine utkast ikke alltid sendes til riktig tid eller dersom antallet ventende meldinger i statuslinja ikke reflekterer riktig antall utkast planlagt til sending.">
+<!ENTITY general.caption "Generelt">
+<!ENTITY quickoption1.caption "Hurtigtast 1">
+<!ENTITY quickoption2.caption "Hurtigtast 2">
+<!ENTITY quickoption3.caption "Hurtigtast 3">
+<!ENTITY quickoptionname.label "Etikett for knapp:">
+<!ENTITY quickoptionvalue.label "Minutter:">
+<!ENTITY showtoolbarbutton.caption "Vis på verktøylinja">
+<!ENTITY showsendlatercolumn.caption "Vis kolonne for {NAME}">

@@ -7,8 +7,8 @@ AMO home page, from which the add-on can be downloaded and installed:
 [https://addons.mozilla.org/thunderbird/addon/send-later-3/](
 https://addons.mozilla.org/thunderbird/addon/send-later-3/)
 
-User guide: [http://blog.kamens.us/send-later/](
-http://blog.kamens.us/send-later/)
+User guide: [https://blog.kamens.us/send-later/](
+https://blog.kamens.us/send-later/)
 
 Mailing list: [https://groups.google.com/forum/#!forum/send-later-users](
 https://groups.google.com/forum/#!forum/send-later-users)

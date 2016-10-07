@@ -123,7 +123,7 @@
       <Description>
 	<em:locale>pl</em:locale>
 	<em:name>Send Later</em:name>
-	<em:description>Dodaje funkcję “wyślij później”, aby wysyłać wiadomości w zaplanowanym czasie</em:description>
+	<em:description>Dodaje funkcję “wyślij później”, aby można było wysyłać wiadomości o zaplanowanym czasie.</em:description>
       </Description>
     </em:localized>
     <em:localized>
@@ -175,7 +175,7 @@
 	<em:description>用來預定傳送信件的時間寄信</em:description>
       </Description>
     </em:localized>
-    <em:homepageURL>http://blog.kamens.us/send-later/</em:homepageURL>
+    <em:homepageURL>https://blog.kamens.us/send-later/</em:homepageURL>
     <em:optionsURL>chrome://sendlater3/content/options.xul</em:optionsURL>
     <em:targetApplication>
       <Description>

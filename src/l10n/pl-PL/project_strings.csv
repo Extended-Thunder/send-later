@@ -1,4 +1,12 @@
-"AMODescription","","Description of the add-on that appears under “Add-on Details” on the addons.mozilla.org."
-"AMOComments","","The text that appears under “Developer’s Comments” for the add-on on addons.mozilla.org."
-"AMOWhy","","The text that appears in the developer profile on addons.mozilla.org, answering the question, “Why did you make this add-on?”"
-"AMONext","","The text that appears in the developer profile on addons.mozilla.org, answering the question, “What’s next for this add-on?”"
+"AMODescription","Zmienia wbudowane polecenie ""Wyślij później"" (Ctrl + Shift + Return) w oknie tworzenia wiadomości, tak, że zamiast zwykłego umieszczenia wiadomości w skrzynce nadawczej aby były wysyłane przy następnym przejściu w tryb online lub użycia polecenia ""Wyślij niewysłane wiadomości"", wyskakuje okno dialogowe które pozwala określić, kiedy wiadomość zostanie wysłana.
+
+Możesz podać datę i godzinę wysłania, lub wybrać opóźnienie ""za 15 min."", ""za 30 min."", ""za 2 godz."" albo użyć ""umieść w skrzynce nadawczej"" i pozwolić działać wbudowanej w Thunderibirda funkcjonalności ""Wyślij później"".
+
+Po dodatkowe informacje zajżyj do <a href=""https://blog.kamens.us/send-later"">instrukcji</a>.
+
+Dołącz się i zapisz się do <a href=""https://groups.google.com/group/send-later-users"">listy mailingowej</a>!
+
+Send Later używa <a href=""https://sugarjs.com/"">SugarJS</a> autorstwa Andrew Plummer. Dzięki Andrew!","Description of the add-on that appears under “Add-on Details” on the addons.mozilla.org."
+"AMOComments","Proszę <a href=""mailto:jik+sendlater3@kamens.us"">przyślij mi</a> informację o błędach, swoje sugestie, itp.","The text that appears under “Developer’s Comments” for the add-on on addons.mozilla.org."
+"AMOWhy","Potrzebowałem prawdziwej funkcji ""Wyślij później"", szukając jej odkryłem, że ktoś napisał to dla Thunderbird 1.5 - 2.0. Niestety, w tym momencie przeniosłem się na Thunderbird 3, i okazało się, że autor oryginalnego dodatku przestał go utrzymywanie. Komentarze na jego blogu pozostawały niezatwierdzone i bez odpowiedzi. Udostępniam więc moją kontynuację dla Thunderbirda 3+ jego dodatku, ponieważ wydaje się być czymś, co wiele innych osób także potrzebuje.","The text that appears in the developer profile on addons.mozilla.org, answering the question, “Why did you make this add-on?”"
+"AMONext","Uruchomiam nowe wersje Thunderbirda dość szybko po ich opublikowaniu, dlatego dołożę wszelkich starań, aby zapewnić, żeby ten dodatek był kompatybilny z nowymi wydaniami Thunderbirda. Jeśli uzyskasz nowszą wersję Thunderbirda i okaże się, że dodatek nie został jeszcze zaktualizowany to napisz do mnie i daj mi znać!","The text that appears in the developer profile on addons.mozilla.org, answering the question, “What’s next for this add-on?”"

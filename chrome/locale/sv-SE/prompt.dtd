@@ -15,6 +15,8 @@
 <!ENTITY sendlater.prompt.textbox.emptytext "T.ex. “3:00pm torsdag”, “12/31/2012 15:27”">
 <!ENTITY sendlater.prompt.sendat.label "Skicka senare vid den/de tidpunkt(er) som anges ovan">
 <!ENTITY sendlater.prompt.sendat.tooltip "Spara meddelandet i Utkast-mappen för automatisk sändning vid ovan angivna tidpunkt.">
+<!ENTITY sendlater.prompt.savedefaults "Spara dessa värden som standardvärden">
+<!ENTITY sendlater.prompt.cleardefaults "Rensa standardinställningar">
 <!ENTITY sendlater.prompt.recur.label "Upprepning:">
 <!ENTITY sendlater.prompt.none.label "ingen">
 <!ENTITY sendlater.prompt.minutely.label "var minut">
@@ -22,6 +24,9 @@
 <!ENTITY sendlater.prompt.weekly.label "varje vecka">
 <!ENTITY sendlater.prompt.monthly.label "varje månad">
 <!ENTITY sendlater.prompt.yearly.label "varje år">
+<!ENTITY sendlater.prompt.function.label "funktion:">
+<!ENTITY sendlater.prompt.functionargs.label "Funktionsargument:">
+<!ENTITY sendlater.prompt.calculate.label "Beräkna">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Skicka senare">
 <!ENTITY sendlater.toolbar.textbox.emptytext "sändningstid">
 <!ENTITY sendlater.prompt.every.label "Var">

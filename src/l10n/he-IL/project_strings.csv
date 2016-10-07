@@ -1,4 +1,12 @@
-"AMODescription","","Description of the add-on that appears under “Add-on Details” on the addons.mozilla.org."
-"AMOComments","","The text that appears under “Developer’s Comments” for the add-on on addons.mozilla.org."
-"AMOWhy","","The text that appears in the developer profile on addons.mozilla.org, answering the question, “Why did you make this add-on?”"
-"AMONext","","The text that appears in the developer profile on addons.mozilla.org, answering the question, “What’s next for this add-on?”"
+"AMODescription","משנה את הפקודה ""שלח מאוחר יותר"" (Ctrl + Shift + Return) בחלון כתיבת הודעה, כך שבמקום להעתיק את ההודעה לתיבת הדואר היוצא היא תישלח בפעם הבאה שתתחבר לאינטרנט או שתבחר באפשרות ""שלח הודעות שלא נשלחו"", ותוצג תיבת דו שיח בה ניתן לציין מתי יש לשלוח את ההודעה.
+
+תוכל להגדיר תאריך ושעה ספציפיים, או ללחוץ ""בעוד 15 דקות"", ""בעוד 30 דקות"" או ""בעוד שעתיים"", או ללחוץ ""העבר לתיבת דואר יוצא"" כדי להשתמש בתכונה ""שלח מאוחר יותר"" המובנית של Thunderbird (כלומר, העתקה לתיבת דואר יוצא).
+
+לפרטים נוספים, עיין ב<a href=""https://blog.kamens.us/send-later"">מדריך למשתמש</a>. 
+
+הצטרף ל<a href=""https://groups.google.com/group/send-later-users"">רשימת התפוצה</a>! 
+
+Send Later משתמש ב- <a href=""https://sugarjs.com/""> SugarJS</a> מאת אנדרו פלאמר. תודה, אנדרו!","Description of the add-on that appears under “Add-on Details” on the addons.mozilla.org."
+"AMOComments","נא <a href=""mailto:jik+sendlater3@kamens.us"">לשלוח לי</a> דיווחים על באגים, הצעות וכל דבר אחר.","The text that appears under “Developer’s Comments” for the add-on on addons.mozilla.org."
+"AMOWhy","חיפשתי פונקציית ""שלח מאוחר יותר"" אמיתית, וגיליתי שמישהו כבר כתב גרסה לפונקציה כזו עבור Thunderbird 1.5-2.0. לרוע המזל, בשלב הזה כבר השתמשתי ב-Thunderbird 3, ונראה שמי שכתב את התוסף המקורי הפסיק לתחזק אותו -- הערות בבלוג שלו נותרו ללא תשובה ולא פורסמו. אני מפרסם את הגרסה שלי לתוסף זה עבור Thunderbird 3+ משום שלדעתי הרבה אנשים זקוקים לו.","The text that appears in the developer profile on addons.mozilla.org, answering the question, “Why did you make this add-on?”"
+"AMONext","אני מתקין את הגרסאות החדשות של Thunderbird זמן קצר לאחר שהן מתפרסמות. לכן אעשה כמיטב יכולתי כדי לוודא שתוסף זה ימשיך להיות תואם למהדורות החדשות של היישום. במידה והתקנת מהדורה חדשה של Thunderbird, וגילית שעדיין לא עדכנתי את התוסף עבור מהדורה זו, אנא שלח לי הודעה בדואר אלקרוני ויידע אותי על כך!","The text that appears in the developer profile on addons.mozilla.org, answering the question, “What’s next for this add-on?”"
