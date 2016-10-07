@@ -112,6 +112,7 @@ def check_locale(install_rdf, manifest, locale_dir):
     if description is not None and description != localized['description']:
         print(u'ERROR: {}: description is "{}" in install.rdf, "{}" in locale'.
               format(locale_code, localized['description'], description))
+        ok = False
 
     return ok
 
