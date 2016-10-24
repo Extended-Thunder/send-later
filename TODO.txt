@@ -3,9 +3,6 @@ subfolders for scheduled messages.
 
 Share common code between toolbar and popup.
 
-Bug: You shouldn't be allowed to schedule a message with no recopients
-for future sending.
-
 Send Later 3 should replicate Thunderbird behavior (after confirming
 that in fact TB behaves this way) of adding "To:
 undisclosed-recipients:;" to messages that are only being BCC'd.
@@ -59,18 +56,8 @@ time. Also -- maybe add a menu command to send all scheduled messages
 now, and an optional prompt for whether to send scheduled messages
 when Thunderbird is closed.
 
-Use compose-send-message event rather than hijacking the send later
-command, to play nicely with other add-ons that do stuff during
-message send (e.g., UseBccInstead).
-
 Make the add-on compatible with Tag Toolbar, in particular with
 tagging replies / forwards with the same tags as their prior messages.
-
-Bug: If you search in your drafts folder, then the "Send Later" column
-in the search results isn't populated for matching drafts that are
-scheduled to be sent later. It remains unpopulated when you cancel the
-search, until you leave and return to the folder. Need to investigate
-this!
 
 Make format of Send Later date column configurable, a la
 mail.ui.display.dateformat.
@@ -113,8 +100,6 @@ way to fix the behavior.
 
 Change the "Send around" button into a button plus a label next to it
 to make it clearer that it's a button.
-
-Compatibility with the www.spamfighter.com Thunderbird add-on.
 
 Better user experience when editing a scheduled draft. E.g., should
 trying to close the draft window without rescheduling cause a pop-up
