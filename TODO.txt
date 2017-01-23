@@ -138,3 +138,7 @@ It should be possible to enter an end date for recurring messages.
 Keep a Send Later log in a file, and add a command to the pop-up menu
 to send this log as an attachment to the maintainer. See:
 http://protz.github.io/thunderbird-stdlib/doc/symbols/src/_home_nas_gallium_protzenk_Code_gconversation@xulforum.org_modules_stdlib_send.js.html
+
+Allow a message to be scheduled for multiple delivery datetimes, e.g.,
+with a '+' button in the send later dialog which causes the dialog to
+essentially be "cloned" to allow multiple entry.
