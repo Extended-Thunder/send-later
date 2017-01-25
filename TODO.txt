@@ -142,3 +142,22 @@ http://protz.github.io/thunderbird-stdlib/doc/symbols/src/_home_nas_gallium_prot
 Allow a message to be scheduled for multiple delivery datetimes, e.g.,
 with a '+' button in the send later dialog which causes the dialog to
 essentially be "cloned" to allow multiple entry.
+
+--
+
+"Problem is, sometimes when I launch Thunderbird Send Later would try
+to send out a number of messages that should have been sent while the
+program wasn't running, all at once.
+
+Now, my ISP have very strict antispam rules, and if I try to send a
+number of messages all at the same time it'll block my SMTP port for a
+while. This means that in those cases I am prevented from sending
+additional Emails for a while and I also cannot be sure if some of my
+scheduled reminders were actually sent.
+
+My suggestion - Add an option to set a fixed delay between each two
+sends (separate from the message's 'Send Later' time), no matter if
+its a late or current outgoing Email. If, for example, I can set a 30
+seconds or even 1 minute minimal delay between any two sends, my ISP
+won't treat the large number of Emails sent out as spamming attempt
+and will let this go through."
