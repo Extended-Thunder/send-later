@@ -77,6 +77,13 @@ var Sendlater3Backgrounding = function() {
         }
     }
 
+    function getUnsentMessagesFolder() {
+	var msgSendLater = Components
+	    .classes["@mozilla.org/messengercompose/sendlater;1"]
+	    .getService(Components.interfaces.nsIMsgSendLater);
+	return msgSendLater.getUnsentMessagesFolder(null);
+    }
+
     var observerService =  Components.classes["@mozilla.org/observer-service;1"]
         .getService(Components.interfaces.nsIObserverService);
     observerService.addObserver(quitRequestedObserver,
@@ -101,11 +108,14 @@ var Sendlater3Backgrounding = function() {
     // new message to the Outbox, we need to be aware of whether we're already
     // in the middle of sending unsent messages, and if so, then trigger
     // another send after it's finished.
+    var wantToCompactOutbox = false;
     var sendingUnsentMessages = false;
     var needToSendUnsentMessages = false;
     var sendUnsentMessagesListener = {
 	onStartSending: function(aTotalMessageCount) {
 	    sl3log.Entering("Sendlater3Backgrounding.sendUnsentMessagesListener.onStartSending");
+            wantToCompactOutbox =
+                getUnsentMessagesFolder().getTotalMessages(false) > 0;
 	    sendingUnsentMessages = true;
 	    needToSendUnsentMessages = false;
 	    sl3log.Leaving("Sendlater3Backgrounding.sendUnsentMessagesListener.onStartSending");
@@ -140,6 +150,18 @@ var Sendlater3Backgrounding = function() {
 		    }
 		}
 	    }
+            else if (wantToCompactOutbox &&
+                     getUnsentMessagesFolder().getTotalMessages(false) == 0) {
+                try {
+                    fdrunsent = getUnsentMessagesFolder();
+                    fdrunsent.compact(null, msgWindow);
+                    wantToCompactOutbox = false;
+                    sl3log.debug("Compacted Outbox");
+                }
+                catch (ex) {
+                    sl3log.warn("Compacting Outbox failed: " + ex);
+                }
+            }
 	    sl3log.Leaving("Sendlater3Backgrounding.sendUnsentMessagesListener.onStopSending");
 	}
     }
@@ -746,7 +768,7 @@ var Sendlater3Backgrounding = function() {
 	    var msgSendLater = Components
 		.classes["@mozilla.org/messengercompose/sendlater;1"]
 		.getService(Components.interfaces.nsIMsgSendLater);
-	    var fdrunsent = msgSendLater.getUnsentMessagesFolder(null);
+	    var fdrunsent = getUnsentMessagesFolder();
 	    var listener = new CopyUnsentListener(content,
 						  this._uri,
 						  messageHDR,
