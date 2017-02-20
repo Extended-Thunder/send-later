@@ -41,7 +41,10 @@
       <!-- The add-on validator requires the first argument to
            setTimeout to be a function expression rather than a
            function. -->
+      <!-- firstdayofweek:
+           https://bugzilla.mozilla.org/show_bug.cgi?id=516796 -->
       <datepicker id="sendlater3-toolbar-datepicker" type="popup"
+                  firstdayofweek="NaN"
 		  onchange="window.setTimeout(function(){Sendlater3ComposeToolbar.pickersToText()}, 0);"/>
       <timepicker id="sendlater3-toolbar-timepicker"
 		  onchange="window.setTimeout(function(){Sendlater3ComposeToolbar.pickersToText()}, 0);"
