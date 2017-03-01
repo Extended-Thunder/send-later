@@ -3,39 +3,55 @@ export PYTHONPATH=$(CURDIR)
 
 all: send_later.xpi send_later-translatable.xpi
 
-manifest: $(shell find . -type f \! -name manifest \! -name '*.xpi' -print) \
-          chrome/content/backgroundingPostbox.xul
-	find . \( \( -name '.??*' -o -name '*~' -o -name '.\#*' \
-		-o -name '*,v' -o -name Makefile -o -name '*.xpi' \
-		-o -name '\#*' -o -name '*.pl' -o -name core \
-		-o -name '*.tmp' -o -name 'manifest' -o -name src \) -prune \) \
-                -o -type f -print > $@.tmp
-	mv $@.tmp $@
+check-manifest: chrome/content/backgroundingPostbox.xul
+	@if comm -12 <(sort -u include-manifest) <(sort -u exclude-manifest) | \
+	   grep .; then \
+	    echo "Files listed above in both include-and exclude-manifest!" 1>&2; \
+	    exit 1; \
+	fi
+	@rm -f $@.tmp
+	@find * \( \( -name '.??*' -o -name '*~' -o -name '.\#*' \
+		-o -name '*.xpi' -o -name '\#*' -o -name core \
+		-o -name '*.tmp' -o -name '*.pyc' \) -prune \) \
+	-o -type f -print | sort > $@.tmp
+	@if comm -13 <(sort -u include-manifest exclude-manifest) $@.tmp | \
+	   grep .; then \
+	    echo "Files listed above not in include-/exclude-manifest!" 1>&2; \
+	    exit 1; \
+	fi
+	@if comm -23 <(sort -u include-manifest exclude-manifest) $@.tmp | \
+	   grep .; then \
+	    echo "Nonexistent files listed above in include-/exclude-manifest!" 1>&2; \
+	    exit 1; \
+	fi
+	@rm -f $@.tmp
+.PHONY: check-manifest
 
 send_later.xpi: utils/check-locales.pl utils/propagate_strings.py \
-    utils/check-accesskeys.py utils/check-locale-integration.py Makefile manifest
+    utils/check-accesskeys.py utils/check-locale-integration.py Makefile \
+    check-manifest
 	./utils/fix-addon-ids.pl --check
 	./utils/check-locale-integration.py
 	-rm -rf $@.tmp
 	mkdir $@.tmp
-	tar c --files-from manifest | tar -C $@.tmp -x
+	tar c --files-from include-manifest | tar -C $@.tmp -x
 	cd $@.tmp; ../utils/check-locales.pl --replace
 	cd $@.tmp; ../utils/propagate_strings.py
 	cd $@.tmp; ../utils/check-accesskeys.py
-	cd $@.tmp; zip -q -r $@.tmp -@ < ../manifest
+	cd $@.tmp; zip -q -r $@.tmp -@ < ../include-manifest
 	mv $@.tmp/$@.tmp $@
 	rm -rf $@.tmp
 
 translatable: send_later-translatable.xpi
 .PHONY: translatable
 
-send_later-translatable.xpi: Makefile manifest
+send_later-translatable.xpi: Makefile check-manifest
 	./utils/fix-addon-ids.pl --check
 	rm -f $@.tmp
-	zip -q -r $@.tmp -@ < manifest
+	zip -q -r $@.tmp -@ < include-manifest
 	mv $@.tmp $@
 
-clean: ; -rm -f *.xpi manifest chrome/content/backgroundingPostbox.xul
+clean: ; -rm -f *.xpi *.tmp */*.pyc chrome/content/backgroundingPostbox.xul
 
 locale_import: crowdin.yaml
 	crowdin-cli download translations
