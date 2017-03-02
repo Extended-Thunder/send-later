@@ -1,7 +1,7 @@
 SHELL=/bin/bash
 export PYTHONPATH=$(CURDIR)
 
-all: send_later.xpi send_later-translatable.xpi
+all: send_later.xpi
 
 check-manifest: chrome/content/backgroundingPostbox.xul
 	@if comm -12 <(sort -u include-manifest) <(sort -u exclude-manifest) | \
@@ -41,15 +41,6 @@ send_later.xpi: utils/check-locales.pl utils/propagate_strings.py \
 	cd $@.tmp; zip -q -r $@.tmp -@ < ../include-manifest
 	mv $@.tmp/$@.tmp $@
 	rm -rf $@.tmp
-
-translatable: send_later-translatable.xpi
-.PHONY: translatable
-
-send_later-translatable.xpi: Makefile check-manifest
-	./utils/fix-addon-ids.pl --check
-	rm -f $@.tmp
-	zip -q -r $@.tmp -@ < include-manifest
-	mv $@.tmp $@
 
 clean: ; -rm -f *.xpi *.tmp */*.pyc chrome/content/backgroundingPostbox.xul
 
