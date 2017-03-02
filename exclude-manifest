@@ -38,6 +38,7 @@ utils/__init__.py
 utils/check-accesskeys.py
 utils/check-locale-integration.py
 utils/check-locales.pl
+utils/check-manifests.sh
 utils/fix-addon-ids.pl
 utils/import-localized.pl
 utils/locale-headers.pl

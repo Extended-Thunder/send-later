@@ -3,41 +3,31 @@ export PYTHONPATH=$(CURDIR)
 
 all: send_later.xpi
 
-check-manifest: chrome/content/backgroundingPostbox.xul
-	@if comm -12 <(sort -u include-manifest) <(sort -u exclude-manifest) | \
-	   grep .; then \
-	    echo "Files listed above in both include-and exclude-manifest!" 1>&2; \
-	    exit 1; \
-	fi
-	@rm -f $@.tmp
-	@find * \( \( -name '.??*' -o -name '*~' -o -name '.\#*' \
-		-o -name '*.xpi' -o -name '\#*' -o -name core \
-		-o -name '*.tmp' -o -name '*.pyc' \) -prune \) \
-	-o -type f -print | sort > $@.tmp
-	@if comm -13 <(sort -u include-manifest exclude-manifest) $@.tmp | \
-	   grep .; then \
-	    echo "Files listed above not in include-/exclude-manifest!" 1>&2; \
-	    exit 1; \
-	fi
-	@if comm -23 <(sort -u include-manifest exclude-manifest) $@.tmp | \
-	   grep .; then \
-	    echo "Nonexistent files listed above in include-/exclude-manifest!" 1>&2; \
-	    exit 1; \
-	fi
-	@rm -f $@.tmp
-.PHONY: check-manifest
-
 send_later.xpi: utils/check-locales.pl utils/propagate_strings.py \
-    utils/check-accesskeys.py utils/check-locale-integration.py Makefile \
-    check-manifest
+    utils/check-accesskeys.py utils/check-locale-integration.py \
+    utils/check-manifests.sh Makefile include-manifest exclude-manifest \
+    chrome/content/backgroundingPostbox.xul \
+    $(shell ls $(shell cat include-manifest) 2>/dev/null)
+	./utils/check-manifests.sh --overlap --extra
 	./utils/fix-addon-ids.pl --check
 	./utils/check-locale-integration.py
 	-rm -rf $@.tmp
 	mkdir $@.tmp
-	tar c --files-from include-manifest | tar -C $@.tmp -x
+	# Some locale files are generated dynamically below, and therefore
+	# tar won't be able to find them here.
+	tar c --files-from include-manifest \
+          2> >(egrep -v '^tar: chrome/.*: No such file or directory|due to previous errors' \
+               >/tmp/$@.errors) | tar -C $@.tmp -x
+	@if [ -s /tmp/$@.errors ]; then \
+	    cat /tmp/$@.errors; \
+	    exit 1; \
+        fi
+	@rm -f /tmp/$@.errors
 	cd $@.tmp; ../utils/check-locales.pl --replace
 	cd $@.tmp; ../utils/propagate_strings.py
 	cd $@.tmp; ../utils/check-accesskeys.py
+	cd $@.tmp; ../utils/check-manifests.sh --includes ../include-manifest \
+	    --excludes ../exclude-manifest --missing
 	cd $@.tmp; zip -q -r $@.tmp -@ < ../include-manifest
 	mv $@.tmp/$@.tmp $@
 	rm -rf $@.tmp
