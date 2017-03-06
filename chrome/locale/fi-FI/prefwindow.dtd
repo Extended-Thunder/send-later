@@ -2,14 +2,14 @@
 <!ENTITY prefwindow.title "{NAME} - Asetukset">
 <!ENTITY pane1.title "{NAME} - Asetukset">
 <!ENTITY checktimepref.label "Tarkista joka">
-<!ENTITY checktimepref2.label "minuutin välein">
+<!ENTITY checktimepref2.label "minuutti">
 <!ENTITY checktimepref.tooltip "Aikaväli minuuteissa sen tarkistamiseksi, onko luonnoskansiossa viestejä, jotka olisi jo aika lähettää. Kasvata tätä arvoa, jos kaikki viestisi eivät aina lähde ajallaan tai jos lähetysjonossa olevien viestien laskuri ei aina täsmää.">
 <!ENTITY general.caption "Yleiset">
 <!ENTITY quickoption1.caption "Pikapainike 1">
 <!ENTITY quickoption2.caption "Pikapainike 2">
 <!ENTITY quickoption3.caption "Pikapainike 3">
-<!ENTITY quickoptionname.label "Painikkeen teksti:">
-<!ENTITY quickoptionvalue.label "Minuuttia:">
+<!ENTITY quickoptionname.label "Painiketeksti:">
+<!ENTITY quickoptionvalue.label "Minuuttimäärä:">
 <!ENTITY showtoolbarbutton.caption "Näytä työkalupalkissa">
 <!ENTITY showsendlatercolumn.caption "Näytä {NAME} -sarake">
 <!ENTITY showsendlatercolumn.tooltip "Näytetäänkö {NAME} -sarake selattaessa luonnoskansioita">
@@ -24,8 +24,8 @@
 <!ENTITY sendlatersendbutton.tooltip "Tämän valinnan ollessa rastittuna ”Lähetä” -komento (siis painike tai Ctrl-Enter) toimii kuten ”Lähetä myöhemmin”.">
 <!ENTITY altbinding.caption "Käytä näppäinyhdistelmää Alt-Shift-Enter näppäinyhdistelmän Ctrl-Shift-Enter sijasta">
 <!ENTITY advanced.caption "Lisäasetukset">
-<!ENTITY dumplevel.caption "Dump log -taso:">
-<!ENTITY consolelevel.caption "Console log -taso:">
+<!ENTITY dumplevel.caption "Dumppilokitaso:">
+<!ENTITY consolelevel.caption "Konsolilokitaso:">
 <!ENTITY contactauthor.tooltip "Lähetä {NAME} -ohjelman tekijälle sähköpostia.">
 <!ENTITY contactauthor.value "Ota yhteyttä tekijään">
 <!ENTITY helplink.tooltip "Selaa {NAME} -ohjetta.">
@@ -39,4 +39,4 @@
 <!ENTITY blocklatemessages.label1 "Älä toimita viestejä, jotka ovat enemmän kuin">
 <!ENTITY blocklatemessages.label2 "minuuttia myöhässä">
 <!ENTITY editorbutton "Avaa dynaaminen aikataulueditori…">
-<!ENTITY editortip "Avaa ikkunan, jossa luodaan ja muokataan JavaScript-funktioita monimutkaisten aikataulujen toteuttamiseksi.">
+<!ENTITY editortip "Avaa ikkunan, jossa luodaan ja muokataan JavaScript-funktioita monimutkaisen aikataululogiikan toteuttamiseksi.">

@@ -4,7 +4,7 @@
 <!ENTITY sendlater.prompt.sendlater.tooltip "Ajastamisen sijasta siirrä Lähtevät-kansioon lähetettäväksi seuraavalla kerralla, kun muitakin viestejä lähetetään.">
 <!ENTITY sendlater.prompt.sendnow.label "Lähetä heti">
 <!ENTITY sendlater.prompt.sendnow.accesskey "h">
-<!ENTITY sendlater.prompt.sendnow.tooltip "Lähettää viestin heti, ohittaen “{NAME}” -toiminnon.">
+<!ENTITY sendlater.prompt.sendnow.tooltip "Lähettää viestin heti, ohittaen ”{NAME}” -toiminnon.">
 <!ENTITY sendlater.prompt.close.label "Peruuta">
 <!ENTITY sendlater.prompt.close.accesskey "P">
 <!ENTITY sendlater.prompt.close.tooltip "Palaa viestin muokkaamiseen.">
@@ -15,8 +15,8 @@
 <!ENTITY sendlater.prompt.textbox.emptytext "esim.: ”31.12.2016 12:00”, ”2016-12-31”, ”tiistai kello 15”">
 <!ENTITY sendlater.prompt.sendat.label "Lähetä myöhemmin yllä määriteltyinä ajankohtina">
 <!ENTITY sendlater.prompt.sendat.tooltip "Tallenna viesti Luonnokset-kansioon lähetettäväksi automaattisesti yllä määriteltynä ajankohtana.">
-<!ENTITY sendlater.prompt.savedefaults "Tallenna nämä arvot oletusarvoiksi">
-<!ENTITY sendlater.prompt.cleardefaults "Alusta oletukset">
+<!ENTITY sendlater.prompt.savedefaults "Tallenna oletusarvoiksi">
+<!ENTITY sendlater.prompt.cleardefaults "Poista oletusarvot">
 <!ENTITY sendlater.prompt.recur.label "Toisto:">
 <!ENTITY sendlater.prompt.none.label "ei">
 <!ENTITY sendlater.prompt.minutely.label "minuuteittain">

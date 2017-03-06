@@ -1,6 +1,6 @@
-"AMODescription","Muuttaa ""Lähetä myöhemmin"" komentoa (Ctrl+Shift+Return) viestin koostamisikkunassa, jotta pelkän Lähtevät-kansioon kopioimisen sijasta se lähetetään kun yhdistyt verkkoon tai painat ""Lähetä lähettämättömät viestit"", jolloin ilmestyy dialogi joka antaa sinun määritää milloin viesti lähetetään.
+"AMODescription","Muuttaa ""Lähetä myöhemmin"" komentoa (Ctrl+Shift+Return) viestin luonti-ikkunassa, jotta pelkän Lähtevät-kansioon kopioimisen sijasta se lähetetään kun luot yhteyden verkkoon tai painat ""Lähetä lähettämättömät viestit"", jolloin ilmestyy dialogi joka antaa sinun määritää milloin viesti lähetetään.
 
-Voit määrittää tietyn ajan ja päivämäärän tai painaa ""15 min myöhemmin"", ""30 min myöhemmin"" tai ""2 tuntia myöhemmin"" tai painaa ""Laita Lähtevät-kansioon"" saadaksesi sisäänrakennetun ""Lähetä myöhemmin"" toiminnallisuuden (t.s. lähtevät-kansioon kopioimisen).
+Voit määrittää tietyn ajan ja päivämäärän tai painaa ""15 min myöhemmin"", ""30 min myöhemmin"" tai ""2 tuntia myöhemmin"" tai käyttää normaalia Thunderbirdin ""Lähetä myöhemmin"" toimintoa (jolloin viesti siis vain kopioidaan Lähtevät-kansioon).
 
 Lisätietoja saat <a href=""https://blog.kamens.us/send-later"">käyttöohjeesta</a>.
 
