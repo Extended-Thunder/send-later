@@ -165,6 +165,14 @@ chrome/locale/ro-RO/prefwindow.dtd
 chrome/locale/ro-RO/prompt.dtd
 chrome/locale/ro-RO/prompt.properties
 chrome/locale/ro-RO/sendlater3.properties
+chrome/locale/ru-RU/ask.dtd
+chrome/locale/ru-RU/background.properties
+chrome/locale/ru-RU/editor.dtd
+chrome/locale/ru-RU/headerView.dtd
+chrome/locale/ru-RU/prefwindow.dtd
+chrome/locale/ru-RU/prompt.dtd
+chrome/locale/ru-RU/prompt.properties
+chrome/locale/ru-RU/sendlater3.properties
 chrome/locale/sv-SE/ask.dtd
 chrome/locale/sv-SE/background.properties
 chrome/locale/sv-SE/editor.dtd
