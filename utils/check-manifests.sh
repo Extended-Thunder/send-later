@@ -15,9 +15,9 @@ while [ -n "$1" ] ; do
     case "$1" in
         "--includes") shift; INCLUDES="$1"; shift ;;
         "--excludes") shift; EXCLUDES="$1"; shift ;;
-        "--overlap") shift; CHECK_OVERLAP=true; shift ;;
-        "--extra") shift; CHECK_EXTRA=true; shift ;;
-        "--missing") shift; CHECK_MISSING=true; shift ;;
+        "--overlap") shift; CHECK_OVERLAP=true ;;
+        "--extra") shift; CHECK_EXTRA=true ;;
+        "--missing") shift; CHECK_MISSING=true ;;
         *) echo "Unrecognized argument: $1" 1>&2; exit 1 ;;
     esac
 done
