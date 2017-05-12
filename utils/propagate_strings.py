@@ -41,7 +41,7 @@ def substitute_string_in_locale_file(locale_file, key, string, replacement):
         print('Warning: {}: {}: not found'.format(locale_file.file_name, key))
         return True
     if string not in value:
-        print('ERROR: {}: {}: "{}" does not contain "{}"'.format(
+        print(u'ERROR: {}: {}: "{}" does not contain "{}"'.format(
             locale_file.file_name, key, value, string))
         return False
     locale_file[key] = value.replace(string, replacement)
