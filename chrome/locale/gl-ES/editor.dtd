@@ -1,0 +1,11 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY selectfunction "Seleccionar función:">
+<!ENTITY createnewfunction "(crear nova función)">
+<!ENTITY delete.label "Eliminar">
+<!ENTITY delete.accesskey "l">
+<!ENTITY import.label "Importar…">
+<!ENTITY export.label "Exportar…">
+<!ENTITY save.label "Gardar">
+<!ENTITY save.accesskey "G">
+<!ENTITY close.label "Pechar">
+<!ENTITY close.accesskey "P">
