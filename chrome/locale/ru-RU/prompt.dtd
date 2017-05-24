@@ -4,7 +4,7 @@
 <!ENTITY sendlater.prompt.sendlater.tooltip "Вместо того, чтобы планировать доставку в течение определенного времени, переместите сообщение в папку «Исходящие» для доставки в следующий раз, когда будут отправлены не отправленные сообщения.">
 <!ENTITY sendlater.prompt.sendnow.label "Отправить сейчас">
 <!ENTITY sendlater.prompt.sendnow.accesskey "с">
-<!ENTITY sendlater.prompt.sendnow.tooltip "Немедленная отправка сообщения без задержек.">
+<!ENTITY sendlater.prompt.sendnow.tooltip "Отправка сообщения минуя {NAME}.">
 <!ENTITY sendlater.prompt.close.label "Отмена">
 <!ENTITY sendlater.prompt.close.accesskey "О">
 <!ENTITY sendlater.prompt.close.tooltip "Вернуться к редактированию сообщения.">
@@ -31,8 +31,8 @@
 <!ENTITY sendlater.toolbar.textbox.emptytext "время отправки">
 <!ENTITY sendlater.prompt.every.label "Каждые">
 <!ENTITY sendlater.prompt.between.label "Между">
-<!ENTITY sendlater.button1.label "15 минут позже">
-<!ENTITY sendlater.button2.label "30 минут позже">
+<!ENTITY sendlater.button1.label "15 минут спустя">
+<!ENTITY sendlater.button2.label "30 минут спустя">
 <!ENTITY sendlater.button3.label "2 часа спустя">
 <!ENTITY sendlater.prompt.on.label "Только в">
 <!ENTITY sendlater.prompt.day0 "Воскресенье">
