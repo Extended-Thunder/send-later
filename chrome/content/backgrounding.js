@@ -205,6 +205,38 @@ var Sendlater3Backgrounding = function() {
 	msgSendLater.removeListener(sendUnsentMessagesListener);
 	sl3log.Leaving("Sendlater3Backgrounding.removeMsgSendLaterListener");
     }
+    
+    replyListener = {
+        // Thunderbird 2 and Postbox
+        itemAdded: function(item) {
+            var aMsgHdr = item.QueryInterface(
+                Components.interfaces.nsIMsgDBHdr);
+            cancelOnReplyHandler.addReply(aMsgHdr);
+        },
+
+        // Thunderbird 3
+        msgAdded: function(aMsgHdr) {
+            cancelOnReplyHandler.addReply(aMsgHdr);
+        }
+    };
+    function addReplyListener() {
+	var notificationService = Components
+	    .classes["@mozilla.org/messenger/msgnotificationservice;1"]
+	    .getService(Components.interfaces
+			.nsIMsgFolderNotificationService);
+	if (SL3U.IsPostbox())
+	    notificationService.addListener(replyListener);
+        else
+	    notificationService.addListener(replyListener, 
+					    notificationService.msgAdded);
+    };
+    function removeReplyListener() {
+	var notificationService = Components
+	    .classes["@mozilla.org/messenger/msgnotificationservice;1"]
+	    .getService(Components.interfaces
+			.nsIMsgFolderNotificationService);
+        notificationService.removeListener(replyListener);
+    };
 
     // I had to change the type of one of my preferences from int to char to be
     // able to add some new functionality. I couldn't find a way to change the
@@ -616,6 +648,7 @@ var Sendlater3Backgrounding = function() {
     var AnimCallback = {
 	notify: function(timer) {
 	    sl3log.Entering("Sendlater3Backgrounding.AnimCallback.notify");
+            cancelOnReplyHandler.rotate();
 	    sl3log.debug("STATUS MESSAGE - " + MessagesPending);
 	    if (document != null) {
 		document.getElementById("sendlater3-deck").selectedIndex = 1;
@@ -810,20 +843,24 @@ var Sendlater3Backgrounding = function() {
 	}
     };
 
+    var cancelOnReplyHandler = new CancelOnReplyEngine();
+
     var CheckThisURIQueue = new Array();
     var CheckThisURITimer;
 
     var CheckThisURICallback = {
 	notify: function (timer) {
 	    sl3log.Entering("Sendlater3Backgrounding.CheckThisUriCallback.notify");
-	    if (CheckThisURIQueue.length == 0) {
-		timer.cancel();
+
+	    if (! checkUuid(false)) {
+		CheckThisURIQueue = new Array();
 		sl3log.Returning("Sendlater3Backgrounding.CheckThisUriCallback.notify", "");
 		return;
 	    }
 
-	    if (! checkUuid(false)) {
-		CheckThisURIQueue = new Array();
+	    if (CheckThisURIQueue.length == 0) {
+		timer.cancel();
+                cancelOnReplyHandler.rotate();
 		sl3log.Returning("Sendlater3Backgrounding.CheckThisUriCallback.notify", "");
 		return;
 	    }
@@ -853,6 +890,11 @@ var Sendlater3Backgrounding = function() {
 		    sl3log.debug(messageURI + ": wrong uuid=" + h_uuid);
 		    break;
 		}
+                if (! cancelOnReplyHandler.addDraft(messageHDR)) {
+                    sl3log.debug(messageURI +
+                                 ": skipping: deleted by cancel on reply");
+                    break;
+                }
 		sl3log.debug(messageURI + ": good uuid=" + h_uuid);
 		if (new Date() < new Date(h_at)) {
 		    sl3log.debug(messageURI + ": early x-send-later-at=" + h_at);
@@ -1231,8 +1273,7 @@ var Sendlater3Backgrounding = function() {
 	    }
 
 	    for (acindex = 0;acindex < numAccounts;acindex++) {
-		SetAnimTimer(5000);
-		sl3log.debug("Progress Animation RESET");
+		SetAnimTimer(3000);
 		var thisaccount;
 		try {
 		    thisaccount =  allaccounts
@@ -1349,6 +1390,7 @@ var Sendlater3Backgrounding = function() {
 	}
 	clearActiveUuidCallback();
 	removeMsgSendLaterListener();
+        removeReplyListener();
 	sl3log.Leaving("Sendlater3Backgrounding.StopMonitorCallback");
 	SL3U.uninitUtil();
     }
@@ -1517,6 +1559,116 @@ var Sendlater3Backgrounding = function() {
         return [content, newMessageId];
     }
 
+    function CancelOnReplyEngine() {
+        this.drafts = [];
+        this.newDrafts = [];
+        this.replies = [];
+    }
+    CancelOnReplyEngine.prototype.addDraft = function(hdr) {
+        // Check if the specified draft has a corresponding reply. If so, then
+        // delete the draft and return false. Otherwise, add it to our list of
+        // drafts and return true;
+        var xheader = hdr.getStringProperty("x-send-later-cancel-on-reply");
+        if (! xheader) return true;
+        var messageIds = xheader.split(/\s+/);
+        // First thing in the header is "yes"
+        messageIds.shift();
+        for (var i in messageIds) {
+            messageId = messageIds[i];
+            if (messageId in this.replies) {
+                this.deleteMessage(hdr);
+                this.purgeReply(this.replies[messageId]);
+                return false;
+            }
+        }
+        for (var i in messageIds) {
+            this.drafts[messageIds[i]] = this.newDrafts[messageIds[i]] = hdr;
+        }
+        sl3log.debug("Added draft <" + hdr.getStringProperty("message-id") +
+                     "> (" + hdr.getStringProperty("subject") +
+                     ") to cancel on reply engine");
+        return true;
+    };
+    CancelOnReplyEngine.prototype.addReply = function(hdr) {
+        // Check if the specified reply has any corresponding drafts. If so,
+        // then delete the corresponding draft and remove it from our list.
+        // Otherwise, add the reply to our list of replies. No meaningful
+        // return value.
+        var refsString = hdr.getStringProperty("references");
+        if (! refsString) return;
+        sl3log.debug("Checking new message <" +
+                     hdr.getStringProperty("message-id") + "> (" +
+                     hdr.getStringProperty("subject") +
+                     ") in cancel on reply engine");
+        refsString = refsString.replace(/>/g, "> ");
+        var refs = refsString.split(/\s+/);
+        for (var i in refs) {
+            var ref = refs[i];
+            var draft = this.newDrafts[ref] || this.drafts[ref];
+            if (draft) {
+                this.deleteMessage(draft);
+                this.purgeDraft(draft);
+                return;
+            }
+        }
+        for (var i in refs) {
+            this.replies[refs[i]] = hdr;
+        }
+    };
+    CancelOnReplyEngine.prototype.rotate = function() {
+        // Replace the old drafts list with the new one. Check if there are any
+        // outstanding replies that have corresponding drafts. If so, then
+        // delete the drafts and remove them from our list. When finished, clear
+        // the list of pending replies. No meaningful return value.
+        this.drafts = this.newDrafts;
+        this.newDrafts = [];
+        var draftsToPurge = [];
+        var repliesToPurge = [];
+        for (var referenceId in this.replies) {
+            var reply = this.replies[referenceId];
+            if (repliesToPurge.indexOf(reply) > -1) continue;
+            repliesToPurge.push(reply);
+            var draft = this.drafts[referenceId];
+            if (! draft) continue;
+            if (draftsToPurge.indexof(draft) > -1) continue;
+            this.deleteMessage(draft);
+            draftsToPurge.push(draft);
+        }
+        for (var i in draftsToPurge)
+            this.purgeDraft(draftsToPurge[i]);
+        this.replies = [];
+        sl3log.debug("Rotated cancel on reply engine. Current drafts: " +
+                     Object.keys(this.drafts).join(" "));
+    };
+    CancelOnReplyEngine.prototype.deleteMessage = function(hdr) {
+        sl3log.debug("Deleting message <" + hdr.getStringProperty("message-id")
+                     + " (" + hdr.getStringProperty("subject") +
+                     ") in cancel on reply engine");
+	var dellist = Components.classes["@mozilla.org/array;1"]
+	    .createInstance(Components.interfaces.nsIMutableArray);
+	dellist.appendElement(hdr, false);
+        hdr.folder.deleteMessages(dellist, msgWindow, true, false, null, false);
+    };
+    CancelOnReplyEngine.prototype.purgeDraft = function(hdr) {
+        var xheader = hdr.getStringProperty("x-send-later-cancel-on-reply");
+        if (! xheader) return;
+        var messageIds = xheader.split(/\s+/);
+        // First thing in the header is "yes"
+        messageIds.shift();
+        for (var i in messageIds) {
+            delete this.drafts[messageIds[i]];
+            delete this.newDrafts[messageIds[i]];
+        }
+    };
+    CancelOnReplyEngine.prototype.purgeReply = function(hdr) {
+        var refsString = hdr.getStringProperty("references");
+        if (! refsString) return;
+        refsString = refsString.replace(/>/g, "> ");
+        var refs = refsString.split(/\s+/);
+        for (var i in refs)
+            delete this.replies[refs[i]];
+    };
+    
     // BackgroundTimer = Components
     //     .classes["@mozilla.org/timer;1"]
     //     .createInstance(Components.interfaces.nsITimer);
@@ -1537,6 +1689,7 @@ var Sendlater3Backgrounding = function() {
 
     sl3log.Leaving("Sendlater3Backgrounding");
     addMsgSendLaterListener();
+    addReplyListener();
 }
 
 Sendlater3Backgrounding.markReadListener = function(folder, key) {
