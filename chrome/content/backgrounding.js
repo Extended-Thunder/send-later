@@ -206,36 +206,52 @@ var Sendlater3Backgrounding = function() {
 	sl3log.Leaving("Sendlater3Backgrounding.removeMsgSendLaterListener");
     }
     
-    replyListener = {
+    newMessageListener = {
         // Thunderbird 2 and Postbox
         itemAdded: function(item) {
             var aMsgHdr = item.QueryInterface(
                 Components.interfaces.nsIMsgDBHdr);
-            cancelOnReplyHandler.addReply(aMsgHdr);
+            newMessageListener.msgAdded(aMsgHdr);
         },
 
         // Thunderbird 3
         msgAdded: function(aMsgHdr) {
-            cancelOnReplyHandler.addReply(aMsgHdr);
+            if (aMsgHdr.getStringProperty("x-send-later-at")) {
+	        if (SL3U.IsPostbox()) {
+		    readlist = Components.
+                        classes["@mozilla.org/supports-array;1"]
+		    .createInstance(Components.interfaces.nsISupportsArray);
+		    readlist.AppendElement(aMsgHdr);
+	        }
+	        else {
+		    readlist = Components.classes["@mozilla.org/array;1"]
+		        .createInstance(Components.interfaces.nsIMutableArray);
+		    readlist.appendElement(aMsgHdr, false);
+	        }
+	        aMsgHdr.folder.markMessagesRead(readlist, true);
+            }
+            else {
+                cancelOnReplyHandler.addReply(aMsgHdr);
+            }
         }
     };
-    function addReplyListener() {
+    function addNewMessageListener() {
 	var notificationService = Components
 	    .classes["@mozilla.org/messenger/msgnotificationservice;1"]
 	    .getService(Components.interfaces
 			.nsIMsgFolderNotificationService);
 	if (SL3U.IsPostbox())
-	    notificationService.addListener(replyListener);
+	    notificationService.addListener(newMessageListener);
         else
-	    notificationService.addListener(replyListener, 
+	    notificationService.addListener(newMessageListener, 
 					    notificationService.msgAdded);
     };
-    function removeReplyListener() {
+    function removeNewMessageListener() {
 	var notificationService = Components
 	    .classes["@mozilla.org/messenger/msgnotificationservice;1"]
 	    .getService(Components.interfaces
 			.nsIMsgFolderNotificationService);
-        notificationService.removeListener(replyListener);
+        notificationService.removeListener(newMessageListener);
     };
 
     // I had to change the type of one of my preferences from int to char to be
@@ -605,19 +621,6 @@ var Sendlater3Backgrounding = function() {
 		}
 	    }
 
-	    var listener = new Sendlater3Backgrounding
-		.markReadListener(this._folder, this._key);
-	    var notificationService = Components
-		.classes["@mozilla.org/messenger/msgnotificationservice;1"]
-		.getService(Components.interfaces
-			    .nsIMsgFolderNotificationService);
-	    if (SL3U.IsPostbox()) {
-		notificationService.addListener(listener);
-	    }
-	    else {
-		notificationService.addListener(listener, 
-						notificationService.msgAdded);
-	    }
 	    if (! Components.isSuccessCode(status)) {
 		Sendlater3Backgrounding.BackgroundTimer.cancel();
 		Sendlater3Backgrounding.BackgroundTimer = undefined;
@@ -1379,7 +1382,7 @@ var Sendlater3Backgrounding = function() {
 	}
 	clearActiveUuidCallback();
 	removeMsgSendLaterListener();
-        removeReplyListener();
+        removeNewMessageListener();
 	sl3log.Leaving("Sendlater3Backgrounding.StopMonitorCallback");
 	SL3U.uninitUtil();
     }
@@ -1680,44 +1683,7 @@ var Sendlater3Backgrounding = function() {
 
     sl3log.Leaving("Sendlater3Backgrounding");
     addMsgSendLaterListener();
-    addReplyListener();
+    addNewMessageListener();
 }
-
-Sendlater3Backgrounding.markReadListener = function(folder, key) {
-    this._folder = folder;
-    this._key = key;
-}
-
-Sendlater3Backgrounding.markReadListener.prototype = {
-    // Thunderbird 2 and Postbox
-    itemAdded: function(item) {
-	var aMsgHdr = item.QueryInterface(Components.interfaces.nsIMsgDBHdr);
-	this.msgAdded(aMsgHdr);
-    },
-
-    // Thunderbird 3
-    msgAdded: function(aMsgHdr) {
-        var readlist;
-	if (this._folder == aMsgHdr.folder &&
-	    this._key == aMsgHdr.messageKey) {
-	    if (SL3U.IsPostbox()) {
-		readlist = Components.classes["@mozilla.org/supports-array;1"]
-		    .createInstance(Components.interfaces.nsISupportsArray);
-		readlist.AppendElement(aMsgHdr);
-	    }
-	    else {
-		readlist = Components.classes["@mozilla.org/array;1"]
-		    .createInstance(Components.interfaces.nsIMutableArray);
-		readlist.appendElement(aMsgHdr, false);
-	    }
-	    aMsgHdr.folder.markMessagesRead(readlist, true);
-	}
-	var notificationService = Components
-	    .classes["@mozilla.org/messenger/msgnotificationservice;1"]
-	    .getService(Components.interfaces
-			.nsIMsgFolderNotificationService);
-	notificationService.removeListener(this);
-    }
-};
 
 window.addEventListener("load", Sendlater3Backgrounding, false);
