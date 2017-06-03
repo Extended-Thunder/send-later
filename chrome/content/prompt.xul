@@ -99,25 +99,32 @@
 
       <hbox>
         <separator width="20"/>
-        <deck id="sendlater3-recur-every-deck">
-	  <hbox align="center" id="sendlater3-recur-every-hbox">
-	    <checkbox id="sendlater3-recur-every-checkbox"
-		      label="&sendlater.prompt.every.label;"
-		      oncommand="Sendlater3Prompt.CheckRecurring();"/>
-	    <textbox id="sendlater3-recur-every-value" type="number"
-		     min="2" size="2"/>
-	    <label id="sendlater3-recur-every-unit"/>
+        <deck id="sendlater3-cancel-on-reply-deck">
+          <vbox id="sendlater3-cancel-on-reply-vbox">
+            <deck id="sendlater3-recur-every-deck">
+	      <hbox align="center" id="sendlater3-recur-every-hbox">
+	        <checkbox id="sendlater3-recur-every-checkbox"
+		          label="&sendlater.prompt.every.label;"
+		          oncommand="Sendlater3Prompt.CheckRecurring();"/>
+	        <textbox id="sendlater3-recur-every-value" type="number"
+		         min="2" size="2"/>
+	        <label id="sendlater3-recur-every-unit"/>
 
-	    <checkbox id="sendlater3-recur-every-month-checkbox"
-		      oncommand="Sendlater3Prompt.CheckRecurring();"/>
-	  </hbox>
-          <hbox align="center" width="100%">
-            <label value="&sendlater.prompt.functionargs.label;"/>
-            <textbox id="function-args" disabled="true" flex="1"/>
-            <button id="calculate" disabled="true"
-                    label="&sendlater.prompt.calculate.label;"
-                    oncommand="Sendlater3Prompt.onCalculate();"/>
-          </hbox>
+	        <checkbox id="sendlater3-recur-every-month-checkbox"
+		          oncommand="Sendlater3Prompt.CheckRecurring();"/>
+	      </hbox>
+              <hbox align="center" width="100%">
+                <label value="&sendlater.prompt.functionargs.label;"/>
+                <textbox id="function-args" disabled="true" flex="1"/>
+                <button id="calculate" disabled="true"
+                        label="&sendlater.prompt.calculate.label;"
+                        oncommand="Sendlater3Prompt.onCalculate();"/>
+              </hbox>
+            </deck>
+            <checkbox id="sendlater3-cancel-on-reply-checkbox"
+                      label="&sendlater.prompt.cancelonreply.label;"
+                      tooltiptext="&sendlater.prompt.cancelonreply.tooltip;"/>
+          </vbox>
         </deck>
       </hbox>
 

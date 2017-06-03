@@ -84,6 +84,8 @@ var Sendlater3Prompt = {
 	var recurring = which != "none";
         var functional = this.functional();
 	Sendlater3Prompt.SetRecurring(recurring);
+        document.getElementById("sendlater3-cancel-on-reply-deck").
+            selectedIndex = recurring ? 0 : -1;
 	document.getElementById("sendlater3-recur-every-deck").selectedIndex =
 	    functional ? 1 : (recurring ? 0 : -1);
 	var everyLabel = document
