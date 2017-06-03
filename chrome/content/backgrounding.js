@@ -843,9 +843,6 @@ var Sendlater3Backgrounding = function() {
 	    var MsgService = messenger.messageServiceFromURI(messageURI);
 	    var messageHDR = messenger.msgHdrFromURI(messageURI);
 	    var h_at = messageHDR.getStringProperty("x-send-later-at");
-            var recur = messageHDR.getStringProperty("x-send-later-recur");
-            if (recur)
-                recur = SL3U.ParseRecurSpec(recur);
 	    while (1) {
 		if (! h_at) {
 		    sl3log.debug(messageURI + ": no x-send-later-at");
@@ -877,6 +874,9 @@ var Sendlater3Backgrounding = function() {
 		    lastMessagesPending = ++MessagesPending;
                     break;
                 }
+                var recur = messageHDR.getStringProperty("x-send-later-recur");
+                if (recur)
+                    recur = SL3U.ParseRecurSpec(recur);
                 if (recur && (recur.between || recur.days) &&
                     SL3U.getBoolPref("enforce_restrictions")) {
                     var now = new Date();
