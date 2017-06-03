@@ -343,38 +343,27 @@ var Sendlater3Backgrounding = function() {
     }
 
     //mailnews.customDBHeaders 
-    var installedCustomHeaders =
+    var wantedHeaders = new Object();
+    ["x-send-later-at", "x-send-later-uuid", "x-send-later-recur",
+     "x-send-later-cancel-on-reply", "x-send-later-args", "precedence",
+     "auto-submitted"].forEach(function(h) { wantedHeaders[h] = 1; });
+    var installedHeaders = new Object();
+    var customHeadersString =
 	SL3U.PrefService.getCharPref('mailnews.customDBHeaders');
+    customHeadersString.split(/\s+/).forEach(function(h) {
+        delete wantedHeaders[h.toLowerCase()]; });
     var changed = false;
-    if (installedCustomHeaders.indexOf("x-send-later-at")<0) {
-	sl3log.dump("Installing Custom X-Send-Later-At Header\n");
-	installedCustomHeaders += " x-send-later-at";
-	changed = true;
+    for (var h in wantedHeaders) {
+        sl3log.dump("Installing header " + h + " in customDBHeaders");
+        changed = true;
+        if (customHeadersString)
+            customHeadersString += " " + h;
+        else
+            customHeadersString = h;
     }
-    if (installedCustomHeaders.indexOf("x-send-later-uuid")<0) {
-	sl3log.dump("Installing Custom X-Send-Later-Uuid Header\n");
-	installedCustomHeaders += " x-send-later-uuid";
-	changed = true;
-    }
-    if (installedCustomHeaders.indexOf("x-send-later-recur")<0) {
-	sl3log.dump("Installing Custom X-Send-Later-Recur Header\n");
-	installedCustomHeaders += " x-send-later-recur";
-	changed = true;
-    }
-    if (installedCustomHeaders.indexOf("x-send-later-cancel-on-reply")<0) {
-	sl3log.dump("Installing Custom X-Send-Later-Cancel-On-Reply Header\n");
-	installedCustomHeaders += " x-send-later-cancel-on-reply";
-	changed = true;
-    }
-    if (installedCustomHeaders.indexOf("x-send-later-args")<0) {
-	sl3log.dump("Installing Custom X-Send-Later-Args Header\n");
-	installedCustomHeaders += " x-send-later-args";
-	changed = true;
-    }
-    if (changed) {
+    if (changed)
 	SL3U.PrefService.setCharPref('mailnews.customDBHeaders',
-				     installedCustomHeaders);
-    }
+				     customHeadersString);
 
     function checkTimeout() {
 	var timeout = SL3U.getIntPref("checktimepref");
@@ -1594,6 +1583,8 @@ var Sendlater3Backgrounding = function() {
         // then delete the corresponding draft and remove it from our list.
         // Otherwise, add the reply to our list of replies. No meaningful
         // return value.
+        if (hdr.getStringProperty("precedence") == "bulk") return;
+        if (/^auto/i.test(hdr.getStringProperty("auto-submitted"))) return;
         var refsString = hdr.getStringProperty("references");
         if (! refsString) return;
         sl3log.debug("Checking new message <" +
