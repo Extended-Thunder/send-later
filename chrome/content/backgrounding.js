@@ -991,7 +991,7 @@ var Sendlater3Backgrounding = function() {
     // cycle. folderstocheck grows when we scan all the draft folders in
     // CheckForSendLaterCallback. folderstocheck shrinks and foldersdone grows
     // when we process a folder in the folderLoadListener. We need to keep
-    // track of both folderstocheck and folderstodone because we call
+    // track of both folderstocheck and foldersdone because we call
     // updateFolder in CheckForSendLaterCallback as we add folders to
     // folderstocheck, and updateFolder sometimes calls the folderLoadListener
     // synchronously, so if we just kept track of folderstocheck and multiple
