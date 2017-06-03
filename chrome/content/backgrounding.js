@@ -751,6 +751,8 @@ var Sendlater3Backgrounding = function() {
 	    content = content.replace(/\nX-Enigmail-Draft-Status:.*\n/i,
 				      "\n");
 
+            [content] = ReplaceMessageId(content);
+
 	    // Remove extra newline -- see comment above.
 	    content = content.slice(1);
 
@@ -1430,6 +1432,100 @@ var Sendlater3Backgrounding = function() {
 		}			
 	    }
 	}	
+    }
+
+    function ReplaceMessageId(content) {
+        // When we save a message in the Drafts folder, we put a Message-ID
+        // field into it, because this allows us to leverage Thunderbird's
+        // logic for determining what to put to the right of the "@" in the
+        // Message ID, based on the identity of the user composing the message.
+        // Now, however, we want to use a _different_ Message ID for the
+        // message that actually gets sent, for two reasons:
+        //
+        // 1. Recurring messages should use a different message ID each
+        //    time, not the same message ID for messages sent at different
+        //    times.
+        // 2. Some MTAs and IMAP servers may get confused and store messages in
+        //    unexpected ways (or not at all) if they encounter different
+        //    messages with the same message ID.
+        //
+        // We're going to try really hard to generate a sane message ID here:
+        //
+        // * If we can find X-Identity-Key in the draft -- and it absolutely
+        //   should be there! -- then we'll use that to determine the identity
+        //   to use to generate the new message ID.
+        // * Otherwise, we'll log an error, use a random identity to generate
+        //   the new message ID, and then replace the domain from the new ID
+        //   with the domain from the old ID.
+        // * If we can't find X-Identity-Key and there is no old message ID --
+        //   ugh, that should never happen! -- then we'll log an error and
+        //   substitute the domain of the email address in the From line as the
+        //   domain for the new message ID.
+        // * If all of the above fails and there's no email address we can
+        //   recognize in the From line -- ugh, omg, how could that every
+        //   happen? -- then we'll throw an exception, because we're out of
+        //   ideas.
+        
+        var accounts = Components
+            .classes["@mozilla.org/messenger/account-manager;1"]
+            .getService(Components.interfaces.nsIMsgAccountManager);
+        var compUtils = Components
+            .classes["@mozilla.org/messengercompose/computils;1"]
+            .createInstance(Components.interfaces.nsIMsgCompUtils);
+        var newMessageId;
+        var match = (/\nX-Identity-Key:\s*(\S+)/i.exec(content))[1];
+        if (match) {
+            var identity = accounts.getIdentity(match);
+            if (identity)
+                newMessageId = compUtils.msgGenerateMessageId(identity);
+        }
+        if (! newMessageId) {
+            sl3u.error("No valid X-Identity-Key in scheduled draft");
+            var identity = accounts.allIdentities.enumerate().getNext();
+            var fakeMessageId = compUtils.msgGenerateMessageId(identity);
+            match = (/\nMessage-ID:\s*(<.*>)/i.exec(content))[1];
+            if (! match) {
+                sl3u.error("No Message-ID in scheduled draft");
+                match = (/\nFrom:(.*)/i.exec(content))[1];
+                if (! match)
+                    throw new Error("No From line in scheduled draft");
+                var headerParser =
+                    Components.classes["@mozilla.org/messenger/headerparser;1"]
+                    .createInstance(Components.interfaces.nsIMsgHeaderParser);
+                var mailbox = (headerParser.
+                               extractHeaderAddressMailboxes(match).
+                               split(/,\s*/))[0];
+                if (! mailbox)
+                    throw new Error("No mailbox in From line of scheduled " +
+                                    "draft");
+                var domain = mailbox.substring(mailbox.substring("@") + 1);
+                if (! domain)
+                    throw new Error("No domain in From address of schedule " +
+                                    "draft");
+                oldMessageId = "<foo@" + domain + ">";
+            }
+            newMessageId =
+                fakeMessageId.substring(0, fakeMessageId.indexOf("@")) +
+                oldMessageId.substring(oldMessageId.indexOf("@"));
+        }
+
+        // Extreme paranoia!
+        if (/\nMessage-ID:.*<.*>/i.exec(content))
+            // This should pretty much always be the code that executes.
+            content = content.replace(/(\nMessage-ID:.*)<.*>/i,
+                                      "$1" + newMessageId);
+        else if (/\n\n/.exec(content)) {
+            content = content.replace(
+                    /\n\n/, "\nMessage-ID: " + newMessageId + "\n\n");
+        }
+        else if (/\n$/.exec(content)) {
+            content = content + "Message-ID: " + newMessageId + "\n";
+        }
+        else {
+            content = content + "\nMessage-ID: " + newMessageId + "\n";
+        }
+
+        return [content, newMessageId];
     }
 
     // BackgroundTimer = Components

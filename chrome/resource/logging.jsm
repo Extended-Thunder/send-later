@@ -98,6 +98,12 @@ sl3log = {
         sl3log.trace("Throwing \"" + error + "\" from " + func);
     },
 
+    error: function(msg) {
+        init();
+        if (! log_filter(msg)) return;
+        try { logger.error(msg); } catch (ex) {}
+    },
+
     warn: function(msg) {
         init();
         if (! log_filter(msg)) return;
