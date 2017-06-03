@@ -888,13 +888,16 @@ var Sendlater3Util = {
             return null;
 
         if (recur.type == "function") {
-            if (recur.finished)
+            if (recur.finished) {
+                sl3log.Returning("NextRecurDate", null);
                 return null;
+            }
             var results = SL3U.NextRecurFunction(next, recurSpec, recur, args);
             if (results && results[0] && (recur.between || recur.days))
                 results[0] = SL3U.AdjustDateForRestrictions(
                     results[0], recur.between && recur.between.start,
                     recur.between && recur.between.end, recur.days);
+            sl3log.Returning("NextRecurDate", results);
             return results;
         }
 
@@ -980,6 +983,7 @@ var Sendlater3Util = {
                 next, recur.between && recur.between.start,
                 recur.between && recur.between.end, recur.days);
 
+        sl3log.Returning("NextRecurDate", next);
         return next;
     },
 
