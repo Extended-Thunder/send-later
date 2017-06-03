@@ -859,8 +859,8 @@ var Sendlater3Backgrounding = function() {
 	    }
 
 	    if (CheckThisURIQueue.length == 0) {
-		timer.cancel();
-                cancelOnReplyHandler.rotate();
+		CheckThisURITimer.cancel();
+                CheckThisURITimer = null;
 		sl3log.Returning("Sendlater3Backgrounding.CheckThisUriCallback.notify", "");
 		return;
 	    }
@@ -972,7 +972,7 @@ var Sendlater3Backgrounding = function() {
     // sluggishly.
     function CheckThisURIQueueAdd(messageURI) {
 	sl3log.Entering("Sendlater3Backgrounding.CheckThisURIQueueAdd", messageURI);
-	if (CheckThisURIQueue.length == 0) {
+	if (! CheckThisURITimer) {
 	    CheckThisURITimer = Components.classes["@mozilla.org/timer;1"]
 		.createInstance(Components.interfaces.nsITimer);
 	    CheckThisURITimer.initWithCallback(
