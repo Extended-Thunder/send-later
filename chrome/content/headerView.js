@@ -19,6 +19,8 @@ var Sendlater3HeaderView = function() {
 	    var retval = hdr.getStringProperty("x-send-later-at");
 	    if (retval != "") {
 		var recur = hdr.getStringProperty("x-send-later-recur");
+                var cancelOnReply = hdr.getStringProperty(
+                    "x-send-later-cancel-on-reply");
 		var retdate = new Date(retval);
 		var dateFormatService = Components
 		    .classes["@mozilla.org/intl/scriptabledateformat;1"]
@@ -34,7 +36,7 @@ var Sendlater3HeaderView = function() {
 				    retdate.getMinutes(),
 				    0);
 		if (recur) {
-                    var recurStr = SL3U.FormatRecur(recur);
+                    var recurStr = SL3U.FormatRecur(recur, cancelOnReply);
                     if (recurStr)
 		        val += " (" + recurStr + ")";
 		}
@@ -198,17 +200,17 @@ var Sendlater3HeaderView = function() {
             if (IsThisDraft(gDBView.viewFolder)) {
                 var msghdr = gDBView.hdrForFirstSelectedMessage;
                 if (msghdr!=null) {
-                    var sendat =msghdr.getStringProperty("x-send-later-at");
+                    var sendat = msghdr.getStringProperty("x-send-later-at");
                     if (sendat) {
                         var xsendlater = new Date(sendat);
                         var val = xsendlater.toLocaleString();
                         var recur = msghdr
                             .getStringProperty("x-send-later-recur");
-                        if (recur) {
-                            recur = SL3U.FormatRecur(recur);
-                            if (recur)
-                                val += " (" + recur + ")";
-                        }
+                        var cancelOnReply = msghdr
+                            .getStringProperty("x-send-later-cancel-on-reply");
+                        recur = SL3U.FormatRecur(recur, cancelOnReply);
+                        if (recur)
+                            val += " (" + recur + ")";
                         try {
                             document
                                 .getElementById("sendlater3-expanded-Box")

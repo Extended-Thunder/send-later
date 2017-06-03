@@ -170,7 +170,12 @@ var Sendlater3Composing = {
 		    hdr = messageHDR.getStringProperty("x-send-later-recur");
 		    if (hdr)
 			Sendlater3Composing.prevRecurring = hdr;
-			
+
+                    hdr = messageHDR.getStringProperty(
+                        "x-send-later-cancel-on-reply");
+                    if (hdr)
+                        Sendlater3Composing.prevCancelOnReply = hdr;
+
 		    hdr = messageHDR.getStringProperty("x-send-later-args");
 		    if (hdr)
 			Sendlater3Composing.prevArgs = JSON.parse(hdr);
@@ -179,6 +184,8 @@ var Sendlater3Composing = {
 			      Sendlater3Composing.prevXSendLater +
 			      ", prevRecurring=" +
 			      Sendlater3Composing.prevRecurring +
+			      ", prevCancelOnReply=" +
+			      Sendlater3Composing.prevCancelOnReply +
                               ", prevArgs=" +
                               Sendlater3Composing.prevArgs);
 		}
@@ -237,10 +244,12 @@ var Sendlater3Composing = {
                     event.preventDefault();
                     return;
                 }
-                var finishCallback = function (sendat, recur_value, args) {
+                var finishCallback = function (sendat, recur_value,
+                                               cancelOnReply, args) {
                     if (! Sendlater3Composing.callEnigmail(event))
                         return;
-                    Sendlater3Composing.SendAtTime(sendat, recur_value, args);
+                    Sendlater3Composing.SendAtTime(sendat, recur_value,
+                                                   cancelOnReply, args);
                 };
                 var args = {
                     finishCallback: finishCallback,
@@ -250,6 +259,7 @@ var Sendlater3Composing = {
                     allowDefault: false,
                     previouslyTimed: Sendlater3Composing.prevXSendLater,
                     previouslyRecurring: Sendlater3Composing.prevRecurring,
+                    previouslyCancelOnReply: Sendlater3Composing.prevCancelOnReply,
                     previousArgs: Sendlater3Composing.prevArgs
                 };
                 if (later) {
@@ -314,6 +324,8 @@ var Sendlater3Composing = {
 	    sl3log.Entering("Sendlater3Composing.ReallySendAtCallback.notify", timer);
 	    var sendat = Sendlater3Composing.ReallySendAtClosure.at;
 	    var recur = Sendlater3Composing.ReallySendAtClosure.recur;
+            var cancelOnReply = Sendlater3Composing.ReallySendAtClosure.
+                cancelOnReply;
 	    var args = Sendlater3Composing.ReallySendAtClosure.args;
 
 	    // If it has been at least a week since we last asked the
@@ -342,7 +354,7 @@ var Sendlater3Composing = {
 
 	    gCloseWindowAfterSave = true;
 	    var identity = getCurrentIdentity();
-	    Sendlater3Composing.PrepMessage(sendat, recur, args);
+	    Sendlater3Composing.PrepMessage(sendat, recur, cancelOnReply, args);
 	    GenericSendMessage(nsIMsgCompDeliverMode.SaveAsDraft);
 	    Sendlater3Composing.PostSendMessage();
 
@@ -352,11 +364,14 @@ var Sendlater3Composing = {
 	}
     },
 
-    SendAtTime: function(sendat, recur_value, args) {
-	sl3log.Entering("Sendlater3Composing.SendAtTime", sendat, recur_value, args);
-	Sendlater3Composing.ReallySendAtClosure = { at: sendat,
-						    recur: recur_value,
-						    args: args };
+    SendAtTime: function(sendat, recur_value, cancelOnReply, args) {
+	sl3log.Entering("Sendlater3Composing.SendAtTime", sendat, recur_value, cancelOnReply, args);
+	Sendlater3Composing.ReallySendAtClosure = {
+            at: sendat,
+	    recur: recur_value,
+            cancelOnReply: cancelOnReply,
+	    args: args
+        };
 	Sendlater3Composing.ReallySendAtTimer = Components
 	    .classes["@mozilla.org/timer;1"]
 	    .createInstance(Components.interfaces.nsITimer);
@@ -378,11 +393,12 @@ var Sendlater3Composing = {
     prevRecurring: false,
     prevArgs: null,
 
-    PrepMessage: function(sendat, recur, args) {
+    PrepMessage: function(sendat, recur, cancelOnReply, args) {
 	var msgcomposeWindow = document.getElementById("msgcomposeWindow");
 	msgcomposeWindow.setAttribute("sending_later", true);
 	msgcomposeWindow.sendLater3SendAt = sendat;
 	msgcomposeWindow.sendLater3Recur = recur;
+	msgcomposeWindow.sendLater3CancelOnReply = cancelOnReply;
 	msgcomposeWindow.sendLater3Args = args;
 	msgcomposeWindow.sendLater3Type = gMsgCompose.type;
 	msgcomposeWindow.sendLater3OriginalURI = gMsgCompose.originalMsgURI;
@@ -402,7 +418,9 @@ var Sendlater3Composing = {
             headers['X-Send-Later-At'] = SL3U.FormatDateTime(sendat,true)
             headers['X-Send-Later-Uuid'] = SL3U.getInstanceUuid()
             if (recur) {
-                var recurheaders = SL3U.RecurHeader(sendat, recur, args);
+                var cancelOnReply = compWin.sendLater3CancelOnReply;
+                var recurheaders = SL3U.RecurHeader(
+                    sendat, recur, cancelOnReply, args);
                 for (header in recurheaders) {
                     headers[header] = recurheaders[header];
                 }

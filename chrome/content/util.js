@@ -983,50 +983,55 @@ var Sendlater3Util = {
         return next;
     },
 
-    FormatRecur: function(recurSpec) {
-        var recur = SL3U.ParseRecurSpec(recurSpec);
-
+    FormatRecur: function(recurSpec, cancelOnReply) {
         var fragments = [];
 
-        if (recur.type == "function") {
-            if (! recur.finished)
-                fragments.push("function " +
-                               recur.function.replace(/^ufunc:/, ""));
-        }
-        else if (recur.type != "none") {
-            if (! recur.multiplier)
-                recur.multiplier = 1;
+        if (recurSpec) {
+            var recur = SL3U.ParseRecurSpec(recurSpec);
 
-            if (recur.multiplier == 1)
-                fragments.push(SL3U.PromptBundleGet(recur.type));
-            else
+            if (recur.type == "function") {
+                if (! recur.finished)
+                    fragments.push("function " +
+                                   recur.function.replace(/^ufunc:/, ""));
+            }
+            else if (recur.type != "none") {
+                if (! recur.multiplier)
+                    recur.multiplier = 1;
+
+                if (recur.multiplier == 1)
+                    fragments.push(SL3U.PromptBundleGet(recur.type));
+                else
+                    fragments.push(
+                        SL3U.PromptBundleGetFormatted("every_" + recur.type,
+                                                      [recur.multiplier]));
+            }
+
+            if (recur.monthly_day)
+                fragments.push(SL3U.PromptBundleGetFormatted(
+                    "everymonthly_short",
+                    [SL3U.PromptBundleGet("ord"+recur.monthly_day.week),
+                     SL3U.PromptBundleGet("day"+recur.monthly_day.day)]));
+
+            if (recur.between)
+                fragments.push(SL3U.PromptBundleGetFormatted(
+                    "betw_times", [Math.floor(recur.between.start / 100),
+                                   SL3U.zeroPad(recur.between.start % 100, 2),
+                                   Math.floor(recur.between.end / 100),
+                                   SL3U.zeroPad(recur.between.end % 100, 2)]));
+
+            if (recur.days) {
+                var days = [];
+                for (var i in recur.days)
+                    days.push(SL3U.PromptBundleGet("day" + recur.days[i]));
+                days = days.join(", ");
                 fragments.push(
-                    SL3U.PromptBundleGetFormatted("every_" + recur.type,
-                                                  [recur.multiplier]));
+                    SL3U.PromptBundleGetFormatted("only_on_days", [days]));
+            }
         }
 
-        if (recur.monthly_day)
-            fragments.push(SL3U.PromptBundleGetFormatted(
-                "everymonthly_short",
-                [SL3U.PromptBundleGet("ord"+recur.monthly_day.week),
-                 SL3U.PromptBundleGet("day"+recur.monthly_day.day)]));
-
-        if (recur.between)
-            fragments.push(SL3U.PromptBundleGetFormatted(
-                "betw_times", [Math.floor(recur.between.start / 100),
-                               SL3U.zeroPad(recur.between.start % 100, 2),
-                               Math.floor(recur.between.end / 100),
-                               SL3U.zeroPad(recur.between.end % 100, 2)]));
-
-        if (recur.days) {
-            var days = [];
-            for (var i in recur.days)
-                days.push(SL3U.PromptBundleGet("day" + recur.days[i]));
-            days = days.join(", ");
-            fragments.push(
-                SL3U.PromptBundleGetFormatted("only_on_days", [days]));
-        }
-
+        if (cancelOnReply)
+            fragments.push(SL3U.PromptBundleGet("cancel_on_reply"));
+            
         if (fragments.length)
             return fragments.join(", ");
         else
@@ -1059,10 +1064,15 @@ var Sendlater3Util = {
         }
     },
     
-    RecurHeader: function(sendat, recur, args) {
-        var header = {'X-Send-Later-Recur': recur};
-        if (args) {
-            header['X-Send-Later-Args'] = JSON.stringify(args);
+    RecurHeader: function(sendat, recur, cancelOnReply, args) {
+        if (recur) {
+            var header = {'X-Send-Later-Recur': recur};
+            if (args) {
+                header['X-Send-Later-Args'] = JSON.stringify(args);
+            }
+        }
+        if (cancelOnReply) {
+            header['X-Send-Later-Cancel-On-Reply'] = "yes";
         }
         return header;
     },

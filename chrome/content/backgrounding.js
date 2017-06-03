@@ -329,6 +329,11 @@ var Sendlater3Backgrounding = function() {
 	installedCustomHeaders += " x-send-later-recur";
 	changed = true;
     }
+    if (installedCustomHeaders.indexOf("x-send-later-cancel-on-reply")<0) {
+	sl3log.dump("Installing Custom X-Send-Later-Cancel-On-Reply Header\n");
+	installedCustomHeaders += " x-send-later-cancel-on-reply";
+	changed = true;
+    }
     if (installedCustomHeaders.indexOf("x-send-later-args")<0) {
 	sl3log.dump("Installing Custom X-Send-Later-Args Header\n");
 	installedCustomHeaders += " x-send-later-args";
@@ -419,16 +424,19 @@ var Sendlater3Backgrounding = function() {
 	ProgressSet("ProgressFinish", where);
     }
 
-    function CopyUnsentListener(content, uri, hdr, sendat, recur, args) {
+    function CopyUnsentListener(content, uri, hdr, sendat, recur,
+                                cancelOnReply, args) {
 	this._content = content;
 	this._uri = uri;
 	this._hdr = hdr;
 	this._sendat = sendat;
 	this._recur = recur;
+        this._cancelOnReply = cancelOnReply;
 	this._args = args;
 	sl3log.debug("Sendlater3Backgrounding.CopyUnsentListener: _sendat=" + 
-		   this._sendat + ", _recur=" +  this._recur + ", _args=" + 
-		   this._args);
+		     this._sendat + ", _recur=" +  this._recur +
+                     ", _cancelOnReply=" + this._cancelOnReply + ", _args=" + 
+		     this._args);
     }
 
     var MessagesChecked = new Object();
@@ -480,6 +488,7 @@ var Sendlater3Backgrounding = function() {
 	    var messageHDR = this._hdr;
 	    var sendat = this._sendat;
 	    var recur = this._recur;
+            var cancelOnReply = this._cancelOnReply;
 	    var args = this._args;
 	    var folder = messageHDR.folder;
 	    var dellist;
@@ -522,12 +531,11 @@ var Sendlater3Backgrounding = function() {
 		var content = this._content;
 		var header = "\r\nX-Send-Later-At: " + SL3U.FormatDateTime(next, true) +
 		    "\r\nX-Send-Later-Uuid: " + SL3U.getInstanceUuid() + "\r\n";
-		if (recur) {
-		    var recurheader = SL3U.RecurHeader(next, recur, args);
-                    for (name in recurheader) {
-                        header += name + ": " + recurheader[name] + "\r\n";
-                    }
-		}
+		var recurheader = SL3U.RecurHeader(
+                    next, recur, cancelOnReply, args);
+                for (name in recurheader) {
+                    header += name + ": " + recurheader[name] + "\r\n";
+                }
 		content = content.replace(/\r\n\r\n/, header + "\r\n");
 		content = content.replace(/^From .*\r\n/, "");
 		sl3log.debug("Sendlater3Backgrounding.CopyUnsentListener.OnStopCopy: header=" + header);
@@ -682,10 +690,13 @@ var Sendlater3Backgrounding = function() {
 	this._messageHDR = messageHDR;
 	this._header = messageHDR.getStringProperty("x-send-later-at");
 	this._recur = messageHDR.getStringProperty("x-send-later-recur");
+        this._cancelOnReply = messageHDR.getStringProperty(
+            "x-send-later-cancel-on-reply");
 	this._args = messageHDR.getStringProperty("x-send-later-args");
-	sl3log.debug("Sendlater3Backgrounding.UriStreamListener: _uri=" + this._uri +
-		   ", _header=" + this._header + ", _recur=" + this._recur + ", _args=" +
-		   this._args);
+	sl3log.debug("Sendlater3Backgrounding.UriStreamListener: _uri=" +
+                     this._uri + ", _header=" + this._header + ", _recur=" +
+                     this._recur + ", _cancelOnReply=" + this._cancelOnReply +
+                     ", _args=" + this._args);
 	sl3log.Leaving("Sendlater3Backgrounding.UriStreamListener");
     }
 
@@ -733,6 +744,8 @@ var Sendlater3Backgrounding = function() {
 				      "\n");
 	    content = content.replace(/\nX-Send-Later-Recur:.*\n/i,
 				      "\n");
+	    content = content.replace(/\nX-Send-Later-Cancel-On-Reply:.*\n/i,
+				      "\n");
 	    content = content.replace(/\nX-Send-Later-Args:.*\n/i,
 				      "\n");
 	    content = content.replace(/\nX-Enigmail-Draft-Status:.*\n/i,
@@ -774,6 +787,7 @@ var Sendlater3Backgrounding = function() {
 						  messageHDR,
 						  this._header,
 						  this._recur,
+                                                  this._cancelOnReply,
 						  this._args)
 	    SL3U.CopyStringMessageToFolder(content, fdrunsent,listener);
 	    ProgressFinish("finish streaming message");

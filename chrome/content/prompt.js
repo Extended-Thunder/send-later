@@ -225,6 +225,7 @@ var Sendlater3Prompt = {
 
         if (prevXSendLater) {
 	    var prevRecurring = window.arguments[0].previouslyRecurring;
+            var prevCancelOnReply = window.arguments[0].previouslyCancelOnReply;
 	    var prevArgs = window.arguments[0].previousArgs;
             prevXSendLater = prevXSendLater.format(
                 "long", sendlater3SugarLocale());
@@ -236,6 +237,7 @@ var Sendlater3Prompt = {
                 prevXSendLater = defaults[0];
                 prevRecurring = defaults[1];
                 prevArgs = defaults[2];
+                prevCancelOnReply = defaults[3];
             }
         }
 
@@ -290,6 +292,9 @@ var Sendlater3Prompt = {
             }
 	}
 
+        document.getElementById("sendlater3-cancel-on-reply-checkbox").checked =
+            prevCancelOnReply ? true : false;
+            
         if (prevArgs) {
             document.getElementById("function-args").value =
                 sl3uf.unparseArgs(prevArgs);
@@ -300,6 +305,11 @@ var Sendlater3Prompt = {
                 prevXSendLater;
 	    Sendlater3Prompt.updateSummary();
 	}
+
+        if (prevCancelOnReply)
+            document.getElementById("sendlater3-cancel-on-reply-checkbox").
+            checked = true;
+
         Sendlater3Prompt.CheckRecurring();
 	document.getElementById("sendlater3-time-text").focus();
 	Sendlater3Prompt.AddControlReturnListeners(document);
@@ -422,7 +432,7 @@ var Sendlater3Prompt = {
 	else {
 	    sendat.setTime(sendat.getTime()+mins*60*1000);
 	}
-	window.arguments[0].finishCallback(sendat, recur, args);
+	window.arguments[0].finishCallback(sendat, recur, false, args);
 	sl3log.Leaving("Sendlater3Prompt.CallSendAfter");
 	return true;
     },
@@ -530,7 +540,10 @@ var Sendlater3Prompt = {
         if (days)
             parsed.days = days;
 
-	return [dateObj, parsed];
+        cancelOnReply = document.getElementById(
+            "sendlater3-cancel-on-reply-checkbox").checked;
+
+	return [dateObj, parsed, cancelOnReply];
     },
 
     CallSendAt: function() {
@@ -547,15 +560,16 @@ var Sendlater3Prompt = {
                 }
                 var spec = SL3U.unparseRecurSpec(results[1]);
                 var args = document.getElementById("function-args").value;
+                var cancelOnReply = results[2];
                 args = sl3uf.parseArgs(args);
                 SL3U.setCharPref("prompt.defaults", JSON.stringify(
-                    [sendat, spec, args]));
+                    [sendat, spec, args, cancelOnReply]));
             }
             catch (ex) {}
         }
         else if (document.getElementById("clear-defaults").checked)
             SL3U.setCharPref("prompt.defaults", "");
-        var sendat, spec, args;
+        var sendat, spec, args, cancelOnReply;
         var functionName = this.fullyFunctional();
         if (functionName) {
             var results = this.onCalculate(true);
@@ -567,6 +581,7 @@ var Sendlater3Prompt = {
             sendat = results.shift();
             spec = results.shift();
             args = results.shift();
+            cancelOnReply = results.shift();
         }
         else {
 	    sendat = Sendlater3Prompt.updateSummary();
@@ -575,10 +590,11 @@ var Sendlater3Prompt = {
                              false);
                 return false;
             }
-            [sendat, spec] = Sendlater3Prompt.GetRecurStructure(sendat);
+            [sendat, spec, cancelOnReply] = Sendlater3Prompt.
+                GetRecurStructure(sendat);
         }
         spec = SL3U.unparseRecurSpec(spec);
-	window.arguments[0].finishCallback(sendat, spec, args);
+	window.arguments[0].finishCallback(sendat, spec, cancelOnReply, args);
         sl3log.Returning("Sendlater3Prompt.CallSendAt", true);
 	return true;
     },
@@ -617,7 +633,9 @@ var Sendlater3Prompt = {
             return;
         }
         var sendat = results.shift(), spec;
-        [sendat, spec] = this.GetRecurStructure(sendat, !interactive);
+        // Ignores cancelOnReply, not relevant here.
+        [sendat, spec, cancelOnReply] =
+            this.GetRecurStructure(sendat, !interactive);
         var functionRecurString = results.shift(), newSpec;
         if (functionRecurString)
             newSpec = SL3U.ParseRecurSpec(functionRecurString);
@@ -634,7 +652,7 @@ var Sendlater3Prompt = {
         this.updateSummary();
         // Returns adjusted date, parsed recurrence spec, and arguments (if
         // any) for the next invocation (if any).
-        return [sendat, newSpec, results];
+        return [sendat, newSpec, results, cancelOnReply];
     }
 }
 
