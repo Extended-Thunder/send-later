@@ -512,7 +512,10 @@ var Sendlater3Backgrounding = function() {
 		sl3log.dump("Message deposited in Outbox.");
 	    }
 	    SetAnimTimer(3000);
+            if (MessagesPending)
+                MessagesPending--;
 	    if (recur) {
+                lastMessagesPending = ++MessagesPending;
 		if (args) {
 		    args = JSON.parse(args);
 		}
@@ -923,6 +926,9 @@ var Sendlater3Backgrounding = function() {
 		    sl3log.warn("Skipping " + messageURI + " -- resend!");
 		    break;
 		}
+                // Count messages being sent right now as pending until
+                // they're done being sent and aren't recurring.
+                MessagesPending++;
 		ProgressAdd("start streaming message");
 		MsgService.streamMessage(messageURI,
 					 new UriStreamListener(messageURI, messageHDR),
