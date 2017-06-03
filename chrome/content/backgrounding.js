@@ -657,28 +657,6 @@ var Sendlater3Backgrounding = function() {
 	sl3log.Leaving("Sendlater3Backgrounding.SetAnimTimer");
     }
 
-    function CheckDraftUuid(header, content) {
-	var matches = content.match(/^X-Send-Later-Uuid:\s*(.*)/mi);
-	if (matches) {
-	    var draft_uuid = matches[1];
-	    var instance_uuid = SL3U.getInstanceUuid();
-	    if (draft_uuid != instance_uuid) {
-		sl3log.debug("Skipping message with date " + header + " on uid" +
-			   " mismatch (draft " + draft_uuid + " vs. instance " +
-			   instance_uuid + ")");
-		return false;
-	    }
-	    else {
-		sl3log.debug("Draft uuid match: " + draft_uuid);
-		return true;
-	    }
-	}
-	else {
-	    sl3log.debug("No draft uuid");
-	    return true;
-	}
-    }
-
     // Can we assume that a read from a hung server will eventually time out
     // and cause onStopRequest to be called with an error status code, or are
     // we introducing a memory leak here by creating asynchronous listeners
