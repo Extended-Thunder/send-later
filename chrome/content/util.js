@@ -1076,7 +1076,8 @@ var Sendlater3Util = {
             }
         }
         if (cancelOnReply) {
-            header['X-Send-Later-Cancel-On-Reply'] = "yes";
+            header['X-Send-Later-Cancel-On-Reply'] =
+                (typeof(cancelOnReply) == "string") ? cancelOnReply : "yes";
         }
         return header;
     },

@@ -424,11 +424,12 @@ var Sendlater3Backgrounding = function() {
 	ProgressSet("ProgressFinish", where);
     }
 
-    function CopyUnsentListener(content, uri, hdr, sendat, recur,
+    function CopyUnsentListener(content, uri, hdr, messageId, sendat, recur,
                                 cancelOnReply, args) {
 	this._content = content;
 	this._uri = uri;
 	this._hdr = hdr;
+        this._messageId = messageId;
 	this._sendat = sendat;
 	this._recur = recur;
         this._cancelOnReply = cancelOnReply;
@@ -534,6 +535,8 @@ var Sendlater3Backgrounding = function() {
 		var content = this._content;
 		var header = "\r\nX-Send-Later-At: " + SL3U.FormatDateTime(next, true) +
 		    "\r\nX-Send-Later-Uuid: " + SL3U.getInstanceUuid() + "\r\n";
+                if (cancelOnReply)
+                    cancelOnReply += " " + this._messageId;
 		var recurheader = SL3U.RecurHeader(
                     next, recur, cancelOnReply, args);
                 for (name in recurheader) {
@@ -754,7 +757,8 @@ var Sendlater3Backgrounding = function() {
 	    content = content.replace(/\nX-Enigmail-Draft-Status:.*\n/i,
 				      "\n");
 
-            [content] = ReplaceMessageId(content);
+            var messageId;
+            [content, messageId] = ReplaceMessageId(content);
 
 	    // Remove extra newline -- see comment above.
 	    content = content.slice(1);
@@ -790,6 +794,7 @@ var Sendlater3Backgrounding = function() {
 	    var listener = new CopyUnsentListener(content,
 						  this._uri,
 						  messageHDR,
+                                                  messageId,
 						  this._header,
 						  this._recur,
                                                   this._cancelOnReply,
