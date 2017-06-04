@@ -157,7 +157,7 @@ var Sendlater3ComposeToolbar = {
 	 
 	var textField = document.getElementById("sendlater3-toolbar-text");
 	if (Sendlater3Composing.prevXSendLater) {
-	    sl3log.dump("PrevXSendlater is set to " +
+	    sl3log.debug("PrevXSendlater is set to " +
 		      Sendlater3Composing.prevXSendLater);
 	    if (textField) {
 		textField.value =
@@ -168,7 +168,7 @@ var Sendlater3ComposeToolbar = {
 		Sendlater3Composing.prevXSendLater);
 	}
 	else {
-	    sl3log.dump("No previous time");
+	    sl3log.debug("No previous time");
 	    if (textField) {
 		textField.value = "";
 	    }

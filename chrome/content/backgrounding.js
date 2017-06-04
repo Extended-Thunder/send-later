@@ -370,7 +370,7 @@ var Sendlater3Backgrounding = function() {
         delete wantedHeaders[h.toLowerCase()]; });
     var changed = false;
     for (var h in wantedHeaders) {
-        sl3log.dump("Installing header " + h + " in customDBHeaders");
+        sl3log.info("Installing header " + h + " in customDBHeaders");
         changed = true;
         if (customHeadersString)
             customHeadersString += " " + h;
@@ -508,7 +508,7 @@ var Sendlater3Backgrounding = function() {
 		}
 		catch (ex) {
 		    // Windows still has it open.
-		    sl3log.dump("Failed to delete " + copying.path +"; queuing.");
+		    sl3log.debug("Failed to delete " + copying.path +"; queuing.");
 		    SL3U.WaitAndDelete(copying);
 		}
 	    }
@@ -544,10 +544,10 @@ var Sendlater3Backgrounding = function() {
 					     null, false);
 	    if (SL3U.getBoolPref("sendunsentmessages")) {
 		queueSendUnsentMessages();
-		sl3log.dump ("Sending Message.");
+		sl3log.info("Sending Message.");
 	    }
 	    else {
-		sl3log.dump("Message deposited in Outbox.");
+		sl3log.info("Message deposited in Outbox.");
 	    }
 	    SetAnimTimer(3000);
             if (MessagesPending)
@@ -616,7 +616,7 @@ var Sendlater3Backgrounding = function() {
 		}
 		catch (ex) {
 		    // Windows still has it open.
-		    sl3log.dump("Failed to delete " + copying.path +"; queuing.");
+		    sl3log.debug("Failed to delete " + copying.path +"; queuing.");
 		    SL3U.WaitAndDelete(copying);
 		}
 	    }
@@ -891,7 +891,7 @@ var Sendlater3Backgrounding = function() {
 		if (new Date() < new Date(h_at)) {
 		    sl3log.debug(messageURI + ": early x-send-later-at=" + h_at);
 		    lastMessagesPending = ++MessagesPending;
-		    sl3log.dump(MessagesPending + " messages still pending");
+		    sl3log.debug(MessagesPending + " messages still pending");
 		    break;
 		}
                 if ((new Date() - new Date(h_at)) / 1000 / 60 >
@@ -923,7 +923,7 @@ var Sendlater3Backgrounding = function() {
                         sl3log.debug(messageURI + ": enforcing restrictions on " +
                                    now + " until " + adjusted);
                         lastMessagesPending = ++MessagesPending;
-                        sl3log.dump(MessagesPending + " messages still pending");
+                        sl3log.debug(MessagesPending + " messages still pending");
                         break;
                     }                        
                 }
@@ -1033,7 +1033,7 @@ var Sendlater3Backgrounding = function() {
 	    }
 	}
 	if ( messageenumerator ) {
-	    sl3log.dump ("Got Enumerator\n");
+	    sl3log.debug("Got Enumerator\n");
 	    while ( messageenumerator.hasMoreElements() ) {
 		var messageDBHDR = messageenumerator.getNext()
 		    .QueryInterface(Components.interfaces
@@ -1054,7 +1054,7 @@ var Sendlater3Backgrounding = function() {
 	    }
 	}
 	else {
-	    sl3log.dump("No Enumerator\n");
+	    sl3log.debug("No Enumerator\n");
 	}
     };
 
@@ -1076,7 +1076,7 @@ var Sendlater3Backgrounding = function() {
 	    if (eventType == "FolderLoaded") {
 		if (folderstocheck[folder.URI]) {
 		    SetAnimTimer(3000);
-		    sl3log.dump("FolderLoaded checking: "+folder.URI);
+		    sl3log.debug("FolderLoaded checking: "+folder.URI);
 		    delete folderstocheck[folder.URI];
 		    foldersdone[folder.URI] = 1;
 		    CheckLoadedFolder(folder);
@@ -1085,7 +1085,7 @@ var Sendlater3Backgrounding = function() {
 	    }
 	    else if (eventType == "Immediate") {
 		SetAnimTimer(3000);
-		sl3log.dump("Immediate checking: "+folder.URI);
+		sl3log.debug("Immediate checking: "+folder.URI);
 		CheckLoadedFolder(folder);
 		ProgressFinish("finish checking folder");
 	    }
@@ -1201,7 +1201,7 @@ var Sendlater3Backgrounding = function() {
 		}
 		if (schedule) {
 		    folderstocheck[uri] = 1;
-		    sl3log.dump("SCHEDULE " + msg + " - " + uri);
+		    sl3log.debug("SCHEDULE " + msg + " - " + uri);
 		    ProgressAdd(msg);
 		    try {
 			// Documentation for nsiMsgFolder says, "Note:
@@ -1225,7 +1225,7 @@ var Sendlater3Backgrounding = function() {
 		// we're also doing a scheduled scan, because
 		// sometimes updateFolder doesn't generate a folder
 		// loaded event. *sigh*
-		sl3log.dump("IMMEDIATE " + msg + " - " + uri);
+		sl3log.debug("IMMEDIATE " + msg + " - " + uri);
 		ProgressAdd(msg + " immediate");
 		folderLoadListener.OnItemEvent(folder, "Immediate");
 	    }

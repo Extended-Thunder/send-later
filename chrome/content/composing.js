@@ -148,7 +148,7 @@ var Sendlater3Composing = {
 		var msgCompFields = gMsgCompose.compFields;
 		if (msgCompFields && msgCompFields.draftId!="") {
 		    var messageURI = msgCompFields.draftId.replace(/\?.*/, "");
-		    sl3log.dump("Checking " + messageURI);
+		    sl3log.debug("Checking " + messageURI);
 		    var accountManager = Components
 			.classes["@mozilla.org/messenger/account-manager;1"]
 			.getService(Components.interfaces
@@ -180,7 +180,7 @@ var Sendlater3Composing = {
 		    if (hdr)
 			Sendlater3Composing.prevArgs = JSON.parse(hdr);
 			
-		    sl3log.dump("prevXSendLater= " +
+		    sl3log.debug("prevXSendLater= " +
 			      Sendlater3Composing.prevXSendLater +
 			      ", prevRecurring=" +
 			      Sendlater3Composing.prevRecurring +

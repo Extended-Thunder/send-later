@@ -116,10 +116,10 @@ sl3log = {
         try { logger.info(msg); } catch (ex) {}
     },
 
-    dump: function(msg) {
+    config: function(msg) {
         init();
         if (! log_filter(msg)) return;
-        try { logger.info(msg); } catch (ex) {}
+        try { logger.config(msg); } catch (ex) {}
     },
 
     debug: function(msg) {

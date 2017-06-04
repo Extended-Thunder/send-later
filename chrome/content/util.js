@@ -1252,7 +1252,7 @@ var Sendlater3Util = {
         sfile.appendRelativePath("tempMsg" + Sendlater3Util.getInstanceUuid()
                                  + Sendlater3Util.fileNumber++ + ".eml");
         var filePath = sfile.path;
-        sl3log.dump("Saving message to " + filePath);
+        sl3log.info("Saving message to " + filePath);
         if (sfile.exists()) sfile.remove(true);
         sfile.create(sfile.NORMAL_FILE_TYPE, 0600);
         var stream = Components
@@ -1299,11 +1299,11 @@ var Sendlater3Util = {
                     this.file.remove(true);
                     this.timer_ref = undefined;
                     timer.cancel();
-                    sl3log.dump("Successfully deleted queued "
+                    sl3log.info("Successfully deleted queued "
                                         + this.file.path);
                 }
                 catch (ex) {
-                    sl3log.dump("Failed to delete "
+                    sl3log.warn("Failed to delete "
                                         + this.file.path);
                 }
             }
