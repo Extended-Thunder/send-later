@@ -214,6 +214,11 @@ var Sendlater3Backgrounding = function() {
             newMessageListener.msgAdded(aMsgHdr);
         },
 
+        itemDeleted: function(item) {},
+        itemMoveCopyCompleted: function(move, srcitems, destfolder) {},
+        folderRenamed: function(oldName, newName) {},
+        itemEvent: function(item, event, data) {},
+
         // Thunderbird 3
         msgAdded: function(aMsgHdr) {
             if (aMsgHdr.getStringProperty("x-send-later-at")) {
@@ -529,19 +534,7 @@ var Sendlater3Backgrounding = function() {
             var cancelOnReply = this._cancelOnReply;
 	    var args = this._args;
 	    var folder = messageHDR.folder;
-	    var dellist;
-	    if (SL3U.IsPostbox()) {
-		dellist = Components.classes["@mozilla.org/supports-array;1"]
-		    .createInstance(Components.interfaces.nsISupportsArray);
-		dellist.AppendElement(messageHDR);
-	    }
-	    else {
-		dellist = Components.classes["@mozilla.org/array;1"]
-		    .createInstance(Components.interfaces.nsIMutableArray);
-		dellist.appendElement(messageHDR, false);
-	    }
-	    messageHDR.folder.deleteMessages(dellist, msgWindow, true, false,
-					     null, false);
+            deleteMessage(messageHDR);
 	    if (SL3U.getBoolPref("sendunsentmessages")) {
 		queueSendUnsentMessages();
 		sl3log.info("Sending Message.");
@@ -1568,7 +1561,7 @@ var Sendlater3Backgrounding = function() {
         for (var i in messageIds) {
             messageId = messageIds[i];
             if (messageId in this.replies) {
-                this.deleteMessage(hdr);
+                deleteMessage(hdr);
                 this.purgeReply(this.replies[messageId]);
                 return false;
             }
@@ -1600,7 +1593,7 @@ var Sendlater3Backgrounding = function() {
             var ref = refs[i];
             var draft = this.newDrafts[ref] || this.drafts[ref];
             if (draft) {
-                this.deleteMessage(draft);
+                deleteMessage(draft);
                 this.purgeDraft(draft);
                 return;
             }
@@ -1625,7 +1618,7 @@ var Sendlater3Backgrounding = function() {
             var draft = this.drafts[referenceId];
             if (! draft) continue;
             if (draftsToPurge.indexof(draft) > -1) continue;
-            this.deleteMessage(draft);
+            deleteMessage(draft);
             draftsToPurge.push(draft);
         }
         for (var i in draftsToPurge)
@@ -1633,15 +1626,6 @@ var Sendlater3Backgrounding = function() {
         this.replies = [];
         sl3log.debug("Rotated cancel on reply engine. Current drafts: " +
                      Object.keys(this.drafts).join(" "));
-    };
-    CancelOnReplyEngine.prototype.deleteMessage = function(hdr) {
-        sl3log.debug("Deleting message <" + hdr.getStringProperty("message-id")
-                     + " (" + hdr.getStringProperty("subject") +
-                     ") in cancel on reply engine");
-	var dellist = Components.classes["@mozilla.org/array;1"]
-	    .createInstance(Components.interfaces.nsIMutableArray);
-	dellist.appendElement(hdr, false);
-        hdr.folder.deleteMessages(dellist, msgWindow, true, false, null, false);
     };
     CancelOnReplyEngine.prototype.purgeDraft = function(hdr) {
         var xheader = hdr.getStringProperty("x-send-later-cancel-on-reply");
@@ -1662,7 +1646,23 @@ var Sendlater3Backgrounding = function() {
         for (var i in refs)
             delete this.replies[refs[i]];
     };
-    
+
+    function deleteMessage(hdr) {
+        var dellist;
+        if (SL3U.IsPostbox()) {
+            dellist = Components.classes["@mozilla.org/supports-array;1"]
+                .createInstance(Components.interfaces.nsISupportsArray);
+            dellist.AppendElement(hdr);
+        }
+        else {
+            dellist = Components.classes["@mozilla.org/array;1"]
+                .createInstance(Components.interfaces.nsIMutableArray);
+            dellist.appendElement(hdr, false);
+        }
+        hdr.folder.deleteMessages(dellist, msgWindow, true, false,
+                                  null, false);
+    };
+
     // BackgroundTimer = Components
     //     .classes["@mozilla.org/timer;1"]
     //     .createInstance(Components.interfaces.nsITimer);
