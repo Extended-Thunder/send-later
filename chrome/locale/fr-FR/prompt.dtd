@@ -11,7 +11,7 @@
 <!ENTITY sendlater.prompt.title.label "Programmation d'envoi différé de courriel">
 <!ENTITY sendlater.prompt.textbox.label "Programmer pour :">
 <!ENTITY sendlater.prompt.or.label "ou:">
-<!ENTITY sendlater.prompt.textbox.tooltip "Entrer un date et une heure. Les formes libres comme « 31-12/2012 15:27 » sont acceptées.">
+<!ENTITY sendlater.prompt.textbox.tooltip "Entrer une date et une heure. Les formes libres comme « 31-12/2012 15:27 » sont acceptées.">
 <!ENTITY sendlater.prompt.textbox.emptytext "(ex. : « 15:00 mardi » ou « 31-12/2012 15:27 »)">
 <!ENTITY sendlater.prompt.sendat.label "Envoyer au moment choisi">
 <!ENTITY sendlater.prompt.sendat.tooltip "Enregistre le message dans « Brouillons » jusqu'au moment prévu indiqué.">
@@ -42,3 +42,5 @@
 <!ENTITY sendlater.prompt.day4 "Jeudi">
 <!ENTITY sendlater.prompt.day5 "Vendredi">
 <!ENTITY sendlater.prompt.day6 "Samedi">
+<!ENTITY sendlater.prompt.cancelonreply.label "Annuler la récurrence en cas de réponse">
+<!ENTITY sendlater.prompt.cancelonreply.tooltip "Vérifie la présence de réponses à un précédent envoi d'un message récurrent. Annule la récurrence et efface le fichier du dossier Brouillons lorsqu'une réponse est reçue à l'un des envois.">

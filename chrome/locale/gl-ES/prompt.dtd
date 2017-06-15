@@ -1,0 +1,16 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY sendlater.prompt.sendnow.label "Enviar agora">
+<!ENTITY sendlater.prompt.sendnow.accesskey "E">
+<!ENTITY sendlater.prompt.close.label "Cancelar">
+<!ENTITY sendlater.prompt.calculate.label "Calcular">
+<!ENTITY sendlater.toolbar.sendlater.button.label "Enviar máis tarde">
+<!ENTITY sendlater.button1.label "15 min máis tarde">
+<!ENTITY sendlater.button2.label "30 min máis tarde">
+<!ENTITY sendlater.button3.label "2 horas máis tarde">
+<!ENTITY sendlater.prompt.day0 "Domingo">
+<!ENTITY sendlater.prompt.day1 "Luns">
+<!ENTITY sendlater.prompt.day2 "Martes">
+<!ENTITY sendlater.prompt.day3 "Mércores">
+<!ENTITY sendlater.prompt.day4 "Xoves">
+<!ENTITY sendlater.prompt.day5 "Venres">
+<!ENTITY sendlater.prompt.day6 "Sábado">

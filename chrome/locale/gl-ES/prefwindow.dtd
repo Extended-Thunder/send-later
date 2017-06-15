@@ -1,0 +1,22 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY prefwindow.title "Preferencias de {NAME}">
+<!ENTITY pane1.title "Preferencias de {NAME}">
+<!ENTITY checktimepref.label "Comprobar cada:">
+<!ENTITY checktimepref2.label "minutos">
+<!ENTITY checktimepref.tooltip "Intervalo, en minutos, entre comprobacións para borradores cuxa hora de envío chegou. Aumenta este valor se ás veces os borradores non se envían a tempo ou se o reconto de mensaxes pendentes na barra de estado non reflicte todos os envíos programados.">
+<!ENTITY general.caption "Xeral">
+<!ENTITY quickoption1.caption "Atallo 1">
+<!ENTITY quickoption2.caption "Atallo 2">
+<!ENTITY quickoption3.caption "Atallo 3">
+<!ENTITY quickoptionname.label "Etiqueta do botón:">
+<!ENTITY quickoptionvalue.label "Minutos:">
+<!ENTITY showtoolbarbutton.caption "Mostrar na barra de ferramentas">
+<!ENTITY showsendlatercolumn.caption "Mostrar columna de {NAME}">
+<!ENTITY showsendlaterheader.caption "Mostrar cabeceira de {NAME}">
+<!ENTITY contactauthor.value "Contactar co autor">
+<!ENTITY helplink.value "Guía do usuario">
+<!ENTITY releasenotes.value "Notas do lanzamento">
+<!ENTITY donatelink.value "Doar">
+<!ENTITY editorlink.value "Editor de funciones dinámicas">
+<!ENTITY blocklatemessages.label1 "Non enviar mensaxes con máis de">
+<!ENTITY editorbutton "Abrir o editor de funcións dinámicas…">

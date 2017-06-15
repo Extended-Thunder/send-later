@@ -42,3 +42,5 @@
 <!ENTITY sendlater.prompt.day4 "Czwartek">
 <!ENTITY sendlater.prompt.day5 "Piątek">
 <!ENTITY sendlater.prompt.day6 "Sobota">
+<!ENTITY sendlater.prompt.cancelonreply.label "Zaniechaj ponawiania po otrzymaniu odpowiedzi">
+<!ENTITY sendlater.prompt.cancelonreply.tooltip "Oczekuj na odpowiedź do poprzednio ponowionych wiadomości. Zatrzymaj ponawianie i usuń je z folderu Szkice gdy nadejdzie odpowiedź.">

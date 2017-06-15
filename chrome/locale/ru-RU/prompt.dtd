@@ -42,3 +42,5 @@
 <!ENTITY sendlater.prompt.day4 "Четверг">
 <!ENTITY sendlater.prompt.day5 "Пятница">
 <!ENTITY sendlater.prompt.day6 "Суббота">
+<!ENTITY sendlater.prompt.cancelonreply.label "Отменить повторную отправку после ответа">
+<!ENTITY sendlater.prompt.cancelonreply.tooltip "Отслеживать ответы, для отмены отправки копий рекурсивных сообщений. Отменяет повторяющиеся сообщения и удаляет их из «Черновиков», после получения ответа.">

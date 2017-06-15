@@ -1,10 +1,20 @@
 <!-- -*- coding: utf-8 -*- -->
+<!ENTITY windowtitle "Editor de función dinámicas de “{NAME}”">
 <!ENTITY selectfunction "Seleccionar función:">
+<!ENTITY selectfunctiontip "Seleccione unha función para editar ou eliminar, ou crea unha nova en “Crear nova función”.">
 <!ENTITY createnewfunction "(crear nova función)">
 <!ENTITY delete.label "Eliminar">
 <!ENTITY delete.accesskey "l">
+<!ENTITY functionnametip "Insire ou edita un nome de función alfanumérico. Se modifica o nome dunha función existente, ao gardala pediráseche que a renomees ou crees unha nova co nome modificado.">
+<!ENTITY functionnameplaceholder "nome da función">
+<!ENTITY helptextheader "Texto de axuda da función:">
+<!ENTITY helptextplaceholder "texto de axuda">
+<!ENTITY run.label "Executar función:">
+<!ENTITY inputtime "Hora de entrada:">
+<!ENTITY output "Saída:">
 <!ENTITY import.label "Importar…">
 <!ENTITY export.label "Exportar…">
+<!ENTITY reset.label "Descartar cambios">
 <!ENTITY save.label "Gardar">
 <!ENTITY save.accesskey "G">
 <!ENTITY close.label "Pechar">
