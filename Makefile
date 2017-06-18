@@ -45,9 +45,11 @@ locale_import: crowdin.yaml
 	  xargs grep -l utf-8 | xargs --no-run-if-empty rm
 
 locale_export: crowdin.yaml
-	crowdin-cli upload source
-	crowdin-cli upload translations --auto-approve-imported \
-	  --import-duplicates --import-eq-suggestions
+	crowdin-cli upload sources
+# Don't want this to ever happen automatically. Need to be very
+# careful about it because it could mess with translation work in
+# progress.
+#	crowdin-cli upload translations
 
 crowdin.yaml: crowdin.yaml.template
 	set -e; echo -n "Enter Crowdin API key: "; read api_key; \
