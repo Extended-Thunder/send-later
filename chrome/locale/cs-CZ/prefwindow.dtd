@@ -1,0 +1,26 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY prefwindow.title "{NAME} - předvolby">
+<!ENTITY pane1.title "{NAME} - předvolby">
+<!ENTITY checktimepref.label "Zkontrolovat každých :">
+<!ENTITY checktimepref2.label "minut">
+<!ENTITY checktimepref.tooltip "Interval v minutách mezi kontrolami koncepty, jejichž doba dodání je tady. Tuto hodnotu zvýšit, pokud vaše koncepty nejsou odeslané v čas, nebo pokud počet čekajících zpráv ve stavovém řádku někdy neodpovídá všem naplánovaným konceptům.">
+<!ENTITY general.caption "Obecné">
+<!ENTITY quickoption1.caption "Předvolba 1">
+<!ENTITY quickoption2.caption "Předvolba 2">
+<!ENTITY quickoption3.caption "Předvolba 3">
+<!ENTITY quickoptionname.label "Popisek tlačítka:">
+<!ENTITY quickoptionvalue.label "Minuty :">
+<!ENTITY showtoolbarbutton.caption "Zobrazit v nástrojové liště">
+<!ENTITY sendlatersendbutton.caption "„Odeslat“ = „Odeslat později“">
+<!ENTITY sendlatersendbutton.tooltip "Pokud tuto možnost povolíte, bude se příkaz „Odeslat“ (tlačítko nebo klávesová zkratka Ctrl-Enter) chovat stejně jako „Odeslat později“.">
+<!ENTITY altbinding.caption "Použít Alt-Shift-Enter nmísto Ctrl-Shift-Enter">
+<!ENTITY contactauthor.value "Kontaktovat autora">
+<!ENTITY helplink.value "Uživatelská příručka">
+<!ENTITY releasenotes.value "Poznámky k vydání">
+<!ENTITY donatelink.value "Přispějte">
+<!ENTITY editorlink.value "Editor dynamických funkcí">
+<!ENTITY blocklatemessages.tooltip "Nedoručovat naplánované zprávy, které byly zpožděné za jejich naplánovaný čas, např. protože Thunderbird nebyl v té době spuštěn.">
+<!ENTITY blocklatemessages.label1 "Nedoručovat zprávy o více než">
+<!ENTITY blocklatemessages.label2 "minut později">
+<!ENTITY editorbutton "Otevřít editor dynamických funkcí…">
+<!ENTITY editortip "Otevře okno pro vytváření a úpravy JavaScriptových funkcí implementujících komplexní plánovací logiku.">

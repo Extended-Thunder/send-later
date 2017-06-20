@@ -8,16 +8,16 @@
 <!ENTITY sendlater.prompt.close.label "Annuler">
 <!ENTITY sendlater.prompt.close.accesskey "A">
 <!ENTITY sendlater.prompt.close.tooltip "Revenir à la rédaction du message">
-<!ENTITY sendlater.prompt.title.label "Programmation d'envoi différé de courriel">
+<!ENTITY sendlater.prompt.title.label "Envoyer cet e-mail plus tard">
 <!ENTITY sendlater.prompt.textbox.label "Programmer pour :">
-<!ENTITY sendlater.prompt.or.label "ou:">
-<!ENTITY sendlater.prompt.textbox.tooltip "Entrer une date et une heure. Les formes libres comme « 31-12/2012 15:27 » sont acceptées.">
-<!ENTITY sendlater.prompt.textbox.emptytext "(ex. : « 15:00 mardi » ou « 31-12/2012 15:27 »)">
+<!ENTITY sendlater.prompt.or.label "ou :">
+<!ENTITY sendlater.prompt.textbox.tooltip "Entrer une date et une heure. Les formes libres comme « 31/12/2012 15:27 » sont acceptées.">
+<!ENTITY sendlater.prompt.textbox.emptytext "(ex. : « 15:00 mardi » ou « 31/12/2012 15:27 »)">
 <!ENTITY sendlater.prompt.sendat.label "Envoyer au moment choisi">
-<!ENTITY sendlater.prompt.sendat.tooltip "Enregistre le message dans « Brouillons » jusqu'au moment prévu indiqué.">
-<!ENTITY sendlater.prompt.savedefaults "Enregistrer ces valeurs comme “valeurs par défaut”">
-<!ENTITY sendlater.prompt.cleardefaults "Réinitialiser les valeurs par défauts">
-<!ENTITY sendlater.prompt.recur.label "Répétition :">
+<!ENTITY sendlater.prompt.sendat.tooltip "Enregistre le message dans « Brouillons » pour envoi au moment indiqué.">
+<!ENTITY sendlater.prompt.savedefaults "Enregistrer ces valeurs comme « valeurs par défaut »">
+<!ENTITY sendlater.prompt.cleardefaults "Réinitialiser les valeurs par défaut">
+<!ENTITY sendlater.prompt.recur.label "Récurrence :">
 <!ENTITY sendlater.prompt.none.label "aucune">
 <!ENTITY sendlater.prompt.minutely.label "à la minute">
 <!ENTITY sendlater.prompt.daily.label "quotidienne">
@@ -28,13 +28,13 @@
 <!ENTITY sendlater.prompt.functionargs.label "Arguments de la fonction :">
 <!ENTITY sendlater.prompt.calculate.label "Calculer">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Envoyer plus tard">
-<!ENTITY sendlater.toolbar.textbox.emptytext "Date et horaire d'envoi">
+<!ENTITY sendlater.toolbar.textbox.emptytext "Date et heure d'envoi">
 <!ENTITY sendlater.prompt.every.label "Chaque">
-<!ENTITY sendlater.prompt.between.label "entre">
+<!ENTITY sendlater.prompt.between.label "Entre">
 <!ENTITY sendlater.button1.label "Dans 15 minutes">
 <!ENTITY sendlater.button2.label "Dans 30 minutes">
 <!ENTITY sendlater.button3.label "Dans 2 heures">
-<!ENTITY sendlater.prompt.on.label "seulement les">
+<!ENTITY sendlater.prompt.on.label "Seulement le">
 <!ENTITY sendlater.prompt.day0 "Dimanche">
 <!ENTITY sendlater.prompt.day1 "Lundi">
 <!ENTITY sendlater.prompt.day2 "Mardi">

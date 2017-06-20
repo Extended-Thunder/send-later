@@ -1,0 +1,30 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY windowtitle "{NAME} - Editor dynamických funkcí">
+<!ENTITY selectfunction "Vyberte funkci:">
+<!ENTITY selectfunctiontip "Vyberte funkci k úpravě nebo smazání, nebo použijte „(vytvořit novou funkci)“ pro vytvoření nové funkce.">
+<!ENTITY createnewfunction "(vytvořit novou funkci)">
+<!ENTITY delete.label "Smazat">
+<!ENTITY delete.accesskey "S">
+<!ENTITY functionnametip "Zadejte nebo upravte název alfanumerické funkce. Pokud upravíte název existující funkce, budete během ukládání dotázáni, jestli chcete funkci přejmenovat, nebo chcete vytvořit funkci novou s upraveným názvem.">
+<!ENTITY functionnameplaceholder "název funkce">
+<!ENTITY codeplaceholder "zdrojový kód funkce">
+<!ENTITY helptextheader "Nápověda pro funkci:">
+<!ENTITY helptextplaceholder "text nápovědy">
+<!ENTITY run.accesskey "x">
+<!ENTITY inputtime "Vstupní čas:">
+<!ENTITY inputtimetip "Sem můžete vložit data a časy v jakémkoliv formátu, kterému {NAME} rozumí.">
+<!ENTITY inputargs "Vstupní argumenty:">
+<!ENTITY output "Výstup:">
+<!ENTITY import.label "Importovat…">
+<!ENTITY import.accesskey "m">
+<!ENTITY importtip "Importuje dynamickou funkci dříve exportovanou z editoru.">
+<!ENTITY export.label "Exportovat…">
+<!ENTITY export.accesskey "E">
+<!ENTITY exporttip "Exportujte aktuálně zobrazenou funkci do souboru pro zálohování nebo sdílení.">
+<!ENTITY reset.label "Zahodit změny">
+<!ENTITY reset.accesskey "a">
+<!ENTITY save.label "Uložit">
+<!ENTITY save.accesskey "U">
+<!ENTITY close.label "Zavřít">
+<!ENTITY close.accesskey "Z">
+<!ENTITY close.cmdkey "w">

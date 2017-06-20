@@ -29,6 +29,14 @@ chrome/locale/ca-ES/prefwindow.dtd
 chrome/locale/ca-ES/prompt.dtd
 chrome/locale/ca-ES/prompt.properties
 chrome/locale/ca-ES/sendlater3.properties
+chrome/locale/cs-CZ/ask.dtd
+chrome/locale/cs-CZ/background.properties
+chrome/locale/cs-CZ/editor.dtd
+chrome/locale/cs-CZ/headerView.dtd
+chrome/locale/cs-CZ/prefwindow.dtd
+chrome/locale/cs-CZ/prompt.dtd
+chrome/locale/cs-CZ/prompt.properties
+chrome/locale/cs-CZ/sendlater3.properties
 chrome/locale/de-DE/ask.dtd
 chrome/locale/de-DE/background.properties
 chrome/locale/de-DE/editor.dtd
@@ -212,3 +220,4 @@ chrome/resource/ufuncs.jsm
 defaults/preferences/sendlater3.js
 icon.png
 install.rdf
+src/l10n/cs-CZ/project_strings.csv

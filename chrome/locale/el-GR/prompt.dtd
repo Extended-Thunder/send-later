@@ -42,3 +42,5 @@
 <!ENTITY sendlater.prompt.day4 "Πέμπτη">
 <!ENTITY sendlater.prompt.day5 "Παρασκευή">
 <!ENTITY sendlater.prompt.day6 "Σάββατο">
+<!ENTITY sendlater.prompt.cancelonreply.label "Ακυρώσετε την επανάληψη μετά την απάντηση">
+<!ENTITY sendlater.prompt.cancelonreply.tooltip "Παρακολουθήστε για απαντήσεις σε προηγούμενα αντίγραφα των επαναλαμβανόμενων μηνυμάτων. Ακυρώστε ένα επαναλαμβανόμενο μήνυμα και αφαιρέστε το από το φάκελο &quot;Πρόχειρα&quot; όταν ληφθεί μια απάντηση.">

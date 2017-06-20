@@ -38,6 +38,13 @@
     </em:localized>
     <em:localized>
       <Description>
+	<em:locale>cs</em:locale>
+	<em:name>Odeslat později</em:name>
+	<em:description>„Odeslat později“ umožňuje naplánovat čas pro pozdější odeslání emailu.</em:description>
+      </Description>
+    </em:localized>
+    <em:localized>
+      <Description>
 	<em:locale>de</em:locale>
 	<em:name>Später Senden</em:name>
 	<em:description>Eine erweiterte „Später senden”-Funktion zur Planung der Sendezeit</em:description>
@@ -47,7 +54,7 @@
       <Description>
 	<em:locale>el</em:locale>
 	<em:name>Send Later</em:name>
-	<em:description>True “Send Later” functionality to schedule the time for sending an email.</em:description>
+	<em:description>Πραγματική «Στείλετε αργότερα» λειτουργικότητα για να προγραμματίσετε την ώρα για την αποστολή μηνύματοςμέσω ηλεκτρονικού ταχυδρομείου.</em:description>
       </Description>
     </em:localized>
     <em:localized>

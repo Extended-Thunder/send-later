@@ -1,6 +1,7 @@
 content	sendlater3	chrome/content/
 resource sendlater3	chrome/resource/
 locale	sendlater3	ca	chrome/locale/ca-ES/
+locale  sendlater3      cs      chrome/locale/cs-CZ/
 locale	sendlater3	de	chrome/locale/de-DE/
 locale  sendlater3      el      chrome/locale/el-GR/
 locale	sendlater3	en-US	chrome/locale/en-US/
