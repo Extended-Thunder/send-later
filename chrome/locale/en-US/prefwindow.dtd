@@ -23,6 +23,7 @@
 <!ENTITY sendlatersendbutton.caption "“Send” does “Send Later”">
 <!ENTITY sendlatersendbutton.tooltip "With this option enabled, the “Send” command (either the button or typing Ctrl-Enter) acts the same as “Send Later”.">
 <!ENTITY altbinding.caption "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter">
+<!ENTITY markread.caption "Mark scheduled drafts as read">
 <!ENTITY advanced.caption "Advanced">
 <!ENTITY dumplevel.caption "Dump log level:">
 <!ENTITY consolelevel.caption "Console log level:">

@@ -222,6 +222,7 @@ var Sendlater3Backgrounding = function() {
         // Thunderbird 3
         msgAdded: function(aMsgHdr) {
             if (aMsgHdr.getStringProperty("x-send-later-at")) {
+                if (! SL3U.getBoolPref("mark_drafts_read")) return;
 	        if (SL3U.IsPostbox()) {
 		    readlist = Components.
                         classes["@mozilla.org/supports-array;1"]

@@ -38,3 +38,4 @@ pref("extensions.sendlater3.relnotes","");
 pref("extensions.sendlater3.disabled_for_enigmail",false);
 pref("extensions.sendlater3.editor.first_use", true);
 pref("extensions.sendlater3.prompt.defaults", "");
+pref("extensions.sendlater3.mark_drafts_read", true);

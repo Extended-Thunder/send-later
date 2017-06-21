@@ -53,6 +53,8 @@
                   name="extensions.sendlater3.sendbutton" type="bool"/>
       <preference id="sendlater3_altbinding"
                   name="extensions.sendlater3.alt_binding" type="bool"/>
+      <preference id="sendlater3-markread-pref"
+                  name="extensions.sendlater3.mark_drafts_read" type="bool"/>
       <preference id="sendlater3_block_late_messages"
                   name="extensions.sendlater3.block_late_messages" type="bool"/>
       <preference id="sendlater3_late_messages_grace_period"
@@ -92,6 +94,11 @@
 	      <checkbox id="sendlater3-altbindingpref"
                         preference="sendlater3_altbinding"
                         label="&altbinding.caption;" />
+	    </hbox>
+	    <hbox id="sendlater3-markread-hbox" align="center">
+	      <checkbox id="sendlater3-markread-checkbox"
+                        preference="sendlater3-markread-pref"
+                        label="&markread.caption;" />
 	    </hbox>
 	    <hbox align="center" tooltiptext="&showsendlatercolumn.tooltip;">
 	      <checkbox id="sendlater3-showcolumnpref"
