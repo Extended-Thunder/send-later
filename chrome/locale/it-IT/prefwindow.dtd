@@ -23,6 +23,7 @@
 <!ENTITY sendlatersendbutton.caption "“Invia” diventa “Invia dopo”">
 <!ENTITY sendlatersendbutton.tooltip "Con questa opzione attivata, il comando “Invia” (sia il pulsante che la pressione di Ctrl-Invio) si comporta come “Invia dopo”.">
 <!ENTITY altbinding.caption "Associa a Alt-Maiusc-Invio anziché a Ctrl-Maiusc-Invio">
+<!ENTITY markread.caption "Imposta le bozze pianificate come &quot;lette&quot;">
 <!ENTITY advanced.caption "Avanzate">
 <!ENTITY dumplevel.caption "Livello log Dump:">
 <!ENTITY consolelevel.caption "Livello log Console:">

@@ -23,6 +23,7 @@
 <!ENTITY sendlatersendbutton.caption "“Wyślij później” zamiast “Wyślij”">
 <!ENTITY sendlatersendbutton.tooltip "Jeżeli ta opcja jest włączona, zamiast polecenia “Wyślij” (zarówno po kliknięciu przycisku, jak i po wciśnięciu Ctrl-Enter) zostanie wywołane polecenie “Wyślij później”.">
 <!ENTITY altbinding.caption "Używaj skrótu Alt-Shift-Enter zamiast Ctrl-Shift-Enter">
+<!ENTITY markread.caption "Oznacz zaplanowane do wysłania jako przeczytane">
 <!ENTITY advanced.caption "Zaawansowane">
 <!ENTITY dumplevel.caption "Poziom logowania do pliku:">
 <!ENTITY consolelevel.caption "Poziom logowania w konsoli:">

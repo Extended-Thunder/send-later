@@ -23,6 +23,7 @@
 <!ENTITY sendlatersendbutton.caption "„Senden” durch „Später senden” ersetzen">
 <!ENTITY sendlatersendbutton.tooltip "Wird diese Option aktiviert, bewirkt der „Senden”-Befehl (entweder die Schaltfläche oder Strg+Return) das Gleiche wie „Später senden”.">
 <!ENTITY altbinding.caption "„Alt+Umschalt+Return” anstatt „Strg+Umschalt+Return” verwenden">
+<!ENTITY markread.caption "Zu sendende Entwürfe als gelesen markieren">
 <!ENTITY advanced.caption "Erweitert">
 <!ENTITY dumplevel.caption "Log-Einträge speichern ab Protokollierungsebene:">
 <!ENTITY consolelevel.caption "Log-Einträge auf der Konsole ausgeben ab Protokollierungsebene:">

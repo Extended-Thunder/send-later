@@ -23,6 +23,7 @@
 <!ENTITY sendlatersendbutton.caption "‫הפוך את 'שלח' ל 'שלח מאוחר יותר'‬">
 <!ENTITY sendlatersendbutton.tooltip "‫בחירה באפשרות זו תהפוך את פקודת ה 'שלח' (גם הלחצן וגם צרוף המקשים) לפקודה 'שלח מאוחר יותר'‬">
 <!ENTITY altbinding.caption "‫השתמש בצרוף המקשים Alt-Shift-Enter במקום הצרוף Ctrl-Shift-Enter‬">
+<!ENTITY markread.caption "מארק תזמן טיוטות כנקראו">
 <!ENTITY advanced.caption "‫מתקדם‬">
 <!ENTITY dumplevel.caption "‫רמת ההתראות לתיעוד במסוף הג'אווה‬">
 <!ENTITY consolelevel.caption "‫רמת ההתראות לתיעוד במסוף הבקרה‬">

@@ -23,6 +23,7 @@
 <!ENTITY sendlatersendbutton.caption "Remplacer « Envoyer » par « Envoyer plus tard »">
 <!ENTITY sendlatersendbutton.tooltip "Remplace l'action par défaut d'« Envoyer » (bouton ou raccourci « Ctrl+Entrée ») par celle d'« Envoyer plus tard ».">
 <!ENTITY altbinding.caption "Utiliser Alt+Maj+Entrée à la place de Ctrl+Maj+Entrée">
+<!ENTITY markread.caption "Marquer les messages en attente comme lus">
 <!ENTITY advanced.caption "Avancé">
 <!ENTITY dumplevel.caption "Niveau de journalisation :">
 <!ENTITY consolelevel.caption "Console de journalisation :">

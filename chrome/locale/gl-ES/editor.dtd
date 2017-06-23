@@ -13,6 +13,7 @@
 <!ENTITY inputtime "Hora de entrada:">
 <!ENTITY output "Saída:">
 <!ENTITY import.label "Importar…">
+<!ENTITY import.accesskey "m">
 <!ENTITY export.label "Exportar…">
 <!ENTITY reset.label "Descartar cambios">
 <!ENTITY save.label "Gardar">

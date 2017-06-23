@@ -23,6 +23,7 @@
 <!ENTITY sendlatersendbutton.caption "“Enviar” actua com “Enviar més endavant”">
 <!ENTITY sendlatersendbutton.tooltip "Amb aquesta opció habilitada, la comanda “Enviar” (tant el botó com al teclejar Ctrl-Intro) funciona igual que “Enviar més endavant”">
 <!ENTITY altbinding.caption "Enllaçar Alt-Majúscules-Intro en lloc de Ctrl-Majúscules-Intro">
+<!ENTITY markread.caption "Marcar missatges planificats en la carpeta d'esborranys com a llegits">
 <!ENTITY advanced.caption "Avançat">
 <!ENTITY dumplevel.caption "Nivell de bolcat de registre:">
 <!ENTITY consolelevel.caption "Nivell de consola de registre:">

@@ -11,10 +11,14 @@
 <!ENTITY quickoptionname.label "Popisek tlačítka:">
 <!ENTITY quickoptionvalue.label "Minuty :">
 <!ENTITY showtoolbarbutton.caption "Zobrazit v nástrojové liště">
+<!ENTITY showsendlatercolumn.caption "Zobrazovat sloupeček „{NAME}“">
+<!ENTITY showsendlaterstatus.caption "Zobrazit „{NAME}“ ve stavovém řádku">
 <!ENTITY sendlatersendbutton.caption "„Odeslat“ = „Odeslat později“">
 <!ENTITY sendlatersendbutton.tooltip "Pokud tuto možnost povolíte, bude se příkaz „Odeslat“ (tlačítko nebo klávesová zkratka Ctrl-Enter) chovat stejně jako „Odeslat později“.">
 <!ENTITY altbinding.caption "Použít Alt-Shift-Enter nmísto Ctrl-Shift-Enter">
+<!ENTITY contactauthor.tooltip "Pošlete email autorovi rozšíření „{NAME}&quot;.">
 <!ENTITY contactauthor.value "Kontaktovat autora">
+<!ENTITY helplink.tooltip "Zobrazte dokumentaci rozšíření „{NAME}&quot;.">
 <!ENTITY helplink.value "Uživatelská příručka">
 <!ENTITY releasenotes.value "Poznámky k vydání">
 <!ENTITY donatelink.value "Přispějte">

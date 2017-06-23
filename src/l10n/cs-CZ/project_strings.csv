@@ -1,4 +1,12 @@
-"AMODescription","","Description of the add-on that appears under “Add-on Details” on the addons.mozilla.org."
+"AMODescription","Upravuje příkaz „Odeslat později“ (Ctrl + Shift + Return) v okně pro vytvoření zprávy, takže místo pouhého zkopírování zprávy do složky „Pošta k odeslání“, aby byla odeslána později při dalším připojení, nebo při použití funkce „Odeslat neodeslané zprávy“, se otevře dialogové okno, ve kterém můžete určit, kdy má být zpráva odeslána.
+
+Pro pozdější odeslání zprávy můžete určit konkrétní čas a datum, nebo použít předvolby „Za 15 minut“, „Za 30 minut“ a „Za 2 hodiny“, nebo kliknout na „Dát do „Pošty k odeslání““ pro použití originální funkce „Odeslat později“ v Thunderbirdu (tj., zkopírovat zprávu do složky „Pošty k odeslání“).
+
+Další informace </a>naleznete v <a href=""https://blog.kamens.us/send-later""> uživatelské příručce</a>.
+
+Připojte se k <a href=""https://groups.google.com/group/send-later-users"">mailing listu</a>!
+
+„Odeslat později“ využívá <a href=""https://sugarjs.com/""> SugarJS</a> od Andrew Plummera. Díky Andrew!","Description of the add-on that appears under “Add-on Details” on the addons.mozilla.org."
 "AMOComments","Prosím <a href=""mailto:jik+sendlater3@kamens.us"">pošlete mi</a> hlášení o chybách, návrhy na vylepšení atd.","The text that appears under “Developer’s Comments” for the add-on on addons.mozilla.org."
 "AMOWhy","","The text that appears in the developer profile on addons.mozilla.org, answering the question, “Why did you make this add-on?”"
-"AMONext","","The text that appears in the developer profile on addons.mozilla.org, answering the question, “What’s next for this add-on?”"
+"AMONext","Nové verze Thunderbirdu používám docela brzy po jejich vydání a snažím se, aby s nimi bylo toto rozšíření kompatibilní. Pokud se dostanete k novému vydání Thunderbirdu dříve než já a zjistíte, že jsem pro něho zatím ještě rozšíření neaktualizoval, pošlete mi, prosím email a dejte mi o tom vědět!","The text that appears in the developer profile on addons.mozilla.org, answering the question, “What’s next for this add-on?”"

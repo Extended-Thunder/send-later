@@ -23,6 +23,7 @@
 <!ENTITY sendlatersendbutton.caption "“Enviar” efectúa “Enviar más tarde”">
 <!ENTITY sendlatersendbutton.tooltip "Con esta opción habilitada, el comando “Enviar” (bien con el botón o pulsando Ctrl+Intro) actúa del mismo modo que “Enviar más tarde”.">
 <!ENTITY altbinding.caption "Ligar a Alt+Máyus+Intro en lugar de a Ctrl+Máyus+Intro">
+<!ENTITY markread.caption "Marcar como leídos los mensajes planificados en la carpeta de borradores">
 <!ENTITY advanced.caption "Avanzadas">
 <!ENTITY dumplevel.caption "Registro (log) de nivel volcado:">
 <!ENTITY consolelevel.caption "Registro (log) de nivel consola:">

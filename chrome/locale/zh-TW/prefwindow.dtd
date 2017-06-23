@@ -13,6 +13,7 @@
 <!ENTITY showtoolbarbutton.caption "在工具欄中顯示">
 <!ENTITY showsendlatercolumn.caption "顯示{NAME}列">
 <!ENTITY showsendlatercolumn.tooltip "查看草稿箱時是否顯示{NAME}列">
+<!ENTITY showsendlaterheader.caption "顯示{NAME}標題">
 <!ENTITY showsendlaterheader.tooltip "查看信件時是否顯示“X-Send-Later-At”頭，即草稿預定要傳送的時間。">
 <!ENTITY showsendlaterstatus.caption "在狀態欄中顯示{NAME}">
 <!ENTITY showsendlaterprogress.caption "在狀態欄中顯示背景進度">
@@ -22,6 +23,7 @@
 <!ENTITY sendlatersendbutton.caption "“發送”變成“延期發送”">
 <!ENTITY sendlatersendbutton.tooltip "啟用此選項時，“傳送”命令（按鈕或 Ctrl-Enter 快捷鍵）效果會變為“延期傳送”。">
 <!ENTITY altbinding.caption "綁定快捷鍵 Alt-Shift-Enter 代替 Ctrl-Shift-Enter">
+<!ENTITY markread.caption "標示排程草稿為已閱讀">
 <!ENTITY advanced.caption "進階">
 <!ENTITY dumplevel.caption "除錯紀錄層級：">
 <!ENTITY consolelevel.caption "控制台除錯紀錄層級：">

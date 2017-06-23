@@ -7,13 +7,16 @@
 <!ENTITY delete.accesskey "S">
 <!ENTITY functionnametip "Zadejte nebo upravte název alfanumerické funkce. Pokud upravíte název existující funkce, budete během ukládání dotázáni, jestli chcete funkci přejmenovat, nebo chcete vytvořit funkci novou s upraveným názvem.">
 <!ENTITY functionnameplaceholder "název funkce">
+<!ENTITY codetip "Sem vložte zdrojový kód pro vaši funkci. Podívejte se na ukázkovou funkci &quot;ReadMeFirst&quot;, abyste zjistili, co má váš kód dělat.">
 <!ENTITY codeplaceholder "zdrojový kód funkce">
 <!ENTITY helptextheader "Nápověda pro funkci:">
+<!ENTITY helptexttip "Jakýkoliv text, který sem vložíte bude zobrazen, když uživatel najede myší nad název funkce. Použijte tuto možnost k vysvětlení toho, co funkce dělá, a které argumenty v ní lze použít.">
 <!ENTITY helptextplaceholder "text nápovědy">
 <!ENTITY run.accesskey "x">
 <!ENTITY inputtime "Vstupní čas:">
 <!ENTITY inputtimetip "Sem můžete vložit data a časy v jakémkoliv formátu, kterému {NAME} rozumí.">
 <!ENTITY inputargs "Vstupní argumenty:">
+<!ENTITY inputargstip "Argumenty by měly být zadány v JavaScript formátu, např, řetězce by měly být v uvozovkách.">
 <!ENTITY output "Výstup:">
 <!ENTITY import.label "Importovat…">
 <!ENTITY import.accesskey "m">

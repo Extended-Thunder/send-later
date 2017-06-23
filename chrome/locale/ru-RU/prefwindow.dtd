@@ -23,6 +23,7 @@
 <!ENTITY sendlatersendbutton.caption "Заменить «Отправить» на «Отправить позже»">
 <!ENTITY sendlatersendbutton.tooltip "Когда эта опция активна, то команда «Отправить» (и кнопка и нажатие на Ctrl-Enter) выполняется так же как и «Отправить позже».">
 <!ENTITY altbinding.caption "Заменить Alt-Shift-Enter на Ctrl-Shift-Enter">
+<!ENTITY markread.caption "Отметить запланированный черновик как прочитанный">
 <!ENTITY advanced.caption "Дополнительные">
 <!ENTITY dumplevel.caption "Уровень логирования для дампа:">
 <!ENTITY consolelevel.caption "Уровень логирования для консоли:">

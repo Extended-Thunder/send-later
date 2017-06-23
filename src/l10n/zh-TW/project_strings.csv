@@ -1,4 +1,12 @@
-"AMODescription","","Description of the add-on that appears under “Add-on Details” on the addons.mozilla.org."
-"AMOComments","","The text that appears under “Developer’s Comments” for the add-on on addons.mozilla.org."
-"AMOWhy","","The text that appears in the developer profile on addons.mozilla.org, answering the question, “Why did you make this add-on?”"
-"AMONext","","The text that appears in the developer profile on addons.mozilla.org, answering the question, “What’s next for this add-on?”"
+"AMODescription","在訊息編寫視窗更改“send later”命令（Ctrl + Shift + Return），這樣不單將該訊息複製到發件文件匣中，在上線時或“發送未發送消息”時發送消息，並會彈出一個對話框，允許您指定訊息何時發送。
+
+您可以指定一個特定的時間和日期，或者點擊“15分鐘後”，“30分鐘後”或“2小時後”，或者點擊“放入發件箱”，使用Thunderbird內置的“稍後發送”功能 （即複製到發件文件匣）。
+
+有關其他信息，請參閱<a href=""https://blog.kamens.us/send-later"">用戶指南</a>。
+
+加入<a href=""https://groups.google.com/group/send-later-users"">郵寄名單</a>！
+
+Send Later使用Andrew Plummer的<a href=""https://sugarjs.com/""> SugarJS </a>。 謝謝Andrew！","Description of the add-on that appears under “Add-on Details” on the addons.mozilla.org."
+"AMOComments","請給我發送<a href=""mailto:jik+sendlater3@kamens.us"">電子郵件</a> ，提供錯誤報告及建議等。","The text that appears under “Developer’s Comments” for the add-on on addons.mozilla.org."
+"AMOWhy","我當時需要真正的""Send Later""功能，並搜索過有人寫了支援Thunderbird 1.5-2.0 的版本。可惜我當時已經使用Thunderbird 3，而看來原來的附加元件作者不再更新它 — — 他博客上的評論無人回覆。我發佈了原作者附加元件的Thunderbird 3 +版本，因為它似乎是除了我之外很多人想要的東西。","The text that appears in the developer profile on addons.mozilla.org, answering the question, “Why did you make this add-on?”"
+"AMONext","當新版本的Thunderbird推出後我很快便會進行更新，所以我會盡我所能確保此附加元件與新版本保持相容。如果你已更新到新的Thunderbird版本，並發現我還沒有為它更新附加元件，請給我發電子郵件讓我知道 。","The text that appears in the developer profile on addons.mozilla.org, answering the question, “What’s next for this add-on?”"

@@ -23,6 +23,7 @@
 <!ENTITY sendlatersendbutton.caption "‘Verzenden’ werkt als ‘Later verzenden’">
 <!ENTITY sendlatersendbutton.tooltip "Met deze optie ingeschakeld, werkt de opdracht ‘Verzenden’ (via zowel de knop als het intoetsen van Ctrl-Enter) hetzelfde als ‘Later verzenden’.">
 <!ENTITY altbinding.caption "Alt-Shift-Enter binden in plaats van Ctrl-Shift-Enter">
+<!ENTITY markread.caption "Markeer geplande concepten als gelezen">
 <!ENTITY advanced.caption "Geavanceerd">
 <!ENTITY dumplevel.caption "Dumplogniveau:">
 <!ENTITY consolelevel.caption "Consolelogniveau:">
