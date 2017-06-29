@@ -12,10 +12,13 @@
 <!ENTITY quickoptionvalue.label "Minuty :">
 <!ENTITY showtoolbarbutton.caption "Zobrazit v nástrojové liště">
 <!ENTITY showsendlatercolumn.caption "Zobrazovat sloupeček „{NAME}“">
+<!ENTITY showsendlatercolumn.tooltip "Zobrazovat sloupeček „{NAME}“ při prohlížení složek s koncepty">
+<!ENTITY showsendlaterheader.caption "Zobrazit „{NAME}“ v hlavičce">
 <!ENTITY showsendlaterstatus.caption "Zobrazit „{NAME}“ ve stavovém řádku">
 <!ENTITY sendlatersendbutton.caption "„Odeslat“ = „Odeslat později“">
 <!ENTITY sendlatersendbutton.tooltip "Pokud tuto možnost povolíte, bude se příkaz „Odeslat“ (tlačítko nebo klávesová zkratka Ctrl-Enter) chovat stejně jako „Odeslat později“.">
 <!ENTITY altbinding.caption "Použít Alt-Shift-Enter nmísto Ctrl-Shift-Enter">
+<!ENTITY advanced.caption "Rozšířené">
 <!ENTITY contactauthor.tooltip "Pošlete email autorovi rozšíření „{NAME}&quot;.">
 <!ENTITY contactauthor.value "Kontaktovat autora">
 <!ENTITY helplink.tooltip "Zobrazte dokumentaci rozšíření „{NAME}&quot;.">
@@ -23,6 +26,7 @@
 <!ENTITY releasenotes.value "Poznámky k vydání">
 <!ENTITY donatelink.value "Přispějte">
 <!ENTITY editorlink.value "Editor dynamických funkcí">
+<!ENTITY enforcerestrictions.caption "Vynutit omezení času a dne pro čas doručení">
 <!ENTITY blocklatemessages.tooltip "Nedoručovat naplánované zprávy, které byly zpožděné za jejich naplánovaný čas, např. protože Thunderbird nebyl v té době spuštěn.">
 <!ENTITY blocklatemessages.label1 "Nedoručovat zprávy o více než">
 <!ENTITY blocklatemessages.label2 "minut později">
