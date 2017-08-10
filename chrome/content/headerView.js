@@ -208,7 +208,9 @@ var Sendlater3HeaderView = function() {
         if (SL3U.getBoolPref("showheader")) {
             sl3log.debug("headerView.js: onBeforeShowHeaderPane: showheader is true");
             if (IsThisDraft(gDBView.viewFolder)) {
-                var msghdr = gDBView.hdrForFirstSelectedMessage;
+                var msghdr;
+                try { msghdr = gDBView.hdrForFirstSelectedMessage; }
+                catch (e) { msghdr = null; }
                 if (msghdr!=null) {
                     var sendat = msghdr.getStringProperty("x-send-later-at");
                     if (sendat) {
