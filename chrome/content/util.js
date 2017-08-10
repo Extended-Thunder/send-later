@@ -1219,15 +1219,15 @@ var Sendlater3Util = {
         sl3log.Entering("Sendlater3Util.initUtil");
         Sendlater3Util._PromptBundle =
             document.getElementById("sendlater3-promptstrings");
-        Sendlater3Util.PrefService
-            .QueryInterface(Components.interfaces.nsIPrefBranch2);
+        if (! ("addObserver" in Sendlater3Util.PrefService)) {
+            Sendlater3Util.PrefService
+                .QueryInterface(Components.interfaces.nsIPrefBranch2);
+        }
         sl3log.Leaving("Sendlater3Util.initUtil");
     },
 
     uninitUtil: function() {
         sl3log.Entering("Sendlater3Util.uninitUtil");
-        Sendlater3Util.PrefService
-            .QueryInterface(Components.interfaces.nsIPrefBranch2);
         sl3log.Leaving("Sendlater3Util.uninitUtil");
     },
 

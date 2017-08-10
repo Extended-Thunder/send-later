@@ -1674,7 +1674,6 @@ var Sendlater3Backgrounding = function() {
     //     );
 
     SetUpStatusBar.observe();
-    SL3U.PrefService.QueryInterface(Components.interfaces.nsIPrefBranch2);
     SL3U.PrefService.addObserver(SL3U.pref("showstatus"),SetUpStatusBar, false);
 
     StartMonitorCallback();

@@ -24,7 +24,8 @@ function init() {
         return;
     prefService = Cc["@mozilla.org/preferences-service;1"].
         getService(Ci.nsIPrefBranch);
-    prefService.QueryInterface(Components.interfaces.nsIPrefBranch2);
+    if (! ("addObserver" in prefService))
+        prefService.QueryInterface(Components.interfaces.nsIPrefBranch2);
     var filter_string = prefService.getCharPref(
         "extensions.sendlater3.logging.filter");
     if (filter_string) {
