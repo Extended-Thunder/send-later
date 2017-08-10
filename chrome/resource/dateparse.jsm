@@ -13,21 +13,37 @@ var locale;
 
 function getLocale() {
     if (! didLocale) {
-	var localeService = Components.classes["@mozilla.org/intl/nslocaleservice;1"]
-            .getService(Components.interfaces.nsILocaleService);
-	var localeObj = localeService.getApplicationLocale();
-	locale = localeObj.getCategory("NSILOCALE_TIME");
-	// Sugar may not recognize the locale. It throws an error when
-	// an unrecognized locale is passed in and the locale is
-	// needed.
-
-	try {
-	    Date.create().format(null, locale);
-	}
-	catch (ex) {
-	    locale = null;
-	}
 	didLocale = true;
+        var locales;
+        try {
+	    var localeService = Components.classes[
+                "@mozilla.org/intl/nslocaleservice;1"]
+                .getService(Components.interfaces.nsILocaleService);
+	    var localeObj = localeService.getApplicationLocale();
+	    locales = [localeObj.getCategory("NSILOCALE_TIME")];
+        }
+        catch (ex) {
+            try {
+                locales = Components.classes[
+                    "@mozilla.org/intl/localeservice;1"]
+                    .getService(Components.interfaces.mozILocaleService)
+                    .getRegionalPrefsLocales();
+            }
+            catch (ex) {
+                locales = [];
+            }
+        }
+        for (var l of locales) {
+	    // Sugar may not recognize the locale. It throws an error when
+	    // an unrecognized locale is passed in and the locale is
+	    // needed.
+	    try {
+	        Date.create().format(null, l);
+                locale = l;
+                return locale;
+	    }
+	    catch (ex) {}
+        }
     }
     return locale;
 }
