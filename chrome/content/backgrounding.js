@@ -1399,56 +1399,115 @@ var Sendlater3Backgrounding = function() {
 	return false;
     }
 
-    function DisplayReleaseNotes() {
-        var enabledItems;
+    function DisplayReleaseNotesCallback(addon) {
+        if (! (addon && addon.version))
+            return;
+        let current_version = addon.version;
+	let relnotes = SL3U.getCharPref("relnotes");
+
+        // Migrate old preferences
         try {
-            var enabledItems = SL3U.PrefService
-                .getCharPref("extensions.enabledAddons");
+            let value = SL3U.getBoolPref("dropdowns.showintoolbar");
+            SL3U.setBoolPref("entry.showintoolbar", value);
+            SL3U.PrefService.clearUserPref(
+                SL3U.pref("dropdowns.showintoolbar"));
+        }
+        catch (ex) {}
+
+        if (relnotes) {
+            var numbers = relnotes.split(".");
+            if ((numbers[0] < 4) &&
+                SL3U.PrefService.prefHasUserValue(
+                    SL3U.pref("checktimepref"))) {
+                var old = SL3U.getIntPref("checktimepref");
+                if (old < 60000) {
+                    old = 60000;
+                }
+                var converted = Math.floor(old / 60000);
+                SL3U.setIntPref("checktimepref", converted);
+            }
+        }
+
+	SL3U.setCharPref("relnotes", current_version);
+	Sendlater3Backgrounding.notesUrl =
+            "https://blog.kamens.us/send-later-3/#notes-" + current_version;
+        if (! ShouldDisplayReleaseNotes(relnotes, current_version))
+            return;
+	if (SL3U.IsPostbox())
+            return;
+        if (SL3U.IsSeaMonkey()) {
+	    mediator = Components
+		.classes['@mozilla.org/appshell/window-mediator;1']
+		.getService(Components.interfaces.nsIWindowMediator)
+            browser = mediator.getMostRecentWindow("navigator:browser");
+            if (browser) {
+                browser.gBrowser.loadOneTab(Sendlater3Backgrounding.notesUrl,
+                                            {inBackground: false});
+                Components.classes["@mozilla.org/timer;1"]
+                    .createInstance(Components.interfaces.nsITimer)
+                    .initWithCallback(
+                        {notify: function(timer) {browser.focus();}}, 1000,
+                        Components.interfaces.nsITimer.TYPE_ONE_SHOT);
+                return;
+            }
+            else {
+                Components.utils.import("resource://gre/modules/Services.jsm");
+                let browserUrl;
+                try {
+                    browserUrl = Services.prefs.getCharPref(
+                        "browser.chromeURL");
+                }
+                catch (e) {
+                    browserUrl = "chrome://navigator/content/navigator.xul";
+                }
+                argstring = Components.classes["@mozilla.org/supports-string;1"]
+                    .createInstance(Components.interfaces.nsISupportsString);
+                argstring.data = Sendlater3Backgrounding.notesUrl;
+                Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
+                    .getService(Components.interfaces.nsIWindowWatcher).
+                    openWindow(null, browserUrl, "", "chrome,all,dialog=no",
+                               argstring);
+            }
+        }
+        // Thunderbird
+        Components
+            .classes['@mozilla.org/appshell/window-mediator;1']
+            .getService(Components.interfaces.nsIWindowMediator)
+            .getMostRecentWindow("mail:3pane")
+            .document.getElementById("tabmail")
+            .openTab("contentTab",
+                     {contentPage: Sendlater3Backgrounding.notesUrl});
+
+    }
+    
+    function DisplayReleaseNotes() {
+        try {
+            Components.utils.import("resource://gre/modules/AddonManager.jsm");
+            addon = AddonManager.getAddonByID("sendlater3@kamens.us",
+                                              DisplayReleaseNotesCallback);
         }
         catch (e) {
-            var enabledItems = SL3U.PrefService
-                .getCharPref("extensions.enabledItems");
+            let enabledItems = null;
+            try {
+                enabledItems = SL3U.PrefService
+                    .getCharPref("extensions.enabledAddons");
+            }
+            catch (e) {
+                try {
+                    enabledItems = SL3U.PrefService
+                        .getCharPref("extensions.enabledItems");
+                }
+                catch (e) {}
+            }
+
+            if (! enabledItems)
+                return;
+
+            var matches = enabledItems.match(
+                    /sendlater3(@|%40)kamens\.us:([^,]+)/);
+            if (matches)
+                DisplayReleaseNotesCallback({version: matches[2]})
         }
-
-        var matches = enabledItems.match(/sendlater3(@|%40)kamens\.us:([^,]+)/);
-        if (matches) {
-	    var current_version = matches[2];
-	    var relnotes = SL3U.getCharPref("relnotes");
-	    SL3U.setCharPref("relnotes", current_version);
-	    Sendlater3Backgrounding.notesUrl =
-                "https://blog.kamens.us/send-later-3/#notes-" + current_version;
-        }
-
-	if (Sendlater3Backgrounding.notesUrl && ! SL3U.IsPostbox()) {
-	    if (ShouldDisplayReleaseNotes(relnotes, current_version)) {
-		Components
-		    .classes['@mozilla.org/appshell/window-mediator;1']
-		    .getService(Components.interfaces.nsIWindowMediator)
-		    .getMostRecentWindow("mail:3pane")
-		    .document.getElementById("tabmail")
-		    .openTab("contentTab",
-                             {contentPage: Sendlater3Backgrounding.notesUrl});
-
-		// Migrate old preferences
-		try {
-		    var value = SL3U.getBoolPref("dropdowns.showintoolbar");
-		    SL3U.setBoolPref("entry.showintoolbar", value);
-		    SL3U.PrefService.clearUserPref(SL3U.pref("dropdowns.showintoolbar"));
-		}
-		catch (ex) {}
-
-		var numbers = relnotes.split(".");
-		if ((numbers[0] < 4) &&
-		    SL3U.PrefService.prefHasUserValue(SL3U.pref("checktimepref"))) {
-		    var old = SL3U.getIntPref("checktimepref");
-		    if (old < 60000) {
-			old = 60000;
-		    }
-		    var converted = Math.floor(old / 60000);
-		    SL3U.setIntPref("checktimepref", converted);
-		}			
-	    }
-	}	
     }
 
     function ReplaceMessageId(content) {
