@@ -199,14 +199,14 @@
         <em:maxVersion>57.0</em:maxVersion>
       </Description>
     </em:targetApplication>
-    <em:targetApplication>
-      <!-- Postbox -->
+    <!-- Postbox -->
+    <!--<em:targetApplication>
       <Description>
         <em:id>postbox@postbox-inc.com</em:id>
         <em:minVersion>3.0.6</em:minVersion>
         <em:maxVersion>5.*</em:maxVersion>
       </Description>
-    </em:targetApplication>
+    </em:targetApplication>-->
     <em:targetApplication>
       <!-- SeaMonkey -->
       <Description>
