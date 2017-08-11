@@ -195,8 +195,8 @@
     <em:targetApplication>
       <Description>
         <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id> <!-- thunderbird -->
-        <em:minVersion>8.0a1</em:minVersion>
-        <em:maxVersion>56.0</em:maxVersion>
+        <em:minVersion>20.0</em:minVersion>
+        <em:maxVersion>57.0</em:maxVersion>
       </Description>
     </em:targetApplication>
     <em:targetApplication>
@@ -211,8 +211,8 @@
       <!-- SeaMonkey -->
       <Description>
         <em:id>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</em:id>
-        <em:minVersion>2.9</em:minVersion>
-        <em:maxVersion>2.53</em:maxVersion>
+        <em:minVersion>2.17</em:minVersion>
+        <em:maxVersion>2.54</em:maxVersion>
       </Description>
     </em:targetApplication>
   </Description>
