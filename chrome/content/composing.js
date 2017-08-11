@@ -8,15 +8,97 @@ if (typeof(nsIMsgCompDeliverMode) == 'undefined')
     nsIMsgCompDeliverMode = Components.interfaces.nsIMsgCompDeliverMode;
 
 var Sendlater3Composing = {
-    composeListener: {
-        NotifyComposeBodyReady: function() {
+    // Unfortunately, the NotifyComposeBodyReady event lies nowadays -- the
+    // message body isn't actually ready when this event comes in, because
+    // inline images from the original message are still being loaded in the
+    // background. See https://bugzilla.mozilla.org/show_bug.cgi?id=1389242. As
+    // a workaround, we crib a bunch of code from MsgComposeCommands.js in the
+    // Thunderbird source tree to detect if we are still in the process of
+    // loading inline images, and if so, delay the save until that's finished.
+    // we check repeatedly for 2 seconds, and if we still haven't finished
+    // loading images at the end of 2 seconds we go ahead and do the save
+    // anyway, because it's important for us to cancel the scheduled send
+    // quickly, even if that means the inline images get screwed up in the
+    // draft. Note that they'll get fixed when the user finishes editing the
+    // draft and schedules or saves it.
+    tryToSave: function() {
+        doTheDarnSave = function() {
             gContentChanged = true;
             SaveAsDraft();
             if (SL3U.getBoolPref("show_edit_alert")) {
                 SL3U.alert(window, null,
                            SL3U.PromptBundleGet("draftSaveWarning"));
             }
-        },
+        };
+        
+        try {
+            let tryToSaveCallback = null;
+            tryToSaveCallback = {
+                saveTimeout: 2000,
+                startTime: Date.now(),
+                waiting: false,
+                notify: function(timer) {
+                    if (Date.now() - this.startTime > this.saveTimeout) {
+                        sl3log.info("tryToSave: saving after 2-second timeout");
+                        doTheDarnSave();
+                        return;
+                    }
+                    if (! gOriginalMsgURI) {
+                        sl3log.debug("tryToSave: no original URI, saving");
+                        doTheDarnSave();
+                        return;
+                    }
+                    let msgSvc = Components.classes["@mozilla.org/messenger;1"]
+                        .createInstance(Components.interfaces.nsIMessenger)
+                        .messageServiceFromURI(gOriginalMsgURI);
+                    let originalMsgNeckoURI = {};
+                    msgSvc.GetUrlForUri(
+                        gOriginalMsgURI, originalMsgNeckoURI, null);
+                    let spec = originalMsgNeckoURI.value.spec;
+                    let count = 0;
+                    let sampleUrl = null;
+                    for (let img of GetCurrentEditor().document.images) {
+                        if (img.src.startsWith(spec)) {
+                            sampleUrl = img.src;
+                            count++;
+                        }
+                    }
+                    if (count == 0) {
+                        sl3log.debug("tryToSave: no images to load, saving");
+                        doTheDarnSave();
+                        return;
+                    }
+                    let timeLeft = this.startTime + this.saveTimeout -
+                        Date.now();
+                    msg = "tryToSave: waiting for up to " + timeLeft + "ms " +
+                        (this.waiting ? "more " : "") + "for " + count +
+                        " inline images including " + sampleUrl + " to load";
+                    if (! this.waiting) {
+                        this.waiting = true;
+                        sl3log.info(msg);
+                    }
+                    else {
+                        sl3log.debug(msg);
+                    }
+                    timer = Components.classes["@mozilla.org/timer;1"]
+                        .createInstance(Components.interfaces.nsITimer);
+                    timer.initWithCallback(
+                        tryToSaveCallback, 0,
+                        Components.interfaces.nsITimer.type_ONE_SHOT);
+                    return;
+                }
+            };
+            tryToSaveCallback.notify();
+        } catch (ex) {
+            sl3log.info("tryToSave: Error \"" + String(ex) + "\" waiting for " +
+                        "inline images to load; saving immediately");
+            doTheDarnSave();
+            return;
+        }
+    },
+
+    composeListener: {
+        NotifyComposeBodyReady: function() { Sendlater3Composing.tryToSave(); },
         NotifyComposeFieldsReady: function() {},
         ComposeProcessDone: function() {},
         SaveInFolderDone: function() {}
