@@ -1247,8 +1247,15 @@ var Sendlater3Util = {
             .classes["@mozilla.org/file/directory_service;1"]
             .getService(Components.interfaces.nsIProperties);
         var tempDir = dirService.get("TmpD", Components.interfaces.nsIFile);
-        var sfile = Components.classes["@mozilla.org/file/local;1"]
-            .createInstance(Components.interfaces.nsILocalFile);
+        try {
+            // nsILocalFile is deprecated.
+            var sfile = Components.classes["@mozilla.org/file/local;1"]
+                .createInstance(Components.interfaces.nsILocalFile);
+        }
+        catch (ex) {
+            var sfile = Components.classes["@mozilla.org/file/local;1"]
+                .createInstance(Components.interfaces.nsIFile);
+        }                
         sfile.initWithPath(tempDir.path);
         sfile.appendRelativePath("tempMsg" + Sendlater3Util.getInstanceUuid()
                                  + Sendlater3Util.fileNumber++ + ".eml");
@@ -1267,8 +1274,15 @@ var Sendlater3Util = {
         // that matter should probably be write-only on Linux as
         // well, since it's an *output* stream, but it doesn't
         // actually behave that way).
-        sfile = Components.classes["@mozilla.org/file/local;1"]
-            .createInstance(Components.interfaces.nsILocalFile);
+        try {
+            // nsILocalFile is deprecated.
+            sfile = Components.classes["@mozilla.org/file/local;1"]
+                .createInstance(Components.interfaces.nsILocalFile);
+        }
+        catch (ex) {
+            sfile = Components.classes["@mozilla.org/file/local;1"]
+                .createInstance(Components.interfaces.nsIFile);
+        }            
         sfile.initWithPath(filePath);
         listener.localFile = sfile;
         if (! Sendlater3Util.copyService) {
