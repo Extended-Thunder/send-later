@@ -1,0 +1,3 @@
+sl3timepicker {
+    -moz-binding: url('chrome://sendlater3/content/datetimepicker.xml#timepicker');
+}

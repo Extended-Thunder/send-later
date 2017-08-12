@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<?xml-stylesheet href="chrome://sendlater3/content/datetimepicker.css" type="text/css"?>
 <!DOCTYPE window SYSTEM "chrome://sendlater3/locale/prompt.dtd">
 
 <window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
@@ -56,7 +57,7 @@
 	      <datepicker id="sendlater3-datepicker" type="popup"
                           firstdayofweek="NaN"
 			  onchange="window.setTimeout(function(){Sendlater3Prompt.pickersToText()}, 0);"/>
-	      <timepicker id="sendlater3-timepicker"
+	      <sl3timepicker id="sendlater3-timepicker"
 			  onchange="window.setTimeout(function(){Sendlater3Prompt.pickersToText()}, 0);"
 			  hideseconds="true"/>
 	      <separator flex="1"/>
@@ -131,11 +132,11 @@
       <hbox align="center" id="sendlater3-recur-between-hbox">
         <checkbox id="sendlater3-recur-between-checkbox"
                   label="&sendlater.prompt.between.label;"/>
-        <timepicker id="sendlater3-recur-between-start"
+        <sl3timepicker id="sendlater3-recur-between-start"
                     hideseconds="true" value="00:00"
                     onchange="window.setTimeout(function(){Sendlater3Prompt.BetweenStartUpdate()}, 0);"/>
         <label value="-"/>
-        <timepicker id="sendlater3-recur-between-end"
+        <sl3timepicker id="sendlater3-recur-between-end"
                     hideseconds="true" value="23:59"
                     onchange="window.setTimeout(function(){Sendlater3Prompt.BetweenEndUpdate()}, 0);"/>
       </hbox>

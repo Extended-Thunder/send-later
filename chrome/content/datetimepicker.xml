@@ -299,6 +299,7 @@
                 this.hour += 12;
             } else if (this.hour >= 12)
               this.hour -= 12;
+            this._fieldAMPM.value = val ? this.pmIndicator : this.amIndicator;
             return val;
           ]]>
         </setter>
@@ -380,8 +381,10 @@
 
               var newval = this._constrainValue(field, oldval + change, false);
 
-              if (field == this.hourField)
+              if (field == this.hourField) {
                 this.hour = newval;
+                this.isPM = newval > 11;
+              }
               else if (field == this.minuteField)
                 this.minute = newval;
               else if (field == this.secondField)
@@ -425,14 +428,12 @@
             if (aField == this.hourField) {
               prependZero = this.hourLeadingZero;
               if (!this.is24HourClock) {
-                if (aValue >= 12) {
-                  if (aValue > 12)
-                    aValue -= 12;
-                  this._fieldAMPM.value = this.pmIndicator;
-                } else {
-                  if (aValue == 0)
-                    aValue = 12;
-                  this._fieldAMPM.value = this.amIndicator;
+                if (aValue > 12) {
+                  aValue -= 12;
+                  this.isPM = true;
+                } else if (aValue == 0) {
+                  aValue = 12;
+                  this.isPM = false;
                 }
               }
             } else if (aField == this.minuteField) {
