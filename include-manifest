@@ -9,6 +9,8 @@ chrome/content/composeToolbar.js
 chrome/content/composeToolbar.xul
 chrome/content/composing.js
 chrome/content/composing.xul
+chrome/content/datetimepicker.css
+chrome/content/datetimepicker.xml
 chrome/content/editor.js
 chrome/content/editor.xul
 chrome/content/headerView.js
