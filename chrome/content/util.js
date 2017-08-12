@@ -1069,6 +1069,8 @@ var Sendlater3Util = {
     },
     
     RecurHeader: function(sendat, recur, cancelOnReply, args) {
+        sl3log.Entering("Sendlater3Util.RecurHeader", sendat, recur,
+                        cancelOnReply, args);
         if (recur) {
             var header = {'X-Send-Later-Recur': recur};
             if (args) {
@@ -1079,6 +1081,7 @@ var Sendlater3Util = {
             header['X-Send-Later-Cancel-On-Reply'] =
                 (typeof(cancelOnReply) == "string") ? cancelOnReply : "yes";
         }
+        sl3log.Returning("Sendlater3Util.RecurHeader", JSON.stringify(header));
         return header;
     },
 

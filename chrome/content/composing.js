@@ -486,6 +486,8 @@ var Sendlater3Composing = {
     prevArgs: null,
 
     PrepMessage: function(sendat, recur, cancelOnReply, args) {
+        sl3log.Entering("Sendlater3Composing.PrepMessage", sendat, recur,
+                        cancelOnReply, args);
         var msgcomposeWindow = document.getElementById("msgcomposeWindow");
         msgcomposeWindow.setAttribute("sending_later", true);
         msgcomposeWindow.sendLater3SendAt = sendat;

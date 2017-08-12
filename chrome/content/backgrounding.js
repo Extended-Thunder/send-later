@@ -538,10 +538,10 @@ var Sendlater3Backgrounding = function() {
             deleteMessage(messageHDR);
 	    if (SL3U.getBoolPref("sendunsentmessages")) {
 		queueSendUnsentMessages();
-		sl3log.info("Sending Message.");
+		sl3log.info("Sending Message " + this._uri);
 	    }
 	    else {
-		sl3log.info("Message deposited in Outbox.");
+		sl3log.info("Message " + this._uri + " deposited in Outbox.");
 	    }
 	    SetAnimTimer(3000);
             if (MessagesPending)
