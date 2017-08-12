@@ -1033,7 +1033,7 @@ var Sendlater3Util = {
             }
         }
 
-        if (cancelOnReply)
+        if (cancelOnReply != "")
             fragments.push(SL3U.PromptBundleGet("cancel_on_reply"));
             
         if (fragments.length)
@@ -1077,10 +1077,8 @@ var Sendlater3Util = {
                 header['X-Send-Later-Args'] = JSON.stringify(args);
             }
         }
-        if (cancelOnReply) {
-            header['X-Send-Later-Cancel-On-Reply'] =
-                (typeof(cancelOnReply) == "string") ? cancelOnReply : "yes";
-        }
+        if (cancelOnReply != "")
+            header['X-Send-Later-Cancel-On-Reply'] = cancelOnReply;
         sl3log.Returning("Sendlater3Util.RecurHeader", JSON.stringify(header));
         return header;
     },

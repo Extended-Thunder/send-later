@@ -566,7 +566,7 @@ var Sendlater3Backgrounding = function() {
 		var content = this._content;
 		var header = "\r\nX-Send-Later-At: " + SL3U.FormatDateTime(next, true) +
 		    "\r\nX-Send-Later-Uuid: " + SL3U.getInstanceUuid() + "\r\n";
-                if (cancelOnReply)
+                if (cancelOnReply != "")
                     cancelOnReply += " " + this._messageId;
 		var recurheader = SL3U.RecurHeader(
                     next, recur, cancelOnReply, args);

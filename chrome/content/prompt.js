@@ -222,16 +222,19 @@ var Sendlater3Prompt = {
 	}
 
 	var prevXSendLater = window.arguments[0].previouslyTimed;
+        var prevRecurring = null;
+        var prevCancelOnReply = "";
+        var prevArgs = null;
 
         if (prevXSendLater) {
-	    var prevRecurring = window.arguments[0].previouslyRecurring;
-            var prevCancelOnReply = window.arguments[0].previouslyCancelOnReply;
-	    var prevArgs = window.arguments[0].previousArgs;
+	    prevRecurring = window.arguments[0].previouslyRecurring;
+            prevCancelOnReply = window.arguments[0].previouslyCancelOnReply;
+	    prevArgs = window.arguments[0].previousArgs;
             prevXSendLater = prevXSendLater.format(
                 "long", sendlater3SugarLocale());
         }
         else {
-            var defaultsJson = SL3U.getCharPref("prompt.defaults");
+            let defaultsJson = SL3U.getCharPref("prompt.defaults");
             if (defaultsJson) {
                 var defaults = JSON.parse(defaultsJson);
                 prevXSendLater = defaults[0];
@@ -293,7 +296,7 @@ var Sendlater3Prompt = {
 	}
 
         document.getElementById("sendlater3-cancel-on-reply-checkbox").checked =
-            prevCancelOnReply ? true : false;
+            (prevCancelOnReply != "") ? true : false;
             
         if (prevArgs) {
             document.getElementById("function-args").value =
@@ -306,7 +309,7 @@ var Sendlater3Prompt = {
 	    Sendlater3Prompt.updateSummary();
 	}
 
-        if (prevCancelOnReply)
+        if (prevCancelOnReply != "")
             document.getElementById("sendlater3-cancel-on-reply-checkbox").
             checked = true;
 
@@ -541,7 +544,7 @@ var Sendlater3Prompt = {
             parsed.days = days;
 
         cancelOnReply = document.getElementById(
-            "sendlater3-cancel-on-reply-checkbox").checked;
+            "sendlater3-cancel-on-reply-checkbox").checked ? "yes" : "";
 
 	return [dateObj, parsed, cancelOnReply];
     },
@@ -633,7 +636,6 @@ var Sendlater3Prompt = {
             return;
         }
         var sendat = results.shift(), spec;
-        // Ignores cancelOnReply, not relevant here.
         [sendat, spec, cancelOnReply] =
             this.GetRecurStructure(sendat, !interactive);
         var functionRecurString = results.shift(), newSpec;
