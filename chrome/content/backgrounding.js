@@ -1,6 +1,8 @@
 Components.utils.import("resource://sendlater3/logging.jsm");
 
 var Sendlater3Backgrounding = function() {
+    var shuttingDown = false;
+
     SL3U.initUtil();
     sl3log.Entering("Sendlater3Backgrounding");
 
@@ -347,6 +349,10 @@ var Sendlater3Backgrounding = function() {
 	else if (active_uuid && active_uuid != "") {
 	    sl3log.debug(func + "active window: " + dbgMsg);
 	}
+        else if (shuttingDown) {
+            sl3log.debug(func + "shutting down, not capturing: " + dbgMsg);
+            return false;
+        }
 	else {
 	    sl3log.debug(func + "first window: " + dbgMsg);
 	    SL3U.setCharPref("activescanner.uuid", uuid);
@@ -1365,6 +1371,7 @@ var Sendlater3Backgrounding = function() {
     }
 
     function StopMonitorCallback() {
+        shuttingDown = true;
 	sl3log.Entering("Sendlater3Backgrounding.StopMonitorCallback");
 	var mailSession = Components
 	    .classes["@mozilla.org/messenger/services/session;1"]
