@@ -23,6 +23,7 @@
 <!ENTITY sendlatersendbutton.caption "“Enviar Mais Tarde” substitui “Enviar”">
 <!ENTITY sendlatersendbutton.tooltip "Ao ativar esta opção, o comando “Enviar” (tanto seu ícone quanto teclando Ctrl+Enter) age da mesma forma que “Envie Mais Tarde”.">
 <!ENTITY altbinding.caption "Combinar Alt+Shift+Enter em vez de Ctrl+Shift+Enter">
+<!ENTITY markread.caption "Marcar rascunhos agendados como lidos">
 <!ENTITY advanced.caption "Avançado">
 <!ENTITY dumplevel.caption "Nível de log de descarga:">
 <!ENTITY consolelevel.caption "Nível de log do console:">

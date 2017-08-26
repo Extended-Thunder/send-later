@@ -43,4 +43,4 @@
 <!ENTITY sendlater.prompt.day5 "vrijdag">
 <!ENTITY sendlater.prompt.day6 "zaterdag">
 <!ENTITY sendlater.prompt.cancelonreply.label "Annuleer herhaling indien beantwoord">
-<!ENTITY sendlater.prompt.cancelonreply.tooltip "Let op binnenkomende antwoorden op herhalende berichten. Annuleer het herhalende bericht en verwijder het uit de Concepten map als een antwoord is ontvangen.">
+<!ENTITY sendlater.prompt.cancelonreply.tooltip "Let op binnenkomende antwoorden op herhalende berichten. Annuleer het herhalende bericht en verwijder het uit de Concepten map als er een antwoord is ontvangen.">
