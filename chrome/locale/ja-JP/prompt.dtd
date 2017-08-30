@@ -42,3 +42,5 @@
 <!ENTITY sendlater.prompt.day4 "木曜日">
 <!ENTITY sendlater.prompt.day5 "金曜日">
 <!ENTITY sendlater.prompt.day6 "土曜日">
+<!ENTITY sendlater.prompt.cancelonreply.label "返信を受信したら定期送信メールをキャンセルする">
+<!ENTITY sendlater.prompt.cancelonreply.tooltip "以前に送信した定期送信メールへの返信を監視します。もし返信を受信したら定期送信メールをキャンセルして下書きフォルダから削除します。">

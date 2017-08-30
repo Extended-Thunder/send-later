@@ -23,6 +23,7 @@
 <!ENTITY sendlatersendbutton.caption "“送信” を “後で送信” にする">
 <!ENTITY sendlatersendbutton.tooltip "このオプションを有効にすると、“送信” コマンド (ボタンと Ctrl-Enter の両方) は “後で送信” と同じ動作をします。">
 <!ENTITY altbinding.caption "Ctrl+Shift+Enter ではなく Alt+Shift+Enter に割り当てる">
+<!ENTITY markread.caption "送信予定の下書きを既読とする">
 <!ENTITY advanced.caption "詳細">
 <!ENTITY dumplevel.caption "出力ログレベル:">
 <!ENTITY consolelevel.caption "コンソールログレベル:">
