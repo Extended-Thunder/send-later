@@ -1563,12 +1563,12 @@ var Sendlater3Backgrounding = function() {
                 newMessageId = compUtils.msgGenerateMessageId(identity);
         }
         if (! newMessageId) {
-            sl3u.error("No valid X-Identity-Key in scheduled draft");
+            SL3U.error("No valid X-Identity-Key in scheduled draft");
             var identity = accounts.allIdentities.enumerate().getNext();
             var fakeMessageId = compUtils.msgGenerateMessageId(identity);
             match = (/\nMessage-ID:\s*(<.*>)/i.exec(content))[1];
             if (! match) {
-                sl3u.error("No Message-ID in scheduled draft");
+                SL3U.error("No Message-ID in scheduled draft");
                 match = (/\nFrom:(.*)/i.exec(content))[1];
                 if (! match)
                     throw new Error("No From line in scheduled draft");
