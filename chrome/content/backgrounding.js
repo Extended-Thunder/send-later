@@ -761,7 +761,7 @@ var Sendlater3Backgrounding = function() {
 				      "\n");
 
             var messageId;
-            [content, messageId] = ReplaceMessageId(content);
+            [content, messageId] = ReplaceMessageId(content, this._uri);
 
 	    // Remove extra newline -- see comment above.
 	    content = content.slice(1);
@@ -1517,7 +1517,7 @@ var Sendlater3Backgrounding = function() {
         }
     }
 
-    function ReplaceMessageId(content) {
+    function ReplaceMessageId(content, uri) {
         // When we save a message in the Drafts folder, we put a Message-ID
         // field into it, because this allows us to leverage Thunderbird's
         // logic for determining what to put to the right of the "@" in the
@@ -1559,19 +1559,26 @@ var Sendlater3Backgrounding = function() {
         var match = (/\nX-Identity-Key:\s*(\S+)/i.exec(content))[1];
         if (match) {
             var identity = accounts.getIdentity(match);
-            if (identity)
+            if (identity) {
                 newMessageId = compUtils.msgGenerateMessageId(identity);
-        }
+                if (! newMessageId)
+                    SL3U.error("MSGID: compUtils.msgGenerateMessageId(" +
+                               match + ") failed for " + uri);
+            }
+            else
+                SL3U.error("MSGID: accounts.getIdentity(" + match +
+                           ") failed for " + uri);
+        } else
+            SL3U.error("MSGID: Could not find X-Identity-Key in " + uri);
         if (! newMessageId) {
-            SL3U.error("No valid X-Identity-Key in scheduled draft");
             var identity = accounts.allIdentities.enumerate().getNext();
             var fakeMessageId = compUtils.msgGenerateMessageId(identity);
             match = (/\nMessage-ID:\s*(<.*>)/i.exec(content))[1];
             if (! match) {
-                SL3U.error("No Message-ID in scheduled draft");
+                SL3U.error("MSGID: No Message-ID in " + uri);
                 match = (/\nFrom:(.*)/i.exec(content))[1];
                 if (! match)
-                    throw new Error("No From line in scheduled draft");
+                    throw new Error("MSGID: No From line in " + uri);
                 var headerParser =
                     Components.classes["@mozilla.org/messenger/headerparser;1"]
                     .createInstance(Components.interfaces.nsIMsgHeaderParser);
@@ -1579,13 +1586,11 @@ var Sendlater3Backgrounding = function() {
                                extractHeaderAddressMailboxes(match).
                                split(/,\s*/))[0];
                 if (! mailbox)
-                    throw new Error("No mailbox in From line of scheduled " +
-                                    "draft");
+                    throw new Error("MSGID: No mailbox in From line of " + uri);
                 var domain = mailbox.substring(mailbox.substring("@") + 1);
                 if (! domain)
-                    throw new Error("No domain in From address of schedule " +
-                                    "draft");
-                oldMessageId = "<foo@" + domain + ">";
+                    throw new Error("MSGID: No domain in From line of " + uri);
+                var oldMessageId = "<foo@" + domain + ">";
             }
             newMessageId =
                 fakeMessageId.substring(0, fakeMessageId.indexOf("@")) +
