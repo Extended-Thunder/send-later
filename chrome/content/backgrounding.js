@@ -1562,20 +1562,20 @@ var Sendlater3Backgrounding = function() {
             if (identity) {
                 newMessageId = compUtils.msgGenerateMessageId(identity);
                 if (! newMessageId)
-                    SL3U.error("MSGID: compUtils.msgGenerateMessageId(" +
-                               match + ") failed for " + uri);
+                    sl3log.error("MSGID: compUtils.msgGenerateMessageId(" +
+                                 match + ") failed for " + uri);
             }
             else
-                SL3U.error("MSGID: accounts.getIdentity(" + match +
-                           ") failed for " + uri);
+                sl3log.error("MSGID: accounts.getIdentity(" + match +
+                             ") failed for " + uri);
         } else
-            SL3U.error("MSGID: Could not find X-Identity-Key in " + uri);
+            sl3log.error("MSGID: Could not find X-Identity-Key in " + uri);
         if (! newMessageId) {
             var identity = accounts.allIdentities.enumerate().getNext();
             var fakeMessageId = compUtils.msgGenerateMessageId(identity);
             match = (/\nMessage-ID:\s*(<.*>)/i.exec(content))[1];
             if (! match) {
-                SL3U.error("MSGID: No Message-ID in " + uri);
+                sl3log.error("MSGID: No Message-ID in " + uri);
                 match = (/\nFrom:(.*)/i.exec(content))[1];
                 if (! match)
                     throw new Error("MSGID: No From line in " + uri);
