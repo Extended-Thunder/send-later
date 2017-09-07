@@ -1573,8 +1573,11 @@ var Sendlater3Backgrounding = function() {
         if (! newMessageId) {
             var identity = accounts.allIdentities.enumerate().getNext();
             var fakeMessageId = compUtils.msgGenerateMessageId(identity);
-            match = (/\nMessage-ID:\s*(<.*>)/i.exec(content))[1];
-            if (! match) {
+            var mailbox;
+            match = (/\nMessage-ID:\s*<(.*)>/i.exec(content))[1];
+            if (match)
+                mailbox = match;
+            else {
                 sl3log.error("MSGID: No Message-ID in " + uri);
                 match = (/\nFrom:(.*)/i.exec(content))[1];
                 if (! match)
@@ -1582,16 +1585,18 @@ var Sendlater3Backgrounding = function() {
                 var headerParser =
                     Components.classes["@mozilla.org/messenger/headerparser;1"]
                     .createInstance(Components.interfaces.nsIMsgHeaderParser);
-                var mailbox = (headerParser.
-                               extractHeaderAddressMailboxes(match).
-                               split(/,\s*/))[0];
+                mailbox = (headerParser.
+                           extractHeaderAddressMailboxes(match).
+                           split(/,\s*/))[0];
                 if (! mailbox)
-                    throw new Error("MSGID: No mailbox in From line of " + uri);
-                var domain = mailbox.substring(mailbox.substring("@") + 1);
-                if (! domain)
-                    throw new Error("MSGID: No domain in From line of " + uri);
-                var oldMessageId = "<foo@" + domain + ">";
+                    throw new Error("MSGID: No mailbox in '" + match +
+                                    "' for " + uri);
             }
+            var domain = mailbox.substring(mailbox.indexOf("@") + 1);
+            if (! domain)
+                throw new Error("MSGID: No domain in '" + mailbox + "' for " +
+                                uri);
+            var oldMessageId = "<foo@" + domain + ">";
             newMessageId =
                 fakeMessageId.substring(0, fakeMessageId.indexOf("@")) +
                 oldMessageId.substring(oldMessageId.indexOf("@"));
