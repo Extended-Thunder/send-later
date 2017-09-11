@@ -264,6 +264,8 @@ var Sendlater3ComposeToolbar = {
 	Sendlater3ComposeToolbar.SetOnLoad();
 	document.getElementById("msgcomposeWindow").addEventListener("compose-window-reopen", Sendlater3ComposeToolbar.SetOnLoad, false);
 
+        SL3U.initDatePicker(document.getElementById("sendlater3-toolbar-datepicker"));
+
     	sl3log.Leaving("Sendlater3ComposeToolbar.main");
     }
 }

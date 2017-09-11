@@ -316,6 +316,7 @@ var Sendlater3Prompt = {
         Sendlater3Prompt.CheckRecurring();
 	document.getElementById("sendlater3-time-text").focus();
 	Sendlater3Prompt.AddControlReturnListeners(document);
+        SL3U.initDatePicker(document.getElementById("sendlater3-datepicker"));
         sl3log.Leaving("Sendlater3Prompt.SetOnLoad");
     },
 
