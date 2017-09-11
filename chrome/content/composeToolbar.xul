@@ -17,11 +17,24 @@
   <script src="composeToolbar.js"/>
 
   <toolbarpalette id="MsgComposeToolbarPalette">
+    <!-- The oncommand code below forces the focus away from the datepicker or
+         timepicker in the toolbar, so that if the user has edited them, they
+         will update, so that when CallSendAt() is called, it will get the
+         correct, most recent time entered by the user. setTimeout here is used
+         for the same reason as described below. This is apparently necessary
+         here but not in the prompt window because regular XUL buttons take
+         focus when they are clicked, whereas apparently toolbar buttons do
+         not. *shrug* The reason why we put focus back at the end of the
+         oncommand code right after changing it is so that if CallSendAt()
+         doesn't actually send the message (e.g., because the user hasn't
+         entered any recipients), the focus will be back where it started, as
+         opposed to clicking the button causing the focus to unexpectedly (from
+         the user's point of view) shift.-->
     <toolbarbutton id="sendlater3-toolbarbutton" orient="horizontal"
 		   image="chrome://sendlater3/content/toolbarButton.png"
 		   label="&sendlater.toolbar.sendlater.button.label;"
 		   sl3label="&sendlater.toolbar.sendlater.button.label;" 
-		   oncommand="Sendlater3ComposeToolbar.CallSendAt();"  />
+		   oncommand="active=document.activeElement; document.getElementById('content-frame').focus();window.setTimeout(function(){Sendlater3ComposeToolbar.CallSendAt();},0);active.focus();"  />
     <toolbaritem id="sendlater3-toolbar-text-item" class="chromeclass-toolbar"
 		 context="toolbar-context-menu" hidden="false">
       <!-- For some reason, putting the textbox inside a stack causes the

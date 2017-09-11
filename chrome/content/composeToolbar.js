@@ -53,7 +53,12 @@ var Sendlater3ComposeToolbar = {
 	if (button) {
 	    var disabled = Sendlater3Composing.prevRecurring 
 		? true : (! dateObj);
-	    button.setAttribute("disabled", disabled);
+            // In the past we have disabled this button until there was a valid
+            // scheduled time from either the text box or the date/time picker.
+            // However, we want the user to be able to click the button even
+            // before we've got a valid time, in case they've e.g., edited the
+            // time picker and then clicked the button immediately.
+	    // button.setAttribute("disabled", disabled);
 	    if (dateObj && textField) {
 		button.label = SL3U.PromptBundleGet("sendaround") + " " +
 		    sendlater3DateToSugarDate(dateObj)
