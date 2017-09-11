@@ -15,7 +15,18 @@ if (!String.prototype.endsWith) {
   };
 }
 
-sl3uf = {
+function octal(num) {
+    // Takes an integer and returns the value of that integer as if its base-10
+    // digits were actually base-8 digits.
+    // For example, an input of 10 will return the base-10 value 8.
+    // This is a helper function to cope with the fact that versions of
+    // Thunderbird prior to 25 didn't support the 0o syntax, and I want to
+    // support back to Thunderbird 20. We can just get rid of this and Use 0o
+    // syntax directly once we're only supporting Thunderbird 25 or newer.
+    return parseInt(String(num), 8);
+}
+
+var sl3uf = {
     list: function() {
         // Return sorted array of function names
         var entries = this.directory().directoryEntries;
@@ -88,7 +99,7 @@ sl3uf = {
         var data = JSON.stringify(obj);
         var foStream = Cc["@mozilla.org/network/file-output-stream;1"].
             createInstance(Ci.nsIFileOutputStream);
-        foStream.init(file, 0x02 | 0x08 | 0x20, 0666, 0); 
+        foStream.init(file, 0x02 | 0x08 | 0x20, octal(666), 0); 
         var converter = Cc["@mozilla.org/intl/converter-output-stream;1"].
             createInstance(Ci.nsIConverterOutputStream);
         converter.init(foStream, "UTF-8", 0, 0);
@@ -179,12 +190,12 @@ sl3uf = {
 
         localDir.append("sendlater3");
         if (!localDir.exists() || !localDir.isDirectory()) {
-            localDir.create(Ci.nsIFile.DIRECTORY_TYPE, 0774);
+            localDir.create(Ci.nsIFile.DIRECTORY_TYPE, octal(774));
         }
 
         localDir.append("ufuncs");
         if (!localDir.exists() || !localDir.isDirectory()) {
-            localDir.create(Ci.nsIFile.DIRECTORY_TYPE, 0774);
+            localDir.create(Ci.nsIFile.DIRECTORY_TYPE, octal(774));
         }
 
         return localDir;

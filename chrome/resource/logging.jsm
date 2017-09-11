@@ -68,7 +68,7 @@ var reinitLogging = {
     }
 };
 
-sl3log = {
+var sl3log = {
     Entering: function() {
         init();
         var func = arguments[0];
