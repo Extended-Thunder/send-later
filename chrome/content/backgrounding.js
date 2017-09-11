@@ -1455,7 +1455,6 @@ var Sendlater3Backgrounding = function() {
                     .initWithCallback(
                         {notify: function(timer) {browser.focus();}}, 1000,
                         Components.interfaces.nsITimer.TYPE_ONE_SHOT);
-                return;
             }
             else {
                 Components.utils.import("resource://gre/modules/Services.jsm");
@@ -1475,6 +1474,7 @@ var Sendlater3Backgrounding = function() {
                     openWindow(null, browserUrl, "", "chrome,all,dialog=no",
                                argstring);
             }
+            return;
         }
         // Thunderbird
         Components
