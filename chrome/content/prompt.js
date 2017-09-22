@@ -228,7 +228,8 @@ var Sendlater3Prompt = {
 
         if (prevXSendLater) {
 	    prevRecurring = window.arguments[0].previouslyRecurring;
-            prevCancelOnReply = window.arguments[0].previouslyCancelOnReply;
+            prevCancelOnReply =
+                window.arguments[0].previouslyCancelOnReply || "";
 	    prevArgs = window.arguments[0].previousArgs;
             prevXSendLater = prevXSendLater.format(
                 "long", sendlater3SugarLocale());
