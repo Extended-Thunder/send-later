@@ -27,7 +27,7 @@ var Sendlater3Backgrounding = function() {
 
     var quitRequestedObserver = {
         observe: function(subject, topic, data) {
-            if (! checkUuid(false)) {
+            if (! checkUuid(false, true)) {
                 return;
             }
             if (! lastMessagesPending) {
@@ -57,13 +57,18 @@ var Sendlater3Backgrounding = function() {
 
     var quitObserver = {
         observe: function(subject, topic, data) {
-            if (! checkUuid(false)) {
+            sl3log.Entering("quitObserver.observe");
+            if (! checkUuid(false, true)) {
+                sl3log.Returning("quitObserver.observe", "! checkUuid(false)");
                 return;
             }
             if (quitConfirmed || ! lastMessagesPending) {
+                sl3log.Returning("quitObserver.observe",
+                                 "quitConfirmed || ! lastMessagesPending");
                 return;
             }
             if (! SL3U.getBoolPref("ask.quit")) {
+                sl3log.Returning("quitObserver.observe", "! ask.quit");
                 return;
             }
             var check = {value: true};
@@ -76,6 +81,7 @@ var Sendlater3Backgrounding = function() {
             if (! check.value) {
                 SL3U.setBoolPref("ask.quit", false);
             }
+            sl3log.Leaving("quitObserver.observe");
         }
     }
 
@@ -306,7 +312,7 @@ var Sendlater3Backgrounding = function() {
     // instance to its own UUID and proceeds, thus taking over for the other
     // instance that has apparently given up the ghost.
     var uuid;
-    function checkUuid(capturable) {
+    function checkUuid(capturable, check_last) {
 	if (! uuid) {
 	    var uuidGenerator = 
 		Components.classes["@mozilla.org/uuid-generator;1"]
@@ -314,6 +320,7 @@ var Sendlater3Backgrounding = function() {
 	    uuid = uuidGenerator.generateUUID().toString();
 	}
 	var current_time = Math.round((new Date()).getTime() / 1000);
+	var last_uuid = SL3U.getCharPref("activescanner.last_uuid");
 	var active_uuid = SL3U.getCharPref("activescanner.uuid");
 	var active_time = SL3U.getIntPref("activescanner.time");
 	var timeout = Math.round(checkTimeout() / 1000);
@@ -321,6 +328,7 @@ var Sendlater3Backgrounding = function() {
 	var dbgMsg =
 	    "uuid="         + uuid         + ", " +
 	    "current_time=" + current_time + ", " +
+	    "last_uuid="    + last_uuid  + ", " +
 	    "active_uuid="  + active_uuid  + ", " +
 	    "active_time="  + active_time  + ", " +
 	    "timeout="      + timeout;
@@ -330,6 +338,8 @@ var Sendlater3Backgrounding = function() {
 	    SL3U.setIntPref("activescanner.time", current_time);
             active_time = current_time;
         }
+        if (check_last && active_uuid == "" && last_uuid != "")
+            active_uuid = last_uuid;
 	if (active_uuid && active_uuid != "" && active_uuid != uuid) {
 	    if (current_time - active_time > 2 * timeout) {
 		if (capturable) {
@@ -356,6 +366,7 @@ var Sendlater3Backgrounding = function() {
 	else {
 	    sl3log.debug(func + "first window: " + dbgMsg);
 	    SL3U.setCharPref("activescanner.uuid", uuid);
+	    SL3U.setCharPref("activescanner.last_uuid", "");
 	}
 	SL3U.setIntPref("activescanner.time", current_time);
 	return true;
@@ -367,6 +378,7 @@ var Sendlater3Backgrounding = function() {
 	if (active_uuid != uuid) return;
 	var func = "Sendlater3Backgrounding.clearActiveUuidCallback: ";
 	sl3log.debug(func + "clearing: uuid=" + uuid);
+        SL3U.setCharPref("activescanner.last_uuid", uuid);
 	SL3U.setCharPref("activescanner.uuid", "");
     }
 

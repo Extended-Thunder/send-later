@@ -28,6 +28,7 @@ pref("extensions.sendlater3.enforce_restrictions", false);
 pref("extensions.sendlater3.block_late_messages", false);
 pref("extensions.sendlater3.late_grace_period", 5);
 // Internal settings not to be messed with
+pref("extensions.sendlater3.activescanner.last_uuid","");
 pref("extensions.sendlater3.activescanner.uuid","");
 pref("extensions.sendlater3.activescanner.time",0);
 pref("extensions.sendlater3.instance.uuid","");
