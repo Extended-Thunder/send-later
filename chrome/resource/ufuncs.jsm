@@ -83,7 +83,7 @@ var sl3uf = {
             data += str.value;
         }
         cstream.close();
-        obj = JSON.parse(data);
+        var obj = JSON.parse(data);
         return [obj.name, obj.help, obj.body];
     },
     
