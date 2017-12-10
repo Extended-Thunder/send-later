@@ -216,6 +216,7 @@ chrome/locale/zh-TW/prompt.dtd
 chrome/locale/zh-TW/prompt.properties
 chrome/locale/zh-TW/sendlater3.properties
 chrome/resource/dateparse.jsm
+chrome/resource/defaultPreferencesLoader.jsm
 chrome/resource/logging.jsm
 chrome/resource/sugar.min.js
 chrome/resource/ufuncs.jsm
