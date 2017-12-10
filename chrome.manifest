@@ -1,4 +1,5 @@
 content	sendlater3	chrome/content/
+content sendlater3-defaults defaults/
 resource sendlater3	chrome/resource/
 locale	sendlater3	ca	chrome/locale/ca-ES/
 locale  sendlater3      cs      chrome/locale/cs-CZ/
