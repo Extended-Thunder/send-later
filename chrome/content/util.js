@@ -175,10 +175,16 @@ var Sendlater3Util = {
 
     ButtonLabel: function(num, btn) {
         sl3log.Entering("Sendlater3Util.ButtonLabel", num, btn);
-        var label = Sendlater3Util.PrefService.
-            getComplexValue(Sendlater3Util.pref("quickoptions." + num +
-                                                ".label"),
-                            Components.interfaces.nsISupportsString).data;
+        var label;
+        var pref = Sendlater3Util.pref("quickoptions." + num + ".label");
+        try {
+            // Gecko 58+
+            label = SL3U.PrefService.getStringPref(pref);
+        }
+        catch (e) {
+            label = SL3U.PrefService.getComplexValue(
+                pref, Components.interfaces.nsISupportsString).data;
+        }
         if (label == "<from locale>") {
             label = btn.getAttribute("sl3label");
         }

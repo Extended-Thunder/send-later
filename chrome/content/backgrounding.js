@@ -1263,9 +1263,18 @@ var Sendlater3Backgrounding = function() {
 			"local Drafts folder");
 	    // Local Drafts folder might have different name, e.g., in other
 	    // locales.
-	    var local_draft_pref = SL3U.PrefService
-		.getComplexValue('mail.identity.default.draft_folder',
-				 Components.interfaces.nsISupportsString).data;
+            var local_draft_pref;
+            var draft_folder_pref = 'mail.identity.default.draft_folder';
+            try {
+                // Gecko 58+
+                local_draft_pref = SL3U.PrefService.getStringPref(
+                    draft_folder_pref);
+            }
+            catch (e) {
+                local_draft_pref = SL3U.PrefService.getComplexValue(
+                    draft_folder_pref,
+                    Components.interfaces.nsISupportsString).data;
+            }
 	    sl3log.debug("mail.identity.default.draft_folder=" +local_draft_pref);
 	    if (local_draft_pref) {
 		var folder;
