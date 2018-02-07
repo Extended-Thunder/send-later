@@ -773,21 +773,25 @@ var Sendlater3Backgrounding = function() {
 	    // done mucking with the headers.
 	    content = "\n" + content;
 
-	    content = content
-		.replace(/(\nDate:).*\n/i,"$1 " +
-			 SL3U.FormatDateTime(new Date(), true)+"\n");
-	    content = content.replace(/\nX-Send-Later-At:.*\n/i,
-				      "\n");
-	    content = content.replace(/\nX-Send-Later-Uuid:.*\n/i,
-				      "\n");
-	    content = content.replace(/\nX-Send-Later-Recur:.*\n/i,
-				      "\n");
-	    content = content.replace(/\nX-Send-Later-Cancel-On-Reply:.*\n/i,
-				      "\n");
-	    content = content.replace(/\nX-Send-Later-Args:.*\n/i,
-				      "\n");
-	    content = content.replace(/\nX-Enigmail-Draft-Status:.*\n/i,
-				      "\n");
+            function replaceHeader(content, header, newValue) {
+                var re, replacementText;
+                if (newValue) {
+                    replacementText = "\n" + header + ": " + newValue + "\n";
+                } else {
+                    replacementText = "\n";
+                }
+                re = new RegExp("\n" + header + ":.*\n([ \t].*\n)*", 'i');
+                return content.replace(re, replacementText);
+            }
+
+            content = replaceHeader(content, "Date",
+                                    SL3U.FormatDateTime(new Date(), true));
+            content = replaceHeader(content, "X-Send-Later-At");
+            content = replaceHeader(content, "X-Send-Later-Uuid");
+            content = replaceHeader(content, "X-Send-Later-Recur");
+            content = replaceHeader(content, "X-Send-Later-Cancel-On-Reply");
+            content = replaceHeader(content, "X-Send-Later-Args");
+            content = replaceHeader(content, "X-Enigmail-Draft-Status");
 
             var messageId;
             [content, messageId] = ReplaceMessageId(content, this._uri);
