@@ -792,6 +792,7 @@ var Sendlater3Backgrounding = function() {
             content = replaceHeader(content, "X-Send-Later-Cancel-On-Reply");
             content = replaceHeader(content, "X-Send-Later-Args");
             content = replaceHeader(content, "X-Enigmail-Draft-Status");
+            content = replaceHeader(content, "Openpgp");
 
             var messageId;
             [content, messageId] = ReplaceMessageId(content, this._uri);
