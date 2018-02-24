@@ -1366,6 +1366,7 @@ var Sendlater3Util = {
         var grid = document.getAnonymousElementByAttribute(
             elt, "anonid", "grid");
         grid._init();
+        grid._updateUI(grid.monthField, grid.month, true);
     }
 };
 
