@@ -42,3 +42,4 @@
 <!ENTITY sendlater.prompt.day4 "星期四">
 <!ENTITY sendlater.prompt.day5 "星期五">
 <!ENTITY sendlater.prompt.day6 "星期六">
+<!ENTITY firstdayofweek.default "1">

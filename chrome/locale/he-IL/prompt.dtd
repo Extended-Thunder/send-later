@@ -44,3 +44,4 @@
 <!ENTITY sendlater.prompt.day6 "‫יום שבת‬">
 <!ENTITY sendlater.prompt.cancelonreply.label "בטל חזרה בתשובה">
 <!ENTITY sendlater.prompt.cancelonreply.tooltip "המתן לתגובות לעותקי הודעות חוזרות שנשלחו בעבר. בטל הודעה חוזרת והסר אותה מתיקיית הטיוטות כאשר מתקבלת תשובה.">
+<!ENTITY firstdayofweek.default "0">

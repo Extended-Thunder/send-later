@@ -5,7 +5,7 @@
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 
 <!DOCTYPE bindings [
-  <!ENTITY % datetimepickerDTD SYSTEM "chrome://global/locale/datetimepicker.dtd">
+  <!ENTITY % datetimepickerDTD SYSTEM "chrome://sendlater3/locale/prompt.dtd">
   %datetimepickerDTD;
 ]>
 
@@ -22,6 +22,8 @@
       <stylesheet src="chrome://global/content/textbox.css"/>
       <stylesheet src="chrome://global/skin/textbox.css"/>
       <stylesheet src="chrome://global/skin/dropmarker.css"/>
+      <stylesheet src="chrome://messenger/skin/datetimepicker.css"/>
+      <stylesheet src="chrome://communicator/skin/datetimepicker.css"/>
       <stylesheet src="chrome://global/skin/datetimepicker.css"/>
     </resources>
 
@@ -211,7 +213,7 @@
   </binding>
 
   <binding id="timepicker"
-           extends="chrome://global/content/bindings/datetimepicker.xml#datetimepicker-base">
+           extends="chrome://sendlater3/content/datetimepicker.xml#datetimepicker-base">
 
     <implementation>
       <field name="is24HourClock">false</field>
@@ -543,7 +545,7 @@
   </binding>
 
   <binding id="datepicker"
-           extends="chrome://global/content/bindings/datetimepicker.xml#datetimepicker-base">
+           extends="chrome://sendlater3/content/datetimepicker.xml#datetimepicker-base">
 
     <implementation>
       <field name="yearLeadingZero">false</field>
@@ -826,7 +828,7 @@
   </binding>
 
   <binding id="datepicker-grid"
-           extends="chrome://global/content/bindings/datetimepicker.xml#datepicker">
+           extends="chrome://sendlater3/content/datetimepicker.xml#datepicker">
 
     <content>
       <vbox class="datepicker-mainbox"
@@ -1213,7 +1215,7 @@
   </binding>
 
   <binding id="datepicker-popup" display="xul:menu"
-           extends="chrome://global/content/bindings/datetimepicker.xml#datepicker">
+           extends="chrome://sendlater3/content/datetimepicker.xml#datepicker">
     <content align="center">
       <xul:hbox class="textbox-input-box datetimepicker-input-box" align="center"
                 allowevents="true" xbl:inherits="context,disabled,readonly">

@@ -9,7 +9,7 @@ chrome/content/composeToolbar.js
 chrome/content/composeToolbar.xul
 chrome/content/composing.js
 chrome/content/composing.xul
-chrome/content/datetimepicker.css
+chrome/content/custom-datepicker-bindings/datetimepicker.css
 chrome/content/datetimepicker.xml
 chrome/content/editor.js
 chrome/content/editor.xul
@@ -21,6 +21,7 @@ chrome/content/options.js
 chrome/content/options.xul
 chrome/content/prompt.js
 chrome/content/prompt.xul
+chrome/content/stock-datepicker-bindings/datetimepicker.css
 chrome/content/toolbarButton.png
 chrome/content/util.js
 chrome/locale/ca-ES/ask.dtd

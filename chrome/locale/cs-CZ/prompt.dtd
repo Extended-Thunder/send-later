@@ -37,3 +37,4 @@
 <!ENTITY sendlater.prompt.day5 "Pátek">
 <!ENTITY sendlater.prompt.day6 "Sobotu">
 <!ENTITY sendlater.prompt.cancelonreply.label "Zrušit opakování po odpovědi">
+<!ENTITY firstdayofweek.default "1">

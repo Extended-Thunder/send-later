@@ -44,3 +44,4 @@
 <!ENTITY sendlater.prompt.day6 "Samstag">
 <!ENTITY sendlater.prompt.cancelonreply.label "Wiederkehrendes Senden bei Antwort beenden">
 <!ENTITY sendlater.prompt.cancelonreply.tooltip "Beendet das Versenden einer wiederkehrenden Nachricht und löscht sie aus dem Entwurf-Ordner, sobald auf eine zuvor versendete Kopie geantwortet wurde.">
+<!ENTITY firstdayofweek.default "1">

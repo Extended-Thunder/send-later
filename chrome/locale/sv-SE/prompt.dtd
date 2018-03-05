@@ -42,3 +42,4 @@
 <!ENTITY sendlater.prompt.day4 "torsdag">
 <!ENTITY sendlater.prompt.day5 "fredag">
 <!ENTITY sendlater.prompt.day6 "lördag">
+<!ENTITY firstdayofweek.default "1">

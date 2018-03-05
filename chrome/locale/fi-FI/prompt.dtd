@@ -44,3 +44,4 @@
 <!ENTITY sendlater.prompt.day6 "lauantai">
 <!ENTITY sendlater.prompt.cancelonreply.label "Hylkää toistuvuus vastattaessa">
 <!ENTITY sendlater.prompt.cancelonreply.tooltip "Etsi vastauksia aiemmin lähetettyihin kopioihin toistuvista viesteistä. Peruuta toistuva viesti ja poista se Luonnokset-kansiosta kun vastaus on vastaanotettu.">
+<!ENTITY firstdayofweek.default "1">

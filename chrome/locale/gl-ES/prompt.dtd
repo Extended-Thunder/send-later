@@ -44,3 +44,4 @@
 <!ENTITY sendlater.prompt.day6 "Sábado">
 <!ENTITY sendlater.prompt.cancelonreply.label "Cancelar repeticións cando reciba resposta">
 <!ENTITY sendlater.prompt.cancelonreply.tooltip "Verifica as respostas ás copias enviadas previamente de mensaxes recorrentes. Cancela unha mensaxe recorrente e bórrao do cartafol Borradores cando recibe resposta.">
+<!ENTITY firstdayofweek.default "1">

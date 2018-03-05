@@ -1,0 +1,11 @@
+datepicker[type="popup"] {
+    -moz-binding: url('chrome://sendlater3/content/datetimepicker.xml#datepicker-popup');
+/*    -moz-binding: url('chrome://messenger/content/datetimepicker.xml#datepicker-popup'); */
+}
+datepicker[type="grid"] {
+    -moz-binding: url('chrome://sendlater3/content/datetimepicker.xml#datepicker-grid');
+/*    -moz-binding: url('chrome://messenger/content/datetimepicker.xml#datepicker-grid'); */
+}
+timepicker {
+    -moz-binding: url('chrome://sendlater3/content/datetimepicker.xml#timepicker');
+}
