@@ -8,6 +8,9 @@ var loader = Components.classes["@mozilla.org/moz/jssubscript-loader;1"]
                        .getService(Components.interfaces.mozIJSSubScriptLoader); 
 loader.loadSubScript("resource://sendlater3/sugar.min.js"); 
 
+// https://github.com/andrewplummer/Sugar/issues/605
+Sugar.Date.extend();
+
 var didLocale = false;
 var locale;
 
@@ -38,7 +41,7 @@ function getLocale() {
 	    // an unrecognized locale is passed in and the locale is
 	    // needed.
 	    try {
-	        Date.create().format(null, l);
+	        Sugar.Date.create().format(null, l);
                 locale = l;
                 return locale;
 	    }
@@ -50,22 +53,22 @@ function getLocale() {
 
 function sendlater3DateParse(date) {
     var locale = getLocale();
-    var obj = Date.future(date, locale);
+    var obj = Sugar.Date.create(date, {locale: locale, future: true});
     if (! (obj.isValid() || locale.substr(0, 2) == "en")) {
 	// Fall back on English date rules
-	obj = Date.future(date);
+	obj = Sugar.Date.create(date, {future: true});
     }
     return obj;
 }
 
 function sendlater3DateToSugarDate(date) {
     try {
-	return Date.create(date);
+	return Sugar.Date.create(date);
     }
     catch (e) {
-	var d = new Date();
+	var d = new Sugar.Date();
 	d.setTime(date.getTime());
-	return d;
+	return d.raw;
     }
 }
 

@@ -238,7 +238,7 @@ sl3e = {
                 next = nextDate;
             }
             timeBox.value = sendlater3DateToSugarDate(next)
-                .format("long", sendlater3SugarLocale());
+                .format("{long}", sendlater3SugarLocale());
             if (nextargs)
                 argBox.value = sl3uf.unparseArgs(nextargs);
             else

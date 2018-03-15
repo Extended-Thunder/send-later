@@ -232,7 +232,7 @@ var Sendlater3Prompt = {
                 window.arguments[0].previouslyCancelOnReply || "";
 	    prevArgs = window.arguments[0].previousArgs;
             prevXSendLater = prevXSendLater.format(
-                "long", sendlater3SugarLocale());
+                "{long}", sendlater3SugarLocale());
         }
         else {
             let defaultsJson = SL3U.getCharPref("prompt.defaults");
@@ -365,7 +365,7 @@ var Sendlater3Prompt = {
             if (! functional) {
 	        button.label = SL3U.PromptBundleGet("sendaround") + " "
 		    + sendlater3DateToSugarDate(dateObj)
-		    .format('long', sendlater3SugarLocale());
+		    .format('{long}', sendlater3SugarLocale());
 	        Sendlater3Prompt.CheckRecurring(dateObj);
                 enable_button = true;
             }
@@ -652,7 +652,7 @@ var Sendlater3Prompt = {
 
         document.getElementById("sendlater3-time-text").value =
             sendlater3DateToSugarDate(sendat).format(
-                'long', sendlater3SugarLocale());
+                '{long}', sendlater3SugarLocale());
         this.updateSummary();
         // Returns adjusted date, parsed recurrence spec, and arguments (if
         // any) for the next invocation (if any).

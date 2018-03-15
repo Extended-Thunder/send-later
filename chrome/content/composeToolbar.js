@@ -62,7 +62,7 @@ var Sendlater3ComposeToolbar = {
 	    if (dateObj && textField) {
 		button.label = SL3U.PromptBundleGet("sendaround") + " " +
 		    sendlater3DateToSugarDate(dateObj)
-		    .format('long', sendlater3SugarLocale());
+		    .long('{long}', sendlater3SugarLocale());
 	    }
 	    else {
 		button.label = button.getAttribute("sl3label");
