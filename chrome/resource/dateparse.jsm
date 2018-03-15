@@ -1,12 +1,12 @@
 var EXPORTED_SYMBOLS = ["sendlater3DateParse", "sendlater3DateToSugarDate", "sendlater3SugarLocale"];
 
 // Using mozIJSSubScriptLoader instead of Cu.import because I want to
-// preserve sugar.min.js unmodified from the official
+// preserve SugarJS unmodified from the official
 // distribution, and it doesn't define EXPORTED_SYMBOLS, which is
 // required by CU.import.
 var loader = Components.classes["@mozilla.org/moz/jssubscript-loader;1"]
                        .getService(Components.interfaces.mozIJSSubScriptLoader); 
-loader.loadSubScript("resource://sendlater3/sugar.min.js"); 
+loader.loadSubScript("resource://sendlater3/sugar.js"); 
 
 // https://github.com/andrewplummer/Sugar/issues/605
 Sugar.Date.extend();
