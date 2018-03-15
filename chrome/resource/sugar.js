@@ -38,6 +38,17 @@
   // The global context. Rhino uses a different "global" keyword so
   // do an extra check to be sure that it's actually the global context.
   var globalContext = typeof global !== 'undefined' && global.Object === Object ? global : this;
+  // `this` in Thunderbird 61+ (and probably upcoming Firefox releases as well,
+  // since TB and FF use the same JavaScript interpreter) is a
+  // NonSyntacticVariablesObject with only a few variables defined in it, not a
+  // BackstagePass with all the global variables including types defined in it.
+  // To detect this, we check if 'Array' is defined, and if not, we fix it
+  // using the method described in https://stackoverflow.com/a/3277192/5090662.
+  // I think that method would actually work all the time everywhere, not just
+  // with TB 61+, but I can't be certain enough about that to just throw away
+  // the logic above. Perhaps Andrew Plummer can, but I can't. ;-)
+  if (typeof globalContext['Array'] === 'undefined')
+    globalContext = Function('return this')();
 
   // Is the environment node?
   var hasExports = typeof module !== 'undefined' && module.exports;
