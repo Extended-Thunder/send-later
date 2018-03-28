@@ -41,7 +41,7 @@ function getLocale() {
 	    // an unrecognized locale is passed in and the locale is
 	    // needed.
 	    try {
-	        Sugar.Date.create().format(null, l);
+	        (new Date()).format(null, l);
                 locale = l;
                 return locale;
 	    }
@@ -52,24 +52,22 @@ function getLocale() {
 }
 
 function sendlater3DateParse(date) {
+    // Sugar.Date.create is actually Sugar.Date.parse. It returns an unextended
+    // Date object. Since we call Date.extend above, the core Date constructor
+    // now returns an extended object, so we use that after parsing to create
+    // an extended object.
     var locale = getLocale();
-    var obj = Sugar.Date.create(date, {locale: locale, future: true});
+    var obj = new Date(
+        Sugar.Date.create(date, {locale: locale, future: true}));
     if (! (obj.isValid() || locale.substr(0, 2) == "en")) {
 	// Fall back on English date rules
-	obj = Sugar.Date.create(date, {future: true});
+	obj = new Date(Sugar.Date.create(date, {future: true}));
     }
     return obj;
 }
 
 function sendlater3DateToSugarDate(date) {
-    try {
-	return Sugar.Date.create(date);
-    }
-    catch (e) {
-	var d = new Sugar.Date();
-	d.setTime(date.getTime());
-	return d.raw;
-    }
+    return new Date(date);
 }
 
 function sendlater3SugarLocale() {
