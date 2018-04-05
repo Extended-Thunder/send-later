@@ -1,8 +1,8 @@
 /*
- *  Sugar v2.0.2
+ *  Sugar Custom 2018.04.05
  *
  *  Freely distributable and licensed under the MIT-style license.
- *  Copyright (c) Andrew Plummer
+ *  Copyright (c)  Andrew Plummer
  *  https://sugarjs.com/
  *
  * ---------------------------- */
@@ -73,6 +73,7 @@
 
   function setupGlobal() {
     Sugar = globalContext[SUGAR_GLOBAL];
+    // istanbul ignore if
     if (Sugar) {
       // Reuse already defined Sugar global object.
       return;
@@ -89,6 +90,7 @@
       });
       return Sugar;
     };
+    // istanbul ignore else
     if (hasExports) {
       module.exports = Sugar;
     } else {
@@ -445,7 +447,9 @@
      *        not already exist.
      * @extra Intended only for use creating polyfills that follow the ECMAScript
      *        spec. Accepts either a single object mapping names to functions, or
-     *        name and function as two arguments.
+     *        name and function as two arguments. Note that polyfill methods will
+     *        be immediately mapped onto their native prototype regardless of the
+     *        use of `extend`.
      *
      * @example
      *
@@ -477,7 +481,8 @@
      *        name and function as two arguments. This method differs from
      *        `defineInstance` as there is no static signature (as the method
      *        is mapped as-is to the native), so it should refer to its `this`
-     *        object.
+     *        object. Note that polyfill methods will be immediately mapped onto
+     *        their native prototype regardless of the use of `extend`.
      *
      * @example
      *
@@ -769,7 +774,7 @@
 
   function disambiguateMethod(methodName) {
     var fn = function() {
-      var raw = this.raw, sugarNamespace, fn;
+      var raw = this.raw, sugarNamespace;
       if (raw != null) {
         // Find the Sugar namespace for this unknown.
         sugarNamespace = namespacesByClassString[classToString(raw)];
@@ -782,16 +787,7 @@
         sugarNamespace = Sugar.Object;
       }
 
-      fn = new sugarNamespace(raw)[methodName];
-
-      if (fn.disambiguate) {
-        // If the method about to be called on this chainable is
-        // itself a disambiguation method, then throw an error to
-        // prevent infinite recursion.
-        throw new TypeError('Cannot resolve namespace for ' + raw);
-      }
-
-      return fn.apply(this, arguments);
+      return new sugarNamespace(raw)[methodName].apply(this, arguments);
     };
     fn.disambiguate = true;
     return fn;
@@ -851,6 +847,7 @@
     }
   };
 
+  // istanbul ignore next
   function definePropertyShim(obj, prop, descriptor) {
     obj[prop] = descriptor.value;
   }
@@ -888,6 +885,7 @@
    * @module Common
    * @description Internal utility and common methods.
    ***/
+
 
   // Flag allowing native methods to be enhanced
   var ENHANCEMENTS_FLAG = 'enhance';
@@ -927,6 +925,15 @@
       sugarNumber   = Sugar.Number,
       sugarFunction = Sugar.Function,
       sugarRegExp   = Sugar.RegExp;
+
+  // Core utility aliases
+  var hasOwn               = Sugar.util.hasOwn,
+      getOwn               = Sugar.util.getOwn,
+      setProperty          = Sugar.util.setProperty,
+      classToString        = Sugar.util.classToString,
+      defineProperty       = Sugar.util.defineProperty,
+      forEachProperty      = Sugar.util.forEachProperty,
+      mapNativeToChainable = Sugar.util.mapNativeToChainable;
 
   // Class checks
   var isSerializable,
@@ -996,6 +1003,7 @@
     }
 
     function buildClassCheck(className, globalObject) {
+      // istanbul ignore if
       if (globalObject && isClass(new globalObject, 'Object')) {
         return getConstructorClassCheck(globalObject);
       } else {
@@ -1003,6 +1011,10 @@
       }
     }
 
+    // Map and Set may be [object Object] in certain IE environments.
+    // In this case we need to perform a check using the constructor
+    // instead of Object.prototype.toString.
+    // istanbul ignore next
     function getConstructorClassCheck(obj) {
       var ctorStr = String(obj);
       return function(obj) {
@@ -1143,8 +1155,6 @@
     });
   }
 
-  // Argument helpers
-
   function assertArgument(exists) {
     if (!exists) {
       throw new TypeError('Argument required');
@@ -1183,9 +1193,6 @@
     return trunc(n);
   }
 
-
-  // General helpers
-
   function isDefined(o) {
     return o !== undefined;
   }
@@ -1210,8 +1217,6 @@
       return createFn.apply(this, arguments);
     };
   }
-
-  // Fuzzy matching helpers
 
   function getMatcher(f) {
     if (!isPrimitive(f)) {
@@ -1274,8 +1279,6 @@
       return el === fn || fn.call(arr, el, i, arr);
     };
   }
-
-  // Object helpers
 
   function getKeys(obj) {
     return Object.keys(obj);
@@ -1516,6 +1519,7 @@
     if (isPrimitive(obj)) {
       obj = Object(obj);
     }
+    // istanbul ignore if
     if (NO_KEYS_IN_STRING_OBJECTS && isString(obj)) {
       forceStringCoercion(obj);
     }
@@ -1524,6 +1528,7 @@
 
   // Force strings to have their indexes set in
   // environments that don't do this automatically.
+  // istanbul ignore next
   function forceStringCoercion(obj) {
     var i = 0, chr;
     while (chr = obj.charAt(i)) {
@@ -1531,8 +1536,7 @@
     }
   }
 
-  // Equality helpers
-
+  // Perf
   function isEqual(a, b, stack) {
     var aClass, bClass;
     if (a === b) {
@@ -1559,6 +1563,7 @@
     return false;
   }
 
+  // Perf
   function objectIsEqual(a, b, aClass, stack) {
     var aType = typeof a, bType = typeof b, propsEqual, count;
     if (aType !== bType) {
@@ -1673,9 +1678,6 @@
     }
   }
 
-
-  // Array helpers
-
   function isArrayIndex(n) {
     return n >>> 0 == n && n != 0xFFFFFFFF;
   }
@@ -1702,6 +1704,8 @@
     indexes.sort(function(a, b) {
       var aLoop = a > fromIndex;
       var bLoop = b > fromIndex;
+      // This block cannot be reached unless ES5 methods are being shimmed.
+      // istanbul ignore if
       if (aLoop !== bLoop) {
         return aLoop ? -1 : 1;
       }
@@ -1801,8 +1805,7 @@
     return -1;
   }
 
-  // Number helpers
-
+  // istanbul ignore next
   var trunc = Math.trunc || function(n) {
     if (n === 0 || !isFinite(n)) return n;
     return n < 0 ? ceil(n) : floor(n);
@@ -1883,9 +1886,6 @@
       ceil  = Math.ceil,
       floor = Math.floor,
       round = Math.round;
-
-
-  // String helpers
 
   var chr = String.fromCharCode;
 
@@ -1991,8 +1991,6 @@
     };
   }
 
-  // Inflection helper
-
   var Inflections = {};
 
   function getAcronym(str) {
@@ -2006,8 +2004,6 @@
   function runHumanRules(str) {
     return Inflections.human && Inflections.human.runRules(str) || str;
   }
-
-  // RegExp helpers
 
   function allCharsReg(src) {
     return RegExp('[' + src + ']', 'g');
@@ -2033,8 +2029,6 @@
     return str.replace(/([\\\/\'*+?|()\[\]{}.^$-])/g,'\\$1');
   }
 
-  // Date helpers
-
   var _utc = privatePropertyAccessor('utc');
 
   function callDateGet(d, method) {
@@ -2055,8 +2049,6 @@
     d['set' + (_utc(d) ? 'UTC' : '') + method](value);
   }
 
-  // Memoization helpers
-
   var INTERNAL_MEMOIZE_LIMIT = 1000;
 
   // Note that attemps to consolidate this with Function#memoize
@@ -2069,6 +2061,7 @@
       if (hasOwn(memo, key)) {
         return memo[key];
       }
+      // istanbul ignore if
       if (counter === INTERNAL_MEMOIZE_LIMIT) {
         memo = {};
         counter = 0;
@@ -2077,8 +2070,6 @@
       return memo[key] = fn(key);
     };
   }
-
-  // ES6 helpers
 
   function setToArray(set) {
     var arr = new Array(set.size), i = 0;
@@ -2097,7 +2088,548 @@
   }
 
   buildClassChecks();
+
   buildFullWidthNumber();
+
+  /***
+   * @module ES5
+   * @description Functions and polyfill methods that fix ES5 functionality. This
+   *              module is excluded from default builds, and can be included if
+   *              you need legacy browser support (IE8 and below).
+   *
+   ***/
+
+
+  // Non-enumerable properties on Object.prototype. In early JScript implementations
+  // (< IE9) these will shadow object properties and break for..in loops.
+  var DONT_ENUM_PROPS = [
+    'valueOf',
+    'toString',
+    'constructor',
+    'isPrototypeOf',
+    'hasOwnProperty',
+    'toLocaleString',
+    'propertyIsEnumerable'
+  ];
+
+  /***
+   * @fix
+   * @short Fixes DontEnum bug for iteration methods in < IE9.
+   ***/
+  function buildDontEnumFix() {
+    if (!({toString:1}).propertyIsEnumerable('toString')) {
+      var forEachEnumerableProperty = forEachProperty;
+      forEachProperty = function(obj, fn) {
+        forEachEnumerableProperty(obj, fn);
+        for (var i = 0, key; key = DONT_ENUM_PROPS[i]; i++) {
+          if (hasOwn(obj, key)) {
+            if(fn.call(obj, obj[key], key, obj) === false) break;
+          }
+        }
+      };
+    }
+  }
+
+  /***
+   * @fix
+   * @short Adds native methods to chainables in < IE9.
+   ***/
+  function buildChainableNativeMethodsFix() {
+    if (!Object.getOwnPropertyNames) {
+      defineNativeMethodsOnChainable();
+    }
+  }
+
+  // Polyfilled methods will automatically be added to the chainable prototype.
+  // However, Object.getOwnPropertyNames cannot be shimmed for non-enumerable
+  // properties, so if it does not exist, then the only way to access native
+  // methods previous to ES5 is to provide them as a list of tokens here.
+  function defineNativeMethodsOnChainable() {
+
+    var nativeTokens = {
+      'Function': 'apply,call',
+      'RegExp':   'compile,exec,test',
+      'Number':   'toExponential,toFixed,toLocaleString,toPrecision',
+      'Object':   'hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString',
+      'Array':    'concat,join,pop,push,reverse,shift,slice,sort,splice,toLocaleString,unshift',
+      'Date':     'getTime,getTimezoneOffset,setTime,toDateString,toGMTString,toLocaleDateString,toLocaleString,toLocaleTimeString,toTimeString,toUTCString',
+      'String':   'anchor,big,blink,bold,charAt,charCodeAt,concat,fixed,fontcolor,fontsize,indexOf,italics,lastIndexOf,link,localeCompare,match,replace,search,slice,small,split,strike,sub,substr,substring,sup,toLocaleLowerCase,toLocaleUpperCase,toLowerCase,toUpperCase'
+    };
+
+    var dateTokens = 'FullYear,Month,Date,Hours,Minutes,Seconds,Milliseconds'.split(',');
+
+    function addDateTokens(prefix, arr) {
+      for (var i = 0; i < dateTokens.length; i++) {
+        arr.push(prefix + dateTokens[i]);
+      }
+    }
+
+    forEachProperty(nativeTokens, function(str, name) {
+      var tokens = str.split(',');
+      if (name === 'Date') {
+        addDateTokens('get', tokens);
+        addDateTokens('set', tokens);
+        addDateTokens('getUTC', tokens);
+        addDateTokens('setUTC', tokens);
+      }
+      tokens.push('toString');
+      mapNativeToChainable(name, tokens);
+    });
+
+  }
+
+  buildDontEnumFix();
+
+  buildChainableNativeMethodsFix();
+
+  function assertNonNull(obj) {
+    if (obj == null) {
+      throw new TypeError('Object required');
+    }
+  }
+
+  defineStaticPolyfill(sugarObject, {
+
+    'keys': function(obj) {
+      var keys = [];
+      assertNonNull(obj);
+      forEachProperty(coercePrimitiveToObject(obj), function(val, key) {
+        keys.push(key);
+      });
+      return keys;
+    }
+
+  });
+
+  function arrayIndexOf(arr, search, fromIndex, fromRight) {
+    var length = arr.length, defaultFromIndex, index, increment;
+
+    increment = fromRight ? -1 : 1;
+    defaultFromIndex = fromRight ? length - 1 : 0;
+    fromIndex = trunc(fromIndex);
+    if (!fromIndex && fromIndex !== 0) {
+      fromIndex = defaultFromIndex;
+    }
+    if (fromIndex < 0) {
+      fromIndex = length + fromIndex;
+    }
+    if ((!fromRight && fromIndex < 0) || (fromRight && fromIndex >= length)) {
+      fromIndex = defaultFromIndex;
+    }
+
+    index = fromIndex;
+
+    while((fromRight && index >= 0) || (!fromRight && index < length)) {
+      if (!(index in arr)) {
+        return sparseIndexOf(arr, search, fromIndex, fromRight);
+      }
+      if (isArrayIndex(index) && arr[index] === search) {
+        return index;
+      }
+      index += increment;
+    }
+    return -1;
+  }
+
+  function sparseIndexOf(arr, search, fromIndex, fromRight) {
+    var indexes = getSparseArrayIndexes(arr, fromIndex, false, fromRight), index;
+    indexes.sort(function(a, b) {
+      return fromRight ? b - a : a - b;
+    });
+    while ((index = indexes.shift()) !== undefined) {
+      if (arr[index] === search) {
+        return +index;
+      }
+    }
+    return -1;
+  }
+
+  function arrayReduce(arr, fn, initialValue, fromRight) {
+    var length = arr.length, count = 0, defined = isDefined(initialValue), result, index;
+    assertCallable(fn);
+    if (length == 0 && !defined) {
+      throw new TypeError('Reduce called on empty array with no initial value');
+    } else if (defined) {
+      result = initialValue;
+    } else {
+      result = arr[fromRight ? length - 1 : count];
+      count++;
+    }
+    while(count < length) {
+      index = fromRight ? length - count - 1 : count;
+      if (index in arr) {
+        result = fn(result, arr[index], index, arr);
+      }
+      count++;
+    }
+    return result;
+  }
+
+  defineStaticPolyfill(sugarArray, {
+
+    /***
+     *
+     * @method isArray(obj)
+     * @returns Boolean
+     * @polyfill ES5
+     * @static
+     * @short Returns true if `obj` is an Array.
+     *
+     * @example
+     *
+     *   Array.isArray(3)        -> false
+     *   Array.isArray(true)     -> false
+     *   Array.isArray('wasabi') -> false
+     *   Array.isArray([1,2,3])  -> true
+     *
+     ***/
+    'isArray': function(obj) {
+      return isArray(obj);
+    }
+
+  });
+
+  defineInstancePolyfill(sugarArray, {
+
+    'every': function(fn) {
+      // Force compiler to respect argument length.
+      var argLen = arguments.length, context = arguments[1];
+      var length = this.length, index = 0;
+      assertCallable(fn);
+      while(index < length) {
+        if (index in this && !fn.call(context, this[index], index, this)) {
+          return false;
+        }
+        index++;
+      }
+      return true;
+    },
+
+    'some': function(fn) {
+      // Force compiler to respect argument length.
+      var argLen = arguments.length, context = arguments[1];
+      var length = this.length, index = 0;
+      assertCallable(fn);
+      while(index < length) {
+        if (index in this && fn.call(context, this[index], index, this)) {
+          return true;
+        }
+        index++;
+      }
+      return false;
+    },
+
+    'map': function(fn) {
+      // Force compiler to respect argument length.
+      var argLen = arguments.length, context = arguments[1];
+      var length = this.length, index = 0, result = new Array(length);
+      assertCallable(fn);
+      while(index < length) {
+        if (index in this) {
+          result[index] = fn.call(context, this[index], index, this);
+        }
+        index++;
+      }
+      return result;
+    },
+
+    'filter': function(fn) {
+      // Force compiler to respect argument length.
+      var argLen = arguments.length, context = arguments[1];
+      var length = this.length, index = 0, result = [];
+      assertCallable(fn);
+      while(index < length) {
+        if (index in this && fn.call(context, this[index], index, this)) {
+          result.push(this[index]);
+        }
+        index++;
+      }
+      return result;
+    },
+
+    /***
+     * @method indexOf(search, [fromIndex] = 0)
+     * @returns Number
+     * @polyfill ES5
+     * @short Searches the array and returns the first index where `search` occurs,
+     *        or `-1` if the element is not found.
+     * @extra [fromIndex] is the index from which to begin the search. This
+     *        method performs a simple strict equality comparison on `search`.
+     *        Sugar does not enhance this method to support `enhanced matching`.
+     *        For such functionality, use the `findIndex` method instead.
+     *
+     * @example
+     *
+     *   [1,2,3].indexOf(3) -> 1
+     *   [1,2,3].indexOf(7) -> -1
+     *
+     ***/
+    'indexOf': function(search) {
+      // Force compiler to respect argument length.
+      var argLen = arguments.length, fromIndex = arguments[1];
+      if (isString(this)) return this.indexOf(search, fromIndex);
+      return arrayIndexOf(this, search, fromIndex);
+    },
+
+    /***
+     * @method lastIndexOf(search, [fromIndex] = array.length - 1)
+     * @returns Number
+     * @polyfill ES5
+     * @short Searches the array from the end and returns the first index where
+     *        `search` occurs, or `-1` if the element is not found.
+     * @extra [fromIndex] is the index from which to begin the search. This method
+     *        performs a simple strict equality comparison on `search`.
+     *        Sugar does not enhance this method to support `enhanced matching`.
+     *
+     * @example
+     *
+     *   [1,2,1].lastIndexOf(1) -> 2
+     *   [1,2,1].lastIndexOf(7) -> -1
+     *
+     ***/
+    'lastIndexOf': function(search) {
+      // Force compiler to respect argument length.
+      var argLen = arguments.length, fromIndex = arguments[1];
+      if (isString(this)) return this.lastIndexOf(search, fromIndex);
+      return arrayIndexOf(this, search, fromIndex, true);
+    },
+
+    /***
+     * @method forEach([eachFn], [context])
+     * @polyfill ES5
+     * @short Iterates over the array, calling [eachFn] on each loop.
+     * @extra [context] becomes the `this` object.
+     *
+     * @callback eachFn
+     *
+     *   el   The element of the current iteration.
+     *   i    The index of the current iteration.
+     *   arr  A reference to the array.
+     *
+     * @example
+     *
+     *   ['a','b','c'].forEach(function(a) {
+     *     // Called 3 times: 'a','b','c'
+     *   });
+     *
+     ***/
+    'forEach': function(eachFn) {
+      // Force compiler to respect argument length.
+      var argLen = arguments.length, context = arguments[1];
+      var length = this.length, index = 0;
+      assertCallable(eachFn);
+      while(index < length) {
+        if (index in this) {
+          eachFn.call(context, this[index], index, this);
+        }
+        index++;
+      }
+    },
+
+    /***
+     * @method reduce(reduceFn, [init])
+     * @returns Mixed
+     * @polyfill ES5
+     * @short Reduces the array to a single result.
+     * @extra This operation is sometimes called "accumulation", as it takes the
+     *        result of the last iteration of `reduceFn` and passes it as the first
+     *        argument to the next iteration, "accumulating" that value as it goes.
+     *        The return value of this method will be the return value of the final
+     *        iteration of `reduceFn`. If [init] is passed, it will be the initial
+     *        "accumulator" (the first argument). If [init] is not passed, then it
+     *        will take the first element in the array, and `reduceFn` will not be
+     *        called for that element.
+     *
+     * @callback reduceFn
+     *
+     *   acc  The "accumulator". Either [init], the result of the last iteration
+     *        of `reduceFn`, or the first element of the array.
+     *   el   The current element for this iteration.
+     *   idx  The current index for this iteration.
+     *   arr  A reference to the array.
+     *
+     * @example
+     *
+     *   [1,2,3].reduce(function(a, b) {
+     *     return a - b; // 1 - 2 - 3
+     *   });
+     *
+     *   [1,2,3].reduce(function(a, b) {
+     *     return a - b; // 100 - 1 - 2 - 3
+     *   }, 100);
+     *
+     ***/
+    'reduce': function(reduceFn) {
+      // Force compiler to respect argument length.
+      var argLen = arguments.length, context = arguments[1];
+      return arrayReduce(this, reduceFn, context);
+    },
+
+    /***
+     * @method reduceRight([reduceFn], [init])
+     * @returns Mixed
+     * @polyfill ES5
+     * @short Similar to `Array#reduce`, but operates on the elements in reverse.
+     *
+     * @callback reduceFn
+     *
+     *   acc  The "accumulator", either [init], the result of the last iteration
+     *        of `reduceFn`, or the last element of the array.
+     *   el   The current element for this iteration.
+     *   idx  The current index for this iteration.
+     *   arr  A reference to the array.
+     *
+     * @example
+     *
+     *   [1,2,3].reduceRight(function(a, b) {
+     *     return a - b; // 3 - 2 - 1
+     *   });
+     *
+     *   [1,2,3].reduceRight(function(a, b) {
+     *     return a - b; // 100 - 3 - 2 - 1
+     *   }, 100);
+     *
+     *
+     ***/
+    'reduceRight': function(reduceFn) {
+      // Force compiler to respect argument length.
+      var argLen = arguments.length, context = arguments[1];
+      return arrayReduce(this, reduceFn, context, true);
+    }
+
+  });
+
+  var TRIM_REG = RegExp('^[' + TRIM_CHARS + ']+|['+ TRIM_CHARS +']+$', 'g');
+
+  defineInstancePolyfill(sugarString, {
+
+    /***
+     * @method trim()
+     * @returns String
+     * @polyfill ES5
+     * @short Removes leading and trailing whitespace from the string.
+     * @extra Whitespace is defined as line breaks, tabs, and any character in the
+     *        "Space, Separator" Unicode category, conforming to the the ES5 spec.
+     *
+     * @example
+     *
+     *   '   wasabi   '.trim()      -> 'wasabi'
+     *   '   wasabi   '.trimLeft()  -> 'wasabi   '
+     *   '   wasabi   '.trimRight() -> '   wasabi'
+     *
+     ***/
+    'trim': function() {
+      return this.toString().replace(TRIM_REG, '');
+    }
+
+  });
+
+  defineInstancePolyfill(sugarFunction, {
+
+    /***
+     * @method bind(context, [arg1], ...)
+     * @returns Function
+     * @polyfill ES5
+     * @short Binds `context` as the `this` object for the function when it is
+     *        called. Also allows currying an unlimited number of parameters.
+     * @extra "currying" means setting parameters ([arg1], [arg2], etc.) ahead of
+     *        time so that they are passed when the function is called later. If
+     *        you pass additional parameters when the function is actually called,
+     *        they will be added to the end of the curried parameters.
+     *
+     * @example
+     *
+     *   logThis.bind('woof')()   -> logs 'woof' as its this object
+     *   addArgs.bind(1, 2, 3)()  -> returns 5 with 1 as the this object
+     *   addArgs.bind(1)(2, 3, 4) -> returns 9
+     *
+     ***/
+    'bind': function(context) {
+      // Optimized: no leaking arguments
+      var boundArgs = []; for(var $i = 1, $len = arguments.length; $i < $len; $i++) boundArgs.push(arguments[$i]);
+      var fn = this, bound;
+      assertCallable(this);
+      bound = function() {
+        // Optimized: no leaking arguments
+        var args = []; for(var $i = 0, $len = arguments.length; $i < $len; $i++) args.push(arguments[$i]);
+        return fn.apply(fn.prototype && this instanceof fn ? this : context, boundArgs.concat(args));
+      };
+      bound.prototype = this.prototype;
+      return bound;
+    }
+
+  });
+
+  defineStaticPolyfill(sugarDate, {
+
+    /***
+     * @method now()
+     * @returns String
+     * @polyfill ES5
+     * @static
+     * @short Returns the current time as a Unix timestamp.
+     * @extra The number of milliseconds since January 1st, 1970 00:00:00 (UTC).
+     *
+     * @example
+     *
+     *   Date.now() -> ex. 1311938296231
+     *
+     ***/
+    'now': function() {
+      return new Date().getTime();
+    }
+
+  });
+
+  function hasISOSupport() {
+    var d = new Date(Date.UTC(2000, 0));
+    return !!d.toISOString && d.toISOString() === '2000-01-01T00:00:00.000Z';
+  }
+
+  defineInstancePolyfill(sugarDate, {
+
+    /***
+     * @method toISOString()
+     * @returns String
+     * @polyfill ES5
+     * @short Formats the string to ISO8601 format.
+     * @extra This will always format as UTC time.
+     *
+     * @example
+     *
+     *   Date.create().toISOString() -> ex. 2011-07-05 12:24:55.528Z
+     *
+     ***/
+    'toISOString': function() {
+      return padNumber(this.getUTCFullYear(), 4) + '-' +
+             padNumber(this.getUTCMonth() + 1, 2) + '-' +
+             padNumber(this.getUTCDate(), 2) + 'T' +
+             padNumber(this.getUTCHours(), 2) + ':' +
+             padNumber(this.getUTCMinutes(), 2) + ':' +
+             padNumber(this.getUTCSeconds(), 2) + '.' +
+             padNumber(this.getUTCMilliseconds(), 3) + 'Z';
+    },
+
+    /***
+     * @method toJSON([key])
+     * @returns String
+     * @polyfill ES5
+     * @short Returns a JSON representation of the date.
+     * @extra This is effectively an alias for `toISOString`. Will always return
+     *        the date in UTC time. [key] is ignored.
+     *
+     * @example
+     *
+     *   Date.create().toJSON() -> ex. 2011-07-05 12:24:55.528Z
+     *
+     ***/
+    'toJSON': function(key) {
+      // Force compiler to respect argument length.
+      var argLen = arguments.length;
+      return this.toISOString(key);
+    }
+
+  }, !hasISOSupport());
 
   /***
    * @module ES6
@@ -2107,8 +2639,6 @@
    *
    ***/
 
-
-  /*** @namespace String ***/
 
   function getCoercedStringSubject(obj) {
     if (obj == null) {
@@ -2239,9 +2769,6 @@
 
   });
 
-
-  /*** @namespace Number ***/
-
   defineStaticPolyfill(sugarNumber, {
 
     /***
@@ -2265,9 +2792,6 @@
 
   });
 
-
-  /*** @namespace Array ***/
-
   function getCoercedObject(obj) {
     if (obj == null) {
       throw new TypeError('Object required.');
@@ -2278,15 +2802,15 @@
   defineStaticPolyfill(sugarArray, {
 
     /***
-     * @method from(a, [map], [context])
+     * @method from(a, [mapFn], [context])
      * @returns Mixed
      * @polyfill ES6
      * @static
      * @short Creates an array from an array-like object.
-     * @extra If a function is passed for [map], it will be map each element of
-     *        the array. [context] is the `this` object if passed.
+     * @extra If [mapFn] is passed, it will be map each element of the array.
+     *        [context] is the `this` object if passed.
      *
-     * @callback map
+     * @callback mapFn
      *
      *   el   The element of the current iteration.
      *   i    The index of the current iteration.
@@ -2299,10 +2823,10 @@
      ***/
     'from': function(a) {
       // Force compiler to respect argument length.
-      var argLen = arguments.length, map = arguments[1], context = arguments[2];
+      var argLen = arguments.length, mapFn = arguments[1], context = arguments[2];
       var len, arr;
-      if (isDefined(map)) {
-        assertCallable(map);
+      if (isDefined(mapFn)) {
+        assertCallable(mapFn);
       }
       a = getCoercedObject(a);
       len = trunc(max(0, a.length || 0));
@@ -2316,7 +2840,7 @@
         arr = new Array(len);
       }
       for (var i = 0; i < len; i++) {
-        setProperty(arr, i, isDefined(map) ? map.call(context, a[i], i) : a[i], true);
+        setProperty(arr, i, isDefined(mapFn) ? mapFn.call(context, a[i], i) : a[i], true);
       }
       return arr;
     }
@@ -2358,8 +2882,6 @@
    *
    ***/
 
-
-  /*** @namespace Array ***/
 
   function sameValueZero(a, b) {
     if (isRealNaN(a)) {
@@ -2411,6 +2933,7 @@
    *              and locale support with default English locales.
    *
    ***/
+
 
   var DATE_OPTIONS = {
     'newDateInternal': defaultNewDate
@@ -2939,7 +3462,7 @@
    * @method getOption(name)
    * @returns Mixed
    * @accessor
-   * @short Gets an option used interally by Date.
+   * @short Gets an option used internally by Date.
    * @example
    *
    *   Sugar.Date.getOption('newDateInternal');
@@ -2949,7 +3472,7 @@
    ***
    * @method setOption(name, value)
    * @accessor
-   * @short Sets an option used interally by Date.
+   * @short Sets an option used internally by Date.
    * @extra If `value` is `null`, the default value will be restored.
    * @options
    *
@@ -2982,8 +3505,6 @@
   function setDateChainableConstructor() {
     setChainableConstructor(sugarDate, createDate);
   }
-
-  // General helpers
 
   function getNewDate() {
     return _dateOptions('newDateInternal')();
@@ -3073,8 +3594,6 @@
     }
   }
 
-  // UTC helpers
-
   function isUTC(d) {
     return !!_utc(d) || tzOffset(d) === 0;
   }
@@ -3091,8 +3610,6 @@
   function tzOffset(d) {
     return d.getTimezoneOffset();
   }
-
-  // Argument helpers
 
   function collectDateArguments(args, allowDuration) {
     var arg1 = args[0], arg2 = args[1];
@@ -3134,8 +3651,6 @@
     }
     return params;
   }
-
-  // Iteration helpers
 
   // Years -> Milliseconds
   function iterateOverDateUnits(fn, startIndex, endIndex) {
@@ -3203,8 +3718,6 @@
     iterateOverDateParams(params, fn, YEAR_INDEX, DAY_INDEX);
   }
 
-  // Advancing helpers
-
   function advanceDate(d, unit, num, reset) {
     var set = {};
     set[unit] = num;
@@ -3215,8 +3728,6 @@
     args = collectDateArguments(args, true);
     return updateDate(d, args[0], args[1], dir);
   }
-
-  // Edge helpers
 
   function resetTime(d) {
     return setUnitAndLowerToEdge(d, HOURS_INDEX);
@@ -3263,8 +3774,6 @@
     return d;
   }
 
-  // Param helpers
-
   function getDateParamKey(params, key) {
     return getOwnKey(params, key) ||
            getOwnKey(params, key + 's') ||
@@ -3288,8 +3797,6 @@
     });
     return unitIndex;
   }
-
-  // Time distance helpers
 
   function getDaysSince(d1, d2) {
     return getTimeDistanceForUnit(d1, d2, DateUnits[DAY_INDEX]);
@@ -3324,8 +3831,6 @@
     return fwd ? -num : num;
   }
 
-  // Parsing helpers
-
   function getParsingTokenValue(token, str) {
     var val;
     if (token.val) {
@@ -3357,8 +3862,6 @@
     }
     return val;
   }
-
-  // Week number helpers
 
   function setISOWeekNumber(d, num) {
     if (isNumber(num)) {
@@ -3401,8 +3904,6 @@
     return n;
   }
 
-  // Week year helpers
-
   function getWeekYear(d, localeCode, iso) {
     var year, month, firstDayOfWeek, firstDayOfWeekYear, week, loc;
     year = getYear(d);
@@ -3428,8 +3929,6 @@
     setDate(d, firstDayOfWeekYear);
     moveToBeginningOfWeek(d, firstDayOfWeek);
   }
-
-  // Relative helpers
 
   function dateRelative(d, dRelative, arg1, arg2) {
     var adu, format, type, localeCode, fn;
@@ -3510,8 +4009,6 @@
       return abs(getTimeDistanceForUnit(d, dRelative, u));
     });
   }
-
-  // Foramtting helpers
 
   // Formatting tokens
   var ldmlTokens, strfTokens;
@@ -3638,8 +4135,6 @@
     addFormats(ldmlTokens, 'stamp', getIdentityFormat('stamp'));
   }
 
-  // Format matcher
-
   var dateFormatMatcher;
 
   function buildDateFormatMatcher() {
@@ -3659,8 +4154,6 @@
     // Format matcher for LDML or STRF tokens.
     dateFormatMatcher = createFormatMatcher(getLdml, getStrf, checkDateToken);
   }
-
-  // Comparison helpers
 
   function fullCompareDate(date, d, margin) {
     var tmp;
@@ -3753,8 +4246,6 @@
            getMonth(d) === getMonth(comp) &&
            getDate(d) === getDate(comp);
   }
-
-  // Create helpers
 
   function createDate(d, options, forceClone) {
     return getExtendedDate(null, d, options, forceClone).date;
@@ -4298,8 +4789,6 @@
     }
     return d;
   }
-
-  // Locales
 
   // Locale helpers
   var English, localeManager;
@@ -4891,7 +5380,6 @@
     return new Locale(def);
   }
 
-
   /***
    * @method [units]Since(d, [options])
    * @returns Number
@@ -5365,7 +5853,7 @@
     },
 
     /***
-     * @method setLocale(code)
+     * @method setLocale(localeCode)
      * @returns Locale
      * @static
      * @short Sets the current locale to be used with dates.
@@ -5375,7 +5863,7 @@
      *
      *   Date.setLocale('en')
      *
-     * @param {string} code
+     * @param {string} localeCode
      *
      ***/
     'setLocale': function(code) {
@@ -5383,7 +5871,7 @@
     },
 
     /***
-     * @method addLocale(code, def)
+     * @method addLocale(localeCode, def)
      * @returns Locale
      * @static
      * @short Adds a locale definition to the locales understood by Sugar.
@@ -5393,7 +5881,7 @@
      *
      *   Date.addLocale('eo', {})
      *
-     * @param {string} code
+     * @param {string} localeCode
      * @param {Object} def
      *
      ***/
@@ -5402,16 +5890,16 @@
     },
 
     /***
-     * @method removeLocale(code)
+     * @method removeLocale(localeCode)
      * @returns Locale
      * @static
-     * @short Deletes the the locale by `code` from Sugar's known locales.
+     * @short Deletes the the locale by `localeCode` from Sugar's known locales.
      * @extra For more, see `date locales`.
      * @example
      *
      *   Date.removeLocale('foo')
      *
-     * @param {string} code
+     * @param {string} localeCode
      *
      ***/
     'removeLocale': function(code) {
@@ -5897,15 +6385,15 @@
     },
 
     /***
-     * @method relative([localeCode] = currentLocaleCode, [fn])
+     * @method relative([localeCode] = currentLocaleCode, [relativeFn])
      * @returns String
      * @short Returns the date in a text format relative to the current time,
      *        such as "5 minutes ago".
-     * @extra [fn] is a function that can be passed to provide more granular
+     * @extra [relativeFn] is a function that can be passed to provide more granular
      *        control over the resulting string. Its return value will be passed
      *        to `format`. If nothing is returned, the relative format will be
-     *        used. [fn] may be passed as the first argument in place of [locale].
-     *        For more about formats, see `date formatting`.
+     *        used. [relativeFn] can be passed as the first argument in place of
+     *        [locale]. For more about formats, see `date formatting`.
      *
      * @callback relativeFn
      *
@@ -5927,9 +6415,9 @@
      *     }
      *   }); -> ex. 5 months ago
      *
-     * @signature relative([fn])
+     * @signature relative([relativeFn])
      * @param {string} [localeCode]
-     * @param {relativeFn} [fn]
+     * @param {relativeFn} [relativeFn]
      * @callbackParam {number} num
      * @callbackParam {number} unit
      * @callbackParam {number} ms
@@ -5937,8 +6425,8 @@
      * @callbackReturns {string} relativeFn
      *
      ***/
-    'relative': function(date, localeCode, fn) {
-      return dateRelative(date, null, localeCode, fn);
+    'relative': function(date, localeCode, relativeFn) {
+      return dateRelative(date, null, localeCode, relativeFn);
     },
 
     /***
@@ -5955,7 +6443,7 @@
      *   yesterday.relativeTo('today', 'ja') -> 一日
      *
      * @param {string|number|Date} d
-     * @param {string} code
+     * @param {string} localeCode
      *
      *
      ***/
@@ -6069,9 +6557,6 @@
     }
 
   });
-
-
-  /*** @namespace Number ***/
 
   /***
    * @method [dateUnit]()
@@ -6298,7 +6783,6 @@
 
   });
 
-
   var EnglishLocaleBaseDefinition = {
     'code': 'en',
     'plural': true,
@@ -6398,11 +6882,17 @@
   };
 
   buildLocales();
+
   buildDateFormatTokens();
+
   buildDateFormatMatcher();
+
   buildDateUnitMethods();
+
   buildNumberUnitMethods();
+
   buildRelativeAliases();
+
   setDateChainableConstructor();
 
   /***
@@ -6410,6 +6900,7 @@
    * @description String manupulation, encoding, truncation, and formatting, and more.
    *
    ***/
+
 
   // Flag allowing native string methods to be enhanced
   var STRING_ENHANCEMENTS_FLAG = 'enhanceString';
@@ -6452,7 +6943,9 @@
   ];
 
   var LEFT_TRIM_REG  = RegExp('^['+ TRIM_CHARS +']+');
+
   var RIGHT_TRIM_REG = RegExp('['+ TRIM_CHARS +']+$');
+
   var TRUNC_REG      = RegExp('(?=[' + TRIM_CHARS + '])');
 
   // Reference to native String#includes to enhance later.
@@ -6980,11 +7473,11 @@
      * @short Strips HTML tags from the string.
      * @extra [tag] may be an array of tags or 'all', in which case all tags will
      *        be stripped. [replace] will replace what was stripped, and may be a
-     *        string or a function to handle replacements. If this function returns
-     *        a string, then it will be used for the replacement. If it returns
-     *        `undefined`, the tags will be stripped normally.
+     *        string or a function of type `replaceFn` to handle replacements. If
+     *        this function returns a string, then it will be used for the
+     *        replacement. If it returns `undefined`, the tags will be stripped normally.
      *
-     * @callback tagReplaceFn
+     * @callback replaceFn
      *
      *   tag     The tag name.
      *   inner   The tag content.
@@ -7000,12 +7493,12 @@
      *   }); -> '|hi!|'
      *
      * @param {string} tag
-     * @param {string|tagReplaceFn} replace
+     * @param {string|replaceFn} replace
      * @callbackParam {string} tag
      * @callbackParam {string} inner
      * @callbackParam {string} attr
      * @callbackParam {string} outer
-     * @callbackReturns {string} tagReplaceFn
+     * @callbackReturns {string} replaceFn
      *
      ***/
     'stripTags': function(str, tag, replace) {
@@ -7018,11 +7511,11 @@
      * @short Removes HTML tags and their contents from the string.
      * @extra [tag] may be an array of tags or 'all', in which case all tags will
      *        be removed. [replace] will replace what was removed, and may be a
-     *        string or a function to handle replacements. If this function returns
-     *        a string, then it will be used for the replacement. If it returns
-     *        `undefined`, the tags will be removed normally.
+     *        string or a function of type `replaceFn` to handle replacements. If
+     *        this function returns a string, then it will be used for the
+     *        replacement. If it returns `undefined`, the tags will be removed normally.
      *
-     * @callback tagReplaceFn
+     * @callback replaceFn
      *
      *   tag     The tag name.
      *   inner   The tag content.
@@ -7038,12 +7531,12 @@
      *   }); -> 'bye!'
      *
      * @param {string} tag
-     * @param {string|tagReplaceFn} replace
+     * @param {string|replaceFn} replace
      * @callbackParam {string} tag
      * @callbackParam {string} inner
      * @callbackParam {string} attr
      * @callbackParam {string} outer
-     * @callbackReturns {string} tagReplaceFn
+     * @callbackReturns {string} replaceFn
      *
      ***/
     'removeTags': function(str, tag, replace) {
@@ -7087,15 +7580,15 @@
     },
 
     /***
-     * @method forEach([search], [callback])
+     * @method forEach([search], [eachFn])
      * @returns Array
-     * @short Runs callback [fn] against every character in the string, or every
-     *        every occurence of [search] if it is provided.
+     * @short Runs callback [eachFn] against every character in the string, or
+     *        every every occurence of [search] if it is provided.
      * @extra Returns an array of matches. [search] may be either a string or
-     *        regex, and defaults to every character in the string. If [fn]
+     *        regex, and defaults to every character in the string. If [eachFn]
      *        returns false at any time it will break out of the loop.
      *
-     * @callback stringEachFn
+     * @callback eachFn
      *
      *   match  The current match.
      *   i      The current index.
@@ -7110,22 +7603,22 @@
      *     // Called twice: "u", "y"
      *   });
      *
-     * @signature forEach(callback)
+     * @signature forEach(eachFn)
      * @param {string|RegExp} [search]
-     * @param {stringEachFn} [callback]
+     * @param {eachFn} [eachFn]
      * @callbackParam {string} match
      * @callbackParam {number} i
      * @callbackParam {Array<string>} arr
      *
      ***/
-    'forEach': function(str, search, fn) {
-      return stringEach(str, search, fn);
+    'forEach': function(str, search, eachFn) {
+      return stringEach(str, search, eachFn);
     },
 
     /***
-     * @method chars([callback])
+     * @method chars([eachCharFn])
      * @returns Array
-     * @short Runs [fn] against each character in the string, and returns an array.
+     * @short Runs [eachCharFn] against each character in the string, and returns an array.
      *
      * @callback eachCharFn
      *
@@ -7140,20 +7633,20 @@
      *     // Called 5 times: "j","u","m","p","y"
      *   });
      *
-     * @param {eachCharFn} [callback]
+     * @param {eachCharFn} [eachCharFn]
      * @callbackParam {string} char
      * @callbackParam {number} i
      * @callbackParam {Array<string>} arr
      *
      ***/
-    'chars': function(str, search, fn) {
-      return stringEach(str, search, fn);
+    'chars': function(str, search, eachCharFn) {
+      return stringEach(str, search, eachCharFn);
     },
 
     /***
-     * @method words([callback])
+     * @method words([eachWordFn])
      * @returns Array
-     * @short Runs [fn] against each word in the string, and returns an array.
+     * @short Runs [eachWordFn] against each word in the string, and returns an array.
      * @extra A "word" is defined as any sequence of non-whitespace characters.
      *
      * @callback eachWordFn
@@ -7169,20 +7662,20 @@
      *     // Called twice: "broken", "wear"
      *   });
      *
-     * @param {eachWordFn} [callback]
+     * @param {eachWordFn} [eachWordFn]
      * @callbackParam {string} word
      * @callbackParam {number} i
      * @callbackParam {Array<string>} arr
      *
      ***/
-    'words': function(str, fn) {
-      return stringEach(trim(str), /\S+/g, fn);
+    'words': function(str, eachWordFn) {
+      return stringEach(trim(str), /\S+/g, eachWordFn);
     },
 
     /***
-     * @method lines([callback])
+     * @method lines([eachLineFn])
      * @returns Array
-     * @short Runs [fn] against each line in the string, and returns an array.
+     * @short Runs [eachLineFn] against each line in the string, and returns an array.
      *
      * @callback eachLineFn
      *
@@ -7197,20 +7690,20 @@
      *     // Called once per line
      *   });
      *
-     * @param {eachLineFn} [callback]
+     * @param {eachLineFn} [eachLineFn]
      * @callbackParam {string} line
      * @callbackParam {number} i
      * @callbackParam {Array<string>} arr
      *
      ***/
-    'lines': function(str, fn) {
-      return stringEach(trim(str), /^.*$/gm, fn);
+    'lines': function(str, eachLineFn) {
+      return stringEach(trim(str), /^.*$/gm, eachLineFn);
     },
 
     /***
-     * @method codes([callback])
+     * @method codes([eachCodeFn])
      * @returns Array
-     * @short Runs callback [fn] against each character code in the string.
+     * @short Runs callback [eachCodeFn] against each character code in the string.
      *        Returns an array of character codes.
      *
      * @callback eachCodeFn
@@ -7226,14 +7719,14 @@
      *     // Called 5 times: 106, 117, 109, 112, 121
      *   });
      *
-     * @param {eachCodeFn} [callback]
+     * @param {eachCodeFn} [eachCodeFn]
      * @callbackParam {number} code
      * @callbackParam {number} i
      * @callbackParam {string} str
      *
      ***/
-    'codes': function(str, fn) {
-      return stringCodes(str, fn);
+    'codes': function(str, eachCodeFn) {
+      return stringCodes(str, eachCodeFn);
     },
 
     /***
@@ -7801,6 +8294,7 @@
   });
 
   buildBase64();
+
   buildEntities();
 
   /***
@@ -7809,7 +8303,9 @@
    *
    ***/
 
+
   var HALF_WIDTH_NINE = 0x39;
+
   var FULL_WIDTH_NINE = 0xff19;
 
   // Undefined array elements in < IE8 will not be visited by concat
@@ -7830,7 +8326,7 @@
    * @method getOption(name)
    * @returns Mixed
    * @accessor
-   * @short Gets an option used interally by Array.
+   * @short Gets an option used internally by Array.
    * @extra Options listed below. Current options are for sorting strings with
    *        `sortBy`.
    *
@@ -7843,7 +8339,7 @@
    ***
    * @method setOption(name, value)
    * @accessor
-   * @short Sets an option used interally by Array.
+   * @short Sets an option used internally by Array.
    * @extra Options listed below. Current options are for sorting strings with
    *        `sortBy`. If `value` is `null`, the default value will be restored.
    *
@@ -7895,7 +8391,6 @@
    *
    ***/
   var _arrayOptions = defineOptionsAccessor(sugarArray, ARRAY_OPTIONS);
-
 
   function setArrayChainableConstructor() {
     setChainableConstructor(sugarArray, arrayCreate);
@@ -7949,7 +8444,6 @@
     });
     return result;
   }
-
 
   function arrayAppend(arr, el, index) {
     var spliceArgs;
@@ -8064,8 +8558,6 @@
     });
     return result;
   }
-
-  // Collation helpers
 
   function compareValue(aVal, bVal) {
     var cmp, i, collate;
@@ -8209,10 +8701,10 @@
 
     /***
      *
-     * @method construct(n, map)
+     * @method construct(n, indexMapFn)
      * @returns Array
      * @static
-     * @short Constructs an array of `n` length from the values of `map`.
+     * @short Constructs an array of `n` length from the values of `indexMapFn`.
      * @extra This function is essentially a shortcut for using `Array.from` with
      *        `new Array(n)`.
      *
@@ -8227,15 +8719,15 @@
      *   }); -> [0, 1, 4]
      *
      * @param {number} n
-     * @param {indexMapFn} map
+     * @param {indexMapFn} indexMapFn
      * @callbackParam {number} i
-     * @callbackReturns {any} indexMapFn
+     * @callbackReturns {ArrayElement} indexMapFn
      *
      ***/
-    'construct': function(n, fn) {
+    'construct': function(n, indexMapFn) {
       n = coercePositiveInteger(n);
       return Array.from(new Array(n), function(el, i) {
-        return fn && fn(i);
+        return indexMapFn && indexMapFn(i);
       });
     }
 
@@ -8262,7 +8754,7 @@
      * @method isEqual(arr)
      * @returns Boolean
      * @short Returns true if the array is equal to `arr`.
-     * @extra Objects in the array are considered equal if they are not obserably
+     * @extra Objects in the array are considered equal if they are not observably
      *        distinguishable. This method is an instance alias for
      *        `Object.isEqual()`.
      *
@@ -8299,7 +8791,7 @@
      * @returns ArrayElement
      * @short Gets the element(s) at `index`.
      * @extra When [loop] is true, overshooting the end of the array will begin
-     *        counting from the other end. `index` may be negative. If `index` is
+     *        counting from the other end. `index` can be negative. If `index` is
      *        an array, multiple elements will be returned.
      *
      * @example
@@ -8411,12 +8903,12 @@
      * @method unique([map])
      * @returns Array
      * @short Removes all duplicate elements in the array.
-     * @extra [map] may be a function returning the value to be uniqued or a
-     *        string acting as a shortcut. This is most commonly used when you
-     *        only need to check a single field that can ensure the object's
-     *        uniqueness (such as an `id` field). If [map] is not passed, then
-     *        objects will be deep checked for equality. Supports
-     *        `deep properties`.
+     * @extra [map] can be a string or callback type `mapFn` that returns the value
+     *        to be uniqued or a string acting as a shortcut. This is most commonly
+     *        used when you only need to check a single field that can ensure the
+     *        object's uniqueness (such as an `id` field). If [map] is not passed,
+     *        then objects will be deep checked for equality.
+     *        Supports `deep properties`.
      *
      * @callback mapFn
      *
@@ -8562,12 +9054,12 @@
     },
 
     /***
-     * @method groupBy(map, [fn])
+     * @method groupBy(map, [groupFn])
      * @returns Object
      * @short Groups the array by `map`.
      * @extra Will return an object whose keys are the mapped from `map`, which
-     *        may be a mapping function, or a string acting as a shortcut. `map`
-     *        supports `deep properties`. Optionally calls [fn] for each group.
+     *        can be a callback of type `mapFn`, or a string acting as a shortcut.
+     *        `map` supports `deep properties`. Optionally calls [groupFn] for each group.
      *
      * @callback mapFn
      *
@@ -8594,7 +9086,7 @@
      *   });
      *
      * @param {string|mapFn} map
-     * @param {groupFn} fn
+     * @param {groupFn} groupFn
      * @callbackParam {ArrayElement} el
      * @callbackParam {number} i
      * @callbackParam {Array} arr
@@ -8603,8 +9095,8 @@
      * @callbackReturns {NewArrayElement} mapFn
      *
      ***/
-    'groupBy': function(arr, map, fn) {
-      return arrayGroupBy(arr, map, fn);
+    'groupBy': function(arr, map, groupFn) {
+      return arrayGroupBy(arr, map, groupFn);
     },
 
     /***
@@ -8731,14 +9223,14 @@
      * @method sortBy([map], [desc] = false)
      * @returns Array
      * @short Enhanced sorting function that will sort the array by `map`.
-     * @extra `map` may be a function, a string acting as a shortcut, an array
-     *        (comparison by multiple values), or blank (direct comparison of
-     *        array values). `map` supports `deep properties`. [desc] will sort
-     *        the array in descending order. When the field being sorted on is
-     *        a string, the resulting order will be determined by an internal
-     *        collation algorithm that is optimized for major Western languages,
-     *        but can be customized using sorting accessors such as `sortIgnore`.
-     *        This method will modify the array!
+     * @extra `map` can be a function of type `sortMapFn`, a string acting as a
+     *        shortcut, an array (comparison by multiple values), or blank (direct
+     *        comparison of array values). `map` supports `deep properties`.
+     *        [desc] will sort the array in descending order. When the field being
+     *        sorted on is a string, the resulting order will be determined by an
+     *        internal collation algorithm that is optimized for major Western
+     *        languages, but can be customized using sorting accessors such as
+     *        `sortIgnore`. This method will modify the array!
      *
      * @callback sortMapFn
      *
@@ -8772,7 +9264,8 @@
      * @method remove(search)
      * @returns Array
      * @short Removes any element in the array that matches `search`.
-     * @extra This method will modify the array! Use `exclude` for a
+     * @extra `search` can be an array element or a function of type `searchFn`.
+     *        This method will modify the array! Use `exclude` for a
      *        non-destructive alias. This method implements `enhanced matching`.
      *
      * @callback searchFn
@@ -8804,7 +9297,8 @@
      * @method exclude(search)
      * @returns Array
      * @short Returns a new array with every element that does not match `search`.
-     * @extra This method can be thought of as the inverse of `Array#filter`. It
+     * @extra `search` can be an array element or a function of type `searchFn`.
+     *        This method can be thought of as the inverse of `Array#filter`. It
      *        will not modify the original array, Use `remove` to modify the
      *        array in place. Implements `enhanced matching`.
      *
@@ -8936,6 +9430,7 @@
    *
    ***/
 
+
   // Matches bracket-style query strings like user[name]
   var DEEP_QUERY_STRING_REG = /^(.+?)(\[.*\])$/;
 
@@ -8944,18 +9439,19 @@
 
   // Native methods for merging by descriptor when available.
   var getOwnPropertyNames      = Object.getOwnPropertyNames;
+
   var getOwnPropertySymbols    = Object.getOwnPropertySymbols;
+
   var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
 
-  // Basic Helpers
+  // Internal reference to check if an object can be serialized.
+  var internalToString = Object.prototype.toString;
 
   function isArguments(obj, className) {
     className = className || classToString(obj);
     // .callee exists on Arguments objects in < IE8
     return hasProperty(obj, 'length') && (className === '[object Arguments]' || !!obj.callee);
   }
-
-  // Query Strings | Creating
 
   function toQueryStringWithOptions(obj, opts) {
     opts = opts || {};
@@ -9028,9 +9524,6 @@
     // while false and 0 are stringified.
     return !obj && obj !== false && obj !== 0 ? '' : encodeURIComponent(obj);
   }
-
-
-  // Query Strings | Parsing
 
   function fromQueryStringWithOptions(obj, opts) {
     var str = String(obj || '').replace(/^.*?\?/, ''), result = {}, auto;
@@ -9116,9 +9609,6 @@
   function stringIsDecimal(str) {
     return str !== '' && !NON_DECIMAL_REG.test(str);
   }
-
-
-  // Object Merging
 
   function mergeWithOptions(target, source, opts) {
     opts = opts || {};
@@ -9280,9 +9770,6 @@
     return objectMerge(target, source, deep, true, true, true);
   }
 
-
-  // Keys/Values
-
   function objectSize(obj) {
     return getKeysWithObjectCoercion(obj).length;
   }
@@ -9309,8 +9796,6 @@
     fn.call(obj, obj);
     return obj;
   }
-
-  // Select/Reject
 
   function objectSelect(obj, f) {
     return selectFromObject(obj, f, true);
@@ -9346,8 +9831,6 @@
       return key === String(match);
     }
   }
-
-  // Remove/Exclude
 
   function objectRemove(obj, f) {
     var matcher = getMatcher(f);
@@ -9433,15 +9916,15 @@
      *               (repeated keys) will be automatically cast to native
      *               values. (Default `true`)
      *
-     *   transform   A function whose return value becomes the final value. If
-     *               the function returns `undefined`, then the original value
-     *               will be used. This allows the function to intercept only
-     *               certain keys or values. (Default `undefined`)
+     *   transform   A function of type `transformFn` whose return value becomes
+     *               the final value. If the function returns `undefined`, then the
+     *               original value will be used. This allows the function to
+     *               intercept only certain keys or values. (Default `undefined`)
      *
      *   separator   If passed, keys will be split on this string to extract
      *               deep values. (Default `''`)
      *
-     * @callback queryStringTransformFn
+     * @callback transformFn
      *
      *   key   The key component of the query string (before `=`).
      *   val   The value component of the query string (after `=`).
@@ -9459,11 +9942,11 @@
      * @callbackParam {string} key
      * @callbackParam {Property} val
      * @callbackParam {Object} obj
-     * @callbackReturns {NewProperty} queryStringTransformFn
+     * @callbackReturns {NewProperty} transformFn
      * @option {boolean} [deep]
      * @option {boolean} [auto]
      * @option {string} [separator]
-     * @option {queryStringTransformFn} [transform]
+     * @option {transformFn} [transform]
      *
      ***/
     'fromQueryString': function(obj, options) {
@@ -9600,17 +10083,17 @@
      *   prefix      If passed, this string will be prefixed to all keys,
      *               separated by the `separator`. (Default `''`).
      *
-     *   transform   A function whose return value becomes the final value
-     *               in the string. (Default `undefined`)
+     *   transform   A function of type `transformFn` whose return value becomes
+     *               the final value in the string. (Default `undefined`)
      *
      *   separator   A string that is used to separate keys, either for deep
      *               objects, or when `prefix` is passed.(Default `_`).
      *
-     * @callback queryStringTransformFn
+     * @callback transformFn
      *
-     *   key  The key of the current iteration.
-     *   val  The value of the current iteration.
-     *   obj  A reference to the object.
+     *   key   The key of the current iteration.
+     *   val   The value of the current iteration.
+     *   obj   A reference to the object.
      *
      * @example
      *
@@ -9623,11 +10106,11 @@
      * @callbackParam {string} key
      * @callbackParam {Property} val
      * @callbackParam {Object} obj
-     * @callbackReturns {NewProperty} queryStringTransformFn
+     * @callbackReturns {NewProperty} transformFn
      * @option {boolean} [deep]
      * @option {string} [prefix]
      * @option {string} [separator]
-     * @option {queryStringTransformFn} [transform]
+     * @option {transformFn} [transform]
      *
      ***/
     'toQueryString': function(obj, options) {
@@ -9685,13 +10168,14 @@
      *                (Default `false`)
      *
      *   resolve      Determines which property wins in the case of conflicts.
-     *                If `true`, `source` wins. If `false`, the original property wins.
-     *                If a function is passed, its return value will decide the result.
-     *                Any non-undefined return value will resolve the conflict
-     *                for that property (will not continue if `deep`). Returning
-     *                `undefined` will do nothing (no merge). Finally, returning
-     *                the global object `Sugar` will allow Sugar to handle the
-     *                merge as normal. (Default `true`)
+     *                If `true`, `source` wins. If `false`, the original property
+     *                wins. A function of type `resolveFn` may also be passed,
+     *                whose return value will decide the result. Any non-undefined
+     *                return value will resolve the conflict for that property
+     *                (will not continue if `deep`). Returning `undefined` will do
+     *                nothing (no merge). Finally, returning the global object
+     *                `Sugar` will allow Sugar to handle the merge as normal.
+     *                (Default `true`)
      *
      * @callback resolveFn
      *
@@ -9909,10 +10393,10 @@
     },
 
     /***
-     * @method tap(fn)
+     * @method tap(tapFn)
      * @returns Object
-     * @short Runs `fn` and returns the object.
-     * @extra A string can also be used as a shortcut to a method. This method is
+     * @short Runs `tapFn` and returns the object.
+     * @extra A string can also be used as a shortcut to `tapFn`. This method is
      *        designed to run an intermediary function that "taps into" a method
      *        chain. As such, it is fairly useless as a static method. However it
      *        can be quite useful when combined with chainables.
@@ -9926,7 +10410,7 @@
      *   Sugar.Array([1,4,9]).map(Math.sqrt).tap('pop') -> [1,2]
      *   Sugar.Object({a:'a'}).tap(logArgs).merge({b:'b'})  -> {a:'a',b:'b'}
      *
-     * @param {tapFn} fn
+     * @param {tapFn} tapFn
      * @callbackParam {Object} obj
      * @callbackReturns {any} tapFn
      *
@@ -9969,7 +10453,8 @@
      * @method remove(search)
      * @returns Object
      * @short Deletes all properties in the object matching `search`.
-     * @extra This method will modify the object!. Implements `enhanced matching`.
+     * @extra `search` may be any property or a function of type `searchFn`. This
+     *        method will modify the object!. Implements `enhanced matching`.
      *
      * @callback searchFn
      *
@@ -9997,8 +10482,9 @@
      * @method exclude(search)
      * @returns Object
      * @short Returns a new object with all properties matching `search` removed.
-     * @extra This is a non-destructive version of `remove` and will not modify
-     *        the object. Implements `enhanced matching`.
+     * @extra `search` may be any property or a function of type `searchFn`. This
+     *        is a non-destructive version of `remove` and will not modify the
+     *        object. Implements `enhanced matching`.
      *
      * @callback searchFn
      *
@@ -10066,7 +10552,6 @@
 
   });
 
-  // TODO: why is this here?
   defineInstance(sugarObject, {
 
     /***
@@ -10094,6 +10579,7 @@
    * @description Counting, mapping, and finding methods on both arrays and objects.
    *
    ***/
+
 
   function sum(obj, map) {
     var sum = 0;
@@ -10178,9 +10664,6 @@
     return getReducedMinMaxResult(result, obj, all, asObject);
   }
 
-
-  // Support
-
   function getReducedMinMaxResult(result, obj, all, asObject) {
     if (asObject && all) {
       // The method has returned an array of keys so use this array
@@ -10209,8 +10692,6 @@
     });
   }
 
-  /*** @namespace Array ***/
-
   // Flag allowing native array methods to be enhanced
   var ARRAY_ENHANCEMENTS_FLAG = 'enhanceArray';
 
@@ -10235,12 +10716,9 @@
     return enhancedFilter.apply(this, arguments).length;
   }
 
-  // Enhanced methods
-
   function buildEnhancedMapping(name) {
     return wrapNativeArrayMethod(name, enhancedMapping);
   }
-
 
   function buildEnhancedMatching(name) {
     return wrapNativeArrayMethod(name, enhancedMatching);
@@ -10277,7 +10755,6 @@
       return nativeFn.apply(arr, args);
     };
   }
-
 
   /***
    * @method [fn]FromIndex(startIndex, [loop], ...)
@@ -10472,7 +10949,7 @@
      * @returns New Array
      * @polyfill ES5
      * @short Maps the array to another array whose elements are the values
-     *        returned by the `map` callback.
+     *        returned by `map`.
      * @extra [context] is the `this` object. Sugar enhances this method to accept
      *        a string for `map`, which is a shortcut for a function that gets
      *        a property or invokes a function on each element.
@@ -10509,7 +10986,8 @@
      * @returns Boolean
      * @polyfill ES5
      * @short Returns true if `search` is true for any element in the array.
-     * @extra [context] is the `this` object. Implements `enhanced matching`.
+     * @extra `search` can be an array element or a function of type `searchFn`.
+     *        [context] is the `this` object. Implements `enhanced matching`.
      *
      * @callback searchFn
      *
@@ -10544,7 +11022,8 @@
      * @returns Boolean
      * @polyfill ES5
      * @short Returns true if `search` is true for all elements of the array.
-     * @extra [context] is the `this` object. Implements `enhanced matching`.
+     * @extra `search` can be an array element or a function of type `searchFn`.
+     *        [context] is the `this` object. Implements `enhanced matching`.
      *
      * @callback searchFn
      *
@@ -10576,7 +11055,8 @@
      * @returns Array
      * @polyfill ES5
      * @short Returns any elements in the array that match `search`.
-     * @extra [context] is the `this` object. Implements `enhanced matching`.
+     * @extra `search` can be an array element or a function of type `searchFn`.
+     *        [context] is the `this` object. Implements `enhanced matching`.
      *
      * @callback searchFn
      *
@@ -10607,7 +11087,8 @@
      * @returns Mixed
      * @polyfill ES6
      * @short Returns the first element in the array that matches `search`.
-     * @extra Implements `enhanced matching`.
+     * @extra `search` can be an array element or a function of type `searchFn`.
+     *        Implements `enhanced matching`.
      *
      * @callback searchFn
      *
@@ -10641,7 +11122,8 @@
      * @polyfill ES6
      * @short Returns the index of the first element in the array that matches
      *        `search`, or `-1` if none.
-     * @extra [context] is the `this` object. Implements `enhanced matching`.
+     * @extra `search` can be an array element or a function of type `searchFn`.
+     *        [context] is the `this` object. Implements `enhanced matching`.
      *
      * @callback searchFn
      *
@@ -10669,7 +11151,6 @@
 
   }, [ENHANCEMENTS_FLAG, ARRAY_ENHANCEMENTS_FLAG]);
 
-
   defineInstance(sugarArray, {
 
     /***
@@ -10677,7 +11158,8 @@
      *
      * @returns Boolean
      * @short Returns true if none of the elements in the array match `search`.
-     * @extra [context] is the `this` object. Implements `enhanced matching`.
+     * @extra `search` can be an array element or a function of type `searchFn`.
+     *        [context] is the `this` object. Implements `enhanced matching`.
      *
      * @callback searchFn
      *
@@ -10708,7 +11190,8 @@
      * @method count(search, [context])
      * @returns Number
      * @short Counts all elements in the array that match `search`.
-     * @extra Implements `enhanced matching`.
+     * @extra `search` can be an element or a function of type `searchFn`.
+     *        Implements `enhanced matching`.
      *
      * @callback searchFn
      *
@@ -10738,9 +11221,10 @@
      * @method min([all] = false, [map])
      * @returns Mixed
      * @short Returns the element in the array with the lowest value.
-     * @extra [map] may be passed in place of [all], and is a function mapping the
-     *        value to be checked or a string acting as a shortcut. If [all] is
-     *        true, multiple elements will be returned. Supports `deep properties`.
+     * @extra [map] can be passed in place of [all], and is a function of type
+     *        `mapFn` that maps the value to be checked or a string acting as a
+     *        shortcut. If [all] is true, multiple elements will be returned.
+     *        Supports `deep properties`.
      *
      * @callback mapFn
      *
@@ -10776,9 +11260,10 @@
      * @method max([all] = false, [map])
      * @returns Mixed
      * @short Returns the element in the array with the greatest value.
-     * @extra [map] may be passed in place of [all], and is a function mapping the
-     *        value to be checked or a string acting as a shortcut. If [all] is
-     *        true, multiple elements will be returned. Supports `deep properties`.
+     * @extra [map] can be passed in place of [all], and is a function of type
+     *        `mapFn` that maps the value to be checked or a string acting as a
+     *        shortcut. If [all] is true, multiple elements will be returned.
+     *        Supports `deep properties`.
      *
      * @callback mapFn
      *
@@ -10814,9 +11299,9 @@
      * @method least([all] = false, [map])
      * @returns Array
      * @short Returns the elements in the array with the least commonly occuring value.
-     * @extra [map] may be passed in place of [all], and is a function mapping the
-     *        value to be checked or a string acting as a shortcut. If [all] is
-     *        true, will return multiple values in an array.
+     * @extra [map] can be passed in place of [all], and is a function of type
+     *        `mapFn` that maps the value to be checked or a string acting as a
+     *        shortcut. If [all] is true, will return multiple values in an array.
      *        Supports `deep properties`.
      *
      * @callback mapFn
@@ -10849,9 +11334,9 @@
      * @method most([all] = false, [map])
      * @returns Array
      * @short Returns the elements in the array with the most commonly occuring value.
-     * @extra [map] may be passed in place of [all], and is a function mapping the
-     *        value to be checked or a string acting as a shortcut. If [all] is
-     *        true, will return multiple values in an array.
+     * @extra [map] can be passed in place of [all], and is a function of type
+     *        `mapFn` that maps the value to be checked or a string acting as a
+     *        shortcut. If [all] is true, will return multiple values in an array.
      *        Supports `deep properties`.
      *
      * @callback mapFn
@@ -10884,8 +11369,8 @@
      * @method sum([map])
      * @returns Number
      * @short Sums all values in the array.
-     * @extra [map] may be a function mapping the value to be summed or a string
-     *        acting as a shortcut.
+     * @extra [map] can be a function of type `mapFn` that maps the value to be
+     *        summed or a string acting as a shortcut.
      *
      * @callback mapFn
      *
@@ -10916,8 +11401,8 @@
      * @method average([map])
      * @returns Number
      * @short Gets the mean average for all values in the array.
-     * @extra [map] may be a function mapping the value to be averaged or a string
-     *        acting as a shortcut. Supports `deep properties`.
+     * @extra [map] can be a function of type `mapFn` that maps the value to be
+     *        averaged or a string acting as a shortcut. Supports `deep properties`.
      *
      * @callback mapFn
      *
@@ -10949,8 +11434,8 @@
      * @method median([map])
      * @returns Number
      * @short Gets the median average for all values in the array.
-     * @extra [map] may be a function mapping the value to be averaged or a string
-     *        acting as a shortcut.
+     * @extra [map] can be a function of type `mapFn` that maps the value to be
+     *        averaged or a string acting as a shortcut.
      *
      * @callback mapFn
      *
@@ -10977,9 +11462,6 @@
     }
 
   });
-
-
-  /*** @namespace Object ***/
 
   // Object matchers
   var objectSome  = wrapObjectMatcher('some'),
@@ -11039,8 +11521,6 @@
     return count;
   }
 
-  // Support
-
   function wrapObjectMatcher(name) {
     var nativeFn = Array.prototype[name];
     return function(obj, f) {
@@ -11054,9 +11534,9 @@
   defineInstanceAndStatic(sugarObject, {
 
     /***
-     * @method forEach(fn)
+     * @method forEach(eachFn)
      * @returns Object
-     * @short Runs `fn` against each property in the object.
+     * @short Runs `eachFn` against each property in the object.
      * @extra Does not iterate over inherited or non-enumerable properties.
      *
      * @callback eachFn
@@ -11071,14 +11551,14 @@
      *     // val = 'b', key = a
      *   });
      *
-     * @param {eachFn} fn
+     * @param {eachFn} eachFn
      * @callbackParam {Property} val
      * @callbackParam {string} key
      * @callbackParam {Object} obj
      *
      ***/
-    'forEach': function(obj, fn) {
-      return objectForEach(obj, fn);
+    'forEach': function(obj, eachFn) {
+      return objectForEach(obj, eachFn);
     },
 
     /***
@@ -11086,8 +11566,8 @@
      * @returns Object
      * @short Maps the object to another object whose properties are the values
      *        returned by `map`.
-     * @extra `map` can also be a string, which is a shortcut for a function that
-     *        gets that property (or invokes a function) on each element.
+     * @extra `map` can be a function of type `mapFn` or a string that acts as a
+     *        shortcut and gets a property or invokes a function on each element.
      *        Supports `deep properties`.
      *
      * @callback mapFn
@@ -11118,7 +11598,8 @@
      * @method some(search)
      * @returns Boolean
      * @short Returns true if `search` is true for any property in the object.
-     * @extra Implements `enhanced matching`.
+     * @extra `search` can be any property or a function of type `searchFn`.
+     *        Implements `enhanced matching`.
      *
      * @callback searchFn
      *
@@ -11146,7 +11627,8 @@
      * @method every(search)
      * @returns Boolean
      * @short Returns true if `search` is true for all properties in the object.
-     * @extra Implements `enhanced matching`.
+     * @extra `search` can be any property or a function of type `searchFn`.
+     *        Implements `enhanced matching`.
      *
      * @callback searchFn
      *
@@ -11174,7 +11656,8 @@
      * @method filter(search)
      * @returns Array
      * @short Returns a new object with properties that match `search`.
-     * @extra Implements `enhanced matching`.
+     * @extra `search` can be any property or a function of type `searchFn`.
+     *        Implements `enhanced matching`.
      *
      * @callback searchFn
      *
@@ -11252,7 +11735,8 @@
      * @method find(search)
      * @returns Boolean
      * @short Returns the first key whose value matches `search`.
-     * @extra Implements `enhanced matching`. Note that "first" is
+     * @extra `search` can be any property or a function of type `searchFn`.
+     *        Implements `enhanced matching`. Note that "first" is
      *        implementation-dependent. If order is important an array should be
      *        used instead.
      *
@@ -11282,7 +11766,8 @@
      * @method count(search)
      * @returns Number
      * @short Counts all properties in the object that match `search`.
-     * @extra Implements `enhanced matching`.
+     * @extra `search` can be any property or a function of type `searchFn`.
+     *        Implements `enhanced matching`.
      *
      * @callback searchFn
      *
@@ -11313,7 +11798,8 @@
      * @method none(search)
      * @returns Boolean
      * @short Returns true if none of the properties in the object match `search`.
-     * @extra Implements `enhanced matching`.
+     * @extra `search` can be any property or a function of type `searchFn`.
+     *        Implements `enhanced matching`.
      *
      * @callback searchFn
      *
@@ -11343,8 +11829,8 @@
      * @method sum([map])
      * @returns Number
      * @short Sums all properties in the object.
-     * @extra [map] may be a function mapping the value to be summed or a string
-     *        acting as a shortcut.
+     * @extra [map] can be a function of type `mapFn` that maps the value to be
+     *        summed or a string acting as a shortcut.
      *
      * @callback mapFn
      *
@@ -11374,8 +11860,8 @@
      * @method average([map])
      * @returns Number
      * @short Gets the mean average of all properties in the object.
-     * @extra [map] may be a function mapping the value to be averaged or a string
-     *        acting as a shortcut.
+     * @extra [map] can be a function of type `mapFn` that maps the value to be
+     *        averaged or a string acting as a shortcut.
      *
      * @callback mapFn
      *
@@ -11404,8 +11890,8 @@
      * @method median([map])
      * @returns Number
      * @short Gets the median average of all properties in the object.
-     * @extra [map] may be a function mapping the value to be averaged or a string
-     *        acting as a shortcut.
+     * @extra [map] can be a function of type `mapFn` that maps the value to be
+     *        averaged or a string acting as a shortcut.
      *
      * @callback mapFn
      *
@@ -11435,9 +11921,9 @@
      * @returns Mixed
      * @short Returns the key of the property in the object with the lowest value.
      * @extra If [all] is true, will return an object with all properties in the
-     *        object with the lowest value. [map] may be passed in place of [all]
-     *        and is a function mapping the value to be checked or a string acting
-     *        as a shortcut.
+     *        object with the lowest value. [map] can be passed in place of [all]
+     *        and is a function of type `mapFn` that maps the value to be checked
+     *        or a string acting as a shortcut.
      *
      * @callback mapFn
      *
@@ -11469,9 +11955,9 @@
      * @returns Mixed
      * @short Returns the key of the property in the object with the highest value.
      * @extra If [all] is true, will return an object with all properties in the
-     *        object with the highest value. [map] may be passed in place of [all]
-     *        and is a function mapping the value to be checked or a string acting
-     *        as a shortcut.
+     *        object with the highest value. [map] can be passed in place of [all]
+     *        and is a function of type `mapFn` that maps the value to be checked
+     *        or a string acting as a shortcut.
      *
      * @callback mapFn
      *
@@ -11504,9 +11990,9 @@
      * @short Returns the key of the property in the object with the least commonly
      *        occuring value.
      * @extra If [all] is true, will return an object with all properties in the
-     *        object with the least common value. [map] may be passed in place of
-     *        [all] and is a function mapping the value to be checked or a string
-     *        acting as a shortcut.
+     *        object with the least common value. [map] can be passed in place of
+     *        [all] and is a function of type `mapFn` that maps the value to be
+     *        checked or a string acting as a shortcut.
      *
      * @callback mapFn
      *
@@ -11539,9 +12025,9 @@
      * @short Returns the key of the property in the object with the most commonly
      *        occuring value.
      * @extra If [all] is true, will return an object with all properties in the
-     *        object with the most common value. [map] may be passed in place of
-     *        [all] and is a function mapping the value to be checked or a string
-     *        acting as a shortcut.
+     *        object with the most common value. [map] can be passed in place of
+     *        [all] and is a function of type `mapFn` that maps the value to be
+     *        checked or a string acting as a shortcut.
      *
      * @callback mapFn
      *
@@ -11570,7 +12056,6 @@
 
   });
 
-
   buildFromIndexMethods();
 
   /***
@@ -11592,12 +12077,11 @@
       METRIC_UNITS_SHORT  = 'nμm|k',
       METRIC_UNITS_FULL   = 'yzafpnμm|KMGTPEZY';
 
-
   /***
    * @method getOption(name)
    * @returns Mixed
    * @accessor
-   * @short Gets an option used interally by Number.
+   * @short Gets an option used internally by Number.
    * @example
    *
    *   Sugar.Number.getOption('thousands');
@@ -11607,7 +12091,7 @@
    ***
    * @method setOption(name, value)
    * @accessor
-   * @short Sets an option used interally by Number.
+   * @short Sets an option used internally by Number.
    * @extra If `value` is `null`, the default value will be restored.
    * @options
    *
@@ -11632,7 +12116,6 @@
    *
    ***/
   var _numberOptions = defineOptionsAccessor(sugarNumber, NUMBER_OPTIONS);
-
 
   function abbreviateNumber(num, precision, ustr, bytes) {
     var fixed        = num.toFixed(20),
@@ -11956,11 +12439,11 @@
     },
 
     /***
-     * @method times(fn)
+     * @method times(indexMapFn)
      * @returns Mixed
-     * @short Calls `fn` a number of times equivalent to the number.
-     * @extra Any non-undefined return values of `fn` will be collected and
-     *        returned in an array.
+     * @short Calls `indexMapFn` a number of times equivalent to the number.
+     * @extra Any non-undefined return values of `indexMapFn` will be collected
+     *        and returned in an array.
      *
      * @callback indexMapFn
      *
@@ -11975,13 +12458,13 @@
      *
      * @callbackParam {number} i
      * @callbackReturns {any} indexMapFn
-     * @param {indexMapFn} fn
+     * @param {indexMapFn} indexMapFn
      *
      ***/
-    'times': function(n, fn) {
+    'times': function(n, indexMapFn) {
       var arr, result;
       for(var i = 0; i < n; i++) {
-        result = fn.call(n, i);
+        result = indexMapFn.call(n, i);
         if (isDefined(result)) {
           if (!arr) {
             arr = [];
@@ -12159,9 +12642,13 @@
    *
    ***/
 
+
   var _lock     = privatePropertyAccessor('lock');
+
   var _timers   = privatePropertyAccessor('timers');
+
   var _partial  = privatePropertyAccessor('partial');
+
   var _canceled = privatePropertyAccessor('canceled');
 
   var createInstanceFromPrototype = Object.create || function(prototype) {
@@ -12642,6 +13129,7 @@
    *
    ***/
 
+
   defineStatic(sugarRegExp, {
 
     /***
@@ -12741,7 +13229,9 @@
    *
    ***/
 
+
   var DURATION_UNITS = 'year|month|week|day|hour|minute|second|millisecond';
+
   var DURATION_REG   = RegExp('(\\d+)?\\s*('+ DURATION_UNITS +')s?', 'i');
 
   var MULTIPLIERS = {
@@ -12814,7 +13304,7 @@
         result  = [];
 
     if (!rangeIsValid(range)) {
-      return [];
+      return countOnly ? NaN : [];
     }
     if (isFunction(step)) {
       fn = step;
@@ -12990,16 +13480,16 @@
     },
 
     /***
-     * @method every(amount, [fn])
+     * @method every(amount, [everyFn])
      * @returns Array
-     * @short Iterates through the range by `amount`, calling [fn] for each step.
+     * @short Iterates through the range by `amount`, calling [everyFn] for each step.
      * @extra Returns an array of each increment visited. For date ranges,
      *        `amount` can also be a string like `"2 days"`. This will step
      *        through the range by incrementing a date object by that specific
      *        unit, and so is generally preferable for vague units such as
      *        `"2 months"`.
      *
-     * @callback rangeEveryFn
+     * @callback everyFn
      *
      *   el   The element of the current iteration.
      *   i    The index of the current iteration.
@@ -13015,14 +13505,14 @@
      *   })
      *
      * @param {string|number} amount
-     * @param {rangeEveryFn} [fn]
+     * @param {everyFn} [everyFn]
      * @callbackParam {RangeElement} el
      * @callbackParam {number} i
      * @callbackParam {Range} r
      *
      ***/
-    'every': function(amount, fn) {
-      return rangeEvery(this, amount, false, fn);
+    'every': function(amount, everyFn) {
+      return rangeEvery(this, amount, false, everyFn);
     },
 
     /***
@@ -13123,9 +13613,6 @@
 
   });
 
-
-  /*** @namespace Number ***/
-
   defineStatic(sugarNumber, {
 
     /***
@@ -13151,13 +13638,13 @@
   defineInstance(sugarNumber, {
 
     /***
-     * @method upto(num, [step] = 1, [fn])
+     * @method upto(num, [step] = 1, [everyFn])
      * @returns Array
      * @short Returns an array containing numbers from the number up to `num`.
-     * @extra Optionally calls [fn] for each number in that array. [step] allows
-     *        multiples other than 1. [fn] can be passed in place of [step].
+     * @extra Optionally calls [everyFn] for each number in that array. [step] allows
+     *        multiples other than 1. [everyFn] can be passed in place of [step].
      *
-     * @callback rangeEveryFn
+     * @callback everyFn
      *
      *   el   The element of the current iteration.
      *   i    The index of the current iteration.
@@ -13171,17 +13658,17 @@
      *   });
      *   (2).upto(8, 2) -> [2, 4, 6, 8]
      *
-     * @signature upto(num, [fn])
+     * @signature upto(num, [everyFn])
      * @param {number} num
      * @param {number} [step]
-     * @param {rangeEveryFn} [fn]
+     * @param {everyFn} [everyFn]
      * @callbackParam {RangeElement} el
      * @callbackParam {number} i
      * @callbackParam {Range} r
      *
      ***/
-    'upto': function(n, num, step, fn) {
-      return rangeEvery(new Range(n, num), step, false, fn);
+    'upto': function(n, num, step, everyFn) {
+      return rangeEvery(new Range(n, num), step, false, everyFn);
     },
 
     /***
@@ -13224,13 +13711,13 @@
   });
 
   /***
-   * @method downto(num, [step] = 1, [fn])
+   * @method downto(num, [step] = 1, [everyFn])
    * @returns Array
    * @short Returns an array containing numbers from the number down to `num`.
-   * @extra Optionally calls [fn] for each number in that array. [step] allows
-   *        multiples other than 1. [fn] can be passed in place of [step].
+   * @extra Optionally calls [everyFn] for each number in that array. [step] allows
+   *        multiples other than 1. [everyFn] can be passed in place of [step].
    *
-   * @callback rangeEveryFn
+   * @callback everyFn
    *
    *   el   The element of the current iteration.
    *   i    The index of the current iteration.
@@ -13244,19 +13731,16 @@
    *   });
    *   (8).downto(2, 2) -> [8, 6, 4, 2]
    *
-   * @signature upto(num, [fn])
+   * @signature upto(num, [everyFn])
    * @param {number} num
    * @param {number} [step]
-   * @param {rangeEveryFn} [fn]
+   * @param {everyFn} [everyFn]
    * @callbackParam {RangeElement} el
    * @callbackParam {number} i
    * @callbackParam {Range} r
    *
    ***/
   alias(sugarNumber, 'downto', 'upto');
-
-
-  /*** @namespace String ***/
 
   defineStatic(sugarString, {
 
@@ -13280,16 +13764,12 @@
 
   });
 
-
-  /*** @namespace Date ***/
-
-
   var FULL_CAPTURED_DURATION = '((?:\\d+)?\\s*(?:' + DURATION_UNITS + '))s?';
 
   // Duration text formats
   var RANGE_REG_FROM_TO        = /(?:from)?\s*(.+)\s+(?:to|until)\s+(.+)$/i,
       RANGE_REG_REAR_DURATION  = RegExp('(.+)\\s*for\\s*' + FULL_CAPTURED_DURATION, 'i'),
-      RANGE_REG_FRONT_DURATION = RegExp('(?:for)?\\s*'+ FULL_CAPTURED_DURATION +'\\s*(?:starting)?\\s*at\\s*(.+)', 'i');
+      RANGE_REG_FRONT_DURATION = RegExp('(?:for)?\\s*'+ FULL_CAPTURED_DURATION +'\\s*(?:starting)?\\s(?:at\\s)?(.+)', 'i');
 
   var DateRangeConstructor = function(start, end) {
     if (arguments.length === 1 && isString(start)) {
@@ -13380,7 +13860,7 @@
     defineOnPrototype(Range, methods);
   }
 
-  defineStatic(sugarDate,   {
+  defineStatic(sugarDate, {
 
     /***
      * @method range([start], [end])
@@ -13414,5 +13894,1653 @@
   });
 
   buildDateRangeUnits();
+
+  /***
+   * @module Inflections
+   * @namespace String
+   * @description Pluralization and support for acronyms and humanized strings in
+   *              string inflecting methods.
+   *
+   ***/
+
+
+  var InflectionSet;
+
+  /***
+   * @method addAcronym(src)
+   * @accessor
+   * @short Adds a new acronym that will be recognized when inflecting strings.
+   * @extra Acronyms are recognized by `camelize`, `underscore`, `dasherize`,
+   *        `titleize`, `humanize`, and `spacify`. `src` must be passed as it
+   *        will appear in a camelized string. Acronyms may contain lower case
+   *        letters but must begin with an upper case letter. Note that to use
+   *        acronyms in conjuction with `pluralize`, the pluralized form of the
+   *        acronym must also be added.
+   *
+   * @example
+   *
+   *   Sugar.String.addAcronym('HTML');
+   *   Sugar.String.addAcronym('API');
+   *   Sugar.String.addAcronym('APIs');
+   *
+   * @param {string} src
+   *
+   ***
+   * @method addPlural(singular, [plural] = singular)
+   * @short Adds a new pluralization rule.
+   * @accessor
+   * @extra Rules are used by `pluralize` and `singularize`. If [singular] is
+   *        a string, then the reciprocal will also be added for singularization.
+   *        If it is a regular expression, capturing groups are allowed for
+   *        [plural]. [plural] defaults to the same as [singular] to allow
+   *        uncountable words.
+   *
+   * @example
+   *
+   *   Sugar.String.addPlural('hashtag', 'hashtaggies');
+   *   Sugar.String.addPlural(/(tag)$/, '$1gies');
+   *   Sugar.String.addPlural('advice');
+   *
+   * @param {string} singular
+   * @param {string} [plural]
+   *
+   ***
+   * @method addHuman(src, human)
+   * @short Adds a new humanization rule.
+   * @accessor
+   * @extra Rules are used by `humanize` and `titleize`. [str] can be either a
+   *        string or a regular expression, in which case [human] can contain
+   *        refences to capturing groups.
+   *
+   * @example
+   *
+   *   Sugar.String.addHuman('src', 'source');
+   *   Sugar.String.addHuman(/_ref/, 'reference');
+   *
+   * @param {string|RegExp} src
+   * @param {string} human
+   *
+   ***/
+  function buildInflectionAccessors() {
+    defineAccessor(sugarString, 'addAcronym', addAcronym);
+    defineAccessor(sugarString, 'addPlural', addPlural);
+    defineAccessor(sugarString, 'addHuman', addHuman);
+  }
+
+  function buildInflectionSet() {
+
+    InflectionSet = function() {
+      this.map = {};
+      this.rules = [];
+    };
+
+    InflectionSet.prototype = {
+
+      add: function(rule, replacement) {
+        if (isString(rule)) {
+          this.map[rule] = replacement;
+        } else {
+          this.rules.unshift({
+            rule: rule,
+            replacement: replacement
+          });
+        }
+      },
+
+      inflect: function(str) {
+        var arr, idx, word;
+
+        arr = str.split(' ');
+        idx = arr.length - 1;
+        word = arr[idx];
+
+        arr[idx] = this.find(word) || this.runRules(word);
+        return arr.join(' ');
+      },
+
+      find: function(str) {
+        return getOwn(this.map, str);
+      },
+
+      runRules: function(str) {
+        for (var i = 0, r; r = this.rules[i]; i++) {
+          if (r.rule.test(str)) {
+            str = str.replace(r.rule, r.replacement);
+            break;
+          }
+        }
+        return str;
+      }
+
+    };
+
+  }
+
+  // Global inflection runners. Allowing the build functions below to define
+  // these functions so that common inflections will also be bundled together
+  // when these methods are modularized.
+  var inflectPlurals;
+
+  var inflectHumans;
+
+  function buildCommonPlurals() {
+
+    inflectPlurals = function(type, str) {
+      return Inflections[type] && Inflections[type].inflect(str) || str;
+    };
+
+    addPlural(/$/, 's');
+    addPlural(/s$/i, 's');
+    addPlural(/(ax|test)is$/i, '$1es');
+    addPlural(/(octop|fung|foc|radi|alumn|cact)(i|us)$/i, '$1i');
+    addPlural(/(census|alias|status|fetus|genius|virus)$/i, '$1es');
+    addPlural(/(bu)s$/i, '$1ses');
+    addPlural(/(buffal|tomat)o$/i, '$1oes');
+    addPlural(/([ti])um$/i, '$1a');
+    addPlural(/([ti])a$/i, '$1a');
+    addPlural(/sis$/i, 'ses');
+    addPlural(/f+e?$/i, 'ves');
+    addPlural(/(cuff|roof)$/i, '$1s');
+    addPlural(/([ht]ive)$/i, '$1s');
+    addPlural(/([^aeiouy]o)$/i, '$1es');
+    addPlural(/([^aeiouy]|qu)y$/i, '$1ies');
+    addPlural(/(x|ch|ss|sh)$/i, '$1es');
+    addPlural(/(tr|vert)(?:ix|ex)$/i, '$1ices');
+    addPlural(/([ml])ouse$/i, '$1ice');
+    addPlural(/([ml])ice$/i, '$1ice');
+    addPlural(/^(ox)$/i, '$1en');
+    addPlural(/^(oxen)$/i, '$1');
+    addPlural(/(quiz)$/i, '$1zes');
+    addPlural(/(phot|cant|hom|zer|pian|portic|pr|quart|kimon)o$/i, '$1os');
+    addPlural(/(craft)$/i, '$1');
+    addPlural(/([ft])[eo]{2}(th?)$/i, '$1ee$2');
+
+    addSingular(/s$/i, '');
+    addSingular(/([pst][aiu]s)$/i, '$1');
+    addSingular(/([aeiouy])ss$/i, '$1ss');
+    addSingular(/(n)ews$/i, '$1ews');
+    addSingular(/([ti])a$/i, '$1um');
+    addSingular(/((a)naly|(b)a|(d)iagno|(p)arenthe|(p)rogno|(s)ynop|(t)he)ses$/i, '$1$2sis');
+    addSingular(/(^analy)ses$/i, '$1sis');
+    addSingular(/(i)(f|ves)$/i, '$1fe');
+    addSingular(/([aeolr]f?)(f|ves)$/i, '$1f');
+    addSingular(/([ht]ive)s$/i, '$1');
+    addSingular(/([^aeiouy]|qu)ies$/i, '$1y');
+    addSingular(/(s)eries$/i, '$1eries');
+    addSingular(/(m)ovies$/i, '$1ovie');
+    addSingular(/(x|ch|ss|sh)es$/i, '$1');
+    addSingular(/([ml])(ous|ic)e$/i, '$1ouse');
+    addSingular(/(bus)(es)?$/i, '$1');
+    addSingular(/(o)es$/i, '$1');
+    addSingular(/(shoe)s?$/i, '$1');
+    addSingular(/(cris|ax|test)[ie]s$/i, '$1is');
+    addSingular(/(octop|fung|foc|radi|alumn|cact)(i|us)$/i, '$1us');
+    addSingular(/(census|alias|status|fetus|genius|virus)(es)?$/i, '$1');
+    addSingular(/^(ox)(en)?/i, '$1');
+    addSingular(/(vert)(ex|ices)$/i, '$1ex');
+    addSingular(/tr(ix|ices)$/i, 'trix');
+    addSingular(/(quiz)(zes)?$/i, '$1');
+    addSingular(/(database)s?$/i, '$1');
+    addSingular(/ee(th?)$/i, 'oo$1');
+
+    addIrregular('person', 'people');
+    addIrregular('man', 'men');
+    addIrregular('human', 'humans');
+    addIrregular('child', 'children');
+    addIrregular('sex', 'sexes');
+    addIrregular('move', 'moves');
+    addIrregular('save', 'saves');
+    addIrregular('goose', 'geese');
+    addIrregular('zombie', 'zombies');
+
+    addUncountable('equipment information rice money species series fish deer sheep jeans');
+
+  }
+
+  function buildCommonHumans() {
+
+    inflectHumans = runHumanRules;
+
+    addHuman(/_id$/g, '');
+  }
+
+  function addPlural(singular, plural) {
+    plural = plural || singular;
+    addInflection('plural', singular, plural);
+    if (isString(singular)) {
+      addSingular(plural, singular);
+    }
+  }
+
+  function addSingular(plural, singular) {
+    addInflection('singular', plural, singular);
+  }
+
+  function addIrregular(singular, plural) {
+    var sReg = RegExp(singular + '$', 'i');
+    var pReg = RegExp(plural + '$', 'i');
+    addPlural(sReg, plural);
+    addPlural(pReg, plural);
+    addSingular(pReg, singular);
+    addSingular(sReg, singular);
+  }
+
+  function addUncountable(set) {
+    forEach(spaceSplit(set), function(str) {
+      addPlural(str);
+    });
+  }
+
+  function addHuman(src, humanized) {
+    addInflection('human', src, humanized);
+  }
+
+  function addAcronym(str) {
+    addInflection('acronyms', str, str);
+    addInflection('acronyms', str.toLowerCase(), str);
+    buildAcronymReg();
+  }
+
+  function buildAcronymReg() {
+    var tokens = [];
+    forEachProperty(Inflections.acronyms.map, function(val, key) {
+      if (key === val) {
+        tokens.push(val);
+      }
+    });
+    // Sort by length to ensure that tokens
+    // like HTTPS take precedence over HTTP.
+    tokens.sort(function(a, b) {
+      return b.length - a.length;
+    });
+    Inflections.acronyms.reg = RegExp('\\b' + tokens.join('|') + '\\b', 'g');
+  }
+
+  function addInflection(type, rule, replacement) {
+    if (!Inflections[type]) {
+      Inflections[type] = new InflectionSet;
+    }
+    Inflections[type].add(rule, replacement);
+  }
+
+  defineInstance(sugarString, {
+
+    /***
+     * @method pluralize([num])
+     * @returns String
+     * @short Returns the plural form of the last word in the string.
+     * @extra If [num] is passed, the word will be singularized if equal to 1.
+     *        Otherwise it will be pluralized. Custom pluralization rules can be
+     *        added using `addPlural`.
+     *
+     * @example
+     *
+     *   'post'.pluralize()    -> 'posts'
+     *   'post'.pluralize(1)   -> 'post'
+     *   'post'.pluralize(2)   -> 'posts'
+     *   'octopus'.pluralize() -> 'octopi'
+     *   'sheep'.pluralize()   -> 'sheep'
+     *
+     * @param {number} [num]
+     *
+     ***/
+    'pluralize': function(str, num) {
+      str = String(str);
+      // Reminder that this pretty much holds true only for English.
+      return num === 1 || str.length === 0 ? str : inflectPlurals('plural', str);
+    },
+
+    /***
+     * @method singularize()
+     * @returns String
+     * @short Returns the singular form of the last word in the string.
+     *
+     * @example
+     *
+     *   'posts'.singularize()       -> 'post'
+     *   'octopi'.singularize()      -> 'octopus'
+     *   'sheep'.singularize()       -> 'sheep'
+     *   'word'.singularize()        -> 'word'
+     *   'CamelOctopi'.singularize() -> 'CamelOctopus'
+     *
+     ***/
+    'singularize': function(str) {
+      return inflectPlurals('singular', String(str));
+    },
+
+    /***
+     * @method humanize()
+     * @returns String
+     * @short Creates a human readable string.
+     * @extra Capitalizes the first word and turns underscores into spaces and
+     *        strips a trailing '_id', if any. Like `titleize`, this is meant
+     *        for creating pretty output. Rules for special cases can be added
+     *        using `addHuman`.
+     *
+     * @example
+     *
+     *   'employee_salary'.humanize() -> 'Employee salary'
+     *   'author_id'.humanize()       -> 'Author'
+     *
+     ***/
+    'humanize': function(str) {
+      str = inflectHumans(str);
+      str = str.replace(/(_)?([a-z\d]*)/gi, function(match, _, word) {
+        word = getHumanWord(word) || word;
+        word = getAcronym(word) || word.toLowerCase();
+        return (_ ? ' ' : '') + word;
+      });
+      return simpleCapitalize(str);
+    }
+
+  });
+
+  buildInflectionAccessors();
+
+  buildInflectionSet();
+
+  buildCommonPlurals();
+
+  buildCommonHumans();
+
+  /***
+   * @module Language
+   * @namespace String
+   * @description Script detection, full/half-width character as well as
+   *              Hiragana-Katakana conversion.
+   *
+   ***/
+
+
+  var FULL_WIDTH_OFFSET = 65248;
+
+  var HANKAKU_PUNCTUATION = '｡､｢｣¥¢£';
+
+  var ZENKAKU_PUNCTUATION = '。、「」￥￠￡';
+
+  var HANKAKU_KATAKANA    = 'ｱｲｳｴｵｧｨｩｪｫｶｷｸｹｺｻｼｽｾｿﾀﾁﾂｯﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔｬﾕｭﾖｮﾗﾘﾙﾚﾛﾜｦﾝｰ･';
+
+  var ZENKAKU_KATAKANA    = 'アイウエオァィゥェォカキクケコサシスセソタチツッテトナニヌネノハヒフヘホマミムメモヤャユュヨョラリルレロワヲンー・';
+
+  var ALL_HANKAKU_REG          = /[\u0020-\u00A5]|[\uFF61-\uFF9F][ﾞﾟ]?/g;
+
+  var ALL_ZENKAKU_REG          = /[\u2212\u3000-\u301C\u301A-\u30FC\uFF01-\uFF60\uFFE0-\uFFE6]/g;
+
+  var VOICED_KATAKANA_REG      = /[カキクケコサシスセソタチツテトハヒフヘホ]/;
+
+  var SEMI_VOICED_KATAKANA_REG = /[ハヒフヘホヲ]/;
+
+  var UNICODE_SCRIPTS = [
+    { name: 'Arabic',     src: '\u0600-\u06FF' },
+    { name: 'Cyrillic',   src: '\u0400-\u04FF' },
+    { name: 'Devanagari', src: '\u0900-\u097F' },
+    { name: 'Greek',      src: '\u0370-\u03FF' },
+    { name: 'Hangul',     src: '\uAC00-\uD7AF\u1100-\u11FF' },
+    { name: 'Han Kanji',  src: '\u4E00-\u9FFF\uF900-\uFAFF' },
+    { name: 'Hebrew',     src: '\u0590-\u05FF' },
+    { name: 'Hiragana',   src: '\u3040-\u309F\u30FB-\u30FC' },
+    { name: 'Kana',       src: '\u3040-\u30FF\uFF61-\uFF9F' },
+    { name: 'Katakana',   src: '\u30A0-\u30FF\uFF61-\uFF9F' },
+    { name: 'Latin',      src: '\u0001-\u007F\u0080-\u00FF\u0100-\u017F\u0180-\u024F' },
+    { name: 'Thai',       src: '\u0E00-\u0E7F' }
+  ];
+
+  var WIDTH_CONVERSION_RANGES = [
+    { type: 'a', start: 65,  end: 90  },
+    { type: 'a', start: 97,  end: 122 },
+    { type: 'n', start: 48,  end: 57  },
+    { type: 'p', start: 33,  end: 47  },
+    { type: 'p', start: 58,  end: 64  },
+    { type: 'p', start: 91,  end: 96  },
+    { type: 'p', start: 123, end: 126 }
+  ];
+
+  var widthConversionTable;
+
+  function shiftChar(str, n) {
+    return chr(str.charCodeAt(0) + n);
+  }
+
+  function zenkaku(str, mode) {
+    return convertCharacterWidth(str, mode, ALL_HANKAKU_REG, 'zenkaku');
+  }
+
+  function convertCharacterWidth(str, mode, reg, type) {
+    var table = widthConversionTable[type];
+    mode = (mode || '').replace(/all/, '').replace(/(\w)lphabet|umbers?|atakana|paces?|unctuation/g, '$1');
+    return str.replace(reg, function(c) {
+      var entry = table[c], to;
+      if (entry) {
+        if (mode === '' && entry.all) {
+          return entry.all;
+        } else {
+          for (var i = 0, len = mode.length; i < len; i++) {
+            to = entry[mode.charAt(i)];
+            if (to) {
+              return to;
+            }
+          }
+        }
+      }
+      return c;
+    });
+  }
+
+  /***
+   * @method has[Script]()
+   * @returns Boolean
+   * @short Returns true if the string contains any characters in that script.
+   *
+   * @set
+   *   hasArabic
+   *   hasCyrillic
+   *   hasGreek
+   *   hasHangul
+   *   hasHan
+   *   hasKanji
+   *   hasHebrew
+   *   hasHiragana
+   *   hasKana
+   *   hasKatakana
+   *   hasLatin
+   *   hasThai
+   *   hasDevanagari
+   *
+   * @example
+   *
+   *   'أتكلم'.hasArabic()          -> true
+   *   'визит'.hasCyrillic()        -> true
+   *   '잘 먹겠습니다!'.hasHangul() -> true
+   *   'ミックスです'.hasKatakana() -> true
+   *   "l'année".hasLatin()         -> true
+   *
+   ***
+   * @method is[Script]()
+   * @returns Boolean
+   * @short Returns true if the string contains only characters in that script.
+   *        Whitespace is ignored.
+   *
+   * @set
+   *   isArabic
+   *   isCyrillic
+   *   isGreek
+   *   isHangul
+   *   isHan
+   *   isKanji
+   *   isHebrew
+   *   isHiragana
+   *   isKana
+   *   isKatakana
+   *   isLatin
+   *   isThai
+   *   isDevanagari
+   *
+   * @example
+   *
+   *   'أتكلم'.isArabic()          -> true
+   *   'визит'.isCyrillic()        -> true
+   *   '잘 먹겠습니다'.isHangul()  -> true
+   *   'ミックスです'.isKatakana() -> false
+   *   "l'année".isLatin()         -> true
+   *
+   ***/
+  function buildUnicodeScripts() {
+    defineInstanceSimilar(sugarString, UNICODE_SCRIPTS, function(methods, script) {
+      var is = RegExp('^['+ script.src +'\\s]+$');
+      var has = RegExp('['+ script.src +']');
+      forEach(spaceSplit(script.name), function(name) {
+        methods['is' + name] = function(str) {
+          return is.test(trim(str));
+        };
+        methods['has' + name] = function(str) {
+          return has.test(trim(str));
+        };
+      });
+    });
+  }
+
+  function buildWidthConversion() {
+    var hankaku;
+
+    widthConversionTable = {
+      'zenkaku': {},
+      'hankaku': {}
+    };
+
+    function setWidthConversion(type, half, full) {
+      setConversionTableEntry('zenkaku', type, half, full);
+      setConversionTableEntry('hankaku', type, full, half);
+    }
+
+    function setConversionTableEntry(width, type, from, to, all) {
+      var obj = widthConversionTable[width][from] || {};
+      if (all !== false) {
+        obj.all = to;
+      }
+      obj[type]  = to;
+      widthConversionTable[width][from] = obj;
+    }
+
+    function setKatakanaConversion() {
+      for (var i = 0; i < ZENKAKU_KATAKANA.length; i++) {
+        var c = ZENKAKU_KATAKANA.charAt(i);
+        hankaku = HANKAKU_KATAKANA.charAt(i);
+        setWidthConversion('k', hankaku, c);
+        if (c.match(VOICED_KATAKANA_REG)) {
+          setWidthConversion('k', hankaku + 'ﾞ', shiftChar(c, 1));
+        }
+        if (c.match(SEMI_VOICED_KATAKANA_REG)) {
+          setWidthConversion('k', hankaku + 'ﾟ', shiftChar(c, 2));
+        }
+      }
+    }
+
+    function setPunctuationConversion() {
+      for (var i = 0; i < ZENKAKU_PUNCTUATION.length; i++) {
+        setWidthConversion('p', HANKAKU_PUNCTUATION.charAt(i), ZENKAKU_PUNCTUATION.charAt(i));
+      }
+    }
+
+    forEach(WIDTH_CONVERSION_RANGES, function(r) {
+      simpleRepeat(r.end - r.start + 1, function(n) {
+        n += r.start;
+        setWidthConversion(r.type, chr(n), chr(n + FULL_WIDTH_OFFSET));
+      });
+    });
+
+    setKatakanaConversion();
+    setPunctuationConversion();
+
+    setWidthConversion('s', ' ', '　');
+    setWidthConversion('k', 'ｳﾞ', 'ヴ');
+    setWidthConversion('k', 'ｦﾞ', 'ヺ');
+    setConversionTableEntry('hankaku', 'n', '−', '-');
+    setConversionTableEntry('hankaku', 'n', 'ー', '-', false);
+    setConversionTableEntry('zenkaku', 'n', '-', '－', false);
+  }
+
+  defineInstance(sugarString, {
+
+    /***
+     * @method hankaku([mode] = 'all')
+     * @returns String
+     * @short Converts full-width characters (zenkaku) to half-width (hankaku).
+     * @extra [mode] accepts `all`, `alphabet`, `numbers`, `katakana`, `spaces`,
+     *        `punctuation`, or any combination of `a`, `n`, `k`, `s`, `p`,
+     *        respectively.
+     *
+     * @example
+     *
+     *   'タロウ　ＹＡＭＡＤＡです！'.hankaku()           -> 'ﾀﾛｳ YAMADAです!'
+     *   'タロウ　ＹＡＭＡＤＡです！'.hankaku('a')        -> 'タロウ　YAMADAです！'
+     *   'タロウ　ＹＡＭＡＤＡです！'.hankaku('alphabet') -> 'タロウ　YAMADAです！'
+     *   'タロウです！　２５歳です！'.hankaku('katakana') -> 'ﾀﾛｳです！　２５歳です！'
+     *   'タロウです！　２５歳です！'.hankaku('kn')       -> 'ﾀﾛｳです！　25歳です！'
+     *   'タロウです！　２５歳です！'.hankaku('sp')       -> 'タロウです! ２５歳です!'
+     *
+     * @param {string} mode
+     *
+     ***/
+    'hankaku': function(str, mode) {
+      return convertCharacterWidth(str, mode, ALL_ZENKAKU_REG, 'hankaku');
+    },
+
+    /***
+     * @method zenkaku([mode] = 'all')
+     * @returns String
+     * @short Converts half-width characters (hankaku) to full-width (zenkaku).
+     * @extra [mode] accepts `all`, `alphabet`, `numbers`, `katakana`, `spaces`,
+     *        `punctuation`, or any combination of `a`, `n`, `k`, `s`, or `p`,
+     *        respectively.
+     *
+     * @example
+     *
+     *   'ﾀﾛｳ YAMADAです!'.zenkaku()              -> 'タロウ　ＹＡＭＡＤＡです！'
+     *   'ﾀﾛｳ YAMADAです!'.zenkaku('a')           -> 'ﾀﾛｳ ＹＡＭＡＤＡです!'
+     *   'ﾀﾛｳ YAMADAです!'.zenkaku('alphabet')    -> 'ﾀﾛｳ ＹＡＭＡＤＡです!'
+     *   'ﾀﾛｳです! 25歳です!'.zenkaku('katakana') -> 'タロウです! 25歳です!'
+     *   'ﾀﾛｳです! 25歳です!'.zenkaku('kn')       -> 'タロウです! ２５歳です!'
+     *   'ﾀﾛｳです! 25歳です!'.zenkaku('sp')       -> 'ﾀﾛｳです！　25歳です！'
+     *
+     * @param {string} mode
+     *
+     ***/
+    'zenkaku': function(str, args) {
+      return zenkaku(str, args);
+    },
+
+    /***
+     * @method hiragana([all] = true)
+     * @returns String
+     * @short Converts katakana into hiragana.
+     * @extra If [all] is false, only full-width katakana will be converted.
+     *
+     * @example
+     *
+     *   'カタカナ'.hiragana()   -> 'かたかな'
+     *   'コンニチハ'.hiragana() -> 'こんにちは'
+     *   'ｶﾀｶﾅ'.hiragana()       -> 'かたかな'
+     *   'ｶﾀｶﾅ'.hiragana(false)  -> 'ｶﾀｶﾅ'
+     *
+     * @param {boolean} all
+     *
+     ***/
+    'hiragana': function(str, all) {
+      if (all !== false) {
+        str = zenkaku(str, 'k');
+      }
+      return str.replace(/[\u30A1-\u30F6]/g, function(c) {
+        return shiftChar(c, -96);
+      });
+    },
+
+    /***
+     * @method katakana()
+     * @returns String
+     * @short Converts hiragana into katakana.
+     *
+     * @example
+     *
+     *   'かたかな'.katakana()   -> 'カタカナ'
+     *   'こんにちは'.katakana() -> 'コンニチハ'
+     *
+     ***/
+    'katakana': function(str) {
+      return str.replace(/[\u3041-\u3096]/g, function(c) {
+        return shiftChar(c, 96);
+      });
+    }
+
+  });
+
+  buildUnicodeScripts();
+
+  buildWidthConversion();
+
+  /***
+   * @module Locales
+   * @description Locale files for the Sugar Date module.
+   *
+   ***/
+
+  /*
+   * Catalan locale definition.
+   * See the readme for customization and more information.
+   * To set this locale globally:
+   *
+   * Sugar.Date.setLocale('ca')
+   *
+   */
+  Sugar.Date.addLocale('ca', {
+    'plural': true,
+    'units': 'milisegon:|s,segon:|s,minut:|s,hor:a|es,di:a|es,setman:a|es,mes:|os,any:|s',
+    'months': 'gen:er|,febr:er|,mar:ç|,abr:il|,mai:g|,jun:y|,jul:iol|,ag:ost|,set:embre|,oct:ubre|,nov:embre|,des:embre|',
+    'weekdays': 'diumenge|dg,dilluns|dl,dimarts|dt,dimecres|dc,dijous|dj,divendres|dv,dissabte|ds',
+    'numerals': 'zero,un,dos,tres,quatre,cinc,sis,set,vuit,nou,deu',
+    'tokens': 'el,la,de',
+    'short':  '{dd}/{MM}/{yyyy}',
+    'medium': '{d} {month} {yyyy}',
+    'long':   '{d} {month} {yyyy} {time}',
+    'full':   '{weekday} {d} {month} {yyyy} {time}',
+    'stamp':  '{dow} {d} {mon} {yyyy} {time}',
+    'time':   '{H}:{mm}',
+    'past':   '{sign} {num} {unit}',
+    'future': '{sign} {num} {unit}',
+    'duration': '{num} {unit}',
+    'timeMarkers': 'a las',
+    'ampm': 'am,pm',
+    'modifiers': [
+      { 'name': 'day', 'src': "abans d'ahir", 'value': -2 },
+      { 'name': 'day', 'src': 'ahir', 'value': -1 },
+      { 'name': 'day', 'src': 'avui', 'value': 0 },
+      { 'name': 'day', 'src': 'demà|dema', 'value': 1 },
+      { 'name': 'sign', 'src': 'fa', 'value': -1 },
+      { 'name': 'sign', 'src': 'en', 'value': 1 },
+      { 'name': 'shift', 'src': 'passat', 'value': -1 },
+      { 'name': 'shift', 'src': 'el proper|la propera', 'value': 1 }
+    ],
+    'parse': [
+      '{sign} {num} {unit}',
+      '{num} {unit} {sign}',
+      '{0?}{1?} {unit:5-7} {shift}',
+      '{0?}{1?} {shift} {unit:5-7}'
+    ],
+    'timeParse': [
+      '{shift} {weekday}',
+      '{weekday} {shift}',
+      '{date?} {2?} {months}\\.? {2?} {year?}'
+    ]
+  });
+
+
+  /*
+   * Danish locale definition.
+   * See the readme for customization and more information.
+   * To set this locale globally:
+   *
+   * Sugar.Date.setLocale('da')
+   *
+   */
+  Sugar.Date.addLocale('da', {
+    'plural': true,
+    'units': 'millisekund:|er,sekund:|er,minut:|ter,tim:e|er,dag:|e,ug:e|er|en,måned:|er|en+maaned:|er|en,år:||et+aar:||et',
+    'months': 'jan:uar|,feb:ruar|,mar:ts|,apr:il|,maj,jun:i|,jul:i|,aug:ust|,sep:tember|,okt:ober|,nov:ember|,dec:ember|',
+    'weekdays': 'søn:dag|+son:dag|,man:dag|,tir:sdag|,ons:dag|,tor:sdag|,fre:dag|,lør:dag|+lor:dag|',
+    'numerals': 'nul,en|et,to,tre,fire,fem,seks,syv,otte,ni,ti',
+    'tokens':   'den,for',
+    'articles': 'den',
+    'short':  '{dd}-{MM}-{yyyy}',
+    'medium': '{d}. {month} {yyyy}',
+    'long':   '{d}. {month} {yyyy} {time}',
+    'full':   '{weekday} d. {d}. {month} {yyyy} {time}',
+    'stamp':  '{dow} {d} {mon} {yyyy} {time}',
+    'time':   '{H}:{mm}',
+    'past':   '{num} {unit} {sign}',
+    'future': '{sign} {num} {unit}',
+    'duration': '{num} {unit}',
+    'ampm': 'am,pm',
+    'modifiers': [
+      { 'name': 'day', 'src': 'forgårs|i forgårs|forgaars|i forgaars', 'value': -2 },
+      { 'name': 'day', 'src': 'i går|igår|i gaar|igaar', 'value': -1 },
+      { 'name': 'day', 'src': 'i dag|idag', 'value': 0 },
+      { 'name': 'day', 'src': 'i morgen|imorgen', 'value': 1 },
+      { 'name': 'day', 'src': 'over morgon|overmorgen|i over morgen|i overmorgen|iovermorgen', 'value': 2 },
+      { 'name': 'sign', 'src': 'siden', 'value': -1 },
+      { 'name': 'sign', 'src': 'om', 'value':  1 },
+      { 'name': 'shift', 'src': 'i sidste|sidste', 'value': -1 },
+      { 'name': 'shift', 'src': 'denne', 'value': 0 },
+      { 'name': 'shift', 'src': 'næste|naeste', 'value': 1 }
+    ],
+    'parse': [
+      '{months} {year?}',
+      '{num} {unit} {sign}',
+      '{sign} {num} {unit}',
+      '{1?} {num} {unit} {sign}',
+      '{shift} {unit:5-7}'
+    ],
+    'timeParse': [
+      '{day|weekday}',
+      '{date} {months?}\\.? {year?}'
+    ],
+    'timeFrontParse': [
+      '{shift} {weekday}',
+      '{0?} {weekday?},? {date}\\.? {months?}\\.? {year?}'
+    ]
+  });
+
+
+  /*
+   * German locale definition.
+   * See the readme for customization and more information.
+   * To set this locale globally:
+   *
+   * Sugar.Date.setLocale('de')
+   *
+   */
+  Sugar.Date.addLocale('de', {
+    'plural': true,
+    'units': 'Millisekunde:|n,Sekunde:|n,Minute:|n,Stunde:|n,Tag:|en,Woche:|n,Monat:|en,Jahr:|en|e',
+    'months': 'Jan:uar|,Feb:ruar|,M:är|ärz|ar|arz,Apr:il|,Mai,Juni,Juli,Aug:ust|,Sept:ember|,Okt:ober|,Nov:ember|,Dez:ember|',
+    'weekdays': 'So:nntag|,Mo:ntag|,Di:enstag|,Mi:ttwoch|,Do:nnerstag|,Fr:eitag|,Sa:mstag|',
+    'numerals': 'null,ein:|e|er|en|em,zwei,drei,vier,fuenf,sechs,sieben,acht,neun,zehn',
+    'tokens': 'der',
+    'short': '{dd}.{MM}.{yyyy}',
+    'medium': '{d}. {Month} {yyyy}',
+    'long': '{d}. {Month} {yyyy} {time}',
+    'full': '{Weekday}, {d}. {Month} {yyyy} {time}',
+    'stamp': '{Dow} {d} {Mon} {yyyy} {time}',
+    'time': '{H}:{mm}',
+    'past': '{sign} {num} {unit}',
+    'future': '{sign} {num} {unit}',
+    'duration': '{num} {unit}',
+    'timeMarkers': 'um',
+    'ampm': 'am,pm',
+    'modifiers': [
+      { 'name': 'day', 'src': 'vorgestern', 'value': -2 },
+      { 'name': 'day', 'src': 'gestern', 'value': -1 },
+      { 'name': 'day', 'src': 'heute', 'value': 0 },
+      { 'name': 'day', 'src': 'morgen', 'value': 1 },
+      { 'name': 'day', 'src': 'übermorgen|ubermorgen|uebermorgen', 'value': 2 },
+      { 'name': 'sign', 'src': 'vor:|her', 'value': -1 },
+      { 'name': 'sign', 'src': 'in', 'value': 1 },
+      { 'name': 'shift', 'src': 'letzte:|r|n|s', 'value': -1 },
+      { 'name': 'shift', 'src': 'nächste:|r|n|s+nachste:|r|n|s+naechste:|r|n|s+kommende:n|r', 'value': 1 }
+    ],
+    'parse': [
+      '{months} {year?}',
+      '{sign} {num} {unit}',
+      '{num} {unit} {sign}',
+      '{shift} {unit:5-7}'
+    ],
+    'timeParse': [
+      '{shift?} {day|weekday}',
+      '{weekday?},? {date}\\.? {months?}\\.? {year?}'
+    ],
+    'timeFrontParse': [
+      '{shift} {weekday}',
+      '{weekday?},? {date}\\.? {months?}\\.? {year?}'
+    ]
+  });
+
+
+  /*
+   * Spanish locale definition.
+   * See the readme for customization and more information.
+   * To set this locale globally:
+   *
+   * Sugar.Date.setLocale('es')
+   *
+   */
+  Sugar.Date.addLocale('es', {
+    'plural': true,
+    'units': 'milisegundo:|s,segundo:|s,minuto:|s,hora:|s,día|días|dia|dias,semana:|s,mes:|es,año|años|ano|anos',
+    'months': 'ene:ro|,feb:rero|,mar:zo|,abr:il|,may:o|,jun:io|,jul:io|,ago:sto|,sep:tiembre|,oct:ubre|,nov:iembre|,dic:iembre|',
+    'weekdays': 'dom:ingo|,lun:es|,mar:tes|,mié:rcoles|+mie:rcoles|,jue:ves|,vie:rnes|,sáb:ado|+sab:ado|',
+    'numerals': 'cero,uno,dos,tres,cuatro,cinco,seis,siete,ocho,nueve,diez',
+    'tokens': 'el,la,de',
+    'short':  '{dd}/{MM}/{yyyy}',
+    'medium': '{d} de {Month} de {yyyy}',
+    'long':   '{d} de {Month} de {yyyy} {time}',
+    'full':   '{weekday}, {d} de {month} de {yyyy} {time}',
+    'stamp':  '{dow} {d} {mon} {yyyy} {time}',
+    'time':   '{H}:{mm}',
+    'past':   '{sign} {num} {unit}',
+    'future': '{sign} {num} {unit}',
+    'duration': '{num} {unit}',
+    'timeMarkers': 'a las',
+    'ampm': 'am,pm',
+    'modifiers': [
+      { 'name': 'day', 'src': 'anteayer', 'value': -2 },
+      { 'name': 'day', 'src': 'ayer', 'value': -1 },
+      { 'name': 'day', 'src': 'hoy', 'value': 0 },
+      { 'name': 'day', 'src': 'mañana|manana', 'value': 1 },
+      { 'name': 'sign', 'src': 'hace', 'value': -1 },
+      { 'name': 'sign', 'src': 'dentro de', 'value': 1 },
+      { 'name': 'shift', 'src': 'pasad:o|a', 'value': -1 },
+      { 'name': 'shift', 'src': 'próximo|próxima|proximo|proxima', 'value': 1 }
+    ],
+    'parse': [
+      '{months} {2?} {year?}',
+      '{sign} {num} {unit}',
+      '{num} {unit} {sign}',
+      '{0?}{1?} {unit:5-7} {shift}',
+      '{0?}{1?} {shift} {unit:5-7}'
+    ],
+    'timeParse': [
+      '{shift?} {day|weekday} {shift?}',
+      '{date} {2?} {months?}\\.? {2?} {year?}'
+    ],
+    'timeFrontParse': [
+      '{shift?} {weekday} {shift?}',
+      '{date} {2?} {months?}\\.? {2?} {year?}'
+    ]
+  });
+
+
+  /*
+   * Finnish locale definition.
+   * See the readme for customization and more information.
+   * To set this locale globally:
+   *
+   * Sugar.Date.setLocale('fi')
+   *
+   */
+  Sugar.Date.addLocale('fi', {
+    'plural': true,
+    'units': 'millisekun:ti|tia|nin|teja|tina,sekun:ti|tia|nin|teja|tina,minuut:ti|tia|in|teja|tina,tun:ti|tia|nin|teja|tina,päiv:ä|ää|än|iä|änä,viik:ko|koa|on|olla|koja|kona,kuukau:si|tta|den+kuussa,vuo:si|tta|den|sia|tena|nna',
+    'months': 'tammi:kuuta||kuu,helmi:kuuta||kuu,maalis:kuuta||kuu,huhti:kuuta||kuu,touko:kuuta||kuu,kesä:kuuta||kuu,heinä:kuuta||kuu,elo:kuuta||kuu,syys:kuuta||kuu,loka:kuuta||kuu,marras:kuuta||kuu,joulu:kuuta||kuu',
+    'weekdays': 'su:nnuntai||nnuntaina,ma:anantai||anantaina,ti:istai||istaina,ke:skiviikko||skiviikkona,to:rstai||rstaina,pe:rjantai||rjantaina,la:uantai||uantaina',
+    'numerals': 'nolla,yksi|ensimmäinen,kaksi|toinen,kolm:e|as,neljä:|s,vii:si|des,kuu:si|des,seitsemä:n|s,kahdeksa:n|s,yhdeksä:n|s,kymmene:n|s',
+    'short': '{d}.{M}.{yyyy}',
+    'medium': '{d}. {month} {yyyy}',
+    'long': '{d}. {month} {yyyy} klo {time}',
+    'full': '{weekday} {d}. {month} {yyyy} klo {time}',
+    'stamp': '{dow} {d} {mon} {yyyy} {time}',
+    'time': '{H}.{mm}',
+    'timeMarkers': 'klo,kello',
+    'ordinalSuffix': '.',
+    'relative': function(num, unit, ms, format) {
+      var units = this['units'];
+      function numberWithUnit(mult) {
+        return num + ' ' + units[(8 * mult) + unit];
+      }
+      function baseUnit() {
+        return numberWithUnit(num === 1 ? 0 : 1);
+      }
+      switch(format) {
+        case 'duration':  return baseUnit();
+        case 'past':      return baseUnit() + ' sitten';
+        case 'future':    return numberWithUnit(2) + ' kuluttua';
+      }
+    },
+    'modifiers': [
+      { 'name': 'day',   'src': 'toissa päivänä', 'value': -2 },
+      { 'name': 'day',   'src': 'eilen|eilistä', 'value': -1 },
+      { 'name': 'day',   'src': 'tänään', 'value': 0 },
+      { 'name': 'day',   'src': 'huomenna|huomista', 'value': 1 },
+      { 'name': 'day',   'src': 'ylihuomenna|ylihuomista', 'value': 2 },
+      { 'name': 'sign',  'src': 'sitten|aiemmin', 'value': -1 },
+      { 'name': 'sign',  'src': 'päästä|kuluttua|myöhemmin', 'value': 1 },
+      { 'name': 'edge',  'src': 'lopussa', 'value': 2 },
+      { 'name': 'edge',  'src': 'ensimmäinen|ensimmäisenä', 'value': -2 },
+      { 'name': 'shift', 'src': 'edel:linen|lisenä', 'value': -1 },
+      { 'name': 'shift', 'src': 'viime', 'value': -1 },
+      { 'name': 'shift', 'src': 'tä:llä|ssä|nä|mä', 'value': 0 },
+      { 'name': 'shift', 'src': 'seuraava|seuraavana|tuleva|tulevana|ensi', 'value': 1 }
+    ],
+    'parse': [
+      '{months} {year?}',
+      '{shift} {unit:5-7}'
+    ],
+    'timeParse': [
+      '{shift?} {day|weekday}',
+      '{weekday?},? {date}\\.? {months?}\\.? {year?}'
+    ],
+    'timeFrontParse': [
+      '{shift?} {day|weekday}',
+      '{num?} {unit} {sign}',
+      '{weekday?},? {date}\\.? {months?}\\.? {year?}'
+    ]
+  });
+
+
+  /*
+   * French locale definition.
+   * See the readme for customization and more information.
+   * To set this locale globally:
+   *
+   * Sugar.Date.setLocale('fr')
+   *
+   */
+  Sugar.Date.addLocale('fr', {
+    'plural': true,
+    'units': 'milliseconde:|s,seconde:|s,minute:|s,heure:|s,jour:|s,semaine:|s,mois,an:|s|née|nee',
+    'months': 'janv:ier|,févr:ier|+fevr:ier|,mars,avr:il|,mai,juin,juil:let|,août,sept:embre|,oct:obre|,nov:embre|,déc:embre|+dec:embre|',
+    'weekdays': 'dim:anche|,lun:di|,mar:di|,mer:credi|,jeu:di|,ven:dredi|,sam:edi|',
+    'numerals': 'zéro,un:|e,deux,trois,quatre,cinq,six,sept,huit,neuf,dix',
+    'tokens': "l'|la|le,er",
+    'short':  '{dd}/{MM}/{yyyy}',
+    'medium': '{d} {month} {yyyy}',
+    'long':   '{d} {month} {yyyy} {time}',
+    'full':   '{weekday} {d} {month} {yyyy} {time}',
+    'stamp':  '{dow} {d} {mon} {yyyy} {time}',
+    'time':   '{H}:{mm}',
+    'past':   '{sign} {num} {unit}',
+    'future': '{sign} {num} {unit}',
+    'duration': '{num} {unit}',
+    'timeMarkers': 'à',
+    'ampm': 'am,pm',
+    'modifiers': [
+      { 'name': 'day', 'src': 'hier', 'value': -1 },
+      { 'name': 'day', 'src': "aujourd'hui", 'value': 0 },
+      { 'name': 'day', 'src': 'demain', 'value': 1 },
+      { 'name': 'sign', 'src': 'il y a', 'value': -1 },
+      { 'name': 'sign', 'src': "dans|d'ici", 'value': 1 },
+      { 'name': 'shift', 'src': 'derni:èr|er|ère|ere', 'value': -1 },
+      { 'name': 'shift', 'src': 'prochain:|e', 'value': 1 }
+    ],
+    'parse': [
+      '{months} {year?}',
+      '{sign} {num} {unit}',
+      '{0?} {unit:5-7} {shift}'
+    ],
+    'timeParse': [
+      '{day|weekday} {shift?}',
+      '{weekday?},? {0?} {date}{1?} {months}\\.? {year?}'
+    ],
+    'timeFrontParse': [
+      '{0?} {weekday} {shift}',
+      '{weekday?},? {0?} {date}{1?} {months}\\.? {year?}'
+    ]
+  });
+
+
+  /*
+   * Italian locale definition.
+   * See the readme for customization and more information.
+   * To set this locale globally:
+   *
+   * Sugar.Date.setLocale('it')
+   *
+   */
+  Sugar.Date.addLocale('it', {
+    'plural': true,
+    'units': 'millisecond:o|i,second:o|i,minut:o|i,or:a|e,giorn:o|i,settiman:a|e,mes:e|i,ann:o|i',
+    'months': 'gen:naio|,feb:braio|,mar:zo|,apr:ile|,mag:gio|,giu:gno|,lug:lio|,ago:sto|,set:tembre|,ott:obre|,nov:embre|,dic:embre|',
+    'weekdays': 'dom:enica|,lun:edì||edi,mar:tedì||tedi,mer:coledì||coledi,gio:vedì||vedi,ven:erdì||erdi,sab:ato|',
+    'numerals': "zero,un:|a|o|',due,tre,quattro,cinque,sei,sette,otto,nove,dieci",
+    'tokens': "l'|la|il",
+    'short': '{dd}/{MM}/{yyyy}',
+    'medium': '{d} {month} {yyyy}',
+    'long': '{d} {month} {yyyy} {time}',
+    'full': '{weekday}, {d} {month} {yyyy} {time}',
+    'stamp': '{dow} {d} {mon} {yyyy} {time}',
+    'time': '{H}:{mm}',
+    'past': '{num} {unit} {sign}',
+    'future': '{num} {unit} {sign}',
+    'duration': '{num} {unit}',
+    'timeMarkers': 'alle',
+    'ampm': 'am,pm',
+    'modifiers': [
+      { 'name': 'day', 'src': 'ieri', 'value': -1 },
+      { 'name': 'day', 'src': 'oggi', 'value': 0 },
+      { 'name': 'day', 'src': 'domani', 'value': 1 },
+      { 'name': 'day', 'src': 'dopodomani', 'value': 2 },
+      { 'name': 'sign', 'src': 'fa', 'value': -1 },
+      { 'name': 'sign', 'src': 'da adesso', 'value': 1 },
+      { 'name': 'shift', 'src': 'scors:o|a', 'value': -1 },
+      { 'name': 'shift', 'src': 'prossim:o|a', 'value': 1 }
+    ],
+    'parse': [
+      '{months} {year?}',
+      '{num} {unit} {sign}',
+      '{0?} {unit:5-7} {shift}',
+      '{0?} {shift} {unit:5-7}'
+    ],
+    'timeParse': [
+      '{shift?} {day|weekday}',
+      '{weekday?},? {date} {months?}\\.? {year?}'
+    ],
+    'timeFrontParse': [
+      '{shift?} {day|weekday}',
+      '{weekday?},? {date} {months?}\\.? {year?}'
+    ]
+  });
+
+
+  /*
+   * Japanese locale definition.
+   * See the readme for customization and more information.
+   * To set this locale globally:
+   *
+   * Sugar.Date.setLocale('ja')
+   *
+   */
+  Sugar.Date.addLocale('ja', {
+    'ampmFront': true,
+    'numeralUnits': true,
+    'allowsFullWidth': true,
+    'timeMarkerOptional': true,
+    'firstDayOfWeek': 0,
+    'firstDayOfWeekYear': 1,
+    'units': 'ミリ秒,秒,分,時間,日,週間|週,ヶ月|ヵ月|月,年|年度',
+    'weekdays': '日:曜日||曜,月:曜日||曜,火:曜日||曜,水:曜日||曜,木:曜日||曜,金:曜日||曜,土:曜日||曜',
+    'numerals': '〇,一,二,三,四,五,六,七,八,九',
+    'placeholders': '十,百,千,万',
+    'timeSuffixes': ',秒,分,時,日,,月,年度?',
+    'short':  '{yyyy}/{MM}/{dd}',
+    'medium': '{yyyy}年{M}月{d}日',
+    'long':   '{yyyy}年{M}月{d}日{time}',
+    'full':   '{yyyy}年{M}月{d}日{time} {weekday}',
+    'stamp':  '{yyyy}年{M}月{d}日 {H}:{mm} {dow}',
+    'time':   '{tt}{h}時{mm}分',
+    'past':   '{num}{unit}{sign}',
+    'future': '{num}{unit}{sign}',
+    'duration': '{num}{unit}',
+    'ampm': '午前,午後',
+    'modifiers': [
+      { 'name': 'day', 'src': '一昨々日|前々々日', 'value': -3 },
+      { 'name': 'day', 'src': '一昨日|おととい|前々日', 'value': -2 },
+      { 'name': 'day', 'src': '昨日|前日', 'value': -1 },
+      { 'name': 'day', 'src': '今日|当日|本日', 'value': 0 },
+      { 'name': 'day', 'src': '明日|翌日|次日', 'value': 1 },
+      { 'name': 'day', 'src': '明後日|翌々日', 'value': 2 },
+      { 'name': 'day', 'src': '明々後日|翌々々日', 'value': 3 },
+      { 'name': 'sign', 'src': '前', 'value': -1 },
+      { 'name': 'sign', 'src': '後', 'value': 1 },
+      { 'name': 'edge', 'src': '始|初日|頭', 'value': -2 },
+      { 'name': 'edge', 'src': '末|尻', 'value': 2 },
+      { 'name': 'edge', 'src': '末日', 'value': 1 },
+      { 'name': 'shift', 'src': '一昨々|前々々', 'value': -3 },
+      { 'name': 'shift', 'src': '一昨|前々|先々', 'value': -2 },
+      { 'name': 'shift', 'src': '先|昨|去|前', 'value': -1 },
+      { 'name': 'shift', 'src': '今|本|当', 'value':  0 },
+      { 'name': 'shift', 'src': '来|明|翌|次', 'value':  1 },
+      { 'name': 'shift', 'src': '明後|翌々|次々|再来|さ来', 'value': 2 },
+      { 'name': 'shift', 'src': '明々後|翌々々', 'value':  3 }
+    ],
+    'parse': [
+      '{month}{edge}',
+      '{num}{unit}{sign}',
+      '{year?}{month}',
+      '{year}'
+    ],
+    'timeParse': [
+      '{day|weekday}',
+      '{shift}{unit:5}{weekday?}',
+      '{shift}{unit:7}{month}{edge}',
+      '{shift}{unit:7}{month?}{date?}',
+      '{shift}{unit:6}{edge?}{date?}',
+      '{year?}{month?}{date}'
+    ]
+  });
+
+
+  /*
+   * Korean locale definition.
+   * See the readme for customization and more information.
+   * To set this locale globally:
+   *
+   * Sugar.Date.setLocale('ko')
+   *
+   */
+  Sugar.Date.addLocale('ko', {
+    'ampmFront': true,
+    'numeralUnits': true,
+    'units': '밀리초,초,분,시간,일,주,개월|달,년|해',
+    'weekdays': '일:요일|,월:요일|,화:요일|,수:요일|,목:요일|,금:요일|,토:요일|',
+    'numerals': '영|제로,일|한,이,삼,사,오,육,칠,팔,구,십',
+    'short':  '{yyyy}.{MM}.{dd}',
+    'medium': '{yyyy}년 {M}월 {d}일',
+    'long':   '{yyyy}년 {M}월 {d}일 {time}',
+    'full':   '{yyyy}년 {M}월 {d}일 {weekday} {time}',
+    'stamp':  '{yyyy}년 {M}월 {d}일 {H}:{mm} {dow}',
+    'time':   '{tt} {h}시 {mm}분',
+    'past':   '{num}{unit} {sign}',
+    'future': '{num}{unit} {sign}',
+    'duration': '{num}{unit}',
+    'timeSuffixes': ',초,분,시,일,,월,년',
+    'ampm': '오전,오후',
+    'modifiers': [
+      { 'name': 'day', 'src': '그저께', 'value': -2 },
+      { 'name': 'day', 'src': '어제', 'value': -1 },
+      { 'name': 'day', 'src': '오늘', 'value': 0 },
+      { 'name': 'day', 'src': '내일', 'value': 1 },
+      { 'name': 'day', 'src': '모레', 'value': 2 },
+      { 'name': 'sign', 'src': '전', 'value': -1 },
+      { 'name': 'sign', 'src': '후', 'value':  1 },
+      { 'name': 'shift', 'src': '지난|작', 'value': -1 },
+      { 'name': 'shift', 'src': '이번|올', 'value': 0 },
+      { 'name': 'shift', 'src': '다음|내', 'value': 1 }
+    ],
+    'parse': [
+      '{num}{unit} {sign}',
+      '{shift?} {unit:5-7}',
+      '{year?} {month}',
+      '{year}'
+    ],
+    'timeParse': [
+      '{day|weekday}',
+      '{shift} {unit:5?} {weekday}',
+      '{year?} {month?} {date} {weekday?}'
+    ]
+  });
+
+
+  /*
+   * Dutch locale definition.
+   * See the readme for customization and more information.
+   * To set this locale globally:
+   *
+   * Sugar.Date.setLocale('nl')
+   *
+   */
+  Sugar.Date.addLocale('nl', {
+    'plural': true,
+    'units': 'milliseconde:|n,seconde:|n,minu:ut|ten,uur,dag:|en,we:ek|ken,maand:|en,jaar',
+    'months': 'jan:uari|,feb:ruari|,maart|mrt,apr:il|,mei,jun:i|,jul:i|,aug:ustus|,sep:tember|,okt:ober|,nov:ember|,dec:ember|',
+    'weekdays': 'zondag|zo,maandag|ma,dinsdag|di,woensdag|wo|woe,donderdag|do,vrijdag|vr|vrij,zaterdag|za',
+    'numerals': 'nul,een,twee,drie,vier,vijf,zes,zeven,acht,negen,tien',
+    'short':  '{dd}-{MM}-{yyyy}',
+    'medium': '{d} {month} {yyyy}',
+    'long':   '{d} {Month} {yyyy} {time}',
+    'full':   '{weekday} {d} {Month} {yyyy} {time}',
+    'stamp':  '{dow} {d} {Mon} {yyyy} {time}',
+    'time':   '{H}:{mm}',
+    'past':   '{num} {unit} {sign}',
+    'future': '{num} {unit} {sign}',
+    'duration': '{num} {unit}',
+    'timeMarkers': "'s,om",
+    'modifiers': [
+      { 'name': 'day', 'src': 'gisteren', 'value': -1 },
+      { 'name': 'day', 'src': 'vandaag', 'value': 0 },
+      { 'name': 'day', 'src': 'morgen', 'value': 1 },
+      { 'name': 'day', 'src': 'overmorgen', 'value': 2 },
+      { 'name': 'sign', 'src': 'geleden', 'value': -1 },
+      { 'name': 'sign', 'src': 'vanaf nu', 'value': 1 },
+      { 'name': 'shift', 'src': 'laatste|vorige|afgelopen', 'value': -1 },
+      { 'name': 'shift', 'src': 'volgend:|e', 'value': 1 }
+    ],
+    'parse': [
+      '{months} {year?}',
+      '{num} {unit} {sign}',
+      '{0?} {unit:5-7} {shift}',
+      '{0?} {shift} {unit:5-7}'
+    ],
+    'timeParse': [
+      '{shift?} {day|weekday}',
+      '{weekday?},? {date} {months?}\\.? {year?}'
+    ],
+    'timeFrontParse': [
+      '{shift?} {day|weekday}',
+      '{weekday?},? {date} {months?}\\.? {year?}'
+    ]
+  });
+
+
+  /*
+   * Norwegian locale definition.
+   * See the readme for customization and more information.
+   * To set this locale globally:
+   *
+   * Sugar.Date.setLocale('no')
+   *
+   */
+  Sugar.Date.addLocale('no', {
+    'plural': true,
+    'units': 'millisekund:|er,sekund:|er,minutt:|er,tim:e|er,dag:|er,uk:e|er|en,måned:|er|en+maaned:|er|en,år:||et+aar:||et',
+    'months': 'januar,februar,mars,april,mai,juni,juli,august,september,oktober,november,desember',
+    'weekdays': 'søndag|sondag,mandag,tirsdag,onsdag,torsdag,fredag,lørdag|lordag',
+    'numerals': 'en|et,to,tre,fire,fem,seks,sju|syv,åtte,ni,ti',
+    'tokens': 'den,for',
+    'articles': 'den',
+    'short':'d. {d}. {month} {yyyy}',
+    'long': 'den {d}. {month} {yyyy} {H}:{mm}',
+    'full': '{Weekday} den {d}. {month} {yyyy} {H}:{mm}:{ss}',
+    'past': '{num} {unit} {sign}',
+    'future': '{sign} {num} {unit}',
+    'duration': '{num} {unit}',
+    'ampm': 'am,pm',
+    'modifiers': [
+      { 'name': 'day', 'src': 'forgårs|i forgårs|forgaars|i forgaars', 'value': -2 },
+      { 'name': 'day', 'src': 'i går|igår|i gaar|igaar', 'value': -1 },
+      { 'name': 'day', 'src': 'i dag|idag', 'value': 0 },
+      { 'name': 'day', 'src': 'i morgen|imorgen', 'value': 1 },
+      { 'name': 'day', 'src': 'overimorgen|overmorgen|over i morgen', 'value': 2 },
+      { 'name': 'sign', 'src': 'siden', 'value': -1 },
+      { 'name': 'sign', 'src': 'om', 'value':  1 },
+      { 'name': 'shift', 'src': 'i siste|siste', 'value': -1 },
+      { 'name': 'shift', 'src': 'denne', 'value': 0 },
+      { 'name': 'shift', 'src': 'neste', 'value': 1 }
+    ],
+    'parse': [
+      '{num} {unit} {sign}',
+      '{sign} {num} {unit}',
+      '{1?} {num} {unit} {sign}',
+      '{shift} {unit:5-7}'
+    ],
+    'timeParse': [
+      '{date} {month}',
+      '{shift} {weekday}',
+      '{0?} {weekday?},? {date?} {month}\\.? {year}'
+    ]
+  });
+
+
+  /*
+   * Polish locale definition.
+   * See the readme for customization and more information.
+   * To set this locale globally:
+   *
+   * Sugar.Date.setLocale('pl')
+   *
+   */
+  Sugar.Date.addLocale('pl', {
+    'plural': true,
+    'units': 'milisekund:a|y|,sekund:a|y|,minut:a|y|,godzin:a|y|,dzień|dni|dni,tydzień|tygodnie|tygodni,miesiąc|miesiące|miesięcy,rok|lata|lat',
+    'months': 'sty:cznia||czeń,lut:ego||y,mar:ca||zec,kwi:etnia||ecień,maj:a|,cze:rwca||rwiec,lip:ca||iec,sie:rpnia||rpień,wrz:eśnia||esień,paź:dziernika||dziernik,lis:topada||topad,gru:dnia||dzień',
+    'weekdays': 'nie:dziela||dzielę,pon:iedziałek|,wt:orek|,śr:oda||odę,czw:artek|,piątek|pt,sobota|sb|sobotę',
+    'numerals': 'zero,jeden|jedną,dwa|dwie,trzy,cztery,pięć,sześć,siedem,osiem,dziewięć,dziesięć',
+    'tokens': 'w|we,roku',
+    'short': '{dd}.{MM}.{yyyy}',
+    'medium': '{d} {month} {yyyy}',
+    'long':  '{d} {month} {yyyy} {time}',
+    'full' : '{weekday}, {d} {month} {yyyy} {time}',
+    'stamp': '{dow} {d} {mon} {yyyy} {time}',
+    'time': '{H}:{mm}',
+    'timeMarkers': 'o',
+    'ampm': 'am,pm',
+    'modifiers': [
+      { 'name': 'day', 'src': 'przedwczoraj', 'value': -2 },
+      { 'name': 'day', 'src': 'wczoraj', 'value': -1 },
+      { 'name': 'day', 'src': 'dzisiaj|dziś', 'value': 0 },
+      { 'name': 'day', 'src': 'jutro', 'value': 1 },
+      { 'name': 'day', 'src': 'pojutrze', 'value': 2 },
+      { 'name': 'sign', 'src': 'temu|przed', 'value': -1 },
+      { 'name': 'sign', 'src': 'za', 'value': 1 },
+      { 'name': 'shift', 'src': 'zeszły|zeszła|ostatni|ostatnia', 'value': -1 },
+      { 'name': 'shift', 'src': 'następny|następna|następnego|przyszły|przyszła|przyszłego', 'value': 1 }
+    ],
+    'relative': function (num, unit, ms, format) {
+      // special cases for relative days
+      var DAY = 4;
+      if (unit === DAY) {
+        if (num === 1 && format === 'past')   return 'wczoraj';
+        if (num === 1 && format === 'future') return 'jutro';
+        if (num === 2 && format === 'past')   return 'przedwczoraj';
+        if (num === 2 && format === 'future') return 'pojutrze';
+      }
+
+      var mult;
+      var last  = +num.toFixed(0).slice(-1);
+      var last2 = +num.toFixed(0).slice(-2);
+      switch (true) {
+        case num === 1:                  mult = 0; break;
+        case last2 >= 12 && last2 <= 14: mult = 2; break;
+        case last  >=  2 && last  <=  4: mult = 1; break;
+        default:                         mult = 2;
+      }
+      var text = this['units'][(mult * 8) + unit];
+      var prefix = num + ' ';
+
+      // changing to accusative case for 'past' and 'future' formats
+      // (only singular feminine unit words are different in accusative, each of which ends with 'a')
+      if ((format === 'past' || format === 'future') && num === 1) {
+        text = text.replace(/a$/, 'ę');
+      }
+
+      text = prefix + text;
+      switch (format) {
+        case 'duration': return text;
+        case 'past':     return text + ' temu';
+        case 'future':   return 'za ' + text;
+      }
+    },
+    'parse': [
+      '{num} {unit} {sign}',
+      '{sign} {num} {unit}',
+      '{months} {year?}',
+      '{shift} {unit:5-7}',
+      '{0} {shift?} {weekday}'
+    ],
+    'timeFrontParse': [
+      '{day|weekday}',
+      '{date} {months} {year?} {1?}',
+      '{0?} {shift?} {weekday}'
+    ]
+  });
+
+
+  /*
+   * Portuguese locale definition.
+   * See the readme for customization and more information.
+   * To set this locale globally:
+   *
+   * Sugar.Date.setLocale('pt')
+   *
+   */
+  Sugar.Date.addLocale('pt', {
+    'plural': true,
+    'units': 'milisegundo:|s,segundo:|s,minuto:|s,hora:|s,dia:|s,semana:|s,mês|mêses|mes|meses,ano:|s',
+    'months': 'jan:eiro|,fev:ereiro|,mar:ço|,abr:il|,mai:o|,jun:ho|,jul:ho|,ago:sto|,set:embro|,out:ubro|,nov:embro|,dez:embro|',
+    'weekdays': 'dom:ingo|,seg:unda-feira|,ter:ça-feira|,qua:rta-feira|,qui:nta-feira|,sex:ta-feira|,sáb:ado||ado',
+    'numerals': 'zero,um:|a,dois|duas,três|tres,quatro,cinco,seis,sete,oito,nove,dez',
+    'tokens': 'a,de',
+    'short':  '{dd}/{MM}/{yyyy}',
+    'medium': '{d} de {Month} de {yyyy}',
+    'long':   '{d} de {Month} de {yyyy} {time}',
+    'full':   '{Weekday}, {d} de {Month} de {yyyy} {time}',
+    'stamp':  '{Dow} {d} {Mon} {yyyy} {time}',
+    'time':   '{H}:{mm}',
+    'past':   '{num} {unit} {sign}',
+    'future': '{sign} {num} {unit}',
+    'duration': '{num} {unit}',
+    'timeMarkers': 'às',
+    'ampm': 'am,pm',
+    'modifiers': [
+      { 'name': 'day', 'src': 'anteontem', 'value': -2 },
+      { 'name': 'day', 'src': 'ontem', 'value': -1 },
+      { 'name': 'day', 'src': 'hoje', 'value': 0 },
+      { 'name': 'day', 'src': 'amanh:ã|a', 'value': 1 },
+      { 'name': 'sign', 'src': 'atrás|atras|há|ha', 'value': -1 },
+      { 'name': 'sign', 'src': 'daqui a', 'value': 1 },
+      { 'name': 'shift', 'src': 'passad:o|a', 'value': -1 },
+      { 'name': 'shift', 'src': 'próximo|próxima|proximo|proxima', 'value': 1 }
+    ],
+    'parse': [
+      '{months} {1?} {year?}',
+      '{num} {unit} {sign}',
+      '{sign} {num} {unit}',
+      '{0?} {unit:5-7} {shift}',
+      '{0?} {shift} {unit:5-7}'
+    ],
+    'timeParse': [
+      '{shift?} {day|weekday}',
+      '{0?} {shift} {weekday}',
+      '{date} {1?} {months?} {1?} {year?}'
+    ],
+    'timeFrontParse': [
+      '{shift?} {day|weekday}',
+      '{date} {1?} {months?} {1?} {year?}'
+    ]
+  });
+
+
+  /*
+   * Russian locale definition.
+   * See the readme for customization and more information.
+   * To set this locale globally:
+   *
+   * Sugar.Date.setLocale('ru')
+   *
+   */
+  Sugar.Date.addLocale('ru', {
+    'firstDayOfWeekYear': 1,
+    'units': 'миллисекунд:а|у|ы|,секунд:а|у|ы|,минут:а|у|ы|,час:||а|ов,день|день|дня|дней,недел:я|ю|и|ь|е,месяц:||а|ев|е,год|год|года|лет|году',
+    'months': 'янв:аря||.|арь,фев:раля||р.|раль,мар:та||т,апр:еля||.|ель,мая|май,июн:я||ь,июл:я||ь,авг:уста||.|уст,сен:тября||т.|тябрь,окт:ября||.|ябрь,ноя:бря||брь,дек:абря||.|абрь',
+    'weekdays': 'воскресенье|вс,понедельник|пн,вторник|вт,среда|ср,четверг|чт,пятница|пт,суббота|сб',
+    'numerals': 'ноль,од:ин|ну,дв:а|е,три,четыре,пять,шесть,семь,восемь,девять,десять',
+    'tokens': 'в|на,г\\.?(?:ода)?',
+    'short':  '{dd}.{MM}.{yyyy}',
+    'medium': '{d} {month} {yyyy} г.',
+    'long':   '{d} {month} {yyyy} г., {time}',
+    'full':   '{weekday}, {d} {month} {yyyy} г., {time}',
+    'stamp':  '{dow} {d} {mon} {yyyy} {time}',
+    'time':   '{H}:{mm}',
+    'timeMarkers': 'в',
+    'ampm': ' утра, вечера',
+    'modifiers': [
+      { 'name': 'day', 'src': 'позавчера', 'value': -2 },
+      { 'name': 'day', 'src': 'вчера', 'value': -1 },
+      { 'name': 'day', 'src': 'сегодня', 'value': 0 },
+      { 'name': 'day', 'src': 'завтра', 'value': 1 },
+      { 'name': 'day', 'src': 'послезавтра', 'value': 2 },
+      { 'name': 'sign', 'src': 'назад', 'value': -1 },
+      { 'name': 'sign', 'src': 'через', 'value': 1 },
+      { 'name': 'shift', 'src': 'прошл:ый|ой|ом', 'value': -1 },
+      { 'name': 'shift', 'src': 'следующ:ий|ей|ем', 'value': 1 }
+    ],
+    'relative': function(num, unit, ms, format) {
+      var numberWithUnit, last = num.toString().slice(-1), mult;
+      switch(true) {
+        case num >= 11 && num <= 15: mult = 3; break;
+        case last == 1: mult = 1; break;
+        case last >= 2 && last <= 4: mult = 2; break;
+        default: mult = 3;
+      }
+      numberWithUnit = num + ' ' + this['units'][(mult * 8) + unit];
+      switch(format) {
+        case 'duration':  return numberWithUnit;
+        case 'past':      return numberWithUnit + ' назад';
+        case 'future':    return 'через ' + numberWithUnit;
+      }
+    },
+    'parse': [
+      '{num} {unit} {sign}',
+      '{sign} {num} {unit}',
+      '{months} {year?}',
+      '{0?} {shift} {unit:5-7}'
+    ],
+    'timeParse': [
+      '{day|weekday}',
+      '{0?} {shift} {weekday}',
+      '{date} {months?} {year?} {1?}'
+    ],
+    'timeFrontParse': [
+      '{0?} {shift} {weekday}',
+      '{date} {months?} {year?} {1?}'
+    ]
+  });
+
+
+  /*
+   * Swedish locale definition.
+   * See the readme for customization and more information.
+   * To set this locale globally:
+   *
+   * Sugar.Date.setLocale('sv')
+   *
+   */
+  Sugar.Date.addLocale('sv', {
+    'plural': true,
+    'units': 'millisekund:|er,sekund:|er,minut:|er,timm:e|ar,dag:|ar,veck:a|or|an,månad:|er|en+manad:|er|en,år:||et+ar:||et',
+    'months': 'jan:uari|,feb:ruari|,mar:s|,apr:il|,maj,jun:i|,jul:i|,aug:usti|,sep:tember|,okt:ober|,nov:ember|,dec:ember|',
+    'weekdays': 'sön:dag|+son:dag|,mån:dag||dagen+man:dag||dagen,tis:dag|,ons:dag|,tor:sdag|,fre:dag|,lör:dag||dag',
+    'numerals': 'noll,en|ett,två|tva,tre,fyra,fem,sex,sju,åtta|atta,nio,tio',
+    'tokens': 'den,för|for',
+    'articles': 'den',
+    'short':  '{yyyy}-{MM}-{dd}',
+    'medium': '{d} {month} {yyyy}',
+    'long':   '{d} {month} {yyyy} {time}',
+    'full':   '{weekday} {d} {month} {yyyy} {time}',
+    'stamp':  '{dow} {d} {mon} {yyyy} {time}',
+    'time':   '{H}:{mm}',
+    'past':   '{num} {unit} {sign}',
+    'future': '{sign} {num} {unit}',
+    'duration': '{num} {unit}',
+    'ampm': 'am,pm',
+    'modifiers': [
+      { 'name': 'day', 'src': 'förrgår|i förrgår|iförrgår|forrgar|i forrgar|iforrgar', 'value': -2 },
+      { 'name': 'day', 'src': 'går|i går|igår|gar|i gar|igar', 'value': -1 },
+      { 'name': 'day', 'src': 'dag|i dag|idag', 'value': 0 },
+      { 'name': 'day', 'src': 'morgon|i morgon|imorgon', 'value': 1 },
+      { 'name': 'day', 'src': 'över morgon|övermorgon|i över morgon|i övermorgon|iövermorgon|over morgon|overmorgon|i over morgon|i overmorgon|iovermorgon', 'value': 2 },
+      { 'name': 'sign', 'src': 'sedan|sen', 'value': -1 },
+      { 'name': 'sign', 'src': 'om', 'value':  1 },
+      { 'name': 'shift', 'src': 'i förra|förra|i forra|forra', 'value': -1 },
+      { 'name': 'shift', 'src': 'denna', 'value': 0 },
+      { 'name': 'shift', 'src': 'nästa|nasta', 'value': 1 }
+    ],
+    'parse': [
+      '{months} {year?}',
+      '{num} {unit} {sign}',
+      '{sign} {num} {unit}',
+      '{1?} {num} {unit} {sign}',
+      '{shift} {unit:5-7}'
+    ],
+    'timeParse': [
+      '{day|weekday}',
+      '{shift} {weekday}',
+      '{0?} {weekday?},? {date} {months?}\\.? {year?}'
+    ],
+    'timeFrontParse': [
+      '{day|weekday}',
+      '{shift} {weekday}',
+      '{0?} {weekday?},? {date} {months?}\\.? {year?}'
+    ]
+  });
+
+
+  /*
+   * Simplified Chinese locale definition.
+   * See the readme for customization and more information.
+   * To set this locale globally:
+   *
+   * Sugar.Date.setLocale('zh-CN')
+   *
+   */
+  Sugar.Date.addLocale('zh-CN', {
+    'ampmFront': true,
+    'numeralUnits': true,
+    'allowsFullWidth': true,
+    'timeMarkerOptional': true,
+    'units': '毫秒,秒钟,分钟,小时,天,个星期|周,个月,年',
+    'weekdays': '星期日|日|周日|星期天,星期一|一|周一,星期二|二|周二,星期三|三|周三,星期四|四|周四,星期五|五|周五,星期六|六|周六',
+    'numerals': '〇,一,二,三,四,五,六,七,八,九',
+    'placeholders': '十,百,千,万',
+    'short':  '{yyyy}-{MM}-{dd}',
+    'medium': '{yyyy}年{M}月{d}日',
+    'long':   '{yyyy}年{M}月{d}日{time}',
+    'full':   '{yyyy}年{M}月{d}日{weekday}{time}',
+    'stamp':  '{yyyy}年{M}月{d}日{H}:{mm}{dow}',
+    'time':   '{tt}{h}点{mm}分',
+    'past':   '{num}{unit}{sign}',
+    'future': '{num}{unit}{sign}',
+    'duration': '{num}{unit}',
+    'timeSuffixes': ',秒,分钟?,点|时,日|号,,月,年',
+    'ampm': '上午,下午',
+    'modifiers': [
+      { 'name': 'day', 'src': '大前天', 'value': -3 },
+      { 'name': 'day', 'src': '前天', 'value': -2 },
+      { 'name': 'day', 'src': '昨天', 'value': -1 },
+      { 'name': 'day', 'src': '今天', 'value': 0 },
+      { 'name': 'day', 'src': '明天', 'value': 1 },
+      { 'name': 'day', 'src': '后天', 'value': 2 },
+      { 'name': 'day', 'src': '大后天', 'value': 3 },
+      { 'name': 'sign', 'src': '前', 'value': -1 },
+      { 'name': 'sign', 'src': '后', 'value':  1 },
+      { 'name': 'shift', 'src': '上|去', 'value': -1 },
+      { 'name': 'shift', 'src': '这', 'value':  0 },
+      { 'name': 'shift', 'src': '下|明', 'value':  1 }
+    ],
+    'parse': [
+      '{num}{unit}{sign}',
+      '{shift}{unit:5-7}',
+      '{year?}{month}',
+      '{year}'
+    ],
+    'timeParse': [
+      '{day|weekday}',
+      '{shift}{weekday}',
+      '{year?}{month?}{date}'
+    ]
+  });
+
+
+  /*
+   * Traditional Chinese locale definition.
+   * See the readme for customization and more information.
+   * To set this locale globally:
+   *
+   * Sugar.Date.setLocale('zh-TW')
+   *
+   */
+  Sugar.Date.addLocale('zh-TW', {
+    'ampmFront': true,
+    'numeralUnits': true,
+    'allowsFullWidth': true,
+    'timeMarkerOptional': true,
+    'units': '毫秒,秒鐘,分鐘,小時,天,個星期|週,個月,年',
+    'weekdays': '星期日|日|週日|星期天,星期一|一|週一,星期二|二|週二,星期三|三|週三,星期四|四|週四,星期五|五|週五,星期六|六|週六',
+    'numerals': '〇,一,二,三,四,五,六,七,八,九',
+    'placeholders': '十,百,千,万',
+    'short':  '{yyyy}/{MM}/{dd}',
+    'medium': '{yyyy}年{M}月{d}日',
+    'long':   '{yyyy}年{M}月{d}日{time}',
+    'full':   '{yyyy}年{M}月{d}日{weekday}{time}',
+    'stamp':  '{yyyy}年{M}月{d}日{H}:{mm}{dow}',
+    'time':   '{tt}{h}點{mm}分',
+    'past':   '{num}{unit}{sign}',
+    'future': '{num}{unit}{sign}',
+    'duration': '{num}{unit}',
+    'timeSuffixes': ',秒,分鐘?,點|時,日|號,,月,年',
+    'ampm': '上午,下午',
+    'modifiers': [
+      { 'name': 'day', 'src': '大前天', 'value': -3 },
+      { 'name': 'day', 'src': '前天', 'value': -2 },
+      { 'name': 'day', 'src': '昨天', 'value': -1 },
+      { 'name': 'day', 'src': '今天', 'value': 0 },
+      { 'name': 'day', 'src': '明天', 'value': 1 },
+      { 'name': 'day', 'src': '後天', 'value': 2 },
+      { 'name': 'day', 'src': '大後天', 'value': 3 },
+      { 'name': 'sign', 'src': '前', 'value': -1 },
+      { 'name': 'sign', 'src': '後', 'value': 1 },
+      { 'name': 'shift', 'src': '上|去', 'value': -1 },
+      { 'name': 'shift', 'src': '這', 'value':  0 },
+      { 'name': 'shift', 'src': '下|明', 'value':  1 }
+    ],
+    'parse': [
+      '{num}{unit}{sign}',
+      '{shift}{unit:5-7}',
+      '{year?}{month}',
+      '{year}'
+    ],
+    'timeParse': [
+      '{day|weekday}',
+      '{shift}{weekday}',
+      '{year?}{month?}{date}'
+    ]
+  });
+
 
 }).call(this);
