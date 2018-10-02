@@ -15,17 +15,21 @@
 <!ENTITY showsendlatercolumn.tooltip "查看草稿箱时是否显示{NAME}列">
 <!ENTITY showsendlaterheader.caption "显示{NAME}消息头">
 <!ENTITY showsendlaterheader.tooltip "查看消息时是否显示“X-Send-Later-At”头，即草稿预定要发送的时间。">
+<!ENTITY showsendlaterstatus.caption "在状态栏显示 {NAME}">
 <!ENTITY showsendlaterprogress.caption "在状态栏中显示后台进度">
 <!ENTITY showsendlaterentry.caption "在工具栏中显示时间项">
 <!ENTITY showsendlaterunsentmessages.caption "发送发件箱中的未发送消息">
+<!ENTITY showsendlaterunsentmessages.tooltip "如果取消此选项，那么达到消息的预定发送时间时，{NAME} 将不会完全发送消息，只会将它们放到发件箱里。如果您使用一些其他的扩展，如 BlunderDelay， 来定期地发送您发件箱里的消息，请取消此选项。注意，勾选此选项后，只要 {NAME} 发送消息，发件箱里的所有消息都将被发送出去。">
 <!ENTITY sendlatersendbutton.caption "“发送”变成“延期发送”">
 <!ENTITY sendlatersendbutton.tooltip "启用此选项时，“发送”命令（按钮或 Ctrl-Enter 快捷键）效果会变为“延期发送”。">
 <!ENTITY altbinding.caption "绑定快捷键 Alt-Shift-Enter 代替 Ctrl-Shift-Enter">
+<!ENTITY markread.caption "标记日程草稿为已读">
 <!ENTITY advanced.caption "高级">
 <!ENTITY dumplevel.caption "转储日志级别：">
 <!ENTITY consolelevel.caption "控制台日志级别：">
 <!ENTITY contactauthor.tooltip "发邮件给{NAME}作者。">
 <!ENTITY contactauthor.value "联系作者">
+<!ENTITY helplink.tooltip "查看 {NAME} 文挡。">
 <!ENTITY helplink.value "用户指南">
 <!ENTITY releasenotes.value "更新日志">
 <!ENTITY donatelink.value "捐赠">

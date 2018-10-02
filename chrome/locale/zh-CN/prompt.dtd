@@ -43,3 +43,5 @@
 <!ENTITY sendlater.prompt.day5 "星期五">
 <!ENTITY sendlater.prompt.day6 "星期六">
 <!ENTITY firstdayofweek.default "1">
+<!ENTITY sendlater.prompt.cancelonreply.label "回复后取消重复发送">
+<!ENTITY sendlater.prompt.cancelonreply.tooltip "查看已发送的重复电子邮件的所有回复，如果已收到回复，不再发送重复电子邮件，并将它从草稿文件夹中删除。">
