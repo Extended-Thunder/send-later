@@ -44,4 +44,4 @@
 <!ENTITY sendlater.prompt.day6 "sábado">
 <!ENTITY sendlater.prompt.cancelonreply.label "Cancele recorrência após resposta">
 <!ENTITY sendlater.prompt.cancelonreply.tooltip "Verifique por respostas de cópias de mensagem previamente enviadas. Cancele uma mensagem recorrente e a remova da pasta Rascunhos quando uma resposta é recebida.">
-<!ENTITY firstdayofweek.default "0">
+<!ENTITY firstdayofweek.default "1">
