@@ -24,6 +24,14 @@ chrome/content/prompt.xul
 chrome/content/stock-datepicker-bindings/datetimepicker.css
 chrome/content/toolbarButton.png
 chrome/content/util.js
+chrome/locale/bg-BG/ask.dtd
+chrome/locale/bg-BG/background.properties
+chrome/locale/bg-BG/editor.dtd
+chrome/locale/bg-BG/headerView.dtd
+chrome/locale/bg-BG/prefwindow.dtd
+chrome/locale/bg-BG/prompt.dtd
+chrome/locale/bg-BG/prompt.properties
+chrome/locale/bg-BG/sendlater3.properties
 chrome/locale/ca-ES/ask.dtd
 chrome/locale/ca-ES/background.properties
 chrome/locale/ca-ES/editor.dtd

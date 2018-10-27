@@ -31,6 +31,13 @@
     <em:description>True “Send Later” functionality to schedule the time for sending an email.</em:description>
     <em:localized>
       <Description>
+	<em:locale>bg</em:locale>
+	<em:name>Изпращане по-късно</em:name>
+	<em:description>Истинска "Изпращане по-късно" функционалност за планиране на времето за изпращане на електронни съобщения.</em:description>
+      </Description>
+    </em:localized>
+    <em:localized>
+      <Description>
 	<em:locale>ca</em:locale>
 	<em:name>Send Later</em:name>
 	<em:description>“Enviar més tard” és la funció per programar quan vols fer l'enviament.</em:description>

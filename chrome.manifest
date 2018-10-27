@@ -4,6 +4,7 @@ content sendlater3-datepicker chrome/content/custom-datepicker-bindings/ applica
 content sendlater3-datepicker chrome/content/custom-datepicker-bindings/ application={3550f703-e582-4d05-9a08-453d09bdfdc6} appversion<61.0
 content sendlater3-datepicker chrome/content/stock-datepicker-bindings/ application={3550f703-e582-4d05-9a08-453d09bdfdc6} appversion>=61.0
 resource sendlater3	chrome/resource/
+locale  sendlater3      bg      chrome/locale/bg-BG/
 locale	sendlater3	ca	chrome/locale/ca-ES/
 locale  sendlater3      cs      chrome/locale/cs-CZ/
 locale	sendlater3	de	chrome/locale/de-DE/

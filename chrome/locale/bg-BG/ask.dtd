@@ -1,0 +1,13 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY sendlater.ask.title.label "Поддръжка {NAME}">
+<!ENTITY sendlater.ask.message1 "Безброй часове са отишли в разработката, обслужването и поддръжка на тази добавка.">
+<!ENTITY sendlater.ask.message2 "Моля, помислете дали да направите дарение, за да подкрепите продължаващото разработване!">
+<!ENTITY sendlater.ask.message3 "Благодарим Ви!">
+<!ENTITY sendlater.ask.donate.accesskey "д">
+<!ENTITY sendlater.ask.donate.label "Направи дарение">
+<!ENTITY sendlater.ask.remind.accesskey "Н">
+<!ENTITY sendlater.ask.remind.label "Напомняне по-късно">
+<!ENTITY sendlater.ask.already.accesskey "В">
+<!ENTITY sendlater.ask.already.label "Вече направих дарение">
+<!ENTITY sendlater.ask.stop.accesskey "С">
+<!ENTITY sendlater.ask.stop.label "Спрете питането">
