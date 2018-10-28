@@ -1,6 +1,7 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY sendlater.prompt.sendlater.label "Legg i utboks">
 <!ENTITY sendlater.prompt.sendlater.accesskey "u">
+<!ENTITY sendlater.prompt.sendlater.tooltip "Usendte meldinger sendes planlegging levering for et bestemt tidspunkt, flytte meldingen til utgangs-mappen for levering neste gang.">
 <!ENTITY sendlater.prompt.sendnow.label "Send nå">
 <!ENTITY sendlater.prompt.sendnow.accesskey "n">
 <!ENTITY sendlater.prompt.sendnow.tooltip "Send meldingen umiddelbart ved å overstyre “{NAME}”.">
@@ -10,15 +11,21 @@
 <!ENTITY sendlater.prompt.title.label "Send denne e-posten senere">
 <!ENTITY sendlater.prompt.textbox.label "Send:">
 <!ENTITY sendlater.prompt.or.label "eller:">
+<!ENTITY sendlater.prompt.textbox.tooltip "Angi dato og klokkeslett. Fri form oppføring som &quot;neste tirsdag kl 3:00&quot; støttes også.">
+<!ENTITY sendlater.prompt.textbox.emptytext "f. eks.: &quot;3:00 pm torsdag&quot; &quot;12/31/2012 15:27&quot;">
 <!ENTITY sendlater.prompt.sendat.label "Send senere på tidspunkt(er) spesifisert ovenfor">
+<!ENTITY sendlater.prompt.sendat.tooltip "Lagre meldingen i Kladd-mappen for automatisk levering samtidig ovenfor.">
 <!ENTITY sendlater.prompt.savedefaults "Lagre disse verdiene som standardverdier">
 <!ENTITY sendlater.prompt.cleardefaults "Tøm standardverdier">
+<!ENTITY sendlater.prompt.recur.label "Gjentas:">
 <!ENTITY sendlater.prompt.none.label "én gang">
 <!ENTITY sendlater.prompt.minutely.label "hvert minutt">
 <!ENTITY sendlater.prompt.daily.label "daglig">
 <!ENTITY sendlater.prompt.weekly.label "ukentlig">
 <!ENTITY sendlater.prompt.monthly.label "månedlig">
 <!ENTITY sendlater.prompt.yearly.label "årlig">
+<!ENTITY sendlater.prompt.function.label "Funksjon:">
+<!ENTITY sendlater.prompt.functionargs.label "Funksjonsargumenter:">
 <!ENTITY sendlater.prompt.calculate.label "Kalkuler">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Send Later">
 <!ENTITY sendlater.toolbar.textbox.emptytext "sendetidspunkt">
@@ -35,4 +42,6 @@
 <!ENTITY sendlater.prompt.day4 "torsdag">
 <!ENTITY sendlater.prompt.day5 "fredag">
 <!ENTITY sendlater.prompt.day6 "lørdag">
+<!ENTITY sendlater.prompt.cancelonreply.label "Avbryte regelmessighet på svar">
+<!ENTITY sendlater.prompt.cancelonreply.tooltip "Se etter svar på tidligere sendte kopier av regelmessige meldinger. Avbryte en gjentakende melding og fjerne den fra mappen Kladd når et svar mottas.">
 <!ENTITY firstdayofweek.default "1">

@@ -124,8 +124,8 @@
     <em:localized>
       <Description>
 	<em:locale>nb-NO</em:locale>
-	<em:name>Send Later</em:name>
-	<em:description>True “Send Later” functionality to schedule the time for sending an email.</em:description>
+	<em:name>Send senere</em:name>
+	<em:description>Sann "Send senere" -funksjonalitet for å planlegge tiden for å sende en e-post.</em:description>
       </Description>
     </em:localized>
     <em:localized>

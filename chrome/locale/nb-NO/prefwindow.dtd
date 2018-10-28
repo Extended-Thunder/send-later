@@ -12,3 +12,32 @@
 <!ENTITY quickoptionvalue.label "Minutter:">
 <!ENTITY showtoolbarbutton.caption "Vis på verktøylinja">
 <!ENTITY showsendlatercolumn.caption "Vis kolonne for {NAME}">
+<!ENTITY showsendlatercolumn.tooltip "Om du vil vise «{NAME}» -spalte når du ser på utkastmapper">
+<!ENTITY showsendlaterheader.caption "Vise {NAME} topptekst">
+<!ENTITY showsendlaterheader.tooltip "Når for å vise «X-Send-Later-At» -topptekst, dvs. tidspunktet da et utkast er planlagt å bli sendt, i overskriften når du ser en melding.">
+<!ENTITY showsendlaterstatus.caption "Vis {NAME} statuslinjen">
+<!ENTITY showsendlaterprogress.caption "Vis bakgrunn fremgang statuslinjen">
+<!ENTITY showsendlaterentry.caption "Vis tidsoppføring i verktøylinjen">
+<!ENTITY showsendlaterunsentmessages.caption "Utløse usendte meldingslevering fra utgang">
+<!ENTITY showsendlaterunsentmessages.tooltip "Hvis du fjern dette alternativet, så {NAME} vil ikke levere meldinger, men i stedet vil bare sette dem i utgangen når de er planlagt for levering. Fjern dette alternativet, for eksempel hvis du bruker noe annet forlengelsen, f.eks BlunderDelay, periodisk sende meldinger i utgangen. Merk at når dette alternativet er angitt, så når {NAME} leverer en melding, vil alle meldinger i utgang leveres.">
+<!ENTITY sendlatersendbutton.caption "&quot;Send&quot; betyr &quot;Send senere&quot;">
+<!ENTITY sendlatersendbutton.tooltip "Er dette alternativet blir aktivert, fungerer kommandoen &quot;Send&quot; (knappen eller taste inn Ctrl-Enter) gjøres det samme som &quot;Send senere&quot;.">
+<!ENTITY altbinding.caption "Binde Alt-Skift-Enter i stedet for Ctrl-Skift-Enter">
+<!ENTITY markread.caption "Markere planlagt utkast som lest">
+<!ENTITY advanced.caption "Avansert">
+<!ENTITY dumplevel.caption "Se på log level:">
+<!ENTITY consolelevel.caption "Konsollen loggnivå:">
+<!ENTITY contactauthor.tooltip "Send en e-postmelding til forfatteren av {NAME}.">
+<!ENTITY contactauthor.value "Kontakt forfatteren">
+<!ENTITY helplink.tooltip "Vis {NAME} dokumentasjonen.">
+<!ENTITY helplink.value "Bruksanvisning">
+<!ENTITY releasenotes.value "Produktmerknader">
+<!ENTITY donatelink.value "Donere">
+<!ENTITY editorlink.value "Dynamisk funksjon editor">
+<!ENTITY enforcerestrictions.tooltip "Hvis en melding som skal leveres er utenfor sin tid eller dag restriksjoner, f.eks fordi Thunderbird ikke kjørte på sin planlagt leveringstid, deretter utsette dens levering til tid og dag begrensningene er oppfylt.">
+<!ENTITY enforcerestrictions.caption "Gjennomføre tid og dag restriksjoner på leveringstid">
+<!ENTITY blocklatemessages.tooltip "Ikke levere planlagte meldinger har blitt utsatt forbi sin planlagte tid, f.eks fordi Thunderbird ikke var kjører på den tiden.">
+<!ENTITY blocklatemessages.label1 "Ikke levere meldinger mer enn">
+<!ENTITY blocklatemessages.label2 "minutter for sent">
+<!ENTITY editorbutton "Åpne dynamisk funksjonen editor...">
+<!ENTITY editortip "Åpne et vindu for oppretting og redigering av JavaScript-funksjoner implementere kompleks planlegging logikk.">
