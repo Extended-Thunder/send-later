@@ -11,10 +11,15 @@
 <!ENTITY sendlater.prompt.title.label "Odeslat tento email později">
 <!ENTITY sendlater.prompt.textbox.label "Odeslat v:">
 <!ENTITY sendlater.prompt.or.label "nebo:">
+<!ENTITY sendlater.prompt.textbox.tooltip "Zadejte datum a čas. Podporován je i volný tvar, například &quot;příští úterý v 15:00&quot;.">
+<!ENTITY sendlater.prompt.textbox.emptytext "např.: &quot;3:00 hodin čtvrtek&quot;, &quot;12/31/2012 15:27&quot;">
 <!ENTITY sendlater.prompt.sendat.label "Odeslat později v čase(ch) určených výše">
+<!ENTITY sendlater.prompt.sendat.tooltip "Uložit zprávu do složky Koncepty pro automatické doručení v čase nastaveném výše.">
 <!ENTITY sendlater.prompt.savedefaults "Uložit tyto hodnoty jako výchozí">
 <!ENTITY sendlater.prompt.cleardefaults "Smazat výchozí nastavení">
+<!ENTITY sendlater.prompt.recur.label "Opakovat:">
 <!ENTITY sendlater.prompt.none.label "jednou">
+<!ENTITY sendlater.prompt.minutely.label "každou minutu">
 <!ENTITY sendlater.prompt.daily.label "denně">
 <!ENTITY sendlater.prompt.weekly.label "týdně">
 <!ENTITY sendlater.prompt.monthly.label "měsíčně">
@@ -24,6 +29,7 @@
 <!ENTITY sendlater.prompt.calculate.label "Vypočítat">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Odeslat později">
 <!ENTITY sendlater.toolbar.textbox.emptytext "čas odeslání">
+<!ENTITY sendlater.prompt.every.label "Každých">
 <!ENTITY sendlater.prompt.between.label "Mezi">
 <!ENTITY sendlater.button1.label "Za 15 minut">
 <!ENTITY sendlater.button2.label "Za 30 minut">
@@ -37,4 +43,5 @@
 <!ENTITY sendlater.prompt.day5 "Pátek">
 <!ENTITY sendlater.prompt.day6 "Sobotu">
 <!ENTITY sendlater.prompt.cancelonreply.label "Zrušit opakování po odpovědi">
+<!ENTITY sendlater.prompt.cancelonreply.tooltip "Kontrolovat odpovědi na dříve poslané opakované zprávy. Opakující se zpráva je zrušena a odstraněna z Konceptů, pokud na ni adresát odpoví.">
 <!ENTITY firstdayofweek.default "1">

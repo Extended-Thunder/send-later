@@ -9,4 +9,5 @@
 <!ENTITY sendlater.ask.remind.label "Připomenout později">
 <!ENTITY sendlater.ask.already.accesskey "j">
 <!ENTITY sendlater.ask.already.label "Již jsem přispěl">
-<!ENTITY sendlater.ask.stop.accesskey "S">
+<!ENTITY sendlater.ask.stop.accesskey "s">
+<!ENTITY sendlater.ask.stop.label "Přestat se ptát">
