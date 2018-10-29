@@ -17,12 +17,12 @@
 <!ENTITY showsendlaterstatus.caption "Näytä tilapalkissa {NAME}">
 <!ENTITY showsendlaterprogress.caption "Näytä tilapalkissa taustaeteneminen">
 <!ENTITY showsendlaterunsentmessages.caption "Käynnistä Lähtevät-kansiosta lähettämättömien viestien lähetys">
-<!ENTITY showsendlaterunsentmessages.tooltip "Jättämällä rastin pois tästä kohdasta {NAME} ei hoida viestien lähettämistä loppuun, vaan siirtää ne vain Lähtevät-kansioon, kun ne on määritetty toimitettavaksi eteenpäin. Jätä tämä kohta ilman rastia, jos käytät toista ohjelmaa, kuten BlunderDelay'ta lähettämään viestit Lähtevät-kansiosta määritettyinä aikoina. Huomaa, että kun tämä kohta on rastittu ja kun {NAME} lähettää jonkin viestin, KAIKKI Lähtevät-kansiossa olevat viestit lähetetään.">
-<!ENTITY sendlatersendbutton.caption "”Lähetä”-toiminto toimii kuten ”Lähetä myöhemmin”">
-<!ENTITY sendlatersendbutton.tooltip "Tämän valinnan ollessa rastittuna ”Lähetä” -komento (siis painike tai Ctrl-Enter) toimii kuten ”Lähetä myöhemmin”.">
+<!ENTITY showsendlaterunsentmessages.tooltip "Jos et aseta tätä valintaa, ei {NAME} tule toimittamaan viestejä, vaan sen sijaan se siirtää ne Lähtevät-kansioon niiden lähetysajankohtana. Jätä asettamatta tämä valinta, esim. jos käytät jotain muuta lisäosaa, kuten BlunderDelay, lähettääksesi määräajoin viestejä Lähtevät-kansiostasi. Huomaa, että kun tämä valinta on asetettuna, niin aina kun {NAME} lähettää viestin, lähtevät KAIKKI viestisi Lähtevät-kansiostasi.">
+<!ENTITY sendlatersendbutton.caption "”Lähetä” toimii, kuten ”Lähetä myöhemmin”">
+<!ENTITY sendlatersendbutton.tooltip "Tämän valinnan ollessa käytössä &quot;Lähetä&quot; -komento (joko painike, tai näppäimet Ctrl-Enter) toimii kuten &quot;Lähetä myöhemmin&quot;.">
 <!ENTITY altbinding.caption "Käytä näppäinyhdistelmää Alt-Shift-Enter näppäinyhdistelmän Ctrl-Shift-Enter sijasta">
-<!ENTITY advanced.caption "Lisäasetukset">
-<!ENTITY dumplevel.caption "Dumppilokitaso:">
+<!ENTITY advanced.caption "Laajemmat">
+<!ENTITY dumplevel.caption "Datankeruutaso:">
 <!ENTITY consolelevel.caption "Konsolilokitaso:">
 <!ENTITY contactauthor.tooltip "Lähetä {NAME} -ohjelman tekijälle sähköpostia.">
 <!ENTITY contactauthor.value "Ota yhteyttä tekijään">
@@ -30,11 +30,11 @@
 <!ENTITY helplink.value "Käyttäjän opas">
 <!ENTITY releasenotes.value "Version julkaisutiedot">
 <!ENTITY donatelink.value "Lahjoita">
-<!ENTITY editorlink.value "Dynaaminen aikataulueditori">
-<!ENTITY enforcerestrictions.tooltip "Mikäli sanoma, joka pitäisi toimittaa, joutuu aika- tai päivärajoitustensa ulkopuolelle, esim. siksi, että Thunderbird ei ollut käynnissä ajastettuna lähetysaikana, viivästytä lähetystä siihen saakka kunnes aika- ja päiväehdot sopivat sanomaan.">
+<!ENTITY editorlink.value "Dynaaminen toimintomuokkain">
+<!ENTITY enforcerestrictions.tooltip "Jos toimitettava viesti on aika- tai päivärajoitteidensa ulkopuolella esim. siksi, että Thunderbird ei ollut käynnissä ajastettuna lähetysaikana, viivästytä lähetystä siihen asti, kunnes aika- ja päivärajoitteet täsmäävät.">
 <!ENTITY enforcerestrictions.caption "Pidä kiinni aika- ja päivärajoituksista lähetyshetkellä">
 <!ENTITY blocklatemessages.tooltip "Älä toimita ajastettuja sanomia, joiden lähetys on viivästynyt ajastushetkensä yli, esim. koska Thunderbird ei ollut tuolloin käynnissä.">
 <!ENTITY blocklatemessages.label1 "Älä toimita viestejä, jotka ovat enemmän kuin">
 <!ENTITY blocklatemessages.label2 "minuuttia myöhässä">
-<!ENTITY editorbutton "Avaa dynaaminen aikataulueditori…">
-<!ENTITY editortip "Avaa ikkunan, jossa luodaan ja muokataan JavaScript-funktioita monimutkaisen aikataululogiikan toteuttamiseksi.">
+<!ENTITY editorbutton "Avaa dynaaminen toimintojen muokkain…">
+<!ENTITY editortip "Avaa ikkuna luodaksesi ja muokataksesi JavaScript-funktioita monimutkaisen aikataululogiikan toteuttamiseksi.">
