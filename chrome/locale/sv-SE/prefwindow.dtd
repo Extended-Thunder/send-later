@@ -17,7 +17,6 @@
 <!ENTITY showsendlaterheader.tooltip "Visning av huvudet “X-Send-Later-At”, d.v.s. den tidpunkt då ett utkast har schemalagts att skickas, i meddelandehuvudet vid granskning av ett meddelande.">
 <!ENTITY showsendlaterstatus.caption "Visa {NAME} i statusfältet">
 <!ENTITY showsendlaterprogress.caption "Visa bakgrundsförlopp i statusfältet">
-<!ENTITY showsendlaterentry.caption "Visa tidsangivelse i verktygsfältet">
 <!ENTITY showsendlaterunsentmessages.caption "Utlös sändning av ej skickade meddelanden från Utkorgen">
 <!ENTITY showsendlaterunsentmessages.tooltip "Om du avmarkerar detta alternativ, så skickar inte {NAME} iväg dina meddelanden, utan lägger dem i din utkorg när de har schemalagts för avsändning. Avmarkera detta alternativ om du, exempelvis, använder något annat tillägg, t.ex. BlunderDelay, för att med regelbundna intervall skicka meddelanden från Utkorgen. Observera att när detta alternativ är markerat, så skickar {NAME} SAMTLIGA meddelanden i din utkorg varje gång ett meddelande skall skickas.">
 <!ENTITY sendlatersendbutton.caption "“Skicka” innebär “Skicka senare”">

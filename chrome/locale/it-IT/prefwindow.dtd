@@ -17,7 +17,6 @@
 <!ENTITY showsendlaterheader.tooltip "Mostra l'intestazione “X-Send-Later-At”, cioè l'orario a cui la mail in “Bozze” è pianificata per l'invio, nell'intestazione quando guardi un messaggio.">
 <!ENTITY showsendlaterstatus.caption "Mostra {NAME} nella Barra di Stato">
 <!ENTITY showsendlaterprogress.caption "Mostra nella Barra di Stato la progressione degli invii in background">
-<!ENTITY showsendlaterentry.caption "Mostra Inserimento Orario nella Barra degli Strumenti">
 <!ENTITY showsendlaterunsentmessages.caption "Invia i messaggi in attesa in “Posta in Uscita”">
 <!ENTITY showsendlaterunsentmessages.tooltip "Se non spunti questa opzione, {NAME} non provvederà all'invio del messaggio, ma quando arriverà l'ora pianificata per la spedizione, lo parcheggerà semplicemente nella “Posta in Uscita”. Togliere la spunta nel caso di utilizzo con altri componenti aggiuntivi come ad esempio BlunderDelay, per inviare i messaggi presenti nella “Posta in Uscita” periodicamente. Da notare che se questa opzione è selezionata, quando {NAME} invia un messaggio, anche TUTTI gli altri messaggi presenti nella “Posta in Uscita” verranno inviati.">
 <!ENTITY sendlatersendbutton.caption "“Invia” diventa “Invia dopo”">

@@ -17,7 +17,6 @@
 <!ENTITY showsendlaterheader.tooltip "Autorise l'affichage de l'en-tête « x-send-later-at », c.à.d., le moment prévu d'envoi du message.">
 <!ENTITY showsendlaterstatus.caption "Afficher « {NAME} » dans la barre d'état">
 <!ENTITY showsendlaterprogress.caption "Afficher les tâches en arrière-plan dans la barre d'état">
-<!ENTITY showsendlaterentry.caption "Afficher le champs de planification dans la barre d'outils">
 <!ENTITY showsendlaterunsentmessages.caption "Expédier automatiquement les messages programmés">
 <!ENTITY showsendlaterunsentmessages.tooltip "Effectue les envois planifiés sans les placer dans « Message en attente ». Désactiver l'option, par exemple, lors de l'utilisation d'une extension automatisant l'envoi des messages en attente (tel que BlunderDelay). Remarque : si cette option est activée ; quand « {NAME} » déclenche un envoi, TOUS les messages en attente sont expédiés.">
 <!ENTITY sendlatersendbutton.caption "Remplacer « Envoyer » par « Envoyer plus tard »">

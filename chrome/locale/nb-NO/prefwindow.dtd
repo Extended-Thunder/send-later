@@ -17,7 +17,6 @@
 <!ENTITY showsendlaterheader.tooltip "Når for å vise «X-Send-Later-At» -topptekst, dvs. tidspunktet da et utkast er planlagt å bli sendt, i overskriften når du ser en melding.">
 <!ENTITY showsendlaterstatus.caption "Vis {NAME} statuslinjen">
 <!ENTITY showsendlaterprogress.caption "Vis bakgrunn fremgang statuslinjen">
-<!ENTITY showsendlaterentry.caption "Vis tidsoppføring i verktøylinjen">
 <!ENTITY showsendlaterunsentmessages.caption "Utløse usendte meldingslevering fra utgang">
 <!ENTITY showsendlaterunsentmessages.tooltip "Hvis du fjern dette alternativet, så {NAME} vil ikke levere meldinger, men i stedet vil bare sette dem i utgangen når de er planlagt for levering. Fjern dette alternativet, for eksempel hvis du bruker noe annet forlengelsen, f.eks BlunderDelay, periodisk sende meldinger i utgangen. Merk at når dette alternativet er angitt, så når {NAME} leverer en melding, vil alle meldinger i utgang leveres.">
 <!ENTITY sendlatersendbutton.caption "&quot;Send&quot; betyr &quot;Send senere&quot;">

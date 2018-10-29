@@ -17,7 +17,6 @@
 <!ENTITY showsendlaterheader.tooltip "Whether to show the “X-Send-Later-At” header, i.e., the time when a draft is scheduled to be sent, in the header when viewing a message.">
 <!ENTITY showsendlaterstatus.caption "Show {NAME} In Status Bar">
 <!ENTITY showsendlaterprogress.caption "Show Background Progress In Status Bar">
-<!ENTITY showsendlaterentry.caption "Show Time Entry In Toolbar">
 <!ENTITY showsendlaterunsentmessages.caption "Trigger unsent message delivery from Outbox">
 <!ENTITY showsendlaterunsentmessages.tooltip "If you unset this option, then {NAME} will not fully deliver messages, but instead will just put them in your Outbox when they are scheduled for delivery. Unset this option, for example, if you use some other extension, e.g., BlunderDelay, to periodically send messages from your Outbox. Note that when this option is set, then whenever {NAME} delivers a message, ALL messages in your Outbox will be delivered.">
 <!ENTITY sendlatersendbutton.caption "“Send” does “Send Later”">

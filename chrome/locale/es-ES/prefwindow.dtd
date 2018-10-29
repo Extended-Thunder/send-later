@@ -17,7 +17,6 @@
 <!ENTITY showsendlaterheader.tooltip "Especifica si mostrar o el encabezamiento “X-Send-Later-At”, que marca la hora a la que está programado el envío de un borrador, en la cabecera al ver el código de un mensaje.">
 <!ENTITY showsendlaterstatus.caption "Mostrar “{NAME}” en la barra de estado">
 <!ENTITY showsendlaterprogress.caption "Mostrar progreso en segundo plano en la barra de estado">
-<!ENTITY showsendlaterentry.caption "Mostrar entrada de hora en la barra de herramientas">
 <!ENTITY showsendlaterunsentmessages.caption "Activar envío desde la Bandeja de Salida de mensajes no enviados">
 <!ENTITY showsendlaterunsentmessages.tooltip "Si deshabilita esta opción, {NAME} no completará el envío de mensajes sino que únicamente los situará en la Bandeja de Salida cuando estén programados para su envío. Deshabilite esta opción si, por ejemplo, usa alguna otra extensión, como BlunderDelay, para enviar mensajes periódicamente desde la Bandeja de Salida. Observe que cuando se habilita esta opción, en el momento en que {NAME} envíe un mensaje, TODOS los mensajes presentes en su Bandeja de Salida serán enviados.">
 <!ENTITY sendlatersendbutton.caption "“Enviar” efectúa “Enviar más tarde”">

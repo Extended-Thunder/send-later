@@ -17,7 +17,6 @@
 <!ENTITY showsendlaterheader.tooltip "Exibe ou não cabeçalho “X-Send-Later-At”, isto é, ao visualizar a mensagem, no cabeçalho a hora programada de envio do rascunho.">
 <!ENTITY showsendlaterstatus.caption "Exibir {NAME} na Barra de Status">
 <!ENTITY showsendlaterprogress.caption "Exibir na barra de status progresso em segundo plano">
-<!ENTITY showsendlaterentry.caption "Exibir na Barra de Ferramentas a Hora inserida">
 <!ENTITY showsendlaterunsentmessages.caption "Acionar envio de mensagens salvas na Caixa de Saída">
 <!ENTITY showsendlaterunsentmessages.tooltip "Ao desativar essa opção, {NAME} não enviará todas as mensagens; em vez disso, transfere-a para a caixa de saída quando agendadas para envio. Desative esta opção caso use outras extensões como p.ex. BlunderDelay para o envio periódico de mensagens em sua caixa de saída. Observe que, quando essa opção estiver ativa, sempre que {NAME} enviar uma mensagem, TODAS as outra mensagens em sua caixa de saída serão enviadas.">
 <!ENTITY sendlatersendbutton.caption "“Enviar Mais Tarde” substitui “Enviar”">

@@ -17,7 +17,6 @@
 <!ENTITY showsendlaterheader.tooltip "Má-li se zobrazovat v záhlaví zprávy hlavička “X-Send-Later-At”, tj. datum a čas, kdy bude koncept odeslán.">
 <!ENTITY showsendlaterstatus.caption "Zobrazit „{NAME}“ ve stavovém řádku">
 <!ENTITY showsendlaterprogress.caption "Zobrazit stav na pozadí zpracovávaných úloh ve stavovém řádku">
-<!ENTITY showsendlaterentry.caption "Zobrazit položku Čas v nástrojové liště">
 <!ENTITY showsendlaterunsentmessages.caption "Odeslat čekající zprávy ze složky &quot;K odeslání&quot;">
 <!ENTITY showsendlaterunsentmessages.tooltip "Vypnete-li toto nastavení, pak {NAME} nebude odesílat zprávy - pouze je uloží do složky &quot;K odeslání&quot;. Hodí se to když používáte jiná rozšíření, např. BlunderDelay pro pravidelné odesílání zpráv ze složky &quot;K odeslání&quot;. Pokud bude toto nastavení zapnuté, pokaždé, když {NAME} odešle zprávu, budou odeslány VŠECHNY zprávy z vaší složky &quot;K odeslání&quot;.">
 <!ENTITY sendlatersendbutton.caption "„Odeslat“ = „Odeslat později“">

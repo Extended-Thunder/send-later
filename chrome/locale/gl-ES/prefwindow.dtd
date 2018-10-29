@@ -17,7 +17,6 @@
 <!ENTITY showsendlaterheader.tooltip "Establece se amosar o encabezado &quot;X-Send-Later-At&quot;, que marca a hora á que está programado o envío dun borrador, na cabeceira cando se ve o código dunha mensaxe.">
 <!ENTITY showsendlaterstatus.caption "Amosar {NAME} na barra de estado">
 <!ENTITY showsendlaterprogress.caption "Amosa-lo progreso en segundo plano na Barra de estado">
-<!ENTITY showsendlaterentry.caption "Amosar a entrada de hora na barra de ferramentas">
 <!ENTITY showsendlaterunsentmessages.caption "Activar o envío de mensaxes non enviadas dende a Bandexa de Saída">
 <!ENTITY showsendlaterunsentmessages.tooltip "Se desactiva esta opción, {NAME} non enviará as mensaxes directamente, senón que as situará na Bandexa de Saída cando estean programadas para o seu envío. Desmarque esta opción se, por exemplo, usa algún outro complemento (coma BlunderDelay) para enviar mensaxes de xeito periódico dende a Bandexa de Saída. Teña en conta que cando se activa esta opción, no intre en que {NAME}envía unha mensaxe TÓDALAS mensaxes da Bandexa de Saída serán enviadas.">
 <!ENTITY sendlatersendbutton.caption "&quot;Enviar&quot; funciona coma &quot;Enviar máis tarde&quot;">

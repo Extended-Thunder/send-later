@@ -17,7 +17,6 @@
 <!ENTITY showsendlaterheader.tooltip "メッセージを開く際に、“X-Send-Later-At” ヘッダー (下書きの送信予定日時) を表示するかどうかを設定します。">
 <!ENTITY showsendlaterstatus.caption "“{NAME}” をステータスバーに表示する">
 <!ENTITY showsendlaterprogress.caption "バックグラウンドの進捗をステータスバーに表示する">
-<!ENTITY showsendlaterentry.caption "日時入力欄をツールバーに表示する">
 <!ENTITY showsendlaterunsentmessages.caption "未送信メッセージを [送信トレイ] から送信する">
 <!ENTITY showsendlaterunsentmessages.tooltip "このオプションを無効にすると、{NAME} はメッセージを送信しませんが、送信予定日時になると [送信トレイ] へメッセージを移します。他の拡張機能 (BlunderDelay など) を使って、メッセージを [送信トレイ] から定期的に送信するようにしている場合には、このオプションを無効にしてください。注意: このオプションを有効にすると、メッセージを送信する際に、{NAME} は [送信トレイ] にあるすべてのメッセージを送信します。">
 <!ENTITY sendlatersendbutton.caption "“送信” を “後で送信” にする">

@@ -17,7 +17,6 @@
 <!ENTITY showsendlaterheader.tooltip "Näytetäänkö ”X-Send-Later-At” -otsake, esim. silloin kun viestiluonnos on ajastettu lähtemään, viestin otsakkeessa viestiä selatessa.">
 <!ENTITY showsendlaterstatus.caption "Näytä tilapalkissa {NAME}">
 <!ENTITY showsendlaterprogress.caption "Näytä tilapalkissa taustaeteneminen">
-<!ENTITY showsendlaterentry.caption "Näytä työkalupalkissa ajan syöttö">
 <!ENTITY showsendlaterunsentmessages.caption "Käynnistä Lähtevät-kansiosta lähettämättömien viestien lähetys">
 <!ENTITY showsendlaterunsentmessages.tooltip "Jättämällä rastin pois tästä kohdasta {NAME} ei hoida viestien lähettämistä loppuun, vaan siirtää ne vain Lähtevät-kansioon, kun ne on määritetty toimitettavaksi eteenpäin. Jätä tämä kohta ilman rastia, jos käytät toista ohjelmaa, kuten BlunderDelay'ta lähettämään viestit Lähtevät-kansiosta määritettyinä aikoina. Huomaa, että kun tämä kohta on rastittu ja kun {NAME} lähettää jonkin viestin, KAIKKI Lähtevät-kansiossa olevat viestit lähetetään.">
 <!ENTITY sendlatersendbutton.caption "”Lähetä”-toiminto toimii kuten ”Lähetä myöhemmin”">

@@ -17,7 +17,6 @@
 <!ENTITY showsendlaterheader.tooltip "‫האם להציג את הכותרת 'X-Send-Later-At', כלומר הזמן בו מיועדת הטיוטה להישלח, בשורת הכותרת כאשר צופים בהודעה‬">
 <!ENTITY showsendlaterstatus.caption "‫הצג את '{NAME}' בשורת המצב‬">
 <!ENTITY showsendlaterprogress.caption "‫הצג את התהליכים שברקע בשורת המצב‬">
-<!ENTITY showsendlaterentry.caption "‫הצג את תיבת הזמן בסרגל הכלים‬">
 <!ENTITY showsendlaterunsentmessages.caption "‫הפעל שליחת הודעה שלא נשלחה מתיבת דואר יוצא‬">
 <!ENTITY showsendlaterunsentmessages.tooltip "‫במידה ולא תסומן אפשרות זו, '{NAME}' לא ישלח את ההודעות בפועל, אלא רק יעביר אותן לתיבת הדואר היוצא במועד המשלוח המתוכנן שלהן. אל תסמן אפשרות זו, למשל, אם יש לעיטים שימוש בתוסף אחר למשלוח הודעות מתיבת הדואר היוצא. שים לב שאם נבחרה האפשרות הזו ישלח '{NAME}' את כל ההודעות מתיבת הדואר היוצא בעת שליחת הודעה מתוכננת,‬">
 <!ENTITY sendlatersendbutton.caption "‫הפוך את 'שלח' ל 'שלח מאוחר יותר'‬">

@@ -17,7 +17,6 @@
 <!ENTITY showsendlaterheader.tooltip "Անկախ ամեն ինչից ցուցադրել “X-Send-Later-At” գլխագիրը, այսինքն՝ ժամանակը, երբ սևագիրը պետք է ուղարկվի, գլխագրում՝ նամակը դիտելիս:">
 <!ENTITY showsendlaterstatus.caption "Ցուցադրել «{NAME}»-ը Վիճակի տողում">
 <!ENTITY showsendlaterprogress.caption "Ցուցադրել խորապատկերի ընթացքը Վիճակի տողում">
-<!ENTITY showsendlaterentry.caption "Ցուցադրել Ժամանակը Գործիքներում">
 <!ENTITY showsendlaterunsentmessages.caption "Սկսել չուղարկված նամակների առաքումը Ելքայինից">
 <!ENTITY showsendlaterunsentmessages.tooltip "Եթե ապանշեք այս ընտրանքը, ապա «{NAME}»-ը ամբողջությամբ չի առաքի նամակները, այլ դրանք կդնի Ելքայինում: Մի նշեք այս ընտրանքը, եթե օգտագործում եք նմանատիպ այլ հավելումներ:">
 <!ENTITY sendlatersendbutton.caption "«Ուղարկելը»-ը «Ուղարկել ավելի ուշ»-ն է">
