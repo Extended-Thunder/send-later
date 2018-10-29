@@ -1,11 +1,16 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY createnewfunction "(creaza functie noua)">
+<!ENTITY windowtitle "{NAME} Editor dinamic de funcții">
+<!ENTITY selectfunction "Selectează funcția:">
+<!ENTITY selectfunctiontip "Selectează funcția pentru a o edita sau șterge, sau &quot;(creează funcție nouă)&quot; pentru a crea o nouă funcție.">
+<!ENTITY createnewfunction "(Creează funcție nouă)">
 <!ENTITY delete.label "Sterge">
 <!ENTITY delete.accesskey "t">
-<!ENTITY functionnameplaceholder "nume functie">
-<!ENTITY codeplaceholder "functie cod sursa">
-<!ENTITY helptextheader "Functie text ajutor:">
-<!ENTITY helptexttip "Ori ce text pus aici va fi afisat cand utilizatorul planeaza deasupra numelui functiei in meniu. Utilizat pentru a explica ce face functia si ce argumente accepta.">
+<!ENTITY functionnametip "Introdu sau modifică un nume de funcție alfanumeric. Dacă se modifică numele unei funcții existente, vei fi întrebat la salvare dacă se redenumește funcția sau se crează o nouă funcție cu numele modificat.">
+<!ENTITY functionnameplaceholder "nume funcție">
+<!ENTITY codetip "Introdu codul pentru funcție aici. Vezi funcția exemplu din &quot;ReadMeFirst&quot; pentru detalii despre funcționalitățile codului.">
+<!ENTITY codeplaceholder "cod sursă funcție">
+<!ENTITY helptextheader "Text funcție ajutătoare:">
+<!ENTITY helptexttip "Orice text pus aici va fi afișat când utilizatorul planează deasupra numelui funcției în meniu. Utilizat pentru a explica ce face funcția și ce argumente acceptă.">
 <!ENTITY helptextplaceholder "Text de ajutor">
 <!ENTITY run.label "Executa functia:">
 <!ENTITY run.accesskey "x">
@@ -16,16 +21,16 @@
 <!ENTITY inputargstip "Argumentele trebuiesc specificate in format JavaScript, de exemplu, sirurile de caractere ar trebui să fie în ghilimele.">
 <!ENTITY inputargsplaceholder "argumente spearate prin virgula, daca exista, pentru a trece de test">
 <!ENTITY output "Iesire:">
-<!ENTITY import.label "Importa...">
+<!ENTITY import.label "Importă …">
 <!ENTITY import.accesskey "m">
-<!ENTITY importtip "Importa o functie dinamica exportata in prealabil din editor">
-<!ENTITY export.label "Exporta...">
+<!ENTITY importtip "Importă o funcție dinamică exportată anterior din editor.">
+<!ENTITY export.label "Exportă …">
 <!ENTITY export.accesskey "E">
 <!ENTITY exporttip "Exporta functia afisata intr-un fisier de back-up sau partajare">
 <!ENTITY reset.label "Renunta la modificari">
 <!ENTITY reset.accesskey "a">
-<!ENTITY save.label "Salveaza">
+<!ENTITY save.label "Salvează">
 <!ENTITY save.accesskey "S">
-<!ENTITY close.label "Inchide">
+<!ENTITY close.label "Închide">
 <!ENTITY close.accesskey "I">
 <!ENTITY close.cmdkey "w">
