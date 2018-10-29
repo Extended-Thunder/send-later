@@ -10,7 +10,6 @@
 <!ENTITY quickoption3.caption "Předvolba 3">
 <!ENTITY quickoptionname.label "Popisek tlačítka:">
 <!ENTITY quickoptionvalue.label "Minuty :">
-<!ENTITY showtoolbarbutton.caption "Zobrazit v nástrojové liště">
 <!ENTITY showsendlatercolumn.caption "Zobrazovat sloupeček „{NAME}“">
 <!ENTITY showsendlatercolumn.tooltip "Zobrazovat sloupeček „{NAME}“ při prohlížení složek s koncepty">
 <!ENTITY showsendlaterheader.caption "Zobrazit „{NAME}“ v hlavičce">

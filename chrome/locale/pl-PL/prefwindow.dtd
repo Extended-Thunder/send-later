@@ -10,7 +10,6 @@
 <!ENTITY quickoption3.caption "Skrót 3">
 <!ENTITY quickoptionname.label "Etykieta przycisku :">
 <!ENTITY quickoptionvalue.label "Minut :">
-<!ENTITY showtoolbarbutton.caption "Pokaż na pasku narzędzi">
 <!ENTITY showsendlatercolumn.caption "Pokaż kolumnę “{NAME}”">
 <!ENTITY showsendlatercolumn.tooltip "Czy wyświetlać kolumnę “{NAME}” podczas przeglądania folderu Szkice">
 <!ENTITY showsendlaterheader.caption "Pokaż nagłówek “{NAME}”">

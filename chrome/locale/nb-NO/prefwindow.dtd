@@ -10,7 +10,6 @@
 <!ENTITY quickoption3.caption "Hurtigtast 3">
 <!ENTITY quickoptionname.label "Etikett for knapp:">
 <!ENTITY quickoptionvalue.label "Minutter:">
-<!ENTITY showtoolbarbutton.caption "Vis på verktøylinja">
 <!ENTITY showsendlatercolumn.caption "Vis kolonne for {NAME}">
 <!ENTITY showsendlatercolumn.tooltip "Om du vil vise «{NAME}» -spalte når du ser på utkastmapper">
 <!ENTITY showsendlaterheader.caption "Vise {NAME} topptekst">

@@ -10,7 +10,6 @@
 <!ENTITY quickoption3.caption "Kurzbefehl 3">
 <!ENTITY quickoptionname.label "Schaltflächen-Text:">
 <!ENTITY quickoptionvalue.label "Verzögerung in Minuten:">
-<!ENTITY showtoolbarbutton.caption "In der Symbolleiste anzeigen">
 <!ENTITY showsendlatercolumn.caption "„{NAME}”-Spalte anzeigen">
 <!ENTITY showsendlatercolumn.tooltip "Auswählen, ob die „{NAME}”-Spalte beim Öffnen des Entwürfe-Ordners angezeigt werden soll oder nicht.">
 <!ENTITY showsendlaterheader.caption "„{NAME}”-Kopfzeile anzeigen">

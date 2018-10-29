@@ -10,7 +10,6 @@
 <!ENTITY quickoption3.caption "‫קיצור דרך 3‬">
 <!ENTITY quickoptionname.label "‫תווית הכפתור :‬">
 <!ENTITY quickoptionvalue.label "‫דקות:‬">
-<!ENTITY showtoolbarbutton.caption "‫הצג בסרגל הכלים‬">
 <!ENTITY showsendlatercolumn.caption "‫הצג את הטור '{NAME}'‬">
 <!ENTITY showsendlatercolumn.tooltip "‫האם להציג את הטור '{NAME}' כאשר צופים בתיקית הטיוטות‬">
 <!ENTITY showsendlaterheader.caption "‫הצג את הכותרת '{NAME}'‬">

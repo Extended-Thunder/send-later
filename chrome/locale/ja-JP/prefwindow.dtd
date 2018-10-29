@@ -10,7 +10,6 @@
 <!ENTITY quickoption3.caption "ショートカット3">
 <!ENTITY quickoptionname.label "ボタンラベル:">
 <!ENTITY quickoptionvalue.label "分:">
-<!ENTITY showtoolbarbutton.caption "ツールバーに表示する">
 <!ENTITY showsendlatercolumn.caption "“{NAME}” 列を表示する">
 <!ENTITY showsendlatercolumn.tooltip "[下書き] フォルダに “{NAME}” 列を表示するかどうかを設定します。">
 <!ENTITY showsendlaterheader.caption "“{NAME}” ヘッダーを表示する">

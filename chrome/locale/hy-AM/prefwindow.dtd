@@ -10,7 +10,6 @@
 <!ENTITY quickoption3.caption "Պիտակ 3">
 <!ENTITY quickoptionname.label "Կոճակի անունը.">
 <!ENTITY quickoptionvalue.label "Րոպե.">
-<!ENTITY showtoolbarbutton.caption "Ցուցադրել գործիքներում">
 <!ENTITY showsendlatercolumn.caption "Ցուցադրել «{NAME}»-ի սյունը">
 <!ENTITY showsendlatercolumn.tooltip "Անկախ ամեն ինչից ցուցադրել «{NAME}»-ի սյունը՝ սևագրերը դիտելիս">
 <!ENTITY showsendlaterheader.caption "Ցուցադրել «{NAME}»-ի գլխագիրը">

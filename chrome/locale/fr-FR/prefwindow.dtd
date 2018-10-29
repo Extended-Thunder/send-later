@@ -10,7 +10,6 @@
 <!ENTITY quickoption3.caption "3e délai">
 <!ENTITY quickoptionname.label "Texte du bouton :">
 <!ENTITY quickoptionvalue.label "Minutes :">
-<!ENTITY showtoolbarbutton.caption "Afficher dans la barre d'outils">
 <!ENTITY showsendlatercolumn.caption "Afficher la colonne d'{NAME}">
 <!ENTITY showsendlatercolumn.tooltip "Ajoute la colonne « {NAME} » pour les messages dans le dossier « Brouillons ».">
 <!ENTITY showsendlaterheader.caption "Afficher l'en-tête d'{NAME}">

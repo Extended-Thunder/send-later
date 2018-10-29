@@ -10,7 +10,6 @@
 <!ENTITY quickoption3.caption "Atallo 3">
 <!ENTITY quickoptionname.label "Etiqueta do botón:">
 <!ENTITY quickoptionvalue.label "Minutos:">
-<!ENTITY showtoolbarbutton.caption "Amosar na barra de ferramentas">
 <!ENTITY showsendlatercolumn.caption "Mostrar columna de {NAME}">
 <!ENTITY showsendlatercolumn.tooltip "Establece se incluír ou non a columna &quot;{NAME}&quot; ó amosar os cartafoles de borradores">
 <!ENTITY showsendlaterheader.caption "Mostrar cabeceira de {NAME}">

@@ -10,7 +10,6 @@
 <!ENTITY quickoption3.caption "Сокращение 3">
 <!ENTITY quickoptionname.label "Имя кнопки:">
 <!ENTITY quickoptionvalue.label "Минут(у):">
-<!ENTITY showtoolbarbutton.caption "Показывать в панели инструментов">
 <!ENTITY showsendlatercolumn.caption "Показать столбец {NAME}">
 <!ENTITY showsendlatercolumn.tooltip "Показывать столбец «{NAME}» при просмотре черновиков">
 <!ENTITY showsendlaterheader.caption "Показывать заголовок {NAME}">

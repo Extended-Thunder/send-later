@@ -10,7 +10,6 @@
 <!ENTITY quickoption3.caption "Scelta rapida 3">
 <!ENTITY quickoptionname.label "Etichetta pulsante:">
 <!ENTITY quickoptionvalue.label "Minuti:">
-<!ENTITY showtoolbarbutton.caption "Mostra nella barra degli strumenti">
 <!ENTITY showsendlatercolumn.caption "Mostra colonna {NAME}">
 <!ENTITY showsendlatercolumn.tooltip "Mostra la colonna “{NAME}” nella cartella “Bozze”">
 <!ENTITY showsendlaterheader.caption "Mostra l'intestazione di {NAME}">

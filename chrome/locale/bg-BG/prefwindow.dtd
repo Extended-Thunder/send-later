@@ -10,7 +10,6 @@
 <!ENTITY quickoption3.caption "Пряк път 3">
 <!ENTITY quickoptionname.label "Етикет на бутон:">
 <!ENTITY quickoptionvalue.label "Минути:">
-<!ENTITY showtoolbarbutton.caption "Показване в лентата с инструменти">
 <!ENTITY showsendlatercolumn.caption "Показване на {NAME} Колона">
 <!ENTITY showsendlatercolumn.tooltip "Да се показва ли &quot;{NAME}&quot; колоната, когато разглеждате чернови папки">
 <!ENTITY showsendlaterheader.caption "Показване на {NAME} Заглавие">

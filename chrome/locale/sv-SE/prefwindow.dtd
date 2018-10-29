@@ -10,7 +10,6 @@
 <!ENTITY quickoption3.caption "Genväg 3">
 <!ENTITY quickoptionname.label "Knappetikett:">
 <!ENTITY quickoptionvalue.label "Minuter:">
-<!ENTITY showtoolbarbutton.caption "Visa i verktygsfältet">
 <!ENTITY showsendlatercolumn.caption "Visa kolumnen “{NAME}”">
 <!ENTITY showsendlatercolumn.tooltip "Visning av kolumnen “{NAME}” vid granskning av utkastmappar">
 <!ENTITY showsendlaterheader.caption "Visa huvudet “{NAME}”">

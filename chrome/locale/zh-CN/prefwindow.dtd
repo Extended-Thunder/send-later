@@ -10,7 +10,6 @@
 <!ENTITY quickoption3.caption "快捷按钮 3">
 <!ENTITY quickoptionname.label "按钮标签：">
 <!ENTITY quickoptionvalue.label "分钟：">
-<!ENTITY showtoolbarbutton.caption "在工具栏中显示">
 <!ENTITY showsendlatercolumn.caption "显示{NAME}列">
 <!ENTITY showsendlatercolumn.tooltip "查看草稿箱时是否显示{NAME}列">
 <!ENTITY showsendlaterheader.caption "显示{NAME}消息头">

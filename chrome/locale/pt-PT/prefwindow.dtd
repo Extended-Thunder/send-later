@@ -10,7 +10,6 @@
 <!ENTITY quickoption3.caption "Atalho 3">
 <!ENTITY quickoptionname.label "Etiqueta do botão:">
 <!ENTITY quickoptionvalue.label "Minutos:">
-<!ENTITY showtoolbarbutton.caption "Mostrar na barra de ferramentas">
 <!ENTITY showsendlatercolumn.caption "Mostrar coluna do {NAME}">
 <!ENTITY showsendlatercolumn.tooltip "A coluna “{NAME}” deve ser mostrada ao visualizar as pastas de rascunho">
 <!ENTITY showsendlaterheader.caption "Mostrar cabeçalho do {NAME}">

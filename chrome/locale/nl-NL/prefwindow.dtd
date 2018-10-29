@@ -10,7 +10,6 @@
 <!ENTITY quickoption3.caption "Sneltoets 3">
 <!ENTITY quickoptionname.label "Knoptekst:">
 <!ENTITY quickoptionvalue.label "Minuten:">
-<!ENTITY showtoolbarbutton.caption "Tonen in werkbalk">
 <!ENTITY showsendlatercolumn.caption "Kolom {NAME} tonen">
 <!ENTITY showsendlatercolumn.tooltip "Of de kolom ‘{NAME}’ bij het bekijken van conceptmappen moet worden getoond">
 <!ENTITY showsendlaterheader.caption "Header {NAME} tonen">

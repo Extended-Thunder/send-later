@@ -10,7 +10,6 @@
 <!ENTITY quickoption3.caption "Shortcut 3">
 <!ENTITY quickoptionname.label "Button Label :">
 <!ENTITY quickoptionvalue.label "Minutes :">
-<!ENTITY showtoolbarbutton.caption "Show in toolbar">
 <!ENTITY showsendlatercolumn.caption "Show {NAME} Column">
 <!ENTITY showsendlatercolumn.tooltip "Whether to show the “{NAME}” column when viewing draft folders">
 <!ENTITY showsendlaterheader.caption "Show {NAME} Header">

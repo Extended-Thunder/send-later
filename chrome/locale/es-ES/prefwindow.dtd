@@ -10,7 +10,6 @@
 <!ENTITY quickoption3.caption "B. preajuste 3">
 <!ENTITY quickoptionname.label "Etiqueta del botón :">
 <!ENTITY quickoptionvalue.label "Minuto(s) :">
-<!ENTITY showtoolbarbutton.caption "Mostrar en la barra de herramientas">
 <!ENTITY showsendlatercolumn.caption "Mostrar columna de {NAME}">
 <!ENTITY showsendlatercolumn.tooltip "Especifica si incluir o no la columna “{NAME}” al mostrar las carpetas de borradores">
 <!ENTITY showsendlaterheader.caption "Mostrar encabezamiento de {NAME}">

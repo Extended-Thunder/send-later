@@ -10,7 +10,6 @@
 <!ENTITY quickoption3.caption "Drecera 3">
 <!ENTITY quickoptionname.label "Etiqueta del botó:">
 <!ENTITY quickoptionvalue.label "Minuts:">
-<!ENTITY showtoolbarbutton.caption "Mostrar a la barra d'eines">
 <!ENTITY showsendlatercolumn.caption "Mostrar la columna {NAME}">
 <!ENTITY showsendlatercolumn.tooltip "Si s'ha de mostrar la columna “{NAME}” en la vista de les carpetes d'esborranys">
 <!ENTITY showsendlaterheader.caption "Mostrar la capçalera {NAME}">

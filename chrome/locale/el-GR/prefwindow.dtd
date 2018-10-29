@@ -10,7 +10,6 @@
 <!ENTITY quickoption3.caption "Συντόμευση 3">
 <!ENTITY quickoptionname.label "Ετικέτα κουμπιού:">
 <!ENTITY quickoptionvalue.label "Λεπτά :">
-<!ENTITY showtoolbarbutton.caption "Εμφάνιση στην γραμμή εργαλείων">
 <!ENTITY showsendlatercolumn.caption "Εμφάνιση της στήλης του {NAME}">
 <!ENTITY showsendlatercolumn.tooltip "Ορίζει αν θα εμφανίζεται η στήλη “{NAME}” όταν προβάλλεται ένας φάκελος πρόχειρων">
 <!ENTITY showsendlaterheader.caption "Εμφάνιση επικεφαλίδας {NAME}">

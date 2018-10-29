@@ -10,7 +10,6 @@
 <!ENTITY quickoption3.caption "Pikapainike 3">
 <!ENTITY quickoptionname.label "Painiketeksti:">
 <!ENTITY quickoptionvalue.label "Minuuttimäärä:">
-<!ENTITY showtoolbarbutton.caption "Näytä työkalupalkissa">
 <!ENTITY showsendlatercolumn.caption "Näytä {NAME} -sarake">
 <!ENTITY showsendlatercolumn.tooltip "Näytetäänkö {NAME} -sarake selattaessa luonnoskansioita">
 <!ENTITY showsendlaterheader.caption "Näytä {NAME} -otsake">
