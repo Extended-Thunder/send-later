@@ -21,6 +21,7 @@
 <!ENTITY sendlatersendbutton.caption "Η “Αποστολή” στέλνει αργότερα">
 <!ENTITY sendlatersendbutton.tooltip "Με αυτή την επιλογή, η εντολή “Αποστολή” (είτε το κουμπί είτε ο συνδυασμός πλήκτρων Ctrl-Enter) μετατρέπεται σε “Αποστολή αργότερα”.">
 <!ENTITY altbinding.caption "Δέσμευση του συνδυασμού πλήκτρων Alt-Shift-Enter αντί για Ctrl-Shift-Enter">
+<!ENTITY markread.caption "Μαρκάρετε τα προγραμματισμένα πρόχειρα ως αναγνωσμένα">
 <!ENTITY advanced.caption "Προχωρημένες">
 <!ENTITY dumplevel.caption "Επίπεδο καταγραφής ένδειξης σφαλμάτων:">
 <!ENTITY consolelevel.caption "Επίπεδο καταγραφής κονσόλας:">
