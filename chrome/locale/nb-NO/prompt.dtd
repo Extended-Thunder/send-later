@@ -1,7 +1,7 @@
 <!-- -*- coding: utf-8 -*- -->
 <!ENTITY sendlater.prompt.sendlater.label "Legg i utboks">
 <!ENTITY sendlater.prompt.sendlater.accesskey "u">
-<!ENTITY sendlater.prompt.sendlater.tooltip "Usendte meldinger sendes planlegging levering for et bestemt tidspunkt, flytte meldingen til utgangs-mappen for levering neste gang.">
+<!ENTITY sendlater.prompt.sendlater.tooltip "Usendte meldinger sendes planlegging levering for et bestemt tidspunkt, flytte meldingen til Utboks-mappen for levering neste gang.">
 <!ENTITY sendlater.prompt.sendnow.label "Send nå">
 <!ENTITY sendlater.prompt.sendnow.accesskey "n">
 <!ENTITY sendlater.prompt.sendnow.tooltip "Send meldingen umiddelbart ved å overstyre “{NAME}”.">
