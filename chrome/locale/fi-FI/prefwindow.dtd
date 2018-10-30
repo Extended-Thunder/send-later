@@ -21,6 +21,7 @@
 <!ENTITY sendlatersendbutton.caption "”Lähetä” toimii, kuten ”Lähetä myöhemmin”">
 <!ENTITY sendlatersendbutton.tooltip "Tämän valinnan ollessa käytössä &quot;Lähetä&quot; -komento (joko painike, tai näppäimet Ctrl-Enter) toimii kuten &quot;Lähetä myöhemmin&quot;.">
 <!ENTITY altbinding.caption "Käytä näppäinyhdistelmää Alt-Shift-Enter näppäinyhdistelmän Ctrl-Shift-Enter sijasta">
+<!ENTITY markread.caption "Merkitse ajoitetut luonnokset luetuiksi">
 <!ENTITY advanced.caption "Laajemmat">
 <!ENTITY dumplevel.caption "Datankeruutaso:">
 <!ENTITY consolelevel.caption "Konsolilokitaso:">
