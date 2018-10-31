@@ -162,7 +162,7 @@
       <Description>
 	<em:locale>ro-RO</em:locale>
 	<em:name>Send Later</em:name>
-	<em:description>“Trimite mai Tarziu” funcționalitate pentru programare orei de trimitere</em:description>
+	<em:description>Funcționalitate completă "Trimite mai târziu" pentru a programa trimiterea unui email.</em:description>
       </Description>
     </em:localized>
     <em:localized>

@@ -13,7 +13,7 @@
 <!ENTITY showsendlatercolumn.caption "Arată coloana {NAME}">
 <!ENTITY showsendlatercolumn.tooltip "Dacă se afișează coloana &quot;{NAME}&quot; când se vizualizează dosarul de Drafts">
 <!ENTITY showsendlaterheader.caption "Arată headerul {NAME}">
-<!ENTITY showsendlaterheader.tooltip "Dacă se afișează headerul “X-Send-Later-At”, adică, momentul când un mesaj e programat să fie trimis în header, la vizualizarea unui mesaj.">
+<!ENTITY showsendlaterheader.tooltip "Dacă se afișează headerul “X-Send-Later-At”, adică momentul când un mesaj e programat să fie trimis, în header, la vizualizarea unui mesaj.">
 <!ENTITY showsendlaterstatus.caption "Afișează {NAME} în bara de stare">
 <!ENTITY showsendlaterprogress.caption "Arată progresul în bara de stare">
 <!ENTITY showsendlaterunsentmessages.caption "Declanșează trimiterea mesajelor netrimise din Outbox">
@@ -21,7 +21,7 @@
 <!ENTITY sendlatersendbutton.caption "&quot;Trimite&quot; face &quot;Trimite mai târziu&quot;">
 <!ENTITY sendlatersendbutton.tooltip "Cu această opțiune activată, comanda &quot;Trimite&quot; (fie butonul fie tastând Ctrl-Enter) acționează la fel ca &quot;Trimite mai târziu&quot;.">
 <!ENTITY altbinding.caption "Folosește Alt-Shift-Enter în loc de Ctrl-Shift-Enter">
-<!ENTITY markread.caption "Marchează ciornele programate ca citite">
+<!ENTITY markread.caption "Marchează ciornele programate ca fiind citite">
 <!ENTITY advanced.caption "Avansat">
 <!ENTITY dumplevel.caption "Nivel jurnal fișier:">
 <!ENTITY consolelevel.caption "Nivel jurnal consolă:">
@@ -29,13 +29,13 @@
 <!ENTITY contactauthor.value "Contactează autorul">
 <!ENTITY helplink.tooltip "Vezi documentația {NAME}.">
 <!ENTITY helplink.value "Ghidul utilizatorului">
-<!ENTITY releasenotes.value "Note de lansare">
+<!ENTITY releasenotes.value "Note privind versiunea">
 <!ENTITY donatelink.value "Donează">
 <!ENTITY editorlink.value "Editor dinamic de funcții">
-<!ENTITY enforcerestrictions.tooltip "Dacă un mesaj care este programat să fie livrat este în afara restricțiilor de oră/dată, de exemplu, pentru că Thunderbird nu rula la momentul programat, amână trimiterea acestuia până sunt întrunite condițiile de trimitere.">
-<!ENTITY enforcerestrictions.caption "Impune restricțiile de timp și zi la timpul de livrare">
-<!ENTITY blocklatemessages.tooltip "Nu livra mesajele programate care au fost întârziate după timpul programat, de exemplu, pentru ca Thunderbird nu era deschis la momentul respectiv.">
+<!ENTITY enforcerestrictions.tooltip "Dacă un mesaj care este programat să fie livrat este în afara restricțiilor de oră/dată, de exemplu, pentru că Thunderbird nu rula la momentul programat, amână trimiterea acestuia până când sunt întrunite condițiile de trimitere.">
+<!ENTITY enforcerestrictions.caption "Impune restricțiile de timp și zi pentru timpul de livrare">
+<!ENTITY blocklatemessages.tooltip "Nu livra mesajele programate care au fost întârziate după timpul programat, de exemplu, pentru că Thunderbird nu era deschis la momentul respectiv.">
 <!ENTITY blocklatemessages.label1 "Nu trimite mesaje întârziate mai mult de">
 <!ENTITY blocklatemessages.label2 "minute">
 <!ENTITY editorbutton "Deschide editorul dinamic de funcții …">
-<!ENTITY editortip "Deschide o fereastra pentru crearea și editarea de funcții JavaScript pentru a implementa funcții complexe de trimitere.">
+<!ENTITY editortip "Deschide o fereastra pentru crearea și editarea de funcții JavaScript pentru algoritmi complecși de trimitere.">
