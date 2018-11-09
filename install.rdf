@@ -9,6 +9,7 @@
     <em:creator>Jonathan Kamens</em:creator>
     <em:developer>Karthik Sivaram</em:developer>
     <em:contributor>Andrew Plummer (SugarJS)</em:contributor>
+    <em:translator>Krasimir Stoychev (bg)</em:translator>
     <em:translator>Vlasta Konvičná (cs)</em:translator>
     <em:translator>Dtrieb from BabelZilla (de)</em:translator>
     <em:translator>Erwin D. Glockner (de)</em:translator>
@@ -31,7 +32,6 @@
     <em:translator>Mikael Hiort af Ornäs (sv-SE)</em:translator>
     <em:translator>Wang.H.K from BabelZilla (zh-CN)</em:translator>
     <em:translator>Mike (zh-TW)</em:translator>
-    <em:translator>Krasimir Stoychev (bg)</em:translator>
     <em:description>True “Send Later” functionality to schedule the time for sending an email.</em:description>
     <em:localized>
       <Description>
