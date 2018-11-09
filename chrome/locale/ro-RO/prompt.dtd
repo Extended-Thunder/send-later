@@ -1,7 +1,7 @@
 <!-- -*- coding: utf-8 -*- -->
-<!ENTITY sendlater.prompt.sendlater.label "Pune în Outbox">
+<!ENTITY sendlater.prompt.sendlater.label "Pune în „De trimis”">
 <!ENTITY sendlater.prompt.sendlater.accesskey "P">
-<!ENTITY sendlater.prompt.sendlater.tooltip "În loc de programarea trimiterii la un anumite moment, mută mesajul în dosarul Outbox pentru a fi trimis la următoare trimitere de mesaje neexpediate.">
+<!ENTITY sendlater.prompt.sendlater.tooltip "În loc de programarea trimiterii la un anumit moment, mută mesajul în dosarul „De trimis” pentru a fi trimis la următoare trimitere de mesaje neexpediate.">
 <!ENTITY sendlater.prompt.sendnow.label "Trimite Acum">
 <!ENTITY sendlater.prompt.sendnow.accesskey "T">
 <!ENTITY sendlater.prompt.sendnow.tooltip "Trimite mesajul imediat, ignorând {NAME}.">
@@ -11,15 +11,15 @@
 <!ENTITY sendlater.prompt.title.label "Trimite acest e-mail mai târziu">
 <!ENTITY sendlater.prompt.textbox.label "Trimite la:">
 <!ENTITY sendlater.prompt.or.label "sau:">
-<!ENTITY sendlater.prompt.textbox.tooltip "Introdu o dată și o oră. Formele libere cum ar fi &quot;joi la 3:00pm&quot; sunt acceptate.">
+<!ENTITY sendlater.prompt.textbox.tooltip "Introdu o dată și o oră. Formele libere cum ar fi „next Tuesday at 3:00pm” sunt acceptate.">
 <!ENTITY sendlater.prompt.textbox.emptytext "exemplu: “3:00pm joi”, “12/31/2012 15:27”">
 <!ENTITY sendlater.prompt.sendat.label "Trimite mai târziu, la momentul(ele) specificate mai sus">
-<!ENTITY sendlater.prompt.sendat.tooltip "Salvează mesajul în dosarul Drafts pentru livrare automata la momentul setat mai sus.">
+<!ENTITY sendlater.prompt.sendat.tooltip "Salvează mesajul în dosarul „Mesaje nefinalizate” pentru livrare automata la momentul setat mai sus.">
 <!ENTITY sendlater.prompt.savedefaults "Salvează ca valori implicite">
 <!ENTITY sendlater.prompt.cleardefaults "Șterge valorile implicite">
 <!ENTITY sendlater.prompt.recur.label "Repetă:">
 <!ENTITY sendlater.prompt.none.label "o dată">
-<!ENTITY sendlater.prompt.minutely.label "la minut">
+<!ENTITY sendlater.prompt.minutely.label "la fiecare minut">
 <!ENTITY sendlater.prompt.daily.label "zilnic">
 <!ENTITY sendlater.prompt.weekly.label "săptămânal">
 <!ENTITY sendlater.prompt.monthly.label "lunar">
@@ -29,7 +29,7 @@
 <!ENTITY sendlater.prompt.calculate.label "Calculează">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Trimite mai târziu">
 <!ENTITY sendlater.toolbar.textbox.emptytext "data și ora trimiterii">
-<!ENTITY sendlater.prompt.every.label "Fiecare">
+<!ENTITY sendlater.prompt.every.label "La fiecare">
 <!ENTITY sendlater.prompt.between.label "Între">
 <!ENTITY sendlater.button1.label "Peste 15 minute">
 <!ENTITY sendlater.button2.label "Peste 30 minute">
@@ -43,5 +43,5 @@
 <!ENTITY sendlater.prompt.day5 "vineri">
 <!ENTITY sendlater.prompt.day6 "sâmbătă">
 <!ENTITY sendlater.prompt.cancelonreply.label "Anulează retrimiterea când se primește răspuns">
-<!ENTITY sendlater.prompt.cancelonreply.tooltip "Monitorizează primirea de răspuns la trimiterile anterioare ale mesajelor repetitive. Anulează un mesaj repetitiv și-l șterge din dosarul Drafts când se primește răspuns.">
+<!ENTITY sendlater.prompt.cancelonreply.tooltip "Monitorizează primirea de răspuns la trimiterile anterioare ale mesajelor repetitive. Anulează un mesaj repetitiv și șterge-l din dosarul „Mesaje netrimise” când se primește răspuns.">
 <!ENTITY firstdayofweek.default "1">
