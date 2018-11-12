@@ -484,13 +484,14 @@
 
             var numberOrder = /^(\D*)\s*(\d+)(\D*)(\d+)(\D*)(\d+)\s*(\D*)$/;
 
-            var mozIntl;
+            var mozIntl, dtf;
             try {
                 mozIntl = Components.classes["@mozilla.org/mozintl;1"].getService(Components.interfaces.mozIMozIntl);
+                dtf = new mozIntl.DateTimeFormat();
             } catch (ex) {
                 mozIntl = Intl;
+                dtf = new mozIntl.DateTimeFormat();
             }
-            var dtf = new mozIntl.DateTimeFormat();
             var locale = dtf.resolvedOptions().locale + "-u-ca-gregory-nu-latn";
 
             var pmTime = new Date(2000, 0, 1, 16, 7, 9).toLocaleTimeString(locale);
@@ -776,13 +777,14 @@
 
             var numberOrder = /^(\D*)\s*(\d+)(\D*)(\d+)(\D*)(\d+)\s*(\D*)$/;
 
-            var mozIntl;
+            var mozIntl, dtf;
             try {
                 mozIntl = Components.classes["@mozilla.org/mozintl;1"].getService(Components.interfaces.mozIMozIntl);
+                dtf = new mozIntl.DateTimeFormat();
             } catch (ex) {
                 mozIntl = Intl;
+                dtf = new mozIntl.DateTimeFormat();
             }
-            var dtf = new mozIntl.DateTimeFormat();
             var locale = dtf.resolvedOptions().locale + "-u-ca-gregory-nu-latn";
 
             var dt = new Date(2002, 9, 4).toLocaleDateString(locale);
@@ -1009,13 +1011,15 @@
       <method name="_init">
         <body>
           <![CDATA[
-            var mozIntl;
+            var mozIntl, dtf;
             try {
-                mozIntl = Components.classes["@mozilla.org/mozintl;1"].getService(Components.interfaces.mozIMozIntl);
+                mozIntl =
+                Components.classes["@mozilla.org/mozintl;1"].getService(Components.interfaces.mozIMozIntl);
+                dtf = new mozIntl.DateTimeFormat();
             } catch (ex) {
                 mozIntl = Intl;
+                dtf = new mozIntl.DateTimeFormat();
             }
-            var dtf = new mozIntl.DateTimeFormat();
             var locale = dtf.resolvedOptions().locale + "-u-ca-gregory";
             var dtfMonth = new mozIntl.DateTimeFormat(locale, {month: "long", timeZone: "UTC"});
             var dtfWeekday = new mozIntl.DateTimeFormat(locale, {weekday: "narrow"});
