@@ -265,6 +265,26 @@ var Sendlater3Util = {
         };
     },
 
+    DateTimeFormat: function(options) {
+        // This try/catch can be replaced with just the code that's in the try
+        // once Thunderbird 60+ is the mininum supported version.
+        try {
+            var mozIntl = Cc["@mozilla.org/mozintl;1"].getService(Ci.mozIMozIntl);
+            return new mozIntl.DateTimeFormat("", options);
+        } catch (ex) {
+            var mozIntl = Intl;
+            var dtf = new mozIntl.DateTimeFormat();
+            var locale = dtf.resolvedOptions().locale;
+            return new mozIntl.DateTimeFormat(locale, options);
+        }
+    },
+
+    DateTimeFormatHHMM: function() {
+        return SL3U.DateTimeFormat(
+            {year: 'numeric', month: 'numeric', day: 'numeric',
+             hour: 'numeric', minute: 'numeric'});
+    },
+        
     FormatDateTime: function(thisdate,includeTZ) {
         sl3log.Entering("Sendlater3Util.FormatDateTime", thisdate,
                                 includeTZ);

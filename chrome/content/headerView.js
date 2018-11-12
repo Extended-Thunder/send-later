@@ -4,6 +4,8 @@ var Sendlater3HeaderView = function() {
     SL3U.initUtil();
     window.removeEventListener("load", Sendlater3HeaderView, false);
 
+    var dtf = SL3U.DateTimeFormatHHMM();
+
     var sendlater3columnHandler = {
 	getCellText: function(row, col) {
 	    sl3log.Entering("Sendlater3HeaderView.sendlater3columnHandler.getCellText", row, col);
@@ -22,29 +24,7 @@ var Sendlater3HeaderView = function() {
                 var cancelOnReply = hdr.getStringProperty(
                     "x-send-later-cancel-on-reply");
 		var retdate = new Date(retval);
-                var val;
-                try {
-		    var dateFormatService = Components
-		        .classes["@mozilla.org/intl/scriptabledateformat;1"]
-                        .getService(Components.interfaces.nsIScriptableDateFormat);
-		    val = dateFormatService
-		        .FormatDateTime("",
-				        dateFormatService.dateFormatShort,
-				        dateFormatService.timeFormatNoSeconds,
-				        retdate.getFullYear(),
-				        retdate.getMonth()+1,
-				        retdate.getDate(),
-				        retdate.getHours(),
-				        retdate.getMinutes(),
-				        0);
-                }
-                catch (ex) {
-                    ds = retdate.toLocaleString(
-                        {}, {year: '2-digit', month: 'numeric', day: 'numeric'});
-                    ts = retdate.toLocaleString(
-                        {}, {hour: 'numeric', minute: 'numeric'});
-                    val = ds + " " + ts;
-                }
+                var val = dtf.format(retdate);
 		if (recur) {
                     var recurStr = SL3U.FormatRecur(recur, cancelOnReply);
                     if (recurStr)
@@ -215,7 +195,7 @@ var Sendlater3HeaderView = function() {
                     var sendat = msghdr.getStringProperty("x-send-later-at");
                     if (sendat) {
                         var xsendlater = new Date(sendat);
-                        var val = xsendlater.toLocaleString();
+                        var val = dtf.format(xsendlater);
                         var recur = msghdr
                             .getStringProperty("x-send-later-recur");
                         var cancelOnReply = msghdr
