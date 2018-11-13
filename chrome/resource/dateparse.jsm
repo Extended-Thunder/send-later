@@ -6,7 +6,7 @@ var EXPORTED_SYMBOLS = ["sendlater3DateParse", "sendlater3DateToSugarDate", "sen
 // required by CU.import.
 var loader = Components.classes["@mozilla.org/moz/jssubscript-loader;1"]
                        .getService(Components.interfaces.mozIJSSubScriptLoader); 
-loader.loadSubScript("resource://sendlater3/sugar.js"); 
+loader.loadSubScript("resource://sendlater3/sugar.js", null, "UTF-8"); 
 
 // https://github.com/andrewplummer/Sugar/issues/605
 Sugar.Date.extend();
