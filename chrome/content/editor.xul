@@ -34,20 +34,20 @@
              placeholder="&functionnameplaceholder;"/>
     <label value="(specname, prev, args) {"/>
   </hbox>
-  <hbox>
+  <hbox flex="5">
     <description width="10"/>
-    <vbox tooltiptext="&codetip;">
+    <vbox tooltiptext="&codetip;" flex="5">
       <label value="var next, nextspec, nextargs;"/>
-      <textbox id="code" class="monospace" multiline="true"
+      <textbox id="code" class="monospace" multiline="true" flex="5"
                placeholder="&codeplaceholder;" rows="25" cols="80" wrap="off"
                onchange="sl3e.onCodeChange(event);"/>
       <label value="return([next, nextspec, nextargs]);"/>
     </vbox>
   </hbox>
   <label value="}"/>
-  <vbox tooltiptext="&helptexttip;">
+  <vbox tooltiptext="&helptexttip;" flex="1">
     <label value="&helptextheader;"/>
-    <textbox id="help-text" multiline="true" rows="5" cols="80"
+    <textbox id="help-text" multiline="true" flex="1" rows="5" cols="80"
              onchange="sl3e.onHelpChange();"
              placeholder="&helptextplaceholder;"/>
   </vbox>
@@ -68,9 +68,9 @@
                  onchange="sl3e.onArgumentsChange()"
                  placeholder="&inputargsplaceholder;"/>
       </hbox>
-      <hbox align="center">
+      <hbox align="center" flex="1">
         <label value="&output;"/>
-        <textbox id="test-results" disabled="true" flex="1"/>
+        <textbox id="test-results" disabled="true"/>
       </hbox>
     </vbox>
   </hbox>
