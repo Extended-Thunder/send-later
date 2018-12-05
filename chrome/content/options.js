@@ -28,7 +28,7 @@ var Sendlater3Options = {
 
     funcEditor: function() {
         window.open("chrome://sendlater3/content/editor.xul",
-                    "SendLaterFunctionEditor", "chrome");
+                    "SendLaterFunctionEditor", "chrome,resizable");
     }
 };
 

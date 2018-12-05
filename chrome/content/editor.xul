@@ -70,7 +70,7 @@
       </hbox>
       <hbox align="center" flex="1">
         <label value="&output;"/>
-        <textbox id="test-results" disabled="true"/>
+        <textbox id="test-results" disabled="true" flex="1"/>
       </hbox>
     </vbox>
   </hbox>
