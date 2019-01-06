@@ -331,29 +331,30 @@ sl3e = {
         fp.appendFilter(SL3U.PromptBundleGet("SLJFilterLabel"), "*.slj");
         fp.appendFilters(nsIFilePicker.filterAll | nsIFilePicker.filterText);
         fp.defaultExtension = "slj";
-        var rv = fp.show();
-        if (! ((rv == nsIFilePicker.returnOK ||
-                rv == nsIFilePicker.returnReplace)))
-            return;
-        var file = fp.file;
-        try {
-            var imported = sl3uf.import(file);
-        }
-        catch (ex) {
-            pfx = SL3U.PromptBundleGet("ImportError");
-            SL3U.alert(window, pfx, pfx + ": " + ex);
-            return;
-        }
-        var picker = document.getElementById("function-picker");
-        this.selectedIndex = -1;
-        this.dirty = false;
-        picker.selectedIndex = 0;
-        this.onPickerChange();
-        document.getElementById("function-name").value = imported[0];
-        document.getElementById("help-text").value = imported[1];
-        document.getElementById("code").value = imported[2];
-        this.dirty = true;
-        this.updateButtons();
+        fp.open(function (rv) {
+            if (! ((rv == nsIFilePicker.returnOK ||
+                    rv == nsIFilePicker.returnReplace)))
+                return;
+            var file = fp.file;
+            try {
+                var imported = sl3uf.import(file);
+            }
+            catch (ex) {
+                pfx = SL3U.PromptBundleGet("ImportError");
+                SL3U.alert(window, pfx, pfx + ": " + ex);
+                return;
+            }
+            var picker = document.getElementById("function-picker");
+            sl3e.selectedIndex = -1;
+            sl3e.dirty = false;
+            picker.selectedIndex = 0;
+            sl3e.onPickerChange();
+            document.getElementById("function-name").value = imported[0];
+            document.getElementById("help-text").value = imported[1];
+            document.getElementById("code").value = imported[2];
+            sl3e.dirty = true;
+            sl3e.updateButtons();
+        });
     },
 
     onExport: function() {
@@ -383,15 +384,16 @@ sl3e = {
         fp.appendFilters(nsIFilePicker.filterAll | nsIFilePicker.filterText);
         fp.defaultExtension = "slj";
         fp.defaultString = name + ".slj";
-        var rv = fp.show();
-        if (! ((rv == nsIFilePicker.returnOK ||
-                rv == nsIFilePicker.returnReplace)))
-            return;
-        var file = fp.file;
-        var name = document.getElementById("function-name").value;
-        var help = document.getElementById("help-text").value;
-        var body = document.getElementById("code").value;
-        sl3uf.export(name, help, body, file);
+        var rv = fp.open(function (rv) {
+            if (! ((rv == nsIFilePicker.returnOK ||
+                    rv == nsIFilePicker.returnReplace)))
+                return;
+            var file = fp.file;
+            var name = document.getElementById("function-name").value;
+            var help = document.getElementById("help-text").value;
+            var body = document.getElementById("code").value;
+            sl3uf.export(name, help, body, file);
+        });
     },
 
     onSave: function() {
