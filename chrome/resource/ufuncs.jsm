@@ -172,7 +172,7 @@ var sl3uf = {
             return "";
         var arglist = [];
         for (var i in args) {
-            val = args[i];
+            var val = args[i];
             if (val && val.splice)
                 arglist.push('[' + this.unparseArgs(val) + ']');
             else if (! (/^(?:number|boolean|string)$/.test(typeof(val)) ||
