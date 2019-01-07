@@ -83,7 +83,11 @@ var sl3uf = {
             data += str.value;
         }
         cstream.close();
-        var obj = JSON.parse(data);
+        data = data.replace(/\s+$/, "");
+        if (! data.match(/"version":1,/)) {
+            data = data.replace(/\n/g, "\\n");
+        }
+        var obj = JSON.parse(data.replace(/\n/g, "\\n"));
         return [obj.name, obj.help, obj.body];
     },
     
@@ -91,12 +95,12 @@ var sl3uf = {
         // "file" is an nsIFile object
         // Returns nothing
         var obj = {
-            version: 1,
+            version: 2,
             name: name,
             help: help,
             body: body
         };
-        var data = JSON.stringify(obj);
+        var data = JSON.stringify(obj).replace(/\\n/g, "\n");
         var foStream = Cc["@mozilla.org/network/file-output-stream;1"].
             createInstance(Ci.nsIFileOutputStream);
         foStream.init(file, 0x02 | 0x08 | 0x20, octal(666), 0); 
