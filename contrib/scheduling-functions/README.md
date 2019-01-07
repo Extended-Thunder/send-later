@@ -14,6 +14,12 @@ Thanks for your contributions!
 
 ## Contributed functions
 
+### FirstFourDaysOfEachMonth.slj
+
+Schedules a recurring message that sends at 9:00am on the first four days of each month.
+
+You can use variables to control the send time as well as the last day of each month when the message is sent. See the documentation string for the function for details.
+
 ### NextChol.slj
 
 By: Jonathan Kamens &lt;[jik@kamens.us](mailto:jik@kamens.us)&gt;
