@@ -5,10 +5,11 @@ all: send_later.xpi
 
 send_later.xpi: utils/check-locales.pl utils/propagate_strings.py \
     utils/check-accesskeys.py utils/check-locale-integration.py \
-    utils/check-manifests.sh Makefile include-manifest exclude-manifest \
+    utils/check-manifests.sh Makefile include-manifest exclude-manifest2 \
     chrome/content/backgroundingPostbox.xul \
     $(shell ls $(shell cat include-manifest) 2>/dev/null)
-	./utils/check-manifests.sh --overlap --extra
+	./utils/check-manifests.sh --excludes exclude-manifest2 --overlap \
+		--extra
 	./utils/fix-addon-ids.pl --check
 	./utils/check-locale-integration.py
 	-rm -rf $@.tmp
@@ -27,12 +28,19 @@ send_later.xpi: utils/check-locales.pl utils/propagate_strings.py \
 	cd $@.tmp; ../utils/propagate_strings.py
 	cd $@.tmp; ../utils/check-accesskeys.py
 	cd $@.tmp; ../utils/check-manifests.sh --includes ../include-manifest \
-	    --excludes ../exclude-manifest --missing
+	    --excludes ../exclude-manifest2 --missing
 	cd $@.tmp; zip -q -r $@.tmp -@ < ../include-manifest
 	mv $@.tmp/$@.tmp $@
 	rm -rf $@.tmp
 
-clean: ; -rm -f *.xpi *.tmp */*.pyc chrome/content/backgroundingPostbox.xul
+clean:: ; -rm -f *.xpi *.tmp */*.pyc chrome/content/backgroundingPostbox.xul
+clean:: ; -rm -f exclude-manifest2
+
+exclude-manifest2: exclude-manifest
+	cat $< > $@.tmp
+	echo $@ >> $@.tmp
+	find contrib -type f >> $@.tmp
+	mv -f $@.tmp $@
 
 locale_import: crowdin.yaml
 	crowdin-cli download translations
