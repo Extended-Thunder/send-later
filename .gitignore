@@ -4,3 +4,4 @@ chrome/content/backgroundingPostbox.xul
 *.tmp
 *.pyc
 crowdin.yaml
+exclude-manifest2
