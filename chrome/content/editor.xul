@@ -1,13 +1,14 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
 <?xml-stylesheet href="chrome://messenger/content/bindings.css" type="text/css"?>
+<?xml-stylesheet href="editor.css" type="text/css"?>
+
 <!DOCTYPE window SYSTEM "chrome://sendlater3/locale/editor.dtd">
 
-<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
-        title="&windowtitle;" onclose="return sl3e.onClose(true);">
-  <stringbundleset id="sendlater3-strbundles">
-    <stringbundle id="sendlater3-promptstrings" src="chrome://sendlater3/locale/prompt.properties"/>
-  </stringbundleset>
+<window title="&windowtitle;" onclose="return sl3e.onClose(true);"
+        xmlns:html="http://www.w3.org/1999/xhtml"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
   <script src="util.js"/>
   <script src="editor.js"/>
   <keyset>
@@ -38,7 +39,7 @@
     <description width="10"/>
     <vbox tooltiptext="&codetip;" flex="5">
       <label value="var next, nextspec, nextargs;"/>
-      <textbox id="code" class="monospace" multiline="true" flex="5"
+      <html:textarea id="code" flex="5"
                placeholder="&codeplaceholder;" rows="25" cols="80" wrap="off"
                onchange="sl3e.onCodeChange(event);"/>
       <label value="return([next, nextspec, nextargs]);"/>
@@ -47,7 +48,7 @@
   <label value="}"/>
   <vbox tooltiptext="&helptexttip;" flex="1">
     <label value="&helptextheader;"/>
-    <textbox id="help-text" multiline="true" flex="1" rows="5" cols="80"
+    <html:textarea id="help-text" flex="1" rows="5" cols="80"
              onchange="sl3e.onHelpChange();"
              placeholder="&helptextplaceholder;"/>
   </vbox>

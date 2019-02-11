@@ -1,5 +1,11 @@
-Components.utils.import("resource://sendlater3/logging.jsm");
-Components.utils.import("resource://sendlater3/defaultPreferencesLoader.jsm");
+// Loaded in util.js
+//var {Services} = ChromeUtils.import('resource://gre/modules/Services.jsm');
+//const sl3log = ChromeUtils.import("resource://sendlater3/logging.jsm");
+var {MailUtils} = ChromeUtils.import("resource:///modules/MailUtils.jsm");
+var {AddonManager} =
+    ChromeUtils.import("resource://gre/modules/AddonManager.jsm");
+const {DefaultPreferencesLoader} =
+      ChromeUtils.import("resource://sendlater3/defaultPreferencesLoader.jsm");
 
 var Sendlater3Backgrounding = function() {
     var shuttingDown = false;
@@ -232,33 +238,17 @@ var Sendlater3Backgrounding = function() {
     }
     
     newMessageListener = {
-        // Thunderbird 2 and Postbox
-        itemAdded: function(item) {
-            var aMsgHdr = item.QueryInterface(
-                Components.interfaces.nsIMsgDBHdr);
-            newMessageListener.msgAdded(aMsgHdr);
-        },
-
         itemDeleted: function(item) {},
         itemMoveCopyCompleted: function(move, srcitems, destfolder) {},
         folderRenamed: function(oldName, newName) {},
         itemEvent: function(item, event, data) {},
 
-        // Thunderbird 3
         msgAdded: function(aMsgHdr) {
             if (aMsgHdr.getStringProperty("x-send-later-at")) {
                 if (! SL3U.getBoolPref("mark_drafts_read")) return;
-	        if (SL3U.IsPostbox()) {
-		    readlist = Components.
-                        classes["@mozilla.org/supports-array;1"]
-		    .createInstance(Components.interfaces.nsISupportsArray);
-		    readlist.AppendElement(aMsgHdr);
-	        }
-	        else {
-		    readlist = Components.classes["@mozilla.org/array;1"]
-		        .createInstance(Components.interfaces.nsIMutableArray);
-		    readlist.appendElement(aMsgHdr, false);
-	        }
+		readlist = Components.classes["@mozilla.org/array;1"]
+		    .createInstance(Components.interfaces.nsIMutableArray);
+		readlist.appendElement(aMsgHdr, false);
 	        aMsgHdr.folder.markMessagesRead(readlist, true);
             }
             else {
@@ -271,11 +261,8 @@ var Sendlater3Backgrounding = function() {
 	    .classes["@mozilla.org/messenger/msgnotificationservice;1"]
 	    .getService(Components.interfaces
 			.nsIMsgFolderNotificationService);
-	if (SL3U.IsPostbox())
-	    notificationService.addListener(newMessageListener);
-        else
-	    notificationService.addListener(newMessageListener, 
-					    notificationService.msgAdded);
+	notificationService.addListener(newMessageListener, 
+					notificationService.msgAdded);
     };
     function removeNewMessageListener() {
 	var notificationService = Components
@@ -437,70 +424,23 @@ var Sendlater3Backgrounding = function() {
 	}
     }
 
-    function displayprogressbar() {
-	return SL3U.getBoolPref("showprogress");
-    }
-
-    var DisplayMessages = new Array();
-
-    var DisplayReportTimer;
-    var DisplayReportCallback = {
-	notify: function(timer) {
-	    sl3log.Entering("Sendlater3Backgrounding.DisplayReportCallback.notify");
-	    if (DisplayMessages.length>0) {
-		var msg = DisplayMessages.shift();
-		document.getElementById("sendlater3-status").value = msg;
-	    }
-	    else {
-		timer.cancel();
-	    }
-	    sl3log.Leaving("Sendlater3Backgrounding.DisplayReportCallback.notify");
-	}
-    }
-
-    function StatusReportMsg(msg) {
+    function StatusReportMsg(msg, extra) {
 	sl3log.Entering("Sendlater3Backgrounding.StatusReportMsg");
-	if (!DisplayMessages.length) {
-	    DisplayReportTimer = Components.classes["@mozilla.org/timer;1"]
-		.createInstance(Components.interfaces.nsITimer);
-	    DisplayReportTimer.initWithCallback(
-		DisplayReportCallback,
-		300,
-		Components.interfaces.nsITimer.TYPE_REPEATING_SLACK
-	    );
-	}
-	DisplayMessages.push(msg);   
+        if (document) {
+            var status = document.getElementById("sendlater3-panel");
+            if (status) {
+                var value = SL3U.PromptBundleGet("MessageTag") + " [" +
+                    SL3U.PromptBundleGet(msg);
+                if (extra != null)
+                    value += " " + extra;
+                value += "]";
+                status.setAttribute("label", value);
+            }
+        }
 	sl3log.Leaving("Sendlater3Backgrounding.StatusReportMsg");
     }
 
     var MessagesPending=0;
-    var ProgressValue;
-    var ProgressMax;
-
-    function ProgressSet(str, where) {
-	var n = document.getElementById("sendlater3-anim");
-	n.max = ProgressMax;
-	n.value = ProgressValue;
-	sl3log.debug(str+"("+where+"): value="+n.value+", max="+n.max+
-		   ", ProgressValue="+ProgressValue+", ProgressMax="+
-		   ProgressMax);
-    }
-
-    function ProgressClear(where) {
-	ProgressValue = 0;
-	ProgressMax = 0;
-	ProgressSet("ProgressClear", where);
-    }
-
-    function ProgressAdd(where) {
-	ProgressMax++;
-	ProgressSet("ProgressAdd", where);
-    }
-
-    function ProgressFinish(where) {
-	ProgressValue++;
-	ProgressSet("ProgressFinish", where);
-    }
 
     function CopyUnsentListener(content, uri, hdr, messageId, sendat, recur,
                                 cancelOnReply, args) {
@@ -578,7 +518,7 @@ var Sendlater3Backgrounding = function() {
 	    else {
 		sl3log.info("Message " + this._uri + " deposited in Outbox.");
 	    }
-	    SetAnimTimer(3000);
+	    SetStatusTimer(3000);
             if (MessagesPending)
                 MessagesPending--;
 	    if (recur) {
@@ -665,50 +605,48 @@ var Sendlater3Backgrounding = function() {
 	}
     };
 
-    var AnimTimer = null;
-    var AnimCallback = {
+    var StatusTimer = null;
+    var StatusCallback = {
 	notify: function(timer) {
-	    sl3log.Entering("Sendlater3Backgrounding.AnimCallback.notify");
+	    sl3log.Entering("Sendlater3Backgrounding.StatusCallback.notify");
             cancelOnReplyHandler.rotate();
 	    sl3log.debug("STATUS MESSAGE - " + MessagesPending);
 	    if (document != null) {
-		document.getElementById("sendlater3-deck").selectedIndex = 1;
-		var strbundle =
-		    document.getElementById("sendlater3-backgroundstrings");
+                var extra = null;
 		var status;
 
 		if (MessagesPending > 0) {
-		    status = strbundle.getString("PendingMessage") + " " +
-			MessagesPending;
+                    status = "PendingMessage";
+                    extra = MessagesPending;
 		}
 		else {
                     lastMessagesPending = 0;
                     if (Sendlater3Backgrounding.BackgroundTimer) {
-		        status = strbundle.getString("IdleMessage");
+		        status = "IdleMessage";
 		    }
 		    else {
-		        status = strbundle.getString("DisabledMessage");
+		        status = "DisabledMessage";
 		    }
                 }
 
-		StatusReportMsg(strbundle.getString("MessageTag") + " [" + status + "]");
+		StatusReportMsg(status, extra);
 	    }
-	    sl3log.Leaving("Sendlater3Backgrounding.AnimCallback.notify");
+	    sl3log.Leaving("Sendlater3Backgrounding.StatusCallback.notify");
 	}
     }
-    function SetAnimTimer(timeout) {
-	sl3log.Entering("Sendlater3Backgrounding.SetAnimTimer");
-	if (AnimTimer != null) {
-	    AnimTimer.cancel();
+    function SetStatusTimer(timeout) {
+	sl3log.Entering("Sendlater3Backgrounding.SetStatusTimer");
+	if (StatusTimer != null) {
+	    StatusTimer.cancel();
 	}
-	AnimTimer = Components.classes["@mozilla.org/timer;1"]
+	StatusTimer = Components.classes["@mozilla.org/timer;1"]
 	    .createInstance(Components.interfaces.nsITimer);
-	AnimTimer.initWithCallback(
-	    AnimCallback,
+	StatusTimer.initWithCallback(
+	    StatusCallback,
 	    timeout,
 	    Components.interfaces.nsITimer.TYPE_ONE_SHOT
 	);
-	sl3log.Leaving("Sendlater3Backgrounding.SetAnimTimer");
+	sl3log.Leaving("Sendlater3Backgrounding.SetStatusTimer");
     }
 
     // Can we assume that a read from a hung server will eventually time out
@@ -837,11 +775,9 @@ var Sendlater3Backgrounding = function() {
                                                   this._cancelOnReply,
 						  this._args)
 	    SL3U.CopyStringMessageToFolder(content, fdrunsent,listener);
-	    ProgressFinish("finish streaming message");
 	    sl3log.Leaving("Sendlater3Backgrounding.UriStreamListener.onStopRequest");
 	},
-	onDataAvailable: function(aReq, aContext, aInputStream, aOffset,
-				  aCount) {
+	onDataAvailable: function(aReq, aInputStream, aOffset, aCount) {
 	    sl3log.Entering("Sendlater3Backgrounding.UriStreamListener.onDataAvailable");
 	    var uuidOk = checkUuid(false);
 	    var cycleOk = cycle == this._cycle;
@@ -895,7 +831,6 @@ var Sendlater3Backgrounding = function() {
 	    sl3log.debug("Checking message : " + messageURI);
 
 	    if (MessagesChecked[messageURI]) {
-		ProgressFinish("finish checking message");
 		sl3log.debug("Skipping " + messageURI + " already checked");
 		sl3log.Returning("Sendlater3Backgrounding.CheckThisUriCallback.notify", "(found in MessagesChecked)");
 		return;
@@ -980,14 +915,12 @@ var Sendlater3Backgrounding = function() {
                 // Count messages being sent right now as pending until
                 // they're done being sent and aren't recurring.
                 MessagesPending++;
-		ProgressAdd("start streaming message");
 		MsgService.streamMessage(messageURI,
 					 new UriStreamListener(messageURI, messageHDR),
 					 msgWindow, null, false, null);
 		break;
 	    }
-	    ProgressFinish("finish checking message");
-	    SetAnimTimer(3000);
+	    SetStatusTimer(3000);
 	    sl3log.Leaving("Sendlater3Backgrounding.CheckThisUriCallback.notify");
 	}
     }
@@ -1008,7 +941,6 @@ var Sendlater3Backgrounding = function() {
 	    );
 	}
 	CheckThisURIQueue.push(messageURI);
-	ProgressAdd("CheckThisURIQueueAdd");
 	sl3log.Leaving("Sendlater3Backgrounding.CheckThisURIQueueAdd");
     }
 
@@ -1028,17 +960,12 @@ var Sendlater3Backgrounding = function() {
     var foldersdone = new Object();
 
     function CheckLoadedFolder(folder) {
-	SetAnimTimer(3000);
+	SetStatusTimer(3000);
 	var thisfolder = folder
 	    .QueryInterface(Components.interfaces.nsIMsgFolder);
 	var messageenumerator;
 	try {
-	    if (SL3U.IsPostbox()) {
-		messageenumerator = thisfolder.getMessages(msgWindow);
-	    }
-	    else {
-		messageenumerator = thisfolder.messages;
-	    }
+	    messageenumerator = thisfolder.messages;
 	}
 	catch (e) {
 	    var lmf;
@@ -1072,14 +999,8 @@ var Sendlater3Backgrounding = function() {
 		var messageDBHDR = messageenumerator.getNext()
 		    .QueryInterface(Components.interfaces
 				    .nsIMsgDBHdr);
-		var flags;
-		if (SL3U.IsPostbox()) {
-		    flags = 2097152 | 8; // Better way to do this?
-		}
-		else {
-		    var f = Components.interfaces.nsMsgMessageFlags;
-		    flags = f.IMAPDeleted | f.Expunged;
-		}
+		var f = Components.interfaces.nsMsgMessageFlags;
+		var flags = f.IMAPDeleted | f.Expunged;
 		if (! (messageDBHDR.flags & flags)) {
 		    var messageURI = thisfolder
 			.getUriForMsg(messageDBHDR);
@@ -1109,19 +1030,17 @@ var Sendlater3Backgrounding = function() {
 
 	    if (eventType == "FolderLoaded") {
 		if (folderstocheck[folder.URI]) {
-		    SetAnimTimer(3000);
+		    SetStatusTimer(3000);
 		    sl3log.debug("FolderLoaded checking: "+folder.URI);
 		    delete folderstocheck[folder.URI];
 		    foldersdone[folder.URI] = 1;
 		    CheckLoadedFolder(folder);
-		    ProgressFinish("finish checking folder");
 		}
 	    }
 	    else if (eventType == "Immediate") {
-		SetAnimTimer(3000);
+		SetStatusTimer(3000);
 		sl3log.debug("Immediate checking: "+folder.URI);
 		CheckLoadedFolder(folder);
-		ProgressFinish("finish checking folder");
 	    }
 
 	    sl3log.Leaving("Sendlater3Backgrounding.folderLoadListener.OnItemEvent");
@@ -1129,24 +1048,8 @@ var Sendlater3Backgrounding = function() {
     };
 
 
-    // https://bugzilla.mozilla.org/show_bug.cgi?id=889022
-    if (! SL3U.IsPostbox()) {
-	Components.utils.import("resource:///modules/MailUtils.js");
-    }
-
-    function getMsgFolderFromUri(uri, checkFolderAttributes) {
-	var msgfolder = null;
-	if (typeof MailUtils != 'undefined') {
-	    return MailUtils.getFolderForURI(uri, checkFolderAttributes);
-	}
-	var resource = GetResourceFromUri(uri);
-	msgfolder = resource.QueryInterface(Components.interfaces.nsIMsgFolder);
-	if (checkFolderAttributes) {
-	    if (!(msgfolder && (msgfolder.parent || msgfolder.isServer))) {
-		msgfolder = null;
-	    }
-	}
-	return msgfolder;
+    function getMsgFolderFromUri(uri) {
+	return MailUtils.getExistingFolder(uri);
     };
 
     var CheckForSendLaterCallback = {
@@ -1195,7 +1098,6 @@ var Sendlater3Backgrounding = function() {
             quitConfirmed = false;
 
 	    MessagesPending = 0;
-	    ProgressClear("CheckForSendLaterCallback.notify");
 
 	    cycle++;
 
@@ -1221,12 +1123,7 @@ var Sendlater3Backgrounding = function() {
 	    foldersdone = new Object();
 	    MessagesChecked = new Object();
 
-	    
-	    sl3log.debug("Progress Animation SET");
-	    if (displayprogressbar()) {
-		document.getElementById("sendlater3-deck").selectedIndex = 0;
-	    }
-
+            StatusReportMsg("CheckingMessage");
 	    var CheckFolder = function(folder, schedule, msg) {
 		var uri = folder.URI;
 		if (folderstocheck[uri] || foldersdone[uri]) {
@@ -1236,7 +1133,6 @@ var Sendlater3Backgrounding = function() {
 		if (schedule) {
 		    folderstocheck[uri] = 1;
 		    sl3log.debug("SCHEDULE " + msg + " - " + uri);
-		    ProgressAdd(msg);
 		    try {
 			// Documentation for nsiMsgFolder says, "Note:
 			// Even if the folder doesn't currently exist,
@@ -1260,7 +1156,6 @@ var Sendlater3Backgrounding = function() {
 		// sometimes updateFolder doesn't generate a folder
 		// loaded event. *sigh*
 		sl3log.debug("IMMEDIATE " + msg + " - " + uri);
-		ProgressAdd(msg + " immediate");
 		folderLoadListener.OnItemEvent(folder, "Immediate");
 	    }
 	    
@@ -1289,7 +1184,7 @@ var Sendlater3Backgrounding = function() {
 		}
 		catch (e) {
 		    sl3log.debug("default Drafts folder " + local_draft_pref +
-			       " does not exist?");
+			         " does not exist?");
 		}
 		if (folder) {
 		    CheckFolder(folder, true, "default Drafts folder");
@@ -1308,7 +1203,7 @@ var Sendlater3Backgrounding = function() {
 	    }
 
 	    for (acindex = 0;acindex < numAccounts;acindex++) {
-		SetAnimTimer(3000);
+		SetStatusTimer(3000);
 		var thisaccount;
 		try {
 		    thisaccount =  allaccounts
@@ -1334,7 +1229,7 @@ var Sendlater3Backgrounding = function() {
 			numIdentities = thisaccount.identities.length;
 		    }
 		    sl3log.debug(thisaccount.incomingServer.type + 
-			       " - Identities [" + numIdentities + "]");
+			         " - Identities [" + numIdentities + "]");
 		    switch (thisaccount.incomingServer.type) {
 		    case "pop3":
 		    case "imap":
@@ -1387,9 +1282,9 @@ var Sendlater3Backgrounding = function() {
 
     var SetUpStatusBar = {
 	observe: function() {
+            panel = document.getElementById("sendlater3-panel");
 	    var showStatus = SL3U.getBoolPref("showstatus");
-	    document.getElementById("sendlater3-panel")
-		.setAttribute("hidden", ! showStatus);
+	    panel.hidden = ! showStatus;
 	}
     };
 
@@ -1483,43 +1378,6 @@ var Sendlater3Backgrounding = function() {
             "https://blog.kamens.us/send-later-3/#notes-" + current_version;
         if (! ShouldDisplayReleaseNotes(relnotes, current_version))
             return;
-	if (SL3U.IsPostbox())
-            return;
-        if (SL3U.IsSeaMonkey()) {
-	    mediator = Components
-		.classes['@mozilla.org/appshell/window-mediator;1']
-		.getService(Components.interfaces.nsIWindowMediator)
-            browser = mediator.getMostRecentWindow("navigator:browser");
-            if (browser) {
-                browser.gBrowser.loadOneTab(Sendlater3Backgrounding.notesUrl,
-                                            {inBackground: false});
-                Components.classes["@mozilla.org/timer;1"]
-                    .createInstance(Components.interfaces.nsITimer)
-                    .initWithCallback(
-                        {notify: function(timer) {browser.focus();}}, 1000,
-                        Components.interfaces.nsITimer.TYPE_ONE_SHOT);
-            }
-            else {
-                Components.utils.import("resource://gre/modules/Services.jsm");
-                let browserUrl;
-                try {
-                    browserUrl = Services.prefs.getCharPref(
-                        "browser.chromeURL");
-                }
-                catch (e) {
-                    browserUrl = "chrome://navigator/content/navigator.xul";
-                }
-                argstring = Components.classes["@mozilla.org/supports-string;1"]
-                    .createInstance(Components.interfaces.nsISupportsString);
-                argstring.data = Sendlater3Backgrounding.notesUrl;
-                Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
-                    .getService(Components.interfaces.nsIWindowWatcher).
-                    openWindow(null, browserUrl, "", "chrome,all,dialog=no",
-                               argstring);
-            }
-            return;
-        }
-        // Thunderbird
         Components
             .classes['@mozilla.org/appshell/window-mediator;1']
             .getService(Components.interfaces.nsIWindowMediator)
@@ -1531,33 +1389,8 @@ var Sendlater3Backgrounding = function() {
     }
     
     function DisplayReleaseNotes() {
-        try {
-            Components.utils.import("resource://gre/modules/AddonManager.jsm");
-            addon = AddonManager.getAddonByID("sendlater3@kamens.us",
-                                              DisplayReleaseNotesCallback);
-        }
-        catch (e) {
-            let enabledItems = null;
-            try {
-                enabledItems = SL3U.PrefService
-                    .getCharPref("extensions.enabledAddons");
-            }
-            catch (e) {
-                try {
-                    enabledItems = SL3U.PrefService
-                        .getCharPref("extensions.enabledItems");
-                }
-                catch (e) {}
-            }
-
-            if (! enabledItems)
-                return;
-
-            var matches = enabledItems.match(
-                    /sendlater3(@|%40)kamens\.us:([^,]+)/);
-            if (matches)
-                DisplayReleaseNotesCallback({version: matches[2]})
-        }
+        addon = AddonManager.getAddonByID("sendlater3@kamens.us",
+                                          DisplayReleaseNotesCallback);
     }
 
     function ReplaceMessageId(content, uri) {
@@ -1652,7 +1485,7 @@ var Sendlater3Backgrounding = function() {
                                       "$1" + newMessageId);
         else if (/\n\n/.exec(content)) {
             content = content.replace(
-                    /\n\n/, "\nMessage-ID: " + newMessageId + "\n\n");
+                /\n\n/, "\nMessage-ID: " + newMessageId + "\n\n");
         }
         else if (/\n$/.exec(content)) {
             content = content + "Message-ID: " + newMessageId + "\n";
@@ -1769,16 +1602,9 @@ var Sendlater3Backgrounding = function() {
 
     function deleteMessage(hdr) {
         var dellist;
-        if (SL3U.IsPostbox()) {
-            dellist = Components.classes["@mozilla.org/supports-array;1"]
-                .createInstance(Components.interfaces.nsISupportsArray);
-            dellist.AppendElement(hdr);
-        }
-        else {
-            dellist = Components.classes["@mozilla.org/array;1"]
-                .createInstance(Components.interfaces.nsIMutableArray);
-            dellist.appendElement(hdr, false);
-        }
+        dellist = Components.classes["@mozilla.org/array;1"]
+            .createInstance(Components.interfaces.nsIMutableArray);
+        dellist.appendElement(hdr, false);
         hdr.folder.deleteMessages(dellist, msgWindow, true, false,
                                   null, false);
     };

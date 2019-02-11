@@ -11,7 +11,6 @@ pref("extensions.sendlater3.quickoptions.3.valuestring","120");
 pref("extensions.sendlater3.showheader",true);
 pref("extensions.sendlater3.showcolumn",true);
 pref("extensions.sendlater3.showstatus",true);
-pref("extensions.sendlater3.showprogress",true);
 // "Info" for terse logging, "Debug" for verbose logging, "Trace" for everything
 pref("extensions.sendlater3.logging.console","Warn");
 pref("extensions.sendlater3.logging.dump","Fatal");

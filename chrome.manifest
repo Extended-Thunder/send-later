@@ -1,8 +1,5 @@
 content	sendlater3	chrome/content/
 content sendlater3-defaults defaults/
-content sendlater3-datepicker chrome/content/custom-datepicker-bindings/ application={92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}
-content sendlater3-datepicker chrome/content/custom-datepicker-bindings/ application={3550f703-e582-4d05-9a08-453d09bdfdc6} appversion<61.0
-content sendlater3-datepicker chrome/content/stock-datepicker-bindings/ application={3550f703-e582-4d05-9a08-453d09bdfdc6} appversion>=61.0
 resource sendlater3	chrome/resource/
 locale  sendlater3      bg      chrome/locale/bg-BG/
 locale	sendlater3	ca	chrome/locale/ca-ES/
@@ -29,10 +26,7 @@ locale	sendlater3	sv	chrome/locale/sv-SE/
 locale	sendlater3	tr	chrome/locale/tr-TR/
 locale	sendlater3	zh-CN	chrome/locale/zh-CN/
 locale	sendlater3	zh-TW	chrome/locale/zh-TW/
-overlay	chrome://messenger/content/messenger.xul	chrome://sendlater3/content/backgrounding.xul application={3550f703-e582-4d05-9a08-453d09bdfdc6} application={92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}
-overlay	chrome://messenger/content/messenger.xul	chrome://sendlater3/content/backgroundingPostbox.xul application=postbox@postbox-inc.com
-overlay	chrome://messenger/content/messenger.xul	chrome://sendlater3/content/headerView.xul application={3550f703-e582-4d05-9a08-453d09bdfdc6}
-overlay	chrome://messenger/content/messenger.xul	chrome://sendlater3/content/headerViewTB2.xul application={92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}
-overlay	chrome://messenger/content/messenger.xul	chrome://sendlater3/content/headerViewPostbox.xul application=postbox@postbox-inc.com
+overlay	chrome://messenger/content/messenger.xul	chrome://sendlater3/content/backgrounding.xul
+overlay	chrome://messenger/content/messenger.xul	chrome://sendlater3/content/headerView.xul
 overlay chrome://messenger/content/messengercompose/messengercompose.xul chrome://sendlater3/content/composing.xul
 overlay chrome://messenger/content/messengercompose/messengercompose.xul chrome://sendlater3/content/composeToolbar.xul

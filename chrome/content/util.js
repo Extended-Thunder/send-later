@@ -1,11 +1,6 @@
-Components.utils.import("resource://sendlater3/ufuncs.jsm");
-Components.utils.import("resource://sendlater3/logging.jsm");
-
-try {
-    Components.utils.import("resource:///modules/gloda/log4moz.js");
-}
-catch (ex) {
-}
+var {Services} = ChromeUtils.import('resource://gre/modules/Services.jsm');
+const sl3uf = ChromeUtils.import("resource://sendlater3/ufuncs.jsm");
+const sl3log = ChromeUtils.import("resource://sendlater3/logging.jsm");
 
 var Sendlater3Util = {
     alert: function(window, title, text) {
@@ -32,6 +27,16 @@ var Sendlater3Util = {
         return Sendlater3Util.PrefService.setCharPref(pref, value);
     },
 
+    getStringPref: function(tail) {
+        var pref = Sendlater3Util.pref(tail);
+        return Sendlater3Util.PrefService.getStringPref(pref);
+    },
+
+    setStringPref: function(tail, value) {
+        var pref = Sendlater3Util.pref(tail);
+        return Sendlater3Util.PrefService.setStringPref(pref, value);
+    },
+
     getIntPref: function(tail) {
         var pref = Sendlater3Util.pref(tail);
         return Sendlater3Util.PrefService.getIntPref(pref);
@@ -55,15 +60,7 @@ var Sendlater3Util = {
     _PromptBundle: null,
 
     isOnline: function() {
-        if (Sendlater3Util.IsSeaMonkey()) {
-            // MailOfflineMgr doesn't exist in SeaMonkey
-            var ioService = Components.classes["@mozilla.org/network/io-service;1"]
-                .getService(Components.interfaces.nsIIOService);
-            return (!ioService.offline);
-        }
-        else {
-            return MailOfflineMgr.isOnline();
-        }
+        return MailOfflineMgr.isOnline();
     },
 
     appName: function() {
@@ -72,39 +69,16 @@ var Sendlater3Util = {
         return appInfo.name;
     },
 
-    IsSeaMonkey: function() {
-        return(Sendlater3Util.appName() == "SeaMonkey");
-    },
-
-    IsPostbox: function() {
-        return(Sendlater3Util.appName() == "Postbox");
-    },
-
     FindSubFolder: function(folder, name) {
-        if (Sendlater3Util.IsPostbox()) {
-            return folder.FindSubFolder(name);
-        }
-        else {
-            return folder.findSubFolder(name);
-        }
+        return folder.findSubFolder(name);
     },
 
     HeaderRowId: function() {
-        if (Sendlater3Util.IsSeaMonkey()) {
-            return "sendlater3-expanded-Box";
-        }
-        else {
-            return "sendlater3-expanded-Row";
-        }
+        return "sendlater3-expanded-Row";
     },
 
     ComposeToolboxName: function() {
-        if (Sendlater3Util.IsPostbox()) {
-            return "compose-toolbox2";
-        }
-        else {
-            return "compose-toolbox";
-        }
+        return "compose-toolbox";
     },
 
     SetTreeAttribute: function(object, attribute, value) {
@@ -133,17 +107,17 @@ var Sendlater3Util = {
     PromptBundleGet: function(name) {
         sl3log.Entering("Sendlater3Util.PromptBundleGet", name);
         sl3log.Returning("Sendlater3Util.PromptBundleGet",
-                                 Sendlater3Util._PromptBundle.getString(name));
-        return Sendlater3Util._PromptBundle.getString(name);
+                         Sendlater3Util._PromptBundle.GetStringFromName(name));
+        return Sendlater3Util._PromptBundle.GetStringFromName(name);
     },
 
     PromptBundleGetFormatted: function(name, params) {
         sl3log.Entering("Sendlater3Util.PromptBundleGetFormatted", name,
-                                params, length);
+                        params);
         var formatted = Sendlater3Util._PromptBundle
-            .getFormattedString(name, params)
+            .formatStringFromName(name, params, params.length)
         sl3log.Returning("Sendlater3Util.PromptBundleGetFormatted",
-                                 formatted);
+                         formatted);
         return formatted;
     },
 
@@ -194,15 +168,28 @@ var Sendlater3Util = {
 
     ShortcutClosure: function(num, validate) {
         sl3log.Entering("Sendlater3Util.ShortcutClosure", num, validate);
+        var raw, ret;
         if (validate == undefined) {
-            validate = false;
-        }
-        var raw = Sendlater3Util.getCharPref("quickoptions." + num +
+            raw = Sendlater3Util.getCharPref("quickoptions." + num +
                                              ".valuestring");
+        }
+        else {
+            raw = validate;
+        }
+        if (! raw) {
+            ret = false;
+            sl3log.Returning("Sendlater3Util.ShortcutClosure", ret);
+            return ret;
+        }
         if (raw.match(/^[0-9]+$/)) {
-            var func = function() { return raw; };
-            sl3log.Returning("Sendlater3Util.ShortcutClosure", func);
-            return func;
+            if (validate) {
+                ret = true;
+            }
+            else {
+                ret = function() { return raw; };
+            }
+            sl3log.Returning("Sendlater3Util.ShortcutClosure", ret);
+            return ret;
         }
         var match = /^(.*\S)\s*\((.*)\)[\s;]*$/.exec(raw);
         var namepart;
@@ -1245,7 +1232,8 @@ var Sendlater3Util = {
     initUtil: function() {
         sl3log.Entering("Sendlater3Util.initUtil");
         Sendlater3Util._PromptBundle =
-            document.getElementById("sendlater3-promptstrings");
+            Services.strings.createBundle(
+                "chrome://sendlater3/locale/prompt.properties");
         if (! ("addObserver" in Sendlater3Util.PrefService)) {
             Sendlater3Util.PrefService
                 .QueryInterface(Components.interfaces.nsIPrefBranch2);
@@ -1316,15 +1304,9 @@ var Sendlater3Util = {
                 .classes["@mozilla.org/messenger/messagecopyservice;1"]
                 .getService(Components.interfaces.nsIMsgCopyService);
         }
-        if (Sendlater3Util.IsPostbox()) {
-            Sendlater3Util.copyService.CopyFileMessage(sfile, folder, 0, "",
-                                                       listener, msgWindow);
-        }
-        else {
-            Sendlater3Util.copyService.CopyFileMessage(sfile, folder, null,
-                                                       false, 0, "", listener,
-                                                       msgWindow);
-        }
+        Sendlater3Util.copyService.CopyFileMessage(sfile, folder, null,
+                                                   false, 0, "", listener,
+                                                   msgWindow);
     },
 
     WaitAndDelete: function(file_arg) {

@@ -1,11 +1,11 @@
-Send Later Thunderbird / SeaMonkey / Postbox add-on
+Send Later Thunderbird add-on
 ===================================================
 
 Add-on for allowing email messages to be scheduled to be sent later.
 
 AMO home page, from which the add-on can be downloaded and installed:
-[https://addons.mozilla.org/thunderbird/addon/send-later-3/](
-https://addons.mozilla.org/thunderbird/addon/send-later-3/)
+[https://addons.thunderbird.net/thunderbird/addon/send-later-3/](
+https://addons.thunderbird.net/thunderbird/addon/send-later-3/)
 
 User guide: [https://blog.kamens.us/send-later/](
 https://blog.kamens.us/send-later/)

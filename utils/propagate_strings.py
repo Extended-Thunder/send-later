@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # Copies the program name -- whose canonical location is the "MessageTag"
-# property in background.properties -- into other locations that want it.
+# property in prompt.properties -- into other locations that want it.
 
 import argparse
 import glob
@@ -63,7 +63,7 @@ def substitute_strings_in_locale_file(locale_file, keys, string, replacement,
 
 def substitute_addon_name(args):
     ok = True
-    addon_name = LocaleFile('chrome/locale/en-US/background.properties')[
+    addon_name = LocaleFile('chrome/locale/en-US/prompt.properties')[
         'MessageTag']
 
     for locale_dir in glob.glob('chrome/locale/*'):

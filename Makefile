@@ -6,11 +6,11 @@ all: send_later.xpi
 send_later.xpi: utils/check-locales.pl utils/propagate_strings.py \
     utils/check-accesskeys.py utils/check-locale-integration.py \
     utils/check-manifests.sh Makefile include-manifest exclude-manifest2 \
-    chrome/content/backgroundingPostbox.xul \
     $(shell ls $(shell cat include-manifest) 2>/dev/null)
 	./utils/check-manifests.sh --excludes exclude-manifest2 --overlap \
 		--extra
 	./utils/fix-addon-ids.pl --check
+	./utils/make-manifest-locales.pl
 	./utils/check-locale-integration.py
 	-rm -rf $@.tmp
 	mkdir $@.tmp
@@ -33,7 +33,7 @@ send_later.xpi: utils/check-locales.pl utils/propagate_strings.py \
 	mv $@.tmp/$@.tmp $@
 	rm -rf $@.tmp
 
-clean:: ; -rm -f *.xpi *.tmp */*.pyc chrome/content/backgroundingPostbox.xul
+clean:: ; -rm -f *.xpi *.tmp */*.pyc
 clean:: ; -rm -f exclude-manifest2
 
 exclude-manifest2: exclude-manifest
@@ -62,16 +62,4 @@ locale_export: crowdin.yaml
 crowdin.yaml: crowdin.yaml.template
 	set -e; echo -n "Enter Crowdin API key: "; read api_key; \
 	sed -e "s/{{api_key}}/$$api_key/" $< > $@.tmp
-	mv -f $@.tmp $@
-
-locale_import.babelzilla: Send_Later_selected_locales_skipped.tar.gz
-	tar -C chrome/locale -xzf $<
-	./utils/import-localized.pl
-	./utils/locale-headers.pl chrome/locale/*/*.{properties,dtd}
-	rm -f chrome/locale/BZ_localized.txt $<
-
-chrome/content/backgroundingPostbox.xul: chrome/content/backgrounding.xul
-	sed -e 's/statusbar id="status-bar"/vbox id="folderPaneBox"/' \
-            -e 's,</statusbar>,</vbox>,' $< > $@.tmp
-	! cmp -s $< $@.tmp
 	mv -f $@.tmp $@

@@ -1,4 +1,4 @@
-var EXPORTED_SYMBOLS = ["sendlater3DateParse", "sendlater3DateToSugarDate", "sendlater3SugarLocale"];
+var EXPORTED_SYMBOLS = ["DateParse", "DateToSugarDate", "SugarLocale"];
 
 // Using mozIJSSubScriptLoader instead of Cu.import because I want to
 // preserve SugarJS unmodified from the official
@@ -51,7 +51,7 @@ function getLocale() {
     return locale;
 }
 
-function sendlater3DateParse(date) {
+function DateParse(date) {
     // Sugar.Date.create is actually Sugar.Date.parse. It returns an unextended
     // Date object. Since we call Date.extend above, the core Date constructor
     // now returns an extended object, so we use that after parsing to create
@@ -66,10 +66,10 @@ function sendlater3DateParse(date) {
     return obj;
 }
 
-function sendlater3DateToSugarDate(date) {
+function DateToSugarDate(date) {
     return new Date(date);
 }
 
-function sendlater3SugarLocale() {
+function SugarLocale() {
     return getLocale();
 }

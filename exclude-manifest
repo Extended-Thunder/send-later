@@ -3,6 +3,8 @@ README.md
 TESTS.txt
 TODO.txt
 TRANSLATING.md
+chrome/content/custom-datepicker-bindings/datetimepicker.css
+chrome/content/datetimepicker.xml
 crowdin.yaml
 crowdin.yaml.template
 exclude-manifest
@@ -46,4 +48,5 @@ utils/fix-addon-ids.pl
 utils/import-localized.pl
 utils/locale-headers.pl
 utils/locale_file.py
+utils/make-manifest-locales.pl
 utils/propagate_strings.py

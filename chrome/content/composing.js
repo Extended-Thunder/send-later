@@ -1,11 +1,6 @@
-Components.utils.import("resource://sendlater3/dateparse.jsm");
-Components.utils.import("resource://sendlater3/logging.jsm");
-
-// This variable disappeared from Seamonkey as of 2.41a1. See
-// https://bugzilla.mozilla.org/show_bug.cgi?id=1290187. Not sure what's up
-// with this, but until I find out, this seems like the most logical fix.
-if (typeof(nsIMsgCompDeliverMode) == 'undefined')
-    nsIMsgCompDeliverMode = Components.interfaces.nsIMsgCompDeliverMode;
+const dateparse = ChromeUtils.import("resource://sendlater3/dateparse.jsm");
+// Loaded in util.js
+//const sl3log = ChromeUtils.import("resource://sendlater3/logging.jsm");
 
 var Sendlater3Composing = {
     // Unfortunately, the NotifyComposeBodyReady event lies nowadays -- the
@@ -252,7 +247,7 @@ var Sendlater3Composing = {
                     var hdr = messageHDR.getStringProperty("x-send-later-at");
                     if (hdr) {
                         Sendlater3Composing.prevXSendLater =
-                            sendlater3DateToSugarDate(new Date(hdr));
+                            dateparse.DateToSugarDate(new Date(hdr));
                         gMsgCompose.RegisterStateListener(Sendlater3Composing
                                                           .composeListener);
                     }
@@ -316,10 +311,10 @@ var Sendlater3Composing = {
                     return;
                 }
                 var msgtype = msgcomposeWindow.getAttribute("msgtype");
-                var later = msgtype == nsIMsgCompDeliverMode.Later;
+                var later = msgtype == Ci.nsIMsgCompDeliverMode.Later;
                 if (! (later ||
-                       ((msgtype == nsIMsgCompDeliverMode.Now ||
-                         msgtype == nsIMsgCompDeliverMode.Background) &&
+                       ((msgtype == Ci.nsIMsgCompDeliverMode.Now ||
+                         msgtype == Ci.nsIMsgCompDeliverMode.Background) &&
                         SL3U.getBoolPref("sendbutton")))) {
                     Sendlater3Composing.callEnigmail(event);
                     return;
@@ -446,7 +441,7 @@ var Sendlater3Composing = {
             gCloseWindowAfterSave = true;
             var identity = getCurrentIdentity();
             Sendlater3Composing.PrepMessage(sendat, recur, cancelOnReply, args);
-            GenericSendMessage(nsIMsgCompDeliverMode.SaveAsDraft);
+            GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
             Sendlater3Composing.PostSendMessage();
 
             SL3U.SetUpdatePref(identity.key);

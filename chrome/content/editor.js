@@ -1,5 +1,6 @@
-Components.utils.import("resource://sendlater3/ufuncs.jsm");
-Components.utils.import("resource://sendlater3/dateparse.jsm");
+// Loaded in util.js
+//const sl3uf = ChromeUtils.import("resource://sendlater3/ufuncs.jsm");
+const dateparse = ChromeUtils.import("resource://sendlater3/dateparse.jsm");
 
 sl3e = {
     dirty: false,
@@ -169,7 +170,7 @@ sl3e = {
         if (! valid) {
             var dateObj;
             try {
-                dateObj = sendlater3DateParse(field.value);
+                dateObj = dateparse.DateParse(field.value);
                 valid = dateObj && dateObj.isValid();
             } catch (ex) {}
         }
@@ -198,7 +199,7 @@ sl3e = {
         var body = document.getElementById("code").value;
         var timeBox = document.getElementById("test-time");
         var timeString = timeBox.value;
-        var time = timeString ? sendlater3DateParse(timeString) : null;
+        var time = timeString ? dateparse.DateParse(timeString) : null;
         var argBox = document.getElementById("test-arguments");
         var argString = argBox.value;
         var resultsBox = document.getElementById("test-results");
@@ -237,8 +238,8 @@ sl3e = {
                 nextDate.setTime(nextDate.getTime() + next * 60 * 1000);
                 next = nextDate;
             }
-            timeBox.value = sendlater3DateToSugarDate(next)
-                .format("{long}", sendlater3SugarLocale());
+            timeBox.value = dateparse.DateToSugarDate(next)
+                .format("{long}", dateparse.SugarLocale());
             if (nextargs)
                 argBox.value = sl3uf.unparseArgs(nextargs);
             else
@@ -337,7 +338,7 @@ sl3e = {
                 return;
             var file = fp.file;
             try {
-                var imported = sl3uf.import(file);
+                var imported = sl3uf._import(file);
             }
             catch (ex) {
                 pfx = SL3U.PromptBundleGet("ImportError");
@@ -392,7 +393,7 @@ sl3e = {
             var name = document.getElementById("function-name").value;
             var help = document.getElementById("help-text").value;
             var body = document.getElementById("code").value;
-            sl3uf.export(name, help, body, file);
+            sl3uf._export(name, help, body, file);
         });
     },
 

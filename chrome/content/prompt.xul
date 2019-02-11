@@ -1,14 +1,13 @@
 <?xml version="1.0"?>
+
 <?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
 <?xml-stylesheet href="chrome://messenger/content/bindings.css" type="text/css"?>
-<?xml-stylesheet href="chrome://sendlater3-datepicker/content/datetimepicker.css" type="text/css"?>
+
 <!DOCTYPE window SYSTEM "chrome://sendlater3/locale/prompt.dtd">
 
-<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
-        title="&sendlater.prompt.title.label;">
-  <stringbundleset id="sendlater3-strbundles">
-    <stringbundle id="sendlater3-promptstrings" src="chrome://sendlater3/locale/prompt.properties"/>
-  </stringbundleset>
+<window title="&sendlater.prompt.title.label;"
+        xmlns:html="http://www.w3.org/1999/xhtml"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
   <script src="util.js"/>
   <script src="chrome://sendlater3/content/prompt.js"/>
   <keyset>
@@ -42,25 +41,18 @@
 		     tooltiptext="&sendlater.prompt.textbox.tooltip;"
 		     onkeypress="Sendlater3Prompt.CheckTextEnter(event) &amp;&amp; close();"/>
 	  </row>
-	  <row>
+          <!-- hidden because currently broken -->
+	  <row hidden="true">
 	    <hbox>
 	      <separator flex="1"/>
 	      <label align="right" value="&sendlater.prompt.or.label;"/>
 	    </hbox>
 	    <hbox>
 	      <separator flex="1"/>
-	      <!-- setTimeout used because of https://bugzilla.mozilla.org/show_bug.cgi?id=799219 -->
-              <!-- The add-on validator requires the first argument to
-                   setTimeout to be a function expression rather than a
-                   function. -->
-              <!-- firstdayofweek:
-                   https://bugzilla.mozilla.org/show_bug.cgi?id=516796 -->
-	      <datepicker id="sendlater3-datepicker" type="popup"
-                          firstdayofweek="NaN"
-			  onchange="window.setTimeout(function(){Sendlater3Prompt.pickersToText()}, 0);"/>
-	      <timepicker id="sendlater3-timepicker"
-			  onchange="window.setTimeout(function(){Sendlater3Prompt.pickersToText()}, 0);"
-			  hideseconds="true"/>
+	      <html:input type="date" id="sendlater3-datepicker"
+                          onchange="Sendlater3Prompt.pickersToText();"/>
+	      <html:input type="time" id="sendlater3-timepicker"
+                          onchange="Sendlater3Prompt.pickersToText();"/>
 	      <separator flex="1"/>
 	    </hbox>
 	  </row>
@@ -130,16 +122,17 @@
         </deck>
       </hbox>
 
-      <hbox align="center" id="sendlater3-recur-between-hbox">
+      <!-- hidden because currently broken -->
+      <hbox align="center" id="sendlater3-recur-between-hbox" hidden="true">
         <checkbox id="sendlater3-recur-between-checkbox"
                   label="&sendlater.prompt.between.label;"/>
-        <timepicker id="sendlater3-recur-between-start"
-                    hideseconds="true" value="00:00"
-                    onchange="window.setTimeout(function(){Sendlater3Prompt.BetweenStartUpdate()}, 0);"/>
+        <html:input type="time" id="sendlater3-recur-between-start"
+                    value="00:00"
+                    onchange="Sendlater3Prompt.BetweenStartUpdate();"/>
         <label value="-"/>
-        <timepicker id="sendlater3-recur-between-end"
-                    hideseconds="true" value="23:59"
-                    onchange="window.setTimeout(function(){Sendlater3Prompt.BetweenEndUpdate()}, 0);"/>
+        <html:input type="time" id="sendlater3-recur-between-end"
+                    value="23:59"
+                    onchange="Sendlater3Prompt.BetweenEndUpdate();"/>
       </hbox>
       <hbox align="top" id="sendlater3-recur-on-hbox">
         <checkbox id="sendlater3-recur-on-checkbox"

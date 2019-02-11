@@ -1,4 +1,5 @@
-Components.utils.import("resource://sendlater3/logging.jsm");
+// Loaded in util.js
+//const sl3log = ChromeUtils.import("resource://sendlater3/logging.jsm");
 
 var Sendlater3HeaderView = function() {
     SL3U.initUtil();
@@ -10,14 +11,7 @@ var Sendlater3HeaderView = function() {
 	getCellText: function(row, col) {
 	    sl3log.Entering("Sendlater3HeaderView.sendlater3columnHandler.getCellText", row, col);
 	    var hdr;
-	    if (SL3U.IsPostbox()) {
-		var key = gDBView.getKeyAt(row);
-		var folder = gDBView.getFolderForViewIndex(row);
-		hdr = folder.GetMessageHeader(key);
-	    }
-	    else {
-		hdr = gDBView.getMsgHdrAt(row);
-	    }
+	    hdr = gDBView.getMsgHdrAt(row);
 	    var retval = hdr.getStringProperty("x-send-later-at");
 	    if (retval != "") {
 		var recur = hdr.getStringProperty("x-send-later-recur");
@@ -75,14 +69,7 @@ var Sendlater3HeaderView = function() {
 	    return false;
 	}
 
-	var flag;
-	try {
-	    flag = Components.interfaces.nsMsgFolderFlags.Drafts;
-	}
-	catch (ex) {
-	    // Postbox
-	    flag = 0x0400;
-	}
+	var flag = Components.interfaces.nsMsgFolderFlags.Drafts;
 
 	if (msgFolder.isSpecialFolder(flag, false)) {
 	    sl3log.Returning("Sendlater3HeaderView.IsThisDraft", "true (special)");
@@ -151,8 +138,10 @@ var Sendlater3HeaderView = function() {
         // Components.interfaces.nsIObserver
         observe: function(aMsgFolder, aTopic, aData) {
 	    sl3log.Entering("Sendlater3HeaderView.addColumnHandler.observe");
-	    gDBView.addColumnHandler("sendlater3-colXSendLaterAt",
-				     sendlater3columnHandler);
+            if (gDBView) {
+	        gDBView.addColumnHandler("sendlater3-colXSendLaterAt",
+				         sendlater3columnHandler);
+            }
 	    sl3log.Leaving("Sendlater3HeaderView.addColumnHandler.observe");
         }
     }

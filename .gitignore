@@ -1,7 +1,8 @@
-*~
-*.xpi
-chrome/content/backgroundingPostbox.xul
-*.tmp
 *.pyc
+*.tmp
+*.xpi
+*~
+_locales
+chrome/content/backgroundingPostbox.xul
 crowdin.yaml
 exclude-manifest2
