@@ -28,8 +28,8 @@ There's no really great way to determine the context of a particular string your
 * prefwindow.dtd is strings for the preferences window;
 * prompt.dtd is strings for the main Send Later prompt dialog;
 * editor.dtd is strings for the dynamic function editor;
-* sendlater3.properties contains the description of the app that is displayed in the add-ons list and on [addons.mozilla.org](https://addons.mozilla.org/);
-* project_strings.csv is for other informational text about the add-on displayed on [addons.mozilla.org](https://addons.mozilla.org/); and
+* sendlater3.properties contains the description of the app that is displayed in the add-ons list and on [addons.thunderbird.net](https://addons.thunderbird.net/);
+* project_strings.csv is for other informational text about the add-on displayed on [addons.thunderbird.net](https://addons.thunderbird.net/); and
 * prompt.properties has everything else. ;-)
 
 You can also search the [source code](https://github.com/jikamens/send-later) for the string's identifier to see where it is used in the code. Or, if all else fails, ask me for an explanation of any string context you can't figure out.
