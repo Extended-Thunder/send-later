@@ -14,6 +14,12 @@ Thanks for your contributions!
 
 ## Contributed functions
 
+### DaysBeforeNthWeekday.sjl
+
+By: Jonathan Kamens &lt;[jik@kamens.us](mailto:jik@kamens.us)&gt;
+
+A user on the [send-later-users mailing list](https://groups.google.com/forum/#!forum/send-later-users) asked how to generate an email a certain number of days before a particular weekday of a particular weekday of the month, e.g., "five days before the fourth Wednesday of the month." This function demonstrates how to do that. It can be configured by passing in arguments or by editing the defaults at the top of the function.
+
 ### FirstFourDaysOfEachMonth.slj
 
 By: Jonathan Kamens &lt;[jik@kamens.us](mailto:jik@kamens.us)&gt;
