@@ -1389,8 +1389,8 @@ var Sendlater3Backgrounding = function() {
     }
     
     function DisplayReleaseNotes() {
-        addon = AddonManager.getAddonByID("sendlater3@kamens.us",
-                                          DisplayReleaseNotesCallback);
+        addon = AddonManager.getAddonByID("sendlater3@kamens.us").then(
+            DisplayReleaseNotesCallback);
     }
 
     function ReplaceMessageId(content, uri) {
