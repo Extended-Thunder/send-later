@@ -4,7 +4,7 @@
 var {MailUtils} = ChromeUtils.import("resource:///modules/MailUtils.jsm");
 var {AddonManager} =
     ChromeUtils.import("resource://gre/modules/AddonManager.jsm");
-const {DefaultPreferencesLoader} =
+const {Sendlater3DefaultPreferencesLoader} =
       ChromeUtils.import("resource://sendlater3/defaultPreferencesLoader.jsm");
 
 var Sendlater3Backgrounding = function() {
@@ -21,7 +21,7 @@ var Sendlater3Backgrounding = function() {
     // application version which has already loaded the default preferences
     // automatically.
     try {
-        var loader = new DefaultPreferencesLoader();
+        var loader = new Sendlater3DefaultPreferencesLoader();
         loader.parseUri(
             "chrome://sendlater3-defaults/content/preferences/sendlater3.js");
     } catch (ex) {}
