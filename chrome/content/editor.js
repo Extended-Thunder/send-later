@@ -1,6 +1,6 @@
 // Loaded in util.js
 //const sl3uf = ChromeUtils.import("resource://sendlater3/ufuncs.jsm");
-const dateparse = ChromeUtils.import("resource://sendlater3/dateparse.jsm");
+const sl3dateparse = ChromeUtils.import("resource://sendlater3/dateparse.jsm");
 
 sl3e = {
     dirty: false,
@@ -170,7 +170,7 @@ sl3e = {
         if (! valid) {
             var dateObj;
             try {
-                dateObj = dateparse.DateParse(field.value);
+                dateObj = sl3dateparse.DateParse(field.value);
                 valid = dateObj && dateObj.isValid();
             } catch (ex) {}
         }
@@ -199,7 +199,7 @@ sl3e = {
         var body = document.getElementById("code").value;
         var timeBox = document.getElementById("test-time");
         var timeString = timeBox.value;
-        var time = timeString ? dateparse.DateParse(timeString) : null;
+        var time = timeString ? sl3dateparse.DateParse(timeString) : null;
         var argBox = document.getElementById("test-arguments");
         var argString = argBox.value;
         var resultsBox = document.getElementById("test-results");
@@ -238,8 +238,8 @@ sl3e = {
                 nextDate.setTime(nextDate.getTime() + next * 60 * 1000);
                 next = nextDate;
             }
-            timeBox.value = dateparse.DateToSugarDate(next)
-                .format("{long}", dateparse.SugarLocale());
+            timeBox.value = sl3dateparse.DateToSugarDate(next)
+                .format("{long}", sl3dateparse.SugarLocale());
             if (nextargs)
                 argBox.value = sl3uf.unparseArgs(nextargs);
             else

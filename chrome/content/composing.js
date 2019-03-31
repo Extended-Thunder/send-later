@@ -1,4 +1,4 @@
-const dateparse = ChromeUtils.import("resource://sendlater3/dateparse.jsm");
+const sl3dateparse = ChromeUtils.import("resource://sendlater3/dateparse.jsm");
 // Loaded in util.js
 //const sl3log = ChromeUtils.import("resource://sendlater3/logging.jsm");
 
@@ -247,7 +247,7 @@ var Sendlater3Composing = {
                     var hdr = messageHDR.getStringProperty("x-send-later-at");
                     if (hdr) {
                         Sendlater3Composing.prevXSendLater =
-                            dateparse.DateToSugarDate(new Date(hdr));
+                            sl3dateparse.DateToSugarDate(new Date(hdr));
                         gMsgCompose.RegisterStateListener(Sendlater3Composing
                                                           .composeListener);
                     }

@@ -1,4 +1,4 @@
-const dateparse = ChromeUtils.import("resource://sendlater3/dateparse.jsm");
+const sl3dateparse = ChromeUtils.import("resource://sendlater3/dateparse.jsm");
 // Loaded in util.js
 //const sl3uf = ChromeUtils.import("resource://sendlater3/ufuncs.jsm");
 //const sl3log = ChromeUtils.import("resource://sendlater3/logging.jsm");
@@ -233,7 +233,7 @@ var Sendlater3Prompt = {
                 window.arguments[0].previouslyCancelOnReply || "";
 	    prevArgs = window.arguments[0].previousArgs;
             prevXSendLater = prevXSendLater.format(
-                "{long}", dateparse.SugarLocale());
+                "{long}", sl3dateparse.SugarLocale());
         }
         else {
             let defaultsJson = SL3U.getCharPref("prompt.defaults");
@@ -354,7 +354,7 @@ var Sendlater3Prompt = {
 	var dateStr = document.getElementById("sendlater3-time-text").value;
         if (dateStr) {
             try {
-                var dateObj = dateparse.DateParse(dateStr);
+                var dateObj = sl3dateparse.DateParse(dateStr);
             }
             catch (ex) {}
             if (! (dateObj && dateObj.isValid()))
@@ -365,8 +365,8 @@ var Sendlater3Prompt = {
 	if (dateObj) {
             if (! functional) {
 	        button.label = SL3U.PromptBundleGet("sendaround") + " "
-		    + dateparse.DateToSugarDate(dateObj)
-		    .format('{long}', dateparse.SugarLocale());
+		    + sl3dateparse.DateToSugarDate(dateObj)
+		    .format('{long}', sl3dateparse.SugarLocale());
 	        Sendlater3Prompt.CheckRecurring(dateObj);
                 enable_button = true;
             }
@@ -652,8 +652,8 @@ var Sendlater3Prompt = {
             newSpec.days = spec.days;
 
         document.getElementById("sendlater3-time-text").value =
-            dateparse.DateToSugarDate(sendat).format(
-                '{long}', dateparse.SugarLocale());
+            sl3dateparse.DateToSugarDate(sendat).format(
+                '{long}', sl3dateparse.SugarLocale());
         this.updateSummary();
         // Returns adjusted date, parsed recurrence spec, and arguments (if
         // any) for the next invocation (if any).

@@ -1,5 +1,5 @@
 // Loaded in composing.js
-//const dateparse = ChromeUtils.import("resource://sendlater3/dateparse.jsm");
+//const sl3dateparse = ChromeUtils.import("resource://sendlater3/dateparse.jsm");
 // Loaded in util.js
 //const sl3log = ChromeUtils.import("resource://sendlater3/logging.jsm");
 
@@ -42,7 +42,7 @@ var Sendlater3ComposeToolbar = {
 	var dateObj;
 	if (dateStr) {
 	    try {
-		var dateObj = dateparse.DateParse(dateStr);
+		var dateObj = sl3dateparse.DateParse(dateStr);
 	    }
 	    catch (ex) {}
 	    if (! (dateObj && dateObj.isValid())) {
@@ -63,8 +63,8 @@ var Sendlater3ComposeToolbar = {
 	    // button.setAttribute("disabled", disabled);
 	    if (dateObj && textField) {
 		button.label = SL3U.PromptBundleGet("sendaround") + " " +
-		    dateparse.DateToSugarDate(dateObj)
-		    .long('{long}', dateparse.SugarLocale());
+		    sl3dateparse.DateToSugarDate(dateObj)
+		    .long('{long}', sl3dateparse.SugarLocale());
 	    }
 	    else {
 		button.label = button.getAttribute("sl3label");
@@ -169,7 +169,7 @@ var Sendlater3ComposeToolbar = {
 	    if (textField) {
 		textField.value =
 		    Sendlater3Composing.prevXSendLater
-		    .format("long", dateparse.SugarLocale());
+		    .format("long", sl3dateparse.SugarLocale());
 	    }
 	    Sendlater3ComposeToolbar.dateToPickers(
 		Sendlater3Composing.prevXSendLater);
