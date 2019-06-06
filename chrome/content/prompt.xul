@@ -2,6 +2,9 @@
 
 <?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
 <?xml-stylesheet href="chrome://messenger/content/bindings.css" type="text/css"?>
+<?xml-stylesheet type="text/css" href="chrome://calendar-common/skin/widgets/minimonth.css"?>
+<?xml-stylesheet type="text/css" href="chrome://calendar/content/widgets/calendar-widget-bindings.css"?>
+<?xml-stylesheet href="chrome://lightning-common/skin/datetimepickers.css"?>
 
 <!DOCTYPE window SYSTEM "chrome://sendlater3/locale/prompt.dtd">
 
@@ -10,6 +13,9 @@
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
   <script src="util.js"/>
   <script src="chrome://sendlater3/content/prompt.js"/>
+  <script src="chrome://calendar/content/calendar-ui-utils.js"/>
+  <script src="chrome://messenger/content/customElements.js"/>
+  <script src="chrome://calendar/content/datetimepickers/datetimepickers.js"/>
   <keyset>
     <key id="sendlater3-quickbutton1-key" modifiers="accel" key="1" oncommand="//"/>
     <key id="sendlater3-quickbutton2-key" modifiers="accel" key="2" oncommand="//"/>
@@ -36,23 +42,27 @@
 	      <label align="right" value="&sendlater.prompt.textbox.label;"/>
 	    </hbox>
 	    <textbox id="sendlater3-time-text" width="100%" flex="1"
-		     oninput="Sendlater3Prompt.updateSummary();"
+		     onchange="Sendlater3Prompt.updateSummary();"
 		     emptytext="&sendlater.prompt.textbox.emptytext;"
 		     tooltiptext="&sendlater.prompt.textbox.tooltip;"
 		     onkeypress="Sendlater3Prompt.CheckTextEnter(event) &amp;&amp; window.close();"/>
 	  </row>
-          <!-- hidden because currently broken -->
-	  <row hidden="true">
+	  <row id="date-time-pickers-row" hidden="true">
 	    <hbox>
 	      <separator flex="1"/>
 	      <label align="right" value="&sendlater.prompt.or.label;"/>
 	    </hbox>
 	    <hbox>
 	      <separator flex="1"/>
-	      <html:input type="date" id="sendlater3-datepicker"
-                          onchange="Sendlater3Prompt.pickersToText();"/>
-	      <html:input type="time" id="sendlater3-timepicker"
-                          onchange="Sendlater3Prompt.pickersToText();"/>
+	      <!-- setTimeout used because of https://bugzilla.mozilla.org/show_bug.cgi?id=799219 -->
+              <!-- The add-on validator requires the first argument to
+                   setTimeout to be a function expression rather than a
+                   function. -->
+	      <datepicker id="sendlater3-datepicker" type="popup"
+			  onchange="window.setTimeout(function(){Sendlater3Prompt.pickersToText()}, 0);"/>
+	      <timepicker id="sendlater3-timepicker"
+			  onchange="window.setTimeout(function(){Sendlater3Prompt.pickersToText()}, 0);"
+			  hideseconds="true"/>
 	      <separator flex="1"/>
 	    </hbox>
 	  </row>
@@ -122,17 +132,16 @@
         </deck>
       </hbox>
 
-      <!-- hidden because currently broken -->
-      <hbox align="center" id="sendlater3-recur-between-hbox" hidden="true">
+      <hbox align="center" id="recur-between-hbox" hidden="true">
         <checkbox id="sendlater3-recur-between-checkbox"
                   label="&sendlater.prompt.between.label;"/>
-        <html:input type="time" id="sendlater3-recur-between-start"
-                    value="00:00"
-                    onchange="Sendlater3Prompt.BetweenStartUpdate();"/>
+        <timepicker id="sendlater3-recur-between-start"
+                    hideseconds="true" value="00:00"
+                    onchange="window.setTimeout(function(){Sendlater3Prompt.BetweenStartUpdate()}, 0);"/>
         <label value="-"/>
-        <html:input type="time" id="sendlater3-recur-between-end"
-                    value="23:59"
-                    onchange="Sendlater3Prompt.BetweenEndUpdate();"/>
+        <timepicker id="sendlater3-recur-between-end"
+                    hideseconds="true" value="23:59"
+                    onchange="window.setTimeout(function(){Sendlater3Prompt.BetweenEndUpdate()}, 0);"/>
       </hbox>
       <hbox align="top" id="sendlater3-recur-on-hbox">
         <checkbox id="sendlater3-recur-on-checkbox"

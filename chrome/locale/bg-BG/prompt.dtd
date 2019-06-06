@@ -44,4 +44,3 @@
 <!ENTITY sendlater.prompt.day6 "Събота">
 <!ENTITY sendlater.prompt.cancelonreply.label "Отменете повторението при отговор">
 <!ENTITY sendlater.prompt.cancelonreply.tooltip "Гледайте за отговори на изпратените преди това копия на повтарящи се съобщения. Отменете повтарящо се съобщение и го извадете от папка Чернови, когато получите отговор.">
-<!ENTITY firstdayofweek.default "0">

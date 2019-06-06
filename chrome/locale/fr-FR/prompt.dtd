@@ -44,4 +44,3 @@
 <!ENTITY sendlater.prompt.day6 "Samedi">
 <!ENTITY sendlater.prompt.cancelonreply.label "Annuler la récurrence en cas de réponse">
 <!ENTITY sendlater.prompt.cancelonreply.tooltip "Vérifie la présence de réponses à un précédent envoi d'un message récurrent. Annule la récurrence et efface le fichier du dossier Brouillons lorsqu'une réponse est reçue à l'un des envois.">
-<!ENTITY firstdayofweek.default "1">

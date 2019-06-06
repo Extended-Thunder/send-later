@@ -78,8 +78,8 @@ var Sendlater3ComposeToolbar = {
 	var datePicker = document.getElementById("sendlater3-toolbar-datepicker");
 	var timePicker = document.getElementById("sendlater3-toolbar-timepicker");
 	if (datePicker) {
-	    datePicker.value = dateObj.format("{yyyy}-{MM}-{dd}");
-	    timePicker.value = dateObj.format("{HH}:{mm}");
+	    datePicker.value = new Date(dateObj);
+	    timePicker.value = [dateObj.getHours(), dateObj.getMinutes()];
 	}
     },
 
@@ -92,11 +92,11 @@ var Sendlater3ComposeToolbar = {
 	    sl3log.Returning("Sendlater3ComposeToolbar.pickersToText", false);
 	    return false;
 	}
-	var date = datePicker.value;
+        var date = new sl3dateparse.DateToSugarDate(datePicker.value);
 	var time = timePicker.value;
-	// Strip seconds from time
-	time = time.replace(/(.*:.*):.*/, "$1");
-	var val = date + " " + time;
+        date.setHours(time[0]);
+        date.setMinutes(time[1]);
+	var val = date.format('{long}', sl3dateparse.SugarLocale());
 	if (textField && ! fromUpdate) {
 	    textField.value = val;
 	    Sendlater3ComposeToolbar.updateSummary(val);
@@ -270,8 +270,6 @@ var Sendlater3ComposeToolbar = {
         window.removeEventListener("load", Sendlater3ComposeToolbar.main, false);
 	Sendlater3ComposeToolbar.SetOnLoad();
 	document.getElementById("msgcomposeWindow").addEventListener("compose-window-reopen", Sendlater3ComposeToolbar.SetOnLoad, false);
-
-        SL3U.initDatePicker(document.getElementById("sendlater3-toolbar-datepicker"));
 
     	sl3log.Leaving("Sendlater3ComposeToolbar.main");
     }

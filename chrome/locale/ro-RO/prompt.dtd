@@ -44,4 +44,3 @@
 <!ENTITY sendlater.prompt.day6 "sâmbătă">
 <!ENTITY sendlater.prompt.cancelonreply.label "Anulează retrimiterea când se primește răspuns">
 <!ENTITY sendlater.prompt.cancelonreply.tooltip "Monitorizează primirea de răspuns la trimiterile anterioare ale mesajelor repetitive. Anulează un mesaj repetitiv și șterge-l din dosarul „Mesaje netrimise” când se primește răspuns.">
-<!ENTITY firstdayofweek.default "1">

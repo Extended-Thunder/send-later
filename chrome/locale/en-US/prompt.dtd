@@ -44,4 +44,3 @@
 <!ENTITY sendlater.prompt.day6 "Saturday">
 <!ENTITY sendlater.prompt.cancelonreply.label "Cancel recurrence upon reply">
 <!ENTITY sendlater.prompt.cancelonreply.tooltip "Watch for replies to previously sent copies of recurring messages. Cancel a recurring message and remove it from the Drafts folder when a reply is received.">
-<!ENTITY firstdayofweek.default "0">

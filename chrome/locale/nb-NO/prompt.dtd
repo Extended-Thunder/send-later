@@ -44,4 +44,3 @@
 <!ENTITY sendlater.prompt.day6 "lørdag">
 <!ENTITY sendlater.prompt.cancelonreply.label "Avbryte regelmessighet på svar">
 <!ENTITY sendlater.prompt.cancelonreply.tooltip "Se etter svar på tidligere sendte kopier av regelmessige meldinger. Avbryte en gjentakende melding og fjerne den fra mappen Kladd når et svar mottas.">
-<!ENTITY firstdayofweek.default "1">

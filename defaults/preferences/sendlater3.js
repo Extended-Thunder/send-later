@@ -39,4 +39,3 @@ pref("extensions.sendlater3.disabled_for_enigmail",false);
 pref("extensions.sendlater3.editor.first_use", true);
 pref("extensions.sendlater3.prompt.defaults", "");
 pref("extensions.sendlater3.mark_drafts_read", true);
-pref("extensions.sendlater3.first_day_of_week", -1);

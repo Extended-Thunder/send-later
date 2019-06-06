@@ -44,4 +44,3 @@
 <!ENTITY sendlater.prompt.day6 "sabato">
 <!ENTITY sendlater.prompt.cancelonreply.label "Annulla ricorrenza in caso di risposta">
 <!ENTITY sendlater.prompt.cancelonreply.tooltip "Individua eventuali risposte alle copie dei messaggi ricorrenti precedentemente inviati. Quando viene ricevuta una risposta annulla il messaggio ricorrente ed eliminalo dalla cartella Bozze.">
-<!ENTITY firstdayofweek.default "1">

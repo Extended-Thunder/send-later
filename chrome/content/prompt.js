@@ -5,39 +5,34 @@ const sl3dateparse = ChromeUtils.import("resource://sendlater3/dateparse.jsm");
 
 var Sendlater3Prompt = {
     loaded: false,
+    haveLightning: typeof cal !== "undefined",
 
     BetweenStartUpdate: function() {
         document.getElementById("sendlater3-recur-between-checkbox").
             checked = true;
-        return;
-        // // I wish it made sense to do the following, but it doesn't because the
-        // // timepicker is crap. Maybe some day.
-        // var startPicker = document.
-        //     getElementById("sendlater3-recur-between-start");
-        // var endPicker = document.getElementById("sendlater3-recur-between-end");
-        // var startTime = startPicker.hour * 100 + startPicker.minute;
-        // var endTime = endPicker.hour * 100 + endPicker.minute;
-        // if (endTime < startTime) {
-        //     endPicker.hour = startPicker.hour;
-        //     endPicker.minute = startPicker.minute;
-        // }
+        var startPicker = document.
+            getElementById("sendlater3-recur-between-start");
+        var endPicker = document.getElementById("sendlater3-recur-between-end");
+        var startTime = startPicker.value;
+        var endTime = endPicker.value;
+        if (endTime[0] < startTime[0] ||
+            (endTime[0] == startTime[0] && endTime[1] < startTime[1])) {
+            endPicker.value = startTime;
+        }
     },
 
     BetweenEndUpdate: function() {
         document.getElementById("sendlater3-recur-between-checkbox").
             checked = true;
-        return;
-        // // I wish it made sense to do the following, but it doesn't because the
-        // // timepicker is crap. Maybe some day.
-        // var startPicker = document.
-        //     getElementById("sendlater3-recur-between-start");
-        // var endPicker = document.getElementById("sendlater3-recur-between-end");
-        // var startTime = startPicker.hour * 100 + startPicker.minute;
-        // var endTime = endPicker.hour * 100 + endPicker.minute;
-        // if (endTime < startTime) {
-        //     startPicker.hour = endPicker.hour;
-        //     startPicker.minute = endPicker.minute;
-        // }
+        var startPicker = document.
+            getElementById("sendlater3-recur-between-start");
+        var endPicker = document.getElementById("sendlater3-recur-between-end");
+        var startTime = startPicker.value;
+        var endTime = endPicker.value;
+        if (endTime[0] < startTime[0] ||
+            (endTime[0] == startTime[0] && endTime[1] < startTime[1])) {
+            startPicker.value = endTime;
+        }
     },        
 
     DayUpdate: function() {
@@ -129,10 +124,13 @@ var Sendlater3Prompt = {
         document.getElementById("function-args").disabled =
             document.getElementById("calculate").disabled = ! fullyFunctional;
         document.getElementById("sendlater3-time-text").disabled =
-            document.getElementById("sendlater3-datepicker").disabled =
-            document.getElementById("sendlater3-timepicker").disabled =
             document.getElementById("sendlater3-recur-every-checkbox").disabled=
             functional;
+        if (Sendlater3Prompt.haveLightning) {
+            document.getElementById("sendlater3-datepicker").disabled =
+                document.getElementById("sendlater3-timepicker").disabled =
+                functional;
+        }
         if (functional)
             // If ! functional, then this was handled properly above.
             document.getElementById("sendlater3-recur-every-value").disabled =
@@ -164,6 +162,10 @@ var Sendlater3Prompt = {
     SetOnLoad: function() {
         SL3U.initUtil();
         sl3log.Entering("Sendlater3Prompt.SetOnLoad");
+        if (Sendlater3Prompt.haveLightning) {
+            document.getElementById("date-time-pickers-row").hidden = false;
+            document.getElementById("recur-between-hbox").hidden = false;
+        }
         window.removeEventListener("load", Sendlater3Prompt.SetOnLoad, false);
         Sendlater3Prompt.loaded = true;
         var picker = document.getElementById("recur-menu");
@@ -275,17 +277,17 @@ var Sendlater3Prompt = {
 		document.getElementById("sendlater3-recur-every-value")
 		    .value = settings.multiplier;
 	    }
-            if (settings.between) {
+            if (settings.between && Sendlater3Prompt.haveLightning) {
                 document.getElementById("sendlater3-recur-between-checkbox").
                     checked = true;
                 var startPicker = document.getElementById(
                     "sendlater3-recur-between-start");
                 var endPicker = document.getElementById(
                     "sendlater3-recur-between-end");
-                startPicker.hour = Math.floor(settings.between.start / 100);
-                startPicker.minute = settings.between.start % 100;
-                endPicker.hour = Math.floor(settings.between.end / 100);
-                endPicker.minute = settings.between.end % 100;
+                startPicker.value = [Math.floor(settings.between.start / 100),
+                                     settings.between.start % 100];
+                endPicker.value = [Math.floor(settings.between.end / 100),
+                                   settings.between.end % 100];
             }
             if (settings.days) {
                 document.getElementById("sendlater3-recur-on-checkbox").
@@ -318,7 +320,6 @@ var Sendlater3Prompt = {
         Sendlater3Prompt.CheckRecurring();
 	document.getElementById("sendlater3-time-text").focus();
 	Sendlater3Prompt.AddControlReturnListeners(document);
-        SL3U.initDatePicker(document.getElementById("sendlater3-datepicker"));
         sl3log.Leaving("Sendlater3Prompt.SetOnLoad");
     },
 
@@ -327,20 +328,23 @@ var Sendlater3Prompt = {
 	var textField = document.getElementById("sendlater3-time-text");
 	var datePicker = document.getElementById("sendlater3-datepicker");
 	var timePicker = document.getElementById("sendlater3-timepicker");
-	var date = datePicker.value;
+	var date = new sl3dateparse.DateToSugarDate(datePicker.value);
 	var time = timePicker.value;
-	// Strip seconds from time
-	time = time.replace(/(.*:.*):.*/, "$1");
-	textField.value = date + " " + time;
+        date.setHours(time[0]);
+        date.setMinutes(time[1]);
+	textField.value = date.format('{long}', sl3dateparse.SugarLocale());
 	Sendlater3Prompt.updateSummary(true);
 	sl3log.Leaving("Sendlater3Prompt.pickersToText");
     },
 
     dateToPickers: function(dateObj) {
+        if (! Sendlater3Prompt.haveLightning) {
+            return;
+        }
 	var datePicker = document.getElementById("sendlater3-datepicker");
 	var timePicker = document.getElementById("sendlater3-timepicker");
-	datePicker.value = dateObj.format("{yyyy}-{MM}-{dd}");
-	timePicker.value = dateObj.format("{HH}:{mm}");
+	datePicker.value = new Date(dateObj);
+	timePicker.value = [dateObj.getHours(), dateObj.getMinutes()];
     },
 
     updateSummary: function(fromPicker) {
@@ -477,8 +481,8 @@ var Sendlater3Prompt = {
                 getElementById("sendlater3-recur-between-start");
             var endPicker = document.
                 getElementById("sendlater3-recur-between-end");
-            startTime = startPicker.hour * 100 + startPicker.minute;
-            endTime = endPicker.hour * 100 + endPicker.minute;
+            startTime = startPicker.value[0] * 100 + startPicker.value[1];
+            endTime = endPicker.value[0] * 100 + endPicker.value[1];
             if (endTime < startTime) {
                 SL3U.alert(null, SL3U.PromptBundleGet("endTimeWarningTitle"),
                            SL3U.PromptBundleGet("endTimeWarningBody"));

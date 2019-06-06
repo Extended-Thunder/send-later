@@ -44,4 +44,3 @@
 <!ENTITY sendlater.prompt.day6 "Sobotu">
 <!ENTITY sendlater.prompt.cancelonreply.label "Zrušit opakování po odpovědi">
 <!ENTITY sendlater.prompt.cancelonreply.tooltip "Kontrolovat odpovědi na dříve poslané opakované zprávy. Opakující se zpráva je zrušena a odstraněna z Konceptů, pokud na ni adresát odpoví.">
-<!ENTITY firstdayofweek.default "1">

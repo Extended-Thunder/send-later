@@ -44,4 +44,3 @@
 <!ENTITY sendlater.prompt.day6 "dissabte">
 <!ENTITY sendlater.prompt.cancelonreply.label "Cancel·lar repeticions una vegada rebuda resposta">
 <!ENTITY sendlater.prompt.cancelonreply.tooltip "Monitoritza les respostes a les còpies enviades prèviament de missatges repetitius. Cancel·la les repeticions del missatge i l'esborra de la safata d'esborranys quan es rep una resposta.">
-<!ENTITY firstdayofweek.default "1">

@@ -1358,17 +1358,6 @@ var Sendlater3Util = {
         if (SL3U.getBoolPref("disabled_for_enigmail"))
             SL3U.setBoolPref("disabled_for_enigmail", false);
         return false;
-    },
-
-    initDatePicker: function(elt) {
-        if (! elt) return;
-        var first = SL3U.getIntPref("first_day_of_week");
-        if (first < 0 || first > 6) return;
-        elt.setAttribute("firstdayofweek", first);
-        var grid = document.getAnonymousElementByAttribute(
-            elt, "anonid", "grid");
-        grid._init();
-        grid._updateUI(grid.monthField, grid.month, true);
     }
 };
 

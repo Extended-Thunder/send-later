@@ -44,4 +44,3 @@
 <!ENTITY sendlater.prompt.day6 "星期六">
 <!ENTITY sendlater.prompt.cancelonreply.label "回覆後取消重覆發送">
 <!ENTITY sendlater.prompt.cancelonreply.tooltip "查看已發出的重覆電郵的所有回覆，如果已收到回覆，不再發送重覆電郵，並將它從草稿文件夾中刪除。">
-<!ENTITY firstdayofweek.default "1">

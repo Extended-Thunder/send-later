@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
 <?xml-stylesheet href="chrome://messenger/content/bindings.css" type="text/css"?>
+<?xml-stylesheet type="text/css" href="chrome://calendar-common/skin/widgets/minimonth.css"?>
+<?xml-stylesheet type="text/css" href="chrome://calendar/content/widgets/calendar-widget-bindings.css"?>
+<?xml-stylesheet href="chrome://lightning-common/skin/datetimepickers.css"?>
 <!DOCTYPE window SYSTEM "chrome://sendlater3/locale/prompt.dtd">
 <overlay id="sendlater3-toolbar-overlay"
          xmlns:html="http://www.w3.org/1999/xhtml"
@@ -14,6 +17,9 @@
   <!-- already loaded in composing.js -->
   <!--<script src="util.js"/>-->
   <script src="composeToolbar.js"/>
+  <script src="chrome://calendar/content/calendar-ui-utils.js"/>
+  <script src="chrome://messenger/content/customElements.js"/>
+  <script src="chrome://calendar/content/datetimepickers/datetimepickers.js"/>
 
   <toolbarpalette id="MsgComposeToolbarPalette">
     <!-- The oncommand code below forces the focus away from the datepicker or
@@ -41,19 +47,28 @@
 	   making it clearer what this item in that window is for. -->
       <stack>
 	<textbox id="sendlater3-toolbar-text" width="200px"
-		 oninput="Sendlater3ComposeToolbar.updateSummary();"
+		 onchange="Sendlater3ComposeToolbar.updateSummary();"
 		 emptytext="&sendlater.toolbar.textbox.emptytext;"
 		 tooltiptext="&sendlater.prompt.textbox.tooltip;"
 		 onkeypress="Sendlater3ComposeToolbar.CheckTextEnter(event);"/>
       </stack>
     </toolbaritem>
+    <!-- setTimeout used because of
+         https://bugzilla.mozilla.org/show_bug.cgi?id=799219 -->
+    <!-- The add-on validator requires the first argument to
+         setTimeout to be a function expression rather than a
+         function. -->
+    <!-- Alas, Lightning's datepicker and timepicker don't currently
+         work properly in toolbar items.
     <toolbaritem id="sendlater3-toolbar-picker-item" class="chromeclass-toolbar"
 		 context="toolbar-context-menu" hidden="false">
-      <html:input type="date" id="sendlater3-toolbar-datepicker"
-		  onchange="Sendlater3ComposeToolbar.pickersToText();"/>
-      <html:input type="time" id="sendlater3-toolbar-timepicker"
-		  onchange="Sendlater3ComposeToolbar.pickersToText();"/>
+      <datepicker id="sendlater3-toolbar-datepicker" type="popup"
+		  onchange="window.setTimeout(function(){Sendlater3ComposeToolbar.pickersToText()}, 0);"/>
+      <timepicker id="sendlater3-toolbar-timepicker"
+		  onchange="window.setTimeout(function(){Sendlater3ComposeToolbar.pickersToText()}, 0);"
+		  hideseconds="true"/>
     </toolbaritem>
+    -->
     <toolbaritem id="sendlater3-toolbar-quickbutton1-item"
 		 class="chromeclass-toolbar"
 		 context="toolbar-context-menu" hidden="false">
