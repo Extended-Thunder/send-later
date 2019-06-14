@@ -14,11 +14,11 @@
     <key id="sendlater3-quickbutton1-key" modifiers="accel" key="1" oncommand="//"/>
     <key id="sendlater3-quickbutton2-key" modifiers="accel" key="2" oncommand="//"/>
     <key id="sendlater3-quickbutton3-key" modifiers="accel" key="3" oncommand="//"/>
-    <key id="sendlater3-cancel-esc" modifiers="" keycode="VK_ESCAPE" oncommand="window.arguments[0].cancelCallback();close();"/>
-    <key id="sendlater3-call-return" modifiers="accel" keycode="VK_RETURN" oncommand="Sendlater3Prompt.CallSendAt()&amp;&amp;close();"/>
+    <key id="sendlater3-cancel-esc" modifiers="" keycode="VK_ESCAPE" oncommand="window.arguments[0].cancelCallback();window.close();"/>
+    <key id="sendlater3-call-return" modifiers="accel" keycode="VK_RETURN" oncommand="Sendlater3Prompt.CallSendAt()&amp;&amp;window.close();"/>
     <key id="sendlater3-send-now-key" modifiers="accel"
          key="&sendlater.prompt.sendnow.accesskey;"
-         oncommand="if (window.arguments[0].sendCallback()) close();"/>
+         oncommand="if (window.arguments[0].sendCallback()) window.close();"/>
   </keyset>
   <vbox style="margin: 10px;">
     <vbox style="border:solid #00C000 3px; padding-top: 2px; font-size: 125%;" >
@@ -39,7 +39,7 @@
 		     oninput="Sendlater3Prompt.updateSummary();"
 		     emptytext="&sendlater.prompt.textbox.emptytext;"
 		     tooltiptext="&sendlater.prompt.textbox.tooltip;"
-		     onkeypress="Sendlater3Prompt.CheckTextEnter(event) &amp;&amp; close();"/>
+		     onkeypress="Sendlater3Prompt.CheckTextEnter(event) &amp;&amp; window.close();"/>
 	  </row>
           <!-- hidden because currently broken -->
 	  <row hidden="true">
@@ -176,7 +176,7 @@
                   oncommand="document.getElementById('save-defaults').checked = false;"/>
       </hbox>
       
-      <button id="sendlater3-callsendat" width="100%" flex="1" label="&sendlater.prompt.sendat.label;" tooltiptext="&sendlater.prompt.sendat.tooltip;" oncommand="Sendlater3Prompt.CallSendAt()&amp;&amp;close();"/>
+      <button id="sendlater3-callsendat" width="100%" flex="1" label="&sendlater.prompt.sendat.label;" tooltiptext="&sendlater.prompt.sendat.tooltip;" oncommand="Sendlater3Prompt.CallSendAt()&amp;&amp;window.close();"/>
       <hbox>
 	<button key="sendlater3-quickbutton1-key" id="sendlater3-shortcutbtn_1"
 		style="font-size: 80%;" flex="1"
@@ -209,19 +209,19 @@
               label="&sendlater.prompt.sendlater.label;"
 	      accesskey="&sendlater.prompt.sendlater.accesskey;"
 	      tooltiptext="&sendlater.prompt.sendlater.tooltip;"
-	      oncommand="if (window.arguments[0].continueCallback()) close();"/>
+	      oncommand="if (window.arguments[0].continueCallback()) window.close();"/>
       <description id="sendlater3-outbox-flex" flex="1"></description>
       <button id="sendlater3-sendnow-button"
               label="&sendlater.prompt.sendnow.label;"
               accesskey="&sendlater.prompt.sendnow.accesskey;"
               tooltiptext="&sendlater.prompt.sendnow.tooltip;"
-              oncommand="if (window.arguments[0].sendCallback()) close();"/>
+              oncommand="if (window.arguments[0].sendCallback()) window.close();"/>
       <description id="sendlater3-sendnow-flex" flex="1"></description>
       <button id="sendlater3-cancelButton" key="sendlater3-cancel-esc"
               label="&sendlater.prompt.close.label;"
               accesskey="&sendlater.prompt.close.accesskey;"
               tooltiptext="&sendlater.prompt.close.tooltip;"
-              oncommand="window.arguments[0].cancelCallback();close();"/>
+              oncommand="window.arguments[0].cancelCallback();window.close();"/>
     </hbox>
   </vbox>
 </window>
