@@ -560,18 +560,18 @@ var Sendlater3Composing = {
                 .getService(Components.interfaces.nsIMessenger);
             var hdr = messenger.msgHdrFromURI(originalURI);
             switch (type) {
-            case nsIMsgCompType.Reply:
-            case nsIMsgCompType.ReplyAll:
-            case nsIMsgCompType.ReplyToSender:
-            case nsIMsgCompType.ReplyToGroup:
-            case nsIMsgCompType.ReplyToSenderAndGroup:
-            case nsIMsgCompType.ReplyWithTemplate:
-            case nsIMsgCompType.ReplyToList:
+            case Ci.nsIMsgCompType.Reply:
+            case Ci.nsIMsgCompType.ReplyAll:
+            case Ci.nsIMsgCompType.ReplyToSender:
+            case Ci.nsIMsgCompType.ReplyToGroup:
+            case Ci.nsIMsgCompType.ReplyToSenderAndGroup:
+            case Ci.nsIMsgCompType.ReplyWithTemplate:
+            case Ci.nsIMsgCompType.ReplyToList:
                 hdr.folder.addMessageDispositionState(
                     hdr, hdr.folder.nsMsgDispositionState_Replied);
                 break;
-            case nsIMsgCompType.ForwardAsAttachment:
-            case nsIMsgCompType.ForwardInline:
+            case Ci.nsIMsgCompType.ForwardAsAttachment:
+            case Ci.nsIMsgCompType.ForwardInline:
                 hdr.folder.addMessageDispositionState(
                     hdr, hdr.folder.nsMsgDispositionState_Forwarded);
                 break;
