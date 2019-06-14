@@ -548,6 +548,8 @@ var Sendlater3Composing = {
     },
 
     SetReplyForwardedFlag: function(type, originalURI) {
+        sl3log.Entering("Sendlater3Composing.SetReplyForwardedFlag",
+                        type, originalURI);
         var state;
         if (! originalURI) {
             return;
