@@ -10,6 +10,7 @@ _locales/fi/messages.json
 _locales/fr/messages.json
 _locales/gl-ES/messages.json
 _locales/he/messages.json
+_locales/hu/messages.json
 _locales/hy-AM/messages.json
 _locales/it-IT/messages.json
 _locales/ja/messages.json
@@ -121,6 +122,13 @@ chrome/locale/he-IL/prefwindow.dtd
 chrome/locale/he-IL/prompt.dtd
 chrome/locale/he-IL/prompt.properties
 chrome/locale/he-IL/sendlater3.properties
+chrome/locale/hu-HU/ask.dtd
+chrome/locale/hu-HU/editor.dtd
+chrome/locale/hu-HU/headerView.dtd
+chrome/locale/hu-HU/prefwindow.dtd
+chrome/locale/hu-HU/prompt.dtd
+chrome/locale/hu-HU/prompt.properties
+chrome/locale/hu-HU/sendlater3.properties
 chrome/locale/hy-AM/ask.dtd
 chrome/locale/hy-AM/editor.dtd
 chrome/locale/hy-AM/headerView.dtd

@@ -1,0 +1,31 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY prefwindow.title "{NAME} beállításai">
+<!ENTITY pane1.title "{NAME} beállításai">
+<!ENTITY checktimepref.label "Ellenőrizze minden:">
+<!ENTITY checktimepref2.label "perc">
+<!ENTITY checktimepref.tooltip "Időközönként, percben, a piszkozatok ellenőrzése között, amelyek elküldése ideje megérkezett. Növelje ezt az értéket, ha a piszkozatait időnként nem vannak elküldve, vagy az állapotsorban lévő függőben lévő üzenetek száma néha nem tükrözi az összes ütemezett piszkozatot.">
+<!ENTITY general.caption "Általános">
+<!ENTITY quickoption1.caption "1. gyorsbillentyű">
+<!ENTITY quickoption2.caption "2. gyorsbillentyű">
+<!ENTITY quickoption3.caption "3. gyorsbillentyű">
+<!ENTITY quickoptionname.label "Gombcímke:">
+<!ENTITY quickoptionvalue.label "Perc:">
+<!ENTITY showsendlatercolumn.caption "{NAME} oszlop megjelenítése">
+<!ENTITY showsendlaterheader.caption "{NAME} fejlécek megjelenítése">
+<!ENTITY showsendlaterstatus.caption "{NAME} megjelenítése az állapotsorban">
+<!ENTITY sendlatersendbutton.caption "„Küldés” úgy működik, mint „Küldés később”">
+<!ENTITY altbinding.caption "Kötés Alt-Shift-Enter a Ctrl-Shift-Enter helyett">
+<!ENTITY markread.caption "Megjelölés ütemezett tervezeteket olvasottként">
+<!ENTITY advanced.caption "Haladó">
+<!ENTITY dumplevel.caption "Összeomlási naplószint:">
+<!ENTITY consolelevel.caption "Vezérlőpult naplószint:">
+<!ENTITY contactauthor.tooltip "E-mail üzenet küldése a {NAME} szerzőjének.">
+<!ENTITY contactauthor.value "Lépjen kapcsolatba a szerzővel">
+<!ENTITY helplink.tooltip "A {NAME} dokumentáció megtekintése.">
+<!ENTITY helplink.value "Felhasználói útmutató">
+<!ENTITY releasenotes.value "Kiadási megjegyzések">
+<!ENTITY donatelink.value "Adományozás">
+<!ENTITY editorlink.value "Erőteljes függvény szerkesztő">
+<!ENTITY enforcerestrictions.caption "Üzenetküldéskor erőltetése, napi és időbeli korlátozásokat">
+<!ENTITY blocklatemessages.label2 "perc késéssel">
+<!ENTITY editorbutton "Erőteljes függvény szerkesztő megnyitása…">
