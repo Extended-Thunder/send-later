@@ -54,10 +54,11 @@ locale_import: crowdin.yaml
 
 locale_export: crowdin.yaml
 	crowdin-cli upload sources
-# Don't want this to ever happen automatically. Need to be very
-# careful about it because it could mess with translation work in
-# progress.
-#	crowdin-cli upload translations
+
+# Be very careful about this because it could mess with translation
+# work in progress.
+upload_translations:
+	crowdin-cli upload translations --import-eq-suggestions
 
 crowdin.yaml: crowdin.yaml.template
 	set -e; echo -n "Enter Crowdin API key: "; read api_key; \
