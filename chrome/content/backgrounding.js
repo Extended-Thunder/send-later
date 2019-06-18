@@ -425,14 +425,15 @@ var Sendlater3Backgrounding = function() {
     }
 
     function StatusReportMsg(msg, extra) {
+        if (! extra) {
+            extra = [];
+        }
 	sl3log.Entering("Sendlater3Backgrounding.StatusReportMsg");
         if (document) {
             var status = document.getElementById("sendlater3-panel");
             if (status) {
                 var value = SL3U.PromptBundleGet("MessageTag") + " [" +
-                    SL3U.PromptBundleGet(msg);
-                if (extra != null)
-                    value += " " + extra;
+                    SL3U.PromptBundleGetFormatted(msg, extra);
                 value += "]";
                 status.setAttribute("label", value);
             }
@@ -617,7 +618,7 @@ var Sendlater3Backgrounding = function() {
 
 		if (MessagesPending > 0) {
                     status = "PendingMessage";
-                    extra = MessagesPending;
+                    extra = [MessagesPending];
 		}
 		else {
                     lastMessagesPending = 0;
