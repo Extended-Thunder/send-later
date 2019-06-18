@@ -13,6 +13,7 @@
 <!ENTITY showsendlatercolumn.caption "{NAME} oszlop megjelenítése">
 <!ENTITY showsendlaterheader.caption "{NAME} fejlécek megjelenítése">
 <!ENTITY showsendlaterstatus.caption "{NAME} megjelenítése az állapotsorban">
+<!ENTITY showsendlaterprogress.caption "Háttérállapot megjelenítése az állapotsorban">
 <!ENTITY sendlatersendbutton.caption "„Küldés” úgy működik, mint „Küldés később”">
 <!ENTITY altbinding.caption "Kötés Alt-Shift-Enter a Ctrl-Shift-Enter helyett">
 <!ENTITY markread.caption "Megjelölés ütemezett tervezeteket olvasottként">
