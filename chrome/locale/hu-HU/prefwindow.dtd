@@ -11,10 +11,15 @@
 <!ENTITY quickoptionname.label "Gombcímke:">
 <!ENTITY quickoptionvalue.label "Perc:">
 <!ENTITY showsendlatercolumn.caption "{NAME} oszlop megjelenítése">
+<!ENTITY showsendlatercolumn.tooltip "Akár a „{NAME}” oszlopot is megjelenítheti a vázlatmappák megtekintése közben">
 <!ENTITY showsendlaterheader.caption "{NAME} fejlécek megjelenítése">
+<!ENTITY showsendlaterheader.tooltip "Az „X-Send-Later-At” fejléc megjelenítése, azaz idő, amikor a tervezetet elküldjük, a fejlécben, amikor üzenetet nézünk.">
 <!ENTITY showsendlaterstatus.caption "{NAME} megjelenítése az állapotsorban">
 <!ENTITY showsendlaterprogress.caption "Háttérállapot megjelenítése az állapotsorban">
+<!ENTITY showsendlaterunsentmessages.caption "Indítsa el a nem küldött üzeneteket a Kimenő mappából">
+<!ENTITY showsendlaterunsentmessages.tooltip "Ha kikapcsolja ezt az opciót, akkor a {NAME} nem fogja teljes mértékben kézbesíteni az üzeneteket, hanem csak azokat a Kimenő mappába helyezi, amikor azokat a szállításra tervezik. Törölje ezt az opciót, például, ha valamilyen más kiterjesztést, például Baklövés késleltetést használ az üzenetek időszakos küldésére a Kimenő mappából. Ne feledje, hogy ha ez az opció be van állítva, akkor, amikor {NAME} üzenetet küld, a Kimenő összes üzeneteit fogja elküldeni.">
 <!ENTITY sendlatersendbutton.caption "„Küldés” úgy működik, mint „Küldés később”">
+<!ENTITY sendlatersendbutton.tooltip "Ezzel az opcióval a „Küldés” parancs (vagy a gomb vagy a Ctrl+Enter beírása) ugyanaz, mint a „Küldés később”.">
 <!ENTITY altbinding.caption "Kötés Alt-Shift-Enter a Ctrl-Shift-Enter helyett">
 <!ENTITY markread.caption "Megjelölés ütemezett tervezeteket olvasottként">
 <!ENTITY advanced.caption "Haladó">
@@ -27,6 +32,10 @@
 <!ENTITY releasenotes.value "Kiadási megjegyzések">
 <!ENTITY donatelink.value "Adományozás">
 <!ENTITY editorlink.value "Erőteljes függvény szerkesztő">
+<!ENTITY enforcerestrictions.tooltip "Ha egy kézbesítendő üzenet az idő vagy a nap korlátozásain kívül esik, például azért, mert a Thunderbird nem futott az ütemezett szállítási időpontban, akkor késleltesse annak kézbesítését, amíg az idő és a nap korlátozásai nem teljesülnek.">
 <!ENTITY enforcerestrictions.caption "Üzenetküldéskor erőltetése, napi és időbeli korlátozásokat">
+<!ENTITY blocklatemessages.tooltip "Ne küldjön ütemezett üzeneteket, amelyek késleltetettek az ütemezett időn túl, például azért, mert a Thunderbird ekkor nem futott.">
+<!ENTITY blocklatemessages.label1 "Ne küldjön üzeneteket több mint">
 <!ENTITY blocklatemessages.label2 "perc késéssel">
 <!ENTITY editorbutton "Erőteljes függvény szerkesztő megnyitása…">
+<!ENTITY editortip "Nyisson meg egy ablakot a bonyolult ütemezési logikát megvalósító JavaScript funkciók létrehozásához és szerkesztéséhez.">

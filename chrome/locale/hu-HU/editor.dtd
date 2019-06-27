@@ -33,3 +33,4 @@
 <!ENTITY save.accesskey "M">
 <!ENTITY close.label "Bezárás">
 <!ENTITY close.accesskey "B">
+<!ENTITY close.cmdkey "W">
