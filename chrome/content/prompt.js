@@ -91,7 +91,8 @@ var Sendlater3Prompt = {
 	}
 	var desc;
 	if (dateObj) {
-	    var dayName = SL3U.PromptBundleGet("day" + dateObj.getDay());
+	    var dayName = SL3U.PromptBundleGet("everymonthly_day" +
+                                               dateObj.getDay());
 	    var ordName = SL3U.PromptBundleGet("ord" + Math.ceil(dateObj.getDate()/7));
 	    desc = SL3U.PromptBundleGetFormatted("everymonthly",
 						 [ordName, dayName]);

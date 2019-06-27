@@ -1027,7 +1027,8 @@ var Sendlater3Util = {
                 fragments.push(SL3U.PromptBundleGetFormatted(
                     "everymonthly_short",
                     [SL3U.PromptBundleGet("ord"+recur.monthly_day.week),
-                     SL3U.PromptBundleGet("day"+recur.monthly_day.day)]));
+                     SL3U.PromptBundleGet("everymonthly_short_day" +
+                                          recur.monthly_day.day)]));
 
             if (recur.between)
                 fragments.push(SL3U.PromptBundleGetFormatted(
@@ -1039,7 +1040,8 @@ var Sendlater3Util = {
             if (recur.days) {
                 var days = [];
                 for (var i in recur.days)
-                    days.push(SL3U.PromptBundleGet("day" + recur.days[i]));
+                    days.push(SL3U.PromptBundleGet("only_on_day" +
+                                                   recur.days[i]));
                 days = days.join(", ");
                 fragments.push(
                     SL3U.PromptBundleGetFormatted("only_on_days", [days]));
