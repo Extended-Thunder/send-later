@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
 <?xml-stylesheet href="chrome://messenger/content/bindings.css" type="text/css"?>
-<?xml-stylesheet type="text/css" href="chrome://calendar-common/skin/widgets/minimonth.css"?>
-<?xml-stylesheet type="text/css" href="chrome://calendar/content/widgets/calendar-widget-bindings.css"?>
-<?xml-stylesheet href="chrome://lightning-common/skin/datetimepickers.css"?>
+<!--<?xml-stylesheet type="text/css" href="chrome://calendar-common/skin/widgets/minimonth.css"?>-->
+<!--<?xml-stylesheet type="text/css" href="chrome://calendar/content/widgets/calendar-widget-bindings.css"?>-->
+<!--<?xml-stylesheet href="chrome://lightning-common/skin/datetimepickers.css"?>-->
 <!DOCTYPE window SYSTEM "chrome://sendlater3/locale/prompt.dtd">
 <overlay id="sendlater3-toolbar-overlay"
          xmlns:html="http://www.w3.org/1999/xhtml"
@@ -17,9 +17,9 @@
   <!-- already loaded in composing.js -->
   <!--<script src="util.js"/>-->
   <script src="composeToolbar.js"/>
-  <script src="chrome://calendar/content/calendar-ui-utils.js"/>
-  <script src="chrome://messenger/content/customElements.js"/>
-  <script src="chrome://calendar/content/datetimepickers/datetimepickers.js"/>
+  <!--<script src="chrome://calendar/content/calendar-ui-utils.js"/>-->
+  <!--<script src="chrome://messenger/content/customElements.js"/>-->
+  <!--<script src="chrome://calendar/content/datetimepickers/datetimepickers.js"/>-->
 
   <toolbarpalette id="MsgComposeToolbarPalette">
     <!-- The oncommand code below forces the focus away from the datepicker or
