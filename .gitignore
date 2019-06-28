@@ -6,3 +6,4 @@ _locales
 chrome/content/backgroundingPostbox.xul
 crowdin.yaml
 exclude-manifest2
+build

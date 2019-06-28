@@ -7,33 +7,32 @@ send_later.xpi: utils/check-locales.pl utils/propagate_strings.py \
     utils/check-accesskeys.py utils/check-locale-integration.py \
     utils/check-manifests.sh Makefile include-manifest exclude-manifest2 \
     $(shell ls $(shell cat include-manifest) 2>/dev/null)
+	-rm -rf build
 	./utils/check-manifests.sh --excludes exclude-manifest2 --overlap \
 		--extra
 	./utils/fix-addon-ids.pl --check
 	./utils/make-manifest-locales.pl
 	./utils/check-locale-integration.py
-	-rm -rf $@.tmp
-	mkdir $@.tmp
+	mkdir build
 	# Some locale files are generated dynamically below, and therefore
 	# tar won't be able to find them here.
 	tar c --files-from include-manifest \
           2> >(egrep -v '^tar: chrome/.*: No such file or directory|due to previous errors' \
-               >/tmp/$@.errors) | tar -C $@.tmp -x
+               >/tmp/$@.errors) | tar -C build -x
 	@if [ -s /tmp/$@.errors ]; then \
 	    cat /tmp/$@.errors; \
 	    exit 1; \
         fi
 	@rm -f /tmp/$@.errors
-	cd $@.tmp; ../utils/check-locales.pl --replace
-	cd $@.tmp; ../utils/propagate_strings.py
-	cd $@.tmp; ../utils/check-accesskeys.py
-	cd $@.tmp; ../utils/check-manifests.sh --includes ../include-manifest \
+	cd build; ../utils/check-locales.pl --replace
+	cd build; ../utils/propagate_strings.py
+	cd build; ../utils/check-accesskeys.py
+	cd build; ../utils/check-manifests.sh --includes ../include-manifest \
 	    --excludes ../exclude-manifest2 --missing
-	cd $@.tmp; zip -q -r $@.tmp -@ < ../include-manifest
-	mv $@.tmp/$@.tmp $@
-	rm -rf $@.tmp
+	cd build; zip -q -r $@.tmp -@ < ../include-manifest
+	mv build/$@.tmp $@
 
-clean:: ; -rm -rf *.xpi *.tmp */*.pyc
+clean:: ; -rm -rf *.xpi *.tmp */*.pyc build
 clean:: ; -rm -f exclude-manifest2
 
 exclude-manifest2: exclude-manifest
