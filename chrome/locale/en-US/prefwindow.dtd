@@ -39,3 +39,11 @@
 <!ENTITY blocklatemessages.label2 "minutes late">
 <!ENTITY editorbutton "Open dynamic function editor…">
 <!ENTITY editortip "Open a window for creating and editing JavaScript functions implementing complex scheduling logic.">
+<!ENTITY loglevel.fatal "Fatal">
+<!ENTITY loglevel.error "Error">
+<!ENTITY loglevel.warn "Warn">
+<!ENTITY loglevel.info "Info">
+<!ENTITY loglevel.config "Config">
+<!ENTITY loglevel.debug "Debug">
+<!ENTITY loglevel.trace "Trace">
+<!ENTITY loglevel.all "All">

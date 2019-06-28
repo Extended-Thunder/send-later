@@ -39,3 +39,11 @@
 <!ENTITY blocklatemessages.label2 "perc késéssel">
 <!ENTITY editorbutton "Erőteljes függvény szerkesztő megnyitása…">
 <!ENTITY editortip "Nyisson meg egy ablakot a bonyolult ütemezési logikát megvalósító JavaScript funkciók létrehozásához és szerkesztéséhez.">
+<!ENTITY loglevel.fatal "Végzetes">
+<!ENTITY loglevel.error "Hiba">
+<!ENTITY loglevel.warn "Figyelmeztetés">
+<!ENTITY loglevel.info "Tájékoztató">
+<!ENTITY loglevel.config "Beállítás">
+<!ENTITY loglevel.debug "Hibakeresés">
+<!ENTITY loglevel.trace "Nyom">
+<!ENTITY loglevel.all "Összes">

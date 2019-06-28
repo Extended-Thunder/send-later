@@ -156,14 +156,14 @@
 	      <label>&dumplevel.caption;</label>
 	      <menulist id="sendlater3_dumplevel_menu">
 		<menupopup>
-		  <menuitem name="dumplevel" label="Fatal"  value="Fatal" />
-		  <menuitem name="dumplevel" label="Error"  value="Error" />
-		  <menuitem name="dumplevel" label="Warn"   value="Warn"  />
-		  <menuitem name="dumplevel" label="Info"   value="Info"  />
-		  <menuitem name="dumplevel" label="Config" value="Config"/>
-		  <menuitem name="dumplevel" label="Debug"  value="Debug" />
-		  <menuitem name="dumplevel" label="Trace"  value="Trace" />
-		  <menuitem name="dumplevel" label="All"    value="All"   />
+		  <menuitem name="dumplevel" label="&loglevel.fatal;"  value="Fatal" />
+		  <menuitem name="dumplevel" label="&loglevel.error;"  value="Error" />
+		  <menuitem name="dumplevel" label="&loglevel.warn;"   value="Warn"  />
+		  <menuitem name="dumplevel" label="&loglevel.info;"   value="Info"  />
+		  <menuitem name="dumplevel" label="&loglevel.config;" value="Config"/>
+		  <menuitem name="dumplevel" label="&loglevel.debug;"  value="Debug" />
+		  <menuitem name="dumplevel" label="&loglevel.trace;"  value="Trace" />
+		  <menuitem name="dumplevel" label="&loglevel.all;"    value="All"   />
 		</menupopup>
 	      </menulist>
 	    </hbox>
@@ -171,14 +171,14 @@
 	      <label>&consolelevel.caption;</label>
 	      <menulist id="sendlater3_consolelevel_menu">
 		<menupopup>
-		  <menuitem name="consolelevel" label="Fatal"  value="Fatal" />
-		  <menuitem name="consolelevel" label="Error"  value="Error" />
-		  <menuitem name="consolelevel" label="Warn"   value="Warn"  />
-		  <menuitem name="consolelevel" label="Info"   value="Info"  />
-		  <menuitem name="consolelevel" label="Config" value="Config"/>
-		  <menuitem name="consolelevel" label="Debug"  value="Debug" />
-		  <menuitem name="consolelevel" label="Trace"  value="Trace" />
-		  <menuitem name="consolelevel" label="All"    value="All"   />
+		  <menuitem name="consolelevel" label="&loglevel.fatal;"  value="Fatal" />
+		  <menuitem name="consolelevel" label="&loglevel.error;"  value="Error" />
+		  <menuitem name="consolelevel" label="&loglevel.warn;"   value="Warn"  />
+		  <menuitem name="consolelevel" label="&loglevel.info;"   value="Info"  />
+		  <menuitem name="consolelevel" label="&loglevel.config;" value="Config"/>
+		  <menuitem name="consolelevel" label="&loglevel.debug;"  value="Debug" />
+		  <menuitem name="consolelevel" label="&loglevel.trace;"  value="Trace" />
+		  <menuitem name="consolelevel" label="&loglevel.all;"    value="All"   />
 		</menupopup>
 	      </menulist>
 	    </hbox>
