@@ -28,6 +28,7 @@
 <!ENTITY sendlater.prompt.functionargs.label "Function arguments:">
 <!ENTITY sendlater.prompt.calculate.label "Calculate">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Send Later">
+<!ENTITY sendlater.toolbar.sendlater.button.tooltip "Activate {NAME} to schedule a message after entering the desired send time in the text box. This button does not do anything by itself; you also need to add the text box or date/time pickers (not supported in all Thunderbird versions) to the toolbar for this button to be useful.">
 <!ENTITY sendlater.toolbar.textbox.emptytext "send time">
 <!ENTITY sendlater.prompt.every.label "Every">
 <!ENTITY sendlater.prompt.between.label "Between">

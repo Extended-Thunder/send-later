@@ -37,7 +37,8 @@
     <toolbarbutton id="sendlater3-toolbarbutton" orient="horizontal"
 		   image="chrome://sendlater3/content/toolbarButton.png"
 		   label="&sendlater.toolbar.sendlater.button.label;"
-		   sl3label="&sendlater.toolbar.sendlater.button.label;" 
+		   sl3label="&sendlater.toolbar.sendlater.button.label;"
+                   tooltiptext="&sendlater.toolbar.sendlater.button.tooltip;"
 		   oncommand="active=document.activeElement; document.getElementById('content-frame').focus();window.setTimeout(function(){Sendlater3ComposeToolbar.CallSendAt();},0);active.focus();"  />
     <toolbaritem id="sendlater3-toolbar-text-item" class="chromeclass-toolbar"
 		 context="toolbar-context-menu" hidden="false">
