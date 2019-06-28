@@ -63,10 +63,16 @@ def substitute_strings_in_locale_file(locale_file, keys, string, replacement,
 
 def substitute_addon_name(args):
     ok = True
-    addon_name = LocaleFile('chrome/locale/en-US/prompt.properties')[
+    default_addon_name = LocaleFile('chrome/locale/en-US/prompt.properties')[
         'MessageTag']
 
     for locale_dir in glob.glob('chrome/locale/*'):
+        prompt_properties = LocaleFile(os.path.join(locale_dir,
+                                                    'prompt.properties'))
+        try:
+            addon_name = prompt_properties['MessageTag']
+        except KeyError:
+            addon_name = default_addon_name
         for fn, keys in SUBSTITUTIONS.items():
             locale_file = LocaleFile(os.path.join(locale_dir, fn))
             ok = substitute_strings_in_locale_file(
