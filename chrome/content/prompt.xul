@@ -110,8 +110,8 @@
 	        <checkbox id="sendlater3-recur-every-checkbox"
 		          label="&sendlater.prompt.every.label;"
 		          oncommand="Sendlater3Prompt.CheckRecurring();"/>
-	        <textbox id="sendlater3-recur-every-value" type="number"
-		         min="2" size="2"/>
+	        <html:input id="sendlater3-recur-every-value" type="number"
+		         value="2" min="2" maxlength="2"/>
 	        <label id="sendlater3-recur-every-unit"/>
 
 	        <checkbox id="sendlater3-recur-every-month-checkbox"

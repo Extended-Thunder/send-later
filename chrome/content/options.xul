@@ -10,6 +10,7 @@
 
 <dialog
     id="sendlater3-Preferences"
+    xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
     title="&prefwindow.title;"
     buttons="accept,cancel,extra1"
@@ -35,8 +36,8 @@
 	      <label align="bottom"
                      control="sendlater3-textintpref"
                      value="&checktimepref.label;"/>
-	      <textbox id="sendlater3-textintpref"
-		       type="number" min="1" size="4"/>
+	      <html:input id="sendlater3-textintpref"
+		       type="number" min="1" maxlength="4"/>
 	      <label value="&checktimepref2.label;"/>
 	    </hbox>
 	    <separator label="-"/>
@@ -73,8 +74,8 @@
             <hbox align="center" tooltiptext="&blocklatemessages.tooltip;">
               <checkbox id="sendlater3-block-late-messages-pref"
                         label="&blocklatemessages.label1;"/>
-              <textbox id="sendlater3-late-messages-grace-period-pref"
-                       type="number" min="1" size="1"
+              <html:input id="sendlater3-late-messages-grace-period-pref"
+                       type="number" min="1" maxlength="4"
                        oncommand="Sendlater3Options.EnableLateBlock();"
                        onchange="Sendlater3Options.EnableLateBlock();"/>
               <label value="&blocklatemessages.label2;"/>
