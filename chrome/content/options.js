@@ -45,6 +45,13 @@ var Sendlater3Options = {
                 throw new Error("Unrecognized pref type: " + pref_type);
             }
         });
+        for (var i = 1; i <= 3; i++) {
+            var elt_id = "sendlater3-quickoption_label" + i;
+            var elt = document.getElementById(elt_id);
+            if (elt.value == "<from locale>") {
+                elt.value = elt.getAttribute("sl3label");
+            }
+        }
     },
 
     ValidatePrefs: function(event) {
@@ -62,6 +69,12 @@ var Sendlater3Options = {
 			   msg);
                 return false;
 	    }
+
+            var elt_id = "sendlater3-quickoption_label" + i;
+            var elt = document.getElementById(elt_id);
+            if (elt.value == elt.getAttribute("sl3label")) {
+                elt.value = "<from locale>";
+            }
 	}
         Sendlater3Options.mapping.forEach(function(mapping) {
             var elt_id = mapping[0];

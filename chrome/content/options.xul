@@ -6,6 +6,8 @@
 %prefwindowDtd;
 <!ENTITY % edButtonProperties SYSTEM "chrome://editor/locale/EditorButtonProperties.dtd">
 %edButtonProperties;
+<!ENTITY % promptDtd SYSTEM "chrome://sendlater3/locale/prompt.dtd">
+%promptDtd;
 ]>
 
 <dialog
@@ -109,7 +111,8 @@
 	      <label align="bottom"
                      control="sendlater3-quickoption_label1"
                      value="&quickoptionname.label;"/>
-              <textbox id="sendlater3-quickoption_label1"/>
+              <textbox id="sendlater3-quickoption_label1"
+                       sl3label="&sendlater.button1.label;"/>
 	      <label align="bottom"
                      control="sendlater3-quickoption_value1"
                      value="&quickoptionvalue.label;"/>
@@ -123,7 +126,8 @@
 	      <label align="bottom"
                      control="sendlater3-quickoption_label2"
                      value="&quickoptionname.label;"/>
-              <textbox id="sendlater3-quickoption_label2"/>
+              <textbox id="sendlater3-quickoption_label2"
+                       sl3label="&sendlater.button2.label;"/>
 	      <label align="bottom"
                      control="sendlater3-quickoption_value2"
                      value="&quickoptionvalue.label;"/>
@@ -137,7 +141,8 @@
 	      <label align="bottom"
                      control="sendlater3-quickoption_label3"
                      value="&quickoptionname.label;"/>
-              <textbox id="sendlater3-quickoption_label3"/>
+              <textbox id="sendlater3-quickoption_label3"
+                       sl3label="&sendlater.button3.label;"/>
 	      <label align="bottom"
                      control="sendlater3-quickoption_value3"
                      value="&quickoptionvalue.label;"/>
