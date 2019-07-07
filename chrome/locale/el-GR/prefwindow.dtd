@@ -39,3 +39,11 @@
 <!ENTITY blocklatemessages.label2 "λεπτά καθυστέρησης">
 <!ENTITY editorbutton "Άνοιγμα επεξεργαστή δυναμικής συνάρτησης...">
 <!ENTITY editortip "Ανοίξτε ένα παράθυρο για τη δημιουργία και επεξεργασία συναρτήσεων JavaScript που εφαρμόζουν χρονικά πολύπλοκη λογική.">
+<!ENTITY loglevel.fatal "Ανεπανόρθωτο">
+<!ENTITY loglevel.error "Σφάλμα">
+<!ENTITY loglevel.warn "Προειδοποίηση">
+<!ENTITY loglevel.info "Πληροφορία">
+<!ENTITY loglevel.config "Ρύθμηση">
+<!ENTITY loglevel.debug "Αποσφαλμάτωση">
+<!ENTITY loglevel.trace "Ίχνος">
+<!ENTITY loglevel.all "Όλα">

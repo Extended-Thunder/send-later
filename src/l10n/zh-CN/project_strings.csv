@@ -1,10 +1,10 @@
-"AMODescription","在消息编写窗口更改“稍后发送”命令（Ctrl + Shift + Return），这样不单将该信息复制到发件箱中，在上线时或“发送未发送消息”时发送消息，並会弹出一个对话框，允许你指定何时发送消息。
+"AMODescription","在訊息編寫視窗更改“send later”命令（Ctrl + Shift + Return），這樣不單將該訊息複製到發件文件匣中，在上線時或“發送未發送消息”時發送消息，並會彈出一個對話框，允許您指定訊息何時發送。
 
-你可以指定一个特定的时间和日期，或者点击“15分钟后”，“30分钟后”或“2小时后”，或者点击“放入发件箱”，使用 Thunderbird 內置的“稍后发送”功能 （例如，复制到发件箱）。
+您可以指定一個特定的時間和日期，或者點擊“15分鐘後”，“30分鐘後”或“2小時後”，或者點擊“放入發件箱”，使用Thunderbird內置的“稍後發送”功能 （即複製到發件文件匣）。
 
-有关其他信息，请查看<a href=""https://blog.kamens.us/send-later"">用户指南</a>。
+有關其他信息，請參閱<a href=""https://blog.kamens.us/send-later"">用戶指南</a>。
 
-加入<a href=""https://groups.google.com/group/send-later-users"">邮件列表</a>！
+加入<a href=""https://groups.google.com/group/send-later-users"">郵寄名單</a>！
 
-Send Later 使用 Andrew Plummer 的<a href=""https://sugarjs.com/""> SugarJS </a>。 谢谢 Andrew！","Description of the add-on that appears under “Add-on Details” on the addons.thunderbird.net."
-"AMOComments","请给我发送<a href=""mailto:jik+sendlater3@kamens.us"">电子邮件</a> ，提供缺陷报告、建议等。","The text that appears under “Developer’s Comments” for the add-on on addons.thunderbird.net."
+Send Later使用Andrew Plummer的<a href=""https://sugarjs.com/""> SugarJS </a>。 謝謝Andrew！","Description of the add-on that appears under “Add-on Details” on the addons.thunderbird.net."
+"AMOComments","請給我發送<a href=""mailto:jik+sendlater3@kamens.us"">電子郵件</a> ，提供錯誤報告及建議等。","The text that appears under “Developer’s Comments” for the add-on on addons.thunderbird.net."

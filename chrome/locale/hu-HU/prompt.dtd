@@ -28,6 +28,7 @@
 <!ENTITY sendlater.prompt.functionargs.label "Függvény érvek:">
 <!ENTITY sendlater.prompt.calculate.label "Kiszámít">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Küldés később">
+<!ENTITY sendlater.toolbar.sendlater.button.tooltip "Aktiválja a {NAME} parancsot az üzenet ütemezéséhez, miután megadta a kívánt küldési időt a szövegmezőbe. Ez a gomb önmagában nem tesz semmit; hozzá kell adnia a szövegdobozot vagy a dátum/idő választókat (amelyek nem támogatottak az összes Thunderbird verzióban) az eszköztárhoz, hogy ez a gomb hasznos legyen.">
 <!ENTITY sendlater.toolbar.textbox.emptytext "a küldés dátuma és időpontja">
 <!ENTITY sendlater.prompt.every.label "Minden">
 <!ENTITY sendlater.prompt.between.label "Között:">

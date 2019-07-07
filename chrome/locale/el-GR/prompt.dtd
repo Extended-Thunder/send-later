@@ -28,6 +28,7 @@
 <!ENTITY sendlater.prompt.functionargs.label "Ορίσματα συνάρτησης:">
 <!ENTITY sendlater.prompt.calculate.label "Υπολογισμός">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Αποστολή αργότερα">
+<!ENTITY sendlater.toolbar.sendlater.button.tooltip "Ενεργοποιείστε {NAME} για να προγραμματίσετε την εμφάνιση μηνύματος κατά την επιθυμητή ώρα που εισάγατε στο πλαίσιο. Το κουμπί αυτό δεν κάνει κάτι από μόνο του. Πρέπει να επιλέξετε και την ημερομηνία/ώρα (δεν υποστηρίζεται για εκδόσεις Thunderbird) για να λειτουργήσει.">
 <!ENTITY sendlater.toolbar.textbox.emptytext "ώρα αποστολής">
 <!ENTITY sendlater.prompt.every.label "Κάθε">
 <!ENTITY sendlater.prompt.between.label "Μεταξύ">

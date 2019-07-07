@@ -45,5 +45,5 @@
 <!ENTITY loglevel.info "Tájékoztató">
 <!ENTITY loglevel.config "Beállítás">
 <!ENTITY loglevel.debug "Hibakeresés">
-<!ENTITY loglevel.trace "Nyom">
+<!ENTITY loglevel.trace "Nyomkövetés">
 <!ENTITY loglevel.all "Összes">
