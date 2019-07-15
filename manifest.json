@@ -17,5 +17,8 @@
             "strict_min_version": "68.0a1"
         }
     },
+    "icons": {
+        "48": "icon.png"
+    },
     "manifest_version": 2
 }
