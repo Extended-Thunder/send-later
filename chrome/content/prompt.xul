@@ -11,6 +11,10 @@
 <window title="&sendlater.prompt.title.label;"
         xmlns:html="http://www.w3.org/1999/xhtml"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <!-- globalOverlay.js and editMenuOverlay.js are required for html:input. See
+       https://bugzilla.mozilla.org/show_bug.cgi?id=1562161#c7 -->
+  <script src="chrome://global/content/globalOverlay.js"/>
+  <script src="chrome://global/content/editMenuOverlay.js"/>
   <script src="util.js"/>
   <script src="chrome://sendlater3/content/prompt.js"/>
   <script src="chrome://calendar/content/calendar-ui-utils.js"/>

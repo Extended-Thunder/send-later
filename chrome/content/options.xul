@@ -20,6 +20,10 @@
     ondialogextra1="Sendlater3Options.LoadPrefs();"
     ondialogaccept="return Sendlater3Options.ValidatePrefs();"
     onbeforeunload="return Sendlater3Options.ValidatePrefs() ? null : 'err';">
+  <!-- globalOverlay.js and editMenuOverlay.js are required for html:input. See
+       https://bugzilla.mozilla.org/show_bug.cgi?id=1562161#c7 -->
+  <script src="chrome://global/content/globalOverlay.js"/>
+  <script src="chrome://global/content/editMenuOverlay.js"/>
   <script src="util.js"/>
   <script src="options.js"/>
   <prefpane id="sendlater3-pane1" label="&pane1.title;">
