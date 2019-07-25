@@ -1,6 +1,6 @@
 {
     "name": "__MSG_appName__",
-    "version": "7.0.5",
+    "version": "7.0.6",
     "description": "__MSG_appDesc__",
     "author": "Jonathan Kamens",
     "default_locale": "en-US",
