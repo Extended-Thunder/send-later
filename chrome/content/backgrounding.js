@@ -4,8 +4,6 @@
 var {MailUtils} = ChromeUtils.import("resource:///modules/MailUtils.jsm");
 var {AddonManager} =
     ChromeUtils.import("resource://gre/modules/AddonManager.jsm");
-const {Sendlater3DefaultPreferencesLoader} =
-      ChromeUtils.import("resource://sendlater3/defaultPreferencesLoader.jsm");
 
 var Sendlater3Backgrounding = function() {
     var shuttingDown = false;
@@ -16,15 +14,11 @@ var Sendlater3Backgrounding = function() {
     // it ourselves when we convert from overlay to bootstrapped, and there
     // shouldn't be any harm in setting the default values of preferences twice
     // (i.e., both Thunderbird and our code doing it).
-    // This is in a try/catch because if it fails it's probably because
-    // setStringPref failed, in which case we're running inside an earlier
-    // application version which has already loaded the default preferences
-    // automatically.
-    try {
-        var loader = new Sendlater3DefaultPreferencesLoader();
-        loader.parseUri(
-            "chrome://sendlater3-defaults/content/preferences/sendlater3.js");
-    } catch (ex) {}
+    var {DefaultPreferencesLoader} =
+        ChromeUtils.import("resource://sendlater3/defaultPreferencesLoader.jsm");
+    var loader = new DefaultPreferencesLoader();
+    loader.parseUri(
+        "chrome://sendlater3-defaults/content/preferences/sendlater3.js");
 
     SL3U.initUtil();
     sl3log.Entering("Sendlater3Backgrounding");
