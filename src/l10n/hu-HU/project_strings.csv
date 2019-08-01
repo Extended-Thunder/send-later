@@ -1,10 +1,11 @@
-"AMODescription","Altera o ""Enviar mais tarde"" (Ctrl + Shift + Return) na janela de composição da mensagem, de modo que em vez de simplesmente copiar a mensagem em sua caixa de saída para que ele seja enviada na próxima vez que estiver online ou ""Enviar mensagens não enviadas"", aparece uma janela que lhe permite especificar quando a mensagem será enviada.
+"AMODescription","Az üzenet-összetétel ablakban megváltoztatja a „Küldés később” parancsot (Ctrl+Shift+Enter), hogy ahelyett, hogy csak az üzeneteket másolná a Kimenő mappába, hogy elküldje a következő alkalommal, amikor online megy, vagy „Postázandó üzenetek elküldése”, megjelenik egy párbeszédablak, amely lehetővé teszi, hogy megadja, mikor küld az üzenet.
 
-Você pode especificar uma data e hora, ou clique em ""15 minutos mais tarde"", ""30 minutos mais tarde"" ou ""2 horas mais tarde"", ou clique em ""Coloque na Caixa de saída"" para obter o built-in Thunderbird ""Enviar mais tarde"" funcionalidade (ou seja, copiar a caixa de saída).
+Megadhat egy adott időpontot és dátumot, vagy kattintson a „15 perccel később”, „30 perccel később” vagy „2 órával később” gombra, vagy kattintson a „Kimenő üzenetek” gombra a beépített Thunderbird „Küldés később” funkciójának eléréséhez (azaz, másolja a Postázandó üzenetek mappába).
 
-Para obter informações adicionais, consulte o <a href=""https://blog.kamens.us/send-later/"">guia do usuário</a>.
+További tájékoztatókért <a href=""https://blog.kamens.us/send-later"">kattintson ide a felhasználói útmutató megtekintéséhez</a>.
 
-Junte-se à <a href=""https://groups.google.com/forum/#!forum/send-later-users"">lista de discussão</a>!
+Csatlakozzon a <a href=""https://groups.google.com/group/send-later-users"">levelezési listához</a>!
 
-Enviar mais tarde usa <a href=""https://sugarjs.com/"">SugarJS</a> por Andrew Plummer. Obrigado Andrew!","Description of the add-on that appears under “Add-on Details” on the addons.thunderbird.net."
+A Küldés később használja a Plummer András által <a href=""https://sugarjs.com/"">SugarJS</a> készített alkalmazást. Köszönöm, András!","AMODescription
+Description of the add-on that appears under “Add-on Details” on the addons.thunderbird.net."
 "AMOComments","Envie-me por e-mail, relatórios de bugs, sugestões, etc, para <a href=""mailto:jik+sendlater3@kamens.us"">jik+sendlater3@kamens.us</a>.","The text that appears under “Developer’s Comments” for the add-on on addons.thunderbird.net."
