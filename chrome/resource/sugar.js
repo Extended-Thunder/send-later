@@ -1,8 +1,8 @@
 /*
- *  Sugar Custom 2018.04.05
+ *  Sugar Custom 2019.08.05
  *
  *  Freely distributable and licensed under the MIT-style license.
- *  Copyright (c)  Andrew Plummer
+ *  Copyright (c) Andrew Plummer
  *  https://sugarjs.com/
  *
  * ---------------------------- */
@@ -35,23 +35,7 @@
   // IE8 has a broken defineProperty but no defineProperties so this saves a try/catch.
   var PROPERTY_DESCRIPTOR_SUPPORT = !!(Object.defineProperty && Object.defineProperties);
 
-  // The global context. Rhino uses a different "global" keyword so
-  // do an extra check to be sure that it's actually the global context.
-  var globalContext = typeof global !== 'undefined' && global.Object === Object ? global : this;
-  // `this` in Thunderbird 61+ (and probably upcoming Firefox releases as well,
-  // since TB and FF use the same JavaScript interpreter) is a
-  // NonSyntacticVariablesObject with only a few variables defined in it, not a
-  // BackstagePass with all the global variables including types defined in it.
-  // To detect this, we check if 'Array' is defined, and if not, we fix it
-  // using the method described in https://stackoverflow.com/a/3277192/5090662.
-  // I think that method would actually work all the time everywhere, not just
-  // with TB 61+, but I can't be certain enough about that to just throw away
-  // the logic above. Perhaps Andrew Plummer can, but I can't. ;-)
-  if (typeof globalContext['Array'] === 'undefined')
-    globalContext = Function('return this')();
-
-  // Is the environment node?
-  var hasExports = typeof module !== 'undefined' && module.exports;
+  var globalContext = getGlobal();
 
   // Whether object instance methods can be mapped to the prototype.
   var allowObjectPrototype = false;
@@ -63,6 +47,7 @@
   var namespacesByClassString = {};
 
   // Defining properties.
+  // istanbul ignore next
   var defineProperty = PROPERTY_DESCRIPTOR_SUPPORT ?  Object.defineProperty : definePropertyShim;
 
   // A default chainable class for unknown types.
@@ -70,6 +55,24 @@
 
 
   // Global methods
+
+  function getGlobal() {
+    // Get global context by keyword here to avoid issues with libraries
+    // that can potentially alter this script's context object.
+    var ret = testGlobal(typeof global !== 'undefined' && global) ||
+              testGlobal(typeof window !== 'undefined' && window);
+    if (ret) return ret;
+    // Firefox / Thunderbird specific
+    if (typeof Cu != 'undefined' && typeof Cu.getGlobalForObject != 'undefined')
+      ret = testGlobal(Cu.getGlobalForObject(getGlobal));
+    return ret;
+  }
+
+  function testGlobal(obj) {
+    // Note that Rhino uses a different "global" keyword so perform an
+    // extra check here to ensure that it's actually the global object.
+    return obj && obj.Object === Object ? obj : null;
+  }
 
   function setupGlobal() {
     Sugar = globalContext[SUGAR_GLOBAL];
@@ -91,9 +94,11 @@
       return Sugar;
     };
     // istanbul ignore else
-    if (hasExports) {
+    if (typeof module !== 'undefined' && module.exports) {
+      // Node or webpack environment
       module.exports = Sugar;
     } else {
+      // Unwrapped browser environment
       try {
         globalContext[SUGAR_GLOBAL] = Sugar;
       } catch (e) {
@@ -543,6 +548,7 @@
   }
 
   function setGlobalProperties() {
+    setProperty(Sugar, 'VERSION', 'Custom 2019.08.05');
     setProperty(Sugar, 'extend', Sugar);
     setProperty(Sugar, 'toString', toString);
     setProperty(Sugar, 'createNamespace', createNamespace);
@@ -886,8 +892,7 @@
    * @description Internal utility and common methods.
    ***/
 
-
-  // Flag allowing native methods to be enhanced
+  // Flag allowing native methods to be enhanced.
   var ENHANCEMENTS_FLAG = 'enhance';
 
   // For type checking, etc. Excludes object as this is more nuanced.
@@ -896,17 +901,17 @@
   // Do strings have no keys?
   var NO_KEYS_IN_STRING_OBJECTS = !('0' in Object('a'));
 
-  // Prefix for private properties
+  // Prefix for private properties.
   var PRIVATE_PROP_PREFIX = '_sugar_';
 
-  // Matches 1..2 style ranges in properties
+  // Matches 1..2 style ranges in properties.
   var PROPERTY_RANGE_REG = /^(.*?)\[([-\d]*)\.\.([-\d]*)\](.*)$/;
 
   // WhiteSpace/LineTerminator as defined in ES5.1 plus Unicode characters in the Space, Separator category.
   var TRIM_CHARS = '\u0009\u000A\u000B\u000C\u000D\u0020\u00A0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u2028\u2029\u3000\uFEFF';
 
-  // Regex for matching a formatted string
-  var STRING_FORMAT_REG = /([{}])\1|\{([^}]*)\}|(%)%|(%(\w*))/g;
+  // Regex for matching a formatted string.
+  var STRING_FORMAT_REG = /([{}])\1|{([^}]*)}|(%)%|(%(\w*))/g;
 
   // Common chars
   var HALF_WIDTH_ZERO = 0x30,
@@ -925,15 +930,6 @@
       sugarNumber   = Sugar.Number,
       sugarFunction = Sugar.Function,
       sugarRegExp   = Sugar.RegExp;
-
-  // Core utility aliases
-  var hasOwn               = Sugar.util.hasOwn,
-      getOwn               = Sugar.util.getOwn,
-      setProperty          = Sugar.util.setProperty,
-      classToString        = Sugar.util.classToString,
-      defineProperty       = Sugar.util.defineProperty,
-      forEachProperty      = Sugar.util.forEachProperty,
-      mapNativeToChainable = Sugar.util.mapNativeToChainable;
 
   // Class checks
   var isSerializable,
@@ -967,7 +963,7 @@
       //    https://bugzilla.mozilla.org/show_bug.cgi?id=268945 (won't fix)
       isFunction = buildClassCheck(names[5]);
 
-
+      // istanbul ignore next
       isArray = Array.isArray || buildClassCheck(names[6]);
       isError = buildClassCheck(names[7]);
 
@@ -1046,7 +1042,6 @@
       // of classes. The latter can arguably be matched by value, but
       // distinguishing between these and host objects -- which should never be
       // compared by value -- is very tricky so not dealing with it here.
-      className = className || classToString(obj);
       return isKnownType(className) || isPlainObject(obj, className);
     };
 
@@ -1155,6 +1150,8 @@
     });
   }
 
+  // Argument helpers
+
   function assertArgument(exists) {
     if (!exists) {
       throw new TypeError('Argument required');
@@ -1193,6 +1190,9 @@
     return trunc(n);
   }
 
+
+  // General helpers
+
   function isDefined(o) {
     return o !== undefined;
   }
@@ -1217,6 +1217,8 @@
       return createFn.apply(this, arguments);
     };
   }
+
+  // Fuzzy matching helpers
 
   function getMatcher(f) {
     if (!isPrimitive(f)) {
@@ -1280,6 +1282,8 @@
     };
   }
 
+  // Object helpers
+
   function getKeys(obj) {
     return Object.keys(obj);
   }
@@ -1299,7 +1303,7 @@
 
   function handleDeepProperty(obj, key, any, has, fill, fillLast, val) {
     var ns, bs, ps, cbi, set, isLast, isPush, isIndex, nextIsIndex, exists;
-    ns = obj || undefined;
+    ns = obj;
     if (key == null) return;
 
     if (isObjectType(key)) {
@@ -1360,7 +1364,9 @@
         // 2nd part, if there is only 1 part, or if there is an explicit key.
         if (i || key || blen === 1) {
 
-          exists = any ? key in ns : hasOwn(ns, key);
+          // TODO: need to be sure this check handles ''.length when
+          // we refactor.
+          exists = any ? key in Object(ns) : hasOwn(ns, key);
 
           // Non-existent namespaces are only filled if they are intermediate
           // (not at the end) or explicitly filling the last.
@@ -1432,7 +1438,7 @@
           // with the array index to be set.
           trailing = trailing.slice(1);
         }
-        return arr.map(function(el) {
+        return map(arr, function(el) {
           return handleDeepProperty(el, trailing);
         });
       }
@@ -1507,6 +1513,7 @@
     return simpleMerge({}, obj);
   }
 
+  // TODO: Use Object.assign here going forward.
   function simpleMerge(target, source) {
     forEachProperty(source, function(val, key) {
       target[key] = val;
@@ -1519,7 +1526,7 @@
     if (isPrimitive(obj)) {
       obj = Object(obj);
     }
-    // istanbul ignore if
+    // istanbul ignore next
     if (NO_KEYS_IN_STRING_OBJECTS && isString(obj)) {
       forceStringCoercion(obj);
     }
@@ -1535,6 +1542,8 @@
       obj[i++] = chr;
     }
   }
+
+  // Equality helpers
 
   // Perf
   function isEqual(a, b, stack) {
@@ -1598,11 +1607,16 @@
   // for the object. This array is passed from outside so that the
   // calling function can decide when to dispose of this array.
   function serializeInternal(obj, refs, stack) {
-    var type = typeof obj, className, value, ref;
+    var type = typeof obj, sign = '', className, value, ref;
+
+    // Return up front on
+    if (1 / obj === -Infinity) {
+      sign = '-';
+    }
 
     // Return quickly for primitives to save cycles
     if (isPrimitive(obj, type) && !isRealNaN(obj)) {
-      return type + obj;
+      return type + sign + obj;
     }
 
     className = classToString(obj);
@@ -1616,12 +1630,10 @@
       return ref;
     } else if (isObjectType(obj)) {
       value = serializeDeep(obj, refs, stack) + obj.toString();
-    } else if (1 / obj === -Infinity) {
-      value = '-0';
     } else if (obj.valueOf) {
       value = obj.valueOf();
     }
-    return type + className + value;
+    return type + className + sign + value;
   }
 
   function serializeDeep(obj, refs, stack) {
@@ -1678,6 +1690,9 @@
     }
   }
 
+
+  // Array helpers
+
   function isArrayIndex(n) {
     return n >>> 0 == n && n != 0xFFFFFFFF;
   }
@@ -1697,6 +1712,7 @@
   function getSparseArrayIndexes(arr, fromIndex, loop, fromRight) {
     var indexes = [], i;
     for (i in arr) {
+      // istanbul ignore next
       if (isArrayIndex(i) && (loop || (fromRight ? i <= fromIndex : i >= fromIndex))) {
         indexes.push(+i);
       }
@@ -1743,15 +1759,15 @@
     if (!f) {
       return el;
     } else if (f.apply) {
-      return f.apply(context, mapArgs || []);
+      return f.apply(context, mapArgs);
     } else if (isArray(f)) {
-      return f.map(function(m) {
+      return map(f, function(m) {
         return mapWithShortcuts(el, m, context, mapArgs);
       });
     } else if (isFunction(el[f])) {
       return el[f].call(el);
     } else {
-      return deepGetProperty(el, f);
+      return deepGetProperty(el, f, true);
     }
   }
 
@@ -1804,6 +1820,8 @@
     }
     return -1;
   }
+
+  // Number helpers
 
   // istanbul ignore next
   var trunc = Math.trunc || function(n) {
@@ -1886,6 +1904,9 @@
       ceil  = Math.ceil,
       floor = Math.floor,
       round = Math.round;
+
+
+  // String helpers
 
   var chr = String.fromCharCode;
 
@@ -1991,19 +2012,26 @@
     };
   }
 
+  // Inflection helper
+
   var Inflections = {};
 
   function getAcronym(str) {
+    // istanbul ignore next
     return Inflections.acronyms && Inflections.acronyms.find(str);
   }
 
   function getHumanWord(str) {
+    // istanbul ignore next
     return Inflections.human && Inflections.human.find(str);
   }
 
   function runHumanRules(str) {
+    // istanbul ignore next
     return Inflections.human && Inflections.human.runRules(str) || str;
   }
+
+  // RegExp helpers
 
   function allCharsReg(src) {
     return RegExp('[' + src + ']', 'g');
@@ -2026,8 +2054,10 @@
 
   function escapeRegExp(str) {
     if (!isString(str)) str = String(str);
-    return str.replace(/([\\\/\'*+?|()\[\]{}.^$-])/g,'\\$1');
+    return str.replace(/([\\/'*+?|()[\]{}.^$-])/g,'\\$1');
   }
+
+  // Date helpers
 
   var _utc = privatePropertyAccessor('utc');
 
@@ -2048,6 +2078,8 @@
     }
     d['set' + (_utc(d) ? 'UTC' : '') + method](value);
   }
+
+  // Memoization helpers
 
   var INTERNAL_MEMOIZE_LIMIT = 1000;
 
@@ -2071,6 +2103,8 @@
     };
   }
 
+  // ES6 helpers
+
   function setToArray(set) {
     var arr = new Array(set.size), i = 0;
     set.forEach(function(val) {
@@ -2088,7 +2122,6 @@
   }
 
   buildClassChecks();
-
   buildFullWidthNumber();
 
   /***
@@ -2098,7 +2131,6 @@
    *              you need legacy browser support (IE8 and below).
    *
    ***/
-
 
   // Non-enumerable properties on Object.prototype. In early JScript implementations
   // (< IE9) these will shadow object properties and break for..in loops.
@@ -2178,9 +2210,12 @@
 
   }
 
-  buildDontEnumFix();
 
+  buildDontEnumFix();
   buildChainableNativeMethodsFix();
+
+
+  /*** @namespace Object ***/
 
   function assertNonNull(obj) {
     if (obj == null) {
@@ -2200,6 +2235,9 @@
     }
 
   });
+
+
+  /*** @namespace Array ***/
 
   function arrayIndexOf(arr, search, fromIndex, fromRight) {
     var length = arr.length, defaultFromIndex, index, increment;
@@ -2499,10 +2537,12 @@
 
   });
 
+
+  /*** @namespace String ***/
+
   var TRIM_REG = RegExp('^[' + TRIM_CHARS + ']+|['+ TRIM_CHARS +']+$', 'g');
 
   defineInstancePolyfill(sugarString, {
-
     /***
      * @method trim()
      * @returns String
@@ -2521,12 +2561,14 @@
     'trim': function() {
       return this.toString().replace(TRIM_REG, '');
     }
-
   });
+
+
+  /*** @namespace Function ***/
 
   defineInstancePolyfill(sugarFunction, {
 
-    /***
+     /***
      * @method bind(context, [arg1], ...)
      * @returns Function
      * @polyfill ES5
@@ -2560,9 +2602,12 @@
 
   });
 
+
+  /*** @namespace Date ***/
+
   defineStaticPolyfill(sugarDate, {
 
-    /***
+     /***
      * @method now()
      * @returns String
      * @polyfill ES5
@@ -2588,7 +2633,7 @@
 
   defineInstancePolyfill(sugarDate, {
 
-    /***
+     /***
      * @method toISOString()
      * @returns String
      * @polyfill ES5
@@ -2610,7 +2655,7 @@
              padNumber(this.getUTCMilliseconds(), 3) + 'Z';
     },
 
-    /***
+     /***
      * @method toJSON([key])
      * @returns String
      * @polyfill ES5
@@ -2639,6 +2684,8 @@
    *
    ***/
 
+
+  /*** @namespace String ***/
 
   function getCoercedStringSubject(obj) {
     if (obj == null) {
@@ -2769,6 +2816,10 @@
 
   });
 
+
+  /*** @namespace Number ***/
+
+  // istanbul ignore next
   defineStaticPolyfill(sugarNumber, {
 
     /***
@@ -2791,6 +2842,9 @@
     }
 
   });
+
+
+  /*** @namespace Array ***/
 
   function getCoercedObject(obj) {
     if (obj == null) {
@@ -2883,6 +2937,8 @@
    ***/
 
 
+  /*** @namespace Array ***/
+
   function sameValueZero(a, b) {
     if (isRealNaN(a)) {
       return isRealNaN(b);
@@ -2911,7 +2967,9 @@
       // Force compiler to respect argument length.
       var argLen = arguments.length, fromIndex = arguments[1];
       var arr = this, len;
-      if (isString(arr)) return arr.includes(search, fromIndex);
+      if (isString(arr)) {
+        return arr.includes(search, fromIndex);
+      }
       fromIndex = fromIndex ? fromIndex.valueOf() : 0;
       len = arr.length;
       if (fromIndex < 0) {
@@ -2934,7 +2992,6 @@
    *
    ***/
 
-
   var DATE_OPTIONS = {
     'newDateInternal': defaultNewDate
   };
@@ -2946,7 +3003,10 @@
   ];
 
   // Regex for stripping Timezone Abbreviations
-  var TIMEZONE_ABBREVIATION_REG = /(\w{3})[()\s\d]*$/;
+  var TIMEZONE_ABBREVIATION_REG = /\(([-+]\d{2,4}|\w{3,5})\)$/;
+
+  // Regex for years with 2 digits or less
+  var ABBREVIATED_YEAR_REG = /^'?(\d{1,2})$/;
 
   // One minute in milliseconds
   var MINUTES = 60 * 1000;
@@ -2962,30 +3022,10 @@
   var ISO_FIRST_DAY_OF_WEEK = 1,
       ISO_FIRST_DAY_OF_WEEK_YEAR = 4;
 
-  var ParsingTokens = {
+  var CoreParsingTokens = {
     'yyyy': {
       param: 'year',
-      src: '\\d{4}'
-    },
-    'MM': {
-      param: 'month',
-      src: '[01]?\\d'
-    },
-    'dd': {
-      param: 'date',
-      src: '[0123]?\\d'
-    },
-    'hh': {
-      param: 'hour',
-      src: '[0-2]?\\d'
-    },
-    'mm': {
-      param: 'minute',
-      src: '[0-5]\\d'
-    },
-    'ss': {
-      param: 'second',
-      src: '[0-5]\\d(?:[,.]\\d+)?'
+      src: '[-−+]?\\d{4,6}'
     },
     'yy': {
       param: 'year',
@@ -2995,23 +3035,43 @@
       param: 'year',
       src: '\\d'
     },
-    'yearSign': {
-      src: '[+-]',
-      sign: true
+    'ayy': {
+      param: 'year',
+      src: '\'\\d{2}'
+    },
+    'MM': {
+      param: 'month',
+      src: '(?:1[012]|0?[1-9])'
+    },
+    'dd': {
+      param: 'date',
+      src: '(?:3[01]|[12][0-9]|0?[1-9])'
+    },
+    'hh': {
+      param: 'hour',
+      src: '(?:2[0-4]|[01]?[0-9])'
+    },
+    'mm': {
+      param: 'minute',
+      src: '[0-5]\\d'
+    },
+    'ss': {
+      param: 'second',
+      src: '[0-5]\\d(?:[,.]\\d+)?'
     },
     'tzHour': {
-      src: '[0-1]\\d'
+      src: '[-−+](?:2[0-4]|[01]?[0-9])'
     },
     'tzMinute': {
       src: '[0-5]\\d'
     },
-    'tzSign': {
-      src: '[+−-]',
-      sign: true
+    'iyyyy': {
+      param: 'year',
+      src: '(?:[-−+]?\\d{4}|[-−+]\\d{5,6})'
     },
     'ihh': {
       param: 'hour',
-      src: '[0-2]?\\d(?:[,.]\\d+)?'
+      src: '(?:2[0-4]|[01][0-9])(?:[,.]\\d+)?'
     },
     'imm': {
       param: 'minute',
@@ -3019,13 +3079,11 @@
     },
     'GMT': {
       param: 'utc',
-      src: 'GMT',
-      val: 1
+      src: 'GMT'
     },
     'Z': {
       param: 'utc',
-      src: 'Z',
-      val: 1
+      src: 'Z'
     },
     'timestamp': {
       src: '\\d+'
@@ -3034,7 +3092,7 @@
 
   var LocalizedParsingTokens = {
     'year': {
-      base: 'yyyy',
+      base: 'yyyy|ayy',
       requiresSuffix: true
     },
     'month': {
@@ -3071,8 +3129,20 @@
       // 12/08/1978
       // 08/12/1978 (MDY)
       time: true,
-      src: '{dd}[-.\\/]{MM}(?:[-.\\/]{yyyy|yy|y})?',
-      mdy: '{MM}[-.\\/]{dd}(?:[-.\\/]{yyyy|yy|y})?'
+      src: '{dd}[-\\/]{MM}(?:[-\\/]{yyyy|yy|y})?',
+      mdy: '{MM}[-\\/]{dd}(?:[-\\/]{yyyy|yy|y})?'
+    },
+    {
+      // 12.08.1978
+      // 08.12.1978 (MDY)
+      time: true,
+      src: '{dd}\\.{MM}(?:\\.{yyyy|yy|y})?',
+      mdy: '{MM}\\.{dd}(?:\\.{yyyy|yy|y})?',
+      localeCheck: function(loc) {
+        // Do not allow this format if the locale
+        // uses a period as a time separator.
+        return loc.timeSeparator !== '.';
+      }
     },
     {
       // 1975-08-25
@@ -3081,11 +3151,11 @@
     },
     {
       // .NET JSON
-      src: '\\\\/Date\\({timestamp}(?:[+-]\\d{4,4})?\\)\\\\/'
+      src: '\\\\/Date\\({timestamp}(?:[-+]\\d{4,4})?\\)\\\\/'
     },
     {
       // ISO-8601
-      src: '{yearSign?}{yyyy}(?:-?{MM}(?:-?{dd}(?:T{ihh}(?::?{imm}(?::?{ss})?)?)?)?)?{tzOffset?}'
+      src: '{iyyyy}(?:-?{MM}(?:-?{dd}(?:T{ihh}(?::?{imm}(?::?{ss})?)?)?)?)?{tzOffset?}'
     }
   ];
 
@@ -3358,7 +3428,8 @@
         // It will continue to be supported for Node and usage with the
         // understanding that it may be blank.
         var match = d.toString().match(TIMEZONE_ABBREVIATION_REG);
-        return match ? match[1]: '';
+        // istanbul ignore next
+        return match ? match[1] : '';
       }
     },
     {
@@ -3506,6 +3577,8 @@
     setChainableConstructor(sugarDate, createDate);
   }
 
+  // General helpers
+
   function getNewDate() {
     return _dateOptions('newDateInternal')();
   }
@@ -3594,6 +3667,8 @@
     }
   }
 
+  // UTC helpers
+
   function isUTC(d) {
     return !!_utc(d) || tzOffset(d) === 0;
   }
@@ -3611,19 +3686,20 @@
     return d.getTimezoneOffset();
   }
 
-  function collectDateArguments(args, allowDuration) {
-    var arg1 = args[0], arg2 = args[1];
+  // Argument helpers
+
+  function collectUpdateDateArguments(args, allowDuration) {
+    var arg1 = args[0], arg2 = args[1], params, reset;
     if (allowDuration && isString(arg1)) {
-      arg1 = getDateParamsFromString(arg1);
+      params = getDateParamsFromString(arg1);
+      reset  = arg2;
     } else if (isNumber(arg1) && isNumber(arg2)) {
-      arg1 = collectDateParamsFromArguments(args);
-      arg2 = null;
+      params = collectDateParamsFromArguments(args);
     } else {
-      if (isObjectType(arg1)) {
-        arg1 = simpleClone(arg1);
-      }
+      params = isObjectType(arg1) ? simpleClone(arg1) : arg1;
+      reset  = arg2;
     }
-    return [arg1, arg2];
+    return [params, reset];
   }
 
   function collectDateParamsFromArguments(args) {
@@ -3642,15 +3718,14 @@
     match = str.match(/^(-?\d*[\d.]\d*)?\s?(\w+?)s?$/i);
     if (match) {
       if (isUndefined(num)) {
-        num = +match[1];
-        if (isNaN(num)) {
-          num = 1;
-        }
+        num = match[1] ? +match[1] : 1;
       }
       params[match[2].toLowerCase()] = num;
     }
     return params;
   }
+
+  // Iteration helpers
 
   // Years -> Milliseconds
   function iterateOverDateUnits(fn, startIndex, endIndex) {
@@ -3718,6 +3793,8 @@
     iterateOverDateParams(params, fn, YEAR_INDEX, DAY_INDEX);
   }
 
+  // Advancing helpers
+
   function advanceDate(d, unit, num, reset) {
     var set = {};
     set[unit] = num;
@@ -3725,9 +3802,11 @@
   }
 
   function advanceDateWithArgs(d, args, dir) {
-    args = collectDateArguments(args, true);
+    args = collectUpdateDateArguments(args, true);
     return updateDate(d, args[0], args[1], dir);
   }
+
+  // Edge helpers
 
   function resetTime(d) {
     return setUnitAndLowerToEdge(d, HOURS_INDEX);
@@ -3774,6 +3853,8 @@
     return d;
   }
 
+  // Param helpers
+
   function getDateParamKey(params, key) {
     return getOwnKey(params, key) ||
            getOwnKey(params, key + 's') ||
@@ -3798,6 +3879,8 @@
     return unitIndex;
   }
 
+  // Time distance helpers
+
   function getDaysSince(d1, d2) {
     return getTimeDistanceForUnit(d1, d2, DateUnits[DAY_INDEX]);
   }
@@ -3814,10 +3897,18 @@
       num = trunc(num / unit.multiplier);
     }
     // For higher order with potential ambiguity, use the numeric calculation
-    // as a starting point, then iterate until we pass the target date.
+    // as a starting point, then iterate until we pass the target date. Decrement
+    // starting point by 1 to prevent overshooting the date due to inconsistencies
+    // in ambiguous units numerically. For example, calculating the number of days
+    // from the beginning of the year to August 5th at 11:59:59 by doing a simple
+    // d2 - d1 will produce different results depending on whether or not a
+    // timezone shift was encountered due to DST, however that should not have an
+    // effect on our calculation here, so subtract by 1 to ensure that the
+    // starting point has not already overshot our target date.
     if (unit.ambiguous) {
       d1 = cloneDate(d1);
       if (num) {
+        num -= 1;
         advanceDate(d1, unit.name, num);
       }
       while (d1 < d2) {
@@ -3831,22 +3922,7 @@
     return fwd ? -num : num;
   }
 
-  function getParsingTokenValue(token, str) {
-    var val;
-    if (token.val) {
-      val = token.val;
-    } else if (token.sign) {
-      val = str === '+' ? 1 : -1;
-    } else if (token.bool) {
-      val = !!val;
-    } else {
-      val = +str.replace(/,/, '.');
-    }
-    if (token.param === 'month') {
-      val -= 1;
-    }
-    return val;
-  }
+  // Parsing helpers
 
   function getYearFromAbbreviation(str, d, prefer) {
     // Following IETF here, adding 1900 or 2000 depending on the last two digits.
@@ -3862,6 +3938,8 @@
     }
     return val;
   }
+
+  // Week number helpers
 
   function setISOWeekNumber(d, num) {
     if (isNumber(num)) {
@@ -3904,6 +3982,8 @@
     return n;
   }
 
+  // Week year helpers
+
   function getWeekYear(d, localeCode, iso) {
     var year, month, firstDayOfWeek, firstDayOfWeekYear, week, loc;
     year = getYear(d);
@@ -3929,6 +4009,8 @@
     setDate(d, firstDayOfWeekYear);
     moveToBeginningOfWeek(d, firstDayOfWeek);
   }
+
+  // Relative helpers
 
   function dateRelative(d, dRelative, arg1, arg2) {
     var adu, format, type, localeCode, fn;
@@ -4009,6 +4091,8 @@
       return abs(getTimeDistanceForUnit(d, dRelative, u));
     });
   }
+
+  // Foramtting helpers
 
   // Formatting tokens
   var ldmlTokens, strfTokens;
@@ -4135,6 +4219,8 @@
     addFormats(ldmlTokens, 'stamp', getIdentityFormat('stamp'));
   }
 
+  // Format matcher
+
   var dateFormatMatcher;
 
   function buildDateFormatMatcher() {
@@ -4154,6 +4240,8 @@
     // Format matcher for LDML or STRF tokens.
     dateFormatMatcher = createFormatMatcher(getLdml, getStrf, checkDateToken);
   }
+
+  // Comparison helpers
 
   function fullCompareDate(date, d, margin) {
     var tmp;
@@ -4230,6 +4318,7 @@
     min = p.date.getTime();
     max = max || min;
     timezoneShift = getTimezoneShift();
+    // istanbul ignore if
     if (timezoneShift) {
       min -= timezoneShift;
       max -= timezoneShift;
@@ -4247,6 +4336,8 @@
            getDate(d) === getDate(comp);
   }
 
+  // Create helpers
+
   function createDate(d, options, forceClone) {
     return getExtendedDate(null, d, options, forceClone).date;
   }
@@ -4257,44 +4348,62 @@
 
   function getExtendedDate(contextDate, d, opt, forceClone) {
 
-    var date, set, loc, options, afterCallbacks, relative, weekdayDir;
+    // Locals
+    var date, set, loc, afterCallbacks, relative, weekdayDir;
+
+    // Options
+    var optPrefer, optLocale, optFromUTC, optSetUTC, optParams, optClone;
 
     afterCallbacks = [];
-    options = getDateOptions(opt);
 
-    function getDateOptions(opt) {
-      var options = isString(opt) ? { locale: opt } : opt || {};
-      options.prefer = +!!getOwn(options, 'future') - +!!getOwn(options, 'past');
-      return options;
+    setupOptions(opt);
+
+    function setupOptions(opt) {
+      opt = isString(opt) ? { locale: opt } : opt || {};
+      optPrefer  = +!!getOwn(opt, 'future') - +!!getOwn(opt, 'past');
+      optLocale  = getOwn(opt, 'locale');
+      optFromUTC = getOwn(opt, 'fromUTC');
+      optSetUTC  = getOwn(opt, 'setUTC');
+      optParams  = getOwn(opt, 'params');
+      optClone   = getOwn(opt, 'clone');
     }
 
-    function getFormatParams(match, dif) {
-      var set = getOwn(options, 'params') || {};
-      forEach(dif.to, function(field, i) {
-        var str = match[i + 1], token, val;
+    function parseFormatValues(match, dif) {
+      var set = optParams || {};
+      forEach(dif.to, function(param, i) {
+        var str = match[i + 1], val;
         if (!str) return;
-        if (field === 'yy' || field === 'y') {
-          field = 'year';
-          val = getYearFromAbbreviation(str, date, getOwn(options, 'prefer'));
-        } else if (token = getOwn(ParsingTokens, field)) {
-          field = token.param || field;
-          val = getParsingTokenValue(token, str);
-        } else {
-          val = loc.getTokenValue(field, str);
+
+        val = parseIrregular(str, param);
+
+        if (isUndefined(val)) {
+          val = loc.parseValue(str, param);
         }
-        set[field] = val;
+
+        set[param] = val;
       });
       return set;
     }
 
-    // Clone date will set the utc flag, but it will
-    // be overriden later, so set option flags instead.
-    function cloneDateByFlag(d, clone) {
-      if (_utc(d) && !isDefined(getOwn(options, 'fromUTC'))) {
-        options.fromUTC = true;
+    function parseIrregular(str, param) {
+      if (param === 'utc') {
+        return 1;
+      } else if (param === 'year') {
+        var match = str.match(ABBREVIATED_YEAR_REG);
+        if (match) {
+          return getYearFromAbbreviation(match[1], date, optPrefer);
+        }
       }
-      if (_utc(d) && !isDefined(getOwn(options, 'setUTC'))) {
-        options.setUTC = true;
+    }
+
+    // Force the UTC flags to be true if the source date
+    // date is UTC, as they will be overwritten later.
+    function cloneDateByFlag(d, clone) {
+      if (_utc(d) && !isDefined(optFromUTC)) {
+        optFromUTC = true;
+      }
+      if (_utc(d) && !isDefined(optSetUTC)) {
+        optSetUTC = true;
       }
       if (clone) {
         d = new Date(d.getTime());
@@ -4318,7 +4427,7 @@
 
       // The act of getting the locale will initialize
       // if it is missing and add the required formats.
-      loc = localeManager.get(getOwn(options, 'locale'));
+      loc = localeManager.get(optLocale);
 
       for (var i = 0, dif, match; dif = loc.compiledFormats[i]; i++) {
         match = str.match(dif.reg);
@@ -4330,11 +4439,10 @@
           // break out below, so simpler to do it here.
           loc.cacheFormat(dif, i);
 
-          set = getFormatParams(match, dif);
+          set = parseFormatValues(match, dif);
 
           if (isDefined(set.timestamp)) {
-            str = set.timestamp;
-            set = null;
+            date.setTime(set.timestamp);
             break;
           }
 
@@ -4343,7 +4451,7 @@
           }
 
           if (set.utc || isDefined(set.tzHour)) {
-            handleTimezoneOffset(set.tzHour, set.tzMinute, set.tzSign);
+            handleTimezoneOffset(set.tzHour, set.tzMinute);
           }
 
           if (isDefined(set.shift) && isUndefined(set.unit)) {
@@ -4376,18 +4484,15 @@
             handleEdge(set.edge, set);
           }
 
-          if (set.yearSign) {
-            set.year *= set.yearSign;
-          }
-
           break;
         }
       }
 
       if (!set) {
+        // TODO: remove in next major version
         // Fall back to native parsing
         date = new Date(str);
-        if (getOwn(options, 'fromUTC')) {
+        if (optFromUTC && dateIsValid(date)) {
           // Falling back to system date here which cannot be parsed as UTC,
           // so if we're forcing UTC then simply add the offset.
           date.setTime(date.getTime() + (tzOffset(date) * MINUTES));
@@ -4395,12 +4500,7 @@
       } else if (relative) {
         updateDate(date, set, false, 1);
       } else {
-        if (_utc(date)) {
-          // UTC times can traverse into other days or even months,
-          // so preemtively reset the time here to prevent this.
-          resetTime(date);
-        }
-        updateDate(date, set, true, 0, getOwn(options, 'prefer'), weekdayDir);
+        updateDate(date, set, true, 0, optPrefer, weekdayDir, contextDate);
       }
       fireCallbacks();
       return date;
@@ -4416,10 +4516,18 @@
       }
     }
 
-    function handleTimezoneOffset(tzHour, tzMinute, tzSign) {
+    function handleTimezoneOffset(tzHour, tzMinute) {
       // Adjust for timezone offset
       _utc(date, true);
-      var offset = (tzSign || 1) * ((tzHour || 0) * 60 + (tzMinute || 0));
+
+      // Sign is parsed as part of the hour, so flip
+      // the minutes if it's negative.
+
+      if (tzHour < 0) {
+        tzMinute *= -1;
+      }
+
+      var offset = tzHour * 60 + (tzMinute || 0);
       if (offset) {
         set.minute = (set.minute || 0) - offset;
       }
@@ -4467,7 +4575,15 @@
     }
 
     function handleRelativeUnit(unitIndex) {
-      var num = isDefined(set.num) ? set.num : 1;
+      var num;
+
+      if (isDefined(set.num)) {
+        num = set.num;
+      } else if (isDefined(set.edge) && isUndefined(set.shift)) {
+        num = 0;
+      } else {
+        num = 1;
+      }
 
       // If a weekday is defined, there are 3 possible formats being applied:
       //
@@ -4551,13 +4667,13 @@
         // year is -2 and the end of the year is 2. Conversely, the "last day" is
         // actually 00:00am so it is 1. -1 is reserved but unused for now.
         if (edge < 0) {
-          moveToBeginningOfUnit(date, edgeIndex, getOwn(options, 'locale'));
+          moveToBeginningOfUnit(date, edgeIndex, optLocale);
         } else if (edge > 0) {
           if (edge === 1) {
             stopIndex = DAY_INDEX;
             moveToBeginningOfUnit(date, DAY_INDEX);
           }
-          moveToEndOfUnit(date, edgeIndex, getOwn(options, 'locale'), stopIndex);
+          moveToEndOfUnit(date, edgeIndex, optLocale, stopIndex);
         }
         if (isDefined(weekdayOfMonth)) {
           setWeekday(date, weekdayOfMonth, -edge);
@@ -4602,7 +4718,10 @@
       });
       if (params) {
         afterDateSet(function() {
-          updateDate(date, params, true, false, getOwn(options, 'prefer'), weekdayDir);
+          updateDate(date, params, true, 0, false, weekdayDir);
+          if (optParams) {
+            simpleMerge(optParams, params);
+          }
         });
         if (set.edge) {
           // "the end of March of next year"
@@ -4620,12 +4739,12 @@
       date = getNewDate();
     }
 
-    _utc(date, getOwn(options, 'fromUTC'));
+    _utc(date, optFromUTC);
 
     if (isString(d)) {
       date = parseStringDate(d);
     } else if (isDate(d)) {
-      date = cloneDateByFlag(d, hasOwn(options, 'clone') || forceClone);
+      date = cloneDateByFlag(d, optClone || forceClone);
     } else if (isObjectType(d)) {
       set = simpleClone(d);
       updateDate(date, set, true);
@@ -4638,14 +4757,15 @@
     // "2012-11-15T12:00:00Z", in the majority of cases you are using it to create
     // a date that will, after creation, be manipulated as local, so reset the utc
     // flag here unless "setUTC" is also set.
-    _utc(date, !!getOwn(options, 'setUTC'));
+    _utc(date, !!optSetUTC);
     return {
       set: set,
       date: date
     };
   }
 
-  function updateDate(d, params, reset, advance, prefer, weekdayDir) {
+  // TODO: consolidate arguments into options
+  function updateDate(d, params, reset, advance, prefer, weekdayDir, contextDate) {
     var upperUnitIndex;
 
     function setUpperUnit(unitName, unitIndex) {
@@ -4671,9 +4791,10 @@
       if (!upperUnitIndex || upperUnitIndex > YEAR_INDEX) {
         return;
       }
+
       switch(prefer) {
-        case -1: return d > getNewDate();
-        case  1: return d < getNewDate();
+        case -1: return d >= (contextDate || getNewDate());
+        case  1: return d <= (contextDate || getNewDate());
       }
     }
 
@@ -4789,6 +4910,8 @@
     }
     return d;
   }
+
+  // Locales
 
   // Locale helpers
   var English, localeManager;
@@ -4918,44 +5041,58 @@
         return getArrayWithOffset(this.weekdays, n, alternate, 7);
       },
 
-      getTokenValue: function(field, str) {
-        var map = this[field + 'Map'], val;
-        if (map) {
-          val = map[str];
+      // TODO: rename to parse in next major version
+      parseValue: function(str, param) {
+        var map = this[param + 'Map'];
+        if (hasOwn(map, str)) {
+          return map[str];
         }
-        if (isUndefined(val)) {
-          val = this.getNumber(str);
-          if (field === 'month') {
-            // Months are the only numeric date field
-            // whose value is not the same as its number.
-            val -= 1;
-          }
+        return this.parseNumber(str, param);
+      },
+
+      // TODO: analyze performance of parsing first vs checking
+      // numeralMap first.
+      parseNumber: function(str, param) {
+        var val;
+
+        // Simple numerals such as "one" are mapped directly in
+        // the numeral map so catch up front if there is a match.
+        if (hasOwn(this.numeralMap, str)) {
+          val = this.numeralMap[str];
         }
+
+        // TODO: perf test isNaN vs other methods
+        if (isNaN(val)) {
+          val = this.parseRegularNumerals(str);
+        }
+
+        if (isNaN(val)) {
+          val = this.parseIrregularNumerals(str);
+        }
+
+        if (param === 'month') {
+          // Months are the only numeric date field
+          // whose value is not the same as its number.
+          val -= 1;
+        }
+
         return val;
       },
 
-      getNumber: function(str) {
-        var num = this.numeralMap[str];
-        if (isDefined(num)) {
-          return num;
-        }
-        // The unary plus operator here show better performance and handles
+      // TODO: perf test returning up front if no regular decimals exist
+      parseRegularNumerals: function(str) {
+        // Allow decimals as commas and the minus-sign as per ISO-8601.
+        str = str.replace(/^−/, '-').replace(/,/, '.');
+
+        // The unary plus operator here shows better performance and handles
         // every format that parseFloat does with the exception of trailing
         // characters, which are guaranteed not to be in our string at this point.
-        num = +str.replace(/,/, '.');
-        if (!isNaN(num)) {
-          return num;
-        }
-        num = this.getNumeralValue(str);
-        if (!isNaN(num)) {
-          this.numeralMap[str] = num;
-          return num;
-        }
-        return num;
+        return +str;
       },
 
-      getNumeralValue: function(str) {
+      parseIrregularNumerals: function(str) {
         var place = 1, num = 0, lastWasPlace, isPlace, numeral, digit, arr;
+
         // Note that "numerals" that need to be converted through this method are
         // all considered to be single characters in order to handle CJK. This
         // method is by no means unique to CJK, but the complexity of handling
@@ -5034,19 +5171,19 @@
         this.compiledFormats.unshift(dif);
       },
 
-      addFormat: function(src, to) {
-        var loc = this;
+      addFormat: function(format) {
+        var loc = this, src, to;
 
-        function getTokenSrc(str) {
-          var suffix, src, val,
-              opt   = str.match(/\?$/),
-              nc    = str.match(/^(\d+)\??$/),
-              slice = str.match(/(\d)(?:-(\d))?/),
-              key   = str.replace(/[^a-z]+$/i, '');
+        function getTokenSrc(token) {
+          var suffix, src, tmp,
+              opt   = token.match(/\?$/),
+              nc    = token.match(/^(\d+)\??$/),
+              slice = token.match(/(\d)(?:-(\d))?/),
+              param = token.replace(/[^a-z]+$/i, '');
 
           // Allowing alias tokens such as {time}
-          if (val = getOwn(loc.parsingAliases, key)) {
-            src = replaceParsingTokens(val);
+          if (tmp = getOwn(loc.parsingAliases, param)) {
+            src = formatToSrc(tmp);
             if (opt) {
               src = getRegNonCapturing(src, true);
             }
@@ -5055,32 +5192,42 @@
 
           if (nc) {
             src = loc.tokens[nc[1]];
-          } else if (val = getOwn(ParsingTokens, key)) {
-            src = val.src;
+          } else if (tmp = getOwn(CoreParsingTokens, param)) {
+            src = tmp.src;
+            param = tmp.param || param;
           } else {
-            val = getOwn(loc.parsingTokens, key) || getOwn(loc, key);
+            tmp = getOwn(loc.parsingTokens, param) || getOwn(loc, param);
 
             // Both the "months" array and the "month" parsing token can be accessed
             // by either {month} or {months}, falling back as necessary, however
             // regardless of whether or not a fallback occurs, the final field to
             // be passed to addRawFormat must be normalized as singular.
-            key = key.replace(/s$/, '');
+            param = param.replace(/s$/, '');
 
-            if (!val) {
-              val = getOwn(loc.parsingTokens, key) || getOwn(loc, key + 's');
+            if (!tmp) {
+              tmp = getOwn(loc.parsingTokens, param) || getOwn(loc, param + 's');
             }
 
-            if (isString(val)) {
-              src = val;
-              suffix = loc[key + 'Suffix'];
+            if (isString(tmp)) {
+              src = tmp;
+              suffix = loc[param + 'Suffix'];
             } else {
+
+              // This is a hack to temporarily disallow parsing of single character
+              // weekdays until the format can be changed to allow for this.
+              if (param === 'weekday' && loc.code === 'ko') {
+                tmp = filter(tmp, function(str) {
+                  return str.length > 1;
+                });
+              }
+
               if (slice) {
-                val = filter(val, function(m, i) {
-                  var mod = i % (loc.units ? 8 : val.length);
+                tmp = filter(tmp, function(m, i) {
+                  var mod = i % (loc.units ? 8 : tmp.length);
                   return mod >= slice[1] && mod <= (slice[2] || slice[1]);
                 });
               }
-              src = arrayToRegAlternates(val);
+              src = arrayToRegAlternates(tmp);
             }
           }
           if (!src) {
@@ -5091,12 +5238,12 @@
             src = getRegNonCapturing(src);
           } else {
             // Capturing group and add to parsed tokens
-            to.push(key);
+            to.push(param);
             src = '(' + src + ')';
           }
           if (suffix) {
             // Date/time suffixes such as those in CJK
-            src = getParsingTokenWithSuffix(key, src, suffix);
+            src = getParsingTokenWithSuffix(param, src, suffix);
           }
           if (opt) {
             src += '?';
@@ -5104,27 +5251,29 @@
           return src;
         }
 
-        function replaceParsingTokens(str) {
+        function formatToSrc(str) {
 
           // Make spaces optional
           str = str.replace(/ /g, ' ?');
 
-          return str.replace(/\{([^,]+?)\}/g, function(match, token) {
-            var tokens = token.split('|'), src;
+          str = str.replace(/\{([^,]+?)\}/g, function(match, token) {
+            var tokens = token.split('|');
             if (tokens.length > 1) {
-              src = getRegNonCapturing(map(tokens, getTokenSrc).join('|'));
+              return getRegNonCapturing(map(tokens, getTokenSrc).join('|'));
             } else {
-              src = getTokenSrc(token);
+              return getTokenSrc(token);
             }
-            return src;
           });
+
+          return str;
         }
 
-        if (!to) {
+        function parseInputFormat() {
           to = [];
-          src = replaceParsingTokens(src);
+          src = formatToSrc(format);
         }
 
+        parseInputFormat();
         loc.addRawFormat(src, to);
       },
 
@@ -5221,28 +5370,36 @@
           loc.parsingAliases['tzOffset'] = getTZOffsetFormat();
         }
 
-        function getTimeFormat() {
-          var src;
+        function getTimeFormat(standalone) {
+          var src, sep;
+          sep = getTimeSeparatorSrc(standalone);
           if (loc.ampmFront) {
             // "ampmFront" exists mostly for CJK locales, which also presume that
             // time suffixes exist, allowing this to be a simpler regex.
             src = '{ampm?} {hour} (?:{minute} (?::?{second})?)?';
           } else if(loc.ampm.length) {
-            src = '{hour}(?:[.:]{minute}(?:[.:]{second})? {ampm?}| {ampm})';
+            src = '{hour}(?:'+sep+'{minute?}(?:'+sep+'{second?})? {ampm?}| {ampm})';
           } else {
-            src = '{hour}(?:[.:]{minute}(?:[.:]{second})?)';
+            src = '{hour}(?:'+sep+'{minute?}(?:'+sep+'{second?})?)';
           }
           return src;
         }
 
+        function getTimeSeparatorSrc() {
+          if (loc.timeSeparator) {
+            return '[:' + loc.timeSeparator + ']';
+          } else {
+            return ':';
+          }
+        }
+
         function getTZOffsetFormat() {
-          return '(?:{Z}|{GMT?}(?:{tzSign}{tzHour}(?::?{tzMinute}(?: \\([\\w\\s]+\\))?)?)?)?';
+          return '(?:{Z}|{GMT?}(?:{tzHour}(?::?{tzMinute}(?: \\([\\w\\s]+\\))?)?)?)?';
         }
 
         function buildParsingTokens() {
           forEachProperty(LocalizedParsingTokens, function(token, name) {
-            var src, arr;
-            src = token.base ? ParsingTokens[token.base].src : token.src;
+            var src = token.base ? getCoreTokensForBase(token.base) : token.src, arr;
             if (token.requiresNumerals || loc.numeralUnits) {
               src += getNumeralSrc();
             }
@@ -5252,6 +5409,12 @@
             }
             loc.parsingTokens[name] = src;
           });
+        }
+
+        function getCoreTokensForBase(base) {
+          return map(base.split('|'), function(key) {
+            return CoreParsingTokens[key].src;
+          }).join('|');
         }
 
         function getNumeralSrc() {
@@ -5299,6 +5462,9 @@
         function addCoreFormats() {
           forEach(CoreParsingFormats, function(df) {
             var src = df.src;
+            if (df.localeCheck && !df.localeCheck(loc)) {
+              return;
+            }
             if (df.mdy && loc.mdy) {
               // Use the mm/dd/yyyy variant if it
               // exists and the locale requires it
@@ -5349,7 +5515,7 @@
             markers += '| (?:' + localized + ') ';
           }
           markers = getRegNonCapturing(markers, loc.timeMarkerOptional);
-          return getRegNonCapturing(markers + '{time}', true);
+          return getRegNonCapturing(markers + '{time}{tzOffset}', true);
         }
 
         initFormats();
@@ -5379,6 +5545,7 @@
 
     return new Locale(def);
   }
+
 
   /***
    * @method [units]Since(d, [options])
@@ -5651,10 +5818,10 @@
       };
 
       var since = function(date, d, options) {
-        return getTimeDistanceForUnit(date, createDateWithContext(date, d, options, true), unit);
+        return getTimeDistanceForUnit(date, createDate(d, options, true), unit);
       };
       var until = function(date, d, options) {
-        return getTimeDistanceForUnit(createDateWithContext(date, d, options, true), date, unit);
+        return getTimeDistanceForUnit(createDate(d, options, true), date, unit);
       };
 
       methods[name + 'sAgo']   = methods[name + 'sUntil']   = until;
@@ -5939,7 +6106,7 @@
      *
      ***/
     'set': function(d, args) {
-      args = collectDateArguments(args);
+      args = collectUpdateDateArguments(args);
       return updateDate(d, args[0], args[1]);
     },
 
@@ -6153,9 +6320,15 @@
      * @short Controls a flag on the date that tells Sugar to internally use UTC
      *        methods like `getUTCHours`.
      * @extra This flag is most commonly used for output in UTC time with the
-     *        `format` method. Note that this flag only governs which methods are
-     *        called internally – date native methods like `setHours` will still
-     *        return local non-UTC values. This method will modify the date!
+     *        `format` method. Note that this flag only governs which native
+     *        methods are called internally – date native methods like `setHours`
+     *        will still return local non-UTC values. Also note that other date
+     *        operations such as comparison and subtraction still work as normal.
+     *        This effectively makes it not meaningful to use date comparison
+     *        methods like `isBefore` or difference methods like `hoursBefore`
+     *        unless these flags are both the same, as the date is not actually
+     *        in UTC time. If such a usage is required, the timezone offset should
+     *        instead be manually subtracted. This method will modify the date!
      *
      * @example
      *
@@ -6558,6 +6731,9 @@
 
   });
 
+
+  /*** @namespace Number ***/
+
   /***
    * @method [dateUnit]()
    * @returns Number
@@ -6783,6 +6959,7 @@
 
   });
 
+
   var EnglishLocaleBaseDefinition = {
     'code': 'en',
     'plural': true,
@@ -6817,12 +6994,12 @@
     'parse': [
       '(?:just)? now',
       '{shift} {unit:5-7}',
-      "{months?} (?:{year}|'{yy})",
+      '{months?} {year}',
       '{midday} {4?} {day|weekday}',
-      '{months},?(?:[-.\\/\\s]{year})?',
+      '{months},?[-.\\/\\s]?{year?}',
       '{edge} of (?:day)? {day|weekday}',
       '{0} {num}{1?} {weekday} {2} {months},? {year?}',
-      '{shift?} {day?} {weekday?} {timeMarker?} {midday}',
+      '{shift?} {day?} {weekday?} (?:at)? {midday}',
       '{sign?} {3?} {half} {3?} {unit:3-4|unit:7} {sign?}',
       '{0?} {edge} {weekday?} {2} {shift?} {unit:4-7?} {months?},? {year?}'
     ],
@@ -6833,11 +7010,12 @@
       '{weekday} {2?} {shift} {unit:5}',
       '{0?} {num} {2?} {months}\\.?,? {year?}',
       '{num?} {unit:4-5} {sign} {day|weekday}',
-      '{year}[-.\\/\\s]{months}[-.\\/\\s]{date}',
       '{0|months} {date?}{1?} of {shift} {unit:6-7}',
       '{0?} {num}{1?} {weekday} of {shift} {unit:6}',
-      "{date}[-.\\/\\s]{months}[-.\\/\\s](?:{year}|'?{yy})",
-      "{weekday?}\\.?,? {months}\\.?,? {date}{1?},? (?:{year}|'{yy})?"
+      '{year?}[-.\\/\\s]?{months}[-.\\/\\s]{date}',
+      '{date}[-.\\/\\s]{months}(?:[-.\\/\\s]{year|yy})?',
+      '{weekday?}\\.?,? {months}\\.?,? {date}{1?},? {year?}',
+      '{weekday?}\\.?,? {date} {months} {year}'
     ],
     'timeFrontParse': [
       '{sign} {num} {unit}',
@@ -6882,17 +7060,11 @@
   };
 
   buildLocales();
-
   buildDateFormatTokens();
-
   buildDateFormatMatcher();
-
   buildDateUnitMethods();
-
   buildNumberUnitMethods();
-
   buildRelativeAliases();
-
   setDateChainableConstructor();
 
   /***
@@ -6901,8 +7073,7 @@
    *
    ***/
 
-
-  // Flag allowing native string methods to be enhanced
+  // Flag allowing native string methods to be enhanced.
   var STRING_ENHANCEMENTS_FLAG = 'enhanceString';
 
   // Matches non-punctuation characters except apostrophe for capitalization.
@@ -6943,9 +7114,7 @@
   ];
 
   var LEFT_TRIM_REG  = RegExp('^['+ TRIM_CHARS +']+');
-
   var RIGHT_TRIM_REG = RegExp('['+ TRIM_CHARS +']+$');
-
   var TRUNC_REG      = RegExp('(?=[' + TRIM_CHARS + '])');
 
   // Reference to native String#includes to enhance later.
@@ -7050,11 +7219,14 @@
 
   function stringUnderscore(str) {
     var areg = Inflections.acronyms && Inflections.acronyms.reg;
-    return str
-      .replace(/[-\s]+/g, '_')
-      .replace(areg, function(acronym, index) {
+    // istanbul ignore if
+    if (areg) {
+      str = str.replace(areg, function(acronym, index) {
         return (index > 0 ? '_' : '') + acronym.toLowerCase();
       })
+    }
+    return str
+      .replace(/[-\s]+/g, '_')
       .replace(/([A-Z\d]+)([A-Z][a-z])/g,'$1_$2')
       .replace(/([a-z\d])([A-Z])/g,'$1_$2')
       .toLowerCase();
@@ -7065,6 +7237,7 @@
     return str.replace(CAMELIZE_REG, function(match, pre, word, index) {
       var cap = upper !== false || index > 0, acronym;
       acronym = getAcronym(word);
+      // istanbul ignore if
       if (acronym && cap) {
         return acronym;
       }
@@ -7257,6 +7430,7 @@
   function buildBase64() {
     var encodeAscii, decodeAscii;
 
+    // istanbul ignore next
     function catchEncodingError(fn) {
       return function(str) {
         try {
@@ -7267,15 +7441,18 @@
       };
     }
 
+    // istanbul ignore if
     if (typeof Buffer !== 'undefined') {
       encodeBase64 = function(str) {
-        return new Buffer(str).toString('base64');
+        return Buffer.from(str).toString('base64');
       };
       decodeBase64 = function(str) {
-        return new Buffer(str, 'base64').toString('utf8');
+        return Buffer.from(str, 'base64').toString('utf8');
       };
       return;
     }
+
+    // istanbul ignore if
     if (typeof btoa !== 'undefined') {
       encodeAscii = catchEncodingError(btoa);
       decodeAscii = catchEncodingError(atob);
@@ -8294,7 +8471,6 @@
   });
 
   buildBase64();
-
   buildEntities();
 
   /***
@@ -8303,9 +8479,7 @@
    *
    ***/
 
-
   var HALF_WIDTH_NINE = 0x39;
-
   var FULL_WIDTH_NINE = 0xff19;
 
   // Undefined array elements in < IE8 will not be visited by concat
@@ -8392,6 +8566,7 @@
    ***/
   var _arrayOptions = defineOptionsAccessor(sugarArray, ARRAY_OPTIONS);
 
+
   function setArrayChainableConstructor() {
     setChainableConstructor(sugarArray, arrayCreate);
   }
@@ -8421,6 +8596,7 @@
   }
 
   function arrayConcat(arr1, arr2) {
+    // istanbul ignore if
     if (HAS_CONCAT_BUG) {
       return arraySafeConcat(arr1, arr2);
     }
@@ -8435,6 +8611,7 @@
   }
 
   // Avoids issues with concat in < IE8
+  // istanbul ignore next
   function arraySafeConcat(arr, arg) {
     var result = arrayClone(arr), len = result.length, arr2;
     arr2 = isArray(arg) ? arg : [arg];
@@ -8444,6 +8621,7 @@
     });
     return result;
   }
+
 
   function arrayAppend(arr, el, index) {
     var spliceArgs;
@@ -8559,6 +8737,8 @@
     return result;
   }
 
+  // Collation helpers
+
   function compareValue(aVal, bVal) {
     var cmp, i, collate;
     if (isString(aVal) && isString(bVal)) {
@@ -8627,7 +8807,6 @@
   }
 
   function getCollationReadyString(str, sortIgnore, sortIgnoreCase) {
-    if (!isString(str)) str = String(str);
     if (sortIgnoreCase) {
       str = str.toLowerCase();
     }
@@ -9430,7 +9609,6 @@
    *
    ***/
 
-
   // Matches bracket-style query strings like user[name]
   var DEEP_QUERY_STRING_REG = /^(.+?)(\[.*\])$/;
 
@@ -9439,19 +9617,18 @@
 
   // Native methods for merging by descriptor when available.
   var getOwnPropertyNames      = Object.getOwnPropertyNames;
-
   var getOwnPropertySymbols    = Object.getOwnPropertySymbols;
-
   var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
 
-  // Internal reference to check if an object can be serialized.
-  var internalToString = Object.prototype.toString;
+  // Basic Helpers
 
   function isArguments(obj, className) {
     className = className || classToString(obj);
     // .callee exists on Arguments objects in < IE8
     return hasProperty(obj, 'length') && (className === '[object Arguments]' || !!obj.callee);
   }
+
+  // Query Strings | Creating
 
   function toQueryStringWithOptions(obj, opts) {
     opts = opts || {};
@@ -9524,6 +9701,9 @@
     // while false and 0 are stringified.
     return !obj && obj !== false && obj !== 0 ? '' : encodeURIComponent(obj);
   }
+
+
+  // Query Strings | Parsing
 
   function fromQueryStringWithOptions(obj, opts) {
     var str = String(obj || '').replace(/^.*?\?/, ''), result = {}, auto;
@@ -9609,6 +9789,9 @@
   function stringIsDecimal(str) {
     return str !== '' && !NON_DECIMAL_REG.test(str);
   }
+
+
+  // Object Merging
 
   function mergeWithOptions(target, source, opts) {
     opts = opts || {};
@@ -9770,6 +9953,9 @@
     return objectMerge(target, source, deep, true, true, true);
   }
 
+
+  // Keys/Values
+
   function objectSize(obj) {
     return getKeysWithObjectCoercion(obj).length;
   }
@@ -9796,6 +9982,8 @@
     fn.call(obj, obj);
     return obj;
   }
+
+  // Select/Reject
 
   function objectSelect(obj, f) {
     return selectFromObject(obj, f, true);
@@ -9831,6 +10019,8 @@
       return key === String(match);
     }
   }
+
+  // Remove/Exclude
 
   function objectRemove(obj, f) {
     var matcher = getMatcher(f);
@@ -10120,13 +10310,14 @@
     /***
      * @method isEqual(obj)
      * @returns Boolean
-     * @short Returns true if `obj` is equivalent to the object.
+     * @short Returns `true` if `obj` is equivalent to the object.
      * @extra If both objects are built-in types, they will be considered
      *        equivalent if they are not "observably distinguishable". This means
-     *        that primitives and object types, `0` and `-0`, and sparse and
-     *        dense arrays are all not equal. Functions and non-built-ins like
-     *        instances of user-defined classes and host objects like Element and
-     *        Event are strictly compared `===`, and will only be equal if they
+     *        that objects that can otherwise be considered equivalent (primitives
+     *        and their object counterparts, `0` and `-0`, sparse and dense arrays)
+     *        will return `false`. Functions and non-built-ins like instances of
+     *        user-defined classes and host objects like Element and Event are
+     *        strictly compared with `===`, and will only be equivalent if they
      *        are the same reference. Plain objects as well as Arrays will be
      *        traversed into and deeply checked by their non-inherited, enumerable
      *        properties. Other allowed types include Typed Arrays, Sets, Maps,
@@ -10552,6 +10743,7 @@
 
   });
 
+  // TODO: why is this here?
   defineInstance(sugarObject, {
 
     /***
@@ -10579,7 +10771,6 @@
    * @description Counting, mapping, and finding methods on both arrays and objects.
    *
    ***/
-
 
   function sum(obj, map) {
     var sum = 0;
@@ -10664,6 +10855,9 @@
     return getReducedMinMaxResult(result, obj, all, asObject);
   }
 
+
+  // Support
+
   function getReducedMinMaxResult(result, obj, all, asObject) {
     if (asObject && all) {
       // The method has returned an array of keys so use this array
@@ -10692,6 +10886,8 @@
     });
   }
 
+  /*** @namespace Array ***/
+
   // Flag allowing native array methods to be enhanced
   var ARRAY_ENHANCEMENTS_FLAG = 'enhanceArray';
 
@@ -10716,9 +10912,12 @@
     return enhancedFilter.apply(this, arguments).length;
   }
 
+  // Enhanced methods
+
   function buildEnhancedMapping(name) {
     return wrapNativeArrayMethod(name, enhancedMapping);
   }
+
 
   function buildEnhancedMatching(name) {
     return wrapNativeArrayMethod(name, enhancedMatching);
@@ -10755,6 +10954,7 @@
       return nativeFn.apply(arr, args);
     };
   }
+
 
   /***
    * @method [fn]FromIndex(startIndex, [loop], ...)
@@ -11099,7 +11299,7 @@
      * @example
      *
      *   users.find(function(user) {
-     *     return user.name = 'Harry';
+     *     return user.name === 'Harry';
      *   }); -> harry!
      *
      *   users.find({ name: 'Harry' }); -> harry!
@@ -11150,6 +11350,7 @@
     'findIndex': fixArgumentLength(enhancedFindIndex)
 
   }, [ENHANCEMENTS_FLAG, ARRAY_ENHANCEMENTS_FLAG]);
+
 
   defineInstance(sugarArray, {
 
@@ -11463,6 +11664,9 @@
 
   });
 
+
+  /*** @namespace Object ***/
+
   // Object matchers
   var objectSome  = wrapObjectMatcher('some'),
       objectFind  = wrapObjectMatcher('find'),
@@ -11520,6 +11724,8 @@
     });
     return count;
   }
+
+  // Support
 
   function wrapObjectMatcher(name) {
     var nativeFn = Array.prototype[name];
@@ -12056,6 +12262,7 @@
 
   });
 
+
   buildFromIndexMethods();
 
   /***
@@ -12076,6 +12283,7 @@
       MEMORY_BINARY_UNITS = '|,Ki,Mi,Gi,Ti,Pi,Ei',
       METRIC_UNITS_SHORT  = 'nμm|k',
       METRIC_UNITS_FULL   = 'yzafpnμm|KMGTPEZY';
+
 
   /***
    * @method getOption(name)
@@ -12116,6 +12324,7 @@
    *
    ***/
   var _numberOptions = defineOptionsAccessor(sugarNumber, NUMBER_OPTIONS);
+
 
   function abbreviateNumber(num, precision, ustr, bytes) {
     var fixed        = num.toFixed(20),
@@ -12642,15 +12851,12 @@
    *
    ***/
 
-
   var _lock     = privatePropertyAccessor('lock');
-
   var _timers   = privatePropertyAccessor('timers');
-
   var _partial  = privatePropertyAccessor('partial');
-
   var _canceled = privatePropertyAccessor('canceled');
 
+  // istanbul ignore next
   var createInstanceFromPrototype = Object.create || function(prototype) {
     var ctor = function() {};
     ctor.prototype = prototype;
@@ -13129,7 +13335,6 @@
    *
    ***/
 
-
   defineStatic(sugarRegExp, {
 
     /***
@@ -13229,9 +13434,7 @@
    *
    ***/
 
-
   var DURATION_UNITS = 'year|month|week|day|hour|minute|second|millisecond';
-
   var DURATION_REG   = RegExp('(\\d+)?\\s*('+ DURATION_UNITS +')s?', 'i');
 
   var MULTIPLIERS = {
@@ -13613,6 +13816,9 @@
 
   });
 
+
+  /*** @namespace Number ***/
+
   defineStatic(sugarNumber, {
 
     /***
@@ -13742,6 +13948,9 @@
    ***/
   alias(sugarNumber, 'downto', 'upto');
 
+
+  /*** @namespace String ***/
+
   defineStatic(sugarString, {
 
     /***
@@ -13763,6 +13972,10 @@
     'range': PrimitiveRangeConstructor
 
   });
+
+
+  /*** @namespace Date ***/
+
 
   var FULL_CAPTURED_DURATION = '((?:\\d+)?\\s*(?:' + DURATION_UNITS + '))s?';
 
@@ -13860,7 +14073,7 @@
     defineOnPrototype(Range, methods);
   }
 
-  defineStatic(sugarDate, {
+  defineStatic(sugarDate,   {
 
     /***
      * @method range([start], [end])
@@ -13903,6 +14116,7 @@
    *
    ***/
 
+  // Inflection Sets
 
   var InflectionSet;
 
@@ -14016,11 +14230,12 @@
 
   }
 
+  // Inflection Bundles
+
   // Global inflection runners. Allowing the build functions below to define
   // these functions so that common inflections will also be bundled together
   // when these methods are modularized.
   var inflectPlurals;
-
   var inflectHumans;
 
   function buildCommonPlurals() {
@@ -14236,11 +14451,8 @@
   });
 
   buildInflectionAccessors();
-
   buildInflectionSet();
-
   buildCommonPlurals();
-
   buildCommonHumans();
 
   /***
@@ -14251,23 +14463,16 @@
    *
    ***/
 
-
   var FULL_WIDTH_OFFSET = 65248;
 
   var HANKAKU_PUNCTUATION = '｡､｢｣¥¢£';
-
   var ZENKAKU_PUNCTUATION = '。、「」￥￠￡';
-
   var HANKAKU_KATAKANA    = 'ｱｲｳｴｵｧｨｩｪｫｶｷｸｹｺｻｼｽｾｿﾀﾁﾂｯﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔｬﾕｭﾖｮﾗﾘﾙﾚﾛﾜｦﾝｰ･';
-
   var ZENKAKU_KATAKANA    = 'アイウエオァィゥェォカキクケコサシスセソタチツッテトナニヌネノハヒフヘホマミムメモヤャユュヨョラリルレロワヲンー・';
 
   var ALL_HANKAKU_REG          = /[\u0020-\u00A5]|[\uFF61-\uFF9F][ﾞﾟ]?/g;
-
   var ALL_ZENKAKU_REG          = /[\u2212\u3000-\u301C\u301A-\u30FC\uFF01-\uFF60\uFFE0-\uFFE6]/g;
-
   var VOICED_KATAKANA_REG      = /[カキクケコサシスセソタチツテトハヒフヘホ]/;
-
   var SEMI_VOICED_KATAKANA_REG = /[ハヒフヘホヲ]/;
 
   var UNICODE_SCRIPTS = [
@@ -14485,6 +14690,7 @@
       return convertCharacterWidth(str, mode, ALL_ZENKAKU_REG, 'hankaku');
     },
 
+
     /***
      * @method zenkaku([mode] = 'all')
      * @returns String
@@ -14554,15 +14760,7 @@
   });
 
   buildUnicodeScripts();
-
   buildWidthConversion();
-
-  /***
-   * @module Locales
-   * @description Locale files for the Sugar Date module.
-   *
-   ***/
-
   /*
    * Catalan locale definition.
    * See the readme for customization and more information.
@@ -14611,8 +14809,6 @@
       '{date?} {2?} {months}\\.? {2?} {year?}'
     ]
   });
-
-
   /*
    * Danish locale definition.
    * See the readme for customization and more information.
@@ -14667,8 +14863,6 @@
       '{0?} {weekday?},? {date}\\.? {months?}\\.? {year?}'
     ]
   });
-
-
   /*
    * German locale definition.
    * See the readme for customization and more information.
@@ -14721,8 +14915,6 @@
       '{weekday?},? {date}\\.? {months?}\\.? {year?}'
     ]
   });
-
-
   /*
    * Spanish locale definition.
    * See the readme for customization and more information.
@@ -14775,8 +14967,6 @@
       '{date} {2?} {months?}\\.? {2?} {year?}'
     ]
   });
-
-
   /*
    * Finnish locale definition.
    * See the readme for customization and more information.
@@ -14798,6 +14988,7 @@
     'stamp': '{dow} {d} {mon} {yyyy} {time}',
     'time': '{H}.{mm}',
     'timeMarkers': 'klo,kello',
+    'timeSeparator': '.',
     'ordinalSuffix': '.',
     'relative': function(num, unit, ms, format) {
       var units = this['units'];
@@ -14842,8 +15033,6 @@
       '{weekday?},? {date}\\.? {months?}\\.? {year?}'
     ]
   });
-
-
   /*
    * French locale definition.
    * See the readme for customization and more information.
@@ -14893,8 +15082,6 @@
       '{weekday?},? {0?} {date}{1?} {months}\\.? {year?}'
     ]
   });
-
-
   /*
    * Italian locale definition.
    * See the readme for customization and more information.
@@ -14938,16 +15125,14 @@
       '{0?} {shift} {unit:5-7}'
     ],
     'timeParse': [
-      '{shift?} {day|weekday}',
+      '{day|weekday} {shift?}',
       '{weekday?},? {date} {months?}\\.? {year?}'
     ],
     'timeFrontParse': [
-      '{shift?} {day|weekday}',
+      '{day|weekday} {shift?}',
       '{weekday?},? {date} {months?}\\.? {year?}'
     ]
   });
-
-
   /*
    * Japanese locale definition.
    * See the readme for customization and more information.
@@ -15014,8 +15199,6 @@
       '{year?}{month?}{date}'
     ]
   });
-
-
   /*
    * Korean locale definition.
    * See the readme for customization and more information.
@@ -15065,8 +15248,6 @@
       '{year?} {month?} {date} {weekday?}'
     ]
   });
-
-
   /*
    * Dutch locale definition.
    * See the readme for customization and more information.
@@ -15116,8 +15297,6 @@
       '{weekday?},? {date} {months?}\\.? {year?}'
     ]
   });
-
-
   /*
    * Norwegian locale definition.
    * See the readme for customization and more information.
@@ -15165,8 +15344,6 @@
       '{0?} {weekday?},? {date?} {month}\\.? {year}'
     ]
   });
-
-
   /*
    * Polish locale definition.
    * See the readme for customization and more information.
@@ -15249,8 +15426,6 @@
       '{0?} {shift?} {weekday}'
     ]
   });
-
-
   /*
    * Portuguese locale definition.
    * See the readme for customization and more information.
@@ -15304,8 +15479,6 @@
       '{date} {1?} {months?} {1?} {year?}'
     ]
   });
-
-
   /*
    * Russian locale definition.
    * See the readme for customization and more information.
@@ -15371,8 +15544,6 @@
       '{date} {months?} {year?} {1?}'
     ]
   });
-
-
   /*
    * Swedish locale definition.
    * See the readme for customization and more information.
@@ -15429,8 +15600,6 @@
       '{0?} {weekday?},? {date} {months?}\\.? {year?}'
     ]
   });
-
-
   /*
    * Simplified Chinese locale definition.
    * See the readme for customization and more information.
@@ -15485,8 +15654,6 @@
       '{year?}{month?}{date}'
     ]
   });
-
-
   /*
    * Traditional Chinese locale definition.
    * See the readme for customization and more information.
@@ -15541,6 +15708,5 @@
       '{year?}{month?}{date}'
     ]
   });
-
 
 }).call(this);
