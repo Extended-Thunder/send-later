@@ -42,6 +42,7 @@ src/logo-big.xcf
 src/sample_cancel_button.jpg
 src/stamp.png
 utils/__init__.py
+utils/build-sugar.sh
 utils/check-accesskeys.py
 utils/check-locale-integration.py
 utils/check-locales.pl
