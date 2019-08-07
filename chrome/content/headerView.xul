@@ -9,7 +9,7 @@
     <treecols id="threadCols">
       <splitter class="tree-splitter" />
       <treecol id="sendlater3-colXSendLaterAt" persist="ordinal width"
-		currentView="unthreaded" flex="1"
+		currentView="unthreaded" flex="1" closemenu="none"
 		label="&sendlater3header.label;" />
     </treecols>
   </tree>
