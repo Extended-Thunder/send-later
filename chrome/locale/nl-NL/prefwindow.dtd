@@ -39,3 +39,11 @@
 <!ENTITY blocklatemessages.label2 "minuten te laat afleveren">
 <!ENTITY editorbutton "Editor voor dynamische functies openen…">
 <!ENTITY editortip "Een venster openen voor het maken en bewerken van JavaScript-functies die complexe planningslogica implementeren.">
+<!ENTITY loglevel.fatal "Fatale fout">
+<!ENTITY loglevel.error "Fout">
+<!ENTITY loglevel.warn "Waarschuwing">
+<!ENTITY loglevel.info "Info">
+<!ENTITY loglevel.config "Instellingen">
+<!ENTITY loglevel.debug "Foutopsporing">
+<!ENTITY loglevel.trace "Trace">
+<!ENTITY loglevel.all "Alles">

@@ -28,6 +28,7 @@
 <!ENTITY sendlater.prompt.functionargs.label "Arguments de la funció:">
 <!ENTITY sendlater.prompt.calculate.label "Calcular">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Enviar més tard">
+<!ENTITY sendlater.toolbar.sendlater.button.tooltip "Activeu {NAME} per a planificar un missatge després d'introduir l'hora d'enviament desitjada al quadre de text. Aquest botó no fa cap cosa ell mateix; també cal afegir el quadre de text o selector de data/hora (no suportat en totes les versions de Thunderbird) a la barra d'eines per a que aquest botó siga útil.">
 <!ENTITY sendlater.toolbar.textbox.emptytext "hora d'enviament">
 <!ENTITY sendlater.prompt.every.label "Cada">
 <!ENTITY sendlater.prompt.between.label "Entre">

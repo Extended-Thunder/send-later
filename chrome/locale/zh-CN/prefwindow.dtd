@@ -39,3 +39,11 @@
 <!ENTITY blocklatemessages.label2 "分钟则不要发送消息">
 <!ENTITY editorbutton "打开动态函数编辑器">
 <!ENTITY editortip "打开一个窗口以创建编辑执行复杂的调度逻辑的JavaScript函数">
+<!ENTITY loglevel.fatal "严重的">
+<!ENTITY loglevel.error "错误">
+<!ENTITY loglevel.warn "警告">
+<!ENTITY loglevel.info "信息">
+<!ENTITY loglevel.config "配置">
+<!ENTITY loglevel.debug "调试">
+<!ENTITY loglevel.trace "追查">
+<!ENTITY loglevel.all "所有">

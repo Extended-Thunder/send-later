@@ -28,6 +28,7 @@
 <!ENTITY sendlater.prompt.functionargs.label "引数:">
 <!ENTITY sendlater.prompt.calculate.label "計算">
 <!ENTITY sendlater.toolbar.sendlater.button.label "後で送信">
+<!ENTITY sendlater.toolbar.sendlater.button.tooltip "希望する送信時刻をテキスト入力欄に入力した後でメッセージ送信を予約するために{NAME} を有効にします。このボタン自身は何もしません。このボタン用に、テキスト入力欄あるいは日時入力欄(これらはすべてのThunderbirdバージョンでサポートされているわけではありません) をツールバーに加えると良いでしょう。">
 <!ENTITY sendlater.toolbar.textbox.emptytext "送信日時">
 <!ENTITY sendlater.prompt.every.label "間隔">
 <!ENTITY sendlater.prompt.between.label "期間">

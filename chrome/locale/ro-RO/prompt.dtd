@@ -28,6 +28,7 @@
 <!ENTITY sendlater.prompt.functionargs.label "Argumente funcție:">
 <!ENTITY sendlater.prompt.calculate.label "Calculează">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Trimite mai târziu">
+<!ENTITY sendlater.toolbar.sendlater.button.tooltip "Activează {NAME} pentru a programa un mesaj după introducerea momentului trimiterii în caseta de text. Acest buton nu face nimic singur; caseta de text sau selectorul de dată/oră (nedisponibile în toate versiunile de Thunderbird) trebuie adăugate în bara de instrumente pentru a-l putea folosi.">
 <!ENTITY sendlater.toolbar.textbox.emptytext "data și ora trimiterii">
 <!ENTITY sendlater.prompt.every.label "La fiecare">
 <!ENTITY sendlater.prompt.between.label "Între">

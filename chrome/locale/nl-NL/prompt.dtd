@@ -28,6 +28,7 @@
 <!ENTITY sendlater.prompt.functionargs.label "Functieargumenten:">
 <!ENTITY sendlater.prompt.calculate.label "Berekenen">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Later verzenden">
+<!ENTITY sendlater.toolbar.sendlater.button.tooltip "Activeer {NAME} om het versturen van een bericht in te stellen nadat de gewenste verzendtijd in de tekstbox is ingevoerd. Deze knop doet niets op zichzelf; je moet ook de tekstbox of de datum/tijd-kiezer (niet ondersteund in alle Thunderbird versies) toevoegen aan de werkbalk om deze knop te activeren.">
 <!ENTITY sendlater.toolbar.textbox.emptytext "verzendtijdstip">
 <!ENTITY sendlater.prompt.every.label "Elke">
 <!ENTITY sendlater.prompt.between.label "Tussen">

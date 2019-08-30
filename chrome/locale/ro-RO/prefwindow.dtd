@@ -39,3 +39,11 @@
 <!ENTITY blocklatemessages.label2 "minute">
 <!ENTITY editorbutton "Deschide editorul dinamic de funcții …">
 <!ENTITY editortip "Deschide o fereastra pentru crearea și editarea de funcții JavaScript pentru algoritmi complecși de trimitere.">
+<!ENTITY loglevel.fatal "Fatal">
+<!ENTITY loglevel.error "Eroare">
+<!ENTITY loglevel.warn "Avertisment">
+<!ENTITY loglevel.info "Info">
+<!ENTITY loglevel.config "Configurație">
+<!ENTITY loglevel.debug "Depanare">
+<!ENTITY loglevel.trace "Trace">
+<!ENTITY loglevel.all "Tot">

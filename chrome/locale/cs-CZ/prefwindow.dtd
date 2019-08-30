@@ -39,3 +39,11 @@
 <!ENTITY blocklatemessages.label2 "minut později">
 <!ENTITY editorbutton "Otevřít editor dynamických funkcí…">
 <!ENTITY editortip "Otevře okno pro vytváření a úpravy JavaScriptových funkcí implementujících komplexní plánovací logiku.">
+<!ENTITY loglevel.fatal "Kritický">
+<!ENTITY loglevel.error "Chyba">
+<!ENTITY loglevel.warn "Varovat">
+<!ENTITY loglevel.info "Info">
+<!ENTITY loglevel.config "Nastavení">
+<!ENTITY loglevel.debug "Ladit">
+<!ENTITY loglevel.trace "Trasovat">
+<!ENTITY loglevel.all "Vše">

@@ -28,6 +28,7 @@
 <!ENTITY sendlater.prompt.functionargs.label "Argumenty funkce:">
 <!ENTITY sendlater.prompt.calculate.label "Vypočítat">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Odeslat později">
+<!ENTITY sendlater.toolbar.sendlater.button.tooltip "Po zadání kýženého času do textového pole aktivujte {NAME} pro naplánování zprávy. Toto tlačítko samo o sobě nic nedělá; musíte přidat údaj o datu do textového pole nebo vybrat čas na liště (není podporování ve všech verzích Thunderbirdu) aby fungovalo.">
 <!ENTITY sendlater.toolbar.textbox.emptytext "čas odeslání">
 <!ENTITY sendlater.prompt.every.label "Každých">
 <!ENTITY sendlater.prompt.between.label "Mezi">
