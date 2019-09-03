@@ -28,6 +28,7 @@
 <!ENTITY sendlater.prompt.functionargs.label "Funktion parametrit:">
 <!ENTITY sendlater.prompt.calculate.label "Laske">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Lähetä myöhemmin">
+<!ENTITY sendlater.toolbar.sendlater.button.tooltip "Aktivoi {NAME} ajastaaksesi viestin syötettyäsi haluamasi lähetysajan tekstiruutuun. Tämä painike ei sellaisenaan tee mitään; sinun tarvitsee lisätä tekstiä tekstiruutuun, tai päiväys/aika -käskyjä (ei tuettuna kaikkien Thunderbird-versioiden kanssa), jotta tämä painike olisi käyttökelpoinen.">
 <!ENTITY sendlater.toolbar.textbox.emptytext "lähetysaika">
 <!ENTITY sendlater.prompt.every.label "joka">
 <!ENTITY sendlater.prompt.between.label "Aikaväli:">

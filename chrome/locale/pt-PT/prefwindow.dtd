@@ -39,3 +39,4 @@
 <!ENTITY blocklatemessages.label2 "minutos atrasadas">
 <!ENTITY editorbutton "Abrir o editor de função dinamica...">
 <!ENTITY editortip "Abrir uma janela para criar e editar funções JavaScript implementando uma lógica de programação complexa.">
+<!ENTITY loglevel.config "Configuração">

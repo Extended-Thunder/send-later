@@ -28,6 +28,7 @@
 <!ENTITY sendlater.prompt.functionargs.label "Argumentos da função:">
 <!ENTITY sendlater.prompt.calculate.label "Calcular">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Send Later">
+<!ENTITY sendlater.toolbar.sendlater.button.tooltip "Ative {NAME} para agendar uma mensagem depois de entrar o horário desejado de envio na caixa de texto. Este botão não funciona por si; você também precisa adicionar a caixa de texto ou seletor de data/horário (não suportado em todas as versões do Thunderbird) à barra de ferramentas para que este botão seja útil.">
 <!ENTITY sendlater.toolbar.textbox.emptytext "hora de envio">
 <!ENTITY sendlater.prompt.every.label "A cada">
 <!ENTITY sendlater.prompt.between.label "Entre">

@@ -15,6 +15,8 @@
 <!ENTITY sendlater.prompt.textbox.emptytext "օր.՝ “3:00pm Հինգշաբթի”, “12/31/2012 15:27”">
 <!ENTITY sendlater.prompt.sendat.label "Ուղարկել նշված ժամանակ">
 <!ENTITY sendlater.prompt.sendat.tooltip "Պահպանել նամակը Սևագրում՝ հետո նշված ժամանակում այն ուղարկելու համար:">
+<!ENTITY sendlater.prompt.savedefaults "Պահպանել որպես սկզբնադիր">
+<!ENTITY sendlater.prompt.cleardefaults "Մաքրել սկզբնադիրները">
 <!ENTITY sendlater.prompt.recur.label "Վերադառնալ՝">
 <!ENTITY sendlater.prompt.none.label "ոչ մի">
 <!ENTITY sendlater.prompt.minutely.label "րոպե">
@@ -22,6 +24,9 @@
 <!ENTITY sendlater.prompt.weekly.label "շաբաթական">
 <!ENTITY sendlater.prompt.monthly.label "ամսական">
 <!ENTITY sendlater.prompt.yearly.label "տարեկան">
+<!ENTITY sendlater.prompt.function.label "գործառույթ.">
+<!ENTITY sendlater.prompt.functionargs.label "Գործառույթի արգումենտ">
+<!ENTITY sendlater.prompt.calculate.label "Հաշվել">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Ուղարկել ավելի ուշ">
 <!ENTITY sendlater.toolbar.textbox.emptytext "ուղարկելու ժամանակը">
 <!ENTITY sendlater.prompt.every.label "Ամեն՝">
