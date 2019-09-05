@@ -39,11 +39,11 @@
 <!ENTITY blocklatemessages.label2 "分以上">
 <!ENTITY editorbutton "ユーザー関数エディタを開く…">
 <!ENTITY editortip "複雑なスケジュールロジックを実装する JavaScript 関数を作成/編集するためのウィンドウを開きます。">
-<!ENTITY loglevel.fatal "Fatal">
-<!ENTITY loglevel.error "Error">
-<!ENTITY loglevel.warn "Warn">
-<!ENTITY loglevel.info "Info">
-<!ENTITY loglevel.config "Config">
-<!ENTITY loglevel.debug "Debug">
-<!ENTITY loglevel.trace "Trace">
+<!ENTITY loglevel.fatal "致命的">
+<!ENTITY loglevel.error "エラー">
+<!ENTITY loglevel.warn "警告">
+<!ENTITY loglevel.info "情報">
+<!ENTITY loglevel.config "設定">
+<!ENTITY loglevel.debug "デバッグ">
+<!ENTITY loglevel.trace "トレース">
 <!ENTITY loglevel.all "すべて">

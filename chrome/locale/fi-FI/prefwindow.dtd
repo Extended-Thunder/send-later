@@ -21,7 +21,7 @@
 <!ENTITY sendlatersendbutton.caption "”Lähetä” toimii, kuten ”Lähetä myöhemmin”">
 <!ENTITY sendlatersendbutton.tooltip "Tämän valinnan ollessa käytössä &quot;Lähetä&quot; -komento (joko painike, tai näppäimet Ctrl-Enter) toimii kuten &quot;Lähetä myöhemmin&quot;.">
 <!ENTITY altbinding.caption "Käytä näppäinyhdistelmää Alt-Shift-Enter näppäinyhdistelmän Ctrl-Shift-Enter sijasta">
-<!ENTITY markread.caption "Merkitse ajoitetut luonnokset luetuiksi">
+<!ENTITY markread.caption "Merkitse ajastetut luonnokset luetuiksi">
 <!ENTITY advanced.caption "Laajemmat">
 <!ENTITY dumplevel.caption "Datankeruutaso:">
 <!ENTITY consolelevel.caption "Konsolilokitaso:">
@@ -39,11 +39,11 @@
 <!ENTITY blocklatemessages.label2 "minuuttia myöhässä">
 <!ENTITY editorbutton "Avaa dynaaminen toimintojen muokkain…">
 <!ENTITY editortip "Avaa ikkuna luodaksesi ja muokataksesi JavaScript-funktioita monimutkaisen aikataululogiikan toteuttamiseksi.">
-<!ENTITY loglevel.fatal "Kohtalokas">
+<!ENTITY loglevel.fatal "Kriittinen">
 <!ENTITY loglevel.error "Virhe">
-<!ENTITY loglevel.warn "Varoita">
+<!ENTITY loglevel.warn "Varoitus">
 <!ENTITY loglevel.info "Tiedot">
-<!ENTITY loglevel.config "Määritä">
-<!ENTITY loglevel.debug "Virheenjäljitys">
-<!ENTITY loglevel.trace "Jäljitä">
+<!ENTITY loglevel.config "Asetukset">
+<!ENTITY loglevel.debug "Vianetsintä">
+<!ENTITY loglevel.trace "Jäljitys">
 <!ENTITY loglevel.all "Kaikki">
