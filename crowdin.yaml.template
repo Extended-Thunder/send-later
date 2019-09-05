@@ -4,9 +4,12 @@ preserve_hierarchy: true
 files:
   - source: '/chrome/locale/en-US/*.dtd'
     translation: '/chrome/locale/%locale%/%original_file_name%'
+    update_option: update_without_changes
 
   - source: '/chrome/locale/en-US/*.properties'
     translation: '/chrome/locale/%locale%/%original_file_name%'
+    update_option: update_without_changes
 
   - source: '/src/l10n/en-US/*.csv'
     translation: '/src/l10n/%locale%/%original_file_name%'
+    update_option: update_without_changes
