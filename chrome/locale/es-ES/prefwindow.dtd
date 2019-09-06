@@ -39,3 +39,11 @@
 <!ENTITY blocklatemessages.label2 "minuto(s) de retraso">
 <!ENTITY editorbutton "Abrir editor de funciones dinámicas...">
 <!ENTITY editortip "Abre una ventana para crear y editar funciones JavaScript que implementan una lógica de planificación compleja.">
+<!ENTITY loglevel.fatal "Fatal">
+<!ENTITY loglevel.error "Error">
+<!ENTITY loglevel.warn "Aviso">
+<!ENTITY loglevel.info "Info">
+<!ENTITY loglevel.config "Config">
+<!ENTITY loglevel.debug "Depurar">
+<!ENTITY loglevel.trace "Rastreo">
+<!ENTITY loglevel.all "Todos">
