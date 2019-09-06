@@ -5,7 +5,6 @@ const sl3dateparse = ChromeUtils.import("resource://sendlater3/dateparse.jsm");
 
 var Sendlater3Prompt = {
     loaded: false,
-    haveLightning: typeof cal !== "undefined",
 
     BetweenStartUpdate: function() {
         document.getElementById("sendlater3-recur-between-checkbox").
@@ -162,6 +161,7 @@ var Sendlater3Prompt = {
 
     SetOnLoad: function() {
         SL3U.initUtil();
+        Sendlater3Prompt.haveLightning = typeof cal !== "undefined";
         sl3log.Entering("Sendlater3Prompt.SetOnLoad");
         if (Sendlater3Prompt.haveLightning) {
             document.getElementById("date-time-pickers-row").hidden = false;

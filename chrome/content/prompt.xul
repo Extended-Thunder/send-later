@@ -19,6 +19,7 @@
   <script src="chrome://sendlater3/content/prompt.js"/>
   <script src="chrome://calendar/content/calendar-ui-utils.js"/>
   <script src="chrome://messenger/content/customElements.js"/>
+  <script src="chrome://calendar/content/widgets/calendar-minimonth.js"/>
   <script src="chrome://calendar/content/datetimepickers/datetimepickers.js"/>
   <keyset>
     <key id="sendlater3-quickbutton1-key" modifiers="accel" key="1" oncommand="//"/>
