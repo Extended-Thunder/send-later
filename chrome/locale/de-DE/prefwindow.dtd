@@ -39,3 +39,11 @@
 <!ENTITY blocklatemessages.label2 "Minuten zu spät senden">
 <!ENTITY editorbutton "Funktionseditor öffnen…">
 <!ENTITY editortip "Editorfenster für das Erstellen und Bearbeiten von JavaScript-Funktionen für komplexe Sendelogik öffnen">
+<!ENTITY loglevel.fatal "Schwerwiegend">
+<!ENTITY loglevel.error "Fehler">
+<!ENTITY loglevel.warn "Warnung">
+<!ENTITY loglevel.info "Information">
+<!ENTITY loglevel.config "Konfiguration">
+<!ENTITY loglevel.debug "Fehlersuche (Debug)">
+<!ENTITY loglevel.trace "Ablaufverfolgung">
+<!ENTITY loglevel.all "Alle">
