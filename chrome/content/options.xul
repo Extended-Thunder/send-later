@@ -97,17 +97,19 @@
                         label="&enforcerestrictions.caption;" />
 	    </hbox>
 	    <separator label="-"/>
-	    <hbox>
+	    <hbox width="100%">
 	      <label
                   id="sendlater3-contact_author"
                   tooltiptext="&contactauthor.tooltip;"
                   value="&contactauthor.value;" class="text-link"
                   onclick="Components.classes['@mozilla.org/messengercompose;1'].getService(Components.interfaces.nsIMsgComposeService).OpenComposeWindowWithURI(null, Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService).newURI('mailto:jik+sendlater3@kamens.us?subject=Send%20Later', null, null));"/>
+              <separator flex="2"/>
 	      <label
                   id="sendlater3-help_link"
                   tooltiptext="&helplink.tooltip;"
                   value="&helplink.value;" class="text-link"
                   onclick="Components.classes['@mozilla.org/uriloader/external-protocol-service;1'].getService(Components.interfaces.nsIExternalProtocolService).loadURI(Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService).newURI('https://blog.kamens.us/send-later/', null, null));"/>
+              <separator flex="2"/>
 	      <label
                   id="sendlater3-donate_link"
                   value="&donatelink.value;" class="text-link"
