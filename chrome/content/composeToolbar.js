@@ -112,6 +112,80 @@ var Sendlater3ComposeToolbar = {
 	}
     },
 
+    composeListener: {
+        NotifyComposeBodyReady: function() {
+            var keySet = document.getElementById("tasksKeys");
+            var i;
+            for (i = 1; i <= 3; i++) {
+                var closure = SL3U.ShortcutClosure(i);
+                if (closure != undefined) {
+                    var keyName = "sendlater3-quickbutton" + i + "-key";
+                    var key = document.getElementById(keyName);
+                    if (! key) {
+                        key = document.createXULElement("key");
+                        keySet.appendChild(key);
+                    }
+                    key.setAttribute("id", keyName);
+                    key.setAttribute("modifiers", "control alt");
+                    key.setAttribute("key", String(i));
+                    key.setAttribute("oncommand", "//");
+
+                    var btnName = "sendlater3-shortcutbtn_" + i;
+                    var btn = document.getElementById(btnName);
+
+                    // See http://stackoverflow.com/a/3273223
+                    var cmd = function(c) {
+                        return function() {
+                            Sendlater3ComposeToolbar.CallSendAfter(c());
+                        };
+                    }(closure);
+                    if (btn) {
+                        btn.label = SL3U.ButtonLabel(i, btn);
+                        // Setting .oncommand property and attribute works
+                        // irregularly, so wipe both and use an event
+                        // handler instead.
+                        if (btn.sl3EventListener)
+                            btn.removeEventListener(
+                                "command", btn.sl3EventListener, false);
+                        btn.addEventListener("command", cmd, false);
+                        btn.sl3EventListener = cmd;
+                    }
+                    if (key.sl3EventListener)
+                        key.removeEventListener(
+                            "command", key.sl3EventListener, false);
+                    key.addEventListener("command", cmd, false);
+                    key.sl3EventListener = cmd;
+                    cmd = undefined;
+                }
+            }
+
+            var textField = document.getElementById("sendlater3-toolbar-text");
+            if (Sendlater3Composing.prevXSendLater) {
+                sl3log.debug("PrevXSendlater is set to " +
+                          Sendlater3Composing.prevXSendLater);
+                if (textField) {
+                    textField.value =
+                        Sendlater3Composing.prevXSendLater
+                        .format("long", sl3dateparse.SugarLocale());
+                }
+                Sendlater3ComposeToolbar.dateToPickers(
+                    Sendlater3Composing.prevXSendLater);
+            }
+            else {
+                sl3log.debug("No previous time");
+                if (textField) {
+                    textField.value = "";
+                }
+            }
+            Sendlater3ComposeToolbar.SetRecurring(Sendlater3Composing.prevRecurring
+                                                  ? true : false);
+            Sendlater3ComposeToolbar.updateSummary();
+        },
+        NotifyComposeFieldsReady: function() {},
+        ComposeProcessDone: function() {},
+        SaveInFolderDone: function() {}
+    },
+
     SetOnLoad: function() {
 	var t = Sendlater3ComposeToolbar;
 	sl3log.Entering("Sendlater3ComposeToolbar.SetOnLoad");
@@ -126,63 +200,11 @@ var Sendlater3ComposeToolbar = {
 	    document.getElementById(name).customizeDone = t.CustomizeDone;
 	}
 
-	var i;
-	for (i = 1; i <= 3; i++) {
-	    var btnName = "sendlater3-shortcutbtn_" + i;
-	    var btn = document.getElementById(btnName);
-	    var keyName = "sendlater3-quickbutton" + i + "-key";
-	    var key = document.getElementById(keyName);
-	    var closure = SL3U.ShortcutClosure(i);
-	    if (closure != undefined) {
-		// See http://stackoverflow.com/a/3273223
-		var cmd = function(c) {
-		    return function() {
-			Sendlater3ComposeToolbar.CallSendAfter(c());
-		    };
-		}(closure);
-		if (btn) {
-		    btn.label = SL3U.ButtonLabel(i, btn);
-		    // Setting .oncommand property and attribute works
-		    // irregularly, so wipe both and use an event
-		    // handler instead.
-		    if (btn.sl3EventListener)
-			btn.removeEventListener("command", btn.sl3EventListener,
-						false);
-		    btn.addEventListener("command", cmd, false);
-		    btn.sl3EventListener = cmd;
-		}
-		if (key) {
-		    if (key.sl3EventListener)
-			key.removeEventListener("command", key.sl3EventListener,
-						false);
-		    key.addEventListener("command", cmd, false);
-		    key.sl3EventListener = cmd;
-		}
-		cmd = undefined;
-	    }
-	}
-	 
-	var textField = document.getElementById("sendlater3-toolbar-text");
-	if (Sendlater3Composing.prevXSendLater) {
-	    sl3log.debug("PrevXSendlater is set to " +
-		      Sendlater3Composing.prevXSendLater);
-	    if (textField) {
-		textField.value =
-		    Sendlater3Composing.prevXSendLater
-		    .format("long", sl3dateparse.SugarLocale());
-	    }
-	    Sendlater3ComposeToolbar.dateToPickers(
-		Sendlater3Composing.prevXSendLater);
-	}
-	else {
-	    sl3log.debug("No previous time");
-	    if (textField) {
-		textField.value = "";
-	    }
-	}
-	Sendlater3ComposeToolbar.SetRecurring(Sendlater3Composing.prevRecurring
-					      ? true : false);
-	Sendlater3ComposeToolbar.updateSummary();
+        gMsgCompose.RegisterStateListener(
+            Sendlater3ComposeToolbar.composeListener);
+        // This is idempotent so no harm calling it multiple times.
+        // Might be necessary when we are called from CustomizeDone.
+        Sendlater3ComposeToolbar.composeListener.NotifyComposeBodyReady();
 	sl3log.Leaving("Sendlater3ComposeToolbar.SetOnLoad");
     },
 

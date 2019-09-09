@@ -7,11 +7,6 @@
 <overlay id="sendlater3-toolbar-overlay"
          xmlns:html="http://www.w3.org/1999/xhtml"
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-  <keyset>
-    <key id="sendlater3-quickbutton1-key" modifiers="control alt" key="1" oncommand="//"/>
-    <key id="sendlater3-quickbutton2-key" modifiers="control alt" key="2" oncommand="//"/>
-    <key id="sendlater3-quickbutton3-key" modifiers="control alt" key="3" oncommand="//"/>
-  </keyset>
 
   <!-- already loaded in composing.js -->
   <!--<script src="util.js"/>-->
@@ -73,7 +68,7 @@
     <toolbaritem id="sendlater3-toolbar-quickbutton1-item"
 		 class="chromeclass-toolbar"
 		 context="toolbar-context-menu" hidden="false">
-      <button key="sendlater3-quickbutton1-key" id="sendlater3-shortcutbtn_1"
+      <button id="sendlater3-shortcutbtn_1"
 	      flex="1" label="&sendlater.button1.label;"
 	      sl3label="&sendlater.button1.label;"
 	      oncommand="//"/>
@@ -81,7 +76,7 @@
     <toolbaritem id="sendlater3-toolbar-quickbutton2-item"
 		 class="chromeclass-toolbar"
 		 context="toolbar-context-menu" hidden="false">
-      <button key="sendlater3-quickbutton2-key" id="sendlater3-shortcutbtn_2"
+      <button id="sendlater3-shortcutbtn_2"
 	      flex="1" label="&sendlater.button2.label;"
 	      sl3label="&sendlater.button2.label;"
 	      oncommand="//"/>
@@ -89,7 +84,7 @@
     <toolbaritem id="sendlater3-toolbar-quickbutton3-item"
 		 class="chromeclass-toolbar"
 		 context="toolbar-context-menu" hidden="false">
-      <button key="sendlater3-quickbutton3-key" id="sendlater3-shortcutbtn_3"
+      <button id="sendlater3-shortcutbtn_3"
 	      flex="1" label="&sendlater.button3.label;"
 	      sl3label="&sendlater.button3.label;"
 	      oncommand="//"/>
