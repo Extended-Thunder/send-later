@@ -114,48 +114,64 @@ var Sendlater3ComposeToolbar = {
 
     composeListener: {
         NotifyComposeBodyReady: function() {
+            var wantKeys = SL3U.getBoolPref("compose_window_hot_keys");
             var keySet = document.getElementById("tasksKeys");
             var i;
             for (i = 1; i <= 3; i++) {
                 var closure = SL3U.ShortcutClosure(i);
-                if (closure != undefined) {
-                    var keyName = "sendlater3-quickbutton" + i + "-key";
-                    var key = document.getElementById(keyName);
-                    if (! key) {
-                        key = document.createXULElement("key");
-                        keySet.appendChild(key);
-                    }
+
+                var keyName = "sendlater3-quickbutton" + i + "-key";
+                var key = document.getElementById(keyName);
+                if (! key && wantKeys) {
+                    key = document.createXULElement("key");
                     key.setAttribute("id", keyName);
                     key.setAttribute("modifiers", "control alt");
                     key.setAttribute("key", String(i));
                     key.setAttribute("oncommand", "//");
+                    keySet.appendChild(key);
+                }
 
-                    var btnName = "sendlater3-shortcutbtn_" + i;
-                    var btn = document.getElementById(btnName);
+                var btnName = "sendlater3-shortcutbtn_" + i;
+                var btn = document.getElementById(btnName);
+                if (btn)
+                    btn.label = SL3U.ButtonLabel(i, btn);
 
-                    // See http://stackoverflow.com/a/3273223
-                    var cmd = function(c) {
-                        return function() {
-                            Sendlater3ComposeToolbar.CallSendAfter(c());
-                        };
-                    }(closure);
-                    if (btn) {
-                        btn.label = SL3U.ButtonLabel(i, btn);
-                        // Setting .oncommand property and attribute works
-                        // irregularly, so wipe both and use an event
-                        // handler instead.
-                        if (btn.sl3EventListener)
-                            btn.removeEventListener(
-                                "command", btn.sl3EventListener, false);
-                        btn.addEventListener("command", cmd, false);
-                        btn.sl3EventListener = cmd;
-                    }
+                if (! closure && btn.sl3EventListener)
+                    btn.removeEventListener(
+                        "command", btn.sl3EventListener, false);
+
+                if (key && (! closure || ! wantKeys)) {
+                    keySet.removeChild(key);
+                    key = null;
+                }
+
+                if (! closure)
+                    return;
+
+                // See http://stackoverflow.com/a/3273223
+                var cmd = function(c) {
+                    return function() {
+                        Sendlater3ComposeToolbar.CallSendAfter(c());
+                    };
+                }(closure);
+
+                if (btn) {
+                    // Setting .oncommand property and attribute works
+                    // irregularly, so wipe both and use an event handler
+                    // instead.
+                    if (btn.sl3EventListener)
+                        btn.removeEventListener(
+                            "command", btn.sl3EventListener, false);
+                    btn.addEventListener("command", cmd, false);
+                    btn.sl3EventListener = cmd;
+                }
+
+                if (key) {
                     if (key.sl3EventListener)
                         key.removeEventListener(
                             "command", key.sl3EventListener, false);
                     key.addEventListener("command", cmd, false);
                     key.sl3EventListener = cmd;
-                    cmd = undefined;
                 }
             }
 

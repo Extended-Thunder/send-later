@@ -10,6 +10,7 @@
 %promptDtd;
 ]>
 
+<!--unprefixed-ids-are-ok because this XUL opens in its own document-->
 <dialog
     id="sendlater3-Preferences"
     xmlns:html="http://www.w3.org/1999/xhtml"
@@ -56,6 +57,11 @@
 	      <checkbox id="sendlater3-altbindingpref"
                         label="&altbinding.caption;" />
 	    </hbox>
+            <hbox id="compose-window-hot-keys-hbox" align="center"
+                  tooltiptext="&composewindowhotkeys.tooltip;">
+              <checkbox id="compose-window-hot-keys-pref"
+                        label="&composewindowhotkeys.caption;"/>
+            </hbox>
 	    <hbox id="sendlater3-markread-hbox" align="center">
 	      <checkbox id="sendlater3-markread-checkbox"
                         label="&markread.caption;" />

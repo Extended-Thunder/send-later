@@ -3,6 +3,7 @@ var Sendlater3Options = {
         ["sendlater3-textintpref", "checktimepref", "int"],
         ["sendlater3-sendbuttonpref", "sendbutton", "bool"],
         ["sendlater3-altbindingpref", "alt_binding", "bool"],
+        ["compose-window-hot-keys-pref", "compose_window_hot_keys", "bool"],
         ["sendlater3-markread-checkbox", "mark_drafts_read", "bool"],
         ["sendlater3-showcolumnpref", "showcolumn", "bool"],
         ["sendlater3-showheaderpref", "showheader", "bool"],

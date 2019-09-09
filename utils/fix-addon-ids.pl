@@ -143,6 +143,11 @@ sub scan_xul {
 
     open(XUL, "<", $xul_file) or die "Error opening $xul_file: $!\n";
     line: while (<XUL>) {
+        if (/\bunprefixed-ids-are-ok\b/) {
+            close(XUL);
+            return;
+        }
+
 	if (/\bid\s*=\s*[\"\']([^\"\']+)[\"\']/) {
 	    my $id = $1;
 	    next if ($id =~ /$ok_regex/o);

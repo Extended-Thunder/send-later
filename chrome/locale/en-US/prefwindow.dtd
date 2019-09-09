@@ -21,6 +21,8 @@
 <!ENTITY sendlatersendbutton.caption "“Send” does “Send Later”">
 <!ENTITY sendlatersendbutton.tooltip "With this option enabled, the “Send” command (either the button or typing Ctrl-Enter) acts the same as “Send Later”.">
 <!ENTITY altbinding.caption "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter">
+<!ENTITY composewindowhotkeys.tooltip "While composing a message you can type Ctrl-Alt-1, -2, or -3 to activate the first, second, or third preset button, unless you uncheck this preference, in which case these key bindings are disabled.">
+<!ENTITY composewindowhotkeys.caption "Enable compose window key bindings for presets">
 <!ENTITY markread.caption "Mark scheduled drafts as read">
 <!ENTITY advanced.caption "Advanced">
 <!ENTITY dumplevel.caption "Dump log level:">
