@@ -17,10 +17,7 @@
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
     title="&prefwindow.title;"
     buttons="accept,cancel,extra1"
-    buttonlabelextra1="&reset.value;"
-    ondialogextra1="Sendlater3Options.LoadPrefs();"
-    ondialogaccept="return Sendlater3Options.ValidatePrefs();"
-    onbeforeunload="return Sendlater3Options.ValidatePrefs() ? null : 'err';">
+    buttonlabelextra1="&reset.value;">
   <!-- globalOverlay.js and editMenuOverlay.js are required for html:input. See
        https://bugzilla.mozilla.org/show_bug.cgi?id=1562161#c7 -->
   <script src="chrome://global/content/globalOverlay.js"/>
