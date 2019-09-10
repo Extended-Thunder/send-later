@@ -107,7 +107,6 @@ var Sendlater3Options = {
         window.removeEventListener("load", Sendlater3Options.SetOnLoad, false);
 	SL3U.initUtil();
         document.addEventListener("dialogextra1", function(event) {
-            console.log("dialogextra1");
             Sendlater3Options.LoadPrefs();
         });
         document.addEventListener("dialogaccept", function(event) {
