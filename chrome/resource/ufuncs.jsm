@@ -40,14 +40,14 @@ function load(name) {
 
 function save(name, help, body) {
     // Returns nothing
-    var file = file(name);
-    _export(name, help, body, file);
+    var fh = file(name);
+    _export(name, help, body, fh);
 };
 
 function remove(name) {
     // Returns nothing
-    var file = file(name);
-    file.remove(false);
+    var fh = file(name);
+    fh.remove(false);
 };
 
 function exists(name) {
