@@ -21,6 +21,8 @@
 <!ENTITY sendlatersendbutton.caption "“Enviar” actua com “Enviar més endavant”">
 <!ENTITY sendlatersendbutton.tooltip "Amb aquesta opció habilitada, la comanda “Enviar” (tant el botó com al teclejar Ctrl-Intro) funciona igual que “Enviar més endavant”">
 <!ENTITY altbinding.caption "Enllaçar Alt-Majúscules-Intro en lloc de Ctrl-Majúscules-Intro">
+<!ENTITY composewindowhotkeys.tooltip "Mentre escrigui un correu, pot prémer Ctrl-Alt-1, -2, o -3 per activar el primer, segon o tercer botó predeterminat, a no ser que desactivi aquesta preferència, en tal cas aquestes dreceres estan desactivades.">
+<!ENTITY composewindowhotkeys.caption "Habilitar dreceres de teclat en la finestra de redacció de correu per predeterminats">
 <!ENTITY markread.caption "Marcar missatges planificats en la carpeta d'esborranys com a llegits">
 <!ENTITY advanced.caption "Avançat">
 <!ENTITY dumplevel.caption "Nivell de bolcat de registre:">
@@ -39,3 +41,11 @@
 <!ENTITY blocklatemessages.label2 "minuts de retard">
 <!ENTITY editorbutton "Obrir l'editor de funcions dinàmiques…">
 <!ENTITY editortip "Obrir una finestra per crear i editar les funcions de JavaScrpit que implementin una lògica de programació complexa.">
+<!ENTITY loglevel.fatal "Crítics">
+<!ENTITY loglevel.error "Errors">
+<!ENTITY loglevel.warn "Avisos">
+<!ENTITY loglevel.info "Informació">
+<!ENTITY loglevel.config "Configuració">
+<!ENTITY loglevel.debug "Depuració">
+<!ENTITY loglevel.trace "Traça">
+<!ENTITY loglevel.all "Tots">

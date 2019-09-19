@@ -21,6 +21,8 @@
 <!ENTITY sendlatersendbutton.caption "„Küldés” úgy működik, mint „Küldés később”">
 <!ENTITY sendlatersendbutton.tooltip "Ezzel az opcióval a „Küldés” parancs (vagy a gomb vagy a Ctrl+Enter beírása) ugyanaz, mint a „Küldés később”.">
 <!ENTITY altbinding.caption "Kötés Alt-Shift-Enter a Ctrl-Shift-Enter helyett">
+<!ENTITY composewindowhotkeys.tooltip "Üzenet írása közben beírhatja a Ctrl-Alt-1, -2 vagy -3 gombot az első, a második vagy a harmadik előre beállított gomb aktiválásához, kivéve, ha nincs bejelölve ez a beállítás, ebben az esetben ezek a billentyűkötések le vannak tiltva.">
+<!ENTITY composewindowhotkeys.caption "Billentyűkötések előbeállítások engedélyezése a szerkesztőablaknak">
 <!ENTITY markread.caption "Megjelölés ütemezett tervezeteket olvasottként">
 <!ENTITY advanced.caption "Haladó">
 <!ENTITY dumplevel.caption "Összeomlási naplószint:">

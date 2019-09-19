@@ -21,6 +21,8 @@
 <!ENTITY sendlatersendbutton.caption "&quot;Trimite&quot; face &quot;Trimite mai târziu&quot;">
 <!ENTITY sendlatersendbutton.tooltip "Cu această opțiune activată, comanda &quot;Trimite&quot; (fie butonul fie tastând Ctrl-Enter) acționează la fel ca &quot;Trimite mai târziu&quot;.">
 <!ENTITY altbinding.caption "Folosește Alt-Shift-Enter în loc de Ctrl-Shift-Enter">
+<!ENTITY composewindowhotkeys.tooltip "În timp ce scrieți mesajul puteți apăsa Ctrl-Alt-1, -2, sau -3 pentru a activa primul, al doilea sau al treilea buton prestabilit. Dacă deselectați această opțiune, combinațiile de taste vor fi dezactivate.">
+<!ENTITY composewindowhotkeys.caption "Activează scurtăturile de taste pentru acțiuni prestabilite">
 <!ENTITY markread.caption "Marchează mesajele nefinalizate programate ca fiind citite">
 <!ENTITY advanced.caption "Avansat">
 <!ENTITY dumplevel.caption "Nivel jurnal fișier:">

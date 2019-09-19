@@ -21,6 +21,8 @@
 <!ENTITY sendlatersendbutton.caption "“Enviar” efectúa “Enviar más tarde”">
 <!ENTITY sendlatersendbutton.tooltip "Con esta opción habilitada, el comando “Enviar” (bien con el botón o pulsando Ctrl+Intro) actúa del mismo modo que “Enviar más tarde”.">
 <!ENTITY altbinding.caption "Ligar a Alt+Máyus+Intro en lugar de a Ctrl+Máyus+Intro">
+<!ENTITY composewindowhotkeys.tooltip "Mientras se compone un mensaje, puede escribir Ctrl-Alt-1, -2, o -3 para activar el primer, segundo o tercer botón preset, a menos que desactive esta preferencia, en cuyo caso estos atajos de teclas están desactivadas.">
+<!ENTITY composewindowhotkeys.caption "Habilitar atajos de teclas en la ventana de &quot;Redactar mensaje&quot; para predeterminados">
 <!ENTITY markread.caption "Marcar como leídos los mensajes planificados en la carpeta de borradores">
 <!ENTITY advanced.caption "Avanzadas">
 <!ENTITY dumplevel.caption "Registro (log) de nivel volcado:">

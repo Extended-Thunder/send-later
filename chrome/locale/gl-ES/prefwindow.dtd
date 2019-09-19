@@ -39,3 +39,4 @@
 <!ENTITY blocklatemessages.label2 "minuto(s) de retraso">
 <!ENTITY editorbutton "Abrir o editor de funcións dinámicas…">
 <!ENTITY editortip "Abre unha fiestra para crear e editar funcións JavaScript que implementan unha lóxica de programación complexa.">
+<!ENTITY loglevel.error "Erro">
