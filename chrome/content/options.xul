@@ -4,8 +4,8 @@
 <!DOCTYPE dialog [
 <!ENTITY % prefwindowDtd SYSTEM "chrome://sendlater3/locale/prefwindow.dtd">
 %prefwindowDtd;
-<!ENTITY % edButtonProperties SYSTEM "chrome://editor/locale/EditorButtonProperties.dtd">
-%edButtonProperties;
+<!ENTITY % viewZoomOverlayDTD SYSTEM "chrome://messenger/locale/viewZoomOverlay.dtd">
+%viewZoomOverlayDTD;
 <!ENTITY % promptDtd SYSTEM "chrome://sendlater3/locale/prompt.dtd">
 %promptDtd;
 ]>
@@ -17,7 +17,7 @@
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
     title="&prefwindow.title;"
     buttons="accept,cancel,extra1"
-    buttonlabelextra1="&reset.value;">
+    buttonlabelextra1="&fullZoomResetCmd.label;">
   <!-- globalOverlay.js and editMenuOverlay.js are required for html:input. See
        https://bugzilla.mozilla.org/show_bug.cgi?id=1562161#c7 -->
   <script src="chrome://global/content/globalOverlay.js"/>
