@@ -258,6 +258,9 @@ var Sendlater3HeaderView = function() {
     ObserverService.addObserver(addColumnHandler, "MsgCreateDBView", false);
     window.document.getElementById('folderTree')
 	.addEventListener("select",hideShowColumn,false);
+    // This is necessary in Thunderbird 68, unnecessary (but harmless) in
+    // Thunderbird 71+.
+    hideShowColumn();
 }
 
 window.addEventListener("load", Sendlater3HeaderView, false);
