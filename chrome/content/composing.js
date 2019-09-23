@@ -312,14 +312,22 @@ var Sendlater3Composing = {
                 }
                 var msgtype = msgcomposeWindow.getAttribute("msgtype");
                 var later = msgtype == Ci.nsIMsgCompDeliverMode.Later;
-                if (! (later ||
-                       ((msgtype == Ci.nsIMsgCompDeliverMode.Now ||
-                         msgtype == Ci.nsIMsgCompDeliverMode.Background) &&
-                        SL3U.getBoolPref("sendbutton")))) {
+                var now = msgtype == Ci.nsIMsgCompDeliverMode.Now ||
+                    msgtype == Ci.nsIMsgCompDeliverMode.Background;
+                var we_are_doing_send = SL3U.getBoolPref("sendbutton") ||
+                    SL3U.getBoolPref("send_does_delay");
+                if (! (later || (now && we_are_doing_send))) {
                     Sendlater3Composing.callEnigmail(event);
                     return;
                 }
                 var preset = msgcomposeWindow.sendlater3likethis;
+                if (now && ! preset && SL3U.getBoolPref("send_does_delay")) {
+                    var delay_minutes = SL3U.getIntPref("send_delay");
+                    var sendat = new Date();
+                    sendat.setTime(
+                        sendat.getTime() + delay_minutes * 60 * 1000);
+                    preset = [sendat];
+                }
                 if (preset) {
                     msgcomposeWindow.sendlater3likethis = null;
                     if (! Sendlater3Composing.callEnigmail(event))

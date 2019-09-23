@@ -19,6 +19,7 @@ SUBSTITUTIONS = {
                        'showsendlaterheader.caption',
                        'showsendlaterstatus.caption',
                        'showsendlaterunsentmessages.tooltip',
+                       'senddelay.tooltip',
                        'contactauthor.tooltip',
                        'helplink.tooltip'],
     'prompt.dtd': ['sendlater.prompt.sendnow.tooltip',

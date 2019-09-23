@@ -20,6 +20,8 @@
 <!ENTITY showsendlaterunsentmessages.tooltip "If you unset this option, then {NAME} will not fully deliver messages, but instead will just put them in your Outbox when they are scheduled for delivery. Unset this option, for example, if you use some other extension, e.g., BlunderDelay, to periodically send messages from your Outbox. Note that when this option is set, then whenever {NAME} delivers a message, ALL messages in your Outbox will be delivered.">
 <!ENTITY sendlatersendbutton.caption "“Send” does “Send Later”">
 <!ENTITY sendlatersendbutton.tooltip "With this option enabled, the “Send” command (either the button or typing Ctrl-Enter) acts the same as “Send Later”.">
+<!ENTITY senddelay.tooltip "With this option enabled, all messages sent with the “Send” command (either the button or typing Ctrl-Enter) are delayed by the specified number of minutes by scheduling them with {NAME}.">
+<!ENTITY senddelay.label "“Send” delays messages by:">
 <!ENTITY altbinding.caption "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter">
 <!ENTITY composewindowhotkeys.tooltip "While composing a message you can type Ctrl-Alt-1, -2, or -3 to activate the first, second, or third preset button, unless you uncheck this preference, in which case these key bindings are disabled.">
 <!ENTITY composewindowhotkeys.caption "Enable compose window key bindings for presets">

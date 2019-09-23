@@ -2,6 +2,8 @@ var Sendlater3Options = {
     mapping: [
         ["sendlater3-textintpref", "checktimepref", "int"],
         ["sendlater3-sendbuttonpref", "sendbutton", "bool"],
+        ["sendlater3-senddoesdelaypref", "send_does_delay", "bool"],
+        ["sendlater3-senddelaypref", "send_delay", "int"],
         ["sendlater3-altbindingpref", "alt_binding", "bool"],
         ["compose-window-hot-keys-pref", "compose_window_hot_keys", "bool"],
         ["sendlater3-markread-checkbox", "mark_drafts_read", "bool"],
@@ -53,6 +55,36 @@ var Sendlater3Options = {
                 elt.value = elt.getAttribute("sl3label");
             }
         }
+        Sendlater3Options.UpdateSendPrefs();
+    },
+
+    UpdateSendPrefs: function() {
+        send_button_pref = document.getElementById("sendlater3-sendbuttonpref");
+        send_does_delay_pref =
+            document.getElementById("sendlater3-senddoesdelaypref");
+        send_delay_pref = document.getElementById("sendlater3-senddelaypref");
+        if (send_button_pref.checked) {
+            send_does_delay_pref.checked = false;
+            send_button_pref.removeAttribute("disabled");
+            send_does_delay_pref.setAttribute("disabled", true);
+            send_delay_pref.setAttribute("disabled", true);
+        }
+        else if (send_does_delay_pref.checked) {
+            send_button_pref.checked = false;
+            send_button_pref.setAttribute("disabled", true);
+            send_does_delay_pref.removeAttribute("disabled");
+            send_delay_pref.removeAttribute("disabled");
+        }
+        else {
+            send_button_pref.removeAttribute("disabled");
+            send_does_delay_pref.removeAttribute("disabled");
+            send_delay_pref.removeAttribute("disabled");
+        }
+        send_button_pref.addEventListener(
+            "command", Sendlater3Options.UpdateSendPrefs, false);
+        send_does_delay_pref.addEventListener(
+            "command", Sendlater3Options.UpdateSendPrefs, false);
+        
     },
 
     ValidatePrefs: function(event) {

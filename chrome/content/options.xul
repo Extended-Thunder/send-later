@@ -50,6 +50,14 @@
 	      <checkbox id="sendlater3-sendbuttonpref"
                         label="&sendlatersendbutton.caption;" />
 	    </hbox>
+            <hbox align="center" tooltiptext="&senddelay.tooltip;">
+              <checkbox id="sendlater3-senddoesdelaypref"
+                        label="&senddelay.label;"/>
+              <html:input id="sendlater3-senddelaypref"
+                          type="number" min="1" maxlength="4"/>
+              <label value="&checktimepref2.label;"
+                     control="sendlater3-senddelaypref"/>
+            </hbox>
 	    <hbox id="sendlater3-altbinding_hbox" align="center">
 	      <checkbox id="sendlater3-altbindingpref"
                         label="&altbinding.caption;" />

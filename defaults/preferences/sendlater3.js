@@ -18,6 +18,8 @@ pref("extensions.sendlater3.logging.filter","");
 pref("extensions.sendlater3.sendunsentmessages",true);
 pref("extensions.sendlater3.senddrafts",true);
 pref("extensions.sendlater3.sendbutton",false);
+pref("extensions.sendlater3.send_does_delay", false);
+pref("extensions.sendlater3.send_delay", 1);
 pref("extensions.sendlater3.show_edit_alert",true);
 pref("extensions.sendlater3.show_outbox_alert",true);
 pref("extensions.sendlater3.show_sendnow_alert",true);
