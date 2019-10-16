@@ -37,17 +37,12 @@
                    tooltiptext="&sendlater.toolbar.sendlater.button.tooltip;"
 		   oncommand="active=document.activeElement; document.getElementById('content-frame').focus();window.setTimeout(function(){Sendlater3ComposeToolbar.CallSendAt();},0);active.focus();"  />
     <toolbaritem id="sendlater3-toolbar-text-item" class="chromeclass-toolbar"
-		 context="toolbar-context-menu" hidden="false">
-      <!-- For some reason, putting the textbox inside a stack causes the
-	   emptytext to display properly in the Customize Toolbar window,
-	   making it clearer what this item in that window is for. -->
-      <stack>
-	<textbox id="sendlater3-toolbar-text" width="200px"
+		 context="toolbar-context-menu" hidden="false"
+                 tooltiptext="&sendlater.prompt.textbox.tooltip;">
+	<html:input type="text" id="sendlater3-toolbar-text" width="200px"
 		 onchange="Sendlater3ComposeToolbar.updateSummary();"
-		 emptytext="&sendlater.toolbar.textbox.emptytext;"
-		 tooltiptext="&sendlater.prompt.textbox.tooltip;"
+		 placeholder="&sendlater.toolbar.textbox.emptytext;"
 		 onkeypress="Sendlater3ComposeToolbar.CheckTextEnter(event);"/>
-      </stack>
     </toolbaritem>
     <!-- setTimeout used because of
          https://bugzilla.mozilla.org/show_bug.cgi?id=799219 -->

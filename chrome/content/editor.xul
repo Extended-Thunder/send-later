@@ -31,7 +31,7 @@
   </hbox>
   <hbox align="center" tooltiptext="&functionnametip;">
     <label value="function"/>
-    <textbox id="function-name" onchange="sl3e.onNameChange();"
+    <html:input id="function-name" onchange="sl3e.onNameChange();"
              placeholder="&functionnameplaceholder;"/>
     <label value="(specname, prev, args) {"/>
   </hbox>
@@ -60,18 +60,18 @@
     <vbox flex="1">
       <hbox align="center" tooltiptext="&inputtimetip;">
         <label value="&inputtime;"/>
-        <textbox id="test-time" flex="1" onchange="sl3e.onTimeChange();"
-                 placeholder="&inputtimeplaceholder;"/>
+        <html:input id="test-time" onchange="sl3e.onTimeChange();"
+                 placeholder="&inputtimeplaceholder;" size="44"/>
       </hbox>
       <hbox align="center" tooltiptext="&inputargstip;">
         <label value="&inputargs;"/>
-        <textbox id="test-arguments" flex="1"
+        <html:input id="test-arguments" size="40"
                  onchange="sl3e.onArgumentsChange()"
                  placeholder="&inputargsplaceholder;"/>
       </hbox>
       <hbox align="center" flex="1">
         <label value="&output;"/>
-        <textbox id="test-results" disabled="true" flex="1"/>
+        <html:input id="test-results" disabled="true" size="46"/>
       </hbox>
     </vbox>
   </hbox>

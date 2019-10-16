@@ -39,17 +39,16 @@
 	  <column flex="1" align="center"/>
 	</columns>
 	<rows>
-	  <row>
+	  <row tooltiptext="&sendlater.prompt.textbox.tooltip;">
 	    <hbox>
 	      <!-- can't figure out how get align="right" to work, but this
 		   works instead -->
 	      <separator flex="1"/>
 	      <label align="right" value="&sendlater.prompt.textbox.label;"/>
 	    </hbox>
-	    <textbox id="sendlater3-time-text" width="100%" flex="1"
+	    <html:input id="sendlater3-time-text" width="100%" flex="1"
 		     onchange="Sendlater3Prompt.updateSummary();"
-		     emptytext="&sendlater.prompt.textbox.emptytext;"
-		     tooltiptext="&sendlater.prompt.textbox.tooltip;"
+		     placeholder="&sendlater.prompt.textbox.emptytext;"
 		     onkeypress="Sendlater3Prompt.CheckTextEnter(event) &amp;&amp; window.close();"/>
 	  </row>
 	  <row id="date-time-pickers-row" hidden="true">
@@ -124,7 +123,7 @@
 	      </hbox>
               <hbox align="center" width="100%">
                 <label value="&sendlater.prompt.functionargs.label;"/>
-                <textbox id="function-args" disabled="true" flex="1"/>
+                <html:input id="function-args" disabled="true" flex="1"/>
                 <button id="calculate" disabled="true"
                         label="&sendlater.prompt.calculate.label;"
                         oncommand="Sendlater3Prompt.onCalculate();"/>

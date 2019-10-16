@@ -128,12 +128,12 @@
 	      <label align="bottom"
                      control="sendlater3-quickoption_label1"
                      value="&quickoptionname.label;"/>
-              <textbox id="sendlater3-quickoption_label1"
+              <html:input id="sendlater3-quickoption_label1"
                        sl3label="&sendlater.button1.label;"/>
 	      <label align="bottom"
                      control="sendlater3-quickoption_value1"
                      value="&quickoptionvalue.label;"/>
-              <textbox id="sendlater3-quickoption_value1"/>
+              <html:input id="sendlater3-quickoption_value1"/>
 	    </hbox>
 	  </vbox>
 	</tabpanel>
@@ -143,12 +143,12 @@
 	      <label align="bottom"
                      control="sendlater3-quickoption_label2"
                      value="&quickoptionname.label;"/>
-              <textbox id="sendlater3-quickoption_label2"
+              <html:input id="sendlater3-quickoption_label2"
                        sl3label="&sendlater.button2.label;"/>
 	      <label align="bottom"
                      control="sendlater3-quickoption_value2"
                      value="&quickoptionvalue.label;"/>
-              <textbox id="sendlater3-quickoption_value2"/>
+              <html:input id="sendlater3-quickoption_value2"/>
 	    </hbox>
 	  </vbox>
 	</tabpanel>
@@ -158,12 +158,12 @@
 	      <label align="bottom"
                      control="sendlater3-quickoption_label3"
                      value="&quickoptionname.label;"/>
-              <textbox id="sendlater3-quickoption_label3"
+              <html:input id="sendlater3-quickoption_label3"
                        sl3label="&sendlater.button3.label;"/>
 	      <label align="bottom"
                      control="sendlater3-quickoption_value3"
                      value="&quickoptionvalue.label;"/>
-              <textbox id="sendlater3-quickoption_value3"/>
+              <html:input id="sendlater3-quickoption_value3"/>
 	    </hbox>
 	  </vbox>
 	</tabpanel>
