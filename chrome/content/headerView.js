@@ -223,7 +223,8 @@ var Sendlater3HeaderView = function() {
         else {
             sl3log.debug("headerView.js: onBeforeShowHeaderPane: showheader is false");
         }
-        try { document.getElementById(SL3U.HeaderRowId()).hidden = hidden; }
+        try { document.getElementById("sendlater3-expanded-Row").hidden =
+              hidden; }
         catch (e) {
             if (onBeforeShowHeaderPane.warning) {
                 sl3log.warn(onBeforeShowHeaderPane.warning);

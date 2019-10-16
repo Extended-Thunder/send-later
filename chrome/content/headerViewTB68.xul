@@ -15,20 +15,16 @@
     </treecols>
   </tree>
 
-  <!-- Thunderbird 71 -->
-  <html:table id="expandedHeaders2">
-    <html:tr id="sendlater3-expanded-Row">
-      <html:th>
-        <label class="headerName"
-               value="x-send-later-at"
-	       control="sendlater3-expanded-Box"/>
-      </html:th>
-      <html:td>
-        <mail-headerfield id="sendlater3-expanded-Box"/>
-      </html:td>
-    </html:tr>
-  </html:table>
-  
+  <!-- Thunderbird 3 -->
+  <rows id="expandedHeader2Rows">
+    <row id="sendlater3-expanded-Row">
+      <label class="headerName"
+	     value="x-send-later-at"
+	     control="sendlater3-expanded-Box"/>
+      <mail-headerfield id="sendlater3-expanded-Box"/>
+    </row>
+  </rows>
+
   <!-- Loaded in backgrounding.xul -->
   <!--<script src="util.js"/>-->
   <script type="text/javascript" src="chrome://sendlater3/content/headerView.js" />

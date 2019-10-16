@@ -73,10 +73,6 @@ var Sendlater3Util = {
         return folder.findSubFolder(name);
     },
 
-    HeaderRowId: function() {
-        return "sendlater3-expanded-Row";
-    },
-
     ComposeToolboxName: function() {
         return "compose-toolbox";
     },
