@@ -22,6 +22,7 @@
 <!ENTITY sendlatersendbutton.tooltip "Ezzel az opcióval a „Küldés” parancs (vagy a gomb vagy a Ctrl+Enter beírása) ugyanaz, mint a „Küldés később”.">
 <!ENTITY senddelay.tooltip "Ezzel az opcióval a „Küldés” paranccsal elküldött összes üzenet (a gomb vagy a Ctrl-Enter gépelés után) a megadott perc számmal késik, ha a {NAME} ütemezést küld.">
 <!ENTITY senddelay.label "A „küldés” késlelteti az üzeneteket:">
+<!ENTITY senddelay2.label "perc">
 <!ENTITY altbinding.caption "Kötés Alt-Shift-Enter a Ctrl-Shift-Enter helyett">
 <!ENTITY composewindowhotkeys.tooltip "Üzenet írása közben beírhatja a Ctrl-Alt-1, -2 vagy -3 gombot az első, a második vagy a harmadik előre beállított gomb aktiválásához, kivéve, ha nincs bejelölve ez a beállítás, ebben az esetben ezek a billentyűkötések le vannak tiltva.">
 <!ENTITY composewindowhotkeys.caption "Billentyűkötések előbeállítások engedélyezése a szerkesztőablaknak">

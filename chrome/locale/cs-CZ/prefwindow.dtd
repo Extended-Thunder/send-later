@@ -22,6 +22,7 @@
 <!ENTITY sendlatersendbutton.tooltip "Pokud tuto možnost povolíte, bude se příkaz „Odeslat“ (tlačítko nebo klávesová zkratka Ctrl-Enter) chovat stejně jako „Odeslat později“.">
 <!ENTITY senddelay.tooltip "Pokud je tato možnost zapnutá, všechny zprávy odeslané příkazem &quot;Odeslat&quot; (tlačítkem nebo stisknutím Ctrl-Enter) budou zdrženy o zadaný čas naplánovaný pomocí {NAME}.">
 <!ENTITY senddelay.label "&quot;Odeslat&quot; zdrží zprávy o:">
+<!ENTITY senddelay2.label "minut">
 <!ENTITY altbinding.caption "Použít Alt-Shift-Enter namísto Ctrl-Shift-Enter">
 <!ENTITY composewindowhotkeys.tooltip "Zatímco píšete zprávu, můžete stisknout Ctrl-Alt-1, -2 nebo -3 abyste aktivovali první, druhé nebo třetí tlačítko předvolby odesílání. Platí pouze pokud jste v nastavení nezakázali použití klávesový zkratek.">
 <!ENTITY composewindowhotkeys.caption "Povolit použití klávesových zkratek (pro předvolby odeslání) při psaní zprávy">

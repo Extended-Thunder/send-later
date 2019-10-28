@@ -22,6 +22,7 @@
 <!ENTITY sendlatersendbutton.tooltip "Cu această opțiune activată, comanda &quot;Trimite&quot; (fie butonul fie tastând Ctrl-Enter) acționează la fel ca &quot;Trimite mai târziu&quot;.">
 <!ENTITY senddelay.tooltip "Când această opțiune este activată, toate mesajele trimise folosind comanda &quot;Trimite&quot; (indiferent dacă e vorba de buton sau de scurtătura Ctrl-Enter) vor fi trimise mai târziu cu numărul specificat de minute - prin programarea lor cu {NAME}.">
 <!ENTITY senddelay.label "„Trimite” va trimite mesajele cu o întârziere de:">
+<!ENTITY senddelay2.label "minute">
 <!ENTITY altbinding.caption "Folosește Alt-Shift-Enter în loc de Ctrl-Shift-Enter">
 <!ENTITY composewindowhotkeys.tooltip "În timp ce scrieți mesajul puteți apăsa Ctrl-Alt-1, -2, sau -3 pentru a activa primul, al doilea sau al treilea buton prestabilit. Dacă deselectați această opțiune, combinațiile de taste vor fi dezactivate.">
 <!ENTITY composewindowhotkeys.caption "Activează scurtăturile de taste pentru acțiuni prestabilite">

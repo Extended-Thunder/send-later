@@ -22,6 +22,7 @@
 <!ENTITY sendlatersendbutton.tooltip "このオプションを有効にすると、“送信” コマンド (ボタンと Ctrl-Enter の両方) は “後で送信” と同じ動作をします。">
 <!ENTITY senddelay.tooltip "このオプションを有効にすると、{NAME} でスケジュールされた特定の時間(分) だけ&quot;送信&quot;コマンド(ボタンクリックあるいはCtrl-Enterキー) によるすべてのメッセージ送信を遅延します。">
 <!ENTITY senddelay.label "メッセージの&quot;送信&quot;を遅延する">
+<!ENTITY senddelay2.label "分">
 <!ENTITY altbinding.caption "Ctrl+Shift+Enter ではなく Alt+Shift+Enter に割り当てる">
 <!ENTITY composewindowhotkeys.tooltip "メッセージの作成中にCtrl-Alt-1, -2, -3を押すと1,2,3番目のプリセットボタンが作動します。これは設定でチェックを外すかキー割り当てを無効にしない限り有効です。">
 <!ENTITY composewindowhotkeys.caption "メッセージ作成ウィンドウでプリセット用のキー割り当てを有効にする">

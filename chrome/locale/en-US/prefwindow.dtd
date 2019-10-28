@@ -22,6 +22,7 @@
 <!ENTITY sendlatersendbutton.tooltip "With this option enabled, the “Send” command (either the button or typing Ctrl-Enter) acts the same as “Send Later”.">
 <!ENTITY senddelay.tooltip "With this option enabled, all messages sent with the “Send” command (either the button or typing Ctrl-Enter) are delayed by the specified number of minutes by scheduling them with {NAME}.">
 <!ENTITY senddelay.label "“Send” delays messages by:">
+<!ENTITY senddelay2.label "minutes">
 <!ENTITY altbinding.caption "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter">
 <!ENTITY composewindowhotkeys.tooltip "While composing a message you can type Ctrl-Alt-1, -2, or -3 to activate the first, second, or third preset button, unless you uncheck this preference, in which case these key bindings are disabled.">
 <!ENTITY composewindowhotkeys.caption "Enable compose window key bindings for presets">

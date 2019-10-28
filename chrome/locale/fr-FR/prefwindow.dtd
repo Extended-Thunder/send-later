@@ -22,6 +22,7 @@
 <!ENTITY sendlatersendbutton.tooltip "Remplace l'action par défaut d'« Envoyer » (bouton ou raccourci « Ctrl+Entrée ») par celle d'« Envoyer plus tard ».">
 <!ENTITY senddelay.tooltip "Quand cette option est activée, tous les messages envoyés avec la commande &quot;Envoyer&quot; (avec le bouton ou avec Ctrl+Entrée) sont retardés du nombre de minutes spécifié dans {NAME}.">
 <!ENTITY senddelay.label "&quot;Envoyer&quot; retarde l'envoi du message de :">
+<!ENTITY senddelay2.label "minutes">
 <!ENTITY altbinding.caption "Utiliser Alt+Maj+Entrée à la place de Ctrl+Maj+Entrée">
 <!ENTITY composewindowhotkeys.tooltip "Pendant la rédaction d'un message vous pouvez taper Ctrl-Alt-1, -2 ou -3 pour activer respectivement le premier, le deuxième ou le troisième bouton prédéfini, sauf si cette option est décochée auquel cas, ces raccourcis clavier sont désactivés.">
 <!ENTITY composewindowhotkeys.caption "Autoriser les raccourcis claviers vers les boutons prédéfinis, dans la fenêtre de composition du message">

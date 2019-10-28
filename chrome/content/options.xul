@@ -55,7 +55,7 @@
                         label="&senddelay.label;"/>
               <html:input id="sendlater3-senddelaypref"
                           type="number" min="1" maxlength="4"/>
-              <label value="&checktimepref2.label;"
+              <label value="&senddelay2.label;"
                      control="sendlater3-senddelaypref"/>
             </hbox>
 	    <hbox id="sendlater3-altbinding_hbox" align="center">

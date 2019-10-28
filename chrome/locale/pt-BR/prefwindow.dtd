@@ -22,6 +22,7 @@
 <!ENTITY sendlatersendbutton.tooltip "Ao ativar esta opção, o comando “Enviar” (tanto seu ícone quanto teclando Ctrl+Enter) age da mesma forma que “Envie Mais Tarde”.">
 <!ENTITY senddelay.tooltip "Com esta opção habilitada, todas as mensagens enviadas com o comando &quot;Enviar&quot; (com o botão ou digitando Ctrl-Enter) são atrasadas pelo número especificado de minutos do agendamento com {NAME}.">
 <!ENTITY senddelay.label "&quot;Enviar&quot; posterga o envio por:">
+<!ENTITY senddelay2.label "minutos">
 <!ENTITY altbinding.caption "Combinar Alt+Shift+Enter em vez de Ctrl+Shift+Enter">
 <!ENTITY composewindowhotkeys.tooltip "Enquanto você digita uma mensagem, você pode usar Ctrl-Alt-1, -2, ou -3 para ativar a primeira, segunda ou terceira predefinição, a menos que você desmarque esta preferência, nesse caso esses atalhos estarão desabilitados.">
 <!ENTITY composewindowhotkeys.caption "Ativar combinações de teclas da janela de composição para predefinições">

@@ -22,6 +22,7 @@
 <!ENTITY sendlatersendbutton.tooltip "Wird diese Option aktiviert, bewirkt der „Senden”-Befehl (entweder die Schaltfläche oder Strg+Return) das Gleiche wie „Später senden”.">
 <!ENTITY senddelay.tooltip "Wenn diese Option aktiviert ist, wird der Versand aller Nachrichten, die mit dem &quot;Senden&quot;-Befehl gesendet werden (mit der Schaltfläche oder mittels CRTL-Enter), als {NAME} um die angegebene Anzahl Minuten verzögert geplant.">
 <!ENTITY senddelay.label "&quot;Senden&quot; verzögert den Nachrichtenversand um:">
+<!ENTITY senddelay2.label "Minuten">
 <!ENTITY altbinding.caption "„Alt+Umschalt+Return” anstatt „Strg+Umschalt+Return” verwenden">
 <!ENTITY composewindowhotkeys.tooltip "Während Sie eine Nachricht erstellen, können Sie Strg-Alt-1, -2 oder -3 eingeben, um den ersten, zweiten oder dritten Kurzbefehl-Button zu aktivieren, es sei denn, Sie deaktivieren diese Einstellung (in diesem Fall sind diese Tasten deaktiviert).">
 <!ENTITY composewindowhotkeys.caption "Aktiviere Kurzbefehl-Tastenkombinationen im E-Mail-Editor">
