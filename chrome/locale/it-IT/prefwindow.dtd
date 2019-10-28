@@ -20,7 +20,11 @@
 <!ENTITY showsendlaterunsentmessages.tooltip "Se non spunti questa opzione, {NAME} non provvederà all'invio del messaggio, ma quando arriverà l'ora pianificata per la spedizione, lo parcheggerà semplicemente nella “Posta in Uscita”. Togliere la spunta nel caso di utilizzo con altri componenti aggiuntivi come ad esempio BlunderDelay, per inviare i messaggi presenti nella “Posta in Uscita” periodicamente. Da notare che se questa opzione è selezionata, quando {NAME} invia un messaggio, anche TUTTI gli altri messaggi presenti nella “Posta in Uscita” verranno inviati.">
 <!ENTITY sendlatersendbutton.caption "“Invia” diventa “Invia dopo”">
 <!ENTITY sendlatersendbutton.tooltip "Con questa opzione attivata, il comando “Invia” (sia il pulsante che la pressione di Ctrl-Invio) si comporta come “Invia dopo”.">
+<!ENTITY senddelay.tooltip "Con questa opzione attivata, tutti i messaggi inviati con il comando &quot;Invia&quot; (sia col pulsante che digitando Ctrl+Invio) sono ritardati del numero di minuti indicato, tramite la pianificazione di {NAME}.">
+<!ENTITY senddelay.label "&quot;Invia&quot; ritarderà sempre i messaggi di:">
 <!ENTITY altbinding.caption "Associa a Alt-Maiusc-Invio anziché a Ctrl-Maiusc-Invio">
+<!ENTITY composewindowhotkeys.tooltip "Mentre si compone un messaggio è normalmente possibile digitare Ctrl-Alt-1, -2, o -3 per attivare il primo, secondo o terzo pulsante 'Scelta rapida', a meno che si deselezioni questa preferenza, nel qual caso queste combinazioni di tasti sono disabilitate.">
+<!ENTITY composewindowhotkeys.caption "Abilita le associazioni di tasti per la finestra di composizione">
 <!ENTITY markread.caption "Imposta le bozze pianificate come &quot;lette&quot;">
 <!ENTITY advanced.caption "Avanzate">
 <!ENTITY dumplevel.caption "Livello log Dump:">
@@ -39,3 +43,11 @@
 <!ENTITY blocklatemessages.label2 "minuti dopo">
 <!ENTITY editorbutton "Apri l'editor di funzioni dinamiche…">
 <!ENTITY editortip "Apre una finestra per creare e modificare funzioni Javascript per implementare schemi di pianificazione complessi.">
+<!ENTITY loglevel.fatal "Fatale">
+<!ENTITY loglevel.error "Errore">
+<!ENTITY loglevel.warn "Avvertimento">
+<!ENTITY loglevel.info "Informativo">
+<!ENTITY loglevel.config "Configurazione">
+<!ENTITY loglevel.debug "Debug">
+<!ENTITY loglevel.trace "Traccia">
+<!ENTITY loglevel.all "Tutto">

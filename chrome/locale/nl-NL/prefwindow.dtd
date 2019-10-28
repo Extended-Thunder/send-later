@@ -20,7 +20,11 @@
 <!ENTITY showsendlaterunsentmessages.tooltip "Als u deze optie uitvinkt, zal {NAME} berichten niet volledig verzenden, maar deze op het moment van verzenden alleen in uw Postvak UIT plaatsen. Vink deze optie uit als u bijvoorbeeld een andere extensie gebruikt, zoals BlunderDelay, die periodiek berichten uit uw Postvak UIT verzendt. Denk eraan dat als deze optie is aangevinkt, {NAME} bij het afleveren van een bericht ALLE berichten in uw Postvak UIT aflevert.">
 <!ENTITY sendlatersendbutton.caption "‘Verzenden’ werkt als ‘Later verzenden’">
 <!ENTITY sendlatersendbutton.tooltip "Met deze optie ingeschakeld, werkt de opdracht ‘Verzenden’ (via zowel de knop als het intoetsen van Ctrl-Enter) hetzelfde als ‘Later verzenden’.">
+<!ENTITY senddelay.tooltip "Met deze optie ingeschakeld, worden alle met de opdracht ‘Verzenden’ verzonden berichten (via zowel de knop als het typen van Ctrl-Enter) met het opgegeven aantal minuten vertraagd door ze met {NAME} in te plannen.">
+<!ENTITY senddelay.label "‘Verzenden’ vertraagt berichten met:">
 <!ENTITY altbinding.caption "Alt-Shift-Enter binden in plaats van Ctrl-Shift-Enter">
+<!ENTITY composewindowhotkeys.tooltip "Tijdens het opstellen van een bericht kunt u Ctrl-Alt-1, -2 of -3 typen om de eerste, tweede of derde voorkeuzeknop te activeren, tenzij u deze voorkeur uitschakelt, waardoor deze toetsenbindingen zijn uitgeschakeld.">
+<!ENTITY composewindowhotkeys.caption "Toetsenbindingen van opstelvenster voor voorkeuzes inschakelen">
 <!ENTITY markread.caption "Markeer geplande concepten als gelezen">
 <!ENTITY advanced.caption "Geavanceerd">
 <!ENTITY dumplevel.caption "Dumplogniveau:">
@@ -39,11 +43,11 @@
 <!ENTITY blocklatemessages.label2 "minuten te laat afleveren">
 <!ENTITY editorbutton "Editor voor dynamische functies openen…">
 <!ENTITY editortip "Een venster openen voor het maken en bewerken van JavaScript-functies die complexe planningslogica implementeren.">
-<!ENTITY loglevel.fatal "Fatale fout">
+<!ENTITY loglevel.fatal "Onherstelbaar">
 <!ENTITY loglevel.error "Fout">
 <!ENTITY loglevel.warn "Waarschuwing">
 <!ENTITY loglevel.info "Info">
-<!ENTITY loglevel.config "Instellingen">
+<!ENTITY loglevel.config "Configuratie">
 <!ENTITY loglevel.debug "Foutopsporing">
-<!ENTITY loglevel.trace "Trace">
+<!ENTITY loglevel.trace "Tracering">
 <!ENTITY loglevel.all "Alles">

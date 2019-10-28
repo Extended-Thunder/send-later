@@ -12,7 +12,7 @@
 <!ENTITY quickoptionvalue.label "Minutter:">
 <!ENTITY showsendlatercolumn.caption "Vis kolonne for {NAME}">
 <!ENTITY showsendlatercolumn.tooltip "Om du vil vise «{NAME}» -spalte når du ser på utkastmapper">
-<!ENTITY showsendlaterheader.caption "Vise {NAME} topptekst">
+<!ENTITY showsendlaterheader.caption "Vis {NAME} topptekst">
 <!ENTITY showsendlaterheader.tooltip "Når for å vise «X-Send-Later-At» -topptekst, dvs. tidspunktet da et utkast er planlagt å bli sendt, i overskriften når du ser en melding.">
 <!ENTITY showsendlaterstatus.caption "Vis {NAME} statuslinjen">
 <!ENTITY showsendlaterprogress.caption "Vis bakgrunn fremgang statuslinjen">

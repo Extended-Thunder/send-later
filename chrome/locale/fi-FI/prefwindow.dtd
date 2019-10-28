@@ -20,7 +20,11 @@
 <!ENTITY showsendlaterunsentmessages.tooltip "Jos et aseta tätä valintaa, ei {NAME} tule toimittamaan viestejä, vaan sen sijaan se siirtää ne Lähtevät-kansioon niiden lähetysajankohtana. Jätä asettamatta tämä valinta, esim. jos käytät jotain muuta lisäosaa, kuten BlunderDelay, lähettääksesi määräajoin viestejä Lähtevät-kansiostasi. Huomaa, että kun tämä valinta on asetettuna, niin aina kun {NAME} lähettää viestin, lähtevät KAIKKI viestisi Lähtevät-kansiostasi.">
 <!ENTITY sendlatersendbutton.caption "”Lähetä” toimii, kuten ”Lähetä myöhemmin”">
 <!ENTITY sendlatersendbutton.tooltip "Tämän valinnan ollessa käytössä &quot;Lähetä&quot; -komento (joko painike, tai näppäimet Ctrl-Enter) toimii kuten &quot;Lähetä myöhemmin&quot;.">
+<!ENTITY senddelay.tooltip "Tämä valinta aktivoituna kaikki “Lähetä” -komennolla (joko painikkeella, tai painamalla Ctrl+Enter) lähetetyt viestit lähtevät määritetyn arvon mukaisella viiveellä aikatauluttamalla ne käyttämällä {NAME}.">
+<!ENTITY senddelay.label "“Lähetä” viivyttää viestejä:">
 <!ENTITY altbinding.caption "Käytä näppäinyhdistelmää Alt-Shift-Enter näppäinyhdistelmän Ctrl-Shift-Enter sijasta">
+<!ENTITY composewindowhotkeys.tooltip "Kirjoittaessasi viestiä voit painaa Ctrl-Alt-1, -2, tai -3 aktivoidaksesi ensimmäisen, toisen, tai kolmannen painikkeen. Jos määritys on jätetty valitsematta, eivät näppäinyhdistelmät ole käytöstä.">
+<!ENTITY composewindowhotkeys.caption "Salli viestinkirjoituksessa mukautetut näppäinkomennot">
 <!ENTITY markread.caption "Merkitse ajastetut luonnokset luetuiksi">
 <!ENTITY advanced.caption "Laajemmat">
 <!ENTITY dumplevel.caption "Datankeruutaso:">

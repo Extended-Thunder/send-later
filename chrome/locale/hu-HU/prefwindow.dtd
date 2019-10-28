@@ -20,6 +20,8 @@
 <!ENTITY showsendlaterunsentmessages.tooltip "Ha kikapcsolja ezt az opciót, akkor a {NAME} nem fogja teljes mértékben kézbesíteni az üzeneteket, hanem csak azokat a Kimenő mappába helyezi, amikor azokat a szállításra tervezik. Törölje ezt az opciót, például, ha valamilyen más kiterjesztést, például Baklövés késleltetést használ az üzenetek időszakos küldésére a Kimenő mappából. Ne feledje, hogy ha ez az opció be van állítva, akkor, amikor {NAME} üzenetet küld, a Kimenő összes üzeneteit fogja elküldeni.">
 <!ENTITY sendlatersendbutton.caption "„Küldés” úgy működik, mint „Küldés később”">
 <!ENTITY sendlatersendbutton.tooltip "Ezzel az opcióval a „Küldés” parancs (vagy a gomb vagy a Ctrl+Enter beírása) ugyanaz, mint a „Küldés később”.">
+<!ENTITY senddelay.tooltip "Ezzel az opcióval a „Küldés” paranccsal elküldött összes üzenet (a gomb vagy a Ctrl-Enter gépelés után) a megadott perc számmal késik, ha a {NAME} ütemezést küld.">
+<!ENTITY senddelay.label "A „küldés” késlelteti az üzeneteket:">
 <!ENTITY altbinding.caption "Kötés Alt-Shift-Enter a Ctrl-Shift-Enter helyett">
 <!ENTITY composewindowhotkeys.tooltip "Üzenet írása közben beírhatja a Ctrl-Alt-1, -2 vagy -3 gombot az első, a második vagy a harmadik előre beállított gomb aktiválásához, kivéve, ha nincs bejelölve ez a beállítás, ebben az esetben ezek a billentyűkötések le vannak tiltva.">
 <!ENTITY composewindowhotkeys.caption "Billentyűkötések előbeállítások engedélyezése a szerkesztőablaknak">
