@@ -40,6 +40,7 @@ chrome/content/editor.js
 chrome/content/editor.xul
 chrome/content/headerView.js
 chrome/content/headerView.xul
+chrome/content/headerViewTB68.xul
 chrome/content/options.js
 chrome/content/options.xul
 chrome/content/prompt.js
