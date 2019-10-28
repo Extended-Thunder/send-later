@@ -1153,9 +1153,13 @@ var Sendlater3Backgrounding = function() {
 		sl3log.debug("IMMEDIATE " + msg + " - " + uri);
 		folderLoadListener.OnItemEvent(folder, "Immediate");
 	    }
-	    
-	    CheckFolder(SL3U.FindSubFolder(fdrlocal, "Drafts"), true,
-			"local Drafts folder");
+
+	    var folder = SL3U.FindSubFolder(fdrlocal, "Drafts");
+            if (folder)
+	        CheckFolder(folder , true, "local Drafts folder");
+            else
+                sl3log.warn("SL3U.FindSubFolder(fdrlocal, \"Drafts\") " +
+                            "returned nothing");
 	    // Local Drafts folder might have different name, e.g., in other
 	    // locales.
             var local_draft_pref;
@@ -1172,7 +1176,6 @@ var Sendlater3Backgrounding = function() {
             }
 	    sl3log.debug("mail.identity.default.draft_folder=" +local_draft_pref);
 	    if (local_draft_pref) {
-		var folder;
 		// Will fail if folder doesn't exist
 		try {
 		    folder = getMsgFolderFromUri(local_draft_pref);
@@ -1262,7 +1265,13 @@ var Sendlater3Backgrounding = function() {
 			    }
 			    pref_value = SL3U.GetUpdatePref(identity.key) ||
 				pref_value;
-			    CheckFolder(thisfolder, pref_value, msg);
+                            if (thisfolder)
+			        CheckFolder(thisfolder, pref_value, msg);
+                            else
+                                sl3log.warn("getMsgFolderFromUri on " +
+                                            identity.draftFolder + " for " +
+                                            " identity " + identityNum +
+                                            " returned nothing");
 			}
 			break;
 		    default:
