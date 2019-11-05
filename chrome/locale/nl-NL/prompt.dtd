@@ -19,7 +19,7 @@
 <!ENTITY sendlater.prompt.cleardefaults "Standaardwaarden wissen">
 <!ENTITY sendlater.prompt.recur.label "Herhaling:">
 <!ENTITY sendlater.prompt.none.label "geen">
-<!ENTITY sendlater.prompt.minutely.label "per minuut">
+<!ENTITY sendlater.prompt.minutely.label "elke minuut">
 <!ENTITY sendlater.prompt.daily.label "dagelijks">
 <!ENTITY sendlater.prompt.weekly.label "wekelijks">
 <!ENTITY sendlater.prompt.monthly.label "maandelijks">
@@ -28,7 +28,7 @@
 <!ENTITY sendlater.prompt.functionargs.label "Functieargumenten:">
 <!ENTITY sendlater.prompt.calculate.label "Berekenen">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Later verzenden">
-<!ENTITY sendlater.toolbar.sendlater.button.tooltip "Activeer {NAME} om het versturen van een bericht in te stellen nadat de gewenste verzendtijd in de tekstbox is ingevoerd. Deze knop doet niets op zichzelf; je moet ook de tekstbox of de datum/tijd-kiezer (niet ondersteund in alle Thunderbird versies) toevoegen aan de werkbalk om deze knop te activeren.">
+<!ENTITY sendlater.toolbar.sendlater.button.tooltip "Activeer {NAME} om een bericht in te plannen nadat de gewenste verzendtijd in het tekstvak is ingevoerd. Deze knop doet op zichzelf niets; u dient ook het tekstvak of datum-/tijdkiezers (niet in alle Thunderbird-versies ondersteund) aan de werkbalk toe te voegen om deze knop te laten werken.">
 <!ENTITY sendlater.toolbar.textbox.emptytext "verzendtijdstip">
 <!ENTITY sendlater.prompt.every.label "Elke">
 <!ENTITY sendlater.prompt.between.label "Tussen">
@@ -43,5 +43,5 @@
 <!ENTITY sendlater.prompt.day4 "donderdag">
 <!ENTITY sendlater.prompt.day5 "vrijdag">
 <!ENTITY sendlater.prompt.day6 "zaterdag">
-<!ENTITY sendlater.prompt.cancelonreply.label "Annuleer herhaling indien beantwoord">
-<!ENTITY sendlater.prompt.cancelonreply.tooltip "Let op binnenkomende antwoorden op herhalende berichten. Annuleer het herhalende bericht en verwijder het uit de Concepten map als er een antwoord is ontvangen.">
+<!ENTITY sendlater.prompt.cancelonreply.label "Herhaling annuleren bij antwoord">
+<!ENTITY sendlater.prompt.cancelonreply.tooltip "Op eerder verzonden kopieën van herhalende berichten letten. Een herhalend bericht annuleren en het uit de map Concepten verwijderen als een antwoord is ontvangen.">
