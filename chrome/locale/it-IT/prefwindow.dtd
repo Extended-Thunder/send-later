@@ -24,7 +24,7 @@
 <!ENTITY senddelay.label "&quot;Invia&quot; ritarderà sempre i messaggi di:">
 <!ENTITY senddelay2.label "minuti">
 <!ENTITY altbinding.caption "Associa a Alt-Maiusc-Invio anziché a Ctrl-Maiusc-Invio">
-<!ENTITY composewindowhotkeys.tooltip "Mentre si compone un messaggio è normalmente possibile digitare Ctrl-Alt-1, -2, o -3 per attivare il primo, secondo o terzo pulsante 'Scelta rapida', a meno che si deselezioni questa preferenza, nel qual caso queste combinazioni di tasti sono disabilitate.">
+<!ENTITY composewindowhotkeys.tooltip "Mentre si compone un messaggio è possibile digitare Ctrl-Alt-1, -2, o -3 per attivare il primo, secondo o terzo pulsante preset, a meno che non si deselezioni questa preferenza, nel qual caso queste combinazioni di tasti sono disabilitate.">
 <!ENTITY composewindowhotkeys.caption "Abilita le associazioni di tasti per la finestra di composizione">
 <!ENTITY markread.caption "Imposta le bozze pianificate come &quot;lette&quot;">
 <!ENTITY advanced.caption "Avanzate">
