@@ -19,22 +19,15 @@ function getLocale() {
 	didLocale = true;
         var locales;
         try {
-	    var localeService = Components.classes[
-                "@mozilla.org/intl/nslocaleservice;1"]
-                .getService(Components.interfaces.nsILocaleService);
-	    var localeObj = localeService.getApplicationLocale();
-	    locales = [localeObj.getCategory("NSILOCALE_TIME")];
+            locales = Components.classes[
+                "@mozilla.org/intl/localeservice;1"]
+                .getService(Components.interfaces.mozILocaleService)
+                .appLocalesAsLangTags;
+            console.log("Found potential locales: " + locales);
         }
         catch (ex) {
-            try {
-                locales = Components.classes[
-                    "@mozilla.org/intl/localeservice;1"]
-                    .getService(Components.interfaces.mozILocaleService)
-                    .getRegionalPrefsLocales();
-            }
-            catch (ex) {
-                locales = [];
-            }
+            console.log("Locale exception: " + ex);
+            locales = [];
         }
         for (var l of locales) {
 	    // Sugar may not recognize the locale. It throws an error when
@@ -43,9 +36,13 @@ function getLocale() {
 	    try {
 	        (new Date()).format(null, l);
                 locale = l;
+                console.log("Using locale " + l + " with Sugar");
                 return locale;
 	    }
-	    catch (ex) {}
+	    catch (ex) {
+                console.log("Locale unrecognized by Sugar: " + l);
+            }
+            console.log("Failed to find a Locale that Sugar recognizes");
         }
     }
     return locale;
