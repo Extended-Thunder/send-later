@@ -15420,6 +15420,10 @@
       '{shift} {unit:5-7}',
       '{0} {shift?} {weekday}'
     ],
+    'timeParse': [
+      '{date} {months} {year?}',
+      '{weekday?}\\.?,? {date} {months} {year?}'
+    ],
     'timeFrontParse': [
       '{day|weekday}',
       '{date} {months} {year?} {1?}',
