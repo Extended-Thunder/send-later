@@ -358,12 +358,21 @@ var Sendlater3Prompt = {
         var dateObj;
 	var dateStr = document.getElementById("sendlater3-time-text").value;
         if (dateStr) {
+            sl3log.debug("Attempting to parse " + dateStr);
             try {
                 var dateObj = sl3dateparse.DateParse(dateStr);
             }
-            catch (ex) {}
-            if (! (dateObj && dateObj.isValid()))
+            catch (ex) {
+                sl3log.warn("Exception parsing " + dateStr + ": " + ex);
+            }
+            if (dateObj && dateObj.isValid()) {
+                sl3log.debug("Successfully parsed " + dateStr + " into " +
+                             dateObj);
+            }
+            else {
+                sl3log.warn("Failed to parse " + dateStr);
                 dateObj = null;
+            }
         }
 	var button = document.getElementById("sendlater3-callsendat");
         var enable_button = false;
