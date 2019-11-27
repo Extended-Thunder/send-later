@@ -28,6 +28,7 @@
 <!ENTITY sendlater.prompt.functionargs.label "argumenty dla funkcji:">
 <!ENTITY sendlater.prompt.calculate.label "wylicz">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Wyślij później">
+<!ENTITY sendlater.toolbar.sendlater.button.tooltip "Użyj {NAME} aby zaplanować wysyłkę wiadomości po wprowadzeniu żądanego czasu wysyłki w polu tekstowym. Przycisk ten nie robi nic samodzielnie; musisz również dodać pole tekstowe lub wybieranie daty/czasu (nie obsługiwane we wszystkich wersjach Thunderbird) do paska narzędzi, aby ten przycisk był przydatny.">
 <!ENTITY sendlater.toolbar.textbox.emptytext "czas wysyłki">
 <!ENTITY sendlater.prompt.every.label "albo co:">
 <!ENTITY sendlater.prompt.between.label "Pomiędzy">

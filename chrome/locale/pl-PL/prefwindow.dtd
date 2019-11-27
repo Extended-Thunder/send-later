@@ -20,7 +20,12 @@
 <!ENTITY showsendlaterunsentmessages.tooltip "Jeżeli ta opcja jest wyłączona wiadomości zamiast zostać wysłane w wyznaczonym czasie zostaną przeniesione do folderu “Wychodzące”. Wyłącz tą opcję jeżeli korzystasz z innych rozszerzeń, które okresowo wysyłają wiadomości z folderu “Wychodzące”, np. BlunderDelay. Zauważ, że jeżeli ta opcja jest włączona, to za każdym razem kiedy “{NAME}” spróbuje wysłać zaplanowaną wiadomość WSZYSTKIE inne wiadomości z folderu “Wychodzące” zostaną wysłane.">
 <!ENTITY sendlatersendbutton.caption "“Wyślij później” zamiast “Wyślij”">
 <!ENTITY sendlatersendbutton.tooltip "Jeżeli ta opcja jest włączona, zamiast polecenia “Wyślij” (zarówno po kliknięciu przycisku, jak i po wciśnięciu Ctrl-Enter) zostanie wywołane polecenie “Wyślij później”.">
+<!ENTITY senddelay.tooltip "Gdy ta opcja jest włączona, wszystkie wiadomości wysłane poleceniem &quot;Wyślij&quot; (przyciskiem albo z użyciem Ctrl-Enter) są opóźnione o określoną liczbę minut, planując wysyłkę poprzez {NAME}.">
+<!ENTITY senddelay.label "&quot;Wyślij&quot; będzie opóźniony o:">
+<!ENTITY senddelay2.label "minut">
 <!ENTITY altbinding.caption "Używaj skrótu Alt-Shift-Enter zamiast Ctrl-Shift-Enter">
+<!ENTITY composewindowhotkeys.tooltip "Edytując wiadomość możesz użyć klawiszy Ctrl-Alt-1, -2 lub -3 aby aktywować pierwszy, drugi lub trzeci skrót klawiszowy; jeżeli odznaczysz tę opcję to skróty klawiszowe będą wyłączone.">
+<!ENTITY composewindowhotkeys.caption "Włącz skróty klawiszowe powiązane z predefiniowanymi ustawieniami">
 <!ENTITY markread.caption "Oznacz zaplanowane do wysłania jako przeczytane">
 <!ENTITY advanced.caption "Zaawansowane">
 <!ENTITY dumplevel.caption "Poziom logowania do pliku:">
@@ -39,3 +44,11 @@
 <!ENTITY blocklatemessages.label2 "minut">
 <!ENTITY editorbutton "Otwórz edytor funkcji specjalnych">
 <!ENTITY editortip "Otwiera okno edytora zaawansowanych funkcji JavaScript umożliwiając tworzenie i edycję złożonych funkcji planowania czasu wysyłki wiadomości.">
+<!ENTITY loglevel.fatal "Krytyczny">
+<!ENTITY loglevel.error "Błąd">
+<!ENTITY loglevel.warn "Ostrzeżenie">
+<!ENTITY loglevel.info "Info">
+<!ENTITY loglevel.config "Konfiguracja">
+<!ENTITY loglevel.debug "Debuguj">
+<!ENTITY loglevel.trace "Śledzenie">
+<!ENTITY loglevel.all "Wszystkie">
