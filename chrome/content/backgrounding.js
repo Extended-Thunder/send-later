@@ -752,8 +752,9 @@ var Sendlater3Backgrounding = function() {
 	    // with bare \n's on them, so we're back to the original
 	    // problem.
 	    if (content.slice(0,5) != "From ") {
-		content = "From - " + Date().toString() + "\n"
-		    + content;
+                var dt = Date().toString().replace(/ \(.*/, "");
+                var fromline = "From - " + dt;
+		content = fromline + "\n" + content;
 	    }
 	    content = content.replace(/\n/g,"\r\n");
 
