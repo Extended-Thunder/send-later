@@ -75,9 +75,9 @@ function _import(file) {
     cstream.close();
     data = data.replace(/\s+$/, "");
     if (! data.match(/"version":1,/)) {
-        data = data.replace(/\n/g, "\\n");
+        data = data.replace(/\r?\n/g, "\\n");
     }
-    var obj = JSON.parse(data.replace(/\n/g, "\\n"));
+    var obj = JSON.parse(data);
     return [obj.name, obj.help, obj.body];
 };
 
