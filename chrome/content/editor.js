@@ -94,7 +94,7 @@ sl3e = {
                 j++;
             }
             else if (existing < in_menu.value) {
-                in_menu = document.createElement("menuitem");
+                in_menu = document.createXULElement("menuitem");
                 in_menu.setAttribute("label", existing);
                 in_menu.setAttribute("value", existing);
                 let refItem = picker.getItemAtIndex(j);
