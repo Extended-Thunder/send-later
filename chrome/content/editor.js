@@ -81,7 +81,7 @@ sl3e = {
         j = 1;
         while (i < existing_names.length) {
             existing = existing_names[i];
-            var name, help, body;
+            var name, help, body, in_menu;
             [name, help, body] = sl3uf.load(existing);
 
             if (j == picker.itemCount)
@@ -94,12 +94,16 @@ sl3e = {
                 j++;
             }
             else if (existing < in_menu.value) {
-                in_menu = picker.insertItemAt(j, existing, existing);
+                in_menu = document.createElement("menuitem");
+                in_menu.setAttribute("label", existing);
+                in_menu.setAttribute("value", existing);
+                let refItem = picker.getItemAtIndex(j);
+                refItem.parentNode.insertBefore(in_menu, refItem);
                 i++;
                 j++;
             }
             else {
-                picker.removeItemAt(j);
+                picker.getItemAtIndex(j).remove();
                 continue;
             }
             in_menu.tooltipText = help;
