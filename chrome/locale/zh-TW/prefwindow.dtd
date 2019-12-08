@@ -20,7 +20,12 @@
 <!ENTITY showsendlaterunsentmessages.tooltip "如果取消此選項，那麼達到信件的預定傳送時間時，{NAME} 將不會完全傳送信件，只會將它們放到寄件匣。如果您使用一些其他的擴充元件，如 BlunderDelay， 來定期地發送您寄件匣的信件，請取消此選項。注意，勾選此選項後，只要 {NAME} 發送信件，寄件匣的所有信件都將被傳送出去。">
 <!ENTITY sendlatersendbutton.caption "“發送”變成“延期發送”">
 <!ENTITY sendlatersendbutton.tooltip "啟用此選項時，“傳送”命令（按鈕或 Ctrl-Enter 快捷鍵）效果會變為“延期傳送”。">
+<!ENTITY senddelay.tooltip "所有訊息自動使用預設延遲發送時間，“傳送”命令（按鈕或 Ctrl-Enter）均會由 {NAME} 按照預設延遲發送時間自動發出。">
+<!ENTITY senddelay.label "預設所有訊息自動延遲：">
+<!ENTITY senddelay2.label "分鐘">
 <!ENTITY altbinding.caption "綁定快捷鍵 Alt-Shift-Enter 代替 Ctrl-Shift-Enter">
+<!ENTITY composewindowhotkeys.tooltip "選擇使用快速鍵。完成準備訊息後，可以鍵入Ctrl-Alt-1，-2或-3快速鍵來完成編寫及使用預設延遲發送時間。">
+<!ENTITY composewindowhotkeys.caption "使用 Ctrl-Alt-1，-2或-3快速鍵">
 <!ENTITY markread.caption "標示排程草稿為已閱讀">
 <!ENTITY advanced.caption "進階">
 <!ENTITY dumplevel.caption "除錯紀錄層級：">
@@ -39,3 +44,11 @@
 <!ENTITY blocklatemessages.label2 "分鐘以上的訊息寄出">
 <!ENTITY editorbutton "開啟動態功能編輯器...">
 <!ENTITY editortip "開啟視窗以開設並編輯JavaScript函數來實施複雜的排程邏輯">
+<!ENTITY loglevel.fatal "嚴重錯誤訊息">
+<!ENTITY loglevel.error "錯誤訊息">
+<!ENTITY loglevel.warn "警告訊息">
+<!ENTITY loglevel.info "參考訊息">
+<!ENTITY loglevel.config "配置信息">
+<!ENTITY loglevel.debug "除錯訊息">
+<!ENTITY loglevel.trace "追蹤錯誤訊息">
+<!ENTITY loglevel.all "所有訊息">
