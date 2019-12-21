@@ -68,7 +68,13 @@ chrome/locale/cs-CZ/prefwindow.dtd
 chrome/locale/cs-CZ/prompt.dtd
 chrome/locale/cs-CZ/prompt.properties
 chrome/locale/cs-CZ/sendlater3.properties
+chrome/locale/da-DK/ask.dtd
+chrome/locale/da-DK/editor.dtd
+chrome/locale/da-DK/headerView.dtd
 chrome/locale/da-DK/prefwindow.dtd
+chrome/locale/da-DK/prompt.dtd
+chrome/locale/da-DK/prompt.properties
+chrome/locale/da-DK/sendlater3.properties
 chrome/locale/de-DE/ask.dtd
 chrome/locale/de-DE/editor.dtd
 chrome/locale/de-DE/headerView.dtd
