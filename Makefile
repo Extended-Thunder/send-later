@@ -28,7 +28,7 @@ send_later.xpi: utils/check-locales.pl utils/propagate_strings.py \
 	cd build; ../utils/propagate_strings.py
 	cd build; ../utils/check-accesskeys.py
 	cd build; ../utils/check-manifests.sh --includes ../include-manifest \
-	    --excludes ../exclude-manifest2 --missing
+	    --excludes ../exclude-manifest2 --missing --extra
 	cd build; zip -q -r $@.tmp -@ < ../include-manifest
 	mv build/$@.tmp $@
 
