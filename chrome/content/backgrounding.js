@@ -242,7 +242,7 @@ var Sendlater3Backgrounding = function() {
         msgAdded: function(aMsgHdr) {
             if (aMsgHdr.getStringProperty("x-send-later-at")) {
                 if (! SL3U.getBoolPref("mark_drafts_read")) return;
-		readlist = Components.classes["@mozilla.org/array;1"]
+		var readlist = Components.classes["@mozilla.org/array;1"]
 		    .createInstance(Components.interfaces.nsIMutableArray);
 		readlist.appendElement(aMsgHdr, false);
 	        aMsgHdr.folder.markMessagesRead(readlist, true);

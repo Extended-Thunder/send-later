@@ -17,7 +17,7 @@ var Sendlater3ComposeToolbar = {
 
     SetRecurring: function(recurring) {
 	for (var idnum in Sendlater3ComposeToolbar.elements) {
-            elt = Sendlater3ComposeToolbar.elements[idnum];
+            var elt = Sendlater3ComposeToolbar.elements[idnum];
 	    var obj = document.getElementById(elt);
 	    if (obj) {
 		obj["disabled"] = recurring;
