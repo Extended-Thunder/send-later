@@ -11,31 +11,44 @@
 <!ENTITY quickoptionname.label "Etikett for knapp:">
 <!ENTITY quickoptionvalue.label "Minutter:">
 <!ENTITY showsendlatercolumn.caption "Vis kolonne for {NAME}">
-<!ENTITY showsendlatercolumn.tooltip "Om du vil vise «{NAME}» -spalte når du ser på utkastmapper">
+<!ENTITY showsendlatercolumn.tooltip "Om du vil vise «{NAME}»--kolonnen når du ser på utkastmapper">
 <!ENTITY showsendlaterheader.caption "Vis {NAME} topptekst">
-<!ENTITY showsendlaterheader.tooltip "Når for å vise «X-Send-Later-At» -topptekst, dvs. tidspunktet da et utkast er planlagt å bli sendt, i overskriften når du ser en melding.">
-<!ENTITY showsendlaterstatus.caption "Vis {NAME} statuslinjen">
-<!ENTITY showsendlaterprogress.caption "Vis bakgrunn fremgang statuslinjen">
-<!ENTITY showsendlaterunsentmessages.caption "Utløse usendte meldingslevering fra utgang">
-<!ENTITY showsendlaterunsentmessages.tooltip "Hvis du fjern dette alternativet, så {NAME} vil ikke levere meldinger, men i stedet vil bare sette dem i utgangen når de er planlagt for levering. Fjern dette alternativet, for eksempel hvis du bruker noe annet forlengelsen, f.eks BlunderDelay, periodisk sende meldinger i utgangen. Merk at når dette alternativet er angitt, så når {NAME} leverer en melding, vil alle meldinger i utgang leveres.">
+<!ENTITY showsendlaterheader.tooltip "Om du vil vise «X-Send-Later-At»-topptekst, dvs. tidspunktet da et utkast er planlagt å bli sendt, i overskriften når du ser en melding.">
+<!ENTITY showsendlaterstatus.caption "Vis {NAME} i statuslinjen">
+<!ENTITY showsendlaterprogress.caption "Vis bakgrunnsfremgang i statuslinjen">
+<!ENTITY showsendlaterunsentmessages.caption "Iverksett levering av usendte meldinger fra utboksen">
+<!ENTITY showsendlaterunsentmessages.tooltip "Hvis du fjerner dette alternativet, vil {NAME} ikke levere meldinger, men i stedet vil bare sette dem i utboksen når de er planlagt for levering. Fjern dette alternativet hvis du for eksempel bruker en annen utvidelse, f.eks. BlunderDelay, til å periodisk plassere meldinger i utgangen. Merk at når dette alternativet er angitt, når {NAME} leverer en melding, vil alle meldinger i utboksen leveres.">
 <!ENTITY sendlatersendbutton.caption "&quot;Send&quot; betyr &quot;Send senere&quot;">
-<!ENTITY sendlatersendbutton.tooltip "Er dette alternativet blir aktivert, fungerer kommandoen &quot;Send&quot; (knappen eller taste inn Ctrl-Enter) gjøres det samme som &quot;Send senere&quot;.">
-<!ENTITY altbinding.caption "Binde Alt-Skift-Enter i stedet for Ctrl-Skift-Enter">
-<!ENTITY markread.caption "Markere planlagt utkast som lest">
+<!ENTITY sendlatersendbutton.tooltip "Er dette alternativet blir aktivert, fungerer kommandoen &quot;Send&quot; (Enten knappen eller å trykke Ctrl-Enter) på samme måte som &quot;Send senere&quot;.">
+<!ENTITY senddelay.tooltip "Hvis denne innstillingen er skrudd på, vil alle meldinger med «Send»-kommandoen (Enten knappen eller å trykke Ctrl-Enter) bli utsatt med det valgte antall minutter ved å planlegge dem med {NAME}.">
+<!ENTITY senddelay.label "«Send» utsetter meldinger med:">
+<!ENTITY senddelay2.label "minutter">
+<!ENTITY altbinding.caption "Bind til Alt-Shift-Enter i stedet for Ctrl-Shift-Enter">
+<!ENTITY composewindowhotkeys.tooltip "Mens du skriver en melding, kan du trykke Ctrl-Alt-1/-2/-3 for å aktivere de første, andre og tredje knappebindingssettene, med mindre du skrur av denne innstillingen, hvorpå disse knappebindingene blir skrudd av.">
+<!ENTITY composewindowhotkeys.caption "Skru på meldingsskrivevindu-knappebindingene for forhåndsbindinger">
+<!ENTITY markread.caption "Marker planlagte utkast som lest">
 <!ENTITY advanced.caption "Avansert">
-<!ENTITY dumplevel.caption "Se på log level:">
-<!ENTITY consolelevel.caption "Konsollen loggnivå:">
-<!ENTITY contactauthor.tooltip "Send en e-postmelding til forfatteren av {NAME}.">
-<!ENTITY contactauthor.value "Kontakt forfatteren">
-<!ENTITY helplink.tooltip "Vis {NAME} dokumentasjonen.">
+<!ENTITY dumplevel.caption "Loggføringsdumpnivå:">
+<!ENTITY consolelevel.caption "Konsolloggføringsnivå:">
+<!ENTITY contactauthor.tooltip "Send en e-postmelding til skaperen av {NAME}.">
+<!ENTITY contactauthor.value "Kontakt skaperen">
+<!ENTITY helplink.tooltip "Vis {NAME}-dokumentasjonen.">
 <!ENTITY helplink.value "Bruksanvisning">
-<!ENTITY releasenotes.value "Produktmerknader">
+<!ENTITY releasenotes.value "Versjonsnotater">
 <!ENTITY donatelink.value "Donere">
-<!ENTITY editorlink.value "Dynamisk funksjon editor">
-<!ENTITY enforcerestrictions.tooltip "Hvis en melding som skal leveres er utenfor sin tid eller dag restriksjoner, f.eks fordi Thunderbird ikke kjørte på sin planlagt leveringstid, deretter utsette dens levering til tid og dag begrensningene er oppfylt.">
-<!ENTITY enforcerestrictions.caption "Gjennomføre tid og dag restriksjoner på leveringstid">
-<!ENTITY blocklatemessages.tooltip "Ikke levere planlagte meldinger har blitt utsatt forbi sin planlagte tid, f.eks fordi Thunderbird ikke var kjører på den tiden.">
-<!ENTITY blocklatemessages.label1 "Ikke levere meldinger mer enn">
+<!ENTITY editorlink.value "Dynamisk funksjonsredigerer">
+<!ENTITY enforcerestrictions.tooltip "Hvis en melding som skal leveres er utenfor dens tids- eller dagsrestriksjoner, f.eks. fordi Thunderbird ikke kjørte på dens planlagte leveringstid, skal leveringen utsettes frem til tids- og dagsrestriksjonene er oppfylt.">
+<!ENTITY enforcerestrictions.caption "Håndhev tids- og dagsrestriksjoner ved leveringstid">
+<!ENTITY blocklatemessages.tooltip "Ikke lever planlagte meldinger som har blitt utsatt forbi sin planlagte tid, f.eks fordi Thunderbird ikke kjørte på den tiden.">
+<!ENTITY blocklatemessages.label1 "Ikke lever meldinger mer enn">
 <!ENTITY blocklatemessages.label2 "minutter for sent">
-<!ENTITY editorbutton "Åpne dynamisk funksjonen editor...">
-<!ENTITY editortip "Åpne et vindu for oppretting og redigering av JavaScript-funksjoner implementere kompleks planlegging logikk.">
+<!ENTITY editorbutton "Åpne dynamisk funksjonsredigerer …">
+<!ENTITY editortip "Åpne et vindu for oppretting og redigering av JavaScript-funksjoner som implementerer kompleks planleggingslogikk.">
+<!ENTITY loglevel.fatal "Fatal">
+<!ENTITY loglevel.error "Feil">
+<!ENTITY loglevel.warn "Advar">
+<!ENTITY loglevel.info "Info">
+<!ENTITY loglevel.config "Oppsett">
+<!ENTITY loglevel.debug "Avlus">
+<!ENTITY loglevel.trace "Spor">
+<!ENTITY loglevel.all "Alle">
