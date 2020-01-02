@@ -12,7 +12,7 @@ use warnings;
 # anything. This can be used, e.g., from a Makefile to confirm that
 # your add-on's ids are valid before packaging it.
 #
-# Create a file in this directory called ".ignore-ids" or "igore-ids"
+# Create a file in this directory called ".ignore-ids" or "ignore-ids"
 # which contains, one per line, a list of ids which this script should
 # ignore. Specify "--save-ignored" if you want the script to update
 # the ignore file with the possibly modified list of ignored ids when
