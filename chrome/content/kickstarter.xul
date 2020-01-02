@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<?xml-stylesheet href="chrome://messenger/content/bindings.css" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://sendlater3/locale/kickstarter.dtd">
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+	title="&windowTitle;">
+  <vbox style="margin: 10px; width: 600px;">
+    <description id="pitch" style="white-space: pre-wrap;">&pitchMessage;</description>
+    <spacer height="10"/>
+    <hbox width="100%">
+      <button id="pledge-button" label="&pledgeLabel;"/>
+      <separator flex="1"/>
+      <button id="remind-button" label="&remindLabel;"/>
+      <separator flex="1"/>
+      <button id="already-button" label="&alreadyLabel;"/>
+    </hbox>
+  </vbox>
+</window>

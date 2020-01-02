@@ -1,5 +1,7 @@
 Components.utils.import("resource://sendlater3/logging.jsm");
 Components.utils.import("resource://sendlater3/defaultPreferencesLoader.jsm");
+var {KickstarterPopup} = ChromeUtils.import(
+    "resource://sendlater3/kickstarter.jsm");
 
 var Sendlater3Backgrounding = function() {
     var shuttingDown = false;
@@ -1803,6 +1805,10 @@ var Sendlater3Backgrounding = function() {
     sl3log.Leaving("Sendlater3Backgrounding");
     addMsgSendLaterListener();
     addNewMessageListener();
+
+    KickstarterPopup(window, "chrome://sendlater3/content/kickstarter.xul",
+                     "https://www.kickstarter.com/projects/jik/" +
+                     "rewritten-add-ons-for-mozilla-thunderbirds-next-release");
 }
 
 window.addEventListener("load", Sendlater3Backgrounding, false);
