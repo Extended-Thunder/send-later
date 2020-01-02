@@ -52,7 +52,7 @@ exit($errors);
 sub check_dtd {
     my($locale, $file) = @_;
     &check_generic($locale, $file, qr/^<!ENTITY\s+(\S+)/, qr/\&(?!quot)(?!;)/,
-                   qr/^<!--/);
+                   qr/^<!--/, ">\n");
 }
 
 sub check_properties {
@@ -63,9 +63,11 @@ sub check_properties {
 my(%replaced);
 
 sub check_generic {
-    my($locale, $file, $pattern, $error_pattern, $ignore_pattern) = @_;
+    my($locale, $file, $pattern, $error_pattern, $ignore_pattern,
+       $record_separator) = @_;
     my(@keys, %strings);
     foreach my $ancestor ($locale, @{$inheritance_chains{$locale}}, $master) {
+        local($/) = $record_separator ? $record_separator : "\n";
         my $fname = "$locale_dir/$ancestor/$file";
         if (! -f $fname) {
             next;
@@ -75,13 +77,15 @@ sub check_generic {
         while (<MASTER>) {
             next if (/^$/);
             next if (/-\*-.*-\*-/);
+            # Ignore initial blank lines when $record_separator isn't "\n"
+            s/^\n+//;
             next if ($ignore_pattern && /$ignore_pattern/);
             if (! /$pattern/) {
-                &error("Unrecognized line $. of $ancestor/$file: $_");
+                &error("Unrecognized record $. of $ancestor/$file: $_");
                 next;
             }
 	    if ($error_pattern and /$error_pattern/) {
-		&error("Bad content on line $. of $ancestor/$file: $_");
+		&error("Bad content on record $. of $ancestor/$file: $_");
                 next;
 	    }
             if ($replaced{"$ancestor/$file/$1"}) {
