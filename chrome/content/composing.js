@@ -422,6 +422,7 @@ var Sendlater3Composing = {
                 cancelOnReply;
             var args = Sendlater3Composing.ReallySendAtClosure.args;
 
+            /*
             // If it has been at least a week since we last asked the
             // user to donate, and the user has scheduled at least
             // five messages since the last time we asked, and the
@@ -445,6 +446,7 @@ var Sendlater3Composing = {
                 }
                 SL3U.setIntPref(p2, sent + 1);
             }
+            */
 
             gCloseWindowAfterSave = true;
             var identity = getCurrentIdentity();

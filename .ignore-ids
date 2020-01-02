@@ -1,4 +1,5 @@
 MsgComposeToolbarPalette
+already-button
 cmd_sendLater
 composeCommands
 expandedHeader2Rows
@@ -7,6 +8,9 @@ expandedHeaders2
 folderPaneBox
 headerRows
 key_sendLater
+pitch
+pledge-button
+remind-button
 status-bar
 stringbundleset
 tasksKeys

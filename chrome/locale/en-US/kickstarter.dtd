@@ -1,0 +1,12 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY windowTitle "URGENT: Send Later is going away soon, unless you support it!">
+<!ENTITY pitchMessage "I NEED YOUR HELP!
+
+Send Later and my other add-ons have been free for many years, but that's no longer sustainable. It took a great deal of time and effort to update them for Thunderbird 68, and even more work will be needed for Thunderbird 78, which will be released later this year. Unfortunately, I just can't do it unless enough users commit in advance to paying a little bit for it. 
+
+Please click below to learn more and support the Kickstarter campaign. As a bonus, campaign supporters can purchase licenses at a steep discount.
+
+Thank you for your support!">
+<!ENTITY pledgeLabel "Pledge now!">
+<!ENTITY remindLabel "Remind me later">
+<!ENTITY alreadyLabel "I already pledged">
