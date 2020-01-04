@@ -36,7 +36,7 @@ for slocale in $(cd send-later/build/chrome/locale && ls); do
         tlocale=${tlocale%-*}
     fi
     mkdir -p $ld/$tlocale
-    for file in $(cd $ld/en-US && ls | grep -v kickstarter &>/dev/null); do
+    for file in $(cd $ld/en-US && ls | grep -v kickstarter 2>/dev/null); do
         test -f $ld/$tlocale/$file || cp $ld/en-US/$file $ld/$tlocale
     done
     if [ -d _locales/$tlocale ]; then
