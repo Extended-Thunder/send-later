@@ -12,6 +12,8 @@ elif grep -q -s reply-to-multiple-messages chrome.manifest &>/dev/null; then
     key=reply-to-multiple-messages
 elif grep -q -s togglereplied chrome.manifest &>/dev/null; then
     key=togglereplied
+elif grep -q -s userchromejs chrome.manifest &>/dev/null; then
+    key=userchromejs
 else
     echo "I don't know which add-on I'm in." 1>&2
     exit 1
