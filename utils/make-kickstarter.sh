@@ -1,5 +1,14 @@
 #!/bin/bash -e
 
+if grep -q -s ShowAllBodyParts chrome.manifest &>/dev/null; then
+    key=ShowAllBodyParts
+elif grep -q -s FolderPaneSwitcher chrome.manifest &>/dev/null; then
+    key=FolderPaneSwitcher
+else
+    echo "I don't know which add-on I'm in." 1>&2
+    exit 1
+fi
+
 cd send-later
 make &> /dev/null
 cd ..
@@ -27,7 +36,11 @@ for slocale in $(cd send-later/build/$ld && ls); do
         status=1
         continue
     fi
-    toname=$(jq -r .appName.message _locales/$ld2/messages.json)
+    if [ -d _locales ]; then
+        toname=$(jq -r .appName.message _locales/$ld2/messages.json)
+    else
+        toname=$(jq -r .name manifest.json)
+    fi
     sed -e "s/$fromname1/$toname/" -e "s/$fromname2/$toname/" \
         send-later/build/$ld/$slocale/kickstarter.dtd > \
         $ld/$tlocale/kickstarter.dtd
@@ -38,11 +51,11 @@ for slocale in $(cd send-later/build/$ld && ls); do
         continue
     fi
     if ! grep -q -s -w $tlocale chrome.manifest; then
-        echo locale FolderPaneSwitcher $tlocale chrome/locale/$tlocale/ >> \
+        echo locale $key $tlocale $ld/$tlocale/ >> \
              chrome.manifest
     fi
     cp send-later/build/chrome/resource/kickstarter.jsm chrome/content/.
-    sed -e 's/sendlater3/FolderPaneSwitcher/' \
+    sed -e "s/sendlater3/$key/" \
         send-later/build/chrome/content/kickstarter.xul > \
         chrome/content/kickstarter.xul
 done
