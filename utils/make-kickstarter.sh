@@ -14,6 +14,8 @@ elif grep -q -s togglereplied chrome.manifest &>/dev/null; then
     key=togglereplied
 elif grep -q -s userchromejs chrome.manifest &>/dev/null; then
     key=userchromejs
+elif grep -q -s undigestify chrome.manifest &>/dev/null; then
+    key=undigestify
 else
     echo "I don't know which add-on I'm in." 1>&2
     exit 1
@@ -39,11 +41,10 @@ cd send-later
 make &> /dev/null
 cd ..
 status=0
-for slocale in $(cd send-later/build/chrome/locale && ls); do
-    tlocale=$slocale
-    if [ ! -d $ld/$tlocale -a -d $ld/${tlocale%-*} ]; then
-        tlocale=${tlocale%-*}
-    fi
+
+do_locale() {
+    slocale="$1"; shift
+    tlocale="$1"; shift
     mkdir -p $ld/$tlocale
     for file in $(cd $english_dir && ls | grep -v kickstarter 2>/dev/null); do
         test -f $ld/$tlocale/$file || cp $english_dir/$file $ld/$tlocale
@@ -69,7 +70,8 @@ for slocale in $(cd send-later/build/chrome/locale && ls); do
     sed -e "s/$fromname1/$toname/" -e "s/$fromname2/$toname/" \
         send-later/build/chrome/locale/$slocale/kickstarter.dtd > \
         $ld/$tlocale/kickstarter.dtd
-    if [ $(diff {send-later/build/chrome/locale/$slocale,$ld/$tlocale}/kickstarter.dtd | \
+    if [ $(diff send-later/build/chrome/locale/$slocale/kickstarter.dtd \
+                $ld/$tlocale/kickstarter.dtd | \
                 grep -c '^>') -lt 2 ]; then
         echo Name substitution in kickstarter.dtd for $slocale failed 1>&2
         status=1
@@ -79,10 +81,40 @@ for slocale in $(cd send-later/build/chrome/locale && ls); do
         echo locale $key $tlocale $ld/$tlocale/ >> \
              chrome.manifest
     fi
-    cp send-later/build/chrome/resource/kickstarter.jsm $content_dir/.
-    sed -e "s/sendlater3/$key/" \
-        send-later/build/chrome/content/kickstarter.xul > \
-        $content_dir/kickstarter.xul
+}
+
+for slocale in $(ls send-later/build/chrome/locale); do
+    tlocale=$slocale
+    if [ ! -d $ld/$tlocale ]; then
+       if [ -d $ld/${tlocale%-*} ]; then
+           tlocale=${tlocale%-*}
+       elif [ -d $ld/$tlocale-* ]; then
+           tlocale=$(basename $ld/tlocale-*)
+       fi
+    fi
+    
+    do_locale $slocale $tlocale
 done
+
+for tlocale in $(ls $ld); do
+    slocale=$tlocale
+    if [ ! -d send-later/build/chrome/locale/$slocale ]; then
+        if [ -d send-later/build/chrome/locale/${slocale%-*} ]; then
+            slocale=${slocale%-*}
+        elif [ -d send-later/build/chrome/locale/$slocale-* ]; then
+            slocale=$(basename send-later/build/chrome/locale/$slocale-*)
+        else
+            echo "Target locale $tlocale does not exist in Send Later," \
+                 echo "using English" 1>&2
+            slocale=en-US
+        fi
+    fi
+    do_locale $slocale $tlocale
+done
+
+cp send-later/build/chrome/resource/kickstarter.jsm $content_dir/.
+sed -e "s/sendlater3/$key/" \
+    send-later/build/chrome/content/kickstarter.xul > \
+    $content_dir/kickstarter.xul
 
 exit $status
