@@ -4,8 +4,6 @@
 var {MailUtils} = ChromeUtils.import("resource:///modules/MailUtils.jsm");
 var {AddonManager} =
     ChromeUtils.import("resource://gre/modules/AddonManager.jsm");
-var {KickstarterPopup} = ChromeUtils.import(
-    "resource://sendlater3/kickstarter.jsm");
 
 var Sendlater3Backgrounding = function() {
     var shuttingDown = false;
@@ -1637,6 +1635,8 @@ var Sendlater3Backgrounding = function() {
     addMsgSendLaterListener();
     addNewMessageListener();
 
+    var {KickstarterPopup} = ChromeUtils.import(
+        "resource://sendlater3/kickstarter.jsm");
     KickstarterPopup(window, "chrome://sendlater3/content/kickstarter.xul",
                      "https://www.kickstarter.com/projects/jik/" +
                      "rewritten-add-ons-for-mozilla-thunderbirds-next-release");
