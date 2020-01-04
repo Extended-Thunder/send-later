@@ -8,6 +8,8 @@ elif grep -q -s IMAPReceivedDate chrome.manifest &>/dev/null; then
     key=IMAPReceivedDate
 elif grep -q -s EnhancedPriorityDisplay chrome.manifest &>/dev/null; then
     key=EnhancedPriorityDisplay
+elif grep -q -s reply-to-multiple-messages chrome.manifest &>/dev/null; then
+    key=reply-to-multiple-messages
 else
     echo "I don't know which add-on I'm in." 1>&2
     exit 1
