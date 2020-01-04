@@ -16,6 +16,8 @@ elif grep -q -s userchromejs chrome.manifest &>/dev/null; then
     key=userchromejs
 elif grep -q -s undigestify chrome.manifest &>/dev/null; then
     key=undigestify
+elif grep -q -s remote-content-by-folder chrome.manifest &>/dev/null; then
+    key=remote-content-by-folder
 else
     echo "I don't know which add-on I'm in." 1>&2
     exit 1
