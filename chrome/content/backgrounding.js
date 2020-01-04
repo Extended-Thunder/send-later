@@ -1637,9 +1637,7 @@ var Sendlater3Backgrounding = function() {
 
     var {KickstarterPopup} = ChromeUtils.import(
         "resource://sendlater3/kickstarter.jsm");
-    KickstarterPopup(window, "chrome://sendlater3/content/kickstarter.xul",
-                     "https://www.kickstarter.com/projects/jik/" +
-                     "rewritten-add-ons-for-mozilla-thunderbirds-next-release");
+    KickstarterPopup(window, "chrome://sendlater3/content/kickstarter.xul");
 }
 
 window.addEventListener("load", Sendlater3Backgrounding, false);
