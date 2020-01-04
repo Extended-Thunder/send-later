@@ -51,5 +51,6 @@ utils/fix-addon-ids.pl
 utils/import-localized.pl
 utils/locale-headers.pl
 utils/locale_file.py
+utils/make-kickstarter.sh
 utils/make-manifest-locales.pl
 utils/propagate_strings.py
