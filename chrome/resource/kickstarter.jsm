@@ -3,12 +3,13 @@ const {Services} = ChromeUtils.import('resource://gre/modules/Services.jsm');
 var EXPORTED_SYMBOLS = ["KickstarterPopup"];
 
 var popUpWindow;
+var campaignUrl = "https://www.kickstarter.com/projects/jik/" +
+    "rewritten-add-ons-for-mozilla-thunderbirds-next-release";
 
 // window: window we're being called from
 // popUpUrl: URL of the chrome file containing the pop-up XUL
-// campaignUrl: URL of the Kickstarter campaign
 
-function KickstarterPopup(window, popUpUrl, campaignUrl) {
+function KickstarterPopup(window, popUpUrl) {
     var prefBranch = Services.prefs.getBranch(
         // Using the same preferences branch for all of my add-ons so people
         // who use more than one of my add-ons don't see the pitch more than
