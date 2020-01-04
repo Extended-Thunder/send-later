@@ -10,6 +10,8 @@ elif grep -q -s EnhancedPriorityDisplay chrome.manifest &>/dev/null; then
     key=EnhancedPriorityDisplay
 elif grep -q -s reply-to-multiple-messages chrome.manifest &>/dev/null; then
     key=reply-to-multiple-messages
+elif grep -q -s togglereplied chrome.manifest &>/dev/null; then
+    key=togglereplied
 else
     echo "I don't know which add-on I'm in." 1>&2
     exit 1
@@ -22,9 +24,10 @@ if [ ! "$content_dir" ]; then
     exit 1
 fi
 
-ld=$(awk "/^locale.*en-US/ {print \$4}" chrome.manifest)
-ld=${ld%/}
-ld=${ld%/en-US}
+english_dir=$(awk "/^locale.*(en-US| en )/ {print \$4}" chrome.manifest)
+english_dir=${english_dir%/}
+ld=${english_dir%-US}
+ld=${ld%/en}
 if [ ! "$content_dir" ]; then
     echo "Could not find locale directory in chrome.manifest" 1>&2
     exit 1
@@ -40,8 +43,8 @@ for slocale in $(cd send-later/build/chrome/locale && ls); do
         tlocale=${tlocale%-*}
     fi
     mkdir -p $ld/$tlocale
-    for file in $(cd $ld/en-US && ls | grep -v kickstarter 2>/dev/null); do
-        test -f $ld/$tlocale/$file || cp $ld/en-US/$file $ld/$tlocale
+    for file in $(cd $english_dir && ls | grep -v kickstarter 2>/dev/null); do
+        test -f $ld/$tlocale/$file || cp $english_dir/$file $ld/$tlocale
     done
     if [ -d _locales/$tlocale ]; then
         ld2=$tlocale
