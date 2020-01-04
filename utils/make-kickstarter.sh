@@ -6,12 +6,14 @@ elif grep -q -s FolderPaneSwitcher chrome.manifest &>/dev/null; then
     key=FolderPaneSwitcher
 elif grep -q -s IMAPReceivedDate chrome.manifest &>/dev/null; then
     key=IMAPReceivedDate
+elif grep -q -s EnhancedPriorityDisplay chrome.manifest &>/dev/null; then
+    key=EnhancedPriorityDisplay
 else
     echo "I don't know which add-on I'm in." 1>&2
     exit 1
 fi
 
-content_dir=$(awk "/^content.*$key/ {print \$3}" chrome.manifest)
+content_dir=$(awk "/^content.*$key.*content/ {print \$3}" chrome.manifest)
 content_dir=${content_dir%/}
 if [ ! "$content_dir" ]; then
     echo "Could not find content directory in chrome.manifest" 1>&2
