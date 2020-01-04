@@ -65,6 +65,7 @@ my(%replaced);
 sub check_generic {
     my($locale, $file, $pattern, $error_pattern, $ignore_pattern) = @_;
     my(@keys, %strings);
+    local($/) = $record_separator ? $record_separator : "\n";
     foreach my $ancestor ($locale, @{$inheritance_chains{$locale}}, $master) {
         my $fname = "$locale_dir/$ancestor/$file";
         if (! -f $fname) {
