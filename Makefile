@@ -1,4 +1,5 @@
 SHELL=/bin/bash
+export LC_COLLATE=C
 export PYTHONPATH=$(CURDIR)
 
 all: send_later.xpi
