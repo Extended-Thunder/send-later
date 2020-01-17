@@ -982,11 +982,23 @@ var Sendlater3Backgrounding = function() {
 		catch (ex) {}
 	    }
 	    else {
-		SL3U.alert(window, null,
-			   SL3U.PromptBundleGetFormatted(
-			       "CorruptFolderError",
-			       [folder.URI]));
-		throw e;
+                // Owl for Exchange, maybe others as well
+                try {
+                    var o = {};
+                    var f = thisfolder.getDBFolderInfoAndDB(o);
+                    messageenumerator = f.EnumerateMessages();
+                } catch (ex) {}
+                if (messageenumerator) {
+                    sl3log.info(".messages failed on " + folder.URI +
+                                ", using .EnumerateMessages on DB instead");
+                }
+                else {
+		    SL3U.alert(window, null,
+			       SL3U.PromptBundleGetFormatted(
+			           "CorruptFolderError",
+			           [folder.URI]));
+		    throw e;
+                }
 	    }
 	}
 	if ( messageenumerator ) {
@@ -1232,6 +1244,7 @@ var Sendlater3Backgrounding = function() {
 		    switch (thisaccount.incomingServer.type) {
 		    case "pop3":
 		    case "imap":
+                    case "owl":
 			var identityNum;
 			for (identityNum = 0; identityNum < numIdentities;
 			     identityNum++) {
