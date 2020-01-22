@@ -33,7 +33,7 @@ send_later.xpi: utils/check-locales.pl utils/propagate_strings.py \
 	cd build; zip -q -r $@.tmp -@ < ../include-manifest
 	mv build/$@.tmp $@
 
-clean:: ; -rm -rf *.xpi *.tmp */*.pyc build
+clean:: ; -rm -rf *.xpi *.tmp */*.pyc _locales build
 clean:: ; -rm -f exclude-manifest2
 
 exclude-manifest2: exclude-manifest
