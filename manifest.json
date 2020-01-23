@@ -14,7 +14,8 @@
     "applications": {
         "gecko": {
             "id": "sendlater3@kamens.us",
-            "strict_min_version": "68.0a1"
+            "strict_min_version": "68.0a1",
+            "strict-max_version": "71.*"
         }
     },
     "icons": {
