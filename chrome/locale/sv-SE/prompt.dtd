@@ -28,6 +28,7 @@
 <!ENTITY sendlater.prompt.functionargs.label "Funktionsargument:">
 <!ENTITY sendlater.prompt.calculate.label "Beräkna">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Skicka senare">
+<!ENTITY sendlater.toolbar.sendlater.button.tooltip "Aktivera {NAME} för att schemalägga ett meddelande efter att ha angett önskad sändningstid i textrutan. Den här knappen gör ingenting självt; du behöver också lägga till textrutan eller datum/tidsväljare (stöds inte i alla Thunderbird-versioner) i verktygsfältet för att denna knapp ska vara användbar.">
 <!ENTITY sendlater.toolbar.textbox.emptytext "sändningstid">
 <!ENTITY sendlater.prompt.every.label "Var">
 <!ENTITY sendlater.prompt.between.label "Mellan">
@@ -42,3 +43,5 @@
 <!ENTITY sendlater.prompt.day4 "torsdag">
 <!ENTITY sendlater.prompt.day5 "fredag">
 <!ENTITY sendlater.prompt.day6 "lördag">
+<!ENTITY sendlater.prompt.cancelonreply.label "Avbryt upprepande vid svar">
+<!ENTITY sendlater.prompt.cancelonreply.tooltip "Invänta svar på tidigare skickade kopior av återkommande meddelanden. Avbryt ett återkommande meddelande och ta bort det från mappen Utkast när ett svar tas emot.">

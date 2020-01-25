@@ -20,7 +20,13 @@
 <!ENTITY showsendlaterunsentmessages.tooltip "Om du avmarkerar detta alternativ, så skickar inte {NAME} iväg dina meddelanden, utan lägger dem i din utkorg när de har schemalagts för avsändning. Avmarkera detta alternativ om du, exempelvis, använder något annat tillägg, t.ex. BlunderDelay, för att med regelbundna intervall skicka meddelanden från Utkorgen. Observera att när detta alternativ är markerat, så skickar {NAME} SAMTLIGA meddelanden i din utkorg varje gång ett meddelande skall skickas.">
 <!ENTITY sendlatersendbutton.caption "“Skicka” innebär “Skicka senare”">
 <!ENTITY sendlatersendbutton.tooltip "Om detta alternativ är aktiverat, så utförs kommandot “Skicka” (antingen via knappen eller genom att trycka ner Ctrl+Retur) precis som “Skicka senare”.">
+<!ENTITY senddelay.tooltip "Med detta alternativ aktiverat, kommer alla meddelanden som skickas med kommandot &quot;Skicka&quot; (antingen via knappen eller genom att skriva Ctrl-Enter) att fördröjas av det angivna antalet minuter genom att schemalägga dem med {NAME}.">
+<!ENTITY senddelay.label "”Skicka” försenar meddelanden genom att:">
+<!ENTITY senddelay2.label "minuter">
 <!ENTITY altbinding.caption "Tilldela Alt+Skift+Retur istället för Ctrl+Skift+Retur">
+<!ENTITY composewindowhotkeys.tooltip "När du skriver ett meddelande kan du skriva Ctrl-Alt-1, -2 eller -3 för att aktivera den första, andra, eller tredje förinställda knappen, såvida du inte avmarkerar detta alternativ, då dessa nyckelbindningar kommer att vara inaktiverade.">
+<!ENTITY composewindowhotkeys.caption "Aktivera komponeringsfönstrets nyckelbindningar för förinställningar">
+<!ENTITY markread.caption "Markera schemalagda utkast som lästa">
 <!ENTITY advanced.caption "Avancerat">
 <!ENTITY dumplevel.caption "Loggningsnivå för loggdump:">
 <!ENTITY consolelevel.caption "Loggningsnivå för konsol:">
@@ -38,3 +44,11 @@
 <!ENTITY blocklatemessages.label2 "minuter sent">
 <!ENTITY editorbutton "Öppna dynamisk funktionseditor…">
 <!ENTITY editortip "Öppna ett fönster för att skapa och redigera JavaScript-funktioner som implementerar komplex schemaläggningslogik.">
+<!ENTITY loglevel.fatal "Fatal">
+<!ENTITY loglevel.error "Fel">
+<!ENTITY loglevel.warn "Varna">
+<!ENTITY loglevel.info "Info">
+<!ENTITY loglevel.config "Konfigurera">
+<!ENTITY loglevel.debug "Felsök">
+<!ENTITY loglevel.trace "Spår">
+<!ENTITY loglevel.all "Alla">
