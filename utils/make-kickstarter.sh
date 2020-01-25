@@ -62,7 +62,7 @@ do_locale() {
     if [ ! "$fromname2" ]; then
         echo Could not find Send Later name for $slocale 1>&2
         status=1
-        continue
+        return
     fi
     if [ -d _locales ]; then
         toname=$(jq -r .appName.message _locales/$ld2/messages.json)
@@ -77,7 +77,7 @@ do_locale() {
                 grep -c '^>') -lt 2 ]; then
         echo Name substitution in kickstarter.dtd for $slocale failed 1>&2
         status=1
-        continue
+        return
     fi
     if ! grep -q -s -w $tlocale chrome.manifest; then
         echo locale $key $tlocale $ld/$tlocale/ >> \
