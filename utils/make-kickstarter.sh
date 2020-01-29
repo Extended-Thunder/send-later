@@ -58,7 +58,7 @@ do_locale() {
     fi
     fromname1="Send Later"
     fromname2=$(sed -n -e 's/^MessageTag=//p' \
-                    send-later/build/chrome/locale/$slocale/prompt.properties)
+                    send-later/build/chrome/locale/$slocale/background.properties)
     if [ ! "$fromname2" ]; then
         echo Could not find Send Later name for $slocale 1>&2
         status=1
