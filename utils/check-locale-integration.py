@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Confirms that every locale in chrome/locale is properly listed in
 # chrome.manifest, and that there are no extra locales listed there.

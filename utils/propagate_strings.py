@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Copies the program name -- whose canonical location is the "MessageTag"
 # property in prompt.properties -- into other locations that want it.
