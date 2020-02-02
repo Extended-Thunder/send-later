@@ -219,13 +219,5 @@
         <em:maxVersion>5.*</em:maxVersion>
       </Description>
     </em:targetApplication>-->
-    <em:targetApplication>
-      <!-- SeaMonkey -->
-      <Description>
-        <em:id>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</em:id>
-        <em:minVersion>2.17</em:minVersion>
-        <em:maxVersion>2.53.*</em:maxVersion>
-      </Description>
-    </em:targetApplication>
   </Description>
 </RDF>
