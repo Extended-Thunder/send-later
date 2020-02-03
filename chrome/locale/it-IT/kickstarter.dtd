@@ -1,2 +1,9 @@
 <!-- -*- coding: utf-8 -*- -->
+<!ENTITY windowTitle "URGENTE: Invia Dopo ha bisogno del tuo sostegno per non sparire!">
+<!ENTITY pitchMessage "HO BISOGNO DEL TUO AIUTO!
+Invia Dopo e i miei altri componenti aggiuntivi sono gratuiti da molti anni, ma questo non è più sostenibile. Ho dovuto lavorare molto per aggiornarli a Thunderbird 68 e ancora di più dovrò lavorare per l'aggiornamento a Thunderbird 78, che sarà rilasciato più avanti quest'anno. Purtroppo non sarò in grado di prendermi questo impegno a meno che un numero sufficiente di utenti non si impegni in anticipo a pagare qualcosa. 
+Fai clic sotto per saperne di più e supportare la campagna Kickstarter. In cambio, i sostenitori della campagna potranno acquistare licenze fortemente scontate.
+Grazie del tuo sostegno!">
+<!ENTITY pledgeLabel "Sostieni il progetto ora!">
 <!ENTITY remindLabel "Ricordamelo in seguito">
+<!ENTITY alreadyLabel "Ho già dato il mio sostegno">

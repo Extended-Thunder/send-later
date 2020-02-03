@@ -18,8 +18,8 @@
 <!ENTITY showsendlaterprogress.caption "Afficher les tâches en arrière-plan dans la barre d'état">
 <!ENTITY showsendlaterunsentmessages.caption "Expédier automatiquement les messages programmés">
 <!ENTITY showsendlaterunsentmessages.tooltip "Effectue les envois planifiés sans les placer dans « Message en attente ». Désactiver l'option, par exemple, lors de l'utilisation d'une extension automatisant l'envoi des messages en attente (tel que BlunderDelay). Remarque : si cette option est activée ; quand « {NAME} » déclenche un envoi, TOUS les messages en attente sont expédiés.">
-<!ENTITY sendlatersendbutton.caption "Remplacer « Envoyer » par « Envoyer plus tard »">
-<!ENTITY sendlatersendbutton.tooltip "Remplace l'action par défaut d'« Envoyer » (bouton ou raccourci « Ctrl+Entrée ») par celle d'« Envoyer plus tard ».">
+<!ENTITY sendlatersendbutton.caption "« Envoyer » exécute « Envoyer Plus Tard »">
+<!ENTITY sendlatersendbutton.tooltip "Remplace l'action par défaut d'« Envoyer » (bouton ou raccourci « Ctrl+Entrée ») par celle d'« Envoyer Plus Tard ».">
 <!ENTITY altbinding.caption "Utiliser Alt+Maj+Entrée à la place de Ctrl+Maj+Entrée">
 <!ENTITY markread.caption "Marquer les messages en attente comme lus">
 <!ENTITY advanced.caption "Avancé">
