@@ -57,7 +57,10 @@ do_locale() {
         ld2=en-US
     fi
     fromname1="Send Later"
-    fromname2=$(sed -n -e 's/^MessageTag=//p' \
+    # The seemingly empty square brackets on the next line actually
+    # contain the Unicode characters signaling the beginning and end
+    # of embedded right-to-left characters.
+    fromname2=$(sed -n -e 's/[‫‬]//g' -e 's/^MessageTag=//p' \
                     send-later/build/chrome/locale/$slocale/prompt.properties)
     if [ ! "$fromname2" ]; then
         echo Could not find Send Later name for $slocale 1>&2
