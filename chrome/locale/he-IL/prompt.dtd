@@ -28,6 +28,7 @@
 <!ENTITY sendlater.prompt.functionargs.label "ארגומנטי פונקציה:">
 <!ENTITY sendlater.prompt.calculate.label "חשב">
 <!ENTITY sendlater.toolbar.sendlater.button.label "‫שלח מאוחר יותר‬">
+<!ENTITY sendlater.toolbar.sendlater.button.tooltip "הפעל {NAME} לתזמן את משלוח ההודעה אחרי שהוגדר מועד המשלוח הרצוי בתיבת הטקסט. כפתור זה אינו מבצע כל פעולה כשלעצמו, עליכם להוסיף את תיבת הטקסט או את תאי בוחירת התאריך/הזמן לסרגל הכלים כדי שכפתור זה יהפוך לשימושי (לא נתמך בכל גרסאות 'ציפור הרעם').">
 <!ENTITY sendlater.toolbar.textbox.emptytext "‫זמן המשלוח‬">
 <!ENTITY sendlater.prompt.every.label "‫כל‬">
 <!ENTITY sendlater.prompt.between.label "בין">
