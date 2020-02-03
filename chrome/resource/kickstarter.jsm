@@ -1,5 +1,6 @@
 const { utils: Cu, classes: Cc, interfaces: Ci } = Components;
-const {Services} = ChromeUtils.import('resource://gre/modules/Services.jsm');
+const {Services} = Components.utils.import(
+    'resource://gre/modules/Services.jsm');
 var EXPORTED_SYMBOLS = ["KickstarterPopup"];
 
 var campaignUrl = "https://www.kickstarter.com/projects/jik/" +
@@ -62,7 +63,7 @@ function KickstarterQueuePopup() {
     prefBranch = Services.prefs.getBranch(prefRoot);
     popUpKey = popUpUrl.split("/")[2];
     var prefix = "queue." + popUpKey + ".";
-    prefBranch.setStringPref(prefix + "url", popUpUrl);
+    prefBranch.setCharPref(prefix + "url", popUpUrl);
     prefBranch.setIntPref(prefix + "sortKey",
                           Math.round(Math.random() * 1000000));
     prefBranch.setIntPref(prefix + "time", unixTimestamp());
@@ -78,7 +79,7 @@ function KickstarterChoosePopup() {
     for (var s of queueKeys) {
         var pieces = s.split(".");
         if (pieces[1] == "url")
-            urls[pieces[0]] = queueBranch.getStringPref(s);
+            urls[pieces[0]] = queueBranch.getCharPref(s);
         else if (pieces[1] == "sortKey")
             sortKeys[pieces[0]] = queueBranch.getIntPref(s);
         else if (pieces[1] == "time")
@@ -113,13 +114,13 @@ function KickstarterDoPopup(popUpUrl) {
     try {
         if (now - prefBranch.getIntPref("popUpTimestamp") < 60)
             return;
-    } catch {}
+    } catch (e) {}
     prefBranch.setIntPref("popUpTimestamp", now);
 
     try {
         if (prefBranch.getBoolPref("pledged"))
             return;
-    } catch {}
+    } catch (e) {}
 
     try {
         var postponed = prefBranch.getIntPref("postponed");
@@ -127,7 +128,7 @@ function KickstarterDoPopup(popUpUrl) {
         if (now - postponed < 7 * 24 * 60 * 60)
             return;
         prefBranch.clearUserPref("postponed");
-    } catch {}
+    } catch (e) {}
 
     var args = {
         campaignUrl: campaignUrl,
