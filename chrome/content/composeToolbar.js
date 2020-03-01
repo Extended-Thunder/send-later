@@ -182,7 +182,7 @@ var Sendlater3ComposeToolbar = {
                 if (textField) {
                     textField.value =
                         Sendlater3Composing.prevXSendLater
-                        .format("long", sl3dateparse.SugarLocale());
+                        .format("{long}", sl3dateparse.SugarLocale());
                 }
                 Sendlater3ComposeToolbar.dateToPickers(
                     Sendlater3Composing.prevXSendLater);
