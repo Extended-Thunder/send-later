@@ -20,7 +20,12 @@
 <!ENTITY showsendlaterunsentmessages.tooltip "Se desmarcar esta opção, o {NAME} em vez de entregar as mensagens, coloca-as na sua Caixa de Saída quando estas estiverem agendadas para entrega. Desmarque esta opção se, por exemplo, usar outra extensão como o BlunderDelay para enviar periodicamente as mensagens na sua Caixa de Saída. No caso de esta opção estar marcada, sempre que o {NAME} entrega uma mensagem, TODAS as mensagens na sua Caixa de Saída serão entregues.">
 <!ENTITY sendlatersendbutton.caption "“Enviar mais tarde” substitui “Enviar”">
 <!ENTITY sendlatersendbutton.tooltip "Com esta opção activa, o comando “Enviar” (através do botão ou pressionando Ctrl-Enter) actua da mesma forma que “Enviar mais tarde”.">
+<!ENTITY senddelay.tooltip "Com esta opção ativada, todas as mensagens enviadas com o comando &quot;Enviar&quot; (tanto no botão com o atalho Ctrl-Enter) são atrasadas pelo número especificado de minutos com {NAME}.">
+<!ENTITY senddelay.label "&quot;Enviar&quot; atrasa as mensagens em:">
+<!ENTITY senddelay2.label "minutos">
 <!ENTITY altbinding.caption "Combinar Alt-Shift-Enter em vez de Ctrl-Shift-Enter">
+<!ENTITY composewindowhotkeys.tooltip "Enquanto escreve uma mensagem, pode digitar Ctrl-Alt-1, -2, ou -3 para ativar o primeiro, segundo, ou terceiro botão predefinido, a menos que desmarque esta opção, nesse caso combinações de teclas estão desativadas.">
+<!ENTITY composewindowhotkeys.caption "Ativar combinações de teclas na janela de composição para predefinições">
 <!ENTITY markread.caption "Marcar rascunhos agendados como lidos">
 <!ENTITY advanced.caption "Avançado">
 <!ENTITY dumplevel.caption "Nível de registo de descarga:">
@@ -39,4 +44,11 @@
 <!ENTITY blocklatemessages.label2 "minutos atrasadas">
 <!ENTITY editorbutton "Abrir o editor de função dinamica...">
 <!ENTITY editortip "Abrir uma janela para criar e editar funções JavaScript implementando uma lógica de programação complexa.">
+<!ENTITY loglevel.fatal "Fatal">
+<!ENTITY loglevel.error "Erro">
+<!ENTITY loglevel.warn "Avisos">
+<!ENTITY loglevel.info "Informação">
 <!ENTITY loglevel.config "Configuração">
+<!ENTITY loglevel.debug "Depuração de erros">
+<!ENTITY loglevel.trace "Rastreio">
+<!ENTITY loglevel.all "Todos">

@@ -28,6 +28,7 @@
 <!ENTITY sendlater.prompt.functionargs.label "Аргументы функции:">
 <!ENTITY sendlater.prompt.calculate.label "Вычислить">
 <!ENTITY sendlater.toolbar.sendlater.button.label "Отправить позже">
+<!ENTITY sendlater.toolbar.sendlater.button.tooltip "Активируйте {NAME}, чтобы запланировать сообщение после ввода желаемого времени отправки в текстовое поле. Эта кнопка ничего не делает сама по себе; вам также нужно добавить текстовое поле или поле выбора даты/времени (поддерживается не во всех версиях Thunderbird) на панель инструментов, чтобы эта кнопка была полезной.">
 <!ENTITY sendlater.toolbar.textbox.emptytext "время отправки">
 <!ENTITY sendlater.prompt.every.label "Каждые">
 <!ENTITY sendlater.prompt.between.label "Между">

@@ -28,6 +28,7 @@
 <!ENTITY sendlater.prompt.functionargs.label "功能參數：">
 <!ENTITY sendlater.prompt.calculate.label "計算">
 <!ENTITY sendlater.toolbar.sendlater.button.label "延期發信">
+<!ENTITY sendlater.toolbar.sendlater.button.tooltip "在文本框中輸入想要發送的時間之後激活 {NAME} 安排發送消息。此按鈕本身沒有任何作用；您還需要將文本框或日期/時間選擇器(並非在所有 Thunderbird 版本中支持) 添加到工具欄，以使此按鈕有用。">
 <!ENTITY sendlater.toolbar.textbox.emptytext "發信時間">
 <!ENTITY sendlater.prompt.every.label "每">
 <!ENTITY sendlater.prompt.between.label "介於">

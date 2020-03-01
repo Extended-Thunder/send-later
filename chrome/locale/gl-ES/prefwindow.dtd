@@ -20,7 +20,12 @@
 <!ENTITY showsendlaterunsentmessages.tooltip "Se desactiva esta opción, {NAME} non enviará as mensaxes directamente, senón que as situará na Bandexa de Saída cando estean programadas para o seu envío. Desmarque esta opción se, por exemplo, usa algún outro complemento (coma BlunderDelay) para enviar mensaxes de xeito periódico dende a Bandexa de Saída. Teña en conta que cando se activa esta opción, no intre en que {NAME}envía unha mensaxe TÓDALAS mensaxes da Bandexa de Saída serán enviadas.">
 <!ENTITY sendlatersendbutton.caption "&quot;Enviar&quot; funciona coma &quot;Enviar máis tarde&quot;">
 <!ENTITY sendlatersendbutton.tooltip "Con esta opción habilitada, o comando &quot;Enviar&quot; (tanto co botón coma premendo Ctrl+Intro) funciona igual que &quot;Enviar máis tarde&quot;.">
+<!ENTITY senddelay.tooltip "Con esta opción habilitada, todas as mensaxes enviadas co comando &quot;Enviar&quot; (xa sexa pulsando o botón ou seleccionando Ctrl-Enter) atrasan o número de minutos especificado programados con {NAME}.">
+<!ENTITY senddelay.label "“Enviar” atrasa as mensaxes de:">
+<!ENTITY senddelay2.label "minutos">
 <!ENTITY altbinding.caption "Ligar a Alt+Maiúsculas en vez de a Ctrl+Maiúsculas+Intro">
+<!ENTITY composewindowhotkeys.tooltip "Ao escribir unha mensaxe, podes escribir Ctrl-Alt-1, -2 ou -3 para activar o primeiro, segundo ou terceiro botón preestablecido, a non ser que desmarques esta preferencia; nese caso estas ligazóns clave estarán desactivadas.">
+<!ENTITY composewindowhotkeys.caption "Habilitar atallos de teclas na ventá de redacción da mensaxe para predeterminados">
 <!ENTITY markread.caption "Marcar coma lidas as mensaxes no cartafol Borradores">
 <!ENTITY advanced.caption "Avanzadas">
 <!ENTITY dumplevel.caption "Nivel de volcado do rexistro (log):">
@@ -39,4 +44,11 @@
 <!ENTITY blocklatemessages.label2 "minuto(s) de retraso">
 <!ENTITY editorbutton "Abrir o editor de funcións dinámicas…">
 <!ENTITY editortip "Abre unha fiestra para crear e editar funcións JavaScript que implementan unha lóxica de programación complexa.">
+<!ENTITY loglevel.fatal "Crítico">
 <!ENTITY loglevel.error "Erro">
+<!ENTITY loglevel.warn "Aviso">
+<!ENTITY loglevel.info "Información">
+<!ENTITY loglevel.config "Configurar">
+<!ENTITY loglevel.debug "Depuración">
+<!ENTITY loglevel.trace "Rastreo">
+<!ENTITY loglevel.all "Todos">

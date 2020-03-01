@@ -1,2 +1,10 @@
 <!-- -*- coding: utf-8 -*- -->
+<!ENTITY windowTitle "HUOMIO: &quot;Send Later&quot; poistetaan pian, ellet tue sitä!">
+<!ENTITY pitchMessage "TARVITSEN APUASI!
+&quot;Send Later&quot; ja muut ylläpitämäni Thunderbird -lisäosat ovat olleet ilmaisia ​​monien vuosien ajan, mutta se ei valitettavasti voi enää jatkua näin. Aikoinaan Thunderbird 68. versioon päivittäminen vaatii minulta paljon aikaa ja vaivaa, ja nyt vielä enemmän työtä tarvitaan tulevaa Thunderbird 78. versiota varten. Ohjelman 78. versio julkaistaan ​​myöhemmin tänä vuonna ja kaikki vanhentuneet lisäosat lakkaavat toimimasta Thunderbird: issä. 
+Valitettavasti en vain pysty ylläpitämään lisäosiani ajan tasalla, ellei tarpeeksi suuri osa käyttäjistä sitoudu suorittamaan pienen maksu jo etukäteen.
+Napsauta alla saadaksesi lisätietoja ja tukeaksesi Kickstarter -kampanjaani. Kiitoksena, kampanjan kannattajat saavat ostaa lisenssejä suurella alennuksella.
+Kiitos tuestasi!">
+<!ENTITY pledgeLabel "Auta nyt!">
 <!ENTITY remindLabel "Muistuta myöhemmin">
+<!ENTITY alreadyLabel "Olen jo lahjoittanut">

@@ -1,2 +1,10 @@
 <!-- -*- coding: utf-8 -*- -->
+<!ENTITY windowTitle "URGENTE: Enviar mais tarde desaparecerá em breve, a menos que você o apoie!">
+<!ENTITY pitchMessage "EU PRECISO DA SUA AJUDA!
+Enviar mais tarde e outros dos meus add-ons estão disponíveis gratuitamente por muitos anos, porém isso não é mais sustentável. Uma grande quantidade de esforço e tempo foram necessárias para atualizar todos os add-ons para o Thunderbird 68, e irá ser uma quantidade maior ainda para o Thunderbird 78, que irá ser lançado ainda este ano.
+Infelizmente, eu não posso fazer isso ao menos que usuários suficientes se comprometam a pagar uma quantidade pequena para que isso aconteça.
+Por favor, clique no link abaixo para saber mais e ajudar na campanha no Kickstarter. Como um bônus, suportadores da campanha podem comprar licenças com bom descontos.
+Muito obrigado por sua ajuda!">
+<!ENTITY pledgeLabel "Contribua agora!">
 <!ENTITY remindLabel "Lembre-me mais tarde">
+<!ENTITY alreadyLabel "Já fiz minha contribuição">

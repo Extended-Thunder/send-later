@@ -1,0 +1,36 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY windowtitle "{NAME} Redigér Dynamiske Funktioner">
+<!ENTITY selectfunction "Vælg funktion:">
+<!ENTITY selectfunctiontip "Vælg en funktion, der skal redigeres eller slettes, eller vælg &quot;(opret ny funktion)&quot; for at oprette en ny funktion.">
+<!ENTITY createnewfunction "(opret ny funktion)">
+<!ENTITY delete.label "Slet">
+<!ENTITY delete.accesskey "S">
+<!ENTITY functionnametip "Indtast eller rediger et alfanumerisk funktionsnavn. Hvis du ændrer navnet på en eksisterende funktion, bliver du spurgt, når du gemmer, om du vil omdøbe funktionen eller oprette en ny funktion med det ændrede navn.">
+<!ENTITY functionnameplaceholder "funktions navn">
+<!ENTITY codetip "Indsæt kildekoden til din funktion her. Se prøvefunktionen &quot;ReadMeFirst&quot; for detaljer om, hvad din kode burde gøre.">
+<!ENTITY codeplaceholder "funktions kildekode">
+<!ENTITY helptextheader "Funktionens hjælpetekst:">
+<!ENTITY helptexttip "Enhver tekst, du lægger her, vises, når musen &quot;svæver&quot; over funktionsnavnet i pop-up-menuen. Brug den til at forklare, hvad funktionen gør, og hvilke argumenter der kan bruges.">
+<!ENTITY helptextplaceholder "hjælpetekst">
+<!ENTITY run.label "Udfør funktion:">
+<!ENTITY run.accesskey "U">
+<!ENTITY inputtime "Indtast tidspunkt:">
+<!ENTITY inputtimetip "Du kan indtaste datoer og tidspunkter her i ethvert format, som {NAME} -dialogen forstår.">
+<!ENTITY inputtimeplaceholder "evt. dato og klokkeslæt, som overføres til funktionen for afprøvning">
+<!ENTITY inputargs "Indtast værdi:">
+<!ENTITY inputargstip "Argumenter skal specificeres i JavaScript-format, tekststrenge f.eks., skal være i anførselstegn.">
+<!ENTITY inputargsplaceholder "eventuelle komma-adskilte værdier som sendes til test">
+<!ENTITY output "Resultat:">
+<!ENTITY import.label "Importér…">
+<!ENTITY import.accesskey "m">
+<!ENTITY importtip "Importer en dynamisk funktion, der tidligere er eksporteret fra editoren.">
+<!ENTITY export.label "Eksporter…">
+<!ENTITY export.accesskey "E">
+<!ENTITY exporttip "Eksporter den aktuelt viste funktion til en fil til sikkerhedskopiering eller deling.">
+<!ENTITY reset.label "Kasser ændringer">
+<!ENTITY reset.accesskey "a">
+<!ENTITY save.label "Gem">
+<!ENTITY save.accesskey "G">
+<!ENTITY close.label "Luk">
+<!ENTITY close.accesskey "L">
+<!ENTITY close.cmdkey "w">

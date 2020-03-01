@@ -1,0 +1,13 @@
+<!-- -*- coding: utf-8 -*- -->
+<!ENTITY sendlater.ask.title.label "sendlater.ask.title.label {NAME} erstattes ved kørsel med det almindelige navn på tilføjelsen i denne oversættelse (hentning fra MessageTag i background. properties)">
+<!ENTITY sendlater.ask.message1 "Der er brugt utallige timer til udvikling, vedligeholdelse og support af denne tilføjelse.">
+<!ENTITY sendlater.ask.message2 "Overvej om ikke du skulle yde en lille donation for at støtte for den fortsatte udvikling!">
+<!ENTITY sendlater.ask.message3 "Mange tak!">
+<!ENTITY sendlater.ask.donate.accesskey "G">
+<!ENTITY sendlater.ask.donate.label "Giv en donation">
+<!ENTITY sendlater.ask.remind.accesskey "M">
+<!ENTITY sendlater.ask.remind.label "Mind mig om det senere">
+<!ENTITY sendlater.ask.already.accesskey "a">
+<!ENTITY sendlater.ask.already.label "Jeg har allerede doneret">
+<!ENTITY sendlater.ask.stop.accesskey "S">
+<!ENTITY sendlater.ask.stop.label "Spørg ikke igen">
