@@ -51,6 +51,7 @@ locale_import: crowdin.yaml
 	  $$(ls chrome/locale/*/*.properties | grep -v /en-US/)
 	wc -l chrome/locale/*/* | awk '$$1 == 1 {print $$2}' | \
 	  xargs grep -l utf-8 | xargs --no-run-if-empty rm
+	-rmdir -p chrome/locale/* 2>/dev/null
 
 locale_export: crowdin.yaml
 	crowdin-cli upload sources
