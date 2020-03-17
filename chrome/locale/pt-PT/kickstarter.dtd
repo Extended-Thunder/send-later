@@ -1,9 +1,0 @@
-<!-- -*- coding: utf-8 -*- -->
-<!ENTITY windowTitle "URGENTE: Send Later desaparecerá em breve, a menos que o apoie!">
-<!ENTITY pitchMessage "PRECISO DA SUA AJUDA!
-&quot;Send Later&quot; e todos os meus outros add-ons estão disponíveis há muitos anos, mas isso já não é sustentável. Demorou muito tempo e esforço para atualizá-los para o Thunderbird 68, e será necessário ainda mais trabalho para o Thunderbird 78, que sairá ainda este ano. Infelizmente, simplesmente não consigo continuar a fazer isso a menos que utilizadores suficientes se comprometam a pagar um pouco por isso. 
-Por favor, clique abaixo para saber mais e apoiar a campanha &quot;Kickstarter&quot;. Como bónus, os apoiantes da campanha podem comprar licenças com um desconto enorme.
-Obrigado pelo seu apoio!">
-<!ENTITY pledgeLabel "Contribua agora!">
-<!ENTITY remindLabel "Lembrar mais tarde">
-<!ENTITY alreadyLabel "Já o fiz">

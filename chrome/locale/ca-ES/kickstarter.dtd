@@ -1,9 +1,0 @@
-<!-- -*- coding: utf-8 -*- -->
-<!ENTITY windowTitle "URGENT: Send Later desapareixerà aviat, excepte si mostres el teu suport!">
-<!ENTITY pitchMessage "NECESSITO LA TEVA AJUDA!
-Send Later i els meus altres complements han estat disponibles sense cost durant molts anys, però aquest model ja no és sostenible. Requereix una quantitat de temps i esforç per actualitzar-los per al Thunderbird 68 i se'n necessitarà encara més per al Thunderbird 78, que es publicarà al final d'aquest any. Desafortunadament, no ho puc fer a no ser que hi hagi suficients usuaris compromesos per avançat a pagar una mica per ells.
-Si us plau, clica a sota per aprendre'n més i mostrar el teu suport a la campanya de Kickstarter. Com a benefici, els que mostrin el seu suport poden comprar les llicències amb un descompte.
-Gràcies pel teu suport!">
-<!ENTITY pledgeLabel "Dóna ara!">
-<!ENTITY remindLabel "Recordeu-m'ho més tard">
-<!ENTITY alreadyLabel "Ja he donat">

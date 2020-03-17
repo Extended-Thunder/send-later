@@ -1,9 +1,0 @@
-<!-- -*- coding: utf-8 -*- -->
-<!ENTITY windowTitle "DRINGEND: Send Later gaat binnenkort verdwijnen, tenzij u het steunt!">
-<!ENTITY pitchMessage "IK HEB UW HULP NODIG!
-Send Later en mijn andere add-ons zijn jarenlang gratis geweest, maar dat is niet langer vol te houden. Het heeft veel tijd en moeite gekost om ze bij te werken voor Thunderbird 68, en er is nog meer werk nodig voor Thunderbird 78, dat later dit jaar wordt uitgebracht. Helaas kan ik dit niet volhouden, tenzij voldoende gebruikers van tevoren toezeggen er een beetje voor te betalen.
-Klik hieronder om meer te lezen en de Kickstarter-campagne te steunen. Als bonus kunnen campagnesupporters licenties aanschaffen tegen een scherpe korting.
-Bedankt voor uw steun!">
-<!ENTITY pledgeLabel "Nu toezeggen!">
-<!ENTITY remindLabel "Mij later herinneren">
-<!ENTITY alreadyLabel "Ik heb al toegezegd">

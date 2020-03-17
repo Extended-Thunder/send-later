@@ -1,9 +1,0 @@
-<!-- -*- coding: utf-8 -*- -->
-<!ENTITY windowTitle "紧急：没有您的支持，Send Later 将快消失！">
-<!ENTITY pitchMessage "我需要您的帮助！
-Send Later和我其他的附加组件多年来都是免费的，但这无法持续下去了。Thunderbird 68版本的更新已经用上了大量的时间和精力，今年晚些发布的Thunderbird 78还需要更大的投入。不幸的是，若无足够的用户提前为它付一点钱，这将无以为继。
-请点击下面了解和支持我在Kickstarter的众筹募资。作为奖励，支持者能以折扣价购买软件许可证。
-谢谢您的支持！">
-<!ENTITY pledgeLabel "立即支持！">
-<!ENTITY remindLabel "以后提醒我">
-<!ENTITY alreadyLabel "我已支持">
