@@ -1647,10 +1647,6 @@ var Sendlater3Backgrounding = function() {
     sl3log.Leaving("Sendlater3Backgrounding");
     addMsgSendLaterListener();
     addNewMessageListener();
-
-    var {KickstarterPopup} = ChromeUtils.import(
-        "resource://sendlater3/kickstarter.jsm");
-    KickstarterPopup(window, "chrome://sendlater3/content/kickstarter.xul");
 }
 
 window.addEventListener("load", Sendlater3Backgrounding, false);
