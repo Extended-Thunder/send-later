@@ -1,9 +1,0 @@
-.#*
-*.pyc
-*.tmp
-*.xpi
-*~
-_locales
-crowdin.yaml
-exclude-manifest2
-build

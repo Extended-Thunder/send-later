@@ -1,9 +1,0 @@
-<!-- -*- coding: utf-8 -*- -->
-<!ENTITY windowTitle "NALÉHAVÉ: Odeslat Později brzy skončí, pokud je nepodpoříš!">
-<!ENTITY pitchMessage "Potřebuji Tvoji pomoc!
-Odeslat Později a moje ostatní doplňky do Thuderbirdu byly po mnoho let zdarma, ale už se to nedá udržovat. Dalo spoustu práce a času je pro Thunderbird 68 udržovat aktuální a ještě více práce bude třeba pro novou verzi Thunderbird 78, který vyjde v tomto roce. Tuto práci dokážu udělat jedině pokud bude mít dostatek uživatelů zájem za moji práci zaplatit pár korun, abych se těmto projektům mohl nadále věnovat.
-Prosím, podívej se na moji kampaň na Kickstarteru pro více informací a podpoř mě. Lidé, kteří mi takto pomohou, získají bonus - licence na doplňky mohou zakoupit s výraznou slevou.
-Moc Ti děkuji za podporu!">
-<!ENTITY pledgeLabel "Přispět nyní!">
-<!ENTITY remindLabel "Připomenout později">
-<!ENTITY alreadyLabel "Již jsem přispěl">

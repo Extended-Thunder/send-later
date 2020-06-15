@@ -1,6 +1,0 @@
-"AMODescription","Αλλάζει το ""Send Later"" εντολής (Ctrl + Shift + Return) στο παράθυρο σύνθεση μηνύματος, έτσι ώστε αντί απλώς αντιγράφοντας το μήνυμα στο φάκελο ""Εξερχόμενα"", έτσι ώστε να αποσταλεί την επόμενη φορά που πηγαίνετε σε απευθείας σύνδεση ή να κάνετε «Αποστολή μη απεσταλμένα μηνύματα», ένα παράθυρο διαλόγου σκάει επάνω που σας επιτρέπει να καθορίσετε πότε θα σταλεί το μήνυμα. 
-Μπορείτε να καθορίσετε μια συγκεκριμένη ώρα και ημερομηνία, ή κάντε κλικ στο κουμπί ""15 mins later"", ""30 mins later"" ή ""2 hours later"", ή κάντε κλικ στο κουμπί ""Put in Outbox"" για να πάρει το ενσωματωμένο Thunderbird""Send Later"" λειτουργία (δηλ., αντίγραφο στα εξερχόμενα). 
-Για πρόσθετες πληροφορίες, ανατρέξτε στον <a href=""https://groups.google.com/group/send-later-users""> λίστας αλληλογραφίας</a>! 
-Αποστολή αργότερα χρησιμοποιεί <a href=""https://sugarjs.com/"">SugarJS</a> by Andrew Plummer. Ευχαριστώ Andrew!","AMODescription
-Description of the add-on that appears under “Add-on Details” on the addons.thunderbird.net."
-"AMOComments","Παρακαλώ <a href=""mailto:jik+sendlater3@kamens.us""> στείλτε μου μήνυμα μέσω του ηλεκτρονικού ταχυδρομείου </a> αναφορές σφαλμάτων, εισηγήσεις, κλπ.","The text that appears under “Developer’s Comments” for the add-on on addons.thunderbird.net."
