@@ -1,0 +1,67 @@
+{
+  "manifest_version": 2,
+  "name": "__MSG_extensionName__",
+  "description": "__MSG_extensionDescription__",
+  "version": "8.0.1-pre",
+  "homepage_url": "https://github.com/Extended-Thunder/send-later/",
+  "icons": {
+    "48": "ui/icons/icon.png"
+  },
+  "applications": {
+      "gecko": {
+          "id": "jph@extended-thunder.org",
+          "strict_min_version": "77.0a1"
+      }
+  },
+  "permissions": [
+    "storage",
+    "accountsRead",
+    "accountsFolders",
+    "menus",
+    "menus.overrideContext",
+    "activeTab",
+    "messagesMove",
+    "messagesRead",
+    "compose"
+  ],
+
+  "background": {
+    "scripts": ["/utils/prefHandler.js","/background.js"]
+  },
+
+  "options_ui": {
+    "page": "/ui/options.html",
+    "open_in_tab": false,
+    "browser_style": false
+  },
+
+  "commands": {
+    "doSendLater": {
+      "suggested_key": {
+        "default": "Alt+Shift+S"
+      },
+      "description": "Execute the Send Later plugin"
+    }
+  },
+
+  "compose_action": {
+    "browser_style": true,
+    "default_area": "maintoolbar",
+    "default_icon": "/ui/icons/icon.png",
+    "default_popup": "/ui/popup.html",
+    "default_title": "SendLater"
+  },
+
+  "default_locale": "en",
+
+  "experiment_apis": {
+    "SL3U": {
+      "schema": "experiments/sl3u.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "paths": [["SL3U"]],
+        "script": "experiments/sl3u.js"
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+
+body {
+  font-family: sans-serif;
+  font-size: 0.9em;
+  font-weight: 300;
+}
+
+section {
+  padding: 0.5em 0;
+  margin: 1em 0;
+}
+
+#save-button, #reset-button {
+  margin: 0 1.3em 1em 0;
+  font-weight: bold;
+}
+
+label {
+  display: block;
+  padding: 0.2em 0;
+}
+
+label:hover {
+  background-color: #EAEFF2;
+}
+
+.title {
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+
+.footer {
+  font-size: 0.8em;
+  margin-top: 0.5em;
+  text-align:center;
+}
+
+.footer>a {
+  margin-left:1em;
+  margin-right:1em;
+}

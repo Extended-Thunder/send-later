@@ -1,0 +1,38 @@
+body {
+  font-family: sans-serif;
+  font-size: 0.9em;
+  font-weight: 300;
+  vertical-align: middle;
+}
+
+#send-now {
+  float: left;
+  margin-left: 2%;
+  width: 45%;
+  height: 1.75em;
+}
+
+#cancel {
+  float: right;
+  margin-right: 2%;
+  width: 45%;
+  height: 1.75em;
+}
+
+input[type=date], input[type=time] {
+  height: 1.75em;
+}
+
+section {
+  padding: 0.5em 0.25em 0.5em 0em;
+}
+
+label {
+  white-space: nowrap;
+}
+
+.delayButton {
+  width: 30%;
+  margin-left: 1.5%;
+  margin-right: 1.5%;
+}

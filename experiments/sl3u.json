@@ -1,0 +1,104 @@
+[
+  {
+    "namespace": "SL3U",
+    "events": [
+      {
+        "name": "onSetPref",
+        "type": "function",
+        "parameters": [
+          {
+            "name": "message",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "name": "init",
+        "type": "function",
+        "async": true,
+        "description": "",
+        "parameters": []
+      },
+      {
+        "name":"alert",
+        "type":"function",
+        "async":true,
+        "description":"",
+        "parameters":[
+          {
+            "name":"window",
+            "type":"object",
+            "description":""
+          },
+          {
+            "name":"title",
+            "type":"string",
+
+            "description":""
+          },
+          {
+            "name":"text",
+            "type":"string",
+            "description":""
+          }]
+      },
+      {
+        "name":"isOnline",
+        "type":"function",
+        "async":true,
+        "description":"",
+        "parameters":[]
+      },
+      {
+        "name":"appName",
+        "type":"function",
+        "async":true,
+        "description":"",
+        "parameters":[]
+      },
+      {
+        "name":"updatePrefs",
+        "type":"function",
+        "async":true,
+        "description":"",
+        "parameters":[{
+          "name":"prefs_str",
+          "type":"string",
+          "description":""
+        }]
+      },
+      {
+        "name": "getLegacyPref",
+        "type": "function",
+        "description": "Gets a preference.",
+        "async": true,
+        "parameters": [
+          {
+            "name": "name",
+            "type": "string",
+            "description": "The preference name"
+          },
+          {
+            "name": "dtype",
+            "type": "string",
+            "description": "Data type of the preference"
+          },
+          {
+            "name": "def",
+            "type": "string",
+            "description": "Fallback value if nothing is returned."
+          }
+        ]
+      },
+      {
+        "name":"getInstanceUuid",
+        "type":"function",
+        "async":true,
+        "description":"",
+        "parameters":[]
+      }
+    ]
+  }
+]
