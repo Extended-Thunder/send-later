@@ -2,9 +2,44 @@ const SendLater = {
     // A global-ish scoped variable that allows listeners to return promises
     // that can be resolved in response to some later event.
     PromiseMap: new Map(),
+
+    flatten: function(arr) {
+      // Flattens an N-dimensional array.
+      return arr.reduce((res, item) => {
+        return res.concat(Array.isArray(item) ? SendLater.flatten(item) : item);
+      }, []);
+    },
+
     async scheduleSendLater(tabId, options) {
       console.log("Scheduling send later: "+tabid+" with options "+options);
       return;
+    },
+
+    async findDraftsHelper(folder) {
+      // Recursive helper function to look through an account for draft folders
+      if (folder.type === "drafts") {
+        return folder;
+      } else {
+        const drafts = [];
+        for (subFolder of folder.subFolders) {
+          drafts.push(SendLater.findDraftsHelper(subFolder));
+        }
+        return Promise.all(drafts);
+      }
+    },
+
+    async getDraftFolders(acct) {
+      const draftSubFolders = [];
+      acct.folders.forEach(folder => {
+        draftSubFolders.push(SendLater.findDraftsHelper(folder));
+      });
+      return Promise.all(draftSubFolders).then(SendLater.flatten);
+    },
+
+    async possiblySendMessage(id) {
+      // TODO: This function should determine whether or not a particular
+      // message is due to be sent, and then act on that choice. It receives
+      // a message id as input, and doesn't need to return anything.
     }
 };
 
@@ -70,17 +105,30 @@ browser.commands.onCommand.addListener(async (command) => {
 // Initialize experiments.
 //browser.SL3U.init();
 
-// Finally, setup the background service to periodically check for messages
-// that are ready to be sent.
-let interval = setInterval(async () => {
-        // let accts = await browser.accounts.list();
-        // console.log(accts);
-        // for (var i=0; i<accts.length; i++)
-        // {
-        //     for (var j = 0; j < accts[i].folders.length; j++) {
-        //         if (accts[i].folders[j].type == "drafts") {
-        //             console.log(accts[i].folders[j]);
-        //         }
-        //     }
-        // }
-    }, 3000);
+// Background loop to periodically check for scheduled messages.
+const loopInterval = setInterval(() => {
+  browser.accounts.list().then(accounts => {
+      accounts.forEach(acct => {
+          // Looping over accounts. Most accounts should only have one Drafts
+          // folder, but to be safe, we'll loop through each of them and check
+          // for messages that are scheduled to be sent.
+          SendLater.getDraftFolders(acct).then(draftFolders => {
+            draftFolders.forEach(async drafts => {
+              let page = await browser.messages.list(drafts);
+              do {
+                page.messages.forEach(async message => {
+                  const msg = await browser.messages.getFull(message.id);
+                  console.debug(msg.headers);
+                  if (msg.headers["x-send-later"] !== undefined) {
+                    SendLater.possiblySendMessage(message.id);
+                  }
+                });
+                if (page.id) {
+                    page = await browser.messages.continueList(page.id);
+                }
+              } while (page.id);
+            });
+          });
+      });
+    });
+  }, 5000);

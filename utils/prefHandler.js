@@ -94,10 +94,10 @@ browser.SL3U.onSetPref.addListener(msg => {
         // Combine keys and legacy/default values back into a single object.
         let legacyPrefs = await Promise.all(legacyValuePromises).then(
           legacyVals => {
-            legacyVals.reduce((r,f,i) => {r[prefKeys[i]] = f; return r}, {})
+            return legacyVals.reduce((r,f,i) => {r[prefKeys[i]] = f; return r}, {})
           });
 
-        console.debug("Legacy preferences: "+legacyPrefs);
+        console.debug("Legacy preferences: ",legacyPrefs);
 
         // Merge legacy preferences into undefined preference keys
         prefKeys.forEach(key => {
