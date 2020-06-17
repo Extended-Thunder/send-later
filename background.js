@@ -40,6 +40,44 @@ const SendLater = {
     async scheduleSendLater(tabId, options) {
       console.log("Scheduling send later: "+tabid+" with options "+options);
       return;
+    },
+
+    mainLoop: function() {
+      try {
+        browser.accounts.list().then(accounts => {
+          accounts.forEach(acct => {
+              // Looping over accounts. Most accounts should only have one Drafts
+              // folder, but to be safe, we'll loop through each of them and check
+              // for messages that are scheduled to be sent.
+              SendLater.getDraftFolders(acct).then(draftFolders => {
+                draftFolders.forEach(async drafts => {
+                  let page = await browser.messages.list(drafts);
+                  do {
+                    page.messages.forEach(async message => {
+                      const msg = await browser.messages.getFull(message.id);
+                      console.debug(msg.headers);
+                      if (msg.headers["x-send-later"] !== undefined) {
+                        SendLater.possiblySendMessage(message.id);
+                      }
+                    });
+                    if (page.id) {
+                      page = await browser.messages.continueList(page.id);
+                    }
+                  } while (page.id);
+                });
+              });
+          });
+        });
+      } catch (ex) {
+        console.error(ex);
+      }
+      browser.storage.local.get("preferences").then(storage => {
+        const prefs = storage.preferences || {};
+        const intervalTimeout = prefs['checkTimePref'];
+        const millis = prefs["checkTimePref_isMilliseconds"];
+        const delay = (millis) ? intervalTimeout : intervalTimeout * 60000;
+        setTimeout(SendLater.mainLoop, delay);
+      });
     }
 };
 
@@ -104,30 +142,5 @@ browser.runtime.onMessage.addListener((message) => {
 // Initialize experiments.
 //browser.SL3U.init();
 
-// Background loop to periodically check for scheduled messages.
-const loopInterval = setInterval(() => {
-  browser.accounts.list().then(accounts => {
-      accounts.forEach(acct => {
-          // Looping over accounts. Most accounts should only have one Drafts
-          // folder, but to be safe, we'll loop through each of them and check
-          // for messages that are scheduled to be sent.
-          SendLater.getDraftFolders(acct).then(draftFolders => {
-            draftFolders.forEach(async drafts => {
-              let page = await browser.messages.list(drafts);
-              do {
-                page.messages.forEach(async message => {
-                  const msg = await browser.messages.getFull(message.id);
-                  console.debug(msg.headers);
-                  if (msg.headers["x-send-later"] !== undefined) {
-                    SendLater.possiblySendMessage(message.id);
-                  }
-                });
-                if (page.id) {
-                    page = await browser.messages.continueList(page.id);
-                }
-              } while (page.id);
-            });
-          });
-      });
-    });
-  }, 5000);
+// Start background loop to check for scheduled messages.
+setTimeout(SendLater.mainLoop, 0);
