@@ -123,49 +123,37 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                     // Prefix for legacy preferences.
                     const EXTENSION_BASE_PREF_NAME = "extensions.sendlater3.";
 
-                    console.debug("Getting legacy preference <"+name+"> of type: '"+dtype+"'");
+                    //console.debug("Getting legacy preference <"+name+"> of type: '"+dtype+"' with default: "+def);
 
-                    try {
-                      switch (dtype) {
-                        case "bool": {
-                          let legacyVal = Services.prefs.getBoolPref(`${EXTENSION_BASE_PREF_NAME}${name}`);
-                          console.debug("Legacy pref ["+name+"] = "+legacyVal);
-                          if (legacyVal === undefined) {
-                              return (def === "true");
-                          } else {
-                              return legacyVal;
-                          }
-                        }
-                        case "int": {
-                          let legacyVal = Services.prefs.getIntPref(`${EXTENSION_BASE_PREF_NAME}${name}`);
-                          console.debug("Legacy pref ["+name+"] = "+legacyVal);
-                          if (legacyVal === undefined) {
-                              return (Number(def)|0);
-                          } else {
-                              return legacyVal;
-                          }
-                        }
-                        case "char": {
-                          let legacyVal = Services.prefs.getCharPref(`${EXTENSION_BASE_PREF_NAME}${name}`);
-                          console.debug("Legacy pref ["+name+"] = "+legacyVal);
-                          if (legacyVal === undefined) {
-                              return def;
-                          } else {
-                              return legacyVal;
-                          }
-                        }
-                        case "string": {
-                          let legacyVal = Services.prefs.getStringPref(`${EXTENSION_BASE_PREF_NAME}${name}`);
-                          console.debug("Legacy pref ["+name+"] = "+legacyVal);
-                          if (legacyVal === undefined) {
-                              return def;
-                          } else {
-                              return legacyVal;
-                          }
+                    switch (dtype) {
+                      case "bool": {
+                        try {
+                          return Services.prefs.getBoolPref(`${EXTENSION_BASE_PREF_NAME}${name}`);
+                        } catch {
+                          return (def === "true");
                         }
                       }
-                    } catch (ex) {
-                      return undefined;
+                      case "int": {
+                        try {
+                          return Services.prefs.getIntPref(`${EXTENSION_BASE_PREF_NAME}${name}`);
+                        } catch {
+                          return (Number(def)|0);
+                        }
+                      }
+                      case "char": {
+                        try {
+                          return Services.prefs.getCharPref(`${EXTENSION_BASE_PREF_NAME}${name}`);
+                        } catch {
+                          return def;
+                        }
+                      }
+                      case "string": {
+                        try {
+                          return Services.prefs.getStringPref(`${EXTENSION_BASE_PREF_NAME}${name}`);
+                        } catch {
+                          return def;
+                        }
+                      }
                     }
                     throw new Error("Unexpected pref type");
                   },
