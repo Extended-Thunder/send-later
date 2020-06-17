@@ -1,6 +1,6 @@
+// Pseudo-namespace encapsulation for global-ish variables.
 const SendLater = {
-    // A global-ish scoped variable that allows listeners to return promises
-    // that can be resolved in response to some later event.
+    // Track unresolved promises that can be resolved by some future event.
     PromiseMap: new Map(),
 
     flatten: function(arr) {
@@ -8,11 +8,6 @@ const SendLater = {
       return arr.reduce((res, item) => {
         return res.concat(Array.isArray(item) ? SendLater.flatten(item) : item);
       }, []);
-    },
-
-    async scheduleSendLater(tabId, options) {
-      console.log("Scheduling send later: "+tabid+" with options "+options);
-      return;
     },
 
     async findDraftsHelper(folder) {
@@ -40,11 +35,16 @@ const SendLater = {
       // TODO: This function should determine whether or not a particular
       // message is due to be sent, and then act on that choice. It receives
       // a message id as input, and doesn't need to return anything.
+    },
+
+    async scheduleSendLater(tabId, options) {
+      console.log("Scheduling send later: "+tabid+" with options "+options);
+      return;
     }
 };
 
 browser.compose.onBeforeSend.addListener((tab) => {
-  console.log("SendLater: User requested message send. Awaiting scheduling choice.");
+  console.log("SendLater: User requested send. Awaiting UI selections.");
   browser.composeAction.openPopup();
 
   // The compose window UI will be locked until this promise resolves.
@@ -68,19 +68,18 @@ browser.runtime.onMessage.addListener((message) => {
         console.debug("SendLater: User cancelled send.");
         resolve({ cancel: true });
     } else {
-        console.debug("SendLater: User cancelled send via Send Later plugin.");
         resolve({ cancel: true });
     }
 });
 
-// Responds to keyboard shortcut
-browser.commands.onCommand.addListener(async (command) => {
-  if (command === "doSendLater") {
-    //let result = await browser.sendLaterComposing.tryToSave();
-    //console.log(result);
-  }
-});
-
+// // Responds to keyboard shortcut
+// browser.commands.onCommand.addListener(async (command) => {
+//   if (command === "doSendLater") {
+//     //let result = await browser.sendLaterComposing.tryToSave();
+//     //console.log(result);
+//   }
+// });
+//
 // /*
 //  * Template for actions to perform during installation or updates.
 //  */
