@@ -47,16 +47,17 @@
             return legacyVals.reduce((r,f,i) => {r[prefKeys[i]] = f; return r}, {})
           });
 
+        console.info("SendLater: migrating legacy/default preferences.", legacyPrefs);
+
         // Merge legacy preferences into undefined preference keys
         prefKeys.forEach(key => {
             if (prefs[key] === undefined) {
                 prefs[key] = legacyPrefs[key];
             }
         });
-        if (["all", "trace", "debug"].includes(prefs["logConsoleLevel"])) {
-          console.debug("Legacy|Default preferences: ", legacyPrefs);
-          console.debug("All preferences: ", prefs);
-        }
+      }
+      if (["all", "trace", "debug"].includes(prefs["logConsoleLevel"])) {
+        console.debug("SendLater preferences: ", prefs);
       }
       return prefs;
   }).then(prefs => {
