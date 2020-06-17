@@ -43,6 +43,7 @@ const SLOptions = {
     browser.storage.local.get("preferences").then( (storage) => {
       const prefs = storage.preferences || {};
       prefs[key] = value;
+      browser.SL3U.updatePrefs(JSON.stringify(prefs));
       browser.storage.local.set({ preferences: prefs });
     });
   },
@@ -135,6 +136,7 @@ const SLOptions = {
                 result[key]=defaults[key][1];
                 return result;
             }, {});
+            browser.SL3U.updatePrefs(JSON.stringify(prefs));
             return browser.storage.local.set({ preferences: prefs });
         }).then(() => SLOptions.applyPrefsToUI());
     });
