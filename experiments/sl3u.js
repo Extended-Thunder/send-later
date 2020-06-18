@@ -166,6 +166,12 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                       );
                   },
 
+                  async SaveAsDraft() {
+                    // Saves the current compose window message as a draft
+                    const composeWindow = Services.wm.getMostRecentWindow("msgcompose");
+                    composeWindow.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
+                  },
+
                   // TODO: According to an old comment, the MailMerge add-on uses
                   // this function for some reason. Remember to check with that
                   // author about how it was used, because that is almost certainly

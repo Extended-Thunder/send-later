@@ -56,7 +56,8 @@ const SendLater = {
     },
 
     async scheduleSendLater(tabId, options) {
-      SendLater.log("Scheduling send later: "+tabid+" with options ",options);
+      SendLater.log("Scheduling send later: "+tabId+" with options ",options);
+      browser.SL3U.SaveAsDraft();
       return;
     },
 

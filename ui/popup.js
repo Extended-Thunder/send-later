@@ -7,14 +7,15 @@ const sendDelay = function(delay) {
             msg.sendTime = null;
         } else {
             msg.action = "doSendLater";
-            msg.sendTime = new Date(); // TODO: add delay
+            msg.sendTime = new Date();
+            msg.sendTime.setTime(msg.sendTime.getTime() + delay * 60 * 1000);
         }
 
         browser.runtime.sendMessage(msg);
 
         setTimeout(() => { // Close the popup.
           window.close();
-        }, 0);
+        }, 150);
     });
 };
 
