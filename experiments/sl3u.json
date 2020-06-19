@@ -29,6 +29,13 @@
         "parameters": []
       },
       {
+        "name": "SendNow",
+        "type": "function",
+        "async": true,
+        "description": "",
+        "parameters": []
+      },
+      {
         "name":"alert",
         "type":"function",
         "async":true,

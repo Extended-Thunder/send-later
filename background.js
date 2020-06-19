@@ -57,8 +57,18 @@ const SendLater = {
 
     async scheduleSendLater(tabId, options) {
       SendLater.log("Scheduling send later: "+tabId+" with options ",options);
+      // browser.windows.getLastFocused({ windowTypes: ["composeWindow"] }).then(
+      //   composeWindow => browser.SL3U.SaveAsDraft(composeWindow)
+      // );
+      // var msgcomposeWindow = document.getElementById("msgcomposeWindow");
+      // msgcomposeWindow.setAttribute("sending_later", true);
+      // msgcomposeWindow.sendLater3SendAt = sendat;
+      // msgcomposeWindow.sendLater3Recur = recur;
+      // msgcomposeWindow.sendLater3CancelOnReply = cancelOnReply;
+      // msgcomposeWindow.sendLater3Args = args;
+      // msgcomposeWindow.sendLater3Type = gMsgCompose.type;
+      // msgcomposeWindow.sendLater3OriginalURI = gMsgCompose.originalMsgURI;
       browser.SL3U.SaveAsDraft();
-      return;
     },
 
     mainLoop: function() {
@@ -123,22 +133,36 @@ browser.compose.onBeforeSend.addListener((tab) => {
   return new Promise(resolve => SendLater.PromiseMap.set(tab.id, resolve));
 });
 
+// Button clicks in the UI popup window send messages back to this function
+// via the WebExtension messaging API.
 browser.runtime.onMessage.addListener((message) => {
-    let resolve = (SendLater.PromiseMap.get(message.tabId)) || (()=>{});
+    const resolve = SendLater.PromiseMap.get(message.tabId);
 
     if (message.action === "doSendNow" ) {
         console.debug("SendLater: User requested send immediately.");
-        resolve({ cancel: false });
+        if (resolve !== undefined) {
+          // If already blocking a send operation, just get out of the way.
+          resolve({ cancel: false });
+        } else {
+          // Otherwise, initiate a new send operation.
+          browser.SL3U.SendNow();
+        }
     } else if (message.action === "doSendLater") {
         console.debug("SendLater: User requested send later.");
         const options = { sendTime: message.sendTime };
         SendLater.scheduleSendLater(message.tabId, options);
-        resolve({ cancel: true });
+        if (resolve !== undefined) {
+          resolve({ cancel: true });
+        }
     } else if (message.action === "cancel") {
         console.debug("SendLater: User cancelled send.");
-        resolve({ cancel: true });
+        if (resolve !== undefined) {
+          resolve({ cancel: true });
+        }
     } else {
+      if (resolve !== undefined) {
         resolve({ cancel: true });
+      }
     }
 });
 

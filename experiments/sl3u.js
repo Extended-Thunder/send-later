@@ -172,6 +172,12 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                     composeWindow.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
                   },
 
+                  async SendNow() {
+                    // Sends the message from this currently open message compose window.
+                    const composeWindow = Services.wm.getMostRecentWindow("msgcompose");
+                    composeWindow.GenericSendMessage(Ci.nsIMsgCompDeliverMode.Now);
+                  },
+
                   // TODO: According to an old comment, the MailMerge add-on uses
                   // this function for some reason. Remember to check with that
                   // author about how it was used, because that is almost certainly
