@@ -16,7 +16,7 @@ const SendLater = {
       browser.storage.local.get({"preferences":{}}).then(storage => {
         const consoleLogLevel = storage.preferences.logConsoleLevel;
         if (levels.indexOf(level) >= levels.indexOf(consoleLogLevel)) {
-          output(level.toUpperCase()+" (SendLater):", ...msg);
+          output(`${level.toUpperCase()} [SendLater]:`, ...msg);
         }
       });
     },
@@ -57,17 +57,6 @@ const SendLater = {
 
     async scheduleSendLater(tabId, options) {
       SendLater.log("Scheduling send later: "+tabId+" with options ",options);
-      // browser.windows.getLastFocused({ windowTypes: ["composeWindow"] }).then(
-      //   composeWindow => browser.SL3U.SaveAsDraft(composeWindow)
-      // );
-      // var msgcomposeWindow = document.getElementById("msgcomposeWindow");
-      // msgcomposeWindow.setAttribute("sending_later", true);
-      // msgcomposeWindow.sendLater3SendAt = sendat;
-      // msgcomposeWindow.sendLater3Recur = recur;
-      // msgcomposeWindow.sendLater3CancelOnReply = cancelOnReply;
-      // msgcomposeWindow.sendLater3Args = args;
-      // msgcomposeWindow.sendLater3Type = gMsgCompose.type;
-      // msgcomposeWindow.sendLater3OriginalURI = gMsgCompose.originalMsgURI;
       browser.SL3U.SaveAsDraft();
     },
 
@@ -84,7 +73,7 @@ const SendLater = {
                   do {
                     page.messages.forEach(async message => {
                       const msg = await browser.messages.getFull(message.id);
-                      console.debug(msg.headers);
+                      SendLater.debug(msg.headers);
                       if (msg.headers["x-send-later"] !== undefined) {
                         SendLater.possiblySendMessage(message.id);
                       }
@@ -98,13 +87,21 @@ const SendLater = {
           });
         });
       } catch (ex) {
-        SendLater.error(ex);
+        SendLater.trace(ex);
       }
       browser.storage.local.get("preferences").then(storage => {
+        // Rather than using setInterval for this loop, we'll just start a new
+        // timeout each time it runs to schedule it some delay in the future.
+        // This automatically responds to user changes in 'delay', but has the
+        // disadvantage that shortening `delay` will still take up to the
+        // previous delay time before taking effect.
+        // TODO: Use a persistent reference to the this timeout that can be
+        // scrapped and restarted upon changes in the delay preference.
         const prefs = storage.preferences || {};
         const intervalTimeout = prefs['checkTimePref'];
         const millis = prefs["checkTimePref_isMilliseconds"];
         const delay = (millis) ? intervalTimeout : intervalTimeout * 60000;
+        SendLater.debug(`Next main loop iteration in ${delay/1000} seconds.`);
         setTimeout(SendLater.mainLoop, delay);
       });
     }
@@ -112,20 +109,27 @@ const SendLater = {
 
 // Intercept sent messages. Decide whether to handle them or just pass them on.
 browser.compose.onBeforeSend.addListener((tab) => {
-  SendLater.log("SendLater: User requested send. Awaiting UI selections.");
+  SendLater.log("User requested send. Awaiting UI selections.");
+  if (SendLater.PromiseMap.get(tab.id)) {
+    return;
+  }
 
   setTimeout(() => browser.storage.local.get("preferences").then(storage => {
     const prefs = storage.preferences || {};
     const resolver = (SendLater.PromiseMap.get(tab.id)) || (()=>{});
 
     if (prefs["sendDoesSL"]) {
+      SendLater.debug("Intercepting send operation. Awaiting user input.");
       browser.composeAction.openPopup();
       // No need to resolve just yet. User will do that via UI listener.
-    } else if (prefs["sendDoesDelay"]) { // TODO
+    } else if (prefs["sendDoesDelay"]) {
       const sendDelay = prefs["sendDelay"];
+      SendLater.debug(`Scheduling SendLater ${sendDelay} minutes from now.`);
       SendLater.scheduleSendLater(tab.id, { delay: sendDelay });
       resolver({ cancel: true });
     } else {
+      // No need to intercept sending
+      SendLater.debug("Resolving onBeforeSend intercept.");
       resolver({ cancel: false });
     }
   }), 0);
@@ -139,7 +143,7 @@ browser.runtime.onMessage.addListener((message) => {
     const resolve = SendLater.PromiseMap.get(message.tabId);
 
     if (message.action === "doSendNow" ) {
-        console.debug("SendLater: User requested send immediately.");
+        SendLater.debug("User requested send immediately.");
         if (resolve !== undefined) {
           // If already blocking a send operation, just get out of the way.
           resolve({ cancel: false });
@@ -148,18 +152,19 @@ browser.runtime.onMessage.addListener((message) => {
           browser.SL3U.SendNow();
         }
     } else if (message.action === "doSendLater") {
-        console.debug("SendLater: User requested send later.");
+        SendLater.debug("User requested send later.");
         const options = { sendTime: message.sendTime };
         SendLater.scheduleSendLater(message.tabId, options);
         if (resolve !== undefined) {
           resolve({ cancel: true });
         }
     } else if (message.action === "cancel") {
-        console.debug("SendLater: User cancelled send.");
+        SendLater.debug("User cancelled send.");
         if (resolve !== undefined) {
           resolve({ cancel: true });
         }
     } else {
+      SendLater.warn(`Unrecognized operation <${message.action}>.`);
       if (resolve !== undefined) {
         resolve({ cancel: true });
       }
