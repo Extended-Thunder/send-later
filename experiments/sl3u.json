@@ -66,13 +66,6 @@
         "parameters":[]
       },
       {
-        "name":"appName",
-        "type":"function",
-        "async":true,
-        "description":"",
-        "parameters":[]
-      },
-      {
         "name":"updatePrefs",
         "type":"function",
         "async":true,

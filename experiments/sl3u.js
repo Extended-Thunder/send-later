@@ -88,10 +88,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                       return !Utils.isOffline;
                   },
 
-                  async appName() {
-                      return Services.appinfo.name;
-                  },
-
                   // When user preferences are changed by the webExtension bits,
                   // background.js sends updated user prefs to the experiment via
                   // this method.
@@ -158,23 +154,17 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                     throw new Error("Unexpected pref type");
                   },
 
-                  async checkTimeout() {
-                      const timeout = this.getPref("checkTimePref");
-                      const millis = this.getPref("checkTimePref_isMilliseconds");
-                      return await Promise.all([timeout, millis]).then(
-                          ([timeout, millis]) => {return ((millis) ? timeout : timeout * 60000); }
-                      );
-                  },
-
                   async SaveAsDraft() {
-                    // Saves the current compose window message as a draft
+                    // Saves the current compose window message as a draft.
+                    // Compose window remains open.
                     const composeWindow = Services.wm.getMostRecentWindow("msgcompose");
                     composeWindow.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
                   },
 
                   async SendNow() {
-                    // Sends the message from this currently open message compose window.
+                    // Sends the message from the current composition window
                     const composeWindow = Services.wm.getMostRecentWindow("msgcompose");
+                    // Interestingly, this does not seem to trigger an onBeforeSend event
                     composeWindow.GenericSendMessage(Ci.nsIMsgCompDeliverMode.Now);
                   },
 
