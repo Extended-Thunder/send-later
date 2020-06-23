@@ -15,7 +15,7 @@ const SLOptions = {
       const prefs = storage.preferences || {};
       for (const id of SLOptions.inputIds) {
         (async (e, v) => {
-          if (e.tagName == "INPUT") {
+          if (e.tagName === "INPUT") {
               switch (e.type) {
                   case "checkbox":
                     e.checked = (v !== undefined) && v;
@@ -30,7 +30,7 @@ const SLOptions = {
                   default:
                     console.error("SendLater: Unable to populate input element of type "+e.type);
               }
-          } else if (e.tagName == "SELECT") {
+          } else if (e.tagName === "SELECT") {
               e.value = v;
           }
         })(document.getElementById(id), prefs[id]);
@@ -175,4 +175,4 @@ const SLOptions = {
   }
 };
 
-window.addEventListener("load", SLOptions.onLoad, true);
+window.addEventListener("load", SLOptions.onLoad, false);

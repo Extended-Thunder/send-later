@@ -8,7 +8,8 @@
 
   <body>
     <section style="display:block;">
-      <span id="sendAtLabel">Send at</span>:
+      <span class="localized __MSG_sendAtLabel__"
+        id="sendAtLabel">Send at</span>:
       <input id="send-date" type="date"/>
       <input id="send-time" type="time"/>
     </section>
@@ -16,37 +17,45 @@
     <section style="display:block;">
       <div style="display: table-row;">
         <div style="display: table-cell;">
-          <span id="sendAtLabel">Recur</span>:
+          <span class="localized __MSG_recurLabel__"
+            id="recurLabel">Recur</span>:
         </div>
         <div style="display: table-cell;">
           <label>
             <input type="radio" id="once" name="recur" value="once" checked/>
-            <span id="onceLabel">Once</span>
+            <span class="localized __MSG_recurOnceLabel__"
+              id="recurOnceLabel">Once</span>
           </label>
           <label>
             <input type="radio" id="minutely" name="recur" value="minutely"/>
-            <span id="minutelyLabel">Minutely</span>
+            <span class="localized __MSG_recurMinutelyLabel__"
+              id="recurMinutelyLabel">Minutely</span>
           </label>
           <label>
             <input type="radio" id="daily" name="recur" value="daily"/>
-            <span id="dailyLabel">Daily</span>
+            <span class="localized __MSG_recurDailyLabel__"
+              id="recurDailyLabel">Daily</span>
           </label>
           <label>
             <input type="radio" id="weekly" name="recur" value="weekly"/>
-            <span id="weeklyLabel">Weekly</span>
+            <span class="localized __MSG_recurWeeklyLabel__"
+              id="recurWeeklyLabel">Weekly</span>
           </label>
           <label>
             <input type="radio" id="monthly" name="recur" value="monthly"/>
-            <span id="monthlyLabel">Monthly</span>
+            <span class="localized __MSG_recurMonthlyLabel__"
+              id="recurMonthlyLabel">Monthly</span>
           </label>
           <label>
             <input type="radio" id="yearly" name="recur" value="yearly"/>
-            <span id="yearlyLabel">Yearly</span>
+            <span class="localized __MSG_recurAnnuallyLabel__"
+              id="recurAnnuallyLabel">Annually</span>
           </label>
           <br/>
           <label>
             <input type="radio" id="function" name="recur" value="function"/>
-            <span id="functionLabel">Function</span>
+            <span class="localized __MSG_recurFunctionLabel__"
+              id="recurFunctionLabel">Function</span>
             <select id="recurFunction">
             </select>
           </label>
@@ -57,7 +66,8 @@
     <section style="display:block;">
       <label>
         <input type="checkbox" id="sendbetween"/>
-        <span id="betweenLabel">Between</span>
+        <span class="localized __MSG_sendBtwnLabel__"
+          id="sendBtwnLabel">Between</span>
         <input id="ssendbetween-start" type="time"/>
         -
         <input id="sendbetween-end" type="time"/>
@@ -69,38 +79,46 @@
         <div style="display: table-cell;white-space:nowrap;">
           <label>
             <input type="checkbox" id="sendon"/>
-            <span id="onlyOnLabel">Only on</span>
+            <span class="localized __MSG_sendOnlyOnLabel__"
+              id="sendOnlyOnLabel">Only on</span>
           </label>
         </div>
         <div style="display: table-cell;" id="onlyOnDiv">
           <label>
             <input type="checkbox" id="sendon-sunday"/>
-            <span id="sundayLabel">Sunday</span>
+            <span class="localized __MSG_sendSundayLabel__"
+              id="sendSundayLabel">Sunday</span>
           </label>
           <label>
             <input type="checkbox" id="sendon-monday"/>
-            <span id="mondayLabel">Monday</span>
+            <span class="localized __MSG_sendMondayLabel__"
+              id="sendMondayLabel">Monday</span>
           </label>
           <label>
             <input type="checkbox" id="sendon-tuesday"/>
-            <span id="tuesdayLabel">Tuesday</span>
+            <span class="localized __MSG_sendTuesdayLabel__"
+              id="sendTuesdayLabel">Tuesday</span>
           </label>
           <label>
             <input type="checkbox" id="sendon-wednesday"/>
-            <span id="wednesdayLabel">Wednesday</span>
+            <span class="localized __MSG_sendWednesdayLabel__"
+              id="sendWednesdayLabel">Wednesday</span>
           </label>
           <br/>
           <label>
             <input type="checkbox" id="sendon-thursday"/>
-            <span id="thursdayLabel">Thursday</span>
+            <span class="localized __MSG_sendThursdayLabel__"
+              id="sendThursdayLabel">Thursday</span>
           </label>
           <label>
             <input type="checkbox" id="sendon-friday"/>
-            <span id="fridayLabel">Friday</span>
+            <span class="localized __MSG_sendFridayLabel__"
+              id="sendFridayLabel">Friday</span>
           </label>
           <label>
             <input type="checkbox" id="sendon-saturday"/>
-            <span id="saturdayLabel">Saturday</span>
+            <span class="localized __MSG_sendSaturdayLabel__"
+              id="sendSaturdayLabel">Saturday</span>
           </label>
         </div>
       </div>
@@ -109,31 +127,39 @@
     <section style="display: block; padding: 10px auto;">
       <label>
         <input type="checkbox" id="save-defaults"/>
-        <span id="saveDefaultsLabel">Save these values as defaults</span>
+        <span class="localized __MSG_saveDefaultsLabel__"
+          id="saveDefaultsLabel">Save these values as defaults</span>
       </label>
       <label>
         <input type="checkbox" id="clear-defaults"/>
-        <span id="clearDefaultsLabel">Clear defaults</span>
+        <span class="localized __MSG_clearDefaultsLabel__"
+          id="clearDefaultsLabel">Clear defaults</span>
       </label>
     </section>
 
     <section style="display:block;">
-      <input type="button" value="Enter a date above" id="send-at"
-          style="width:100%;" disabled/>
+      <input type="button" value="Enter a date above" style="width:100%;"
+          id="sendAt" class="localized __MSG_sendAtDefaultLabel__" disabled/>
       <br/>
-      <input type="button" value="15 minutes from now" id="delay-15" class="delayButton" />
-      <input type="button" value="30 minutes from now" id="delay-30" class="delayButton" />
-      <input type="button" value="2 hours from now" id="delay-120" class="delayButton" />
+      <input type="button" value="15 minutes from now" id="delay15"
+        class="delayButton localized __MSG_delay15Label__" />
+      <input type="button" value="30 minutes from now" id="delay30"
+        class="delayButton localized __MSG_delay30Label__" />
+      <input type="button" value="2 hours from now" id="delay120"
+        class="delayButton localized __MSG_delay120Label__" />
     </section>
 
     <section style="display:block;">
-      <input type="button" value="Send Now" id="send-now"/>
-      <input type="button" value="Cancel" id="cancel"/>
+      <input type="button" value="Send Now" id="sendNow"
+        class="localized __MSG_sendNowLabel__"/>
+      <input type="button" value="Cancel" id="cancel"
+        class="localized __MSG_cancelLabel__"/>
     </section>
 
     <div style="height:1em;"></div>
 
     <script src="/ui/popup.js"></script>
+    <script src="/ui/localize.js"></script>
   </body>
 
 </html>

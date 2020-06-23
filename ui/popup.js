@@ -20,10 +20,10 @@ const sendDelay = function(delay) {
 };
 
 const cancelButton = document.getElementById("cancel");
-const sendNowButton = document.getElementById("send-now");
-const delay15Button = document.getElementById("delay-15");
-const delay30Button = document.getElementById("delay-30");
-const delay120Button = document.getElementById("delay-120");
+const sendNowButton = document.getElementById("sendNow");
+const delay15Button = document.getElementById("delay15");
+const delay30Button = document.getElementById("delay30");
+const delay120Button = document.getElementById("delay120");
 
 sendNowButton.addEventListener("click", sendDelay(0));
 delay15Button.addEventListener("click", sendDelay(15));
