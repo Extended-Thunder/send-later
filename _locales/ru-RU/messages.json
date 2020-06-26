@@ -4,71 +4,71 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "appDesc": {
-    "message": "True &quot;Send Later&quot; functionality to schedule the time for sending an email.",
+    "message": "&quot;Send Later&quot; - планировщик времени отправки сообщений электронной почты.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
-    "message": "Advanced",
+    "message": "Дополнительные",
     "description": ""
   },
   "altBindingPrefLabel": {
-    "message": "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter",
+    "message": "Заменить Alt-Shift-Enter на Ctrl-Shift-Enter",
     "description": ""
   },
   "blockLateMessagesPrefLabel1": {
-    "message": "Don&#x27;t deliver messages more than",
+    "message": "Не доставлять сообщения позднее, чем",
     "description": ""
   },
   "blockLateMessagesPrefLabel2": {
-    "message": "minutes late",
+    "message": "минут",
     "description": ""
   },
   "cancelLabel": {
-    "message": "Cancel",
+    "message": "Отмена",
     "description": ""
   },
   "checkTimePrefLabel1": {
-    "message": "Check every",
+    "message": "Проверять каждые",
     "description": ""
   },
   "checkTimePrefLabel2": {
-    "message": "minutes",
+    "message": "мин.",
     "description": ""
   },
   "clearDefaultsLabel": {
-    "message": "Clear defaults",
+    "message": "Сбросить настройки по умолчанию",
     "description": ""
   },
   "contactAuthorLabel": {
-    "message": "Contact the author",
+    "message": "Связаться с автором",
     "description": ""
   },
   "delay15Label": {
-    "message": "15 mins later",
+    "message": "15 минут спустя",
     "description": ""
   },
   "delay30Label": {
-    "message": "30 mins later",
+    "message": "30 минут спустя",
     "description": ""
   },
   "delay120Label": {
-    "message": "2 hours later",
+    "message": "2 часа спустя",
     "description": ""
   },
   "enforceRestrictionsPrefLabel": {
-    "message": "Enforce time and day restrictions at delivery time",
+    "message": "Обеспечить ограничение времени и дня во время доставки",
     "description": ""
   },
   "generalOptionsTitle": {
-    "message": "General",
+    "message": "Основные",
     "description": ""
   },
   "logConsoleLevelLabel": {
-    "message": "Console log level",
+    "message": "Уровень логирования для консоли",
     "description": ""
   },
   "logDumpLevelLabel": {
-    "message": "Dump log level",
+    "message": "Уровень логирования для дампа",
     "description": ""
   },
   "logLevelAll": {
@@ -100,55 +100,55 @@
     "description": ""
   },
   "markReadPrefLabel": {
-    "message": "Mark scheduled drafts as read",
+    "message": "Отметить запланированный черновик как прочитанный",
     "description": ""
   },
   "quickOptionsLabel1Label": {
-    "message": "Shortcut 1",
+    "message": "Сокращение 1",
     "description": ""
   },
   "quickOptionsLabel2Label": {
-    "message": "Shortcut 2",
+    "message": "Сокращение 2",
     "description": ""
   },
   "quickOptionsLabel3Label": {
-    "message": "Shortcut 3",
+    "message": "Сокращение 3",
     "description": ""
   },
   "quickOptionsValueLabel": {
-    "message": "Minutes",
+    "message": "Минут(у)",
     "description": ""
   },
   "recurAnnuallyLabel": {
-    "message": "yearly",
+    "message": "ежегодно",
     "description": ""
   },
   "recurDailyLabel": {
-    "message": "daily",
+    "message": "ежедневно",
     "description": ""
   },
   "recurFunctionLabel": {
-    "message": "function",
+    "message": "по функции",
     "description": ""
   },
   "recurLabel": {
-    "message": "Recur",
+    "message": "Повторять",
     "description": ""
   },
   "recurMinutelyLabel": {
-    "message": "minutely",
+    "message": "ежеминутно",
     "description": ""
   },
   "recurMonthlyLabel": {
-    "message": "monthly",
+    "message": "ежемесячно",
     "description": ""
   },
   "recurOnceLabel": {
-    "message": "once",
+    "message": "однажды",
     "description": ""
   },
   "recurWeeklyLabel": {
-    "message": "weekly",
+    "message": "еженедельно",
     "description": ""
   },
   "resetPrefsButton": {
@@ -156,23 +156,23 @@
     "description": ""
   },
   "saveDefaultsLabel": {
-    "message": "Save these values as the defaults",
+    "message": "Сохранить эти значения по умолчанию",
     "description": ""
   },
   "sendAtDefaultLabel": {
-    "message": "Enter a date and time",
+    "message": "Введите время и дату",
     "description": "Displayed in place of send at time before user makes selections"
   },
   "sendAtLabel": {
-    "message": "Send at",
+    "message": "Отправить в",
     "description": ""
   },
   "sendBtwnLabel": {
-    "message": "Between",
+    "message": "Между",
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Send&quot; does &quot;Send Later&quot;",
+    "message": "Заменить «Отправить» на «Отправить позже»",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -184,59 +184,59 @@
     "description": ""
   },
   "sendSundayLabel": {
-    "message": "Sunday",
+    "message": "Воскресенье",
     "description": ""
   },
   "sendMondayLabel": {
-    "message": "Monday",
+    "message": "Понедельник",
     "description": ""
   },
   "sendTuesdayLabel": {
-    "message": "Tuesday",
+    "message": "Вторник",
     "description": ""
   },
   "sendWednesdayLabel": {
-    "message": "Wednesday",
+    "message": "Среда",
     "description": ""
   },
   "sendThursdayLabel": {
-    "message": "Thursday",
+    "message": "Четверг",
     "description": ""
   },
   "sendFridayLabel": {
-    "message": "Friday",
+    "message": "Пятница",
     "description": ""
   },
   "sendSaturdayLabel": {
-    "message": "Saturday",
+    "message": "Суббота",
     "description": ""
   },
   "sendNowLabel": {
-    "message": "Send Now",
+    "message": "Отправить сейчас",
     "description": ""
   },
   "sendOnlyOnLabel": {
-    "message": "Only on",
+    "message": "Только в",
     "description": ""
   },
   "sendUnsentMessagesPrefLabel": {
-    "message": "Trigger unsent message delivery from Outbox",
+    "message": "Отправка не отправленных сообщений из папки «Исходящие»",
     "description": ""
   },
   "showColumnPrefLabel": {
-    "message": "Show Send Later Column",
+    "message": "Показать столбец Send Later",
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "Show Send Later Header",
+    "message": "Показывать заголовок Send Later",
     "description": ""
   },
   "showStatusPrefLabel": {
-    "message": "Show Send Later In Status Bar",
+    "message": "Показывать Send Later в строке состояния",
     "description": ""
   },
   "userGuideLabel": {
-    "message": "User guide",
+    "message": "Руководство Пользователя",
     "description": ""
   }
 }

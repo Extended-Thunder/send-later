@@ -1,154 +1,154 @@
 {
   "appName": {
-    "message": "Send Later",
+    "message": "Küldés később",
     "description": "The name of the add-on, displayed in various places."
   },
   "appDesc": {
-    "message": "True &quot;Send Later&quot; functionality to schedule the time for sending an email.",
+    "message": "Teljes küldemény „Küldés később&quot; az e-mail küldésének ütemezéséhez.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
-    "message": "Advanced",
+    "message": "Haladó",
     "description": ""
   },
   "altBindingPrefLabel": {
-    "message": "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter",
+    "message": "Kötés Alt-Shift-Enter a Ctrl-Shift-Enter helyett",
     "description": ""
   },
   "blockLateMessagesPrefLabel1": {
-    "message": "Don&#x27;t deliver messages more than",
+    "message": "Ne küldjön üzeneteket több mint",
     "description": ""
   },
   "blockLateMessagesPrefLabel2": {
-    "message": "minutes late",
+    "message": "perc késéssel",
     "description": ""
   },
   "cancelLabel": {
-    "message": "Cancel",
+    "message": "Mégse",
     "description": ""
   },
   "checkTimePrefLabel1": {
-    "message": "Check every",
+    "message": "Ellenőrizze minden",
     "description": ""
   },
   "checkTimePrefLabel2": {
-    "message": "minutes",
+    "message": "perc",
     "description": ""
   },
   "clearDefaultsLabel": {
-    "message": "Clear defaults",
+    "message": "Alapértelmezések törlése",
     "description": ""
   },
   "contactAuthorLabel": {
-    "message": "Contact the author",
+    "message": "Lépjen kapcsolatba a szerzővel",
     "description": ""
   },
   "delay15Label": {
-    "message": "15 mins later",
+    "message": "15 perccel később",
     "description": ""
   },
   "delay30Label": {
-    "message": "30 mins later",
+    "message": "30 perccel később",
     "description": ""
   },
   "delay120Label": {
-    "message": "2 hours later",
+    "message": "2 órával később",
     "description": ""
   },
   "enforceRestrictionsPrefLabel": {
-    "message": "Enforce time and day restrictions at delivery time",
+    "message": "Üzenetküldéskor erőltetése, napi és időbeli korlátozásokat",
     "description": ""
   },
   "generalOptionsTitle": {
-    "message": "General",
+    "message": "Általános",
     "description": ""
   },
   "logConsoleLevelLabel": {
-    "message": "Console log level",
+    "message": "Vezérlőpult naplószint",
     "description": ""
   },
   "logDumpLevelLabel": {
-    "message": "Dump log level",
+    "message": "Összeomlási naplószint",
     "description": ""
   },
   "logLevelAll": {
-    "message": "All",
+    "message": "Összes",
     "description": ""
   },
   "logLevelDebug": {
-    "message": "Debug",
+    "message": "Hibakeresés",
     "description": ""
   },
   "logLevelError": {
-    "message": "Error",
+    "message": "Hiba",
     "description": ""
   },
   "logLevelFatal": {
-    "message": "Fatal",
+    "message": "Végzetes",
     "description": ""
   },
   "logLevelInfo": {
-    "message": "Info",
+    "message": "Tájékoztató",
     "description": ""
   },
   "logLevelTrace": {
-    "message": "Trace",
+    "message": "Nyomkövetés",
     "description": ""
   },
   "logLevelWarn": {
-    "message": "Warn",
+    "message": "Figyelmeztetés",
     "description": ""
   },
   "markReadPrefLabel": {
-    "message": "Mark scheduled drafts as read",
+    "message": "Megjelölés ütemezett tervezeteket olvasottként",
     "description": ""
   },
   "quickOptionsLabel1Label": {
-    "message": "Shortcut 1",
+    "message": "1. gyorsbillentyű",
     "description": ""
   },
   "quickOptionsLabel2Label": {
-    "message": "Shortcut 2",
+    "message": "2. gyorsbillentyű",
     "description": ""
   },
   "quickOptionsLabel3Label": {
-    "message": "Shortcut 3",
+    "message": "3. gyorsbillentyű",
     "description": ""
   },
   "quickOptionsValueLabel": {
-    "message": "Minutes",
+    "message": "Perc",
     "description": ""
   },
   "recurAnnuallyLabel": {
-    "message": "yearly",
+    "message": "évente",
     "description": ""
   },
   "recurDailyLabel": {
-    "message": "daily",
+    "message": "naponta",
     "description": ""
   },
   "recurFunctionLabel": {
-    "message": "function",
+    "message": "függvény",
     "description": ""
   },
   "recurLabel": {
-    "message": "Recur",
+    "message": "Ismétlődés",
     "description": ""
   },
   "recurMinutelyLabel": {
-    "message": "minutely",
+    "message": "percenként",
     "description": ""
   },
   "recurMonthlyLabel": {
-    "message": "monthly",
+    "message": "havonta",
     "description": ""
   },
   "recurOnceLabel": {
-    "message": "once",
+    "message": "egyszer",
     "description": ""
   },
   "recurWeeklyLabel": {
-    "message": "weekly",
+    "message": "hetente",
     "description": ""
   },
   "resetPrefsButton": {
@@ -156,87 +156,87 @@
     "description": ""
   },
   "saveDefaultsLabel": {
-    "message": "Save these values as the defaults",
+    "message": "Mentse ezeket az értékeket alapértelmezettként",
     "description": ""
   },
   "sendAtDefaultLabel": {
-    "message": "Enter a date and time",
+    "message": "Adja meg a dátumot és az időt",
     "description": "Displayed in place of send at time before user makes selections"
   },
   "sendAtLabel": {
-    "message": "Send at",
+    "message": "Küldés időben",
     "description": ""
   },
   "sendBtwnLabel": {
-    "message": "Between",
+    "message": "Között",
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Send&quot; does &quot;Send Later&quot;",
+    "message": "„Küldés&quot; úgy működik, mint „Küldés később&quot;",
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&quot;Send&quot; delays messages by",
+    "message": "A „küldés&quot; késlelteti az üzeneteket",
     "description": ""
   },
   "sendDelayPrefLabel2": {
-    "message": "minutes",
+    "message": "perc",
     "description": ""
   },
   "sendSundayLabel": {
-    "message": "Sunday",
+    "message": "vasárnap",
     "description": ""
   },
   "sendMondayLabel": {
-    "message": "Monday",
+    "message": "hétfő",
     "description": ""
   },
   "sendTuesdayLabel": {
-    "message": "Tuesday",
+    "message": "kedd",
     "description": ""
   },
   "sendWednesdayLabel": {
-    "message": "Wednesday",
+    "message": "szerda",
     "description": ""
   },
   "sendThursdayLabel": {
-    "message": "Thursday",
+    "message": "csütörtök",
     "description": ""
   },
   "sendFridayLabel": {
-    "message": "Friday",
+    "message": "péntek",
     "description": ""
   },
   "sendSaturdayLabel": {
-    "message": "Saturday",
+    "message": "szombat",
     "description": ""
   },
   "sendNowLabel": {
-    "message": "Send Now",
+    "message": "Küldés most",
     "description": ""
   },
   "sendOnlyOnLabel": {
-    "message": "Only on",
+    "message": "Csak",
     "description": ""
   },
   "sendUnsentMessagesPrefLabel": {
-    "message": "Trigger unsent message delivery from Outbox",
+    "message": "Indítsa el a nem küldött üzeneteket a Kimenő mappából",
     "description": ""
   },
   "showColumnPrefLabel": {
-    "message": "Show Send Later Column",
+    "message": "Küldés később oszlop megjelenítése",
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "Show Send Later Header",
+    "message": "Küldés később fejlécek megjelenítése",
     "description": ""
   },
   "showStatusPrefLabel": {
-    "message": "Show Send Later In Status Bar",
+    "message": "Küldés később megjelenítése az állapotsorban",
     "description": ""
   },
   "userGuideLabel": {
-    "message": "User guide",
+    "message": "Felhasználói útmutató",
     "description": ""
   }
 }

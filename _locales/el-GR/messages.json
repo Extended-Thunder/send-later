@@ -4,151 +4,151 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "appDesc": {
-    "message": "True &quot;Send Later&quot; functionality to schedule the time for sending an email.",
+    "message": "Πραγματική «Στείλετε αργότερα» λειτουργικότητα για να προγραμματίσετε την ώρα για την αποστολή μηνύματοςμέσω ηλεκτρονικού ταχυδρομείου.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
-    "message": "Advanced",
+    "message": "Προχωρημένες",
     "description": ""
   },
   "altBindingPrefLabel": {
-    "message": "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter",
+    "message": "Δέσμευση του συνδυασμού πλήκτρων Alt-Shift-Enter αντί για Ctrl-Shift-Enter",
     "description": ""
   },
   "blockLateMessagesPrefLabel1": {
-    "message": "Don&#x27;t deliver messages more than",
+    "message": "Να μην στέλνονται μηνύματα μετά από",
     "description": ""
   },
   "blockLateMessagesPrefLabel2": {
-    "message": "minutes late",
+    "message": "λεπτά καθυστέρησης",
     "description": ""
   },
   "cancelLabel": {
-    "message": "Cancel",
+    "message": "Ακύρωση",
     "description": ""
   },
   "checkTimePrefLabel1": {
-    "message": "Check every",
+    "message": "Έλεγχος κάθε",
     "description": ""
   },
   "checkTimePrefLabel2": {
-    "message": "minutes",
+    "message": "λεπτά",
     "description": ""
   },
   "clearDefaultsLabel": {
-    "message": "Clear defaults",
+    "message": "Καθαρισμός προεπιλογών",
     "description": ""
   },
   "contactAuthorLabel": {
-    "message": "Contact the author",
+    "message": "Επικοινωνία με τον δημιουργό",
     "description": ""
   },
   "delay15Label": {
-    "message": "15 mins later",
+    "message": "σε 15 λεπτά",
     "description": ""
   },
   "delay30Label": {
-    "message": "30 mins later",
+    "message": "σε 30 λεπτά",
     "description": ""
   },
   "delay120Label": {
-    "message": "2 hours later",
+    "message": "σε 2 ώρες",
     "description": ""
   },
   "enforceRestrictionsPrefLabel": {
-    "message": "Enforce time and day restrictions at delivery time",
+    "message": "Να ικανοποιούνται οι χρονικοί περιορισμοί κατά την αποστολή",
     "description": ""
   },
   "generalOptionsTitle": {
-    "message": "General",
+    "message": "Γενικές",
     "description": ""
   },
   "logConsoleLevelLabel": {
-    "message": "Console log level",
+    "message": "Επίπεδο καταγραφής κονσόλας",
     "description": ""
   },
   "logDumpLevelLabel": {
-    "message": "Dump log level",
+    "message": "Επίπεδο καταγραφής ένδειξης σφαλμάτων",
     "description": ""
   },
   "logLevelAll": {
-    "message": "All",
+    "message": "Όλα",
     "description": ""
   },
   "logLevelDebug": {
-    "message": "Debug",
+    "message": "Αποσφαλμάτωση",
     "description": ""
   },
   "logLevelError": {
-    "message": "Error",
+    "message": "Σφάλμα",
     "description": ""
   },
   "logLevelFatal": {
-    "message": "Fatal",
+    "message": "Ανεπανόρθωτο",
     "description": ""
   },
   "logLevelInfo": {
-    "message": "Info",
+    "message": "Πληροφορία",
     "description": ""
   },
   "logLevelTrace": {
-    "message": "Trace",
+    "message": "Ίχνος",
     "description": ""
   },
   "logLevelWarn": {
-    "message": "Warn",
+    "message": "Προειδοποίηση",
     "description": ""
   },
   "markReadPrefLabel": {
-    "message": "Mark scheduled drafts as read",
+    "message": "Μαρκάρετε τα προγραμματισμένα πρόχειρα ως αναγνωσμένα",
     "description": ""
   },
   "quickOptionsLabel1Label": {
-    "message": "Shortcut 1",
+    "message": "Συντόμευση 1",
     "description": ""
   },
   "quickOptionsLabel2Label": {
-    "message": "Shortcut 2",
+    "message": "Συντόμευση 2",
     "description": ""
   },
   "quickOptionsLabel3Label": {
-    "message": "Shortcut 3",
+    "message": "Συντόμευση 3",
     "description": ""
   },
   "quickOptionsValueLabel": {
-    "message": "Minutes",
+    "message": "Λεπτά",
     "description": ""
   },
   "recurAnnuallyLabel": {
-    "message": "yearly",
+    "message": "ετήσια",
     "description": ""
   },
   "recurDailyLabel": {
-    "message": "daily",
+    "message": "καθημερινά",
     "description": ""
   },
   "recurFunctionLabel": {
-    "message": "function",
+    "message": "συνάρτηση",
     "description": ""
   },
   "recurLabel": {
-    "message": "Recur",
+    "message": "Επανάληψη",
     "description": ""
   },
   "recurMinutelyLabel": {
-    "message": "minutely",
+    "message": "κάθε λεπτό",
     "description": ""
   },
   "recurMonthlyLabel": {
-    "message": "monthly",
+    "message": "μηνιαία",
     "description": ""
   },
   "recurOnceLabel": {
-    "message": "once",
+    "message": "μία φορά",
     "description": ""
   },
   "recurWeeklyLabel": {
-    "message": "weekly",
+    "message": "εβδομαδιαία",
     "description": ""
   },
   "resetPrefsButton": {
@@ -156,23 +156,23 @@
     "description": ""
   },
   "saveDefaultsLabel": {
-    "message": "Save these values as the defaults",
+    "message": "Αποθήκευση αυτών των τιμών ως προεπιλεγμένων",
     "description": ""
   },
   "sendAtDefaultLabel": {
-    "message": "Enter a date and time",
+    "message": "Εισάγετε ημερομηνία και ώρα",
     "description": "Displayed in place of send at time before user makes selections"
   },
   "sendAtLabel": {
-    "message": "Send at",
+    "message": "Αποστολή στις",
     "description": ""
   },
   "sendBtwnLabel": {
-    "message": "Between",
+    "message": "Μεταξύ",
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Send&quot; does &quot;Send Later&quot;",
+    "message": "Η &quot;Αποστολή&quot; στέλνει αργότερα",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -184,59 +184,59 @@
     "description": ""
   },
   "sendSundayLabel": {
-    "message": "Sunday",
+    "message": "Κυριακή",
     "description": ""
   },
   "sendMondayLabel": {
-    "message": "Monday",
+    "message": "Δευτέρα",
     "description": ""
   },
   "sendTuesdayLabel": {
-    "message": "Tuesday",
+    "message": "Τρίτη",
     "description": ""
   },
   "sendWednesdayLabel": {
-    "message": "Wednesday",
+    "message": "Τετάρτη",
     "description": ""
   },
   "sendThursdayLabel": {
-    "message": "Thursday",
+    "message": "Πέμπτη",
     "description": ""
   },
   "sendFridayLabel": {
-    "message": "Friday",
+    "message": "Παρασκευή",
     "description": ""
   },
   "sendSaturdayLabel": {
-    "message": "Saturday",
+    "message": "Σάββατο",
     "description": ""
   },
   "sendNowLabel": {
-    "message": "Send Now",
+    "message": "Αποστολή τώρα",
     "description": ""
   },
   "sendOnlyOnLabel": {
-    "message": "Only on",
+    "message": "Μόνο",
     "description": ""
   },
   "sendUnsentMessagesPrefLabel": {
-    "message": "Trigger unsent message delivery from Outbox",
+    "message": "Να προκαλείται η παράδοση των Εξερχόμενων",
     "description": ""
   },
   "showColumnPrefLabel": {
-    "message": "Show Send Later Column",
+    "message": "Εμφάνιση της στήλης του Send Later",
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "Show Send Later Header",
+    "message": "Εμφάνιση επικεφαλίδας Send Later",
     "description": ""
   },
   "showStatusPrefLabel": {
-    "message": "Show Send Later In Status Bar",
+    "message": "Εμφάνιση του Send Later στη γραμμή κατάστασης",
     "description": ""
   },
   "userGuideLabel": {
-    "message": "User guide",
+    "message": "Οδηγίες χρήσης",
     "description": ""
   }
 }

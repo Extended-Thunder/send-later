@@ -1,86 +1,86 @@
 {
   "appName": {
-    "message": "Send Later",
+    "message": "Skicka Senare",
     "description": "The name of the add-on, displayed in various places."
   },
   "appDesc": {
-    "message": "True &quot;Send Later&quot; functionality to schedule the time for sending an email.",
+    "message": "&quot;Skicka senare&quot;-funktion som låter användaren schemalägga tidpunkten för sändning av ett e-brev.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
-    "message": "Advanced",
+    "message": "Avancerat",
     "description": ""
   },
   "altBindingPrefLabel": {
-    "message": "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter",
+    "message": "Tilldela Alt+Skift+Retur istället för Ctrl+Skift+Retur",
     "description": ""
   },
   "blockLateMessagesPrefLabel1": {
-    "message": "Don&#x27;t deliver messages more than",
+    "message": "Skicka inte meddelanden mer än",
     "description": ""
   },
   "blockLateMessagesPrefLabel2": {
-    "message": "minutes late",
+    "message": "minuter sent",
     "description": ""
   },
   "cancelLabel": {
-    "message": "Cancel",
+    "message": "Avbryt",
     "description": ""
   },
   "checkTimePrefLabel1": {
-    "message": "Check every",
+    "message": "Kontrollera var",
     "description": ""
   },
   "checkTimePrefLabel2": {
-    "message": "minutes",
+    "message": "minuter",
     "description": ""
   },
   "clearDefaultsLabel": {
-    "message": "Clear defaults",
+    "message": "Rensa standardinställningar",
     "description": ""
   },
   "contactAuthorLabel": {
-    "message": "Contact the author",
+    "message": "Kontakta skaparen",
     "description": ""
   },
   "delay15Label": {
-    "message": "15 mins later",
+    "message": "15 min. senare",
     "description": ""
   },
   "delay30Label": {
-    "message": "30 mins later",
+    "message": "30 min. senare",
     "description": ""
   },
   "delay120Label": {
-    "message": "2 hours later",
+    "message": "2 tim. senare",
     "description": ""
   },
   "enforceRestrictionsPrefLabel": {
-    "message": "Enforce time and day restrictions at delivery time",
+    "message": "Tid- och datuminställning är tvingande för att skicka",
     "description": ""
   },
   "generalOptionsTitle": {
-    "message": "General",
+    "message": "Allmänt",
     "description": ""
   },
   "logConsoleLevelLabel": {
-    "message": "Console log level",
+    "message": "Loggningsnivå för konsol",
     "description": ""
   },
   "logDumpLevelLabel": {
-    "message": "Dump log level",
+    "message": "Loggningsnivå för loggdump",
     "description": ""
   },
   "logLevelAll": {
-    "message": "All",
+    "message": "Alla",
     "description": ""
   },
   "logLevelDebug": {
-    "message": "Debug",
+    "message": "Felsök",
     "description": ""
   },
   "logLevelError": {
-    "message": "Error",
+    "message": "Fel",
     "description": ""
   },
   "logLevelFatal": {
@@ -92,63 +92,63 @@
     "description": ""
   },
   "logLevelTrace": {
-    "message": "Trace",
+    "message": "Spår",
     "description": ""
   },
   "logLevelWarn": {
-    "message": "Warn",
+    "message": "Varna",
     "description": ""
   },
   "markReadPrefLabel": {
-    "message": "Mark scheduled drafts as read",
+    "message": "Markera schemalagda utkast som lästa",
     "description": ""
   },
   "quickOptionsLabel1Label": {
-    "message": "Shortcut 1",
+    "message": "Genväg 1",
     "description": ""
   },
   "quickOptionsLabel2Label": {
-    "message": "Shortcut 2",
+    "message": "Genväg 2",
     "description": ""
   },
   "quickOptionsLabel3Label": {
-    "message": "Shortcut 3",
+    "message": "Genväg 3",
     "description": ""
   },
   "quickOptionsValueLabel": {
-    "message": "Minutes",
+    "message": "Minuter",
     "description": ""
   },
   "recurAnnuallyLabel": {
-    "message": "yearly",
+    "message": "varje år",
     "description": ""
   },
   "recurDailyLabel": {
-    "message": "daily",
+    "message": "varje dag",
     "description": ""
   },
   "recurFunctionLabel": {
-    "message": "function",
+    "message": "funktion",
     "description": ""
   },
   "recurLabel": {
-    "message": "Recur",
+    "message": "Upprepning",
     "description": ""
   },
   "recurMinutelyLabel": {
-    "message": "minutely",
+    "message": "var minut",
     "description": ""
   },
   "recurMonthlyLabel": {
-    "message": "monthly",
+    "message": "varje månad",
     "description": ""
   },
   "recurOnceLabel": {
-    "message": "once",
+    "message": "ingen",
     "description": ""
   },
   "recurWeeklyLabel": {
-    "message": "weekly",
+    "message": "varje vecka",
     "description": ""
   },
   "resetPrefsButton": {
@@ -156,87 +156,87 @@
     "description": ""
   },
   "saveDefaultsLabel": {
-    "message": "Save these values as the defaults",
+    "message": "Spara dessa värden som standardvärden",
     "description": ""
   },
   "sendAtDefaultLabel": {
-    "message": "Enter a date and time",
+    "message": "Ange datum och klockslag",
     "description": "Displayed in place of send at time before user makes selections"
   },
   "sendAtLabel": {
-    "message": "Send at",
+    "message": "Sändningstid",
     "description": ""
   },
   "sendBtwnLabel": {
-    "message": "Between",
+    "message": "Mellan",
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Send&quot; does &quot;Send Later&quot;",
+    "message": "&quot;Skicka&quot; innebär &quot;Skicka senare&quot;",
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&quot;Send&quot; delays messages by",
+    "message": "&quot;Skicka&quot; försenar meddelanden genom att",
     "description": ""
   },
   "sendDelayPrefLabel2": {
-    "message": "minutes",
+    "message": "minuter",
     "description": ""
   },
   "sendSundayLabel": {
-    "message": "Sunday",
+    "message": "söndag",
     "description": ""
   },
   "sendMondayLabel": {
-    "message": "Monday",
+    "message": "måndag",
     "description": ""
   },
   "sendTuesdayLabel": {
-    "message": "Tuesday",
+    "message": "tisdag",
     "description": ""
   },
   "sendWednesdayLabel": {
-    "message": "Wednesday",
+    "message": "onsdag",
     "description": ""
   },
   "sendThursdayLabel": {
-    "message": "Thursday",
+    "message": "torsdag",
     "description": ""
   },
   "sendFridayLabel": {
-    "message": "Friday",
+    "message": "fredag",
     "description": ""
   },
   "sendSaturdayLabel": {
-    "message": "Saturday",
+    "message": "lördag",
     "description": ""
   },
   "sendNowLabel": {
-    "message": "Send Now",
+    "message": "Skicka nu",
     "description": ""
   },
   "sendOnlyOnLabel": {
-    "message": "Only on",
+    "message": "Endast på",
     "description": ""
   },
   "sendUnsentMessagesPrefLabel": {
-    "message": "Trigger unsent message delivery from Outbox",
+    "message": "Utlös sändning av ej skickade meddelanden från Utkorgen",
     "description": ""
   },
   "showColumnPrefLabel": {
-    "message": "Show Send Later Column",
+    "message": "Visa kolumnen &quot;Skicka Senare&quot;",
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "Show Send Later Header",
+    "message": "Visa huvudet &quot;Skicka Senare&quot;",
     "description": ""
   },
   "showStatusPrefLabel": {
-    "message": "Show Send Later In Status Bar",
+    "message": "Visa Skicka Senare i statusfältet",
     "description": ""
   },
   "userGuideLabel": {
-    "message": "User guide",
+    "message": "Användarhandbok",
     "description": ""
   }
 }

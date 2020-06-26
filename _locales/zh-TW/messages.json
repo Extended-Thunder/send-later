@@ -1,154 +1,154 @@
 {
   "appName": {
-    "message": "Send Later",
+    "message": "延期發信",
     "description": "The name of the add-on, displayed in various places."
   },
   "appDesc": {
-    "message": "True &quot;Send Later&quot; functionality to schedule the time for sending an email.",
+    "message": "用來預定傳送信件的時間寄信",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
-    "message": "Advanced",
+    "message": "進階",
     "description": ""
   },
   "altBindingPrefLabel": {
-    "message": "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter",
+    "message": "綁定快捷鍵 Alt-Shift-Enter 代替 Ctrl-Shift-Enter",
     "description": ""
   },
   "blockLateMessagesPrefLabel1": {
-    "message": "Don&#x27;t deliver messages more than",
+    "message": "不將晚了",
     "description": ""
   },
   "blockLateMessagesPrefLabel2": {
-    "message": "minutes late",
+    "message": "分鐘以上的訊息寄出",
     "description": ""
   },
   "cancelLabel": {
-    "message": "Cancel",
+    "message": "取消",
     "description": ""
   },
   "checkTimePrefLabel1": {
-    "message": "Check every",
+    "message": "檢查間隔：",
     "description": ""
   },
   "checkTimePrefLabel2": {
-    "message": "minutes",
+    "message": "分鐘",
     "description": ""
   },
   "clearDefaultsLabel": {
-    "message": "Clear defaults",
+    "message": "清除預設值",
     "description": ""
   },
   "contactAuthorLabel": {
-    "message": "Contact the author",
+    "message": "聯絡作者",
     "description": ""
   },
   "delay15Label": {
-    "message": "15 mins later",
+    "message": "15 分鐘後",
     "description": ""
   },
   "delay30Label": {
-    "message": "30 mins later",
+    "message": "30 分鐘後",
     "description": ""
   },
   "delay120Label": {
-    "message": "2 hours later",
+    "message": "2 小時後",
     "description": ""
   },
   "enforceRestrictionsPrefLabel": {
-    "message": "Enforce time and day restrictions at delivery time",
+    "message": "在寄訊息時強制執行時間和日期的限制",
     "description": ""
   },
   "generalOptionsTitle": {
-    "message": "General",
+    "message": "一般",
     "description": ""
   },
   "logConsoleLevelLabel": {
-    "message": "Console log level",
+    "message": "控制台除錯紀錄層級：",
     "description": ""
   },
   "logDumpLevelLabel": {
-    "message": "Dump log level",
+    "message": "除錯紀錄層級：",
     "description": ""
   },
   "logLevelAll": {
-    "message": "All",
+    "message": "所有訊息",
     "description": ""
   },
   "logLevelDebug": {
-    "message": "Debug",
+    "message": "除錯訊息",
     "description": ""
   },
   "logLevelError": {
-    "message": "Error",
+    "message": "錯誤訊息",
     "description": ""
   },
   "logLevelFatal": {
-    "message": "Fatal",
+    "message": "嚴重錯誤訊息",
     "description": ""
   },
   "logLevelInfo": {
-    "message": "Info",
+    "message": "參考訊息",
     "description": ""
   },
   "logLevelTrace": {
-    "message": "Trace",
+    "message": "追蹤錯誤訊息",
     "description": ""
   },
   "logLevelWarn": {
-    "message": "Warn",
+    "message": "警告訊息",
     "description": ""
   },
   "markReadPrefLabel": {
-    "message": "Mark scheduled drafts as read",
+    "message": "標示排程草稿為已閱讀",
     "description": ""
   },
   "quickOptionsLabel1Label": {
-    "message": "Shortcut 1",
+    "message": "快捷按鈕 1",
     "description": ""
   },
   "quickOptionsLabel2Label": {
-    "message": "Shortcut 2",
+    "message": "快捷按鈕 2",
     "description": ""
   },
   "quickOptionsLabel3Label": {
-    "message": "Shortcut 3",
+    "message": "快捷按鈕 3",
     "description": ""
   },
   "quickOptionsValueLabel": {
-    "message": "Minutes",
+    "message": "分鐘：",
     "description": ""
   },
   "recurAnnuallyLabel": {
-    "message": "yearly",
+    "message": "每年",
     "description": ""
   },
   "recurDailyLabel": {
-    "message": "daily",
+    "message": "每天",
     "description": ""
   },
   "recurFunctionLabel": {
-    "message": "function",
+    "message": "功能：",
     "description": ""
   },
   "recurLabel": {
-    "message": "Recur",
+    "message": "重複寄送：",
     "description": ""
   },
   "recurMinutelyLabel": {
-    "message": "minutely",
+    "message": "每分鐘",
     "description": ""
   },
   "recurMonthlyLabel": {
-    "message": "monthly",
+    "message": "每月",
     "description": ""
   },
   "recurOnceLabel": {
-    "message": "once",
+    "message": "無",
     "description": ""
   },
   "recurWeeklyLabel": {
-    "message": "weekly",
+    "message": "每週",
     "description": ""
   },
   "resetPrefsButton": {
@@ -156,87 +156,87 @@
     "description": ""
   },
   "saveDefaultsLabel": {
-    "message": "Save these values as the defaults",
+    "message": "將這些設成預設值",
     "description": ""
   },
   "sendAtDefaultLabel": {
-    "message": "Enter a date and time",
+    "message": "請輸入日期和時間，格式任意。像&quot;下星期六 下午3:00&quot;這種時間格式也可以被支援。",
     "description": "Displayed in place of send at time before user makes selections"
   },
   "sendAtLabel": {
-    "message": "Send at",
+    "message": "發信時間：",
     "description": ""
   },
   "sendBtwnLabel": {
-    "message": "Between",
+    "message": "介於",
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Send&quot; does &quot;Send Later&quot;",
+    "message": "&quot;發送&quot;變成&quot;延期發送&quot;",
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&quot;Send&quot; delays messages by",
+    "message": "預設所有訊息自動延遲：",
     "description": ""
   },
   "sendDelayPrefLabel2": {
-    "message": "minutes",
+    "message": "分鐘",
     "description": ""
   },
   "sendSundayLabel": {
-    "message": "Sunday",
+    "message": "星期日",
     "description": ""
   },
   "sendMondayLabel": {
-    "message": "Monday",
+    "message": "星期一",
     "description": ""
   },
   "sendTuesdayLabel": {
-    "message": "Tuesday",
+    "message": "星期二",
     "description": ""
   },
   "sendWednesdayLabel": {
-    "message": "Wednesday",
+    "message": "星期三",
     "description": ""
   },
   "sendThursdayLabel": {
-    "message": "Thursday",
+    "message": "星期四",
     "description": ""
   },
   "sendFridayLabel": {
-    "message": "Friday",
+    "message": "星期五",
     "description": ""
   },
   "sendSaturdayLabel": {
-    "message": "Saturday",
+    "message": "星期六",
     "description": ""
   },
   "sendNowLabel": {
-    "message": "Send Now",
+    "message": "立即寄出",
     "description": ""
   },
   "sendOnlyOnLabel": {
-    "message": "Only on",
+    "message": "只在",
     "description": ""
   },
   "sendUnsentMessagesPrefLabel": {
-    "message": "Trigger unsent message delivery from Outbox",
+    "message": "傳送寄件匣中的未傳送的信件",
     "description": ""
   },
   "showColumnPrefLabel": {
-    "message": "Show Send Later Column",
+    "message": "顯示延期發信列",
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "Show Send Later Header",
+    "message": "顯示延期發信標題",
     "description": ""
   },
   "showStatusPrefLabel": {
-    "message": "Show Send Later In Status Bar",
+    "message": "在狀態欄中顯示延期發信",
     "description": ""
   },
   "userGuideLabel": {
-    "message": "User guide",
+    "message": "使用說明",
     "description": ""
   }
 }

@@ -4,23 +4,23 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "appDesc": {
-    "message": "True &quot;Send Later&quot; functionality to schedule the time for sending an email.",
+    "message": "True &quot;Send Later&quot functionality to schedule the time for sending an email.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
-    "message": "Advanced",
+    "message": "Geavanceerd",
     "description": ""
   },
   "altBindingPrefLabel": {
-    "message": "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter",
+    "message": "Alt-Shift-Enter binden in plaats van Ctrl-Shift-Enter",
     "description": ""
   },
   "blockLateMessagesPrefLabel1": {
-    "message": "Don&#x27;t deliver messages more than",
+    "message": "Berichten niet meer dan",
     "description": ""
   },
   "blockLateMessagesPrefLabel2": {
-    "message": "minutes late",
+    "message": "minuten te laat afleveren",
     "description": ""
   },
   "cancelLabel": {
@@ -28,47 +28,47 @@
     "description": ""
   },
   "checkTimePrefLabel1": {
-    "message": "Check every",
+    "message": "Elke",
     "description": ""
   },
   "checkTimePrefLabel2": {
-    "message": "minutes",
+    "message": "minuten controleren",
     "description": ""
   },
   "clearDefaultsLabel": {
-    "message": "Clear defaults",
+    "message": "Clear Defaults",
     "description": ""
   },
   "contactAuthorLabel": {
-    "message": "Contact the author",
+    "message": "Contact opnemen met de schrijver",
     "description": ""
   },
   "delay15Label": {
-    "message": "15 mins later",
+    "message": "15 minutes from now",
     "description": ""
   },
   "delay30Label": {
-    "message": "30 mins later",
+    "message": "15 minutes from now",
     "description": ""
   },
   "delay120Label": {
-    "message": "2 hours later",
+    "message": "2 hours from now",
     "description": ""
   },
   "enforceRestrictionsPrefLabel": {
-    "message": "Enforce time and day restrictions at delivery time",
+    "message": "Tijds- en dagrestricties bij aflevertijd afdwingen",
     "description": ""
   },
   "generalOptionsTitle": {
-    "message": "General",
+    "message": "Algemeen",
     "description": ""
   },
   "logConsoleLevelLabel": {
-    "message": "Console log level",
+    "message": "Consolelogniveau",
     "description": ""
   },
   "logDumpLevelLabel": {
-    "message": "Dump log level",
+    "message": "Dumplogniveau",
     "description": ""
   },
   "logLevelAll": {
@@ -100,35 +100,35 @@
     "description": ""
   },
   "markReadPrefLabel": {
-    "message": "Mark scheduled drafts as read",
+    "message": "Markeer geplande concepten als gelezen",
     "description": ""
   },
   "quickOptionsLabel1Label": {
-    "message": "Shortcut 1",
+    "message": "Sneltoets 1",
     "description": ""
   },
   "quickOptionsLabel2Label": {
-    "message": "Shortcut 2",
+    "message": "Sneltoets 2",
     "description": ""
   },
   "quickOptionsLabel3Label": {
-    "message": "Shortcut 3",
+    "message": "Sneltoets 3",
     "description": ""
   },
   "quickOptionsValueLabel": {
-    "message": "Minutes",
+    "message": "Minuten",
     "description": ""
   },
   "recurAnnuallyLabel": {
-    "message": "yearly",
+    "message": "Annually",
     "description": ""
   },
   "recurDailyLabel": {
-    "message": "daily",
+    "message": "Daily",
     "description": ""
   },
   "recurFunctionLabel": {
-    "message": "function",
+    "message": "Function",
     "description": ""
   },
   "recurLabel": {
@@ -136,19 +136,19 @@
     "description": ""
   },
   "recurMinutelyLabel": {
-    "message": "minutely",
+    "message": "Minutely",
     "description": ""
   },
   "recurMonthlyLabel": {
-    "message": "monthly",
+    "message": "Monthly",
     "description": ""
   },
   "recurOnceLabel": {
-    "message": "once",
+    "message": "Once",
     "description": ""
   },
   "recurWeeklyLabel": {
-    "message": "weekly",
+    "message": "Weekly",
     "description": ""
   },
   "resetPrefsButton": {
@@ -156,11 +156,11 @@
     "description": ""
   },
   "saveDefaultsLabel": {
-    "message": "Save these values as the defaults",
+    "message": "Save these values as defaults",
     "description": ""
   },
   "sendAtDefaultLabel": {
-    "message": "Enter a date and time",
+    "message": "Enter a date above",
     "description": "Displayed in place of send at time before user makes selections"
   },
   "sendAtLabel": {
@@ -172,7 +172,7 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Send&quot; does &quot;Send Later&quot;",
+    "message": "‘Verzenden’ werkt als ‘Later verzenden’",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -212,7 +212,7 @@
     "description": ""
   },
   "sendNowLabel": {
-    "message": "Send Now",
+    "message": "Send now",
     "description": ""
   },
   "sendOnlyOnLabel": {
@@ -220,23 +220,23 @@
     "description": ""
   },
   "sendUnsentMessagesPrefLabel": {
-    "message": "Trigger unsent message delivery from Outbox",
+    "message": "Niet-verzonden berichten in Postvak UIT afleveren",
     "description": ""
   },
   "showColumnPrefLabel": {
-    "message": "Show Send Later Column",
+    "message": "Kolom Send Later tonen",
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "Show Send Later Header",
+    "message": "Header Send Later tonen",
     "description": ""
   },
   "showStatusPrefLabel": {
-    "message": "Show Send Later In Status Bar",
+    "message": "Send Later in statusbalk tonen",
     "description": ""
   },
   "userGuideLabel": {
-    "message": "User guide",
+    "message": "Handleiding",
     "description": ""
   }
 }

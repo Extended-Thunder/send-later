@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "appDesc": {
-    "message": "True &quot;Send Later&quot; functionality to schedule the time for sending an email.",
+    "message": "True &quot;Send Later&quot functionality to schedule the time for sending an email.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -16,7 +16,7 @@
     "description": ""
   },
   "blockLateMessagesPrefLabel1": {
-    "message": "Don&#x27;t deliver messages more than",
+    "message": "Don't deliver messages more than",
     "description": ""
   },
   "blockLateMessagesPrefLabel2": {
@@ -36,23 +36,23 @@
     "description": ""
   },
   "clearDefaultsLabel": {
-    "message": "Clear defaults",
+    "message": "Varsayılanları temizle",
     "description": ""
   },
   "contactAuthorLabel": {
-    "message": "Contact the author",
+    "message": "Contact Maintainer",
     "description": ""
   },
   "delay15Label": {
-    "message": "15 mins later",
+    "message": "15 dakika sonra",
     "description": ""
   },
   "delay30Label": {
-    "message": "30 mins later",
+    "message": "30 dakika sonra",
     "description": ""
   },
   "delay120Label": {
-    "message": "2 hours later",
+    "message": "2 saat sonra",
     "description": ""
   },
   "enforceRestrictionsPrefLabel": {
@@ -60,7 +60,7 @@
     "description": ""
   },
   "generalOptionsTitle": {
-    "message": "General",
+    "message": "General Options",
     "description": ""
   },
   "logConsoleLevelLabel": {
@@ -68,7 +68,7 @@
     "description": ""
   },
   "logDumpLevelLabel": {
-    "message": "Dump log level",
+    "message": "File log level",
     "description": ""
   },
   "logLevelAll": {
@@ -104,31 +104,31 @@
     "description": ""
   },
   "quickOptionsLabel1Label": {
-    "message": "Shortcut 1",
+    "message": "Shortcut 1 label",
     "description": ""
   },
   "quickOptionsLabel2Label": {
-    "message": "Shortcut 2",
+    "message": "Shortcut 2 label",
     "description": ""
   },
   "quickOptionsLabel3Label": {
-    "message": "Shortcut 3",
+    "message": "Shortcut 3 label",
     "description": ""
   },
   "quickOptionsValueLabel": {
-    "message": "Minutes",
+    "message": "quickOptionsValueLabel",
     "description": ""
   },
   "recurAnnuallyLabel": {
-    "message": "yearly",
+    "message": "yıllık",
     "description": ""
   },
   "recurDailyLabel": {
-    "message": "daily",
+    "message": "günlük",
     "description": ""
   },
   "recurFunctionLabel": {
-    "message": "function",
+    "message": "Function",
     "description": ""
   },
   "recurLabel": {
@@ -136,19 +136,19 @@
     "description": ""
   },
   "recurMinutelyLabel": {
-    "message": "minutely",
+    "message": "dakikalık",
     "description": ""
   },
   "recurMonthlyLabel": {
-    "message": "monthly",
+    "message": "aylık",
     "description": ""
   },
   "recurOnceLabel": {
-    "message": "once",
+    "message": "tek sefer",
     "description": ""
   },
   "recurWeeklyLabel": {
-    "message": "weekly",
+    "message": "haftalık",
     "description": ""
   },
   "resetPrefsButton": {
@@ -156,11 +156,11 @@
     "description": ""
   },
   "saveDefaultsLabel": {
-    "message": "Save these values as the defaults",
+    "message": "Bu değerleri varsayılan olarak kaydet",
     "description": ""
   },
   "sendAtDefaultLabel": {
-    "message": "Enter a date and time",
+    "message": "Enter a date above",
     "description": "Displayed in place of send at time before user makes selections"
   },
   "sendAtLabel": {
@@ -168,11 +168,11 @@
     "description": ""
   },
   "sendBtwnLabel": {
-    "message": "Between",
+    "message": "Arasında",
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Send&quot; does &quot;Send Later&quot;",
+    "message": "&quot;Send&quot; does &quot;Send later&quot;",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -184,59 +184,59 @@
     "description": ""
   },
   "sendSundayLabel": {
-    "message": "Sunday",
+    "message": "Pazar",
     "description": ""
   },
   "sendMondayLabel": {
-    "message": "Monday",
+    "message": "Pazartesi",
     "description": ""
   },
   "sendTuesdayLabel": {
-    "message": "Tuesday",
+    "message": "Salı",
     "description": ""
   },
   "sendWednesdayLabel": {
-    "message": "Wednesday",
+    "message": "Çarşamba",
     "description": ""
   },
   "sendThursdayLabel": {
-    "message": "Thursday",
+    "message": "Perşembe",
     "description": ""
   },
   "sendFridayLabel": {
-    "message": "Friday",
+    "message": "Cuma",
     "description": ""
   },
   "sendSaturdayLabel": {
-    "message": "Saturday",
+    "message": "Cumartesi",
     "description": ""
   },
   "sendNowLabel": {
-    "message": "Send Now",
+    "message": "Send now",
     "description": ""
   },
   "sendOnlyOnLabel": {
-    "message": "Only on",
+    "message": "Yalnızca",
     "description": ""
   },
   "sendUnsentMessagesPrefLabel": {
-    "message": "Trigger unsent message delivery from Outbox",
+    "message": "Trigger unsent message delivery from outbox",
     "description": ""
   },
   "showColumnPrefLabel": {
-    "message": "Show Send Later Column",
+    "message": "Show Send Later column",
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "Show Send Later Header",
+    "message": "Show Send Later header",
     "description": ""
   },
   "showStatusPrefLabel": {
-    "message": "Show Send Later In Status Bar",
+    "message": "Show Send Later in status bar",
     "description": ""
   },
   "userGuideLabel": {
-    "message": "User guide",
+    "message": "Website",
     "description": ""
   }
 }

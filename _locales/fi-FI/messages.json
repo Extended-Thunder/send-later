@@ -1,154 +1,154 @@
 {
   "appName": {
-    "message": "Send Later",
+    "message": "Lähetä myöhemmin",
     "description": "The name of the add-on, displayed in various places."
   },
   "appDesc": {
-    "message": "True &quot;Send Later&quot; functionality to schedule the time for sending an email.",
+    "message": "Lisää mahdollisuuden ajastaa viestejä myöhemmin lähetettäviksi",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
-    "message": "Advanced",
+    "message": "Laajemmat",
     "description": ""
   },
   "altBindingPrefLabel": {
-    "message": "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter",
+    "message": "Käytä näppäinyhdistelmää Alt-Shift-Enter näppäinyhdistelmän Ctrl-Shift-Enter sijasta",
     "description": ""
   },
   "blockLateMessagesPrefLabel1": {
-    "message": "Don&#x27;t deliver messages more than",
+    "message": "Älä toimita viestejä, jotka ovat enemmän kuin",
     "description": ""
   },
   "blockLateMessagesPrefLabel2": {
-    "message": "minutes late",
+    "message": "minuuttia myöhässä",
     "description": ""
   },
   "cancelLabel": {
-    "message": "Cancel",
+    "message": "Peruuta",
     "description": ""
   },
   "checkTimePrefLabel1": {
-    "message": "Check every",
+    "message": "Tarkista joka",
     "description": ""
   },
   "checkTimePrefLabel2": {
-    "message": "minutes",
+    "message": "minuutti",
     "description": ""
   },
   "clearDefaultsLabel": {
-    "message": "Clear defaults",
+    "message": "Poista oletusarvot",
     "description": ""
   },
   "contactAuthorLabel": {
-    "message": "Contact the author",
+    "message": "Ota yhteyttä tekijään",
     "description": ""
   },
   "delay15Label": {
-    "message": "15 mins later",
+    "message": "15 min myöhemmin",
     "description": ""
   },
   "delay30Label": {
-    "message": "30 mins later",
+    "message": "30 min myöhemmin",
     "description": ""
   },
   "delay120Label": {
-    "message": "2 hours later",
+    "message": "2 tuntia myöhemmin",
     "description": ""
   },
   "enforceRestrictionsPrefLabel": {
-    "message": "Enforce time and day restrictions at delivery time",
+    "message": "Pidä kiinni aika- ja päivärajoituksista lähetyshetkellä",
     "description": ""
   },
   "generalOptionsTitle": {
-    "message": "General",
+    "message": "Yleiset",
     "description": ""
   },
   "logConsoleLevelLabel": {
-    "message": "Console log level",
+    "message": "Konsolilokitaso",
     "description": ""
   },
   "logDumpLevelLabel": {
-    "message": "Dump log level",
+    "message": "Datankeruutaso",
     "description": ""
   },
   "logLevelAll": {
-    "message": "All",
+    "message": "Kaikki",
     "description": ""
   },
   "logLevelDebug": {
-    "message": "Debug",
+    "message": "Vianetsintä",
     "description": ""
   },
   "logLevelError": {
-    "message": "Error",
+    "message": "Virhe",
     "description": ""
   },
   "logLevelFatal": {
-    "message": "Fatal",
+    "message": "Kriittinen",
     "description": ""
   },
   "logLevelInfo": {
-    "message": "Info",
+    "message": "Tiedot",
     "description": ""
   },
   "logLevelTrace": {
-    "message": "Trace",
+    "message": "Jäljitys",
     "description": ""
   },
   "logLevelWarn": {
-    "message": "Warn",
+    "message": "Varoitus",
     "description": ""
   },
   "markReadPrefLabel": {
-    "message": "Mark scheduled drafts as read",
+    "message": "Merkitse ajastetut luonnokset luetuiksi",
     "description": ""
   },
   "quickOptionsLabel1Label": {
-    "message": "Shortcut 1",
+    "message": "Pikapainike 1",
     "description": ""
   },
   "quickOptionsLabel2Label": {
-    "message": "Shortcut 2",
+    "message": "Pikapainike 2",
     "description": ""
   },
   "quickOptionsLabel3Label": {
-    "message": "Shortcut 3",
+    "message": "Pikapainike 3",
     "description": ""
   },
   "quickOptionsValueLabel": {
-    "message": "Minutes",
+    "message": "Minuuttimäärä",
     "description": ""
   },
   "recurAnnuallyLabel": {
-    "message": "yearly",
+    "message": "vuosittain",
     "description": ""
   },
   "recurDailyLabel": {
-    "message": "daily",
+    "message": "päivittäin",
     "description": ""
   },
   "recurFunctionLabel": {
-    "message": "function",
+    "message": "funktio",
     "description": ""
   },
   "recurLabel": {
-    "message": "Recur",
+    "message": "Toisto",
     "description": ""
   },
   "recurMinutelyLabel": {
-    "message": "minutely",
+    "message": "minuuteittain",
     "description": ""
   },
   "recurMonthlyLabel": {
-    "message": "monthly",
+    "message": "kuukausittain",
     "description": ""
   },
   "recurOnceLabel": {
-    "message": "once",
+    "message": "ei",
     "description": ""
   },
   "recurWeeklyLabel": {
-    "message": "weekly",
+    "message": "viikoittain",
     "description": ""
   },
   "resetPrefsButton": {
@@ -156,87 +156,87 @@
     "description": ""
   },
   "saveDefaultsLabel": {
-    "message": "Save these values as the defaults",
+    "message": "Tallenna oletusarvoiksi",
     "description": ""
   },
   "sendAtDefaultLabel": {
-    "message": "Enter a date and time",
+    "message": "Anna päiväys (ja aika)",
     "description": "Displayed in place of send at time before user makes selections"
   },
   "sendAtLabel": {
-    "message": "Send at",
+    "message": "Lähetysajankohta",
     "description": ""
   },
   "sendBtwnLabel": {
-    "message": "Between",
+    "message": "Aikaväli",
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Send&quot; does &quot;Send Later&quot;",
+    "message": "&quot;Lähetä&quot; toimii, kuten &quot;Lähetä myöhemmin&quot;",
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&quot;Send&quot; delays messages by",
+    "message": "&quot;Lähetä&quot; viivyttää viestejä",
     "description": ""
   },
   "sendDelayPrefLabel2": {
-    "message": "minutes",
+    "message": "minuutti",
     "description": ""
   },
   "sendSundayLabel": {
-    "message": "Sunday",
+    "message": "sunnuntai",
     "description": ""
   },
   "sendMondayLabel": {
-    "message": "Monday",
+    "message": "maanantai",
     "description": ""
   },
   "sendTuesdayLabel": {
-    "message": "Tuesday",
+    "message": "tiistai",
     "description": ""
   },
   "sendWednesdayLabel": {
-    "message": "Wednesday",
+    "message": "keskiviikko",
     "description": ""
   },
   "sendThursdayLabel": {
-    "message": "Thursday",
+    "message": "torstai",
     "description": ""
   },
   "sendFridayLabel": {
-    "message": "Friday",
+    "message": "perjantai",
     "description": ""
   },
   "sendSaturdayLabel": {
-    "message": "Saturday",
+    "message": "lauantai",
     "description": ""
   },
   "sendNowLabel": {
-    "message": "Send Now",
+    "message": "Lähetä heti",
     "description": ""
   },
   "sendOnlyOnLabel": {
-    "message": "Only on",
+    "message": "Vain",
     "description": ""
   },
   "sendUnsentMessagesPrefLabel": {
-    "message": "Trigger unsent message delivery from Outbox",
+    "message": "Käynnistä Lähtevät-kansiosta lähettämättömien viestien lähetys",
     "description": ""
   },
   "showColumnPrefLabel": {
-    "message": "Show Send Later Column",
+    "message": "Näytä Lähetä myöhemmin -sarake",
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "Show Send Later Header",
+    "message": "Näytä Lähetä myöhemmin -otsake",
     "description": ""
   },
   "showStatusPrefLabel": {
-    "message": "Show Send Later In Status Bar",
+    "message": "Näytä tilapalkissa Lähetä myöhemmin",
     "description": ""
   },
   "userGuideLabel": {
-    "message": "User guide",
+    "message": "Käyttäjän opas",
     "description": ""
   }
 }

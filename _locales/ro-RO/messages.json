@@ -4,59 +4,59 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "appDesc": {
-    "message": "True &quot;Send Later&quot; functionality to schedule the time for sending an email.",
+    "message": "Funcționalitate completă &quot;Trimite mai târziu&quot; pentru a programa trimiterea unui email.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
-    "message": "Advanced",
+    "message": "Avansat",
     "description": ""
   },
   "altBindingPrefLabel": {
-    "message": "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter",
+    "message": "Folosește Alt-Shift-Enter în loc de Ctrl-Shift-Enter",
     "description": ""
   },
   "blockLateMessagesPrefLabel1": {
-    "message": "Don&#x27;t deliver messages more than",
+    "message": "Nu trimite mesaje întârziate mai mult de",
     "description": ""
   },
   "blockLateMessagesPrefLabel2": {
-    "message": "minutes late",
+    "message": "minute",
     "description": ""
   },
   "cancelLabel": {
-    "message": "Cancel",
+    "message": "Anulează",
     "description": ""
   },
   "checkTimePrefLabel1": {
-    "message": "Check every",
+    "message": "Verifică la fiecare",
     "description": ""
   },
   "checkTimePrefLabel2": {
-    "message": "minutes",
+    "message": "minute",
     "description": ""
   },
   "clearDefaultsLabel": {
-    "message": "Clear defaults",
+    "message": "Șterge valorile implicite",
     "description": ""
   },
   "contactAuthorLabel": {
-    "message": "Contact the author",
+    "message": "Contactează autorul",
     "description": ""
   },
   "delay15Label": {
-    "message": "15 mins later",
+    "message": "Peste 15 minute",
     "description": ""
   },
   "delay30Label": {
-    "message": "30 mins later",
+    "message": "Peste 30 minute",
     "description": ""
   },
   "delay120Label": {
-    "message": "2 hours later",
+    "message": "Peste 2 ore",
     "description": ""
   },
   "enforceRestrictionsPrefLabel": {
-    "message": "Enforce time and day restrictions at delivery time",
+    "message": "Impune restricțiile de oră și zi în momentul livrării",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -64,23 +64,23 @@
     "description": ""
   },
   "logConsoleLevelLabel": {
-    "message": "Console log level",
+    "message": "Nivel jurnal consolă",
     "description": ""
   },
   "logDumpLevelLabel": {
-    "message": "Dump log level",
+    "message": "Nivel jurnal fișier",
     "description": ""
   },
   "logLevelAll": {
-    "message": "All",
+    "message": "Tot",
     "description": ""
   },
   "logLevelDebug": {
-    "message": "Debug",
+    "message": "Depanare",
     "description": ""
   },
   "logLevelError": {
-    "message": "Error",
+    "message": "Eroare",
     "description": ""
   },
   "logLevelFatal": {
@@ -96,59 +96,59 @@
     "description": ""
   },
   "logLevelWarn": {
-    "message": "Warn",
+    "message": "Avertisment",
     "description": ""
   },
   "markReadPrefLabel": {
-    "message": "Mark scheduled drafts as read",
+    "message": "Marchează mesajele nefinalizate programate ca fiind citite",
     "description": ""
   },
   "quickOptionsLabel1Label": {
-    "message": "Shortcut 1",
+    "message": "Comanda rapidă 1",
     "description": ""
   },
   "quickOptionsLabel2Label": {
-    "message": "Shortcut 2",
+    "message": "Comanda rapidă 2",
     "description": ""
   },
   "quickOptionsLabel3Label": {
-    "message": "Shortcut 3",
+    "message": "Comanda rapidă 3",
     "description": ""
   },
   "quickOptionsValueLabel": {
-    "message": "Minutes",
+    "message": "Minute",
     "description": ""
   },
   "recurAnnuallyLabel": {
-    "message": "yearly",
+    "message": "anual",
     "description": ""
   },
   "recurDailyLabel": {
-    "message": "daily",
+    "message": "zilnic",
     "description": ""
   },
   "recurFunctionLabel": {
-    "message": "function",
+    "message": "funcție",
     "description": ""
   },
   "recurLabel": {
-    "message": "Recur",
+    "message": "Repetă",
     "description": ""
   },
   "recurMinutelyLabel": {
-    "message": "minutely",
+    "message": "la fiecare minut",
     "description": ""
   },
   "recurMonthlyLabel": {
-    "message": "monthly",
+    "message": "lunar",
     "description": ""
   },
   "recurOnceLabel": {
-    "message": "once",
+    "message": "o dată",
     "description": ""
   },
   "recurWeeklyLabel": {
-    "message": "weekly",
+    "message": "săptămânal",
     "description": ""
   },
   "resetPrefsButton": {
@@ -156,87 +156,87 @@
     "description": ""
   },
   "saveDefaultsLabel": {
-    "message": "Save these values as the defaults",
+    "message": "Salvează ca valori implicite",
     "description": ""
   },
   "sendAtDefaultLabel": {
-    "message": "Enter a date and time",
+    "message": "Introdu o dată și o oră",
     "description": "Displayed in place of send at time before user makes selections"
   },
   "sendAtLabel": {
-    "message": "Send at",
+    "message": "Trimite la",
     "description": ""
   },
   "sendBtwnLabel": {
-    "message": "Between",
+    "message": "Între",
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Send&quot; does &quot;Send Later&quot;",
+    "message": "&amp;quot;Trimite&amp;quot; face &amp;quot;Trimite mai târziu&amp;quot;",
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&quot;Send&quot; delays messages by",
+    "message": "„Trimite&quot; va trimite mesajele cu o întârziere de",
     "description": ""
   },
   "sendDelayPrefLabel2": {
-    "message": "minutes",
+    "message": "minute",
     "description": ""
   },
   "sendSundayLabel": {
-    "message": "Sunday",
+    "message": "duminică",
     "description": ""
   },
   "sendMondayLabel": {
-    "message": "Monday",
+    "message": "luni",
     "description": ""
   },
   "sendTuesdayLabel": {
-    "message": "Tuesday",
+    "message": "marți",
     "description": ""
   },
   "sendWednesdayLabel": {
-    "message": "Wednesday",
+    "message": "miercuri",
     "description": ""
   },
   "sendThursdayLabel": {
-    "message": "Thursday",
+    "message": "joi",
     "description": ""
   },
   "sendFridayLabel": {
-    "message": "Friday",
+    "message": "vineri",
     "description": ""
   },
   "sendSaturdayLabel": {
-    "message": "Saturday",
+    "message": "sâmbătă",
     "description": ""
   },
   "sendNowLabel": {
-    "message": "Send Now",
+    "message": "Trimite Acum",
     "description": ""
   },
   "sendOnlyOnLabel": {
-    "message": "Only on",
+    "message": "Doar",
     "description": ""
   },
   "sendUnsentMessagesPrefLabel": {
-    "message": "Trigger unsent message delivery from Outbox",
+    "message": "Declanșează trimiterea mesajelor netrimise din „De trimis&quot;",
     "description": ""
   },
   "showColumnPrefLabel": {
-    "message": "Show Send Later Column",
+    "message": "Arată coloana Send Later",
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "Show Send Later Header",
+    "message": "Arată headerul Send Later",
     "description": ""
   },
   "showStatusPrefLabel": {
-    "message": "Show Send Later In Status Bar",
+    "message": "Afișează Send Later în bara de stare",
     "description": ""
   },
   "userGuideLabel": {
-    "message": "User guide",
+    "message": "Ghidul utilizatorului",
     "description": ""
   }
 }

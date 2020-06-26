@@ -4,59 +4,59 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "appDesc": {
-    "message": "True &quot;Send Later&quot; functionality to schedule the time for sending an email.",
+    "message": "&quot;Enviar més tard&quot; és la funció per programar quan vols fer l&#x27;enviament.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
-    "message": "Advanced",
+    "message": "Avançat",
     "description": ""
   },
   "altBindingPrefLabel": {
-    "message": "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter",
+    "message": "Enllaçar Alt-Majúscules-Intro en lloc de Ctrl-Majúscules-Intro",
     "description": ""
   },
   "blockLateMessagesPrefLabel1": {
-    "message": "Don&#x27;t deliver messages more than",
+    "message": "No lliurar els missatges més de",
     "description": ""
   },
   "blockLateMessagesPrefLabel2": {
-    "message": "minutes late",
+    "message": "minuts de retard",
     "description": ""
   },
   "cancelLabel": {
-    "message": "Cancel",
+    "message": "Cancel·lar",
     "description": ""
   },
   "checkTimePrefLabel1": {
-    "message": "Check every",
+    "message": "Comprovar cada",
     "description": ""
   },
   "checkTimePrefLabel2": {
-    "message": "minutes",
+    "message": "minuts",
     "description": ""
   },
   "clearDefaultsLabel": {
-    "message": "Clear defaults",
+    "message": "Esborrar els valors per omissió",
     "description": ""
   },
   "contactAuthorLabel": {
-    "message": "Contact the author",
+    "message": "Contactar amb l&#x27;autor",
     "description": ""
   },
   "delay15Label": {
-    "message": "15 mins later",
+    "message": "15 min més tard",
     "description": ""
   },
   "delay30Label": {
-    "message": "30 mins later",
+    "message": "30 min més tard",
     "description": ""
   },
   "delay120Label": {
-    "message": "2 hours later",
+    "message": "2 hores més tard",
     "description": ""
   },
   "enforceRestrictionsPrefLabel": {
-    "message": "Enforce time and day restrictions at delivery time",
+    "message": "Fer complir les restriccions de dia i hora en el moment de lliurar",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -64,19 +64,19 @@
     "description": ""
   },
   "logConsoleLevelLabel": {
-    "message": "Console log level",
+    "message": "Nivell de consola de registre",
     "description": ""
   },
   "logDumpLevelLabel": {
-    "message": "Dump log level",
+    "message": "Nivell de bolcat de registre",
     "description": ""
   },
   "logLevelAll": {
-    "message": "All",
+    "message": "Tots",
     "description": ""
   },
   "logLevelDebug": {
-    "message": "Debug",
+    "message": "Depuració",
     "description": ""
   },
   "logLevelError": {
@@ -84,71 +84,71 @@
     "description": ""
   },
   "logLevelFatal": {
-    "message": "Fatal",
+    "message": "Crític",
     "description": ""
   },
   "logLevelInfo": {
-    "message": "Info",
+    "message": "Informació",
     "description": ""
   },
   "logLevelTrace": {
-    "message": "Trace",
+    "message": "Traça",
     "description": ""
   },
   "logLevelWarn": {
-    "message": "Warn",
+    "message": "Avís",
     "description": ""
   },
   "markReadPrefLabel": {
-    "message": "Mark scheduled drafts as read",
+    "message": "Marcar missatges planificats en la carpeta d&#x27;esborranys com a llegits",
     "description": ""
   },
   "quickOptionsLabel1Label": {
-    "message": "Shortcut 1",
+    "message": "Drecera 1",
     "description": ""
   },
   "quickOptionsLabel2Label": {
-    "message": "Shortcut 2",
+    "message": "Drecera 2",
     "description": ""
   },
   "quickOptionsLabel3Label": {
-    "message": "Shortcut 3",
+    "message": "Drecera 3",
     "description": ""
   },
   "quickOptionsValueLabel": {
-    "message": "Minutes",
+    "message": "Minuts",
     "description": ""
   },
   "recurAnnuallyLabel": {
-    "message": "yearly",
+    "message": "anual",
     "description": ""
   },
   "recurDailyLabel": {
-    "message": "daily",
+    "message": "diari",
     "description": ""
   },
   "recurFunctionLabel": {
-    "message": "function",
+    "message": "funció",
     "description": ""
   },
   "recurLabel": {
-    "message": "Recur",
+    "message": "Recurrent",
     "description": ""
   },
   "recurMinutelyLabel": {
-    "message": "minutely",
+    "message": "cada minut",
     "description": ""
   },
   "recurMonthlyLabel": {
-    "message": "monthly",
+    "message": "mensual",
     "description": ""
   },
   "recurOnceLabel": {
-    "message": "once",
+    "message": "una vegada",
     "description": ""
   },
   "recurWeeklyLabel": {
-    "message": "weekly",
+    "message": "setmanal",
     "description": ""
   },
   "resetPrefsButton": {
@@ -156,87 +156,87 @@
     "description": ""
   },
   "saveDefaultsLabel": {
-    "message": "Save these values as the defaults",
+    "message": "Guardar aquests valors com a valors per omissió",
     "description": ""
   },
   "sendAtDefaultLabel": {
-    "message": "Enter a date and time",
+    "message": "Introduir un dia i hora",
     "description": "Displayed in place of send at time before user makes selections"
   },
   "sendAtLabel": {
-    "message": "Send at",
+    "message": "Enviar a les",
     "description": ""
   },
   "sendBtwnLabel": {
-    "message": "Between",
+    "message": "Entre",
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Send&quot; does &quot;Send Later&quot;",
+    "message": "&quot;Enviar&quot; actua com &quot;Enviar més endavant&quot;",
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&quot;Send&quot; delays messages by",
+    "message": "&amp;quot;Enviar&amp;quot; ajorna els missatges durant",
     "description": ""
   },
   "sendDelayPrefLabel2": {
-    "message": "minutes",
+    "message": "minuts",
     "description": ""
   },
   "sendSundayLabel": {
-    "message": "Sunday",
+    "message": "diumenge",
     "description": ""
   },
   "sendMondayLabel": {
-    "message": "Monday",
+    "message": "dilluns",
     "description": ""
   },
   "sendTuesdayLabel": {
-    "message": "Tuesday",
+    "message": "dimarts",
     "description": ""
   },
   "sendWednesdayLabel": {
-    "message": "Wednesday",
+    "message": "dimecres",
     "description": ""
   },
   "sendThursdayLabel": {
-    "message": "Thursday",
+    "message": "dijous",
     "description": ""
   },
   "sendFridayLabel": {
-    "message": "Friday",
+    "message": "divendres",
     "description": ""
   },
   "sendSaturdayLabel": {
-    "message": "Saturday",
+    "message": "dissabte",
     "description": ""
   },
   "sendNowLabel": {
-    "message": "Send Now",
+    "message": "Enviar ara",
     "description": ""
   },
   "sendOnlyOnLabel": {
-    "message": "Only on",
+    "message": "Només en",
     "description": ""
   },
   "sendUnsentMessagesPrefLabel": {
-    "message": "Trigger unsent message delivery from Outbox",
+    "message": "Enviar els missatges no lliurats de la Safata de Sortida",
     "description": ""
   },
   "showColumnPrefLabel": {
-    "message": "Show Send Later Column",
+    "message": "Mostrar la columna Send Later",
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "Show Send Later Header",
+    "message": "Mostrar la capçalera Send Later",
     "description": ""
   },
   "showStatusPrefLabel": {
-    "message": "Show Send Later In Status Bar",
+    "message": "Mostrar Send Later en la Barra d&#x27;Estat",
     "description": ""
   },
   "userGuideLabel": {
-    "message": "User guide",
+    "message": "Guia d&#x27;usuari",
     "description": ""
   }
 }

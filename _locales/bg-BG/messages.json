@@ -1,74 +1,74 @@
 {
   "appName": {
-    "message": "Send Later",
+    "message": "Изпращане по-късно",
     "description": "The name of the add-on, displayed in various places."
   },
   "appDesc": {
-    "message": "True &quot;Send Later&quot; functionality to schedule the time for sending an email.",
+    "message": "Истинска &quot;Изпращане по-късно&quot; функционалност за планиране на времето за изпращане на електронни съобщения.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
-    "message": "Advanced",
+    "message": "Разширени",
     "description": ""
   },
   "altBindingPrefLabel": {
-    "message": "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter",
+    "message": "Използване на Alt-Shift-Enter вместо Ctrl-Shift-Enter",
     "description": ""
   },
   "blockLateMessagesPrefLabel1": {
-    "message": "Don&#x27;t deliver messages more than",
+    "message": "Не доставяйте съобщения повече от",
     "description": ""
   },
   "blockLateMessagesPrefLabel2": {
-    "message": "minutes late",
+    "message": "минути по-късно",
     "description": ""
   },
   "cancelLabel": {
-    "message": "Cancel",
+    "message": "Отказ",
     "description": ""
   },
   "checkTimePrefLabel1": {
-    "message": "Check every",
+    "message": "Проверка на всеки",
     "description": ""
   },
   "checkTimePrefLabel2": {
-    "message": "minutes",
+    "message": "минути",
     "description": ""
   },
   "clearDefaultsLabel": {
-    "message": "Clear defaults",
+    "message": "Изчистване на стойностите по подразбиране",
     "description": ""
   },
   "contactAuthorLabel": {
-    "message": "Contact the author",
+    "message": "Свържете се с автора",
     "description": ""
   },
   "delay15Label": {
-    "message": "15 mins later",
+    "message": "15 минути по-късно",
     "description": ""
   },
   "delay30Label": {
-    "message": "30 mins later",
+    "message": "30 минути по-късно",
     "description": ""
   },
   "delay120Label": {
-    "message": "2 hours later",
+    "message": "2 часа по-късно",
     "description": ""
   },
   "enforceRestrictionsPrefLabel": {
-    "message": "Enforce time and day restrictions at delivery time",
+    "message": "Налагане на ограничения във времето и деня в момента на доставка",
     "description": ""
   },
   "generalOptionsTitle": {
-    "message": "General",
+    "message": "Основни",
     "description": ""
   },
   "logConsoleLevelLabel": {
-    "message": "Console log level",
+    "message": "Конзолно ниво на дневника",
     "description": ""
   },
   "logDumpLevelLabel": {
-    "message": "Dump log level",
+    "message": "Дъмп ниво на дневника",
     "description": ""
   },
   "logLevelAll": {
@@ -100,55 +100,55 @@
     "description": ""
   },
   "markReadPrefLabel": {
-    "message": "Mark scheduled drafts as read",
+    "message": "Маркиране на планираните чернови като прочетени",
     "description": ""
   },
   "quickOptionsLabel1Label": {
-    "message": "Shortcut 1",
+    "message": "Пряк път 1",
     "description": ""
   },
   "quickOptionsLabel2Label": {
-    "message": "Shortcut 2",
+    "message": "Пряк път 2",
     "description": ""
   },
   "quickOptionsLabel3Label": {
-    "message": "Shortcut 3",
+    "message": "Пряк път 3",
     "description": ""
   },
   "quickOptionsValueLabel": {
-    "message": "Minutes",
+    "message": "Минути",
     "description": ""
   },
   "recurAnnuallyLabel": {
-    "message": "yearly",
+    "message": "ежегодно",
     "description": ""
   },
   "recurDailyLabel": {
-    "message": "daily",
+    "message": "ежедневно",
     "description": ""
   },
   "recurFunctionLabel": {
-    "message": "function",
+    "message": "функция",
     "description": ""
   },
   "recurLabel": {
-    "message": "Recur",
+    "message": "Повтаряне",
     "description": ""
   },
   "recurMinutelyLabel": {
-    "message": "minutely",
+    "message": "ежеминутно",
     "description": ""
   },
   "recurMonthlyLabel": {
-    "message": "monthly",
+    "message": "ежемесечно",
     "description": ""
   },
   "recurOnceLabel": {
-    "message": "once",
+    "message": "еднократно",
     "description": ""
   },
   "recurWeeklyLabel": {
-    "message": "weekly",
+    "message": "ежеседмично",
     "description": ""
   },
   "resetPrefsButton": {
@@ -156,23 +156,23 @@
     "description": ""
   },
   "saveDefaultsLabel": {
-    "message": "Save these values as the defaults",
+    "message": "Записване на тези стойности по подразбиране",
     "description": ""
   },
   "sendAtDefaultLabel": {
-    "message": "Enter a date and time",
+    "message": "Въведете дата и час",
     "description": "Displayed in place of send at time before user makes selections"
   },
   "sendAtLabel": {
-    "message": "Send at",
+    "message": "Изпращане на",
     "description": ""
   },
   "sendBtwnLabel": {
-    "message": "Between",
+    "message": "Между",
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Send&quot; does &quot;Send Later&quot;",
+    "message": "&amp;quot;Изпращане сега&amp;quot; прави същото, като &amp;quot;Изпращане по-късно&amp;quot;",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -184,59 +184,59 @@
     "description": ""
   },
   "sendSundayLabel": {
-    "message": "Sunday",
+    "message": "Неделя",
     "description": ""
   },
   "sendMondayLabel": {
-    "message": "Monday",
+    "message": "Понеделник",
     "description": ""
   },
   "sendTuesdayLabel": {
-    "message": "Tuesday",
+    "message": "Вторник",
     "description": ""
   },
   "sendWednesdayLabel": {
-    "message": "Wednesday",
+    "message": "Сряда",
     "description": ""
   },
   "sendThursdayLabel": {
-    "message": "Thursday",
+    "message": "Четвъртък",
     "description": ""
   },
   "sendFridayLabel": {
-    "message": "Friday",
+    "message": "Петък",
     "description": ""
   },
   "sendSaturdayLabel": {
-    "message": "Saturday",
+    "message": "Събота",
     "description": ""
   },
   "sendNowLabel": {
-    "message": "Send Now",
+    "message": "Изпращане сега",
     "description": ""
   },
   "sendOnlyOnLabel": {
-    "message": "Only on",
+    "message": "Само в",
     "description": ""
   },
   "sendUnsentMessagesPrefLabel": {
-    "message": "Trigger unsent message delivery from Outbox",
+    "message": "Задействане на неизпратените съобщения за доставка от Изходяща кутия",
     "description": ""
   },
   "showColumnPrefLabel": {
-    "message": "Show Send Later Column",
+    "message": "Показване на Изпращане по-късно Колона",
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "Show Send Later Header",
+    "message": "Показване на Изпращане по-късно Заглавие",
     "description": ""
   },
   "showStatusPrefLabel": {
-    "message": "Show Send Later In Status Bar",
+    "message": "Показване на Изпращане по-късно в лентата на състоянието",
     "description": ""
   },
   "userGuideLabel": {
-    "message": "User guide",
+    "message": "Ръководство на потребителя",
     "description": ""
   }
 }

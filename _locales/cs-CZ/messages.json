@@ -1,90 +1,90 @@
 {
   "appName": {
-    "message": "Send Later",
+    "message": "Odeslat Později",
     "description": "The name of the add-on, displayed in various places."
   },
   "appDesc": {
-    "message": "True &quot;Send Later&quot; functionality to schedule the time for sending an email.",
+    "message": "„Odeslat později&quot; umožňuje naplánovat čas pro pozdější odeslání emailu.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
-    "message": "Advanced",
+    "message": "Rozšířené",
     "description": ""
   },
   "altBindingPrefLabel": {
-    "message": "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter",
+    "message": "Použít Alt-Shift-Enter namísto Ctrl-Shift-Enter",
     "description": ""
   },
   "blockLateMessagesPrefLabel1": {
-    "message": "Don&#x27;t deliver messages more than",
+    "message": "Nedoručovat zprávy o více než",
     "description": ""
   },
   "blockLateMessagesPrefLabel2": {
-    "message": "minutes late",
+    "message": "minut později",
     "description": ""
   },
   "cancelLabel": {
-    "message": "Cancel",
+    "message": "Zrušit",
     "description": ""
   },
   "checkTimePrefLabel1": {
-    "message": "Check every",
+    "message": "Zkontrolovat každých",
     "description": ""
   },
   "checkTimePrefLabel2": {
-    "message": "minutes",
+    "message": "minut",
     "description": ""
   },
   "clearDefaultsLabel": {
-    "message": "Clear defaults",
+    "message": "Smazat výchozí nastavení",
     "description": ""
   },
   "contactAuthorLabel": {
-    "message": "Contact the author",
+    "message": "Kontaktovat autora",
     "description": ""
   },
   "delay15Label": {
-    "message": "15 mins later",
+    "message": "Za 15 minut",
     "description": ""
   },
   "delay30Label": {
-    "message": "30 mins later",
+    "message": "Za 30 minut",
     "description": ""
   },
   "delay120Label": {
-    "message": "2 hours later",
+    "message": "Za 2 hodiny",
     "description": ""
   },
   "enforceRestrictionsPrefLabel": {
-    "message": "Enforce time and day restrictions at delivery time",
+    "message": "Vynutit omezení času a dne pro čas doručení",
     "description": ""
   },
   "generalOptionsTitle": {
-    "message": "General",
+    "message": "Obecné",
     "description": ""
   },
   "logConsoleLevelLabel": {
-    "message": "Console log level",
+    "message": "Úroveň zápisu protokolu pro příkazový řádek",
     "description": ""
   },
   "logDumpLevelLabel": {
-    "message": "Dump log level",
+    "message": "Úroveň zápisu protokolu",
     "description": ""
   },
   "logLevelAll": {
-    "message": "All",
+    "message": "Vše",
     "description": ""
   },
   "logLevelDebug": {
-    "message": "Debug",
+    "message": "Ladit",
     "description": ""
   },
   "logLevelError": {
-    "message": "Error",
+    "message": "Chyba",
     "description": ""
   },
   "logLevelFatal": {
-    "message": "Fatal",
+    "message": "Kritický",
     "description": ""
   },
   "logLevelInfo": {
@@ -92,63 +92,63 @@
     "description": ""
   },
   "logLevelTrace": {
-    "message": "Trace",
+    "message": "Trasovat",
     "description": ""
   },
   "logLevelWarn": {
-    "message": "Warn",
+    "message": "Varovat",
     "description": ""
   },
   "markReadPrefLabel": {
-    "message": "Mark scheduled drafts as read",
+    "message": "Označit naplánované koncepty jako přečtené",
     "description": ""
   },
   "quickOptionsLabel1Label": {
-    "message": "Shortcut 1",
+    "message": "Předvolba 1",
     "description": ""
   },
   "quickOptionsLabel2Label": {
-    "message": "Shortcut 2",
+    "message": "Předvolba 2",
     "description": ""
   },
   "quickOptionsLabel3Label": {
-    "message": "Shortcut 3",
+    "message": "Předvolba 3",
     "description": ""
   },
   "quickOptionsValueLabel": {
-    "message": "Minutes",
+    "message": "Minuty",
     "description": ""
   },
   "recurAnnuallyLabel": {
-    "message": "yearly",
+    "message": "ročně",
     "description": ""
   },
   "recurDailyLabel": {
-    "message": "daily",
+    "message": "denně",
     "description": ""
   },
   "recurFunctionLabel": {
-    "message": "function",
+    "message": "funkce",
     "description": ""
   },
   "recurLabel": {
-    "message": "Recur",
+    "message": "Opakovat",
     "description": ""
   },
   "recurMinutelyLabel": {
-    "message": "minutely",
+    "message": "každou minutu",
     "description": ""
   },
   "recurMonthlyLabel": {
-    "message": "monthly",
+    "message": "měsíčně",
     "description": ""
   },
   "recurOnceLabel": {
-    "message": "once",
+    "message": "jednou",
     "description": ""
   },
   "recurWeeklyLabel": {
-    "message": "weekly",
+    "message": "týdně",
     "description": ""
   },
   "resetPrefsButton": {
@@ -156,87 +156,87 @@
     "description": ""
   },
   "saveDefaultsLabel": {
-    "message": "Save these values as the defaults",
+    "message": "Uložit tyto hodnoty jako výchozí",
     "description": ""
   },
   "sendAtDefaultLabel": {
-    "message": "Enter a date and time",
+    "message": "Zadejte datum a čas",
     "description": "Displayed in place of send at time before user makes selections"
   },
   "sendAtLabel": {
-    "message": "Send at",
+    "message": "Odeslat v",
     "description": ""
   },
   "sendBtwnLabel": {
-    "message": "Between",
+    "message": "Mezi",
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Send&quot; does &quot;Send Later&quot;",
+    "message": "„Odeslat&quot; = „Odeslat později&quot;",
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&quot;Send&quot; delays messages by",
+    "message": "&amp;quot;Odeslat&amp;quot; zdrží zprávy o",
     "description": ""
   },
   "sendDelayPrefLabel2": {
-    "message": "minutes",
+    "message": "minut",
     "description": ""
   },
   "sendSundayLabel": {
-    "message": "Sunday",
+    "message": "Neděli",
     "description": ""
   },
   "sendMondayLabel": {
-    "message": "Monday",
+    "message": "Pondělí",
     "description": ""
   },
   "sendTuesdayLabel": {
-    "message": "Tuesday",
+    "message": "Úterý",
     "description": ""
   },
   "sendWednesdayLabel": {
-    "message": "Wednesday",
+    "message": "Středu",
     "description": ""
   },
   "sendThursdayLabel": {
-    "message": "Thursday",
+    "message": "Čtvrtek",
     "description": ""
   },
   "sendFridayLabel": {
-    "message": "Friday",
+    "message": "Pátek",
     "description": ""
   },
   "sendSaturdayLabel": {
-    "message": "Saturday",
+    "message": "Sobotu",
     "description": ""
   },
   "sendNowLabel": {
-    "message": "Send Now",
+    "message": "Odeslat hned",
     "description": ""
   },
   "sendOnlyOnLabel": {
-    "message": "Only on",
+    "message": "Pouze v",
     "description": ""
   },
   "sendUnsentMessagesPrefLabel": {
-    "message": "Trigger unsent message delivery from Outbox",
+    "message": "Odeslat čekající zprávy ze složky &amp;quot;K odeslání&amp;quot;",
     "description": ""
   },
   "showColumnPrefLabel": {
-    "message": "Show Send Later Column",
+    "message": "Zobrazovat sloupec „Odeslat Později&quot;",
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "Show Send Later Header",
+    "message": "Zobrazit „Odeslat Později&quot; v hlavičce",
     "description": ""
   },
   "showStatusPrefLabel": {
-    "message": "Show Send Later In Status Bar",
+    "message": "Zobrazit „Odeslat Později&quot; ve stavovém řádku",
     "description": ""
   },
   "userGuideLabel": {
-    "message": "User guide",
+    "message": "Uživatelská příručka",
     "description": ""
   }
 }
