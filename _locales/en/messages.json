@@ -1,0 +1,242 @@
+{
+  "extensionName": {
+    "message": "Send Later",
+    "description": "The name of the add-on, displayed in various places."
+  },
+  "extensionDescription": {
+    "message": "True &quot;Send Later&quot; functionality to schedule the time for sending an email.",
+    "description": "A short description of the add-on."
+  },
+  "advancedOptionsTitle": {
+    "message": "Advanced",
+    "description": ""
+  },
+  "altBindingPrefLabel": {
+    "message": "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel1": {
+    "message": "Don&#x27;t deliver messages more than",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel2": {
+    "message": "minutes late",
+    "description": ""
+  },
+  "cancelLabel": {
+    "message": "Cancel",
+    "description": ""
+  },
+  "checkTimePrefLabel1": {
+    "message": "Check every",
+    "description": ""
+  },
+  "checkTimePrefLabel2": {
+    "message": "minutes",
+    "description": ""
+  },
+  "clearDefaultsLabel": {
+    "message": "Clear defaults",
+    "description": ""
+  },
+  "contactAuthorLabel": {
+    "message": "Contact the author",
+    "description": ""
+  },
+  "delay15Label": {
+    "message": "15 mins later",
+    "description": ""
+  },
+  "delay30Label": {
+    "message": "30 mins later",
+    "description": ""
+  },
+  "delay120Label": {
+    "message": "2 hours later",
+    "description": ""
+  },
+  "enforceRestrictionsPrefLabel": {
+    "message": "Enforce time and day restrictions at delivery time",
+    "description": ""
+  },
+  "generalOptionsTitle": {
+    "message": "General",
+    "description": ""
+  },
+  "logConsoleLevelLabel": {
+    "message": "Console log level",
+    "description": ""
+  },
+  "logDumpLevelLabel": {
+    "message": "Dump log level",
+    "description": ""
+  },
+  "logLevelAll": {
+    "message": "All",
+    "description": ""
+  },
+  "logLevelDebug": {
+    "message": "Debug",
+    "description": ""
+  },
+  "logLevelError": {
+    "message": "Error",
+    "description": ""
+  },
+  "logLevelFatal": {
+    "message": "Fatal",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "Info",
+    "description": ""
+  },
+  "logLevelTrace": {
+    "message": "Trace",
+    "description": ""
+  },
+  "logLevelWarn": {
+    "message": "Warn",
+    "description": ""
+  },
+  "markReadPrefLabel": {
+    "message": "Mark scheduled drafts as read",
+    "description": ""
+  },
+  "quickOptionsLabel1Label": {
+    "message": "Shortcut 1",
+    "description": ""
+  },
+  "quickOptionsLabel2Label": {
+    "message": "Shortcut 2",
+    "description": ""
+  },
+  "quickOptionsLabel3Label": {
+    "message": "Shortcut 3",
+    "description": ""
+  },
+  "quickOptionsValueLabel": {
+    "message": "Minutes",
+    "description": ""
+  },
+  "recurAnnuallyLabel": {
+    "message": "yearly",
+    "description": ""
+  },
+  "recurDailyLabel": {
+    "message": "daily",
+    "description": ""
+  },
+  "recurFunctionLabel": {
+    "message": "function",
+    "description": ""
+  },
+  "recurLabel": {
+    "message": "Recur",
+    "description": ""
+  },
+  "recurMinutelyLabel": {
+    "message": "minutely",
+    "description": ""
+  },
+  "recurMonthlyLabel": {
+    "message": "monthly",
+    "description": ""
+  },
+  "recurOnceLabel": {
+    "message": "once",
+    "description": ""
+  },
+  "recurWeeklyLabel": {
+    "message": "weekly",
+    "description": ""
+  },
+  "resetPrefsButton": {
+    "message": "Reset Preferences",
+    "description": ""
+  },
+  "saveDefaultsLabel": {
+    "message": "Save these values as the defaults",
+    "description": ""
+  },
+  "sendAtDefaultLabel": {
+    "message": "Enter a date and time",
+    "description": "Displayed in place of send at time before user makes selections"
+  },
+  "sendAtLabel": {
+    "message": "Send at",
+    "description": ""
+  },
+  "sendBtwnLabel": {
+    "message": "Between",
+    "description": ""
+  },
+  "sendButtonPrefLabel": {
+    "message": "&quot;Send&quot; does &quot;Send Later&quot;",
+    "description": ""
+  },
+  "sendDelayPrefLabel1": {
+    "message": "&quot;Send&quot; delays messages by",
+    "description": ""
+  },
+  "sendDelayPrefLabel2": {
+    "message": "minutes",
+    "description": ""
+  },
+  "sendSundayLabel": {
+    "message": "Sunday",
+    "description": ""
+  },
+  "sendMondayLabel": {
+    "message": "Monday",
+    "description": ""
+  },
+  "sendTuesdayLabel": {
+    "message": "Tuesday",
+    "description": ""
+  },
+  "sendWednesdayLabel": {
+    "message": "Wednesday",
+    "description": ""
+  },
+  "sendThursdayLabel": {
+    "message": "Thursday",
+    "description": ""
+  },
+  "sendFridayLabel": {
+    "message": "Friday",
+    "description": ""
+  },
+  "sendSaturdayLabel": {
+    "message": "Saturday",
+    "description": ""
+  },
+  "sendNowLabel": {
+    "message": "Send Now",
+    "description": ""
+  },
+  "sendOnlyOnLabel": {
+    "message": "Only on",
+    "description": ""
+  },
+  "sendUnsentMessagesPrefLabel": {
+    "message": "Trigger unsent message delivery from Outbox",
+    "description": ""
+  },
+  "showColumnPrefLabel": {
+    "message": "Show Send Later Column",
+    "description": ""
+  },
+  "showHeaderPrefLabel": {
+    "message": "Show Send Later Header",
+    "description": ""
+  },
+  "showStatusPrefLabel": {
+    "message": "Show Send Later In Status Bar",
+    "description": ""
+  },
+  "userGuideLabel": {
+    "message": "User guide",
+    "description": ""
+  }
+}

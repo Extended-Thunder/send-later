@@ -1,0 +1,242 @@
+{
+  "extensionName": {
+    "message": "Send Later",
+    "description": "The name of the add-on, displayed in various places."
+  },
+  "extensionDescription": {
+    "message": "Funcionalidade do &quot;Enviar mais tarde&quot; para marcar a hora de envio",
+    "description": "A short description of the add-on."
+  },
+  "advancedOptionsTitle": {
+    "message": "Avançado",
+    "description": ""
+  },
+  "altBindingPrefLabel": {
+    "message": "Combinar Alt-Shift-Enter em vez de Ctrl-Shift-Enter",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel1": {
+    "message": "Não entregar mensagens mais do que",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel2": {
+    "message": "minutos atrasadas",
+    "description": ""
+  },
+  "cancelLabel": {
+    "message": "Cancelar",
+    "description": ""
+  },
+  "checkTimePrefLabel1": {
+    "message": "Verificar a cada",
+    "description": ""
+  },
+  "checkTimePrefLabel2": {
+    "message": "minutos",
+    "description": ""
+  },
+  "clearDefaultsLabel": {
+    "message": "Limpar predefinidos",
+    "description": ""
+  },
+  "contactAuthorLabel": {
+    "message": "Contactar o autor",
+    "description": ""
+  },
+  "delay15Label": {
+    "message": "15 min mais tarde",
+    "description": ""
+  },
+  "delay30Label": {
+    "message": "30 min mais tarde",
+    "description": ""
+  },
+  "delay120Label": {
+    "message": "2 horas mais tarde",
+    "description": ""
+  },
+  "enforceRestrictionsPrefLabel": {
+    "message": "Forçar restrições de horário e data na hora de entrega.",
+    "description": ""
+  },
+  "generalOptionsTitle": {
+    "message": "Geral",
+    "description": ""
+  },
+  "logConsoleLevelLabel": {
+    "message": "Nível de registo da consola",
+    "description": ""
+  },
+  "logDumpLevelLabel": {
+    "message": "Nível de registo de descarga",
+    "description": ""
+  },
+  "logLevelAll": {
+    "message": "All",
+    "description": ""
+  },
+  "logLevelDebug": {
+    "message": "Debug",
+    "description": ""
+  },
+  "logLevelError": {
+    "message": "Error",
+    "description": ""
+  },
+  "logLevelFatal": {
+    "message": "Fatal",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "Info",
+    "description": ""
+  },
+  "logLevelTrace": {
+    "message": "Trace",
+    "description": ""
+  },
+  "logLevelWarn": {
+    "message": "Warn",
+    "description": ""
+  },
+  "markReadPrefLabel": {
+    "message": "Marcar rascunhos agendados como lidos",
+    "description": ""
+  },
+  "quickOptionsLabel1Label": {
+    "message": "Atalho 1",
+    "description": ""
+  },
+  "quickOptionsLabel2Label": {
+    "message": "Atalho 2",
+    "description": ""
+  },
+  "quickOptionsLabel3Label": {
+    "message": "Atalho 3",
+    "description": ""
+  },
+  "quickOptionsValueLabel": {
+    "message": "Minutos",
+    "description": ""
+  },
+  "recurAnnuallyLabel": {
+    "message": "anualmente",
+    "description": ""
+  },
+  "recurDailyLabel": {
+    "message": "diariamente",
+    "description": ""
+  },
+  "recurFunctionLabel": {
+    "message": "função",
+    "description": ""
+  },
+  "recurLabel": {
+    "message": "Repetir",
+    "description": ""
+  },
+  "recurMinutelyLabel": {
+    "message": "ao minuto",
+    "description": ""
+  },
+  "recurMonthlyLabel": {
+    "message": "mensalmente",
+    "description": ""
+  },
+  "recurOnceLabel": {
+    "message": "nenhum",
+    "description": ""
+  },
+  "recurWeeklyLabel": {
+    "message": "semanalmente",
+    "description": ""
+  },
+  "resetPrefsButton": {
+    "message": "Reset Preferences",
+    "description": ""
+  },
+  "saveDefaultsLabel": {
+    "message": "Guardar estes valores como predefinidos",
+    "description": ""
+  },
+  "sendAtDefaultLabel": {
+    "message": "Introduza a data e hora",
+    "description": "Displayed in place of send at time before user makes selections"
+  },
+  "sendAtLabel": {
+    "message": "Enviar às",
+    "description": ""
+  },
+  "sendBtwnLabel": {
+    "message": "Entre",
+    "description": ""
+  },
+  "sendButtonPrefLabel": {
+    "message": "&quot;Enviar mais tarde&quot; substitui &quot;Enviar&quot;",
+    "description": ""
+  },
+  "sendDelayPrefLabel1": {
+    "message": "&quot;Send&quot; delays messages by",
+    "description": ""
+  },
+  "sendDelayPrefLabel2": {
+    "message": "minutes",
+    "description": ""
+  },
+  "sendSundayLabel": {
+    "message": "Domingo",
+    "description": ""
+  },
+  "sendMondayLabel": {
+    "message": "Segunda-feira",
+    "description": ""
+  },
+  "sendTuesdayLabel": {
+    "message": "Terça-feira",
+    "description": ""
+  },
+  "sendWednesdayLabel": {
+    "message": "Quarta-feira",
+    "description": ""
+  },
+  "sendThursdayLabel": {
+    "message": "Quinta-feira",
+    "description": ""
+  },
+  "sendFridayLabel": {
+    "message": "Sexta-feira",
+    "description": ""
+  },
+  "sendSaturdayLabel": {
+    "message": "Sábado",
+    "description": ""
+  },
+  "sendNowLabel": {
+    "message": "Enviar Agora",
+    "description": ""
+  },
+  "sendOnlyOnLabel": {
+    "message": "Apenas em",
+    "description": ""
+  },
+  "sendUnsentMessagesPrefLabel": {
+    "message": "Acionar a entrega de mensagens não enviadas a partir da caixa de saída",
+    "description": ""
+  },
+  "showColumnPrefLabel": {
+    "message": "Mostrar coluna do Send Later",
+    "description": ""
+  },
+  "showHeaderPrefLabel": {
+    "message": "Mostrar cabeçalho do Send Later",
+    "description": ""
+  },
+  "showStatusPrefLabel": {
+    "message": "Mostrar o Send Later na barra de estado",
+    "description": ""
+  },
+  "userGuideLabel": {
+    "message": "Guia do utilizador",
+    "description": ""
+  }
+}

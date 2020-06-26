@@ -1,0 +1,242 @@
+{
+  "extensionName": {
+    "message": "Später Senden",
+    "description": "The name of the add-on, displayed in various places."
+  },
+  "extensionDescription": {
+    "message": "Eine erweiterte „Später senden&quot;-Funktion zur Planung der Sendezeit",
+    "description": "A short description of the add-on."
+  },
+  "advancedOptionsTitle": {
+    "message": "Erweitert",
+    "description": ""
+  },
+  "altBindingPrefLabel": {
+    "message": "„Alt+Umschalt+Return&quot; anstatt „Strg+Umschalt+Return&quot; verwenden",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel1": {
+    "message": "Nachrichten nicht mehr als",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel2": {
+    "message": "Minuten zu spät senden",
+    "description": ""
+  },
+  "cancelLabel": {
+    "message": "Abbrechen",
+    "description": ""
+  },
+  "checkTimePrefLabel1": {
+    "message": "Überprüfen alle",
+    "description": ""
+  },
+  "checkTimePrefLabel2": {
+    "message": "Minuten",
+    "description": ""
+  },
+  "clearDefaultsLabel": {
+    "message": "Defaultwerte  zurücksetzen",
+    "description": ""
+  },
+  "contactAuthorLabel": {
+    "message": "Den Autor kontaktieren",
+    "description": ""
+  },
+  "delay15Label": {
+    "message": "15 Min. später",
+    "description": ""
+  },
+  "delay30Label": {
+    "message": "30 Min. später",
+    "description": ""
+  },
+  "delay120Label": {
+    "message": "2 Stunden später",
+    "description": ""
+  },
+  "enforceRestrictionsPrefLabel": {
+    "message": "Zeit- und Tagesbeschränkungen beim Senden immer beachten",
+    "description": ""
+  },
+  "generalOptionsTitle": {
+    "message": "Allgemein",
+    "description": ""
+  },
+  "logConsoleLevelLabel": {
+    "message": "Log-Einträge auf der Konsole ausgeben ab Protokollierungsebene",
+    "description": ""
+  },
+  "logDumpLevelLabel": {
+    "message": "Log-Einträge speichern ab Protokollierungsebene",
+    "description": ""
+  },
+  "logLevelAll": {
+    "message": "Alle",
+    "description": ""
+  },
+  "logLevelDebug": {
+    "message": "Fehlersuche (Debug)",
+    "description": ""
+  },
+  "logLevelError": {
+    "message": "Fehler",
+    "description": ""
+  },
+  "logLevelFatal": {
+    "message": "Schwerwiegend",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "Information",
+    "description": ""
+  },
+  "logLevelTrace": {
+    "message": "Ablaufverfolgung",
+    "description": ""
+  },
+  "logLevelWarn": {
+    "message": "Warnung",
+    "description": ""
+  },
+  "markReadPrefLabel": {
+    "message": "Zu sendende Entwürfe als gelesen markieren",
+    "description": ""
+  },
+  "quickOptionsLabel1Label": {
+    "message": "Kurzbefehl 1",
+    "description": ""
+  },
+  "quickOptionsLabel2Label": {
+    "message": "Kurzbefehl 2",
+    "description": ""
+  },
+  "quickOptionsLabel3Label": {
+    "message": "Kurzbefehl 3",
+    "description": ""
+  },
+  "quickOptionsValueLabel": {
+    "message": "Verzögerung in Minuten",
+    "description": ""
+  },
+  "recurAnnuallyLabel": {
+    "message": "jährlich",
+    "description": ""
+  },
+  "recurDailyLabel": {
+    "message": "täglich",
+    "description": ""
+  },
+  "recurFunctionLabel": {
+    "message": "Funktion",
+    "description": ""
+  },
+  "recurLabel": {
+    "message": "Wiederholen",
+    "description": ""
+  },
+  "recurMinutelyLabel": {
+    "message": "minütlich",
+    "description": ""
+  },
+  "recurMonthlyLabel": {
+    "message": "monatlich",
+    "description": ""
+  },
+  "recurOnceLabel": {
+    "message": "nie",
+    "description": ""
+  },
+  "recurWeeklyLabel": {
+    "message": "wöchentlich",
+    "description": ""
+  },
+  "resetPrefsButton": {
+    "message": "Reset Preferences",
+    "description": ""
+  },
+  "saveDefaultsLabel": {
+    "message": "Diese Werte als Defaultwerte speichern",
+    "description": ""
+  },
+  "sendAtDefaultLabel": {
+    "message": "Geben Sie ein Datum und eine Uhrzeit ein",
+    "description": "Displayed in place of send at time before user makes selections"
+  },
+  "sendAtLabel": {
+    "message": "Senden am/um",
+    "description": ""
+  },
+  "sendBtwnLabel": {
+    "message": "Zwischen",
+    "description": ""
+  },
+  "sendButtonPrefLabel": {
+    "message": "„Senden&quot; durch „Später senden&quot; ersetzen",
+    "description": ""
+  },
+  "sendDelayPrefLabel1": {
+    "message": "&amp;quot;Senden&amp;quot; verzögert den Nachrichtenversand um",
+    "description": ""
+  },
+  "sendDelayPrefLabel2": {
+    "message": "Minuten",
+    "description": ""
+  },
+  "sendSundayLabel": {
+    "message": "Sonntag",
+    "description": ""
+  },
+  "sendMondayLabel": {
+    "message": "Montag",
+    "description": ""
+  },
+  "sendTuesdayLabel": {
+    "message": "Dienstag",
+    "description": ""
+  },
+  "sendWednesdayLabel": {
+    "message": "Mittwoch",
+    "description": ""
+  },
+  "sendThursdayLabel": {
+    "message": "Donnerstag",
+    "description": ""
+  },
+  "sendFridayLabel": {
+    "message": "Freitag",
+    "description": ""
+  },
+  "sendSaturdayLabel": {
+    "message": "Samstag",
+    "description": ""
+  },
+  "sendNowLabel": {
+    "message": "Jetzt senden",
+    "description": ""
+  },
+  "sendOnlyOnLabel": {
+    "message": "Nur",
+    "description": ""
+  },
+  "sendUnsentMessagesPrefLabel": {
+    "message": "Benachrichtigungen für ungesendete Nachrichten im Postausgang aktivieren",
+    "description": ""
+  },
+  "showColumnPrefLabel": {
+    "message": "„Später Senden&quot;-Spalte anzeigen",
+    "description": ""
+  },
+  "showHeaderPrefLabel": {
+    "message": "„Später Senden&quot;-Kopfzeile anzeigen",
+    "description": ""
+  },
+  "showStatusPrefLabel": {
+    "message": "„Später Senden&quot; in der Statusleiste anzeigen",
+    "description": ""
+  },
+  "userGuideLabel": {
+    "message": "Benutzerhandbuch",
+    "description": ""
+  }
+}

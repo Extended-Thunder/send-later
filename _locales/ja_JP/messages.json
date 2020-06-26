@@ -1,0 +1,242 @@
+{
+  "extensionName": {
+    "message": "Send Later",
+    "description": "The name of the add-on, displayed in various places."
+  },
+  "extensionDescription": {
+    "message": "&quot;Send Later&quot;は指定した時間にメールを送信する機能を提供します。",
+    "description": "A short description of the add-on."
+  },
+  "advancedOptionsTitle": {
+    "message": "詳細",
+    "description": ""
+  },
+  "altBindingPrefLabel": {
+    "message": "Ctrl+Shift+Enter ではなく Alt+Shift+Enter に割り当てる",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel1": {
+    "message": "スケジュールを過ぎたメッセージを送らない",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel2": {
+    "message": "分以上",
+    "description": ""
+  },
+  "cancelLabel": {
+    "message": "キャンセル",
+    "description": ""
+  },
+  "checkTimePrefLabel1": {
+    "message": "チェック間隔",
+    "description": ""
+  },
+  "checkTimePrefLabel2": {
+    "message": "分",
+    "description": ""
+  },
+  "clearDefaultsLabel": {
+    "message": "デフォルトをクリア",
+    "description": ""
+  },
+  "contactAuthorLabel": {
+    "message": "作者への連絡",
+    "description": ""
+  },
+  "delay15Label": {
+    "message": "15分後",
+    "description": ""
+  },
+  "delay30Label": {
+    "message": "30分後",
+    "description": ""
+  },
+  "delay120Label": {
+    "message": "2時間後",
+    "description": ""
+  },
+  "enforceRestrictionsPrefLabel": {
+    "message": "配送時間に時間と曜日の条件を適用する",
+    "description": ""
+  },
+  "generalOptionsTitle": {
+    "message": "一般",
+    "description": ""
+  },
+  "logConsoleLevelLabel": {
+    "message": "コンソールログレベル",
+    "description": ""
+  },
+  "logDumpLevelLabel": {
+    "message": "出力ログレベル",
+    "description": ""
+  },
+  "logLevelAll": {
+    "message": "すべて",
+    "description": ""
+  },
+  "logLevelDebug": {
+    "message": "デバッグ",
+    "description": ""
+  },
+  "logLevelError": {
+    "message": "エラー",
+    "description": ""
+  },
+  "logLevelFatal": {
+    "message": "致命的",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "情報",
+    "description": ""
+  },
+  "logLevelTrace": {
+    "message": "トレース",
+    "description": ""
+  },
+  "logLevelWarn": {
+    "message": "警告",
+    "description": ""
+  },
+  "markReadPrefLabel": {
+    "message": "送信予定の下書きを既読とする",
+    "description": ""
+  },
+  "quickOptionsLabel1Label": {
+    "message": "ショートカット1",
+    "description": ""
+  },
+  "quickOptionsLabel2Label": {
+    "message": "ショートカット2",
+    "description": ""
+  },
+  "quickOptionsLabel3Label": {
+    "message": "ショートカット3",
+    "description": ""
+  },
+  "quickOptionsValueLabel": {
+    "message": "分",
+    "description": ""
+  },
+  "recurAnnuallyLabel": {
+    "message": "毎年",
+    "description": ""
+  },
+  "recurDailyLabel": {
+    "message": "毎日",
+    "description": ""
+  },
+  "recurFunctionLabel": {
+    "message": "ユーザー関数",
+    "description": ""
+  },
+  "recurLabel": {
+    "message": "定期",
+    "description": ""
+  },
+  "recurMinutelyLabel": {
+    "message": "毎時",
+    "description": ""
+  },
+  "recurMonthlyLabel": {
+    "message": "毎月",
+    "description": ""
+  },
+  "recurOnceLabel": {
+    "message": "1度だけ",
+    "description": ""
+  },
+  "recurWeeklyLabel": {
+    "message": "毎週",
+    "description": ""
+  },
+  "resetPrefsButton": {
+    "message": "Reset Preferences",
+    "description": ""
+  },
+  "saveDefaultsLabel": {
+    "message": "デフォルトとして保存",
+    "description": ""
+  },
+  "sendAtDefaultLabel": {
+    "message": "日時を入力してください。&quot;来週火曜日午後3:00&quot; のような形式もサポートしています。",
+    "description": "Displayed in place of send at time before user makes selections"
+  },
+  "sendAtLabel": {
+    "message": "送信日時",
+    "description": ""
+  },
+  "sendBtwnLabel": {
+    "message": "期間",
+    "description": ""
+  },
+  "sendButtonPrefLabel": {
+    "message": "&quot;送信&quot; を &quot;後で送信&quot; にする",
+    "description": ""
+  },
+  "sendDelayPrefLabel1": {
+    "message": "メッセージの&amp;quot;送信&amp;quot;を遅延する",
+    "description": ""
+  },
+  "sendDelayPrefLabel2": {
+    "message": "分",
+    "description": ""
+  },
+  "sendSundayLabel": {
+    "message": "日曜日",
+    "description": ""
+  },
+  "sendMondayLabel": {
+    "message": "月曜日",
+    "description": ""
+  },
+  "sendTuesdayLabel": {
+    "message": "火曜日",
+    "description": ""
+  },
+  "sendWednesdayLabel": {
+    "message": "水曜日",
+    "description": ""
+  },
+  "sendThursdayLabel": {
+    "message": "木曜日",
+    "description": ""
+  },
+  "sendFridayLabel": {
+    "message": "金曜日",
+    "description": ""
+  },
+  "sendSaturdayLabel": {
+    "message": "土曜日",
+    "description": ""
+  },
+  "sendNowLabel": {
+    "message": "今すぐ送信する",
+    "description": ""
+  },
+  "sendOnlyOnLabel": {
+    "message": "曜日指定",
+    "description": ""
+  },
+  "sendUnsentMessagesPrefLabel": {
+    "message": "未送信メッセージを [送信トレイ] から送信する",
+    "description": ""
+  },
+  "showColumnPrefLabel": {
+    "message": "&quot;Send Later&quot; 列を表示する",
+    "description": ""
+  },
+  "showHeaderPrefLabel": {
+    "message": "&quot;Send Later&quot; ヘッダーを表示する",
+    "description": ""
+  },
+  "showStatusPrefLabel": {
+    "message": "&quot;Send Later&quot; をステータスバーに表示する",
+    "description": ""
+  },
+  "userGuideLabel": {
+    "message": "ユーザーガイド",
+    "description": ""
+  }
+}

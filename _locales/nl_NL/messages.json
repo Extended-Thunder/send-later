@@ -1,0 +1,242 @@
+{
+  "extensionName": {
+    "message": "Send Later",
+    "description": "The name of the add-on, displayed in various places."
+  },
+  "extensionDescription": {
+    "message": "Echte functionaliteit voor ‘Later verzenden’ om het verzendtijdstip van een e-mailbericht te plannen.",
+    "description": "A short description of the add-on."
+  },
+  "advancedOptionsTitle": {
+    "message": "Geavanceerd",
+    "description": ""
+  },
+  "altBindingPrefLabel": {
+    "message": "Alt-Shift-Enter binden in plaats van Ctrl-Shift-Enter",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel1": {
+    "message": "Berichten niet meer dan",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel2": {
+    "message": "minuten te laat afleveren",
+    "description": ""
+  },
+  "cancelLabel": {
+    "message": "Annuleren",
+    "description": ""
+  },
+  "checkTimePrefLabel1": {
+    "message": "Elke",
+    "description": ""
+  },
+  "checkTimePrefLabel2": {
+    "message": "minuten controleren",
+    "description": ""
+  },
+  "clearDefaultsLabel": {
+    "message": "Standaardwaarden wissen",
+    "description": ""
+  },
+  "contactAuthorLabel": {
+    "message": "Contact opnemen met de schrijver",
+    "description": ""
+  },
+  "delay15Label": {
+    "message": "15 min. later",
+    "description": ""
+  },
+  "delay30Label": {
+    "message": "30 min. later",
+    "description": ""
+  },
+  "delay120Label": {
+    "message": "2 uur later",
+    "description": ""
+  },
+  "enforceRestrictionsPrefLabel": {
+    "message": "Tijds- en dagrestricties bij aflevertijd afdwingen",
+    "description": ""
+  },
+  "generalOptionsTitle": {
+    "message": "Algemeen",
+    "description": ""
+  },
+  "logConsoleLevelLabel": {
+    "message": "Consolelogniveau",
+    "description": ""
+  },
+  "logDumpLevelLabel": {
+    "message": "Dumplogniveau",
+    "description": ""
+  },
+  "logLevelAll": {
+    "message": "Alles",
+    "description": ""
+  },
+  "logLevelDebug": {
+    "message": "Foutopsporing",
+    "description": ""
+  },
+  "logLevelError": {
+    "message": "Fout",
+    "description": ""
+  },
+  "logLevelFatal": {
+    "message": "Onherstelbaar",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "Info",
+    "description": ""
+  },
+  "logLevelTrace": {
+    "message": "Tracering",
+    "description": ""
+  },
+  "logLevelWarn": {
+    "message": "Waarschuwing",
+    "description": ""
+  },
+  "markReadPrefLabel": {
+    "message": "Geplande concepten als gelezen markeren",
+    "description": ""
+  },
+  "quickOptionsLabel1Label": {
+    "message": "Sneltoets 1",
+    "description": ""
+  },
+  "quickOptionsLabel2Label": {
+    "message": "Sneltoets 2",
+    "description": ""
+  },
+  "quickOptionsLabel3Label": {
+    "message": "Sneltoets 3",
+    "description": ""
+  },
+  "quickOptionsValueLabel": {
+    "message": "Minuten",
+    "description": ""
+  },
+  "recurAnnuallyLabel": {
+    "message": "jaarlijks",
+    "description": ""
+  },
+  "recurDailyLabel": {
+    "message": "dagelijks",
+    "description": ""
+  },
+  "recurFunctionLabel": {
+    "message": "functie",
+    "description": ""
+  },
+  "recurLabel": {
+    "message": "Herhaling",
+    "description": ""
+  },
+  "recurMinutelyLabel": {
+    "message": "elke minuut",
+    "description": ""
+  },
+  "recurMonthlyLabel": {
+    "message": "maandelijks",
+    "description": ""
+  },
+  "recurOnceLabel": {
+    "message": "geen",
+    "description": ""
+  },
+  "recurWeeklyLabel": {
+    "message": "wekelijks",
+    "description": ""
+  },
+  "resetPrefsButton": {
+    "message": "Reset Preferences",
+    "description": ""
+  },
+  "saveDefaultsLabel": {
+    "message": "Deze waarden als de standaardwaarden opslaan",
+    "description": ""
+  },
+  "sendAtDefaultLabel": {
+    "message": "Voer een datum en tijdstip in",
+    "description": "Displayed in place of send at time before user makes selections"
+  },
+  "sendAtLabel": {
+    "message": "Verzenden om",
+    "description": ""
+  },
+  "sendBtwnLabel": {
+    "message": "Tussen",
+    "description": ""
+  },
+  "sendButtonPrefLabel": {
+    "message": "‘Verzenden’ werkt als ‘Later verzenden’",
+    "description": ""
+  },
+  "sendDelayPrefLabel1": {
+    "message": "‘Verzenden’ vertraagt berichten met",
+    "description": ""
+  },
+  "sendDelayPrefLabel2": {
+    "message": "minuten",
+    "description": ""
+  },
+  "sendSundayLabel": {
+    "message": "zondag",
+    "description": ""
+  },
+  "sendMondayLabel": {
+    "message": "maandag",
+    "description": ""
+  },
+  "sendTuesdayLabel": {
+    "message": "dinsdag",
+    "description": ""
+  },
+  "sendWednesdayLabel": {
+    "message": "woensdag",
+    "description": ""
+  },
+  "sendThursdayLabel": {
+    "message": "donderdag",
+    "description": ""
+  },
+  "sendFridayLabel": {
+    "message": "vrijdag",
+    "description": ""
+  },
+  "sendSaturdayLabel": {
+    "message": "zaterdag",
+    "description": ""
+  },
+  "sendNowLabel": {
+    "message": "Nu verzenden",
+    "description": ""
+  },
+  "sendOnlyOnLabel": {
+    "message": "Alleen op",
+    "description": ""
+  },
+  "sendUnsentMessagesPrefLabel": {
+    "message": "Niet-verzonden berichten in Postvak UIT afleveren",
+    "description": ""
+  },
+  "showColumnPrefLabel": {
+    "message": "Kolom Send Later tonen",
+    "description": ""
+  },
+  "showHeaderPrefLabel": {
+    "message": "Header Send Later tonen",
+    "description": ""
+  },
+  "showStatusPrefLabel": {
+    "message": "Send Later in statusbalk tonen",
+    "description": ""
+  },
+  "userGuideLabel": {
+    "message": "Handleiding",
+    "description": ""
+  }
+}

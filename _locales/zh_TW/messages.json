@@ -1,0 +1,242 @@
+{
+  "extensionName": {
+    "message": "延期發信",
+    "description": "The name of the add-on, displayed in various places."
+  },
+  "extensionDescription": {
+    "message": "用來預定傳送信件的時間寄信",
+    "description": "A short description of the add-on."
+  },
+  "advancedOptionsTitle": {
+    "message": "進階",
+    "description": ""
+  },
+  "altBindingPrefLabel": {
+    "message": "綁定快捷鍵 Alt-Shift-Enter 代替 Ctrl-Shift-Enter",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel1": {
+    "message": "不將晚了",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel2": {
+    "message": "分鐘以上的訊息寄出",
+    "description": ""
+  },
+  "cancelLabel": {
+    "message": "取消",
+    "description": ""
+  },
+  "checkTimePrefLabel1": {
+    "message": "檢查間隔：",
+    "description": ""
+  },
+  "checkTimePrefLabel2": {
+    "message": "分鐘",
+    "description": ""
+  },
+  "clearDefaultsLabel": {
+    "message": "清除預設值",
+    "description": ""
+  },
+  "contactAuthorLabel": {
+    "message": "聯絡作者",
+    "description": ""
+  },
+  "delay15Label": {
+    "message": "15 分鐘後",
+    "description": ""
+  },
+  "delay30Label": {
+    "message": "30 分鐘後",
+    "description": ""
+  },
+  "delay120Label": {
+    "message": "2 小時後",
+    "description": ""
+  },
+  "enforceRestrictionsPrefLabel": {
+    "message": "在寄訊息時強制執行時間和日期的限制",
+    "description": ""
+  },
+  "generalOptionsTitle": {
+    "message": "一般",
+    "description": ""
+  },
+  "logConsoleLevelLabel": {
+    "message": "控制台除錯紀錄層級：",
+    "description": ""
+  },
+  "logDumpLevelLabel": {
+    "message": "除錯紀錄層級：",
+    "description": ""
+  },
+  "logLevelAll": {
+    "message": "所有訊息",
+    "description": ""
+  },
+  "logLevelDebug": {
+    "message": "除錯訊息",
+    "description": ""
+  },
+  "logLevelError": {
+    "message": "錯誤訊息",
+    "description": ""
+  },
+  "logLevelFatal": {
+    "message": "嚴重錯誤訊息",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "參考訊息",
+    "description": ""
+  },
+  "logLevelTrace": {
+    "message": "追蹤錯誤訊息",
+    "description": ""
+  },
+  "logLevelWarn": {
+    "message": "警告訊息",
+    "description": ""
+  },
+  "markReadPrefLabel": {
+    "message": "標示排程草稿為已閱讀",
+    "description": ""
+  },
+  "quickOptionsLabel1Label": {
+    "message": "快捷按鈕 1",
+    "description": ""
+  },
+  "quickOptionsLabel2Label": {
+    "message": "快捷按鈕 2",
+    "description": ""
+  },
+  "quickOptionsLabel3Label": {
+    "message": "快捷按鈕 3",
+    "description": ""
+  },
+  "quickOptionsValueLabel": {
+    "message": "分鐘：",
+    "description": ""
+  },
+  "recurAnnuallyLabel": {
+    "message": "每年",
+    "description": ""
+  },
+  "recurDailyLabel": {
+    "message": "每天",
+    "description": ""
+  },
+  "recurFunctionLabel": {
+    "message": "功能：",
+    "description": ""
+  },
+  "recurLabel": {
+    "message": "重複寄送：",
+    "description": ""
+  },
+  "recurMinutelyLabel": {
+    "message": "每分鐘",
+    "description": ""
+  },
+  "recurMonthlyLabel": {
+    "message": "每月",
+    "description": ""
+  },
+  "recurOnceLabel": {
+    "message": "無",
+    "description": ""
+  },
+  "recurWeeklyLabel": {
+    "message": "每週",
+    "description": ""
+  },
+  "resetPrefsButton": {
+    "message": "Reset Preferences",
+    "description": ""
+  },
+  "saveDefaultsLabel": {
+    "message": "將這些設成預設值",
+    "description": ""
+  },
+  "sendAtDefaultLabel": {
+    "message": "請輸入日期和時間，格式任意。像&quot;下星期六 下午3:00&quot;這種時間格式也可以被支援。",
+    "description": "Displayed in place of send at time before user makes selections"
+  },
+  "sendAtLabel": {
+    "message": "發信時間：",
+    "description": ""
+  },
+  "sendBtwnLabel": {
+    "message": "介於",
+    "description": ""
+  },
+  "sendButtonPrefLabel": {
+    "message": "&quot;發送&quot;變成&quot;延期發送&quot;",
+    "description": ""
+  },
+  "sendDelayPrefLabel1": {
+    "message": "預設所有訊息自動延遲：",
+    "description": ""
+  },
+  "sendDelayPrefLabel2": {
+    "message": "分鐘",
+    "description": ""
+  },
+  "sendSundayLabel": {
+    "message": "星期日",
+    "description": ""
+  },
+  "sendMondayLabel": {
+    "message": "星期一",
+    "description": ""
+  },
+  "sendTuesdayLabel": {
+    "message": "星期二",
+    "description": ""
+  },
+  "sendWednesdayLabel": {
+    "message": "星期三",
+    "description": ""
+  },
+  "sendThursdayLabel": {
+    "message": "星期四",
+    "description": ""
+  },
+  "sendFridayLabel": {
+    "message": "星期五",
+    "description": ""
+  },
+  "sendSaturdayLabel": {
+    "message": "星期六",
+    "description": ""
+  },
+  "sendNowLabel": {
+    "message": "立即寄出",
+    "description": ""
+  },
+  "sendOnlyOnLabel": {
+    "message": "只在",
+    "description": ""
+  },
+  "sendUnsentMessagesPrefLabel": {
+    "message": "傳送寄件匣中的未傳送的信件",
+    "description": ""
+  },
+  "showColumnPrefLabel": {
+    "message": "顯示延期發信列",
+    "description": ""
+  },
+  "showHeaderPrefLabel": {
+    "message": "顯示延期發信標題",
+    "description": ""
+  },
+  "showStatusPrefLabel": {
+    "message": "在狀態欄中顯示延期發信",
+    "description": ""
+  },
+  "userGuideLabel": {
+    "message": "使用說明",
+    "description": ""
+  }
+}

@@ -1,0 +1,242 @@
+{
+  "extensionName": {
+    "message": "‫שלח מאוחר יותר‬",
+    "description": "The name of the add-on, displayed in various places."
+  },
+  "extensionDescription": {
+    "message": "‫&#x27;שלח מאוחר יותר&#x27; משמש לשליחת הודעות במועד עתידי‬",
+    "description": "A short description of the add-on."
+  },
+  "advancedOptionsTitle": {
+    "message": "‫מתקדם‬",
+    "description": ""
+  },
+  "altBindingPrefLabel": {
+    "message": "‫השתמש בצרוף המקשים Alt-Shift-Enter במקום הצרוף Ctrl-Shift-Enter‬",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel1": {
+    "message": "אל תשתלח הודעה יותר מ",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel2": {
+    "message": "דקות מאוחר יותר",
+    "description": ""
+  },
+  "cancelLabel": {
+    "message": "‫בטל‬",
+    "description": ""
+  },
+  "checkTimePrefLabel1": {
+    "message": "‫בדוק כל :‬",
+    "description": ""
+  },
+  "checkTimePrefLabel2": {
+    "message": "‫דקות‬",
+    "description": ""
+  },
+  "clearDefaultsLabel": {
+    "message": "נקה ברירות מחדל",
+    "description": ""
+  },
+  "contactAuthorLabel": {
+    "message": "‫צור קשר עם המפתח‬",
+    "description": ""
+  },
+  "delay15Label": {
+    "message": "‫15 דקות מאוחר יותר‬",
+    "description": ""
+  },
+  "delay30Label": {
+    "message": "‫30 דקות מאוחר יותר‬",
+    "description": ""
+  },
+  "delay120Label": {
+    "message": "‫שעתיים מאוחר יותר‬",
+    "description": ""
+  },
+  "enforceRestrictionsPrefLabel": {
+    "message": "כפה הגבלות יום ושעה על מועד המשלוח",
+    "description": ""
+  },
+  "generalOptionsTitle": {
+    "message": "‫כללי‬",
+    "description": ""
+  },
+  "logConsoleLevelLabel": {
+    "message": "‫רמת ההתראות לתיעוד במסוף הבקרה‬",
+    "description": ""
+  },
+  "logDumpLevelLabel": {
+    "message": "‫רמת ההתראות לתיעוד במסוף הג&#x27;אווה‬",
+    "description": ""
+  },
+  "logLevelAll": {
+    "message": "כולם",
+    "description": ""
+  },
+  "logLevelDebug": {
+    "message": "ניפוי באגים",
+    "description": ""
+  },
+  "logLevelError": {
+    "message": "שגיאה",
+    "description": ""
+  },
+  "logLevelFatal": {
+    "message": "גורלי",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "מידע",
+    "description": ""
+  },
+  "logLevelTrace": {
+    "message": "מעקב",
+    "description": ""
+  },
+  "logLevelWarn": {
+    "message": "התראה",
+    "description": ""
+  },
+  "markReadPrefLabel": {
+    "message": "סמן טיוטות כנקראו",
+    "description": ""
+  },
+  "quickOptionsLabel1Label": {
+    "message": "‫קיצור דרך 1‬",
+    "description": ""
+  },
+  "quickOptionsLabel2Label": {
+    "message": "‫קיצור דרך 2‬",
+    "description": ""
+  },
+  "quickOptionsLabel3Label": {
+    "message": "‫קיצור דרך 3‬",
+    "description": ""
+  },
+  "quickOptionsValueLabel": {
+    "message": "‫דקות:‬",
+    "description": ""
+  },
+  "recurAnnuallyLabel": {
+    "message": "‫שנתי‬",
+    "description": ""
+  },
+  "recurDailyLabel": {
+    "message": "‫השהה‬",
+    "description": ""
+  },
+  "recurFunctionLabel": {
+    "message": "פונקציה",
+    "description": ""
+  },
+  "recurLabel": {
+    "message": "‫מחזור",
+    "description": ""
+  },
+  "recurMinutelyLabel": {
+    "message": "דקתי",
+    "description": ""
+  },
+  "recurMonthlyLabel": {
+    "message": "‫חודשי‬",
+    "description": ""
+  },
+  "recurOnceLabel": {
+    "message": "‫ללא‬",
+    "description": ""
+  },
+  "recurWeeklyLabel": {
+    "message": "‫שבועי‬",
+    "description": ""
+  },
+  "resetPrefsButton": {
+    "message": "Reset Preferences",
+    "description": ""
+  },
+  "saveDefaultsLabel": {
+    "message": "שמור את הערכים הללו כברירת מחדל",
+    "description": ""
+  },
+  "sendAtDefaultLabel": {
+    "message": "‫הגדר תאריך ושעה למשלוח",
+    "description": "Displayed in place of send at time before user makes selections"
+  },
+  "sendAtLabel": {
+    "message": "‫שלח ב:‬",
+    "description": ""
+  },
+  "sendBtwnLabel": {
+    "message": "בין",
+    "description": ""
+  },
+  "sendButtonPrefLabel": {
+    "message": "‫הפוך את &#x27;שלח&#x27; ל &#x27;שלח מאוחר יותר&#x27;‬",
+    "description": ""
+  },
+  "sendDelayPrefLabel1": {
+    "message": "עכב משלוח הודעות ב",
+    "description": ""
+  },
+  "sendDelayPrefLabel2": {
+    "message": "דקות",
+    "description": ""
+  },
+  "sendSundayLabel": {
+    "message": "‫יום ראשון‬",
+    "description": ""
+  },
+  "sendMondayLabel": {
+    "message": "‫יום שני‬",
+    "description": ""
+  },
+  "sendTuesdayLabel": {
+    "message": "‫יום שלישי‬",
+    "description": ""
+  },
+  "sendWednesdayLabel": {
+    "message": "‫יום רביעי‬",
+    "description": ""
+  },
+  "sendThursdayLabel": {
+    "message": "‫יום חמישי‬",
+    "description": ""
+  },
+  "sendFridayLabel": {
+    "message": "‫יום שישי‬",
+    "description": ""
+  },
+  "sendSaturdayLabel": {
+    "message": "‫יום שבת‬",
+    "description": ""
+  },
+  "sendNowLabel": {
+    "message": "‫שלח כעת‬",
+    "description": ""
+  },
+  "sendOnlyOnLabel": {
+    "message": "רק כאשר",
+    "description": ""
+  },
+  "sendUnsentMessagesPrefLabel": {
+    "message": "‫הפעל שליחת הודעה שלא נשלחה מתיבת דואר יוצא‬",
+    "description": ""
+  },
+  "showColumnPrefLabel": {
+    "message": "‫הצג את הטור &#x27;‫שלח מאוחר יותר‬&#x27;‬",
+    "description": ""
+  },
+  "showHeaderPrefLabel": {
+    "message": "‫הצג את הכותרת &#x27;‫שלח מאוחר יותר‬&#x27;‬",
+    "description": ""
+  },
+  "showStatusPrefLabel": {
+    "message": "‫הצג את &#x27;‫שלח מאוחר יותר‬&#x27; בשורת המצב‬",
+    "description": ""
+  },
+  "userGuideLabel": {
+    "message": "‫מדריך למשתמש‬",
+    "description": ""
+  }
+}

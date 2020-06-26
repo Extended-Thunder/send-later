@@ -9,18 +9,14 @@ until I get around to setting up Crowdin integration.
 
 import sys, os, glob, re, html, json
 
-if len(sys.argv) == 1 or '-h' in sys.argv:
-    print('Usage: %s [path-to-send-later-legacy/chrome/locale]'%sys.argv[0])
-    sys.exit(1)
-
 dtdregex = re.compile(r'^<!ENTITY\s\s*(\S\S*)\s\s*"(.*)">$')
 propregex = re.compile(r'(\S\S*)\s*=\s*(.*)\s*')
 
 # newKey: (oldKey, defaultVal, <description [optional]>, <filter [optional]>)
 migrations = {
-    "appName": ("MessageTag", "Send Later",
+    "extensionName": ("MessageTag", "Send Later",
                 "The name of the add-on, displayed in various places."),
-    "appDesc": ("extensions.sendlater3@kamens.us.description",
+    "extensionDescription": ("extensions.sendlater3@kamens.us.description",
                 "True &quot;Send Later&quot functionality to schedule the time for sending an email.",
                 "A short description of the add-on."),
     "advancedOptionsTitle": ("advanced.caption", "Advanced"),
@@ -89,43 +85,75 @@ migrations = {
     "userGuideLabel":("helplink.value", "Website")
 }
 
-for locale in map(os.path.basename, glob.glob(sys.argv[1]+'/*')):
-    translations = dict()
-    for fname in glob.glob(os.path.join(sys.argv[1], locale, '*.dtd')):
-        with open(fname,'r') as dtdfile:
-            for line in dtdfile.readlines():
-                res = dtdregex.search(line)
-                if res:
-                    translations[res.group(1)] = html.escape(res.group(2))
-    for fname in glob.glob(os.path.join(sys.argv[1], locale, '*.properties')):
-        with open(fname,'r') as dtdfile:
-            for line in dtdfile.readlines():
-                res = propregex.search(line)
-                if res:
-                    translations[res.group(1)] = html.escape(res.group(2))
+def main(args):
+    if len(args) == 1 or '-h' in args:
+        print('Usage: %s [path-to-send-later-legacy/chrome/locale]'%args[0])
+        sys.exit(1)
 
-    appkey = "MessageTag"
-    appName = translations[appkey] if appkey in translations else "Send Later"
+    if not os.path.isdir(args[1]):
+        print('legacy send-later directory does not exist: <%s>' % args[1])
+        sys.exit(1)
 
-    i18n = dict()
-    for newkey in migrations.keys():
-        defaults = migrations[newkey]
-        oldkey = defaults[0]
+    if os.path.isdir(os.path.join(args[1],'chrome')):
+        legacy_path = os.path.join(args[1],'chrome','locale')
+    else:
+        legacy_path = args[1]
 
-        message = translations[oldkey] if (oldkey in translations) else defaults[1]
+    assert os.path.exists(os.path.join(legacy_path, 'en-US', 'prompt.dtd')), \
+        'Not a valid legacy locale path.'
 
-        if (len(defaults) > 3) and (defaults[3] is not None):
-            message = defaults[3](message)
-        message = re.sub(r"[“”]", "&quot;", message)
-        message = re.sub("{NAME}", appName, message)
-        message = re.sub(r":\s*$", "", message)
-        message = message.strip()
-        i18n[newkey] = dict(message=message, description="")
+    for locale in map(os.path.basename, glob.glob(os.path.join(legacy_path,'*'))):
+        translations = dict()
+        for fname in glob.glob(os.path.join(legacy_path, locale, '*.dtd')):
+            with open(fname,'r') as dtdfile:
+                for line in dtdfile.readlines():
+                    res = dtdregex.search(line)
+                    if res:
+                        translations[res.group(1)] = html.escape(res.group(2))
+        for fname in glob.glob(os.path.join(legacy_path, locale, '*.properties')):
+            with open(fname,'r') as dtdfile:
+                for line in dtdfile.readlines():
+                    res = propregex.search(line)
+                    if res:
+                        translations[res.group(1)] = html.escape(res.group(2))
 
-        if (len(defaults)>2) and (defaults[2] is not None):
-            i18n[newkey]["description"] = defaults[2]
+        appkey = "MessageTag"
+        appName = translations[appkey] if appkey in translations else "Send Later"
 
-    os.makedirs(os.path.join("_locales",locale), exist_ok=True)
+        i18n = dict()
+        for newkey in migrations.keys():
+            defaults = migrations[newkey]
+            oldkey = defaults[0]
 
-    with open(os.path.join("_locales", locale, "messages.json"),'w') as msgs:
-        msgs.write(json.dumps(i18n, indent=2, ensure_ascii=False))
+            message = translations[oldkey] if (oldkey in translations) else defaults[1]
+
+            if (len(defaults) > 3) and (defaults[3] is not None):
+                message = defaults[3](message)
+            message = re.sub(r"[“”]", "&quot;", message)
+            message = re.sub("{NAME}", appName, message)
+            message = re.sub(r":\s*$", "", message)
+            message = message.strip()
+            i18n[newkey] = dict(message=message, description="")
+
+            if (len(defaults)>2) and (defaults[2] is not None):
+                i18n[newkey]["description"] = defaults[2]
+
+        locale_dir = locale.replace('-','_')
+        os.makedirs(os.path.join("_locales",locale_dir), exist_ok=True)
+
+        with open(os.path.join("_locales", locale_dir, "messages.json"),'w') as msgs:
+            msgs.write(json.dumps(i18n, indent=2, ensure_ascii=False))
+
+    # And finally, if there is no "base language" version of a particular language,
+    # just duplicate the first alphabetical regional locale.
+    for locale in map(os.path.basename, glob.glob(os.path.join("_locales","*"))):
+        language = locale.split('_')[0]
+        baseLangDir = os.path.join("_locales",language)
+        if not os.path.isdir(baseLangDir):
+            os.makedirs(baseLangDir)
+            with open(os.path.join("_locales",locale,'messages.json'),'r') as regionalMsgs, \
+                    open(os.path.join(baseLangDir,'messages.json'),'w') as baseMsgs:
+                baseMsgs.write(regionalMsgs.read())
+
+if __name__ == '__main__':
+    main(sys.argv)

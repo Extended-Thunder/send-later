@@ -1,0 +1,242 @@
+{
+  "extensionName": {
+    "message": "Ուղարկել ավելի ուշ",
+    "description": "The name of the add-on, displayed in various places."
+  },
+  "extensionDescription": {
+    "message": "«Ուղարկել ավելի ուշ»-ը ապահովում է նամակները ավելի ուշ ուղարկելու հնարավորություն",
+    "description": "A short description of the add-on."
+  },
+  "advancedOptionsTitle": {
+    "message": "Լրացուցիչ",
+    "description": ""
+  },
+  "altBindingPrefLabel": {
+    "message": "Կապել Alt-Shift-Enter-ը՝ Ctrl-Shift-Enter-ի փոխարեն",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel1": {
+    "message": "Չուղարկել նամակները, որոնք՝",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel2": {
+    "message": "րոպե ուշ",
+    "description": ""
+  },
+  "cancelLabel": {
+    "message": "Չեղարկել",
+    "description": ""
+  },
+  "checkTimePrefLabel1": {
+    "message": "Ստուգել ամեն՝",
+    "description": ""
+  },
+  "checkTimePrefLabel2": {
+    "message": "րոպե",
+    "description": ""
+  },
+  "clearDefaultsLabel": {
+    "message": "Մաքրել սկզբնադիրները",
+    "description": ""
+  },
+  "contactAuthorLabel": {
+    "message": "Կապնվեք հեղինակի հետ",
+    "description": ""
+  },
+  "delay15Label": {
+    "message": "15 րոպե անց",
+    "description": ""
+  },
+  "delay30Label": {
+    "message": "30 րոպե անց",
+    "description": ""
+  },
+  "delay120Label": {
+    "message": "2 ժամ անց",
+    "description": ""
+  },
+  "enforceRestrictionsPrefLabel": {
+    "message": "Ապահովել ժամանակը և օրվա սահմանափակումները՝ ուղարկելու ժամանակ",
+    "description": ""
+  },
+  "generalOptionsTitle": {
+    "message": "Գլխավորը",
+    "description": ""
+  },
+  "logConsoleLevelLabel": {
+    "message": "Console մատյանի աստիճանը՝",
+    "description": ""
+  },
+  "logDumpLevelLabel": {
+    "message": "Dump մատյանի աստիճանը՝",
+    "description": ""
+  },
+  "logLevelAll": {
+    "message": "All",
+    "description": ""
+  },
+  "logLevelDebug": {
+    "message": "Debug",
+    "description": ""
+  },
+  "logLevelError": {
+    "message": "Error",
+    "description": ""
+  },
+  "logLevelFatal": {
+    "message": "Fatal",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "Info",
+    "description": ""
+  },
+  "logLevelTrace": {
+    "message": "Trace",
+    "description": ""
+  },
+  "logLevelWarn": {
+    "message": "Warn",
+    "description": ""
+  },
+  "markReadPrefLabel": {
+    "message": "Նշել հերթագրված սևագրերը որպես ընթերցված",
+    "description": ""
+  },
+  "quickOptionsLabel1Label": {
+    "message": "Պիտակ 1",
+    "description": ""
+  },
+  "quickOptionsLabel2Label": {
+    "message": "Պիտակ 2",
+    "description": ""
+  },
+  "quickOptionsLabel3Label": {
+    "message": "Պիտակ 3",
+    "description": ""
+  },
+  "quickOptionsValueLabel": {
+    "message": "Րոպե.",
+    "description": ""
+  },
+  "recurAnnuallyLabel": {
+    "message": "տարեկան",
+    "description": ""
+  },
+  "recurDailyLabel": {
+    "message": "օրական",
+    "description": ""
+  },
+  "recurFunctionLabel": {
+    "message": "գործառույթ.",
+    "description": ""
+  },
+  "recurLabel": {
+    "message": "Վերադառնալ՝",
+    "description": ""
+  },
+  "recurMinutelyLabel": {
+    "message": "րոպե",
+    "description": ""
+  },
+  "recurMonthlyLabel": {
+    "message": "ամսական",
+    "description": ""
+  },
+  "recurOnceLabel": {
+    "message": "ոչ մի",
+    "description": ""
+  },
+  "recurWeeklyLabel": {
+    "message": "շաբաթական",
+    "description": ""
+  },
+  "resetPrefsButton": {
+    "message": "Reset Preferences",
+    "description": ""
+  },
+  "saveDefaultsLabel": {
+    "message": "Պահպանել որպես սկզբնադիր",
+    "description": ""
+  },
+  "sendAtDefaultLabel": {
+    "message": "Նշեք ամսաթիվը և ժամանակը: Կարող եք նշել նաև &quot;հաջորդ Հինգշաբթի 3:00pm&quot;",
+    "description": "Displayed in place of send at time before user makes selections"
+  },
+  "sendAtLabel": {
+    "message": "Ուղարկել՝",
+    "description": ""
+  },
+  "sendBtwnLabel": {
+    "message": "Միջև",
+    "description": ""
+  },
+  "sendButtonPrefLabel": {
+    "message": "«Ուղարկելը»-ը «Ուղարկել ավելի ուշ»-ն է",
+    "description": ""
+  },
+  "sendDelayPrefLabel1": {
+    "message": "&quot;Send&quot; delays messages by",
+    "description": ""
+  },
+  "sendDelayPrefLabel2": {
+    "message": "minutes",
+    "description": ""
+  },
+  "sendSundayLabel": {
+    "message": "Կիրակի",
+    "description": ""
+  },
+  "sendMondayLabel": {
+    "message": "Երկուշաբթի",
+    "description": ""
+  },
+  "sendTuesdayLabel": {
+    "message": "Երեքշաբթի",
+    "description": ""
+  },
+  "sendWednesdayLabel": {
+    "message": "Չորեքշաբթի",
+    "description": ""
+  },
+  "sendThursdayLabel": {
+    "message": "Հինգշաբթի",
+    "description": ""
+  },
+  "sendFridayLabel": {
+    "message": "Ուրբաթ",
+    "description": ""
+  },
+  "sendSaturdayLabel": {
+    "message": "Շաբաթ",
+    "description": ""
+  },
+  "sendNowLabel": {
+    "message": "Ուղարկել հիմա",
+    "description": ""
+  },
+  "sendOnlyOnLabel": {
+    "message": "Միայն՝",
+    "description": ""
+  },
+  "sendUnsentMessagesPrefLabel": {
+    "message": "Սկսել չուղարկված նամակների առաքումը Ելքայինից",
+    "description": ""
+  },
+  "showColumnPrefLabel": {
+    "message": "Ցուցադրել «Ուղարկել ավելի ուշ»-ի սյունը",
+    "description": ""
+  },
+  "showHeaderPrefLabel": {
+    "message": "Ցուցադրել «Ուղարկել ավելի ուշ»-ի գլխագիրը",
+    "description": ""
+  },
+  "showStatusPrefLabel": {
+    "message": "Ցուցադրել «Ուղարկել ավելի ուշ»-ը Վիճակի տողում",
+    "description": ""
+  },
+  "userGuideLabel": {
+    "message": "Օգտվողի ուղեցույցը",
+    "description": ""
+  }
+}
