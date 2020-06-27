@@ -233,10 +233,12 @@ const SendLater = {
 
 // Intercept sent messages. Decide whether to handle them or just pass them on.
 browser.compose.onBeforeSend.addListener((tab) => {
-  SendLater.log("User requested send. Awaiting UI selections.");
-  if (SendLater.PromiseMap.get(tab.id)) {
+  if (SendLater.PromiseMap.has(tab.id)) {
+    // We already have a listener for this tab open.
     return;
   }
+
+  SendLater.log("User requested send. Awaiting UI selections.");
 
   setTimeout(() => browser.storage.local.get("preferences").then(storage => {
     const prefs = storage.preferences || {};
@@ -250,10 +252,12 @@ browser.compose.onBeforeSend.addListener((tab) => {
       const sendDelay = prefs["sendDelay"];
       SendLater.debug(`Scheduling SendLater ${sendDelay} minutes from now.`);
       SendLater.scheduleSendLater(tab.id, { delay: sendDelay });
+      SendLater.PromiseMap.delete(tab.id);
       resolver({ cancel: true });
     } else {
       // No need to intercept sending
       SendLater.debug("Resolving onBeforeSend intercept.");
+      SendLater.PromiseMap.delete(tab.id);
       resolver({ cancel: false });
     }
   }), 0);
@@ -270,6 +274,7 @@ browser.runtime.onMessage.addListener((message) => {
         SendLater.debug("User requested send immediately.");
         if (resolve !== undefined) {
           // If already blocking a send operation, just get out of the way.
+          SendLater.PromiseMap.delete(message.tabId);
           resolve({ cancel: false });
         } else {
           // Otherwise, initiate a new send operation.
@@ -280,16 +285,19 @@ browser.runtime.onMessage.addListener((message) => {
         const options = { sendTime: message.sendTime };
         SendLater.scheduleSendLater(message.tabId, options);
         if (resolve !== undefined) {
+          SendLater.PromiseMap.delete(message.tabId);
           resolve({ cancel: true });
         }
     } else if (message.action === "cancel") {
         SendLater.debug("User cancelled send.");
         if (resolve !== undefined) {
+          SendLater.PromiseMap.delete(message.tabId);
           resolve({ cancel: true });
         }
     } else {
       SendLater.warn(`Unrecognized operation <${message.action}>.`);
       if (resolve !== undefined) {
+        SendLater.PromiseMap.delete(message.tabId);
         resolve({ cancel: true });
       }
     }

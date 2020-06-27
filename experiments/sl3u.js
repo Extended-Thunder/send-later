@@ -4,6 +4,7 @@ const { ExtensionCommon } = ChromeUtils.import("resource://gre/modules/Extension
 const { ExtensionSupport } = ChromeUtils.import("resource:///modules/ExtensionSupport.jsm");
 const { ExtensionParent } = ChromeUtils.import("resource://gre/modules/ExtensionParent.jsm");
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
+var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 const { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 const { Utils } = ChromeUtils.import("resource://services-settings/Utils.jsm");
 const EventManager = ExtensionCommon.EventManager;
@@ -157,8 +158,8 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                   async SaveAsDraft() {
                     // Saves the current compose window message as a draft.
                     // Compose window remains open.
-                    const composeWindow = Services.wm.getMostRecentWindow("msgcompose");
-                    composeWindow.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
+                    const cw = Services.wm.getMostRecentWindow("msgcompose");
+                    cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
                   },
 
                   async SendNow(batch) {
@@ -216,19 +217,19 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                   },
 
                   async queueSendUnsentMessages() {
-                      if (!this.isOnline()) {
-                          console.warn("Deferring sendUnsentMessages while offline");
-                      } else if (SLGlobal.sendingUnsentMessages) {
-                          console.debug("Deferring sendUnsentMessages");
-                      } else {
-                          try {
-                              const msgSendLater = Cc["@mozilla.org/messengercompose/sendlater;1"]
-                                  .getService(Ci.nsIMsgSendLater);
-                              msgSendLater.sendUnsentMessages(null);
-                          } catch (ex) {
-                              console.warn(ex);
-                          }
+                    if (!Utils.isOffline) {
+                      try {
+                        const msgSendLater = Cc[
+                          "@mozilla.org/messengercompose/sendlater;1"
+                        ].getService(Ci.nsIMsgSendLater);
+                        msgSendLater.sendUnsentMessages(null);
+                      } catch (ex) {
+                        console.warn("WARN [SendLater]:", ex);
+                        console.error("Error sending unsent messages. Your Outbox"
+                                    + " Outbox may be corrupt, and your scheduled"
+                                    + " messages may not have been sent.");
                       }
+                    }
                   },
 
                   "sendUnsentMessagesListener": {
