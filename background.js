@@ -28,6 +28,33 @@ const SendLater = {
     async debug(...msg)  { SendLater.logger(msg, "debug", console.debug) },
     async trace(...msg)  { SendLater.logger(msg, "trace", console.trace) },
 
+    async getIdentity(id) {
+      const accts = await browser.accounts.list();
+
+      for (const acct of accts) {
+        for (const identity of acct.identities) {
+          if (id.includes(identity.id)) {
+            SendLater.debug(`Found identity matching <${id}>`, identity);
+            return identity;
+          }
+        }
+      }
+
+      SendLater.warn(`Cannot find identity <${id}>`);
+      return null;
+    },
+
+    waitAndSend: function() {
+      // When bound to a compose window, this function will wait for
+      // the window's status to be "complete", and then it will initiate
+      // a batch send operation.
+      if (this.status === "complete") {
+        browser.SL3U.SendNow(true);
+      } else {
+        setTimeout(SendLater.waitAndSend.bind(this), 50);
+      }
+    },
+
     async findDraftsHelper(folder) {
       // Recursive helper function to look through an account for draft folders
       if (folder.type === "drafts") {
@@ -49,15 +76,116 @@ const SendLater = {
       return Promise.all(draftSubFolders).then(SendLater.flatten);
     },
 
+    async beginEditAsNewMessage(id) {
+      // Begin new message composition. Duplicate contents of existing message.
+      // Returns new compose window.
+      const original = await browser.messages.getFull(id);
+      SendLater.debug("Composing message from original:",original);
+
+      const idKey = original.headers['x-identity-key'];
+      const identity = await SendLater.getIdentity(idKey[0]);
+      if (!identity) {
+        SendLater.warn("Cannot send message without a sender identity.");
+        return;
+      }
+
+      function expandMimeParts(msgparts) {
+        // Recursively traverses MIME tree to find message body.
+        const ret = { attachments: [] };
+        for (part of msgparts.parts) {
+          if (part.name) {
+            // The messagePart object for extensions does not actually include
+            // the attachment content as of TB78. See workaround below.
+            const att = { name: part.name, file: null };
+            ret.attachments.push(att);
+          } else if (part.body && part.contentType.startsWith('text/html')) {
+            // HTML body part
+            if (ret.htmlmsg) {
+              SendLater.warn("HTML message body defined twice.");
+            }
+            // Clean up HTML message, because otherwise Thunderbird treats it as
+            // if it were plaintext, adds a bunch of <br> tags, and wraps the
+            // whole thing in an <html> element for some reason.
+            ret.htmlmsg = part.body;
+            ret.htmlmsg = ret.htmlmsg.replaceAll(/\n/g,'');
+            ret.htmlmsg = ret.htmlmsg.replace(/.*<body>/i,'');
+            ret.htmlmsg = ret.htmlmsg.replace(/<\/body>.*/i,'');
+          } else if (part.body && part.contentType.startsWith('text/plain')) {
+            // Plaintext body part
+            if (ret.plainmsg) {
+              SendLater.warn("Plain message body defined twice.");
+            }
+            ret.plainmsg = part.body;
+          } else if (part.contentType.startsWith('multipart/mixed')) {
+            // Another level of message parts.
+            const subparts = expandMimeParts(part)
+            Object.assign(ret, subparts);
+          } else {
+            SendLater.warn("Unsure how to handle message part:",part);
+          }
+        }
+        return ret;
+      }
+
+      const mimeParts = expandMimeParts(original);
+
+      const details = {
+        identityId: identity.id,
+        to: original.headers.to,
+        subject: original.headers.subject[0],
+        cc: original.headers.cc,
+        bcc: original.headers.bcc,
+        isPlainText: (mimeParts.htmlmsg === undefined)
+      }
+
+      if (details.isPlainText) {
+        details.plainTextBody = mimeParts.plainmsg;
+      } else {
+        details.body = mimeParts.htmlmsg;
+      }
+
+      // Duplicate message details into a new compose window.
+      const cw = await browser.compose.beginNew(details);
+
+      // The MailExtension message API does not return message attachment body
+      // as of TB78. This workaround starts a forwarded message, then duplicates
+      // its attachments into a new compose window.
+      const fw = await browser.compose.beginForward(id, "forwardInline");
+      const attachments = await browser.compose.listAttachments(fw.id);
+      const files = await Promise.all(attachments.map(att => att.getFile()));
+      for (let idx=0; idx<files.length; idx++) {
+        const name = attachments[idx].name;
+        const file = files[idx];
+        await browser.compose.addAttachment(cw.id, { name, file });
+      }
+      browser.tabs.remove(fw.id);
+
+      return cw;
+    },
+
     async possiblySendMessage(id) {
-      // TODO: This function should determine whether or not a particular
-      // message is due to be sent, and then act on that choice. It receives
-      // a message id as input, and doesn't need to return anything.
+      // Determines whether or not a particular draft message is due to be sent
+      const msg = await browser.messages.getFull(id);
+      if (msg.headers['x-send-later-at'] !== undefined) {
+        const nextSend = new Date(msg.headers['x-send-later-at']);
+        const messageDueForSend = true; // TODO
+        if (messageDueForSend) {
+          // Duplicate draft message into new compose window, and initiate send
+          const cw = await SendLater.beginEditAsNewMessage(id);
+          setTimeout(SendLater.waitAndSend.bind(cw), 0);
+
+          // TODO: Possibly delete draft and/or schedule next recurrence.
+        } else {
+          SendLater.debug(`Message ${id} not scheduled for send.`);
+        }
+      }
     },
 
     async scheduleSendLater(tabId, options) {
-      SendLater.log("Scheduling send later: "+tabId+" with options ",options);
+      SendLater.info(`Scheduling send later: ${tabId} with options`,options);
+      // TODO: Add custom headers
       browser.SL3U.SaveAsDraft();
+      browser.tabs.remove(tabId);
     },
 
     mainLoop: function() {
@@ -71,13 +199,9 @@ const SendLater = {
                 draftFolders.forEach(async drafts => {
                   let page = await browser.messages.list(drafts);
                   do {
-                    page.messages.forEach(async message => {
-                      const msg = await browser.messages.getFull(message.id);
-                      SendLater.debug(msg.headers);
-                      if (msg.headers["x-send-later"] !== undefined) {
-                        SendLater.possiblySendMessage(message.id);
-                      }
-                    });
+                    page.messages.forEach(msg =>
+                      SendLater.possiblySendMessage(msg.id)
+                    );
                     if (page.id) {
                       page = await browser.messages.continueList(page.id);
                     }
@@ -149,7 +273,7 @@ browser.runtime.onMessage.addListener((message) => {
           resolve({ cancel: false });
         } else {
           // Otherwise, initiate a new send operation.
-          browser.SL3U.SendNow();
+          browser.SL3U.SendNow(false);
         }
     } else if (message.action === "doSendLater") {
         SendLater.debug("User requested send later.");

@@ -161,11 +161,16 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                     composeWindow.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
                   },
 
-                  async SendNow() {
+                  async SendNow(batch) {
                     // Sends the message from the current composition window
-                    const composeWindow = Services.wm.getMostRecentWindow("msgcompose");
-                    // Interestingly, this does not seem to trigger an onBeforeSend event
-                    composeWindow.GenericSendMessage(Ci.nsIMsgCompDeliverMode.Now);
+                    const cw = Services.wm.getMostRecentWindow("msgcompose");
+                    const sendMode_Now = Ci.nsIMsgCompDeliverMode.Now;
+                    if (batch) {
+                      // Skips usual checking and user interaction steps.
+                      cw.CompleteGenericSendMessage(sendMode_Now);
+                    } else {
+                      cw.GenericSendMessage(sendMode_Now);
+                    }
                   },
 
                   // TODO: According to an old comment, the MailMerge add-on uses

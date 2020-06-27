@@ -33,7 +33,13 @@
         "type": "function",
         "async": true,
         "description": "",
-        "parameters": []
+        "parameters": [
+          {
+            "name": "batch",
+            "type": "boolean",
+            "description": "Skip user interaction and message content checks."
+          }
+        ]
       },
       {
         "name":"alert",
