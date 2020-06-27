@@ -8,119 +8,113 @@
 
   <body>
     <section style="margin-top:0px;">
-      <div class="title option-label localized __MSG_generalOptionsTitle__"
-           id="generalOptionsTitle">General Options</div>
+      <div class="title option-label localized __MSG_generalOptionsTitle__">General Options</div>
       <label>
-        <span class="option-label localized __MSG_checkTimePrefLabel1__"
-              id="checkTimePrefLabel1">Check every</span>
+        <span class="option-label localized __MSG_checkTimePrefLabel1__">Check every</span>
         <input type="number" min=1 id="checkTimePref" style="width:6em;" class="preference"/>
-        <span class="option-label localized __MSG_checkTimePrefLabel2__"
-              id="checkTimePrefLabel2">minutes</span>
+        <span class="option-label localized __MSG_checkTimePrefLabel2__">minutes</span>
       </label>
 
       <label>
         <input type="checkbox" id="sendDoesDelay" class="preference"/>
-        <span class="option-label localized __MSG_sendDelayPrefLabel1__"
-              id="sendDelayPrefLabel1">&quot;Send&quot; delays messages by</span>
+        <span class="option-label localized __MSG_sendDelayPrefLabel1__">
+          &quot;Send&quot; delays messages by
+        </span>
         <input type="number" min=1 style="width:6em;" id="sendDelay" class="preference"/>
-        <span class="option-label localized __MSG_sendDelayPrefLabel2__"
-              id="sendDelayPrefLabel2">minutes</span>
+        <span class="option-label localized __MSG_sendDelayPrefLabel2__">minutes</span>
       </label>
 
       <label>
         <input type="checkbox" id="sendDoesSL" class="preference"/>
-        <span class="option-label localized __MSG_sendButtonPrefLabel__"
-              id="sendButtonPrefLabel">&quot;Send&quot; does &quot;Send later&quot;</span>
+        <span class="option-label localized __MSG_sendButtonPrefLabel__">
+          &quot;Send&quot; does &quot;Send later&quot;
+        </span>
       </label>
 
       <label>
         <input type="checkbox" id="altBinding" class="preference"/>
-        <span class="option-label localized __MSG_altBindingPrefLabel__"
-              id="altBindingPrefLabel">Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter</span>
+        <span class="option-label localized __MSG_altBindingPrefLabel__">
+          Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter</span>
       </label>
 
       <label>
         <input type="checkbox" id="markDraftsRead" class="preference"/>
-        <span class="option-label localized __MSG_markReadPrefLabel__"
-              id="markReadPrefLabel">Mark scheduled drafts as read</span>
+        <span class="option-label localized __MSG_markReadPrefLabel__">
+          Mark scheduled drafts as read</span>
       </label>
 
       <label>
         <input type="checkbox" id="showColumn" class="preference"/>
-        <span class="option-label localized __MSG_showColumnPrefLabel__"
-              id="showColumnPrefLabel">Show Send Later column</span>
+        <span class="option-label localized __MSG_showColumnPrefLabel__">
+          Show Send Later column</span>
       </label>
 
       <label>
         <input type="checkbox" id="showHeader" class="preference"/>
-        <span class="option-label localized __MSG_showHeaderPrefLabel__"
-              id="showHeaderPrefLabel">Show Send Later header</span>
+        <span class="option-label localized __MSG_showHeaderPrefLabel__">
+          Show Send Later header</span>
       </label>
 
       <label>
         <input type="checkbox" id="showStatus" class="preference"/>
-        <span class="option-label localized __MSG_showStatusPrefLabel__"
-              id="showStatusPrefLabel">Show Send Later in status bar</span>
+        <span class="option-label localized __MSG_showStatusPrefLabel__">
+          Show Send Later in status bar</span>
       </label>
 
       <label>
         <input type="checkbox" id="sendUnsentMsgs" class="preference"/>
-        <span class="option-label localized __MSG_sendUnsentMessagesPrefLabel__"
-              id="sendUnsentMessagesPrefLabel">Trigger unsent message delivery from outbox</span>
+        <span class="option-label localized __MSG_sendUnsentMessagesPrefLabel__">
+          Trigger unsent message delivery from outbox</span>
       </label>
 
       <label>
         <input type="checkbox" id="blockLateMessages" class="preference"/>
-        <span class="option-label localized __MSG_blockLateMessagesPrefLabel1__"
-              id="blockLateMessagesPrefLabel1">Don't deliver messages more than</span>
+        <span class="option-label localized __MSG_blockLateMessagesPrefLabel1__">
+          Don't deliver messages more than</span>
         <input type="number" min=1 style="width:6em;" id="lateGracePeriod" class="preference"/>
-        <span class="option-label localized __MSG_blockLateMessagesPrefLabel2__"
-              id="blockLateMessagesPrefLabel2">minutes late</span>
+        <span class="option-label localized __MSG_blockLateMessagesPrefLabel2__">
+          minutes late</span>
       </label>
 
       <label>
         <input type="checkbox" id="enforceTimeRestrictions" class="preference"/>
-        <span class="option-label localized __MSG_enforceRestrictionsPrefLabel__"
-              id="enforceRestrictionsPrefLabel">Enforce time and day restrictions at delivery time</span>
+        <span class="option-label localized __MSG_enforceRestrictionsPrefLabel__">
+          Enforce time and day restrictions at delivery time</span>
       </label>
     </section>
 
     <section>
       <div class="title option-label" id="shortcutOptionsTitle">Shortcuts</div>
       <label>
-        <span class="option-label localized __MSG_quickOptionsLabel1Label__"
-              id="quickOptionsLabel1Label">Shortcut 1 label</span>:
+        <span class="option-label localized __MSG_quickOptionsLabel1Label__">
+          Shortcut 1 label</span>:
         <input type="text" id="quickOptions1Label" style="width:6em;" class="preference"/>
-        <span class="option-label localized __MSG_quickOptionsValueLabel__"
-              id="quickOptionsValue1Label">Minutes</span>:
+        <span class="option-label localized __MSG_quickOptionsValueLabel__">
+          Minutes</span>:
         <input type="text" id="quickOptions1Value" style="width:6em;" class="preference"/>
       </label>
 
       <label>
-        <span class="option-label localized __MSG_quickOptionsLabel2Label__"
-              id="quickOptionsLabel2Label">Shortcut 2 label</span>:
+        <span class="option-label localized __MSG_quickOptionsLabel2Label__">
+          Shortcut 2 label</span>:
         <input type="text" id="quickOptions2Label" style="width:6em;" class="preference"/>
-        <span class="option-label localized __MSG_quickOptionsValueLabel__"
-              id="quickOptions3ValueLabel">Minutes</span>:
+        <span class="option-label localized __MSG_quickOptionsValueLabel__">
+          Minutes</span>:
         <input type="text" id="quickOptions2Value" style="width:6em;" class="preference"/>
       </label>
 
       <label>
-        <span class="option-label localized __MSG_quickOptionsLabel3Label__"
-              id="quickOptionsLabel3Label">Shortcut 3 label</span>:
+        <span class="option-label localized __MSG_quickOptionsLabel3Label__">Shortcut 3 label</span>:
         <input type="text" id="quickOptions3Label" style="width:6em;" class="preference"/>
-        <span class="option-label localized __MSG_quickOptionsValueLabel__"
-              id="quickOptions3ValueLabel">Minutes</span>:
+        <span class="option-label localized __MSG_quickOptionsValueLabel__">Minutes</span>:
         <input type="text" id="quickOptions3Value" style="width:6em;" class="preference"/>
       </label>
     </section>
 
     <section>
-      <div class="title option-label localized __MSG_advancedOptionsTitle__"
-            id="advancedOptionsTitle">Advanced</div>
+      <div class="title option-label localized __MSG_advancedOptionsTitle__">Advanced</div>
       <label>
-        <span class="option-label localized __MSG_logDumpLevelLabel__"
-              id="logDumpLevelLabel">File log level</span>:
+        <span class="option-label localized __MSG_logDumpLevelLabel__">File log level</span>:
         <select id="logDumpLevel" class="preference">
           <option value="fatal"
             class="option-label localized __MSG_logLevelFatal__">Fatal</option>
@@ -140,8 +134,7 @@
       </label>
 
       <label for="consolelog_menu">
-        <span class="option-label localized __MSG_logConsoleLevelLabel__"
-              id="logConsoleLevelLabel">Console log level</span>:
+        <span class="option-label localized __MSG_logConsoleLevelLabel__">Console log level</span>:
         <select id="logConsoleLevel" class="preference">
           <option value="fatal"
             class="option-label localized __MSG_logLevelFatal__">Fatal</option>
@@ -169,9 +162,9 @@
     </div>
 
     <div class="footer">
-      <a href="mailto:jph@extended-thunder.org" id="contactAuthor"
+      <a href="mailto:jph@extended-thunder.org"
         class="option-label localized __MSG_contactAuthorLabel__">Contact Maintainer</a>
-      <a href="https://github.com/Extended-Thunder/send-later" id="userGuide"
+      <a href="https://github.com/Extended-Thunder/send-later"
         class="option-label localized __MSG_userGuideLabel__">Website</a>
     </div>
 
