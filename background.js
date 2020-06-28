@@ -1,14 +1,7 @@
 // Pseudo-namespace encapsulation for global-ish variables.
 const SendLater = {
     // Track unresolved promises that can be resolved by some future event.
-    PromiseMap: new Map(),
-
-    flatten: function(arr) {
-      // Flattens an N-dimensional array.
-      return arr.reduce((res, item) => {
-        return res.concat(Array.isArray(item) ? SendLater.flatten(item) : item);
-      }, []);
-    },
+    _PromiseMap: new Map(),
 
     async logger(msg, level, stream) {
       const levels = ["all","trace","debug","info","warn","error","fatal"];
@@ -27,6 +20,41 @@ const SendLater = {
     async log(...msg)    { SendLater.logger(msg, "info",  console.log) },
     async debug(...msg)  { SendLater.logger(msg, "debug", console.debug) },
     async trace(...msg)  { SendLater.logger(msg, "trace", console.trace) },
+
+    flatten: function(arr) {
+      // Flattens an N-dimensional array.
+      return arr.reduce((res, item) => {
+        return res.concat(Array.isArray(item) ? SendLater.flatten(item) : item);
+      }, []);
+    },
+
+    // Takes a date object and format options. If either one is null,
+    // then it substitutes defaults.
+    dateTimeFormat: function(thisdate, options) {
+        const defaults = {
+            weekday: 'short',
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+            timeZoneName: 'short',
+            hour12: false
+        };
+        const opts = Object.assign(defaults, options);
+        const dtfmt = new Intl.DateTimeFormat('default', opts);
+        return dtfmt.format(thisdate || (new Date()));
+    },
+
+    uuid: function() {
+      // Good enough for this purpose. Code snippet from:
+      // stackoverflow.com/questions/105034/how-to-create-guid-uuid/2117523
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
+    },
 
     async getIdentity(id) {
       const accts = await browser.accounts.list();
@@ -74,6 +102,82 @@ const SendLater = {
         draftSubFolders.push(SendLater.findDraftsHelper(folder));
       });
       return Promise.all(draftSubFolders).then(SendLater.flatten);
+    },
+
+    async scheduleSendLater(tabId, options) {
+      SendLater.info(`Scheduling send later: ${tabId} with options`,options);
+      const customHeaders = { 'x-send-later-msg-uuid': SendLater.uuid() };
+
+      // Determine time at which this message should be sent
+      if (options.sendTime !== undefined) {
+        const sendTime = new Date(options.sendTime);
+        customHeaders["x-send-later-at"] = SendLater.dateTimeFormat(sendTime);
+      } else if (options.delay !== undefined) {
+        const sendTime = new Date(Date.now() + options.delay*60000);
+        customHeaders["x-send-later-at"] = SendLater.dateTimeFormat(sendTime);
+      } else {
+        SendLater.error("scheduleSendLater requires scheduling information");
+        return;
+      }
+
+      if (options.recur !== undefined) {
+        customHeaders['x-send-later-recur'] = options.recur;
+      }
+
+      const inserted = Object.keys(customHeaders).map(name => {
+        browser.SL3U.insertHeader(name, customHeaders[name])
+      });
+      await Promise.all(inserted);
+
+      await browser.SL3U.SaveAsDraft();
+      browser.tabs.remove(tabId);
+
+      // Internal lock indicates that this message is prepped and ready to do.
+      browser.storage.local.get("lock").then(storage => {
+        const lock = storage.lock || {};
+        lock[customHeaders['x-send-later-msg-uuid']] = "staged";
+        browser.storage.local.set({ lock });
+      });
+    },
+
+    // TODO: Finish this function.
+    nextRecurDate: function(recurSpec, relativeToDate) {
+      // If no relativeTo time is specified, then assume relative to now.
+      const prior = relativeToDate || (new Date());
+      let next = new Date(prior.getTime());
+
+      const params = recurSpec.split(/\s+/);
+      const parsed = { type: params.shift() };
+
+      const validTypes = ["none", "minutely", "daily", "weekly", "monthly",
+                          "yearly", "function"];
+      if (!validTypes.includes(parsed.type)) {
+        throw `Invalid recurrence type in ${recurSpec}`;
+      }
+
+      switch (parsed.type) {
+        case "monthly":
+          if (!/^\d+$/.test(params[0]))
+              throw "Invalid first monthly argument in " + recurSpec;
+          if (/^[1-9]\d*$/.test(params[1])) {
+              parsed.monthly_day = {day: params.shift(), week: params.shift()};
+              if (parsed.monthly_day.day > 6)
+                  throw "Invalid monthly day argument in " + recurSpec;
+              if (parsed.monthly_day.week > 5)
+                  throw "Invalid monthly week argument in " + recurSpec;
+          } else {
+              parsed.monthly = params.shift();
+              if (parsed.monthly > 31)
+                  throw "Invalid monthly date argument in " + recurSpec;
+          }
+          break;
+        case "daily":
+          break;
+        default:
+          break;
+      }
+
+      return next;
     },
 
     async beginEditAsNewMessage(id) {
@@ -166,26 +270,60 @@ const SendLater = {
     async possiblySendMessage(id) {
       // Determines whether or not a particular draft message is due to be sent
       const msg = await browser.messages.getFull(id);
-      if (msg.headers['x-send-later-at'] !== undefined) {
+
+      // Check that the internal lock knows about this message, and that it is
+      // prepared to be sent.
+      const msgUUID = msg.headers['x-send-later-uuid'];
+      if (msgUUID !== undefined) {
+        const sendStatus = await storage.local.get("lock").then(storage =>
+          (storage.lock || {})[msgUUID]
+        );
+        switch (sendStatus) {
+          case "staged":
+            // Ready to roll.
+            break;
+          case "sent":
+            SendLater.debug(`Message ${id} already sent but not removed`);
+            return;
+          default:
+            SendLater.debug(`Unrecognized message ${id} has send-later headers`);
+            return;
+        }
+
         const nextSend = new Date(msg.headers['x-send-later-at']);
-        const messageDueForSend = true; // TODO
-        if (messageDueForSend) {
+        const dueForSend = Date.now() >= nextSend.getTime();
+        if (dueForSend) {
           // Duplicate draft message into new compose window, and initiate send
           const cw = await SendLater.beginEditAsNewMessage(id);
           setTimeout(SendLater.waitAndSend.bind(cw), 0);
 
-          // TODO: Possibly delete draft and/or schedule next recurrence.
+          // Update lock to avoid double sending.
+          browser.storage.local.get("lock").then(storage => {
+            const lock = storage.lock || {};
+            lock[msgUUID] = "sent";
+            browser.storage.local.set({ lock });
+          });
+
+          // Possibly schedule next recurrence.
+          const recurSpec = msg.headers['x-send-later-recur'];
+          if (recurSpec !== undefined) {
+            let nextRecurrence = SendLater.nextRecurDate(recurSpec, nextSend);
+            if (Date.now() > nextRecurrence.getTime()) {
+              nextRecurrence = SendLater.nextRecurDate(recurSpec, (new Date()));
+            }
+            SendLater.debug(`Scheduling next recurrence of ${recurSpec} at `
+                          + SendLater.dateTimeFormat(nextRecurrence));
+
+            const cw = await SendLater.beginEditAsNewMessage(id);
+            SendLater.scheduleSendLater(cw.id, { sendTime: nextRecurrence });
+          }
+
+          // TODO: Add option for skiptrash.
+          browser.messages.delete([id], false);
         } else {
-          SendLater.debug(`Message ${id} not scheduled for send.`);
+          SendLater.debug(`Message ${id} not yet due for send.`);
         }
       }
-    },
-
-    async scheduleSendLater(tabId, options) {
-      SendLater.info(`Scheduling send later: ${tabId} with options`,options);
-      // TODO: Add custom headers
-      browser.SL3U.SaveAsDraft();
-      browser.tabs.remove(tabId);
     },
 
     mainLoop: function() {
@@ -233,7 +371,7 @@ const SendLater = {
 
 // Intercept sent messages. Decide whether to handle them or just pass them on.
 browser.compose.onBeforeSend.addListener((tab) => {
-  if (SendLater.PromiseMap.has(tab.id)) {
+  if (SendLater._PromiseMap.has(tab.id)) {
     // We already have a listener for this tab open.
     return;
   }
@@ -242,7 +380,7 @@ browser.compose.onBeforeSend.addListener((tab) => {
 
   setTimeout(() => browser.storage.local.get("preferences").then(storage => {
     const prefs = storage.preferences || {};
-    const resolver = (SendLater.PromiseMap.get(tab.id)) || (()=>{});
+    const resolver = (SendLater._PromiseMap.get(tab.id)) || (()=>{});
 
     if (prefs["sendDoesSL"]) {
       SendLater.debug("Intercepting send operation. Awaiting user input.");
@@ -252,29 +390,29 @@ browser.compose.onBeforeSend.addListener((tab) => {
       const sendDelay = prefs["sendDelay"];
       SendLater.debug(`Scheduling SendLater ${sendDelay} minutes from now.`);
       SendLater.scheduleSendLater(tab.id, { delay: sendDelay });
-      SendLater.PromiseMap.delete(tab.id);
+      SendLater._PromiseMap.delete(tab.id);
       resolver({ cancel: true });
     } else {
       // No need to intercept sending
       SendLater.debug("Resolving onBeforeSend intercept.");
-      SendLater.PromiseMap.delete(tab.id);
+      SendLater._PromiseMap.delete(tab.id);
       resolver({ cancel: false });
     }
   }), 0);
 
-  return new Promise(resolve => SendLater.PromiseMap.set(tab.id, resolve));
+  return new Promise(resolve => SendLater._PromiseMap.set(tab.id, resolve));
 });
 
 // Button clicks in the UI popup window send messages back to this function
 // via the WebExtension messaging API.
 browser.runtime.onMessage.addListener((message) => {
-    const resolve = SendLater.PromiseMap.get(message.tabId);
+    const resolve = SendLater._PromiseMap.get(message.tabId);
 
     if (message.action === "doSendNow" ) {
         SendLater.debug("User requested send immediately.");
         if (resolve !== undefined) {
           // If already blocking a send operation, just get out of the way.
-          SendLater.PromiseMap.delete(message.tabId);
+          SendLater._PromiseMap.delete(message.tabId);
           resolve({ cancel: false });
         } else {
           // Otherwise, initiate a new send operation.
@@ -285,55 +423,23 @@ browser.runtime.onMessage.addListener((message) => {
         const options = { sendTime: message.sendTime };
         SendLater.scheduleSendLater(message.tabId, options);
         if (resolve !== undefined) {
-          SendLater.PromiseMap.delete(message.tabId);
+          SendLater._PromiseMap.delete(message.tabId);
           resolve({ cancel: true });
         }
     } else if (message.action === "cancel") {
         SendLater.debug("User cancelled send.");
         if (resolve !== undefined) {
-          SendLater.PromiseMap.delete(message.tabId);
+          SendLater._PromiseMap.delete(message.tabId);
           resolve({ cancel: true });
         }
     } else {
       SendLater.warn(`Unrecognized operation <${message.action}>.`);
       if (resolve !== undefined) {
-        SendLater.PromiseMap.delete(message.tabId);
+        SendLater._PromiseMap.delete(message.tabId);
         resolve({ cancel: true });
       }
     }
 });
-
-// // Responds to keyboard shortcut
-// browser.commands.onCommand.addListener(async (command) => {
-//   if (command === "doSendLater") {
-//     //let result = await browser.sendLaterComposing.tryToSave();
-//     //SendLater.log(result);
-//   }
-// });
-//
-// /*
-//  * Template for actions to perform during installation or updates.
-//  */
-// browser.runtime.onInstalled.addListener(async ({ reason, temporary }) => {
-//   if (temporary) return; // skip during development
-//   switch (reason) {
-//     case "install":
-//       {
-//         //const url = browser.runtime.getURL("views/installed.html");
-//         //await browser.tabs.create({ url });
-//         // or: await browser.windows.create({ url, type: "popup", height: 600, width: 600, });
-//       }
-//       break;
-//     case "update":
-//       {
-//         // Do something
-//       }
-//       break;
-//   }
-// });
-
-// Initialize experiments.
-//browser.SL3U.init();
 
 // Start background loop to check for scheduled messages.
 setTimeout(SendLater.mainLoop, 0);

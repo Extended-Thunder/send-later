@@ -42,6 +42,24 @@
         ]
       },
       {
+        "name":"insertHeader",
+        "type":"function",
+        "async":true,
+        "description":"Add a custom header to the current compose message",
+        "parameters": [
+          {
+            "name":"name",
+            "type":"string",
+            "description":"Name of the header to set"
+          },
+          {
+            "name":"value",
+            "type":"string",
+            "description":"Value of custom header"
+          }
+        ]
+      },
+      {
         "name":"alert",
         "type":"function",
         "async":true,

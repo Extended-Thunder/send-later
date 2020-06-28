@@ -174,6 +174,11 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                     }
                   },
 
+                  async insertHeader(name, value) {
+                    const cw = Services.wm.getMostRecentWindow("msgcompose");
+                    cw.gMsgCompose.compFields.setHeader(name,value);
+                  },
+
                   // TODO: According to an old comment, the MailMerge add-on uses
                   // this function for some reason. Remember to check with that
                   // author about how it was used, because that is almost certainly
@@ -195,25 +200,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
                   async PromptBundleGetFormatted(name, params) {
                       return SLGlobal._PromptBundle.formatStringFromName(name, params, params.length);
-                  },
-
-                  // Takes a date object and format options. If either one is null,
-                  // then it substitutes defaults.
-                  async DateTimeFormat(thisdate, options) {
-                      const defaults = {
-                          weekday: 'short',
-                          year: 'numeric',
-                          month: 'short',
-                          day: 'numeric',
-                          hour: 'numeric',
-                          minute: 'numeric',
-                          second: 'numeric',
-                          timeZoneName: 'short',
-                          hour12: false
-                      };
-                      const dtfmt = new Intl.DateTimeFormat('default', (options || defaults));
-
-                      return dtfmt.format(thisdate || (new Date()));
                   },
 
                   async queueSendUnsentMessages() {
