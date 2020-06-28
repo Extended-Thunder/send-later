@@ -15,13 +15,6 @@
     ],
     "functions": [
       {
-        "name": "init",
-        "type": "function",
-        "async": true,
-        "description": "",
-        "parameters": []
-      },
-      {
         "name": "SaveAsDraft",
         "type": "function",
         "async": true,
@@ -60,36 +53,6 @@
         ]
       },
       {
-        "name":"alert",
-        "type":"function",
-        "async":true,
-        "description":"",
-        "parameters":[
-          {
-            "name":"window",
-            "type":"object",
-            "description":""
-          },
-          {
-            "name":"title",
-            "type":"string",
-
-            "description":""
-          },
-          {
-            "name":"text",
-            "type":"string",
-            "description":""
-          }]
-      },
-      {
-        "name":"isOnline",
-        "type":"function",
-        "async":true,
-        "description":"",
-        "parameters":[]
-      },
-      {
         "name":"updatePrefs",
         "type":"function",
         "async":true,
@@ -122,13 +85,6 @@
             "description": "Fallback value if nothing is returned."
           }
         ]
-      },
-      {
-        "name":"getInstanceUuid",
-        "type":"function",
-        "async":true,
-        "description":"",
-        "parameters":[]
       }
     ]
   }
