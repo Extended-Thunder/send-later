@@ -56,6 +56,12 @@ const SendLater = {
       });
     },
 
+    async getPrefs() {
+      return await browser.storage.local.get("preferences").then(storage =>
+        (storage.preferences || {})
+      );
+    },
+
     async getIdentity(id) {
       const accts = await browser.accounts.list();
 
@@ -320,6 +326,17 @@ const SendLater = {
       const nextSend = new Date(msgSendAt);
       const dueForSend = Date.now() >= nextSend.getTime();
       if (dueForSend) {
+        const prefs = await SendLater.getPrefs();
+
+        // Respect late message blocker
+        if (prefs.blockLateMessages) {
+          const lateness = Date.now() - nextSend.getTime();
+          if ((lateness / 60000) > prefs.lateGracePeriod) {
+            SendLater.info(`Grace period exceeded for message ${id}`);
+            return;
+          }
+        }
+
         // Duplicate draft message into new compose window, and initiate send
         const cw = await SendLater.beginEditAsNewMessage(id);
         setTimeout(SendLater.waitAndSend.bind(cw), 0);
