@@ -74,6 +74,24 @@
         ]
       },
       {
+        "name":"getHeader",
+        "type":"function",
+        "async":true,
+        "description":"Fetch value of message header from window with id",
+        "parameters": [
+          {
+            "name":"windowId",
+            "type":"integer",
+            "description":"Which window to check for headers."
+          },
+          {
+            "name":"name",
+            "type":"string",
+            "description":"Name of the header to set"
+          }
+        ]
+      },
+      {
         "name":"updatePrefs",
         "type":"function",
         "async":true,

@@ -180,6 +180,16 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                     cw.gMsgCompose.compFields.setHeader(name,value);
                   },
 
+                  async getHeader(windowId, name) {
+                    const cw = windowTracker.getWindow(windowId, context);
+                    if (!cw) {
+                      console.error(`Window <${windowId}> does not exist`);
+                      return undefined;
+                    } else {
+                      return cw.gMsgCompose.compFields.getHeader(name);
+                    }
+                  },
+
                   // TODO: According to an old comment, the MailMerge add-on uses
                   // this function for some reason. Remember to check with that
                   // author about how it was used, because that is almost certainly
@@ -477,6 +487,8 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
         // Cu.unload(extension.getURL("modules/logging.jsm"));
         // console.log(extension.getURL("modules/ufuncs.jsm"));
         // console.log(extension.getURL("modules/logging.jsm"));
+
+        Services.obs.notifyObservers(null, "startupcache-invalidate", null);
 
         // Cu.unload(extension.rootURI.resolve("modules/ufuncs.jsm"));
         // Cu.unload(extension.rootURI.resolve("modules/logging.jsm"));

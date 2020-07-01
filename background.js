@@ -47,7 +47,7 @@ const SendLater = {
         return dtfmt.format(thisdate || (new Date()));
     },
 
-    uuid: function() {
+    newUUID: function() {
       // Good enough for this purpose. Code snippet from:
       // stackoverflow.com/questions/105034/how-to-create-guid-uuid/2117523
       return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -70,6 +70,21 @@ const SendLater = {
 
       SendLater.warn(`Cannot find identity <${id}>`);
       return null;
+    },
+
+    async isEditing(msgUUID) {
+      // Look through each of the compose windows, check for this message UUID.
+      const composeWindows = await browser.windows.getAll(
+        { windowTypes: ["messageCompose"] }
+      );
+      for (const win of composeWindows) {
+        const uuid = await browser.SL3U.getHeader(win.id,
+                                                  'x-send-later-msg-uuid');
+        if (uuid === msgUUID) {
+          return true;
+        }
+      }
+      return false;
     },
 
     waitAndSend: function() {
@@ -106,7 +121,7 @@ const SendLater = {
 
     async scheduleSendLater(tabId, options) {
       SendLater.info(`Scheduling send later: ${tabId} with options`,options);
-      const customHeaders = { 'x-send-later-msg-uuid': SendLater.uuid() };
+      const customHeaders = { 'x-send-later-msg-uuid': SendLater.newUUID() };
 
       // Determine time at which this message should be sent
       if (options.sendTime !== undefined) {
@@ -135,7 +150,7 @@ const SendLater = {
       // Internal lock indicates that this message is prepped and ready to do.
       browser.storage.local.get("lock").then(storage => {
         const lock = storage.lock || {};
-        lock[customHeaders['x-send-later-msg-uuid']] = "staged";
+        lock[customHeaders['x-send-later-msg-uuid']] = { status: "ready" };
         browser.storage.local.set({ lock });
       });
     },
@@ -274,58 +289,65 @@ const SendLater = {
       // Determines whether or not a particular draft message is due to be sent
       const msg = await browser.messages.getFull(id);
 
-      // Check that the internal lock knows about this message, and that it is
-      // prepared to be sent.
-      const msgUUID = msg.headers['x-send-later-uuid'];
+      const msgSendAt = msg.headers['x-send-later-at'];
+      const msgUUID = msg.headers['x-send-later-msg-uuid'];
+      const msgRecurSpec = msg.headers['x-send-later-recur'];
+
+      if (msgSendAt === undefined) {
+        return;
+      } else if (SendLater.isEditing(msgUUID)) {
+        SendLater.debug(`Skipping message ${id} while it is being edited`);
+        return;
+      }
+
       if (msgUUID !== undefined) {
-        const sendStatus = await storage.local.get("lock").then(storage =>
+        const lock = await storage.local.get("lock").then(storage =>
           (storage.lock || {})[msgUUID]
         );
-        switch (sendStatus) {
-          case "staged":
-            // Ready to roll.
+        switch (lock.status) {
+          case "ready":
             break;
           case "sent":
             SendLater.debug(`Message ${id} already sent but not removed`);
             return;
           default:
-            SendLater.debug(`Unrecognized message ${id} has send-later headers`);
+            SendLater.debug(`Unrecognized lock status <${lock.status}> on `
+                          + `message ${id}.`);
             return;
         }
+      }
 
-        const nextSend = new Date(msg.headers['x-send-later-at']);
-        const dueForSend = Date.now() >= nextSend.getTime();
-        if (dueForSend) {
-          // Duplicate draft message into new compose window, and initiate send
-          const cw = await SendLater.beginEditAsNewMessage(id);
-          setTimeout(SendLater.waitAndSend.bind(cw), 0);
+      const nextSend = new Date(msgSendAt);
+      const dueForSend = Date.now() >= nextSend.getTime();
+      if (dueForSend) {
+        // Duplicate draft message into new compose window, and initiate send
+        const cw = await SendLater.beginEditAsNewMessage(id);
+        setTimeout(SendLater.waitAndSend.bind(cw), 0);
 
-          // Update lock to avoid double sending.
-          browser.storage.local.get("lock").then(storage => {
-            const lock = storage.lock || {};
-            lock[msgUUID] = "sent";
-            browser.storage.local.set({ lock });
-          });
+        // Update lock to avoid double sending.
+        browser.storage.local.get("lock").then(storage => {
+          const lock = storage.lock || {};
+          lock[msgUUID] = "sent";
+          browser.storage.local.set({ lock });
+        });
 
-          // Possibly schedule next recurrence.
-          const recurSpec = msg.headers['x-send-later-recur'];
-          if (recurSpec !== undefined) {
-            let nextRecurrence = SendLater.nextRecurDate(recurSpec, nextSend);
-            if (Date.now() > nextRecurrence.getTime()) {
-              nextRecurrence = SendLater.nextRecurDate(recurSpec, (new Date()));
-            }
-            SendLater.debug(`Scheduling next recurrence of ${recurSpec} at `
-                          + SendLater.dateTimeFormat(nextRecurrence));
-
-            const cw = await SendLater.beginEditAsNewMessage(id);
-            SendLater.scheduleSendLater(cw.id, { sendTime: nextRecurrence });
+        // Possibly schedule next recurrence.
+        if (msgRecurSpec !== undefined) {
+          let nextRecurrence = SendLater.nextRecurDate(msgRecurSpec, nextSend);
+          if (Date.now() > nextRecurrence.getTime()) {
+            nextRecurrence = SendLater.nextRecurDate(msgRecurSpec, (new Date()));
           }
+          SendLater.debug(`Scheduling next recurrence of ${msgRecurSpec} at `
+                        + SendLater.dateTimeFormat(nextRecurrence));
 
-          // TODO: Add option for skiptrash.
-          browser.messages.delete([id], false);
-        } else {
-          SendLater.debug(`Message ${id} not yet due for send.`);
+          const cw = await SendLater.beginEditAsNewMessage(id);
+          SendLater.scheduleSendLater(cw.id, { sendTime: nextRecurrence });
         }
+
+        // TODO: Add option for skiptrash.
+        browser.messages.delete([id], false);
+      } else {
+        SendLater.debug(`Message ${id} not yet due for send.`);
       }
     },
 
