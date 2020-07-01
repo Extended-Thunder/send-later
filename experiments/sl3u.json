@@ -15,6 +15,27 @@
     ],
     "functions": [
       {
+        "name":"isOffline",
+        "type":"function",
+        "async":false,
+        "parameters":[]
+      },
+      {
+        "name":"alert",
+        "type":"function",
+        "async":true,
+        "parameters":[
+          {
+            "name":"title",
+            "type":"string"
+          },
+          {
+            "name":"text",
+            "type":"string"
+          }
+        ]
+      },
+      {
         "name": "SaveAsDraft",
         "type": "function",
         "async": true,

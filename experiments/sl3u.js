@@ -81,12 +81,13 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                       },
                   }).api(),
 
-                  async alert(window, title, text) {
-                      return Services.prompt.alert(window, title, text);
+                  async alert(title, text) {
+                    const win = Services.wm.getMostRecentWindow();
+                    return Services.prompt.alert(win, title, text);
                   },
 
-                  async isOnline() {
-                      return !Utils.isOffline;
+                  isOffline: function() {
+                      return Utils.isOffline;
                   },
 
                   // When user preferences are changed by the webExtension bits,

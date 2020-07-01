@@ -268,6 +268,9 @@ const SendLater = {
     },
 
     async possiblySendMessage(id) {
+      if (browser.SL3U.isOffline()) {
+        return;
+      }
       // Determines whether or not a particular draft message is due to be sent
       const msg = await browser.messages.getFull(id);
 
@@ -416,7 +419,12 @@ browser.runtime.onMessage.addListener((message) => {
           resolve({ cancel: false });
         } else {
           // Otherwise, initiate a new send operation.
-          browser.SL3U.SendNow(false);
+          if (browser.SL3U.isOffline()) {
+            browser.SL3U.alert("Thunderbird is offline.",
+                               "Cannot send message at this time.");
+          } else {
+            browser.SL3U.SendNow(false);
+          }
         }
     } else if (message.action === "doSendLater") {
         SendLater.debug("User requested send later.");
