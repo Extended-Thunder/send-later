@@ -56,12 +56,6 @@ const SendLater = {
       });
     },
 
-    async getPrefs() {
-      return await browser.storage.local.get("preferences").then(storage =>
-        (storage.preferences || {})
-      );
-    },
-
     async getIdentity(id) {
       const accts = await browser.accounts.list();
 
@@ -159,6 +153,19 @@ const SendLater = {
         lock[customHeaders['x-send-later-msg-uuid']] = { status: "ready" };
         browser.storage.local.set({ lock });
       });
+    },
+
+    // TODO: Finish this (replaces nextRecurDate below).
+    parseRecur: function(recurSpec) {
+      const wkday = new Intl.DateTimeFormat('default', {weekday:'short'});
+      const start = new Date(); // TODO
+      const end = new Date(); // TODO
+      const weekdays = [0, 2, 5, 6]; // TODO
+      return {
+        next: null,
+        between: { start: start.getTime(), end: end.getTime() },
+        days: (weekdays.map(wkday))
+       };
     },
 
     // TODO: Finish this function.
@@ -298,10 +305,11 @@ const SendLater = {
       const msgSendAt = msg.headers['x-send-later-at'];
       const msgUUID = msg.headers['x-send-later-msg-uuid'];
       const msgRecurSpec = msg.headers['x-send-later-recur'];
+      const recur = SendLater.parseRecur(msgRecurSpec);
 
       if (msgSendAt === undefined) {
         return;
-      } else if (SendLater.isEditing(msgUUID)) {
+      } else if (msgUUID !== undefined && SendLater.isEditing(msgUUID)) {
         SendLater.debug(`Skipping message ${id} while it is being edited`);
         return;
       }
@@ -326,14 +334,37 @@ const SendLater = {
       const nextSend = new Date(msgSendAt);
       const dueForSend = Date.now() >= nextSend.getTime();
       if (dueForSend) {
-        const prefs = await SendLater.getPrefs();
+        const prefs = await browser.storage.local.get("preferences").then(st =>
+          (st.preferences || {})
+        );
 
-        // Respect late message blocker
-        if (prefs.blockLateMessages) {
-          const lateness = Date.now() - nextSend.getTime();
-          if ((lateness / 60000) > prefs.lateGracePeriod) {
-            SendLater.info(`Grace period exceeded for message ${id}`);
-            return;
+        if (prefs.enforceTimeRestrictions) {
+          const now = Date.now();
+
+          // Respect late message blocker
+          if (prefs.blockLateMessages) {
+            const lateness = (now - nextSend.getTime()) / 60000;
+            if (lateness > prefs.lateGracePeriod) {
+              SendLater.info(`Grace period exceeded for message ${id}`);
+              return;
+            }
+          }
+
+          // Respect "send between" preference
+          if (recur.between) {
+            if ((now < recur.between.start) || (now > recur.between.end)) {
+              SendLater.debug(`Message ${id} outside of sendable time range.`);
+              return;
+            }
+          }
+
+          // Respect "only on days of week" preference
+          if (recur.days) {
+            const wkday = new Intl.DateTimeFormat('default', {weekday:'short'});
+            const today = wkday(new Date(now));
+            if (!recur.days.includes(today)) {
+              SendLater.debug(`Message ${id} not scheduled to send on ${today}`);
+            }
           }
         }
 
@@ -349,16 +380,13 @@ const SendLater = {
         });
 
         // Possibly schedule next recurrence.
-        if (msgRecurSpec !== undefined) {
-          let nextRecurrence = SendLater.nextRecurDate(msgRecurSpec, nextSend);
-          if (Date.now() > nextRecurrence.getTime()) {
-            nextRecurrence = SendLater.nextRecurDate(msgRecurSpec, (new Date()));
-          }
+        if (recur.next) {
           SendLater.debug(`Scheduling next recurrence of ${msgRecurSpec} at `
-                        + SendLater.dateTimeFormat(nextRecurrence));
+                        + SendLater.dateTimeFormat(recur.next));
 
           const cw = await SendLater.beginEditAsNewMessage(id);
-          SendLater.scheduleSendLater(cw.id, { sendTime: nextRecurrence });
+          SendLater.scheduleSendLater(cw.id, { sendTime: recur.next,
+                                               recurSpec: msgRecurSpec });
         }
 
         // TODO: Add option for skiptrash.

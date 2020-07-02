@@ -24,7 +24,7 @@
   "showSendNowAlert": ["bool", true, "show_sendnow_alert"],
   "altBinding": ["bool", false, "alt_binding"],
   "sendWhileOffline": ["bool", true, "send_while_offline"],
-  "enforceTimeRestrictions": ["bool", false, "enforce_restrictions"],
+  "enforceTimeRestrictions": ["bool", true, "enforce_restrictions"],
   "blockLateMessages": ["bool", false, "block_late_messages"],
   "lateGracePeriod": ["int", 5, "late_grace_period"],
   "activeScanner_lastUUID": ["string", "", "activescanner.last_uuid"],
