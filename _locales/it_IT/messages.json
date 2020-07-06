@@ -238,5 +238,853 @@
   "userGuideLabel": {
     "message": "Manuale utente",
     "description": ""
+  },
+  "remindLabel": {
+    "message": "Ricordamelo in seguito",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.label": {
+    "message": "Metti nella &quot;Posta in uscita&quot;",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.accesskey": {
+    "message": "P",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "Anziché inviarlo in automatico a un orario specifico, sposta il messaggio nella cartella &quot;Posta in uscita&quot; per inviarlo non appena i messaggi da inviare verranno spediti.",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.accesskey": {
+    "message": "O",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.tooltip": {
+    "message": "Invia il messaggio immediatamente, evitando &quot;Invia Dopo&quot;.",
+    "description": ""
+  },
+  "sendlater.prompt.close.accesskey": {
+    "message": "A",
+    "description": ""
+  },
+  "sendlater.prompt.close.tooltip": {
+    "message": "Torna a modificare il messaggio.",
+    "description": ""
+  },
+  "sendlater.prompt.title.label": {
+    "message": "Invia questa e-mail dopo",
+    "description": ""
+  },
+  "sendlater.prompt.or.label": {
+    "message": "o",
+    "description": ""
+  },
+  "sendlater.prompt.textbox.emptytext": {
+    "message": "es.: &quot;15:00 giovedì&quot;, &quot;31/12/2012 15:27&quot;",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.label": {
+    "message": "Invia dopo, all&#x27;orario sopra indicato",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Salva il messaggio nella cartella &quot;Bozze&quot; per l&#x27;invio automatico all&#x27;orario sopra impostato.",
+    "description": ""
+  },
+  "sendlater.prompt.functionargs.label": {
+    "message": "Argomenti della funzione",
+    "description": ""
+  },
+  "sendlater.prompt.calculate.label": {
+    "message": "Calcola",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.label": {
+    "message": "Invia dopo",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.tooltip": {
+    "message": "Attiva Invia Dopo per pianificare un messaggio dopo aver inserito l&#x27;orario di invio desiderato nella casella di testo. Questo pulsante non fa nulla da solo; è necessario anche aggiungere la casella di testo o i selettori di orario/data (non supportati in tutte le versioni Thunderbird) alla barra degli strumenti per essere utile.",
+    "description": ""
+  },
+  "sendlater.toolbar.textbox.emptytext": {
+    "message": "Orario di invio",
+    "description": ""
+  },
+  "sendlater.prompt.every.label": {
+    "message": "Ogni",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.label": {
+    "message": "Annulla ricorrenza in caso di risposta",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Individua eventuali risposte alle copie dei messaggi ricorrenti precedentemente inviati. Quando viene ricevuta una risposta annulla il messaggio ricorrente ed eliminalo dalla cartella Bozze.",
+    "description": ""
+  },
+  "sendlater3header.label": {
+    "message": "Invia Dopo",
+    "description": ""
+  },
+  "prefwindow.title": {
+    "message": "Preferenze Invia Dopo",
+    "description": ""
+  },
+  "pane1.title": {
+    "message": "Preferenze Invia Dopo",
+    "description": ""
+  },
+  "checktimepref.tooltip": {
+    "message": "Frequenza in minuti con cui viene verificata la presenza nella cartella &quot;Bozze&quot; di e-mail di cui è arrivato l&#x27;orario di invio. Aumentare questo valore se qualche volta le mail programmate per l&#x27;invio non partono o se qualche volta il numero dei messaggi in coda indicato nella barra di stato non corrisponde a quello di tutti i messaggi pianificati.",
+    "description": ""
+  },
+  "quickoptionname.label": {
+    "message": "Etichetta pulsante",
+    "description": ""
+  },
+  "showsendlatercolumn.tooltip": {
+    "message": "Mostra la colonna &quot;Invia Dopo&quot; nella cartella &quot;Bozze&quot;",
+    "description": ""
+  },
+  "showsendlaterheader.tooltip": {
+    "message": "Mostra l&#x27;intestazione &quot;X-Send-Later-At&quot;, cioè l&#x27;orario a cui la mail in &quot;Bozze&quot; è pianificata per l&#x27;invio, nell&#x27;intestazione quando guardi un messaggio.",
+    "description": ""
+  },
+  "showsendlaterprogress.caption": {
+    "message": "Mostra nella Barra di Stato la progressione degli invii in background",
+    "description": ""
+  },
+  "showsendlaterunsentmessages.tooltip": {
+    "message": "Se non spunti questa opzione, Invia Dopo non provvederà all&#x27;invio del messaggio, ma quando arriverà l&#x27;ora pianificata per la spedizione, lo parcheggerà semplicemente nella &quot;Posta in Uscita&quot;. Togliere la spunta nel caso di utilizzo con altri componenti aggiuntivi come ad esempio BlunderDelay, per inviare i messaggi presenti nella &quot;Posta in Uscita&quot; periodicamente. Da notare che se questa opzione è selezionata, quando Invia Dopo invia un messaggio, anche TUTTI gli altri messaggi presenti nella &quot;Posta in Uscita&quot; verranno inviati.",
+    "description": ""
+  },
+  "sendlatersendbutton.tooltip": {
+    "message": "Con questa opzione attivata, il comando &quot;Invia&quot; (sia il pulsante che la pressione di Ctrl-Invio) si comporta come &quot;Invia dopo&quot;.",
+    "description": ""
+  },
+  "senddelay.tooltip": {
+    "message": "Con questa opzione attivata, tutti i messaggi inviati con il comando &amp;quot;Invia&amp;quot; (sia col pulsante che digitando Ctrl+Invio) sono ritardati del numero di minuti indicato, tramite la pianificazione di Invia Dopo.",
+    "description": ""
+  },
+  "composewindowhotkeys.tooltip": {
+    "message": "Mentre si compone un messaggio è possibile digitare Ctrl-Alt-1, -2, o -3 per attivare il primo, secondo o terzo pulsante preset, a meno che non si deselezioni questa preferenza, nel qual caso queste combinazioni di tasti sono disabilitate.",
+    "description": ""
+  },
+  "composewindowhotkeys.caption": {
+    "message": "Abilita le associazioni di tasti per la finestra di composizione",
+    "description": ""
+  },
+  "contactauthor.tooltip": {
+    "message": "Invia una e-mail all&#x27;autore di Invia Dopo.",
+    "description": ""
+  },
+  "helplink.tooltip": {
+    "message": "Visualizza la documentazione di Invia Dopo.",
+    "description": ""
+  },
+  "releasenotes.value": {
+    "message": "Note di versione",
+    "description": ""
+  },
+  "donatelink.value": {
+    "message": "Donazioni",
+    "description": ""
+  },
+  "editorlink.value": {
+    "message": "Editor di funzioni dinamiche",
+    "description": ""
+  },
+  "enforcerestrictions.tooltip": {
+    "message": "Se un messaggio che deve essere inviato si trova al di fuori delle sue restrizioni di orario e giorno impostate, ad esempio perché Thunderbird non era in esecuzione all&#x27;orario di invio pianificato, ritarda il suo invio finché non vengono soddisfatte le restrizioni di orario e giorno.",
+    "description": ""
+  },
+  "blocklatemessages.tooltip": {
+    "message": "Non inviare messaggi pianificati che sono stati ritardati oltre il loro orario pianificato, ad esempio perché Thunderbird non era in esecuzione a quell&#x27;ora.",
+    "description": ""
+  },
+  "editorbutton": {
+    "message": "Apri l&#x27;editor di funzioni dinamiche…",
+    "description": ""
+  },
+  "editortip": {
+    "message": "Apre una finestra per creare e modificare funzioni Javascript per implementare schemi di pianificazione complessi.",
+    "description": ""
+  },
+  "loglevel.config": {
+    "message": "Configurazione",
+    "description": ""
+  },
+  "sendlater.ask.title.label": {
+    "message": "Sostieni Invia Dopo",
+    "description": ""
+  },
+  "sendlater.ask.message1": {
+    "message": "Per lo sviluppo, la manutenzione e il supporto di questo componente aggiuntivo ci sono volute innumerevoli ore.",
+    "description": ""
+  },
+  "sendlater.ask.message2": {
+    "message": "Per cortesia valuta se fare una donazione per sostenere il suo continuo sviluppo!",
+    "description": ""
+  },
+  "sendlater.ask.message3": {
+    "message": "Grazie!",
+    "description": ""
+  },
+  "sendlater.ask.donate.accesskey": {
+    "message": "D",
+    "description": ""
+  },
+  "sendlater.ask.donate.label": {
+    "message": "Dona ora",
+    "description": ""
+  },
+  "sendlater.ask.remind.accesskey": {
+    "message": "R",
+    "description": ""
+  },
+  "sendlater.ask.remind.label": {
+    "message": "Ricordamelo in seguito",
+    "description": ""
+  },
+  "sendlater.ask.already.accesskey": {
+    "message": "G",
+    "description": ""
+  },
+  "sendlater.ask.already.label": {
+    "message": "Già fatta una donazione",
+    "description": ""
+  },
+  "sendlater.ask.stop.accesskey": {
+    "message": "N",
+    "description": ""
+  },
+  "sendlater.ask.stop.label": {
+    "message": "Non chiedere più",
+    "description": ""
+  },
+  "windowtitle": {
+    "message": "Editor delle funzioni di Invia Dopo",
+    "description": ""
+  },
+  "selectfunction": {
+    "message": "Seleziona funzione",
+    "description": ""
+  },
+  "selectfunctiontip": {
+    "message": "Seleziona una funzione da modificare o eliminare o &quot;(crea nuova funzione)&quot; per creare una nuova funzione",
+    "description": ""
+  },
+  "createnewfunction": {
+    "message": "(crea nuova funzione)",
+    "description": ""
+  },
+  "delete.label": {
+    "message": "Elimina",
+    "description": ""
+  },
+  "delete.accesskey": {
+    "message": "E",
+    "description": ""
+  },
+  "functionnametip": {
+    "message": "Inserisci o modifica un nome alfanumerico per la funzione. Se modifichi il nome di una funzione esistente, al salvataggio ti verrà richiesto se rinominare la funzione esistente o creare una nuova con il nome modificato.",
+    "description": ""
+  },
+  "functionnameplaceholder": {
+    "message": "nome funzione",
+    "description": ""
+  },
+  "codetip": {
+    "message": "Inserisci qui il codice sorgente per la tua funzione. Leggi la funzione di esempio &quot;ReadMeFirst&quot; per dettagli su come scrivere il tuo codice.",
+    "description": ""
+  },
+  "codeplaceholder": {
+    "message": "codice sorgente funzione",
+    "description": ""
+  },
+  "helptextheader": {
+    "message": "Testo di aiuto per la funzione",
+    "description": ""
+  },
+  "helptexttip": {
+    "message": "Il testo che inserisci qui verrà mostrato quando l&#x27;utente si muove con il mouse sopra il nome della funzione nel menu pop-up. Puoi usarlo per spiegare lo scopo della funzione e i parametri che accetta.",
+    "description": ""
+  },
+  "helptextplaceholder": {
+    "message": "testo di aiuto",
+    "description": ""
+  },
+  "run.label": {
+    "message": "Esegui funzione",
+    "description": ""
+  },
+  "run.accesskey": {
+    "message": "f",
+    "description": ""
+  },
+  "inputtime": {
+    "message": "Inserisci orario",
+    "description": ""
+  },
+  "inputtimetip": {
+    "message": "Puoi inserire date e orari in qualsiasi formato riconosciuto dalla finestra di dialogo di Invia Dopo",
+    "description": ""
+  },
+  "inputtimeplaceholder": {
+    "message": "eventuali data e ora da passare alla funzione come test",
+    "description": ""
+  },
+  "inputargs": {
+    "message": "Parametri",
+    "description": ""
+  },
+  "inputargstip": {
+    "message": "I parametri devono essere specificati in formato JavaScript, ad esempio le stringhe devono essere quotate",
+    "description": ""
+  },
+  "inputargsplaceholder": {
+    "message": "Elenco degli eventuali argomenti, separati da virgola, da passare come test",
+    "description": ""
+  },
+  "output": {
+    "message": "Risultato",
+    "description": ""
+  },
+  "import.label": {
+    "message": "Importa…",
+    "description": ""
+  },
+  "import.accesskey": {
+    "message": "m",
+    "description": ""
+  },
+  "importtip": {
+    "message": "Importa una funzione dinamica precedentemente esportata dall&#x27;editor.",
+    "description": ""
+  },
+  "export.label": {
+    "message": "Esporta…",
+    "description": ""
+  },
+  "export.accesskey": {
+    "message": "o",
+    "description": ""
+  },
+  "exporttip": {
+    "message": "Esporta la funzione attualmente visualizzata in un file come backup o per condivisione.",
+    "description": ""
+  },
+  "reset.label": {
+    "message": "Annulla modifiche",
+    "description": ""
+  },
+  "reset.accesskey": {
+    "message": "a",
+    "description": ""
+  },
+  "save.label": {
+    "message": "Salva",
+    "description": ""
+  },
+  "save.accesskey": {
+    "message": "S",
+    "description": ""
+  },
+  "close.label": {
+    "message": "Chiudi",
+    "description": ""
+  },
+  "close.accesskey": {
+    "message": "C",
+    "description": ""
+  },
+  "close.cmdkey": {
+    "message": "w",
+    "description": ""
+  },
+  "sendaround": {
+    "message": "Invia verso le",
+    "description": ""
+  },
+  "entervalid": {
+    "message": "Inserire sopra una data valida",
+    "description": ""
+  },
+  "sendwithfunction": {
+    "message": "Invia secondo la funzione &quot;$1&quot;",
+    "description": ""
+  },
+  "sendspecifyfunction": {
+    "message": "Scegli una funzione dal menù",
+    "description": ""
+  },
+  "January": {
+    "message": "Gennaio",
+    "description": ""
+  },
+  "February": {
+    "message": "Febbraio",
+    "description": ""
+  },
+  "March": {
+    "message": "Marzo",
+    "description": ""
+  },
+  "April": {
+    "message": "Aprile",
+    "description": ""
+  },
+  "May": {
+    "message": "Maggio",
+    "description": ""
+  },
+  "June": {
+    "message": "Giugno",
+    "description": ""
+  },
+  "July": {
+    "message": "Luglio",
+    "description": ""
+  },
+  "August": {
+    "message": "Agosto",
+    "description": ""
+  },
+  "September": {
+    "message": "Settembre",
+    "description": ""
+  },
+  "October": {
+    "message": "Ottobre",
+    "description": ""
+  },
+  "November": {
+    "message": "Novembre",
+    "description": ""
+  },
+  "December": {
+    "message": "Dicembre",
+    "description": ""
+  },
+  "OptionShortcutAlertTitle": {
+    "message": "Valore scelta rapida non valido",
+    "description": ""
+  },
+  "OptionShortcutAlertText": {
+    "message": "Scelta rapida $1 ha un valore non valido &quot;$2&quot;",
+    "description": ""
+  },
+  "SendingUnsentError": {
+    "message": "Invia Dopo: Errore nell&#x27;invio dei messaggi. La cartella &quot;Posta in Uscita&quot; potrebbe essere danneggiata, e i messaggi pianificati potrebbero non essere stati inviati. Vedi https://blog.kamens.us/send-later/#outbox.",
+    "description": ""
+  },
+  "CopyUnsentError": {
+    "message": "Invia Dopo: Errore nella copia dei messaggi pianificati nella cartella &quot;Posta in Uscita&quot; per l&#x27;invio (codice $1). Invia Dopo è stato disattivato! Vedi https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "description": ""
+  },
+  "CopyRecurError": {
+    "message": "Invia Dopo: Errore nella copia del messaggio periodico nella cartella &quot;Bozze&quot; (codice $1). Invia Dopo è stato disattivato! Vedi https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "description": ""
+  },
+  "CorruptFolderError": {
+    "message": "Invia Dopo: La cartella $1 potrebbe essere danneggiata. Per cortesia apri le sue proprietà e seleziona la voce Ripara. Vedi https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "description": ""
+  },
+  "MessageResendError": {
+    "message": "Invia Dopo: Tentativo di inviare nuovamente un massaggio già inviato?! La tua cartella Posta in uscita o Bozze $1 è probabilmente danneggiata. Per cortesia riparale come descritto in https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "description": ""
+  },
+  "minutely": {
+    "message": "di minuti",
+    "description": ""
+  },
+  "daily": {
+    "message": "giornaliera",
+    "description": ""
+  },
+  "weekly": {
+    "message": "settimanale",
+    "description": ""
+  },
+  "monthly": {
+    "message": "mensile",
+    "description": ""
+  },
+  "yearly": {
+    "message": "annuale",
+    "description": ""
+  },
+  "plural_minutely": {
+    "message": "minuti",
+    "description": ""
+  },
+  "plural_daily": {
+    "message": "giorni",
+    "description": ""
+  },
+  "plural_weekly": {
+    "message": "settimane",
+    "description": ""
+  },
+  "plural_monthly": {
+    "message": "mesi",
+    "description": ""
+  },
+  "plural_yearly": {
+    "message": "anni",
+    "description": ""
+  },
+  "every_minutely": {
+    "message": "ogni $1 minuti",
+    "description": ""
+  },
+  "every_daily": {
+    "message": "ogni $1 giorni",
+    "description": ""
+  },
+  "every_weekly": {
+    "message": "ogni $1 settimane",
+    "description": ""
+  },
+  "every_monthly": {
+    "message": "ogni $1 mesi",
+    "description": ""
+  },
+  "every_yearly": {
+    "message": "ogni $1 anni",
+    "description": ""
+  },
+  "everyempty": {
+    "message": "settimana del mese",
+    "description": ""
+  },
+  "everymonthly": {
+    "message": "$1 $2 del mese",
+    "description": ""
+  },
+  "everymonthly_day0": {
+    "message": "domenica",
+    "description": ""
+  },
+  "everymonthly_day1": {
+    "message": "lunedì",
+    "description": ""
+  },
+  "everymonthly_day2": {
+    "message": "martedì",
+    "description": ""
+  },
+  "everymonthly_day3": {
+    "message": "mercoledì",
+    "description": ""
+  },
+  "everymonthly_day4": {
+    "message": "giovedì",
+    "description": ""
+  },
+  "everymonthly_day5": {
+    "message": "venerdì",
+    "description": ""
+  },
+  "everymonthly_day6": {
+    "message": "sabato",
+    "description": ""
+  },
+  "everymonthly_short": {
+    "message": "$1 $2",
+    "description": ""
+  },
+  "everymonthly_short_day0": {
+    "message": "domenica",
+    "description": ""
+  },
+  "everymonthly_short_day1": {
+    "message": "lunedì",
+    "description": ""
+  },
+  "everymonthly_short_day2": {
+    "message": "martedì",
+    "description": ""
+  },
+  "everymonthly_short_day3": {
+    "message": "mercoledì",
+    "description": ""
+  },
+  "everymonthly_short_day4": {
+    "message": "giovedì",
+    "description": ""
+  },
+  "everymonthly_short_day5": {
+    "message": "venerdì",
+    "description": ""
+  },
+  "everymonthly_short_day6": {
+    "message": "sabato",
+    "description": ""
+  },
+  "betw_times": {
+    "message": "tra le $1 e le $2",
+    "description": ""
+  },
+  "only_on_days": {
+    "message": "di $1",
+    "description": ""
+  },
+  "only_on_day0": {
+    "message": "domenica",
+    "description": ""
+  },
+  "only_on_day1": {
+    "message": "lunedì",
+    "description": ""
+  },
+  "only_on_day2": {
+    "message": "martedì",
+    "description": ""
+  },
+  "only_on_day3": {
+    "message": "mercoledì",
+    "description": ""
+  },
+  "only_on_day4": {
+    "message": "giovedì",
+    "description": ""
+  },
+  "only_on_day5": {
+    "message": "venerdì",
+    "description": ""
+  },
+  "only_on_day6": {
+    "message": "sabato",
+    "description": ""
+  },
+  "ord1": {
+    "message": "1°",
+    "description": ""
+  },
+  "ord2": {
+    "message": "2°",
+    "description": ""
+  },
+  "ord3": {
+    "message": "3°",
+    "description": ""
+  },
+  "ord4": {
+    "message": "4°",
+    "description": ""
+  },
+  "ord5": {
+    "message": "5°",
+    "description": ""
+  },
+  "draftSaveWarning": {
+    "message": "ATTENZIONE: Per evitare che il messaggio venga inviato da Invia Dopo mentre lo stai modificando, il suo orario pianificato di invio è stato cancellato. Per cortesia ripianifica l&#x27;orario di invio quando hai completato le modifiche.",
+    "description": ""
+  },
+  "AreYouSure": {
+    "message": "Sei sicuro?",
+    "description": ""
+  },
+  "OutboxConfirmMessage": {
+    "message": "Cliccando su - Metti nella &quot;Posta in uscita&quot; - si mette il messaggio immediatamente nella cartella &quot;Posta in uscita&quot;. NON VIENE quindi pianificato l&#x27;invio del messaggio ad un orario specifico. Se lo si desidera inviare specificando un orario, cliccare il pulsante &quot;Invia verso le:&quot; nel riquadro verde dopo aver inserito un orario di invio valido. Sei sicuro di voler mettere adesso il messaggio nella &quot;Posta in uscita&quot;?",
+    "description": ""
+  },
+  "SendNowConfirmMessage": {
+    "message": "Cliccando su &quot;Invia adesso&quot; si invia il messaggio immediatamente. NON VIENE quindi pianificato l&#x27;invio del messaggio ad un orario specifico. Se lo si desidera inviare specificando un orario, cliccare il pulsante &quot;Invia verso le:&quot; nel riquadro verde dopo aver inserito un orario di invio valido. Sei sicuro di voler inviare il messaggio adesso?",
+    "description": ""
+  },
+  "ConfirmAgain": {
+    "message": "Visualizza nuovamente questo avviso in futuro",
+    "description": ""
+  },
+  "ScheduledMessagesWarningTitle": {
+    "message": "Avviso messaggi pianificati",
+    "description": ""
+  },
+  "ScheduledMessagesWarningQuitRequested": {
+    "message": "Ci sono messaggi pianificati per l&#x27;invio. Invia Dopo può inviare messaggi solamente quando $1 è in esecuzione. Sei sicuro di voler uscire?",
+    "description": ""
+  },
+  "ScheduledMessagesWarningQuit": {
+    "message": "Invia Dopo può inviare messaggi solamente quando $1 è in esecuzione. Per cortesia ricordati di riavviarlo prima di quando hai pianificato l&#x27;invio dei tuoi messaggi!",
+    "description": ""
+  },
+  "EnigmailIncompatTitle": {
+    "message": "Problema di compatibilità Invia Dopo / Enigmail",
+    "description": ""
+  },
+  "EnigmailIncompatText": {
+    "message": "La versione di Enigmail installata non è compatibile con Invia Dopo, quindi la pianificazione dei messaggi con Invia Dopo è stata disattivata. Per cortesia contattare l&#x27;autore di Invia Dopo (jik@kamens.us) per assistenza.",
+    "description": ""
+  },
+  "TimeMismatchConfirmTitle": {
+    "message": "Incongruenza orario di invio/restrizione",
+    "description": ""
+  },
+  "TimeMismatchConfirmBody": {
+    "message": "L&#x27;orario di invio impostato, $1, non rientra nelle restrizioni orarie specificate. Clicca Annulla per modificare il tuo orario di invio, oppure OK per correggerlo automaticamente a $2.",
+    "description": ""
+  },
+  "endTimeWarningTitle": {
+    "message": "Restrizione oraria messaggio non valida",
+    "description": ""
+  },
+  "endTimeWarningBody": {
+    "message": "Quando si specifica una restrizione oraria del messaggio, l&#x27;orario di fine non può essere precedente all&#x27;orario di inizio. Per cortesia correggi la tua restrizione oraria o disabilitala.",
+    "description": ""
+  },
+  "missingDaysWarningTitle": {
+    "message": "Restrizione giornaliera non valida",
+    "description": ""
+  },
+  "missingDaysWarningBody": {
+    "message": "Hai abilitato una restrizione giornaliera del messaggio senza specificare alcun giorno. Per cortesia disabilita la restrizione giornaliera o specifica almeno un giorno di invio.",
+    "description": ""
+  },
+  "InvalidArgsTitle": {
+    "message": "Argomenti della funzione non validi",
+    "description": ""
+  },
+  "InvalidArgsBody": {
+    "message": "Gli argomenti della funzione non sono validi. Indica una lista JavaScript senza le parentesi quadre.",
+    "description": ""
+  },
+  "BlockedLateMessage": {
+    "message": "Il messaggio con oggetto &quot;$1&quot; nella cartella Bozze $2 era pianificato per essere inviato più di $3 minuti fa, quindi l&#x27;invio è stato bloccato. Dovresti modificare la bozza ed inviarla a mano oppure ripianificarne l&#x27;invio. Puoi inoltre disattivare la preferenza &quot;Non inviare messaggi più di # minuti dopo&quot; per evitare il blocco dell&#x27;invio di messaggi in ritardo.",
+    "description": ""
+  },
+  "EditorReadMeCode": {
+    "message": "// Benvenuti in editor funzione Invia Dopo!\\n// \\n// L&#x27;editor consente di creare complesse funzioni JavaScript\\n// attuazione messaggio logica di pianificazione che può essere\\n// associato con pulsanti di scelta rapida o selezionato nella\\n// finestra di dialogo Invia Dopo.\\n//   \\n// Come si può vedere sopra, quando viene chiamata una funzione di\\n// programmazione, sarà dato tre argomenti:\\n//   \\n// * &quot;specname&quot; è necessario se si desidera questa funzione si\\n//   ripetono (Vedi sotto)\\n// \\n// * &quot;prev&quot; è il precedente programma invia ora, se questa è una\\n//   ricorrente chiamata\\n// \\n// * &quot;args&quot; è gli argomenti aggiuntivi restituiti dalla chiamata\\n//   precedente se questo è un&#x27;invocazione ricorrente\\n//\\n// necessario che il codice impostare le variabili &quot;next&quot;,\\n// &quot;nextspec&quot;, e &quot;nextargs&quot; come segue:\\n//\\n// * &quot;next&quot; è il numero di minuti in futuro o un oggetto data che\\n//   indica quando deve essere inviato il messaggio.\\n// \\n// * &quot;nextspec&quot; è una specifica ricorrenza, se questo è destinato a\\n//   essere un ricorrenti messaggio (vedere\\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). Se non si\\n//   imposta questo, allora il messaggio verrà inviato solo una\\n//   volta. Nota: se si desidera che il vostro funzione per essere\\n//   chiamato nuovamente per la ricorrenza, do:\\n//   \\n//   nextspec = &quot;function &quot; + specname;\\n//   \\n// * &quot;nextargs&quot; è una matrice di argomenti che si desidera essere\\n//   passati nel successivo chiamata della funzione come &quot;args&quot;.\\n//   \\n// Mentre si lavora sulla tua funzione, è possibile testarla\\n// compilando i valori per &quot;prev&quot; e &quot;args&quot; in caselle di testo qui\\n// sotto e quindi facendo clic su &quot;Esegui&quot; per eseguire la funzione e\\n// vedere i risultati.\\n//   \\n// Non ci sono due funzioni di esempio pre-configurati,\\n// &quot;BusinessHours&quot; e &quot;DaysInARow&quot;, che può guardare e giocare con per\\n// saperne di più.  Questa funzione di &quot;ReadMeFirst&quot; appena fa sì che\\n// il messaggio venga inviato intorno ora, via la riga seguente.\\n\\n next = new Date();",
+    "description": ""
+  },
+  "EditorReadMeHelp": {
+    "message": "Qualsiasi testo inserito qui sarà visualizzato come suggerimento a comparsa passando col maouse sul nome della funzione nel menù. Puoi usare questa funzionalità per documentare cosa fa la funzione e quali argomenti accetta.",
+    "description": ""
+  },
+  "_BusinessHoursCode": {
+    "message": "// Defaults\\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\\nvar workStart = [8, 30]; // Inizio del giorno lavorativo in [ora, minuto]\\nvar workEnd = [17, 30]; // Fine del giorno lavorativo in [ora, minuto]\\nif (args &amp;&amp; args[0])\\n    workDays = args[0];\\nif (args &amp;&amp; args[1])\\n    workStart = args[1];\\nif (args &amp;&amp; args[2])\\n    workEnd = args[2];\\nif (prev)\\n    // Non previsto durante l&#x27;utilizzo normale, ma usato a scopo di test\\n    next = new Date(prev);\\nelse\\n    next = new Date();\\n// Se il giorno lavorativo è finito o non è un giorno lavorativo, passa all&#x27;ora\\n// di inizio del giorno successivo\\nwhile ((next.getHours() &gt; workEnd[0]) ||\\n       (next.getHours() == workEnd[0] &amp;&amp; next.getMinutes() &gt; workEnd[1]) ||\\n       (workDays.indexOf(next.getDay()) == -1)) {\\n    next.setDate(next.getDate() + 1);\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}\\n// Se il giorno lavorativo non è ancora iniziato, passa all&#x27;ora di inizio\\nif ((next.getHours() &lt; workStart[0]) ||\\n    (next.getHours() == workStart[0] &amp;&amp; next.getMinutes() &lt; workStart[1])) {\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}",
+    "description": ""
+  },
+  "BusinessHoursHelp": {
+    "message": "Invia il messaggio adesso se durante l&#x27;orario di lavoro, o all&#x27;inizio del successivo giorno lavorativo. Puoi modificare quali sono i giorni lavorativi (predefinito: lunedì - venerdì) passando un array (numerico) di giorni lavorativi come primo argomento, dove 0 è domenica e 6 è sabato. Puoi cambiare l&#x27;ora di inizio e fine dei giorni lavorativi (predefinito: 8:30 - 17:30) passando un array di coppie [ora, minuto] come secondo o terzo argomento. Indica &quot;null&quot; come argomento per i giorni che non vuoi modificare. Ad esempio, &quot;null, [9, 0], [17, 0]&quot; cambia l&#x27;orario lavorativo lasciando i giorni lavorativi inalterati.",
+    "description": ""
+  },
+  "DaysInARowCode": {
+    "message": "// Invia il primo messaggio adesso e i successivi messaggi uno al giorno.\\nif (! prev)\\n    next = new Date();\\nelse {\\n    var now = new Date();\\n    next = new Date(prev); // Copia l&#x27;argomento data per non modificarlo.\\n    do {\\n        next.setDate(next.getDate() + 1);\\n    } while (next &lt; now);\\n    // ^^^ Non tentare di inviare nel passato, nel caso che Thunderbird fosse\\n    // inattivo al momento di invio pianificato.\\n}\\nif (! args) // Invia il messaggio tre volte come scelta predefinita.\\n    args = [3];\\nnextargs = [args[0] - 1];\\n// Riprova per ricorrenza non non ci sono ancora state abbastanza invii.\\nif (nextargs[0] &gt; 0)\\n    nextspec = &quot;function &quot; + specname;",
+    "description": ""
+  },
+  "DaysInARowHelp": {
+    "message": "Invia il messaggio adesso, e successivamente una volta al giorno alla stessa ora, finché viene inviato tre volte. Specifica come argomento un numero diverso da 3 per modificare il numero totale di invii.",
+    "description": ""
+  },
+  "DiscardConfirmTitle": {
+    "message": "Scartare le modifiche?",
+    "description": ""
+  },
+  "DiscardConfirmBody": {
+    "message": "Ci sono modiche non salvate. Vuoi scartarle?",
+    "description": ""
+  },
+  "UntestedSaveTitle": {
+    "message": "Salvare la funzione non testata?",
+    "description": ""
+  },
+  "UntestedSaveBody": {
+    "message": "La funzione non è stata testata (col pulsante &quot;Esegui funzione&quot;) dopo essere stata modificata. Sei sicuro di volerla salvare o esportare?",
+    "description": ""
+  },
+  "BadSaveTitle": {
+    "message": "Nome della funzione o codice non valido",
+    "description": ""
+  },
+  "BadSaveBody": {
+    "message": "Assicurati che il nome della funzione e il codice siano validi prima di salvare o esportare.",
+    "description": ""
+  },
+  "ReplacingFunctionTitle": {
+    "message": "Sovrascrivere la funzione esistente?",
+    "description": ""
+  },
+  "ReplacingFunctionBody": {
+    "message": "Esiste già una funzione col nome indicato. Sei sicuro di volerla rimpiazzare?",
+    "description": ""
+  },
+  "NoNextValueError": {
+    "message": "La funzione non ha impostato la variabile  &quot;next&quot;.",
+    "description": ""
+  },
+  "BadNextValueError": {
+    "message": "Il valore &quot;$1&quot; di &quot;next&quot; non è un numero né un oggetto Date",
+    "description": ""
+  },
+  "BadNextArgsError": {
+    "message": "Il valore &quot;$1&quot; di &quot;nextargs&quot; non è un Array",
+    "description": ""
+  },
+  "FunctionDeleteConfirmBody": {
+    "message": "Sei sicuro di voler eliminare questa funzione? Se la funzione è associata con una combinazione di tasti di scelta rapida questi non funzioneranno più, ed eventuali messaggi ricorrenti che usano la funzione non saranno ripianificati dopo il prossimo invio.",
+    "description": ""
+  },
+  "ImportTitle": {
+    "message": "Scegli il file da importare",
+    "description": ""
+  },
+  "SLJFilterLabel": {
+    "message": "File formato JSON per Invia Dopo",
+    "description": ""
+  },
+  "ImportError": {
+    "message": "Errore di importazione",
+    "description": ""
+  },
+  "ExportTitle": {
+    "message": "Scegli la destinazione di esportazione",
+    "description": ""
+  },
+  "RenameFunctionTitle": {
+    "message": "Rinominare la funzione esistente?",
+    "description": ""
+  },
+  "RenameFunctionBody": {
+    "message": "Hai modificato il nome di una funzione esistente, &quot;$1&quot;. Vuoi rinominare la funzione esistente o creare una nuova funzione col nuovo nome?",
+    "description": ""
+  },
+  "RenameFunctionRenameButton": {
+    "message": "Rinomina",
+    "description": ""
+  },
+  "RenameFunctionNewButton": {
+    "message": "Nuova",
+    "description": ""
+  },
+  "FunctionErrorTitle": {
+    "message": "Errore nell&#x27;esecuzione di una funzione dinamica",
+    "description": ""
+  },
+  "FunctionErrorBody": {
+    "message": "Errore nell&#x27;esecuzione di una funzione dinamica schedulata: &quot;$1&quot;",
+    "description": ""
+  },
+  "cancel_on_reply": {
+    "message": "annulla su risposta",
+    "description": ""
+  },
+  "PendingMessage": {
+    "message": "IN CODA $1",
+    "description": ""
+  },
+  "IdleMessage": {
+    "message": "IN ATTESA",
+    "description": ""
+  },
+  "DisabledMessage": {
+    "message": "DISATTIVATO",
+    "description": ""
+  },
+  "CheckingMessage": {
+    "message": "Controllo...",
+    "description": ""
   }
 }

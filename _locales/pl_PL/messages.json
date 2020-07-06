@@ -238,5 +238,853 @@
   "userGuideLabel": {
     "message": "Podręcznik użytkownika",
     "description": ""
+  },
+  "remindLabel": {
+    "message": "Przypomnij mi później",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.label": {
+    "message": "Umieść w skrzynce nadawczej",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.accesskey": {
+    "message": "U",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "Zamiast wysyłki o planowanym czasie umieszcza wiadomość we folderze Skrzynka nadawcza, aby wysłać ją następnym razem wraz z innymi wiadomościami oczekującymi na wysyłkę.",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.accesskey": {
+    "message": "T",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.tooltip": {
+    "message": "Wyślij wiadomość TERAZ, pomijając funkcjonalność dodatku &quot;Send Later&quot;.",
+    "description": ""
+  },
+  "sendlater.prompt.close.accesskey": {
+    "message": "A",
+    "description": ""
+  },
+  "sendlater.prompt.close.tooltip": {
+    "message": "Wróć do edycji wiadomości.",
+    "description": ""
+  },
+  "sendlater.prompt.title.label": {
+    "message": "Wyślij tę wiadomość później",
+    "description": ""
+  },
+  "sendlater.prompt.or.label": {
+    "message": "lub",
+    "description": ""
+  },
+  "sendlater.prompt.textbox.emptytext": {
+    "message": "np.: &quot;środa 15:00&quot;, &quot;12/31/2012 15:27&quot;",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.label": {
+    "message": "Wyślij później o określonym powyżej czasie",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Zapisz wiadomość w folderze &quot;Szkice&quot;, aby dostarczyć ją w wyznaczonym powyżej czasie.",
+    "description": ""
+  },
+  "sendlater.prompt.functionargs.label": {
+    "message": "argumenty dla funkcji",
+    "description": ""
+  },
+  "sendlater.prompt.calculate.label": {
+    "message": "wylicz",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.label": {
+    "message": "Wyślij później",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.tooltip": {
+    "message": "Użyj Send Later aby zaplanować wysyłkę wiadomości po wprowadzeniu żądanego czasu wysyłki w polu tekstowym. Przycisk ten nie robi nic samodzielnie; musisz również dodać pole tekstowe lub wybieranie daty/czasu (nie obsługiwane we wszystkich wersjach Thunderbird) do paska narzędzi, aby ten przycisk był przydatny.",
+    "description": ""
+  },
+  "sendlater.toolbar.textbox.emptytext": {
+    "message": "czas wysyłki",
+    "description": ""
+  },
+  "sendlater.prompt.every.label": {
+    "message": "albo co",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.label": {
+    "message": "Zaniechaj ponawiania po otrzymaniu odpowiedzi",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Oczekuj na odpowiedź do poprzednio ponowionych wiadomości. Zatrzymaj ponawianie i usuń je z folderu Szkice gdy nadejdzie odpowiedź.",
+    "description": ""
+  },
+  "sendlater3header.label": {
+    "message": "Send Later",
+    "description": ""
+  },
+  "prefwindow.title": {
+    "message": "Ustawienia &quot;Send Later&quot;",
+    "description": ""
+  },
+  "pane1.title": {
+    "message": "Ustawienia &quot;Send Later&quot;",
+    "description": ""
+  },
+  "checktimepref.tooltip": {
+    "message": "Odstęp czasu w minutach określający częstość z jaką program będzie sprawdzał, czy nie należy wysłać zaplanowanych do wysyłki wiadomości. Zwiększ tą wartość, jezeli zaplanowane do wysyłki wiadomości nie są wysyłane o czasie lub jeśli licznik wiadomości na pasku statusu wskazuje mniejszą niż w rzeczywistości liczbę zaplanowanych do wysłania wiadomości.",
+    "description": ""
+  },
+  "quickoptionname.label": {
+    "message": "Etykieta przycisku",
+    "description": ""
+  },
+  "showsendlatercolumn.tooltip": {
+    "message": "Czy wyświetlać kolumnę &quot;Send Later&quot; podczas przeglądania folderu Szkice",
+    "description": ""
+  },
+  "showsendlaterheader.tooltip": {
+    "message": "Określa czy wyświetlać nagłówek &quot;X-Send-Later-At&quot;, tzn. zaplanowany czas wysłania wiadomości w nagłówku podglądu.",
+    "description": ""
+  },
+  "showsendlaterprogress.caption": {
+    "message": "Pokaż postęp działań wykonywanych w tle na pasku statusu",
+    "description": ""
+  },
+  "showsendlaterunsentmessages.tooltip": {
+    "message": "Jeżeli ta opcja jest wyłączona wiadomości zamiast zostać wysłane w wyznaczonym czasie zostaną przeniesione do folderu &quot;Wychodzące&quot;. Wyłącz tą opcję jeżeli korzystasz z innych rozszerzeń, które okresowo wysyłają wiadomości z folderu &quot;Wychodzące&quot;, np. BlunderDelay. Zauważ, że jeżeli ta opcja jest włączona, to za każdym razem kiedy &quot;Send Later&quot; spróbuje wysłać zaplanowaną wiadomość WSZYSTKIE inne wiadomości z folderu &quot;Wychodzące&quot; zostaną wysłane.",
+    "description": ""
+  },
+  "sendlatersendbutton.tooltip": {
+    "message": "Jeżeli ta opcja jest włączona, zamiast polecenia &quot;Wyślij&quot; (zarówno po kliknięciu przycisku, jak i po wciśnięciu Ctrl-Enter) zostanie wywołane polecenie &quot;Wyślij później&quot;.",
+    "description": ""
+  },
+  "senddelay.tooltip": {
+    "message": "Gdy ta opcja jest włączona, wszystkie wiadomości wysłane poleceniem &amp;quot;Wyślij&amp;quot; (przyciskiem albo z użyciem Ctrl-Enter) są opóźnione o określoną liczbę minut, planując wysyłkę poprzez Send Later.",
+    "description": ""
+  },
+  "composewindowhotkeys.tooltip": {
+    "message": "Edytując wiadomość możesz użyć klawiszy Ctrl-Alt-1, -2 lub -3 aby aktywować pierwszy, drugi lub trzeci skrót klawiszowy; jeżeli odznaczysz tę opcję to skróty klawiszowe będą wyłączone.",
+    "description": ""
+  },
+  "composewindowhotkeys.caption": {
+    "message": "Włącz skróty klawiszowe powiązane z predefiniowanymi ustawieniami",
+    "description": ""
+  },
+  "contactauthor.tooltip": {
+    "message": "Wyślij wiadomość e-mail do autora &quot;Send Later&quot; (w języku angielskim, proszę!).",
+    "description": ""
+  },
+  "helplink.tooltip": {
+    "message": "Pokaż dokumentację &quot;Send Later&quot;",
+    "description": ""
+  },
+  "releasenotes.value": {
+    "message": "Informacje o wydaniu",
+    "description": ""
+  },
+  "donatelink.value": {
+    "message": "Dotacja…",
+    "description": ""
+  },
+  "editorlink.value": {
+    "message": "Edytor funkcji spec.",
+    "description": ""
+  },
+  "enforcerestrictions.tooltip": {
+    "message": "Jeśli wiadomości nie wysłano np., ponieważ Thunderbird nie był uruchomiony w zaplanowanym czasie wysyłki, to zaczekaj z wysyłaniem aż ograniczenia czasu i dnia będą spełnione.",
+    "description": ""
+  },
+  "blocklatemessages.tooltip": {
+    "message": "Nie wysyłaj zaplanowanych wiadomości jeśli czas opóźnienia np. z powodu wyłączenia Thunderbirda przekracza wskazaną tu wartość.",
+    "description": ""
+  },
+  "editorbutton": {
+    "message": "Otwórz edytor funkcji specjalnych",
+    "description": ""
+  },
+  "editortip": {
+    "message": "Otwiera okno edytora zaawansowanych funkcji JavaScript umożliwiając tworzenie i edycję złożonych funkcji planowania czasu wysyłki wiadomości.",
+    "description": ""
+  },
+  "loglevel.config": {
+    "message": "Konfiguracja",
+    "description": ""
+  },
+  "sendlater.ask.title.label": {
+    "message": "Wesprzyj projekt &quot;Send Later&quot;",
+    "description": ""
+  },
+  "sendlater.ask.message1": {
+    "message": "Na rozwój, utrzymanie i wsparcie dla tego dodatku została poświęcona niezliczona ilość godzin.",
+    "description": ""
+  },
+  "sendlater.ask.message2": {
+    "message": "Rozważ przekazanie darowizny na poparcie dalszego rozwoju!",
+    "description": ""
+  },
+  "sendlater.ask.message3": {
+    "message": "Dziękuję!",
+    "description": ""
+  },
+  "sendlater.ask.donate.accesskey": {
+    "message": "W",
+    "description": ""
+  },
+  "sendlater.ask.donate.label": {
+    "message": "Wesprzyj teraz",
+    "description": ""
+  },
+  "sendlater.ask.remind.accesskey": {
+    "message": "P",
+    "description": ""
+  },
+  "sendlater.ask.remind.label": {
+    "message": "Przypomnij mi później",
+    "description": ""
+  },
+  "sendlater.ask.already.accesskey": {
+    "message": "J",
+    "description": ""
+  },
+  "sendlater.ask.already.label": {
+    "message": "Już pomogłem",
+    "description": ""
+  },
+  "sendlater.ask.stop.accesskey": {
+    "message": "N",
+    "description": ""
+  },
+  "sendlater.ask.stop.label": {
+    "message": "Nie pytaj mnie więcej",
+    "description": ""
+  },
+  "windowtitle": {
+    "message": "Edytor funkcji specjalnych dla &quot;Send Later&quot;",
+    "description": ""
+  },
+  "selectfunction": {
+    "message": "Wybierz funkcję",
+    "description": ""
+  },
+  "selectfunctiontip": {
+    "message": "Wybór funkcji do edycji lub usunięcia, żeby stworzyć nową funkcję użyj &quot;Twórz nową&quot;",
+    "description": ""
+  },
+  "createnewfunction": {
+    "message": "Twórz nową",
+    "description": ""
+  },
+  "delete.label": {
+    "message": "Usuń",
+    "description": ""
+  },
+  "delete.accesskey": {
+    "message": "U",
+    "description": ""
+  },
+  "functionnametip": {
+    "message": "Wpisz lub edytuj alfanumeryczną nazwę funkcji. Jeśli modyfikujesz nazwę funkcji istniejącej będziesz zapytany przy zapisie czy zmieniamy nazwę czy może zapisujemy jako nowa.",
+    "description": ""
+  },
+  "functionnameplaceholder": {
+    "message": "Nazwa Funkcji",
+    "description": ""
+  },
+  "codetip": {
+    "message": "Umieść tutaj kod źródłowy twojej funkcji. Zajrzyj do przykładowej funkcji &quot;ReadMeFirst&quot; po szczegóły co w kodzie powinno być wykonane. (przykłady nie są tłumaczone na Polski).",
+    "description": ""
+  },
+  "codeplaceholder": {
+    "message": "Kod źródłowy funkcji",
+    "description": ""
+  },
+  "helptextheader": {
+    "message": "Treść podpowiedzi dla funkcji",
+    "description": ""
+  },
+  "helptexttip": {
+    "message": "Treść którą tu umieścisz będzie wyświetlana gdy użytkownik przesunie myszkę nad nazwę funkcji w menu podręcznym. Użyj tego do opisania co funkcja wykonuje i jakie argumenty należy przekazać do funkcji.",
+    "description": ""
+  },
+  "helptextplaceholder": {
+    "message": "Podpowiedź",
+    "description": ""
+  },
+  "run.label": {
+    "message": "Wykonaj funkcję",
+    "description": ""
+  },
+  "run.accesskey": {
+    "message": "W",
+    "description": ""
+  },
+  "inputtime": {
+    "message": "wprowadź czas",
+    "description": ""
+  },
+  "inputtimetip": {
+    "message": "Wprowadź tu datę i czas w sposób zrozumiały dla &quot;Send Later&quot;.",
+    "description": ""
+  },
+  "inputtimeplaceholder": {
+    "message": "Data i czas (jeśli podano) do użycia przy testowaniu",
+    "description": ""
+  },
+  "inputargs": {
+    "message": "wprowadź argumenty",
+    "description": ""
+  },
+  "inputargstip": {
+    "message": "Argumenty powinny być w formacie JavScript, np.: teksty muszą być w cudzysłowach (quotation marks)",
+    "description": ""
+  },
+  "inputargsplaceholder": {
+    "message": "Argumenty (comma-separated) oddzielone przecinkami (jeśli podano) do użycia przy testowaniu",
+    "description": ""
+  },
+  "output": {
+    "message": "Wynik",
+    "description": ""
+  },
+  "import.label": {
+    "message": "Import…",
+    "description": ""
+  },
+  "import.accesskey": {
+    "message": "m",
+    "description": ""
+  },
+  "importtip": {
+    "message": "Zaimportuj funkcję specjalną poprzednio wyeksportowaną z edytora.",
+    "description": ""
+  },
+  "export.label": {
+    "message": "Eksport…",
+    "description": ""
+  },
+  "export.accesskey": {
+    "message": "E",
+    "description": ""
+  },
+  "exporttip": {
+    "message": "Wyeksportuj bieżącą funkcję z edytora do pliku w celach rezerwowych lub współdzielenia zasobów.",
+    "description": ""
+  },
+  "reset.label": {
+    "message": "Rezygnacja ze zmian",
+    "description": ""
+  },
+  "reset.accesskey": {
+    "message": "R",
+    "description": ""
+  },
+  "save.label": {
+    "message": "Zapisz",
+    "description": ""
+  },
+  "save.accesskey": {
+    "message": "Z",
+    "description": ""
+  },
+  "close.label": {
+    "message": "Zamknij",
+    "description": ""
+  },
+  "close.accesskey": {
+    "message": "a",
+    "description": ""
+  },
+  "close.cmdkey": {
+    "message": "w",
+    "description": ""
+  },
+  "sendaround": {
+    "message": "Wyślij",
+    "description": ""
+  },
+  "entervalid": {
+    "message": "Wpisz powyżej poprawną datę",
+    "description": ""
+  },
+  "sendwithfunction": {
+    "message": "Wysyłka zgodnie z funkcją &quot;$1&quot;",
+    "description": ""
+  },
+  "sendspecifyfunction": {
+    "message": "Wybierz funkcję z menu powyżej",
+    "description": ""
+  },
+  "January": {
+    "message": "Styczeń",
+    "description": ""
+  },
+  "February": {
+    "message": "Luty",
+    "description": ""
+  },
+  "March": {
+    "message": "Marzec",
+    "description": ""
+  },
+  "April": {
+    "message": "Kwiecień",
+    "description": ""
+  },
+  "May": {
+    "message": "Maj",
+    "description": ""
+  },
+  "June": {
+    "message": "Czerwiec",
+    "description": ""
+  },
+  "July": {
+    "message": "Lipiec",
+    "description": ""
+  },
+  "August": {
+    "message": "Sierpień",
+    "description": ""
+  },
+  "September": {
+    "message": "Wrzesień",
+    "description": ""
+  },
+  "October": {
+    "message": "Październik",
+    "description": ""
+  },
+  "November": {
+    "message": "Listopad",
+    "description": ""
+  },
+  "December": {
+    "message": "Grudzień",
+    "description": ""
+  },
+  "OptionShortcutAlertTitle": {
+    "message": "Nieprawidłowa wartość skrótu",
+    "description": ""
+  },
+  "OptionShortcutAlertText": {
+    "message": "Skrót $1 posiada nieprawidłową wartość &quot;$2&quot;",
+    "description": ""
+  },
+  "SendingUnsentError": {
+    "message": "Send Later: Błąd podczas wysyłania wiadomości. Twoja skrzynka nadawcza może być uszkodzona, a zaplanowane wiadomości nie mogły zostać wysłane. Zobacz: https://blog.kamens.us/send-later/#outbox.",
+    "description": ""
+  },
+  "CopyUnsentError": {
+    "message": "Send Later: Błąd podczas kopiowania wiadomości do folderu Wysłane (code $1). Send Later został wyłączony! Zobacz: https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "description": ""
+  },
+  "CopyRecurError": {
+    "message": "Send Later: Błąd podczas kopiowania wiadomości do folderu Szkice (code $1). Send Later został wyłączony! Zobacz: https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "description": ""
+  },
+  "CorruptFolderError": {
+    "message": "Send Later: Folder $1 może być uszkodzony. Otwórz Właściwości i napraw go. Zobacz: https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "description": ""
+  },
+  "MessageResendError": {
+    "message": "Send Later: Nastąpiła próba ponownego wysłania wcześniej wysłanej wiadomości!? Twój folder Wysłane albo Szkice $1 jest prawdopodobnie uszkodzony. Spróbuj naprawić zgodnie z opisem https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "description": ""
+  },
+  "minutely": {
+    "message": "co minuta",
+    "description": ""
+  },
+  "daily": {
+    "message": "codziennie",
+    "description": ""
+  },
+  "weekly": {
+    "message": "co tydzień",
+    "description": ""
+  },
+  "monthly": {
+    "message": "co miesiąc",
+    "description": ""
+  },
+  "yearly": {
+    "message": "co rok",
+    "description": ""
+  },
+  "plural_minutely": {
+    "message": "min.",
+    "description": ""
+  },
+  "plural_daily": {
+    "message": "dni",
+    "description": ""
+  },
+  "plural_weekly": {
+    "message": "tyg.",
+    "description": ""
+  },
+  "plural_monthly": {
+    "message": "mies.",
+    "description": ""
+  },
+  "plural_yearly": {
+    "message": "lat(a)",
+    "description": ""
+  },
+  "every_minutely": {
+    "message": "co $1 minut",
+    "description": ""
+  },
+  "every_daily": {
+    "message": "co $1 dni",
+    "description": ""
+  },
+  "every_weekly": {
+    "message": "co $1 tygodni",
+    "description": ""
+  },
+  "every_monthly": {
+    "message": "co $1 miesięcy",
+    "description": ""
+  },
+  "every_yearly": {
+    "message": "co $1 lat",
+    "description": ""
+  },
+  "everyempty": {
+    "message": "tydzień miesiąca",
+    "description": ""
+  },
+  "everymonthly": {
+    "message": "$1 $2 każdego miesiąca",
+    "description": ""
+  },
+  "everymonthly_day0": {
+    "message": "Niedziela",
+    "description": ""
+  },
+  "everymonthly_day1": {
+    "message": "Poniedziałek",
+    "description": ""
+  },
+  "everymonthly_day2": {
+    "message": "Wtorek",
+    "description": ""
+  },
+  "everymonthly_day3": {
+    "message": "Środa",
+    "description": ""
+  },
+  "everymonthly_day4": {
+    "message": "Czwartek",
+    "description": ""
+  },
+  "everymonthly_day5": {
+    "message": "Piątek",
+    "description": ""
+  },
+  "everymonthly_day6": {
+    "message": "Sobota",
+    "description": ""
+  },
+  "everymonthly_short": {
+    "message": "$1 $2",
+    "description": ""
+  },
+  "everymonthly_short_day0": {
+    "message": "Niedziela",
+    "description": ""
+  },
+  "everymonthly_short_day1": {
+    "message": "Poniedziałek",
+    "description": ""
+  },
+  "everymonthly_short_day2": {
+    "message": "Wtorek",
+    "description": ""
+  },
+  "everymonthly_short_day3": {
+    "message": "Środa",
+    "description": ""
+  },
+  "everymonthly_short_day4": {
+    "message": "Czwartek",
+    "description": ""
+  },
+  "everymonthly_short_day5": {
+    "message": "Piątek",
+    "description": ""
+  },
+  "everymonthly_short_day6": {
+    "message": "Sobota",
+    "description": ""
+  },
+  "betw_times": {
+    "message": "między $1 a $2",
+    "description": ""
+  },
+  "only_on_days": {
+    "message": "w $1",
+    "description": ""
+  },
+  "only_on_day0": {
+    "message": "Niedziela",
+    "description": ""
+  },
+  "only_on_day1": {
+    "message": "Poniedziałek",
+    "description": ""
+  },
+  "only_on_day2": {
+    "message": "Wtorek",
+    "description": ""
+  },
+  "only_on_day3": {
+    "message": "Środa",
+    "description": ""
+  },
+  "only_on_day4": {
+    "message": "Czwartek",
+    "description": ""
+  },
+  "only_on_day5": {
+    "message": "Piątek",
+    "description": ""
+  },
+  "only_on_day6": {
+    "message": "Sobota",
+    "description": ""
+  },
+  "ord1": {
+    "message": "1-szy",
+    "description": ""
+  },
+  "ord2": {
+    "message": "2-gi",
+    "description": ""
+  },
+  "ord3": {
+    "message": "3-ci",
+    "description": ""
+  },
+  "ord4": {
+    "message": "4-ty",
+    "description": ""
+  },
+  "ord5": {
+    "message": "5-ty",
+    "description": ""
+  },
+  "draftSaveWarning": {
+    "message": "OSTRZEŻENIE: Aby zapobiec wysłaniu wiadomości w czasie, gdy będziesz ją edytował &quot;Send Later&quot; wyłączył wysyłkę o zaplanowanym czasie. Ustaw ponownie planowany czas wysyłki, gdy skończysz modyfikować wiadomość.",
+    "description": ""
+  },
+  "AreYouSure": {
+    "message": "Czy na pewno?",
+    "description": ""
+  },
+  "OutboxConfirmMessage": {
+    "message": "Kliknięcie &quot;Umieść w skrzynce nadawczej&quot; umieszcza wiadomość od razu w skrzynce nadawczej. Wiadomość NIE ZOSTANIE zaplanowana do późniejszej wysyłki. Aby wysłać wiadomość później, kliknij znajdujący się wewnątrz zielonego pola przycisk &quot;Wyślij&quot; po uprzednim podaniu czasu wysyłki. Czy jesteś pewien, że chcesz umieścić wiadomość w swojej skrzynce nadawczej?",
+    "description": ""
+  },
+  "SendNowConfirmMessage": {
+    "message": "Kliknięcie &quot;Wyślij Teraz&quot; powoduje natychmiastową wysyłkę. Wiadomość NIE ZOSTANIE zaplanowana do późniejszej wysyłki. Aby wysłać wiadomość później, kliknij znajdujący się wewnątrz zielonego pola przycisk &quot;Wyślij&quot; po uprzednim podaniu czasu wysyłki. Czy jesteś pewien, że chcesz wysłać tę wiadomość TERAZ?",
+    "description": ""
+  },
+  "ConfirmAgain": {
+    "message": "Wyświetlaj to ostrzeżenie następnym razem",
+    "description": ""
+  },
+  "ScheduledMessagesWarningTitle": {
+    "message": "Ostrzeżenie: problem z zaplanowaniem wysyłki",
+    "description": ""
+  },
+  "ScheduledMessagesWarningQuitRequested": {
+    "message": "Istnieją wiadomości zaplanowane do wysłania! &quot;Send Later&quot; może je wysłać tylko gdy $1 jest włączony. Czy na pewno chcesz zakończyć?",
+    "description": ""
+  },
+  "ScheduledMessagesWarningQuit": {
+    "message": "&quot;Send Later&quot; może wysłać zaplanowane na później wiadomości tylko gdy $1 jest włączony. Proszę pamiętać o ponownym uruchomieniu przed zaplanowanym czasem wysłania!",
+    "description": ""
+  },
+  "EnigmailIncompatTitle": {
+    "message": "Niezgodność wersji &quot;Send Later&quot; i Enigmail",
+    "description": ""
+  },
+  "EnigmailIncompatText": {
+    "message": "Zainstalowana wersja Enigmail jest jest niezgodna z &quot;Send Later&quot;, z tego względu &quot;Send Later&quot; został wyłączony. Skontaktuj się z twórcą &quot;Send Later&quot; celem konsultacji i asysty (jik@kamens.us).",
+    "description": ""
+  },
+  "TimeMismatchConfirmTitle": {
+    "message": "Błąd ustawienia czasu wysłania",
+    "description": ""
+  },
+  "TimeMismatchConfirmBody": {
+    "message": "Czas który ustawiłeś, $1, nie zgadza się z ustalonymi zakresami. Kliknij Anuluj i popraw wpisy lub zakresy, albo kliknij OK aby pozwolić na automatyczne dopasowanie do $2.",
+    "description": ""
+  },
+  "endTimeWarningTitle": {
+    "message": "Błąd ustawienia czasu",
+    "description": ""
+  },
+  "endTimeWarningBody": {
+    "message": "Gdy ustawiasz ograniczenia czasowe to czas końcowy musi być późniejszy niż początkowy. Proszę popraw czasy działania ograniczeń lub wyłącz to.",
+    "description": ""
+  },
+  "missingDaysWarningTitle": {
+    "message": "Błąd ustawienia dni",
+    "description": ""
+  },
+  "missingDaysWarningBody": {
+    "message": "Jeśli włączono dostarczanie w określonym dniu tygodnia to trzeba wskazać choć jeden wybrany dzień, proszę wskaż go lub wyłącz to.",
+    "description": ""
+  },
+  "InvalidArgsTitle": {
+    "message": "Błędne argumenty dla funkcji",
+    "description": ""
+  },
+  "InvalidArgsBody": {
+    "message": "Argumenty dla funkcji są nieprawidłowe. Użyj listy JavaScript, bez nawiasów kwadratowych.",
+    "description": ""
+  },
+  "BlockedLateMessage": {
+    "message": "Wiadomość o temacie &quot;$1&quot; w folderze Szkice $2 zaplanowana była do wysyłki więcej niż $3 minut temu, ale wysyłanie było zablokowane. Teraz należy wysłać ją ręcznie lub ponownie zaplanować. Możesz też wyłączyć opcję blokady wysyłania niewysłanych wiadomości w ustawieniach (Nie wysyłaj wiadomości później niż XX minut)",
+    "description": ""
+  },
+  "EditorReadMeCode": {
+    "message": "// Witaj w Edytirze funkcji specjalnych Send Later!\\n//\\n// Ten edytor umożliwi Ci pisanie funkcjji w JavaScript realizujących\\n// zaawansowaną logikę planowania wysyłki wiadomości, które mogą być dowiązane\\n// do przycisku skrótu lub wybrane w oknie planowania wysyłki Send Later.\\n//\\n// Jak widać poniżej, gdy funkcja planowania jest wywoływana, otrzyma ona\\n// trzy argumenty:\\n// * &quot;specname&quot; jest potrzebny jeśli chcesz aby funkcja mogła realizować\\n//   powtórzenia (patrz dalej)\\n// * &quot;prev&quot; jest to poprzedni czas zaplanowanej wysyłki (jeśli realizuje\\n//   powtórzenia)\\n// * &quot;args&quot; jest listą argumentów zwróconą przez poprzednie uruchomienie (jeśli\\n//   realizuje powtórzenia)\\n//\\n// W kodzie funkcji musisz ustawić wartości zmiennych &quot;next&quot;, &quot;nextspec&quot;,\\n// &quot;nextargs&quot; następująco: \\n//\\n// * &quot;next&quot; jest liczbą minut opóźnienia lub datą (Date object) określającą\\n//   kiedy wiadomość ma zostać wysłana.\\n// * &quot;nextspec&quot; jest specyfikacją powtórzenia jeśli funkcja ma realizować\\n//   potarzanie (zobacz https://blog.kamens.us/send-later/#dynamic-recurrence).\\n//   Jeśli nie ustawisz jej wartości, wiadomość zostanie wysłana jednokrotnie.\\n//   Uwaga: jeśli chcesz wykonać Twoją funkcję ponownie w powtórzeniu\\n//   (rekurencyjnie), użyj:\\n// \\n//     nextspec = &quot;function &quot; + specname;\\n// \\n// * &quot;nextargs&quot; jest tablicą argumentów do przekazania dla następnego wywołania\\n//   funkcji jako zmienna &quot;args&quot;.\\n//\\n// Gdy pracujesz nad kodem swoich funkcji, możesz je testować wypełniając\\n// wartości dla zmiennych &quot;prev&quot; oraz &quot;args&quot; w polach tekstowych poniżej i\\n// klikając &quot;Wykonaj funkcję&quot; aby wykonać kod funkcji i zobaczyć wynik.\\n//\\n// Znajdziesz tu dwie przykładowe funkcje, &quot;BusinessHours&quot; oraz &quot;DaysInARow&quot;, w\\n// których możesz zobaczyć co i jak, i próbować więcej.\\n//\\n// Funkcja &quot;ReadMeFirst&quot; realizuje wysłanie wiadomości natychmiast, poprzez\\n// jedną linię kodu.\\n\\nnext = new Date();",
+    "description": ""
+  },
+  "EditorReadMeHelp": {
+    "message": "Treść umieszczona w tym miejscu będzie wyświetlana jako podpowiedź gdy zatrzymasz myszkę nad nazwą funkcji w menu funkcji. Użyj tego jako dokumentacji Twojej funkcji, co robi i jakich argumentów potrzebuje.",
+    "description": ""
+  },
+  "_BusinessHoursCode": {
+    "message": "// Domyślne\\nvar workDays = [1, 2, 3, 4, 5]; // Pon - Pią; Niedz == 0, Sob == 6\\nvar workStart = [8, 30]; // Początek godzin pracy [Godz, Min]\\nvar workEnd = [17, 30]; // Koniec godzin pracy [Godz, Min]\\nif (args &amp;&amp; args[0])\\n    workDays = args[0];\\nif (args &amp;&amp; args[1])\\n    workStart = args[1];\\nif (args &amp;&amp; args[2])\\n    workEnd = args[2];\\nif (prev)\\n    // Nie potrzebne do normalnego używania, ale przydatne do testów jako czas\\n    // bieżący.\\n    next = new Date(prev);\\nelse\\n    next = new Date();\\n// Jeśli jest już pora poza czasem i dniami pracy, przesuwamy wysyłkę na\\n// początek następnego dnia roboczego.\\nwhile ((next.getHours() &gt; workEnd[0]) ||\\n       (next.getHours() == workEnd[0] &amp;&amp; next.getMinutes() &gt; workEnd[1]) ||\\n       (workDays.indexOf(next.getDay()) == -1)) {\\n    next.setDate(next.getDate() + 1);\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}\\n// Jeśli pora jest jeszcze zbyt wczesna, to przesuwamy wysyłkę na początek dnia\\n// roboczego.\\nif ((next.getHours() &lt; workStart[0]) ||\\n    (next.getHours() == workStart[0] &amp;&amp; next.getMinutes() &lt; workStart[1])) {\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}",
+    "description": ""
+  },
+  "BusinessHoursHelp": {
+    "message": "Wyślij wiadomość natychmiast jeśli aktualny czas mieści się w &quot;godzinach pracy&quot;, lub na początku następnego dnia roboczego. Możesz zmienić definicję dni roboczych (domyślnie Pon-Pią) przekazując tablicę numerów dni roboczych jako pierwszy argument, gdzie 0 jest Niedziela, a 6 to Sobota. Możesz też zmienić przedział godzin pracy (domyślnie:8:30 - 17:30) przekazując jako tablica drugi i trzeci argument w formacie [Godz, Min]. Wpisz &quot;null&quot; jeśli nie chcesz zmieniać któregoś z początkowych argumentów. Dla przykładu: &quot;null,[7,0],[15,0]&quot; zmienia godziny pracy nie zmieniając dni roboczych.",
+    "description": ""
+  },
+  "DaysInARowCode": {
+    "message": "// Wyślij wiadomość natychmiast, oraz następnie dodatkowo raz dziennie.\\nif (! prev)\\n    next = new Date();\\nelse {\\n    var now = new Date();\\n    next = new Date(prev); // Kopia argumentu daty bez modyfikowania go.\\n    do {\\n        next.setDate(next.getDate() + 1);\\n    } while (next &lt; now);\\n    // ^^^ nie próbuj wysłać w przeszłości, Jeśli ThunerBird był uśpiony\\n    // w zaplanowanym czasie wysłania.\\n}\\nif (! args) // Domyślnie wysłij wiadomość trzykrotnie.\\n    args = [3];\\nnextargs = [args[0] - 1];\\n//Powtórz jeżeli nie wysłano jeszcze wystarczającą ilość razy.\\nif (nextargs[0] &gt; 0)\\n    nextspec = &quot;function &quot; + specname;",
+    "description": ""
+  },
+  "DaysInARowHelp": {
+    "message": "Wyślij wiadomość natychmiast, a następnie raz dziennie o tej samej porze, dopóki nie zostanie wysłana trzykrotnie. Wstaw liczbę jako argument aby zmienić łączną liczbę wysyłek.",
+    "description": ""
+  },
+  "DiscardConfirmTitle": {
+    "message": "Czy odrzucić zmiany?",
+    "description": ""
+  },
+  "DiscardConfirmBody": {
+    "message": "Zmiany nie zostały zapisane, cy chcesz je odrzucić?",
+    "description": ""
+  },
+  "UntestedSaveTitle": {
+    "message": "Zapisać nie przetestowaną funkcję?",
+    "description": ""
+  },
+  "UntestedSaveBody": {
+    "message": "Ta funkcja nie została przetestowana (nie użyto przycisku &quot;Wykonaj funkcję&quot;) pomimo modyfikacji kodu. Czy na pewno chcesz ją zapisać lub eksportować?",
+    "description": ""
+  },
+  "BadSaveTitle": {
+    "message": "Błąd w nazwie lub kodzie funkcji",
+    "description": ""
+  },
+  "BadSaveBody": {
+    "message": "Proszę sprawdzić poprawność nazwy i kodu funkcji przed zapisem lub eksportem.",
+    "description": ""
+  },
+  "ReplacingFunctionTitle": {
+    "message": "Zastąpić istniejącą funkcję?",
+    "description": ""
+  },
+  "ReplacingFunctionBody": {
+    "message": "Funkcja o takiej nazwie już istnieje, czy chcesz ją zastąpić?",
+    "description": ""
+  },
+  "NoNextValueError": {
+    "message": "Brak wartości dla argumentu &quot;next&quot;.",
+    "description": ""
+  },
+  "BadNextValueError": {
+    "message": "wartość &quot;$1&quot; argumentu &quot;next&quot; nie jest liczbą lub datą.",
+    "description": ""
+  },
+  "BadNextArgsError": {
+    "message": "Wartość &quot;$1&quot; argumentu &quot;nextarg&quot; nie jest tablicą (Array)",
+    "description": ""
+  },
+  "FunctionDeleteConfirmBody": {
+    "message": "Czy na pewno usunąć tę funkcję? Jeśli została użyta jako funkcja definiowana dla przycisku, przycisk ni będzie działał poprawnie.Jeśli użyto jej do zaplanowania wysyłki to zaplanowane z jej użyciem wiadomości nie będą już mogły być obsłużone.",
+    "description": ""
+  },
+  "ImportTitle": {
+    "message": "Wybierz plik do importowania.",
+    "description": ""
+  },
+  "SLJFilterLabel": {
+    "message": "Pliki JSON dla &quot;Send Later&quot;",
+    "description": ""
+  },
+  "ImportError": {
+    "message": "Błąd importu",
+    "description": ""
+  },
+  "ExportTitle": {
+    "message": "Wybierz miejsce docelowe eksportu",
+    "description": ""
+  },
+  "RenameFunctionTitle": {
+    "message": "Zmienić nazwę istniejącej funkcji?",
+    "description": ""
+  },
+  "RenameFunctionBody": {
+    "message": "Zmieniasz nazwę istniejącej funkcji, &quot;$1&quot;. Chcesz zmienić nazwę czy może zapisać jako nowa funkcja pod nową nazwą?",
+    "description": ""
+  },
+  "RenameFunctionRenameButton": {
+    "message": "zmień nazwę",
+    "description": ""
+  },
+  "RenameFunctionNewButton": {
+    "message": "Nowa Funkcja",
+    "description": ""
+  },
+  "FunctionErrorTitle": {
+    "message": "Błąd wywołania funkcji dynamicznej",
+    "description": ""
+  },
+  "FunctionErrorBody": {
+    "message": "Błąd wywołania dynaminczej funkcji planowania: &quot;$1&quot;",
+    "description": ""
+  },
+  "cancel_on_reply": {
+    "message": "zakończ po odpowiedzi",
+    "description": ""
+  },
+  "PendingMessage": {
+    "message": "CZEKA $1",
+    "description": ""
+  },
+  "IdleMessage": {
+    "message": "PUSTO",
+    "description": ""
+  },
+  "DisabledMessage": {
+    "message": "WYŁĄCZONY",
+    "description": ""
+  },
+  "CheckingMessage": {
+    "message": "SPRAWDZANIE",
+    "description": ""
   }
 }

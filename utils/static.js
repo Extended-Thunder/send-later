@@ -764,44 +764,39 @@ const SLStatic = {
         }
 
         if (recur.multiplier == 1) {
-          fragments.push(SLStatic.PromptBundleGet(recur.type));
+          fragments.push(browser.i18n.getMessage(recur.type));
         } else {
-          fragments.push(SLStatic.PromptBundleGetFormatted("every_" +
-                                                           recur.type,
-                                                           [recur.multiplier]));
+          fragments.push(browser.i18n.getMessage("every_" + recur.type,
+                                                  recur.multiplier));
         }
       }
 
       if (recur.monthly_day) {
-        fragments.push(SLStatic.PromptBundleGetFormatted("everymonthly_short",
-                          [
-                            SLStatic.PromptBundleGet("ord" +
-                                                     recur.monthly_day.week),
-                            SLStatic.PromptBundleGet("everymonthly_short_day" +
-                                                     recur.monthly_day.day)
-                          ]));
+        const ordDay = browser.i18n.getMessage("ord" + recur.monthly_day.week);
+        const shortDay = browser.i18n.getMessage("everymonthly_short_day" +
+                                                  recur.monthly_day.day);
+        fragments.push(browser.i18n.getMessage("everymonthly_short",
+                                                ordDay, shortDay));
       }
 
       if (recur.between) {
         const start = SLStatic.formatTime(recur.between.start);
         const end = SLStatic.formatTime(recur.between.end);
-        fragments.push(SLStatic.PromptBundleGetFormatted("betw_times",
-                                                       [start, end]));
+        fragments.push(browser.i18n.getMessage("betw_times", start, end));
       }
 
       if (recur.days) {
         let days = [];
         for (const day of recur.days) {
-          days.push(SLStatic.PromptBundleGet("only_on_day" + day));
+          days.push(browser.i18n.getMessage("only_on_day" + day));
         }
         days = days.join(", ");
-        fragments.push(SLStatic.PromptBundleGetFormatted("only_on_days",
-                                                         [days]));
+        fragments.push(browser.i18n.getMessage("only_on_days", days));
       }
     }
 
     if (cancelOnReply != "") {
-      fragments.push(SLStatic.PromptBundleGet("cancel_on_reply"));
+      fragments.push(browser.i18n.getMessage("cancel_on_reply"));
     }
 
     return fragments.join(", ");

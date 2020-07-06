@@ -238,5 +238,865 @@
   "userGuideLabel": {
     "message": "Bruksanvisning",
     "description": ""
+  },
+  "windowTitle": {
+    "message": "KRITISK: Send Later vil forsvinne snart, med mindre du støtter det!",
+    "description": ""
+  },
+  "pledgeLabel": {
+    "message": "Bidra nå!",
+    "description": ""
+  },
+  "remindLabel": {
+    "message": "Minn meg på dette senere",
+    "description": ""
+  },
+  "alreadyLabel": {
+    "message": "Jeg har allerede bidratt",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.label": {
+    "message": "Legg i utboks",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.accesskey": {
+    "message": "u",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "Heller enn å planlegge levering til et bestemt tidspunkt, flytt meldingen til utboksmappen for å sendes neste gang usendte meldinger blir sendt.",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.accesskey": {
+    "message": "n",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.tooltip": {
+    "message": "Send meldingen umiddelbart ved å overstyre &quot;Send senere&quot;.",
+    "description": ""
+  },
+  "sendlater.prompt.close.accesskey": {
+    "message": "A",
+    "description": ""
+  },
+  "sendlater.prompt.close.tooltip": {
+    "message": "Gå tilbake for å redigere meldingen.",
+    "description": ""
+  },
+  "sendlater.prompt.title.label": {
+    "message": "Send denne e-posten senere",
+    "description": ""
+  },
+  "sendlater.prompt.or.label": {
+    "message": "eller",
+    "description": ""
+  },
+  "sendlater.prompt.textbox.emptytext": {
+    "message": "f. eks.: &amp;quot;15:00 torsdag&amp;quot; &amp;quot;31/12/2012 15:27&amp;quot;",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.label": {
+    "message": "Send senere på tidspunkt(er) spesifisert ovenfor",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Lagre meldingen i Kladd-mappen for automatisk levering på tidspunktet som er valgt ovenfor.",
+    "description": ""
+  },
+  "sendlater.prompt.functionargs.label": {
+    "message": "Funksjonsargumenter",
+    "description": ""
+  },
+  "sendlater.prompt.calculate.label": {
+    "message": "Kalkuler",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.label": {
+    "message": "Send Later",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.tooltip": {
+    "message": "Skru på Send senere for å planlegge en melding etter å ha skrevet inn det ønskede tidspunktet i tekstboksen. Denne knappen gjør ikke noe i seg selv; du vil også måtte legge til tekstboksen eller data-/tidsvelgere (Støttes ikke i alle Thunderbird-versjoner) i verktøylinjen for at denne knappen skal bli nyttig.",
+    "description": ""
+  },
+  "sendlater.toolbar.textbox.emptytext": {
+    "message": "sendetidspunkt",
+    "description": ""
+  },
+  "sendlater.prompt.every.label": {
+    "message": "Hver",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.label": {
+    "message": "Avbryt gjentakelse ved svar",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Se etter svar på tidligere sendte kopier av regelmessige meldinger. Avbryt en gjentakende melding og fjern den fra utkastmappen når et svar mottas.",
+    "description": ""
+  },
+  "sendlater3header.label": {
+    "message": "Send senere",
+    "description": ""
+  },
+  "prefwindow.title": {
+    "message": "Valg for Send senere",
+    "description": ""
+  },
+  "pane1.title": {
+    "message": "Valg for Send senere",
+    "description": ""
+  },
+  "checktimepref.tooltip": {
+    "message": "Intervall, i minutter, mellom hver sjekk for utkast som er klare for levering. Øk denne verdien dersom dine utkast ikke alltid sendes til riktig tid eller dersom antallet ventende meldinger i statuslinja ikke reflekterer riktig antall utkast planlagt til sending.",
+    "description": ""
+  },
+  "quickoptionname.label": {
+    "message": "Etikett for knapp",
+    "description": ""
+  },
+  "showsendlatercolumn.tooltip": {
+    "message": "Om du vil vise «Send senere»--kolonnen når du ser på utkastmapper",
+    "description": ""
+  },
+  "showsendlaterheader.tooltip": {
+    "message": "Om du vil vise «X-Send-Later-At»-topptekst, dvs. tidspunktet da et utkast er planlagt å bli sendt, i overskriften når du ser en melding.",
+    "description": ""
+  },
+  "showsendlaterprogress.caption": {
+    "message": "Vis bakgrunnsfremgang i statuslinjen",
+    "description": ""
+  },
+  "showsendlaterunsentmessages.tooltip": {
+    "message": "Hvis du fjerner dette alternativet, vil Send senere ikke levere meldinger, men i stedet vil bare sette dem i utboksen når de er planlagt for levering. Fjern dette alternativet hvis du for eksempel bruker en annen utvidelse, f.eks. BlunderDelay, til å periodisk plassere meldinger i utgangen. Merk at når dette alternativet er angitt, når Send senere leverer en melding, vil alle meldinger i utboksen leveres.",
+    "description": ""
+  },
+  "sendlatersendbutton.tooltip": {
+    "message": "Er dette alternativet blir aktivert, fungerer kommandoen &amp;quot;Send&amp;quot; (Enten knappen eller å trykke Ctrl-Enter) på samme måte som &amp;quot;Send senere&amp;quot;.",
+    "description": ""
+  },
+  "senddelay.tooltip": {
+    "message": "Hvis denne innstillingen er skrudd på, vil alle meldinger med «Send»-kommandoen (Enten knappen eller å trykke Ctrl-Enter) bli utsatt med det valgte antall minutter ved å planlegge dem med Send senere.",
+    "description": ""
+  },
+  "composewindowhotkeys.tooltip": {
+    "message": "Mens du skriver en melding, kan du trykke Ctrl-Alt-1/-2/-3 for å aktivere de første, andre og tredje knappebindingssettene, med mindre du skrur av denne innstillingen, hvorpå disse knappebindingene blir skrudd av.",
+    "description": ""
+  },
+  "composewindowhotkeys.caption": {
+    "message": "Skru på meldingsskrivevindu-knappebindingene for forhåndsbindinger",
+    "description": ""
+  },
+  "contactauthor.tooltip": {
+    "message": "Send en e-postmelding til skaperen av Send senere.",
+    "description": ""
+  },
+  "helplink.tooltip": {
+    "message": "Vis Send senere-dokumentasjonen.",
+    "description": ""
+  },
+  "releasenotes.value": {
+    "message": "Versjonsnotater",
+    "description": ""
+  },
+  "donatelink.value": {
+    "message": "Donere",
+    "description": ""
+  },
+  "editorlink.value": {
+    "message": "Dynamisk funksjonsredigerer",
+    "description": ""
+  },
+  "enforcerestrictions.tooltip": {
+    "message": "Hvis en melding som skal leveres er utenfor dens tids- eller dagsrestriksjoner, f.eks. fordi Thunderbird ikke kjørte på dens planlagte leveringstid, skal leveringen utsettes frem til tids- og dagsrestriksjonene er oppfylt.",
+    "description": ""
+  },
+  "blocklatemessages.tooltip": {
+    "message": "Ikke lever planlagte meldinger som har blitt utsatt forbi sin planlagte tid, f.eks fordi Thunderbird ikke kjørte på den tiden.",
+    "description": ""
+  },
+  "editorbutton": {
+    "message": "Åpne dynamisk funksjonsredigerer …",
+    "description": ""
+  },
+  "editortip": {
+    "message": "Åpne et vindu for oppretting og redigering av JavaScript-funksjoner som implementerer kompleks planleggingslogikk.",
+    "description": ""
+  },
+  "loglevel.config": {
+    "message": "Oppsett",
+    "description": ""
+  },
+  "sendlater.ask.title.label": {
+    "message": "Støtt Send senere",
+    "description": ""
+  },
+  "sendlater.ask.message1": {
+    "message": "Uendelig mange timer har gått med til utvikling og vedlikehold av dette programtillegget, og til brukerstøtte.",
+    "description": ""
+  },
+  "sendlater.ask.message2": {
+    "message": "Vurder gjerne om du vil bidra med en donasjon for å sikre videre utvikling av programtillegget!",
+    "description": ""
+  },
+  "sendlater.ask.message3": {
+    "message": "Takk!",
+    "description": ""
+  },
+  "sendlater.ask.donate.accesskey": {
+    "message": "G",
+    "description": ""
+  },
+  "sendlater.ask.donate.label": {
+    "message": "Gi en donasjon nå",
+    "description": ""
+  },
+  "sendlater.ask.remind.accesskey": {
+    "message": "M",
+    "description": ""
+  },
+  "sendlater.ask.remind.label": {
+    "message": "Minn meg på dette senere",
+    "description": ""
+  },
+  "sendlater.ask.already.accesskey": {
+    "message": "J",
+    "description": ""
+  },
+  "sendlater.ask.already.label": {
+    "message": "Jeg har alt gitt en donasjon",
+    "description": ""
+  },
+  "sendlater.ask.stop.accesskey": {
+    "message": "I",
+    "description": ""
+  },
+  "sendlater.ask.stop.label": {
+    "message": "Ikke spør igjen",
+    "description": ""
+  },
+  "windowtitle": {
+    "message": "Send senere Dynamisk funksjonredigerer",
+    "description": ""
+  },
+  "selectfunction": {
+    "message": "Velg funksjon",
+    "description": ""
+  },
+  "selectfunctiontip": {
+    "message": "Velg en funksjon for å redigere eller slette, eller &amp;quot;(create new function)&amp;quot; for å opprette en ny funksjon.",
+    "description": ""
+  },
+  "createnewfunction": {
+    "message": "(lag ny funksjon)",
+    "description": ""
+  },
+  "delete.label": {
+    "message": "Slett",
+    "description": ""
+  },
+  "delete.accesskey": {
+    "message": "S",
+    "description": ""
+  },
+  "functionnametip": {
+    "message": "Angi eller Rediger et alfanumerisk funksjonsnavnet. Hvis du endrer navnet på en eksisterende funksjon, vil du bli spurt når du lagrer om å gi funksjonen eller opprette en ny funksjon med endret navn.",
+    "description": ""
+  },
+  "functionnameplaceholder": {
+    "message": "funksjonsnavn",
+    "description": ""
+  },
+  "codetip": {
+    "message": "Skriv inn kildekoden til funksjonen din her. Se &amp;quot;ReadMeFirst&amp;quot;-utvalgsfunksjonen for detaljer om hva koden burde gjøre.",
+    "description": ""
+  },
+  "codeplaceholder": {
+    "message": "funksjonens kildekode",
+    "description": ""
+  },
+  "helptextheader": {
+    "message": "Funksjonens hjelpetekst",
+    "description": ""
+  },
+  "helptexttip": {
+    "message": "Tekst du skriver inn her vises når brukeren holder pekeren over navnet på funksjonen i oppsprettsmenyen. Bruk det til å forklare hva funksjonen gjør og hvilke argumenter den godtar.",
+    "description": ""
+  },
+  "helptextplaceholder": {
+    "message": "hjelpetekst",
+    "description": ""
+  },
+  "run.label": {
+    "message": "Kjør funksjon",
+    "description": ""
+  },
+  "run.accesskey": {
+    "message": "K",
+    "description": ""
+  },
+  "inputtime": {
+    "message": "Inndatatid",
+    "description": ""
+  },
+  "inputtimetip": {
+    "message": "Du kan angi datoer og klokkeslett her i alle formater som dialogboksen Send senere.",
+    "description": ""
+  },
+  "inputtimeplaceholder": {
+    "message": "dato og klokkeslett, til å sende til funksjonen for å teste",
+    "description": ""
+  },
+  "inputargs": {
+    "message": "Tilfører argumentene",
+    "description": ""
+  },
+  "inputargstip": {
+    "message": "Argumentene må angis i JavaScript formatter, f.eks strengene bør være i anførselstegn.",
+    "description": ""
+  },
+  "inputargsplaceholder": {
+    "message": "kommadelt argumenter, til å gå i for testing",
+    "description": ""
+  },
+  "output": {
+    "message": "Produksjon",
+    "description": ""
+  },
+  "import.label": {
+    "message": "Importer…",
+    "description": ""
+  },
+  "import.accesskey": {
+    "message": "m",
+    "description": ""
+  },
+  "importtip": {
+    "message": "Importer en dynamisk funksjon som tidligere er eksportert fra redigereren.",
+    "description": ""
+  },
+  "export.label": {
+    "message": "Eksporter…",
+    "description": ""
+  },
+  "export.accesskey": {
+    "message": "E",
+    "description": ""
+  },
+  "exporttip": {
+    "message": "Eksporter den nåværende viste funksjonen til en fil for sikkerhetskopiering eller deling.",
+    "description": ""
+  },
+  "reset.label": {
+    "message": "Forkast endringer",
+    "description": ""
+  },
+  "reset.accesskey": {
+    "message": "a",
+    "description": ""
+  },
+  "save.label": {
+    "message": "Lagre",
+    "description": ""
+  },
+  "save.accesskey": {
+    "message": "L",
+    "description": ""
+  },
+  "close.label": {
+    "message": "Lukk",
+    "description": ""
+  },
+  "close.accesskey": {
+    "message": "u",
+    "description": ""
+  },
+  "close.cmdkey": {
+    "message": "w",
+    "description": ""
+  },
+  "sendaround": {
+    "message": "Send rundt",
+    "description": ""
+  },
+  "entervalid": {
+    "message": "Skriv inn en gyldig dato ovenfor",
+    "description": ""
+  },
+  "sendwithfunction": {
+    "message": "Send ifølge funksjonen &quot;$1&quot;",
+    "description": ""
+  },
+  "sendspecifyfunction": {
+    "message": "Velg en funksjon fra menyen ovenfor",
+    "description": ""
+  },
+  "January": {
+    "message": "Januar",
+    "description": ""
+  },
+  "February": {
+    "message": "Februar",
+    "description": ""
+  },
+  "March": {
+    "message": "Mars",
+    "description": ""
+  },
+  "April": {
+    "message": "April",
+    "description": ""
+  },
+  "May": {
+    "message": "Mai",
+    "description": ""
+  },
+  "June": {
+    "message": "Juni",
+    "description": ""
+  },
+  "July": {
+    "message": "Juli",
+    "description": ""
+  },
+  "August": {
+    "message": "August",
+    "description": ""
+  },
+  "September": {
+    "message": "September",
+    "description": ""
+  },
+  "October": {
+    "message": "Oktober",
+    "description": ""
+  },
+  "November": {
+    "message": "November",
+    "description": ""
+  },
+  "December": {
+    "message": "Desember",
+    "description": ""
+  },
+  "OptionShortcutAlertTitle": {
+    "message": "Ugyldig snarveien verdi",
+    "description": ""
+  },
+  "OptionShortcutAlertText": {
+    "message": "Snarvei $1 har ugyldig verdi &quot;$2&quot;",
+    "description": ""
+  },
+  "SendingUnsentError": {
+    "message": "Send senere: Feil ved sending av usendte meldinger. Utboksen din kan være skadet, og dine planlagte meldinger har kanskje ikke blitt sendt. Se https://blog.kamens.us/send-later/#outbox.",
+    "description": ""
+  },
+  "CopyUnsentError": {
+    "message": "Send senere: Feil under kopiering av planlagt melding til utboksen for levering (kode $1). Send senere er deaktivert! Se https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "description": ""
+  },
+  "CopyRecurError": {
+    "message": "Send senere: Feil under kopiering av gjentakende melding til utboksen for levering (kode $1). Send senere er deaktivert! Se https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "description": ""
+  },
+  "CorruptFolderError": {
+    "message": "Send senere: Mappen $1 kan være skadet. Åpne egenskapene dens og reparer den. Se https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "description": ""
+  },
+  "MessageResendError": {
+    "message": "Send senere: Forsøker du å sende en allerede sendt melding?! Utboks- eller Kladden-mappen din $1 er sannsynligvis skadet. Vennligst reparer dem som beskrevet i https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "description": ""
+  },
+  "minutely": {
+    "message": "hvert minutt",
+    "description": ""
+  },
+  "daily": {
+    "message": "daglig",
+    "description": ""
+  },
+  "weekly": {
+    "message": "hver uke",
+    "description": ""
+  },
+  "monthly": {
+    "message": "månedlig",
+    "description": ""
+  },
+  "yearly": {
+    "message": "årlig",
+    "description": ""
+  },
+  "plural_minutely": {
+    "message": "minutter",
+    "description": ""
+  },
+  "plural_daily": {
+    "message": "dager",
+    "description": ""
+  },
+  "plural_weekly": {
+    "message": "uker",
+    "description": ""
+  },
+  "plural_monthly": {
+    "message": "måneder",
+    "description": ""
+  },
+  "plural_yearly": {
+    "message": "år",
+    "description": ""
+  },
+  "every_minutely": {
+    "message": "hver $1 minutter",
+    "description": ""
+  },
+  "every_daily": {
+    "message": "hver $1 dager",
+    "description": ""
+  },
+  "every_weekly": {
+    "message": "hver $1. uke",
+    "description": ""
+  },
+  "every_monthly": {
+    "message": "hver $1. måned",
+    "description": ""
+  },
+  "every_yearly": {
+    "message": "hvert $1. år",
+    "description": ""
+  },
+  "everyempty": {
+    "message": "uke i måneden",
+    "description": ""
+  },
+  "everymonthly": {
+    "message": "$1 $2 i måneden",
+    "description": ""
+  },
+  "everymonthly_day0": {
+    "message": "Søndag",
+    "description": ""
+  },
+  "everymonthly_day1": {
+    "message": "Mandag",
+    "description": ""
+  },
+  "everymonthly_day2": {
+    "message": "Tirsdag",
+    "description": ""
+  },
+  "everymonthly_day3": {
+    "message": "Onsdag",
+    "description": ""
+  },
+  "everymonthly_day4": {
+    "message": "Torsdag",
+    "description": ""
+  },
+  "everymonthly_day5": {
+    "message": "Fredag",
+    "description": ""
+  },
+  "everymonthly_day6": {
+    "message": "Lørdag",
+    "description": ""
+  },
+  "everymonthly_short": {
+    "message": "$1, $2",
+    "description": ""
+  },
+  "everymonthly_short_day0": {
+    "message": "Søndag",
+    "description": ""
+  },
+  "everymonthly_short_day1": {
+    "message": "Mandag",
+    "description": ""
+  },
+  "everymonthly_short_day2": {
+    "message": "Tirsdag",
+    "description": ""
+  },
+  "everymonthly_short_day3": {
+    "message": "Onsdag",
+    "description": ""
+  },
+  "everymonthly_short_day4": {
+    "message": "Torsdag",
+    "description": ""
+  },
+  "everymonthly_short_day5": {
+    "message": "Fredag",
+    "description": ""
+  },
+  "everymonthly_short_day6": {
+    "message": "Lørdag",
+    "description": ""
+  },
+  "betw_times": {
+    "message": "mellom $1 og $2",
+    "description": ""
+  },
+  "only_on_days": {
+    "message": "på $1",
+    "description": ""
+  },
+  "only_on_day0": {
+    "message": "Søndag",
+    "description": ""
+  },
+  "only_on_day1": {
+    "message": "Mandag",
+    "description": ""
+  },
+  "only_on_day2": {
+    "message": "Tirsdag",
+    "description": ""
+  },
+  "only_on_day3": {
+    "message": "Onsdag",
+    "description": ""
+  },
+  "only_on_day4": {
+    "message": "Torsdag",
+    "description": ""
+  },
+  "only_on_day5": {
+    "message": "Fredag",
+    "description": ""
+  },
+  "only_on_day6": {
+    "message": "Lørdag",
+    "description": ""
+  },
+  "ord1": {
+    "message": "1.",
+    "description": ""
+  },
+  "ord2": {
+    "message": "2.",
+    "description": ""
+  },
+  "ord3": {
+    "message": "3.",
+    "description": ""
+  },
+  "ord4": {
+    "message": "4.",
+    "description": ""
+  },
+  "ord5": {
+    "message": "5.",
+    "description": ""
+  },
+  "draftSaveWarning": {
+    "message": "Advarsel: For å unngå at meldingen leveres av Send senere mens du redigerer den, er dens planlagte sendetid avbrutt. Vennligst planlegg meldingen på nytt når du er ferdig med å redigere den.",
+    "description": ""
+  },
+  "AreYouSure": {
+    "message": "Er du sikker?",
+    "description": ""
+  },
+  "OutboxConfirmMessage": {
+    "message": "Å klikke på &quot;Plasser i utboksen&quot; legger meldingen i utboksen umiddelbart. Den VIL IKKE sette meldingen til å bli sendt på et bestemt tidspunkt. For det, velger du knappen &quot;Send rundt&quot; i den grønne boksen etter å ha skrevet inn et gyldig sendingstidspunkt. Er du sikker på at du vil plassere meldingen i utboksen nå?",
+    "description": ""
+  },
+  "SendNowConfirmMessage": {
+    "message": "Å klikke på &quot;Send nå&quot; sender meldingen umiddelbart. Den VIL IKKE sette meldingen til å bli sendt på et bestemt tidspunkt. For det, velger du knappen &quot;Send rundt&quot; i den grønne boksen etter å ha skrevet inn et gyldig sendingstidspunkt. Er du sikker på at du vil sende meldingen nå?",
+    "description": ""
+  },
+  "ConfirmAgain": {
+    "message": "Vis denne advarselen neste gang",
+    "description": ""
+  },
+  "ScheduledMessagesWarningTitle": {
+    "message": "Advarsel for planlagte meldinger",
+    "description": ""
+  },
+  "ScheduledMessagesWarningQuitRequested": {
+    "message": "Det er meldinger som er planlagt å sendes. Send senere kan bare sende meldinger når $1 kjører. Er du sikker på at du vil avslutte?",
+    "description": ""
+  },
+  "ScheduledMessagesWarningQuit": {
+    "message": "Send senere kan bare sende meldinger når $1 kjører. Husk å starte den på nytt før meldingene dine er planlagt å bli sendt!",
+    "description": ""
+  },
+  "EnigmailIncompatTitle": {
+    "message": "Send senere / Enigmail-kompatibilitetsproblem",
+    "description": ""
+  },
+  "EnigmailIncompatText": {
+    "message": "Den installerte versjonen av Enigmail er ikke kompatibel med Send senere, så det å planlegge meldinger med Send senere er deaktivert. Kontakt den ansvarlige for Send senere (jik@kamens.us) for hjelp.",
+    "description": ""
+  },
+  "TimeMismatchConfirmTitle": {
+    "message": "Usamsvar mellom sendingstidspunkt og begrensninger",
+    "description": ""
+  },
+  "TimeMismatchConfirmBody": {
+    "message": "Sendetiden $1 faller ikke innenfor de angitte tidsbegrensningene. Klikk på Avbryt for å redigere sendetid eller restriksjoner, eller OK for å justere det automatisk til $2.",
+    "description": ""
+  },
+  "endTimeWarningTitle": {
+    "message": "Ugyldig meldingstidsbegrensning",
+    "description": ""
+  },
+  "endTimeWarningBody": {
+    "message": "Når du spesifiserer en tidsbegrensning for meldingen, kan sluttiden ikke være tidligere enn starttiden. Vennligst juster tidsbegrensningen eller deaktiver den.",
+    "description": ""
+  },
+  "missingDaysWarningTitle": {
+    "message": "Ugyldig dagsbegrensning",
+    "description": ""
+  },
+  "missingDaysWarningBody": {
+    "message": "Du har aktivert en begrensningsdagbegrensning uten å spesifisere noen dager. Vennligst deaktiver dagbegrensningen eller angi minst en leveringsdag.",
+    "description": ""
+  },
+  "InvalidArgsTitle": {
+    "message": "Ugyldige funksjonsargumenter",
+    "description": ""
+  },
+  "InvalidArgsBody": {
+    "message": "Funksjonsargumentene er ikke gyldige. Angi en JavaScript liste, uten omsluttende hakeparenteser.",
+    "description": ""
+  },
+  "BlockedLateMessage": {
+    "message": "Meldingen med emne &quot;$1&quot; i Utkast-mappen $2 ble planlagt å bli levert mer enn $3 minutter siden, slik at leveringen er blokkert. Du bør redigere utkastet og enten sende det for hånd eller omordne det. Du kan også deaktivere &quot;Ikke lever meldinger mer enn # minutter for sent&quot; for å stoppe blokkering av levering av sente meldinger.",
+    "description": ""
+  },
+  "EditorReadMeCode": {
+    "message": "Velkommen til funksjon redigeringsprogrammet Send senere!\\n/ /\\n/ / Editor lar deg lage JavaScript-funksjoner implementere komplekse\\n/ / melding planlegging logikk som kan knyttes til snarveien tastene eller\\n/ / valgt i dialogboksen Send senere.\\n/ /\\n/ / Som du kan se ovenfor, når en planlegging funksjonen kalles det får\\n/ / tre argumenter:\\n/ / * &quot;specname&quot; kreves hvis du vil at denne funksjonen skal gjentas (se nedenfor)\\n/ / * &quot;forrige&quot; er den forrige Planlagt sendetidspunkt, hvis dette er en gjentakende\\n/ / aktivering\\n/ / * &quot;argumenter&quot; er ekstra argumentene returneres av tidligere anrop Hvis denne\\n/ / er en regelmessig anrop\\n/ /\\n/ / Koden må angi variablene &quot;neste&quot;, &quot; nextspec&quot;, og\\n/ /&quot;nextargs&quot;som følger:\\n/ /\\n/ / *&quot;neste&quot;er antall minutter i fremtiden eller en dato objekt\\n/ / som angir når meldingen skal sendes.\\n/ / * &quot;nextspec&quot; er en gjentakelse spesifikasjon Hvis dette er ment å være\\n/ / regelmessig melding (se\\n/ / https://blog.kamens.us/send-later/#dynamic-recurrence). Hvis du ikke angir\\n/ / dette, så meldingen sendes bare én gang. Merk: Hvis du ønsker din\\n/ / funksjonen kalles igjen for regelmessighet gjør:\\n/ / nextspec = &quot;funksjon&quot; + specname;\\n/ / * &quot;nextargs&quot; er en matrise av argumentene som skal sendes til de neste\\n/ / aktivering av funksjonen som &quot;argumenter&quot;.\\n/ /\\n/ / Mens du arbeider med funksjonen, kan du teste den ved å fylle ut verdiene\\n/ / for &quot;forrige&quot; og &quot;argumenter&quot; i tekstboksene nedenfor og deretter klikke &quot; Kjøre&quot;\\n/ / utfører funksjonen og se resultatene.\\n/ /\\n/ / Er det to pre-konfigurerte utvalgsfunksjoner, &quot;BusinessHours&quot; og\\n/ / &quot;DaysInARow&quot;, som du kan se på og spille med å lære mer.\\n/ /\\n/ / Denne &quot;ReadMeFirst&quot;-funksjonen bare forårsaker meldingen sendes rundt nå,\\n/ / via følgende linje.\\n= neste nye Date();",
+    "description": ""
+  },
+  "EditorReadMeHelp": {
+    "message": "Enhver tekst du legger inn her vil bli vist som et verktøytips når du svinger over navnet på funksjonen i menyen. Du kan bruke dette til å dokumentere hva funksjonen gjør og hvilke argumenter den aksepterer.",
+    "description": ""
+  },
+  "_BusinessHoursCode": {
+    "message": "// Defaults\\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\\nvar workStart = [8, 30]; // Start of the work day as [H, M]\\nvar workEnd = [17, 30]; // End of the work day as [H, M]\\nif (args &amp;&amp; args[0])\\n    workDays = args[0];\\nif (args &amp;&amp; args[1])\\n    workStart = args[1];\\nif (args &amp;&amp; args[2])\\n    workEnd = args[2];\\nif (prev)\\n    // Not expected in normal usage, but used as the current time for testing.\\n    next = new Date(prev);\\nelse\\n    next = new Date();\\n// If we&#x27;re past the end of the workday or not on a workday, move to the work\\n// start time on the next day.\\nwhile ((next.getHours() &gt; workEnd[0]) ||\\n       (next.getHours() == workEnd[0] &amp;&amp; next.getMinutes() &gt; workEnd[1]) ||\\n       (workDays.indexOf(next.getDay()) == -1)) {\\n    next.setDate(next.getDate() + 1);\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}\\n// If we&#x27;re before the beginning of the workday, move to its start time.\\nif ((next.getHours() &lt; workStart[0]) ||\\n    (next.getHours() == workStart[0] &amp;&amp; next.getMinutes() &lt; workStart[1])) {\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}",
+    "description": ""
+  },
+  "BusinessHoursHelp": {
+    "message": "Send meldingen nå hvis den er i driftstid eller i begynnelsen av neste arbeidsdag. Du kan endre definisjonen av arbeidsdager (standard: Man - Fre) ved å sende inn en rekke arbeidsdagnumre som det første argumentet, hvor 0 er søndag og 6 er lørdag. Du kan endre arbeidsstart eller sluttid (standard: 8:30 - 17:30) ved å sende inn en rekke [H, M] som det andre eller tredje argumentet. Angi &quot;null&quot; for tidligere argumenter du ikke endrer. For eksempel endrer &quot;null, [9, 0], [17, 0]&quot; arbeidstiden uten å endre arbeidsdager.",
+    "description": ""
+  },
+  "DaysInARowCode": {
+    "message": "// Send the first message now, subsequent messages once per day.\\nif (! prev)\\n    next = new Date();\\nelse {\\n    var now = new Date();\\n    next = new Date(prev); // Copy date argument so we don&#x27;t modify it.\\n    do {\\n        next.setDate(next.getDate() + 1);\\n    } while (next &lt; now);\\n    // ^^^ Don&#x27;t try to send in the past, in case Thunderbird was asleep at\\n    // the scheduled send time.\\n}\\nif (! args) // Send messages three times by default.\\n    args = [3];\\nnextargs = [args[0] - 1];\\n// Recur if we haven&#x27;t done enough sends yet.\\nif (nextargs[0] &gt; 0)\\n    nextspec = &quot;function &quot; + specname;",
+    "description": ""
+  },
+  "DaysInARowHelp": {
+    "message": "Send meldingen nå, og deretter en gang per dag samtidig, til den er sendt tre ganger. Angi et tall som argument for å endre totalt antall sendinger.",
+    "description": ""
+  },
+  "DiscardConfirmTitle": {
+    "message": "Forkast endringer?",
+    "description": ""
+  },
+  "DiscardConfirmBody": {
+    "message": "Det er ikke lagrede endringer. Vil du kaste bort dem?",
+    "description": ""
+  },
+  "UntestedSaveTitle": {
+    "message": "Lagre uprøvd funksjon?",
+    "description": ""
+  },
+  "UntestedSaveBody": {
+    "message": "Funksjonen er ikke testet (med &quot;Utfør&quot; -knappen) siden den sist ble endret. Er du sikker på at du vil lagre eller eksportere den?",
+    "description": ""
+  },
+  "BadSaveTitle": {
+    "message": "Ugyldig funksjonsnavn eller kode",
+    "description": ""
+  },
+  "BadSaveBody": {
+    "message": "Vennligst vær sikker på at funksjonsnavnet og koden er gyldige før du lagrer eller eksporterer.",
+    "description": ""
+  },
+  "ReplacingFunctionTitle": {
+    "message": "Overskriv eksisterende funksjon?",
+    "description": ""
+  },
+  "ReplacingFunctionBody": {
+    "message": "En funksjon med det angitte navnet eksisterer allerede. Er du sikker på at du vil erstatte den?",
+    "description": ""
+  },
+  "NoNextValueError": {
+    "message": "Funksjonen angav ikke en &quot;neste&quot; verdi.",
+    "description": ""
+  },
+  "BadNextValueError": {
+    "message": "&quot;Neste&quot; verdi &quot;$1&quot; er ikke et tall eller en dato",
+    "description": ""
+  },
+  "BadNextArgsError": {
+    "message": "&quot;Nextargs&quot; -verdien &quot;$1&quot; er ikke et array",
+    "description": ""
+  },
+  "FunctionDeleteConfirmBody": {
+    "message": "Er du sikker på at du vil slette denne funksjonen? Hvis det er knyttet til noen snarveisknapper, vil de slutte å virke, og hvis det er noen tilbakevendende meldinger som bruker den, vil de mislykkes i å omplanere etter neste gang de blir sendt.",
+    "description": ""
+  },
+  "ImportTitle": {
+    "message": "Velg fil som skal importeres",
+    "description": ""
+  },
+  "SLJFilterLabel": {
+    "message": "Send senere JSON Files",
+    "description": ""
+  },
+  "ImportError": {
+    "message": "Importer feil",
+    "description": ""
+  },
+  "ExportTitle": {
+    "message": "Velg eksport mål",
+    "description": ""
+  },
+  "RenameFunctionTitle": {
+    "message": "Gi nytt navn til eksisterende funksjon?",
+    "description": ""
+  },
+  "RenameFunctionBody": {
+    "message": "Du har endret navnet på en eksisterende funksjon, &quot;% 1 $ S&quot;. Vil du omdøpe den eksisterende funksjonen eller lagre en egen funksjon med det nye navnet?",
+    "description": ""
+  },
+  "RenameFunctionRenameButton": {
+    "message": "Gi nytt navn",
+    "description": ""
+  },
+  "RenameFunctionNewButton": {
+    "message": "Ny",
+    "description": ""
+  },
+  "FunctionErrorTitle": {
+    "message": "Feil pådriver dynamisk funksjon",
+    "description": ""
+  },
+  "FunctionErrorBody": {
+    "message": "Feil ved å aktivere dynamisk planleggingsfunksjon: &quot;% 1 $ S&quot;",
+    "description": ""
+  },
+  "cancel_on_reply": {
+    "message": "Avbryt på svar",
+    "description": ""
+  },
+  "PendingMessage": {
+    "message": "Stående $1",
+    "description": ""
+  },
+  "IdleMessage": {
+    "message": "Hvile",
+    "description": ""
+  },
+  "DisabledMessage": {
+    "message": "Deaktivert",
+    "description": ""
+  },
+  "CheckingMessage": {
+    "message": "SJEKKER",
+    "description": ""
   }
 }

@@ -238,5 +238,865 @@
   "userGuideLabel": {
     "message": "Felhasználói útmutató",
     "description": ""
+  },
+  "windowTitle": {
+    "message": "SÜRGŐS: A Küldés később kiegészítő hamarosan megszűnik, hacsak nem támogatja azt!",
+    "description": ""
+  },
+  "pledgeLabel": {
+    "message": "Ígérem most!",
+    "description": ""
+  },
+  "remindLabel": {
+    "message": "Figyelmeztetés később",
+    "description": ""
+  },
+  "alreadyLabel": {
+    "message": "Már vállaltam",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.label": {
+    "message": "Postázandó üzenetek helyezés",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.accesskey": {
+    "message": "P",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "Ahelyett, hogy ütemezné a szállítást egy adott időre, helyezze át az üzenetet a Kimenő mappába, hogy legközelebb elküldje a nem küldött üzeneteket.",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.accesskey": {
+    "message": "d",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.tooltip": {
+    "message": "Az üzenetet azonnal küldje el, megkerülve a „Küldés később&quot;-kiegészítőt.",
+    "description": ""
+  },
+  "sendlater.prompt.close.accesskey": {
+    "message": "M",
+    "description": ""
+  },
+  "sendlater.prompt.close.tooltip": {
+    "message": "Menjen vissza az üzenet szerkesztéséhez.",
+    "description": ""
+  },
+  "sendlater.prompt.title.label": {
+    "message": "Küldje el ezt az e-mailt később",
+    "description": ""
+  },
+  "sendlater.prompt.or.label": {
+    "message": "vagy",
+    "description": ""
+  },
+  "sendlater.prompt.textbox.emptytext": {
+    "message": "például: „15:00 csütörtök&quot;, „2015. 12. 31. 15:27&quot;",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.label": {
+    "message": "Küldés később a fent meghatározott időpont(ok)ban",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Mentse az üzenetet a Piszkozatok mappába az önműködő küldéséhez a fenti időpontban.",
+    "description": ""
+  },
+  "sendlater.prompt.functionargs.label": {
+    "message": "Függvény érvek",
+    "description": ""
+  },
+  "sendlater.prompt.calculate.label": {
+    "message": "Kiszámít",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.label": {
+    "message": "Küldés később",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.tooltip": {
+    "message": "Aktiválja a Küldés később parancsot az üzenet ütemezéséhez, miután megadta a kívánt küldési időt a szövegmezőbe. Ez a gomb önmagában nem tesz semmit; hozzá kell adnia a szövegdobozot vagy a dátum/idő választókat (amelyek nem támogatottak az összes Thunderbird verzióban) az eszköztárhoz, hogy ez a gomb hasznos legyen.",
+    "description": ""
+  },
+  "sendlater.toolbar.textbox.emptytext": {
+    "message": "a küldés dátuma és időpontja",
+    "description": ""
+  },
+  "sendlater.prompt.every.label": {
+    "message": "Minden",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.label": {
+    "message": "Ismétlődés visszavonása válasz esetén",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Az ismétlődő üzenetekre adott válaszok figyelése. Ismétlődő üzenetet megszakítása és távolítsa el a Piszkozatok mappából, amikor válasz érkezik.",
+    "description": ""
+  },
+  "sendlater3header.label": {
+    "message": "Küldés később",
+    "description": ""
+  },
+  "prefwindow.title": {
+    "message": "Küldés később beállításai",
+    "description": ""
+  },
+  "pane1.title": {
+    "message": "Küldés később beállításai",
+    "description": ""
+  },
+  "checktimepref.tooltip": {
+    "message": "Időközönként, percben, a piszkozatok ellenőrzése között, amelyek elküldése ideje megérkezett. Növelje ezt az értéket, ha a piszkozatait időnként nem vannak elküldve, vagy az állapotsorban lévő függőben lévő üzenetek száma néha nem tükrözi az összes ütemezett piszkozatot.",
+    "description": ""
+  },
+  "quickoptionname.label": {
+    "message": "Gombcímke",
+    "description": ""
+  },
+  "showsendlatercolumn.tooltip": {
+    "message": "Akár a „Küldés később&quot; oszlopot is megjelenítheti a vázlatmappák megtekintése közben",
+    "description": ""
+  },
+  "showsendlaterheader.tooltip": {
+    "message": "Az „X-Send-Later-At&quot; fejléc megjelenítése, azaz idő, amikor a tervezetet elküldjük, a fejlécben, amikor üzenetet nézünk.",
+    "description": ""
+  },
+  "showsendlaterprogress.caption": {
+    "message": "Háttérállapot megjelenítése az állapotsorban",
+    "description": ""
+  },
+  "showsendlaterunsentmessages.tooltip": {
+    "message": "Ha kikapcsolja ezt az opciót, akkor a Küldés később nem fogja teljes mértékben kézbesíteni az üzeneteket, hanem csak azokat a Kimenő mappába helyezi, amikor azokat a szállításra tervezik. Törölje ezt az opciót, például, ha valamilyen más kiterjesztést, például Baklövés késleltetést használ az üzenetek időszakos küldésére a Kimenő mappából. Ne feledje, hogy ha ez az opció be van állítva, akkor, amikor Küldés később üzenetet küld, a Kimenő összes üzeneteit fogja elküldeni.",
+    "description": ""
+  },
+  "sendlatersendbutton.tooltip": {
+    "message": "Ezzel az opcióval a „Küldés&quot; parancs (vagy a gomb vagy a Ctrl+Enter beírása) ugyanaz, mint a „Küldés később&quot;.",
+    "description": ""
+  },
+  "senddelay.tooltip": {
+    "message": "Ezzel az opcióval a „Küldés&quot; paranccsal elküldött összes üzenet (a gomb vagy a Ctrl-Enter gépelés után) a megadott perc számmal késik, ha a Küldés később ütemezést küld.",
+    "description": ""
+  },
+  "composewindowhotkeys.tooltip": {
+    "message": "Üzenet írása közben beírhatja a Ctrl-Alt-1, -2 vagy -3 gombot az első, a második vagy a harmadik előre beállított gomb aktiválásához, kivéve, ha nincs bejelölve ez a beállítás, ebben az esetben ezek a billentyűkötések le vannak tiltva.",
+    "description": ""
+  },
+  "composewindowhotkeys.caption": {
+    "message": "Billentyűkötések előbeállítások engedélyezése a szerkesztőablaknak",
+    "description": ""
+  },
+  "contactauthor.tooltip": {
+    "message": "E-mail üzenet küldése a Küldés később szerzőjének.",
+    "description": ""
+  },
+  "helplink.tooltip": {
+    "message": "A Küldés később dokumentáció megtekintése.",
+    "description": ""
+  },
+  "releasenotes.value": {
+    "message": "Kiadási megjegyzések",
+    "description": ""
+  },
+  "donatelink.value": {
+    "message": "Adományozás",
+    "description": ""
+  },
+  "editorlink.value": {
+    "message": "Erőteljes függvény szerkesztő",
+    "description": ""
+  },
+  "enforcerestrictions.tooltip": {
+    "message": "Ha egy kézbesítendő üzenet az idő vagy a nap korlátozásain kívül esik, például azért, mert a Thunderbird nem futott az ütemezett szállítási időpontban, akkor késleltesse annak kézbesítését, amíg az idő és a nap korlátozásai nem teljesülnek.",
+    "description": ""
+  },
+  "blocklatemessages.tooltip": {
+    "message": "Ne küldjön ütemezett üzeneteket, amelyek késleltetettek az ütemezett időn túl, például azért, mert a Thunderbird ekkor nem futott.",
+    "description": ""
+  },
+  "editorbutton": {
+    "message": "Erőteljes függvény szerkesztő megnyitása…",
+    "description": ""
+  },
+  "editortip": {
+    "message": "Nyisson meg egy ablakot a bonyolult ütemezési logikát megvalósító JavaScript funkciók létrehozásához és szerkesztéséhez.",
+    "description": ""
+  },
+  "loglevel.config": {
+    "message": "Beállítás",
+    "description": ""
+  },
+  "sendlater.ask.title.label": {
+    "message": "Küldés később támogatása",
+    "description": ""
+  },
+  "sendlater.ask.message1": {
+    "message": "A kiegészítő fejlesztése, karbantartása és támogatása számtalan órát vett igénybe.",
+    "description": ""
+  },
+  "sendlater.ask.message2": {
+    "message": "Kérjük, fontolja meg, hogy adományozzon, hogy támogassa a folyamatos fejlődését!",
+    "description": ""
+  },
+  "sendlater.ask.message3": {
+    "message": "Köszönjük!",
+    "description": ""
+  },
+  "sendlater.ask.donate.accesskey": {
+    "message": "A",
+    "description": ""
+  },
+  "sendlater.ask.donate.label": {
+    "message": "Adományozás most",
+    "description": ""
+  },
+  "sendlater.ask.remind.accesskey": {
+    "message": "F",
+    "description": ""
+  },
+  "sendlater.ask.remind.label": {
+    "message": "Figyelmeztetés később",
+    "description": ""
+  },
+  "sendlater.ask.already.accesskey": {
+    "message": "M",
+    "description": ""
+  },
+  "sendlater.ask.already.label": {
+    "message": "Már adományoztam",
+    "description": ""
+  },
+  "sendlater.ask.stop.accesskey": {
+    "message": "l",
+    "description": ""
+  },
+  "sendlater.ask.stop.label": {
+    "message": "Kérdés leállítása",
+    "description": ""
+  },
+  "windowtitle": {
+    "message": "Küldés később erőteljes függvény szerkesztő",
+    "description": ""
+  },
+  "selectfunction": {
+    "message": "Válassza ki a függvényt",
+    "description": ""
+  },
+  "selectfunctiontip": {
+    "message": "Válasszon egy függvény a létrehozásához vagy törléshez, vagy „(új függvény létrehozása)&quot; az új függvény létrehozásához.",
+    "description": ""
+  },
+  "createnewfunction": {
+    "message": "(új függvény létrehozása)",
+    "description": ""
+  },
+  "delete.label": {
+    "message": "Törlése",
+    "description": ""
+  },
+  "delete.accesskey": {
+    "message": "s",
+    "description": ""
+  },
+  "functionnametip": {
+    "message": "Írjon be egy betű-szám függvénynevet. Ha változtatja a meglévő függvény nevét, akkor megkérdezi, hogy menti-e a függvény átnevezését, vagy új függvényt hoz létre a megváltoztatta névvel.",
+    "description": ""
+  },
+  "functionnameplaceholder": {
+    "message": "függvény neve",
+    "description": ""
+  },
+  "codetip": {
+    "message": "Itt helyezze el a forráskódot a függvényhez. Lásd a „ReadMeFirst&quot; (olvass el először) mintafüggvényt a kód használatának részleteit illetően.",
+    "description": ""
+  },
+  "codeplaceholder": {
+    "message": "függvény forráskód",
+    "description": ""
+  },
+  "helptextheader": {
+    "message": "Függvény súgószöveg",
+    "description": ""
+  },
+  "helptexttip": {
+    "message": "Az itt feltüntetett szöveg akkor jelenik meg, ha a felhasználó felugrik a függvény nevére a felugró menüben. Használja, hogy elmagyarázza, mi a függvénye és milyen érveket fogad el.",
+    "description": ""
+  },
+  "helptextplaceholder": {
+    "message": "súgószöveg",
+    "description": ""
+  },
+  "run.label": {
+    "message": "Függvény végrehajtása",
+    "description": ""
+  },
+  "run.accesskey": {
+    "message": "F",
+    "description": ""
+  },
+  "inputtime": {
+    "message": "Bemeneti idő",
+    "description": ""
+  },
+  "inputtimetip": {
+    "message": "Adja meg a dátumokat és az időket bármilyen formátumban, amit a Küldés később párbeszédablak megért.",
+    "description": ""
+  },
+  "inputtimeplaceholder": {
+    "message": "dátum és idő, ha vannak, a vizsgálathoz a függvényhez",
+    "description": ""
+  },
+  "inputargs": {
+    "message": "Bemeneti érvek",
+    "description": ""
+  },
+  "inputargstip": {
+    "message": "Az érveket a JavaScript formátumban kell megadni, például a karakterláncokat idézőjelben kell megadni.",
+    "description": ""
+  },
+  "inputargsplaceholder": {
+    "message": "vesszővel elválasztott érvek, ha vannak, a vizsgálathoz",
+    "description": ""
+  },
+  "output": {
+    "message": "Kimenet",
+    "description": ""
+  },
+  "import.label": {
+    "message": "Importál…",
+    "description": ""
+  },
+  "import.accesskey": {
+    "message": "I",
+    "description": ""
+  },
+  "importtip": {
+    "message": "Importáljon egy erőteljes függvényt, amelyet korábban a szerkesztőből exportált.",
+    "description": ""
+  },
+  "export.label": {
+    "message": "Kivitel…",
+    "description": ""
+  },
+  "export.accesskey": {
+    "message": "K",
+    "description": ""
+  },
+  "exporttip": {
+    "message": "Exportálja a jelenleg megjelenített függvényt egy fájlba a mentéshez vagy megosztáshoz.",
+    "description": ""
+  },
+  "reset.label": {
+    "message": "Módosítások elvetése",
+    "description": ""
+  },
+  "reset.accesskey": {
+    "message": "e",
+    "description": ""
+  },
+  "save.label": {
+    "message": "Mentés",
+    "description": ""
+  },
+  "save.accesskey": {
+    "message": "M",
+    "description": ""
+  },
+  "close.label": {
+    "message": "Bezárás",
+    "description": ""
+  },
+  "close.accesskey": {
+    "message": "B",
+    "description": ""
+  },
+  "close.cmdkey": {
+    "message": "W",
+    "description": ""
+  },
+  "sendaround": {
+    "message": "Küldés kb",
+    "description": ""
+  },
+  "entervalid": {
+    "message": "Adjon meg fent egy érvényes dátumot",
+    "description": ""
+  },
+  "sendwithfunction": {
+    "message": "A(z) „$1&quot; függvény szerint küldése",
+    "description": ""
+  },
+  "sendspecifyfunction": {
+    "message": "Válasszon ki egy függvényt a fenti menüből",
+    "description": ""
+  },
+  "January": {
+    "message": "január",
+    "description": ""
+  },
+  "February": {
+    "message": "február",
+    "description": ""
+  },
+  "March": {
+    "message": "március",
+    "description": ""
+  },
+  "April": {
+    "message": "április",
+    "description": ""
+  },
+  "May": {
+    "message": "május",
+    "description": ""
+  },
+  "June": {
+    "message": "június",
+    "description": ""
+  },
+  "July": {
+    "message": "július",
+    "description": ""
+  },
+  "August": {
+    "message": "augusztus",
+    "description": ""
+  },
+  "September": {
+    "message": "szeptember",
+    "description": ""
+  },
+  "October": {
+    "message": "október",
+    "description": ""
+  },
+  "November": {
+    "message": "november",
+    "description": ""
+  },
+  "December": {
+    "message": "december",
+    "description": ""
+  },
+  "OptionShortcutAlertTitle": {
+    "message": "Érvénytelen gyorsbillentyű érték",
+    "description": ""
+  },
+  "OptionShortcutAlertText": {
+    "message": "A(z) „$1&quot; érvénytelen gyorsbillentyű a(z) $2. gombhoz",
+    "description": ""
+  },
+  "SendingUnsentError": {
+    "message": "Küldés később: Hiba a nem küldött üzenetek küldése során. Előfordulhat, hogy a Kimenő üzenet sérült, és előfordulhat, hogy az ütemezett üzeneteket nem küldték el. Lásd: https://blog.kamens.us/send-later/#outbox.",
+    "description": ""
+  },
+  "CopyUnsentError": {
+    "message": "Küldés később: Hiba történt az ütemezett üzenet másolásakor a Kimenő mappába a szállításhoz (kód: $1). Küldés később le van tiltva! Lásd: https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "description": ""
+  },
+  "CopyRecurError": {
+    "message": "Küldés később: Hiba történt az ismétlődő üzenet másolásakor a Piszkozatok mappába (kód: $1). Küldés később le van tiltva! Lásd: https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "description": ""
+  },
+  "CorruptFolderError": {
+    "message": "Küldés később: A(z) $1 mappa sérült lehet. Kérjük, nyissa meg a tulajdonságait és javítsa ki. Lásd: https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "description": ""
+  },
+  "MessageResendError": {
+    "message": "Küldés később: Megpróbál újra elküldeni a már elküldött üzenetet! A(z) $1 Kimenő vagy Piszkozatok mappa valószínűleg sérült. Kérjük, javítsa meg azokat a https://blog.kamens.us/send-later/#corrupt-outbox címen leírtak szerint.",
+    "description": ""
+  },
+  "minutely": {
+    "message": "percenként",
+    "description": ""
+  },
+  "daily": {
+    "message": "naponta",
+    "description": ""
+  },
+  "weekly": {
+    "message": "hetente",
+    "description": ""
+  },
+  "monthly": {
+    "message": "havonta",
+    "description": ""
+  },
+  "yearly": {
+    "message": "évente",
+    "description": ""
+  },
+  "plural_minutely": {
+    "message": "percenként",
+    "description": ""
+  },
+  "plural_daily": {
+    "message": "naponta",
+    "description": ""
+  },
+  "plural_weekly": {
+    "message": "hetente",
+    "description": ""
+  },
+  "plural_monthly": {
+    "message": "havonta",
+    "description": ""
+  },
+  "plural_yearly": {
+    "message": "évente",
+    "description": ""
+  },
+  "every_minutely": {
+    "message": "$1 percenként",
+    "description": ""
+  },
+  "every_daily": {
+    "message": "$1 naponta",
+    "description": ""
+  },
+  "every_weekly": {
+    "message": "$1 hetente",
+    "description": ""
+  },
+  "every_monthly": {
+    "message": "$1 havonta",
+    "description": ""
+  },
+  "every_yearly": {
+    "message": "$1 évente",
+    "description": ""
+  },
+  "everyempty": {
+    "message": "hét havonta",
+    "description": ""
+  },
+  "everymonthly": {
+    "message": "A hónap $1 $2",
+    "description": ""
+  },
+  "everymonthly_day0": {
+    "message": "vasárnapja",
+    "description": ""
+  },
+  "everymonthly_day1": {
+    "message": "hétfője",
+    "description": ""
+  },
+  "everymonthly_day2": {
+    "message": "keddje",
+    "description": ""
+  },
+  "everymonthly_day3": {
+    "message": "szerdája",
+    "description": ""
+  },
+  "everymonthly_day4": {
+    "message": "csütörtöke",
+    "description": ""
+  },
+  "everymonthly_day5": {
+    "message": "pénteke",
+    "description": ""
+  },
+  "everymonthly_day6": {
+    "message": "szombata",
+    "description": ""
+  },
+  "everymonthly_short": {
+    "message": "$1 $2",
+    "description": ""
+  },
+  "everymonthly_short_day0": {
+    "message": "vasárnap",
+    "description": ""
+  },
+  "everymonthly_short_day1": {
+    "message": "hétfő",
+    "description": ""
+  },
+  "everymonthly_short_day2": {
+    "message": "kedd",
+    "description": ""
+  },
+  "everymonthly_short_day3": {
+    "message": "szerda",
+    "description": ""
+  },
+  "everymonthly_short_day4": {
+    "message": "csütörtök",
+    "description": ""
+  },
+  "everymonthly_short_day5": {
+    "message": "péntek",
+    "description": ""
+  },
+  "everymonthly_short_day6": {
+    "message": "szombat",
+    "description": ""
+  },
+  "betw_times": {
+    "message": "$1 és $2 között",
+    "description": ""
+  },
+  "only_on_days": {
+    "message": "$1",
+    "description": ""
+  },
+  "only_on_day0": {
+    "message": "vasárnapon",
+    "description": ""
+  },
+  "only_on_day1": {
+    "message": "hétfőn",
+    "description": ""
+  },
+  "only_on_day2": {
+    "message": "kedden",
+    "description": ""
+  },
+  "only_on_day3": {
+    "message": "szerdán",
+    "description": ""
+  },
+  "only_on_day4": {
+    "message": "csütörtökön",
+    "description": ""
+  },
+  "only_on_day5": {
+    "message": "pénteken",
+    "description": ""
+  },
+  "only_on_day6": {
+    "message": "szombaton",
+    "description": ""
+  },
+  "ord1": {
+    "message": "első",
+    "description": ""
+  },
+  "ord2": {
+    "message": "második",
+    "description": ""
+  },
+  "ord3": {
+    "message": "harmadik",
+    "description": ""
+  },
+  "ord4": {
+    "message": "negyedik",
+    "description": ""
+  },
+  "ord5": {
+    "message": "ötödik",
+    "description": ""
+  },
+  "draftSaveWarning": {
+    "message": "FIGYELMEZTETÉS: Annak megakadályozására, hogy a Küldés később az üzenetet szerkesztés közben továbbítsa, az ütemezett küldési idő törlődött. Kérjük, ütemezze át az üzenetet, ha befejezte a szerkesztést.",
+    "description": ""
+  },
+  "AreYouSure": {
+    "message": "Biztos benne?",
+    "description": ""
+  },
+  "OutboxConfirmMessage": {
+    "message": "A „Kimenő üzenetek behelyezése&quot; gombra kattintva az üzenet azonnal megjelenik a Kimenő üzenetek mappában. NEM ütemezi az üzenetet egy adott időpontban. Ehhez kattintson az „Elküldés&quot; gombra a zöld dobozban, miután megadta az érvényes küldési időt. Biztosan most szeretné az üzenetet a Kimenő üzenetek mappába tenni?",
+    "description": ""
+  },
+  "SendNowConfirmMessage": {
+    "message": "A „Küldés most&quot; gombra kattintva azonnal elküldi az üzenetet. NEM ütemezi az üzenetet egy adott időpontban. Ehhez kattintson az „Elküldés&quot; gombra a zöld dobozban, miután megadta az érvényes küldési időt. Biztosan most szeretné elküldeni az üzenetet?",
+    "description": ""
+  },
+  "ConfirmAgain": {
+    "message": "A figyelmeztetés megjelenítése legközelebb",
+    "description": ""
+  },
+  "ScheduledMessagesWarningTitle": {
+    "message": "Ütemezett üzenetek figyelmeztetése",
+    "description": ""
+  },
+  "ScheduledMessagesWarningQuitRequested": {
+    "message": "Vannak üzenetek, amelyeket el kell küldeni. Küldés később csak akkor küldhet üzeneteket, amikor a(z) $1 fut. Biztosan kilép?",
+    "description": ""
+  },
+  "ScheduledMessagesWarningQuit": {
+    "message": "Küldés később csak akkor küldhet üzeneteket, amikor a(z) $1 fut. Kérjük, ne felejtse el újraindítani, mielőtt üzeneteit elküldeni szeretné!",
+    "description": ""
+  },
+  "EnigmailIncompatTitle": {
+    "message": "Küldés később / Enigmail-kiegészítő összeegyeztethetői hiba",
+    "description": ""
+  },
+  "EnigmailIncompatText": {
+    "message": "Az Enigmail telepített verziója összeegyeztethetetlen a Küldés később-kiegészítővel, így a(z) Küldés később üzenetek ütemezése le van tiltva. Kérjük, forduljon a Küldés később (jik@kamens.us) karbantartójához segítségért.",
+    "description": ""
+  },
+  "TimeMismatchConfirmTitle": {
+    "message": "Küldési idő / küldési korlátozás nem megfelelő",
+    "description": ""
+  },
+  "TimeMismatchConfirmBody": {
+    "message": "A(z) $1 küldés ideje nem esik a megadott időbeli korlátozások közé. Kattintson a Mégse gombra a küldési idő vagy korlátozások szerkesztéséhez, vagy az OK gombra, hogy önműködően beállítsa: $2.",
+    "description": ""
+  },
+  "endTimeWarningTitle": {
+    "message": "Érvénytelen üzenetidő korlátozás",
+    "description": ""
+  },
+  "endTimeWarningBody": {
+    "message": "Az üzenetek időbeli korlátozásának meghatározásakor a végidő nem lehet korábbi, mint a kezdési idő. Kérjük, állítsa be az időbeli korlátozását, vagy tiltsa le azt.",
+    "description": ""
+  },
+  "missingDaysWarningTitle": {
+    "message": "Érvénytelen napkorlátozás",
+    "description": ""
+  },
+  "missingDaysWarningBody": {
+    "message": "A napok korlátozása nélkül engedélyezte az üzenetnapi korlátozást. Kérjük, tiltsa le a napi korlátozást, vagy adjon meg legalább egy elküldési napot.",
+    "description": ""
+  },
+  "InvalidArgsTitle": {
+    "message": "Érvénytelen függvény érvek",
+    "description": ""
+  },
+  "InvalidArgsBody": {
+    "message": "A függvény érvek nem érvényesek. Adjon meg egy JavaScript listát, a szögletes zárójelek nélkül.",
+    "description": ""
+  },
+  "BlockedLateMessage": {
+    "message": "A(z) „$1&quot; tárgyú üzenetet a(z) $2 Piszkozatok mappájában több mint $3 perccel ezelőtt szállították, így a szállítás le van tiltva. Szerkessze a tervezetet, és küldje el kézzel vagy átütemezze azt. A késői üzenetek kézbesítésének megakadályozását úgy is letilthatja, hogy a „Ne küldjön üzeneteket több mint x perccel későn&quot; beállítást.",
+    "description": ""
+  },
+  "EditorReadMeCode": {
+    "message": "// Üdvözöljük a Küldés később-függvényszerkesztőben!\\n//\\n// A szerkesztő lehetővé teszi, hogy olyan JavaScript függvényeket hozzon létre,\\n// amelyek összetett üzenetütemezési folyamatokat valósítanak meg, amelyek a\\n// parancsikonokkal társíthatók vagy a Küldés később párbeszédablakban választhatók ki.\\n//\\n// Amint a fentiekben látható, az ütemezési függvény hívásakor három érvet kap:\\n// * &quot;specname&quot; szükséges ha ezt a függvényt szeretné megismételni (lásd alább)\\n// * &quot;prev&quot; az előző ütemezett küldési idő, ha ez ismétlődő hívás\\n// * &quot;args&quot; az előző meghívás által visszaadott további érvek, ha ez \\n//   ismétlődő hívás\\n//\\n// A kódnak meg kell adnia a &quot;next&quot;, &quot;nextspec&quot; és &quot;nextargs&quot; változókat a\\n// következőképpen:\\n//\\n// * &quot;next&quot; a percek száma a jövőben, vagy a Dátum objektum, amely jelzi, \\n//   hogy az üzenetet kell elküldeni.\\n// * &quot;nextspec&quot; visszatérési részletes leírás, ha ez ismétlődő üzenet (lásd\\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). \\n//   Ha ezt nem állítja be, akkor az üzenet csak egyszer kerül elküldésre.\\n//   Megjegyzés: ha azt szeretné, hogy ismételten hívhassa a függvényt, tegye:\\n//     nextspec = &quot;function &quot; + specname;\\n// * &quot;nextargs&quot; olyan érvek tömbje, amelyeket az &quot;args&quot; függvény következő\\n//   meghívására kíván átadni.\\n//\\n// Miközben dolgozik a függvényiekkel, vizsgálható azt az &quot;prev&quot; és az &quot;args&quot;\\n// értékek kitöltésével az alábbi szövegdobozokban, majd a Végrehajtás gombra\\n// kattintva a függvény végrehajtásához és az eredmények megtekintéséhez.\\n//\\n// Két előre beállított mintafüggvény van: &quot;BusinessHours&quot; és &quot;DaysInARow&quot;,\\n// amelyekkel meg lehet változtatni, hogy többet fedezzen fel.\\n//\\n// Ez a &quot;ReadMeFirst&quot; (olvass el először) függvény csak az üzenet továbbítását\\n// teszi lehetővé most, a következő soron keresztül.\\nnext = new Date();",
+    "description": ""
+  },
+  "EditorReadMeHelp": {
+    "message": "Adja meg a szöveg, a buboréksúgóként jelenik meg, amikor a menüben a függvény neve fölé lép. Ezzel az okmány tudja, hogy mi a függvény és milyen érveket elfogadja.",
+    "description": ""
+  },
+  "_BusinessHoursCode": {
+    "message": "// Alapértékek\\nvar workDays = [1, 2, 3, 4, 5]; // hétfő - péntek; vasárnap == 0, szombat == 6\\nvar workStart = [8, 30]; // munkanap kezdésének ideje [ó, p]\\nvar workEnd = [17, 30]; // munkanap befejezésének ideje [ó, p]\\nif (args &amp;&amp; args[0])\\n    workDays = args[0];\\nif (args &amp;&amp; args[1])\\n    workStart = args[1];\\nif (args &amp;&amp; args[2])\\n    workEnd = args[2];\\nif (prev)\\n    // Nem várható általános használatába.\\n    // Jelenlegi idő használata a vizsgálatához.\\n    next = new Date(prev);\\nelse\\n    next = new Date();\\n// Ha az idő a munkanap befejezésének ideje után vagy a ma egy\\n// munkaszüneti nap, lépjünk a következő napi munkanap kezdésének ideje.\\nwhile ((next.getHours() &gt; workEnd[0]) ||\\n       (next.getHours() == workEnd[0] &amp;&amp; next.getMinutes() &gt; workEnd[1]) ||\\n       (workDays.indexOf(next.getDay()) == -1)) {\\n    next.setDate(next.getDate() + 1);\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}\\n// Ha az idő a munkanap kezdésének ideje előtt járunk, lépjünk a munkanap\\n// kezdésének ideje időpontra.\\nif ((next.getHours() &lt; workStart[0]) ||\\n    (next.getHours() == workStart[0] &amp;&amp; next.getMinutes() &lt; workStart[1])) {\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}",
+    "description": ""
+  },
+  "BusinessHoursHelp": {
+    "message": "Küldje most el az üzenetet, ha ez munkaidőben vagy a következő munkanap kezdetén. Megváltoztathatja a munkanapok meghatározását (alapértelmezett: hétfőtől péntekig) az első érvként a munkanapok számának tömbjével, ahol 0 vasárnapot jelent és 6 szombatot jelent. Megváltoztathatja a munka kezdetének vagy befejezésének időpontját (alapértelmezett: 8:30-17:30) a [ó, p] tömbben a második vagy harmadik érvként. Adja meg a „null&quot; értéket a korábbi érvek esetében, amelyeket nem módosít. Például a „null, [9, 0], [17, 0]&quot; megváltoztatja a munkaidőt a munkanapok megváltoztatása nélkül.",
+    "description": ""
+  },
+  "DaysInARowCode": {
+    "message": "// Küldje el az első üzenetet, a következő üzeneteket naponta egyszer.\\nif (! prev)\\n    next = new Date();\\nelse {\\n    var now = new Date();\\n    next = new Date(prev); // Dátum érv másolása, hogy ne módosítsuk.\\n    do {\\n        next.setDate(next.getDate() + 1);\\n    } while (next &lt; now);\\n    // ^^^ Ne kíséreljen meg küldeni a múltban, abban az esetben, ha a\\n    // Thunderbird elaludt az ütemezett küldési időben.\\n}\\nif (! args) // Alapértelmezés szerint háromszor küldjön üzeneteket.\\n    args = [3];\\nnextargs = [args[0] - 1];\\n// Küldés ismétlés, ha nincs kész.\\nif (nextargs[0] &gt; 0)\\n    nextspec = &quot;function &quot; + specname;",
+    "description": ""
+  },
+  "DaysInARowHelp": {
+    "message": "Küldje most el az üzenetet, majd egyszer naponta ugyanabban az időben, amíg háromszor nincs elküldve. Adjon meg hányszor szeretné elküldeni az üzenet az érvben.",
+    "description": ""
+  },
+  "DiscardConfirmTitle": {
+    "message": "Módosítások elvetése",
+    "description": ""
+  },
+  "DiscardConfirmBody": {
+    "message": "Nem mentett módosítások. Módosítások elvetése?",
+    "description": ""
+  },
+  "UntestedSaveTitle": {
+    "message": "Nem megvizsgált függvény mentése?",
+    "description": ""
+  },
+  "UntestedSaveBody": {
+    "message": "A függvényt nem megvizsgáltak (a Végrehajtás gomb megnyomásával) az utolsó változtatás óta. Biztosan menteni vagy exportálni szeretné?",
+    "description": ""
+  },
+  "BadSaveTitle": {
+    "message": "Érvénytelen függvénynév vagy kód",
+    "description": ""
+  },
+  "BadSaveBody": {
+    "message": "Győződjön meg arról, hogy a függvény neve és kódja a mentés vagy exportálás előtt érvényes.",
+    "description": ""
+  },
+  "ReplacingFunctionTitle": {
+    "message": "Meglévő függvény felülírása?",
+    "description": ""
+  },
+  "ReplacingFunctionBody": {
+    "message": "Már van ilyen nevű függvény. Felülírja?",
+    "description": ""
+  },
+  "NoNextValueError": {
+    "message": "A függvény nem állított be „next&quot; (következő) értéket.",
+    "description": ""
+  },
+  "BadNextValueError": {
+    "message": "A „next&quot; (következő) érték „$1&quot; nem szám vagy dátum",
+    "description": ""
+  },
+  "BadNextArgsError": {
+    "message": "A „nextargs&quot; (következő érvek) „$1&quot; érték nem Array (tömb)",
+    "description": ""
+  },
+  "FunctionDeleteConfirmBody": {
+    "message": "Biztosan törölni kívánja ezt a függvényt? Ha valamilyen gyorsbillentyűhöz kapcsolódik, akkor nem fog működni, és ha ismétlődő üzeneteket használnak, akkor a következő elküldésük után nem fognak átütemezni.",
+    "description": ""
+  },
+  "ImportTitle": {
+    "message": "Válassza ki az importálási fájlt",
+    "description": ""
+  },
+  "SLJFilterLabel": {
+    "message": "Küldés később JSON-fájlok",
+    "description": ""
+  },
+  "ImportError": {
+    "message": "Importálási hiba",
+    "description": ""
+  },
+  "ExportTitle": {
+    "message": "Kiviteli fájlválasztás",
+    "description": ""
+  },
+  "RenameFunctionTitle": {
+    "message": "Meglévő függvény átnevezése?",
+    "description": ""
+  },
+  "RenameFunctionBody": {
+    "message": "A(z) „$1&quot; meglévő függvénynév megváltozott. Szeretné átnevezni a meglévő függvényt, vagy külön függvényt menteni az új névvel?",
+    "description": ""
+  },
+  "RenameFunctionRenameButton": {
+    "message": "Átnevezés",
+    "description": ""
+  },
+  "RenameFunctionNewButton": {
+    "message": "Új",
+    "description": ""
+  },
+  "FunctionErrorTitle": {
+    "message": "Az erőteljes függvény hívásakor hiba",
+    "description": ""
+  },
+  "FunctionErrorBody": {
+    "message": "Hiba az erőteljes ütemezési függvény hívásakor: $1",
+    "description": ""
+  },
+  "cancel_on_reply": {
+    "message": "mégse válasz esetén",
+    "description": ""
+  },
+  "PendingMessage": {
+    "message": "Függőben levő: $1",
+    "description": ""
+  },
+  "IdleMessage": {
+    "message": "Tétlen",
+    "description": ""
+  },
+  "DisabledMessage": {
+    "message": "Tiltva",
+    "description": ""
+  },
+  "CheckingMessage": {
+    "message": "Üzenet küldésének ellenőrzése…",
+    "description": ""
   }
 }

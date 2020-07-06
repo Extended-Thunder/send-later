@@ -238,5 +238,77 @@
   "userGuideLabel": {
     "message": "Handleiding",
     "description": ""
+  },
+  "prefwindow.title": {
+    "message": "Send Later-voorkeuren",
+    "description": ""
+  },
+  "pane1.title": {
+    "message": "Send Later-voorkeuren",
+    "description": ""
+  },
+  "checktimepref.tooltip": {
+    "message": "Interval, in minuten, tussen controles op concepten waarvoor de aflevertijd is bereikt. Vergroot deze waarde als uw concepten niet altijd op tijd worden verzonden of als het aantal af te handelen berichten in uw statusbalk niet altijd overeenkomt met het werkelijke aantal.",
+    "description": ""
+  },
+  "quickoptionname.label": {
+    "message": "Knoptekst",
+    "description": ""
+  },
+  "showsendlatercolumn.tooltip": {
+    "message": "Of de kolom ‘Send Later’ bij het bekijken van conceptmappen moet worden getoond",
+    "description": ""
+  },
+  "showsendlaterheader.tooltip": {
+    "message": "Of de header ‘X-Send-Later-At’ moet worden getoond als een bericht wordt bekeken, m.a.w. de tijd waarop een concept gepland staat om te worden verzonden.",
+    "description": ""
+  },
+  "showsendlaterprogress.caption": {
+    "message": "Achtergrondvoortgang in statusbalk tonen",
+    "description": ""
+  },
+  "showsendlaterunsentmessages.tooltip": {
+    "message": "Als u deze optie uitvinkt, zal Send Later berichten niet volledig verzenden, maar deze op het moment van verzenden alleen in uw Postvak UIT plaatsen. Vink deze optie uit als u bijvoorbeeld een andere extensie gebruikt, zoals BlunderDelay, die periodiek berichten uit uw Postvak UIT verzendt. Denk eraan dat als deze optie is aangevinkt, Send Later bij het afleveren van een bericht ALLE berichten in uw Postvak UIT aflevert.",
+    "description": ""
+  },
+  "sendlatersendbutton.tooltip": {
+    "message": "Met deze optie ingeschakeld, werkt de opdracht ‘Verzenden’ (via zowel de knop als het intoetsen van Ctrl-Enter) hetzelfde als ‘Later verzenden’.",
+    "description": ""
+  },
+  "contactauthor.tooltip": {
+    "message": "Een e-mailbericht naar de schrijver van Send Later verzenden (in het Engels)",
+    "description": ""
+  },
+  "helplink.tooltip": {
+    "message": "De documentatie voor Send Later bekijken",
+    "description": ""
+  },
+  "releasenotes.value": {
+    "message": "Uitgaveopmerkingen",
+    "description": ""
+  },
+  "donatelink.value": {
+    "message": "Doneren",
+    "description": ""
+  },
+  "editorlink.value": {
+    "message": "Editor voor dynamische functies",
+    "description": ""
+  },
+  "enforcerestrictions.tooltip": {
+    "message": "Als een bericht dat dient te worden afgeleverd buiten de tijds- of dagrestricties komt, bijvoorbeeld omdat Thunderbird ten tijde van de geplande aflevertijd niet actief was, vertraag dan de aflevering totdat aan de tijds- en dagrestricties wordt voldaan.",
+    "description": ""
+  },
+  "blocklatemessages.tooltip": {
+    "message": "Geplande berichten die voorbij hun geplande tijd zijn vertraagd, bijvoorbeeld omdat Thunderbird niet actief was, niet afleveren",
+    "description": ""
+  },
+  "editorbutton": {
+    "message": "Editor voor dynamische functies openen…",
+    "description": ""
+  },
+  "editortip": {
+    "message": "Een venster openen voor het maken en bewerken van JavaScript-functies die complexe planningslogica implementeren.",
+    "description": ""
   }
 }

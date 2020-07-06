@@ -1,6 +1,6 @@
 # Kludgey temporary workaround until Crowdin integration is fixed.
-_locales:
-	mkdir "$@"
+_locales: dev/migrate_locales.py
+	mkdir -p "$@"
 	git restore -s ef21bfd -- chrome/locale
 	./dev/migrate_locales.py chrome/locale
 	rm -rf chrome

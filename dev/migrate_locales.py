@@ -120,6 +120,19 @@ def main(args):
         appkey = "MessageTag"
         appName = translations[appkey] if appkey in translations else "Send Later"
 
+        def msgfilter(message):
+            message = re.sub(r"[“”]", "&quot;", message)
+            message = re.sub("{NAME}", appName, message)
+            message = re.sub(r":\s*$", "", message)
+            message = re.sub("%S:%S", "%S", message)
+            subregex = re.compile(r'%\d*\$?[a-zA-Z]')
+            nargs = 0
+            while subregex.search(message):
+                nargs += 1
+                message = subregex.sub('$%d'%nargs, message, count=1)
+            message = message.strip()
+            return message
+
         i18n = dict()
         for newkey in migrations.keys():
             defaults = migrations[newkey]
@@ -129,14 +142,19 @@ def main(args):
 
             if (len(defaults) > 3) and (defaults[3] is not None):
                 message = defaults[3](message)
-            message = re.sub(r"[“”]", "&quot;", message)
-            message = re.sub("{NAME}", appName, message)
-            message = re.sub(r":\s*$", "", message)
-            message = message.strip()
-            i18n[newkey] = dict(message=message, description="")
+
+            i18n[newkey] = dict(message=msgfilter(message), description="")
 
             if (len(defaults)>2) and (defaults[2] is not None):
                 i18n[newkey]["description"] = defaults[2]
+
+        migratedkeys = [migrations[newkey][0] for newkey in migrations.keys()]
+        for key in translations.keys():
+            if key in migratedkeys:
+                continue
+            else:
+                message = translations[key]
+                i18n[key] = dict(message=msgfilter(message), description="")
 
         locale_dir = locale.replace('-','_')
         os.makedirs(os.path.join("_locales",locale_dir), exist_ok=True)

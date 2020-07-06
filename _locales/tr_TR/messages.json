@@ -238,5 +238,137 @@
   "userGuideLabel": {
     "message": "Website",
     "description": ""
+  },
+  "remindLabel": {
+    "message": "Bana sonra hatırlat",
+    "description": ""
+  },
+  "sendlater.prompt.calculate.label": {
+    "message": "Hesapla",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.label": {
+    "message": "Sonra Gönder",
+    "description": ""
+  },
+  "sendlater.toolbar.textbox.emptytext": {
+    "message": "gönderme zamanı",
+    "description": ""
+  },
+  "sendlater.prompt.every.label": {
+    "message": "Her",
+    "description": ""
+  },
+  "sendlater3header.label": {
+    "message": "Send Later",
+    "description": ""
+  },
+  "sendlater.ask.message3": {
+    "message": "Teşekkürler!",
+    "description": ""
+  },
+  "sendlater.ask.donate.accesskey": {
+    "message": "b",
+    "description": ""
+  },
+  "sendlater.ask.donate.label": {
+    "message": "Şimdi bağış yapın",
+    "description": ""
+  },
+  "sendlater.ask.remind.accesskey": {
+    "message": "h",
+    "description": ""
+  },
+  "sendlater.ask.remind.label": {
+    "message": "Bana sonra hatırlat",
+    "description": ""
+  },
+  "sendlater.ask.already.label": {
+    "message": "Zaten bağış yaptım",
+    "description": ""
+  },
+  "sendlater.ask.stop.label": {
+    "message": "Sormayı bırak",
+    "description": ""
+  },
+  "windowtitle": {
+    "message": "Send Later Dinamik Fonksiyon Düzenleyicisi",
+    "description": ""
+  },
+  "selectfunction": {
+    "message": "İşlev seçin",
+    "description": ""
+  },
+  "selectfunctiontip": {
+    "message": "Düzenlemek veya silmek için bir işlev seçin, veya yeni bir işlev oluşturmak için &amp;quot;(yeni işlev oluştur)&amp;quot;u seçin.",
+    "description": ""
+  },
+  "createnewfunction": {
+    "message": "(yeni bir işlev oluşturun)",
+    "description": ""
+  },
+  "delete.label": {
+    "message": "Sil",
+    "description": ""
+  },
+  "delete.accesskey": {
+    "message": "S",
+    "description": ""
+  },
+  "functionnameplaceholder": {
+    "message": "işlev adı",
+    "description": ""
+  },
+  "run.accesskey": {
+    "message": "x",
+    "description": ""
+  },
+  "inputtime": {
+    "message": "Giriş saati",
+    "description": ""
+  },
+  "output": {
+    "message": "Çıktı",
+    "description": ""
+  },
+  "import.label": {
+    "message": "İçe aktar…",
+    "description": ""
+  },
+  "import.accesskey": {
+    "message": "I",
+    "description": ""
+  },
+  "export.label": {
+    "message": "Dışa aktar...",
+    "description": ""
+  },
+  "export.accesskey": {
+    "message": "D",
+    "description": ""
+  },
+  "reset.label": {
+    "message": "Değişiklikleri gözardı et",
+    "description": ""
+  },
+  "reset.accesskey": {
+    "message": "a",
+    "description": ""
+  },
+  "save.label": {
+    "message": "Kaydet",
+    "description": ""
+  },
+  "save.accesskey": {
+    "message": "K",
+    "description": ""
+  },
+  "close.label": {
+    "message": "Kapat",
+    "description": ""
+  },
+  "close.accesskey": {
+    "message": "p",
+    "description": ""
   }
 }
