@@ -28,7 +28,7 @@ const SLOptions = {
                     e.checked = (v !== undefined) && (e.value === v);
                     break;
                   default:
-                    console.error("SendLater: Unable to populate input element of type "+e.type);
+                    SLStatic.error("SendLater: Unable to populate input element of type "+e.type);
               }
           } else if (e.tagName === "SELECT") {
               e.value = v;
@@ -91,7 +91,7 @@ const SLOptions = {
       }
       throw new Error("Unable to process change in element: "+element);
     } catch (ex) {
-      console.error(ex);
+      SLStatic.error(ex);
       SLOptions.showCheckMark(element, "red");
     }
   },
@@ -161,17 +161,10 @@ const SLOptions = {
     clearPrefsBtn.addEventListener("click", SLOptions.clearPrefsListener);
   },
 
-  async localize() {
-    // Do something useful here.
-    // browser.i18n.getMessage(....)
-    return;
-  },
-
   async onLoad() {
     SLOptions.applyPrefsToUI().then(() => {
       SLOptions.attachListeners();
-      SLOptions.localize();
-    }).catch(console.error);
+    }).catch(SLStatic.error);
   }
 };
 

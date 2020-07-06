@@ -3,72 +3,19 @@ const SendLater = {
     // Track unresolved promises that can be resolved by some future event.
     _PromiseMap: new Map(),
 
-    async logger(msg, level, stream) {
-      const levels = ["all","trace","debug","info","warn","error","fatal"];
-      const output = (stream !== undefined) ? stream : console.log;
-      browser.storage.local.get({"preferences":{}}).then(storage => {
-        const consoleLogLevel = storage.preferences.logConsoleLevel;
-        if (levels.indexOf(level) >= levels.indexOf(consoleLogLevel)) {
-          output(`${level.toUpperCase()} [SendLater]:`, ...msg);
-        }
-      });
-    },
-
-    async error(...msg)  { SendLater.logger(msg, "error", console.error) },
-    async warn(...msg)   { SendLater.logger(msg, "warn",  console.warn) },
-    async info(...msg)   { SendLater.logger(msg, "info",  console.info) },
-    async log(...msg)    { SendLater.logger(msg, "info",  console.log) },
-    async debug(...msg)  { SendLater.logger(msg, "debug", console.debug) },
-    async trace(...msg)  { SendLater.logger(msg, "trace", console.trace) },
-
-    flatten: function(arr) {
-      // Flattens an N-dimensional array.
-      return arr.reduce((res, item) => {
-        return res.concat(Array.isArray(item) ? SendLater.flatten(item) : item);
-      }, []);
-    },
-
-    // Takes a date object and format options. If either one is null,
-    // then it substitutes defaults.
-    dateTimeFormat: function(thisdate, options) {
-        const defaults = {
-            weekday: 'short',
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-            second: 'numeric',
-            timeZoneName: 'short',
-            hour12: false
-        };
-        const opts = Object.assign(defaults, options);
-        const dtfmt = new Intl.DateTimeFormat('default', opts);
-        return dtfmt.format(thisdate || (new Date()));
-    },
-
-    newUUID: function() {
-      // Good enough for this purpose. Code snippet from:
-      // stackoverflow.com/questions/105034/how-to-create-guid-uuid/2117523
-      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-      });
-    },
-
     async getIdentity(id) {
       const accts = await browser.accounts.list();
 
       for (const acct of accts) {
         for (const identity of acct.identities) {
           if (id.includes(identity.id)) {
-            SendLater.debug(`Found identity matching <${id}>`, identity);
+            SLStatic.debug(`Found identity matching <${id}>`, identity);
             return identity;
           }
         }
       }
 
-      SendLater.warn(`Cannot find identity <${id}>`);
+      SLStatic.warn(`Cannot find identity <${id}>`);
       return null;
     },
 
@@ -116,22 +63,22 @@ const SendLater = {
       acct.folders.forEach(folder => {
         draftSubFolders.push(SendLater.findDraftsHelper(folder));
       });
-      return Promise.all(draftSubFolders).then(SendLater.flatten);
+      return Promise.all(draftSubFolders).then(SLStatic.flatten);
     },
 
     async scheduleSendLater(tabId, options) {
-      SendLater.info(`Scheduling send later: ${tabId} with options`,options);
-      const customHeaders = { 'x-send-later-msg-uuid': SendLater.newUUID() };
+      SLStatic.info(`Scheduling send later: ${tabId} with options`,options);
+      const customHeaders = { 'x-send-later-msg-uuid': SLStatic.newUUID() };
 
       // Determine time at which this message should be sent
       if (options.sendTime !== undefined) {
         const sendTime = new Date(options.sendTime);
-        customHeaders["x-send-later-at"] = SendLater.dateTimeFormat(sendTime);
+        customHeaders["x-send-later-at"] = SLStatic.dateTimeFormat(sendTime);
       } else if (options.delay !== undefined) {
         const sendTime = new Date(Date.now() + options.delay*60000);
-        customHeaders["x-send-later-at"] = SendLater.dateTimeFormat(sendTime);
+        customHeaders["x-send-later-at"] = SLStatic.dateTimeFormat(sendTime);
       } else {
-        SendLater.error("scheduleSendLater requires scheduling information");
+        SLStatic.error("scheduleSendLater requires scheduling information");
         return;
       }
 
@@ -164,8 +111,8 @@ const SendLater = {
       return {
         next: null,
         between: { start: start.getTime(), end: end.getTime() },
-        days: (weekdays.map(wkday))
-       };
+        days: (weekdays.map(wkday.format))
+      };
     },
 
     // TODO: Finish this function.
@@ -212,12 +159,12 @@ const SendLater = {
       // Begin new message composition. Duplicate contents of existing message.
       // Returns new compose window.
       const original = await browser.messages.getFull(id);
-      SendLater.debug("Composing message from original:",original);
+      SLStatic.debug("Composing message from original:",original);
 
       const idKey = original.headers['x-identity-key'];
       const identity = await SendLater.getIdentity(idKey[0]);
       if (!identity) {
-        SendLater.warn("Cannot send message without a sender identity.");
+        SLStatic.warn("Cannot send message without a sender identity.");
         return;
       }
 
@@ -233,7 +180,7 @@ const SendLater = {
           } else if (part.body && part.contentType.startsWith('text/html')) {
             // HTML body part
             if (ret.htmlmsg) {
-              SendLater.warn("HTML message body defined twice.");
+              SLStatic.warn("HTML message body defined twice.");
             }
             // Clean up HTML message, because otherwise Thunderbird treats it as
             // if it were plaintext, adds a bunch of <br> tags, and wraps the
@@ -245,7 +192,7 @@ const SendLater = {
           } else if (part.body && part.contentType.startsWith('text/plain')) {
             // Plaintext body part
             if (ret.plainmsg) {
-              SendLater.warn("Plain message body defined twice.");
+              SLStatic.warn("Plain message body defined twice.");
             }
             ret.plainmsg = part.body;
           } else if (part.contentType.startsWith('multipart/mixed')) {
@@ -253,7 +200,7 @@ const SendLater = {
             const subparts = expandMimeParts(part)
             Object.assign(ret, subparts);
           } else {
-            SendLater.warn("Unsure how to handle message part:",part);
+            SLStatic.warn("Unsure how to handle message part:",part);
           }
         }
         return ret;
@@ -310,7 +257,7 @@ const SendLater = {
       if (msgSendAt === undefined) {
         return;
       } else if (msgUUID !== undefined && SendLater.isEditing(msgUUID)) {
-        SendLater.debug(`Skipping message ${id} while it is being edited`);
+        SLStatic.debug(`Skipping message ${id} while it is being edited`);
         return;
       }
 
@@ -322,10 +269,10 @@ const SendLater = {
           case "ready":
             break;
           case "sent":
-            SendLater.debug(`Message ${id} already sent but not removed`);
+            SLStatic.debug(`Message ${id} already sent but not removed`);
             return;
           default:
-            SendLater.debug(`Unrecognized lock status <${lock.status}> on `
+            SLStatic.debug(`Unrecognized lock status <${lock.status}> on `
                           + `message ${id}.`);
             return;
         }
@@ -345,7 +292,7 @@ const SendLater = {
           if (prefs.blockLateMessages) {
             const lateness = (now - nextSend.getTime()) / 60000;
             if (lateness > prefs.lateGracePeriod) {
-              SendLater.info(`Grace period exceeded for message ${id}`);
+              SLStatic.info(`Grace period exceeded for message ${id}`);
               return;
             }
           }
@@ -353,7 +300,7 @@ const SendLater = {
           // Respect "send between" preference
           if (recur.between) {
             if ((now < recur.between.start) || (now > recur.between.end)) {
-              SendLater.debug(`Message ${id} outside of sendable time range.`);
+              SLStatic.debug(`Message ${id} outside of sendable time range.`);
               return;
             }
           }
@@ -361,9 +308,9 @@ const SendLater = {
           // Respect "only on days of week" preference
           if (recur.days) {
             const wkday = new Intl.DateTimeFormat('default', {weekday:'short'});
-            const today = wkday(new Date(now));
+            const today = wkday.format(new Date(now));
             if (!recur.days.includes(today)) {
-              SendLater.debug(`Message ${id} not scheduled to send on ${today}`);
+              SLStatic.debug(`Message ${id} not scheduled to send on ${today}`);
             }
           }
         }
@@ -381,8 +328,8 @@ const SendLater = {
 
         // Possibly schedule next recurrence.
         if (recur.next) {
-          SendLater.debug(`Scheduling next recurrence of ${msgRecurSpec} at `
-                        + SendLater.dateTimeFormat(recur.next));
+          SLStatic.debug(`Scheduling next recurrence of ${msgRecurSpec} at `
+                        + SLStatic.dateTimeFormat(recur.next));
 
           const cw = await SendLater.beginEditAsNewMessage(id);
           SendLater.scheduleSendLater(cw.id, { sendTime: recur.next,
@@ -392,7 +339,7 @@ const SendLater = {
         // TODO: Add option for skiptrash.
         browser.messages.delete([id], false);
       } else {
-        SendLater.debug(`Message ${id} not yet due for send.`);
+        SLStatic.debug(`Message ${id} not yet due for send.`);
       }
     },
 
@@ -419,7 +366,7 @@ const SendLater = {
           });
         });
       } catch (ex) {
-        SendLater.trace(ex);
+        SLStatic.trace(ex);
       }
       browser.storage.local.get("preferences").then(storage => {
         // Rather than using setInterval for this loop, we'll just start a new
@@ -433,7 +380,7 @@ const SendLater = {
         const intervalTimeout = prefs['checkTimePref'];
         const millis = prefs["checkTimePref_isMilliseconds"];
         const delay = (millis) ? intervalTimeout : intervalTimeout * 60000;
-        SendLater.debug(`Next main loop iteration in ${delay/1000} seconds.`);
+        SLStatic.debug(`Next main loop iteration in ${delay/1000} seconds.`);
         setTimeout(SendLater.mainLoop, delay);
       });
     }
@@ -446,25 +393,25 @@ browser.compose.onBeforeSend.addListener((tab) => {
     return;
   }
 
-  SendLater.log("User requested send. Awaiting UI selections.");
+  SLStatic.log("User requested send. Awaiting UI selections.");
 
   setTimeout(() => browser.storage.local.get("preferences").then(storage => {
     const prefs = storage.preferences || {};
     const resolver = (SendLater._PromiseMap.get(tab.id)) || (()=>{});
 
     if (prefs["sendDoesSL"]) {
-      SendLater.debug("Intercepting send operation. Awaiting user input.");
+      SLStatic.debug("Intercepting send operation. Awaiting user input.");
       browser.composeAction.openPopup();
       // No need to resolve just yet. User will do that via UI listener.
     } else if (prefs["sendDoesDelay"]) {
       const sendDelay = prefs["sendDelay"];
-      SendLater.debug(`Scheduling SendLater ${sendDelay} minutes from now.`);
+      SLStatic.debug(`Scheduling SendLater ${sendDelay} minutes from now.`);
       SendLater.scheduleSendLater(tab.id, { delay: sendDelay });
       SendLater._PromiseMap.delete(tab.id);
       resolver({ cancel: true });
     } else {
       // No need to intercept sending
-      SendLater.debug("Resolving onBeforeSend intercept.");
+      SLStatic.debug("Resolving onBeforeSend intercept.");
       SendLater._PromiseMap.delete(tab.id);
       resolver({ cancel: false });
     }
@@ -479,7 +426,7 @@ browser.runtime.onMessage.addListener((message) => {
     const resolve = SendLater._PromiseMap.get(message.tabId);
 
     if (message.action === "doSendNow" ) {
-        SendLater.debug("User requested send immediately.");
+        SLStatic.debug("User requested send immediately.");
         if (resolve !== undefined) {
           // If already blocking a send operation, just get out of the way.
           SendLater._PromiseMap.delete(message.tabId);
@@ -494,7 +441,7 @@ browser.runtime.onMessage.addListener((message) => {
           }
         }
     } else if (message.action === "doSendLater") {
-        SendLater.debug("User requested send later.");
+        SLStatic.debug("User requested send later.");
         const options = { sendTime: message.sendTime };
         SendLater.scheduleSendLater(message.tabId, options);
         if (resolve !== undefined) {
@@ -502,13 +449,13 @@ browser.runtime.onMessage.addListener((message) => {
           resolve({ cancel: true });
         }
     } else if (message.action === "cancel") {
-        SendLater.debug("User cancelled send.");
+        SLStatic.debug("User cancelled send.");
         if (resolve !== undefined) {
           SendLater._PromiseMap.delete(message.tabId);
           resolve({ cancel: true });
         }
     } else {
-      SendLater.warn(`Unrecognized operation <${message.action}>.`);
+      SLStatic.warn(`Unrecognized operation <${message.action}>.`);
       if (resolve !== undefined) {
         SendLater._PromiseMap.delete(message.tabId);
         resolve({ cancel: true });

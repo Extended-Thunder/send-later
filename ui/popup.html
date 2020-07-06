@@ -20,7 +20,7 @@
         </div>
         <div style="display: table-cell;">
           <label>
-            <input type="radio" id="once" name="recur" value="once" checked/>
+            <input type="radio" id="once" name="recur" value="none" checked/>
             <span class="localized __MSG_recurOnceLabel__">Once</span>
           </label>
           <label>
@@ -55,13 +55,19 @@
     </section>
 
     <section style="display:block;">
-      <label>
-        <input type="checkbox" id="sendbetween"/>
-        <span class="localized __MSG_sendBtwnLabel__">Between</span>
-        <input id="sendbetween-start" type="time"/>
-        -
-        <input id="sendbetween-end" type="time"/>
-      </label>
+      <div style="display: table-row;">
+        <div style="display: table-cell;white-space:nowrap;">
+          <label style="margin-right:0.5em;">
+            <input type="checkbox" id="sendbetween"/>
+            <span class="localized __MSG_sendBtwnLabel__">Between</span>
+          </label>
+        </div>
+        <div style="display: table-cell;" id="betweenDiv">
+          <input id="sendbetween-start" type="time"/>
+          -
+          <input id="sendbetween-end" type="time"/>
+        </div>
+      </div>
     </section>
 
     <section style="display:block;">
@@ -74,38 +80,39 @@
         </div>
         <div style="display: table-cell;" id="onlyOnDiv">
           <label>
-            <input type="checkbox" id="sendon-sunday"/>
+            <input type="checkbox" name="weekdayChecks" id="sendon-sunday"/>
             <span class="localized __MSG_sendSundayLabel__">Sunday</span>
           </label>
           <label>
-            <input type="checkbox" id="sendon-monday"/>
+            <input type="checkbox" name="weekdayChecks" id="sendon-monday"/>
             <span class="localized __MSG_sendMondayLabel__">Monday</span>
           </label>
           <label>
-            <input type="checkbox" id="sendon-tuesday"/>
+            <input type="checkbox" name="weekdayChecks" id="sendon-tuesday"/>
             <span class="localized __MSG_sendTuesdayLabel__">Tuesday</span>
           </label>
           <label>
-            <input type="checkbox" id="sendon-wednesday"/>
+            <input type="checkbox" name="weekdayChecks" id="sendon-wednesday"/>
             <span class="localized __MSG_sendWednesdayLabel__">Wednesday</span>
           </label>
           <br/>
           <label>
-            <input type="checkbox" id="sendon-thursday"/>
+            <input type="checkbox" name="weekdayChecks" id="sendon-thursday"/>
             <span class="localized __MSG_sendThursdayLabel__">Thursday</span>
           </label>
           <label>
-            <input type="checkbox" id="sendon-friday"/>
+            <input type="checkbox" name="weekdayChecks" id="sendon-friday"/>
             <span class="localized __MSG_sendFridayLabel__">Friday</span>
           </label>
           <label>
-            <input type="checkbox" id="sendon-saturday"/>
+            <input type="checkbox" name="weekdayChecks" id="sendon-saturday"/>
             <span class="localized __MSG_sendSaturdayLabel__">Saturday</span>
           </label>
         </div>
       </div>
     </section>
 
+    <!--
     <section style="display: block; padding: 10px auto;">
       <label>
         <input type="checkbox" id="save-defaults"/>
@@ -117,10 +124,13 @@
         <span class="localized __MSG_clearDefaultsLabel__">Clear defaults</span>
       </label>
     </section>
+  -->
 
     <section style="display:block;">
-      <input type="button" value="Enter a date above" style="width:100%;"
-          id="sendAt" class="localized __MSG_sendAtDefaultLabel__" disabled/>
+      <button style="width:100%;" id="sendAt"
+        class="localized __MSG_sendAtDefaultLabel__" disabled>
+        Enter a date above
+      </button>
       <br/>
       <input type="button" value="15 minutes from now" id="delay15"
         class="delayButton localized __MSG_delay15Label__" />
@@ -139,6 +149,7 @@
 
     <div style="height:1em;"></div>
 
+    <script src="/utils/static.js"></script>
     <script src="/ui/popup.js"></script>
     <script src="/ui/localize.js"></script>
   </body>
