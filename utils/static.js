@@ -77,9 +77,10 @@ const SLStatic = {
     }
   },
 
-  getWkdayName: function(i) {
-    const d = new Date(2000,0,2+i); // 2000/01/02 Happens to be a Sunday
-    return (new Intl.DateTimeFormat('default', {weekday:'short'})).format(d);
+  getWkdayName: function(i, style) {
+    style = style || "long";
+    const d = new Date(2000,0,2+(+i)); // 2000/01/02 Happens to be a Sunday
+    return (new Intl.DateTimeFormat('default', {weekday:style})).format(d);
   },
 
   parseDateTime: function(dstr,tstr) {
@@ -773,10 +774,9 @@ const SLStatic = {
 
       if (recur.monthly_day) {
         const ordDay = browser.i18n.getMessage("ord" + recur.monthly_day.week);
-        const shortDay = browser.i18n.getMessage("everymonthly_short_day" +
-                                                  recur.monthly_day.day);
+        const dayName = SLStatic.getWkdayName(recur.monthly_day.day, "long");
         fragments.push(browser.i18n.getMessage("everymonthly_short",
-                                                ordDay, shortDay));
+                                                ordDay, dayName));
       }
 
       if (recur.between) {

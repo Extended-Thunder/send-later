@@ -26,7 +26,11 @@
   ],
 
   "background": {
-    "scripts": ["/utils/prefHandler.js","/background.js"]
+    "scripts": [
+      "/utils/prefHandler.js",
+      "/utils/static.js",
+      "/background.js"
+    ]
   },
 
   "options_ui": {
