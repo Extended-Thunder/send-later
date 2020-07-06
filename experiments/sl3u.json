@@ -1,18 +1,6 @@
 [
   {
     "namespace": "SL3U",
-    "events": [
-      {
-        "name": "onSetPref",
-        "type": "function",
-        "parameters": [
-          {
-            "name": "message",
-            "type": "string"
-          }
-        ]
-      }
-    ],
     "functions": [
       {
         "name":"isOffline",
@@ -90,17 +78,6 @@
             "description":"Name of the header to set"
           }
         ]
-      },
-      {
-        "name":"updatePrefs",
-        "type":"function",
-        "async":true,
-        "description":"",
-        "parameters":[{
-          "name":"prefs_str",
-          "type":"string",
-          "description":""
-        }]
       },
       {
         "name": "getLegacyPref",

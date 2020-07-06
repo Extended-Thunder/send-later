@@ -69,16 +69,5 @@
   }).then(prefs => {
       // Put the migrated preferences back into local storage.
       browser.storage.local.set({ preferences: prefs }).then(()=>logPrefs());
-      browser.SL3U.updatePrefs(JSON.stringify(prefs));
   }).catch(console.error);
 })();
-
-// Listen for preference change events, triggered when the SL3U experiment
-// modifies a preference. Commit that change to local storage.
-browser.SL3U.onSetPref.addListener(msg => {
-  const { key, value } = JSON.parse(msg);
-  browser.storage.local.get("preferences").then((storage) => {
-    const prefs = {...(storage.preferences || {}), key: value };
-    browser.storage.local.set({ preferences: prefs });
-  });
-});
