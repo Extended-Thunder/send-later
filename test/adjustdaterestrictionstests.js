@@ -1,4 +1,4 @@
-function AdjustDateForRestrictionsTests() {
+exports.init = function() {
   function NormalTest(dt, start_time, end_time, days, expected) {
     const orig_dt = new Date(dt);
     let orig_days;

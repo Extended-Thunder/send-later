@@ -1,4 +1,4 @@
-const SLTests = {
+global.SLTests = {
   UnitTests: [],
 
   AddTest: function(test_name, test_function, test_args) {
@@ -6,6 +6,9 @@ const SLTests = {
   },
 
   RunTests: function(event, names) {
+    global.window = {};
+    require('./mock_browser.js');
+
     for (const params of SLTests.UnitTests) {
       const name = params[0];
       const func = params[1];
@@ -19,24 +22,32 @@ const SLTests = {
       try {
         result = func.apply(null, args);
       } catch (ex) {
-        console.warn(`TEST ${name} EXCEPTION: ${ex.message}`);
+        console.warn(`- TEST ${name} EXCEPTION: ${ex.message}`);
         continue;
       }
       if (result === true) {
-        console.info(`TEST ${name} PASS`);
+        console.info(`+ TEST ${name} PASS`);
       } else if (result === false) {
-        console.warn(`TEST ${name} FAIL`);
+        console.warn(`- TEST ${name} FAIL`);
       } else {
-        console.warn(`TEST ${name} FAIL ${result}`);
+        console.warn(`- TEST ${name} FAIL ${result}`);
       }
     }
   }
 }
 
-setTimeout(() => {
-  ParseRecurTests();
-  NextRecurTests();
-  FormatRecurTests();
-  AdjustDateForRestrictionsTests();
-  SLTests.RunTests();
-},0);
+require('../utils/static.js');
+
+const testPaths = [
+  "./adjustdaterestrictionstests.js",
+  "./formatrecurtests.js",
+  "./nextrecurtests.js",
+  "./parserecurtests.js"
+];
+
+for (const path of testPaths) {
+  const tests = require(path);
+  tests.init();
+}
+
+SLTests.RunTests();

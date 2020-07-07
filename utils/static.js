@@ -565,3 +565,8 @@ const SLStatic = {
     return dt;
   }
 }
+
+if (typeof window === 'undefined') {
+  // Make this file node.js-aware for browserless unit testing
+  global.SLStatic = SLStatic;
+}

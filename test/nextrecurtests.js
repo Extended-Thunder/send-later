@@ -1,4 +1,4 @@
-function NextRecurTests() {
+exports.init = function() {
   function DeepCompare(a, b) {
     if (a && a.splice) {
       if (b && b.splice) {

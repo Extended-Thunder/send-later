@@ -1,4 +1,4 @@
-function FormatRecurTests() {
+exports.init = function() {
   function FormatRecurTest(spec, expected) {
     const out = SLStatic.FormatRecur(spec);
     if (out == expected) {
