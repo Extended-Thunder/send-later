@@ -51,6 +51,54 @@
             </select>
           </label>
         </div>
+        <div id="minutely-recurrence-spec" style="display:none;">
+          <!-- Recurrence specifications. -->
+          <input type="checkbox" id="recur-minutely-multiply"/>
+          <input type="number" id="recur-minutely-multiplier"/>
+          <input type="number" id="recur-minutely-cancelonreply"/>
+        </div>
+
+        <div id="daily-recurrence-spec" style="display:none;">
+          <!-- Recurrence specifications. -->
+          <input type="checkbox" id="recur-daily-multiply"/>
+          <input type="number" id="recur-daily-multiplier"/>
+          <input type="number" id="recur-daily-cancelonreply"/>
+        </div>
+
+        <div id="weekly-recurrence-spec" style="display:none;">
+          <!-- Recurrence specifications. -->
+          <input type="checkbox" id="recur-weekly-multiply"/>
+          <input type="number" id="recur-weekly-multiplier"/>
+          <input type="number" id="recur-weekly-cancelonreply"/>
+        </div>
+
+        <div id="monthly-recurrence-spec" style="display:none;">
+          <!-- Recurrence specifications. -->
+          <label style="margin-right:0.5em;">
+            <input type="checkbox" id="recur-monthly-byweek"/>
+            <span class="">Week of the month</span>
+          </label>
+          <input type="number" id="recur-monthly-byweek-day"/>
+          <input type="number" id="recur-monthly-byweek-week"/>
+          <input type="number" id="recur-monthly-day"/>
+          <input type="checkbox" id="recur-monthly-multiply"/>
+          <input type="number" id="recur-monthly-multiplier"/>
+          <input type="number" id="recur-monthly-cancelonreply"/>
+        </div>
+
+        <div id="yearly-recurrence-spec" style="display:none;">
+          <!-- Recurrence specifications. -->
+          <input type="number" id="recur-yearly-month"/>
+          <input type="number" id="recur-yearly-day"/>
+          <input type="checkbox" id="recur-yearly-multiply"/>
+          <input type="number" id="recur-yearly-multiplier"/>
+          <input type="number" id="recur-yearly-cancelonreply"/>
+        </div>
+
+        <div id="function-recurrence-spec" style="display:none;">
+          <!-- Recurrence specifications. -->
+          <input type="text" id="recur-function-args"/>
+        </div>
       </div>
     </section>
 
@@ -128,7 +176,7 @@
 
     <section style="display:block;">
       <button style="width:100%;" id="sendAt"
-        class="localized __MSG_sendAtDefaultLabel__" disabled>
+        class="localized __MSG_entervalid__" disabled>
         Enter a date above
       </button>
       <br/>

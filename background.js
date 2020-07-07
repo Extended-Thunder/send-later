@@ -71,19 +71,27 @@ const SendLater = {
       const customHeaders = { 'x-send-later-msg-uuid': SLStatic.newUUID() };
 
       // Determine time at which this message should be sent
-      if (options.sendTime !== undefined) {
-        const sendTime = new Date(options.sendTime);
-        customHeaders["x-send-later-at"] = SLStatic.dateTimeFormat(sendTime);
+      if (options.sendAt !== undefined) {
+        const sendAt = new Date(options.sendAt);
+        customHeaders["x-send-later-at"] = SLStatic.dateTimeFormat(sendAt);
       } else if (options.delay !== undefined) {
-        const sendTime = new Date(Date.now() + options.delay*60000);
-        customHeaders["x-send-later-at"] = SLStatic.dateTimeFormat(sendTime);
+        const sendAt = new Date(Date.now() + options.delay*60000);
+        customHeaders["x-send-later-at"] = SLStatic.dateTimeFormat(sendAt);
       } else {
         SLStatic.error("scheduleSendLater requires scheduling information");
         return;
       }
 
-      if (options.recur !== undefined) {
-        customHeaders['x-send-later-recur'] = options.recur;
+      if (options.recurSpec) {
+        customHeaders['x-send-later-recur'] = options.recurSpec;
+      }
+
+      if (options.args) {
+        customHeaders['x-send-later-args'] = options.args;
+      }
+
+      if (options.cancelOnReply) {
+        customHeaders['x-send-later-cancel-on-reply'] = options.cancelOnReply;
       }
 
       const inserted = Object.keys(customHeaders).map(name => {
@@ -100,59 +108,6 @@ const SendLater = {
         lock[customHeaders['x-send-later-msg-uuid']] = { status: "ready" };
         browser.storage.local.set({ lock });
       });
-    },
-
-    // TODO: Finish this (replaces nextRecurDate below).
-    parseRecur: function(recurSpec) {
-      const wkday = new Intl.DateTimeFormat('default', {weekday:'short'});
-      const start = new Date(); // TODO
-      const end = new Date(); // TODO
-      const weekdays = [0, 2, 5, 6]; // TODO
-      return {
-        next: null,
-        between: { start: start.getTime(), end: end.getTime() },
-        days: (weekdays.map(wkday.format))
-      };
-    },
-
-    // TODO: Finish this function.
-    nextRecurDate: function(recurSpec, relativeToDate) {
-      // If no relativeTo time is specified, then assume relative to now.
-      const prior = relativeToDate || (new Date());
-      let next = new Date(prior.getTime());
-
-      const params = recurSpec.split(/\s+/);
-      const parsed = { type: params.shift() };
-
-      const validTypes = ["none", "minutely", "daily", "weekly", "monthly",
-                          "yearly", "function"];
-      if (!validTypes.includes(parsed.type)) {
-        throw `Invalid recurrence type in ${recurSpec}`;
-      }
-
-      switch (parsed.type) {
-        case "monthly":
-          if (!/^\d+$/.test(params[0]))
-              throw "Invalid first monthly argument in " + recurSpec;
-          if (/^[1-9]\d*$/.test(params[1])) {
-              parsed.monthly_day = {day: params.shift(), week: params.shift()};
-              if (parsed.monthly_day.day > 6)
-                  throw "Invalid monthly day argument in " + recurSpec;
-              if (parsed.monthly_day.week > 5)
-                  throw "Invalid monthly week argument in " + recurSpec;
-          } else {
-              parsed.monthly = params.shift();
-              if (parsed.monthly > 31)
-                  throw "Invalid monthly date argument in " + recurSpec;
-          }
-          break;
-        case "daily":
-          break;
-        default:
-          break;
-      }
-
-      return next;
     },
 
     async beginEditAsNewMessage(id) {
@@ -252,7 +207,11 @@ const SendLater = {
       const msgSendAt = msg.headers['x-send-later-at'];
       const msgUUID = msg.headers['x-send-later-msg-uuid'];
       const msgRecurSpec = msg.headers['x-send-later-recur'];
-      const recur = SendLater.parseRecur(msgRecurSpec);
+      const msgRecurArgs = msg.headers['x-send-later-args'];
+      const msgRecurCancelOnReply = msg.headers['x-send-later-cancel-on-reply'];
+
+      const recur = SLStatic.ParseRecurSpec(msgRecurSpec);
+      const args = SLStatic.parseArgs(msgRecurArgs);
 
       if (msgSendAt === undefined) {
         return;
@@ -327,13 +286,23 @@ const SendLater = {
         });
 
         // Possibly schedule next recurrence.
-        if (recur.next) {
-          SLStatic.debug(`Scheduling next recurrence of ${msgRecurSpec} at `
-                        + SLStatic.dateTimeFormat(recur.next));
+        if (recur.type !== "none") {
+          const nextSend = SLStatic.NextRecurDate(nextSend, msgRecurSpec,
+                                                  (new Date()), args);
 
-          const cw = await SendLater.beginEditAsNewMessage(id);
-          SendLater.scheduleSendLater(cw.id, { sendTime: recur.next,
-                                               recurSpec: msgRecurSpec });
+          if (nextSend) {
+            SLStatic.debug(`Scheduling next recurrence of at ${nextSend}`);
+            const cw = await SendLater.beginEditAsNewMessage(id);
+            const options = {
+                              sendAt: nextSend,
+                              recurSpec: msgRecurSpec,
+                              args: msgRecurArgs,
+                              cancelOnReply: msgRecurCancelOnReply
+                            };
+            SendLater.scheduleSendLater(cw.id, options);
+          } else {
+            SLStatic.debug("Message does not need to be rescheduled.")
+          }
         }
 
         // TODO: Add option for skiptrash.
@@ -442,7 +411,10 @@ browser.runtime.onMessage.addListener((message) => {
         }
     } else if (message.action === "doSendLater") {
         SLStatic.debug("User requested send later.");
-        const options = { sendTime: message.sendTime };
+        const options = { sendAt: message.sendAt,
+                          recurSpec: message.recurSpec,
+                          args: message.args,
+                          cancelOnReply: message.cancelOnReply };
         SendLater.scheduleSendLater(message.tabId, options);
         if (resolve !== undefined) {
           SendLater._PromiseMap.delete(message.tabId);

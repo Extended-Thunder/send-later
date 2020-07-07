@@ -91,9 +91,49 @@ const SLStatic = {
   },
 
   formatTime: function(datetime) {
-    const hours = (""+t.getHours()).padStart(2,"0");
-    const minutes = (""+t.getMinutes()).padStart(2,"0");
+    const hours = datetime.getHours();
+    const minutes = (""+datetime.getMinutes()).padStart(2,"0");
     return `${hours}:${minutes}`;
+  },
+
+  parseArgs: function(argstring) {
+    if (argstring === "")
+        return [];
+    try {
+      const args = JSON.parse("[" + argstring + "]");
+      SLStatic.unparseArgs(args); // throws exception on bad args
+      return args;
+    }
+    catch (ex) {
+        return false;
+    }
+  },
+
+  unparseArgs: function(args) {
+    // Convert a list into its string representation, WITHOUT the square
+    // braces around the entire list.
+    //
+    // We stringify the individual elements of the list and then join them
+    // because we want spaces after the commas for readability, and JSON.
+    // stringify won't do that, and when you try to make it do that by
+    // specifying its "space" argument, it inserts newlines as well, which
+    // we obviously don't want.
+    if (! args.length) {
+      return "";
+    }
+
+    const arglist = [];
+    for (const val of args) {
+      if (val && val.splice) {
+        arglist.push('[' + unparseArgs(val) + ']');
+      } else if (! (/^(?:number|boolean|string)$/.test(typeof(val)) ||
+                    val === null)) {
+        throw new Error("Function arguments can only contain arrays " +
+                        "numbers, booleans, strings, and null.");
+      }
+      arglist.push(JSON.stringify(val));
+    }
+    return arglist.join(', ');
   },
 
   /* Format:
@@ -145,15 +185,15 @@ const SLStatic = {
   unparseRecurSpec: function(parsed) {
     let spec = parsed.type;
 
-    if (parsed.type == "monthly") {
+    if (parsed.type === "monthly") {
       spec += " ";
       if (parsed.monthly_day)
         spec += parsed.monthly_day.day + " " + parsed.monthly_day.week;
       else
         spec += parsed.monthly;
-    } else if (parsed.type == "yearly") {
+    } else if (parsed.type === "yearly") {
       spec += " " + parsed.yearly.month + " " + parsed.yearly.date;
-    } else if (parsed.type == "function") {
+    } else if (parsed.type === "function") {
       spec += " " + parsed.function;
       if (parsed.finished)
         spec += " finished";
@@ -163,15 +203,16 @@ const SLStatic = {
       spec += " / " + parsed.multiplier;
 
     if (parsed.between) {
-      spec += " between " + (""+parsed.between.start).padStart(3,'0') +
-              " " + (""+parsed.between.end).padStart(3,'0');
+      const start = SLStatic.formatTime(parsed.between.start);
+      const end = SLStatic.formatTime(parsed.between.end);
+      spec += ` between ${start} ${end}`;
     }
 
     if (parsed.days) {
       spec += " on " + parsed.days.join(' ');
     }
 
-    if (spec == "none") {
+    if (spec === "none") {
       return null;
     }
 
@@ -333,8 +374,12 @@ const SLStatic = {
       ["yearly 10 5", { type: "yearly", yearly: { month: 10, date: 5 } }],
       ["function froodle", { type: "function", "function": "froodle" }],
       ["minutely / 5", { type: "minutely", multiplier: 5 }],
-      ["minutely between 830 1730", { type: "minutely", between: { start: 830,
-        end: 1730 } }],
+      ["minutely between 830 1730",
+        { type: "minutely",
+          between: {
+            start: SLStatic.parseDateTime(null,"8:30"),
+            end: SLStatic.parseDateTime(null,"17:30")
+          } }],
       ["minutely on 1 2 3 4 5", { type: "minutely", days: [1, 2, 3, 4, 5] }]
     ];
     for (const test of goodTests) {
@@ -829,20 +874,6 @@ const SLStatic = {
     }
   },
 
-  RecurHeader: function(sendat, recur, cancelOnReply, args) {
-    const header = {}
-    if (recur) {
-      header['X-Send-Later-Recur'] = recur;
-      if (args) {
-        header['X-Send-Later-Args'] = JSON.stringify(args);
-      }
-    }
-    if (cancelOnReply != "") {
-      header['X-Send-Later-Cancel-On-Reply'] = cancelOnReply;
-    }
-    return header;
-  },
-
   // dt is a Date object for the scheduled send time we need to adjust.
   // start_time and end_time are numbers like YYMM, e.g., 10:00am is
   // 1000, 5:35pm is 1735, or null if there is no time restriction.
@@ -858,45 +889,25 @@ const SLStatic = {
   //    change the day to the smallest day in the restriction that is larger
   //    than the scheduled day, or if there is none, then the smallest day in
   //    the restriction overall.
-  AdjustDateForRestrictions: function(dt, start_time, end_time, days) {
-    // 1)
-    dt = new Date(dt);
-    if (!days) {
-      days = [];
+  AdjustDateForRestrictions: function(sendAt, start_time, end_time, days) {
+    let dt = new Date(sendAt);
+    if (start_time && SLStatic.compareTimes(dt, '<', start_time)) {
+      // If there is a time restriction and the scheduled time is before it,
+      // reschedule to the beginning of the time restriction.
+      dt.setHours(start_time.getHours());
+      dt.setMinutes(start_time.getMinutes());
+    } else if (end_time && SLStatic.compareTimes(dt, '>', end_time)) {
+      // If there is a time restriction and the scheduled time is after it,
+      // reschedule to the beginning of the time restriction the next day.
+      dt.setDate(dt.getDate() + 1); // works on end of month, too.
+      dt.setHours(start_time.getHours());
+      dt.setMinutes(start_time.getMinutes());
     }
-    const scheduled_time = dt.getHours() * 100 + dt.getMinutes();
-    // 2)
-    if (start_time && scheduled_time < start_time) {
-      dt.setHours(Math.floor(start_time / 100));
-      dt.setMinutes(start_time % 100);
-    }
-    // 3)
-    else if (end_time && scheduled_time > end_time) {
-      dt.setDate(dt.getDate() + 1);
-      dt.setHours(Math.floor(start_time / 100));
-      dt.setMinutes(start_time % 100);
-    }
-    // 4)
-    if (days.length && days.indexOf(dt.getDay()) === -1) {
-      const current_day = dt.getDay();
-      let want_day;
-      for (let i = current_day + 1; i <= 6; i++) {
-        if (days.indexOf(i) != -1) {
-          want_day = i;
-          break;
-        }
-      }
-      if (!want_day) {
-        for (let i = 0; i < current_day; i++) {
-          if (days.indexOf(i) != -1) {
-            want_day = i;
-            break;
-          }
-        }
-      }
-      while (dt.getDay() != want_day) {
-        dt.setDate(dt.getDate() + 1);
-      }
+    // If there is a day restriction and the scheduled day isn't in it, then
+    // increment the scheduled date by 1 day at a time until it reaches the
+    // next unrestricted day.
+    while (days && !days.includes(dt.getDay())) {
+      dt.setDate(dt.getDate()+1);
     }
     return dt;
   },
@@ -908,6 +919,8 @@ const SLStatic = {
       if (days) {
         orig_days = days.slice();
       }
+      start_time = new Date(0,0,0,Math.floor(start_time / 100), start_time%100);
+      end_time = new Date(0,0,0,Math.floor(end_time / 100), end_time%100);
       const result = SLStatic.AdjustDateForRestrictions(dt, start_time,
                                                         end_time, days);
       if (orig_dt.getTime() != dt.getTime()) {
