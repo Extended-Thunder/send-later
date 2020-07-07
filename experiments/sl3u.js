@@ -26,48 +26,48 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                     return Utils.isOffline;
                   },
 
-                  async getLegacyPref(name, dtype, def) {
+                  async getLegacyPref(name, dtype, defVal) {
                     // Prefix for legacy preferences.
-                    const EXTENSION_BASE_PREF_NAME = "extensions.sendlater3.";
-
-                    //console.debug("Getting legacy preference <"+name+"> of type: '"+dtype+"' with default: "+def);
+                    const prefName = `extensions.sendlater3.${name}`;
 
                     switch (dtype) {
                       case "bool": {
                         try {
-                          return Services.prefs.getBoolPref(`${EXTENSION_BASE_PREF_NAME}${name}`);
+                          return Services.prefs.getBoolPref(prefName);
                         } catch {
-                          return (def === "true");
+                          return (defVal === "true");
                         }
                       }
                       case "int": {
                         try {
-                          return Services.prefs.getIntPref(`${EXTENSION_BASE_PREF_NAME}${name}`);
+                          return Services.prefs.getIntPref(prefName);
                         } catch {
-                          return (Number(def)|0);
+                          return (Number(defVal)|0);
                         }
                       }
                       case "char": {
                         try {
-                          return Services.prefs.getCharPref(`${EXTENSION_BASE_PREF_NAME}${name}`);
+                          return Services.prefs.getCharPref(prefName);
                         } catch {
-                          return def;
+                          return defVal;
                         }
                       }
                       case "string": {
                         try {
-                          return Services.prefs.getStringPref(`${EXTENSION_BASE_PREF_NAME}${name}`);
+                          return Services.prefs.getStringPref(prefName);
                         } catch {
-                          return def;
+                          return defVal;
                         }
                       }
+                      default: {
+                        throw new Error("Unexpected pref type");
+                      }
                     }
-                    throw new Error("Unexpected pref type");
                   },
 
                   async SaveAsDraft() {
                     // Saves the current compose window message as a draft.
-                    // Compose window remains open.
+                    // (Window remains open)
                     const cw = Services.wm.getMostRecentWindow("msgcompose");
                     cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
                   },
@@ -84,7 +84,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                     }
                   },
 
-                  async insertHeader(name, value) {
+                  async setHeader(name, value) {
                     const cw = Services.wm.getMostRecentWindow("msgcompose");
                     cw.gMsgCompose.compFields.setHeader(name,value);
                   },

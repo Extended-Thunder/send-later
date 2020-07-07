@@ -94,9 +94,9 @@ const SendLater = {
         customHeaders['x-send-later-cancel-on-reply'] = options.cancelOnReply;
       }
 
-      const inserted = Object.keys(customHeaders).map(name => {
-        browser.SL3U.insertHeader(name, customHeaders[name])
-      });
+      const inserted = Object.keys(customHeaders).map(name =>
+        browser.SL3U.setHeader(name, customHeaders[name])
+      );
       await Promise.all(inserted);
 
       await browser.SL3U.SaveAsDraft();
