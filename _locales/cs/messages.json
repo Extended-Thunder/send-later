@@ -239,22 +239,6 @@
     "message": "Uživatelská příručka",
     "description": ""
   },
-  "windowTitle": {
-    "message": "NALÉHAVÉ: Odeslat Později brzy skončí, pokud je nepodpoříš!",
-    "description": ""
-  },
-  "pledgeLabel": {
-    "message": "Přispět nyní!",
-    "description": ""
-  },
-  "remindLabel": {
-    "message": "Připomenout později",
-    "description": ""
-  },
-  "alreadyLabel": {
-    "message": "Již jsem přispěl",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "Dát do „Pošty k odeslání&quot;",
     "description": ""

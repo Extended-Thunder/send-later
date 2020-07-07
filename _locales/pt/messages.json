@@ -239,10 +239,6 @@
     "message": "Guia do utilizador",
     "description": ""
   },
-  "remindLabel": {
-    "message": "Lembrar mais tarde",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "Colocar na caixa de saida",
     "description": ""

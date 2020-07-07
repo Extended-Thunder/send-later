@@ -239,10 +239,6 @@
     "message": "Ръководство на потребителя",
     "description": ""
   },
-  "remindLabel": {
-    "message": "Напомняне по-късно",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "Поставяне в Изходящи",
     "description": ""

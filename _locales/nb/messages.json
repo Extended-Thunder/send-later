@@ -239,22 +239,6 @@
     "message": "Bruksanvisning",
     "description": ""
   },
-  "windowTitle": {
-    "message": "KRITISK: Send Later vil forsvinne snart, med mindre du støtter det!",
-    "description": ""
-  },
-  "pledgeLabel": {
-    "message": "Bidra nå!",
-    "description": ""
-  },
-  "remindLabel": {
-    "message": "Minn meg på dette senere",
-    "description": ""
-  },
-  "alreadyLabel": {
-    "message": "Jeg har allerede bidratt",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "Legg i utboks",
     "description": ""

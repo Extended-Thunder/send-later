@@ -239,10 +239,6 @@
     "message": "使用說明",
     "description": ""
   },
-  "remindLabel": {
-    "message": "以後提醒我",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "存至寄件匣",
     "description": ""

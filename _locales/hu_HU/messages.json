@@ -239,22 +239,6 @@
     "message": "Felhasználói útmutató",
     "description": ""
   },
-  "windowTitle": {
-    "message": "SÜRGŐS: A Küldés később kiegészítő hamarosan megszűnik, hacsak nem támogatja azt!",
-    "description": ""
-  },
-  "pledgeLabel": {
-    "message": "Ígérem most!",
-    "description": ""
-  },
-  "remindLabel": {
-    "message": "Figyelmeztetés később",
-    "description": ""
-  },
-  "alreadyLabel": {
-    "message": "Már vállaltam",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "Postázandó üzenetek helyezés",
     "description": ""

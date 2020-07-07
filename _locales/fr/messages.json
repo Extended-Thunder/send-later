@@ -239,22 +239,6 @@
     "message": "Guide de l&#x27;utilisateur",
     "description": ""
   },
-  "windowTitle": {
-    "message": "URGENT : Envoyer Plus Tard a besoin de vous (ou il va bientôt disparaître) !",
-    "description": ""
-  },
-  "pledgeLabel": {
-    "message": "Soutenir maintenant !",
-    "description": ""
-  },
-  "remindLabel": {
-    "message": "Me rappeler plus tard",
-    "description": ""
-  },
-  "alreadyLabel": {
-    "message": "J&#x27;ai déjà souscrit",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "Placer en attente",
     "description": ""

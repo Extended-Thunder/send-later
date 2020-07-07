@@ -239,22 +239,6 @@
     "message": "User guide",
     "description": ""
   },
-  "windowTitle": {
-    "message": "URGENT: Send Later is going away soon, unless you support it!",
-    "description": ""
-  },
-  "pledgeLabel": {
-    "message": "Pledge now!",
-    "description": ""
-  },
-  "remindLabel": {
-    "message": "Remind me later",
-    "description": ""
-  },
-  "alreadyLabel": {
-    "message": "I already pledged",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "Put in Outbox",
     "description": ""

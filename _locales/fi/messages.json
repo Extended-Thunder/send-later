@@ -239,10 +239,6 @@
     "message": "Käyttäjän opas",
     "description": ""
   },
-  "remindLabel": {
-    "message": "Muistuta myöhemmin",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "Siirrä Lähteviin",
     "description": ""

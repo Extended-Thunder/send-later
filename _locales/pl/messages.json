@@ -239,10 +239,6 @@
     "message": "Podręcznik użytkownika",
     "description": ""
   },
-  "remindLabel": {
-    "message": "Przypomnij mi później",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "Umieść w skrzynce nadawczej",
     "description": ""

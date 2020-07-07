@@ -105,6 +105,8 @@ def main(args):
     for locale in map(os.path.basename, glob.glob(os.path.join(legacy_path,'*'))):
         translations = dict()
         for fname in glob.glob(os.path.join(legacy_path, locale, '*.dtd')):
+            if 'kickstarter' in fname.lower():
+                continue
             with open(fname,'r') as dtdfile:
                 for line in dtdfile.readlines():
                     res = dtdregex.search(line)

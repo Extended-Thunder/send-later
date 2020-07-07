@@ -239,10 +239,6 @@
     "message": "Οδηγίες χρήσης",
     "description": ""
   },
-  "remindLabel": {
-    "message": "Υπενθύμιση αργότερα",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "Τοποθέτηση στα Εξερχόμενα",
     "description": ""

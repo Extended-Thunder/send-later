@@ -52,7 +52,7 @@ const SLOptions = {
       // Appends a green checkmark as element's last sibling. Disappears after a
       // timeout (1.5 sec). If already displayed, then restart timeout.
       const checkmark = document.createElement("span");
-      checkmark.innerHTML = "&#x2714;";
+      checkmark.textContent = "&#x2714;";
       checkmark.style.color = color;
       checkmark.className = "success_icon";
 
@@ -103,7 +103,7 @@ const SLOptions = {
     confDiv.style.display = "inline";
 
     const confirmPrompt = document.createElement("span");
-    confirmPrompt.innerHTML = "Are you sure?"; // browser.i18n.getMessage("confirmPrompt")
+    confirmPrompt.textContent = "Are you sure?"; // browser.i18n.getMessage("confirmPrompt")
     confirmPrompt.style.fontWeight = "bold";
     confirmPrompt.style.color = "red";
     confirmPrompt.style.display = "inline";
@@ -112,7 +112,7 @@ const SLOptions = {
 
     const confirmBtn = document.createElement("button");
     confirmBtn.type = "button";
-    confirmBtn.innerHTML = "Yes"; // browser.i18n.getMessage("answerYes")
+    confirmBtn.textContent = "Yes"; // browser.i18n.getMessage("answerYes")
     confirmBtn.style.fontWeight = "bold";
     confirmBtn.style.display = "inline";
     confirmBtn.style.margin = "0 0.5em";
@@ -120,7 +120,7 @@ const SLOptions = {
 
     const cancelBtn = document.createElement("button");
     cancelBtn.type = "button";
-    cancelBtn.innerHTML = "No"; // browser.i18n.getMessage("answerNo")
+    cancelBtn.textContent = "No"; // browser.i18n.getMessage("answerNo")
     cancelBtn.style.fontWeight = "bold";
     cancelBtn.style.display = "inline";
     cancelBtn.style.margin = "0 0.5em";

@@ -239,10 +239,6 @@
     "message": "Website",
     "description": ""
   },
-  "remindLabel": {
-    "message": "Bana sonra hatırlat",
-    "description": ""
-  },
   "sendlater.prompt.calculate.label": {
     "message": "Hesapla",
     "description": ""

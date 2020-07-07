@@ -239,22 +239,6 @@
     "message": "Guía de usuario",
     "description": ""
   },
-  "windowTitle": {
-    "message": "URGENTE: ¡Send Later desaparecerá pronto, a no ser que lo apoyes!",
-    "description": ""
-  },
-  "pledgeLabel": {
-    "message": "¡Comprométete ahora!",
-    "description": ""
-  },
-  "remindLabel": {
-    "message": "Recordármelo más tarde",
-    "description": ""
-  },
-  "alreadyLabel": {
-    "message": "Ya estoy comprometido",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "Poner en la Bandeja de Salida",
     "description": ""

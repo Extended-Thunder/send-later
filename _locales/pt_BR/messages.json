@@ -239,10 +239,6 @@
     "message": "Manual",
     "description": ""
   },
-  "remindLabel": {
-    "message": "Lembre-me mais tarde",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "Coloque na Caixa de Saída",
     "description": ""

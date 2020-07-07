@@ -239,22 +239,6 @@
     "message": "Benutzerhandbuch",
     "description": ""
   },
-  "windowTitle": {
-    "message": "DRINGEND: Ohne Deine Unterstützung wird es Send Later bald nicht mehr geben!",
-    "description": ""
-  },
-  "pledgeLabel": {
-    "message": "Erkläre Deine Unterstützung!",
-    "description": ""
-  },
-  "remindLabel": {
-    "message": "Später erinnern",
-    "description": ""
-  },
-  "alreadyLabel": {
-    "message": "Ich bin bereits Unterstützer",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "In den Postausgang verschieben",
     "description": ""

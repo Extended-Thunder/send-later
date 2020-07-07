@@ -239,10 +239,6 @@
     "message": "Руководство Пользователя",
     "description": ""
   },
-  "remindLabel": {
-    "message": "Напомнить позже",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "Поместить в «Исходящие»",
     "description": ""

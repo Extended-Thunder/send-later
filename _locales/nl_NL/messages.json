@@ -239,22 +239,6 @@
     "message": "Handleiding",
     "description": ""
   },
-  "windowTitle": {
-    "message": "DRINGEND: Send Later gaat binnenkort verdwijnen, tenzij u het steunt!",
-    "description": ""
-  },
-  "pledgeLabel": {
-    "message": "Nu toezeggen!",
-    "description": ""
-  },
-  "remindLabel": {
-    "message": "Mij later herinneren",
-    "description": ""
-  },
-  "alreadyLabel": {
-    "message": "Ik heb al toegezegd",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "In Postvak UIT plaatsen",
     "description": ""

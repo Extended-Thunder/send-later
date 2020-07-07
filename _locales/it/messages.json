@@ -239,10 +239,6 @@
     "message": "Manuale utente",
     "description": ""
   },
-  "remindLabel": {
-    "message": "Ricordamelo in seguito",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "Metti nella &quot;Posta in uscita&quot;",
     "description": ""

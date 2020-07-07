@@ -239,22 +239,6 @@
     "message": "Användarhandbok",
     "description": ""
   },
-  "windowTitle": {
-    "message": "BRÅDSKANDE: Skicka Senare kommer snart att upphöra, om du inte stödjer det!",
-    "description": ""
-  },
-  "pledgeLabel": {
-    "message": "Donera nu!",
-    "description": ""
-  },
-  "remindLabel": {
-    "message": "Påminn mig senare",
-    "description": ""
-  },
-  "alreadyLabel": {
-    "message": "Jag har redan donerat",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "Lägg i Utkorgen",
     "description": ""

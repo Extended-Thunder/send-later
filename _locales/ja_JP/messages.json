@@ -239,22 +239,6 @@
     "message": "ユーザーガイド",
     "description": ""
   },
-  "windowTitle": {
-    "message": "至急のお知らせ: Send Laterはあなたのご支援がなければまもなく消えてしまいます!",
-    "description": ""
-  },
-  "pledgeLabel": {
-    "message": "支援する!",
-    "description": ""
-  },
-  "remindLabel": {
-    "message": "あとで知らせる",
-    "description": ""
-  },
-  "alreadyLabel": {
-    "message": "すでに支援しました",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "[送信トレイ] に置く",
     "description": ""

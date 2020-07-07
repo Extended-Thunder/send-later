@@ -132,11 +132,11 @@
         }
       }
 
-      scheduleSendButton.innerHTML = scheduleText;
+      scheduleSendButton.textContent = scheduleText;
       scheduleSendButton.disabled = false;
     } catch (e) {
       SLStatic.log(e);
-      scheduleSendButton.innerHTML = browser.i18n.getMessage("entervalid");
+      scheduleSendButton.textContent = browser.i18n.getMessage("entervalid");
       scheduleSendButton.disabled = true;
     }
   }

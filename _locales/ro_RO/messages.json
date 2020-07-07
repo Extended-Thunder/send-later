@@ -239,22 +239,6 @@
     "message": "Ghidul utilizatorului",
     "description": ""
   },
-  "windowTitle": {
-    "message": "URGENT: „Send Later&quot; va dispărea în curând, dacă nu îl veți sprijini!",
-    "description": ""
-  },
-  "pledgeLabel": {
-    "message": "Mă angajez să sprijin acum!",
-    "description": ""
-  },
-  "remindLabel": {
-    "message": "Amintește-mi mai târziu",
-    "description": ""
-  },
-  "alreadyLabel": {
-    "message": "Am făcut-o deja",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "Pune în „De trimis&quot;",
     "description": ""

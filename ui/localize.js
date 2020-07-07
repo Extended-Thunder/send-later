@@ -8,7 +8,7 @@ const localizer = {
         if (e.tagName === "INPUT") {
           e.value = msg;
         } else {
-          e.innerHTML = msg;
+          e.textContent = msg;
         }
       } catch (err) {
         console.error(err);
