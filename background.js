@@ -224,16 +224,9 @@ const SendLater = {
         const lock = await storage.local.get("lock").then(storage =>
           (storage.lock || {})[msgUUID]
         );
-        switch (lock.status) {
-          case "ready":
-            break;
-          case "sent":
-            SLStatic.debug(`Message ${id} already sent but not removed`);
-            return;
-          default:
-            SLStatic.debug(`Unrecognized lock status <${lock.status}> on `
-                          + `message ${id}.`);
-            return;
+        if (lock.status === "sent") {
+          SLStatic.debug(`Message ${id} already sent but not removed`);
+          return;
         }
       }
 
@@ -287,14 +280,14 @@ const SendLater = {
 
         // Possibly schedule next recurrence.
         if (recur.type !== "none") {
-          const nextSend = SLStatic.NextRecurDate(nextSend, msgRecurSpec,
+          const nextRecur = SLStatic.NextRecurDate(nextSend, msgRecurSpec,
                                                   (new Date()), args);
 
-          if (nextSend) {
-            SLStatic.debug(`Scheduling next recurrence of at ${nextSend}`);
+          if (nextRecur) {
+            SLStatic.debug(`Scheduling next recurrence of at ${nextRecur}`);
             const cw = await SendLater.beginEditAsNewMessage(id);
             const options = {
-                              sendAt: nextSend,
+                              sendAt: nextRecur,
                               recurSpec: msgRecurSpec,
                               args: msgRecurArgs,
                               cancelOnReply: msgRecurCancelOnReply

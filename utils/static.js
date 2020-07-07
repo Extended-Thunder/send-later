@@ -92,43 +92,17 @@ const SLStatic = {
   },
 
   parseArgs: function(argstring) {
-    if (argstring === "")
-        return [];
-    try {
-      const args = JSON.parse("[" + argstring + "]");
-      SLStatic.unparseArgs(args); // throws exception on bad args
-      return args;
-    }
-    catch (ex) {
-        return false;
-    }
+    return JSON.parse(`[${argstring}]`);
   },
 
   unparseArgs: function(args) {
     // Convert a list into its string representation, WITHOUT the square
     // braces around the entire list.
-    //
-    // We stringify the individual elements of the list and then join them
-    // because we want spaces after the commas for readability, and JSON.
-    // stringify won't do that, and when you try to make it do that by
-    // specifying its "space" argument, it inserts newlines as well, which
-    // we obviously don't want.
-    if (! args.length) {
-      return "";
-    }
-
-    const arglist = [];
-    for (const val of args) {
-      if (val && val.splice) {
-        arglist.push('[' + unparseArgs(val) + ']');
-      } else if (! (/^(?:number|boolean|string)$/.test(typeof(val)) ||
-                    val === null)) {
-        throw new Error("Function arguments can only contain arrays " +
-                        "numbers, booleans, strings, and null.");
-      }
-      arglist.push(JSON.stringify(val));
-    }
-    return arglist.join(', ');
+    let arglist = JSON.stringify(args, null, ' ');
+    arglist = arglist.replace(/\r?\n/g,''); // Remove newlines from stringify
+    arglist = arglist.replace(/\[\s*/g,'[').replace(/\s*\]/g,']'); // Cleanup
+    arglist = arglist.replace(/^\[|\]$/g, ''); // Strip outer brackets
+    return arglist;
   },
 
   /* Format:
@@ -173,7 +147,7 @@ const SLStatic = {
   specification so that it'll be set properly in the dialog if the user
   edits the scheduled message.
 
-  The other fields can be followed by " between YYMM YYMM" to indicate a
+  The other fields can be followed by " between HHMM HHMM" to indicate a
   time restriction or " on # ..." to indicate a day restriction.
   */
 
@@ -182,10 +156,11 @@ const SLStatic = {
 
     if (parsed.type === "monthly") {
       spec += " ";
-      if (parsed.monthly_day)
+      if (parsed.monthly_day) {
         spec += parsed.monthly_day.day + " " + parsed.monthly_day.week;
-      else
+      } else {
         spec += parsed.monthly;
+      }
     } else if (parsed.type === "yearly") {
       spec += " " + parsed.yearly.month + " " + parsed.yearly.date;
     } else if (parsed.type === "function") {
@@ -194,8 +169,9 @@ const SLStatic = {
         spec += " finished";
     }
 
-    if (parsed.multiplier)
+    if (parsed.multiplier) {
       spec += " / " + parsed.multiplier;
+    }
 
     if (parsed.between) {
       const start = SLStatic.formatTime(parsed.between.start);
@@ -552,7 +528,7 @@ const SLStatic = {
   },
 
   // dt is a Date object for the scheduled send time we need to adjust.
-  // start_time and end_time are numbers like YYMM, e.g., 10:00am is
+  // start_time and end_time are numbers like HHMM, e.g., 10:00am is
   // 1000, 5:35pm is 1735, or null if there is no time restriction.
   // days is an array of numbers, with 0 being Sunday and 6 being Saturday,
   // or null if there is no day restriction.
