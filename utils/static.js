@@ -1,15 +1,6 @@
 const SLStatic = {
   timeRegex: /^(2[0-3]|1?\d):?([0-5]\d)$/,
 
-  UnitTests: [],
-
-  flatten: function(arr) {
-    // Flattens an N-dimensional array.
-    return arr.reduce((res, item) => res.concat(
-                        Array.isArray(item) ? SLStatic.flatten(item) : item
-                      ), []);
-  },
-
   async logger(msg, level, stream) {
     const levels = ["all","trace","debug","info","warn","error","fatal"];
     const output = (stream !== undefined) ? stream : console.log;
@@ -28,32 +19,27 @@ const SLStatic = {
   async debug(...msg)  { SLStatic.logger(msg, "debug", console.debug) },
   async trace(...msg)  { SLStatic.logger(msg, "trace", console.trace) },
 
-  dateTimeFormat: function(thisdate, options) {
-    // Takes a date object and format options. If either one is null,
-    // then it substitutes defaults.
+  flatten: function(arr) {
+    // Flattens an N-dimensional array.
+    return arr.reduce((res, item) => res.concat(
+                        Array.isArray(item) ? SLStatic.flatten(item) : item
+                      ), []);
+  },
+
+  dateTimeFormat: function(thisdate, opts, locale) {
     const defaults = {
       weekday: 'short',
       year: 'numeric',
       month: 'short',
       day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
       timeZoneName: 'short',
       hour12: false
     };
-    const opts = Object.assign(defaults, options);
-    const dtfmt = new Intl.DateTimeFormat('default', opts);
-    return dtfmt.format(thisdate || (new Date()));
-  },
-
-  newUUID: function() {
-    // Good enough for this purpose. Code snippet from:
-    // stackoverflow.com/questions/105034/how-to-create-guid-uuid/2117523
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
-    });
+    const fm = new Intl.DateTimeFormat((locale || 'en-GB'), (opts || defaults));
+    return fm.format(thisdate || (new Date()));
   },
 
   compareTimes: function(a,comparison,b) {
@@ -85,8 +71,8 @@ const SLStatic = {
 
   parseDateTime: function(dstr,tstr) {
     const dpts = dstr ? dstr.split(/\D/) : [0,1,0];
-    const tpts = SLStatic.timeRegex.test(tstr) ? timeRegex.exec(tstr) :
-                                                 [null, 0, 0];
+    const tpts = SLStatic.timeRegex.test(tstr) ?
+                    SLStatic.timeRegex.exec(tstr) : [null, 0, 0];
     return new Date(+dpts[0], --dpts[1], +dpts[2], +tpts[1], +tpts[2]);
   },
 
@@ -94,6 +80,15 @@ const SLStatic = {
     const hours = datetime.getHours();
     const minutes = (""+datetime.getMinutes()).padStart(2,"0");
     return `${hours}:${minutes}`;
+  },
+
+  newUUID: function() {
+    // Good enough for this purpose. Code snippet from:
+    // stackoverflow.com/questions/105034/how-to-create-guid-uuid/2117523
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
   },
 
   parseArgs: function(argstring) {
@@ -329,297 +324,6 @@ const SLStatic = {
     return parsed;
   },
 
-  ParseRecurTests: function() {
-    function CompareRecurs(a, b) {
-        if (!a && !b) return true;
-        if (!a || !b) return false;
-        if (a.type != b.type) return false;
-        if (!a.monthly_day != !b.monthly_day) return false;
-        if (a.monthly_day && (a.monthly_day.day != b.monthly_day.day ||
-            a.monthly_day.week != b.monthly_day.week))
-          return false;
-        if (a.monthly != b.monthly) return false;
-        if (!a.yearly != !b.yearly) return false;
-        if (a.yearly && (a.yearly.month != b.yearly.month ||
-            a.yearly.date != b.yearly.date))
-          return false;
-        if (a.function != b.function) return false;
-        if (a.multiplier != b.multiplier) return false;
-        if (!a.between != !b.between) return false;
-        if (a.between && (a.between.start != b.between.start ||
-            a.between.end != b.between.end))
-          return false;
-        if (!a.days != !b.days) return false;
-        if (String(a.days) != String(b.days)) return false;
-        return true;
-    }
-
-    function ParseRecurGoodTest(spec, expected) {
-      const out = SLStatic.ParseRecurSpec(spec);
-      if (CompareRecurs(out, expected)) {
-        return true;
-      } else {
-        return ("expected " + JSON.stringify(expected) + ", got " +
-                JSON.stringify(out));
-      }
-    }
-
-    const goodTests = [
-      ["none", null],
-      ["minutely", { type: "minutely" }],
-      ["daily", { type: "daily" }],
-      ["weekly", { type: "weekly" }],
-      ["monthly 3", { type: "monthly", monthly: 3 }],
-      ["monthly 0 3", { type: "monthly", monthly_day: { day: 0, week: 3 } }],
-      ["yearly 10 5", { type: "yearly", yearly: { month: 10, date: 5 } }],
-      ["function froodle", { type: "function", "function": "froodle" }],
-      ["minutely / 5", { type: "minutely", multiplier: 5 }],
-      ["minutely between 830 1730",
-        { type: "minutely",
-          between: {
-            start: SLStatic.parseDateTime(null,"8:30"),
-            end: SLStatic.parseDateTime(null,"17:30")
-          } }],
-      ["minutely on 1 2 3 4 5", { type: "minutely", days: [1, 2, 3, 4, 5] }]
-    ];
-    for (const test of goodTests) {
-      SLStatic.AddTest("ParseRecurSpec " + test[0], ParseRecurGoodTest, test);
-    }
-
-    function ParseRecurBadTest(spec, expected) {
-      try {
-        const out = SLStatic.ParseRecurSpec(spec);
-        return "expected exception, got " + JSON.stringify(out);
-      } catch (ex) {
-        if (!ex.match(expected)) {
-          return "exception " + ex + " did not match " + expected;
-        } else {
-          return true;
-        }
-      }
-    }
-
-    const badTests = [
-      ["bad-recurrence-type", "Invalid recurrence type"],
-      ["none extra-arg", "Extra arguments"],
-      ["monthly bad", "Invalid first monthly argument"],
-      ["monthly 7 3", "Invalid monthly day argument"],
-      ["monthly 4 6", "Invalid monthly week argument"],
-      ["monthly 32", "Invalid monthly date argument"],
-      ["yearly bad", "Invalid first yearly argument"],
-      ["yearly 10 bad", "Invalid second yearly argument"],
-      ["yearly 20 3", "Invalid yearly month argument"],
-      ["yearly 10 40", "Invalid yearly date argument"],
-      ["function", "Invalid function recurrence spec"],
-      ["function foo bar", "Invalid function recurrence spec"],
-      ["daily / bad", "Invalid multiplier argument"],
-      ["minutely between 11111 1730", "Invalid between start"],
-      ["daily between 1100 17305", "Invalid between end"],
-      ["daily extra-argument", "Extra arguments"],
-      ["minutely on bad", "Day restriction with no days"],
-      ["minutely on", "Day restriction with no days"],
-      ["minutely on 8", "Bad restriction day"]
-    ];
-    for (const test of badTests) {
-      SLStatic.AddTest("ParseRecurSpec " + test[0], ParseRecurBadTest, test);
-    }
-  },
-
-  NextRecurTests: function() {
-    function DeepCompare(a, b) {
-      if (a && a.splice) {
-        if (b && b.splice) {
-          if (a.length != b.length) {
-            return false;
-          }
-          for (let i = 0; i < a.length; i++) {
-            if (!DeepCompare(a[i], b[i])) {
-              return false;
-            }
-          }
-          return true;
-        }
-        return false;
-      }
-      if (b && b.splice) {
-        return false;
-      }
-      if (a && a.getTime) {
-        if (b && b.getTime) {
-          return a.getTime() == b.getTime();
-        }
-        return false;
-      }
-      return a == b;
-    }
-
-    function NextRecurNormalTest(sendat, recur, now, expected) {
-      let result;
-      try {
-        result = SLStatic.NextRecurDate(new Date(sendat), recur, new Date(now));
-      } catch (ex) {
-        return "Unexpected error: " + ex;
-      }
-      expected = new Date(expected);
-      if (result.getTime() == expected.getTime()) {
-        return true;
-      } else {
-        return "expected " + expected + ", got " + result;
-      }
-    }
-
-    function NextRecurExceptionTest(sendat, recur, now, expected) {
-      let result;
-      try {
-        result = SLStatic.NextRecurDate(new Date(sendat), recur, new Date(now));
-        return "Expected exception, got " + result;
-      } catch (ex) {
-        if (ex.message.match(expected)) {
-          return true;
-        } else {
-          return `Expected exception matching ${expected}, got ${ex.message}`;
-        }
-      }
-    }
-
-    function NextRecurFunctionTest(sendat, recur, now, args, func_name,
-                                   func, expected) {
-      window[func_name] = func;
-      let result;
-      try {
-        now = new Date(now);
-        sendat = new Date(sendat);
-        result = SLStatic.NextRecurDate(sendat, recur, now, args);
-        delete window[func_name];
-      } catch (ex) {
-        delete window[func_name];
-        return "Unexpected error: " + ex.message;
-      }
-      if (DeepCompare(result, expected)) {
-        return true;
-      } else {
-        return `Expected ${expected}, got ${result}`;
-      }
-    }
-
-    function NextRecurFunctionExceptionTest(sendat, recur, now, func_name,
-                                            func, expected) {
-      window[func_name] = func;
-      try {
-        let result;
-        result = SLStatic.NextRecurDate(new Date(sendat), recur, new Date(now));
-        delete window[func_name];
-        return "Expected exception, got " + result;
-      } catch (ex) {
-        delete window[func_name];
-        if (ex.message.match(expected)) {
-          return true;
-        } else {
-          return `Expected exception matching ${expected}, got ${ex.message}`;
-        }
-      }
-    }
-
-    SLStatic.AddTest("NextRecurDate daily", NextRecurNormalTest,
-                     ["1/1/2012", "daily", "1/1/2012", "1/2/2012"]);
-    SLStatic.AddTest("NextRecurDate weekly", NextRecurNormalTest,
-                     ["1/2/2012", "weekly", "1/10/2012", "1/16/2012"]);
-    SLStatic.AddTest("NextRecurDate monthly 5", NextRecurNormalTest,
-                     ["1/5/2012", "monthly 5", "1/5/2012", "2/5/2012"]);
-    SLStatic.AddTest("NextRecurDate monthly 30", NextRecurNormalTest,
-                     ["3/1/2012", "monthly 30", "3/1/2012", "3/30/2012"]);
-    SLStatic.AddTest("NextRecurDate monthly 0 3", NextRecurNormalTest,
-                     ["4/15/2012", "monthly 0 3", "4/15/2012", "5/20/2012"]);
-    SLStatic.AddTest("NextRecurDate monthly 0 5", NextRecurNormalTest,
-                     ["1/29/2012", "monthly 0 5", "1/30/2012", "4/29/2012"]);
-    SLStatic.AddTest("NextRecurDate yearly 1 29", NextRecurNormalTest,
-                     ["2/29/2012", "yearly 1 29", "2/29/2012", "3/1/2013"]);
-    SLStatic.AddTest("NextRecurDate yearly 1 29 / 3", NextRecurNormalTest,
-                     ["3/1/2013", "yearly 1 29 / 3", "3/1/2013", "2/29/2016"]);
-    SLStatic.AddTest("NextRecurDate minutely timely", NextRecurNormalTest,
-                     ["1/1/2012 11:26:37", "minutely", "1/1/2012 11:26:50",
-                     "1/1/2012 11:27:37"]);
-    SLStatic.AddTest("NextRecurDate minutely late", NextRecurNormalTest,
-                     ["1/1/2012 11:26:37", "minutely", "1/1/2012 11:29:50",
-                     "1/1/2012 11:30:37"]);
-    SLStatic.AddTest("NextRecurDate minutely / 5 timely", NextRecurNormalTest,
-                     ["1/1/2012 11:26:37", "minutely / 5", "1/1/2012 11:26:50",
-                     "1/1/2012 11:31:37"]);
-    SLStatic.AddTest("NextRecurDate minutely / 5 late", NextRecurNormalTest,
-                     ["1/1/2012 11:26:37", "minutely / 5", "1/1/2012 11:35:05",
-                     "1/1/2012 11:35:37"]);
-
-    SLStatic.AddTest("NextRecurDate nonexistent function",
-                     NextRecurExceptionTest, ["10/3/2012", "function foo",
-                     "10/3/2012", "is not defined"]);
-    SLStatic.AddTest("NextRecurDate bad function type", NextRecurExceptionTest,
-                     ["10/3/2012", "function Sendlater3Util", "10/3/2012",
-                     "is not a function"]);
-
-    SLStatic.AddTest("NextRecurDate function doesn't return a value",
-                     NextRecurFunctionExceptionTest,
-                     ["10/3/2012", "function Test1", "10/3/2012", "Test1",
-                      (()=>undefined), "did not return a value"]);
-    SLStatic.AddTest("NextRecurDate function doesn't return number or array",
-                     NextRecurFunctionExceptionTest,
-                     ["10/3/2012", "function Test2", "10/3/2012", "Test2",
-                     (()=>"foo"), "did not return number or array" ]);
-    SLStatic.AddTest("NextRecurDate function returns too-short array",
-                     NextRecurFunctionExceptionTest,
-                     ["10/3/2012", "function Test3", "10/3/2012", "Test3",
-                     (()=>new Array()), "is too short"]);
-    SLStatic.AddTest("NextRecurDate function did not start with a number",
-                     NextRecurFunctionExceptionTest,
-                     ["10/3/2012", "function Test4", "10/3/2012", "Test4",
-                     (()=>new Array("monthly", "extra")),
-                     "did not start with a number"]);
-    SLStatic.AddTest("NextRecurDate function finished recurring",
-                     NextRecurFunctionTest,
-                     ["10/3/2012", "function Test5", "10/3/2012", null, "Test5",
-                     (()=>-1), null]);
-
-    const d1 = new Date();
-    d1.setTime((new Date("10/3/2012")).getTime() + 5 * 60 * 1000);
-    SLStatic.AddTest("NextRecurDate function returning minutes",
-                     NextRecurFunctionTest,
-                     ["10/3/2012", "function Test6", "10/4/2012", null, "Test6",
-                     (()=>5), [d1, null]]);
-
-    const d2 = new Date();
-    d2.setTime((new Date("10/3/2012")).getTime() + 7 * 60 * 1000);
-    SLStatic.AddTest("NextRecurDate function returning array",
-                     NextRecurFunctionTest,
-                     ["10/3/2012", "function Test7", "10/4/2012", null, "Test7",
-                     (()=>new Array(7, "monthly 5")), [d2, "monthly 5"]]);
-    SLStatic.AddTest("NextRecurDate function returning array with args",
-                     NextRecurFunctionTest,
-                     ["10/3/2012", "function Test8", "10/4/2012", ["froodle"],
-                     "Test8", ((prev,args)=>{
-                       if (args[0] != "froodle") {
-                         throw "bad args: " + args;
-                       } else {
-                         return [7, "monthly 5", "freeble"];
-                       }
-                     }), [d2, "monthly 5", "freeble"]]);
-
-    SLStatic.AddTest("NextRecurDate between before", NextRecurNormalTest,
-                     ["3/1/2016 17:00", "minutely / 600 between 0900 1700",
-                     "3/1/2016 17:01", "3/2/2016 9:00"]);
-    SLStatic.AddTest("NextRecurDate between after", NextRecurNormalTest,
-                     ["3/1/2016 16:45", "minutely / 60 between 0900 1700",
-                     "3/1/2016 16:45", "3/2/2016 9:00"]);
-    SLStatic.AddTest("NextRecurDate between ok", NextRecurNormalTest,
-                     ["3/1/2016 12:45", "minutely / 60 between 0900 1700",
-                     "3/1/2016 12:46", "3/1/2016 13:45"]);
-
-    SLStatic.AddTest("NextRecurDate day match", NextRecurNormalTest,
-                     ["3/1/2016 12:45", "minutely on 2", "3/1/2016 12:45",
-                     "3/1/2016 12:46"]);
-    SLStatic.AddTest("NextRecurDate day no match", NextRecurNormalTest,
-                     ["3/1/2016 12:45", "minutely on 4 5 6", "3/1/2016 12:45",
-                     "3/3/2016 12:46"]);
-  },
-
   NextRecurFunction: function(next, recurSpec, recur, args, saveFunction) {
     const funcName = recur.function;
     let nextRecur;
@@ -847,33 +551,6 @@ const SLStatic = {
     return fragments.join(", ");
   },
 
-  FormatRecurTests: function() {
-    function FormatRecurTest(spec, expected) {
-      const out = SLStatic.FormatRecur(spec);
-      if (out == expected) {
-        return true;
-      } else {
-        return "expected " + expected + ", got " + out;
-      }
-    }
-
-    const tests = [
-      ["minutely", "minutely"],
-      ["daily", "daily"],
-      ["weekly", "weekly"],
-      ["monthly 3", "monthly"],
-      ["monthly 0 3", "monthly, 3rd Sunday"],
-      ["yearly 10 5", "yearly"],
-      ["function froodle", "function"],
-      ["minutely / 5", "every 5 minutes"],
-      ["minutely between 830 1730", "minutely betw. 8:30 and 17:30"],
-      ["minutely on 1 2 3", "minutely on Monday, Tuesday, Wednesday"]
-    ];
-    for (const test of tests) {
-      SLStatic.AddTest("FormatRecur " + test[0], FormatRecurTest, test);
-    }
-  },
-
   // dt is a Date object for the scheduled send time we need to adjust.
   // start_time and end_time are numbers like YYMM, e.g., 10:00am is
   // 1000, 5:35pm is 1735, or null if there is no time restriction.
@@ -910,85 +587,5 @@ const SLStatic = {
       dt.setDate(dt.getDate()+1);
     }
     return dt;
-  },
-
-  AdjustDateForRestrictionsTests: function() {
-    function NormalTest(dt, start_time, end_time, days, expected) {
-      const orig_dt = new Date(dt);
-      let orig_days;
-      if (days) {
-        orig_days = days.slice();
-      }
-      start_time = new Date(0,0,0,Math.floor(start_time / 100), start_time%100);
-      end_time = new Date(0,0,0,Math.floor(end_time / 100), end_time%100);
-      const result = SLStatic.AdjustDateForRestrictions(dt, start_time,
-                                                        end_time, days);
-      if (orig_dt.getTime() != dt.getTime()) {
-        throw "AdjustDateForRestrictions modified dt!";
-      }
-      if (orig_days && String(orig_days) != String(days)) {
-        throw "AdjustedDateForRestrictions modified days!";
-      }
-      return expected.getTime() == result.getTime();
-    }
-
-    SLStatic.AddTest("AdjustDateForRestrictions no-op", NormalTest,
-                     [new Date("1/1/2016 10:37:00"), null, null, null,
-                      new Date("1/1/2016 10:37:00")]);
-    SLStatic.AddTest("AdjustDateForRestrictions before start", NormalTest,
-                     [new Date("1/1/2016 05:30:37"), 830, 1700, null,
-                      new Date("1/1/2016 08:30:37")]);
-    SLStatic.AddTest("AdjustDateForRestrictions after end", NormalTest,
-                     [new Date("1/1/2016 18:30:37"), 830, 1700, null,
-                      new Date("1/2/2016 08:30:37")]);
-    SLStatic.AddTest("AdjustDateForRestrictions OK time", NormalTest,
-                     [new Date("1/1/2016 12:37:00"), 830, 1700, null,
-                     new Date("1/1/2016 12:37:00")]);
-    SLStatic.AddTest("AdjustDateForRestrictions start edge", NormalTest,
-                     [new Date("1/1/2016 8:30:00"), 830, 1700, null,
-                      new Date("1/1/2016 8:30:00")]);
-    SLStatic.AddTest("AdjustDateForRestrictions end edge", NormalTest,
-                     [new Date("1/1/2016 17:00:00"), 830, 1700, null,
-                      new Date("1/1/2016 17:00:00")]);
-    SLStatic.AddTest("AdjustDateForRestrictions OK day", NormalTest,
-                     [new Date("1/1/2016 8:30:00"), null, null, [5],
-                      new Date("1/1/2016 8:30:00")]);
-    SLStatic.AddTest("AdjustDateForRestrictions later day", NormalTest,
-                     [new Date("1/1/2016 8:30:00"), null, null, [6],
-                      new Date("1/2/2016 8:30:00")]);
-    SLStatic.AddTest("AdjustDateForRestrictions earlier day", NormalTest,
-                     [new Date("1/1/2016 8:30:00"), null, null, [1, 2, 3],
-                      new Date("1/4/2016 8:30:00")]);
-  },
-
-  AddTest: function(test_name, test_function, test_args) {
-    SLStatic.UnitTests.push([test_name, test_function, test_args]);
-  },
-
-  RunTests: function(event, names) {
-    for (const params of SLStatic.UnitTests) {
-      const name = params[0];
-      const func = params[1];
-      const args = params[2];
-
-      if (names && names.indexOf(name) == -1) {
-        continue;
-      }
-
-      let result;
-      try {
-        result = func.apply(null, args);
-      } catch (ex) {
-        console.warn(`TEST ${name} EXCEPTION: ${ex.message}`);
-        continue;
-      }
-      if (result === true) {
-        console.info(`TEST ${name} PASS`);
-      } else if (result === false) {
-        console.warn(`TEST ${name} FAIL`);
-      } else {
-        console.warn(`TEST ${name} FAIL ${result}`);
-      }
-    }
   }
 }
