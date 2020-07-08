@@ -30,7 +30,6 @@
   "activeScanner_lastUUID": ["string", "", "activescanner.last_uuid"],
   "activeScanner_UUID": ["string", "", "activescanner.uuid"],
   "activeScanner_time": ["int", 0, "activescanner.time"],
-  "instanceUUID": ["string", "", "instance.uuid"],
   "askTime": ["int", 0, "ask.time"],
   "askSent": ["int", 0, "ask.sent"],
   "askQuit": ["bool", true, "ask.quit"],

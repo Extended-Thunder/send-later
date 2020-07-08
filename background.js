@@ -233,9 +233,7 @@ const SendLater = {
       const nextSend = new Date(msgSendAt);
       const dueForSend = Date.now() >= nextSend.getTime();
       if (dueForSend) {
-        const prefs = await browser.storage.local.get("preferences").then(st =>
-          (st.preferences || {})
-        );
+        const { prefs } = await browser.storage.local.get({"preferences":{}});
 
         if (prefs.enforceTimeRestrictions) {
           const now = Date.now();

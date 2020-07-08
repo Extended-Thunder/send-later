@@ -3,13 +3,11 @@ const SLStatic = {
 
   async logger(msg, level, stream) {
     const levels = ["all","trace","debug","info","warn","error","fatal"];
-    const output = (stream !== undefined) ? stream : console.log;
-    browser.storage.local.get({"preferences":{}}).then(storage => {
-      const consoleLogLevel = storage.preferences.logConsoleLevel;
-      if (levels.indexOf(level) >= levels.indexOf(consoleLogLevel)) {
-        output(`${level.toUpperCase()} [SendLater]:`, ...msg);
-      }
-    });
+    const { prefs } = await browser.storage.local.get({"preferences": {}});
+    if (levels.indexOf(level) >= levels.indexOf(prefs.logConsoleLevel)) {
+      const output = stream || console.log;
+      output(`${level.toUpperCase()} [SendLater]:`, ...msg);
+    }
   },
 
   async error(...msg)  { SLStatic.logger(msg, "error", console.error) },
@@ -46,17 +44,26 @@ const SLStatic = {
     // Compare time of day, ignoring date.
     const aHrs = a.getHours(), aMins = a.getMinutes();
     const bHrs = b.getHours(), bMins = b.getMinutes();
+    const aSec = a.getSeconds(), bSec = b.getSeconds();
     switch (comparison) {
       case "<":
-        return ((aHrs<bHrs) || (aHrs === bHrs && aMins<bMins));
+        return ((aHrs<bHrs) || (aHrs === bHrs && aMins<bMins) ||
+                (aHrs === bHrs && aMins === bMins && aSec < bSec));
       case ">":
-        return ((aHrs>bHrs) || (aHrs === bHrs && aMins>bMins));
+        return ((aHrs>bHrs) || (aHrs === bHrs && aMins>bMins) ||
+                (aHrs === bHrs && aMins === bMins && aSec > bSec));
       case "<=":
-        return ((aHrs<bHrs) || (aHrs === bHrs && aMins<=bMins));
+        return ((aHrs<bHrs) || (aHrs === bHrs && aMins<=bMins) ||
+                (aHrs === bHrs && aMins === bMins && aSec <= bSec));
       case ">=":
-        return ((aHrs>bHrs) || (aHrs === bHrs && aMins>=bMins));
+        return ((aHrs>bHrs) || (aHrs === bHrs && aMins>=bMins) ||
+                (aHrs === bHrs && aMins === bMins && aSec >= bSec));
+      case "==":
       case "===":
-        return (aHrs === bHrs && aMins === bMins);
+        return (aHrs === bHrs && aMins === bMins && aSec === bSec);
+      case "!=":
+      case "!==":
+        return !SLStatic.compareTimes(a,"===",b);
       default:
         throw ("Unknown comparison: "+comparison);
         break;
@@ -102,7 +109,7 @@ const SLStatic = {
     // Convert a list into its string representation, WITHOUT the square
     // braces around the entire list.
     let arglist = JSON.stringify(args, null, ' ');
-    arglist = arglist.replace(/\r?\n/g,''); // Remove newlines from stringify
+    arglist = arglist.replace(/\r?\n\s*/g,' '); // Remove newlines from stringify
     arglist = arglist.replace(/\[\s*/g,'[').replace(/\s*\]/g,']'); // Cleanup
     arglist = arglist.replace(/^\[|\]$/g, ''); // Strip outer brackets
     return arglist;
