@@ -4,7 +4,7 @@ exports.init = function() {
     if (out == expected) {
       return true;
     } else {
-      return "expected " + expected + ", got " + out;
+      return `expected "${expected}", got "${out}"`;
     }
   }
 
@@ -13,9 +13,9 @@ exports.init = function() {
     ["daily", "daily"],
     ["weekly", "weekly"],
     ["monthly 3", "monthly"],
-    ["monthly 0 3", "monthly, 3rd Sunday"],
+    ["monthly 0 3", "monthly 3rd Sunday"],
     ["yearly 10 5", "yearly"],
-    ["function froodle", "function"],
+    ["function froodle", "function froodle"],
     ["minutely / 5", "every 5 minutes"],
     ["minutely between 830 1730", "minutely betw. 8:30 and 17:30"],
     ["minutely on 1 2 3", "minutely on Monday, Tuesday, Wednesday"]

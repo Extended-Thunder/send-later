@@ -5,8 +5,6 @@ exports.init = function() {
     if (days) {
       orig_days = days.slice();
     }
-    start_time = new Date(0,0,0,Math.floor(start_time / 100), start_time%100);
-    end_time = new Date(0,0,0,Math.floor(end_time / 100), end_time%100);
     const result = SLStatic.AdjustDateForRestrictions(dt, start_time,
                                                       end_time, days);
     if (orig_dt.getTime() != dt.getTime()) {

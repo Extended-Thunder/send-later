@@ -46,8 +46,8 @@ exports.init = function() {
     ["minutely between 830 1730",
       { type: "minutely",
         between: {
-          start: SLStatic.parseDateTime(null,"8:30"),
-          end: SLStatic.parseDateTime(null,"17:30")
+          start: "8:30",
+          end: "17:30"
         } }],
     ["minutely on 1 2 3 4 5", { type: "minutely", days: [1, 2, 3, 4, 5] }]
   ];
@@ -77,10 +77,12 @@ exports.init = function() {
     ["monthly 32", "Invalid monthly date argument"],
     ["yearly bad", "Invalid first yearly argument"],
     ["yearly 10 bad", "Invalid second yearly argument"],
-    ["yearly 20 3", "Invalid yearly month argument"],
-    ["yearly 10 40", "Invalid yearly date argument"],
+    ["yearly 20 3", "Invalid yearly date"],
+    ["yearly 11 31", "Invalid yearly date"],
+    ["yearly 02 30", "Invalid yearly date"],
+    ["yearly 10 40", "Invalid yearly date"],
     ["function", "Invalid function recurrence spec"],
-    ["function foo bar", "Invalid function recurrence spec"],
+    ["function foo bar", "Extra arguments"],
     ["daily / bad", "Invalid multiplier argument"],
     ["minutely between 11111 1730", "Invalid between start"],
     ["daily between 1100 17305", "Invalid between end"],

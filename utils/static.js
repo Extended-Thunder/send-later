@@ -1,5 +1,5 @@
 const SLStatic = {
-  timeRegex: /^(2[0-3]|1?\d):?([0-5]\d)$/,
+  timeRegex: /^(2[0-3]|[01]?\d):?([0-5]\d)$/,
 
   async logger(msg, level, stream) {
     const levels = ["all","trace","debug","info","warn","error","fatal"];
@@ -77,6 +77,9 @@ const SLStatic = {
   },
 
   formatTime: function(datetime) {
+    if (typeof datetime === "string" || typeof datetime === "number") {
+      datetime = SLStatic.parseDateTime(null, (""+datetime));
+    }
     const hours = datetime.getHours();
     const minutes = (""+datetime.getMinutes()).padStart(2,"0");
     return `${hours}:${minutes}`;
@@ -200,6 +203,11 @@ const SLStatic = {
     }
     switch (parsed.type) {
       case "none":
+        if (params.length) {
+          throw "Extra arguments in " + spec;
+        } else {
+          return null;
+        }
         break;
       case "monthly":
         if (!/^\d+$/.test(params[0])) {
@@ -230,36 +238,40 @@ const SLStatic = {
           throw "Invalid second yearly argument in " + spec;
         }
         parsed.yearly = {
-          month: params.shift(),
-          date: params.shift()
+          month: +params.shift(),
+          date: +params.shift()
         };
-        if (parsed.yearly.month > 11){
-          throw "Invalid yearly month argument in " + spec;
-        } else if (parsed.yearly.date > 31) {
-          throw "Invalid yearly date argument in " + spec;
+
+        // Check that this month/date combination is possible at all.
+        // Use a leap year for this test.
+        const test = new Date(2000, parsed.yearly.month-1, parsed.yearly.date);
+        if (test.getMonth() !== parsed.yearly.month-1) {
+          throw "Invalid yearly date in " + spec;
         }
         break;
       case "function":
         parsed.function = params.shift();
         const finishedIndex = params.indexOf("finished");
-        if (finishedIndex > -1) {
-          parsed.finished = true;
-          params.splice(finishedIndex, 1);
-        } else {
-          parsed.finished = false;
+        parsed.finished = (params[0] === "finished");
+
+        if (!parsed.function) {
+          throw "Invalid function recurrence spec";
         }
         break;
       default:
-        const slashIndex = params.indexOf("/");
-        if (slashIndex > -1) {
-            const multiplier = params[slashIndex + 1];
-            if (!/^[1-9]\d*$/.test(multiplier)){
-              throw "Invalid multiplier argument in " + spec;
-            }
-            parsed.multiplier = multiplier;
-            params.splice(slashIndex, 2);
-        }
         break;
+    }
+
+    if (parsed.type !== "function") {
+      const slashIndex = params.indexOf("/");
+      if (slashIndex > -1) {
+          const multiplier = params[slashIndex + 1];
+          if (!/^[1-9]\d*$/.test(multiplier)){
+            throw "Invalid multiplier argument in " + spec;
+          }
+          parsed.multiplier = +multiplier;
+          params.splice(slashIndex, 2);
+      }
     }
 
     const btwnIdx = params.indexOf("between");
@@ -274,8 +286,8 @@ const SLStatic = {
       }
 
       parsed.between = {
-        start: SLStatic.parseDateTime(null, startTimeStr),
-        end: SLStatic.parseDateTime(null, endTimeStr)
+        start: SLStatic.formatTime(startTimeStr),
+        end: SLStatic.formatTime(endTimeStr)
       };
       params.splice(btwnIdx, 3);
     }
@@ -307,11 +319,12 @@ const SLStatic = {
       throw "ufunc recurrence not yet implemented.";
       //nextRecur = sl3uf.callByName(funcName.slice(6), next, args);
     } else {
-      const func = window[funcName];
-      if (typeof(func) == "undefined") {
+      // Yes, I realize this is terrible. I'll fix it later.
+      const func = eval(funcName);
+      if (typeof(func) === 'undefined') {
         throw new Error("Send Later: Invalid recurrence specification " +
                         `'${recurSpec}': ${funcName} is not defined.`);
-      } else if (typeof(func) != "function") {
+      } else if (typeof(func) !== "function") {
         throw new Error("Send Later: Invalid recurrence specification " +
                         `'${recurSpec}': ${funcName} is not a function.`);
       } else {
@@ -489,7 +502,7 @@ const SLStatic = {
           recur.multiplier = 1;
         }
 
-        if (recur.multiplier == 1) {
+        if (recur.multiplier === 1) {
           fragments.push(browser.i18n.getMessage(recur.type));
         } else {
           fragments.push(browser.i18n.getMessage("every_" + recur.type,
@@ -513,18 +526,18 @@ const SLStatic = {
       if (recur.days) {
         let days = [];
         for (const day of recur.days) {
-          days.push(browser.i18n.getMessage("only_on_day" + day));
+          days.push(browser.i18n.getMessage(`only_on_day${day}`));
         }
         days = days.join(", ");
         fragments.push(browser.i18n.getMessage("only_on_days", days));
       }
     }
 
-    if (cancelOnReply != "") {
+    if (cancelOnReply) {
       fragments.push(browser.i18n.getMessage("cancel_on_reply"));
     }
 
-    return fragments.join(", ");
+    return fragments.join(" ");
   },
 
   // dt is a Date object for the scheduled send time we need to adjust.
@@ -543,7 +556,10 @@ const SLStatic = {
   //    than the scheduled day, or if there is none, then the smallest day in
   //    the restriction overall.
   AdjustDateForRestrictions: function(sendAt, start_time, end_time, days) {
-    let dt = new Date(sendAt);
+    let dt = new Date(sendAt.getTime());
+    start_time = start_time && SLStatic.parseDateTime(null,start_time);
+    end_time = end_time && SLStatic.parseDateTime(null,end_time);
+
     if (start_time && SLStatic.compareTimes(dt, '<', start_time)) {
       // If there is a time restriction and the scheduled time is before it,
       // reschedule to the beginning of the time restriction.

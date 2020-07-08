@@ -13,7 +13,14 @@ global.browser = {
   },
   i18n: {
     getMessage(key, ...args) {
-      return key + args.join(" ");
+      const msg = global.localeMessages[key].message;
+      return msg.replace(/\$\d/g, (i) => args[--i[1]] );
     }
   }
 };
+
+const fs = require('fs'),
+      path = require('path'),
+      filePath = path.join(__dirname, '..', '_locales','en','messages.json');;
+const contents = fs.readFileSync(filePath, {encoding: 'utf-8'});
+global.localeMessages = JSON.parse(contents);

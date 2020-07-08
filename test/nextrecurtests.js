@@ -57,15 +57,15 @@ exports.init = function() {
 
   function NextRecurFunctionTest(sendat, recur, now, args, func_name,
                                  func, expected) {
-    window[func_name] = func;
+    global[func_name] = func;
     let result;
     try {
       now = new Date(now);
       sendat = new Date(sendat);
       result = SLStatic.NextRecurDate(sendat, recur, now, args);
-      delete window[func_name];
+      delete global[func_name];
     } catch (ex) {
-      delete window[func_name];
+      delete global[func_name];
       return "Unexpected error: " + ex.message;
     }
     if (DeepCompare(result, expected)) {
@@ -77,14 +77,14 @@ exports.init = function() {
 
   function NextRecurFunctionExceptionTest(sendat, recur, now, func_name,
                                           func, expected) {
-    window[func_name] = func;
+    global[func_name] = func;
     try {
       let result;
       result = SLStatic.NextRecurDate(new Date(sendat), recur, new Date(now));
-      delete window[func_name];
+      delete global[func_name];
       return "Expected exception, got " + result;
     } catch (ex) {
-      delete window[func_name];
+      delete global[func_name];
       if (ex.message.match(expected)) {
         return true;
       } else {
@@ -126,7 +126,7 @@ exports.init = function() {
                    NextRecurExceptionTest, ["10/3/2012", "function foo",
                    "10/3/2012", "is not defined"]);
   SLTests.AddTest("NextRecurDate bad function type", NextRecurExceptionTest,
-                   ["10/3/2012", "function Sendlater3Util", "10/3/2012",
+                   ["10/3/2012", "function SLStatic", "10/3/2012",
                    "is not a function"]);
 
   SLTests.AddTest("NextRecurDate function doesn't return a value",

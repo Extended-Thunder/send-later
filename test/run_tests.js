@@ -6,7 +6,6 @@ global.SLTests = {
   },
 
   RunTests: function(event, names) {
-    global.window = {};
     require('./mock_browser.js');
 
     for (const params of SLTests.UnitTests) {
@@ -45,8 +44,8 @@ const testPaths = [
   "./parserecurtests.js"
 ];
 
-for (const path of testPaths) {
-  const tests = require(path);
+for (let i=0; i<testPaths.length; i++) {
+  const tests = require(testPaths[i]);
   tests.init();
 }
 
