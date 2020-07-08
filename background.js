@@ -66,6 +66,34 @@ const SendLater = {
       return Promise.all(draftSubFolders).then(SLStatic.flatten);
     },
 
+    async markDraftsRead() {
+      try {
+        // same loop pattern as in mainLoop function.
+        browser.accounts.list().then(accounts => {
+          accounts.forEach(acct => {
+              SendLater.getDraftFolders(acct).then(draftFolders => {
+                draftFolders.forEach(async drafts => {
+                  let page = await browser.messages.list(drafts);
+                  do {
+                    page.messages.forEach(async msg => {
+                      const fullMsg = await browser.messages.getFull(msg.id);
+                      if (msg.headers['x-send-later-at']) {
+                        browser.messages.update(msg.id, { read: true });
+                      }
+                    });
+                    if (page.id) {
+                      page = await browser.messages.continueList(page.id);
+                    }
+                  } while (page.id);
+                });
+              });
+          });
+        });
+      } catch (ex) {
+        SLStatic.trace(ex);
+      }
+    },
+
     async scheduleSendLater(tabId, options) {
       SLStatic.info(`Scheduling send later: ${tabId} with options`,options);
       const customHeaders = { 'x-send-later-msg-uuid': SLStatic.newUUID() };
@@ -100,6 +128,11 @@ const SendLater = {
       await Promise.all(inserted);
 
       await browser.SL3U.SaveAsDraft();
+      browser.storage.local.get({"preferences":{}}).then(storage => {
+        if (storage.preferences.markDraftsRead) {
+          SendLater.markDraftsRead();
+        }
+      });
       browser.tabs.remove(tabId);
 
       // Internal lock indicates that this message is prepped and ready to do.
