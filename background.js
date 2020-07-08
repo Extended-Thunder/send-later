@@ -66,7 +66,7 @@ const SendLater = {
       return Promise.all(draftSubFolders).then(SLStatic.flatten);
     },
 
-    async markDraftsRead() {
+    async forAllDrafts(callback) {
       try {
         // same loop pattern as in mainLoop function.
         browser.accounts.list().then(accounts => {
@@ -75,12 +75,7 @@ const SendLater = {
                 draftFolders.forEach(async drafts => {
                   let page = await browser.messages.list(drafts);
                   do {
-                    page.messages.forEach(async msg => {
-                      const fullMsg = await browser.messages.getFull(msg.id);
-                      if (msg.headers['x-send-later-at']) {
-                        browser.messages.update(msg.id, { read: true });
-                      }
-                    });
+                    page.messages.forEach(callback);
                     if (page.id) {
                       page = await browser.messages.continueList(page.id);
                     }
@@ -92,6 +87,15 @@ const SendLater = {
       } catch (ex) {
         SLStatic.trace(ex);
       }
+    },
+
+    async markDraftsRead() {
+      SendLater.forAllDrafts(async msg => {
+        const fullMsg = await browser.messages.getFull(msg.id);
+        if (msg.headers['x-send-later-at']) {
+          browser.messages.update(msg.id, { read: true });
+        }
+      });
     },
 
     async scheduleSendLater(tabId, options) {
@@ -337,41 +341,18 @@ const SendLater = {
     },
 
     mainLoop: function() {
-      try {
-        browser.accounts.list().then(accounts => {
-          accounts.forEach(acct => {
-              // Looping over accounts. Most accounts should only have one Drafts
-              // folder, but to be safe, we'll loop through each of them and check
-              // for messages that are scheduled to be sent.
-              SendLater.getDraftFolders(acct).then(draftFolders => {
-                draftFolders.forEach(async drafts => {
-                  let page = await browser.messages.list(drafts);
-                  do {
-                    page.messages.forEach(msg =>
-                      SendLater.possiblySendMessage(msg.id)
-                    );
-                    if (page.id) {
-                      page = await browser.messages.continueList(page.id);
-                    }
-                  } while (page.id);
-                });
-              });
-          });
-        });
-      } catch (ex) {
-        SLStatic.trace(ex);
-      }
-      browser.storage.local.get("preferences").then(storage => {
-        // Rather than using setInterval for this loop, we'll just start a new
-        // timeout each time it runs to schedule it some delay in the future.
-        // This automatically responds to user changes in 'delay', but has the
-        // disadvantage that shortening `delay` will still take up to the
-        // previous delay time before taking effect.
-        // TODO: Use a persistent reference to the this timeout that can be
-        // scrapped and restarted upon changes in the delay preference.
-        const prefs = storage.preferences || {};
-        const intervalTimeout = prefs['checkTimePref'];
-        const millis = prefs["checkTimePref_isMilliseconds"];
+      SendLater.forAllDrafts(msg => SendLater.possiblySendMessage(msg.id));
+
+      // Rather than using setInterval for this loop, we'll just start a new
+      // timeout each time it runs to schedule it some delay in the future.
+      // This automatically responds to user changes in 'delay', but has the
+      // disadvantage that shortening `delay` will still take up to the
+      // previous delay time before taking effect.
+      // TODO: Use a persistent reference to the this timeout that can be
+      // scrapped and restarted upon changes in the delay preference.
+      browser.storage.local.get({ "preferences": {} }).then(storage => {
+        const intervalTimeout = storage.preferences['checkTimePref'];
+        const millis = storage.preferences["checkTimePref_isMilliseconds"];
         const delay = (millis) ? intervalTimeout : intervalTimeout * 60000;
         SLStatic.debug(`Next main loop iteration in ${delay/1000} seconds.`);
         setTimeout(SendLater.mainLoop, delay);
