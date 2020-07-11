@@ -633,6 +633,13 @@ if (typeof browser === "undefined") {
           return key;
         }
       }
+    },
+    SL3U: {
+      SaveAsDraft: function(){},
+      SendNow: function(batch){},
+      setHeader: function (key,value){},
+      getHeader: function(key){return key;},
+      getLegacyPref: function(name, dtype, def){return null;}
     }
   }
 

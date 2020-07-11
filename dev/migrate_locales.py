@@ -82,7 +82,8 @@ migrations = {
     "showColumnPrefLabel":("showsendlatercolumn.caption", "Show Send Later column"),
     "showHeaderPrefLabel":("showsendlaterheader.caption", "Show Send Later header"),
     "showStatusPrefLabel":("showsendlaterstatus.caption", "Show Send Later in status bar"),
-    "userGuideLabel":("helplink.value", "Website")
+    "userGuideLabel":("helplink.value", "Website"),
+    "errorDateInPast":(None,"Selected date is in the past")
 }
 
 def main(args):

@@ -1,5 +1,5 @@
 // initialize popup window
-(() => {
+const initialize = () => {
   function doSendDelay(delay) {
       return (async (event) => {
           const tabs = await browser.tabs.query({ active:true, currentWindow:true });
@@ -23,57 +23,53 @@
     // Parse send date and time
     const sendAtDate = document.getElementById("send-date");
     const sendAtTime = document.getElementById("send-time");
+    if (!sendAtDate.value || !sendAtTime.value) {
+      return;
+    }
     const sendAt = SLStatic.parseDateTime(sendAtDate.value, sendAtTime.value);
+    if (sendAt.getTime() < Date.now()) {
+      return { err: browser.i18n.getMessage("errorDateInPast") };
+    }
 
     // Parse recurrence spec
     const recur = {
       type: [...document.getElementsByName("recur")].reduce((def,elem) =>
               (elem.checked ? elem.value : def), "none")
     };
+    if (recur.type !== "none") {
+      const cancelonreply = document.getElementById(`recur-cancelonreply`);
+      recur.cancelOnReply = cancelonreply.checked;
+
+      if (recur.type !== "function") {
+        recur.multiplier = document.getElementById(`recur-multiplier`).value;
+      }
+    }
     switch (recur.type) {
       case "none":
         break;
       case "minutely":
-        recur.multiplier =
-          document.getElementById(`recur-${recur.type}-multiplier`).value;
-        recur.cancelOnReply =
-          document.getElementById(`recur-${recur.type}-cancelonreply`).checked;
         break;
       case "daily":
-        recur.multiplier =
-          document.getElementById(`recur-${recur.type}-multiplier`).value;
-        recur.cancelOnReply =
-          document.getElementById(`recur-${recur.type}-cancelonreply`).checked;
         break;
       case "weekly":
-        recur.multiplier =
-          document.getElementById(`recur-${recur.type}-multiplier`).value;
-        recur.cancelOnReply =
-          document.getElementById(`recur-${recur.type}-cancelonreply`).checked;
         break;
       case "monthly":
-        if (document.getElementById("recur-monthly-byweek").checked) {
-          recur.monthly_day = {
-            day: document.getElementById("recur-monthly-byweek-day").value,
-            week: document.getElementById("recur-monthly-byweek-week").value
-          };
-        } else {
-          recur.monthly = document.getElementById("recur-monthly-day").value;
-        }
-        recur.multiplier =
-          document.getElementById(`recur-${recur.type}-multiplier`).value;
-        recur.cancelOnReply =
-          document.getElementById(`recur-${recur.type}-cancelonreply`).checked;
+      // TODO
+        // if (document.getElementById("recur-monthly-byweek").checked) {
+        //   recur.monthly_day = {
+        //     day: document.getElementById("recur-monthly-byweek-day").value,
+        //     week: document.getElementById("recur-monthly-byweek-week").value
+        //   };
+        // } else {
+        //   recur.monthly = document.getElementById("recur-monthly-day").value;
+        // }
         break;
       case "yearly":
-        recur.yearly = {
-          month: document.getElementById("recur-yearly-month").value,
-          day: document.getElementById("recur-yearly-day").value
-        };
-        recur.multiplier =
-          document.getElementById(`recur-${recur.type}-multiplier`).value;
-        recur.cancelOnReply =
-          document.getElementById(`recur-${recur.type}-cancelonreply`).checked;
+      // TODO
+        // recur.yearly = {
+        //   month: document.getElementById("recur-yearly-month").value,
+        //   day: document.getElementById("recur-yearly-day").value
+        // };
         break;
       case "function":
         recur.function = document.getElementById("recurFunction").value;
@@ -88,10 +84,17 @@
     if (document.getElementById("sendbetween").checked) {
       const start = document.getElementById("sendbetween-start");
       const end = document.getElementById("sendbetween-end");
-      recur.between = {
-        start: SLStatic.parseDateTime(null,start.value),
-        end: SLStatic.parseDateTime(null,end.value)
-      };
+      if (start.value && end.value) {
+        const between = {
+          start: SLStatic.parseDateTime(null,start.value),
+          end: SLStatic.parseDateTime(null,end.value)
+        };
+        if (SLStatic.compareTimes(between.start,'>=',between.end)) {
+          return { err: browser.i18n.getMessage("endTimeWarningBody") };
+        } else {
+          recur.between = between;
+        }
+      }
     }
 
     if (document.getElementById("sendon").checked) {
@@ -100,7 +103,7 @@
         e => e.checked);
       recur.days = dayNames.filter((v,i)=>dayLimit[i]);
       if (recur.days.length === 0) {
-        throw "Day filter selected but no days chosen.";
+        return { err: browser.i18n.getMessage("missingDaysWarningTitle") };
       }
     }
 
@@ -111,6 +114,12 @@
   function setScheduleButton(schedule) {
     const scheduleSendButton = document.getElementById("sendAt");
 
+    if (schedule.err) {
+      scheduleSendButton.innerHTML = schedule.err;
+      scheduleSendButton.disabled = true;
+      return false;
+    }
+
     try {
       const sendAt = schedule.sendAt;
       const recurSpec = schedule.recur;
@@ -120,7 +129,6 @@
 
       if (recurSpec.type !== "none" && recurSpec.type !== "function") {
         scheduleText += "<br/>" + browser.i18n.getMessage("recurLabel");
-        console.log(recurSpec);
         scheduleText += " " + browser.i18n.getMessage("every_"+recurSpec.type,
                                                   (recurSpec.multiplier || 1));
         if (recurSpec.between) {
@@ -132,40 +140,50 @@
         }
 
         if (recurSpec.days) {
-          scheduleText += "<br/>on "
+          // TODO: internationalize this
+          let onDays;
           if (recurSpec.days.length === 1) {
-            scheduleText += recurSpec.days[0];
+            onDays = recurSpec.days[0];
           } else if (recurSpec.days.length === 2) {
-            scheduleText += recurSpec.days.join(" and ");
+            onDays = recurSpec.days.join(" and ");
           } else {
             const ndays = recurSpec.days.length;
             recurSpec.days[ndays-1] = `and ${recurSpec.days[ndays-1]}`;
-            scheduleText += recurSpec.days.join(", ");
+            onDays = recurSpec.days.join(", ");
           }
+          scheduleText += "<br/>"+browser.i18n.getMessage("only_on_days",onDays);
         }
       }
 
       scheduleSendButton.innerHTML = scheduleText;
       scheduleSendButton.disabled = false;
-    } catch (e) {
-      SLStatic.log(e);
-      scheduleSendButton.textContent = browser.i18n.getMessage("entervalid");
-      scheduleSendButton.disabled = true;
-    }
+      return true;
+    } catch (e) { SLStatic.log(e) }
+
+    scheduleSendButton.textContent = browser.i18n.getMessage("entervalid");
+    scheduleSendButton.disabled = true;
+    return false;
   }
 
   const setState = function(enabled) {
     return (async element => {
         try{
+          if (["SPAN","DIV","LABEL"].includes(element.tagName)) {
+            element.style.color = enabled ? "black" : "#888888";
+          }
           element.disabled = !enabled;
         } catch (ex) {
-          SLStatic.err(ex);
+          SLStatic.error(ex);
         }
         const enabler = setState(enabled);
         [...element.childNodes].forEach(enabler);
       });
   }
 
+  const functionSelect = document.getElementById("recurFunction");
+  setState(functionSelect.length > 0)(
+    document.getElementById("function-recur-radio")
+  );
   setState(document.getElementById("sendon").checked)(
     document.getElementById("onlyOnDiv")
   );
@@ -184,32 +202,59 @@
     if (element.type !== "button") {
       element.addEventListener("change", async evt => {
         const schedule = parseInputs();
-        setScheduleButton(schedule);
+        if (schedule) {
+          setScheduleButton(schedule);
+        }
       });
     }
   });
   [...document.getElementsByName("recur")].forEach(element =>
     element.addEventListener("change", async evt => {
       const specs = ["minutely","daily","weekly","monthly","yearly","function"];
-      for (const spec of specs) {
-        const specDiv = document.getElementById(`${spec}-recurrence-spec`);
-        specDiv.style.display = document.getElementById(spec).checked;
+      const recurrence = specs.find(s => document.getElementById(s).checked);
+      const specDiv = document.getElementById('recurrence-spec');
+      if (recurrence) {
+        const timeArgs = document.getElementById('recur-time-args-div');
+        const funcArgs = document.getElementById('recur-function-args-div');
+
+        timeArgs.style.display = (recurrence === "function") ? "none" : "block";
+        funcArgs.style.display = (recurrence === "function") ? "block" : "none";
+
+        const plural = document.getElementById("recurperiod_plural");
+        plural.textContent = browser.i18n.getMessage(`plural_${recurrence}`);
+
+        specDiv.style.display = "block";
+      } else {
+        specDiv.style.display = "none";
       }
     }));
+
+  ["save-defaults", "clear-defaults"].forEach(id =>
+    document.getElementById(id).addEventListener("click",
+      async evt => {
+        // Logical nand
+        const clear = document.getElementById("clear-defaults");
+        const save = document.getElementById("save-defaults");
+        clear.checked &= (evt.target.id === 'clear-defaults') || !save.checked;
+        save.checked &= (evt.target.id === 'save-defaults') || !clear.checked;
+      }));
 
   document.getElementById("sendAt").addEventListener("click", async evt => {
     const tabs = await browser.tabs.query({ active:true, currentWindow:true });
     const schedule = parseInputs();
-    const message = {
-      tabId: tabs[0].id,
-      action: "doSendLater",
-      sendAt: schedule.sendAt,
-      recurSpec: SLStatic.unparseRecurSpec(schedule.recur),
-      args: schedule.recur.args,
-      cancelOnReply: schedule.recur.cancelOnReply
-    };
-    browser.runtime.sendMessage(message);
-    setTimeout((() => window.close()), 150);
+    if (schedule && !schedule.err) {
+      const message = {
+        tabId: tabs[0].id,
+        action: "doSendLater",
+        sendAt: schedule.sendAt,
+        recurSpec: SLStatic.unparseRecurSpec(schedule.recur),
+        args: schedule.recur.args,
+        cancelOnReply: schedule.recur.cancelOnReply
+      };
+      SLStatic.debug(message);
+      browser.runtime.sendMessage(message);
+      setTimeout((() => window.close()), 150);
+    }
   });
 
   document.getElementById("sendNow").addEventListener("click", doSendDelay(0));
@@ -221,4 +266,21 @@
     browser.runtime.sendMessage({ action: "cancel" });
     setTimeout((() => window.close()), 150);
   });
-})();
+
+  document.getElementById("send-date").valueAsDate = new Date();
+  document.getElementById("send-time").value = SLStatic.formatTime(
+                                                  new Date(Date.now()+600000));
+
+  setScheduleButton(parseInputs());
+};
+
+// For testing purposes, because the browser mock script needs to
+// asynchronously load translations.
+function waitAndInit() {
+  if (browser.i18n.getMessage("delay120Label") === "delay120Label") {
+    setTimeout(waitAndInit, 10);
+  } else {
+    initialize();
+  }
+}
+waitAndInit()

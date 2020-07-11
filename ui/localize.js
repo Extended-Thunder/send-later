@@ -8,7 +8,7 @@ const localizer = {
         if (e.tagName === "INPUT") {
           e.value = msg;
         } else {
-          e.textContent = msg;
+          e.innerHTML = msg;
         }
       } catch (err) {
         console.error(err);
@@ -17,11 +17,21 @@ const localizer = {
   }
 };
 
+
+
 if (typeof browser === "undefined" || typeof browserMocking === "boolean") {
   // For testing purposes, because the browser mock script needs to
   // asynchronously load translations.
-  window.addEventListener("load", () =>
-    setTimeout(localizer.translateDocument,150), false);
+  function waitAndTranslate() {
+    if (browser.i18n.getMessage("delay120Label") === "delay120Label") {
+      setTimeout(waitAndTranslate, 10);
+    } else {
+      localizer.translateDocument();
+    }
+  }
+  window.addEventListener("load", waitAndTranslate, false);
+  // window.addEventListener("load", () =>
+  //   setTimeout(localizer.translateDocument,150), false);
 } else {
   window.addEventListener("load", localizer.translateDocument, false);
 }

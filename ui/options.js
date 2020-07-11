@@ -4,7 +4,7 @@ const SLOptions = {
   // localization strings.
   inputIds: ["checkTimePref", "sendDoesDelay", "sendDelay", "sendDoesSL",
             "altBinding", "markDraftsRead", "showColumn", "showHeader",
-            "showStatus", "sendUnsentMsgs", "blockLateMessages", "lateGracePeriod",
+            "showStatus", "blockLateMessages", "lateGracePeriod",
             "enforceTimeRestrictions", "quickOptions1Label", "quickOptions1Value",
             "quickOptions2Label", "quickOptions2Value", "quickOptions3Label",
             "quickOptions3Value", "logDumpLevel", "logConsoleLevel"],
@@ -43,7 +43,6 @@ const SLOptions = {
     browser.storage.local.get("preferences").then( (storage) => {
       const prefs = storage.preferences || {};
       prefs[key] = value;
-      browser.SL3U.updatePrefs(JSON.stringify(prefs));
       browser.storage.local.set({ preferences: prefs });
     });
   },
@@ -52,7 +51,7 @@ const SLOptions = {
       // Appends a green checkmark as element's last sibling. Disappears after a
       // timeout (1.5 sec). If already displayed, then restart timeout.
       const checkmark = document.createElement("span");
-      checkmark.textContent = "&#x2714;";
+      checkmark.innerHTML = "&#x2714;";
       checkmark.style.color = color;
       checkmark.className = "success_icon";
 
@@ -153,6 +152,7 @@ const SLOptions = {
   async attachListeners() {
     // Attach listeners for all input fields
     for (const id of SLOptions.inputIds) {
+      SLStatic.debug(`Attaching listener to element id "${id}"`);
       const el = document.getElementById(id);
       el.addEventListener("change", SLOptions.updatePrefListener);
     }

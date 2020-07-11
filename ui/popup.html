@@ -44,60 +44,38 @@
             <span class="localized __MSG_recurAnnuallyLabel__">Annually</span>
           </label>
           <br/>
-          <label>
+          <label id="function-recur-radio">
             <input type="radio" id="function" name="recur" value="function"/>
             <span class="localized __MSG_recurFunctionLabel__">Function</span>
             <select id="recurFunction">
             </select>
           </label>
-        </div>
-        <div id="minutely-recurrence-spec" style="display:none;">
-          <!-- Recurrence specifications. -->
-          <input type="checkbox" id="recur-minutely-multiply"/>
-          <input type="number" id="recur-minutely-multiplier"/>
-          <input type="number" id="recur-minutely-cancelonreply"/>
-        </div>
+          <br/>
 
-        <div id="daily-recurrence-spec" style="display:none;">
-          <!-- Recurrence specifications. -->
-          <input type="checkbox" id="recur-daily-multiply"/>
-          <input type="number" id="recur-daily-multiplier"/>
-          <input type="number" id="recur-daily-cancelonreply"/>
-        </div>
-
-        <div id="weekly-recurrence-spec" style="display:none;">
-          <!-- Recurrence specifications. -->
-          <input type="checkbox" id="recur-weekly-multiply"/>
-          <input type="number" id="recur-weekly-multiplier"/>
-          <input type="number" id="recur-weekly-cancelonreply"/>
-        </div>
-
-        <div id="monthly-recurrence-spec" style="display:none;">
-          <!-- Recurrence specifications. -->
-          <label style="margin-right:0.5em;">
-            <input type="checkbox" id="recur-monthly-byweek"/>
-            <span class="">Week of the month</span>
-          </label>
-          <input type="number" id="recur-monthly-byweek-day"/>
-          <input type="number" id="recur-monthly-byweek-week"/>
-          <input type="number" id="recur-monthly-day"/>
-          <input type="checkbox" id="recur-monthly-multiply"/>
-          <input type="number" id="recur-monthly-multiplier"/>
-          <input type="number" id="recur-monthly-cancelonreply"/>
-        </div>
-
-        <div id="yearly-recurrence-spec" style="display:none;">
-          <!-- Recurrence specifications. -->
-          <input type="number" id="recur-yearly-month"/>
-          <input type="number" id="recur-yearly-day"/>
-          <input type="checkbox" id="recur-yearly-multiply"/>
-          <input type="number" id="recur-yearly-multiplier"/>
-          <input type="number" id="recur-yearly-cancelonreply"/>
-        </div>
-
-        <div id="function-recurrence-spec" style="display:none;">
-          <!-- Recurrence specifications. -->
-          <input type="text" id="recur-function-args"/>
+          <div id="recurrence-spec" style="display:none;margin-top:0.5em;">
+            <div id="recur-time-args-div">
+              <input type="checkbox" id="recur-multiply"/>
+              <span class="localized __MSG_sendlater.prompt.every.label__">Every</span>
+              <input type="number" id="recur-multiplier" value="2" min="0"/>
+              <span id="recurperiod_plural"></span>
+            </div>
+            <div id="recur-function-args-div">
+              <label>
+                <span class="localized __MSG_sendlater.prompt.functionargs.label__">
+                  Function arguments
+                </span>
+                <input type="text" id="recur-function-args"/>
+              </label>
+            </div>
+            <div>
+              <label>
+                <input type="checkbox" id="recur-cancelonreply"/>
+                <span class="localized __MSG_cancel_on_reply__">
+                  Cancel on reply
+                </span>
+              </label>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -111,9 +89,9 @@
           </label>
         </div>
         <div style="display: table-cell;" id="betweenDiv">
-          <input id="sendbetween-start" type="time"/>
+          <input id="sendbetween-start" type="time" value="09:00"/>
           -
-          <input id="sendbetween-end" type="time"/>
+          <input id="sendbetween-end" type="time" value="17:00"/>
         </div>
       </div>
     </section>
@@ -160,8 +138,8 @@
       </div>
     </section>
 
-    <!--
-    <section style="display: block; padding: 10px auto;">
+    <!-- Not yet implemented -->
+    <section style="display: none; padding: 10px auto;">
       <label>
         <input type="checkbox" id="save-defaults"/>
         <span class="localized __MSG_saveDefaultsLabel__">
@@ -172,20 +150,31 @@
         <span class="localized __MSG_clearDefaultsLabel__">Clear defaults</span>
       </label>
     </section>
-  -->
 
     <section style="display:block;">
-      <button style="width:100%;" id="sendAt"
-        class="localized __MSG_entervalid__" disabled>
-        Enter a date above
+      <button style="width:100%; margin:0;" id="sendAt" disabled>
+        Enter a valid date above
       </button>
       <br/>
-      <input type="button" value="15 minutes from now" id="delay15"
-        class="delayButton localized __MSG_delay15Label__" />
-      <input type="button" value="30 minutes from now" id="delay30"
-        class="delayButton localized __MSG_delay30Label__" />
-      <input type="button" value="2 hours from now" id="delay120"
-        class="delayButton localized __MSG_delay120Label__" />
+      <table style="width:100%">
+        <tr>
+          <td>
+          <input type="button" value="15 minutes from now" id="delay15"
+            style="width:100%;"
+            class="delayButton localized __MSG_delay15Label__" />
+          </td>
+          <td>
+          <input type="button" value="30 minutes from now" id="delay30"
+            style="margin:2.5%;width:95%;"
+            class="delayButton localized __MSG_delay30Label__" />
+          </td>
+          <td>
+          <input type="button" value="2 hours from now" id="delay120"
+            style="width:100%;"
+            class="delayButton localized __MSG_delay120Label__" />
+          </td>
+        </tr>
+      </table>
     </section>
 
     <section style="display:block;">
