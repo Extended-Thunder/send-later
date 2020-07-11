@@ -31,6 +31,8 @@
               (elem.checked ? elem.value : def), "none")
     };
     switch (recur.type) {
+      case "none":
+        break;
       case "minutely":
         recur.multiplier =
           document.getElementById(`recur-${recur.type}-multiplier`).value;
@@ -118,21 +120,32 @@
 
       if (recurSpec.type !== "none" && recurSpec.type !== "function") {
         scheduleText += "<br/>" + browser.i18n.getMessage("recurLabel");
+        console.log(recurSpec);
         scheduleText += " " + browser.i18n.getMessage("every_"+recurSpec.type,
-                                                      recurSpec.multiplier);
+                                                  (recurSpec.multiplier || 1));
         if (recurSpec.between) {
           const start = SLStatic.formatTime(recurSpec.between.start);
           const end = SLStatic.formatTime(recurSpec.between.end);
-          scheduleText += "<br/>"
+          //scheduleText += "<br/>"
+          scheduleText += " "
           scheduleText += browser.i18n.getMessage("betw_times", start, end);
         }
 
         if (recurSpec.days) {
-          scheduleText += "<br/>on " + recurSpec.days.join(", ")
+          scheduleText += "<br/>on "
+          if (recurSpec.days.length === 1) {
+            scheduleText += recurSpec.days[0];
+          } else if (recurSpec.days.length === 2) {
+            scheduleText += recurSpec.days.join(" and ");
+          } else {
+            const ndays = recurSpec.days.length;
+            recurSpec.days[ndays-1] = `and ${recurSpec.days[ndays-1]}`;
+            scheduleText += recurSpec.days.join(", ");
+          }
         }
       }
 
-      scheduleSendButton.textContent = scheduleText;
+      scheduleSendButton.innerHTML = scheduleText;
       scheduleSendButton.disabled = false;
     } catch (e) {
       SLStatic.log(e);

@@ -6,8 +6,6 @@ global.SLTests = {
   },
 
   RunTests: function(event, names) {
-    require('./mock_browser.js');
-
     for (const params of SLTests.UnitTests) {
       const name = params[0];
       const func = params[1];

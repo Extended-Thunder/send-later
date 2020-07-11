@@ -3,7 +3,9 @@ const SLStatic = {
 
   async logger(msg, level, stream) {
     const levels = ["all","trace","debug","info","warn","error","fatal"];
-    const { prefs } = await browser.storage.local.get({"preferences": {}});
+    const prefs = await browser.storage.local.get("preferences").then(s=>
+      (s.preferences||{})
+    );
     if (levels.indexOf(level) >= levels.indexOf(prefs.logConsoleLevel)) {
       const output = stream || console.log;
       output(`${level.toUpperCase()} [SendLater]:`, ...msg);
@@ -393,10 +395,11 @@ const SLStatic = {
     next = new Date(next.getTime());
     const recur = SLStatic.ParseRecurSpec(recurSpec);
 
-    if (recur.type == "none")
+    if (recur.type === "none") {
       return null;
+    }
 
-    if (recur.type == "function") {
+    if (recur.type === "function") {
       if (recur.finished) {
         return null;
       }
@@ -589,7 +592,65 @@ const SLStatic = {
   }
 }
 
-if (typeof window === 'undefined') {
-  // Make this file node.js-aware for browserless unit testing
-  global.SLStatic = SLStatic;
+/*
+Unit tests and functional tests require a mocked version of the browser object.
+Defining it inside this file makes it a little less awkward to test these files
+in both node.js and browser environments without a lot of awkward redundency.
+*/
+if (typeof browser === "undefined") {
+  var browserMocking = true;
+
+  var browser = {
+    storage: {
+      local: {
+        async get(key) {
+          const ret = {};
+          if (typeof key === "string") {
+            ret[key] = { };
+          } else {
+            ret[Object.keys(key)[0]] = { };
+          }
+          return ret;
+        },
+        async set (item) {
+          return item;
+        }
+      }
+    },
+    i18n: {
+      getMessage(key, ...args) {
+        try {
+          let msg;
+          if (typeof global === "undefined") {
+            // browser environment
+            msg = localeMessages[key].message;
+          } else {
+            // node.js environment
+            msg = global.localeMessages[key].message;
+          }
+          return msg.replace(/\$\d/g, (i) => args[--i[1]] );
+        } catch (e) {
+          return key;
+        }
+      }
+    }
+  }
+
+  if (typeof window === 'undefined') {
+    // Make this file node.js-aware for browserless unit testing
+    const fs = require('fs'),
+          path = require('path'),
+          filePath = path.join(__dirname, '..', '_locales','en','messages.json');;
+    const contents = fs.readFileSync(filePath, {encoding: 'utf-8'});
+    global.localeMessages = JSON.parse(contents);
+    global.SLStatic = SLStatic;
+    global.browser = browser;
+  } else {
+    // We're in a non-addon browser environment (functional tests)
+    fetch("/_locales/en/messages.json").then(
+      response => response.json()
+    ).then(locale => {
+      localeMessages = locale;
+    });
+  }
 }

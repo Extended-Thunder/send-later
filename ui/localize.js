@@ -17,4 +17,11 @@ const localizer = {
   }
 };
 
-window.addEventListener("load", localizer.translateDocument(), false);
+if (typeof browser === "undefined" || typeof browserMocking === "boolean") {
+  // For testing purposes, because the browser mock script needs to
+  // asynchronously load translations.
+  window.addEventListener("load", () =>
+    setTimeout(localizer.translateDocument,150), false);
+} else {
+  window.addEventListener("load", localizer.translateDocument, false);
+}

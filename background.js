@@ -270,15 +270,15 @@ const SendLater = {
       const nextSend = new Date(msgSendAt);
       const dueForSend = Date.now() >= nextSend.getTime();
       if (dueForSend) {
-        const { prefs } = await browser.storage.local.get({"preferences":{}});
+        const { preferences } = await browser.storage.local.get({"preferences":{}});
 
-        if (prefs.enforceTimeRestrictions) {
+        if (preferences.enforceTimeRestrictions) {
           const now = Date.now();
 
           // Respect late message blocker
-          if (prefs.blockLateMessages) {
+          if (preferences.blockLateMessages) {
             const lateness = (now - nextSend.getTime()) / 60000;
-            if (lateness > prefs.lateGracePeriod) {
+            if (lateness > preferences.lateGracePeriod) {
               SLStatic.info(`Grace period exceeded for message ${id}`);
               return;
             }
