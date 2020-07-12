@@ -5,22 +5,27 @@ body {
   vertical-align: middle;
 }
 
-#send-now {
+#sendNow {
   float: left;
   margin-left: 2%;
   width: 45%;
-  height: 1.75em;
+  padding:0.25em;
 }
 
 #cancel {
   float: right;
   margin-right: 2%;
   width: 45%;
-  height: 1.75em;
+  padding:0.25em;
 }
 
 input[type=date], input[type=time] {
   height: 1.75em;
+  padding-left:0.5em;
+}
+
+button, input[type=button] {
+  padding:0.2em;
 }
 
 section {

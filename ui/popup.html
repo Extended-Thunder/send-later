@@ -8,7 +8,8 @@
 
   <body>
     <section style="display:block;">
-      <span class="localized __MSG_sendAtLabel__">Send at</span>:
+      <span style="margin-right:0.5em;"
+            class="localized __MSG_sendAtLabel__">Send at</span>
       <input id="send-date" type="date"/>
       <input id="send-time" type="time"/>
     </section>
@@ -16,7 +17,8 @@
     <section style="display:block;">
       <div style="display: table-row;">
         <div style="display: table-cell;">
-          <span class="localized __MSG_recurLabel__">Recur</span>:
+          <span style="margin-right:0.5em;"
+              class="localized __MSG_recurLabel__">Recur</span>
         </div>
         <div style="display: table-cell;">
           <label>
@@ -54,10 +56,33 @@
 
           <div id="recurrence-spec" style="display:none;margin-top:0.5em;">
             <div id="recur-time-args-div">
-              <input type="checkbox" id="recur-multiply"/>
+              <input type="radio" name="monthly-recur-type" id='recur-multiply'
+                    style="margin-left:1em;" value='recur-multiply' checked/>
               <span class="localized __MSG_sendlater.prompt.every.label__">Every</span>
-              <input type="number" id="recur-multiplier" value="2" min="0"/>
+              <input type="number" id="recur-multiplier" value="1" min="0" style="width:3em;"/>
               <span id="recurperiod_plural"></span>
+            </div>
+            <div id="monthly-options-div">
+              <input type="radio" name="monthly-recur-type" style="margin-left:1em;"
+                  id='recur-monthly-byweek' value='recur-byweek'/>
+              <span class="localized __MSG_sendlater.prompt.every.label__">Every</span>
+              <select id="recur-monthly-byweek-week">
+                <option value="1" class="option-label localized __MSG_ord1__">1st</option>
+                <option value="2" class="option-label localized __MSG_ord2__">2nd</option>
+                <option value="3" class="option-label localized __MSG_ord3__">3rd</option>
+                <option value="4" class="option-label localized __MSG_ord4__">4th</option>
+                <option value="5" class="option-label localized __MSG_ord5__">5th</option>
+              </select>
+              <select id="recur-monthly-byweek-day">
+                <option value="0" class="option-label localized __MSG_everymonthly_day0__">Sunday</option>
+                <option value="1" class="option-label localized __MSG_everymonthly_day1__">Monday</option>
+                <option value="2" class="option-label localized __MSG_everymonthly_day2__">Tuesday</option>
+                <option value="3" class="option-label localized __MSG_everymonthly_day3__">Wednesday</option>
+                <option value="4" class="option-label localized __MSG_everymonthly_day4__">Thursday</option>
+                <option value="5" class="option-label localized __MSG_everymonthly_day5__">Friday</option>
+                <option value="6" class="option-label localized __MSG_everymonthly_day6__">Saturday</option>
+              </select>
+              <span class="localized __MSG_everymonthly__">of the month</span>
             </div>
             <div id="recur-function-args-div">
               <label>
@@ -80,7 +105,8 @@
       </div>
     </section>
 
-    <section style="display:block;">
+    <div id="recur-limits" style="display:none;">
+    <section style="display:block;" id="section-between">
       <div style="display: table-row;">
         <div style="display: table-cell;white-space:nowrap;">
           <label style="margin-right:0.5em;">
@@ -137,6 +163,7 @@
         </div>
       </div>
     </section>
+    </div>
 
     <!-- Not yet implemented -->
     <section style="display: none; padding: 10px auto;">
@@ -186,6 +213,7 @@
 
     <div style="height:1em;"></div>
 
+    <script src="/utils/moment.js.min"></script>
     <script src="/utils/static.js"></script>
     <script src="/ui/popup.js"></script>
     <script src="/ui/localize.js"></script>

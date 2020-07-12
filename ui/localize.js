@@ -4,7 +4,7 @@ const localizer = {
     elements.forEach(async e => {
       try {
         const key = e.className.match(/__MSG_(.+)__/)[1];
-        const msg = browser.i18n.getMessage(key);
+        const msg = browser.i18n.getMessage(key,"","","","","","","","","");
         if (e.tagName === "INPUT") {
           e.value = msg;
         } else {
@@ -16,8 +16,6 @@ const localizer = {
     });
   }
 };
-
-
 
 if (typeof browser === "undefined" || typeof browserMocking === "boolean") {
   // For testing purposes, because the browser mock script needs to

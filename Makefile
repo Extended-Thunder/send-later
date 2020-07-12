@@ -5,6 +5,10 @@ _locales: dev/migrate_locales.py
 	./dev/migrate_locales.py chrome/locale
 	rm -rf chrome
 
+utils/moment.js.min:
+	curl -sL https://momentjs.com/downloads/moment-with-locales.min.js | \
+		sed -e 's/.*sourceMappingURL.*//' > "$@"
+
 send_later.xpi: $(shell find $(shell cat dev/include-manifest) 2>/dev/null)
 	zip -q -r "$@" . -i@dev/include-manifest
 
