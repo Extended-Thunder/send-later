@@ -2,20 +2,22 @@
 const initialize = () => {
   function doSendDelay(delay) {
       return (async (event) => {
-          const tabs = await browser.tabs.query({ active:true, currentWindow:true });
-          const msg = { tabId: tabs[0].id };
-          if (delay === 0) {
-              msg.action = "doSendNow";
-              msg.sendTime = null;
-          } else {
-              msg.action = "doSendLater";
-              msg.sendTime = new Date();
-              msg.sendTime.setTime(msg.sendTime.getTime() + delay * 60 * 1000);
-          }
+        SLStatic.debug(`Scheduling message in ${delay} minutes`);
 
-          browser.runtime.sendMessage(msg);
+        const tabs = await browser.tabs.query({ active:true, currentWindow:true });
+        const msg = { tabId: tabs[0].id };
+        if (delay === 0) {
+          msg.action = "doSendNow";
+          msg.sendTime = null;
+        } else {
+          msg.action = "doSendLater";
+          msg.sendTime = new Date();
+          msg.sendTime.setTime(msg.sendTime.getTime() + delay * 60 * 1000);
+        }
 
-          setTimeout((() => window.close()), 150);
+        browser.runtime.sendMessage(msg);
+
+        setTimeout((() => window.close()), 150);
       });
   }
 
@@ -27,7 +29,7 @@ const initialize = () => {
       return;
     }
     const sendAt = SLStatic.parseDateTime(sendAtDate.value, sendAtTime.value);
-    if (sendAt.getTime() < Date.now()) {
+    if (SLStatic.compareTimes(sendAt, '<', new Date(), true)) {
       return { err: browser.i18n.getMessage("errorDateInPast") };
     }
 
@@ -88,7 +90,9 @@ const initialize = () => {
           end: SLStatic.parseDateTime(null,end.value)
         };
         if (SLStatic.compareTimes(between.start,'>=',between.end)) {
-          return { err: browser.i18n.getMessage("endTimeWarningBody") };
+          return { err: ("<b>" + browser.i18n.getMessage("endTimeWarningTitle")
+                        + ":</b> "
+                        + browser.i18n.getMessage("endTimeWarningBody")) };
         } else {
           recur.between = between;
         }
@@ -101,7 +105,9 @@ const initialize = () => {
         e => e.checked);
       recur.days = dayNames.filter((v,i)=>dayLimit[i]);
       if (recur.days.length === 0) {
-        return { err: browser.i18n.getMessage("missingDaysWarningTitle") };
+        return { err: ("<b>" + browser.i18n.getMessage("missingDaysWarningTitle")
+                      + ":</b> "
+                      + browser.i18n.getMessage("missingDaysWarningBody")) };
       }
     }
 
@@ -127,9 +133,18 @@ const initialize = () => {
       //let scheduleText = moment(sendAt).calendar();
 
       if (recurSpec.type !== "none" && recurSpec.type !== "function") {
-        scheduleText += "<br/>" + browser.i18n.getMessage("recurLabel");
-        scheduleText += " " + browser.i18n.getMessage("every_"+recurSpec.type,
+        scheduleText += "<br/>" + browser.i18n.getMessage("recurLabel") + " ";
+        if (recurSpec.monthly_day) {
+          const ordDay = browser.i18n.getMessage("ord" + recurSpec.monthly_day.week);
+          const dayName = SLStatic.getWkdayName(recurSpec.monthly_day.day, "long");
+          scheduleText += browser.i18n.getMessage(
+            "sendlater.prompt.every.label").toLowerCase() + " " +
+            browser.i18n.getMessage("everymonthly_short", ordDay, dayName);
+        } else {
+          scheduleText += browser.i18n.getMessage("every_"+recurSpec.type,
                                                   (recurSpec.multiplier || 1));
+        }
+
         if (recurSpec.between) {
           const start = SLStatic.formatTime(recurSpec.between.start);
           const end = SLStatic.formatTime(recurSpec.between.end);
@@ -152,6 +167,10 @@ const initialize = () => {
           }
           scheduleText += "<br/>"+browser.i18n.getMessage("only_on_days",onDays);
         }
+      }
+
+      if (recurSpec.cancelOnReply) {
+        scheduleText += "<br/>" + browser.i18n.getMessage("cancel_on_reply");
       }
 
       scheduleSendButton.innerHTML = scheduleText;
@@ -353,15 +372,30 @@ const initialize = () => {
       }
     });
 
-    document.getElementById("sendNow").addEventListener("click", doSendDelay(0));
-    document.getElementById("delay15").addEventListener("click", doSendDelay(15));
-    document.getElementById("delay30").addEventListener("click", doSendDelay(30));
-    document.getElementById("delay120").addEventListener("click", doSendDelay(120));
+    browser.storage.local.get({ "preferences": {} }).then(storage => {
+      const quick1val = storage.preferences.quickOptions1Value || 15;
+      const quick2val = storage.preferences.quickOptions2Value || 30;
+      const quick3val = storage.preferences.quickOptions3Value || 120;
 
-    document.getElementById("cancel").addEventListener("click", async (event) => {
-      browser.runtime.sendMessage({ action: "cancel" });
-      setTimeout((() => window.close()), 150);
+      const quick1el = document.getElementById("quick-delay-1");
+      const quick2el = document.getElementById("quick-delay-2");
+      const quick3el = document.getElementById("quick-delay-3");
+
+      quick1el.value = moment(new Date(Date.now()+60000*quick1val)).fromNow();
+      quick2el.value = moment(new Date(Date.now()+60000*quick2val)).fromNow();
+      quick3el.value = moment(new Date(Date.now()+60000*quick3val)).fromNow();
+
+      quick1el.addEventListener("click", doSendDelay(quick1val));
+      quick2el.addEventListener("click", doSendDelay(quick2val));
+      quick3el.addEventListener("click", doSendDelay(quick3val));
     });
+
+    document.getElementById("sendNow").addEventListener("click", doSendDelay(0));
+
+    // document.getElementById("cancel").addEventListener("click", async (event) => {
+    //   browser.runtime.sendMessage({ action: "cancel" });
+    //   setTimeout((() => window.close()), 150);
+    // });
   }
   attachListeners();
   applyDefaults();
@@ -370,7 +404,7 @@ const initialize = () => {
 // For testing purposes, because the browser mock script needs to
 // asynchronously load translations.
 function waitAndInit() {
-  if (browser.i18n.getMessage("delay120Label") === "delay120Label") {
+  if (browser.i18n.getMessage("recurMonthlyLabel") === "recurMonthlyLabel") {
     setTimeout(waitAndInit, 10);
   } else {
     initialize();

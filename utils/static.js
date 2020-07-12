@@ -42,7 +42,7 @@ const SLStatic = {
     return fm.format(thisdate || (new Date()));
   },
 
-  compareTimes: function(a,comparison,b) {
+  compareTimes: function(a,comparison,b,ignoreSec) {
     // Compare time of day, ignoring date.
     const aHrs = a.getHours(), aMins = a.getMinutes();
     const bHrs = b.getHours(), bMins = b.getMinutes();
@@ -50,19 +50,19 @@ const SLStatic = {
     switch (comparison) {
       case "<":
         return ((aHrs<bHrs) || (aHrs === bHrs && aMins<bMins) ||
-                (aHrs === bHrs && aMins === bMins && aSec < bSec));
+                (!ignoreSec && aHrs === bHrs && aMins === bMins && aSec < bSec));
       case ">":
         return ((aHrs>bHrs) || (aHrs === bHrs && aMins>bMins) ||
-                (aHrs === bHrs && aMins === bMins && aSec > bSec));
+                (!ignoreSec && aHrs === bHrs && aMins === bMins && aSec > bSec));
       case "<=":
         return ((aHrs<bHrs) || (aHrs === bHrs && aMins<=bMins) ||
-                (aHrs === bHrs && aMins === bMins && aSec <= bSec));
+                (!ignoreSec && aHrs === bHrs && aMins === bMins && aSec <= bSec));
       case ">=":
         return ((aHrs>bHrs) || (aHrs === bHrs && aMins>=bMins) ||
-                (aHrs === bHrs && aMins === bMins && aSec >= bSec));
+                (!ignoreSec && aHrs === bHrs && aMins === bMins && aSec >= bSec));
       case "==":
       case "===":
-        return (aHrs === bHrs && aMins === bMins && aSec === bSec);
+        return (aHrs === bHrs && aMins === bMins && (ignoreSec || aSec === bSec));
       case "!=":
       case "!==":
         return !SLStatic.compareTimes(a,"===",b);

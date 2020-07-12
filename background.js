@@ -362,36 +362,52 @@ const SendLater = {
 
 // Intercept sent messages. Decide whether to handle them or just pass them on.
 browser.compose.onBeforeSend.addListener((tab) => {
-  if (SendLater._PromiseMap.has(tab.id)) {
-    // We already have a listener for this tab open.
-    return;
-  }
-
-  SLStatic.log("User requested send. Awaiting UI selections.");
-
-  setTimeout(() => browser.storage.local.get("preferences").then(storage => {
-    const prefs = storage.preferences || {};
-    const resolver = (SendLater._PromiseMap.get(tab.id)) || (()=>{});
-
-    if (prefs["sendDoesSL"]) {
+  return browser.storage.local.get({ preferences: {} }).then(storage => {
+    if (storage.preferences["sendDoesSL"]) {
       SLStatic.debug("Intercepting send operation. Awaiting user input.");
       browser.composeAction.openPopup();
-      // No need to resolve just yet. User will do that via UI listener.
-    } else if (prefs["sendDoesDelay"]) {
-      const sendDelay = prefs["sendDelay"];
+      return { cancel: true };
+    } else if (storage.preferences["sendDoesDelay"]) {
+      const sendDelay = storage.preferences["sendDelay"];
       SLStatic.debug(`Scheduling SendLater ${sendDelay} minutes from now.`);
       SendLater.scheduleSendLater(tab.id, { delay: sendDelay });
-      SendLater._PromiseMap.delete(tab.id);
-      resolver({ cancel: true });
+      return { cancel: true };
     } else {
-      // No need to intercept sending
-      SLStatic.debug("Resolving onBeforeSend intercept.");
-      SendLater._PromiseMap.delete(tab.id);
-      resolver({ cancel: false });
+      SLStatic.debug("Not blocking send operation.");
+      return { cancel: false };
     }
-  }), 0);
+  });
 
-  return new Promise(resolve => SendLater._PromiseMap.set(tab.id, resolve));
+  // if (SendLater._PromiseMap.has(tab.id)) {
+  //   // We already have a listener for this tab open.
+  //   return;
+  // }
+  //
+  // SLStatic.log("User requested send. Awaiting UI selections.");
+  //
+  // setTimeout(() => browser.storage.local.get("preferences").then(storage => {
+  //   const prefs = storage.preferences || {};
+  //   const resolver = (SendLater._PromiseMap.get(tab.id)) || (()=>{});
+  //
+  //   if (prefs["sendDoesSL"]) {
+  //     SLStatic.debug("Intercepting send operation. Awaiting user input.");
+  //     browser.composeAction.openPopup();
+  //     resolver({ cancel: true });
+  //   } else if (prefs["sendDoesDelay"]) {
+  //     const sendDelay = prefs["sendDelay"];
+  //     SLStatic.debug(`Scheduling SendLater ${sendDelay} minutes from now.`);
+  //     SendLater.scheduleSendLater(tab.id, { delay: sendDelay });
+  //     SendLater._PromiseMap.delete(tab.id);
+  //     resolver({ cancel: true });
+  //   } else {
+  //     // No need to intercept sending
+  //     SLStatic.debug("Resolving onBeforeSend intercept.");
+  //     SendLater._PromiseMap.delete(tab.id);
+  //     resolver({ cancel: false });
+  //   }
+  // }), 0);
+  //
+  // return new Promise(resolve => SendLater._PromiseMap.set(tab.id, resolve));
 });
 
 // Button clicks in the UI popup window send messages back to this function

@@ -5,9 +5,9 @@ const SLOptions = {
   inputIds: ["checkTimePref", "sendDoesDelay", "sendDelay", "sendDoesSL",
             "altBinding", "markDraftsRead", "showColumn", "showHeader",
             "showStatus", "blockLateMessages", "lateGracePeriod",
-            "enforceTimeRestrictions", "quickOptions1Label", "quickOptions1Value",
-            "quickOptions2Label", "quickOptions2Value", "quickOptions3Label",
-            "quickOptions3Value", "logDumpLevel", "logConsoleLevel"],
+            "enforceTimeRestrictions", "quickOptions1Value",
+            "quickOptions2Value", "quickOptions3Value", "logDumpLevel",
+            "logConsoleLevel"],
 
   async applyPrefsToUI() {
     // Saves the UI preferences to preference storage.

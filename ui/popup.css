@@ -19,6 +19,15 @@ body {
   padding:0.25em;
 }
 
+#save-defaults, #clear-defaults {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 input[type=date], input[type=time] {
   height: 1.75em;
   padding-left:0.5em;
