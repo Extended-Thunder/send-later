@@ -21,29 +21,68 @@ const initialize = () => {
       });
   }
 
-  function parseInputs() {
+  function domElementsAsArray() {
+    return [...document.querySelectorAll("*")];
+  }
+
+  function objectifyDOMElements() {
+    const dom = domElementsAsArray();
+    return dom.reduce((obj,item) => {
+      obj[item.id] = item;
+      return obj;
+    }, {});
+  }
+
+  function objectifyFormValues() {
+    const domArray = domElementsAsArray();
+    const inputs = domArray.reduce((obj,item) => {
+        if (item.tagName === "INPUT" || item.tagName === "SELECT") {
+          if (item.type === "checkbox" || item.type === "radio") {
+            obj[item.id] = item.checked;
+          } else {
+            obj[item.id] = item.value;
+          }
+        }
+        return obj;
+      }, {});
+    inputs.radio = {};
+    inputs.groups = {};
+    domArray.forEach(el => {
+      if (el.type === "radio" && el.name && !inputs.radio[el.name]) {
+        inputs.radio[el.name] = [...document.getElementsByName(el.name)].reduce(
+          (def,elem) => (elem.checked ? elem.value : def), undefined);
+      }
+      if (el.type === "checkbox" && el.name && !inputs.groups[el.name]) {
+        inputs.groups[el.name] =
+          [...document.getElementsByName(el.name)].reduce((obj,elem) => {
+            obj.ids.push(elem.id);
+            obj.vals.push(elem.checked);
+            return obj;
+          }, { ids:[], vals:[] });
+      }
+    });
+    return inputs;
+  }
+
+  function parseInputs(inputs) {
     // Parse send date and time
-    const sendAtDate = document.getElementById("send-date");
-    const sendAtTime = document.getElementById("send-time");
-    if (!sendAtDate.value || !sendAtTime.value) {
+    const sendAtDate = inputs["send-date"];
+    const sendAtTime = inputs["send-time"];
+    if (!sendAtDate || !sendAtTime) {
       return;
     }
-    const sendAt = SLStatic.parseDateTime(sendAtDate.value, sendAtTime.value);
+    const sendAt = SLStatic.parseDateTime(sendAtDate, sendAtTime);
     if (SLStatic.compareTimes(sendAt, '<', new Date(), true)) {
       return { err: browser.i18n.getMessage("errorDateInPast") };
     }
 
     // Construct a recur object { type: "...", multiplier: "...", ... }
-    const recur = {
-      type: [...document.getElementsByName("recur")].reduce((def,elem) =>
-              (elem.checked ? elem.value : def), "none")
-    };
+    const recur = { type: inputs.radio.recur };
     if (recur.type !== "none") {
-      const cancelonreply = document.getElementById(`recur-cancelonreply`);
-      recur.cancelOnReply = cancelonreply.checked;
+      recur.cancelOnReply = inputs[`recur-cancelonreply`];
 
       if (recur.type !== "function") {
-        recur.multiplier = document.getElementById(`recur-multiplier`).value;
+        recur.multiplier = inputs[`recur-multiplier`];
       }
     }
     switch (recur.type) {
@@ -56,10 +95,10 @@ const initialize = () => {
       case "weekly":
         break;
       case "monthly":
-        if (document.getElementById("recur-monthly-byweek").checked) {
+        if (inputs["recur-monthly-byweek"]) {
           recur.monthly_day = {
-            day: +document.getElementById("recur-monthly-byweek-day").value,
-            week: +document.getElementById("recur-monthly-byweek-week").value
+            day: +inputs["recur-monthly-byweek-day"],
+            week: +inputs["recur-monthly-byweek-week"]
           };
         } else {
           recur.monthly = sendAt.getDate();
@@ -72,22 +111,22 @@ const initialize = () => {
         };
         break;
       case "function":
-        recur.function = document.getElementById("recurFunction").value;
+        recur.function = inputs["recurFunction"];
         recur.finished = false;
-        recur.args = document.getElementById("recur-function-args").value;
+        recur.args = inputs["recur-function-args"];
         break;
       default:
         SLStatic.error(`unrecognized recurrence type <${recur.type}>`);
         break;
     }
 
-    if (document.getElementById("sendbetween").checked) {
-      const start = document.getElementById("sendbetween-start");
-      const end = document.getElementById("sendbetween-end");
-      if (start.value && end.value) {
+    if (inputs["sendbetween"]) {
+      const start = inputs["sendbetween-start"];
+      const end = inputs["sendbetween-end"];
+      if (start && end) {
         const between = {
-          start: SLStatic.parseDateTime(null,start.value),
-          end: SLStatic.parseDateTime(null,end.value)
+          start: SLStatic.parseDateTime(null,start),
+          end: SLStatic.parseDateTime(null,end)
         };
         if (SLStatic.compareTimes(between.start,'>=',between.end)) {
           return { err: ("<b>" + browser.i18n.getMessage("endTimeWarningTitle")
@@ -99,10 +138,9 @@ const initialize = () => {
       }
     }
 
-    if (document.getElementById("sendon").checked) {
+    if (inputs["sendon"]) {
       const dayNames = [...Array(7)].map((v,i)=>SLStatic.getWkdayName(i));
-      const dayLimit = [...document.getElementsByName("weekdayChecks")].map(
-        e => e.checked);
+      const dayLimit = inputs.groups["weekdayChecks"].vals;
       recur.days = dayNames.filter((v,i)=>dayLimit[i]);
       if (recur.days.length === 0) {
         return { err: ("<b>" + browser.i18n.getMessage("missingDaysWarningTitle")
@@ -115,9 +153,7 @@ const initialize = () => {
     return schedule;
   }
 
-  function setScheduleButton(schedule) {
-    const scheduleSendButton = document.getElementById("sendAt");
-
+  function setScheduleButton(scheduleSendButton, schedule) {
     if (schedule.err) {
       scheduleSendButton.innerHTML = schedule.err;
       scheduleSendButton.disabled = true;
@@ -185,44 +221,54 @@ const initialize = () => {
 
   function saveDefaults() {
     const defaults = {};
-    [...document.getElementsByTagName("INPUT"),
-     ...document.getElementsByTagName("SELECT")].forEach(element => {
-      if (element.type === "button" || ["send-date", "send-time"].includes(element.id)) {
-        // do nothing
-      } else if (element.type === "radio" || element.type === "checkbox") {
-        defaults[element.id] = element.checked;
-      } else if (element.tagName === "SELECT" ||
-                ["number","text","date","time"].includes(element.type)) {
-        defaults[element.id] = element.value;
-      } else {
-        throw (`Unrecognized element <${element.tagName} type=${element.type}...>`);
+    const dom = objectifyDOMElements();
+    Object.keys(dom).forEach(key => {
+      const element = dom[key];
+      if (element.tagName === "INPUT" || element.tagName === "SELECT") {
+        if (element.type === "button" || ["send-date", "send-time"].includes(element.id)) {
+          // do nothing
+        } else if (element.type === "radio" || element.type === "checkbox") {
+          defaults[element.id] = element.checked;
+        } else if (element.tagName === "SELECT" ||
+                  ["number","text","date","time"].includes(element.type)) {
+          defaults[element.id] = element.value;
+        } else {
+          throw (`Unrecognized element <${element.tagName} type=${element.type}...>`);
+        }
       }
     });
-    SLStatic.debug("Setting default values",defaults);
+    SLStatic.debug("Saving default values",defaults);
     browser.storage.local.set({ defaults });
+  }
+
+  function clearDefaults() {
+    SLStatic.debug("Clearing default dialog values");
+    browser.storage.local.set({ defaults: {} });
   }
 
   async function applyDefaults() {
     browser.storage.local.get("defaults").then(storage => {
-      if (!storage.defaults) {
-        return;
+      const dom = objectifyDOMElements();
+      if (storage.defaults && storage.defaults.daily !== undefined) {
+        SLStatic.debug("Applying default values",storage.defaults);
+        Object.keys(dom).forEach(key => {
+          const element = dom[key];
+          if (element.tagName === "INPUT" || element.tagName === "SELECT") {
+            const defaultValue = storage.defaults[element.id];
+            if (defaultValue === undefined || element.type === "button" ||
+                ["send-date","send-time"].includes(element.id)) {
+              return;
+            } else if (element.type === "radio" || element.type === "checkbox") {
+              element.checked = (storage.defaults[element.id]);
+            } else if (element.tagName === "SELECT" ||
+                      ["number","text","date","time"].includes(element.type)) {
+              element.value = (storage.defaults[element.id]);
+            } else {
+              throw (`Unrecognized element <${element.tagName} type=${element.type}...>`);
+            }
+          }
+        });
       }
-      SLStatic.debug("Applying default values",storage.defaults);
-      [...document.getElementsByTagName("INPUT"),
-       ...document.getElementsByTagName("SELECT")].forEach(element => {
-        const defaultValue = storage.defaults[element.id];
-        if (defaultValue === undefined || element.type === "button" ||
-            ["send-date","send-time"].includes(element.id)) {
-          return;
-        } else if (element.type === "radio" || element.type === "checkbox") {
-          element.checked = (storage.defaults[element.id]);
-        } else if (element.tagName === "SELECT" ||
-                  ["number","text","date","time"].includes(element.type)) {
-          element.value = (storage.defaults[element.id]);
-        } else {
-          throw (`Unrecognized element <${element.tagName} type=${element.type}...>`);
-        }
-      });
 
       const fmtDate = new Intl.DateTimeFormat('en-CA',
         { year: "numeric", month: "2-digit", day: "2-digit" });
@@ -230,10 +276,12 @@ const initialize = () => {
         { hour: "2-digit", minute: "2-digit", hour12: false });
 
       const soon = new Date(Date.now()+600000);
-      document.getElementById("send-date").value = fmtDate.format(soon);
-      document.getElementById("send-time").value = fmtTime.format(soon);
+      dom["send-date"].value = fmtDate.format(soon);
+      dom["send-time"].value = fmtTime.format(soon);
 
-      setScheduleButton(parseInputs());
+      const inputs = objectifyFormValues();
+      const schedule = parseInputs(inputs);
+      setScheduleButton(dom["sendAt"], schedule);
     });
   }
 
@@ -253,30 +301,26 @@ const initialize = () => {
   }
 
   function attachListeners() {
-    const functionSelect = document.getElementById("recurFunction");
-    setState(functionSelect.length > 0)(
-      document.getElementById("function-recur-radio")
+    const dom = objectifyDOMElements();
+
+    const functionSelect = dom["recurFunction"];
+    setState(functionSelect.length > 0)(dom["function-recur-radio"]);
+    setState(dom["sendon"].checked)(dom["onlyOnDiv"]);
+    setState(dom["sendbetween"].checked)(dom["betweenDiv"]);
+    dom["sendon"].addEventListener("change",async evt =>
+      setState(evt.target.checked)(dom["onlyOnDiv"]));
+    dom["sendbetween"].addEventListener("change", async evt =>
+      setState(evt.target.checked)(dom["betweenDiv"])
     );
-    setState(document.getElementById("sendon").checked)(
-      document.getElementById("onlyOnDiv")
-    );
-    setState(document.getElementById("sendbetween").checked)(
-      document.getElementById("betweenDiv")
-    );
-    document.getElementById("sendon").addEventListener("change",async evt=>{
-      const ediv = document.getElementById("onlyOnDiv");
-      setState(evt.target.checked)(ediv);
-    });
-    document.getElementById("sendbetween").addEventListener("change", async evt=>{
-      const ediv = document.getElementById("betweenDiv");
-      setState(evt.target.checked)(ediv);
-    });
-    [...document.getElementsByTagName("INPUT")].forEach(element => {
-      if (element.type !== "button") {
+    Object.keys(dom).forEach(key => {
+      const element = dom[key];
+      if ((element.tagName === "INPUT" || element.tagName === "SELECT") &&
+            (element.type !== "button")) {
         element.addEventListener("change", async evt => {
-          const schedule = parseInputs();
+          const inputs = objectifyFormValues();
+          const schedule = parseInputs(inputs);
           if (schedule) {
-            setScheduleButton(schedule);
+            setScheduleButton(dom["sendAt"], schedule);
           }
         });
       }
@@ -285,13 +329,13 @@ const initialize = () => {
       element.addEventListener("change", async evt => {
         const localeData = moment.localeData();
         const specs = ["minutely","daily","weekly","monthly","yearly","function"];
-        const recurrence = specs.find(s => document.getElementById(s).checked);
-        const specDiv = document.getElementById('recurrence-spec');
+        const recurrence = specs.find(s => dom[s].checked);
+        const specDiv = dom['recurrence-spec'];
         if (recurrence) {
-          const timeArgs = document.getElementById('recur-time-args-div');
-          const funcArgs = document.getElementById('recur-function-args-div');
-          const sendAtDateInput = document.getElementById("send-date");
-          const sendAtTimeInput = document.getElementById("send-time");
+          const timeArgs = dom['recur-time-args-div'];
+          const funcArgs = dom['recur-function-args-div'];
+          const sendAtDateInput = dom["send-date"];
+          const sendAtTimeInput = dom["send-time"];
           const sendAt = SLStatic.parseDateTime(sendAtDateInput.value,
                                                 sendAtTimeInput.value);
 
@@ -316,47 +360,32 @@ const initialize = () => {
                 {hour: "numeric", minute: "numeric" }, "default");
             pluralTxt += atText + timeTxt;
           }
-          const plural = document.getElementById("recurperiod_plural");
-          plural.textContent = pluralTxt;
+          dom["recurperiod_plural"].textContent = pluralTxt;
 
           specDiv.style.display = "block";
 
-          document.getElementById('monthly-options-div').style.display =
+          dom['monthly-options-div'].style.display =
               (recurrence === "monthly") ? "" : "none";
-          document.getElementById('recur-multiply').style.display =
+          dom['recur-multiply'].style.display =
               (recurrence === "monthly") ? "" : "none";
 
-          document.getElementById('section-between').style.display =
+          dom['section-between'].style.display =
               (recurrence === "minutely") ? "" : "none";
 
-          document.getElementById('recur-limits').style.display = "block";
+          dom['recur-limits'].style.display = "block";
         } else {
           specDiv.style.display = "none";
-          document.getElementById('recur-limits').style.display = "none";
+          dom['recur-limits'].style.display = "none";
         }
       }));
 
-    // ["save-defaults", "clear-defaults"].forEach(id =>
-    //   document.getElementById(id).addEventListener("click",
-    //     async evt => {
-    //       // Logical nand
-    //       const clear = document.getElementById("clear-defaults");
-    //       const save = document.getElementById("save-defaults");
-    //       clear.checked &= (evt.target.id === 'clear-defaults') || !save.checked;
-    //       save.checked &= (evt.target.id === 'save-defaults') || !clear.checked;
-    //     }));
-    document.getElementById("save-defaults").addEventListener("click", evt => {
-      saveDefaults();
-    });
+    dom["save-defaults"].addEventListener("click", saveDefaults);
+    dom["clear-defaults"].addEventListener("click", clearDefaults);
 
-    document.getElementById("clear-defaults").addEventListener("click", evt => {
-      SLStatic.debug("Clearing default dialog values");
-      browser.storage.local.set({ defaults: {} });
-    });
-
-    document.getElementById("sendAt").addEventListener("click", async evt => {
+    dom["sendAt"].addEventListener("click", async evt => {
       const tabs = await browser.tabs.query({ active:true, currentWindow:true });
-      const schedule = parseInputs();
+      const inputs = objectifyFormValues();
+      const schedule = parseInputs(inputs);
       if (schedule && !schedule.err) {
         const message = {
           tabId: tabs[0].id,
@@ -377,9 +406,9 @@ const initialize = () => {
       const quick2val = storage.preferences.quickOptions2Value || 30;
       const quick3val = storage.preferences.quickOptions3Value || 120;
 
-      const quick1el = document.getElementById("quick-delay-1");
-      const quick2el = document.getElementById("quick-delay-2");
-      const quick3el = document.getElementById("quick-delay-3");
+      const quick1el = dom["quick-delay-1"];
+      const quick2el = dom["quick-delay-2"];
+      const quick3el = dom["quick-delay-3"];
 
       quick1el.value = moment(new Date(Date.now()+60000*quick1val)).fromNow();
       quick2el.value = moment(new Date(Date.now()+60000*quick2val)).fromNow();
@@ -390,12 +419,7 @@ const initialize = () => {
       quick3el.addEventListener("click", doSendDelay(quick3val));
     });
 
-    document.getElementById("sendNow").addEventListener("click", doSendDelay(0));
-
-    // document.getElementById("cancel").addEventListener("click", async (event) => {
-    //   browser.runtime.sendMessage({ action: "cancel" });
-    //   setTimeout((() => window.close()), 150);
-    // });
+    dom["sendNow"].addEventListener("click", doSendDelay(0));
   }
   attachListeners();
   applyDefaults();
