@@ -54,7 +54,7 @@
     "default_area": "maintoolbar",
     "default_icon": "/ui/icons/icon.png",
     "default_popup": "/ui/popup.html",
-    "default_title": "SendLater"
+    "default_title": "__MSG_sendlater.toolbar.sendlater.button.label__"
   },
 
   "default_locale": "en",
