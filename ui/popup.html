@@ -60,7 +60,7 @@
                     style="margin-left:1em;" value='recur-multiply' checked/>
               <span class="localized __MSG_sendlater.prompt.every.label__">Every</span>
               <input type="number" id="recur-multiplier" value="1" min="0" style="width:3em;"/>
-              <span id="recurperiod_plural"></span>
+              <span id="recurperiod_plural">days</span>
             </div>
             <div id="monthly-options-div">
               <input type="radio" name="monthly-recur-type" style="margin-left:1em;"
@@ -165,20 +165,19 @@
     </section>
     </div>
 
-    <!-- Not yet implemented -->
-    <section style="display: none; padding: 10px auto;">
-      <label>
-        <input type="checkbox" id="save-defaults"/>
-        <span class="localized __MSG_saveDefaultsLabel__">
-          Save these values as defaults</span>
+    <section style="text-align: center;">
+      <label style="margin-right:2%;">
+        <input type="button" id="save-defaults"
+          value="Save these values as defaults"
+          class="localized __MSG_saveDefaultsLabel__"/>
       </label>
-      <label>
-        <input type="checkbox" id="clear-defaults"/>
-        <span class="localized __MSG_clearDefaultsLabel__">Clear defaults</span>
+      <label style="margin-left:2%;">
+        <input type="button" id="clear-defaults" value="Clear defaults"
+          class="localized __MSG_clearDefaultsLabel__"/>
       </label>
     </section>
 
-    <section style="display:block;">
+    <section style="clear:both;display:block;">
       <button style="width:100%; margin:0;" id="sendAt" disabled>
         Enter a valid date above
       </button>
@@ -192,7 +191,7 @@
           </td>
           <td>
           <input type="button" value="30 minutes from now" id="delay30"
-            style="margin:2.5%;width:95%;"
+            style="margin:0 2.5%;width:95%;"
             class="delayButton localized __MSG_delay30Label__" />
           </td>
           <td>
@@ -204,7 +203,7 @@
       </table>
     </section>
 
-    <section style="display:block;">
+    <section style="clear:both;display:block;">
       <input type="button" value="Send Now" id="sendNow"
         class="localized __MSG_sendNowLabel__"/>
       <input type="button" value="Cancel" id="cancel"

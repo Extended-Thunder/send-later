@@ -122,8 +122,9 @@ const initialize = () => {
       const sendAt = schedule.sendAt;
       const recurSpec = schedule.recur;
 
-      let scheduleText = browser.i18n.getMessage("sendAtLabel") + " " +
-                            SLStatic.dateTimeFormat(sendAt);
+      let scheduleText = browser.i18n.getMessage("sendAtLabel");
+      scheduleText += " " + SLStatic.dateTimeFormat(sendAt);
+      //let scheduleText = moment(sendAt).calendar();
 
       if (recurSpec.type !== "none" && recurSpec.type !== "function") {
         scheduleText += "<br/>" + browser.i18n.getMessage("recurLabel");
@@ -158,12 +159,66 @@ const initialize = () => {
       return true;
     } catch (e) { SLStatic.log(e) }
 
-    scheduleSendButton.textContent = browser.i18n.getMessage("entervalid");
+    scheduleSendButton.textContent = moment.localeData().invalidDate();
     scheduleSendButton.disabled = true;
     return false;
   }
 
-  const setState = function(enabled) {
+  function saveDefaults() {
+    const defaults = {};
+    [...document.getElementsByTagName("INPUT"),
+     ...document.getElementsByTagName("SELECT")].forEach(element => {
+      if (element.type === "button" || ["send-date", "send-time"].includes(element.id)) {
+        // do nothing
+      } else if (element.type === "radio" || element.type === "checkbox") {
+        defaults[element.id] = element.checked;
+      } else if (element.tagName === "SELECT" ||
+                ["number","text","date","time"].includes(element.type)) {
+        defaults[element.id] = element.value;
+      } else {
+        throw (`Unrecognized element <${element.tagName} type=${element.type}...>`);
+      }
+    });
+    SLStatic.debug("Setting default values",defaults);
+    browser.storage.local.set({ defaults });
+  }
+
+  async function applyDefaults() {
+    browser.storage.local.get("defaults").then(storage => {
+      if (!storage.defaults) {
+        return;
+      }
+      SLStatic.debug("Applying default values",storage.defaults);
+      [...document.getElementsByTagName("INPUT"),
+       ...document.getElementsByTagName("SELECT")].forEach(element => {
+        const defaultValue = storage.defaults[element.id];
+        if (defaultValue === undefined || element.type === "button" ||
+            ["send-date","send-time"].includes(element.id)) {
+          return;
+        } else if (element.type === "radio" || element.type === "checkbox") {
+          element.checked = (storage.defaults[element.id]);
+        } else if (element.tagName === "SELECT" ||
+                  ["number","text","date","time"].includes(element.type)) {
+          element.value = (storage.defaults[element.id]);
+        } else {
+          throw (`Unrecognized element <${element.tagName} type=${element.type}...>`);
+        }
+      });
+
+      const fmtDate = new Intl.DateTimeFormat('en-CA',
+        { year: "numeric", month: "2-digit", day: "2-digit" });
+      const fmtTime = new Intl.DateTimeFormat('default',
+        { hour: "2-digit", minute: "2-digit", hour12: false });
+
+      const soon = new Date(Date.now()+600000);
+      document.getElementById("send-date").value = fmtDate.format(soon);
+      document.getElementById("send-time").value = fmtTime.format(soon);
+
+      setScheduleButton(parseInputs());
+    });
+  }
+
+  function setState(enabled) {
     return (async element => {
         try{
           if (["SPAN","DIV","LABEL"].includes(element.tagName)) {
@@ -227,7 +282,8 @@ const initialize = () => {
           let pluralTxt = browser.i18n.getMessage(`plural_${recurrence}`);
           if (recurrence === "yearly") {
             const dateTxt = SLStatic.dateTimeFormat(sendAt,
-                {month: "long", day: "numeric"}, "default");
+              {month: "long", day: "numeric", hour: "numeric",
+                minute: "numeric"}, "default");
             pluralTxt += ", " + browser.i18n.getMessage("only_on_days", dateTxt);
           } else if (recurrence === "monthly") {
             const dayOrd = localeData.ordinal(sendAt.getDate());
@@ -261,15 +317,23 @@ const initialize = () => {
         }
       }));
 
-    ["save-defaults", "clear-defaults"].forEach(id =>
-      document.getElementById(id).addEventListener("click",
-        async evt => {
-          // Logical nand
-          const clear = document.getElementById("clear-defaults");
-          const save = document.getElementById("save-defaults");
-          clear.checked &= (evt.target.id === 'clear-defaults') || !save.checked;
-          save.checked &= (evt.target.id === 'save-defaults') || !clear.checked;
-        }));
+    // ["save-defaults", "clear-defaults"].forEach(id =>
+    //   document.getElementById(id).addEventListener("click",
+    //     async evt => {
+    //       // Logical nand
+    //       const clear = document.getElementById("clear-defaults");
+    //       const save = document.getElementById("save-defaults");
+    //       clear.checked &= (evt.target.id === 'clear-defaults') || !save.checked;
+    //       save.checked &= (evt.target.id === 'save-defaults') || !clear.checked;
+    //     }));
+    document.getElementById("save-defaults").addEventListener("click", evt => {
+      saveDefaults();
+    });
+
+    document.getElementById("clear-defaults").addEventListener("click", evt => {
+      SLStatic.debug("Clearing default dialog values");
+      browser.storage.local.set({ defaults: {} });
+    });
 
     document.getElementById("sendAt").addEventListener("click", async evt => {
       const tabs = await browser.tabs.query({ active:true, currentWindow:true });
@@ -298,15 +362,9 @@ const initialize = () => {
       browser.runtime.sendMessage({ action: "cancel" });
       setTimeout((() => window.close()), 150);
     });
-
-    document.getElementById("send-date").value = SLStatic.dateTimeFormat(
-      new Date(), {year: "numeric", month: "2-digit", day: "2-digit"}, "en-CA");
-    document.getElementById("send-time").value = SLStatic.formatTime(
-                                              new Date(Date.now()+600000), true);
-
-    setScheduleButton(parseInputs());
   }
   attachListeners();
+  applyDefaults();
 };
 
 // For testing purposes, because the browser mock script needs to
