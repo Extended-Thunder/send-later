@@ -85,11 +85,11 @@ const SLStatic = {
     return new Date(+dpts[0], --dpts[1], +dpts[2], +tpts[1], +tpts[2]);
   },
 
-  formatTime: function(datetime) {
+  formatTime: function(datetime,zeropad) {
     if (typeof datetime === "string" || typeof datetime === "number") {
       datetime = SLStatic.parseDateTime(null, (""+datetime));
     }
-    const hours = datetime.getHours();
+    const hours = (""+datetime.getHours()).padStart((zeropad?2:1),"0");
     const minutes = (""+datetime.getMinutes()).padStart(2,"0");
     return `${hours}:${minutes}`;
   },
@@ -227,10 +227,10 @@ const SLStatic = {
             day: params.shift(),
             week: params.shift()
           };
-          if (parsed.monthly_day.day > 6) {
+          if (parsed.monthly_day.day < 0 || parsed.monthly_day.day > 6) {
             throw "Invalid monthly day argument in " + spec;
           }
-          if (parsed.monthly_day.week > 5) {
+          if (parsed.monthly_day.week < 1 || parsed.monthly_day.week > 5) {
             throw "Invalid monthly week argument in " + spec;
           }
         } else {
@@ -253,8 +253,9 @@ const SLStatic = {
 
         // Check that this month/date combination is possible at all.
         // Use a leap year for this test.
-        const test = new Date(2000, parsed.yearly.month-1, parsed.yearly.date);
-        if (test.getMonth() !== parsed.yearly.month-1) {
+        const test = new Date(2000, parsed.yearly.month, parsed.yearly.date);
+        if ((test.getMonth() !== parsed.yearly.month) ||
+            (test.getDate() !== parsed.yearly.date)) {
           throw "Invalid yearly date in " + spec;
         }
         break;
@@ -455,21 +456,22 @@ const SLStatic = {
           // again because we didn't successfully find a date.
 
           if (recur.monthly) {
-            if (next.getDate() == recur.monthly)
+            if (next.getDate() === +recur.monthly) {
               next.setMonth(next.getMonth() + 1);
-            else
+            } else {
               next.setDate(recur.monthly);
+            }
           } else {
-            if ((next.getDay() == recur.monthly_day.day) &&
-                (Math.ceil(next.getDate() / 7) == recur.monthly_day.week)) {
+            if ((next.getDay() === +recur.monthly_day.day) &&
+                (Math.ceil(next.getDate() / 7) === +recur.monthly_day.week)) {
               next.setDate(1);
               next.setMonth(next.getMonth() + 1);
-            }
+            } else {}
             next.setDate((recur.monthly_day.week - 1) * 7 + 1);
-            while (next.getDay() != recur.monthly_day.day) {
+            while (next.getDay() !== +recur.monthly_day.day) {
               next.setDate(next.getDate() + 1);
             }
-            if (Math.ceil(next.getDate() / 7) != recur.monthly_day.week) {
+            if (Math.ceil(next.getDate() / 7) !== +recur.monthly_day.week) {
               redo = true;
             }
           }
