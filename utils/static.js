@@ -104,7 +104,7 @@ const SLStatic = {
   },
 
   parseArgs: function(argstring) {
-    return JSON.parse(`[${argstring}]`);
+    return JSON.parse(`[${argstring||""}]`);
   },
 
   unparseArgs: function(args) {
@@ -203,6 +203,10 @@ const SLStatic = {
   },
 
   ParseRecurSpec: function(spec) {
+    if (!spec) {
+      return { type: "none" };
+    }
+
     const params = spec.split(/\s+/);
     const parsed = {};
     parsed.type = params.shift();

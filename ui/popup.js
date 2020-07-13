@@ -8,16 +8,31 @@ const initialize = () => {
         const msg = { tabId: tabs[0].id };
         if (delay === 0) {
           msg.action = "doSendNow";
-          msg.sendTime = null;
+          msg.sendAt = null;
         } else {
           msg.action = "doSendLater";
-          msg.sendTime = new Date();
-          msg.sendTime.setTime(msg.sendTime.getTime() + delay * 60 * 1000);
+          msg.sendAt = new Date();
+          msg.sendAt.setTime(msg.sendAt.getTime() + delay * 60 * 1000);
         }
 
         browser.runtime.sendMessage(msg);
 
         setTimeout((() => window.close()), 150);
+      });
+  }
+
+  function setState(enabled) {
+    return (async element => {
+        try{
+          if (["SPAN","DIV","LABEL"].includes(element.tagName)) {
+            element.style.color = enabled ? "black" : "#888888";
+          }
+          element.disabled = !enabled;
+        } catch (ex) {
+          SLStatic.error(ex);
+        }
+        const enabler = setState(enabled);
+        [...element.childNodes].forEach(enabler);
       });
   }
 
@@ -175,7 +190,7 @@ const initialize = () => {
           const dayName = SLStatic.getWkdayName(recurSpec.monthly_day.day, "long");
           scheduleText += browser.i18n.getMessage(
             "sendlater.prompt.every.label").toLowerCase() + " " +
-            browser.i18n.getMessage("everymonthly_short", ordDay, dayName);
+            browser.i18n.getMessage("everymonthly_short", [ordDay, dayName]);
         } else {
           scheduleText += browser.i18n.getMessage("every_"+recurSpec.type,
                                                   (recurSpec.multiplier || 1));
@@ -186,7 +201,7 @@ const initialize = () => {
           const end = SLStatic.formatTime(recurSpec.between.end);
           //scheduleText += "<br/>"
           scheduleText += " "
-          scheduleText += browser.i18n.getMessage("betw_times", start, end);
+          scheduleText += browser.i18n.getMessage("betw_times", [start, end]);
         }
 
         if (recurSpec.days) {
@@ -281,23 +296,12 @@ const initialize = () => {
 
       const inputs = objectifyFormValues();
       const schedule = parseInputs(inputs);
-      setScheduleButton(dom["sendAt"], schedule);
-    });
-  }
 
-  function setState(enabled) {
-    return (async element => {
-        try{
-          if (["SPAN","DIV","LABEL"].includes(element.tagName)) {
-            element.style.color = enabled ? "black" : "#888888";
-          }
-          element.disabled = !enabled;
-        } catch (ex) {
-          SLStatic.error(ex);
-        }
-        const enabler = setState(enabled);
-        [...element.childNodes].forEach(enabler);
-      });
+      // Trigger some fake events to activate listeners
+      setState(dom["sendon"].checked)(dom["onlyOnDiv"]);
+      setState(dom["sendbetween"].checked)(dom["betweenDiv"]);
+      dom['once'].dispatchEvent(new Event('change'));
+    });
   }
 
   function attachListeners() {

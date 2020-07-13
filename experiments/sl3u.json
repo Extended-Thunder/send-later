@@ -62,20 +62,15 @@
         ]
       },
       {
-        "name":"getHeader",
+        "name":"editingMessage",
         "type":"function",
         "async":true,
         "description":"Fetch value of message header from window with id",
         "parameters": [
           {
-            "name":"windowId",
-            "type":"integer",
-            "description":"Which window to check for headers."
-          },
-          {
-            "name":"name",
+            "name":"msgId",
             "type":"string",
-            "description":"Name of the header to set"
+            "description":"uuid to find"
           }
         ]
       },

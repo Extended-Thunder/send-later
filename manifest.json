@@ -3,7 +3,6 @@
   "name": "__MSG_extensionName__",
   "description": "__MSG_extensionDescription__",
   "version": "8.0.1",
-  "version_name": "8.0 alpha",
   "homepage_url": "https://github.com/Extended-Thunder/send-later/",
   "icons": {
     "48": "ui/icons/icon.png"
@@ -54,7 +53,7 @@
     "default_area": "maintoolbar",
     "default_icon": "/ui/icons/icon.png",
     "default_popup": "/ui/popup.html",
-    "default_title": "__MSG_sendlater.toolbar.sendlater.button.label__"
+    "default_title": "__MSG_extensionName__"
   },
 
   "default_locale": "en",

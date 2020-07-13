@@ -19,19 +19,9 @@ const SendLater = {
       return null;
     },
 
-    async isEditing(msgUUID) {
+    async isEditing(msgId) {
       // Look through each of the compose windows, check for this message UUID.
-      const composeWindows = await browser.windows.getAll(
-        { windowTypes: ["messageCompose"] }
-      );
-      for (const win of composeWindows) {
-        const uuid = await browser.SL3U.getHeader(win.id,
-                                                  'x-send-later-msg-uuid');
-        if (uuid === msgUUID) {
-          return true;
-        }
-      }
-      return false;
+      return await browser.SL3U.editingMessage(msgId);
     },
 
     waitAndSend: function() {
@@ -90,9 +80,10 @@ const SendLater = {
     },
 
     async markDraftsRead() {
+      SLStatic.debug("Marking drafts read");
       SendLater.forAllDrafts(async msg => {
         const fullMsg = await browser.messages.getFull(msg.id);
-        if (msg.headers['x-send-later-at']) {
+        if (fullMsg.headers['x-send-later-at']) {
           browser.messages.update(msg.id, { read: true });
         }
       });
@@ -100,7 +91,7 @@ const SendLater = {
 
     async scheduleSendLater(tabId, options) {
       SLStatic.info(`Scheduling send later: ${tabId} with options`,options);
-      const customHeaders = { 'x-send-later-msg-uuid': SLStatic.newUUID() };
+      const customHeaders = {};
 
       // Determine time at which this message should be sent
       if (options.sendAt !== undefined) {
@@ -132,19 +123,14 @@ const SendLater = {
       await Promise.all(inserted);
 
       await browser.SL3U.SaveAsDraft();
-      browser.storage.local.get({"preferences":{}}).then(storage => {
+      browser.storage.local.get({preferences:{}}).then(storage => {
         if (storage.preferences.markDraftsRead) {
           SendLater.markDraftsRead();
+        } else {
+          SLStatic.debug("Skipping mark all read.",storage.preferences);
         }
       });
       browser.tabs.remove(tabId);
-
-      // Internal lock indicates that this message is prepped and ready to do.
-      browser.storage.local.get("lock").then(storage => {
-        const lock = storage.lock || {};
-        lock[customHeaders['x-send-later-msg-uuid']] = { status: "ready" };
-        browser.storage.local.set({ lock });
-      });
     },
 
     async beginEditAsNewMessage(id) {
@@ -235,41 +221,43 @@ const SendLater = {
     },
 
     async possiblySendMessage(id) {
+      SLStatic.debug(`Possibly sending message ${id}`);
+
       if (browser.SL3U.isOffline()) {
         return;
       }
       // Determines whether or not a particular draft message is due to be sent
       const msg = await browser.messages.getFull(id);
 
-      const msgSendAt = msg.headers['x-send-later-at'];
-      const msgUUID = msg.headers['x-send-later-msg-uuid'];
-      const msgRecurSpec = msg.headers['x-send-later-recur'];
-      const msgRecurArgs = msg.headers['x-send-later-args'];
-      const msgRecurCancelOnReply = msg.headers['x-send-later-cancel-on-reply'];
+      const msgSendAt = msg.headers['x-send-later-at'] ? msg.headers['x-send-later-at'][0] : undefined;
+      const msgRecurSpec = msg.headers['x-send-later-recur'] ? msg.headers['x-send-later-recur'][0] : undefined;
+      const msgRecurArgs = msg.headers['x-send-later-args'] ? msg.headers['x-send-later-args'][0] : undefined;
+      const msgRecurCancelOnReply = msg.headers['x-send-later-cancel-on-reply'] ? msg.headers['x-send-later-cancel-on-reply'][0] : undefined;
+      const msgId = msg.headers['message-id'] ? msg.headers['message-id'][0] : undefined;
+
+      if (msgSendAt === undefined) {
+        return;
+      }
+
+      const lock = await browser.storage.local.get("lock").then(storage =>
+        (storage.lock || {})[msgId]
+      );
+      if (lock === "sent") {
+        SLStatic.debug(`Message ${msgId} already sent but not removed`);
+        return;
+      }
 
       const recur = SLStatic.ParseRecurSpec(msgRecurSpec);
       const args = SLStatic.parseArgs(msgRecurArgs);
 
-      if (msgSendAt === undefined) {
-        return;
-      } else if (msgUUID !== undefined && SendLater.isEditing(msgUUID)) {
-        SLStatic.debug(`Skipping message ${id} while it is being edited`);
-        return;
-      }
-
-      if (msgUUID !== undefined) {
-        const lock = await storage.local.get("lock").then(storage =>
-          (storage.lock || {})[msgUUID]
-        );
-        if (lock.status === "sent") {
-          SLStatic.debug(`Message ${id} already sent but not removed`);
-          return;
-        }
-      }
-
       const nextSend = new Date(msgSendAt);
       const dueForSend = Date.now() >= nextSend.getTime();
       if (dueForSend) {
+        if (await SendLater.isEditing(msgId)) {
+          SLStatic.debug(`Skipping message ${msgId} while it is being edited`);
+          return;
+        }
+
         const { preferences } = await browser.storage.local.get({"preferences":{}});
 
         if (preferences.enforceTimeRestrictions) {
@@ -306,10 +294,10 @@ const SendLater = {
         const cw = await SendLater.beginEditAsNewMessage(id);
         setTimeout(SendLater.waitAndSend.bind(cw), 0);
 
-        // Update lock to avoid double sending.
+        // Update lock as precaution against double sending.
         browser.storage.local.get("lock").then(storage => {
           const lock = storage.lock || {};
-          lock[msgUUID] = "sent";
+          lock[msgId] = "sent" ;
           browser.storage.local.set({ lock });
         });
 
@@ -319,7 +307,7 @@ const SendLater = {
                                                   (new Date()), args);
 
           if (nextRecur) {
-            SLStatic.debug(`Scheduling next recurrence of at ${nextRecur}`);
+            SLStatic.debug(`Scheduling next recurrence at ${nextRecur}`);
             const cw = await SendLater.beginEditAsNewMessage(id);
             const options = {
                               sendAt: nextRecur,

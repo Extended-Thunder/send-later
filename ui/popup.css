@@ -3,6 +3,11 @@ body {
   font-size: 0.9em;
   font-weight: 300;
   vertical-align: middle;
+  padding: 1em 0.5em;
+}
+
+button, input[type=button] {
+  text-align:center;
 }
 
 #sendNow {

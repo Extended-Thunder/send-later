@@ -89,13 +89,17 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                     cw.gMsgCompose.compFields.setHeader(name,value);
                   },
 
-                  async getHeader(windowId, name) {
-                    const cw = windowTracker.getWindow(windowId, context);
-                    if (cw) {
-                      return cw.gMsgCompose.compFields.getHeader(name);
-                    } else {
-                      throw `Window <${windowId}> does not exist`;
+                  async editingMessage(msgId) {
+                    for (let cw of Services.wm.getEnumerator("msgcompose")) {
+                      // for (let header of cw.gMsgCompose.compFields.headerNames) {
+                      //   console.log(header);
+                      // }
+                      const thisID = cw.gMsgCompose.compFields.getHeader("message-id");
+                      if (thisID === msgId) {
+                        return true;
+                      }
                     }
+                    return false;
                   },
 
                   async addMsgSendLaterListener() {

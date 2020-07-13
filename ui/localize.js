@@ -4,7 +4,12 @@ const localizer = {
     elements.forEach(async e => {
       try {
         const key = e.className.match(/__MSG_(.+)__/)[1];
-        const msg = browser.i18n.getMessage(key,"","","","","","","","","");
+        let mockArgs = [];
+        let msg;
+        do {
+          msg = browser.i18n.getMessage(key,mockArgs);
+          mockArgs.push("");
+        } while(msg.indexOf(/\$\d/) !== -1);
         if (e.tagName === "INPUT") {
           e.value = msg;
         } else {
