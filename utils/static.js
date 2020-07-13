@@ -317,7 +317,7 @@ const SLStatic = {
         parsed.days.push(Number(day));
       }
       if (!parsed.days.length) {
-        throw "Day restriction with no days";
+        throw "Day restriction with no days in spec "+spec;
       }
     }
     if (params.length) {

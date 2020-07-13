@@ -35,6 +35,17 @@ const SendLater = {
       }
     },
 
+    waitAndSchedule: function() {
+      // When bound to a compose window, this function will wait for the
+      // window's status to be "complete", then it will schedule the message
+      // for send.
+      if (this.cw.status === "complete") {
+        SendLater.scheduleSendLater(this.cw.id, this.options);
+      } else {
+        setTimeout(SendLater.waitAndSchedule.bind(this), 50);
+      }
+    },
+
     async findDraftsHelper(folder) {
       // Recursive helper function to look through an account for draft folders
       if (folder.type === "drafts") {
@@ -75,16 +86,19 @@ const SendLater = {
           });
         });
       } catch (ex) {
-        SLStatic.trace(ex);
+        console.error(ex);
       }
     },
 
     async markDraftsRead() {
-      SLStatic.debug("Marking drafts read");
       SendLater.forAllDrafts(async msg => {
         const fullMsg = await browser.messages.getFull(msg.id);
         if (fullMsg.headers['x-send-later-at']) {
-          browser.messages.update(msg.id, { read: true });
+          const msgHdr = await browser.messages.get(msg.id);
+          if (!msgHdr.read) {
+            SLStatic.debug(`Marking message ${msg.id} read.`);
+            browser.messages.update(msg.id, { read: true });
+          }
         }
       });
     },
@@ -121,11 +135,12 @@ const SendLater = {
         browser.SL3U.setHeader(name, customHeaders[name])
       );
       await Promise.all(inserted);
+      SLStatic.debug('headers',customHeaders);
 
       await browser.SL3U.SaveAsDraft();
       browser.storage.local.get({preferences:{}}).then(storage => {
         if (storage.preferences.markDraftsRead) {
-          SendLater.markDraftsRead();
+          setTimeout(SendLater.markDraftsRead, 5000);
         } else {
           SLStatic.debug("Skipping mark all read.",storage.preferences);
         }
@@ -175,7 +190,7 @@ const SendLater = {
             ret.plainmsg = part.body;
           } else if (part.contentType.startsWith('multipart/mixed')) {
             // Another level of message parts.
-            const subparts = expandMimeParts(part)
+            const subparts = expandMimeParts(part);
             Object.assign(ret, subparts);
           } else {
             SLStatic.warn("Unsure how to handle message part:",part);
@@ -221,8 +236,6 @@ const SendLater = {
     },
 
     async possiblySendMessage(id) {
-      SLStatic.debug(`Possibly sending message ${id}`);
-
       if (browser.SL3U.isOffline()) {
         return;
       }
@@ -282,17 +295,17 @@ const SendLater = {
 
           // Respect "only on days of week" preference
           if (recur.days) {
-            const wkday = new Intl.DateTimeFormat('default', {weekday:'short'});
-            const today = wkday.format(new Date(now));
+            const today = (new Date()).getDay();
             if (!recur.days.includes(today)) {
-              SLStatic.debug(`Message ${id} not scheduled to send on ${today}`);
+              const wkday = new Intl.DateTimeFormat('default', {weekday:'short'});
+              SLStatic.debug(`Message ${id} not scheduled to send on ${wkday.format(new Date())}`);
             }
           }
         }
 
         // Duplicate draft message into new compose window, and initiate send
-        const cw = await SendLater.beginEditAsNewMessage(id);
-        setTimeout(SendLater.waitAndSend.bind(cw), 0);
+        const composeWindow = await SendLater.beginEditAsNewMessage(id);
+        setTimeout(SendLater.waitAndSend.bind(composeWindow), 0);
 
         // Update lock as precaution against double sending.
         browser.storage.local.get("lock").then(storage => {
@@ -315,35 +328,37 @@ const SendLater = {
                               args: msgRecurArgs,
                               cancelOnReply: msgRecurCancelOnReply
                             };
-            SendLater.scheduleSendLater(cw.id, options);
+            setTimeout(SendLater.waitAndSchedule.bind({ cw, options }), 0);
           } else {
             SLStatic.debug("Message does not need to be rescheduled.")
           }
         }
 
-        // TODO: Add option for skiptrash.
-        browser.messages.delete([id], false);
+        browser.messages.delete([id], true);
       } else {
         SLStatic.debug(`Message ${id} not yet due for send.`);
       }
     },
 
     mainLoop: function() {
-      SendLater.forAllDrafts(msg => SendLater.possiblySendMessage(msg.id));
+      SLStatic.debug("Entering main loop.");
 
-      // Rather than using setInterval for this loop, we'll just start a new
-      // timeout each time it runs to schedule it some delay in the future.
-      // This automatically responds to user changes in 'delay', but has the
-      // disadvantage that shortening `delay` will still take up to the
-      // previous delay time before taking effect.
+      try {
+        SendLater.forAllDrafts(msg => SendLater.possiblySendMessage(msg.id));
+      } catch (e) {
+        console.error(e);
+      }
+
       // TODO: Use a persistent reference to the this timeout that can be
       // scrapped and restarted upon changes in the delay preference.
       browser.storage.local.get({ "preferences": {} }).then(storage => {
-        const intervalTimeout = storage.preferences['checkTimePref'];
-        const millis = storage.preferences["checkTimePref_isMilliseconds"];
-        const delay = (millis) ? intervalTimeout : intervalTimeout * 60000;
-        SLStatic.debug(`Next main loop iteration in ${delay/1000} seconds.`);
-        setTimeout(SendLater.mainLoop, delay);
+        const interval = +storage.preferences['checkTimePref'];
+        SLStatic.debug(`Next main loop iteration in ${interval} minutes.`);
+        setTimeout(SendLater.mainLoop, 60000*interval);
+
+        if (storage.preferences.markDraftsRead) {
+          SendLater.markDraftsRead();
+        }
       });
     }
 };

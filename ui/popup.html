@@ -59,7 +59,7 @@
               <input type="radio" name="monthly-recur-type" id='recur-multiply'
                     style="margin-left:1em;" value='recur-multiply' checked/>
               <span class="localized __MSG_sendlater.prompt.every.label__">Every</span>
-              <input type="number" id="recur-multiplier" value="1" min="0" style="width:3em;"/>
+              <input type="number" id="recur-multiplier" value="1" min="1" style="width:3em;"/>
               <span id="recurperiod_plural">days</span>
             </div>
             <div id="monthly-options-div">
@@ -114,10 +114,12 @@
             <span class="localized __MSG_sendBtwnLabel__">Between</span>
           </label>
         </div>
-        <div style="display: table-cell;" id="betweenDiv">
-          <input id="sendbetween-start" type="time" value="09:00"/>
-          -
-          <input id="sendbetween-end" type="time" value="17:00"/>
+        <div id="betweenDiv">
+          <div style="display: table-cell;">
+            <input id="sendbetween-start" type="time" value="09:00"/>
+            -
+            <input id="sendbetween-end" type="time" value="17:00"/>
+          </div>
         </div>
       </div>
     </section>

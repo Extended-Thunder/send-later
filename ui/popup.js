@@ -154,9 +154,13 @@ const initialize = () => {
     }
 
     if (inputs["sendon"]) {
-      const dayNames = [...Array(7)].map((v,i)=>SLStatic.getWkdayName(i));
       const dayLimit = inputs.groups["weekdayChecks"].vals;
-      recur.days = dayNames.filter((v,i)=>dayLimit[i]);
+      recur.days = [...Array(7)].reduce((obj,item,idx) => {
+        if (dayLimit[idx]) {
+          obj.push(idx);
+        }
+        return obj;
+      }, []);
       if (recur.days.length === 0) {
         return { err: ("<b>" + browser.i18n.getMessage("missingDaysWarningTitle")
                       + ":</b> "
@@ -206,15 +210,16 @@ const initialize = () => {
 
         if (recurSpec.days) {
           // TODO: internationalize this
+          const days = recurSpec.days.map(v=>SLStatic.getWkdayName(v));
           let onDays;
-          if (recurSpec.days.length === 1) {
-            onDays = recurSpec.days[0];
-          } else if (recurSpec.days.length === 2) {
-            onDays = recurSpec.days.join(" and ");
+          if (days.length === 1) {
+            onDays = days;
+          } else if (days.length === 2) {
+            onDays = days.join(" and ");
           } else {
-            const ndays = recurSpec.days.length;
-            recurSpec.days[ndays-1] = `and ${recurSpec.days[ndays-1]}`;
-            onDays = recurSpec.days.join(", ");
+            const ndays = days.length;
+            days[ndays-1] = `and ${days[ndays-1]}`;
+            onDays = days.join(", ");
           }
           scheduleText += "<br/>"+browser.i18n.getMessage("only_on_days",onDays);
         }
