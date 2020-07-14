@@ -28,8 +28,8 @@ const SendLater = {
       // When bound to a compose window, this function will wait for
       // the window's status to be "complete", and then it will initiate
       // a batch send operation.
-      if (this.status === "complete") {
-        browser.SL3U.SendNow(true);
+      if (this.cw.status === "complete") {
+        browser.SL3U.SendNow(false);
       } else {
         setTimeout(SendLater.waitAndSend.bind(this), 50);
       }
@@ -69,7 +69,6 @@ const SendLater = {
 
     async forAllDrafts(callback) {
       try {
-        // same loop pattern as in mainLoop function.
         browser.accounts.list().then(accounts => {
           accounts.forEach(acct => {
               SendLater.getDraftFolders(acct).then(draftFolders => {
@@ -227,7 +226,7 @@ const SendLater = {
       const files = await Promise.all(attachments.map(att => att.getFile()));
       for (let idx=0; idx<files.length; idx++) {
         const name = attachments[idx].name;
-        const file = files[idx];
+        const file = new File([files[idx]], name, { type: files[idx].type });
         await browser.compose.addAttachment(cw.id, { name, file });
       }
       browser.tabs.remove(fw.id);
@@ -252,102 +251,81 @@ const SendLater = {
         return;
       }
 
-      const lock = await browser.storage.local.get("lock").then(storage =>
-        (storage.lock || {})[msgId]
-      );
-      if (lock === "sent") {
-        SLStatic.debug(`Message ${msgId} already sent but not removed`);
+      const { preferences } = await browser.storage.local.get({"preferences":{}});
+      const { lock } = await browser.storage.local.get({"lock":{}});
+
+      const nextSend = lock[msgId] ? lock[msgId].nextRecur : new Date(msgSendAt);
+
+      if (Date.now() < nextSend.getTime()) {
+        SLStatic.debug(`Message ${id} not due for send until ${nextSend.toLocaleString()}`);
+        return;
+      }
+
+      if (await SendLater.isEditing(msgId)) {
+        SLStatic.debug(`Skipping message ${msgId} while it is being edited`);
         return;
       }
 
       const recur = SLStatic.ParseRecurSpec(msgRecurSpec);
       const args = SLStatic.parseArgs(msgRecurArgs);
 
-      const nextSend = new Date(msgSendAt);
-      const dueForSend = Date.now() >= nextSend.getTime();
-      if (dueForSend) {
-        if (await SendLater.isEditing(msgId)) {
-          SLStatic.debug(`Skipping message ${msgId} while it is being edited`);
-          return;
-        }
+      if (preferences.enforceTimeRestrictions) {
+        const now = Date.now();
 
-        const { preferences } = await browser.storage.local.get({"preferences":{}});
-
-        if (preferences.enforceTimeRestrictions) {
-          const now = Date.now();
-
-          // Respect late message blocker
-          if (preferences.blockLateMessages) {
-            const lateness = (now - nextSend.getTime()) / 60000;
-            if (lateness > preferences.lateGracePeriod) {
-              SLStatic.info(`Grace period exceeded for message ${id}`);
-              return;
-            }
-          }
-
-          // Respect "send between" preference
-          if (recur.between) {
-            if ((now < recur.between.start) || (now > recur.between.end)) {
-              SLStatic.debug(`Message ${id} outside of sendable time range.`);
-              return;
-            }
-          }
-
-          // Respect "only on days of week" preference
-          if (recur.days) {
-            const today = (new Date()).getDay();
-            if (!recur.days.includes(today)) {
-              const wkday = new Intl.DateTimeFormat('default', {weekday:'short'});
-              SLStatic.debug(`Message ${id} not scheduled to send on ${wkday.format(new Date())}`);
-            }
+        // Respect late message blocker
+        if (preferences.blockLateMessages) {
+          const lateness = (now - nextSend.getTime()) / 60000;
+          if (lateness > preferences.lateGracePeriod) {
+            SLStatic.info(`Grace period exceeded for message ${id}`);
+            return;
           }
         }
 
-        // Duplicate draft message into new compose window, and initiate send
-        const composeWindow = await SendLater.beginEditAsNewMessage(id);
-        setTimeout(SendLater.waitAndSend.bind(composeWindow), 0);
-
-        // Update lock as precaution against double sending.
-        browser.storage.local.get("lock").then(storage => {
-          const lock = storage.lock || {};
-          lock[msgId] = "sent" ;
-          browser.storage.local.set({ lock });
-        });
-
-        // Possibly schedule next recurrence.
-        if (recur.type !== "none") {
-          const nextRecur = SLStatic.NextRecurDate(nextSend, msgRecurSpec,
-                                                  (new Date()), args);
-
-          if (nextRecur) {
-            SLStatic.debug(`Scheduling next recurrence at ${nextRecur}`);
-            const cw = await SendLater.beginEditAsNewMessage(id);
-            const options = {
-                              sendAt: nextRecur,
-                              recurSpec: msgRecurSpec,
-                              args: msgRecurArgs,
-                              cancelOnReply: msgRecurCancelOnReply
-                            };
-            setTimeout(SendLater.waitAndSchedule.bind({ cw, options }), 0);
-          } else {
-            SLStatic.debug("Message does not need to be rescheduled.")
+        // Respect "send between" preference
+        if (recur.between) {
+          if ((now < recur.between.start) || (now > recur.between.end)) {
+            SLStatic.debug(`Message ${id} outside of sendable time range.`);
+            return;
           }
         }
 
-        browser.messages.delete([id], true);
+        // Respect "only on days of week" preference
+        if (recur.days) {
+          const today = (new Date()).getDay();
+          if (!recur.days.includes(today)) {
+            const wkday = new Intl.DateTimeFormat('default', {weekday:'short'});
+            SLStatic.debug(`Message ${id} not scheduled to send on ${wkday.format(new Date())}`);
+          }
+        }
+      }
+
+      // Initiate send from draft message
+      await browser.messages.getRaw(id).then(
+        SLStatic.prepNewMessageHeaders
+      ).then(
+        browser.SL3U.sendRaw
+      );
+
+      let nextRecur;
+      if (recur.type !== "none") {
+        nextRecur = SLStatic.NextRecurDate(nextSend, msgRecurSpec, new Date(), args);
+      }
+
+      if (nextRecur) {
+        SLStatic.debug(`Scheduling next recurrence of message ${id} at ${nextRecur.toLocaleString()}`);
+        lock[msgId] = { lastSent: new Date(), nextRecur };
+        browser.storage.local.set({ lock });
       } else {
-        SLStatic.debug(`Message ${id} not yet due for send.`);
+        browser.messages.delete([id], true);
       }
     },
 
     mainLoop: function() {
       SLStatic.debug("Entering main loop.");
 
-      try {
-        SendLater.forAllDrafts(msg => SendLater.possiblySendMessage(msg.id));
-      } catch (e) {
-        console.error(e);
-      }
+      SendLater.forAllDrafts(
+        msg => SendLater.possiblySendMessage(msg.id)
+      ).catch(SLStatic.error);
 
       // TODO: Use a persistent reference to the this timeout that can be
       // scrapped and restarted upon changes in the delay preference.
@@ -356,9 +334,10 @@ const SendLater = {
         SLStatic.debug(`Next main loop iteration in ${interval} minutes.`);
         setTimeout(SendLater.mainLoop, 60000*interval);
 
-        if (storage.preferences.markDraftsRead) {
-          SendLater.markDraftsRead();
-        }
+        // if (storage.preferences.markDraftsRead) {
+        //   // Just in case one slipped through the cracks.
+        //   SendLater.markDraftsRead();
+        // }
       });
     }
 };

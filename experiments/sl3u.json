@@ -44,6 +44,19 @@
         ]
       },
       {
+        "name": "sendRaw",
+        "type": "function",
+        "async": true,
+        "description": "",
+        "parameters": [
+          {
+            "name": "content",
+            "type": "string",
+            "description": "Unmodified contents of message to send."
+          }
+        ]
+      },
+      {
         "name":"setHeader",
         "type":"function",
         "async":true,

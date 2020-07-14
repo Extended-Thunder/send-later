@@ -94,6 +94,21 @@ const SLStatic = {
     return `${hours}:${minutes}`;
   },
 
+  replaceHeader: function(content, header, value) {
+    const replacement = (value) ? `\r\n${header}: ${value}\r\n` : '\r\n';
+    const regex = `\r\n${header}:.*(?:\r\n|\n)([ \t].*(?:\r\n|\n))*`;
+    content = ("\r\n" + content).replace(new RegExp(regex,'im'), replacement);
+    return content.slice(2);
+  },
+
+  prepNewMessageHeaders: function(content) {
+    content = SLStatic.replaceHeader(content, "Date", SLStatic.dateTimeFormat());
+    content = SLStatic.replaceHeader(content, "X-Send-Later-.*");
+    content = SLStatic.replaceHeader(content, "X-Enigmail-Draft-Status");
+    content = SLStatic.replaceHeader(content, "Openpgp");
+    return content;
+  },
+
   newUUID: function() {
     // Good enough for this purpose. Code snippet from:
     // stackoverflow.com/questions/105034/how-to-create-guid-uuid/2117523
