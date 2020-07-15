@@ -17,7 +17,7 @@ migrations = {
     "extensionName": ("MessageTag", "Send Later",
                 "The name of the add-on, displayed in various places."),
     "extensionDescription": ("extensions.sendlater3@kamens.us.description",
-                "True &quot;Send Later&quot functionality to schedule the time for sending an email.",
+                "True \"Send Later\" functionality to schedule the time for sending an email.",
                 "A short description of the add-on."),
     "advancedOptionsTitle": ("advanced.caption", "Advanced"),
     "altBindingPrefLabel": ("altbinding.caption", "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter"),
@@ -62,8 +62,8 @@ migrations = {
     "sendAtLabel":("sendlater.prompt.textbox.label", "Send at"),
     "sendBtwnLabel":("sendlater.prompt.between.label", "Between"),
     "sendButtonPrefLabel": ("sendlatersendbutton.caption",
-                            "&quot;Send&quot; does &quot;Send later&quot;"),
-    "sendDelayPrefLabel1":("senddelay.label", "&quot;Send&quot; delays messages by"),
+                            "\"Send\" does \"Send later\""),
+    "sendDelayPrefLabel1":("senddelay.label", "\"Send\" delays messages by"),
     "sendDelayPrefLabel2":("senddelay2.label", "minutes"),
     "sendSundayLabel":("sendlater.prompt.day0", "Sunday"),
     "sendMondayLabel":("sendlater.prompt.day1", "Monday"),
@@ -121,7 +121,7 @@ def main(args):
         appName = translations[appkey] if appkey in translations else "Send Later"
 
         def msgfilter(message):
-            message = re.sub(r"[“”]", "&quot;", message)
+            #message = re.sub(r"[“”]", "&quot;", message)
             message = re.sub("{NAME}", appName, message)
             message = re.sub(r":\s*$", "", message)
             message = re.sub("%S:%S", "%S", message)
