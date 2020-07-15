@@ -19,5 +19,7 @@ send_later.xpi: $(shell find $(shell cat dev/include-manifest) 2>/dev/null)
 lint:
 	addons-linter .
 
-test: lint $(shell find $(shell cat dev/include-manifest) 2>/dev/null)
+unit_test: $(shell find $(shell cat dev/include-manifest) 2>/dev/null)
 	node test/run_tests.js
+
+test: lint unit_test

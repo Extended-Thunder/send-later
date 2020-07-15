@@ -34,25 +34,19 @@
         "name": "SendNow",
         "type": "function",
         "async": true,
-        "description": "",
-        "parameters": [
-          {
-            "name": "batch",
-            "type": "boolean",
-            "description": "Skip user interaction and message content checks."
-          }
-        ]
+        "description": "Initiate send of current composition window",
+        "parameters": []
       },
       {
         "name": "sendRaw",
         "type": "function",
         "async": true,
-        "description": "",
+        "description": "Sends email from raw message content",
         "parameters": [
           {
             "name": "content",
             "type": "string",
-            "description": "Unmodified contents of message to send."
+            "description": "Contents of message to send"
           }
         ]
       },

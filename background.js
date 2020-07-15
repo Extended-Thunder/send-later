@@ -3,47 +3,9 @@ const SendLater = {
     // Track unresolved promises that can be resolved by some future event.
     _PromiseMap: new Map(),
 
-    async getIdentity(id) {
-      const accts = await browser.accounts.list();
-
-      for (const acct of accts) {
-        for (const identity of acct.identities) {
-          if (id.includes(identity.id)) {
-            SLStatic.debug(`Found identity matching <${id}>`, identity);
-            return identity;
-          }
-        }
-      }
-
-      SLStatic.warn(`Cannot find identity <${id}>`);
-      return null;
-    },
-
     async isEditing(msgId) {
       // Look through each of the compose windows, check for this message UUID.
       return await browser.SL3U.editingMessage(msgId);
-    },
-
-    waitAndSend: function() {
-      // When bound to a compose window, this function will wait for
-      // the window's status to be "complete", and then it will initiate
-      // a batch send operation.
-      if (this.cw.status === "complete") {
-        browser.SL3U.SendNow(false);
-      } else {
-        setTimeout(SendLater.waitAndSend.bind(this), 50);
-      }
-    },
-
-    waitAndSchedule: function() {
-      // When bound to a compose window, this function will wait for the
-      // window's status to be "complete", then it will schedule the message
-      // for send.
-      if (this.cw.status === "complete") {
-        SendLater.scheduleSendLater(this.cw.id, this.options);
-      } else {
-        setTimeout(SendLater.waitAndSchedule.bind(this), 50);
-      }
     },
 
     async findDraftsHelper(folder) {
@@ -147,93 +109,6 @@ const SendLater = {
       browser.tabs.remove(tabId);
     },
 
-    async beginEditAsNewMessage(id) {
-      // Begin new message composition. Duplicate contents of existing message.
-      // Returns new compose window.
-      const original = await browser.messages.getFull(id);
-      SLStatic.debug("Composing message from original:",original);
-
-      const idKey = original.headers['x-identity-key'];
-      const identity = await SendLater.getIdentity(idKey[0]);
-      if (!identity) {
-        SLStatic.warn("Cannot send message without a sender identity.");
-        return;
-      }
-
-      function expandMimeParts(msgparts) {
-        // Recursively traverses MIME tree to find message body.
-        const ret = { attachments: [] };
-        for (part of msgparts.parts) {
-          if (part.name) {
-            // The messagePart object for extensions does not actually include
-            // the attachment content as of TB78. See workaround below.
-            const att = { name: part.name, file: null };
-            ret.attachments.push(att);
-          } else if (part.body && part.contentType.startsWith('text/html')) {
-            // HTML body part
-            if (ret.htmlmsg) {
-              SLStatic.warn("HTML message body defined twice.");
-            }
-            // Clean up HTML message, because otherwise Thunderbird treats it as
-            // if it were plaintext, adds a bunch of <br> tags, and wraps the
-            // whole thing in an <html> element for some reason.
-            ret.htmlmsg = part.body;
-            ret.htmlmsg = ret.htmlmsg.replaceAll(/\n/g,'');
-            ret.htmlmsg = ret.htmlmsg.replace(/.*<body>/i,'');
-            ret.htmlmsg = ret.htmlmsg.replace(/<\/body>.*/i,'');
-          } else if (part.body && part.contentType.startsWith('text/plain')) {
-            // Plaintext body part
-            if (ret.plainmsg) {
-              SLStatic.warn("Plain message body defined twice.");
-            }
-            ret.plainmsg = part.body;
-          } else if (part.contentType.startsWith('multipart/mixed')) {
-            // Another level of message parts.
-            const subparts = expandMimeParts(part);
-            Object.assign(ret, subparts);
-          } else {
-            SLStatic.warn("Unsure how to handle message part:",part);
-          }
-        }
-        return ret;
-      }
-
-      const mimeParts = expandMimeParts(original);
-
-      const details = {
-        identityId: identity.id,
-        to: original.headers.to,
-        subject: original.headers.subject[0],
-        cc: original.headers.cc,
-        bcc: original.headers.bcc,
-        isPlainText: (mimeParts.htmlmsg === undefined)
-      }
-
-      if (details.isPlainText) {
-        details.plainTextBody = mimeParts.plainmsg;
-      } else {
-        details.body = mimeParts.htmlmsg;
-      }
-
-      // Duplicate message details into a new compose window.
-      const cw = await browser.compose.beginNew(details);
-
-      // The MailExtension message API does not return message attachment body
-      // as of TB78. This workaround starts a forwarded message, then duplicates
-      // its attachments into a new compose window.
-      const fw = await browser.compose.beginForward(id, "forwardInline");
-      const attachments = await browser.compose.listAttachments(fw.id);
-      const files = await Promise.all(attachments.map(att => att.getFile()));
-      for (let idx=0; idx<files.length; idx++) {
-        const name = attachments[idx].name;
-        const file = new File([files[idx]], name, { type: files[idx].type });
-        await browser.compose.addAttachment(cw.id, { name, file });
-      }
-      browser.tabs.remove(fw.id);
-
-      return cw;
-    },
-
     async possiblySendMessage(id) {
       if (browser.SL3U.isOffline()) {
         return;
@@ -333,11 +208,6 @@ const SendLater = {
         const interval = +storage.preferences['checkTimePref'];
         SLStatic.debug(`Next main loop iteration in ${interval} minutes.`);
         setTimeout(SendLater.mainLoop, 60000*interval);
-
-        // if (storage.preferences.markDraftsRead) {
-        //   // Just in case one slipped through the cracks.
-        //   SendLater.markDraftsRead();
-        // }
       });
     }
 };

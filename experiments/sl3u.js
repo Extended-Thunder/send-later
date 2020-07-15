@@ -189,16 +189,10 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                     cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
                   },
 
-                  async SendNow(batch) {
+                  async SendNow() {
                     // Sends the message from the current composition window
                     const cw = Services.wm.getMostRecentWindow("msgcompose");
-                    const sendMode_Now = Ci.nsIMsgCompDeliverMode.Now;
-                    if (batch) {
-                      // Skips usual checking and user interaction steps.
-                      cw.CompleteGenericSendMessage(sendMode_Now);
-                    } else {
-                      cw.GenericSendMessage(sendMode_Now);
-                    }
+                    cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.Now);
                   },
 
                   async setHeader(name, value) {

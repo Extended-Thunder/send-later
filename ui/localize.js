@@ -4,7 +4,7 @@ const localizer = {
     elements.forEach(async e => {
       try {
         const key = e.className.match(/__MSG_(.+)__/)[1];
-        let mockArgs = [];
+        const mockArgs = [];
         let msg;
         do {
           msg = browser.i18n.getMessage(key,mockArgs);
