@@ -5,7 +5,7 @@ _locales: dev/migrate_locales.py
 	./dev/migrate_locales.py chrome/locale
 	rm -rf chrome
 
-utils/moment.js.min:
+utils/moment.min.js:
 	curl -sL https://momentjs.com/downloads/moment-with-locales.min.js | \
 		sed -e 's/.*sourceMappingURL.*//' > "$@"
 
