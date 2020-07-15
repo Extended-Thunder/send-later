@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "„Odeslat později&quot; umožňuje naplánovat čas pro pozdější odeslání emailu.",
+    "message": "„Odeslat později“ umožňuje naplánovat čas pro pozdější odeslání emailu.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -160,7 +160,7 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "„Odeslat&quot; = „Odeslat později&quot;",
+    "message": "„Odeslat“ = „Odeslat později“",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -212,15 +212,15 @@
     "description": ""
   },
   "showColumnPrefLabel": {
-    "message": "Zobrazovat sloupec „Odeslat Později&quot;",
+    "message": "Zobrazovat sloupec „Odeslat Později“",
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "Zobrazit „Odeslat Později&quot; v hlavičce",
+    "message": "Zobrazit „Odeslat Později“ v hlavičce",
     "description": ""
   },
   "showStatusPrefLabel": {
-    "message": "Zobrazit „Odeslat Později&quot; ve stavovém řádku",
+    "message": "Zobrazit „Odeslat Později“ ve stavovém řádku",
     "description": ""
   },
   "userGuideLabel": {
@@ -232,7 +232,7 @@
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
-    "message": "Dát do „Pošty k odeslání&quot;",
+    "message": "Dát do „Pošty k odeslání“",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -240,7 +240,7 @@
     "description": ""
   },
   "sendlater.prompt.sendlater.tooltip": {
-    "message": "Namísto plánování doručení v určitý čas, přesune zprávu do složky „Pošta k odeslání&quot; pro doručení ve chvíli, kdy bude zadán příkaz pro odeslání neodeslaných zpráv.",
+    "message": "Namísto plánování doručení v určitý čas, přesune zprávu do složky „Pošta k odeslání“ pro doručení ve chvíli, kdy bude zadán příkaz pro odeslání neodeslaných zpráv.",
     "description": ""
   },
   "sendlater.prompt.sendnow.accesskey": {
@@ -248,7 +248,7 @@
     "description": ""
   },
   "sendlater.prompt.sendnow.tooltip": {
-    "message": "Odeslat zprávu hned bez použití „Odeslat Později&quot;.",
+    "message": "Odeslat zprávu hned bez použití „Odeslat Později“.",
     "description": ""
   },
   "sendlater.prompt.close.accesskey": {
@@ -344,11 +344,11 @@
     "description": ""
   },
   "showsendlatercolumn.tooltip": {
-    "message": "Zobrazovat sloupeček „Odeslat Později&quot; při prohlížení složek s koncepty",
+    "message": "Zobrazovat sloupeček „Odeslat Později“ při prohlížení složek s koncepty",
     "description": ""
   },
   "showsendlaterheader.tooltip": {
-    "message": "Má-li se zobrazovat v záhlaví zprávy hlavička &quot;X-Send-Later-At&quot;, tj. datum a čas, kdy bude koncept odeslán.",
+    "message": "Má-li se zobrazovat v záhlaví zprávy hlavička “X-Send-Later-At”, tj. datum a čas, kdy bude koncept odeslán.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
@@ -360,7 +360,7 @@
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
-    "message": "Pokud tuto možnost povolíte, bude se příkaz „Odeslat&quot; (tlačítko nebo klávesová zkratka Ctrl-Enter) chovat stejně jako „Odeslat později&quot;.",
+    "message": "Pokud tuto možnost povolíte, bude se příkaz „Odeslat“ (tlačítko nebo klávesová zkratka Ctrl-Enter) chovat stejně jako „Odeslat později“.",
     "description": ""
   },
   "senddelay.tooltip": {
@@ -416,7 +416,7 @@
     "description": ""
   },
   "sendlater.ask.title.label": {
-    "message": "Podpořte „Odeslat Později&quot;",
+    "message": "Podpořte „Odeslat Později“",
     "description": ""
   },
   "sendlater.ask.message1": {
@@ -472,7 +472,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "Vyberte funkci k úpravě nebo smazání, nebo použijte „(vytvořit novou funkci)&quot; pro vytvoření nové funkce.",
+    "message": "Vyberte funkci k úpravě nebo smazání, nebo použijte „(vytvořit novou funkci)“ pro vytvoření nové funkce.",
     "description": ""
   },
   "createnewfunction": {
@@ -612,7 +612,7 @@
     "description": ""
   },
   "sendwithfunction": {
-    "message": "Odeslat na základě funkce „$1&quot;",
+    "message": "Odeslat na základě funkce „$1“",
     "description": ""
   },
   "sendspecifyfunction": {
@@ -672,11 +672,11 @@
     "description": ""
   },
   "OptionShortcutAlertText": {
-    "message": "Předvolba $1 má neplatnou hodnotu „$2&quot;",
+    "message": "Předvolba $1 má neplatnou hodnotu „$2“",
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Odeslat Později: Chyba při odesílání zprávy k odeslání. Složka „Pošta k odeslání&quot; může být poškozena a zprávy naplánované pro odeslání nemusely být odeslány. Více na https://blog.kamens.us/send-later/#outbox.",
+    "message": "Odeslat Později: Chyba při odesílání zprávy k odeslání. Složka „Pošta k odeslání“ může být poškozena a zprávy naplánované pro odeslání nemusely být odeslány. Více na https://blog.kamens.us/send-later/#outbox.",
     "description": ""
   },
   "CopyUnsentError": {
@@ -692,7 +692,7 @@
     "description": ""
   },
   "MessageResendError": {
-    "message": "Odeslat Později: Pokus o opakované odeslání již odeslané zprávy? Vaše složka „$1&quot; v „Poště k odeslání&quot; nebo „Konceptech&quot; je pravděpodobně poškozená. Opravte, prosím, složku, jak je popsáno zde - https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "message": "Odeslat Později: Pokus o opakované odeslání již odeslané zprávy? Vaše složka „$1“ v „Poště k odeslání“ nebo „Konceptech“ je pravděpodobně poškozená. Opravte, prosím, složku, jak je popsáno zde - https://blog.kamens.us/send-later/#corrupt-outbox.",
     "description": ""
   },
   "minutely": {
@@ -888,7 +888,7 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "Kliknutí na tlačítko „Dát do „Pošty k odeslání&quot;&quot; vloží zprávu okamžitě do vaší „Pošty k odeslání&quot;, takže u ní NEBUDE naplánováno odeslání v určitý čas. Pro odeslání naplánovaném v určitý čas klikněte (po vložení platného času odeslání) na tlačítko „Odeslat přibližně v&quot; v zeleném rámečku. Opravdu chcete zprávu vložit do vaší „Pošty k odeslání&quot;?",
+    "message": "Kliknutí na tlačítko „Dát do „Pošty k odeslání““ vloží zprávu okamžitě do vaší „Pošty k odeslání“, takže u ní NEBUDE naplánováno odeslání v určitý čas. Pro odeslání naplánovaném v určitý čas klikněte (po vložení platného času odeslání) na tlačítko „Odeslat přibližně v“ v zeleném rámečku. Opravdu chcete zprávu vložit do vaší „Pošty k odeslání“?",
     "description": ""
   },
   "SendNowConfirmMessage": {
@@ -904,11 +904,11 @@
     "description": ""
   },
   "ScheduledMessagesWarningQuitRequested": {
-    "message": "Jsou tu zprávy naplánované pro odeslání. „Odeslat Později&quot; může odesílat zprávy pouze, když $1 běží. Opravdu chcete ukončit program?",
+    "message": "Jsou tu zprávy naplánované pro odeslání. „Odeslat Později“ může odesílat zprávy pouze, když $1 běží. Opravdu chcete ukončit program?",
     "description": ""
   },
   "ScheduledMessagesWarningQuit": {
-    "message": "„Odeslat Později&quot; může odesílat zprávy pouze, když $1 běží. Prosím, nezapomeňte ho znovu spustit před tím, než jsou vaše zprávy naplánované k odeslání!",
+    "message": "„Odeslat Později“ může odesílat zprávy pouze, když $1 běží. Prosím, nezapomeňte ho znovu spustit před tím, než jsou vaše zprávy naplánované k odeslání!",
     "description": ""
   },
   "EnigmailIncompatTitle": {
@@ -916,7 +916,7 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "Nainstalovaná verze programu „Enigmail&quot; není kompatibilní s rozšířením „Odeslat Později&quot;, proto bylo plánování odesílání zpráv s „Odeslat Později&quot; zakázáno. Kontaktujte, prosím, vývojáře „Odeslat Později&quot; (jik@kamens.us) s žádostí o pomoc.",
+    "message": "Nainstalovaná verze programu „Enigmail“ není kompatibilní s rozšířením „Odeslat Později“, proto bylo plánování odesílání zpráv s „Odeslat Později“ zakázáno. Kontaktujte, prosím, vývojáře „Odeslat Později“ (jik@kamens.us) s žádostí o pomoc.",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {
@@ -956,7 +956,7 @@
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// Vítejte v editoru funkcí pro „Odeslat Později&quot;! //\\n//\\n// Pomocí tohoto editoru můžete vytvářet JavaSkriptové funkce obsahující\\n// komplexní logiku plánování zpráv, které můžou být připojené k tlačítkovým\\n// předvolbám, nebo vybrané v „Odeslat Později&quot; dialogu.\\n//\\n// Jak můžete vidět výše, když je plánovací funkce vyvolána, bude mít tři \\n// argumenty:\\n// * &quot;specname&quot; se používá, pokud chcete, aby funkce vytvořila opakování\\n// (více níže)\\n// * &quot;prev&quot;  je předchozí naplánovaný čas odeslání, pokud se jedná o \\n// opakující se vyvolání\\n// * &quot;args&quot; je extra argument vrácený předchozím vyvoláním, pokud se jedná\\n// o opakující se vyvolání\\n//\\n// Ve vašem kódu musí být proměnné &quot;next&quot;, &quot;nextspec&quot;, a\\n// &quot;nextargs&quot; určené následovně:\\n//\\n// * &quot;next&quot; je buď počet minut v budoucnosti, nebo objekt Date indikující,\\n// kdy by měla být zpráva odeslána\\n// * &quot;nextspec&quot; je specifikace opakování, pokud se má jednat o opakující \\n// se zprávu (podívejte se na\\n// https://blog.kamens.us/send-later/#dynamic-recurrence). Pokud toto\\n// nenastavíte, bude zpráva odeslaná pouze jednou. Pozn.: Pokud chcete,\\n// aby byla vaše funkce vyvolaná znovu pro opakování zadejte tohle:\\n// nextspec = &quot;funkce &quot; + specname;\\n// * &quot;nextargs&quot; je pole argumentů, které chcete předat do dalšího\\n// vyvolání funkce jako &quot;args&quot;.\\n//\\n// Během práce na vaší funkci ji můžete otestovat vyplněním hodnot\\n// pro  &quot;prev&quot; a &quot;args&quot; v textových polích níže a pak kliknutím na „Spustit&quot;\\n// pro spuštění funkce a zobrazení výsledků.\\n//\\n// Nahoře najdete dvě předdefinované ukázkové funkce\\n// „BusinessHours&quot; (Úřední hodiny) a „DaysInARow&quot; (Dny po sobě), na které\\n// se můžete podívat a vyzkoušet si je, abyste se o nich dozvěděli víc.\\n//\\n// Tato funkce „ReadMeFirst&quot; umí jenom odeslat zprávu nyní,\\n// jak je nadefinováno na následujícím řádku:\\nnext = new Date();",
+    "message": "// Vítejte v editoru funkcí pro „Odeslat Později“! //\\n//\\n// Pomocí tohoto editoru můžete vytvářet JavaSkriptové funkce obsahující\\n// komplexní logiku plánování zpráv, které můžou být připojené k tlačítkovým\\n// předvolbám, nebo vybrané v „Odeslat Později“ dialogu.\\n//\\n// Jak můžete vidět výše, když je plánovací funkce vyvolána, bude mít tři \\n// argumenty:\\n// * &quot;specname&quot; se používá, pokud chcete, aby funkce vytvořila opakování\\n// (více níže)\\n// * &quot;prev&quot;  je předchozí naplánovaný čas odeslání, pokud se jedná o \\n// opakující se vyvolání\\n// * &quot;args&quot; je extra argument vrácený předchozím vyvoláním, pokud se jedná\\n// o opakující se vyvolání\\n//\\n// Ve vašem kódu musí být proměnné &quot;next&quot;, &quot;nextspec&quot;, a\\n// &quot;nextargs&quot; určené následovně:\\n//\\n// * &quot;next&quot; je buď počet minut v budoucnosti, nebo objekt Date indikující,\\n// kdy by měla být zpráva odeslána\\n// * &quot;nextspec&quot; je specifikace opakování, pokud se má jednat o opakující \\n// se zprávu (podívejte se na\\n// https://blog.kamens.us/send-later/#dynamic-recurrence). Pokud toto\\n// nenastavíte, bude zpráva odeslaná pouze jednou. Pozn.: Pokud chcete,\\n// aby byla vaše funkce vyvolaná znovu pro opakování zadejte tohle:\\n// nextspec = &quot;funkce &quot; + specname;\\n// * &quot;nextargs&quot; je pole argumentů, které chcete předat do dalšího\\n// vyvolání funkce jako &quot;args&quot;.\\n//\\n// Během práce na vaší funkci ji můžete otestovat vyplněním hodnot\\n// pro  &quot;prev&quot; a &quot;args&quot; v textových polích níže a pak kliknutím na „Spustit“\\n// pro spuštění funkce a zobrazení výsledků.\\n//\\n// Nahoře najdete dvě předdefinované ukázkové funkce\\n// „BusinessHours“ (Úřední hodiny) a „DaysInARow“ (Dny po sobě), na které\\n// se můžete podívat a vyzkoušet si je, abyste se o nich dozvěděli víc.\\n//\\n// Tato funkce „ReadMeFirst“ umí jenom odeslat zprávu nyní,\\n// jak je nadefinováno na následujícím řádku:\\nnext = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {
@@ -1020,7 +1020,7 @@
     "description": ""
   },
   "BadNextArgsError": {
-    "message": "hodnota &quot;$1&quot; pro &quot;nextargs&quot; není Pole",
+    "message": "hodnota “$1” pro &quot;nextargs&quot; není Pole",
     "description": ""
   },
   "FunctionDeleteConfirmBody": {
@@ -1048,7 +1048,7 @@
     "description": ""
   },
   "RenameFunctionBody": {
-    "message": "Upravili jste jméno existující funkce &quot;$1&quot;. Chcete přejmenovat existující funkci nebo ji uložit jako novou se zadaným názvem?",
+    "message": "Upravili jste jméno existující funkce “$1”. Chcete přejmenovat existující funkci nebo ji uložit jako novou se zadaným názvem?",
     "description": ""
   },
   "RenameFunctionRenameButton": {
@@ -1064,7 +1064,7 @@
     "description": ""
   },
   "FunctionErrorBody": {
-    "message": "Chyba při volání funkce dynamického naplánování &quot;$1&quot;",
+    "message": "Chyba při volání funkce dynamického naplánování “$1”",
     "description": ""
   },
   "cancel_on_reply": {

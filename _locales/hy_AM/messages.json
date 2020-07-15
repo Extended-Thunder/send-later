@@ -148,7 +148,7 @@
     "description": ""
   },
   "sendAtDefaultLabel": {
-    "message": "Նշեք ամսաթիվը և ժամանակը: Կարող եք նշել նաև &quot;հաջորդ Հինգշաբթի 3:00pm&quot;",
+    "message": "Նշեք ամսաթիվը և ժամանակը: Կարող եք նշել նաև “հաջորդ Հինգշաբթի 3:00pm”",
     "description": "Displayed in place of send at time before user makes selections"
   },
   "sendAtLabel": {
@@ -164,7 +164,7 @@
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&quot;Send&quot; delays messages by",
+    "message": "\"Send\" delays messages by",
     "description": ""
   },
   "sendDelayPrefLabel2": {
@@ -268,7 +268,7 @@
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
-    "message": "օր.՝ &quot;3:00pm Հինգշաբթի&quot;, &quot;12/31/2012 15:27&quot;",
+    "message": "օր.՝ “3:00pm Հինգշաբթի”, “12/31/2012 15:27”",
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
@@ -336,7 +336,7 @@
     "description": ""
   },
   "showsendlaterheader.tooltip": {
-    "message": "Անկախ ամեն ինչից ցուցադրել &quot;X-Send-Later-At&quot; գլխագիրը, այսինքն՝ ժամանակը, երբ սևագիրը պետք է ուղարկվի, գլխագրում՝ նամակը դիտելիս",
+    "message": "Անկախ ամեն ինչից ցուցադրել “X-Send-Later-At” գլխագիրը, այսինքն՝ ժամանակը, երբ սևագիրը պետք է ուղարկվի, գլխագրում՝ նամակը դիտելիս",
     "description": ""
   },
   "showsendlaterprogress.caption": {
@@ -348,7 +348,7 @@
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
-    "message": "Եթե միացված է՝ &quot;Ուղարկել&quot; հրամանը (և կոճակը և Ctrl-Enter սեղմելիս) կնշանակի նույնը՝ &quot;Ուղարկել ավելի ուշ&quot;",
+    "message": "Եթե միացված է՝ “Ուղարկել” հրամանը (և կոճակը և Ctrl-Enter սեղմելիս) կնշանակի նույնը՝ “Ուղարկել ավելի ուշ”",
     "description": ""
   },
   "contactauthor.tooltip": {
@@ -496,7 +496,7 @@
     "description": ""
   },
   "OptionShortcutAlertText": {
-    "message": "$1 պիտակը ունի սխալ նշան-ուն՝ &quot;$2&quot;",
+    "message": "$1 պիտակը ունի սխալ նշան-ուն՝ “$2”",
     "description": ""
   },
   "SendingUnsentError": {
@@ -712,7 +712,7 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "Սեղմելով &quot;Դնել ելքայինում&quot;՝ նամակը միանգամից կտեղափոխվի Ելքային թղթապանակ: Այն ՉԻ պլանավորի ուղարկելու նամակը որոշակի ժամի: Դրա համար սեղմեք &quot;Ուղարկել հետո&quot; կոճակը՝ կանաչ դաշտում նշելով ոիղարկելու ժամանակը: Այժմ դնե՞լ նամակը Ելքայինում",
+    "message": "Սեղմելով “Դնել ելքայինում”՝ նամակը միանգամից կտեղափոխվի Ելքային թղթապանակ: Այն ՉԻ պլանավորի ուղարկելու նամակը որոշակի ժամի: Դրա համար սեղմեք “Ուղարկել հետո” կոճակը՝ կանաչ դաշտում նշելով ոիղարկելու ժամանակը: Այժմ դնե՞լ նամակը Ելքայինում",
     "description": ""
   },
   "SendNowConfirmMessage": {
@@ -760,7 +760,7 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "&quot;$1&quot; վերնարով նամակը $2 Սևագրեր թղթապանակում պլանավորված էր ուղարկել ավելի քան $3 րոպե առաջ, ուստի այն չի ուղարկվի: Դուք պետք է խմբագրեք սևագիրը կամ ուղարկեք այն ինքներդ: Նաև կարող եք անջատել «Չուղարկել ավելի քան # րոպե ուշացրած նամակները» նախապատվությունը, որպեսզի ուշացրած նամակաները ուղարկվեն",
+    "message": "“$1” վերնարով նամակը $2 Սևագրեր թղթապանակում պլանավորված էր ուղարկել ավելի քան $3 րոպե առաջ, ուստի այն չի ուղարկվի: Դուք պետք է խմբագրեք սևագիրը կամ ուղարկեք այն ինքներդ: Նաև կարող եք անջատել «Չուղարկել ավելի քան # րոպե ուշացրած նամակները» նախապատվությունը, որպեսզի ուշացրած նամակաները ուղարկվեն",
     "description": ""
   },
   "DisabledMessage": {

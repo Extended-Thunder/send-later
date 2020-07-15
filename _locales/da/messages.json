@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "True &quot;Send Later&quot functionality to schedule the time for sending an email.",
+    "message": "True \"Send Later\" functionality to schedule the time for sending an email.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -164,7 +164,7 @@
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&quot;Send&quot; delays messages by",
+    "message": "\"Send\" delays messages by",
     "description": ""
   },
   "sendDelayPrefLabel2": {

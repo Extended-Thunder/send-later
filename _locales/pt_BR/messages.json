@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "Função de &quot;Send Later&quot; para agendar horário de envio",
+    "message": "Função de “Send Later” para agendar horário de envio",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -160,7 +160,7 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Enviar Mais Tarde&quot; substitui &quot;Enviar&quot;",
+    "message": "“Enviar Mais Tarde” substitui “Enviar”",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -248,7 +248,7 @@
     "description": ""
   },
   "sendlater.prompt.sendnow.tooltip": {
-    "message": "Enviar imediatamente, ignorando &quot;Enviar mais tarde&quot;.",
+    "message": "Enviar imediatamente, ignorando “Enviar mais tarde”.",
     "description": ""
   },
   "sendlater.prompt.close.accesskey": {
@@ -268,7 +268,7 @@
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
-    "message": "ex: &quot;15h, 3a feira&quot;, &quot;31/12/2012 15:27&quot;",
+    "message": "ex: “15h, 3a feira”, “31/12/2012 15:27”",
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
@@ -344,11 +344,11 @@
     "description": ""
   },
   "showsendlatercolumn.tooltip": {
-    "message": "Exibir coluna &quot;Enviar mais tarde&quot; apenas quando visualizar pasta de rascunhos",
+    "message": "Exibir coluna “Enviar mais tarde” apenas quando visualizar pasta de rascunhos",
     "description": ""
   },
   "showsendlaterheader.tooltip": {
-    "message": "Exibe ou não cabeçalho &quot;X-Send-Later-At&quot;, isto é, ao visualizar a mensagem, no cabeçalho a hora programada de envio do rascunho.",
+    "message": "Exibe ou não cabeçalho “X-Send-Later-At”, isto é, ao visualizar a mensagem, no cabeçalho a hora programada de envio do rascunho.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
@@ -360,7 +360,7 @@
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
-    "message": "Ao ativar esta opção, o comando &quot;Enviar&quot; (tanto seu ícone quanto teclando Ctrl+Enter) age da mesma forma que &quot;Envie Mais Tarde&quot;.",
+    "message": "Ao ativar esta opção, o comando “Enviar” (tanto seu ícone quanto teclando Ctrl+Enter) age da mesma forma que “Envie Mais Tarde”.",
     "description": ""
   },
   "senddelay.tooltip": {
@@ -472,7 +472,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "Selecione uma função para editar ou apagar, ou &quot;(criar nova função)&quot; para criar uma nova função.",
+    "message": "Selecione uma função para editar ou apagar, ou “(criar nova função)” para criar uma nova função.",
     "description": ""
   },
   "createnewfunction": {
@@ -496,7 +496,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "Insira o código fonte de sua função aqui. Veja a função de amostra &quot;ReadMeFirst&quot; para detalhes sobre o que seu código deverá fazer.",
+    "message": "Insira o código fonte de sua função aqui. Veja a função de amostra “ReadMeFirst” para detalhes sobre o que seu código deverá fazer.",
     "description": ""
   },
   "codeplaceholder": {
@@ -612,7 +612,7 @@
     "description": ""
   },
   "sendwithfunction": {
-    "message": "Enviar de acordo com a função &quot;$1&quot;",
+    "message": "Enviar de acordo com a função “$1”",
     "description": ""
   },
   "sendspecifyfunction": {
@@ -672,7 +672,7 @@
     "description": ""
   },
   "OptionShortcutAlertText": {
-    "message": "Atalho $1 contém valor inválido &quot;$2&quot;",
+    "message": "Atalho $1 contém valor inválido “$2”",
     "description": ""
   },
   "SendingUnsentError": {
@@ -888,11 +888,11 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "Clicando em &quot;Coloque na Caixa de Saída&quot; transfere imediatamente a mensagem para sua Caixa de Saída e NÃO IRÁ programar o envio da mensagem em horário específico. Para isso, clique em &quot;Enviar por volta de…&quot; na caixa verde após inserir horário válido. Está seguro que deseja colocar a mensagem na Caixa de Saída agora?",
+    "message": "Clicando em “Coloque na Caixa de Saída” transfere imediatamente a mensagem para sua Caixa de Saída e NÃO IRÁ programar o envio da mensagem em horário específico. Para isso, clique em “Enviar por volta de…” na caixa verde após inserir horário válido. Está seguro que deseja colocar a mensagem na Caixa de Saída agora?",
     "description": ""
   },
   "SendNowConfirmMessage": {
-    "message": "Ao clicar &quot;Enviar Agora&quot; a msg é enviada imediatamente e NÃO SERÁ agendada para um horário específico. Caso deseje esta opção, clique em &quot;Enviar por volta de…&quot; na área verde após inserir um horário válido. Deseja enviar esta mensagem imediatamente?",
+    "message": "Ao clicar “Enviar Agora” a msg é enviada imediatamente e NÃO SERÁ agendada para um horário específico. Caso deseje esta opção, clique em “Enviar por volta de…” na área verde após inserir um horário válido. Deseja enviar esta mensagem imediatamente?",
     "description": ""
   },
   "ConfirmAgain": {
@@ -952,7 +952,7 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "A mensagem com assunto &quot;$1&quot; em Rascunhos $2 foi agendada para envio há mais de $3 minutos atrás, portanto o envio foi bloqueado. Edite o rascunho, envie-a manualmente ou reagende o envio. Também poderá desabilitar a opção &quot;não envie mensagens com mais de # minutos de atraso&quot; interrompendo bloqueio do envio de mensagens atrasadas.",
+    "message": "A mensagem com assunto “$1” em Rascunhos $2 foi agendada para envio há mais de $3 minutos atrás, portanto o envio foi bloqueado. Edite o rascunho, envie-a manualmente ou reagende o envio. Também poderá desabilitar a opção “não envie mensagens com mais de # minutos de atraso” interrompendo bloqueio do envio de mensagens atrasadas.",
     "description": ""
   },
   "EditorReadMeCode": {
@@ -968,7 +968,7 @@
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "Enviar a mensagem agora caso seja horário comercial, ou no início do próximo dia util. Você pode mudar a definição de dia útil (padrão: Seg - Sex) ao inserir um conjunto de números de dias úteis como primeiro argumento, onde 0 é Domingo e 6 é Sábado. Você pode mudar o início e o fim do horário comercial (padrão: 8:30 - 17:30) passando um conjunto [H, M] como segundo e terceiro argumentos. Especificar &quot;null&quot; para os argumentos anteriores não os mudará. Por exemplo,&quot;null, [9, 0], [17, 0]&quot; mudará os horários comerciais sem mudar os dias úteis.",
+    "message": "Enviar a mensagem agora caso seja horário comercial, ou no início do próximo dia util. Você pode mudar a definição de dia útil (padrão: Seg - Sex) ao inserir um conjunto de números de dias úteis como primeiro argumento, onde 0 é Domingo e 6 é Sábado. Você pode mudar o início e o fim do horário comercial (padrão: 8:30 - 17:30) passando um conjunto [H, M] como segundo e terceiro argumentos. Especificar “null” para os argumentos anteriores não os mudará. Por exemplo,“null, [9, 0], [17, 0]” mudará os horários comerciais sem mudar os dias úteis.",
     "description": ""
   },
   "DaysInARowCode": {
@@ -992,7 +992,7 @@
     "description": ""
   },
   "UntestedSaveBody": {
-    "message": "A função não foi testada (com o botão &quot;Executar&quot;) desde a última alteração. Tem certeza que quer salvá-la ou exportá-la?",
+    "message": "A função não foi testada (com o botão “Executar”) desde a última alteração. Tem certeza que quer salvá-la ou exportá-la?",
     "description": ""
   },
   "BadSaveTitle": {
@@ -1012,15 +1012,15 @@
     "description": ""
   },
   "NoNextValueError": {
-    "message": "Função não definiu o valor &quot;next&quot;.",
+    "message": "Função não definiu o valor “next”.",
     "description": ""
   },
   "BadNextValueError": {
-    "message": "O valor &quot;next&quot; &quot;$1&quot;, não é nem número nem data.",
+    "message": "O valor “next” “$1”, não é nem número nem data.",
     "description": ""
   },
   "BadNextArgsError": {
-    "message": "O valor &quot;nextargs&quot; &quot;$1&quot; não é um conjunto.",
+    "message": "O valor “nextargs” “$1” não é um conjunto.",
     "description": ""
   },
   "FunctionDeleteConfirmBody": {
@@ -1048,7 +1048,7 @@
     "description": ""
   },
   "RenameFunctionBody": {
-    "message": "Você modificou o nome de uma função existente, &quot;$1&quot;. Quer renomear a função existente ou salvar uma função separada com o novo nome?",
+    "message": "Você modificou o nome de uma função existente, “$1”. Quer renomear a função existente ou salvar uma função separada com o novo nome?",
     "description": ""
   },
   "RenameFunctionRenameButton": {
@@ -1064,7 +1064,7 @@
     "description": ""
   },
   "FunctionErrorBody": {
-    "message": "Erro ao invocar a função de programação dinâmica: &quot;$1&quot;",
+    "message": "Erro ao invocar a função de programação dinâmica: “$1”",
     "description": ""
   },
   "cancel_on_reply": {

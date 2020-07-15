@@ -472,11 +472,11 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "Choisir une fonction existante à modifier ou supprimer, ou (&quot;créer une nouvelle fonction&quot;)",
+    "message": "Choisir une fonction existante à modifier ou supprimer, ou (“créer une nouvelle fonction”)",
     "description": ""
   },
   "createnewfunction": {
-    "message": "(&quot;créer une nouvelle fonction&quot;)",
+    "message": "(“créer une nouvelle fonction”)",
     "description": ""
   },
   "delete.label": {
@@ -496,7 +496,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "Placer le code source de votre fonction ici. Lisez la fonction &quot;ReadMeFirst&quot; pour avoir des détails sur la façon de coder.",
+    "message": "Placer le code source de votre fonction ici. Lisez la fonction “ReadMeFirst” pour avoir des détails sur la façon de coder.",
     "description": ""
   },
   "codeplaceholder": {
@@ -612,7 +612,7 @@
     "description": ""
   },
   "sendwithfunction": {
-    "message": "Envoyer selon la fonction &quot;$1&quot;",
+    "message": "Envoyer selon la fonction “$1”",
     "description": ""
   },
   "sendspecifyfunction": {
@@ -892,7 +892,7 @@
     "description": ""
   },
   "SendNowConfirmMessage": {
-    "message": "Cliquer sur &quot;Envoyer maintenant&quot; envoie le message immédiatement. Cela ne planifie PAS l&#x27;envoi du message à un moment ultérieur. Pour cela, il faut sélectionner",
+    "message": "Cliquer sur “Envoyer maintenant” envoie le message immédiatement. Cela ne planifie PAS l&#x27;envoi du message à un moment ultérieur. Pour cela, il faut sélectionner",
     "description": ""
   },
   "ConfirmAgain": {
@@ -924,7 +924,7 @@
     "description": ""
   },
   "TimeMismatchConfirmBody": {
-    "message": "La date d&#x27;expédition, $1, n&#x27;est pas compatible avec les restrictions temporelles spécifiées. Cliquez sur &quot;Annuler&quot; pour éditer la date d&#x27;expédition, ou &quot;OK&quot; pour ajuster automatiquement à $2.",
+    "message": "La date d&#x27;expédition, $1, n&#x27;est pas compatible avec les restrictions temporelles spécifiées. Cliquez sur “Annuler” pour éditer la date d&#x27;expédition, ou “OK” pour ajuster automatiquement à $2.",
     "description": ""
   },
   "endTimeWarningTitle": {
@@ -952,7 +952,7 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "Le message avec le sujet &quot;$1&quot; qui est dans le dossier brouillons $2 était programmé pour être distribué il y a plus de $3 minutes. Sa distribution a donc été bloquée. Vous devriez éditer le brouillon et l&#x27;envoyer ou le reprogrammer. Vous pouvez aussi désactiver l&#x27;option &quot;Ne pas distribuer les messages en retard de plus de # minutes&quot; afin d&#x27;empêcher l&#x27;envoi de messages en retard.",
+    "message": "Le message avec le sujet “$1” qui est dans le dossier brouillons $2 était programmé pour être distribué il y a plus de $3 minutes. Sa distribution a donc été bloquée. Vous devriez éditer le brouillon et l&#x27;envoyer ou le reprogrammer. Vous pouvez aussi désactiver l&#x27;option “Ne pas distribuer les messages en retard de plus de # minutes” afin d&#x27;empêcher l&#x27;envoi de messages en retard.",
     "description": ""
   },
   "EditorReadMeCode": {
@@ -968,7 +968,7 @@
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "Envoie le message immédiatement si c&#x27;est durant les heures de travail, ou au début de la prochaine journée travaillée. Vous pouvez changer la définition des jours de travail (valeurs par défaut : Lundi - Vendredi) en indiquant un tableau de nombres comme premier paramètre (work-day), avec 0 pour Dimanche et 6 pour Samedi. Vous pouvez changer les horaires de début et de fin d&#x27;une journée de travail (valeurs par défaut : 8h30 - 17h30) en modifiant pour chacun les tableaux [H, M] du deuxième et du troisième paramètre (workStart et workEnd). Indiquez &quot;null&quot; pour les paramètres précédemment définis que vous ne voulez pas modifier. Par exemple, &quot;null, [9, 0], [17, 0]&quot; change les horaires de travail sans changer les jours travaillés.",
+    "message": "Envoie le message immédiatement si c&#x27;est durant les heures de travail, ou au début de la prochaine journée travaillée. Vous pouvez changer la définition des jours de travail (valeurs par défaut : Lundi - Vendredi) en indiquant un tableau de nombres comme premier paramètre (work-day), avec 0 pour Dimanche et 6 pour Samedi. Vous pouvez changer les horaires de début et de fin d&#x27;une journée de travail (valeurs par défaut : 8h30 - 17h30) en modifiant pour chacun les tableaux [H, M] du deuxième et du troisième paramètre (workStart et workEnd). Indiquez “null” pour les paramètres précédemment définis que vous ne voulez pas modifier. Par exemple, “null, [9, 0], [17, 0]” change les horaires de travail sans changer les jours travaillés.",
     "description": ""
   },
   "DaysInARowCode": {
@@ -992,7 +992,7 @@
     "description": ""
   },
   "UntestedSaveBody": {
-    "message": "La fonction n&#x27;a pas été testée (avec le bouton &quot;exécuter&quot;) depuis sa dernière modification. Êtes-vous sûr(e) de vouloir l&#x27;enregistrer ou l&#x27;exporter ?",
+    "message": "La fonction n&#x27;a pas été testée (avec le bouton “exécuter”) depuis sa dernière modification. Êtes-vous sûr(e) de vouloir l&#x27;enregistrer ou l&#x27;exporter ?",
     "description": ""
   },
   "BadSaveTitle": {
@@ -1012,15 +1012,15 @@
     "description": ""
   },
   "NoNextValueError": {
-    "message": "La fonction n&#x27;a pas défini de valeur &quot;next&quot;",
+    "message": "La fonction n&#x27;a pas défini de valeur “next”",
     "description": ""
   },
   "BadNextValueError": {
-    "message": "la valeur &quot;next&quot; &quot;$1&quot; n&#x27;est ni un nombre ni une date",
+    "message": "la valeur “next” “$1” n&#x27;est ni un nombre ni une date",
     "description": ""
   },
   "BadNextArgsError": {
-    "message": "La valeur de &quot;nextargs&quot; &quot;$1&quot; n&#x27;est pas un tableau",
+    "message": "La valeur de “nextargs” “$1” n&#x27;est pas un tableau",
     "description": ""
   },
   "FunctionDeleteConfirmBody": {
@@ -1048,7 +1048,7 @@
     "description": ""
   },
   "RenameFunctionBody": {
-    "message": "Vous avez modifié le nom d&#x27;une fonction existante,&quot;$1&quot;. Voulez-vous renommer cette fonction ou enregistrer une fonction différente avec ce nouveau nom ?",
+    "message": "Vous avez modifié le nom d&#x27;une fonction existante,“$1”. Voulez-vous renommer cette fonction ou enregistrer une fonction différente avec ce nouveau nom ?",
     "description": ""
   },
   "RenameFunctionRenameButton": {
@@ -1064,7 +1064,7 @@
     "description": ""
   },
   "FunctionErrorBody": {
-    "message": "Erreur lors de l&#x27;exécution d&#x27;une fonction dynamique de programmation horaire: &quot;$1&quot;",
+    "message": "Erreur lors de l&#x27;exécution d&#x27;une fonction dynamique de programmation horaire: “$1”",
     "description": ""
   },
   "cancel_on_reply": {

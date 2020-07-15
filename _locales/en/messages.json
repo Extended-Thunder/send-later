@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "True &quot;Send Later&quot; functionality to schedule the time for sending an email.",
+    "message": "True “Send Later” functionality to schedule the time for sending an email.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -160,11 +160,11 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Send&quot; does &quot;Send Later&quot;",
+    "message": "“Send” does “Send Later”",
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&quot;Send&quot; delays messages by",
+    "message": "“Send” delays messages by",
     "description": ""
   },
   "sendDelayPrefLabel2": {
@@ -248,7 +248,7 @@
     "description": ""
   },
   "sendlater.prompt.sendnow.tooltip": {
-    "message": "Send the message immediately, bypassing &quot;Send Later&quot;.",
+    "message": "Send the message immediately, bypassing “Send Later”.",
     "description": ""
   },
   "sendlater.prompt.close.accesskey": {
@@ -268,7 +268,7 @@
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
-    "message": "ex: &quot;3:00pm Thursday&quot;, &quot;12/31/2012 15:27&quot;",
+    "message": "ex: “3:00pm Thursday”, “12/31/2012 15:27”",
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
@@ -344,11 +344,11 @@
     "description": ""
   },
   "showsendlatercolumn.tooltip": {
-    "message": "Whether to show the &quot;Send Later&quot; column when viewing draft folders",
+    "message": "Whether to show the “Send Later” column when viewing draft folders",
     "description": ""
   },
   "showsendlaterheader.tooltip": {
-    "message": "Whether to show the &quot;X-Send-Later-At&quot; header, i.e., the time when a draft is scheduled to be sent, in the header when viewing a message.",
+    "message": "Whether to show the “X-Send-Later-At” header, i.e., the time when a draft is scheduled to be sent, in the header when viewing a message.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
@@ -360,11 +360,11 @@
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
-    "message": "With this option enabled, the &quot;Send&quot; command (either the button or typing Ctrl-Enter) acts the same as &quot;Send Later&quot;.",
+    "message": "With this option enabled, the “Send” command (either the button or typing Ctrl-Enter) acts the same as “Send Later”.",
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "With this option enabled, all messages sent with the &quot;Send&quot; command (either the button or typing Ctrl-Enter) are delayed by the specified number of minutes by scheduling them with Send Later.",
+    "message": "With this option enabled, all messages sent with the “Send” command (either the button or typing Ctrl-Enter) are delayed by the specified number of minutes by scheduling them with Send Later.",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {
@@ -472,7 +472,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "Select a function to edit or delete, or &quot;(create new function)&quot; to create a new function.",
+    "message": "Select a function to edit or delete, or “(create new function)” to create a new function.",
     "description": ""
   },
   "createnewfunction": {
@@ -496,7 +496,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "Put the source code for your function here. See the &quot;ReadMeFirst&quot; sample function for details about what your code should do.",
+    "message": "Put the source code for your function here. See the “ReadMeFirst” sample function for details about what your code should do.",
     "description": ""
   },
   "codeplaceholder": {
@@ -612,7 +612,7 @@
     "description": ""
   },
   "sendwithfunction": {
-    "message": "Send according to function &quot;$1&quot;",
+    "message": "Send according to function “$1”",
     "description": ""
   },
   "sendspecifyfunction": {
@@ -672,7 +672,7 @@
     "description": ""
   },
   "OptionShortcutAlertText": {
-    "message": "Shortcut $1 has invalid value &quot;$2&quot;",
+    "message": "Shortcut $1 has invalid value “$2”",
     "description": ""
   },
   "SendingUnsentError": {
@@ -888,11 +888,11 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "Clicking &quot;Put in Outbox&quot; puts the message in your Outbox immediately. It DOES NOT schedule the message to be sent at a specific time. For that, click the &quot;Send around&quot; button in the green box after entering a valid send time. Are you sure you want to put the message in your Outbox now?",
+    "message": "Clicking “Put in Outbox” puts the message in your Outbox immediately. It DOES NOT schedule the message to be sent at a specific time. For that, click the “Send around” button in the green box after entering a valid send time. Are you sure you want to put the message in your Outbox now?",
     "description": ""
   },
   "SendNowConfirmMessage": {
-    "message": "Clicking &quot;Send Now&quot; sends the message immediately. It DOES NOT schedule the message to be sent at a specific time. For that, click the &quot;Send around&quot; button in the green box after entering a valid send time. Are you sure you want to send the message now?",
+    "message": "Clicking “Send Now” sends the message immediately. It DOES NOT schedule the message to be sent at a specific time. For that, click the “Send around” button in the green box after entering a valid send time. Are you sure you want to send the message now?",
     "description": ""
   },
   "ConfirmAgain": {
@@ -952,7 +952,7 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "The message with subject &quot;$1&quot; in Drafts folder $2 was scheduled to be delivered more than $3 minutes ago, so delivery has been blocked. You should edit the draft and either send it by hand or reschedule it. You can also disable the &quot;Don&#x27;t deliver messages more than # minutes late&quot; preference to stop blocking delivery of late messages.",
+    "message": "The message with subject “$1” in Drafts folder $2 was scheduled to be delivered more than $3 minutes ago, so delivery has been blocked. You should edit the draft and either send it by hand or reschedule it. You can also disable the “Don&#x27;t deliver messages more than # minutes late” preference to stop blocking delivery of late messages.",
     "description": ""
   },
   "EditorReadMeCode": {
@@ -968,7 +968,7 @@
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "Send the message now if it is during business hours, or at the beginning of the next work day. You can change the definition of work days (default: Mon - Fri) by passing in an array of work-day numbers as the first argument, where 0 is Sunday and 6 is Saturday. You can change the work start or end time (default: 8:30 - 17:30) by passing in an array of [H, M] as the second or third argument. Specify &quot;null&quot; for earlier arguments you don&#x27;t change. For example, &quot;null, [9, 0], [17, 0]&quot; changes the work hours without changing the work days.",
+    "message": "Send the message now if it is during business hours, or at the beginning of the next work day. You can change the definition of work days (default: Mon - Fri) by passing in an array of work-day numbers as the first argument, where 0 is Sunday and 6 is Saturday. You can change the work start or end time (default: 8:30 - 17:30) by passing in an array of [H, M] as the second or third argument. Specify “null” for earlier arguments you don&#x27;t change. For example, “null, [9, 0], [17, 0]” changes the work hours without changing the work days.",
     "description": ""
   },
   "DaysInARowCode": {
@@ -992,7 +992,7 @@
     "description": ""
   },
   "UntestedSaveBody": {
-    "message": "The function has not been tested (with the &quot;Execute&quot; button) since it was last modified. Are you sure you want to save or export it?",
+    "message": "The function has not been tested (with the “Execute” button) since it was last modified. Are you sure you want to save or export it?",
     "description": ""
   },
   "BadSaveTitle": {
@@ -1012,15 +1012,15 @@
     "description": ""
   },
   "NoNextValueError": {
-    "message": "Function did not set a &quot;next&quot; value.",
+    "message": "Function did not set a “next” value.",
     "description": ""
   },
   "BadNextValueError": {
-    "message": "&quot;next&quot; value &quot;$1&quot; is not a number or Date",
+    "message": "“next” value “$1” is not a number or Date",
     "description": ""
   },
   "BadNextArgsError": {
-    "message": "&quot;nextargs&quot; value &quot;$1&quot; is not an Array",
+    "message": "“nextargs” value “$1” is not an Array",
     "description": ""
   },
   "FunctionDeleteConfirmBody": {
@@ -1048,7 +1048,7 @@
     "description": ""
   },
   "RenameFunctionBody": {
-    "message": "You have modified the name of an existing function, &quot;$1&quot;. Do you want to rename the existing function or save a separate function with the new name?",
+    "message": "You have modified the name of an existing function, “$1”. Do you want to rename the existing function or save a separate function with the new name?",
     "description": ""
   },
   "RenameFunctionRenameButton": {
@@ -1064,7 +1064,7 @@
     "description": ""
   },
   "FunctionErrorBody": {
-    "message": "Error invoking dynamic scheduling function: &quot;$1&quot;",
+    "message": "Error invoking dynamic scheduling function: “$1”",
     "description": ""
   },
   "cancel_on_reply": {

@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "Funzione &quot;Invia dopo&quot; per pianificare l&#x27;orario degli invii",
+    "message": "Funzione “Invia dopo” per pianificare l&#x27;orario degli invii",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -160,7 +160,7 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Invia&quot; diventa &quot;Invia dopo&quot;",
+    "message": "“Invia” diventa “Invia dopo”",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -208,7 +208,7 @@
     "description": ""
   },
   "sendUnsentMessagesPrefLabel": {
-    "message": "Invia i messaggi in attesa in &quot;Posta in Uscita&quot;",
+    "message": "Invia i messaggi in attesa in “Posta in Uscita”",
     "description": ""
   },
   "showColumnPrefLabel": {
@@ -232,7 +232,7 @@
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
-    "message": "Metti nella &quot;Posta in uscita&quot;",
+    "message": "Metti nella “Posta in uscita”",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -240,7 +240,7 @@
     "description": ""
   },
   "sendlater.prompt.sendlater.tooltip": {
-    "message": "Anziché inviarlo in automatico a un orario specifico, sposta il messaggio nella cartella &quot;Posta in uscita&quot; per inviarlo non appena i messaggi da inviare verranno spediti.",
+    "message": "Anziché inviarlo in automatico a un orario specifico, sposta il messaggio nella cartella “Posta in uscita” per inviarlo non appena i messaggi da inviare verranno spediti.",
     "description": ""
   },
   "sendlater.prompt.sendnow.accesskey": {
@@ -248,7 +248,7 @@
     "description": ""
   },
   "sendlater.prompt.sendnow.tooltip": {
-    "message": "Invia il messaggio immediatamente, evitando &quot;Invia Dopo&quot;.",
+    "message": "Invia il messaggio immediatamente, evitando “Invia Dopo”.",
     "description": ""
   },
   "sendlater.prompt.close.accesskey": {
@@ -268,7 +268,7 @@
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
-    "message": "es.: &quot;15:00 giovedì&quot;, &quot;31/12/2012 15:27&quot;",
+    "message": "es.: “15:00 giovedì”, “31/12/2012 15:27”",
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
@@ -276,7 +276,7 @@
     "description": ""
   },
   "sendlater.prompt.sendat.tooltip": {
-    "message": "Salva il messaggio nella cartella &quot;Bozze&quot; per l&#x27;invio automatico all&#x27;orario sopra impostato.",
+    "message": "Salva il messaggio nella cartella “Bozze” per l&#x27;invio automatico all&#x27;orario sopra impostato.",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -336,7 +336,7 @@
     "description": ""
   },
   "checktimepref.tooltip": {
-    "message": "Frequenza in minuti con cui viene verificata la presenza nella cartella &quot;Bozze&quot; di e-mail di cui è arrivato l&#x27;orario di invio. Aumentare questo valore se qualche volta le mail programmate per l&#x27;invio non partono o se qualche volta il numero dei messaggi in coda indicato nella barra di stato non corrisponde a quello di tutti i messaggi pianificati.",
+    "message": "Frequenza in minuti con cui viene verificata la presenza nella cartella “Bozze” di e-mail di cui è arrivato l&#x27;orario di invio. Aumentare questo valore se qualche volta le mail programmate per l&#x27;invio non partono o se qualche volta il numero dei messaggi in coda indicato nella barra di stato non corrisponde a quello di tutti i messaggi pianificati.",
     "description": ""
   },
   "quickoptionname.label": {
@@ -344,11 +344,11 @@
     "description": ""
   },
   "showsendlatercolumn.tooltip": {
-    "message": "Mostra la colonna &quot;Invia Dopo&quot; nella cartella &quot;Bozze&quot;",
+    "message": "Mostra la colonna “Invia Dopo” nella cartella “Bozze”",
     "description": ""
   },
   "showsendlaterheader.tooltip": {
-    "message": "Mostra l&#x27;intestazione &quot;X-Send-Later-At&quot;, cioè l&#x27;orario a cui la mail in &quot;Bozze&quot; è pianificata per l&#x27;invio, nell&#x27;intestazione quando guardi un messaggio.",
+    "message": "Mostra l&#x27;intestazione “X-Send-Later-At”, cioè l&#x27;orario a cui la mail in “Bozze” è pianificata per l&#x27;invio, nell&#x27;intestazione quando guardi un messaggio.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
@@ -356,11 +356,11 @@
     "description": ""
   },
   "showsendlaterunsentmessages.tooltip": {
-    "message": "Se non spunti questa opzione, Invia Dopo non provvederà all&#x27;invio del messaggio, ma quando arriverà l&#x27;ora pianificata per la spedizione, lo parcheggerà semplicemente nella &quot;Posta in Uscita&quot;. Togliere la spunta nel caso di utilizzo con altri componenti aggiuntivi come ad esempio BlunderDelay, per inviare i messaggi presenti nella &quot;Posta in Uscita&quot; periodicamente. Da notare che se questa opzione è selezionata, quando Invia Dopo invia un messaggio, anche TUTTI gli altri messaggi presenti nella &quot;Posta in Uscita&quot; verranno inviati.",
+    "message": "Se non spunti questa opzione, Invia Dopo non provvederà all&#x27;invio del messaggio, ma quando arriverà l&#x27;ora pianificata per la spedizione, lo parcheggerà semplicemente nella “Posta in Uscita”. Togliere la spunta nel caso di utilizzo con altri componenti aggiuntivi come ad esempio BlunderDelay, per inviare i messaggi presenti nella “Posta in Uscita” periodicamente. Da notare che se questa opzione è selezionata, quando Invia Dopo invia un messaggio, anche TUTTI gli altri messaggi presenti nella “Posta in Uscita” verranno inviati.",
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
-    "message": "Con questa opzione attivata, il comando &quot;Invia&quot; (sia il pulsante che la pressione di Ctrl-Invio) si comporta come &quot;Invia dopo&quot;.",
+    "message": "Con questa opzione attivata, il comando “Invia” (sia il pulsante che la pressione di Ctrl-Invio) si comporta come “Invia dopo”.",
     "description": ""
   },
   "senddelay.tooltip": {
@@ -472,7 +472,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "Seleziona una funzione da modificare o eliminare o &quot;(crea nuova funzione)&quot; per creare una nuova funzione",
+    "message": "Seleziona una funzione da modificare o eliminare o “(crea nuova funzione)” per creare una nuova funzione",
     "description": ""
   },
   "createnewfunction": {
@@ -496,7 +496,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "Inserisci qui il codice sorgente per la tua funzione. Leggi la funzione di esempio &quot;ReadMeFirst&quot; per dettagli su come scrivere il tuo codice.",
+    "message": "Inserisci qui il codice sorgente per la tua funzione. Leggi la funzione di esempio “ReadMeFirst” per dettagli su come scrivere il tuo codice.",
     "description": ""
   },
   "codeplaceholder": {
@@ -612,7 +612,7 @@
     "description": ""
   },
   "sendwithfunction": {
-    "message": "Invia secondo la funzione &quot;$1&quot;",
+    "message": "Invia secondo la funzione “$1”",
     "description": ""
   },
   "sendspecifyfunction": {
@@ -672,19 +672,19 @@
     "description": ""
   },
   "OptionShortcutAlertText": {
-    "message": "Scelta rapida $1 ha un valore non valido &quot;$2&quot;",
+    "message": "Scelta rapida $1 ha un valore non valido “$2”",
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Invia Dopo: Errore nell&#x27;invio dei messaggi. La cartella &quot;Posta in Uscita&quot; potrebbe essere danneggiata, e i messaggi pianificati potrebbero non essere stati inviati. Vedi https://blog.kamens.us/send-later/#outbox.",
+    "message": "Invia Dopo: Errore nell&#x27;invio dei messaggi. La cartella “Posta in Uscita” potrebbe essere danneggiata, e i messaggi pianificati potrebbero non essere stati inviati. Vedi https://blog.kamens.us/send-later/#outbox.",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Invia Dopo: Errore nella copia dei messaggi pianificati nella cartella &quot;Posta in Uscita&quot; per l&#x27;invio (codice $1). Invia Dopo è stato disattivato! Vedi https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "message": "Invia Dopo: Errore nella copia dei messaggi pianificati nella cartella “Posta in Uscita” per l&#x27;invio (codice $1). Invia Dopo è stato disattivato! Vedi https://blog.kamens.us/send-later/#outbox-copy-failure.",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Invia Dopo: Errore nella copia del messaggio periodico nella cartella &quot;Bozze&quot; (codice $1). Invia Dopo è stato disattivato! Vedi https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "message": "Invia Dopo: Errore nella copia del messaggio periodico nella cartella “Bozze” (codice $1). Invia Dopo è stato disattivato! Vedi https://blog.kamens.us/send-later/#drafts-copy-failure.",
     "description": ""
   },
   "CorruptFolderError": {
@@ -888,11 +888,11 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "Cliccando su - Metti nella &quot;Posta in uscita&quot; - si mette il messaggio immediatamente nella cartella &quot;Posta in uscita&quot;. NON VIENE quindi pianificato l&#x27;invio del messaggio ad un orario specifico. Se lo si desidera inviare specificando un orario, cliccare il pulsante &quot;Invia verso le:&quot; nel riquadro verde dopo aver inserito un orario di invio valido. Sei sicuro di voler mettere adesso il messaggio nella &quot;Posta in uscita&quot;?",
+    "message": "Cliccando su - Metti nella “Posta in uscita” - si mette il messaggio immediatamente nella cartella “Posta in uscita”. NON VIENE quindi pianificato l&#x27;invio del messaggio ad un orario specifico. Se lo si desidera inviare specificando un orario, cliccare il pulsante “Invia verso le:” nel riquadro verde dopo aver inserito un orario di invio valido. Sei sicuro di voler mettere adesso il messaggio nella “Posta in uscita”?",
     "description": ""
   },
   "SendNowConfirmMessage": {
-    "message": "Cliccando su &quot;Invia adesso&quot; si invia il messaggio immediatamente. NON VIENE quindi pianificato l&#x27;invio del messaggio ad un orario specifico. Se lo si desidera inviare specificando un orario, cliccare il pulsante &quot;Invia verso le:&quot; nel riquadro verde dopo aver inserito un orario di invio valido. Sei sicuro di voler inviare il messaggio adesso?",
+    "message": "Cliccando su “Invia adesso” si invia il messaggio immediatamente. NON VIENE quindi pianificato l&#x27;invio del messaggio ad un orario specifico. Se lo si desidera inviare specificando un orario, cliccare il pulsante “Invia verso le:” nel riquadro verde dopo aver inserito un orario di invio valido. Sei sicuro di voler inviare il messaggio adesso?",
     "description": ""
   },
   "ConfirmAgain": {
@@ -952,7 +952,7 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "Il messaggio con oggetto &quot;$1&quot; nella cartella Bozze $2 era pianificato per essere inviato più di $3 minuti fa, quindi l&#x27;invio è stato bloccato. Dovresti modificare la bozza ed inviarla a mano oppure ripianificarne l&#x27;invio. Puoi inoltre disattivare la preferenza &quot;Non inviare messaggi più di # minuti dopo&quot; per evitare il blocco dell&#x27;invio di messaggi in ritardo.",
+    "message": "Il messaggio con oggetto “$1” nella cartella Bozze $2 era pianificato per essere inviato più di $3 minuti fa, quindi l&#x27;invio è stato bloccato. Dovresti modificare la bozza ed inviarla a mano oppure ripianificarne l&#x27;invio. Puoi inoltre disattivare la preferenza “Non inviare messaggi più di # minuti dopo” per evitare il blocco dell&#x27;invio di messaggi in ritardo.",
     "description": ""
   },
   "EditorReadMeCode": {
@@ -968,7 +968,7 @@
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "Invia il messaggio adesso se durante l&#x27;orario di lavoro, o all&#x27;inizio del successivo giorno lavorativo. Puoi modificare quali sono i giorni lavorativi (predefinito: lunedì - venerdì) passando un array (numerico) di giorni lavorativi come primo argomento, dove 0 è domenica e 6 è sabato. Puoi cambiare l&#x27;ora di inizio e fine dei giorni lavorativi (predefinito: 8:30 - 17:30) passando un array di coppie [ora, minuto] come secondo o terzo argomento. Indica &quot;null&quot; come argomento per i giorni che non vuoi modificare. Ad esempio, &quot;null, [9, 0], [17, 0]&quot; cambia l&#x27;orario lavorativo lasciando i giorni lavorativi inalterati.",
+    "message": "Invia il messaggio adesso se durante l&#x27;orario di lavoro, o all&#x27;inizio del successivo giorno lavorativo. Puoi modificare quali sono i giorni lavorativi (predefinito: lunedì - venerdì) passando un array (numerico) di giorni lavorativi come primo argomento, dove 0 è domenica e 6 è sabato. Puoi cambiare l&#x27;ora di inizio e fine dei giorni lavorativi (predefinito: 8:30 - 17:30) passando un array di coppie [ora, minuto] come secondo o terzo argomento. Indica “null” come argomento per i giorni che non vuoi modificare. Ad esempio, “null, [9, 0], [17, 0]” cambia l&#x27;orario lavorativo lasciando i giorni lavorativi inalterati.",
     "description": ""
   },
   "DaysInARowCode": {
@@ -992,7 +992,7 @@
     "description": ""
   },
   "UntestedSaveBody": {
-    "message": "La funzione non è stata testata (col pulsante &quot;Esegui funzione&quot;) dopo essere stata modificata. Sei sicuro di volerla salvare o esportare?",
+    "message": "La funzione non è stata testata (col pulsante “Esegui funzione”) dopo essere stata modificata. Sei sicuro di volerla salvare o esportare?",
     "description": ""
   },
   "BadSaveTitle": {
@@ -1012,15 +1012,15 @@
     "description": ""
   },
   "NoNextValueError": {
-    "message": "La funzione non ha impostato la variabile  &quot;next&quot;.",
+    "message": "La funzione non ha impostato la variabile  “next”.",
     "description": ""
   },
   "BadNextValueError": {
-    "message": "Il valore &quot;$1&quot; di &quot;next&quot; non è un numero né un oggetto Date",
+    "message": "Il valore “$1” di “next” non è un numero né un oggetto Date",
     "description": ""
   },
   "BadNextArgsError": {
-    "message": "Il valore &quot;$1&quot; di &quot;nextargs&quot; non è un Array",
+    "message": "Il valore “$1” di “nextargs” non è un Array",
     "description": ""
   },
   "FunctionDeleteConfirmBody": {
@@ -1048,7 +1048,7 @@
     "description": ""
   },
   "RenameFunctionBody": {
-    "message": "Hai modificato il nome di una funzione esistente, &quot;$1&quot;. Vuoi rinominare la funzione esistente o creare una nuova funzione col nuovo nome?",
+    "message": "Hai modificato il nome di una funzione esistente, “$1”. Vuoi rinominare la funzione esistente o creare una nuova funzione col nuovo nome?",
     "description": ""
   },
   "RenameFunctionRenameButton": {
@@ -1064,7 +1064,7 @@
     "description": ""
   },
   "FunctionErrorBody": {
-    "message": "Errore nell&#x27;esecuzione di una funzione dinamica schedulata: &quot;$1&quot;",
+    "message": "Errore nell&#x27;esecuzione di una funzione dinamica schedulata: “$1”",
     "description": ""
   },
   "cancel_on_reply": {

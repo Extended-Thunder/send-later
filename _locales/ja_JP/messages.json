@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "&quot;Send Later&quot;は指定した時間にメールを送信する機能を提供します。",
+    "message": "“Send Later”は指定した時間にメールを送信する機能を提供します。",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -148,7 +148,7 @@
     "description": ""
   },
   "sendAtDefaultLabel": {
-    "message": "日時を入力してください。&quot;来週火曜日午後3:00&quot; のような形式もサポートしています。",
+    "message": "日時を入力してください。“来週火曜日午後3:00” のような形式もサポートしています。",
     "description": "Displayed in place of send at time before user makes selections"
   },
   "sendAtLabel": {
@@ -160,7 +160,7 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;送信&quot; を &quot;後で送信&quot; にする",
+    "message": "“送信” を “後で送信” にする",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -212,15 +212,15 @@
     "description": ""
   },
   "showColumnPrefLabel": {
-    "message": "&quot;Send Later&quot; 列を表示する",
+    "message": "“Send Later” 列を表示する",
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "&quot;Send Later&quot; ヘッダーを表示する",
+    "message": "“Send Later” ヘッダーを表示する",
     "description": ""
   },
   "showStatusPrefLabel": {
-    "message": "&quot;Send Later&quot; をステータスバーに表示する",
+    "message": "“Send Later” をステータスバーに表示する",
     "description": ""
   },
   "userGuideLabel": {
@@ -248,7 +248,7 @@
     "description": ""
   },
   "sendlater.prompt.sendnow.tooltip": {
-    "message": "&quot;Send Later&quot;をバイパスして、直ちにメッセージを送信します。",
+    "message": "“Send Later”をバイパスして、直ちにメッセージを送信します。",
     "description": ""
   },
   "sendlater.prompt.close.accesskey": {
@@ -268,7 +268,7 @@
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
-    "message": "例: &quot;木曜日午後3:00&quot;, &quot;2012年12月31日15:27&quot;",
+    "message": "例: “木曜日午後3:00”, “2012年12月31日15:27”",
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
@@ -344,11 +344,11 @@
     "description": ""
   },
   "showsendlatercolumn.tooltip": {
-    "message": "[下書き] フォルダに &quot;Send Later&quot; 列を表示するかどうかを設定します。",
+    "message": "[下書き] フォルダに “Send Later” 列を表示するかどうかを設定します。",
     "description": ""
   },
   "showsendlaterheader.tooltip": {
-    "message": "メッセージを開く際に、&quot;X-Send-Later-At&quot; ヘッダー (下書きの送信予定日時) を表示するかどうかを設定します。",
+    "message": "メッセージを開く際に、“X-Send-Later-At” ヘッダー (下書きの送信予定日時) を表示するかどうかを設定します。",
     "description": ""
   },
   "showsendlaterprogress.caption": {
@@ -360,7 +360,7 @@
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
-    "message": "このオプションを有効にすると、&quot;送信&quot; コマンド (ボタンと Ctrl-Enter の両方) は &quot;後で送信&quot; と同じ動作をします。",
+    "message": "このオプションを有効にすると、“送信” コマンド (ボタンと Ctrl-Enter の両方) は “後で送信” と同じ動作をします。",
     "description": ""
   },
   "senddelay.tooltip": {
@@ -472,7 +472,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "編集または削除する関数を選ぶか、&quot;(新しい関数を作成)&quot; で新しい関数を作成します。",
+    "message": "編集または削除する関数を選ぶか、“(新しい関数を作成)” で新しい関数を作成します。",
     "description": ""
   },
   "createnewfunction": {
@@ -612,7 +612,7 @@
     "description": ""
   },
   "sendwithfunction": {
-    "message": "関数 &quot;$1&quot; によって送信",
+    "message": "関数 “$1” によって送信",
     "description": ""
   },
   "sendspecifyfunction": {
@@ -672,7 +672,7 @@
     "description": ""
   },
   "OptionShortcutAlertText": {
-    "message": "ショートカット $1 には無効な値 &quot;$2&quot; が含まれています",
+    "message": "ショートカット $1 には無効な値 “$2” が含まれています",
     "description": ""
   },
   "SendingUnsentError": {
@@ -952,7 +952,7 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "下書きフォルダ $1 の件名 &quot;$2&quot; のメッセージは、 $3 分よりも前に配送されるようにスケジュールされたため、配送がブロックされました。下書きメッセージを編集し、手動もしくは再スケジュールして送るようにしてください。",
+    "message": "下書きフォルダ $1 の件名 “$2” のメッセージは、 $3 分よりも前に配送されるようにスケジュールされたため、配送がブロックされました。下書きメッセージを編集し、手動もしくは再スケジュールして送るようにしてください。",
     "description": ""
   },
   "EditorReadMeHelp": {
@@ -964,7 +964,7 @@
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "営業時間内か、または次の営業日の営業時間内であればすぐにメッセージを送信します。 第一引数 (デフォルトは月～金) として、0 は日曜日、6 が土曜日で営業日の数字の配列で渡すことによって、営業日の定義を変更することができます。第二または第三引数として [H, M] の配列を渡すことで、営業開始時刻や営業終了時刻 (デフォルトは 8:30～17:30) を変更できます。 &quot;null&quot; を指定すると、引数の値は変更されません。例えば、&quot;null, [9, 0], [17, 0]&quot; は、営業日を変更せずに、営業時間を変更します。",
+    "message": "営業時間内か、または次の営業日の営業時間内であればすぐにメッセージを送信します。 第一引数 (デフォルトは月～金) として、0 は日曜日、6 が土曜日で営業日の数字の配列で渡すことによって、営業日の定義を変更することができます。第二または第三引数として [H, M] の配列を渡すことで、営業開始時刻や営業終了時刻 (デフォルトは 8:30～17:30) を変更できます。 “null” を指定すると、引数の値は変更されません。例えば、“null, [9, 0], [17, 0]” は、営業日を変更せずに、営業時間を変更します。",
     "description": ""
   },
   "DaysInARowCode": {
@@ -988,7 +988,7 @@
     "description": ""
   },
   "UntestedSaveBody": {
-    "message": "この関数は変更されてから、(&quot;実行&quot; ボタンによる) テストが済んでいません。本当に保存もしくはエクスポートしてもよろしいですか？",
+    "message": "この関数は変更されてから、(“実行” ボタンによる) テストが済んでいません。本当に保存もしくはエクスポートしてもよろしいですか？",
     "description": ""
   },
   "BadSaveTitle": {
@@ -1012,11 +1012,11 @@
     "description": ""
   },
   "BadNextValueError": {
-    "message": "「次回」の値 &quot;$1&quot; が数値もしくは日付ではありません。",
+    "message": "「次回」の値 “$1” が数値もしくは日付ではありません。",
     "description": ""
   },
   "BadNextArgsError": {
-    "message": "次の引数の値 &quot;$1&quot; が配列ではありません。",
+    "message": "次の引数の値 “$1” が配列ではありません。",
     "description": ""
   },
   "FunctionDeleteConfirmBody": {
@@ -1044,7 +1044,7 @@
     "description": ""
   },
   "RenameFunctionBody": {
-    "message": "既存の関数の名前 &quot;$1&quot; を修正しました。既存の関数の名前を変更するか、新しい名前で別の関数として保存しますか？",
+    "message": "既存の関数の名前 “$1” を修正しました。既存の関数の名前を変更するか、新しい名前で別の関数として保存しますか？",
     "description": ""
   },
   "RenameFunctionRenameButton": {
@@ -1060,7 +1060,7 @@
     "description": ""
   },
   "FunctionErrorBody": {
-    "message": "ユーザー関数の呼び出し時にエラーが発生しました: &quot;$1&quot;",
+    "message": "ユーザー関数の呼び出し時にエラーが発生しました: “$1”",
     "description": ""
   },
   "cancel_on_reply": {

@@ -608,7 +608,7 @@
     "description": ""
   },
   "sendwithfunction": {
-    "message": "שלח על פי הפונקציה &quot;$1&quot;",
+    "message": "שלח על פי הפונקציה “$1”",
     "description": ""
   },
   "sendspecifyfunction": {
@@ -948,7 +948,7 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "ההודעה עם הנושא &quot;$1&quot; הנמצאת בתיקיית הטיוטות  $2 תוכננה להישלח לפני יותר מ $3 דקות, לכן המשלוח נחסם. עליך לערוך את הודעת הטיוטה מחדש ולשלוח אותה באופן מיידי או לקבוע מועד משלוח חדש. יש באפשרותך לבטל את התכונה &quot;אל תשלח הודעות אם מועד המשלוח המתוכנן שלהן חלף ביותר מ # דקות&quot; כדי למנוע חסימת משלוח הודעות בעתיד.",
+    "message": "ההודעה עם הנושא “$1” הנמצאת בתיקיית הטיוטות  $2 תוכננה להישלח לפני יותר מ $3 דקות, לכן המשלוח נחסם. עליך לערוך את הודעת הטיוטה מחדש ולשלוח אותה באופן מיידי או לקבוע מועד משלוח חדש. יש באפשרותך לבטל את התכונה &quot;אל תשלח הודעות אם מועד המשלוח המתוכנן שלהן חלף ביותר מ # דקות&quot; כדי למנוע חסימת משלוח הודעות בעתיד.",
     "description": ""
   },
   "EditorReadMeCode": {
@@ -1012,11 +1012,11 @@
     "description": ""
   },
   "BadNextValueError": {
-    "message": "ערך &quot;next&quot; &quot;$1&quot; אינו מספר או תאריך (Date)",
+    "message": "ערך “next” “$1” אינו מספר או תאריך (Date)",
     "description": ""
   },
   "BadNextArgsError": {
-    "message": "ערך &quot;nextargs&quot; &quot;$1&quot; אינו מערך",
+    "message": "ערך “nextargs” “$1” אינו מערך",
     "description": ""
   },
   "FunctionDeleteConfirmBody": {
@@ -1044,7 +1044,7 @@
     "description": ""
   },
   "RenameFunctionBody": {
-    "message": "שינית שם של פונקציה קיימת, &quot;$1&quot;. האם תרצה לשנות את שם הפונקציה הקיימת או לשמור פונקציה נפרדת בשם החדש?",
+    "message": "שינית שם של פונקציה קיימת, “$1”. האם תרצה לשנות את שם הפונקציה הקיימת או לשמור פונקציה נפרדת בשם החדש?",
     "description": ""
   },
   "RenameFunctionRenameButton": {
@@ -1060,7 +1060,7 @@
     "description": ""
   },
   "FunctionErrorBody": {
-    "message": "שגיאה בהפעלת פונקציית תזמון דינמית: &quot;$1&quot;",
+    "message": "שגיאה בהפעלת פונקציית תזמון דינמית: “$1”",
     "description": ""
   },
   "cancel_on_reply": {

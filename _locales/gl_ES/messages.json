@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "&quot;Send Later&quot; co obxetivo de programar a hora de envío",
+    "message": "“Send Later” co obxetivo de programar a hora de envío",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -164,7 +164,7 @@
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&quot;Send&quot; delays messages by",
+    "message": "\"Send\" delays messages by",
     "description": ""
   },
   "sendDelayPrefLabel2": {
@@ -444,7 +444,7 @@
     "description": ""
   },
   "windowtitle": {
-    "message": "Editor de funcións dinámicas de &quot;Send Later&quot;",
+    "message": "Editor de funcións dinámicas de “Send Later”",
     "description": ""
   },
   "selectfunction": {
@@ -452,7 +452,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "Seleccione unha función para editala ou eliminala, ou crea unha nova en &amp;quot;(Crear nova función)&quot;.",
+    "message": "Seleccione unha función para editala ou eliminala, ou crea unha nova en &amp;quot;(Crear nova función)”.",
     "description": ""
   },
   "createnewfunction": {
@@ -592,7 +592,7 @@
     "description": ""
   },
   "sendwithfunction": {
-    "message": "Enviar de acordo á función &quot;$1&quot;",
+    "message": "Enviar de acordo á función “$1”",
     "description": ""
   },
   "sendspecifyfunction": {
@@ -652,7 +652,7 @@
     "description": ""
   },
   "OptionShortcutAlertText": {
-    "message": "O atallo $1 ten o valor non válido &quot;$2&quot;",
+    "message": "O atallo $1 ten o valor non válido “$2”",
     "description": ""
   },
   "SendingUnsentError": {
@@ -932,7 +932,7 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "A mensaxe co asunto &quot;$1&quot; no cartafol de Borradores $2 foi programado para ser enviado fai máis de $3 minutos, así que o envío foi bloqueado. Debe editar o borrador, e ou ben envialo manualmente ou voltar a programar o envío. Tamén pode desactivar o axuste &quot;Non enviar mensaxes con máis de N minutos de atraso&quot; para deixar de bloquear o envío de mensaxes con atraso.",
+    "message": "A mensaxe co asunto “$1” no cartafol de Borradores $2 foi programado para ser enviado fai máis de $3 minutos, así que o envío foi bloqueado. Debe editar o borrador, e ou ben envialo manualmente ou voltar a programar o envío. Tamén pode desactivar o axuste “Non enviar mensaxes con máis de N minutos de atraso” para deixar de bloquear o envío de mensaxes con atraso.",
     "description": ""
   },
   "EditorReadMeCode": {
@@ -948,7 +948,7 @@
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "Envía a mensaxe agora se aínda é horario comercial, ou ó principio da seguinte xornada laboral. Pode mudar a definición de días laborais (por defecto: Lun - Ven) pasando coma primeiro argumento unha matriz de números correspondentes a tales días, onde 0 é o domingo e 6 o sábado. Pode cambiar as horas de inicio ou fin da xornada laboral (predeterminadas: 8:30 - 17:30) pasando coma segundo ou terceiro argumento unha matriz de [H, M]. Especifique &quot;null&quot; (nulo) para argumentos iniciais que non queira mudar. Por exemplo, &quot;null [9, 0], [17, 0]&quot; cambia as horas de traballo sen mudar os días laborais.",
+    "message": "Envía a mensaxe agora se aínda é horario comercial, ou ó principio da seguinte xornada laboral. Pode mudar a definición de días laborais (por defecto: Lun - Ven) pasando coma primeiro argumento unha matriz de números correspondentes a tales días, onde 0 é o domingo e 6 o sábado. Pode cambiar as horas de inicio ou fin da xornada laboral (predeterminadas: 8:30 - 17:30) pasando coma segundo ou terceiro argumento unha matriz de [H, M]. Especifique “null” (nulo) para argumentos iniciais que non queira mudar. Por exemplo, “null [9, 0], [17, 0]” cambia as horas de traballo sen mudar os días laborais.",
     "description": ""
   },
   "DaysInARowCode": {
@@ -972,7 +972,7 @@
     "description": ""
   },
   "UntestedSaveBody": {
-    "message": "A función non se probou (co botón &quot;Executar&quot;) xa que foi modificada recentemente. Está seguro de que quere gardala ou exportala?",
+    "message": "A función non se probou (co botón “Executar”) xa que foi modificada recentemente. Está seguro de que quere gardala ou exportala?",
     "description": ""
   },
   "BadSaveTitle": {
@@ -992,7 +992,7 @@
     "description": ""
   },
   "NoNextValueError": {
-    "message": "A función non definiu un valor &quot;next&quot; (seguinte envío).",
+    "message": "A función non definiu un valor “next” (seguinte envío).",
     "description": ""
   },
   "BadNextValueError": {
@@ -1000,7 +1000,7 @@
     "description": ""
   },
   "BadNextArgsError": {
-    "message": "o valor &quot;$1&quot; de &quot;nextargs&quot; non é unha matriz (Array)",
+    "message": "o valor “$1” de “nextargs” non é unha matriz (Array)",
     "description": ""
   },
   "FunctionDeleteConfirmBody": {
@@ -1028,7 +1028,7 @@
     "description": ""
   },
   "RenameFunctionBody": {
-    "message": "Alterou o nome dunha función existente, &quot;$1&quot;. Pretende mudar o nome da función existente ou salvar unha nova función con outro nome?",
+    "message": "Alterou o nome dunha función existente, “$1”. Pretende mudar o nome da función existente ou salvar unha nova función con outro nome?",
     "description": ""
   },
   "RenameFunctionRenameButton": {
@@ -1044,7 +1044,7 @@
     "description": ""
   },
   "FunctionErrorBody": {
-    "message": "Erro ó invocar a función de programación dinámica: &quot;$1&quot;",
+    "message": "Erro ó invocar a función de programación dinámica: “$1”",
     "description": ""
   },
   "cancel_on_reply": {

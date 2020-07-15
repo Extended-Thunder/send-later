@@ -148,7 +148,7 @@
     "description": ""
   },
   "sendAtDefaultLabel": {
-    "message": "請輸入日期和時間，格式任意。像&quot;下星期六 下午3:00&quot;這種時間格式也可以被支援。",
+    "message": "請輸入日期和時間，格式任意。像”下星期六 下午3:00”這種時間格式也可以被支援。",
     "description": "Displayed in place of send at time before user makes selections"
   },
   "sendAtLabel": {
@@ -160,7 +160,7 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;發送&quot;變成&quot;延期發送&quot;",
+    "message": "“發送”變成“延期發送”",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -268,7 +268,7 @@
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
-    "message": "例如： &quot;2012/12/31 15:27&quot;",
+    "message": "例如： “2012/12/31 15:27”",
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
@@ -344,7 +344,7 @@
     "description": ""
   },
   "showsendlaterheader.tooltip": {
-    "message": "查看信件時是否顯示&quot;X-Send-Later-At&quot;頭，即草稿預定要傳送的時間。",
+    "message": "查看信件時是否顯示“X-Send-Later-At”頭，即草稿預定要傳送的時間。",
     "description": ""
   },
   "showsendlaterprogress.caption": {
@@ -356,11 +356,11 @@
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
-    "message": "啟用此選項時，&quot;傳送&quot;命令（按鈕或 Ctrl-Enter 快捷鍵）效果會變為&quot;延期傳送&quot;。",
+    "message": "啟用此選項時，“傳送”命令（按鈕或 Ctrl-Enter 快捷鍵）效果會變為“延期傳送”。",
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "所有訊息自動使用預設延遲發送時間，&quot;傳送&quot;命令（按鈕或 Ctrl-Enter）均會由 延期發信 按照預設延遲發送時間自動發出。",
+    "message": "所有訊息自動使用預設延遲發送時間，“傳送”命令（按鈕或 Ctrl-Enter）均會由 延期發信 按照預設延遲發送時間自動發出。",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {
@@ -608,7 +608,7 @@
     "description": ""
   },
   "sendwithfunction": {
-    "message": "根據功能&quot;$1&quot;寄件",
+    "message": "根據功能“$1”寄件",
     "description": ""
   },
   "sendspecifyfunction": {
@@ -668,7 +668,7 @@
     "description": ""
   },
   "OptionShortcutAlertText": {
-    "message": "快捷按鈕 $1 的值&quot;$2&quot;無效",
+    "message": "快捷按鈕 $1 的值“$2”無效",
     "description": ""
   },
   "SendingUnsentError": {
@@ -948,11 +948,11 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "這封標題為&quot;$1&quot;的郵件被排程於超過$2分鐘前發出，所以未能發出。請到$3草稿文件匣手動發出或重新排程。你亦可以停用「不要於超過#分鐘後發出」選項，發出超過排程時間的郵件。",
+    "message": "這封標題為“$1”的郵件被排程於超過$2分鐘前發出，所以未能發出。請到$3草稿文件匣手動發出或重新排程。你亦可以停用「不要於超過#分鐘後發出」選項，發出超過排程時間的郵件。",
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "/歡迎使用延期發信功能編輯器！\\n//\\n//這個編輯器讓您使用JavaScript函數，利用快捷按鈕\\n//，以及延期發信對話框中的選擇，\\n//建立複雜的郵件排程邏輯。\\n//\\n//如上所述，當調用調度函數時，它將被給予\\n//三個參數：\\n//如果您希望此函數重覆執行　（見下文），需要提供&quot;*&quot;specname&quot;\\n// *如果需要重覆執行，您需要提供&quot;prev&quot;，即之前的預定發送時間\\n// *&quot;args&quot;是上一次調用返回的額外參數，如果這是一個排程調用\\n//\\n//你的編程需要如下般設置&quot;next&quot;，&quot;nextspec&quot;和\\n//&quot;nextargs&quot;變數(variables)：\\n//\\n// *&quot;next&quot;是將來的分鐘數或Date對象(object)\\n//，指示消息何時發送。\\n// *&quot;nextspec&quot;是一個重複執行的規格(recurring specification)，用作執行\\n//排程郵件（見\\n// https://blog.kamens.us/send-later/#dynamic-recurrence）。如果你沒有提供\\n//這個變數，那麼訊息只會被發送一次。注意：如果你想要\\n//函數重複排程執行，請執行以下操作：\\n// nextspec =&quot;function&quot;+ specname;\\n// *&quot;nextargs&quot;是一組數組的參數，會被傳遞為下一個\\n//排程函數調用的&quot;args&quot;參數。\\n//\\n//在編寫您的函數時，可以透過填寫以下的&quot;prev&quot;和&quot;args&quot;文本框\\n//進行測試，單擊&quot;Execute&quot;\\n//執行該函數並查看結果。\\n//\\n//這裡有兩個預先配置的示例函數&quot;BusinessHours&quot;和\\n//&quot;DaysInArow&quot;，你可以參考及試用，以了解更多。\\n//\\n//這個&quot;ReadMeFirst&quot;函數只是通過以下編程，\\n//令訊息即發送。\\nnext = new Date（）;",
+    "message": "/歡迎使用延期發信功能編輯器！\\n//\\n//這個編輯器讓您使用JavaScript函數，利用快捷按鈕\\n//，以及延期發信對話框中的選擇，\\n//建立複雜的郵件排程邏輯。\\n//\\n//如上所述，當調用調度函數時，它將被給予\\n//三個參數：\\n//如果您希望此函數重覆執行　（見下文），需要提供“*”specname“\\n// *如果需要重覆執行，您需要提供“prev”，即之前的預定發送時間\\n// *“args”是上一次調用返回的額外參數，如果這是一個排程調用\\n//\\n//你的編程需要如下般設置“next”，“nextspec”和\\n//“nextargs”變數(variables)：\\n//\\n// *“next”是將來的分鐘數或Date對象(object)\\n//，指示消息何時發送。\\n// *“nextspec”是一個重複執行的規格(recurring specification)，用作執行\\n//排程郵件（見\\n// https://blog.kamens.us/send-later/#dynamic-recurrence）。如果你沒有提供\\n//這個變數，那麼訊息只會被發送一次。注意：如果你想要\\n//函數重複排程執行，請執行以下操作：\\n// nextspec =“function”+ specname;\\n// *“nextargs”是一組數組的參數，會被傳遞為下一個\\n//排程函數調用的“args”參數。\\n//\\n//在編寫您的函數時，可以透過填寫以下的“prev”和“args”文本框\\n//進行測試，單擊“Execute”\\n//執行該函數並查看結果。\\n//\\n//這裡有兩個預先配置的示例函數“BusinessHours”和\\n//“DaysInArow”，你可以參考及試用，以了解更多。\\n//\\n//這個“ReadMeFirst”函數只是通過以下編程，\\n//令訊息即發送。\\nnext = new Date（）;",
     "description": ""
   },
   "EditorReadMeHelp": {
@@ -964,7 +964,7 @@
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "在辦公時間內或在下一個工作日開始時立即發送消息。 您可以在第一個參數發出工作日數字數組(array)修改辦公時間（預設為週一至週五），其中0為星期日，6為星期六。您可在第二及第三個參數發出一個[H，M]數組，更改工作開始或結束時間（預設為8:30 - 17:30）。如不更改較早的參數，請指定&quot;null&quot;。 例如，&quot;null，[9，0]，[17，0]&quot;改變工作時間，而不改變工作日。",
+    "message": "在辦公時間內或在下一個工作日開始時立即發送消息。 您可以在第一個參數發出工作日數字數組(array)修改辦公時間（預設為週一至週五），其中0為星期日，6為星期六。您可在第二及第三個參數發出一個[H，M]數組，更改工作開始或結束時間（預設為8:30 - 17:30）。如不更改較早的參數，請指定“null”。 例如，“null，[9，0]，[17，0]”改變工作時間，而不改變工作日。",
     "description": ""
   },
   "DaysInARowCode": {
@@ -1044,7 +1044,7 @@
     "description": ""
   },
   "RenameFunctionBody": {
-    "message": "您已修改了現有功能的名稱，&quot;$1&quot;。你要重命名的現有函數或以新的名稱保存一個獨立的函數嗎？",
+    "message": "您已修改了現有功能的名稱，“$1”。你要重命名的現有函數或以新的名稱保存一個獨立的函數嗎？",
     "description": ""
   },
   "RenameFunctionRenameButton": {
@@ -1060,7 +1060,7 @@
     "description": ""
   },
   "FunctionErrorBody": {
-    "message": "啟動動態排程功能 &quot;$1&quot;錯誤",
+    "message": "啟動動態排程功能 “$1”錯誤",
     "description": ""
   },
   "cancel_on_reply": {

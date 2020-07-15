@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "Funcionalidad &quot;Enviar más tarde&quot; para programar la hora de envío.",
+    "message": "Funcionalidad “Enviar más tarde” para programar la hora de envío.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -160,11 +160,11 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Enviar&quot; efectúa &quot;Enviar más tarde&quot;",
+    "message": "“Enviar” efectúa “Enviar más tarde”",
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&quot;Enviar&quot; retrasa los mensajes",
+    "message": "“Enviar” retrasa los mensajes",
     "description": ""
   },
   "sendDelayPrefLabel2": {
@@ -220,7 +220,7 @@
     "description": ""
   },
   "showStatusPrefLabel": {
-    "message": "Mostrar &quot;Send Later&quot; en la barra de estado",
+    "message": "Mostrar “Send Later” en la barra de estado",
     "description": ""
   },
   "userGuideLabel": {
@@ -248,7 +248,7 @@
     "description": ""
   },
   "sendlater.prompt.sendnow.tooltip": {
-    "message": "Envía el mensaje inmediatamente, ignorando &quot;Send Later&quot;.",
+    "message": "Envía el mensaje inmediatamente, ignorando “Send Later”.",
     "description": ""
   },
   "sendlater.prompt.close.accesskey": {
@@ -268,7 +268,7 @@
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
-    "message": "Ej: &quot;Jueves 3:00pm&quot;, &quot;31/12/2012 15:27&quot;",
+    "message": "Ej: “Jueves 3:00pm”, “31/12/2012 15:27”",
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
@@ -344,11 +344,11 @@
     "description": ""
   },
   "showsendlatercolumn.tooltip": {
-    "message": "Especifica si incluir o no la columna &quot;Send Later&quot; al mostrar las carpetas de borradores",
+    "message": "Especifica si incluir o no la columna “Send Later” al mostrar las carpetas de borradores",
     "description": ""
   },
   "showsendlaterheader.tooltip": {
-    "message": "Especifica si mostrar o el encabezamiento &quot;X-Send-Later-At&quot;, que marca la hora a la que está programado el envío de un borrador, en la cabecera al ver el código de un mensaje.",
+    "message": "Especifica si mostrar o el encabezamiento “X-Send-Later-At”, que marca la hora a la que está programado el envío de un borrador, en la cabecera al ver el código de un mensaje.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
@@ -360,11 +360,11 @@
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
-    "message": "Con esta opción habilitada, el comando &quot;Enviar&quot; (bien con el botón o pulsando Ctrl+Intro) actúa del mismo modo que &quot;Enviar más tarde&quot;.",
+    "message": "Con esta opción habilitada, el comando “Enviar” (bien con el botón o pulsando Ctrl+Intro) actúa del mismo modo que “Enviar más tarde”.",
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "Con esta opción activada, todos los mensajes enviados con el comando &quot;Enviar&quot; (ya sea pulsando el botón o tecleando Ctrl-Enter) se retrasan por el número de minutos especificado al planificar con Send Later.",
+    "message": "Con esta opción activada, todos los mensajes enviados con el comando “Enviar” (ya sea pulsando el botón o tecleando Ctrl-Enter) se retrasan por el número de minutos especificado al planificar con Send Later.",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {
@@ -472,7 +472,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "Seleccione una función a editar o borrar, o seleccione &quot;(crear nueva función)&quot;.",
+    "message": "Seleccione una función a editar o borrar, o seleccione “(crear nueva función)”.",
     "description": ""
   },
   "createnewfunction": {
@@ -496,7 +496,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "Ponga aquí el código fuente de su función. Vea la función de ejemplo &quot;ReadMeFirst&quot; (léame primero) para más detalles acerca de qué debe hacer su código.",
+    "message": "Ponga aquí el código fuente de su función. Vea la función de ejemplo “ReadMeFirst” (léame primero) para más detalles acerca de qué debe hacer su código.",
     "description": ""
   },
   "codeplaceholder": {
@@ -612,7 +612,7 @@
     "description": ""
   },
   "sendwithfunction": {
-    "message": "Enviar de acuerdo a la función: &quot;$1&quot;",
+    "message": "Enviar de acuerdo a la función: “$1”",
     "description": ""
   },
   "sendspecifyfunction": {
@@ -672,7 +672,7 @@
     "description": ""
   },
   "OptionShortcutAlertText": {
-    "message": "El preajuste del botón $1 tiene el valor &quot;$2&quot; no válido",
+    "message": "El preajuste del botón $1 tiene el valor “$2” no válido",
     "description": ""
   },
   "SendingUnsentError": {
@@ -888,11 +888,11 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "Hacer clic en &quot;Poner en la Bandeja de Salida&quot; sitúa el mensaje en su Bandeja de Salida de inmediato. NO programa el mensaje para que sea enviado a una hora específica. Para eso, haga clic en el botón &quot;Enviar en torno al&quot; en el recuadro verde, tras introducir una hora de envío válida. ¿Está seguro de que quiere poner el mensaje en su Bandeja de Salida ahora?",
+    "message": "Hacer clic en “Poner en la Bandeja de Salida” sitúa el mensaje en su Bandeja de Salida de inmediato. NO programa el mensaje para que sea enviado a una hora específica. Para eso, haga clic en el botón “Enviar en torno al” en el recuadro verde, tras introducir una hora de envío válida. ¿Está seguro de que quiere poner el mensaje en su Bandeja de Salida ahora?",
     "description": ""
   },
   "SendNowConfirmMessage": {
-    "message": "Hacer clic en &quot;Enviar ahora&quot; envía el mensaje inmediatamente. NO programa el mensaje para que sea enviado a una hora específica. Para eso, haga clic en el botón &quot;Enviar en torno al&quot; en el recuadro verde tras introducir una hora de envío válida. ¿Está seguro de que quiere enviar el mensaje ahora?",
+    "message": "Hacer clic en “Enviar ahora” envía el mensaje inmediatamente. NO programa el mensaje para que sea enviado a una hora específica. Para eso, haga clic en el botón “Enviar en torno al” en el recuadro verde tras introducir una hora de envío válida. ¿Está seguro de que quiere enviar el mensaje ahora?",
     "description": ""
   },
   "ConfirmAgain": {
@@ -952,7 +952,7 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "El mensaje con el asunto &quot;$1&quot; en la carpeta de Borradores $2 fue programado para ser enviado hace más de $3 minutos, así que el envío ha sido bloqueado. Debe editar el borrador, y o bien enviarlo manualmente o volver a programar su envío. También puede desactivar el ajuste &quot;No enviar mensajes con más de N minutos de retraso&quot; para dejar de bloquear el envío de mensajes con retraso.",
+    "message": "El mensaje con el asunto “$1” en la carpeta de Borradores $2 fue programado para ser enviado hace más de $3 minutos, así que el envío ha sido bloqueado. Debe editar el borrador, y o bien enviarlo manualmente o volver a programar su envío. También puede desactivar el ajuste “No enviar mensajes con más de N minutos de retraso” para dejar de bloquear el envío de mensajes con retraso.",
     "description": ""
   },
   "EditorReadMeCode": {
@@ -968,7 +968,7 @@
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "[Horario comercial] — Envía el mensaje ahora si aún es horario comercial, o al principio de la siguiente jornada laboral. Puede cambiar la definición de los días laborables (por defecto: Lun - Vie) pasando como primer argumento una matriz de números correspondientes a tales días, donde 0 es el domingo y 6 el sábado. Puede cambiar las horas de inicio o final de la jornada laboral (predeterminadas: 8:30 - 17:30) pasando como segundo o tercer argumento una matriz de [H, M]. Especifique &quot;null&quot; (nulo) para argumentos iniciales que no quiera cambiar. Por ejemplo, &quot;null [9, 0], [17, 0]&quot; cambia las horas de trabajo sin cambiar los días laborables.",
+    "message": "[Horario comercial] — Envía el mensaje ahora si aún es horario comercial, o al principio de la siguiente jornada laboral. Puede cambiar la definición de los días laborables (por defecto: Lun - Vie) pasando como primer argumento una matriz de números correspondientes a tales días, donde 0 es el domingo y 6 el sábado. Puede cambiar las horas de inicio o final de la jornada laboral (predeterminadas: 8:30 - 17:30) pasando como segundo o tercer argumento una matriz de [H, M]. Especifique “null” (nulo) para argumentos iniciales que no quiera cambiar. Por ejemplo, “null [9, 0], [17, 0]” cambia las horas de trabajo sin cambiar los días laborables.",
     "description": ""
   },
   "DaysInARowCode": {
@@ -992,7 +992,7 @@
     "description": ""
   },
   "UntestedSaveBody": {
-    "message": "La función no ha sido probada (con el botón &quot;Ejecutar&quot;) ya que fue modificada recientemente. ¿Está seguro de que quiere guardarla o exportarla?",
+    "message": "La función no ha sido probada (con el botón “Ejecutar”) ya que fue modificada recientemente. ¿Está seguro de que quiere guardarla o exportarla?",
     "description": ""
   },
   "BadSaveTitle": {
@@ -1012,15 +1012,15 @@
     "description": ""
   },
   "NoNextValueError": {
-    "message": "La función no estableció un valor &quot;next&quot; (siguiente envío).",
+    "message": "La función no estableció un valor “next” (siguiente envío).",
     "description": ""
   },
   "BadNextValueError": {
-    "message": "El valor &quot;$1&quot; de &quot;next&quot; (siguiente envío) no es un número o fecha (Date).",
+    "message": "El valor “$1” de “next” (siguiente envío) no es un número o fecha (Date).",
     "description": ""
   },
   "BadNextArgsError": {
-    "message": "El valor &quot;$1&quot; de &quot;nextargs&quot; (siguientes argumentos) no es una matriz (Array).",
+    "message": "El valor “$1” de “nextargs” (siguientes argumentos) no es una matriz (Array).",
     "description": ""
   },
   "FunctionDeleteConfirmBody": {
@@ -1048,7 +1048,7 @@
     "description": ""
   },
   "RenameFunctionBody": {
-    "message": "Ha modificado el nombre de una función existente, &quot;$1&quot;. ¿Quiere renombrar la función existente o guardar una función aparte con el mismo nombre?",
+    "message": "Ha modificado el nombre de una función existente, “$1”. ¿Quiere renombrar la función existente o guardar una función aparte con el mismo nombre?",
     "description": ""
   },
   "RenameFunctionRenameButton": {
@@ -1064,7 +1064,7 @@
     "description": ""
   },
   "FunctionErrorBody": {
-    "message": "Error al invocar una función dinámica de programación de envíos: &quot;$1&quot;",
+    "message": "Error al invocar una función dinámica de programación de envíos: “$1”",
     "description": ""
   },
   "cancel_on_reply": {

@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "Dodaje funkcję &quot;wyślij później&quot;, aby można było wysyłać wiadomości o zaplanowanym czasie.",
+    "message": "Dodaje funkcję “wyślij później”, aby można było wysyłać wiadomości o zaplanowanym czasie.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -160,7 +160,7 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Wyślij później&quot; zamiast &quot;Wyślij&quot;",
+    "message": "“Wyślij później” zamiast “Wyślij”",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -208,19 +208,19 @@
     "description": ""
   },
   "sendUnsentMessagesPrefLabel": {
-    "message": "Włącz/wyłącz wysyłanie wiadomości z &quot;Wychodzących…&quot;",
+    "message": "Włącz/wyłącz wysyłanie wiadomości z “Wychodzących…”",
     "description": ""
   },
   "showColumnPrefLabel": {
-    "message": "Pokaż kolumnę &quot;Send Later&quot;",
+    "message": "Pokaż kolumnę “Send Later”",
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "Pokaż nagłówek &quot;Send Later&quot;",
+    "message": "Pokaż nagłówek “Send Later”",
     "description": ""
   },
   "showStatusPrefLabel": {
-    "message": "Pokaż &quot;Send Later&quot; na pasku statusu",
+    "message": "Pokaż “Send Later” na pasku statusu",
     "description": ""
   },
   "userGuideLabel": {
@@ -248,7 +248,7 @@
     "description": ""
   },
   "sendlater.prompt.sendnow.tooltip": {
-    "message": "Wyślij wiadomość TERAZ, pomijając funkcjonalność dodatku &quot;Send Later&quot;.",
+    "message": "Wyślij wiadomość TERAZ, pomijając funkcjonalność dodatku “Send Later”.",
     "description": ""
   },
   "sendlater.prompt.close.accesskey": {
@@ -268,7 +268,7 @@
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
-    "message": "np.: &quot;środa 15:00&quot;, &quot;12/31/2012 15:27&quot;",
+    "message": "np.: “środa 15:00”, “12/31/2012 15:27”",
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
@@ -276,7 +276,7 @@
     "description": ""
   },
   "sendlater.prompt.sendat.tooltip": {
-    "message": "Zapisz wiadomość w folderze &quot;Szkice&quot;, aby dostarczyć ją w wyznaczonym powyżej czasie.",
+    "message": "Zapisz wiadomość w folderze “Szkice”, aby dostarczyć ją w wyznaczonym powyżej czasie.",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -328,11 +328,11 @@
     "description": ""
   },
   "prefwindow.title": {
-    "message": "Ustawienia &quot;Send Later&quot;",
+    "message": "Ustawienia “Send Later”",
     "description": ""
   },
   "pane1.title": {
-    "message": "Ustawienia &quot;Send Later&quot;",
+    "message": "Ustawienia “Send Later”",
     "description": ""
   },
   "checktimepref.tooltip": {
@@ -344,11 +344,11 @@
     "description": ""
   },
   "showsendlatercolumn.tooltip": {
-    "message": "Czy wyświetlać kolumnę &quot;Send Later&quot; podczas przeglądania folderu Szkice",
+    "message": "Czy wyświetlać kolumnę “Send Later” podczas przeglądania folderu Szkice",
     "description": ""
   },
   "showsendlaterheader.tooltip": {
-    "message": "Określa czy wyświetlać nagłówek &quot;X-Send-Later-At&quot;, tzn. zaplanowany czas wysłania wiadomości w nagłówku podglądu.",
+    "message": "Określa czy wyświetlać nagłówek “X-Send-Later-At”, tzn. zaplanowany czas wysłania wiadomości w nagłówku podglądu.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
@@ -356,11 +356,11 @@
     "description": ""
   },
   "showsendlaterunsentmessages.tooltip": {
-    "message": "Jeżeli ta opcja jest wyłączona wiadomości zamiast zostać wysłane w wyznaczonym czasie zostaną przeniesione do folderu &quot;Wychodzące&quot;. Wyłącz tą opcję jeżeli korzystasz z innych rozszerzeń, które okresowo wysyłają wiadomości z folderu &quot;Wychodzące&quot;, np. BlunderDelay. Zauważ, że jeżeli ta opcja jest włączona, to za każdym razem kiedy &quot;Send Later&quot; spróbuje wysłać zaplanowaną wiadomość WSZYSTKIE inne wiadomości z folderu &quot;Wychodzące&quot; zostaną wysłane.",
+    "message": "Jeżeli ta opcja jest wyłączona wiadomości zamiast zostać wysłane w wyznaczonym czasie zostaną przeniesione do folderu “Wychodzące”. Wyłącz tą opcję jeżeli korzystasz z innych rozszerzeń, które okresowo wysyłają wiadomości z folderu “Wychodzące”, np. BlunderDelay. Zauważ, że jeżeli ta opcja jest włączona, to za każdym razem kiedy “Send Later” spróbuje wysłać zaplanowaną wiadomość WSZYSTKIE inne wiadomości z folderu “Wychodzące” zostaną wysłane.",
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
-    "message": "Jeżeli ta opcja jest włączona, zamiast polecenia &quot;Wyślij&quot; (zarówno po kliknięciu przycisku, jak i po wciśnięciu Ctrl-Enter) zostanie wywołane polecenie &quot;Wyślij później&quot;.",
+    "message": "Jeżeli ta opcja jest włączona, zamiast polecenia “Wyślij” (zarówno po kliknięciu przycisku, jak i po wciśnięciu Ctrl-Enter) zostanie wywołane polecenie “Wyślij później”.",
     "description": ""
   },
   "senddelay.tooltip": {
@@ -376,11 +376,11 @@
     "description": ""
   },
   "contactauthor.tooltip": {
-    "message": "Wyślij wiadomość e-mail do autora &quot;Send Later&quot; (w języku angielskim, proszę!).",
+    "message": "Wyślij wiadomość e-mail do autora “Send Later” (w języku angielskim, proszę!).",
     "description": ""
   },
   "helplink.tooltip": {
-    "message": "Pokaż dokumentację &quot;Send Later&quot;",
+    "message": "Pokaż dokumentację “Send Later”",
     "description": ""
   },
   "releasenotes.value": {
@@ -416,7 +416,7 @@
     "description": ""
   },
   "sendlater.ask.title.label": {
-    "message": "Wesprzyj projekt &quot;Send Later&quot;",
+    "message": "Wesprzyj projekt “Send Later”",
     "description": ""
   },
   "sendlater.ask.message1": {
@@ -464,7 +464,7 @@
     "description": ""
   },
   "windowtitle": {
-    "message": "Edytor funkcji specjalnych dla &quot;Send Later&quot;",
+    "message": "Edytor funkcji specjalnych dla “Send Later”",
     "description": ""
   },
   "selectfunction": {
@@ -472,7 +472,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "Wybór funkcji do edycji lub usunięcia, żeby stworzyć nową funkcję użyj &quot;Twórz nową&quot;",
+    "message": "Wybór funkcji do edycji lub usunięcia, żeby stworzyć nową funkcję użyj “Twórz nową”",
     "description": ""
   },
   "createnewfunction": {
@@ -496,7 +496,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "Umieść tutaj kod źródłowy twojej funkcji. Zajrzyj do przykładowej funkcji &quot;ReadMeFirst&quot; po szczegóły co w kodzie powinno być wykonane. (przykłady nie są tłumaczone na Polski).",
+    "message": "Umieść tutaj kod źródłowy twojej funkcji. Zajrzyj do przykładowej funkcji “ReadMeFirst” po szczegóły co w kodzie powinno być wykonane. (przykłady nie są tłumaczone na Polski).",
     "description": ""
   },
   "codeplaceholder": {
@@ -528,7 +528,7 @@
     "description": ""
   },
   "inputtimetip": {
-    "message": "Wprowadź tu datę i czas w sposób zrozumiały dla &quot;Send Later&quot;.",
+    "message": "Wprowadź tu datę i czas w sposób zrozumiały dla “Send Later”.",
     "description": ""
   },
   "inputtimeplaceholder": {
@@ -612,7 +612,7 @@
     "description": ""
   },
   "sendwithfunction": {
-    "message": "Wysyłka zgodnie z funkcją &quot;$1&quot;",
+    "message": "Wysyłka zgodnie z funkcją “$1”",
     "description": ""
   },
   "sendspecifyfunction": {
@@ -672,7 +672,7 @@
     "description": ""
   },
   "OptionShortcutAlertText": {
-    "message": "Skrót $1 posiada nieprawidłową wartość &quot;$2&quot;",
+    "message": "Skrót $1 posiada nieprawidłową wartość “$2”",
     "description": ""
   },
   "SendingUnsentError": {
@@ -880,7 +880,7 @@
     "description": ""
   },
   "draftSaveWarning": {
-    "message": "OSTRZEŻENIE: Aby zapobiec wysłaniu wiadomości w czasie, gdy będziesz ją edytował &quot;Send Later&quot; wyłączył wysyłkę o zaplanowanym czasie. Ustaw ponownie planowany czas wysyłki, gdy skończysz modyfikować wiadomość.",
+    "message": "OSTRZEŻENIE: Aby zapobiec wysłaniu wiadomości w czasie, gdy będziesz ją edytował “Send Later” wyłączył wysyłkę o zaplanowanym czasie. Ustaw ponownie planowany czas wysyłki, gdy skończysz modyfikować wiadomość.",
     "description": ""
   },
   "AreYouSure": {
@@ -888,11 +888,11 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "Kliknięcie &quot;Umieść w skrzynce nadawczej&quot; umieszcza wiadomość od razu w skrzynce nadawczej. Wiadomość NIE ZOSTANIE zaplanowana do późniejszej wysyłki. Aby wysłać wiadomość później, kliknij znajdujący się wewnątrz zielonego pola przycisk &quot;Wyślij&quot; po uprzednim podaniu czasu wysyłki. Czy jesteś pewien, że chcesz umieścić wiadomość w swojej skrzynce nadawczej?",
+    "message": "Kliknięcie “Umieść w skrzynce nadawczej” umieszcza wiadomość od razu w skrzynce nadawczej. Wiadomość NIE ZOSTANIE zaplanowana do późniejszej wysyłki. Aby wysłać wiadomość później, kliknij znajdujący się wewnątrz zielonego pola przycisk “Wyślij” po uprzednim podaniu czasu wysyłki. Czy jesteś pewien, że chcesz umieścić wiadomość w swojej skrzynce nadawczej?",
     "description": ""
   },
   "SendNowConfirmMessage": {
-    "message": "Kliknięcie &quot;Wyślij Teraz&quot; powoduje natychmiastową wysyłkę. Wiadomość NIE ZOSTANIE zaplanowana do późniejszej wysyłki. Aby wysłać wiadomość później, kliknij znajdujący się wewnątrz zielonego pola przycisk &quot;Wyślij&quot; po uprzednim podaniu czasu wysyłki. Czy jesteś pewien, że chcesz wysłać tę wiadomość TERAZ?",
+    "message": "Kliknięcie “Wyślij Teraz” powoduje natychmiastową wysyłkę. Wiadomość NIE ZOSTANIE zaplanowana do późniejszej wysyłki. Aby wysłać wiadomość później, kliknij znajdujący się wewnątrz zielonego pola przycisk “Wyślij” po uprzednim podaniu czasu wysyłki. Czy jesteś pewien, że chcesz wysłać tę wiadomość TERAZ?",
     "description": ""
   },
   "ConfirmAgain": {
@@ -904,19 +904,19 @@
     "description": ""
   },
   "ScheduledMessagesWarningQuitRequested": {
-    "message": "Istnieją wiadomości zaplanowane do wysłania! &quot;Send Later&quot; może je wysłać tylko gdy $1 jest włączony. Czy na pewno chcesz zakończyć?",
+    "message": "Istnieją wiadomości zaplanowane do wysłania! “Send Later” może je wysłać tylko gdy $1 jest włączony. Czy na pewno chcesz zakończyć?",
     "description": ""
   },
   "ScheduledMessagesWarningQuit": {
-    "message": "&quot;Send Later&quot; może wysłać zaplanowane na później wiadomości tylko gdy $1 jest włączony. Proszę pamiętać o ponownym uruchomieniu przed zaplanowanym czasem wysłania!",
+    "message": "“Send Later” może wysłać zaplanowane na później wiadomości tylko gdy $1 jest włączony. Proszę pamiętać o ponownym uruchomieniu przed zaplanowanym czasem wysłania!",
     "description": ""
   },
   "EnigmailIncompatTitle": {
-    "message": "Niezgodność wersji &quot;Send Later&quot; i Enigmail",
+    "message": "Niezgodność wersji “Send Later” i Enigmail",
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "Zainstalowana wersja Enigmail jest jest niezgodna z &quot;Send Later&quot;, z tego względu &quot;Send Later&quot; został wyłączony. Skontaktuj się z twórcą &quot;Send Later&quot; celem konsultacji i asysty (jik@kamens.us).",
+    "message": "Zainstalowana wersja Enigmail jest jest niezgodna z “Send Later”, z tego względu “Send Later” został wyłączony. Skontaktuj się z twórcą “Send Later” celem konsultacji i asysty (jik@kamens.us).",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {
@@ -952,7 +952,7 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "Wiadomość o temacie &quot;$1&quot; w folderze Szkice $2 zaplanowana była do wysyłki więcej niż $3 minut temu, ale wysyłanie było zablokowane. Teraz należy wysłać ją ręcznie lub ponownie zaplanować. Możesz też wyłączyć opcję blokady wysyłania niewysłanych wiadomości w ustawieniach (Nie wysyłaj wiadomości później niż XX minut)",
+    "message": "Wiadomość o temacie “$1” w folderze Szkice $2 zaplanowana była do wysyłki więcej niż $3 minut temu, ale wysyłanie było zablokowane. Teraz należy wysłać ją ręcznie lub ponownie zaplanować. Możesz też wyłączyć opcję blokady wysyłania niewysłanych wiadomości w ustawieniach (Nie wysyłaj wiadomości później niż XX minut)",
     "description": ""
   },
   "EditorReadMeCode": {
@@ -968,7 +968,7 @@
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "Wyślij wiadomość natychmiast jeśli aktualny czas mieści się w &quot;godzinach pracy&quot;, lub na początku następnego dnia roboczego. Możesz zmienić definicję dni roboczych (domyślnie Pon-Pią) przekazując tablicę numerów dni roboczych jako pierwszy argument, gdzie 0 jest Niedziela, a 6 to Sobota. Możesz też zmienić przedział godzin pracy (domyślnie:8:30 - 17:30) przekazując jako tablica drugi i trzeci argument w formacie [Godz, Min]. Wpisz &quot;null&quot; jeśli nie chcesz zmieniać któregoś z początkowych argumentów. Dla przykładu: &quot;null,[7,0],[15,0]&quot; zmienia godziny pracy nie zmieniając dni roboczych.",
+    "message": "Wyślij wiadomość natychmiast jeśli aktualny czas mieści się w “godzinach pracy”, lub na początku następnego dnia roboczego. Możesz zmienić definicję dni roboczych (domyślnie Pon-Pią) przekazując tablicę numerów dni roboczych jako pierwszy argument, gdzie 0 jest Niedziela, a 6 to Sobota. Możesz też zmienić przedział godzin pracy (domyślnie:8:30 - 17:30) przekazując jako tablica drugi i trzeci argument w formacie [Godz, Min]. Wpisz “null” jeśli nie chcesz zmieniać któregoś z początkowych argumentów. Dla przykładu: “null,[7,0],[15,0]” zmienia godziny pracy nie zmieniając dni roboczych.",
     "description": ""
   },
   "DaysInARowCode": {
@@ -992,7 +992,7 @@
     "description": ""
   },
   "UntestedSaveBody": {
-    "message": "Ta funkcja nie została przetestowana (nie użyto przycisku &quot;Wykonaj funkcję&quot;) pomimo modyfikacji kodu. Czy na pewno chcesz ją zapisać lub eksportować?",
+    "message": "Ta funkcja nie została przetestowana (nie użyto przycisku “Wykonaj funkcję”) pomimo modyfikacji kodu. Czy na pewno chcesz ją zapisać lub eksportować?",
     "description": ""
   },
   "BadSaveTitle": {
@@ -1012,15 +1012,15 @@
     "description": ""
   },
   "NoNextValueError": {
-    "message": "Brak wartości dla argumentu &quot;next&quot;.",
+    "message": "Brak wartości dla argumentu “next”.",
     "description": ""
   },
   "BadNextValueError": {
-    "message": "wartość &quot;$1&quot; argumentu &quot;next&quot; nie jest liczbą lub datą.",
+    "message": "wartość “$1” argumentu “next” nie jest liczbą lub datą.",
     "description": ""
   },
   "BadNextArgsError": {
-    "message": "Wartość &quot;$1&quot; argumentu &quot;nextarg&quot; nie jest tablicą (Array)",
+    "message": "Wartość “$1” argumentu “nextarg” nie jest tablicą (Array)",
     "description": ""
   },
   "FunctionDeleteConfirmBody": {
@@ -1032,7 +1032,7 @@
     "description": ""
   },
   "SLJFilterLabel": {
-    "message": "Pliki JSON dla &quot;Send Later&quot;",
+    "message": "Pliki JSON dla “Send Later”",
     "description": ""
   },
   "ImportError": {
@@ -1048,7 +1048,7 @@
     "description": ""
   },
   "RenameFunctionBody": {
-    "message": "Zmieniasz nazwę istniejącej funkcji, &quot;$1&quot;. Chcesz zmienić nazwę czy może zapisać jako nowa funkcja pod nową nazwą?",
+    "message": "Zmieniasz nazwę istniejącej funkcji, “$1”. Chcesz zmienić nazwę czy może zapisać jako nowa funkcja pod nową nazwą?",
     "description": ""
   },
   "RenameFunctionRenameButton": {
@@ -1064,7 +1064,7 @@
     "description": ""
   },
   "FunctionErrorBody": {
-    "message": "Błąd wywołania dynaminczej funkcji planowania: &quot;$1&quot;",
+    "message": "Błąd wywołania dynaminczej funkcji planowania: “$1”",
     "description": ""
   },
   "cancel_on_reply": {

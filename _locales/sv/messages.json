@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "&quot;Skicka senare&quot;-funktion som låter användaren schemalägga tidpunkten för sändning av ett e-brev.",
+    "message": "“Skicka senare”-funktion som låter användaren schemalägga tidpunkten för sändning av ett e-brev.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -160,11 +160,11 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Skicka&quot; innebär &quot;Skicka senare&quot;",
+    "message": "“Skicka” innebär “Skicka senare”",
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&quot;Skicka&quot; försenar meddelanden genom att",
+    "message": "”Skicka” försenar meddelanden genom att",
     "description": ""
   },
   "sendDelayPrefLabel2": {
@@ -212,11 +212,11 @@
     "description": ""
   },
   "showColumnPrefLabel": {
-    "message": "Visa kolumnen &quot;Skicka Senare&quot;",
+    "message": "Visa kolumnen “Skicka Senare”",
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "Visa huvudet &quot;Skicka Senare&quot;",
+    "message": "Visa huvudet “Skicka Senare”",
     "description": ""
   },
   "showStatusPrefLabel": {
@@ -248,7 +248,7 @@
     "description": ""
   },
   "sendlater.prompt.sendnow.tooltip": {
-    "message": "Skicka meddelandet omedelbart oavsett inställningar i &quot;Skicka Senare&quot;.",
+    "message": "Skicka meddelandet omedelbart oavsett inställningar i “Skicka Senare”.",
     "description": ""
   },
   "sendlater.prompt.close.accesskey": {
@@ -268,7 +268,7 @@
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
-    "message": "T.ex. &quot;3:00pm torsdag&quot;, &quot;12/31/2012 15:27&quot;",
+    "message": "T.ex. “3:00pm torsdag”, “12/31/2012 15:27”",
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
@@ -344,11 +344,11 @@
     "description": ""
   },
   "showsendlatercolumn.tooltip": {
-    "message": "Visning av kolumnen &quot;Skicka Senare&quot; vid granskning av utkastmappar",
+    "message": "Visning av kolumnen “Skicka Senare” vid granskning av utkastmappar",
     "description": ""
   },
   "showsendlaterheader.tooltip": {
-    "message": "Visning av huvudet &quot;X-Send-Later-At&quot;, d.v.s. den tidpunkt då ett utkast har schemalagts att skickas, i meddelandehuvudet vid granskning av ett meddelande.",
+    "message": "Visning av huvudet “X-Send-Later-At”, d.v.s. den tidpunkt då ett utkast har schemalagts att skickas, i meddelandehuvudet vid granskning av ett meddelande.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
@@ -360,7 +360,7 @@
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
-    "message": "Om detta alternativ är aktiverat, så utförs kommandot &quot;Skicka&quot; (antingen via knappen eller genom att trycka ner Ctrl+Retur) precis som &quot;Skicka senare&quot;.",
+    "message": "Om detta alternativ är aktiverat, så utförs kommandot “Skicka” (antingen via knappen eller genom att trycka ner Ctrl+Retur) precis som “Skicka senare”.",
     "description": ""
   },
   "senddelay.tooltip": {
@@ -672,7 +672,7 @@
     "description": ""
   },
   "OptionShortcutAlertText": {
-    "message": "Genvägen $1 har ett ogiltigt värde: &quot;$2&quot;",
+    "message": "Genvägen $1 har ett ogiltigt värde: “$2”",
     "description": ""
   },
   "SendingUnsentError": {
@@ -888,11 +888,11 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "Alternativet &quot;Lägg i Utkorgen&quot; placerar omedelbart meddelandet i din utkorg. Det schemalägger INTE meddelandet för sändning vid en specifik tidpunkt. För att göra det, klicka på knappen &quot;Skicka kring&quot; i den gröna rutan efter det att du har angivit en giltig sändningstid. Är du säker på att du vill lägga meddelandet i Utkorgen nu?",
+    "message": "Alternativet “Lägg i Utkorgen” placerar omedelbart meddelandet i din utkorg. Det schemalägger INTE meddelandet för sändning vid en specifik tidpunkt. För att göra det, klicka på knappen “Skicka kring” i den gröna rutan efter det att du har angivit en giltig sändningstid. Är du säker på att du vill lägga meddelandet i Utkorgen nu?",
     "description": ""
   },
   "SendNowConfirmMessage": {
-    "message": "Genom att klicka på &quot;Skicka nu&quot; sänds meddelandet omedelbart. Meddelandet schemaläggs INTE till en viss tid. För att schemalägga väljer du en tidpunkt och klickar på &quot;Skicka kring&quot; knappen i den gröna boxen. Är du säker på att du vill skicka meddelandet direkt?",
+    "message": "Genom att klicka på “Skicka nu” sänds meddelandet omedelbart. Meddelandet schemaläggs INTE till en viss tid. För att schemalägga väljer du en tidpunkt och klickar på “Skicka kring” knappen i den gröna boxen. Är du säker på att du vill skicka meddelandet direkt?",
     "description": ""
   },
   "ConfirmAgain": {
@@ -952,7 +952,7 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "Meddelandet med ämne &quot;$1&quot; i mappen för Utkast $2 har schemalagts för sändning för mer än $3 minuter sen och sändningen har blockerats. För att skicka meddelandet kan du ändra ditt utkast och antingen skicka direkt eller schemalägga på nytt. Du kan också avaktivera inställning &quot;Skicka inte meddelanden mer än # minuter sent&quot; för att skicka försenade meddelanden.",
+    "message": "Meddelandet med ämne “$1” i mappen för Utkast $2 har schemalagts för sändning för mer än $3 minuter sen och sändningen har blockerats. För att skicka meddelandet kan du ändra ditt utkast och antingen skicka direkt eller schemalägga på nytt. Du kan också avaktivera inställning &quot;Skicka inte meddelanden mer än # minuter sent” för att skicka försenade meddelanden.",
     "description": ""
   },
   "EditorReadMeCode": {
@@ -968,7 +968,7 @@
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "Skicka meddelandet nu om det är under kontorstid, eller i början av nästa arbetsdag. Du kan ändra definitionen av arbetsdagar (standard: Mån - Fre) genom att skicka in en array med arbetsdagsnummer som det första argumentet, där 0 är söndag och 6 är lördag. Du kan ändra arbetets start- eller sluttid (standard: 8:30 - 17:30) genom att skicka in en array av [H, M] som det andra eller tredje argumentet. Ange &quot;null&quot; för tidigare argument som du inte ändrar. Till exempel, &quot;null, [9, 0], [17, 0]&quot; ändrar arbetstiden utan att ändra arbetsdagar.",
+    "message": "Skicka meddelandet nu om det är under kontorstid, eller i början av nästa arbetsdag. Du kan ändra definitionen av arbetsdagar (standard: Mån - Fre) genom att skicka in en array med arbetsdagsnummer som det första argumentet, där 0 är söndag och 6 är lördag. Du kan ändra arbetets start- eller sluttid (standard: 8:30 - 17:30) genom att skicka in en array av [H, M] som det andra eller tredje argumentet. Ange “null” för tidigare argument som du inte ändrar. Till exempel, “null, [9, 0], [17, 0]” ändrar arbetstiden utan att ändra arbetsdagar.",
     "description": ""
   },
   "DaysInARowCode": {

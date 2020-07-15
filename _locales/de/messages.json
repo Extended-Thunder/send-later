@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "Eine erweiterte „Später senden&quot;-Funktion zur Planung der Sendezeit",
+    "message": "Eine erweiterte „Später senden”-Funktion zur Planung der Sendezeit",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -12,7 +12,7 @@
     "description": ""
   },
   "altBindingPrefLabel": {
-    "message": "„Alt+Umschalt+Return&quot; anstatt „Strg+Umschalt+Return&quot; verwenden",
+    "message": "„Alt+Umschalt+Return” anstatt „Strg+Umschalt+Return” verwenden",
     "description": ""
   },
   "blockLateMessagesPrefLabel1": {
@@ -160,7 +160,7 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "„Senden&quot; durch „Später senden&quot; ersetzen",
+    "message": "„Senden” durch „Später senden” ersetzen",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -212,15 +212,15 @@
     "description": ""
   },
   "showColumnPrefLabel": {
-    "message": "„Später Senden&quot;-Spalte anzeigen",
+    "message": "„Später Senden”-Spalte anzeigen",
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "„Später Senden&quot;-Kopfzeile anzeigen",
+    "message": "„Später Senden”-Kopfzeile anzeigen",
     "description": ""
   },
   "showStatusPrefLabel": {
-    "message": "„Später Senden&quot; in der Statusleiste anzeigen",
+    "message": "„Später Senden” in der Statusleiste anzeigen",
     "description": ""
   },
   "userGuideLabel": {
@@ -268,7 +268,7 @@
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
-    "message": "Beispiel: „Dienstag&quot;, „24.06.2012 17:30&quot;, „17&quot;, „7. August 2014&quot;",
+    "message": "Beispiel: „Dienstag”, „24.06.2012 17:30”, „17”, „7. August 2014”",
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
@@ -344,11 +344,11 @@
     "description": ""
   },
   "showsendlatercolumn.tooltip": {
-    "message": "Auswählen, ob die „Später Senden&quot;-Spalte beim Öffnen des Entwürfe-Ordners angezeigt werden soll oder nicht.",
+    "message": "Auswählen, ob die „Später Senden”-Spalte beim Öffnen des Entwürfe-Ordners angezeigt werden soll oder nicht.",
     "description": ""
   },
   "showsendlaterheader.tooltip": {
-    "message": "Auswählen, ob die „X-Send-Later-At:&quot;-Kopfzeile (z.B. die Zeit, wann ein Entwurf zum Senden geplant ist) im Nachrichtenkopf anzeigt werden soll oder nicht.",
+    "message": "Auswählen, ob die „X-Send-Later-At:”-Kopfzeile (z.B. die Zeit, wann ein Entwurf zum Senden geplant ist) im Nachrichtenkopf anzeigt werden soll oder nicht.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
@@ -356,11 +356,11 @@
     "description": ""
   },
   "showsendlaterunsentmessages.tooltip": {
-    "message": "Wird diese Option deaktiviert, wird „Später Senden&quot; die Nachrichten nicht im vollen Umfang senden. Stattdessen werden sie für die geplante Zustellung in den Postausgang verschoben. Diese Option deaktivieren, wenn ein anderes Add-on, wie z.B. BlunderDelay verwendet wird, um regelmäßig Nachrichten aus dem Postausgang zu versenden.\\nAnmerkung: Wenn diese Option aktiviert wird, werden von „Später Senden&quot;, immer wenn es eine Nachricht senden soll, ALLE Nachrichten im Postausgang versendet.",
+    "message": "Wird diese Option deaktiviert, wird „Später Senden” die Nachrichten nicht im vollen Umfang senden. Stattdessen werden sie für die geplante Zustellung in den Postausgang verschoben. Diese Option deaktivieren, wenn ein anderes Add-on, wie z.B. BlunderDelay verwendet wird, um regelmäßig Nachrichten aus dem Postausgang zu versenden.\\nAnmerkung: Wenn diese Option aktiviert wird, werden von „Später Senden”, immer wenn es eine Nachricht senden soll, ALLE Nachrichten im Postausgang versendet.",
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
-    "message": "Wird diese Option aktiviert, bewirkt der „Senden&quot;-Befehl (entweder die Schaltfläche oder Strg+Return) das Gleiche wie „Später senden&quot;.",
+    "message": "Wird diese Option aktiviert, bewirkt der „Senden”-Befehl (entweder die Schaltfläche oder Strg+Return) das Gleiche wie „Später senden”.",
     "description": ""
   },
   "senddelay.tooltip": {
@@ -376,11 +376,11 @@
     "description": ""
   },
   "contactauthor.tooltip": {
-    "message": "Senden Sie dem Autor von „Später Senden&quot; eine Nachricht. (auf Englisch bitte!)",
+    "message": "Senden Sie dem Autor von „Später Senden” eine Nachricht. (auf Englisch bitte!)",
     "description": ""
   },
   "helplink.tooltip": {
-    "message": "Sehen Sie sich die Dokumentation von „Später Senden&quot; an. (Englisch)",
+    "message": "Sehen Sie sich die Dokumentation von „Später Senden” an. (Englisch)",
     "description": ""
   },
   "releasenotes.value": {
@@ -416,7 +416,7 @@
     "description": ""
   },
   "sendlater.ask.title.label": {
-    "message": "„Später Senden&quot; unterstützen",
+    "message": "„Später Senden” unterstützen",
     "description": ""
   },
   "sendlater.ask.message1": {
@@ -472,7 +472,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "Wählen Sie eine Funktion aus, die Sie überarbeiten oder löschen wollen, oder wählen Sie &quot;(neue Funktion Erstellen)&quot;, um eine neue Funktion zu erstellen.",
+    "message": "Wählen Sie eine Funktion aus, die Sie überarbeiten oder löschen wollen, oder wählen Sie “(neue Funktion Erstellen)”, um eine neue Funktion zu erstellen.",
     "description": ""
   },
   "createnewfunction": {
@@ -496,7 +496,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "Geben Sie hier den Quellcode für die Funktion ein. Sehen Sie sich die &quot;ReadMeFirst&quot; Beispielfunktion an, um genauer zu erfahren, wie Ihr Code funktionieren sollte.",
+    "message": "Geben Sie hier den Quellcode für die Funktion ein. Sehen Sie sich die “ReadMeFirst” Beispielfunktion an, um genauer zu erfahren, wie Ihr Code funktionieren sollte.",
     "description": ""
   },
   "codeplaceholder": {
@@ -612,7 +612,7 @@
     "description": ""
   },
   "sendwithfunction": {
-    "message": "Senden nach Funktion &quot;$1&quot;",
+    "message": "Senden nach Funktion “$1”",
     "description": ""
   },
   "sendspecifyfunction": {
@@ -672,7 +672,7 @@
     "description": ""
   },
   "OptionShortcutAlertText": {
-    "message": "Kurzbefehl $1 hat den ungültigen Wert „$2&quot;",
+    "message": "Kurzbefehl $1 hat den ungültigen Wert „$2”",
     "description": ""
   },
   "SendingUnsentError": {
@@ -680,19 +680,19 @@
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Später Senden: Fehler beim Kopieren der geplanten Nachricht in den Postausgangs-Ordner (Code $1). „Später Senden&quot; wurde deaktiviert! Details unter https://blog.kamens.us/send-later/#outbox-copy-failure (Englisch).",
+    "message": "Später Senden: Fehler beim Kopieren der geplanten Nachricht in den Postausgangs-Ordner (Code $1). „Später Senden” wurde deaktiviert! Details unter https://blog.kamens.us/send-later/#outbox-copy-failure (Englisch).",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Später Senden: Fehler beim Kopieren der wiederkehrenden Nachricht in den Entwürfe-Ordner (Code $1). „Später Senden&quot; wurde deaktiviert! Details unter https://blog.kamens.us/send-later/#drafts-copy-failure (Englisch).",
+    "message": "Später Senden: Fehler beim Kopieren der wiederkehrenden Nachricht in den Entwürfe-Ordner (Code $1). „Später Senden” wurde deaktiviert! Details unter https://blog.kamens.us/send-later/#drafts-copy-failure (Englisch).",
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "Später Senden: Der Ordner „$1&quot; ist möglicherweise beschädigt. Öffnen Sie bitte die Ordner-Eigenschaften und reparieren sie ihn. Details unter https://blog.kamens.us/send-later/#corrupt-drafts-error (Englisch).",
+    "message": "Später Senden: Der Ordner „$1” ist möglicherweise beschädigt. Öffnen Sie bitte die Ordner-Eigenschaften und reparieren sie ihn. Details unter https://blog.kamens.us/send-later/#corrupt-drafts-error (Englisch).",
     "description": ""
   },
   "MessageResendError": {
-    "message": "Später Senden: Bereits versandte Nachrichten erneut versenden?! Der Postausgangs- oder Entwürfe-Ordner „$1&quot; ist möglicherweise beschädigt. Bitte nehmen sie Reparaturmaßnahmen vor, wie im folgenden Blog beschrieben: https://blog.kamens.us/send-later/#corrupt-outbox (Englisch).",
+    "message": "Später Senden: Bereits versandte Nachrichten erneut versenden?! Der Postausgangs- oder Entwürfe-Ordner „$1” ist möglicherweise beschädigt. Bitte nehmen sie Reparaturmaßnahmen vor, wie im folgenden Blog beschrieben: https://blog.kamens.us/send-later/#corrupt-outbox (Englisch).",
     "description": ""
   },
   "minutely": {
@@ -880,7 +880,7 @@
     "description": ""
   },
   "draftSaveWarning": {
-    "message": "WARNUNG: Um zu verhindern, dass die Nachricht von „Später Senden&quot; während des Schreibens gesendet wird, wurde die geplante Sendezeit abgebrochen. Geben Sie bitte eine neue Sendezeit für die Nachricht ein, sobald sie mit dem Verfassen fertig sind.",
+    "message": "WARNUNG: Um zu verhindern, dass die Nachricht von „Später Senden” während des Schreibens gesendet wird, wurde die geplante Sendezeit abgebrochen. Geben Sie bitte eine neue Sendezeit für die Nachricht ein, sobald sie mit dem Verfassen fertig sind.",
     "description": ""
   },
   "AreYouSure": {
@@ -888,11 +888,11 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "Durch „In den Postausgang verschieben&quot; wird die Nachricht augenblicklich in den Postausgangs-Ordner verschoben. Der Nachrichtenversand wird NICHT für eine bestimmte Zeit geplant. Dafür müssen Sie eine gültige Sendezeit eingeben und danach die „Geschätzte Sendezeit&quot;-Schaltfläche im grün umrahmten Bereich klicken. Soll die Nachricht jetzt in den Postausgangs-Ordner verschoben werden?",
+    "message": "Durch „In den Postausgang verschieben” wird die Nachricht augenblicklich in den Postausgangs-Ordner verschoben. Der Nachrichtenversand wird NICHT für eine bestimmte Zeit geplant. Dafür müssen Sie eine gültige Sendezeit eingeben und danach die „Geschätzte Sendezeit”-Schaltfläche im grün umrahmten Bereich klicken. Soll die Nachricht jetzt in den Postausgangs-Ordner verschoben werden?",
     "description": ""
   },
   "SendNowConfirmMessage": {
-    "message": "Mit „Jetzt senden&quot; wird die Nachricht sofort gesendet. Das Versenden wird NICHT für eine bestimmte Zeit geplant. Dafür müssen Sie eine gültige Sendezeit eingeben und danach die „Geschätzte Sendezeit&quot;-Schaltfläche im grün umrahmten Bereich klicken. Soll die Nachricht jetzt sofort gesendet werden?",
+    "message": "Mit „Jetzt senden“ wird die Nachricht sofort gesendet. Das Versenden wird NICHT für eine bestimmte Zeit geplant. Dafür müssen Sie eine gültige Sendezeit eingeben und danach die „Geschätzte Sendezeit”-Schaltfläche im grün umrahmten Bereich klicken. Soll die Nachricht jetzt sofort gesendet werden?",
     "description": ""
   },
   "ConfirmAgain": {
@@ -904,19 +904,19 @@
     "description": ""
   },
   "ScheduledMessagesWarningQuitRequested": {
-    "message": "Es gibt noch Nachrichten, deren Senden geplant ist. „Später Senden&quot; kann Nachrichten nur versenden, wenn $1 geöffnet ist. Möchten Sie das Programm dennoch schließen?",
+    "message": "Es gibt noch Nachrichten, deren Senden geplant ist. „Später Senden” kann Nachrichten nur versenden, wenn $1 geöffnet ist. Möchten Sie das Programm dennoch schließen?",
     "description": ""
   },
   "ScheduledMessagesWarningQuit": {
-    "message": "„Später Senden&quot; kann Nachrichten nur versenden, wenn $1 geöffnet ist. Bitte denken Sie daran, das Programm vor dem planmäßigen Sendetermin der Nachrichten wieder zu starten!",
+    "message": "„Später Senden” kann Nachrichten nur versenden, wenn $1 geöffnet ist. Bitte denken Sie daran, das Programm vor dem planmäßigen Sendetermin der Nachrichten wieder zu starten!",
     "description": ""
   },
   "EnigmailIncompatTitle": {
-    "message": "„Später Senden&quot; / Kompatibilitätsprobleme mit Enigmail",
+    "message": "„Später Senden” / Kompatibilitätsprobleme mit Enigmail",
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "Die installierte Version von Enigmail ist mit „Später Senden&quot; nicht kompatibel, das Planen von Nachrichten mit „Später Senden&quot; ist also deaktiviert. Kontaktieren Sie bitte den Später Senden-Entwickler (jik@kamens.us), um Hilfe zu erhalten.",
+    "message": "Die installierte Version von Enigmail ist mit „Später Senden” nicht kompatibel, das Planen von Nachrichten mit „Später Senden” ist also deaktiviert. Kontaktieren Sie bitte den Später Senden-Entwickler (jik@kamens.us), um Hilfe zu erhalten.",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {
@@ -924,7 +924,7 @@
     "description": ""
   },
   "TimeMismatchConfirmBody": {
-    "message": "Die eingegebene Zeit entspricht, $1, nicht den angegebenen Sendezeitbeschränkungen. Klicken Sie auf „Abbrechen&quot;, um die Sendezeit zu ändern oder auf „OK&quot;, um sie automatisch auf $2 zu ändern.",
+    "message": "Die eingegebene Zeit entspricht, $1, nicht den angegebenen Sendezeitbeschränkungen. Klicken Sie auf „Abbrechen”, um die Sendezeit zu ändern oder auf „OK”, um sie automatisch auf $2 zu ändern.",
     "description": ""
   },
   "endTimeWarningTitle": {
@@ -952,7 +952,7 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "Die Nachricht mit dem Betreff „$1&quot; im Ordner Entwürfe $2 sollte planmäßig vor mehr als $3 Minuten versandt werden, daher wurde der Versand blockiert. Sie sollten den Entwurf entweder direkt senden oder eine neue Zeit für „Später Senden&quot; angeben. Sie können auch die Einstellung „Nachrichten nicht mehr als # Minuten zu spät senden&quot; deaktivieren, um das verspätete Senden von Nachrichten zu erlauben.",
+    "message": "Die Nachricht mit dem Betreff „$1“ im Ordner Entwürfe $2 sollte planmäßig vor mehr als $3 Minuten versandt werden, daher wurde der Versand blockiert. Sie sollten den Entwurf entweder direkt senden oder eine neue Zeit für „Später Senden“ angeben. Sie können auch die Einstellung „Nachrichten nicht mehr als # Minuten zu spät senden“ deaktivieren, um das verspätete Senden von Nachrichten zu erlauben.",
     "description": ""
   },
   "EditorReadMeCode": {
@@ -968,7 +968,7 @@
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "Nachricht jetzt senden, falls es während der Geschäftszeiten ist, oder zu Beginn des nächsten Werktages. Sie können die Werktage ändern (standardäßig: Mo – Fr), indem Sie in einer Reihe die Werktagsnummern als ersten Parameter angeben, wobei 0 Sonntag und 6 Sonnabend entspricht. Sie können Arbeitsbeginn und Feierabend verändern (standardmäßig: 8:30 – 17:30), indem die in einer Reihe [Stunde, Minute] als zweiten oder dritten Parameter angeben. Legen Sie &quot;null&quot; für vorherige Parameter fest, die Sie nicht ändern! Zum Beispiel, &quot;null, [9, 0], [17, 0]&quot; ändert die Arbeitszeit ohne die Werktage zu verändern.",
+    "message": "Nachricht jetzt senden, falls es während der Geschäftszeiten ist, oder zu Beginn des nächsten Werktages. Sie können die Werktage ändern (standardäßig: Mo – Fr), indem Sie in einer Reihe die Werktagsnummern als ersten Parameter angeben, wobei 0 Sonntag und 6 Sonnabend entspricht. Sie können Arbeitsbeginn und Feierabend verändern (standardmäßig: 8:30 – 17:30), indem die in einer Reihe [Stunde, Minute] als zweiten oder dritten Parameter angeben. Legen Sie “null” für vorherige Parameter fest, die Sie nicht ändern! Zum Beispiel, “null, [9, 0], [17, 0]” ändert die Arbeitszeit ohne die Werktage zu verändern.",
     "description": ""
   },
   "DaysInARowCode": {
@@ -992,7 +992,7 @@
     "description": ""
   },
   "UntestedSaveBody": {
-    "message": "Die Funktion wurde seit der letzten Änderungen nicht geprüft (mit dem &quot;Ausführen&quot; Button). Sind Sie sicher, dass Sie sie speichern oder exportieren wollen?",
+    "message": "Die Funktion wurde seit der letzten Änderungen nicht geprüft (mit dem “Ausführen” Button). Sind Sie sicher, dass Sie sie speichern oder exportieren wollen?",
     "description": ""
   },
   "BadSaveTitle": {
@@ -1012,15 +1012,15 @@
     "description": ""
   },
   "NoNextValueError": {
-    "message": "Die Funktion setzt keinen &quot;next&quot; Wert.",
+    "message": "Die Funktion setzt keinen “next” Wert.",
     "description": ""
   },
   "BadNextValueError": {
-    "message": "Der &quot;next&quot; Wert &quot;$1&quot; ist keine Zahl oder kein Datum",
+    "message": "Der “next” Wert “$1” ist keine Zahl oder kein Datum",
     "description": ""
   },
   "BadNextArgsError": {
-    "message": "Der &quot;nextargs&quot; Wert &quot;$1&quot; ist kein Feld",
+    "message": "Der “nextargs” Wert “$1” ist kein Feld",
     "description": ""
   },
   "FunctionDeleteConfirmBody": {
@@ -1048,7 +1048,7 @@
     "description": ""
   },
   "RenameFunctionBody": {
-    "message": "Sie haben den Namen einer bestehenden Funktion geändert, $1&quot;. Wollen Sie der bestehenden Funktion einen neuen Namen geben oder eine neue Funktion unter dem neuen Namen speichern?",
+    "message": "Sie haben den Namen einer bestehenden Funktion geändert, $1”. Wollen Sie der bestehenden Funktion einen neuen Namen geben oder eine neue Funktion unter dem neuen Namen speichern?",
     "description": ""
   },
   "RenameFunctionRenameButton": {

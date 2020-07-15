@@ -160,11 +160,11 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Lähetä&quot; toimii, kuten &quot;Lähetä myöhemmin&quot;",
+    "message": "”Lähetä” toimii, kuten ”Lähetä myöhemmin”",
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&quot;Lähetä&quot; viivyttää viestejä",
+    "message": "“Lähetä” viivyttää viestejä",
     "description": ""
   },
   "sendDelayPrefLabel2": {
@@ -248,7 +248,7 @@
     "description": ""
   },
   "sendlater.prompt.sendnow.tooltip": {
-    "message": "Lähettää viestin heti, ohittaen &quot;Lähetä myöhemmin&quot; -toiminnon.",
+    "message": "Lähettää viestin heti, ohittaen ”Lähetä myöhemmin” -toiminnon.",
     "description": ""
   },
   "sendlater.prompt.close.accesskey": {
@@ -268,7 +268,7 @@
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
-    "message": "esim.: &quot;31.12.2016 12:00&quot;, &quot;2016-12-31&quot;, &quot;tiistai kello 15&quot;",
+    "message": "esim.: ”31.12.2016 12:00”, ”2016-12-31”, ”tiistai kello 15”",
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
@@ -348,7 +348,7 @@
     "description": ""
   },
   "showsendlaterheader.tooltip": {
-    "message": "Näytetäänkö &quot;X-Send-Later-At&quot; -otsake, esim. silloin kun viestiluonnos on ajastettu lähtemään, viestin otsakkeessa viestiä selatessa.",
+    "message": "Näytetäänkö ”X-Send-Later-At” -otsake, esim. silloin kun viestiluonnos on ajastettu lähtemään, viestin otsakkeessa viestiä selatessa.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
@@ -364,7 +364,7 @@
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "Tämä valinta aktivoituna kaikki &quot;Lähetä&quot; -komennolla (joko painikkeella, tai painamalla Ctrl+Enter) lähetetyt viestit lähtevät määritetyn arvon mukaisella viiveellä aikatauluttamalla ne käyttämällä Lähetä myöhemmin.",
+    "message": "Tämä valinta aktivoituna kaikki “Lähetä” -komennolla (joko painikkeella, tai painamalla Ctrl+Enter) lähetetyt viestit lähtevät määritetyn arvon mukaisella viiveellä aikatauluttamalla ne käyttämällä Lähetä myöhemmin.",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {
@@ -472,7 +472,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "Valitse funktio editoitavaksi tai poistettavaksi, tai &quot;(luo uusi funktio)&quot; luodaksesi uuden funktion.",
+    "message": "Valitse funktio editoitavaksi tai poistettavaksi, tai ”(luo uusi funktio)” luodaksesi uuden funktion.",
     "description": ""
   },
   "createnewfunction": {
@@ -496,7 +496,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "Laita funktiosi lähdekoodi tänne. Katso &quot;ReadMeFirst&quot; esimerkkifunktio nähdäksesi tarkemmin mitä koodisi pitäisi tehdä.",
+    "message": "Laita funktiosi lähdekoodi tänne. Katso ”ReadMeFirst” esimerkkifunktio nähdäksesi tarkemmin mitä koodisi pitäisi tehdä.",
     "description": ""
   },
   "codeplaceholder": {
@@ -612,7 +612,7 @@
     "description": ""
   },
   "sendwithfunction": {
-    "message": "Lähetä funktion &quot;$1&quot; mukaisesti",
+    "message": "Lähetä funktion ”$1” mukaisesti",
     "description": ""
   },
   "sendspecifyfunction": {
@@ -672,7 +672,7 @@
     "description": ""
   },
   "OptionShortcutAlertText": {
-    "message": "Pikatoiminto $1 sisältää arvon &quot;$2&quot; joka ei kelpaa",
+    "message": "Pikatoiminto $1 sisältää arvon ”$2” joka ei kelpaa",
     "description": ""
   },
   "SendingUnsentError": {
@@ -688,7 +688,7 @@
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "Lähetä myöhemmin: Kansio $1 saattaa olla viallinen. Avaa kansion Ominaisuudet ja käynnistä &quot;Korjaa kansio&quot; -toiminto. Katso https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "message": "Lähetä myöhemmin: Kansio $1 saattaa olla viallinen. Avaa kansion Ominaisuudet ja käynnistä ”Korjaa kansio” -toiminto. Katso https://blog.kamens.us/send-later/#corrupt-drafts-error.",
     "description": ""
   },
   "MessageResendError": {
@@ -888,11 +888,11 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "&quot;Siirrä Lähteviin&quot; -nappi siirtää viestin Lähtevät-kansioon, josta se lähetetään, kun viestejä lähetetään seuraavan kerran tai valitset valikosta &quot;Lähetä lähtevät viestit&quot;. Viestiä EI siis ajasteta. Ajastukseen voit käyttää vihreäreunuksisen laatikon pitkää Lähetä-painiketta, joka näkyy kun olet määrittänyt ensin lähetysajan. Siirretäänkö viesti Lähteviin?",
+    "message": "”Siirrä Lähteviin” -nappi siirtää viestin Lähtevät-kansioon, josta se lähetetään, kun viestejä lähetetään seuraavan kerran tai valitset valikosta ”Lähetä lähtevät viestit”. Viestiä EI siis ajasteta. Ajastukseen voit käyttää vihreäreunuksisen laatikon pitkää Lähetä-painiketta, joka näkyy kun olet määrittänyt ensin lähetysajan. Siirretäänkö viesti Lähteviin?",
     "description": ""
   },
   "SendNowConfirmMessage": {
-    "message": "&quot;Lähetä heti&quot; -napin painaminen lähettää viestin VÄLITTÖMÄSTI. Viestiä EI siis ajasteta. Ajastukseen voit käyttää vihreäreunuksisen laatikon pitkää Lähetä-painiketta, joka näkyy kun olet määrittänyt ensin lähetysajan. Haluatko varmasti lähettää viestin heti?",
+    "message": "”Lähetä heti” -napin painaminen lähettää viestin VÄLITTÖMÄSTI. Viestiä EI siis ajasteta. Ajastukseen voit käyttää vihreäreunuksisen laatikon pitkää Lähetä-painiketta, joka näkyy kun olet määrittänyt ensin lähetysajan. Haluatko varmasti lähettää viestin heti?",
     "description": ""
   },
   "ConfirmAgain": {
@@ -916,7 +916,7 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "Enigmailin asennettu versio ei ole yhteensopiva &quot;Lähetä myöhemmin&quot; kanssa, joten viestien ajastus &quot;Lähetä myöhemmin&quot; on poistettu käytöstä. Ota yhteys &quot;Lähetä myöhemmin&quot; ylläpitäjään (jik@kamens.us) avun saamiseksi.",
+    "message": "Enigmailin asennettu versio ei ole yhteensopiva ”Lähetä myöhemmin” kanssa, joten viestien ajastus ”Lähetä myöhemmin” on poistettu käytöstä. Ota yhteys ”Lähetä myöhemmin” ylläpitäjään (jik@kamens.us) avun saamiseksi.",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {
@@ -952,7 +952,7 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "Luonnoskansiossa $1 oleva viesti, jonka aihe on &quot;$2&quot; ajastettiin toimitettavaksi enemmän kuin $3 minuuttia sitten, joten lähetys on estetty. Voit muokata luonnosta ja joko lähettää sen heti tai ajastaa sen uudelleen. Voit myös halutessasi ottaa pois käytöstä asetuksista &quot;Älä toimita viestejä, jotka ovat enemmän kuin # minuuttia myöhässä&quot;, jotta myöhässä olevien viestien lähettämistä ei estettäisi.",
+    "message": "Luonnoskansiossa $1 oleva viesti, jonka aihe on ”$2” ajastettiin toimitettavaksi enemmän kuin $3 minuuttia sitten, joten lähetys on estetty. Voit muokata luonnosta ja joko lähettää sen heti tai ajastaa sen uudelleen. Voit myös halutessasi ottaa pois käytöstä asetuksista ”Älä toimita viestejä, jotka ovat enemmän kuin # minuuttia myöhässä”, jotta myöhässä olevien viestien lähettämistä ei estettäisi.",
     "description": ""
   },
   "EditorReadMeCode": {
@@ -968,7 +968,7 @@
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "Lähetä viesti heti, jos se tapahtuu normaalina työaikana, muuten seuraavan työpäivän alussa. Voit muuttaa työpäiviksi laskettavien päivien määritystä (oletus: maanantai - perjantai) antamalla ensimmäisenä parametrina taulukon työpäivien numeroista. Taulukossa numero 0 tarkoittaa sunnuntaita ja numero 6 lauantaita. Voit muuttaa työpäivän alku- ja loppuaikaa (oletus: 8:30 - 17:30) antamalla toisena ja kolmantena parametrina taulukon [H, M], jossa H merkitsee tunteja ja M minuutteja. Jos sinun tarvitsee muuttaa vain viimeistä parametria tai kahta viimeistä parametria, voit syöttää &quot;null&quot; parametreiksi, joita et halua muuttaa (ilman lainausmerkkejä). Esimerkiksi &quot;null, [9,0],[17,0]&quot; muuttaa työpäivän alku- ja lopetusajan muuttamatta viikon työpäiviä.",
+    "message": "Lähetä viesti heti, jos se tapahtuu normaalina työaikana, muuten seuraavan työpäivän alussa. Voit muuttaa työpäiviksi laskettavien päivien määritystä (oletus: maanantai - perjantai) antamalla ensimmäisenä parametrina taulukon työpäivien numeroista. Taulukossa numero 0 tarkoittaa sunnuntaita ja numero 6 lauantaita. Voit muuttaa työpäivän alku- ja loppuaikaa (oletus: 8:30 - 17:30) antamalla toisena ja kolmantena parametrina taulukon [H, M], jossa H merkitsee tunteja ja M minuutteja. Jos sinun tarvitsee muuttaa vain viimeistä parametria tai kahta viimeistä parametria, voit syöttää ”null” parametreiksi, joita et halua muuttaa (ilman lainausmerkkejä). Esimerkiksi ”null, [9,0],[17,0]” muuttaa työpäivän alku- ja lopetusajan muuttamatta viikon työpäiviä.",
     "description": ""
   },
   "DaysInARowCode": {
@@ -1012,15 +1012,15 @@
     "description": ""
   },
   "NoNextValueError": {
-    "message": "Funktio ei asettanut arvoa &quot;seuraava&quot;.",
+    "message": "Funktio ei asettanut arvoa ”seuraava”.",
     "description": ""
   },
   "BadNextValueError": {
-    "message": "&quot;next&quot; arvo &quot;$1&quot; ei ole numero tai Date",
+    "message": "”next” arvo ”$1” ei ole numero tai Date",
     "description": ""
   },
   "BadNextArgsError": {
-    "message": "&quot;nextargs&quot; arvo &quot;$1&quot; ei ole matriisi",
+    "message": "”nextargs” arvo ”$1” ei ole matriisi",
     "description": ""
   },
   "FunctionDeleteConfirmBody": {
@@ -1048,7 +1048,7 @@
     "description": ""
   },
   "RenameFunctionBody": {
-    "message": "Olet muuttanut olemassa olevan funktion &quot;$1&quot; nimeä. Haluatko nimetä uudelleen olemassa olevan funktion vai tallentaa erillisen funktion uudella nimellä?",
+    "message": "Olet muuttanut olemassa olevan funktion ”$1” nimeä. Haluatko nimetä uudelleen olemassa olevan funktion vai tallentaa erillisen funktion uudella nimellä?",
     "description": ""
   },
   "RenameFunctionRenameButton": {
@@ -1064,7 +1064,7 @@
     "description": ""
   },
   "FunctionErrorBody": {
-    "message": "Virhe kutsuttaessa aikataulufunktiota: &quot;$1&quot;",
+    "message": "Virhe kutsuttaessa aikataulufunktiota: ”$1”",
     "description": ""
   },
   "cancel_on_reply": {

@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "Teljes küldemény „Küldés később&quot; az e-mail küldésének ütemezéséhez.",
+    "message": "Teljes küldemény „Küldés később” az e-mail küldésének ütemezéséhez.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -160,11 +160,11 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "„Küldés&quot; úgy működik, mint „Küldés később&quot;",
+    "message": "„Küldés” úgy működik, mint „Küldés később”",
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "A „küldés&quot; késlelteti az üzeneteket",
+    "message": "A „küldés” késlelteti az üzeneteket",
     "description": ""
   },
   "sendDelayPrefLabel2": {
@@ -248,7 +248,7 @@
     "description": ""
   },
   "sendlater.prompt.sendnow.tooltip": {
-    "message": "Az üzenetet azonnal küldje el, megkerülve a „Küldés később&quot;-kiegészítőt.",
+    "message": "Az üzenetet azonnal küldje el, megkerülve a „Küldés később”-kiegészítőt.",
     "description": ""
   },
   "sendlater.prompt.close.accesskey": {
@@ -268,7 +268,7 @@
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
-    "message": "például: „15:00 csütörtök&quot;, „2015. 12. 31. 15:27&quot;",
+    "message": "például: „15:00 csütörtök”, „2015. 12. 31. 15:27”",
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
@@ -344,11 +344,11 @@
     "description": ""
   },
   "showsendlatercolumn.tooltip": {
-    "message": "Akár a „Küldés később&quot; oszlopot is megjelenítheti a vázlatmappák megtekintése közben",
+    "message": "Akár a „Küldés később” oszlopot is megjelenítheti a vázlatmappák megtekintése közben",
     "description": ""
   },
   "showsendlaterheader.tooltip": {
-    "message": "Az „X-Send-Later-At&quot; fejléc megjelenítése, azaz idő, amikor a tervezetet elküldjük, a fejlécben, amikor üzenetet nézünk.",
+    "message": "Az „X-Send-Later-At” fejléc megjelenítése, azaz idő, amikor a tervezetet elküldjük, a fejlécben, amikor üzenetet nézünk.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
@@ -360,11 +360,11 @@
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
-    "message": "Ezzel az opcióval a „Küldés&quot; parancs (vagy a gomb vagy a Ctrl+Enter beírása) ugyanaz, mint a „Küldés később&quot;.",
+    "message": "Ezzel az opcióval a „Küldés” parancs (vagy a gomb vagy a Ctrl+Enter beírása) ugyanaz, mint a „Küldés később”.",
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "Ezzel az opcióval a „Küldés&quot; paranccsal elküldött összes üzenet (a gomb vagy a Ctrl-Enter gépelés után) a megadott perc számmal késik, ha a Küldés később ütemezést küld.",
+    "message": "Ezzel az opcióval a „Küldés” paranccsal elküldött összes üzenet (a gomb vagy a Ctrl-Enter gépelés után) a megadott perc számmal késik, ha a Küldés később ütemezést küld.",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {
@@ -472,7 +472,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "Válasszon egy függvény a létrehozásához vagy törléshez, vagy „(új függvény létrehozása)&quot; az új függvény létrehozásához.",
+    "message": "Válasszon egy függvény a létrehozásához vagy törléshez, vagy „(új függvény létrehozása)” az új függvény létrehozásához.",
     "description": ""
   },
   "createnewfunction": {
@@ -496,7 +496,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "Itt helyezze el a forráskódot a függvényhez. Lásd a „ReadMeFirst&quot; (olvass el először) mintafüggvényt a kód használatának részleteit illetően.",
+    "message": "Itt helyezze el a forráskódot a függvényhez. Lásd a „ReadMeFirst” (olvass el először) mintafüggvényt a kód használatának részleteit illetően.",
     "description": ""
   },
   "codeplaceholder": {
@@ -612,7 +612,7 @@
     "description": ""
   },
   "sendwithfunction": {
-    "message": "A(z) „$1&quot; függvény szerint küldése",
+    "message": "A(z) „$1” függvény szerint küldése",
     "description": ""
   },
   "sendspecifyfunction": {
@@ -672,7 +672,7 @@
     "description": ""
   },
   "OptionShortcutAlertText": {
-    "message": "A(z) „$1&quot; érvénytelen gyorsbillentyű a(z) $2. gombhoz",
+    "message": "A(z) „$1” érvénytelen gyorsbillentyű a(z) $2. gombhoz",
     "description": ""
   },
   "SendingUnsentError": {
@@ -888,11 +888,11 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "A „Kimenő üzenetek behelyezése&quot; gombra kattintva az üzenet azonnal megjelenik a Kimenő üzenetek mappában. NEM ütemezi az üzenetet egy adott időpontban. Ehhez kattintson az „Elküldés&quot; gombra a zöld dobozban, miután megadta az érvényes küldési időt. Biztosan most szeretné az üzenetet a Kimenő üzenetek mappába tenni?",
+    "message": "A „Kimenő üzenetek behelyezése” gombra kattintva az üzenet azonnal megjelenik a Kimenő üzenetek mappában. NEM ütemezi az üzenetet egy adott időpontban. Ehhez kattintson az „Elküldés” gombra a zöld dobozban, miután megadta az érvényes küldési időt. Biztosan most szeretné az üzenetet a Kimenő üzenetek mappába tenni?",
     "description": ""
   },
   "SendNowConfirmMessage": {
-    "message": "A „Küldés most&quot; gombra kattintva azonnal elküldi az üzenetet. NEM ütemezi az üzenetet egy adott időpontban. Ehhez kattintson az „Elküldés&quot; gombra a zöld dobozban, miután megadta az érvényes küldési időt. Biztosan most szeretné elküldeni az üzenetet?",
+    "message": "A „Küldés most” gombra kattintva azonnal elküldi az üzenetet. NEM ütemezi az üzenetet egy adott időpontban. Ehhez kattintson az „Elküldés” gombra a zöld dobozban, miután megadta az érvényes küldési időt. Biztosan most szeretné elküldeni az üzenetet?",
     "description": ""
   },
   "ConfirmAgain": {
@@ -952,7 +952,7 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "A(z) „$1&quot; tárgyú üzenetet a(z) $2 Piszkozatok mappájában több mint $3 perccel ezelőtt szállították, így a szállítás le van tiltva. Szerkessze a tervezetet, és küldje el kézzel vagy átütemezze azt. A késői üzenetek kézbesítésének megakadályozását úgy is letilthatja, hogy a „Ne küldjön üzeneteket több mint x perccel későn&quot; beállítást.",
+    "message": "A(z) „$1” tárgyú üzenetet a(z) $2 Piszkozatok mappájában több mint $3 perccel ezelőtt szállították, így a szállítás le van tiltva. Szerkessze a tervezetet, és küldje el kézzel vagy átütemezze azt. A késői üzenetek kézbesítésének megakadályozását úgy is letilthatja, hogy a „Ne küldjön üzeneteket több mint x perccel későn” beállítást.",
     "description": ""
   },
   "EditorReadMeCode": {
@@ -968,7 +968,7 @@
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "Küldje most el az üzenetet, ha ez munkaidőben vagy a következő munkanap kezdetén. Megváltoztathatja a munkanapok meghatározását (alapértelmezett: hétfőtől péntekig) az első érvként a munkanapok számának tömbjével, ahol 0 vasárnapot jelent és 6 szombatot jelent. Megváltoztathatja a munka kezdetének vagy befejezésének időpontját (alapértelmezett: 8:30-17:30) a [ó, p] tömbben a második vagy harmadik érvként. Adja meg a „null&quot; értéket a korábbi érvek esetében, amelyeket nem módosít. Például a „null, [9, 0], [17, 0]&quot; megváltoztatja a munkaidőt a munkanapok megváltoztatása nélkül.",
+    "message": "Küldje most el az üzenetet, ha ez munkaidőben vagy a következő munkanap kezdetén. Megváltoztathatja a munkanapok meghatározását (alapértelmezett: hétfőtől péntekig) az első érvként a munkanapok számának tömbjével, ahol 0 vasárnapot jelent és 6 szombatot jelent. Megváltoztathatja a munka kezdetének vagy befejezésének időpontját (alapértelmezett: 8:30-17:30) a [ó, p] tömbben a második vagy harmadik érvként. Adja meg a „null” értéket a korábbi érvek esetében, amelyeket nem módosít. Például a „null, [9, 0], [17, 0]” megváltoztatja a munkaidőt a munkanapok megváltoztatása nélkül.",
     "description": ""
   },
   "DaysInARowCode": {
@@ -1012,15 +1012,15 @@
     "description": ""
   },
   "NoNextValueError": {
-    "message": "A függvény nem állított be „next&quot; (következő) értéket.",
+    "message": "A függvény nem állított be „next” (következő) értéket.",
     "description": ""
   },
   "BadNextValueError": {
-    "message": "A „next&quot; (következő) érték „$1&quot; nem szám vagy dátum",
+    "message": "A „next” (következő) érték „$1” nem szám vagy dátum",
     "description": ""
   },
   "BadNextArgsError": {
-    "message": "A „nextargs&quot; (következő érvek) „$1&quot; érték nem Array (tömb)",
+    "message": "A „nextargs” (következő érvek) „$1” érték nem Array (tömb)",
     "description": ""
   },
   "FunctionDeleteConfirmBody": {
@@ -1048,7 +1048,7 @@
     "description": ""
   },
   "RenameFunctionBody": {
-    "message": "A(z) „$1&quot; meglévő függvénynév megváltozott. Szeretné átnevezni a meglévő függvényt, vagy külön függvényt menteni az új névvel?",
+    "message": "A(z) „$1” meglévő függvénynév megváltozott. Szeretné átnevezni a meglévő függvényt, vagy külön függvényt menteni az új névvel?",
     "description": ""
   },
   "RenameFunctionRenameButton": {

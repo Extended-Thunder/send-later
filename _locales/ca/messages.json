@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "&quot;Enviar més tard&quot; és la funció per programar quan vols fer l&#x27;enviament.",
+    "message": "“Enviar més tard” és la funció per programar quan vols fer l&#x27;enviament.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -160,7 +160,7 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Enviar&quot; actua com &quot;Enviar més endavant&quot;",
+    "message": "“Enviar” actua com “Enviar més endavant”",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -248,7 +248,7 @@
     "description": ""
   },
   "sendlater.prompt.sendnow.tooltip": {
-    "message": "Enviar el missatge immediatament, ignorant &quot;Send Later&quot;.",
+    "message": "Enviar el missatge immediatament, ignorant “Send Later”.",
     "description": ""
   },
   "sendlater.prompt.close.accesskey": {
@@ -268,7 +268,7 @@
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
-    "message": "p.ex.: &quot;3:00pm dijous&quot;, &quot;31/12/2012 15:27&quot;",
+    "message": "p.ex.: “3:00pm dijous”, “31/12/2012 15:27”",
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
@@ -344,11 +344,11 @@
     "description": ""
   },
   "showsendlatercolumn.tooltip": {
-    "message": "Si s&#x27;ha de mostrar la columna &quot;Send Later&quot; en la vista de les carpetes d&#x27;esborranys",
+    "message": "Si s&#x27;ha de mostrar la columna “Send Later” en la vista de les carpetes d&#x27;esborranys",
     "description": ""
   },
   "showsendlaterheader.tooltip": {
-    "message": "Si es mostra la capçalera &quot;X-Send-Later-A&quot;, p.ex., l&#x27;hora en la que l&#x27;esborrany és programat per a ser enviat, en la capçalera de visualització del missatge.",
+    "message": "Si es mostra la capçalera “X-Send-Later-A”, p.ex., l&#x27;hora en la que l&#x27;esborrany és programat per a ser enviat, en la capçalera de visualització del missatge.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
@@ -360,7 +360,7 @@
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
-    "message": "Amb aquesta opció habilitada, la comanda &quot;Enviar&quot; (tant el botó com al teclejar Ctrl-Intro) funciona igual que &quot;Enviar més endavant&quot;",
+    "message": "Amb aquesta opció habilitada, la comanda “Enviar” (tant el botó com al teclejar Ctrl-Intro) funciona igual que “Enviar més endavant”",
     "description": ""
   },
   "senddelay.tooltip": {
@@ -464,7 +464,7 @@
     "description": ""
   },
   "windowtitle": {
-    "message": "Editor de funcions dinàmiques de &quot;Send Later&quot;",
+    "message": "Editor de funcions dinàmiques de “Send Later”",
     "description": ""
   },
   "selectfunction": {
@@ -472,7 +472,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "Sel·leccioni una funció per editar-la o eliminar-la, o &quot;(crear nova funció)&quot; per crear una nova funció.",
+    "message": "Sel·leccioni una funció per editar-la o eliminar-la, o “(crear nova funció)” per crear una nova funció.",
     "description": ""
   },
   "createnewfunction": {
@@ -496,7 +496,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "Escrigui el codi font de la seva funció aquí. Vegi la funció de mostra &quot;ReadMeFirst&quot; per a més detalls sobre el què el seu codi hauria de fer.",
+    "message": "Escrigui el codi font de la seva funció aquí. Vegi la funció de mostra “ReadMeFirst” per a més detalls sobre el què el seu codi hauria de fer.",
     "description": ""
   },
   "codeplaceholder": {
@@ -612,7 +612,7 @@
     "description": ""
   },
   "sendwithfunction": {
-    "message": "Enviar segons la funció &quot;$1&quot;",
+    "message": "Enviar segons la funció “$1”",
     "description": ""
   },
   "sendspecifyfunction": {
@@ -672,7 +672,7 @@
     "description": ""
   },
   "OptionShortcutAlertText": {
-    "message": "La drecera $1 té un valor invàlid &quot;$2&quot;",
+    "message": "La drecera $1 té un valor invàlid “$2”",
     "description": ""
   },
   "SendingUnsentError": {
@@ -888,11 +888,11 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "Clicant &quot;Col·locar en la Safata de Sortida&quot; posa el missatge en la Safata de Sortida immediatament. NO programa el missatge per a ser enviat en una hora específica. Per fer això, cliqueu el botó &quot;Enviar al voltant de&quot; de la caixa verda després d&#x27;introduir una hora vàlida. Està segur que vol posar el missatge a la Safata de Sortida ara?",
+    "message": "Clicant “Col·locar en la Safata de Sortida” posa el missatge en la Safata de Sortida immediatament. NO programa el missatge per a ser enviat en una hora específica. Per fer això, cliqueu el botó “Enviar al voltant de” de la caixa verda després d&#x27;introduir una hora vàlida. Està segur que vol posar el missatge a la Safata de Sortida ara?",
     "description": ""
   },
   "SendNowConfirmMessage": {
-    "message": "Clicant &quot;Enviar ara&quot; envia el missatge immediatament. NO programa el missatge per a ser enviat a una hora específica. Per fer això, cliqueu el botó &quot;Enviar al voltant de&quot; de la caixa verda després d&#x27;introduir una hora vàlida. Està segur que vol enviar el missatge ara?",
+    "message": "Clicant “Enviar ara” envia el missatge immediatament. NO programa el missatge per a ser enviat a una hora específica. Per fer això, cliqueu el botó “Enviar al voltant de” de la caixa verda després d&#x27;introduir una hora vàlida. Està segur que vol enviar el missatge ara?",
     "description": ""
   },
   "ConfirmAgain": {
@@ -952,7 +952,7 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "El missatge amb l&#x27;assumpte &quot;$1&quot; de la Carpeta d&#x27;Esborranys $2 s&#x27;ha programat per ser lliurat fa més de $3 minuts, per això el lliurament s&#x27;ha bloquejat. Hauria d&#x27;editar l&#x27;esborrany i enviar-lo a manualment o bé reprogramar-lo. També pot deshabilitar l&#x27;opció &quot;No lliurar els missatges més de # minuts tard&quot; preferida per evitar el bloqueig de lliurament de missatges tardans.",
+    "message": "El missatge amb l&#x27;assumpte “$1” de la Carpeta d&#x27;Esborranys $2 s&#x27;ha programat per ser lliurat fa més de $3 minuts, per això el lliurament s&#x27;ha bloquejat. Hauria d&#x27;editar l&#x27;esborrany i enviar-lo a manualment o bé reprogramar-lo. També pot deshabilitar l&#x27;opció “No lliurar els missatges més de # minuts tard” preferida per evitar el bloqueig de lliurament de missatges tardans.",
     "description": ""
   },
   "EditorReadMeCode": {
@@ -968,7 +968,7 @@
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "Envia el missatge ara si ens trobem dins de l&#x27;horari laborable, o al principi del següent dia laborable. Pot canviar la definició dels dies laborables (per omissió: de dilluns a divendres) passant un vector de nombres associats als dies laborables com a primer argument, on el 0 és diumenge i el 6, dissabte. Pot canviar l&#x27;hora d&#x27;inici de la jornada o la de finalització (per omissió: 8:30 - 17:30) passant un vector de [H, M] (hores, minuts) com a segon o tercer argument. Especifiqui el valor &quot;null&quot; pels arguments anteriors que no vulgui canviar. Per exemple, &quot;null, [9,0], [17, 0]&quot; canvia les hores laborables sense modificar els dies laborables.",
+    "message": "Envia el missatge ara si ens trobem dins de l&#x27;horari laborable, o al principi del següent dia laborable. Pot canviar la definició dels dies laborables (per omissió: de dilluns a divendres) passant un vector de nombres associats als dies laborables com a primer argument, on el 0 és diumenge i el 6, dissabte. Pot canviar l&#x27;hora d&#x27;inici de la jornada o la de finalització (per omissió: 8:30 - 17:30) passant un vector de [H, M] (hores, minuts) com a segon o tercer argument. Especifiqui el valor “null” pels arguments anteriors que no vulgui canviar. Per exemple, “null, [9,0], [17, 0]” canvia les hores laborables sense modificar els dies laborables.",
     "description": ""
   },
   "DaysInARowCode": {
@@ -992,7 +992,7 @@
     "description": ""
   },
   "UntestedSaveBody": {
-    "message": "La funció no s&#x27;ha comprovat (amb el botó &quot;Executar&quot;) des de l&#x27;última modificació. Està segur que la vol desar o exportar?",
+    "message": "La funció no s&#x27;ha comprovat (amb el botó “Executar”) des de l&#x27;última modificació. Està segur que la vol desar o exportar?",
     "description": ""
   },
   "BadSaveTitle": {
@@ -1012,15 +1012,15 @@
     "description": ""
   },
   "NoNextValueError": {
-    "message": "La funció no ha establert un valor &quot;next&quot;.",
+    "message": "La funció no ha establert un valor “next”.",
     "description": ""
   },
   "BadNextValueError": {
-    "message": "el valor &quot;next&quot; &quot;$1&quot; no és un número o una data",
+    "message": "el valor “next” “$1” no és un número o una data",
     "description": ""
   },
   "BadNextArgsError": {
-    "message": "el valor &quot;nextargs&quot; &quot;$1&quot; no és un vector",
+    "message": "el valor “nextargs” “$1” no és un vector",
     "description": ""
   },
   "FunctionDeleteConfirmBody": {
@@ -1048,7 +1048,7 @@
     "description": ""
   },
   "RenameFunctionBody": {
-    "message": "Ha modificat el nom d&#x27;una funció ja existent, &quot;$1&quot;. Vol canviar el nom de la funció existent o desar una altra funció amb el nom nou?",
+    "message": "Ha modificat el nom d&#x27;una funció ja existent, “$1”. Vol canviar el nom de la funció existent o desar una altra funció amb el nom nou?",
     "description": ""
   },
   "RenameFunctionRenameButton": {
@@ -1064,7 +1064,7 @@
     "description": ""
   },
   "FunctionErrorBody": {
-    "message": "Error invocant funció de planificació d&#x27;enviament: &quot;$1&quot;",
+    "message": "Error invocant funció de planificació d&#x27;enviament: “$1”",
     "description": ""
   },
   "cancel_on_reply": {

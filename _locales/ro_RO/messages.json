@@ -164,7 +164,7 @@
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "„Trimite&quot; va trimite mesajele cu o întârziere de",
+    "message": "„Trimite” va trimite mesajele cu o întârziere de",
     "description": ""
   },
   "sendDelayPrefLabel2": {
@@ -208,7 +208,7 @@
     "description": ""
   },
   "sendUnsentMessagesPrefLabel": {
-    "message": "Declanșează trimiterea mesajelor netrimise din „De trimis&quot;",
+    "message": "Declanșează trimiterea mesajelor netrimise din „De trimis”",
     "description": ""
   },
   "showColumnPrefLabel": {
@@ -232,7 +232,7 @@
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
-    "message": "Pune în „De trimis&quot;",
+    "message": "Pune în „De trimis”",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -240,7 +240,7 @@
     "description": ""
   },
   "sendlater.prompt.sendlater.tooltip": {
-    "message": "În loc de programarea trimiterii la un anumit moment, mută mesajul în dosarul „De trimis&quot; pentru a fi trimis la următoare trimitere de mesaje neexpediate.",
+    "message": "În loc de programarea trimiterii la un anumit moment, mută mesajul în dosarul „De trimis” pentru a fi trimis la următoare trimitere de mesaje neexpediate.",
     "description": ""
   },
   "sendlater.prompt.sendnow.accesskey": {
@@ -268,7 +268,7 @@
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
-    "message": "exemplu: &quot;3:00pm joi&quot;, &quot;12/31/2012 15:27&quot;",
+    "message": "exemplu: “3:00pm joi”, “12/31/2012 15:27”",
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
@@ -276,7 +276,7 @@
     "description": ""
   },
   "sendlater.prompt.sendat.tooltip": {
-    "message": "Salvează mesajul în dosarul „Mesaje nefinalizate&quot; pentru livrare automata la momentul setat mai sus.",
+    "message": "Salvează mesajul în dosarul „Mesaje nefinalizate” pentru livrare automata la momentul setat mai sus.",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -320,7 +320,7 @@
     "description": ""
   },
   "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Monitorizează primirea de răspuns la trimiterile anterioare ale mesajelor repetitive. Anulează un mesaj repetitiv și șterge-l din dosarul „Mesaje netrimise&quot; când se primește răspuns.",
+    "message": "Monitorizează primirea de răspuns la trimiterile anterioare ale mesajelor repetitive. Anulează un mesaj repetitiv și șterge-l din dosarul „Mesaje netrimise” când se primește răspuns.",
     "description": ""
   },
   "sendlater3header.label": {
@@ -348,7 +348,7 @@
     "description": ""
   },
   "showsendlaterheader.tooltip": {
-    "message": "Dacă se afișează headerul &quot;X-Send-Later-At&quot;, adică momentul când un mesaj e programat să fie trimis, în header, la vizualizarea unui mesaj.",
+    "message": "Dacă se afișează headerul “X-Send-Later-At”, adică momentul când un mesaj e programat să fie trimis, în header, la vizualizarea unui mesaj.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
@@ -356,7 +356,7 @@
     "description": ""
   },
   "showsendlaterunsentmessages.tooltip": {
-    "message": "Dacă dezactivezi opțiunea aceasta, atunci Send Later nu va trimite mesajele ci le va copia în dosarul „De trimis&quot; când sunt programate pentru trimitere. Dezactivează aceasta opțiune, de exemplu, când folosești și o alta extensie cum ar fi BlunderDelay pentru a trimite periodic mesajele din „De trimis&quot;. Notă: când această opțiune este activată, de fiecare dată când Send Later trimite un mesaj, toate mesajele din dosarul „De trimis&quot; for fi trimise.",
+    "message": "Dacă dezactivezi opțiunea aceasta, atunci Send Later nu va trimite mesajele ci le va copia în dosarul „De trimis” când sunt programate pentru trimitere. Dezactivează aceasta opțiune, de exemplu, când folosești și o alta extensie cum ar fi BlunderDelay pentru a trimite periodic mesajele din „De trimis”. Notă: când această opțiune este activată, de fiecare dată când Send Later trimite un mesaj, toate mesajele din dosarul „De trimis” for fi trimise.",
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
@@ -472,7 +472,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "Selectează funcția pentru a o edita sau șterge, sau „(creează funcție nouă)&quot; pentru a crea o nouă funcție.",
+    "message": "Selectează funcția pentru a o edita sau șterge, sau „(creează funcție nouă)” pentru a crea o nouă funcție.",
     "description": ""
   },
   "createnewfunction": {
@@ -496,7 +496,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "Introdu codul pentru funcție aici. Vezi funcția exemplu „ReadMeFirst&quot; pentru detalii despre ceea ce ar trebui codul tău să facă.",
+    "message": "Introdu codul pentru funcție aici. Vezi funcția exemplu „ReadMeFirst” pentru detalii despre ceea ce ar trebui codul tău să facă.",
     "description": ""
   },
   "codeplaceholder": {
@@ -672,19 +672,19 @@
     "description": ""
   },
   "OptionShortcutAlertText": {
-    "message": "Comanda rapidă $1 are valoarea invalidă &quot;$2&quot;",
+    "message": "Comanda rapidă $1 are valoarea invalidă “$2”",
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Send Later: Eroare la trimiterea mesajelor. Dosarul „De trimis&quot; poate să fie corupt și mesajele programate s-ar putea să nu fi fost trimise. Vezi https://blog.kamens.us/send-later/#outbox.",
+    "message": "Send Later: Eroare la trimiterea mesajelor. Dosarul „De trimis” poate să fie corupt și mesajele programate s-ar putea să nu fi fost trimise. Vezi https://blog.kamens.us/send-later/#outbox.",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Send Later: Eroare la copierea mesajelor programate in „De trimis&quot; pentru livrare (code $1). Send Later a fost dezactivat! Vezi https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "message": "Send Later: Eroare la copierea mesajelor programate in „De trimis” pentru livrare (code $1). Send Later a fost dezactivat! Vezi https://blog.kamens.us/send-later/#outbox-copy-failure.",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Send Later: Eroare la copierea mesajului recurent în dosarul „Mesaje nefinalizate&quot; (code $1). Send Later a fost dezactivat! Vezi https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "message": "Send Later: Eroare la copierea mesajului recurent în dosarul „Mesaje nefinalizate” (code $1). Send Later a fost dezactivat! Vezi https://blog.kamens.us/send-later/#drafts-copy-failure.",
     "description": ""
   },
   "CorruptFolderError": {
@@ -692,7 +692,7 @@
     "description": ""
   },
   "MessageResendError": {
-    "message": "Send Later: Încercare de a retrimite un mesaj deja trimis?! Dosarul „De trimis&quot; sau „Mesaje nefinalizate&quot; $1 este probabil corupt. Repară-le cum e descris la https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "message": "Send Later: Încercare de a retrimite un mesaj deja trimis?! Dosarul „De trimis” sau „Mesaje nefinalizate” $1 este probabil corupt. Repară-le cum e descris la https://blog.kamens.us/send-later/#corrupt-outbox.",
     "description": ""
   },
   "minutely": {
@@ -888,7 +888,7 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "Apăsarea &quot;Pune în „De trimis&quot;&quot; pune mesajul în „De trimis&quot; imediat. NU programează mesajul să fie trimis la un anumit moment. Pentru a programa trimiterea selectează „Trimite în jurul&quot; din caseta verde după introducerea unul moment de trimitere valid. Ești sigur că vrei sa pui mesajul în „De trimis&quot; acum?",
+    "message": "Apăsarea &quot;Pune în „De trimis”&quot; pune mesajul în „De trimis” imediat. NU programează mesajul să fie trimis la un anumit moment. Pentru a programa trimiterea selectează „Trimite în jurul” din caseta verde după introducerea unul moment de trimitere valid. Ești sigur că vrei sa pui mesajul în „De trimis” acum?",
     "description": ""
   },
   "SendNowConfirmMessage": {
@@ -952,7 +952,7 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "Mesajul cu subiectul &quot;$1&quot; din dosarul „Mesaje nefinalizate&quot; $2 a fost programat să fie livrat acum $3 minute, deci livrarea a fost blocată. Editează ciorna și fie trimite manual, fie reprogramează trimiterea. De asemenea, se poate dezactiva opțiunea &quot;Nu trimite mesaje mai târziu de # minute&quot; pentru a dezactiva blocarea mesajelor întârziate.",
+    "message": "Mesajul cu subiectul &quot;$1&quot; din dosarul „Mesaje nefinalizate” $2 a fost programat să fie livrat acum $3 minute, deci livrarea a fost blocată. Editează ciorna și fie trimite manual, fie reprogramează trimiterea. De asemenea, se poate dezactiva opțiunea &quot;Nu trimite mesaje mai târziu de # minute&quot; pentru a dezactiva blocarea mesajelor întârziate.",
     "description": ""
   },
   "EditorReadMeCode": {
@@ -968,7 +968,7 @@
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "Trimite mesajul acum dacă e în timpul orelor de lucru, sau la începutul următoarei zi lucrătoare. Definiția zilelor lucrătoare se poate schimba (implicit: Lun - Vin) când primul argument este un „array&quot; cu numerele zilelor lucrătoare, unde 0 este duminică și 6 este sâmbătă. Pentru a schimba orele de lucru (implicit: 8:30 - 17:30) se pot transmite argumentele 2 sau 3 cu „array&quot;-uri de forma [H, M]. Folosește „null&quot; pentru argumentele din față care dorești să rămână neschimbate. De exemplu, &quot;null, [9, 0], [17, 0]&quot; schimba orele de lucru fără a schimba zilele lucrătoare.",
+    "message": "Trimite mesajul acum dacă e în timpul orelor de lucru, sau la începutul următoarei zi lucrătoare. Definiția zilelor lucrătoare se poate schimba (implicit: Lun - Vin) când primul argument este un „array” cu numerele zilelor lucrătoare, unde 0 este duminică și 6 este sâmbătă. Pentru a schimba orele de lucru (implicit: 8:30 - 17:30) se pot transmite argumentele 2 sau 3 cu „array”-uri de forma [H, M]. Folosește „null” pentru argumentele din față care dorești să rămână neschimbate. De exemplu, “null, [9, 0], [17, 0]” schimba orele de lucru fără a schimba zilele lucrătoare.",
     "description": ""
   },
   "DaysInARowCode": {
