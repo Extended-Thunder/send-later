@@ -83,34 +83,26 @@ function CopyStringMessageToFolder(content, folder, listener) {
   const dirService =
     Cc["@mozilla.org/file/directory_service;1"].getService(Ci.nsIProperties);
   const tempDir = dirService.get("TmpD", Ci.nsIFile);
-  const sfile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
-  sfile.initWithPath(tempDir.path);
-  sfile.appendRelativePath("tempMsg" + (SendLaterVars.fileNumber++) + ".eml");
-  const filePath = sfile.path;
+  const sfile0 = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
+  sfile0.initWithPath(tempDir.path);
+  sfile0.appendRelativePath("tempMsg" + (SendLaterVars.fileNumber++) + ".eml");
+  const filePath = sfile0.path;
   console.info("Saving message to " + filePath);
-  if (sfile.exists()) {
-    sfile.remove(true);
+  if (sfile0.exists()) {
+    sfile0.remove(true);
   }
-  sfile.create(sfile.NORMAL_FILE_TYPE, 0o600);
+  sfile0.create(sfile0.NORMAL_FILE_TYPE, 0o600);
   const stream = Cc[
       '@mozilla.org/network/file-output-stream;1'
     ].createInstance(Ci.nsIFileOutputStream);
-  stream.init(sfile, 2, 0x200, false);
+  stream.init(sfile0, 2, 0x200, false);
   stream.write(content, content.length);
   stream.close();
   // Separate stream required for reading, since
-  // nsIFileOutputStream is write-only on Windows (and for
-  // that matter should probably be write-only on Linux as
-  // well, since it's an *output* stream, but it doesn't
-  // actually behave that way).
-  try {
-    // nsILocalFile is deprecated.
-    sfile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsILocalFile);
-  } catch (ex) {
-    sfile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
-  }
-  sfile.initWithPath(filePath);
-  listener.localFile = sfile;
+  // nsIFileOutputStream is write-only on Windows
+  const sfile1 = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
+  sfile1.initWithPath(filePath);
+  listener.localFile = sfile1;
   if (!SendLaterVars.copyService) {
     SendLaterVars.copyService = Cc[
         "@mozilla.org/messenger/messagecopyservice;1"
@@ -118,216 +110,216 @@ function CopyStringMessageToFolder(content, folder, listener) {
   }
   let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"].createInstance();
   msgWindow = msgWindow.QueryInterface(Ci.nsIMsgWindow);
-  SendLaterVars.copyService.CopyFileMessage(sfile, folder, null, false, 0, "",
+  SendLaterVars.copyService.CopyFileMessage(sfile1, folder, null, false, 0, "",
                                             listener, msgWindow);
 }
 
 var SL3U = class extends ExtensionCommon.ExtensionAPI {
-    getAPI(context) {
-        context.callOnClose(this);
+  getAPI(context) {
+    context.callOnClose(this);
 
-        return {
-            SL3U: {
-                  async alert(title, text) {
-                    const win = Services.wm.getMostRecentWindow();
-                    return Services.prompt.alert(win, title, text);
-                  },
+    return {
+      SL3U: {
+        async alert(title, text) {
+          const win = Services.wm.getMostRecentWindow();
+          return Services.prompt.alert(win, title, text);
+        },
 
-                  isOffline: function() {
-                    return Utils.isOffline;
-                  },
+        isOffline: function() {
+          return Utils.isOffline;
+        },
 
-                  async getLegacyPref(name, dtype, defVal) {
-                    // Prefix for legacy preferences.
-                    const prefName = `extensions.sendlater3.${name}`;
+        async getLegacyPref(name, dtype, defVal) {
+          // Prefix for legacy preferences.
+          const prefName = `extensions.sendlater3.${name}`;
 
-                    switch (dtype) {
-                      case "bool": {
-                        try {
-                          return Services.prefs.getBoolPref(prefName);
-                        } catch {
-                          return (defVal === "true");
-                        }
-                      }
-                      case "int": {
-                        try {
-                          return Services.prefs.getIntPref(prefName);
-                        } catch {
-                          return (Number(defVal)|0);
-                        }
-                      }
-                      case "char": {
-                        try {
-                          return Services.prefs.getCharPref(prefName);
-                        } catch {
-                          return defVal;
-                        }
-                      }
-                      case "string": {
-                        try {
-                          return Services.prefs.getStringPref(prefName);
-                        } catch {
-                          return defVal;
-                        }
-                      }
-                      default: {
-                        throw new Error("Unexpected pref type");
-                      }
-                    }
-                  },
+          switch (dtype) {
+            case "bool": {
+              try {
+                return Services.prefs.getBoolPref(prefName);
+              } catch {
+                return (defVal === "true");
+              }
+            }
+            case "int": {
+              try {
+                return Services.prefs.getIntPref(prefName);
+              } catch {
+                return (Number(defVal)|0);
+              }
+            }
+            case "char": {
+              try {
+                return Services.prefs.getCharPref(prefName);
+              } catch {
+                return defVal;
+              }
+            }
+            case "string": {
+              try {
+                return Services.prefs.getStringPref(prefName);
+              } catch {
+                return defVal;
+              }
+            }
+            default: {
+              throw new Error("Unexpected pref type");
+            }
+          }
+        },
 
-                  async SaveAsDraft() {
-                    // Saves the current compose window message as a draft.
-                    // (Window remains open)
-                    const cw = Services.wm.getMostRecentWindow("msgcompose");
-                    cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
-                  },
+        async SaveAsDraft() {
+          // Saves the current compose window message as a draft.
+          // (Window remains open)
+          const cw = Services.wm.getMostRecentWindow("msgcompose");
+          cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
+        },
 
-                  async SendNow() {
-                    // Sends the message from the current composition window
-                    const cw = Services.wm.getMostRecentWindow("msgcompose");
-                    cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.Now);
-                  },
+        async SendNow() {
+          // Sends the message from the current composition window
+          const cw = Services.wm.getMostRecentWindow("msgcompose");
+          cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.Now);
+        },
 
-                  async setHeader(name, value) {
-                    const cw = Services.wm.getMostRecentWindow("msgcompose");
-                    cw.gMsgCompose.compFields.setHeader(name,value);
-                  },
+        async setHeader(name, value) {
+          const cw = Services.wm.getMostRecentWindow("msgcompose");
+          cw.gMsgCompose.compFields.setHeader(name,value);
+        },
 
-                  async editingMessage(msgId) {
-                    for (let cw of Services.wm.getEnumerator("msgcompose")) {
-                      // for (let header of cw.gMsgCompose.compFields.headerNames) {
-                      //   console.log(header);
-                      // }
-                      const thisID = cw.gMsgCompose.compFields.getHeader("message-id");
-                      if (thisID === msgId) {
-                        return true;
-                      }
-                    }
-                    return false;
-                  },
+        async editingMessage(msgId) {
+          for (let cw of Services.wm.getEnumerator("msgcompose")) {
+            // for (let header of cw.gMsgCompose.compFields.headerNames) {
+            //   console.log(header);
+            // }
+            const thisID = cw.gMsgCompose.compFields.getHeader("message-id");
+            if (thisID === msgId) {
+              return true;
+            }
+          }
+          return false;
+        },
 
-                  async sendRaw(content) {
-                    // Replace message-id header with newly generated id.
-                    const idkey = (/\nX-Identity-Key:\s*(\S+)/i.exec(content))[1];
-                    const newMessageId = generateMsgId(idkey);
-                    content = "\n" + content;
-                    content = content.replace(/(\nMessage-ID:.*)<.*>/i,
-                                              "$1" + newMessageId);
-                    content = content.slice(1);
-                    if (content.indexOf(newMessageId) === -1) {
-                      console.error({content, newMessageId});
-                      throw "Message ID substitution failed.";
-                    }
+        async sendRaw(content) {
+          // Replace message-id header with newly generated id.
+          const idkey = (/\nX-Identity-Key:\s*(\S+)/i.exec(content))[1];
+          const newMessageId = generateMsgId(idkey);
+          content = "\n" + content;
+          content = content.replace(/(\nMessage-ID:.*)<.*>/i,
+                                    "$1" + newMessageId);
+          content = content.slice(1);
+          if (content.indexOf(newMessageId) === -1) {
+            console.error({content, newMessageId});
+            throw "Message ID substitution failed.";
+          }
 
-                    // Dump message content as new message in the outbox folder
-                    const fdrunsent = getUnsentMessagesFolder();
-                    const listener = {
-                      QueryInterface: function(iid) {
-                        if (iid.equals(Ci.nsIMsgCopyServiceListener) ||
-                            iid.equals(Ci.nsISupports)) {
-                          return this;
-                        }
-                        throw Components.results.NS_NOINTERFACE;
-                      },
-                      OnProgress: function(progress, progressMax) {},
-                      OnStartCopy: function() {},
-                      OnStopCopy: function(status) {
-                        const copying = this.localFile;
-                        if (copying.exists()) {
-                          try {
-                            copying.remove(true);
-                          } catch (ex) {
-                            console.debug(`Failed to delete ${copying.path}.`);
-                            WaitAndDelete(copying);
-                          }
-                        }
-                        if (Components.isSuccessCode(status)) {
-                          queueSendUnsentMessages();
-                        } else {
-                          console.error(status);
-                        }
-                      },
-                      SetMessageKey: function(key) {}
-                    }
-                    CopyStringMessageToFolder(content, fdrunsent, listener);
-                  },
-
-                  async addMsgSendLaterListener() {
-                      const msgSendLater = Cc.getService(Ci.nsIMsgSendLater);
-                      msgSendLater.addListener(this.sendUnsentMessagesListener);
-                  },
-
-                  async removeMsgSendLaterListener() {
-                      const msgSendLater = Cc.getService(Ci.nsIMsgSendLater);
-                      msgSendLater.removeListener(this.sendUnsentMessagesListener);
-                  },
-
-                  async applyMessengerOverlay() {
-                    ExtensionSupport.registerWindowListener("messengerListener", {
-                        chromeURLs: [
-                          "chrome://messenger/content/messenger.xul"
-                        ],
-                        onLoadWindow(window) {
-                          // backgrounding.xul ; headerView.xul
-                        },
-                      });
-                  },
-
-                  async applyComposeOverlay() {
-                    ExtensionSupport.registerWindowListener("composeListener", {
-                      chromeURLs: [
-                        "chrome://messenger/content/messengercompose/messengercompose.xul"
-                      ],
-                      onLoadWindow(window) {
-                        // composing.xul ; composeToolbar.xul
-
-                        // Add a menu item to the File menu of any main window.
-                        let fileQuitItem = window.document.getElementById("menu_FileQuitItem");
-                        if (fileQuitItem) {
-                          let fileRestartItem = window.document.createXULElement("menuitem");
-                          fileRestartItem.id = "menu_FileRestartItem";
-                          fileRestartItem.setAttribute("label", "Restart");
-                          fileRestartItem.setAttribute("accesskey", "R");
-                          fileRestartItem.addEventListener("command", () => Services.startup.quit(
-                            Services.startup.eForceQuit | Services.startup.eRestart
-                          ));
-                          fileQuitItem.parentNode.insertBefore(fileRestartItem, fileQuitItem);
-                        }
-                      }
-                    });
-                  },
-
-                  async init() {
-                      this.applyMessengerOverlay();
-                      this.applyComposeOverlay();
-                  }
+          // Dump message content as new message in the outbox folder
+          const fdrunsent = getUnsentMessagesFolder();
+          const listener = {
+            QueryInterface: function(iid) {
+              if (iid.equals(Ci.nsIMsgCopyServiceListener) ||
+                  iid.equals(Ci.nsISupports)) {
+                return this;
+              }
+              throw Components.results.NS_NOINTERFACE;
             },
-        };
-    }
+            OnProgress: function(progress, progressMax) {},
+            OnStartCopy: function() {},
+            OnStopCopy: function(status) {
+              const copying = this.localFile;
+              if (copying.exists()) {
+                try {
+                  copying.remove(true);
+                } catch (ex) {
+                  console.debug(`Failed to delete ${copying.path}.`);
+                  WaitAndDelete(copying);
+                }
+              }
+              if (Components.isSuccessCode(status)) {
+                queueSendUnsentMessages();
+              } else {
+                console.error(status);
+              }
+            },
+            SetMessageKey: function(key) {}
+          }
+          CopyStringMessageToFolder(content, fdrunsent, listener);
+        },
 
-    /*
-    Be sure to unload any .jsm modules that we loaded above, and invalidate
-    the cache to ensure the most recent version is always loaded on startup.
-    */
-    close() {
-        console.log("[SendLater]: Goodbye world.");
+        async addMsgSendLaterListener() {
+            const msgSendLater = Cc.getService(Ci.nsIMsgSendLater);
+            msgSendLater.addListener(this.sendUnsentMessagesListener);
+        },
 
-        // // Clean up any existing windows that have the menu item.
-        // for (let window of Services.wm.getEnumerator("mail:3pane")) {
-        //   // Clean up any changes to the window
-        // }
-        // // Stop listening for new windows.
-        // ExtensionSupport.unregisterWindowListener("composeListener");
-        // ExtensionSupport.unregisterWindowListener("messengerListener");
+        async removeMsgSendLaterListener() {
+            const msgSendLater = Cc.getService(Ci.nsIMsgSendLater);
+            msgSendLater.removeListener(this.sendUnsentMessagesListener);
+        },
 
-        //// I don't remember which of these is correct:
-        // Cu.unload(extension.getURL("modules/ufuncs.jsm"));
-        // console.log(extension.getURL("modules/ufuncs.jsm"));
-        //
-        // Cu.unload(extension.rootURI.resolve("modules/ufuncs.jsm"));
-        // console.log(extension.rootURI.resolve("modules/ufuncs.jsm"));
+        async applyMessengerOverlay() {
+          ExtensionSupport.registerWindowListener("messengerListener", {
+              chromeURLs: [
+                "chrome://messenger/content/messenger.xul"
+              ],
+              onLoadWindow(window) {
+                // backgrounding.xul ; headerView.xul
+              },
+            });
+        },
 
-        Services.obs.notifyObservers(null, "startupcache-invalidate", null);
-    }
+        async applyComposeOverlay() {
+          ExtensionSupport.registerWindowListener("composeListener", {
+            chromeURLs: [
+              "chrome://messenger/content/messengercompose/messengercompose.xul"
+            ],
+            onLoadWindow(window) {
+              // composing.xul ; composeToolbar.xul
+
+              // Add a menu item to the File menu of any main window.
+              let fileQuitItem = window.document.getElementById("menu_FileQuitItem");
+              if (fileQuitItem) {
+                let fileRestartItem = window.document.createXULElement("menuitem");
+                fileRestartItem.id = "menu_FileRestartItem";
+                fileRestartItem.setAttribute("label", "Restart");
+                fileRestartItem.setAttribute("accesskey", "R");
+                fileRestartItem.addEventListener("command", () => Services.startup.quit(
+                  Services.startup.eForceQuit | Services.startup.eRestart
+                ));
+                fileQuitItem.parentNode.insertBefore(fileRestartItem, fileQuitItem);
+              }
+            }
+          });
+        },
+
+        async init() {
+          this.applyMessengerOverlay();
+          this.applyComposeOverlay();
+        }
+      },
+    };
+  }
+
+  /*
+  Be sure to unload any .jsm modules that we loaded above, and invalidate
+  the cache to ensure the most recent version is always loaded on startup.
+  */
+  close() {
+    console.log("[SendLater]: Goodbye world.");
+
+    // // Clean up any existing windows that have the menu item.
+    // for (let window of Services.wm.getEnumerator("mail:3pane")) {
+    //   // Clean up any changes to the window
+    // }
+    // // Stop listening for new windows.
+    // ExtensionSupport.unregisterWindowListener("composeListener");
+    // ExtensionSupport.unregisterWindowListener("messengerListener");
+
+    //// I don't remember which of these is correct:
+    // Cu.unload(extension.getURL("modules/ufuncs.jsm"));
+    // console.log(extension.getURL("modules/ufuncs.jsm"));
+    //
+    // Cu.unload(extension.rootURI.resolve("modules/ufuncs.jsm"));
+    // console.log(extension.rootURI.resolve("modules/ufuncs.jsm"));
+
+    Services.obs.notifyObservers(null, "startupcache-invalidate", null);
+  }
 };
