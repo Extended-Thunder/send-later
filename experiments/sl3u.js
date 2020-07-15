@@ -83,13 +83,7 @@ function CopyStringMessageToFolder(content, folder, listener) {
   const dirService =
     Cc["@mozilla.org/file/directory_service;1"].getService(Ci.nsIProperties);
   const tempDir = dirService.get("TmpD", Ci.nsIFile);
-  let sfile;
-  try {
-    // nsILocalFile is deprecated.
-    sfile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsILocalFile);
-  } catch (ex) {
-    sfile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
-  }
+  const sfile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
   sfile.initWithPath(tempDir.path);
   sfile.appendRelativePath("tempMsg" + (SendLaterVars.fileNumber++) + ".eml");
   const filePath = sfile.path;
