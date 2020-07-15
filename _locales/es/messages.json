@@ -43,18 +43,6 @@
     "message": "Contactar con el autor",
     "description": ""
   },
-  "delay15Label": {
-    "message": "15 minutos más tarde",
-    "description": ""
-  },
-  "delay30Label": {
-    "message": "30 minutos más tarde",
-    "description": ""
-  },
-  "delay120Label": {
-    "message": "2 horas más tarde",
-    "description": ""
-  },
   "enforceRestrictionsPrefLabel": {
     "message": "Satisfacer las restricciones de hora y día en el momento del envío",
     "description": ""
@@ -239,6 +227,10 @@
     "message": "Guía de usuario",
     "description": ""
   },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
   "sendlater.prompt.sendlater.label": {
     "message": "Poner en la Bandeja de Salida",
     "description": ""
@@ -309,6 +301,18 @@
   },
   "sendlater.prompt.every.label": {
     "message": "Cada",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "15 minutos más tarde",
+    "description": ""
+  },
+  "sendlater.button2.label": {
+    "message": "30 minutos más tarde",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "2 horas más tarde",
     "description": ""
   },
   "sendlater.prompt.cancelonreply.label": {

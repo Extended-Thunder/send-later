@@ -43,18 +43,6 @@
     "message": "Contactează autorul",
     "description": ""
   },
-  "delay15Label": {
-    "message": "Peste 15 minute",
-    "description": ""
-  },
-  "delay30Label": {
-    "message": "Peste 30 minute",
-    "description": ""
-  },
-  "delay120Label": {
-    "message": "Peste 2 ore",
-    "description": ""
-  },
   "enforceRestrictionsPrefLabel": {
     "message": "Impune restricțiile de oră și zi în momentul livrării",
     "description": ""
@@ -239,6 +227,10 @@
     "message": "Ghidul utilizatorului",
     "description": ""
   },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
   "sendlater.prompt.sendlater.label": {
     "message": "Pune în „De trimis&quot;",
     "description": ""
@@ -309,6 +301,18 @@
   },
   "sendlater.prompt.every.label": {
     "message": "La fiecare",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "Peste 15 minute",
+    "description": ""
+  },
+  "sendlater.button2.label": {
+    "message": "Peste 30 minute",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "Peste 2 ore",
     "description": ""
   },
   "sendlater.prompt.cancelonreply.label": {

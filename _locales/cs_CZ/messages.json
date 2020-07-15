@@ -43,18 +43,6 @@
     "message": "Kontaktovat autora",
     "description": ""
   },
-  "delay15Label": {
-    "message": "Za 15 minut",
-    "description": ""
-  },
-  "delay30Label": {
-    "message": "Za 30 minut",
-    "description": ""
-  },
-  "delay120Label": {
-    "message": "Za 2 hodiny",
-    "description": ""
-  },
   "enforceRestrictionsPrefLabel": {
     "message": "Vynutit omezení času a dne pro čas doručení",
     "description": ""
@@ -239,6 +227,10 @@
     "message": "Uživatelská příručka",
     "description": ""
   },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
   "sendlater.prompt.sendlater.label": {
     "message": "Dát do „Pošty k odeslání&quot;",
     "description": ""
@@ -309,6 +301,18 @@
   },
   "sendlater.prompt.every.label": {
     "message": "Každých",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "Za 15 minut",
+    "description": ""
+  },
+  "sendlater.button2.label": {
+    "message": "Za 30 minut",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "Za 2 hodiny",
     "description": ""
   },
   "sendlater.prompt.cancelonreply.label": {

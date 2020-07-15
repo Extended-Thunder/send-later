@@ -43,18 +43,6 @@
     "message": "Contatta l&#x27;autore",
     "description": ""
   },
-  "delay15Label": {
-    "message": "Tra 15 minuti",
-    "description": ""
-  },
-  "delay30Label": {
-    "message": "Tra 30 minuti",
-    "description": ""
-  },
-  "delay120Label": {
-    "message": "Tra 2 ore",
-    "description": ""
-  },
   "enforceRestrictionsPrefLabel": {
     "message": "Imponi le restrizioni di orario e giorno all&#x27;orario di invio",
     "description": ""
@@ -239,6 +227,10 @@
     "message": "Manuale utente",
     "description": ""
   },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
   "sendlater.prompt.sendlater.label": {
     "message": "Metti nella &quot;Posta in uscita&quot;",
     "description": ""
@@ -309,6 +301,18 @@
   },
   "sendlater.prompt.every.label": {
     "message": "Ogni",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "Tra 15 minuti",
+    "description": ""
+  },
+  "sendlater.button2.label": {
+    "message": "Tra 30 minuti",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "Tra 2 ore",
     "description": ""
   },
   "sendlater.prompt.cancelonreply.label": {

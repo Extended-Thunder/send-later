@@ -43,18 +43,6 @@
     "message": "Lépjen kapcsolatba a szerzővel",
     "description": ""
   },
-  "delay15Label": {
-    "message": "15 perccel később",
-    "description": ""
-  },
-  "delay30Label": {
-    "message": "30 perccel később",
-    "description": ""
-  },
-  "delay120Label": {
-    "message": "2 órával később",
-    "description": ""
-  },
   "enforceRestrictionsPrefLabel": {
     "message": "Üzenetküldéskor erőltetése, napi és időbeli korlátozásokat",
     "description": ""
@@ -239,6 +227,10 @@
     "message": "Felhasználói útmutató",
     "description": ""
   },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
   "sendlater.prompt.sendlater.label": {
     "message": "Postázandó üzenetek helyezés",
     "description": ""
@@ -309,6 +301,18 @@
   },
   "sendlater.prompt.every.label": {
     "message": "Minden",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "15 perccel később",
+    "description": ""
+  },
+  "sendlater.button2.label": {
+    "message": "30 perccel később",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "2 órával később",
     "description": ""
   },
   "sendlater.prompt.cancelonreply.label": {

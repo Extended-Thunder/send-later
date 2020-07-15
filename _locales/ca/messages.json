@@ -43,18 +43,6 @@
     "message": "Contactar amb l&#x27;autor",
     "description": ""
   },
-  "delay15Label": {
-    "message": "15 min més tard",
-    "description": ""
-  },
-  "delay30Label": {
-    "message": "30 min més tard",
-    "description": ""
-  },
-  "delay120Label": {
-    "message": "2 hores més tard",
-    "description": ""
-  },
   "enforceRestrictionsPrefLabel": {
     "message": "Fer complir les restriccions de dia i hora en el moment de lliurar",
     "description": ""
@@ -239,6 +227,10 @@
     "message": "Guia d&#x27;usuari",
     "description": ""
   },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
   "sendlater.prompt.sendlater.label": {
     "message": "Posar a la Safata de Sortida",
     "description": ""
@@ -309,6 +301,18 @@
   },
   "sendlater.prompt.every.label": {
     "message": "Cada",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "15 min més tard",
+    "description": ""
+  },
+  "sendlater.button2.label": {
+    "message": "30 min més tard",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "2 hores més tard",
     "description": ""
   },
   "sendlater.prompt.cancelonreply.label": {

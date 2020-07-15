@@ -43,18 +43,6 @@
     "message": "作者への連絡",
     "description": ""
   },
-  "delay15Label": {
-    "message": "15分後",
-    "description": ""
-  },
-  "delay30Label": {
-    "message": "30分後",
-    "description": ""
-  },
-  "delay120Label": {
-    "message": "2時間後",
-    "description": ""
-  },
   "enforceRestrictionsPrefLabel": {
     "message": "配送時間に時間と曜日の条件を適用する",
     "description": ""
@@ -239,6 +227,10 @@
     "message": "ユーザーガイド",
     "description": ""
   },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
   "sendlater.prompt.sendlater.label": {
     "message": "[送信トレイ] に置く",
     "description": ""
@@ -309,6 +301,18 @@
   },
   "sendlater.prompt.every.label": {
     "message": "間隔",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "15分後",
+    "description": ""
+  },
+  "sendlater.button2.label": {
+    "message": "30分後",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "2時間後",
     "description": ""
   },
   "sendlater.prompt.cancelonreply.label": {

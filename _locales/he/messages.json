@@ -43,18 +43,6 @@
     "message": "‫צור קשר עם המפתח‬",
     "description": ""
   },
-  "delay15Label": {
-    "message": "‫15 דקות מאוחר יותר‬",
-    "description": ""
-  },
-  "delay30Label": {
-    "message": "‫30 דקות מאוחר יותר‬",
-    "description": ""
-  },
-  "delay120Label": {
-    "message": "‫שעתיים מאוחר יותר‬",
-    "description": ""
-  },
   "enforceRestrictionsPrefLabel": {
     "message": "כפה הגבלות יום ושעה על מועד המשלוח",
     "description": ""
@@ -239,6 +227,10 @@
     "message": "‫מדריך למשתמש‬",
     "description": ""
   },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
   "sendlater.prompt.sendlater.label": {
     "message": "‫העבר לתיבת דואר יוצא‬",
     "description": ""
@@ -305,6 +297,18 @@
   },
   "sendlater.prompt.every.label": {
     "message": "‫כל‬",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "‫15 דקות מאוחר יותר‬",
+    "description": ""
+  },
+  "sendlater.button2.label": {
+    "message": "‫30 דקות מאוחר יותר‬",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "‫שעתיים מאוחר יותר‬",
     "description": ""
   },
   "sendlater.prompt.cancelonreply.label": {

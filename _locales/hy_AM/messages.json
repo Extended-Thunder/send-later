@@ -43,18 +43,6 @@
     "message": "Կապնվեք հեղինակի հետ",
     "description": ""
   },
-  "delay15Label": {
-    "message": "15 րոպե անց",
-    "description": ""
-  },
-  "delay30Label": {
-    "message": "30 րոպե անց",
-    "description": ""
-  },
-  "delay120Label": {
-    "message": "2 ժամ անց",
-    "description": ""
-  },
   "enforceRestrictionsPrefLabel": {
     "message": "Ապահովել ժամանակը և օրվա սահմանափակումները՝ ուղարկելու ժամանակ",
     "description": ""
@@ -239,6 +227,10 @@
     "message": "Օգտվողի ուղեցույցը",
     "description": ""
   },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
   "sendlater.prompt.sendlater.label": {
     "message": "Պահել Ելքայինում",
     "description": ""
@@ -305,6 +297,18 @@
   },
   "sendlater.prompt.every.label": {
     "message": "Ամեն՝",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "15 րոպե անց",
+    "description": ""
+  },
+  "sendlater.button2.label": {
+    "message": "30 րոպե անց",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "2 ժամ անց",
     "description": ""
   },
   "sendlater3header.label": {

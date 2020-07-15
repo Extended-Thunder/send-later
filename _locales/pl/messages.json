@@ -43,18 +43,6 @@
     "message": "Skontaktuj się z autorem",
     "description": ""
   },
-  "delay15Label": {
-    "message": "za 15 minut",
-    "description": ""
-  },
-  "delay30Label": {
-    "message": "za 30 minut",
-    "description": ""
-  },
-  "delay120Label": {
-    "message": "za 2 godziny",
-    "description": ""
-  },
   "enforceRestrictionsPrefLabel": {
     "message": "Trzymaj się ściśle ograniczeń czasu i dnia wysyłki",
     "description": ""
@@ -239,6 +227,10 @@
     "message": "Podręcznik użytkownika",
     "description": ""
   },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
   "sendlater.prompt.sendlater.label": {
     "message": "Umieść w skrzynce nadawczej",
     "description": ""
@@ -309,6 +301,18 @@
   },
   "sendlater.prompt.every.label": {
     "message": "albo co",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "za 15 minut",
+    "description": ""
+  },
+  "sendlater.button2.label": {
+    "message": "za 30 minut",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "za 2 godziny",
     "description": ""
   },
   "sendlater.prompt.cancelonreply.label": {

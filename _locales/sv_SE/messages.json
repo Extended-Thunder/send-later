@@ -43,18 +43,6 @@
     "message": "Kontakta skaparen",
     "description": ""
   },
-  "delay15Label": {
-    "message": "15 min. senare",
-    "description": ""
-  },
-  "delay30Label": {
-    "message": "30 min. senare",
-    "description": ""
-  },
-  "delay120Label": {
-    "message": "2 tim. senare",
-    "description": ""
-  },
   "enforceRestrictionsPrefLabel": {
     "message": "Tid- och datuminställning är tvingande för att skicka",
     "description": ""
@@ -239,6 +227,10 @@
     "message": "Användarhandbok",
     "description": ""
   },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
   "sendlater.prompt.sendlater.label": {
     "message": "Lägg i Utkorgen",
     "description": ""
@@ -309,6 +301,18 @@
   },
   "sendlater.prompt.every.label": {
     "message": "Var",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "15 min. senare",
+    "description": ""
+  },
+  "sendlater.button2.label": {
+    "message": "30 min. senare",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "2 tim. senare",
     "description": ""
   },
   "sendlater.prompt.cancelonreply.label": {

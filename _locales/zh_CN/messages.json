@@ -43,18 +43,6 @@
     "message": "联系作者",
     "description": ""
   },
-  "delay15Label": {
-    "message": "15 分钟后",
-    "description": ""
-  },
-  "delay30Label": {
-    "message": "30 分钟后",
-    "description": ""
-  },
-  "delay120Label": {
-    "message": "2 小时后",
-    "description": ""
-  },
   "enforceRestrictionsPrefLabel": {
     "message": "强制执行发送的时间和日期限制",
     "description": ""
@@ -239,6 +227,10 @@
     "message": "用户指南",
     "description": ""
   },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
   "sendlater.prompt.sendlater.label": {
     "message": "放到发件箱",
     "description": ""
@@ -309,6 +301,18 @@
   },
   "sendlater.prompt.every.label": {
     "message": "每",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "15 分钟后",
+    "description": ""
+  },
+  "sendlater.button2.label": {
+    "message": "30 分钟后",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "2 小时后",
     "description": ""
   },
   "sendlater.prompt.cancelonreply.label": {

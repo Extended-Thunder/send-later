@@ -43,18 +43,6 @@
     "message": "Επικοινωνία με τον δημιουργό",
     "description": ""
   },
-  "delay15Label": {
-    "message": "σε 15 λεπτά",
-    "description": ""
-  },
-  "delay30Label": {
-    "message": "σε 30 λεπτά",
-    "description": ""
-  },
-  "delay120Label": {
-    "message": "σε 2 ώρες",
-    "description": ""
-  },
   "enforceRestrictionsPrefLabel": {
     "message": "Να ικανοποιούνται οι χρονικοί περιορισμοί κατά την αποστολή",
     "description": ""
@@ -239,6 +227,10 @@
     "message": "Οδηγίες χρήσης",
     "description": ""
   },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
   "sendlater.prompt.sendlater.label": {
     "message": "Τοποθέτηση στα Εξερχόμενα",
     "description": ""
@@ -309,6 +301,18 @@
   },
   "sendlater.prompt.every.label": {
     "message": "Κάθε",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "σε 15 λεπτά",
+    "description": ""
+  },
+  "sendlater.button2.label": {
+    "message": "σε 30 λεπτά",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "σε 2 ώρες",
     "description": ""
   },
   "sendlater.prompt.cancelonreply.label": {

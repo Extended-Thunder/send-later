@@ -43,18 +43,6 @@
     "message": "Contact opnemen met de schrijver",
     "description": ""
   },
-  "delay15Label": {
-    "message": "15 minutes from now",
-    "description": ""
-  },
-  "delay30Label": {
-    "message": "15 minutes from now",
-    "description": ""
-  },
-  "delay120Label": {
-    "message": "2 hours from now",
-    "description": ""
-  },
   "enforceRestrictionsPrefLabel": {
     "message": "Tijds- en dagrestricties bij aflevertijd afdwingen",
     "description": ""
@@ -237,6 +225,10 @@
   },
   "userGuideLabel": {
     "message": "Handleiding",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
     "description": ""
   },
   "prefwindow.title": {
