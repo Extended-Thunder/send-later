@@ -45,6 +45,7 @@ const SLOptions = {
       prefs[key] = value;
       browser.storage.local.set({ preferences: prefs });
     });
+    browser.runtime.sendMessage({ action: "reloadPrefCache" });
   },
 
   async showCheckMark(element, color) {
@@ -135,8 +136,9 @@ const SLOptions = {
                 result[key]=defaults[key][1];
                 return result;
             }, {});
-            browser.SL3U.updatePrefs(JSON.stringify(prefs));
-            return browser.storage.local.set({ preferences: prefs });
+            browser.storage.local.set({ preferences: prefs }).then(() => {
+              browser.runtime.sendMessage({ action: "reloadPrefCache" });
+            });
         }).then(() => SLOptions.applyPrefsToUI());
     });
 
@@ -149,22 +151,36 @@ const SLOptions = {
     clrEvent.target.disabled = true;
   },
 
+  async checkBoxSetListeners(ids) {
+    ids.forEach(id=>{
+      document.getElementById(id).addEventListener("change", async evt => {
+        if (evt.target.checked) {
+          ids.forEach(async otherId => {
+            if (otherId !== id) {
+              document.getElementById(otherId).checked = false;
+            }
+          });
+        }
+      });
+    });
+  },
+
   async attachListeners() {
     // Attach listeners for all input fields
     for (const id of SLOptions.inputIds) {
-      SLStatic.debug(`Attaching listener to element id "${id}"`);
       const el = document.getElementById(id);
       el.addEventListener("change", SLOptions.updatePrefListener);
     }
+    SLOptions.checkBoxSetListeners(["sendDoesSL","sendDoesDelay"]);
     // And attach a listener to the "Reset Preferences" button
     const clearPrefsBtn = document.getElementById("clearPrefs");
     clearPrefsBtn.addEventListener("click", SLOptions.clearPrefsListener);
   },
 
   async onLoad() {
-    SLOptions.applyPrefsToUI().then(() => {
-      SLOptions.attachListeners();
-    }).catch(SLStatic.error);
+    SLOptions.applyPrefsToUI().then(
+      SLOptions.attachListeners
+    ).catch(SLStatic.error);
   }
 };
 

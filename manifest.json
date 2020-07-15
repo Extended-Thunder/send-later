@@ -8,10 +8,10 @@
     "48": "ui/icons/icon.png"
   },
   "applications": {
-      "gecko": {
-          "id": "jph@extended-thunder.org",
-          "strict_min_version": "78.0a1"
-      }
+    "gecko": {
+      "id": "jph@extended-thunder.org",
+      "strict_min_version": "78.0a1"
+    }
   },
   "permissions": [
     "storage",

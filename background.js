@@ -3,6 +3,10 @@ const SendLater = {
     // Track unresolved promises that can be resolved by some future event.
     _PromiseMap: new Map(),
 
+    prefCache: {},
+
+    composeState: {},
+
     async isEditing(msgId) {
       // Look through each of the compose windows, check for this message UUID.
       return await browser.SL3U.editingMessage(msgId);
@@ -168,29 +172,33 @@ const SendLater = {
         if (recur.days) {
           const today = (new Date()).getDay();
           if (!recur.days.includes(today)) {
-            const wkday = new Intl.DateTimeFormat('default', {weekday:'short'});
+            const wkday = new Intl.DateTimeFormat('default', {weekday:'long'});
             SLStatic.debug(`Message ${id} not scheduled to send on ${wkday.format(new Date())}`);
           }
         }
       }
 
       // Initiate send from draft message
-      await browser.messages.getRaw(id).then(
-        SLStatic.prepNewMessageHeaders
-      ).then(
-        browser.SL3U.sendRaw
-      );
+      SLStatic.debug(`Sending message ${msgId}.`);
+      const rawContent = await browser.messages.getRaw(id);
+
+      browser.SL3U.sendRaw(SLStatic.prepNewMessageHeaders(rawContent));
 
       let nextRecur;
       if (recur.type !== "none") {
         nextRecur = SLStatic.NextRecurDate(nextSend, msgRecurSpec, new Date(), args);
       }
 
+      // TODO: Update the draft message with a new x-send-at header. This
+      // method does not work if send later is installed on two browsers with an
+      // IMAP account. (Although that situation is not well supported anyway)
       if (nextRecur) {
-        SLStatic.debug(`Scheduling next recurrence of message ${id} at ${nextRecur.toLocaleString()}`);
+        SLStatic.debug(`Scheduling next recurrence of message ${msgId} ` +
+          `at ${nextRecur.toLocaleString()}, with recurSpec "${msgRecurSpec}"`);
         lock[msgId] = { lastSent: new Date(), nextRecur };
         browser.storage.local.set({ lock });
       } else {
+        SLStatic.debug(`No recurrences for message ${msgId}. Deleting draft.`);
         browser.messages.delete([id], true);
       }
     },
@@ -199,7 +207,7 @@ const SendLater = {
       SLStatic.debug("Entering main loop.");
 
       SendLater.forAllDrafts(
-        msg => SendLater.possiblySendMessage(msg.id)
+        async msg => SendLater.possiblySendMessage(msg.id)
       ).catch(SLStatic.error);
 
       // TODO: Use a persistent reference to the this timeout that can be
@@ -212,100 +220,80 @@ const SendLater = {
     }
 };
 
-// Intercept sent messages. Decide whether to handle them or just pass them on.
-browser.compose.onBeforeSend.addListener((tab) => {
-  return browser.storage.local.get({ preferences: {} }).then(storage => {
-    if (storage.preferences["sendDoesSL"]) {
-      SLStatic.debug("Intercepting send operation. Awaiting user input.");
-      browser.composeAction.openPopup();
-      return { cancel: true };
-    } else if (storage.preferences["sendDoesDelay"]) {
-      const sendDelay = storage.preferences["sendDelay"];
-      SLStatic.debug(`Scheduling SendLater ${sendDelay} minutes from now.`);
-      SendLater.scheduleSendLater(tab.id, { delay: sendDelay });
-      return { cancel: true };
-    } else {
-      SLStatic.debug("Not blocking send operation.");
-      return { cancel: false };
-    }
-  });
+browser.tabs.onRemoved.addListener(async (tabId, removeInfo) => {
+  console.log(tabId, removeInfo);
+});
 
-  // if (SendLater._PromiseMap.has(tab.id)) {
-  //   // We already have a listener for this tab open.
-  //   return;
-  // }
-  //
-  // SLStatic.log("User requested send. Awaiting UI selections.");
-  //
-  // setTimeout(() => browser.storage.local.get("preferences").then(storage => {
-  //   const prefs = storage.preferences || {};
-  //   const resolver = (SendLater._PromiseMap.get(tab.id)) || (()=>{});
-  //
-  //   if (prefs["sendDoesSL"]) {
-  //     SLStatic.debug("Intercepting send operation. Awaiting user input.");
-  //     browser.composeAction.openPopup();
-  //     resolver({ cancel: true });
-  //   } else if (prefs["sendDoesDelay"]) {
-  //     const sendDelay = prefs["sendDelay"];
-  //     SLStatic.debug(`Scheduling SendLater ${sendDelay} minutes from now.`);
-  //     SendLater.scheduleSendLater(tab.id, { delay: sendDelay });
-  //     SendLater._PromiseMap.delete(tab.id);
-  //     resolver({ cancel: true });
-  //   } else {
-  //     // No need to intercept sending
-  //     SLStatic.debug("Resolving onBeforeSend intercept.");
-  //     SendLater._PromiseMap.delete(tab.id);
-  //     resolver({ cancel: false });
-  //   }
-  // }), 0);
-  //
-  // return new Promise(resolve => SendLater._PromiseMap.set(tab.id, resolve));
+// Intercept sent messages. Decide whether to handle them or just pass them on.
+browser.compose.onBeforeSend.addListener(tab => {
+  if (SendLater.composeState[tab.id] === "sending") {
+    return { cancel: false };
+  }
+
+  if (SendLater.prefCache.sendDoesSL) {
+    browser.composeAction.enable(tab.id);
+    browser.composeAction.openPopup();
+    return ({ cancel: true });
+  } else if (SendLater.prefCache.sendDoesDelay) {
+    const sendDelay = SendLater.prefCache.sendDelay;
+    SLStatic.debug(`Scheduling SendLater ${sendDelay} minutes from now.`);
+    SendLater.scheduleSendLater(tab.id, { delay: sendDelay });
+    return ({ cancel: true });
+  } else {
+    SLStatic.debug(`Bypassing send later.`);
+    return ({ cancel: false });
+  }
 });
 
 // Button clicks in the UI popup window send messages back to this function
 // via the WebExtension messaging API.
 browser.runtime.onMessage.addListener((message) => {
-    const resolve = SendLater._PromiseMap.get(message.tabId);
+  const resolve = SendLater._PromiseMap.get(message.tabId);
 
-    if (message.action === "doSendNow" ) {
-        SLStatic.debug("User requested send immediately.");
-        if (resolve !== undefined) {
-          // If already blocking a send operation, just get out of the way.
-          SendLater._PromiseMap.delete(message.tabId);
-          resolve({ cancel: false });
-        } else {
-          // Otherwise, initiate a new send operation.
-          if (browser.SL3U.isOffline()) {
-            browser.SL3U.alert("Thunderbird is offline.",
-                               "Cannot send message at this time.");
-          } else {
-            browser.SL3U.SendNow(false);
-          }
-        }
-    } else if (message.action === "doSendLater") {
-        SLStatic.debug("User requested send later.");
-        const options = { sendAt: message.sendAt,
-                          recurSpec: message.recurSpec,
-                          args: message.args,
-                          cancelOnReply: message.cancelOnReply };
-        SendLater.scheduleSendLater(message.tabId, options);
-        if (resolve !== undefined) {
-          SendLater._PromiseMap.delete(message.tabId);
-          resolve({ cancel: true });
-        }
-    } else if (message.action === "cancel") {
-        SLStatic.debug("User cancelled send.");
-        if (resolve !== undefined) {
-          SendLater._PromiseMap.delete(message.tabId);
-          resolve({ cancel: true });
-        }
+  if (message.action === "doSendNow" ) {
+    SLStatic.debug("User requested send immediately.");
+    if (resolve !== undefined) {
+      // If already blocking a send operation, just get out of the way.
+      SendLater._PromiseMap.delete(message.tabId);
+      resolve({ cancel: false });
     } else {
-      SLStatic.warn(`Unrecognized operation <${message.action}>.`);
-      if (resolve !== undefined) {
-        SendLater._PromiseMap.delete(message.tabId);
-        resolve({ cancel: true });
+      // Otherwise, initiate a new send operation.
+      if (browser.SL3U.isOffline()) {
+        browser.SL3U.alert("Thunderbird is offline.",
+                           "Cannot send message at this time.");
+      } else {
+        SendLater.composeState[message.tabId] = "sending";
+        browser.SL3U.SendNow().then(()=>{
+          delete SendLater.composeState[message.tabId];
+        });
       }
     }
+  } else if (message.action === "doSendLater") {
+    SLStatic.debug("User requested send later.");
+    const options = { sendAt: message.sendAt,
+                      recurSpec: message.recurSpec,
+                      args: message.args,
+                      cancelOnReply: message.cancelOnReply };
+    SendLater.scheduleSendLater(message.tabId, options);
+    if (resolve !== undefined) {
+      SendLater._PromiseMap.delete(message.tabId);
+      resolve({ cancel: true });
+    }
+  } else if (message.action === "reloadPrefCache") {
+    browser.storage.local.get({preferences: {}}).then(storage => {
+      SendLater.prefCache = storage.preferences;
+    });
+  } else {
+    SLStatic.warn(`Unrecognized operation <${message.action}>.`);
+    if (resolve !== undefined) {
+      SendLater._PromiseMap.delete(message.tabId);
+      resolve({ cancel: true });
+    }
+  }
+});
+
+browser.storage.local.get({preferences: {}}).then(storage => {
+  SendLater.prefCache = storage.preferences;
 });
 
 // Start background loop to check for scheduled messages.

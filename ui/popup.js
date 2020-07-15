@@ -443,4 +443,5 @@ function waitAndInit() {
     initialize();
   }
 }
-waitAndInit()
+
+window.addEventListener("load", waitAndInit, false);
