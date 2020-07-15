@@ -27,8 +27,8 @@
 
   "background": {
     "scripts": [
-      "/utils/prefHandler.js",
       "/utils/static.js",
+      "/utils/prefHandler.js",
       "/background.js"
     ]
   },

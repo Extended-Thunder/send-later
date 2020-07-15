@@ -103,6 +103,20 @@
             "description": "Fallback value if nothing is returned."
           }
         ]
+      },
+      {
+        "name":"bindAltShiftEnter",
+        "type":"function",
+        "description":"Bind Alt+Shift+Enter shortcut in composition windows",
+        "parameters":[]
+      }
+    ],
+    "events": [
+      {
+        "name": "onAltShiftEnter",
+        "type": "function",
+        "description": "Fires from message compose windows on Alt+Shift+Enter",
+        "parameters": []
       }
     ]
   }

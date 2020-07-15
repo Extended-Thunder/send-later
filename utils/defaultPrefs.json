@@ -14,7 +14,7 @@
   "sendDrafts": ["bool", true, "senddrafts"],
   "sendButton": ["bool", false, "sendbutton"],
   "sendDoesDelay": ["bool", false, "send_does_delay"],
-  "sendDelay": ["int", 1, "send_delay"],
+  "sendDelay": ["int", 10, "send_delay"],
   "sendDoesSL": ["bool", false, null],
   "showEditAlert": ["bool", true, "show_edit_alert"],
   "showOutboxAlert": ["bool", true, "show_outbox_alert"],

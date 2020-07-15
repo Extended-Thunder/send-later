@@ -179,7 +179,7 @@ const SendLater = {
       }
 
       // Initiate send from draft message
-      SLStatic.debug(`Sending message ${msgId}.`);
+      SLStatic.info(`Sending message ${msgId}.`);
       const rawContent = await browser.messages.getRaw(id);
 
       browser.SL3U.sendRaw(SLStatic.prepNewMessageHeaders(rawContent));
@@ -193,12 +193,12 @@ const SendLater = {
       // method does not work if send later is installed on two browsers with an
       // IMAP account. (Although that situation is not well supported anyway)
       if (nextRecur) {
-        SLStatic.debug(`Scheduling next recurrence of message ${msgId} ` +
+        SLStatic.info(`Scheduling next recurrence of message ${msgId} ` +
           `at ${nextRecur.toLocaleString()}, with recurSpec "${msgRecurSpec}"`);
         lock[msgId] = { lastSent: new Date(), nextRecur };
         browser.storage.local.set({ lock });
       } else {
-        SLStatic.debug(`No recurrences for message ${msgId}. Deleting draft.`);
+        SLStatic.info(`No recurrences for message ${msgId}. Deleting draft.`);
         browser.messages.delete([id], true);
       }
     },
@@ -210,30 +210,45 @@ const SendLater = {
         async msg => SendLater.possiblySendMessage(msg.id)
       ).catch(SLStatic.error);
 
-      // TODO: Use a persistent reference to the this timeout that can be
-      // scrapped and restarted upon changes in the delay preference.
       browser.storage.local.get({ "preferences": {} }).then(storage => {
-        const interval = +storage.preferences['checkTimePref'];
+        if (storage.preferences.markDraftsRead) {
+          SendLater.markDraftsRead()
+        }
+
+        // TODO: Should use a persistent reference to the this timeout that can be
+        // scrapped and restarted upon changes in the delay preference.
+        const interval = +storage.preferences.checkTimePref || 1;
         SLStatic.debug(`Next main loop iteration in ${interval} minutes.`);
         setTimeout(SendLater.mainLoop, 60000*interval);
       });
     }
+
 };
 
-browser.tabs.onRemoved.addListener(async (tabId, removeInfo) => {
-  console.log(tabId, removeInfo);
+browser.SL3U.onAltShiftEnter.addListener(() => {
+  if (SendLater.prefCache.altBinding) {
+    browser.composeAction.openPopup();
+  } else {
+    SLStatic.warn("Ignoring Alt+Shift+Enter on account of user preferences");
+  }
 });
 
 // Intercept sent messages. Decide whether to handle them or just pass them on.
 browser.compose.onBeforeSend.addListener(tab => {
   if (SendLater.composeState[tab.id] === "sending") {
+    // Avoid blocking extension's own send events
     return { cancel: false };
   }
 
   if (SendLater.prefCache.sendDoesSL) {
-    browser.composeAction.enable(tab.id);
-    browser.composeAction.openPopup();
-    return ({ cancel: true });
+    if (SendLater.prefCache.altBinding) {
+      SLStatic.log("Ignoring onBeforeSend, because alt+shift+enter is bound");
+      return ({ cancel: false });
+    } else {
+      browser.composeAction.enable(tab.id);
+      browser.composeAction.openPopup();
+      return ({ cancel: true });
+    }
   } else if (SendLater.prefCache.sendDoesDelay) {
     const sendDelay = SendLater.prefCache.sendDelay;
     SLStatic.debug(`Scheduling SendLater ${sendDelay} minutes from now.`);
@@ -264,7 +279,7 @@ browser.runtime.onMessage.addListener((message) => {
       } else {
         SendLater.composeState[message.tabId] = "sending";
         browser.SL3U.SendNow().then(()=>{
-          delete SendLater.composeState[message.tabId];
+          setTimeout(() => delete SendLater.composeState[message.tabId], 1000);
         });
       }
     }
@@ -295,6 +310,8 @@ browser.runtime.onMessage.addListener((message) => {
 browser.storage.local.get({preferences: {}}).then(storage => {
   SendLater.prefCache = storage.preferences;
 });
+
+browser.SL3U.bindAltShiftEnter();
 
 // Start background loop to check for scheduled messages.
 setTimeout(SendLater.mainLoop, 0);

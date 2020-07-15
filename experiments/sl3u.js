@@ -114,6 +114,24 @@ function CopyStringMessageToFolder(content, folder, listener) {
                                             listener, msgWindow);
 }
 
+const altShiftEnterEventTracker = {
+  listeners: new Set(),
+
+  add(listener) {
+    this.listeners.add(listener);
+  },
+
+  remove(listener) {
+    this.listeners.delete(listener);
+  },
+
+  emit() {
+    for (let listener of this.listeners) {
+      listener();
+    }
+  }
+};
+
 var SL3U = class extends ExtensionCommon.ExtensionAPI {
   getAPI(context) {
     context.callOnClose(this);
@@ -255,45 +273,50 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             msgSendLater.removeListener(this.sendUnsentMessagesListener);
         },
 
-        async applyMessengerOverlay() {
-          ExtensionSupport.registerWindowListener("messengerListener", {
-              chromeURLs: [
-                "chrome://messenger/content/messenger.xul"
-              ],
-              onLoadWindow(window) {
-                // backgrounding.xul ; headerView.xul
-              },
-            });
-        },
-
-        async applyComposeOverlay() {
+        bindAltShiftEnter() {
+          // Add an overlay to messenger compose windows to listen for
+          // Alt+Shift+Enter key command.
           ExtensionSupport.registerWindowListener("composeListener", {
             chromeURLs: [
+              "chrome://messenger/content/messengercompose/messengercompose.xhtml",
               "chrome://messenger/content/messengercompose/messengercompose.xul"
             ],
             onLoadWindow(window) {
-              // composing.xul ; composeToolbar.xul
-
-              // Add a menu item to the File menu of any main window.
-              let fileQuitItem = window.document.getElementById("menu_FileQuitItem");
-              if (fileQuitItem) {
-                let fileRestartItem = window.document.createXULElement("menuitem");
-                fileRestartItem.id = "menu_FileRestartItem";
-                fileRestartItem.setAttribute("label", "Restart");
-                fileRestartItem.setAttribute("accesskey", "R");
-                fileRestartItem.addEventListener("command", () => Services.startup.quit(
-                  Services.startup.eForceQuit | Services.startup.eRestart
-                ));
-                fileQuitItem.parentNode.insertBefore(fileRestartItem, fileQuitItem);
+              console.debug("Applying overlay to messenger compose window");
+              const tasksKeys = window.document.getElementById("tasksKeys");
+              if (tasksKeys) {
+                console.debug("Adding keycode listener for Alt+Shift+Enter");
+                const keyElement = window.document.createXULElement("key");
+                keyElement.id = "key-alt-shift-enter";
+                keyElement.setAttribute("keycode", "VK_RETURN");
+                keyElement.setAttribute("modifiers", "alt, shift");
+                keyElement.setAttribute("oncommand", "//");
+                keyElement.addEventListener("command", event => {
+                  event.preventDefault();
+                  altShiftEnterEventTracker.emit();
+                });
+                tasksKeys.appendChild(keyElement);
+              } else {
+                console.warn("Unable to add keycode listener for Alt+Shift+Enter");
               }
             }
           });
         },
 
-        async init() {
-          this.applyMessengerOverlay();
-          this.applyComposeOverlay();
-        }
+        // This eventmanager needs the 'inputHandling' property, or else
+        // openPopup() will be disabled.
+        onAltShiftEnter: new ExtensionCommon.EventManager({
+          context,
+          name: "SL3U.onAltShiftEnter",
+          inputHandling: true,
+          register: fire => {
+            const callback = (event => fire.async());
+            altShiftEnterEventTracker.add(callback);
+            return function() {
+              altShiftEnterEventTracker.remove(callback);
+            };
+          },
+        }).api(),
       },
     };
   }
@@ -303,23 +326,21 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
   the cache to ensure the most recent version is always loaded on startup.
   */
   close() {
-    console.log("[SendLater]: Goodbye world.");
+    console.log("[SendLater]: Beginning close function");
 
-    // // Clean up any existing windows that have the menu item.
-    // for (let window of Services.wm.getEnumerator("mail:3pane")) {
-    //   // Clean up any changes to the window
-    // }
-    // // Stop listening for new windows.
-    // ExtensionSupport.unregisterWindowListener("composeListener");
-    // ExtensionSupport.unregisterWindowListener("messengerListener");
+    for (let cw of Services.wm.getEnumerator("msgcompose")) {
+      const keyElement = cw.document.getElementById("key-alt-shift-enter");
+      if (keyElement) {
+        keyElement.remove();
+      }
+    }
 
-    //// I don't remember which of these is correct:
-    // Cu.unload(extension.getURL("modules/ufuncs.jsm"));
-    // console.log(extension.getURL("modules/ufuncs.jsm"));
-    //
-    // Cu.unload(extension.rootURI.resolve("modules/ufuncs.jsm"));
-    // console.log(extension.rootURI.resolve("modules/ufuncs.jsm"));
+    // Stop listening for new message compose windows.
+    ExtensionSupport.unregisterWindowListener("composeListener");
 
+    // Invalidate the cache to ensure we start clean if extension is reloaded.
     Services.obs.notifyObservers(null, "startupcache-invalidate", null);
+
+    console.log("[SendLater]: Extension removed. Goodbye world.");
   }
 };

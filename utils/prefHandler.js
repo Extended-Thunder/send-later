@@ -47,7 +47,7 @@
             return legacyVals.reduce((r,f,i) => {r[prefKeys[i]] = f; return r}, {})
           });
 
-        console.info("SendLater: migrating legacy/default preferences.", legacyPrefs);
+        SLStatic.info("SendLater: migrating legacy/default preferences.");
 
         // Merge legacy preferences into undefined preference keys
         prefKeys.forEach(key => {
@@ -55,9 +55,6 @@
                 prefs[key] = legacyPrefs[key];
             }
         });
-      }
-      if (["all", "trace", "debug"].includes(prefs["logConsoleLevel"])) {
-        console.debug("SendLater preferences: ", prefs);
       }
       return prefs;
   }).then(prefs => {
