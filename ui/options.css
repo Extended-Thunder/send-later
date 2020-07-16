@@ -30,6 +30,11 @@ label:hover {
   font-weight: bold;
 }
 
+.pre {
+  font-family: monospace;
+  margin:0px;
+}
+
 .footer {
   font-size: 0.8em;
   margin-top: 0.5em;

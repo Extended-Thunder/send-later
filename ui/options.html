@@ -81,26 +81,70 @@
       <div class="title option-label" id="shortcutOptionsTitle">Shortcuts</div>
       <label>
         <span class="option-label localized __MSG_quickOptionsLabel1Label__">Shortcut 1</span>:
-        <input type="text" id="quickOptions1Value" style="width:6em;" class="preference"/>
+        <input type="number" id="quickOptions1Value" style="width:6em;" class="preference"/>
         <span class="option-label localized __MSG_quickOptionsValueLabel__">Minutes</span>
       </label>
 
       <label>
         <span class="option-label localized __MSG_quickOptionsLabel2Label__">Shortcut 2</span>:
-        <input type="text" id="quickOptions2Value" style="width:6em;" class="preference"/>
+        <input type="number" id="quickOptions2Value" style="width:6em;" class="preference"/>
         <span class="option-label localized __MSG_quickOptionsValueLabel__">Minutes</span>
       </label>
 
       <label>
         <span class="option-label localized __MSG_quickOptionsLabel3Label__">Shortcut 3</span>:
-        <input type="text" id="quickOptions3Value" style="width:6em;" class="preference"/>
+        <input type="number" id="quickOptions3Value" style="width:6em;" class="preference"/>
         <span class="option-label localized __MSG_quickOptionsValueLabel__">Minutes</span>
 
       </label>
     </section>
 
     <section>
+      <div id="functionEditorTitle" class="title option-label" style="cursor:pointer;">
+        <span id="functionEditorVisibleIndicator"
+          style="margin-right: 0.25em;">+</span>
+        <span class="localized __MSG_editorlink.value__">
+          Dynamic function editor</span>
+      </div>
+
+      <div id="FunctionEditorDiv" style="display:none;">
+        Select function
+        <select id="functionNames" style="margin-bottom:0.5em;margin-left:0.5em">
+          <option value="ReadMeFirst" id="ufunc-ReadMeFirst" selected>
+            ReadMeFirst
+          </option>
+          <option value="newFunctionName" id="ufunc-newFunctionName"
+            class="option-label localized __MSG_createnewfunction__">
+            Create new function
+          </option>
+        </select>
+
+        <div id="functionEditorInputs">
+          <span class="pre">function </span>
+          <input type="text" id="functionName" class="pre"/>
+          <span class="pre"> (specname, prev, args) { </span><br/>
+          <pre>  let next, nextspec, nextargs;</pre>
+          <textarea id="functionEditorContent" type="textbox"
+            class="pre localized __MSG_EditorReadMeCode__"
+            style="width:98%;height:15em;margin-left:1%;"></textarea>
+          <pre>  return ([next, nextspec, nextargs]);</pre>
+          <pre>}</pre>
+
+          <div>
+            <input id="funcEditSave" type="button" style="margin-right:0.5em;"
+              value="Save" class="localized __MSG_save.label__">
+            <input id="funcEditReset" type="button" style="margin-right:0.5em;"
+              value="Discard changes" class="localized __MSG_reset.label__">
+            <input id="funcEditDelete" type="button" style="margin-right:0.5em;"
+              value="Discard changes" class="localized __MSG_delete.label__">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
       <div class="title option-label localized __MSG_advancedOptionsTitle__">Advanced</div>
+
       <label for="logDumpLevel" style="display:none;">
         <span class="option-label localized __MSG_logDumpLevelLabel__">File log level</span>:
         <select id="logDumpLevel" class="preference">
@@ -157,6 +201,7 @@
     </div>
 
     <script src="/utils/static.js"></script>
+    <script src="/utils/varNameValidator.js"></script>
     <script src="/ui/options.js"></script>
     <script src="/ui/localize.js"></script>
   </body>

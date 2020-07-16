@@ -94,6 +94,27 @@ const SLStatic = {
     return `${hours}:${minutes}`;
   },
 
+  scopedFunctionFromString: function(contents) {
+    "use strict";
+     return eval(contents);
+  },
+
+  setState: function(enabled) {
+    // closure for disabling UI components
+    return (async element => {
+        try{
+          if (["SPAN","DIV","LABEL"].includes(element.tagName)) {
+            element.style.color = enabled ? "black" : "#888888";
+          }
+          element.disabled = !enabled;
+        } catch (ex) {
+          SLStatic.error(ex);
+        }
+        const enabler = SLStatic.setState(enabled);
+        [...element.childNodes].forEach(enabler);
+      });
+  },
+
   replaceHeader: function(content, header, value) {
     const replacement = (value) ? `\r\n${header}: ${value}\r\n` : '\r\n';
     const regex = `\r\n${header}:.*(?:\r\n|\n)([ \t].*(?:\r\n|\n))*`;
@@ -611,29 +632,40 @@ in both node.js and browser environments without a lot of awkward redundency.
 */
 if (typeof browser === "undefined") {
   var browserMocking = true;
+  var mockStorage = {};
 
   var browser = {
     storage: {
       local: {
         async get(key) {
           const ret = {};
-          if (typeof key === "string") {
-            ret[key] = { };
+          if (typeof key === "object") {
+            key = Object.keys(key)[0];
+          }
+          if (mockStorage[key]) {
+            ret[key] = mockStorage[key];
           } else {
-            ret[Object.keys(key)[0]] = { };
+            ret[key] = { };
           }
           return ret;
         },
         async set (item) {
-          return item;
+          console.log("mock storage", mockStorage);
+          Object.assign(mockStorage, item);
+          console.log("mock storage", mockStorage);
         }
+      }
+    },
+    runtime: {
+      sendMessage(...args) {
+        console.debug("Sent message to background script",args);
       }
     },
     i18n: {
       getMessage(key, ...args) {
         try {
           let msg;
-          if (typeof global === "undefined") {
+          if (typeof localeMessages === "object") {
             // browser environment
             msg = localeMessages[key].message;
           } else {
@@ -642,6 +674,7 @@ if (typeof browser === "undefined") {
           }
           return msg.replace(/\$\d/g, (i) => args[--i[1]] );
         } catch (e) {
+          console.warn(e);
           return key;
         }
       }
@@ -651,7 +684,8 @@ if (typeof browser === "undefined") {
       SendNow: function(batch){},
       setHeader: function (key,value){},
       getHeader: function(key){return key;},
-      getLegacyPref: function(name, dtype, def){return null;}
+      getLegacyPref: function(name, dtype, def){return null;},
+      alert: function(msg) {console.warn(`ALERT ${msg}`);}
     }
   }
 

@@ -10,10 +10,10 @@ const localizer = {
           msg = browser.i18n.getMessage(key,mockArgs);
           mockArgs.push("");
         } while(msg.indexOf(/\$\d/) !== -1);
-        if (e.tagName === "INPUT") {
+        if (e.tagName === "INPUT" || e.tagName === "TEXTAREA") {
           e.value = msg;
         } else {
-          e.innerHTML = msg;
+          e.textContent = msg;
         }
       } catch (err) {
         console.error(err);
@@ -26,7 +26,7 @@ if (typeof browser === "undefined" || typeof browserMocking === "boolean") {
   // For testing purposes, because the browser mock script needs to
   // asynchronously load translations.
   function waitAndTranslate() {
-    if (browser.i18n.getMessage("delay120Label") === "delay120Label") {
+    if (browser.i18n.getMessage("advancedOptionsTitle") === "advancedOptionsTitle") {
       setTimeout(waitAndTranslate, 10);
     } else {
       localizer.translateDocument();

@@ -5,7 +5,7 @@
       {
         "name":"isOffline",
         "type":"function",
-        "async":false,
+        "async":true,
         "parameters":[]
       },
       {

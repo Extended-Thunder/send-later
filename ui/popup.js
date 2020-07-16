@@ -21,21 +21,6 @@ const initialize = () => {
       });
   }
 
-  function setState(enabled) {
-    return (async element => {
-        try{
-          if (["SPAN","DIV","LABEL"].includes(element.tagName)) {
-            element.style.color = enabled ? "black" : "#888888";
-          }
-          element.disabled = !enabled;
-        } catch (ex) {
-          SLStatic.error(ex);
-        }
-        const enabler = setState(enabled);
-        [...element.childNodes].forEach(enabler);
-      });
-  }
-
   function domElementsAsArray() {
     return [...document.querySelectorAll("*")];
   }
@@ -303,8 +288,8 @@ const initialize = () => {
       const schedule = parseInputs(inputs);
 
       // Trigger some fake events to activate listeners
-      setState(dom["sendon"].checked)(dom["onlyOnDiv"]);
-      setState(dom["sendbetween"].checked)(dom["betweenDiv"]);
+      SLStatic.setState(dom["sendon"].checked)(dom["onlyOnDiv"]);
+      SLStatic.setState(dom["sendbetween"].checked)(dom["betweenDiv"]);
       dom['once'].dispatchEvent(new Event('change'));
     });
   }
@@ -313,13 +298,13 @@ const initialize = () => {
     const dom = objectifyDOMElements();
 
     const functionSelect = dom["recurFunction"];
-    setState(functionSelect.length > 0)(dom["function-recur-radio"]);
-    setState(dom["sendon"].checked)(dom["onlyOnDiv"]);
-    setState(dom["sendbetween"].checked)(dom["betweenDiv"]);
+    SLStatic.setState(functionSelect.length > 0)(dom["function-recur-radio"]);
+    SLStatic.setState(dom["sendon"].checked)(dom["onlyOnDiv"]);
+    SLStatic.setState(dom["sendbetween"].checked)(dom["betweenDiv"]);
     dom["sendon"].addEventListener("change",async evt =>
-      setState(evt.target.checked)(dom["onlyOnDiv"]));
+      SLStatic.setState(evt.target.checked)(dom["onlyOnDiv"]));
     dom["sendbetween"].addEventListener("change", async evt =>
-      setState(evt.target.checked)(dom["betweenDiv"])
+      SLStatic.setState(evt.target.checked)(dom["betweenDiv"])
     );
     Object.keys(dom).forEach(key => {
       const element = dom[key];

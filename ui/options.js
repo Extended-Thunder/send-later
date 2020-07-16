@@ -36,16 +36,63 @@ const SLOptions = {
         })(document.getElementById(id), prefs[id]);
       }
     });
+    browser.storage.local.get({ufuncs:{}}).then( storage => {
+      Object.keys(storage.ufuncs).forEach(funcName => {
+        SLOptions.addFuncOption(funcName, false);
+      })
+    });
   },
 
   async setPref(key, value) {
     // Sets a single preference to new value.
-    browser.storage.local.get("preferences").then( (storage) => {
-      const prefs = storage.preferences || {};
-      prefs[key] = value;
-      browser.storage.local.set({ preferences: prefs });
-    });
+    const { preferences } = await browser.storage.local.get({"preferences":{}});
+    preferences[key] = value;
+    await browser.storage.local.set({ preferences });
     browser.runtime.sendMessage({ action: "reloadPrefCache" });
+  },
+
+  async delUserFunction(funcName) {
+    document.getElementById(`ufunc-${funcName}`).remove();
+    const { ufuncs } = await browser.storage.local.get({ufuncs:{}});
+    delete ufuncs[funcName];
+    return browser.storage.local.set({ ufuncs });
+  },
+
+  async saveUserFunction(funcName, funcContent) {
+    if (validateFuncName(funcName) &&
+        !["ReadMeFirst", "newFunctionName"].includes(funcName)) {
+      SLStatic.info(`Storing user function ${funcName}`);
+      const { ufuncs } = await browser.storage.local.get({ufuncs:{}});
+      ufuncs[funcName] = funcContent;
+      browser.storage.local.set({ ufuncs });
+      return true;
+    } else {
+      browser.runtime.sendMessage({ action: "alert",
+        title: browser.i18n.getMessage("BadSaveTitle"),
+        text: browser.i18n.getMessage("BadSaveBody")});
+      return false;
+    }
+  },
+
+  async getUserFunction(funcName) {
+    const { ufuncs } = await browser.storage.local.get({ufuncs:{}});
+    return ufuncs[funcName];
+  },
+
+  async addFuncOption(funcName, active) {
+    if (document.getElementById(`ufunc-${funcName}`)) {
+      return;
+    } else {
+      const funcSelect = document.getElementById("functionNames");
+      const newOpt = document.createElement('option');
+      newOpt.id = `ufunc-${funcName}`;
+      newOpt.value = funcName;
+      newOpt.textContent = funcName;
+      funcSelect.children[0].after(newOpt);
+      if (active) {
+        funcSelect.value = funcName;
+      }
+    }
   },
 
   async showCheckMark(element, color) {
@@ -171,13 +218,113 @@ const SLOptions = {
       const el = document.getElementById(id);
       el.addEventListener("change", SLOptions.updatePrefListener);
     }
+
     SLOptions.checkBoxSetListeners(["sendDoesSL","sendDoesDelay"]);
+
+    document.getElementById("functionEditorTitle").addEventListener("mousedown",
+      async (evt) => {
+        const funcEditorDiv = document.getElementById("FunctionEditorDiv");
+        const visIndicator = document.getElementById("functionEditorVisibleIndicator");
+        if (funcEditorDiv.style.display === "none") {
+          funcEditorDiv.style.display = "block";
+          visIndicator.textContent = "-";
+        } else {
+          funcEditorDiv.style.display = "none";
+          visIndicator.textContent = "+";
+        }
+      }
+    );
+
+    const resetFunctionInput = (() => {
+      const funcName = document.getElementById("functionNames").value;
+      if (!funcName) {
+        console.error(`Unspecified function: ${funcName}`)
+        return;
+      }
+
+      const funcContentElmt = document.getElementById("functionEditorContent");
+      const funcNameElmt = document.getElementById("functionName");
+      const saveBtn = document.getElementById("funcEditSave");
+      const resetBtn = document.getElementById("funcEditReset");
+      const deleteBtn = document.getElementById("funcEditDelete");
+
+      if (funcName === "ReadMeFirst") {
+        funcContentElmt.disabled = true;
+        funcNameElmt.disabled = true;
+        saveBtn.disabled = true;
+        resetBtn.disabled = true;
+        deleteBtn.disabled = true;
+        funcNameElmt.value = "";
+      } else {
+        funcContentElmt.disabled = false;
+        funcNameElmt.disabled = false;
+        saveBtn.disabled = false;
+        if (funcName === "newFunctionName") {
+          funcNameElmt.value = "";
+          deleteBtn.disabled = true;
+          resetBtn.disabled = true;
+        } else {
+          deleteBtn.disabled = false;
+          resetBtn.disabled = false;
+          funcNameElmt.value = funcName;
+        }
+      }
+
+      SLOptions.getUserFunction(funcName).then(content => {
+        funcContentElmt.value = content || "";
+      });
+    });
+
+    document.getElementById("functionNames").addEventListener("change",
+        resetFunctionInput);
+    document.getElementById("funcEditReset").addEventListener("click",
+        resetFunctionInput);
+    document.getElementById("funcEditDelete").addEventListener("click", evt => {
+      const funcNameSelect = document.getElementById("functionNames");
+      const funcName = funcNameSelect.value;
+      if (["ReadMeFirst", "newFunctionName"].includes(funcName)) {
+        // Shouldn't be possible
+        SLStatic.error("Trying to delete builtin user func.");
+      } else {
+        funcNameSelect.value = "ReadMeFirst";
+        resetFunctionInput();
+        SLOptions.delUserFunction(funcName);
+      }
+    });
+
+    document.getElementById("funcEditSave").addEventListener("click", async evt => {
+      const funcName = document.getElementById("functionName").value;
+      const funcContent = document.getElementById("functionEditorContent").value;
+      SLOptions.saveUserFunction(funcName, funcContent).then(success => {
+        if (success) {
+          SLOptions.addFuncOption(funcName, true);
+          SLOptions.showCheckMark(evt.target, "green");
+        }
+      });
+    });
+
+    // const enabler = SLStatic.setState(true);
+    // const disabler = SLStatic.setState(false);
+    // disabler(document.getElementById("functionEditorInputs"));
+
     // And attach a listener to the "Reset Preferences" button
     const clearPrefsBtn = document.getElementById("clearPrefs");
     clearPrefsBtn.addEventListener("click", SLOptions.clearPrefsListener);
   },
-
   async onLoad() {
+    setTimeout(async () => {
+      const { ufuncs } = await browser.storage.local.get({ufuncs:{}});
+      if (!ufuncs.ReadMeFirst) {
+        ufuncs.ReadMeFirst = browser.i18n.getMessage("EditorReadMeCode");
+        browser.storage.local.set({ ufuncs });
+      }
+    }, 1000);
+
+    for (let id of ["functionEditorContent","functionName","funcEditSave","funcEditReset","funcEditDelete"]) {
+      const el = document.getElementById(id);
+      el.disabled = true;
+    }
+
     SLOptions.applyPrefsToUI().then(
       SLOptions.attachListeners
     ).catch(SLStatic.error);

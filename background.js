@@ -265,7 +265,9 @@ browser.compose.onBeforeSend.addListener(tab => {
 browser.runtime.onMessage.addListener((message) => {
   const resolve = SendLater._PromiseMap.get(message.tabId);
 
-  if (message.action === "doSendNow" ) {
+  if (message.action === "alert") {
+    browser.SL3U.alert(message.title, message.text);
+  } else if (message.action === "doSendNow" ) {
     SLStatic.debug("User requested send immediately.");
     if (resolve !== undefined) {
       // If already blocking a send operation, just get out of the way.

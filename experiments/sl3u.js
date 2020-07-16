@@ -139,11 +139,11 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
     return {
       SL3U: {
         async alert(title, text) {
-          const win = Services.wm.getMostRecentWindow();
-          return Services.prompt.alert(win, title, text);
+          const window = Services.wm.getMostRecentWindow(null);
+          return Services.prompt.alert(window, (title || ""), (text || ""));
         },
 
-        isOffline: function() {
+        async isOffline() {
           return Utils.isOffline;
         },
 
