@@ -164,7 +164,7 @@
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "メッセージの&amp;quot;送信&amp;quot;を遅延する",
+    "message": "メッセージの&quot;送信&quot;を遅延する",
     "description": ""
   },
   "sendDelayPrefLabel2": {
@@ -364,7 +364,7 @@
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "このオプションを有効にすると、Send Later でスケジュールされた特定の時間(分) だけ&amp;quot;送信&amp;quot;コマンド(ボタンクリックあるいはCtrl-Enterキー) によるすべてのメッセージ送信を遅延します。",
+    "message": "このオプションを有効にすると、Send Later でスケジュールされた特定の時間(分) だけ&quot;送信&quot;コマンド(ボタンクリックあるいはCtrl-Enterキー) によるすべてのメッセージ送信を遅延します。",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {
@@ -960,7 +960,7 @@
     "description": ""
   },
   "_BusinessHoursCode": {
-    "message": "// Defaults\\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\\nvar workStart = [8, 30]; // Start of the work day as [H, M]\\nvar workEnd = [17, 30]; // End of the work day as [H, M]\\nif (args &amp;&amp; args[0])\\n    workDays = args[0];\\nif (args &amp;&amp; args[1])\\n    workStart = args[1];\\nif (args &amp;&amp; args[2])\\n    workEnd = args[2];\\nif (prev)\\n    // Not expected in normal usage, but used as the current time for testing.\\n    next = new Date(prev);\\nelse\\n    next = new Date();\\n// If we&#x27;re past the end of the workday or not on a workday, move to the work\\n// start time on the next day.\\nwhile ((next.getHours() &gt; workEnd[0]) ||\\n       (next.getHours() == workEnd[0] &amp;&amp; next.getMinutes() &gt; workEnd[1]) ||\\n       (workDays.indexOf(next.getDay()) == -1)) {\\n    next.setDate(next.getDate() + 1);\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}\\n// If we&#x27;re before the beginning of the workday, move to its start time.\\nif ((next.getHours() &lt; workStart[0]) ||\\n    (next.getHours() == workStart[0] &amp;&amp; next.getMinutes() &lt; workStart[1])) {\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}",
+    "message": "// Defaults\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Start of the work day as [H, M]\nvar workEnd = [17, 30]; // End of the work day as [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Not expected in normal usage, but used as the current time for testing.\n    next = new Date(prev);\nelse\n    next = new Date();\n// If we're past the end of the workday or not on a workday, move to the work\n// start time on the next day.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// If we're before the beginning of the workday, move to its start time.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
     "description": ""
   },
   "BusinessHoursHelp": {
@@ -968,7 +968,7 @@
     "description": ""
   },
   "DaysInARowCode": {
-    "message": "// Send the first message now, subsequent messages once per day.\\nif (! prev)\\n    next = new Date();\\nelse {\\n    var now = new Date();\\n    next = new Date(prev); // Copy date argument so we don&#x27;t modify it.\\n    do {\\n        next.setDate(next.getDate() + 1);\\n    } while (next &lt; now);\\n    // ^^^ Don&#x27;t try to send in the past, in case Thunderbird was asleep at\\n    // the scheduled send time.\\n}\\nif (! args) // Send messages three times by default.\\n    args = [3];\\nnextargs = [args[0] - 1];\\n// Recur if we haven&#x27;t done enough sends yet.\\nif (nextargs[0] &gt; 0)\\n    nextspec = &quot;function &quot; + specname;",
+    "message": "// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
     "description": ""
   },
   "DaysInARowHelp": {

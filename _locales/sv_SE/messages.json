@@ -364,7 +364,7 @@
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "Med detta alternativ aktiverat, kommer alla meddelanden som skickas med kommandot &amp;quot;Skicka&amp;quot; (antingen via knappen eller genom att skriva Ctrl-Enter) att fördröjas av det angivna antalet minuter genom att schemalägga dem med Skicka Senare.",
+    "message": "Med detta alternativ aktiverat, kommer alla meddelanden som skickas med kommandot &quot;Skicka&quot; (antingen via knappen eller genom att skriva Ctrl-Enter) att fördröjas av det angivna antalet minuter genom att schemalägga dem med Skicka Senare.",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {
@@ -472,7 +472,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "Välj en funktion för att redigera eller ta bort, eller &amp;quot;(skapa ny funktion)&amp;quot; för att skapa en ny funktion.",
+    "message": "Välj en funktion för att redigera eller ta bort, eller &quot;(skapa ny funktion)&quot; för att skapa en ny funktion.",
     "description": ""
   },
   "createnewfunction": {
@@ -496,7 +496,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "Placera källkoden för din funktion här. Se exempelfunktionen &amp;quot;ReadMeFirst&amp;quot; för mer information om vad koden ska göra.",
+    "message": "Placera källkoden för din funktion här. Se exempelfunktionen &quot;ReadMeFirst&quot; för mer information om vad koden ska göra.",
     "description": ""
   },
   "codeplaceholder": {
@@ -612,7 +612,7 @@
     "description": ""
   },
   "sendwithfunction": {
-    "message": "Skicka enligt funktion &quot;$1&quot;",
+    "message": "Skicka enligt funktion \"$1\"",
     "description": ""
   },
   "sendspecifyfunction": {
@@ -952,11 +952,11 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "Meddelandet med ämne “$1” i mappen för Utkast $2 har schemalagts för sändning för mer än $3 minuter sen och sändningen har blockerats. För att skicka meddelandet kan du ändra ditt utkast och antingen skicka direkt eller schemalägga på nytt. Du kan också avaktivera inställning &quot;Skicka inte meddelanden mer än # minuter sent” för att skicka försenade meddelanden.",
+    "message": "Meddelandet med ämne “$1” i mappen för Utkast $2 har schemalagts för sändning för mer än $3 minuter sen och sändningen har blockerats. För att skicka meddelandet kan du ändra ditt utkast och antingen skicka direkt eller schemalägga på nytt. Du kan också avaktivera inställning \"Skicka inte meddelanden mer än # minuter sent” för att skicka försenade meddelanden.",
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// Välkommen till Skicka Senare-redigeraren!\\n//\\n// Redigeraren låter dig skapa JavaScript-funktioner som implementerar komplex\\n// schemaläggningslogik av meddelanden som kan associeras med genvägsknappar // eller som valts i Skicka Senare -dialogen.\\n//\\n// Som du kan se ovan, när en schemaläggningsfunktion anropas, kommer den att ges \\n// tre argument:\\n// * &quot;specname&quot; behövs om du vill att denna funktion ska återkomma (se nedan)\\n// * &quot;prev&quot; är den föregående schemalagda sändningstiden, om detta är ett återkommande\\n// anrop\\n// * &quot;args&quot; är de extra argumenten som returneras av föregående anrop om detta\\n// är ett återkommande anrop\\n//\\n// Din kod måste ange variablerna &quot;next&quot;, &quot;nextspec&quot;, och\\n// &quot;nextargs&quot; enligt följande:\\n//\\n// * &quot;next&quot; är antingen antalet minuter i framtiden eller ett datumobjekt (Date)\\n// som anger när meddelandet ska skickas.\\n// * &quot;nextspec&quot; är en upprepningsspecifikation om detta är avsett att vara ett\\n// återkommande meddelande (se\\n// https://blog. amens.us/send-later/#dynamic-recurrence). Om du inte anger detta\\n// så kommer meddelandet bara att skickas en gång. Obs: om du vill att din\\n// funktion ska anropas igen för upprepning, använd:\\n// nextspec = &quot;function &quot; + specname;\\n// * &quot;nextargs&quot; är en array av argument som du vill ska överföras till nästa\\n// anrop av funktionen som &quot;args&quot;.\\n//\\n// Medan du arbetar på din funktion, kan du testa den genom att fylla i värden\\n// för &quot;prev&quot; och &quot;args&quot; i textrutorna nedan och sedan klicka på &quot;Execute&quot; för att köra\\n// funktionen och se resultaten.\\n//\\n// Det finns två förkonfigurerade exempelfunktioner, &quot;BusinessHours&quot; och\\n// &quot;DaysInARow&quot;, som du kan titta på och leka med för att lära dig mer.\\n//\\n// Denna &quot;ReadMeFirst&quot;-funktion gör bara att meddelandet skickas ungefär nu,\\n// via följande rad.\\nnext = new Date();",
+    "message": "// Välkommen till Skicka Senare-redigeraren!\n//\n// Redigeraren låter dig skapa JavaScript-funktioner som implementerar komplex\n// schemaläggningslogik av meddelanden som kan associeras med genvägsknappar // eller som valts i Skicka Senare -dialogen.\n//\n// Som du kan se ovan, när en schemaläggningsfunktion anropas, kommer den att ges \n// tre argument:\n// * \"specname\" behövs om du vill att denna funktion ska återkomma (se nedan)\n// * \"prev\" är den föregående schemalagda sändningstiden, om detta är ett återkommande\n// anrop\n// * \"args\" är de extra argumenten som returneras av föregående anrop om detta\n// är ett återkommande anrop\n//\n// Din kod måste ange variablerna \"next\", \"nextspec\", och\n// \"nextargs\" enligt följande:\n//\n// * \"next\" är antingen antalet minuter i framtiden eller ett datumobjekt (Date)\n// som anger när meddelandet ska skickas.\n// * \"nextspec\" är en upprepningsspecifikation om detta är avsett att vara ett\n// återkommande meddelande (se\n// https://blog. amens.us/send-later/#dynamic-recurrence). Om du inte anger detta\n// så kommer meddelandet bara att skickas en gång. Obs: om du vill att din\n// funktion ska anropas igen för upprepning, använd:\n// nextspec = \"function \" + specname;\n// * \"nextargs\" är en array av argument som du vill ska överföras till nästa\n// anrop av funktionen som \"args\".\n//\n// Medan du arbetar på din funktion, kan du testa den genom att fylla i värden\n// för \"prev\" och \"args\" i textrutorna nedan och sedan klicka på \"Execute\" för att köra\n// funktionen och se resultaten.\n//\n// Det finns två förkonfigurerade exempelfunktioner, \"BusinessHours\" och\n// \"DaysInARow\", som du kan titta på och leka med för att lära dig mer.\n//\n// Denna \"ReadMeFirst\"-funktion gör bara att meddelandet skickas ungefär nu,\n// via följande rad.\nnext = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {
@@ -964,7 +964,7 @@
     "description": ""
   },
   "_BusinessHoursCode": {
-    "message": "// Standardvärden\\nvar workDays = [1, 2, 3, 4, 5]; // Mån- Fre; Sön == 0, Lör == 6\\nvar workStart = [8, 30]; // Början på arbetsdag som [H, M]\\nvar workEnd = [17, 30]; // Slutet på arbetsdag som [H, M]\\nif (args &amp;&amp; args[0])\\n    workDays = args[0];\\nif (args &amp;&amp; args[1])\\n    workStart = args[1];\\nif (args &amp;&amp; args[2])\\n    workEnd = args[2];\\nif (prev)\\n    // Förväntas normalt inte, men används som aktuell tid vid testning.\\n    next = new Date(prev);\\nelse\\n    next = new Date();\\n// Om vi har passerat slutet på arbetsdagen eller om det inte är en arbetsdag,\\n// gå till början av nästa arbetsdag.\\nwhile ((next.getHours() &gt; workEnd[0]) ||\\n       (next.getHours() == workEnd[0] &amp;&amp; next.getMinutes() &gt; workEnd[1]) ||\\n       (workDays.indexOf(next.getDay()) == -1)) {\\n    next.setDate(next.getDate() + 1);\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}\\n// Om vi är före början av arbetdagen, gå till starttidpunkten.\\nif ((next.getHours() &lt; workStart[0]) ||\\n    (next.getHours() == workStart[0] &amp;&amp; next.getMinutes() &lt; workStart[1])) {\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}",
+    "message": "// Standardvärden\nvar workDays = [1, 2, 3, 4, 5]; // Mån- Fre; Sön == 0, Lör == 6\nvar workStart = [8, 30]; // Början på arbetsdag som [H, M]\nvar workEnd = [17, 30]; // Slutet på arbetsdag som [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Förväntas normalt inte, men används som aktuell tid vid testning.\n    next = new Date(prev);\nelse\n    next = new Date();\n// Om vi har passerat slutet på arbetsdagen eller om det inte är en arbetsdag,\n// gå till början av nästa arbetsdag.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// Om vi är före början av arbetdagen, gå till starttidpunkten.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
     "description": ""
   },
   "BusinessHoursHelp": {
@@ -972,7 +972,7 @@
     "description": ""
   },
   "DaysInARowCode": {
-    "message": "// Skicka det första meddelandet nu, följande meddelanden en gång per dag.\\nif (! prev)\\n    next = new Date();\\nelse {\\n    var now = new Date();\\n    next = new Date(prev); // Kopiera datum-argumentet så vi inte ändrar det.\\n    do {\\n        next.setDate(next.getDate() + 1);\\n    } while (next &lt; now);\\n    // ^^^ Skicka inte i förfluten tid, ifall Thunderbird inte var aktivt vid den \\n    // schemalagda sändtidpunkten \\n}\\nif (! args) // Skicka meddelanden tre gånger som standard.\\n    args = [3];\\nnextargs = [args[0] - 1];\\n// Repetera om vi inte ännu har skickat tillräckligt många gånger.\\nif (nextargs[0] &gt; 0)\\n    nextspec = &quot;function &quot; + specname;",
+    "message": "// Skicka det första meddelandet nu, följande meddelanden en gång per dag.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Kopiera datum-argumentet så vi inte ändrar det.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Skicka inte i förfluten tid, ifall Thunderbird inte var aktivt vid den \n    // schemalagda sändtidpunkten \n}\nif (! args) // Skicka meddelanden tre gånger som standard.\n    args = [3];\nnextargs = [args[0] - 1];\n// Repetera om vi inte ännu har skickat tillräckligt många gånger.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
     "description": ""
   },
   "DaysInARowHelp": {
@@ -992,7 +992,7 @@
     "description": ""
   },
   "UntestedSaveBody": {
-    "message": "Funktionen har inte testats (med knappen &quot;Kör&quot;) sedan den ändrades senast. Är du säker på att du vill spara eller exportera den?",
+    "message": "Funktionen har inte testats (med knappen \"Kör\") sedan den ändrades senast. Är du säker på att du vill spara eller exportera den?",
     "description": ""
   },
   "BadSaveTitle": {
@@ -1012,15 +1012,15 @@
     "description": ""
   },
   "NoNextValueError": {
-    "message": "Funktion angav inte ett värde för &quot;nästa&quot;.",
+    "message": "Funktion angav inte ett värde för \"nästa\".",
     "description": ""
   },
   "BadNextValueError": {
-    "message": "&quot;nästa&quot; värdet &quot;$1&quot; är inte ett tal eller datum",
+    "message": "\"nästa\" värdet \"$1\" är inte ett tal eller datum",
     "description": ""
   },
   "BadNextArgsError": {
-    "message": "&quot;nextargs&quot; värdet &quot;$1&quot; är inte en array",
+    "message": "\"nextargs\" värdet \"$1\" är inte en array",
     "description": ""
   },
   "FunctionDeleteConfirmBody": {
@@ -1048,7 +1048,7 @@
     "description": ""
   },
   "RenameFunctionBody": {
-    "message": "Du har ändrat namnet på en befintlig funktion, &quot;$1&quot;. Vill du byta namn på den befintliga funktionen eller spara en separat funktion med det nya namnet?",
+    "message": "Du har ändrat namnet på en befintlig funktion, \"$1\". Vill du byta namn på den befintliga funktionen eller spara en separat funktion med det nya namnet?",
     "description": ""
   },
   "RenameFunctionRenameButton": {
@@ -1064,7 +1064,7 @@
     "description": ""
   },
   "FunctionErrorBody": {
-    "message": "Fel vid anrop av dynamisk schemaläggningsfunktion: &quot;$1&quot;",
+    "message": "Fel vid anrop av dynamisk schemaläggningsfunktion: \"$1\"",
     "description": ""
   },
   "cancel_on_reply": {

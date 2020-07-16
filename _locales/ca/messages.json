@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "“Enviar més tard” és la funció per programar quan vols fer l&#x27;enviament.",
+    "message": "“Enviar més tard” és la funció per programar quan vols fer l'enviament.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -40,7 +40,7 @@
     "description": ""
   },
   "contactAuthorLabel": {
-    "message": "Contactar amb l&#x27;autor",
+    "message": "Contactar amb l'autor",
     "description": ""
   },
   "enforceRestrictionsPrefLabel": {
@@ -88,7 +88,7 @@
     "description": ""
   },
   "markReadPrefLabel": {
-    "message": "Marcar missatges planificats en la carpeta d&#x27;esborranys com a llegits",
+    "message": "Marcar missatges planificats en la carpeta d'esborranys com a llegits",
     "description": ""
   },
   "quickOptionsLabel1Label": {
@@ -164,7 +164,7 @@
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&amp;quot;Enviar&amp;quot; ajorna els missatges durant",
+    "message": "&quot;Enviar&quot; ajorna els missatges durant",
     "description": ""
   },
   "sendDelayPrefLabel2": {
@@ -220,11 +220,11 @@
     "description": ""
   },
   "showStatusPrefLabel": {
-    "message": "Mostrar Send Later en la Barra d&#x27;Estat",
+    "message": "Mostrar Send Later en la Barra d'Estat",
     "description": ""
   },
   "userGuideLabel": {
-    "message": "Guia d&#x27;usuari",
+    "message": "Guia d'usuari",
     "description": ""
   },
   "errorDateInPast": {
@@ -272,11 +272,11 @@
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
-    "message": "Enviar més tard, a l&#x27;hora especificada",
+    "message": "Enviar més tard, a l'hora especificada",
     "description": ""
   },
   "sendlater.prompt.sendat.tooltip": {
-    "message": "Guardar el missatge a la Carpeta d&#x27;Esborranys per al seu lliurament automàtic a l&#x27;hora especificada.",
+    "message": "Guardar el missatge a la Carpeta d'Esborranys per al seu lliurament automàtic a l'hora especificada.",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -292,11 +292,11 @@
     "description": ""
   },
   "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "Activeu Send Later per a planificar un missatge després d&#x27;introduir l&#x27;hora d&#x27;enviament desitjada al quadre de text. Aquest botó no fa cap cosa ell mateix; també cal afegir el quadre de text o selector de data/hora (no suportat en totes les versions de Thunderbird) a la barra d&#x27;eines per a que aquest botó siga útil.",
+    "message": "Activeu Send Later per a planificar un missatge després d'introduir l'hora d'enviament desitjada al quadre de text. Aquest botó no fa cap cosa ell mateix; també cal afegir el quadre de text o selector de data/hora (no suportat en totes les versions de Thunderbird) a la barra d'eines per a que aquest botó siga útil.",
     "description": ""
   },
   "sendlater.toolbar.textbox.emptytext": {
-    "message": "hora d&#x27;enviament",
+    "message": "hora d'enviament",
     "description": ""
   },
   "sendlater.prompt.every.label": {
@@ -320,7 +320,7 @@
     "description": ""
   },
   "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Monitoritza les respostes a les còpies enviades prèviament de missatges repetitius. Cancel·la les repeticions del missatge i l&#x27;esborra de la safata d&#x27;esborranys quan es rep una resposta.",
+    "message": "Monitoritza les respostes a les còpies enviades prèviament de missatges repetitius. Cancel·la les repeticions del missatge i l'esborra de la safata d'esborranys quan es rep una resposta.",
     "description": ""
   },
   "sendlater3header.label": {
@@ -336,7 +336,7 @@
     "description": ""
   },
   "checktimepref.tooltip": {
-    "message": "Interval, en minuts, entre les comprovacions dels esborranys als que els ha arribat el moment de ser lliurats. Augmenteu aquest valor si els vostres esborranys algunes vegades no son enviats a temps o si el comptador de missatges pendents en la barra d&#x27;estat no reflecteix algun cop tots els esborranys programats.",
+    "message": "Interval, en minuts, entre les comprovacions dels esborranys als que els ha arribat el moment de ser lliurats. Augmenteu aquest valor si els vostres esborranys algunes vegades no son enviats a temps o si el comptador de missatges pendents en la barra d'estat no reflecteix algun cop tots els esborranys programats.",
     "description": ""
   },
   "quickoptionname.label": {
@@ -344,19 +344,19 @@
     "description": ""
   },
   "showsendlatercolumn.tooltip": {
-    "message": "Si s&#x27;ha de mostrar la columna “Send Later” en la vista de les carpetes d&#x27;esborranys",
+    "message": "Si s'ha de mostrar la columna “Send Later” en la vista de les carpetes d'esborranys",
     "description": ""
   },
   "showsendlaterheader.tooltip": {
-    "message": "Si es mostra la capçalera “X-Send-Later-A”, p.ex., l&#x27;hora en la que l&#x27;esborrany és programat per a ser enviat, en la capçalera de visualització del missatge.",
+    "message": "Si es mostra la capçalera “X-Send-Later-A”, p.ex., l'hora en la que l'esborrany és programat per a ser enviat, en la capçalera de visualització del missatge.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
-    "message": "Mostrar el Progrés en segon pla en la Barra d&#x27;Estat",
+    "message": "Mostrar el Progrés en segon pla en la Barra d'Estat",
     "description": ""
   },
   "showsendlaterunsentmessages.tooltip": {
-    "message": "Si desmarca aquesta opció, llavors Send Later no enviarà els missatges directament, sinó que els posarà en la Safata de Sortida quan estiguin programats per a ser lliurats. Desmarqui aquesta opció, per exemple, si usa algun altre complement. p.ex., Blunder Delay, per tal d&#x27;enviar missatges periòdicament des de la seva Safata de Sortida. Noteu que, quan aquesta opció està habilitada, llavors cada vegada que Send Later envia un missatge, TOTS els missatges de la Carpeta de Sortida seran enviats.",
+    "message": "Si desmarca aquesta opció, llavors Send Later no enviarà els missatges directament, sinó que els posarà en la Safata de Sortida quan estiguin programats per a ser lliurats. Desmarqui aquesta opció, per exemple, si usa algun altre complement. p.ex., Blunder Delay, per tal d'enviar missatges periòdicament des de la seva Safata de Sortida. Noteu que, quan aquesta opció està habilitada, llavors cada vegada que Send Later envia un missatge, TOTS els missatges de la Carpeta de Sortida seran enviats.",
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
@@ -364,7 +364,7 @@
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "Amb aquesta opció activada, tots els missatges enviats amb la comanda &amp;quot;Enviar&amp;quot; (amb el botó o prement Ctrl+Intro) s&#x27;ajornaran durant el número de minuts especificats programant-los amb Send Later.",
+    "message": "Amb aquesta opció activada, tots els missatges enviats amb la comanda &quot;Enviar&quot; (amb el botó o prement Ctrl+Intro) s'ajornaran durant el número de minuts especificats programant-los amb Send Later.",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {
@@ -376,7 +376,7 @@
     "description": ""
   },
   "contactauthor.tooltip": {
-    "message": "Enviar un correu l&#x27;autor de Send Later.",
+    "message": "Enviar un correu l'autor de Send Later.",
     "description": ""
   },
   "helplink.tooltip": {
@@ -396,15 +396,15 @@
     "description": ""
   },
   "enforcerestrictions.tooltip": {
-    "message": "Si un missatge prèviament programat per ser enviat està fora de temps o dia per restriccions, p.ex., degut a que Thunderbird no s&#x27;estava executant en l&#x27;hora de lliurament programada, llavors es retarda el lliurament fins que s&#x27;acompleixin les restriccions de dia i hora.",
+    "message": "Si un missatge prèviament programat per ser enviat està fora de temps o dia per restriccions, p.ex., degut a que Thunderbird no s'estava executant en l'hora de lliurament programada, llavors es retarda el lliurament fins que s'acompleixin les restriccions de dia i hora.",
     "description": ""
   },
   "blocklatemessages.tooltip": {
-    "message": "No lliurar els missatges programats que hagin sobrepassat la data i hora definides, p.ex., degut a que Thunderbird no s&#x27;estava executant en aquell moment.",
+    "message": "No lliurar els missatges programats que hagin sobrepassat la data i hora definides, p.ex., degut a que Thunderbird no s'estava executant en aquell moment.",
     "description": ""
   },
   "editorbutton": {
-    "message": "Obrir l&#x27;editor de funcions dinàmiques…",
+    "message": "Obrir l'editor de funcions dinàmiques…",
     "description": ""
   },
   "editortip": {
@@ -420,7 +420,7 @@
     "description": ""
   },
   "sendlater.ask.message1": {
-    "message": "S&#x27;han anat moltes hores en el desenvolupament, manteniment i suport d&#x27;aquest complement.",
+    "message": "S'han anat moltes hores en el desenvolupament, manteniment i suport d'aquest complement.",
     "description": ""
   },
   "sendlater.ask.message2": {
@@ -444,7 +444,7 @@
     "description": ""
   },
   "sendlater.ask.remind.label": {
-    "message": "Recordeu-m&#x27;ho més tard",
+    "message": "Recordeu-m'ho més tard",
     "description": ""
   },
   "sendlater.ask.already.accesskey": {
@@ -460,7 +460,7 @@
     "description": ""
   },
   "sendlater.ask.stop.label": {
-    "message": "Deixar de demanar-m&#x27;ho",
+    "message": "Deixar de demanar-m'ho",
     "description": ""
   },
   "windowtitle": {
@@ -488,7 +488,7 @@
     "description": ""
   },
   "functionnametip": {
-    "message": "Introdueixi o editi el nom alfanumèric de la funció. Si modifica el nom d&#x27;una funció existent, se li preguntarà al desar-la si vol canviar el nom de la funció existent o crear-ne una de nova amb el nom modificat.",
+    "message": "Introdueixi o editi el nom alfanumèric de la funció. Si modifica el nom d'una funció existent, se li preguntarà al desar-la si vol canviar el nom de la funció existent o crear-ne una de nova amb el nom modificat.",
     "description": ""
   },
   "functionnameplaceholder": {
@@ -504,15 +504,15 @@
     "description": ""
   },
   "helptextheader": {
-    "message": "Text d&#x27;ajuda de la funció",
+    "message": "Text d'ajuda de la funció",
     "description": ""
   },
   "helptexttip": {
-    "message": "Qualsevol text que posi aquí es mostrarà quan l&#x27;usuari emplaci el punter sobre el nom de la funció en el menú desplegable. Utilitzi&#x27;l per explicar què fa la funció i quins arguments accepta.",
+    "message": "Qualsevol text que posi aquí es mostrarà quan l'usuari emplaci el punter sobre el nom de la funció en el menú desplegable. Utilitzi'l per explicar què fa la funció i quins arguments accepta.",
     "description": ""
   },
   "helptextplaceholder": {
-    "message": "text d&#x27;ajuda",
+    "message": "text d'ajuda",
     "description": ""
   },
   "run.label": {
@@ -532,19 +532,19 @@
     "description": ""
   },
   "inputtimeplaceholder": {
-    "message": "data i hora, si s&#x27;escau, a passar a la funció per fer proves",
+    "message": "data i hora, si s'escau, a passar a la funció per fer proves",
     "description": ""
   },
   "inputargs": {
-    "message": "Arguments d&#x27;entrada",
+    "message": "Arguments d'entrada",
     "description": ""
   },
   "inputargstip": {
-    "message": "Els arguments s&#x27;haurien d&#x27;especificar en el format de JavaScript; per exemple, les cadenes de caràcters han d&#x27;anar entre cometes.",
+    "message": "Els arguments s'haurien d'especificar en el format de JavaScript; per exemple, les cadenes de caràcters han d'anar entre cometes.",
     "description": ""
   },
   "inputargsplaceholder": {
-    "message": "Arguments separats per comes, si s&#x27;escau, a passar per fer proves",
+    "message": "Arguments separats per comes, si s'escau, a passar per fer proves",
     "description": ""
   },
   "output": {
@@ -560,7 +560,7 @@
     "description": ""
   },
   "importtip": {
-    "message": "Importar una funció dinàmica prèviament exportada des de l&#x27;editor.",
+    "message": "Importar una funció dinàmica prèviament exportada des de l'editor.",
     "description": ""
   },
   "export.label": {
@@ -676,15 +676,15 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Send Later: Error a l&#x27;enviar els missatges pendents. La seva Safata de Sortida potser està corrompuda, i els seus missatges programats potser no s&#x27;han enviat. Vegi https://blog.kamens.us/send-later/#outbox.",
+    "message": "Send Later: Error a l'enviar els missatges pendents. La seva Safata de Sortida potser està corrompuda, i els seus missatges programats potser no s'han enviat. Vegi https://blog.kamens.us/send-later/#outbox.",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Send Later: Error al copiar el missatge programat a la Safata de Sortida per lliurar (codi $1). Send Later s&#x27;ha deshabilitat! Vegi https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "message": "Send Later: Error al copiar el missatge programat a la Safata de Sortida per lliurar (codi $1). Send Later s'ha deshabilitat! Vegi https://blog.kamens.us/send-later/#outbox-copy-failure.",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Send Later: Error al copiar un missatge recurrent a la Carpeta d&#x27;Esborranys (codi $1). Send Later s&#x27;ha deshabilitat! Vegi https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "message": "Send Later: Error al copiar un missatge recurrent a la Carpeta d'Esborranys (codi $1). Send Later s'ha deshabilitat! Vegi https://blog.kamens.us/send-later/#drafts-copy-failure.",
     "description": ""
   },
   "CorruptFolderError": {
@@ -692,7 +692,7 @@
     "description": ""
   },
   "MessageResendError": {
-    "message": "Send Later: Intenteu reenviar un missatge ja enviat?! La vostre Safata de Sortida o la Carpeta d&#x27;Esborranys $1 probablement està corrompuda. Si us plau, repareu-la tal com s&#x27;especifica a https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "message": "Send Later: Intenteu reenviar un missatge ja enviat?! La vostre Safata de Sortida o la Carpeta d'Esborranys $1 probablement està corrompuda. Si us plau, repareu-la tal com s'especifica a https://blog.kamens.us/send-later/#corrupt-outbox.",
     "description": ""
   },
   "minutely": {
@@ -880,7 +880,7 @@
     "description": ""
   },
   "draftSaveWarning": {
-    "message": "ATENCIÓ: Per prevenir que el missatge sigui lliurat per Send Later mentre l&#x27;està editant, s&#x27;ha cancel·lat l&#x27;hora programada d&#x27;enviament. Si us plau, reprogrami el missatge en acabar-lo d&#x27;editar.",
+    "message": "ATENCIÓ: Per prevenir que el missatge sigui lliurat per Send Later mentre l'està editant, s'ha cancel·lat l'hora programada d'enviament. Si us plau, reprogrami el missatge en acabar-lo d'editar.",
     "description": ""
   },
   "AreYouSure": {
@@ -888,11 +888,11 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "Clicant “Col·locar en la Safata de Sortida” posa el missatge en la Safata de Sortida immediatament. NO programa el missatge per a ser enviat en una hora específica. Per fer això, cliqueu el botó “Enviar al voltant de” de la caixa verda després d&#x27;introduir una hora vàlida. Està segur que vol posar el missatge a la Safata de Sortida ara?",
+    "message": "Clicant “Col·locar en la Safata de Sortida” posa el missatge en la Safata de Sortida immediatament. NO programa el missatge per a ser enviat en una hora específica. Per fer això, cliqueu el botó “Enviar al voltant de” de la caixa verda després d'introduir una hora vàlida. Està segur que vol posar el missatge a la Safata de Sortida ara?",
     "description": ""
   },
   "SendNowConfirmMessage": {
-    "message": "Clicant “Enviar ara” envia el missatge immediatament. NO programa el missatge per a ser enviat a una hora específica. Per fer això, cliqueu el botó “Enviar al voltant de” de la caixa verda després d&#x27;introduir una hora vàlida. Està segur que vol enviar el missatge ara?",
+    "message": "Clicant “Enviar ara” envia el missatge immediatament. NO programa el missatge per a ser enviat a una hora específica. Per fer això, cliqueu el botó “Enviar al voltant de” de la caixa verda després d'introduir una hora vàlida. Està segur que vol enviar el missatge ara?",
     "description": ""
   },
   "ConfirmAgain": {
@@ -904,11 +904,11 @@
     "description": ""
   },
   "ScheduledMessagesWarningQuitRequested": {
-    "message": "Hi ha missatges programats per a ser enviats. Send Later només pot enviar missatges si $1 s&#x27;està executant. Està segur de voler sortir?",
+    "message": "Hi ha missatges programats per a ser enviats. Send Later només pot enviar missatges si $1 s'està executant. Està segur de voler sortir?",
     "description": ""
   },
   "ScheduledMessagesWarningQuit": {
-    "message": "Send Later només pot enviar missatges si $1 s&#x27;està executant. Si us plau, recordi reiniciar-lo abans de programar els missatges per a ser enviats!",
+    "message": "Send Later només pot enviar missatges si $1 s'està executant. Si us plau, recordi reiniciar-lo abans de programar els missatges per a ser enviats!",
     "description": ""
   },
   "EnigmailIncompatTitle": {
@@ -916,15 +916,15 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "La versió instal·lada d&#x27;Enigmail és incompatible amb Send Later, per això la programació de missatges amb Send Later s&#x27;ha deshabilitat. Si us plau, contacti amb el responsable de Send Later (jik@kamens.us) per ser atesos.",
+    "message": "La versió instal·lada d'Enigmail és incompatible amb Send Later, per això la programació de missatges amb Send Later s'ha deshabilitat. Si us plau, contacti amb el responsable de Send Later (jik@kamens.us) per ser atesos.",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {
-    "message": "Incongruència entre hores d&#x27;enviament / restricció",
+    "message": "Incongruència entre hores d'enviament / restricció",
     "description": ""
   },
   "TimeMismatchConfirmBody": {
-    "message": "L&#x27;hora que ha introduït, $1, no es troba dins de les restriccions temporals especificades. Cliqui Cancel·lar per editar l&#x27;hora d&#x27;enviament, o OK per ajustar-la automàticament a $2.",
+    "message": "L'hora que ha introduït, $1, no es troba dins de les restriccions temporals especificades. Cliqui Cancel·lar per editar l'hora d'enviament, o OK per ajustar-la automàticament a $2.",
     "description": ""
   },
   "endTimeWarningTitle": {
@@ -932,7 +932,7 @@
     "description": ""
   },
   "endTimeWarningBody": {
-    "message": "Quan s&#x27;especifica una restricció horària per a un missatge, el temps de finalització no pot ser abans que el temps d&#x27;inici. Si us plau, ajusti la restricció horària o deshabiliti-la.",
+    "message": "Quan s'especifica una restricció horària per a un missatge, el temps de finalització no pot ser abans que el temps d'inici. Si us plau, ajusti la restricció horària o deshabiliti-la.",
     "description": ""
   },
   "missingDaysWarningTitle": {
@@ -952,11 +952,11 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "El missatge amb l&#x27;assumpte “$1” de la Carpeta d&#x27;Esborranys $2 s&#x27;ha programat per ser lliurat fa més de $3 minuts, per això el lliurament s&#x27;ha bloquejat. Hauria d&#x27;editar l&#x27;esborrany i enviar-lo a manualment o bé reprogramar-lo. També pot deshabilitar l&#x27;opció “No lliurar els missatges més de # minuts tard” preferida per evitar el bloqueig de lliurament de missatges tardans.",
+    "message": "El missatge amb l'assumpte “$1” de la Carpeta d'Esborranys $2 s'ha programat per ser lliurat fa més de $3 minuts, per això el lliurament s'ha bloquejat. Hauria d'editar l'esborrany i enviar-lo a manualment o bé reprogramar-lo. També pot deshabilitar l'opció “No lliurar els missatges més de # minuts tard” preferida per evitar el bloqueig de lliurament de missatges tardans.",
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// Benvinguts a l&#x27;editor Send Later funció!\\n// \\n// L&#x27;editor permet crear complexes funcions JavaScript implementació\\n// missatge programació lògica que es poden associar amb els botons de\\n// drecera o seleccionat al diàleg Send Later.\\n// \\n// Com es pot veure més amunt, quan s&#x27;anomena una planificació funció,\\n// se li donarà tres arguments:\\n// \\n// * &quot;specname&quot; que es necessita si vol que aquesta funció es\\n//   repeteixi (veure més avall)\\n// * &quot;prev&quot; és l&#x27;anterior previst enviar temps, si això és una\\n//   recurrent invocació\\n// * &quot;args&quot; està els arguments addicionals retornats per la invocació\\n//   anterior si aquesta és una invocació recurrent\\n// \\n// el vostre codi necessita configurar les variables &quot;next&quot;,\\n// &quot;nextspec&quot;, i &quot;nextargs&quot; com segueix:\\n//\\n// * &quot;next&quot; és el nombre de minuts en el futur o un objecte de data\\n//   indicant quan el missatge s&#x27;enviaran.\\n//\\n// * &quot;nextspec&quot; és una especificació de periodicitat si aquesta és la\\n//   intenció de ser un recurrent missatge (veure\\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). Si no es\\n//   configura això, llavors el missatge només s&#x27;enviarà una\\n//   vegada. Nota: si voleu que el seu funció que es diu una altra\\n//   vegada per recurrència, fer:\\n//   \\n//   nextspec = &quot;function &quot; + specname;\\n// \\n// * &quot;nextargs&quot; és una sèrie d&#x27;arguments que vol passar al següent\\n//   invocació de la funció com &quot;args&quot;.\\n//   \\n// Mentre que vostè està treballant en la seva funció, pot provar això\\n// omplint els valors per a &quot;anterior&quot; i &quot;args&quot; en els quadres de Text\\n// sota i fent clic a &quot;Executar&quot; a executa la funció i veure els\\n// resultats.\\n// \\n// Pre-configurat Mostra dues funcions, &quot;BusinessHours&quot; i\\n// &quot;DaysInARow&quot;, que pot mirar i jugar amb per aprendre més. Aquest\\n// &quot;ReadMeFirst&quot; funció només provoca el missatge enviat al voltant\\n// ara, mitjançant la línia següent.\\n\\nnext = new Date();",
+    "message": "// Benvinguts a l'editor Send Later funció!\n// \n// L'editor permet crear complexes funcions JavaScript implementació\n// missatge programació lògica que es poden associar amb els botons de\n// drecera o seleccionat al diàleg Send Later.\n// \n// Com es pot veure més amunt, quan s'anomena una planificació funció,\n// se li donarà tres arguments:\n// \n// * \"specname\" que es necessita si vol que aquesta funció es\n//   repeteixi (veure més avall)\n// * \"prev\" és l'anterior previst enviar temps, si això és una\n//   recurrent invocació\n// * \"args\" està els arguments addicionals retornats per la invocació\n//   anterior si aquesta és una invocació recurrent\n// \n// el vostre codi necessita configurar les variables \"next\",\n// \"nextspec\", i \"nextargs\" com segueix:\n//\n// * \"next\" és el nombre de minuts en el futur o un objecte de data\n//   indicant quan el missatge s'enviaran.\n//\n// * \"nextspec\" és una especificació de periodicitat si aquesta és la\n//   intenció de ser un recurrent missatge (veure\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). Si no es\n//   configura això, llavors el missatge només s'enviarà una\n//   vegada. Nota: si voleu que el seu funció que es diu una altra\n//   vegada per recurrència, fer:\n//   \n//   nextspec = \"function \" + specname;\n// \n// * \"nextargs\" és una sèrie d'arguments que vol passar al següent\n//   invocació de la funció com \"args\".\n//   \n// Mentre que vostè està treballant en la seva funció, pot provar això\n// omplint els valors per a \"anterior\" i \"args\" en els quadres de Text\n// sota i fent clic a \"Executar\" a executa la funció i veure els\n// resultats.\n// \n// Pre-configurat Mostra dues funcions, \"BusinessHours\" i\n// \"DaysInARow\", que pot mirar i jugar amb per aprendre més. Aquest\n// \"ReadMeFirst\" funció només provoca el missatge enviat al voltant\n// ara, mitjançant la línia següent.\n\nnext = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {
@@ -964,19 +964,19 @@
     "description": ""
   },
   "_BusinessHoursCode": {
-    "message": "// Valors per omissió\\nvar workDays = [1, 2, 3, 4, 5]; // Dilluns a divendres; diumenge == 0, dissabte == 6\\nvar workStart = [8, 30]; // Inici del dia laborable com a [H, M] (hores, minuts)\\nvar workEnd = [17, 30]; // Finalització del dia laborable com a [H, M]\\nif (args &amp;&amp; args[0])\\n workDays = args[0];\\nif (args &amp;&amp; args[1])\\n workStart = args[1];\\nif (args &amp;&amp; args[2])\\n workEnd = args[2];\\nif (prev)\\n // No està pensat per utilitzar-se en un funcionament normal, sinó que es fa servir com a valor de data i hora actuals per fer proves.\\n next = new Date(prev);\\nelse\\n next = new Date();\\n// Si ja hem sobrepassat l&#x27;hora de finalització del dia laborable o no ens trobem en un dia laborable, passar a l&#x27;inici\\n// del dia següent.\\nwhile ((next.getHours() &gt; workEnd[0]) ||\\n (next.getHours() == workEnd[0] &amp;&amp; next.getMinutes() &gt; workEnd[1]) ||\\n (workDays.indexOf(next.getDay()) == -1)) {\\n next.setDate(next.getDate() + 1);\\n next.setHours(workStart[0]);\\n next.setMinutes(workStart[1]);\\n}\\n// Si ens trobem en una hora anterior a l&#x27;inici de la jornada laboral, anar al temps definit com a inici de la jornada.\\nif ((next.getHours() &lt; workStart[0]) ||\\n (next.getHours() == workStart[0] &amp;&amp; next.getMinutes() &lt; workStart[1])) {\\n next.setHours(workStart[0]);\\n next.setMinutes(workStart[1]);\\n}",
+    "message": "// Valors per omissió\nvar workDays = [1, 2, 3, 4, 5]; // Dilluns a divendres; diumenge == 0, dissabte == 6\nvar workStart = [8, 30]; // Inici del dia laborable com a [H, M] (hores, minuts)\nvar workEnd = [17, 30]; // Finalització del dia laborable com a [H, M]\nif (args && args[0])\n workDays = args[0];\nif (args && args[1])\n workStart = args[1];\nif (args && args[2])\n workEnd = args[2];\nif (prev)\n // No està pensat per utilitzar-se en un funcionament normal, sinó que es fa servir com a valor de data i hora actuals per fer proves.\n next = new Date(prev);\nelse\n next = new Date();\n// Si ja hem sobrepassat l'hora de finalització del dia laborable o no ens trobem en un dia laborable, passar a l'inici\n// del dia següent.\nwhile ((next.getHours() > workEnd[0]) ||\n (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n (workDays.indexOf(next.getDay()) == -1)) {\n next.setDate(next.getDate() + 1);\n next.setHours(workStart[0]);\n next.setMinutes(workStart[1]);\n}\n// Si ens trobem en una hora anterior a l'inici de la jornada laboral, anar al temps definit com a inici de la jornada.\nif ((next.getHours() < workStart[0]) ||\n (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n next.setHours(workStart[0]);\n next.setMinutes(workStart[1]);\n}",
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "Envia el missatge ara si ens trobem dins de l&#x27;horari laborable, o al principi del següent dia laborable. Pot canviar la definició dels dies laborables (per omissió: de dilluns a divendres) passant un vector de nombres associats als dies laborables com a primer argument, on el 0 és diumenge i el 6, dissabte. Pot canviar l&#x27;hora d&#x27;inici de la jornada o la de finalització (per omissió: 8:30 - 17:30) passant un vector de [H, M] (hores, minuts) com a segon o tercer argument. Especifiqui el valor “null” pels arguments anteriors que no vulgui canviar. Per exemple, “null, [9,0], [17, 0]” canvia les hores laborables sense modificar els dies laborables.",
+    "message": "Envia el missatge ara si ens trobem dins de l'horari laborable, o al principi del següent dia laborable. Pot canviar la definició dels dies laborables (per omissió: de dilluns a divendres) passant un vector de nombres associats als dies laborables com a primer argument, on el 0 és diumenge i el 6, dissabte. Pot canviar l'hora d'inici de la jornada o la de finalització (per omissió: 8:30 - 17:30) passant un vector de [H, M] (hores, minuts) com a segon o tercer argument. Especifiqui el valor “null” pels arguments anteriors que no vulgui canviar. Per exemple, “null, [9,0], [17, 0]” canvia les hores laborables sense modificar els dies laborables.",
     "description": ""
   },
   "DaysInARowCode": {
-    "message": "// Enviar el primer missatge ara, i els missatges posteriors un cop al dia.\\nif (! prev)\\n next = new Date();\\nelse {\\n var now = new Date();\\n next = new Date(prev); // Copiar l&#x27;argument de la data, de manera que no la modifiquem.\\n do {\\n next.setDate(next.getDate() + 1);\\n } while (next &lt; now);\\n // ^^^ Que no s&#x27;intenti enviar si ja ha passat la programació, en cas que Thunderbird estés inactiu al\\n// moment programat per enviar.\\n}\\nif (! args) // Enviar els missatges tres vegades per omissió.\\n args = [3];\\nnextargs = [args[0] - 1];\\n// Tornar a executar si no s&#x27;ha enviat el nombre de vegades definit.\\nif (nextargs[0] &gt; 0)\\n nextspec = &quot;function &quot; + specname;",
+    "message": "// Enviar el primer missatge ara, i els missatges posteriors un cop al dia.\nif (! prev)\n next = new Date();\nelse {\n var now = new Date();\n next = new Date(prev); // Copiar l'argument de la data, de manera que no la modifiquem.\n do {\n next.setDate(next.getDate() + 1);\n } while (next < now);\n // ^^^ Que no s'intenti enviar si ja ha passat la programació, en cas que Thunderbird estés inactiu al\n// moment programat per enviar.\n}\nif (! args) // Enviar els missatges tres vegades per omissió.\n args = [3];\nnextargs = [args[0] - 1];\n// Tornar a executar si no s'ha enviat el nombre de vegades definit.\nif (nextargs[0] > 0)\n nextspec = \"function \" + specname;",
     "description": ""
   },
   "DaysInARowHelp": {
-    "message": "Enviar el missatge ara, i posteriorment un cop al dia a la mateixa hora, fins que s&#x27;hagi enviat tres vegades. Especifiqui un número com a argument per canviar el nombre total de vegades que es vol enviar.",
+    "message": "Enviar el missatge ara, i posteriorment un cop al dia a la mateixa hora, fins que s'hagi enviat tres vegades. Especifiqui un número com a argument per canviar el nombre total de vegades que es vol enviar.",
     "description": ""
   },
   "DiscardConfirmTitle": {
@@ -984,7 +984,7 @@
     "description": ""
   },
   "DiscardConfirmBody": {
-    "message": "Hi ha canvis que no s&#x27;han desat. Els vol descartar?",
+    "message": "Hi ha canvis que no s'han desat. Els vol descartar?",
     "description": ""
   },
   "UntestedSaveTitle": {
@@ -992,7 +992,7 @@
     "description": ""
   },
   "UntestedSaveBody": {
-    "message": "La funció no s&#x27;ha comprovat (amb el botó “Executar”) des de l&#x27;última modificació. Està segur que la vol desar o exportar?",
+    "message": "La funció no s'ha comprovat (amb el botó “Executar”) des de l'última modificació. Està segur que la vol desar o exportar?",
     "description": ""
   },
   "BadSaveTitle": {
@@ -1000,7 +1000,7 @@
     "description": ""
   },
   "BadSaveBody": {
-    "message": "Si us plau, asseguri&#x27;s que el nom de la funció i el codi són vàlids abans de desar o exportar.",
+    "message": "Si us plau, asseguri's que el nom de la funció i el codi són vàlids abans de desar o exportar.",
     "description": ""
   },
   "ReplacingFunctionTitle": {
@@ -1024,7 +1024,7 @@
     "description": ""
   },
   "FunctionDeleteConfirmBody": {
-    "message": "Està segur que vol eliminar aquesta funció? Si es troba associada amb algun botó, aquest deixarà de funcionar i, si hi ha algun missatge recurrent que l&#x27;utilitzi, fallarà la reprogramació la propera vegada que siguin enviats.",
+    "message": "Està segur que vol eliminar aquesta funció? Si es troba associada amb algun botó, aquest deixarà de funcionar i, si hi ha algun missatge recurrent que l'utilitzi, fallarà la reprogramació la propera vegada que siguin enviats.",
     "description": ""
   },
   "ImportTitle": {
@@ -1036,11 +1036,11 @@
     "description": ""
   },
   "ImportError": {
-    "message": "Error d&#x27;importació",
+    "message": "Error d'importació",
     "description": ""
   },
   "ExportTitle": {
-    "message": "Triï la destinació de l&#x27;exportació",
+    "message": "Triï la destinació de l'exportació",
     "description": ""
   },
   "RenameFunctionTitle": {
@@ -1048,7 +1048,7 @@
     "description": ""
   },
   "RenameFunctionBody": {
-    "message": "Ha modificat el nom d&#x27;una funció ja existent, “$1”. Vol canviar el nom de la funció existent o desar una altra funció amb el nom nou?",
+    "message": "Ha modificat el nom d'una funció ja existent, “$1”. Vol canviar el nom de la funció existent o desar una altra funció amb el nom nou?",
     "description": ""
   },
   "RenameFunctionRenameButton": {
@@ -1064,7 +1064,7 @@
     "description": ""
   },
   "FunctionErrorBody": {
-    "message": "Error invocant funció de planificació d&#x27;enviament: “$1”",
+    "message": "Error invocant funció de planificació d'enviament: “$1”",
     "description": ""
   },
   "cancel_on_reply": {

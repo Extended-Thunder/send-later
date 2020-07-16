@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "‫&#x27;שלח מאוחר יותר&#x27; משמש לשליחת הודעות במועד עתידי‬",
+    "message": "‫'שלח מאוחר יותר' משמש לשליחת הודעות במועד עתידי‬",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -56,7 +56,7 @@
     "description": ""
   },
   "logDumpLevelLabel": {
-    "message": "‫רמת ההתראות לתיעוד במסוף הג&#x27;אווה‬",
+    "message": "‫רמת ההתראות לתיעוד במסוף הג'אווה‬",
     "description": ""
   },
   "logLevelAll": {
@@ -160,7 +160,7 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "‫הפוך את &#x27;שלח&#x27; ל &#x27;שלח מאוחר יותר&#x27;‬",
+    "message": "‫הפוך את 'שלח' ל 'שלח מאוחר יותר'‬",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -212,15 +212,15 @@
     "description": ""
   },
   "showColumnPrefLabel": {
-    "message": "‫הצג את הטור &#x27;‫שלח מאוחר יותר‬&#x27;‬",
+    "message": "‫הצג את הטור '‫שלח מאוחר יותר‬'‬",
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "‫הצג את הכותרת &#x27;‫שלח מאוחר יותר‬&#x27;‬",
+    "message": "‫הצג את הכותרת '‫שלח מאוחר יותר‬'‬",
     "description": ""
   },
   "showStatusPrefLabel": {
-    "message": "‫הצג את &#x27;‫שלח מאוחר יותר‬&#x27; בשורת המצב‬",
+    "message": "‫הצג את '‫שלח מאוחר יותר‬' בשורת המצב‬",
     "description": ""
   },
   "userGuideLabel": {
@@ -248,7 +248,7 @@
     "description": ""
   },
   "sendlater.prompt.sendnow.tooltip": {
-    "message": "שלח מייד את ההודעה, ועקוף את &amp;quot;‫שלח מאוחר יותר‬&amp;quot;.",
+    "message": "שלח מייד את ההודעה, ועקוף את &quot;‫שלח מאוחר יותר‬&quot;.",
     "description": ""
   },
   "sendlater.prompt.close.accesskey": {
@@ -260,11 +260,11 @@
     "description": ""
   },
   "sendlater.prompt.title.label": {
-    "message": "‫שלח הודעת דוא&amp;quot;ל זו מאוחר יותר‬",
+    "message": "‫שלח הודעת דוא&quot;ל זו מאוחר יותר‬",
     "description": ""
   },
   "sendlater.prompt.or.label": {
-    "message": "‫דוג: &#x27;3:00pm Thursday&#x27;, &#x27;12/27/2012 15:17&#x27;‬",
+    "message": "‫דוג: '3:00pm Thursday', '12/27/2012 15:17'‬",
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
@@ -340,11 +340,11 @@
     "description": ""
   },
   "showsendlatercolumn.tooltip": {
-    "message": "‫האם להציג את הטור &#x27;‫שלח מאוחר יותר‬&#x27; כאשר צופים בתיקית הטיוטות‬",
+    "message": "‫האם להציג את הטור '‫שלח מאוחר יותר‬' כאשר צופים בתיקית הטיוטות‬",
     "description": ""
   },
   "showsendlaterheader.tooltip": {
-    "message": "‫האם להציג את הכותרת &#x27;X-Send-Later-At&#x27;, כלומר הזמן בו מיועדת הטיוטה להישלח, בשורת הכותרת כאשר צופים בהודעה‬",
+    "message": "‫האם להציג את הכותרת 'X-Send-Later-At', כלומר הזמן בו מיועדת הטיוטה להישלח, בשורת הכותרת כאשר צופים בהודעה‬",
     "description": ""
   },
   "showsendlaterprogress.caption": {
@@ -352,15 +352,15 @@
     "description": ""
   },
   "showsendlaterunsentmessages.tooltip": {
-    "message": "‫במידה ולא תסומן אפשרות זו, &#x27;‫שלח מאוחר יותר‬&#x27; לא ישלח את ההודעות בפועל, אלא רק יעביר אותן לתיבת הדואר היוצא במועד המשלוח המתוכנן שלהן. אל תסמן אפשרות זו, למשל, אם יש לעיטים שימוש בתוסף אחר למשלוח הודעות מתיבת הדואר היוצא. שים לב שאם נבחרה האפשרות הזו ישלח &#x27;‫שלח מאוחר יותר‬&#x27; את כל ההודעות מתיבת הדואר היוצא בעת שליחת הודעה מתוכננת,‬",
+    "message": "‫במידה ולא תסומן אפשרות זו, '‫שלח מאוחר יותר‬' לא ישלח את ההודעות בפועל, אלא רק יעביר אותן לתיבת הדואר היוצא במועד המשלוח המתוכנן שלהן. אל תסמן אפשרות זו, למשל, אם יש לעיטים שימוש בתוסף אחר למשלוח הודעות מתיבת הדואר היוצא. שים לב שאם נבחרה האפשרות הזו ישלח '‫שלח מאוחר יותר‬' את כל ההודעות מתיבת הדואר היוצא בעת שליחת הודעה מתוכננת,‬",
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
-    "message": "‫בחירה באפשרות זו תהפוך את פקודת ה &#x27;שלח&#x27; (גם הלחצן וגם צרוף המקשים) לפקודה &#x27;שלח מאוחר יותר&#x27;‬",
+    "message": "‫בחירה באפשרות זו תהפוך את פקודת ה 'שלח' (גם הלחצן וגם צרוף המקשים) לפקודה 'שלח מאוחר יותר'‬",
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "בחירה באפשרות זו, תגרום לכך שכל ההודעות הנשלחות עם הפקודה &amp;quot;שלח&amp;quot; (בין אם לחיצה על הכפתור או עם קיצור המקלדת Ctrl-Enter) יעוכבו במספר הדקות שהוגדרו מראש עם ‫שלח מאוחר יותר‬",
+    "message": "בחירה באפשרות זו, תגרום לכך שכל ההודעות הנשלחות עם הפקודה &quot;שלח&quot; (בין אם לחיצה על הכפתור או עם קיצור המקלדת Ctrl-Enter) יעוכבו במספר הדקות שהוגדרו מראש עם ‫שלח מאוחר יותר‬",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {
@@ -372,11 +372,11 @@
     "description": ""
   },
   "contactauthor.tooltip": {
-    "message": "‫שלח הודעת דוא&amp;quot;ל למפתח של &#x27;‫שלח מאוחר יותר‬&#x27;‬",
+    "message": "‫שלח הודעת דוא&quot;ל למפתח של '‫שלח מאוחר יותר‬'‬",
     "description": ""
   },
   "helplink.tooltip": {
-    "message": "‫צפה במסמכי התיעוד של &#x27;‫שלח מאוחר יותר‬&#x27;‬",
+    "message": "‫צפה במסמכי התיעוד של '‫שלח מאוחר יותר‬'‬",
     "description": ""
   },
   "releasenotes.value": {
@@ -412,7 +412,7 @@
     "description": ""
   },
   "sendlater.ask.title.label": {
-    "message": "‫תמוך בפיתוח &#x27;‫שלח מאוחר יותר‬&#x27;‬",
+    "message": "‫תמוך בפיתוח '‫שלח מאוחר יותר‬'‬",
     "description": ""
   },
   "sendlater.ask.message1": {
@@ -468,7 +468,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "בחר פונקציה לעריכה או למחיקה, או &amp;quot;(צור פונקציה חדשה)&amp;quot; כדי ליצור פונקציה חדשה.",
+    "message": "בחר פונקציה לעריכה או למחיקה, או &quot;(צור פונקציה חדשה)&quot; כדי ליצור פונקציה חדשה.",
     "description": ""
   },
   "createnewfunction": {
@@ -492,7 +492,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "הזן כאן את קוד המקור עבור הפונקציה שלך. ראה פונקציית דוגמה &amp;quot;ReadMeFirst&amp;quot; לקבלת פרטים אודות הפעולה שהקוד שלך אמור לבצע.",
+    "message": "הזן כאן את קוד המקור עבור הפונקציה שלך. ראה פונקציית דוגמה &quot;ReadMeFirst&quot; לקבלת פרטים אודות הפעולה שהקוד שלך אמור לבצע.",
     "description": ""
   },
   "codeplaceholder": {
@@ -668,7 +668,7 @@
     "description": ""
   },
   "OptionShortcutAlertText": {
-    "message": "‫לקיצור הדרך &quot;Sיש ערך שגוי&quot;$1%1$‬",
+    "message": "‫לקיצור הדרך \"Sיש ערך שגוי\"$1%1$‬",
     "description": ""
   },
   "SendingUnsentError": {
@@ -876,7 +876,7 @@
     "description": ""
   },
   "draftSaveWarning": {
-    "message": "‫הזהרה: כדי למנוע מ &#x27;‫שלח מאוחר יותר‬&#x27; לשלוח הודעה בזמן עריכתה, מועד המשלוח שתוכנן בוטל. אנא קבע מועד משלוח חדש להודעה בתום תהליך העריכה.‬",
+    "message": "‫הזהרה: כדי למנוע מ '‫שלח מאוחר יותר‬' לשלוח הודעה בזמן עריכתה, מועד המשלוח שתוכנן בוטל. אנא קבע מועד משלוח חדש להודעה בתום תהליך העריכה.‬",
     "description": ""
   },
   "AreYouSure": {
@@ -884,11 +884,11 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "בחירה ב &quot;שלח&quot; מעבירה את ההודעה לתיבת הדואר היוצא באופן מיידי ולא מתבצע תיזמון משלוח של ההודעה למועד ספציפי. לשם קביעת מועד, יש לבחור בכפתור &quot;שלח בערך&quot; בתיבה  הירוקה לאחר שקבעת מועד מתאים למשלוח. האם את/ה בטוח שאת/ה מעוניין להעביר את ההודעה לתיבת הדואר היוצא כעט?",
+    "message": "בחירה ב \"שלח\" מעבירה את ההודעה לתיבת הדואר היוצא באופן מיידי ולא מתבצע תיזמון משלוח של ההודעה למועד ספציפי. לשם קביעת מועד, יש לבחור בכפתור \"שלח בערך\" בתיבה  הירוקה לאחר שקבעת מועד מתאים למשלוח. האם את/ה בטוח שאת/ה מעוניין להעביר את ההודעה לתיבת הדואר היוצא כעט?",
     "description": ""
   },
   "SendNowConfirmMessage": {
-    "message": "לחיצה על &quot;שלח כעת&quot; תשלח את ההודעה מייד. פונקציה זו אינה מתזמנת את ההודעה לשליחה בזמן ספציפי. לשם כך, לחץ &quot;שלח בערך&quot; בתיבה הירוקה לארח הזנת זמן שליחה תקין. האם אתה בטוח שברצונך לשלוח את ההודעה כעת?",
+    "message": "לחיצה על \"שלח כעת\" תשלח את ההודעה מייד. פונקציה זו אינה מתזמנת את ההודעה לשליחה בזמן ספציפי. לשם כך, לחץ \"שלח בערך\" בתיבה הירוקה לארח הזנת זמן שליחה תקין. האם אתה בטוח שברצונך לשלוח את ההודעה כעת?",
     "description": ""
   },
   "ConfirmAgain": {
@@ -900,19 +900,19 @@
     "description": ""
   },
   "ScheduledMessagesWarningQuitRequested": {
-    "message": "קיימות הודעות הממתינות למשלוח. &quot;‫שלח מאוחר יותר‬&quot; תשלח הודעות רק כאשר $1 פועלת. האם אתם רוצים לצאת עכשיו?",
+    "message": "קיימות הודעות הממתינות למשלוח. \"‫שלח מאוחר יותר‬\" תשלח הודעות רק כאשר $1 פועלת. האם אתם רוצים לצאת עכשיו?",
     "description": ""
   },
   "ScheduledMessagesWarningQuit": {
-    "message": "&quot;‫שלח מאוחר יותר‬&quot; תשלח הודעות רק כאשר $1 פועלת. אנא זכרו להפעילה מחדש לפני המועד המתוכנן למשלוח ההודעות!‬",
+    "message": "\"‫שלח מאוחר יותר‬\" תשלח הודעות רק כאשר $1 פועלת. אנא זכרו להפעילה מחדש לפני המועד המתוכנן למשלוח ההודעות!‬",
     "description": ""
   },
   "EnigmailIncompatTitle": {
-    "message": "בעיות התאמה בין &#x27;‫שלח מאוחר יותר‬&#x27; לבין Engimail.",
+    "message": "בעיות התאמה בין '‫שלח מאוחר יותר‬' לבין Engimail.",
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "הגרסה המותקנת של התוסף Engimail אינה תואמת ל&#x27;‫שלח מאוחר יותר‬&#x27;, לכן תכונת משלוח הודעות עתידי עם &#x27;‫שלח מאוחר יותר‬&#x27; הושבתה. אנא צרו קשר עם המפתח של &#x27;‫שלח מאוחר יותר‬&#x27; לסיוע במייל (jik@kamens.us).",
+    "message": "הגרסה המותקנת של התוסף Engimail אינה תואמת ל'‫שלח מאוחר יותר‬', לכן תכונת משלוח הודעות עתידי עם '‫שלח מאוחר יותר‬' הושבתה. אנא צרו קשר עם המפתח של '‫שלח מאוחר יותר‬' לסיוע במייל (jik@kamens.us).",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {
@@ -920,7 +920,7 @@
     "description": ""
   },
   "TimeMismatchConfirmBody": {
-    "message": "זמן המשלוח שקבעת, $1, אינו בתחום מגבלות הזמן שהגדרת. לחץ  &#x27;ביטול&#x27; לעריכת זמן המשלוח מחדש או &#x27;אשר&#x27; לביצוע עריכה אוטומטית ל $2.",
+    "message": "זמן המשלוח שקבעת, $1, אינו בתחום מגבלות הזמן שהגדרת. לחץ  'ביטול' לעריכת זמן המשלוח מחדש או 'אשר' לביצוע עריכה אוטומטית ל $2.",
     "description": ""
   },
   "endTimeWarningTitle": {
@@ -948,11 +948,11 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "ההודעה עם הנושא “$1” הנמצאת בתיקיית הטיוטות  $2 תוכננה להישלח לפני יותר מ $3 דקות, לכן המשלוח נחסם. עליך לערוך את הודעת הטיוטה מחדש ולשלוח אותה באופן מיידי או לקבוע מועד משלוח חדש. יש באפשרותך לבטל את התכונה &quot;אל תשלח הודעות אם מועד המשלוח המתוכנן שלהן חלף ביותר מ # דקות&quot; כדי למנוע חסימת משלוח הודעות בעתיד.",
+    "message": "ההודעה עם הנושא “$1” הנמצאת בתיקיית הטיוטות  $2 תוכננה להישלח לפני יותר מ $3 דקות, לכן המשלוח נחסם. עליך לערוך את הודעת הטיוטה מחדש ולשלוח אותה באופן מיידי או לקבוע מועד משלוח חדש. יש באפשרותך לבטל את התכונה \"אל תשלח הודעות אם מועד המשלוח המתוכנן שלהן חלף ביותר מ # דקות\" כדי למנוע חסימת משלוח הודעות בעתיד.",
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// ברוך הבא אל עורך הפונקציות של ‫שלח מאוחר יותר‬!\\n//\\n// בעזרת עורך זה תוכל ליצור פונקציות JavaScript המיישמות לוגיקה מורכבת של תזמון הודעות אותה ניתן לשייך ללחצני קיצור או לבחור בה מתיבת הדו שיח של ‫שלח מאוחר יותר‬\\n//\\n// כפי שניתן לראות למעלה, כאשר מתבצעת קריאה לפונקציית תזמון, יש לספק לה שלושה ארגומנטים: \\n// * &quot;specname&quot; נדרש במידה ותרצה להפעיל את הפונקציה בצורה רקורסיבית (ראה בהמשך)\\n// * &quot;prev&quot; הינו זמן השליחה הקודם שתוזמן, במידה וזו הפעלה חוזרת\\n// * &quot;args&quot; הינם הארגומנטים הנוספים שהוחזרו בהפעלה הקודמת, במידה וזו הפעלה חוזרת\\n//\\n// על הקוד שלך לקבוע את המשתנים &quot;next&quot;, &quot;nextspec&quot;, וכן \\n// &quot;nextargs&quot; באופן הבא:\\n//\\n// * &quot;next&quot; הינו מספר הדקות בעתיד או אובייקט Date המציין מתי יש לשלוח את ההודעה\\n//   indicating when the message should be sent.\\n// * &quot;nextspec&quot; הינו מפרט החזרה במידה וזו אמורה להיות הודעה חוזרת (ראה \\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). במידה ולא תספק ערך לארגומנט זה, \\n//  ההודעה תישלח פעם אחת בלבד. הערה: אם תרצה \\n//  לקרוא שנית לפונקציה לצורך חזרה, עליך לבצע:\\n\\n//     nextspec = &quot;function &quot; + specname;\\n\\n// * &quot;nextargs&quot; הינו מערך ארגומנטים אותם תרצה להעביר \\n//   להפעלה הבאה של הפונקציה כ-&quot;args&quot;.\\n//\\n// במהלך העבודה על הפונקציה, תוכל לבדוק אותה על ידי הזנת ערכים\\n// עבור &quot;prev&quot; ו-&quot;args&quot; בתיבות הטקסט שבהמשך ולאחר מכן ללחוץ על  &quot;Execute&quot; כדי\\n// לבצע את הפונקציה ולצפות בתוצאות.\\n//\\n// ישנן שתי פונקציות דוגמה מוגדרות מראש, &quot;BusinessHours&quot; וכן\\n// &quot;DaysInARow&quot;, שתוכל להשתמש בהן ולבצע בעזרתן ניסויים לצורך למידה.\\n//\\n// פונקציה &quot;ReadMeFirst&quot; גורמת רק לשליחה של ההודעה כעת, פחות או יותר, \\n// באמצעות הפעלת השורה הבאה.\\n\\nnext = new Date();",
+    "message": "// ברוך הבא אל עורך הפונקציות של ‫שלח מאוחר יותר‬!\n//\n// בעזרת עורך זה תוכל ליצור פונקציות JavaScript המיישמות לוגיקה מורכבת של תזמון הודעות אותה ניתן לשייך ללחצני קיצור או לבחור בה מתיבת הדו שיח של ‫שלח מאוחר יותר‬\n//\n// כפי שניתן לראות למעלה, כאשר מתבצעת קריאה לפונקציית תזמון, יש לספק לה שלושה ארגומנטים: \n// * \"specname\" נדרש במידה ותרצה להפעיל את הפונקציה בצורה רקורסיבית (ראה בהמשך)\n// * \"prev\" הינו זמן השליחה הקודם שתוזמן, במידה וזו הפעלה חוזרת\n// * \"args\" הינם הארגומנטים הנוספים שהוחזרו בהפעלה הקודמת, במידה וזו הפעלה חוזרת\n//\n// על הקוד שלך לקבוע את המשתנים \"next\", \"nextspec\", וכן \n// \"nextargs\" באופן הבא:\n//\n// * \"next\" הינו מספר הדקות בעתיד או אובייקט Date המציין מתי יש לשלוח את ההודעה\n//   indicating when the message should be sent.\n// * \"nextspec\" הינו מפרט החזרה במידה וזו אמורה להיות הודעה חוזרת (ראה \n//   https://blog.kamens.us/send-later/#dynamic-recurrence). במידה ולא תספק ערך לארגומנט זה, \n//  ההודעה תישלח פעם אחת בלבד. הערה: אם תרצה \n//  לקרוא שנית לפונקציה לצורך חזרה, עליך לבצע:\n\n//     nextspec = \"function \" + specname;\n\n// * \"nextargs\" הינו מערך ארגומנטים אותם תרצה להעביר \n//   להפעלה הבאה של הפונקציה כ-\"args\".\n//\n// במהלך העבודה על הפונקציה, תוכל לבדוק אותה על ידי הזנת ערכים\n// עבור \"prev\" ו-\"args\" בתיבות הטקסט שבהמשך ולאחר מכן ללחוץ על  \"Execute\" כדי\n// לבצע את הפונקציה ולצפות בתוצאות.\n//\n// ישנן שתי פונקציות דוגמה מוגדרות מראש, \"BusinessHours\" וכן\n// \"DaysInARow\", שתוכל להשתמש בהן ולבצע בעזרתן ניסויים לצורך למידה.\n//\n// פונקציה \"ReadMeFirst\" גורמת רק לשליחה של ההודעה כעת, פחות או יותר, \n// באמצעות הפעלת השורה הבאה.\n\nnext = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {
@@ -960,15 +960,15 @@
     "description": ""
   },
   "_BusinessHoursCode": {
-    "message": "// Defaults / ברירות מחדל\\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\\nvar workStart = [8, 30]; // Start of the work day as [H, M]\\nvar workEnd = [17, 30]; // End of the work day as [H, M]\\nif (args &amp;&amp; args[0])\\n    workDays = args[0];\\nif (args &amp;&amp; args[1])\\n    workStart = args[1];\\nif (args &amp;&amp; args[2])\\n    workEnd = args[2];\\nif (prev)\\n    // לא אמור להיות בשימוש רגיל, אך משמש כזמן הנוכחי לצורך בדיקה.\\n    next = new Date(prev);\\nelse\\n    next = new Date();\\n// במידה ועברנו את סוף יום העבודה או אם זהו אינו יום עבודה, עבור \\n// לשעת התחלת העבודה של היום הבא.\\nwhile ((next.getHours() &gt; workEnd[0]) ||\\n       (next.getHours() == workEnd[0] &amp;&amp; next.getMinutes() &gt; workEnd[1]) ||\\n       (workDays.indexOf(next.getDay()) == -1)) {\\n    next.setDate(next.getDate() + 1);\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}\\n// במידה והזמן הנוכחי הינו לפני תחילת יום העבודה, שנה לזמן ההתחלה.\\nif ((next.getHours() &lt; workStart[0]) ||\\n    (next.getHours() == workStart[0] &amp;&amp; next.getMinutes() &lt; workStart[1])) {\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}",
+    "message": "// Defaults / ברירות מחדל\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Start of the work day as [H, M]\nvar workEnd = [17, 30]; // End of the work day as [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // לא אמור להיות בשימוש רגיל, אך משמש כזמן הנוכחי לצורך בדיקה.\n    next = new Date(prev);\nelse\n    next = new Date();\n// במידה ועברנו את סוף יום העבודה או אם זהו אינו יום עבודה, עבור \n// לשעת התחלת העבודה של היום הבא.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// במידה והזמן הנוכחי הינו לפני תחילת יום העבודה, שנה לזמן ההתחלה.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "שלח את ההודעה כעת אם הזמן הנוכחי הינו במהלך שעות העבודה, או בתחילת יום העבודה הבא. תוכל לשנות את הגדרת ימי העבודה (ברירת מחדל: שני עד שישי) על ידי העברת מערך של מספרי ימי עבודה כארגומנט הראשון, כאשר 0 הינו יום ראשון ו-6 הינו יום שבת. תוכל לשנות את זמן ההתחלה או הסיום של יום העבודה (ברירת מחדל: 8:30 - 17:30) על ידי העברת מערכת מסוג [H, M] כארגומנט השני או השלישי, ולציין &quot;null&quot; עבור ארגומנטים קודמים שאינך משנה. לדוגמה, &quot;null, [9,0], [17,0]&quot; משנה את שעות העבודה מבלי לשנות את ימי העבודה.",
+    "message": "שלח את ההודעה כעת אם הזמן הנוכחי הינו במהלך שעות העבודה, או בתחילת יום העבודה הבא. תוכל לשנות את הגדרת ימי העבודה (ברירת מחדל: שני עד שישי) על ידי העברת מערך של מספרי ימי עבודה כארגומנט הראשון, כאשר 0 הינו יום ראשון ו-6 הינו יום שבת. תוכל לשנות את זמן ההתחלה או הסיום של יום העבודה (ברירת מחדל: 8:30 - 17:30) על ידי העברת מערכת מסוג [H, M] כארגומנט השני או השלישי, ולציין \"null\" עבור ארגומנטים קודמים שאינך משנה. לדוגמה, \"null, [9,0], [17,0]\" משנה את שעות העבודה מבלי לשנות את ימי העבודה.",
     "description": ""
   },
   "DaysInARowCode": {
-    "message": "// JavaScript really wants to be left-to-right, so let&#x27;s start this\\n// file with English.\\n//\\n// שלח את ההודעה הראשונה כעת, ואת ההודעות הבאות פעם ביום.\\nif (! prev)\\n    next = new Date();\\nelse {\\n    var now = new Date();\\n    next = new Date(prev); // Copy date argument so we don&#x27;t modify it.\\n    do {\\n        next.setDate(next.getDate() + 1);\\n    } while (next &lt; now);\\n    // ^^^ אל תנסה לשלוח בתאריך שעבר, במידה ו-Thunderbird לא היה פעיל\\n    // בזמן שנקבע.\\n}\\nif (! args) // כברירת מחדל, שלח הודעות שלוש פעמים.\\n    args = [3];\\nnextargs = [args[0] - 1];\\n// חזור במידה ועדיין לא בוצעו מספיק שליחות.\\nif (nextargs[0] &gt; 0)\\n    nextspec = &quot;function &quot; + specname;",
+    "message": "// JavaScript really wants to be left-to-right, so let's start this\n// file with English.\n//\n// שלח את ההודעה הראשונה כעת, ואת ההודעות הבאות פעם ביום.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ אל תנסה לשלוח בתאריך שעבר, במידה ו-Thunderbird לא היה פעיל\n    // בזמן שנקבע.\n}\nif (! args) // כברירת מחדל, שלח הודעות שלוש פעמים.\n    args = [3];\nnextargs = [args[0] - 1];\n// חזור במידה ועדיין לא בוצעו מספיק שליחות.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
     "description": ""
   },
   "DaysInARowHelp": {
@@ -988,7 +988,7 @@
     "description": ""
   },
   "UntestedSaveBody": {
-    "message": "הפונקציה לא נבדקה (בלחיצה על &quot;Execute&quot;) מאז הפעם האחרונה בה היא נשמרה. האם אתה בטוח שברצונך לשמור או לייצא אותה?",
+    "message": "הפונקציה לא נבדקה (בלחיצה על \"Execute\") מאז הפעם האחרונה בה היא נשמרה. האם אתה בטוח שברצונך לשמור או לייצא אותה?",
     "description": ""
   },
   "BadSaveTitle": {
@@ -1008,7 +1008,7 @@
     "description": ""
   },
   "NoNextValueError": {
-    "message": "הפונקציה לא קבעה ערך &quot;next&quot;.",
+    "message": "הפונקציה לא קבעה ערך \"next\".",
     "description": ""
   },
   "BadNextValueError": {

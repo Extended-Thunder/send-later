@@ -16,7 +16,7 @@
     "description": ""
   },
   "blockLateMessagesPrefLabel1": {
-    "message": "Don&#x27;t deliver messages more than",
+    "message": "Don't deliver messages more than",
     "description": ""
   },
   "blockLateMessagesPrefLabel2": {
@@ -336,7 +336,7 @@
     "description": ""
   },
   "checktimepref.tooltip": {
-    "message": "Interval, in minutes, between checks for drafts whose delivery time has arrived. Increase this value if your drafts sometimes aren&#x27;t sent on time or the pending message count in your status bar sometimes doesn&#x27;t reflect all scheduled drafts.",
+    "message": "Interval, in minutes, between checks for drafts whose delivery time has arrived. Increase this value if your drafts sometimes aren't sent on time or the pending message count in your status bar sometimes doesn't reflect all scheduled drafts.",
     "description": ""
   },
   "quickoptionname.label": {
@@ -400,7 +400,7 @@
     "description": ""
   },
   "blocklatemessages.tooltip": {
-    "message": "Don&#x27;t deliver scheduled messages that have been delayed past their scheduled time, e.g., because Thunderbird wasn&#x27;t running at that time.",
+    "message": "Don't deliver scheduled messages that have been delayed past their scheduled time, e.g., because Thunderbird wasn't running at that time.",
     "description": ""
   },
   "editorbutton": {
@@ -952,11 +952,11 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "The message with subject “$1” in Drafts folder $2 was scheduled to be delivered more than $3 minutes ago, so delivery has been blocked. You should edit the draft and either send it by hand or reschedule it. You can also disable the “Don&#x27;t deliver messages more than # minutes late” preference to stop blocking delivery of late messages.",
+    "message": "The message with subject “$1” in Drafts folder $2 was scheduled to be delivered more than $3 minutes ago, so delivery has been blocked. You should edit the draft and either send it by hand or reschedule it. You can also disable the “Don't deliver messages more than # minutes late” preference to stop blocking delivery of late messages.",
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// Welcome to the Send Later function editor!\\n//\\n// The editor allows you to create JavaScript functions implementing complex\\n// message scheduling logic which can be associated with shortcut buttons or\\n// selected in the Send Later dialog.\\n//\\n// As you can see above, when a scheduling function is called, it will be given\\n// three arguments:\\n// * &quot;specname&quot; is needed if you want this function to recur (see below)\\n// * &quot;prev&quot; is the previous scheduled send time, if this is a recurring\\n//   invocation\\n// * &quot;args&quot; is the extra arguments returned by the previous invocation if this\\n//   is a recurring invocation\\n//\\n// Your code needs to set the variables &quot;next&quot;, &quot;nextspec&quot;, and\\n// &quot;nextargs&quot; as follows:\\n//\\n// * &quot;next&quot; is either the number of minutes in the future or a Date object\\n//   indicating when the message should be sent.\\n// * &quot;nextspec&quot; is a recurrence specification if this is intended to be a\\n//   recurring message (see\\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). If you don&#x27;t set\\n//   this, then the message will only be sent once. Note: if you want your\\n//   function to be called again for recurrence, do:\\n//     nextspec = &quot;function &quot; + specname;\\n// * &quot;nextargs&quot; is an array of arguments you want to be passed into the next\\n//   invocation of the function as &quot;args&quot;.\\n//\\n// While you are working on your function, you can test it by filling in values\\n// for &quot;prev&quot; and &quot;args&quot; in the Text boxes below and then clicking &quot;Execute&quot; to\\n// execute the function and see the results.\\n//\\n// There are two pre-configured sample functions, &quot;BusinessHours&quot; and\\n// &quot;DaysInARow&quot;, which you can look at and play with to learn more.\\n//\\n// This &quot;ReadMeFirst&quot; function just causes the message to be sent around now,\\n// via the following line.\\nnext = new Date();",
+    "message": "// Welcome to the Send Later function editor!\n//\n// The editor allows you to create JavaScript functions implementing complex\n// message scheduling logic which can be associated with shortcut buttons or\n// selected in the Send Later dialog.\n//\n// As you can see above, when a scheduling function is called, it will be given\n// three arguments:\n// * \"specname\" is needed if you want this function to recur (see below)\n// * \"prev\" is the previous scheduled send time, if this is a recurring\n//   invocation\n// * \"args\" is the extra arguments returned by the previous invocation if this\n//   is a recurring invocation\n//\n// Your code needs to set the variables \"next\", \"nextspec\", and\n// \"nextargs\" as follows:\n//\n// * \"next\" is either the number of minutes in the future or a Date object\n//   indicating when the message should be sent.\n// * \"nextspec\" is a recurrence specification if this is intended to be a\n//   recurring message (see\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). If you don't set\n//   this, then the message will only be sent once. Note: if you want your\n//   function to be called again for recurrence, do:\n//     nextspec = \"function \" + specname;\n// * \"nextargs\" is an array of arguments you want to be passed into the next\n//   invocation of the function as \"args\".\n//\n// While you are working on your function, you can test it by filling in values\n// for \"prev\" and \"args\" in the Text boxes below and then clicking \"Execute\" to\n// execute the function and see the results.\n//\n// There are two pre-configured sample functions, \"BusinessHours\" and\n// \"DaysInARow\", which you can look at and play with to learn more.\n//\n// This \"ReadMeFirst\" function just causes the message to be sent around now,\n// via the following line.\nnext = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {
@@ -964,15 +964,15 @@
     "description": ""
   },
   "_BusinessHoursCode": {
-    "message": "// Defaults\\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\\nvar workStart = [8, 30]; // Start of the work day as [H, M]\\nvar workEnd = [17, 30]; // End of the work day as [H, M]\\nif (args &amp;&amp; args[0])\\n    workDays = args[0];\\nif (args &amp;&amp; args[1])\\n    workStart = args[1];\\nif (args &amp;&amp; args[2])\\n    workEnd = args[2];\\nif (prev)\\n    // Not expected in normal usage, but used as the current time for testing.\\n    next = new Date(prev);\\nelse\\n    next = new Date();\\n// If we&#x27;re past the end of the workday or not on a workday, move to the work\\n// start time on the next day.\\nwhile ((next.getHours() &gt; workEnd[0]) ||\\n       (next.getHours() == workEnd[0] &amp;&amp; next.getMinutes() &gt; workEnd[1]) ||\\n       (workDays.indexOf(next.getDay()) == -1)) {\\n    next.setDate(next.getDate() + 1);\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}\\n// If we&#x27;re before the beginning of the workday, move to its start time.\\nif ((next.getHours() &lt; workStart[0]) ||\\n    (next.getHours() == workStart[0] &amp;&amp; next.getMinutes() &lt; workStart[1])) {\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}",
+    "message": "// Defaults\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Start of the work day as [H, M]\nvar workEnd = [17, 30]; // End of the work day as [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Not expected in normal usage, but used as the current time for testing.\n    next = new Date(prev);\nelse\n    next = new Date();\n// If we're past the end of the workday or not on a workday, move to the work\n// start time on the next day.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// If we're before the beginning of the workday, move to its start time.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "Send the message now if it is during business hours, or at the beginning of the next work day. You can change the definition of work days (default: Mon - Fri) by passing in an array of work-day numbers as the first argument, where 0 is Sunday and 6 is Saturday. You can change the work start or end time (default: 8:30 - 17:30) by passing in an array of [H, M] as the second or third argument. Specify “null” for earlier arguments you don&#x27;t change. For example, “null, [9, 0], [17, 0]” changes the work hours without changing the work days.",
+    "message": "Send the message now if it is during business hours, or at the beginning of the next work day. You can change the definition of work days (default: Mon - Fri) by passing in an array of work-day numbers as the first argument, where 0 is Sunday and 6 is Saturday. You can change the work start or end time (default: 8:30 - 17:30) by passing in an array of [H, M] as the second or third argument. Specify “null” for earlier arguments you don't change. For example, “null, [9, 0], [17, 0]” changes the work hours without changing the work days.",
     "description": ""
   },
   "DaysInARowCode": {
-    "message": "// Send the first message now, subsequent messages once per day.\\nif (! prev)\\n    next = new Date();\\nelse {\\n    var now = new Date();\\n    next = new Date(prev); // Copy date argument so we don&#x27;t modify it.\\n    do {\\n        next.setDate(next.getDate() + 1);\\n    } while (next &lt; now);\\n    // ^^^ Don&#x27;t try to send in the past, in case Thunderbird was asleep at\\n    // the scheduled send time.\\n}\\nif (! args) // Send messages three times by default.\\n    args = [3];\\nnextargs = [args[0] - 1];\\n// Recur if we haven&#x27;t done enough sends yet.\\nif (nextargs[0] &gt; 0)\\n    nextspec = &quot;function &quot; + specname;",
+    "message": "// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
     "description": ""
   },
   "DaysInARowHelp": {

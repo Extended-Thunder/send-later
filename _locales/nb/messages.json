@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "Sann &quot;Send senere&quot; -funksjonalitet for å planlegge tiden for å sende en e-post.",
+    "message": "Sann \"Send senere\" -funksjonalitet for å planlegge tiden for å sende en e-post.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -160,7 +160,7 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&amp;quot;Send&amp;quot; betyr &amp;quot;Send senere&amp;quot;",
+    "message": "&quot;Send&quot; betyr &quot;Send senere&quot;",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -268,7 +268,7 @@
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
-    "message": "f. eks.: &amp;quot;15:00 torsdag&amp;quot; &amp;quot;31/12/2012 15:27&amp;quot;",
+    "message": "f. eks.: &quot;15:00 torsdag&quot; &quot;31/12/2012 15:27&quot;",
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
@@ -360,7 +360,7 @@
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
-    "message": "Er dette alternativet blir aktivert, fungerer kommandoen &amp;quot;Send&amp;quot; (Enten knappen eller å trykke Ctrl-Enter) på samme måte som &amp;quot;Send senere&amp;quot;.",
+    "message": "Er dette alternativet blir aktivert, fungerer kommandoen &quot;Send&quot; (Enten knappen eller å trykke Ctrl-Enter) på samme måte som &quot;Send senere&quot;.",
     "description": ""
   },
   "senddelay.tooltip": {
@@ -472,7 +472,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "Velg en funksjon for å redigere eller slette, eller &amp;quot;(create new function)&amp;quot; for å opprette en ny funksjon.",
+    "message": "Velg en funksjon for å redigere eller slette, eller &quot;(create new function)&quot; for å opprette en ny funksjon.",
     "description": ""
   },
   "createnewfunction": {
@@ -496,7 +496,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "Skriv inn kildekoden til funksjonen din her. Se &amp;quot;ReadMeFirst&amp;quot;-utvalgsfunksjonen for detaljer om hva koden burde gjøre.",
+    "message": "Skriv inn kildekoden til funksjonen din her. Se &quot;ReadMeFirst&quot;-utvalgsfunksjonen for detaljer om hva koden burde gjøre.",
     "description": ""
   },
   "codeplaceholder": {
@@ -612,7 +612,7 @@
     "description": ""
   },
   "sendwithfunction": {
-    "message": "Send ifølge funksjonen &quot;$1&quot;",
+    "message": "Send ifølge funksjonen \"$1\"",
     "description": ""
   },
   "sendspecifyfunction": {
@@ -672,7 +672,7 @@
     "description": ""
   },
   "OptionShortcutAlertText": {
-    "message": "Snarvei $1 har ugyldig verdi &quot;$2&quot;",
+    "message": "Snarvei $1 har ugyldig verdi \"$2\"",
     "description": ""
   },
   "SendingUnsentError": {
@@ -888,11 +888,11 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "Å klikke på &quot;Plasser i utboksen&quot; legger meldingen i utboksen umiddelbart. Den VIL IKKE sette meldingen til å bli sendt på et bestemt tidspunkt. For det, velger du knappen &quot;Send rundt&quot; i den grønne boksen etter å ha skrevet inn et gyldig sendingstidspunkt. Er du sikker på at du vil plassere meldingen i utboksen nå?",
+    "message": "Å klikke på \"Plasser i utboksen\" legger meldingen i utboksen umiddelbart. Den VIL IKKE sette meldingen til å bli sendt på et bestemt tidspunkt. For det, velger du knappen \"Send rundt\" i den grønne boksen etter å ha skrevet inn et gyldig sendingstidspunkt. Er du sikker på at du vil plassere meldingen i utboksen nå?",
     "description": ""
   },
   "SendNowConfirmMessage": {
-    "message": "Å klikke på &quot;Send nå&quot; sender meldingen umiddelbart. Den VIL IKKE sette meldingen til å bli sendt på et bestemt tidspunkt. For det, velger du knappen &quot;Send rundt&quot; i den grønne boksen etter å ha skrevet inn et gyldig sendingstidspunkt. Er du sikker på at du vil sende meldingen nå?",
+    "message": "Å klikke på \"Send nå\" sender meldingen umiddelbart. Den VIL IKKE sette meldingen til å bli sendt på et bestemt tidspunkt. For det, velger du knappen \"Send rundt\" i den grønne boksen etter å ha skrevet inn et gyldig sendingstidspunkt. Er du sikker på at du vil sende meldingen nå?",
     "description": ""
   },
   "ConfirmAgain": {
@@ -952,11 +952,11 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "Meldingen med emne &quot;$1&quot; i Utkast-mappen $2 ble planlagt å bli levert mer enn $3 minutter siden, slik at leveringen er blokkert. Du bør redigere utkastet og enten sende det for hånd eller omordne det. Du kan også deaktivere &quot;Ikke lever meldinger mer enn # minutter for sent&quot; for å stoppe blokkering av levering av sente meldinger.",
+    "message": "Meldingen med emne \"$1\" i Utkast-mappen $2 ble planlagt å bli levert mer enn $3 minutter siden, slik at leveringen er blokkert. Du bør redigere utkastet og enten sende det for hånd eller omordne det. Du kan også deaktivere \"Ikke lever meldinger mer enn # minutter for sent\" for å stoppe blokkering av levering av sente meldinger.",
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "Velkommen til funksjon redigeringsprogrammet Send senere!\\n/ /\\n/ / Editor lar deg lage JavaScript-funksjoner implementere komplekse\\n/ / melding planlegging logikk som kan knyttes til snarveien tastene eller\\n/ / valgt i dialogboksen Send senere.\\n/ /\\n/ / Som du kan se ovenfor, når en planlegging funksjonen kalles det får\\n/ / tre argumenter:\\n/ / * &quot;specname&quot; kreves hvis du vil at denne funksjonen skal gjentas (se nedenfor)\\n/ / * &quot;forrige&quot; er den forrige Planlagt sendetidspunkt, hvis dette er en gjentakende\\n/ / aktivering\\n/ / * &quot;argumenter&quot; er ekstra argumentene returneres av tidligere anrop Hvis denne\\n/ / er en regelmessig anrop\\n/ /\\n/ / Koden må angi variablene &quot;neste&quot;, &quot; nextspec&quot;, og\\n/ /&quot;nextargs&quot;som følger:\\n/ /\\n/ / *&quot;neste&quot;er antall minutter i fremtiden eller en dato objekt\\n/ / som angir når meldingen skal sendes.\\n/ / * &quot;nextspec&quot; er en gjentakelse spesifikasjon Hvis dette er ment å være\\n/ / regelmessig melding (se\\n/ / https://blog.kamens.us/send-later/#dynamic-recurrence). Hvis du ikke angir\\n/ / dette, så meldingen sendes bare én gang. Merk: Hvis du ønsker din\\n/ / funksjonen kalles igjen for regelmessighet gjør:\\n/ / nextspec = &quot;funksjon&quot; + specname;\\n/ / * &quot;nextargs&quot; er en matrise av argumentene som skal sendes til de neste\\n/ / aktivering av funksjonen som &quot;argumenter&quot;.\\n/ /\\n/ / Mens du arbeider med funksjonen, kan du teste den ved å fylle ut verdiene\\n/ / for &quot;forrige&quot; og &quot;argumenter&quot; i tekstboksene nedenfor og deretter klikke &quot; Kjøre&quot;\\n/ / utfører funksjonen og se resultatene.\\n/ /\\n/ / Er det to pre-konfigurerte utvalgsfunksjoner, &quot;BusinessHours&quot; og\\n/ / &quot;DaysInARow&quot;, som du kan se på og spille med å lære mer.\\n/ /\\n/ / Denne &quot;ReadMeFirst&quot;-funksjonen bare forårsaker meldingen sendes rundt nå,\\n/ / via følgende linje.\\n= neste nye Date();",
+    "message": "Velkommen til funksjon redigeringsprogrammet Send senere!\n/ /\n/ / Editor lar deg lage JavaScript-funksjoner implementere komplekse\n/ / melding planlegging logikk som kan knyttes til snarveien tastene eller\n/ / valgt i dialogboksen Send senere.\n/ /\n/ / Som du kan se ovenfor, når en planlegging funksjonen kalles det får\n/ / tre argumenter:\n/ / * \"specname\" kreves hvis du vil at denne funksjonen skal gjentas (se nedenfor)\n/ / * \"forrige\" er den forrige Planlagt sendetidspunkt, hvis dette er en gjentakende\n/ / aktivering\n/ / * \"argumenter\" er ekstra argumentene returneres av tidligere anrop Hvis denne\n/ / er en regelmessig anrop\n/ /\n/ / Koden må angi variablene \"neste\", \" nextspec\", og\n/ /\"nextargs\"som følger:\n/ /\n/ / *\"neste\"er antall minutter i fremtiden eller en dato objekt\n/ / som angir når meldingen skal sendes.\n/ / * \"nextspec\" er en gjentakelse spesifikasjon Hvis dette er ment å være\n/ / regelmessig melding (se\n/ / https://blog.kamens.us/send-later/#dynamic-recurrence). Hvis du ikke angir\n/ / dette, så meldingen sendes bare én gang. Merk: Hvis du ønsker din\n/ / funksjonen kalles igjen for regelmessighet gjør:\n/ / nextspec = \"funksjon\" + specname;\n/ / * \"nextargs\" er en matrise av argumentene som skal sendes til de neste\n/ / aktivering av funksjonen som \"argumenter\".\n/ /\n/ / Mens du arbeider med funksjonen, kan du teste den ved å fylle ut verdiene\n/ / for \"forrige\" og \"argumenter\" i tekstboksene nedenfor og deretter klikke \" Kjøre\"\n/ / utfører funksjonen og se resultatene.\n/ /\n/ / Er det to pre-konfigurerte utvalgsfunksjoner, \"BusinessHours\" og\n/ / \"DaysInARow\", som du kan se på og spille med å lære mer.\n/ /\n/ / Denne \"ReadMeFirst\"-funksjonen bare forårsaker meldingen sendes rundt nå,\n/ / via følgende linje.\n= neste nye Date();",
     "description": ""
   },
   "EditorReadMeHelp": {
@@ -964,15 +964,15 @@
     "description": ""
   },
   "_BusinessHoursCode": {
-    "message": "// Defaults\\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\\nvar workStart = [8, 30]; // Start of the work day as [H, M]\\nvar workEnd = [17, 30]; // End of the work day as [H, M]\\nif (args &amp;&amp; args[0])\\n    workDays = args[0];\\nif (args &amp;&amp; args[1])\\n    workStart = args[1];\\nif (args &amp;&amp; args[2])\\n    workEnd = args[2];\\nif (prev)\\n    // Not expected in normal usage, but used as the current time for testing.\\n    next = new Date(prev);\\nelse\\n    next = new Date();\\n// If we&#x27;re past the end of the workday or not on a workday, move to the work\\n// start time on the next day.\\nwhile ((next.getHours() &gt; workEnd[0]) ||\\n       (next.getHours() == workEnd[0] &amp;&amp; next.getMinutes() &gt; workEnd[1]) ||\\n       (workDays.indexOf(next.getDay()) == -1)) {\\n    next.setDate(next.getDate() + 1);\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}\\n// If we&#x27;re before the beginning of the workday, move to its start time.\\nif ((next.getHours() &lt; workStart[0]) ||\\n    (next.getHours() == workStart[0] &amp;&amp; next.getMinutes() &lt; workStart[1])) {\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}",
+    "message": "// Defaults\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Start of the work day as [H, M]\nvar workEnd = [17, 30]; // End of the work day as [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Not expected in normal usage, but used as the current time for testing.\n    next = new Date(prev);\nelse\n    next = new Date();\n// If we're past the end of the workday or not on a workday, move to the work\n// start time on the next day.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// If we're before the beginning of the workday, move to its start time.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "Send meldingen nå hvis den er i driftstid eller i begynnelsen av neste arbeidsdag. Du kan endre definisjonen av arbeidsdager (standard: Man - Fre) ved å sende inn en rekke arbeidsdagnumre som det første argumentet, hvor 0 er søndag og 6 er lørdag. Du kan endre arbeidsstart eller sluttid (standard: 8:30 - 17:30) ved å sende inn en rekke [H, M] som det andre eller tredje argumentet. Angi &quot;null&quot; for tidligere argumenter du ikke endrer. For eksempel endrer &quot;null, [9, 0], [17, 0]&quot; arbeidstiden uten å endre arbeidsdager.",
+    "message": "Send meldingen nå hvis den er i driftstid eller i begynnelsen av neste arbeidsdag. Du kan endre definisjonen av arbeidsdager (standard: Man - Fre) ved å sende inn en rekke arbeidsdagnumre som det første argumentet, hvor 0 er søndag og 6 er lørdag. Du kan endre arbeidsstart eller sluttid (standard: 8:30 - 17:30) ved å sende inn en rekke [H, M] som det andre eller tredje argumentet. Angi \"null\" for tidligere argumenter du ikke endrer. For eksempel endrer \"null, [9, 0], [17, 0]\" arbeidstiden uten å endre arbeidsdager.",
     "description": ""
   },
   "DaysInARowCode": {
-    "message": "// Send the first message now, subsequent messages once per day.\\nif (! prev)\\n    next = new Date();\\nelse {\\n    var now = new Date();\\n    next = new Date(prev); // Copy date argument so we don&#x27;t modify it.\\n    do {\\n        next.setDate(next.getDate() + 1);\\n    } while (next &lt; now);\\n    // ^^^ Don&#x27;t try to send in the past, in case Thunderbird was asleep at\\n    // the scheduled send time.\\n}\\nif (! args) // Send messages three times by default.\\n    args = [3];\\nnextargs = [args[0] - 1];\\n// Recur if we haven&#x27;t done enough sends yet.\\nif (nextargs[0] &gt; 0)\\n    nextspec = &quot;function &quot; + specname;",
+    "message": "// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
     "description": ""
   },
   "DaysInARowHelp": {
@@ -992,7 +992,7 @@
     "description": ""
   },
   "UntestedSaveBody": {
-    "message": "Funksjonen er ikke testet (med &quot;Utfør&quot; -knappen) siden den sist ble endret. Er du sikker på at du vil lagre eller eksportere den?",
+    "message": "Funksjonen er ikke testet (med \"Utfør\" -knappen) siden den sist ble endret. Er du sikker på at du vil lagre eller eksportere den?",
     "description": ""
   },
   "BadSaveTitle": {
@@ -1012,15 +1012,15 @@
     "description": ""
   },
   "NoNextValueError": {
-    "message": "Funksjonen angav ikke en &quot;neste&quot; verdi.",
+    "message": "Funksjonen angav ikke en \"neste\" verdi.",
     "description": ""
   },
   "BadNextValueError": {
-    "message": "&quot;Neste&quot; verdi &quot;$1&quot; er ikke et tall eller en dato",
+    "message": "\"Neste\" verdi \"$1\" er ikke et tall eller en dato",
     "description": ""
   },
   "BadNextArgsError": {
-    "message": "&quot;Nextargs&quot; -verdien &quot;$1&quot; er ikke et array",
+    "message": "\"Nextargs\" -verdien \"$1\" er ikke et array",
     "description": ""
   },
   "FunctionDeleteConfirmBody": {
@@ -1048,7 +1048,7 @@
     "description": ""
   },
   "RenameFunctionBody": {
-    "message": "Du har endret navnet på en eksisterende funksjon, &quot;% 1 $ S&quot;. Vil du omdøpe den eksisterende funksjonen eller lagre en egen funksjon med det nye navnet?",
+    "message": "Du har endret navnet på en eksisterende funksjon, \"% 1 $ S\". Vil du omdøpe den eksisterende funksjonen eller lagre en egen funksjon med det nye navnet?",
     "description": ""
   },
   "RenameFunctionRenameButton": {
@@ -1064,7 +1064,7 @@
     "description": ""
   },
   "FunctionErrorBody": {
-    "message": "Feil ved å aktivere dynamisk planleggingsfunksjon: &quot;% 1 $ S&quot;",
+    "message": "Feil ved å aktivere dynamisk planleggingsfunksjon: \"% 1 $ S\"",
     "description": ""
   },
   "cancel_on_reply": {

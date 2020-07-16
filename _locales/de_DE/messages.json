@@ -164,7 +164,7 @@
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&amp;quot;Senden&amp;quot; verzögert den Nachrichtenversand um",
+    "message": "&quot;Senden&quot; verzögert den Nachrichtenversand um",
     "description": ""
   },
   "sendDelayPrefLabel2": {
@@ -248,7 +248,7 @@
     "description": ""
   },
   "sendlater.prompt.sendnow.tooltip": {
-    "message": "Die Nachricht sofort statt mit &amp;quot;Später Senden&amp;quot; senden.",
+    "message": "Die Nachricht sofort statt mit &quot;Später Senden&quot; senden.",
     "description": ""
   },
   "sendlater.prompt.close.accesskey": {
@@ -356,7 +356,7 @@
     "description": ""
   },
   "showsendlaterunsentmessages.tooltip": {
-    "message": "Wird diese Option deaktiviert, wird „Später Senden” die Nachrichten nicht im vollen Umfang senden. Stattdessen werden sie für die geplante Zustellung in den Postausgang verschoben. Diese Option deaktivieren, wenn ein anderes Add-on, wie z.B. BlunderDelay verwendet wird, um regelmäßig Nachrichten aus dem Postausgang zu versenden.\\nAnmerkung: Wenn diese Option aktiviert wird, werden von „Später Senden”, immer wenn es eine Nachricht senden soll, ALLE Nachrichten im Postausgang versendet.",
+    "message": "Wird diese Option deaktiviert, wird „Später Senden” die Nachrichten nicht im vollen Umfang senden. Stattdessen werden sie für die geplante Zustellung in den Postausgang verschoben. Diese Option deaktivieren, wenn ein anderes Add-on, wie z.B. BlunderDelay verwendet wird, um regelmäßig Nachrichten aus dem Postausgang zu versenden.\nAnmerkung: Wenn diese Option aktiviert wird, werden von „Später Senden”, immer wenn es eine Nachricht senden soll, ALLE Nachrichten im Postausgang versendet.",
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
@@ -364,7 +364,7 @@
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "Wenn diese Option aktiviert ist, wird der Versand aller Nachrichten, die mit dem &amp;quot;Senden&amp;quot;-Befehl gesendet werden (mit der Schaltfläche oder mittels CRTL-Enter), als Später Senden um die angegebene Anzahl Minuten verzögert geplant.",
+    "message": "Wenn diese Option aktiviert ist, wird der Versand aller Nachrichten, die mit dem &quot;Senden&quot;-Befehl gesendet werden (mit der Schaltfläche oder mittels CRTL-Enter), als Später Senden um die angegebene Anzahl Minuten verzögert geplant.",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {
@@ -956,7 +956,7 @@
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// Herzlich Willkommen Sie auf der Später Senden-Funktion-Editor!\\n// \\n// Der Editor können Sie JavaScript-Funktionen implementieren komplexe\\n// erstellen message Disposition Logik die Shortcut-Tasten zugeordnet\\n// werden kann oder ausgewählte im Dialogfeld &quot;Später Senden&quot;.\\n// \\n// Wie Sie oben sehen können wenn eine scheduling-Funktion aufgerufen\\n// wird, erhält es drei Argumente:\\n// \\n// * &quot;specname&quot; wird benötigt, wenn Sie diese Funktion wieder\\n//   auftreten (siehe unten) soll\\n// \\n// * &quot;prev&quot; ist die vorherige geplant Sendezeit, ist dies ein sich\\n//   wiederholendes Aufruf\\n// \\n// * &quot;args&quot; ist die zusätzlichen Argumente von der vorherigen Aufruf\\n//   zurückgegeben, wenn diese ist eine wiederkehrende Invocation\\n// \\n// der Code muss die Variablen &quot;next&quot;, &quot;xextspec&quot;, und &quot;nextargs&quot;\\n// wie folgt:\\n//\\n// * &quot;next&quot; ist entweder die Anzahl der Minuten in der Zukunft oder\\n//   ein Date-Objekt angibt, wann die Nachricht gesendet werden soll.\\n// \\n// * &quot;nextspec&quot; ist eine Wiederholung-Spezifikation, wenn dies\\n//   beabsichtigt ist, ein wiederkehrende Nachricht (siehe\\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). Wenn Sie\\n//   nicht dies, dann die Nachricht wird nur einmal gesendet\\n//   werden. Hinweis: Wenn Sie wollen Ihre Funktion aufgerufen werden\\n//   für Wiederholung, wiederholen:\\n//   \\n//   nextspec = &quot;function &quot; + specname;\\n//   \\n// * &quot;nextargs&quot; ist ein Array von Argumenten, die an die nächste\\n//   übergeben werden soll Aufruf der Funktion als &quot;Args&quot;.\\n//   \\n// Während Sie auf Ihre Funktion arbeiten, können Sie es testen, indem\\n// Werte ausfüllen für &quot;Prev&quot; und &quot;Args&quot; in den Textfeldern unten und\\n// klicken Sie dann auf &quot;Ausführen&quot; die Funktion ausführen und die\\n// Ergebnisse zu sehen.\\n// \\n// Gibt es zwei vorkonfigurierte Beispielfunktionen, &quot;BusinessHours&quot;\\n// und &quot;DaysInARow&quot;, die Sie betrachten und spielen Sie mit um mehr zu\\n// erfahren.  Diese Funktion &quot;ReadMeFirst&quot; verursacht nur die\\n// Nachricht jetzt, um gesendet werden über die folgende Zeile.\\n\\nnext = new Date();",
+    "message": "// Herzlich Willkommen Sie auf der Später Senden-Funktion-Editor!\n// \n// Der Editor können Sie JavaScript-Funktionen implementieren komplexe\n// erstellen message Disposition Logik die Shortcut-Tasten zugeordnet\n// werden kann oder ausgewählte im Dialogfeld \"Später Senden\".\n// \n// Wie Sie oben sehen können wenn eine scheduling-Funktion aufgerufen\n// wird, erhält es drei Argumente:\n// \n// * \"specname\" wird benötigt, wenn Sie diese Funktion wieder\n//   auftreten (siehe unten) soll\n// \n// * \"prev\" ist die vorherige geplant Sendezeit, ist dies ein sich\n//   wiederholendes Aufruf\n// \n// * \"args\" ist die zusätzlichen Argumente von der vorherigen Aufruf\n//   zurückgegeben, wenn diese ist eine wiederkehrende Invocation\n// \n// der Code muss die Variablen \"next\", \"xextspec\", und \"nextargs\"\n// wie folgt:\n//\n// * \"next\" ist entweder die Anzahl der Minuten in der Zukunft oder\n//   ein Date-Objekt angibt, wann die Nachricht gesendet werden soll.\n// \n// * \"nextspec\" ist eine Wiederholung-Spezifikation, wenn dies\n//   beabsichtigt ist, ein wiederkehrende Nachricht (siehe\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). Wenn Sie\n//   nicht dies, dann die Nachricht wird nur einmal gesendet\n//   werden. Hinweis: Wenn Sie wollen Ihre Funktion aufgerufen werden\n//   für Wiederholung, wiederholen:\n//   \n//   nextspec = \"function \" + specname;\n//   \n// * \"nextargs\" ist ein Array von Argumenten, die an die nächste\n//   übergeben werden soll Aufruf der Funktion als \"Args\".\n//   \n// Während Sie auf Ihre Funktion arbeiten, können Sie es testen, indem\n// Werte ausfüllen für \"Prev\" und \"Args\" in den Textfeldern unten und\n// klicken Sie dann auf \"Ausführen\" die Funktion ausführen und die\n// Ergebnisse zu sehen.\n// \n// Gibt es zwei vorkonfigurierte Beispielfunktionen, \"BusinessHours\"\n// und \"DaysInARow\", die Sie betrachten und spielen Sie mit um mehr zu\n// erfahren.  Diese Funktion \"ReadMeFirst\" verursacht nur die\n// Nachricht jetzt, um gesendet werden über die folgende Zeile.\n\nnext = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {
@@ -964,7 +964,7 @@
     "description": ""
   },
   "_BusinessHoursCode": {
-    "message": "// Defaults\\nvar workDays = [1, 2, 3, 4, 5]; // Mo – Fr; Sun == 0, Sat == 6\\nvar workStart = [8, 30]; // Arbeitsbeginn um [H, M]\\nvar workEnd = [17, 30]; // Feierabend um [H, M]\\nif (args &amp;&amp; args[0])\\n    workDays = args[0];\\nif (args &amp;&amp; args[1])\\n    workStart = args[1];\\nif (args &amp;&amp; args[2])\\n    workEnd = args[2];\\nif (prev)\\n    // Für den normalen Gebrauch nicht notwendig, aber benutzt als aktuelle Zeit zum Testen.\\n    next = new Date(prev);\\nelse\\n    next = new Date();\\n// Falls wir nach Feierabend haben oder kein Werktag ist, auf den Arbeitsbeginn\\n// am nächsten Tag setzen.\\nwhile ((next.getHours() &gt; workEnd[0]) ||\\n       (next.getHours() == workEnd[0] &amp;&amp; next.getMinutes() &gt; workEnd[1]) ||\\n       (workDays.indexOf(next.getDay()) == -1)) {\\n    next.setDate(next.getDate() + 1);\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}\\n// Falls wir vor Arbeitsbeginn an einem Werktag haben, auf Arbeitsbeginn setzen.\\nif ((next.getHours() &lt; workStart[0]) ||\\n    (next.getHours() == workStart[0] &amp;&amp; next.getMinutes() &lt; workStart[1])) {\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}",
+    "message": "// Defaults\nvar workDays = [1, 2, 3, 4, 5]; // Mo – Fr; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Arbeitsbeginn um [H, M]\nvar workEnd = [17, 30]; // Feierabend um [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Für den normalen Gebrauch nicht notwendig, aber benutzt als aktuelle Zeit zum Testen.\n    next = new Date(prev);\nelse\n    next = new Date();\n// Falls wir nach Feierabend haben oder kein Werktag ist, auf den Arbeitsbeginn\n// am nächsten Tag setzen.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// Falls wir vor Arbeitsbeginn an einem Werktag haben, auf Arbeitsbeginn setzen.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
     "description": ""
   },
   "BusinessHoursHelp": {
@@ -972,7 +972,7 @@
     "description": ""
   },
   "DaysInARowCode": {
-    "message": "// Erste Nachricht jetzt senden, nachfolgende Nachrichten einmal täglich.\\nif (! prev)\\n next = new Date();\\nelse {\\n var now = new Date();\\n next = new Date(prev); // Datumsparameter kopieren, sodass wir diesen nicht verändern.\\n do {\\n next.setDate(next.getDate() + 1);\\n } while (next &lt; now);\\n // ^^^ Versuchen Sie nicht, in der Vergangenheit zu senden, falls Thunderbird um\\n // zur geplanten Sendezeit inaktiv war.\\n}\\nif (! args) // Nachrichten standardmäßig dreimal senden.\\n args = [3];\\nnextargs = [args[0] - 1];\\n// Wiederholen, falls wir noch nicht oft genug gesendet haben.\\nif (nextargs[0] &gt; 0)\\n nextspec = &quot;function &quot; + specname;",
+    "message": "// Erste Nachricht jetzt senden, nachfolgende Nachrichten einmal täglich.\nif (! prev)\n next = new Date();\nelse {\n var now = new Date();\n next = new Date(prev); // Datumsparameter kopieren, sodass wir diesen nicht verändern.\n do {\n next.setDate(next.getDate() + 1);\n } while (next < now);\n // ^^^ Versuchen Sie nicht, in der Vergangenheit zu senden, falls Thunderbird um\n // zur geplanten Sendezeit inaktiv war.\n}\nif (! args) // Nachrichten standardmäßig dreimal senden.\n args = [3];\nnextargs = [args[0] - 1];\n// Wiederholen, falls wir noch nicht oft genug gesendet haben.\nif (nextargs[0] > 0)\n nextspec = \"function \" + specname;",
     "description": ""
   },
   "DaysInARowHelp": {

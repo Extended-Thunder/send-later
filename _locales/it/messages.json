@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "Funzione “Invia dopo” per pianificare l&#x27;orario degli invii",
+    "message": "Funzione “Invia dopo” per pianificare l'orario degli invii",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -40,11 +40,11 @@
     "description": ""
   },
   "contactAuthorLabel": {
-    "message": "Contatta l&#x27;autore",
+    "message": "Contatta l'autore",
     "description": ""
   },
   "enforceRestrictionsPrefLabel": {
-    "message": "Imponi le restrizioni di orario e giorno all&#x27;orario di invio",
+    "message": "Imponi le restrizioni di orario e giorno all'orario di invio",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -88,7 +88,7 @@
     "description": ""
   },
   "markReadPrefLabel": {
-    "message": "Imposta le bozze pianificate come &amp;quot;lette&amp;quot;",
+    "message": "Imposta le bozze pianificate come &quot;lette&quot;",
     "description": ""
   },
   "quickOptionsLabel1Label": {
@@ -164,7 +164,7 @@
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&amp;quot;Invia&amp;quot; ritarderà sempre i messaggi di",
+    "message": "&quot;Invia&quot; ritarderà sempre i messaggi di",
     "description": ""
   },
   "sendDelayPrefLabel2": {
@@ -216,7 +216,7 @@
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "Mostra l&#x27;intestazione di Invia Dopo",
+    "message": "Mostra l'intestazione di Invia Dopo",
     "description": ""
   },
   "showStatusPrefLabel": {
@@ -272,11 +272,11 @@
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
-    "message": "Invia dopo, all&#x27;orario sopra indicato",
+    "message": "Invia dopo, all'orario sopra indicato",
     "description": ""
   },
   "sendlater.prompt.sendat.tooltip": {
-    "message": "Salva il messaggio nella cartella “Bozze” per l&#x27;invio automatico all&#x27;orario sopra impostato.",
+    "message": "Salva il messaggio nella cartella “Bozze” per l'invio automatico all'orario sopra impostato.",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -292,7 +292,7 @@
     "description": ""
   },
   "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "Attiva Invia Dopo per pianificare un messaggio dopo aver inserito l&#x27;orario di invio desiderato nella casella di testo. Questo pulsante non fa nulla da solo; è necessario anche aggiungere la casella di testo o i selettori di orario/data (non supportati in tutte le versioni Thunderbird) alla barra degli strumenti per essere utile.",
+    "message": "Attiva Invia Dopo per pianificare un messaggio dopo aver inserito l'orario di invio desiderato nella casella di testo. Questo pulsante non fa nulla da solo; è necessario anche aggiungere la casella di testo o i selettori di orario/data (non supportati in tutte le versioni Thunderbird) alla barra degli strumenti per essere utile.",
     "description": ""
   },
   "sendlater.toolbar.textbox.emptytext": {
@@ -336,7 +336,7 @@
     "description": ""
   },
   "checktimepref.tooltip": {
-    "message": "Frequenza in minuti con cui viene verificata la presenza nella cartella “Bozze” di e-mail di cui è arrivato l&#x27;orario di invio. Aumentare questo valore se qualche volta le mail programmate per l&#x27;invio non partono o se qualche volta il numero dei messaggi in coda indicato nella barra di stato non corrisponde a quello di tutti i messaggi pianificati.",
+    "message": "Frequenza in minuti con cui viene verificata la presenza nella cartella “Bozze” di e-mail di cui è arrivato l'orario di invio. Aumentare questo valore se qualche volta le mail programmate per l'invio non partono o se qualche volta il numero dei messaggi in coda indicato nella barra di stato non corrisponde a quello di tutti i messaggi pianificati.",
     "description": ""
   },
   "quickoptionname.label": {
@@ -348,7 +348,7 @@
     "description": ""
   },
   "showsendlaterheader.tooltip": {
-    "message": "Mostra l&#x27;intestazione “X-Send-Later-At”, cioè l&#x27;orario a cui la mail in “Bozze” è pianificata per l&#x27;invio, nell&#x27;intestazione quando guardi un messaggio.",
+    "message": "Mostra l'intestazione “X-Send-Later-At”, cioè l'orario a cui la mail in “Bozze” è pianificata per l'invio, nell'intestazione quando guardi un messaggio.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
@@ -356,7 +356,7 @@
     "description": ""
   },
   "showsendlaterunsentmessages.tooltip": {
-    "message": "Se non spunti questa opzione, Invia Dopo non provvederà all&#x27;invio del messaggio, ma quando arriverà l&#x27;ora pianificata per la spedizione, lo parcheggerà semplicemente nella “Posta in Uscita”. Togliere la spunta nel caso di utilizzo con altri componenti aggiuntivi come ad esempio BlunderDelay, per inviare i messaggi presenti nella “Posta in Uscita” periodicamente. Da notare che se questa opzione è selezionata, quando Invia Dopo invia un messaggio, anche TUTTI gli altri messaggi presenti nella “Posta in Uscita” verranno inviati.",
+    "message": "Se non spunti questa opzione, Invia Dopo non provvederà all'invio del messaggio, ma quando arriverà l'ora pianificata per la spedizione, lo parcheggerà semplicemente nella “Posta in Uscita”. Togliere la spunta nel caso di utilizzo con altri componenti aggiuntivi come ad esempio BlunderDelay, per inviare i messaggi presenti nella “Posta in Uscita” periodicamente. Da notare che se questa opzione è selezionata, quando Invia Dopo invia un messaggio, anche TUTTI gli altri messaggi presenti nella “Posta in Uscita” verranno inviati.",
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
@@ -364,7 +364,7 @@
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "Con questa opzione attivata, tutti i messaggi inviati con il comando &amp;quot;Invia&amp;quot; (sia col pulsante che digitando Ctrl+Invio) sono ritardati del numero di minuti indicato, tramite la pianificazione di Invia Dopo.",
+    "message": "Con questa opzione attivata, tutti i messaggi inviati con il comando &quot;Invia&quot; (sia col pulsante che digitando Ctrl+Invio) sono ritardati del numero di minuti indicato, tramite la pianificazione di Invia Dopo.",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {
@@ -376,7 +376,7 @@
     "description": ""
   },
   "contactauthor.tooltip": {
-    "message": "Invia una e-mail all&#x27;autore di Invia Dopo.",
+    "message": "Invia una e-mail all'autore di Invia Dopo.",
     "description": ""
   },
   "helplink.tooltip": {
@@ -396,15 +396,15 @@
     "description": ""
   },
   "enforcerestrictions.tooltip": {
-    "message": "Se un messaggio che deve essere inviato si trova al di fuori delle sue restrizioni di orario e giorno impostate, ad esempio perché Thunderbird non era in esecuzione all&#x27;orario di invio pianificato, ritarda il suo invio finché non vengono soddisfatte le restrizioni di orario e giorno.",
+    "message": "Se un messaggio che deve essere inviato si trova al di fuori delle sue restrizioni di orario e giorno impostate, ad esempio perché Thunderbird non era in esecuzione all'orario di invio pianificato, ritarda il suo invio finché non vengono soddisfatte le restrizioni di orario e giorno.",
     "description": ""
   },
   "blocklatemessages.tooltip": {
-    "message": "Non inviare messaggi pianificati che sono stati ritardati oltre il loro orario pianificato, ad esempio perché Thunderbird non era in esecuzione a quell&#x27;ora.",
+    "message": "Non inviare messaggi pianificati che sono stati ritardati oltre il loro orario pianificato, ad esempio perché Thunderbird non era in esecuzione a quell'ora.",
     "description": ""
   },
   "editorbutton": {
-    "message": "Apri l&#x27;editor di funzioni dinamiche…",
+    "message": "Apri l'editor di funzioni dinamiche…",
     "description": ""
   },
   "editortip": {
@@ -508,7 +508,7 @@
     "description": ""
   },
   "helptexttip": {
-    "message": "Il testo che inserisci qui verrà mostrato quando l&#x27;utente si muove con il mouse sopra il nome della funzione nel menu pop-up. Puoi usarlo per spiegare lo scopo della funzione e i parametri che accetta.",
+    "message": "Il testo che inserisci qui verrà mostrato quando l'utente si muove con il mouse sopra il nome della funzione nel menu pop-up. Puoi usarlo per spiegare lo scopo della funzione e i parametri che accetta.",
     "description": ""
   },
   "helptextplaceholder": {
@@ -560,7 +560,7 @@
     "description": ""
   },
   "importtip": {
-    "message": "Importa una funzione dinamica precedentemente esportata dall&#x27;editor.",
+    "message": "Importa una funzione dinamica precedentemente esportata dall'editor.",
     "description": ""
   },
   "export.label": {
@@ -676,11 +676,11 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Invia Dopo: Errore nell&#x27;invio dei messaggi. La cartella “Posta in Uscita” potrebbe essere danneggiata, e i messaggi pianificati potrebbero non essere stati inviati. Vedi https://blog.kamens.us/send-later/#outbox.",
+    "message": "Invia Dopo: Errore nell'invio dei messaggi. La cartella “Posta in Uscita” potrebbe essere danneggiata, e i messaggi pianificati potrebbero non essere stati inviati. Vedi https://blog.kamens.us/send-later/#outbox.",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Invia Dopo: Errore nella copia dei messaggi pianificati nella cartella “Posta in Uscita” per l&#x27;invio (codice $1). Invia Dopo è stato disattivato! Vedi https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "message": "Invia Dopo: Errore nella copia dei messaggi pianificati nella cartella “Posta in Uscita” per l'invio (codice $1). Invia Dopo è stato disattivato! Vedi https://blog.kamens.us/send-later/#outbox-copy-failure.",
     "description": ""
   },
   "CopyRecurError": {
@@ -880,7 +880,7 @@
     "description": ""
   },
   "draftSaveWarning": {
-    "message": "ATTENZIONE: Per evitare che il messaggio venga inviato da Invia Dopo mentre lo stai modificando, il suo orario pianificato di invio è stato cancellato. Per cortesia ripianifica l&#x27;orario di invio quando hai completato le modifiche.",
+    "message": "ATTENZIONE: Per evitare che il messaggio venga inviato da Invia Dopo mentre lo stai modificando, il suo orario pianificato di invio è stato cancellato. Per cortesia ripianifica l'orario di invio quando hai completato le modifiche.",
     "description": ""
   },
   "AreYouSure": {
@@ -888,11 +888,11 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "Cliccando su - Metti nella “Posta in uscita” - si mette il messaggio immediatamente nella cartella “Posta in uscita”. NON VIENE quindi pianificato l&#x27;invio del messaggio ad un orario specifico. Se lo si desidera inviare specificando un orario, cliccare il pulsante “Invia verso le:” nel riquadro verde dopo aver inserito un orario di invio valido. Sei sicuro di voler mettere adesso il messaggio nella “Posta in uscita”?",
+    "message": "Cliccando su - Metti nella “Posta in uscita” - si mette il messaggio immediatamente nella cartella “Posta in uscita”. NON VIENE quindi pianificato l'invio del messaggio ad un orario specifico. Se lo si desidera inviare specificando un orario, cliccare il pulsante “Invia verso le:” nel riquadro verde dopo aver inserito un orario di invio valido. Sei sicuro di voler mettere adesso il messaggio nella “Posta in uscita”?",
     "description": ""
   },
   "SendNowConfirmMessage": {
-    "message": "Cliccando su “Invia adesso” si invia il messaggio immediatamente. NON VIENE quindi pianificato l&#x27;invio del messaggio ad un orario specifico. Se lo si desidera inviare specificando un orario, cliccare il pulsante “Invia verso le:” nel riquadro verde dopo aver inserito un orario di invio valido. Sei sicuro di voler inviare il messaggio adesso?",
+    "message": "Cliccando su “Invia adesso” si invia il messaggio immediatamente. NON VIENE quindi pianificato l'invio del messaggio ad un orario specifico. Se lo si desidera inviare specificando un orario, cliccare il pulsante “Invia verso le:” nel riquadro verde dopo aver inserito un orario di invio valido. Sei sicuro di voler inviare il messaggio adesso?",
     "description": ""
   },
   "ConfirmAgain": {
@@ -904,11 +904,11 @@
     "description": ""
   },
   "ScheduledMessagesWarningQuitRequested": {
-    "message": "Ci sono messaggi pianificati per l&#x27;invio. Invia Dopo può inviare messaggi solamente quando $1 è in esecuzione. Sei sicuro di voler uscire?",
+    "message": "Ci sono messaggi pianificati per l'invio. Invia Dopo può inviare messaggi solamente quando $1 è in esecuzione. Sei sicuro di voler uscire?",
     "description": ""
   },
   "ScheduledMessagesWarningQuit": {
-    "message": "Invia Dopo può inviare messaggi solamente quando $1 è in esecuzione. Per cortesia ricordati di riavviarlo prima di quando hai pianificato l&#x27;invio dei tuoi messaggi!",
+    "message": "Invia Dopo può inviare messaggi solamente quando $1 è in esecuzione. Per cortesia ricordati di riavviarlo prima di quando hai pianificato l'invio dei tuoi messaggi!",
     "description": ""
   },
   "EnigmailIncompatTitle": {
@@ -916,7 +916,7 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "La versione di Enigmail installata non è compatibile con Invia Dopo, quindi la pianificazione dei messaggi con Invia Dopo è stata disattivata. Per cortesia contattare l&#x27;autore di Invia Dopo (jik@kamens.us) per assistenza.",
+    "message": "La versione di Enigmail installata non è compatibile con Invia Dopo, quindi la pianificazione dei messaggi con Invia Dopo è stata disattivata. Per cortesia contattare l'autore di Invia Dopo (jik@kamens.us) per assistenza.",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {
@@ -924,7 +924,7 @@
     "description": ""
   },
   "TimeMismatchConfirmBody": {
-    "message": "L&#x27;orario di invio impostato, $1, non rientra nelle restrizioni orarie specificate. Clicca Annulla per modificare il tuo orario di invio, oppure OK per correggerlo automaticamente a $2.",
+    "message": "L'orario di invio impostato, $1, non rientra nelle restrizioni orarie specificate. Clicca Annulla per modificare il tuo orario di invio, oppure OK per correggerlo automaticamente a $2.",
     "description": ""
   },
   "endTimeWarningTitle": {
@@ -932,7 +932,7 @@
     "description": ""
   },
   "endTimeWarningBody": {
-    "message": "Quando si specifica una restrizione oraria del messaggio, l&#x27;orario di fine non può essere precedente all&#x27;orario di inizio. Per cortesia correggi la tua restrizione oraria o disabilitala.",
+    "message": "Quando si specifica una restrizione oraria del messaggio, l'orario di fine non può essere precedente all'orario di inizio. Per cortesia correggi la tua restrizione oraria o disabilitala.",
     "description": ""
   },
   "missingDaysWarningTitle": {
@@ -952,11 +952,11 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "Il messaggio con oggetto “$1” nella cartella Bozze $2 era pianificato per essere inviato più di $3 minuti fa, quindi l&#x27;invio è stato bloccato. Dovresti modificare la bozza ed inviarla a mano oppure ripianificarne l&#x27;invio. Puoi inoltre disattivare la preferenza “Non inviare messaggi più di # minuti dopo” per evitare il blocco dell&#x27;invio di messaggi in ritardo.",
+    "message": "Il messaggio con oggetto “$1” nella cartella Bozze $2 era pianificato per essere inviato più di $3 minuti fa, quindi l'invio è stato bloccato. Dovresti modificare la bozza ed inviarla a mano oppure ripianificarne l'invio. Puoi inoltre disattivare la preferenza “Non inviare messaggi più di # minuti dopo” per evitare il blocco dell'invio di messaggi in ritardo.",
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// Benvenuti in editor funzione Invia Dopo!\\n// \\n// L&#x27;editor consente di creare complesse funzioni JavaScript\\n// attuazione messaggio logica di pianificazione che può essere\\n// associato con pulsanti di scelta rapida o selezionato nella\\n// finestra di dialogo Invia Dopo.\\n//   \\n// Come si può vedere sopra, quando viene chiamata una funzione di\\n// programmazione, sarà dato tre argomenti:\\n//   \\n// * &quot;specname&quot; è necessario se si desidera questa funzione si\\n//   ripetono (Vedi sotto)\\n// \\n// * &quot;prev&quot; è il precedente programma invia ora, se questa è una\\n//   ricorrente chiamata\\n// \\n// * &quot;args&quot; è gli argomenti aggiuntivi restituiti dalla chiamata\\n//   precedente se questo è un&#x27;invocazione ricorrente\\n//\\n// necessario che il codice impostare le variabili &quot;next&quot;,\\n// &quot;nextspec&quot;, e &quot;nextargs&quot; come segue:\\n//\\n// * &quot;next&quot; è il numero di minuti in futuro o un oggetto data che\\n//   indica quando deve essere inviato il messaggio.\\n// \\n// * &quot;nextspec&quot; è una specifica ricorrenza, se questo è destinato a\\n//   essere un ricorrenti messaggio (vedere\\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). Se non si\\n//   imposta questo, allora il messaggio verrà inviato solo una\\n//   volta. Nota: se si desidera che il vostro funzione per essere\\n//   chiamato nuovamente per la ricorrenza, do:\\n//   \\n//   nextspec = &quot;function &quot; + specname;\\n//   \\n// * &quot;nextargs&quot; è una matrice di argomenti che si desidera essere\\n//   passati nel successivo chiamata della funzione come &quot;args&quot;.\\n//   \\n// Mentre si lavora sulla tua funzione, è possibile testarla\\n// compilando i valori per &quot;prev&quot; e &quot;args&quot; in caselle di testo qui\\n// sotto e quindi facendo clic su &quot;Esegui&quot; per eseguire la funzione e\\n// vedere i risultati.\\n//   \\n// Non ci sono due funzioni di esempio pre-configurati,\\n// &quot;BusinessHours&quot; e &quot;DaysInARow&quot;, che può guardare e giocare con per\\n// saperne di più.  Questa funzione di &quot;ReadMeFirst&quot; appena fa sì che\\n// il messaggio venga inviato intorno ora, via la riga seguente.\\n\\n next = new Date();",
+    "message": "// Benvenuti in editor funzione Invia Dopo!\n// \n// L'editor consente di creare complesse funzioni JavaScript\n// attuazione messaggio logica di pianificazione che può essere\n// associato con pulsanti di scelta rapida o selezionato nella\n// finestra di dialogo Invia Dopo.\n//   \n// Come si può vedere sopra, quando viene chiamata una funzione di\n// programmazione, sarà dato tre argomenti:\n//   \n// * \"specname\" è necessario se si desidera questa funzione si\n//   ripetono (Vedi sotto)\n// \n// * \"prev\" è il precedente programma invia ora, se questa è una\n//   ricorrente chiamata\n// \n// * \"args\" è gli argomenti aggiuntivi restituiti dalla chiamata\n//   precedente se questo è un'invocazione ricorrente\n//\n// necessario che il codice impostare le variabili \"next\",\n// \"nextspec\", e \"nextargs\" come segue:\n//\n// * \"next\" è il numero di minuti in futuro o un oggetto data che\n//   indica quando deve essere inviato il messaggio.\n// \n// * \"nextspec\" è una specifica ricorrenza, se questo è destinato a\n//   essere un ricorrenti messaggio (vedere\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). Se non si\n//   imposta questo, allora il messaggio verrà inviato solo una\n//   volta. Nota: se si desidera che il vostro funzione per essere\n//   chiamato nuovamente per la ricorrenza, do:\n//   \n//   nextspec = \"function \" + specname;\n//   \n// * \"nextargs\" è una matrice di argomenti che si desidera essere\n//   passati nel successivo chiamata della funzione come \"args\".\n//   \n// Mentre si lavora sulla tua funzione, è possibile testarla\n// compilando i valori per \"prev\" e \"args\" in caselle di testo qui\n// sotto e quindi facendo clic su \"Esegui\" per eseguire la funzione e\n// vedere i risultati.\n//   \n// Non ci sono due funzioni di esempio pre-configurati,\n// \"BusinessHours\" e \"DaysInARow\", che può guardare e giocare con per\n// saperne di più.  Questa funzione di \"ReadMeFirst\" appena fa sì che\n// il messaggio venga inviato intorno ora, via la riga seguente.\n\n next = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {
@@ -964,15 +964,15 @@
     "description": ""
   },
   "_BusinessHoursCode": {
-    "message": "// Defaults\\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\\nvar workStart = [8, 30]; // Inizio del giorno lavorativo in [ora, minuto]\\nvar workEnd = [17, 30]; // Fine del giorno lavorativo in [ora, minuto]\\nif (args &amp;&amp; args[0])\\n    workDays = args[0];\\nif (args &amp;&amp; args[1])\\n    workStart = args[1];\\nif (args &amp;&amp; args[2])\\n    workEnd = args[2];\\nif (prev)\\n    // Non previsto durante l&#x27;utilizzo normale, ma usato a scopo di test\\n    next = new Date(prev);\\nelse\\n    next = new Date();\\n// Se il giorno lavorativo è finito o non è un giorno lavorativo, passa all&#x27;ora\\n// di inizio del giorno successivo\\nwhile ((next.getHours() &gt; workEnd[0]) ||\\n       (next.getHours() == workEnd[0] &amp;&amp; next.getMinutes() &gt; workEnd[1]) ||\\n       (workDays.indexOf(next.getDay()) == -1)) {\\n    next.setDate(next.getDate() + 1);\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}\\n// Se il giorno lavorativo non è ancora iniziato, passa all&#x27;ora di inizio\\nif ((next.getHours() &lt; workStart[0]) ||\\n    (next.getHours() == workStart[0] &amp;&amp; next.getMinutes() &lt; workStart[1])) {\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}",
+    "message": "// Defaults\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Inizio del giorno lavorativo in [ora, minuto]\nvar workEnd = [17, 30]; // Fine del giorno lavorativo in [ora, minuto]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Non previsto durante l'utilizzo normale, ma usato a scopo di test\n    next = new Date(prev);\nelse\n    next = new Date();\n// Se il giorno lavorativo è finito o non è un giorno lavorativo, passa all'ora\n// di inizio del giorno successivo\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// Se il giorno lavorativo non è ancora iniziato, passa all'ora di inizio\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "Invia il messaggio adesso se durante l&#x27;orario di lavoro, o all&#x27;inizio del successivo giorno lavorativo. Puoi modificare quali sono i giorni lavorativi (predefinito: lunedì - venerdì) passando un array (numerico) di giorni lavorativi come primo argomento, dove 0 è domenica e 6 è sabato. Puoi cambiare l&#x27;ora di inizio e fine dei giorni lavorativi (predefinito: 8:30 - 17:30) passando un array di coppie [ora, minuto] come secondo o terzo argomento. Indica “null” come argomento per i giorni che non vuoi modificare. Ad esempio, “null, [9, 0], [17, 0]” cambia l&#x27;orario lavorativo lasciando i giorni lavorativi inalterati.",
+    "message": "Invia il messaggio adesso se durante l'orario di lavoro, o all'inizio del successivo giorno lavorativo. Puoi modificare quali sono i giorni lavorativi (predefinito: lunedì - venerdì) passando un array (numerico) di giorni lavorativi come primo argomento, dove 0 è domenica e 6 è sabato. Puoi cambiare l'ora di inizio e fine dei giorni lavorativi (predefinito: 8:30 - 17:30) passando un array di coppie [ora, minuto] come secondo o terzo argomento. Indica “null” come argomento per i giorni che non vuoi modificare. Ad esempio, “null, [9, 0], [17, 0]” cambia l'orario lavorativo lasciando i giorni lavorativi inalterati.",
     "description": ""
   },
   "DaysInARowCode": {
-    "message": "// Invia il primo messaggio adesso e i successivi messaggi uno al giorno.\\nif (! prev)\\n    next = new Date();\\nelse {\\n    var now = new Date();\\n    next = new Date(prev); // Copia l&#x27;argomento data per non modificarlo.\\n    do {\\n        next.setDate(next.getDate() + 1);\\n    } while (next &lt; now);\\n    // ^^^ Non tentare di inviare nel passato, nel caso che Thunderbird fosse\\n    // inattivo al momento di invio pianificato.\\n}\\nif (! args) // Invia il messaggio tre volte come scelta predefinita.\\n    args = [3];\\nnextargs = [args[0] - 1];\\n// Riprova per ricorrenza non non ci sono ancora state abbastanza invii.\\nif (nextargs[0] &gt; 0)\\n    nextspec = &quot;function &quot; + specname;",
+    "message": "// Invia il primo messaggio adesso e i successivi messaggi uno al giorno.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copia l'argomento data per non modificarlo.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Non tentare di inviare nel passato, nel caso che Thunderbird fosse\n    // inattivo al momento di invio pianificato.\n}\nif (! args) // Invia il messaggio tre volte come scelta predefinita.\n    args = [3];\nnextargs = [args[0] - 1];\n// Riprova per ricorrenza non non ci sono ancora state abbastanza invii.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
     "description": ""
   },
   "DaysInARowHelp": {
@@ -1060,11 +1060,11 @@
     "description": ""
   },
   "FunctionErrorTitle": {
-    "message": "Errore nell&#x27;esecuzione di una funzione dinamica",
+    "message": "Errore nell'esecuzione di una funzione dinamica",
     "description": ""
   },
   "FunctionErrorBody": {
-    "message": "Errore nell&#x27;esecuzione di una funzione dinamica schedulata: “$1”",
+    "message": "Errore nell'esecuzione di una funzione dinamica schedulata: “$1”",
     "description": ""
   },
   "cancel_on_reply": {

@@ -164,7 +164,7 @@
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&amp;quot;Odeslat&amp;quot; zdrží zprávy o",
+    "message": "&quot;Odeslat&quot; zdrží zprávy o",
     "description": ""
   },
   "sendDelayPrefLabel2": {
@@ -208,7 +208,7 @@
     "description": ""
   },
   "sendUnsentMessagesPrefLabel": {
-    "message": "Odeslat čekající zprávy ze složky &amp;quot;K odeslání&amp;quot;",
+    "message": "Odeslat čekající zprávy ze složky &quot;K odeslání&quot;",
     "description": ""
   },
   "showColumnPrefLabel": {
@@ -268,7 +268,7 @@
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
-    "message": "např.: &amp;quot;3:00 hodin čtvrtek&amp;quot;, &amp;quot;12/31/2012 15:27&amp;quot;",
+    "message": "např.: &quot;3:00 hodin čtvrtek&quot;, &quot;12/31/2012 15:27&quot;",
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
@@ -356,7 +356,7 @@
     "description": ""
   },
   "showsendlaterunsentmessages.tooltip": {
-    "message": "Vypnete-li toto nastavení, pak Odeslat Později nebude odesílat zprávy - pouze je uloží do složky &amp;quot;K odeslání&amp;quot;. Hodí se to když používáte jiná rozšíření, např. BlunderDelay pro pravidelné odesílání zpráv ze složky &amp;quot;K odeslání&amp;quot;. Pokud bude toto nastavení zapnuté, pokaždé, když Odeslat Později odešle zprávu, budou odeslány VŠECHNY zprávy z vaší složky &amp;quot;K odeslání&amp;quot;.",
+    "message": "Vypnete-li toto nastavení, pak Odeslat Později nebude odesílat zprávy - pouze je uloží do složky &quot;K odeslání&quot;. Hodí se to když používáte jiná rozšíření, např. BlunderDelay pro pravidelné odesílání zpráv ze složky &quot;K odeslání&quot;. Pokud bude toto nastavení zapnuté, pokaždé, když Odeslat Později odešle zprávu, budou odeslány VŠECHNY zprávy z vaší složky &quot;K odeslání&quot;.",
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
@@ -364,7 +364,7 @@
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "Pokud je tato možnost zapnutá, všechny zprávy odeslané příkazem &amp;quot;Odeslat&amp;quot; (tlačítkem nebo stisknutím Ctrl-Enter) budou zdrženy o zadaný čas naplánovaný pomocí Odeslat Později.",
+    "message": "Pokud je tato možnost zapnutá, všechny zprávy odeslané příkazem &quot;Odeslat&quot; (tlačítkem nebo stisknutím Ctrl-Enter) budou zdrženy o zadaný čas naplánovaný pomocí Odeslat Později.",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {
@@ -376,11 +376,11 @@
     "description": ""
   },
   "contactauthor.tooltip": {
-    "message": "Pošlete email autorovi rozšíření „Odeslat Později&amp;quot;.",
+    "message": "Pošlete email autorovi rozšíření „Odeslat Později&quot;.",
     "description": ""
   },
   "helplink.tooltip": {
-    "message": "Zobrazte dokumentaci rozšíření „Odeslat Později&amp;quot;.",
+    "message": "Zobrazte dokumentaci rozšíření „Odeslat Později&quot;.",
     "description": ""
   },
   "releasenotes.value": {
@@ -496,7 +496,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "Sem vložte zdrojový kód pro vaši funkci. Podívejte se na ukázkovou funkci &amp;quot;ReadMeFirst&amp;quot;, abyste zjistili, co má váš kód dělat.",
+    "message": "Sem vložte zdrojový kód pro vaši funkci. Podívejte se na ukázkovou funkci &quot;ReadMeFirst&quot;, abyste zjistili, co má váš kód dělat.",
     "description": ""
   },
   "codeplaceholder": {
@@ -892,7 +892,7 @@
     "description": ""
   },
   "SendNowConfirmMessage": {
-    "message": "Kliknutí na &quot;Odeslat nyní&quot; odešle zprávu hned. Nenaplánuje ji to na konkrétní datum a čas. Abyste ji mohli naplánovat, klikněte na tlačítko &quot;Odeslat přibližně v&quot; v zeleném rámečku, poté, co zadáte čas odeslání. Opravdu chcete odeslat zprávu hned?",
+    "message": "Kliknutí na \"Odeslat nyní\" odešle zprávu hned. Nenaplánuje ji to na konkrétní datum a čas. Abyste ji mohli naplánovat, klikněte na tlačítko \"Odeslat přibližně v\" v zeleném rámečku, poté, co zadáte čas odeslání. Opravdu chcete odeslat zprávu hned?",
     "description": ""
   },
   "ConfirmAgain": {
@@ -952,11 +952,11 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "Zpráva s předmětem &quot;$1&quot; v složce Koncepty $2 měla čas pro odeslání před $3 minutami - odeslání bylo zablokováno. Prosím upravte koncept a pošlete ho ručně či nastavte nový čas pro odeslání. Můžete také vypnout nastavení &quot;Nedoručovat naplánované zprávy, které byly zpožděné za jejich naplánovaný čas&quot;.",
+    "message": "Zpráva s předmětem \"$1\" v složce Koncepty $2 měla čas pro odeslání před $3 minutami - odeslání bylo zablokováno. Prosím upravte koncept a pošlete ho ručně či nastavte nový čas pro odeslání. Můžete také vypnout nastavení \"Nedoručovat naplánované zprávy, které byly zpožděné za jejich naplánovaný čas\".",
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// Vítejte v editoru funkcí pro „Odeslat Později“! //\\n//\\n// Pomocí tohoto editoru můžete vytvářet JavaSkriptové funkce obsahující\\n// komplexní logiku plánování zpráv, které můžou být připojené k tlačítkovým\\n// předvolbám, nebo vybrané v „Odeslat Později“ dialogu.\\n//\\n// Jak můžete vidět výše, když je plánovací funkce vyvolána, bude mít tři \\n// argumenty:\\n// * &quot;specname&quot; se používá, pokud chcete, aby funkce vytvořila opakování\\n// (více níže)\\n// * &quot;prev&quot;  je předchozí naplánovaný čas odeslání, pokud se jedná o \\n// opakující se vyvolání\\n// * &quot;args&quot; je extra argument vrácený předchozím vyvoláním, pokud se jedná\\n// o opakující se vyvolání\\n//\\n// Ve vašem kódu musí být proměnné &quot;next&quot;, &quot;nextspec&quot;, a\\n// &quot;nextargs&quot; určené následovně:\\n//\\n// * &quot;next&quot; je buď počet minut v budoucnosti, nebo objekt Date indikující,\\n// kdy by měla být zpráva odeslána\\n// * &quot;nextspec&quot; je specifikace opakování, pokud se má jednat o opakující \\n// se zprávu (podívejte se na\\n// https://blog.kamens.us/send-later/#dynamic-recurrence). Pokud toto\\n// nenastavíte, bude zpráva odeslaná pouze jednou. Pozn.: Pokud chcete,\\n// aby byla vaše funkce vyvolaná znovu pro opakování zadejte tohle:\\n// nextspec = &quot;funkce &quot; + specname;\\n// * &quot;nextargs&quot; je pole argumentů, které chcete předat do dalšího\\n// vyvolání funkce jako &quot;args&quot;.\\n//\\n// Během práce na vaší funkci ji můžete otestovat vyplněním hodnot\\n// pro  &quot;prev&quot; a &quot;args&quot; v textových polích níže a pak kliknutím na „Spustit“\\n// pro spuštění funkce a zobrazení výsledků.\\n//\\n// Nahoře najdete dvě předdefinované ukázkové funkce\\n// „BusinessHours“ (Úřední hodiny) a „DaysInARow“ (Dny po sobě), na které\\n// se můžete podívat a vyzkoušet si je, abyste se o nich dozvěděli víc.\\n//\\n// Tato funkce „ReadMeFirst“ umí jenom odeslat zprávu nyní,\\n// jak je nadefinováno na následujícím řádku:\\nnext = new Date();",
+    "message": "// Vítejte v editoru funkcí pro „Odeslat Později“! //\n//\n// Pomocí tohoto editoru můžete vytvářet JavaSkriptové funkce obsahující\n// komplexní logiku plánování zpráv, které můžou být připojené k tlačítkovým\n// předvolbám, nebo vybrané v „Odeslat Později“ dialogu.\n//\n// Jak můžete vidět výše, když je plánovací funkce vyvolána, bude mít tři \n// argumenty:\n// * \"specname\" se používá, pokud chcete, aby funkce vytvořila opakování\n// (více níže)\n// * \"prev\"  je předchozí naplánovaný čas odeslání, pokud se jedná o \n// opakující se vyvolání\n// * \"args\" je extra argument vrácený předchozím vyvoláním, pokud se jedná\n// o opakující se vyvolání\n//\n// Ve vašem kódu musí být proměnné \"next\", \"nextspec\", a\n// \"nextargs\" určené následovně:\n//\n// * \"next\" je buď počet minut v budoucnosti, nebo objekt Date indikující,\n// kdy by měla být zpráva odeslána\n// * \"nextspec\" je specifikace opakování, pokud se má jednat o opakující \n// se zprávu (podívejte se na\n// https://blog.kamens.us/send-later/#dynamic-recurrence). Pokud toto\n// nenastavíte, bude zpráva odeslaná pouze jednou. Pozn.: Pokud chcete,\n// aby byla vaše funkce vyvolaná znovu pro opakování zadejte tohle:\n// nextspec = \"funkce \" + specname;\n// * \"nextargs\" je pole argumentů, které chcete předat do dalšího\n// vyvolání funkce jako \"args\".\n//\n// Během práce na vaší funkci ji můžete otestovat vyplněním hodnot\n// pro  \"prev\" a \"args\" v textových polích níže a pak kliknutím na „Spustit“\n// pro spuštění funkce a zobrazení výsledků.\n//\n// Nahoře najdete dvě předdefinované ukázkové funkce\n// „BusinessHours“ (Úřední hodiny) a „DaysInARow“ (Dny po sobě), na které\n// se můžete podívat a vyzkoušet si je, abyste se o nich dozvěděli víc.\n//\n// Tato funkce „ReadMeFirst“ umí jenom odeslat zprávu nyní,\n// jak je nadefinováno na následujícím řádku:\nnext = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {
@@ -964,15 +964,15 @@
     "description": ""
   },
   "_BusinessHoursCode": {
-    "message": "// Výchozí hodnoty\\nvar workDays = [1, 2, 3, 4, 5]; // Po - Pá; Ne == 0, So == 6 \\nvar workStart = [8, 30]; // Začátek pracovní doby ve formátu [H, M] \\nvar workEnd = [17, 30]; // Konec pracovní doby ve formátu [H, M] \\nif (args &amp;&amp; args[0])\\n    workDays = args[0]; \\nif (args &amp;&amp; args[1])\\n    workStart = args[1]; \\nif (args &amp;&amp; args[2])\\n    workEnd = args[2];\\nif (prev)     \\n    // Běžně se nepoužívá, ale používá se jako aktuální čas pro testování.\\n    next = new Date(prev); \\nelse\\n    next = new Date();\\n// Pokud se dostaneme za konec pracovních hodin, nebo není pracovní den,\\n// přejdeme na začátek dalšího pracovního dne.\\nwhile ((next.getHours() &gt; workEnd[0]) || \\n      (next.getHours() == workEnd[0] &amp;&amp; next.getMinutes() &gt; workEnd[1]) || \\n      (workDays.indexOf(next.getDay()) == -1)) { \\n   next.setDate(next.getDate() + 1); \\n   next.setHours(workStart[0]); \\n   next.setMinutes(workStart[1]); \\n} \\n// Pokud jsme před začátkem pracovního dne, přejdeme na jeho začátek.\\nif ((next.getHours() &lt; workStart[0]) ||\\n    (next.getHours() == workStart[0] &amp;&amp; next.getMinutes() &lt; workStart[1])) {\\n    next.setHours(workStart[0]);\\n    next.setMinutes(workStart[1]);\\n}",
+    "message": "// Výchozí hodnoty\nvar workDays = [1, 2, 3, 4, 5]; // Po - Pá; Ne == 0, So == 6 \nvar workStart = [8, 30]; // Začátek pracovní doby ve formátu [H, M] \nvar workEnd = [17, 30]; // Konec pracovní doby ve formátu [H, M] \nif (args && args[0])\n    workDays = args[0]; \nif (args && args[1])\n    workStart = args[1]; \nif (args && args[2])\n    workEnd = args[2];\nif (prev)     \n    // Běžně se nepoužívá, ale používá se jako aktuální čas pro testování.\n    next = new Date(prev); \nelse\n    next = new Date();\n// Pokud se dostaneme za konec pracovních hodin, nebo není pracovní den,\n// přejdeme na začátek dalšího pracovního dne.\nwhile ((next.getHours() > workEnd[0]) || \n      (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) || \n      (workDays.indexOf(next.getDay()) == -1)) { \n   next.setDate(next.getDate() + 1); \n   next.setHours(workStart[0]); \n   next.setMinutes(workStart[1]); \n} \n// Pokud jsme před začátkem pracovního dne, přejdeme na jeho začátek.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "Odeslat zprávu nyní, pokud je běžná pracovní doba, nebo na začátku příštího pracovního dne. Definici pracovních dní (Po - Pá) lze upravit změnou posloupnosti čísel dní v prvním argumentu, kde 0 je neděle a 6 je sobota. Pracovní dobu (8:30 - 17:30) lze změnit úpravou začátku pracovní doby v druhém arugmentu a konce v třetím ve formátu [H, M]. Do argumentů, které se měnit nemají, zadej &quot;null&quot;. Například &quot;null, [9, 0], [17, 0]&quot; změní pracovní hodiny na 9:00 - 17:00 bez změny pracovních dnů.",
+    "message": "Odeslat zprávu nyní, pokud je běžná pracovní doba, nebo na začátku příštího pracovního dne. Definici pracovních dní (Po - Pá) lze upravit změnou posloupnosti čísel dní v prvním argumentu, kde 0 je neděle a 6 je sobota. Pracovní dobu (8:30 - 17:30) lze změnit úpravou začátku pracovní doby v druhém arugmentu a konce v třetím ve formátu [H, M]. Do argumentů, které se měnit nemají, zadej \"null\". Například \"null, [9, 0], [17, 0]\" změní pracovní hodiny na 9:00 - 17:00 bez změny pracovních dnů.",
     "description": ""
   },
   "DaysInARowCode": {
-    "message": "// Odešle zprávu poprvé teď a dále pak jednou za den.\\nif (! prev)\\n    next = new Date();\\nelse {\\n    var now = new Date();\\n    next = new Date(prev); // Kopie argumentu date, abychom ho neupravili.\\n    do {\\n        next.setDate(next.getDate() + 1);\\n    } while (next &lt; now);\\n    // ^^^ Nechceme zprávu odeslat v minulosti v případě, že Thunderbird\\n    // spal v naplánovaném čase odeslání.\\n}\\nif (! args) // Ve výchozím nastavení odešle zprávu třikrát.\\n    args = [3];\\nnextargs = [args[0] - 1];\\n// Opakovat, pokud ještě nebylo dost odeslaní.\\nif (nextargs[0] &gt; 0)\\n    nextspec = &quot;function &quot; + specname;",
+    "message": "// Odešle zprávu poprvé teď a dále pak jednou za den.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Kopie argumentu date, abychom ho neupravili.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Nechceme zprávu odeslat v minulosti v případě, že Thunderbird\n    // spal v naplánovaném čase odeslání.\n}\nif (! args) // Ve výchozím nastavení odešle zprávu třikrát.\n    args = [3];\nnextargs = [args[0] - 1];\n// Opakovat, pokud ještě nebylo dost odeslaní.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
     "description": ""
   },
   "DaysInARowHelp": {
@@ -992,7 +992,7 @@
     "description": ""
   },
   "UntestedSaveBody": {
-    "message": "Funkce nebyla od poslední modifikace otestována (pomocí tlačítka &quot;Spustit&quot;). Chcete ji přesto uložit či exportovat?",
+    "message": "Funkce nebyla od poslední modifikace otestována (pomocí tlačítka \"Spustit\"). Chcete ji přesto uložit či exportovat?",
     "description": ""
   },
   "BadSaveTitle": {
@@ -1012,15 +1012,15 @@
     "description": ""
   },
   "NoNextValueError": {
-    "message": "Funkce nenastavila hodnotu &quot;next&quot;.",
+    "message": "Funkce nenastavila hodnotu \"next\".",
     "description": ""
   },
   "BadNextValueError": {
-    "message": "hodnota &quot;$1&quot; pro &quot;next&quot; není ani číslo ani datum",
+    "message": "hodnota \"$1\" pro \"next\" není ani číslo ani datum",
     "description": ""
   },
   "BadNextArgsError": {
-    "message": "hodnota “$1” pro &quot;nextargs&quot; není Pole",
+    "message": "hodnota “$1” pro \"nextargs\" není Pole",
     "description": ""
   },
   "FunctionDeleteConfirmBody": {

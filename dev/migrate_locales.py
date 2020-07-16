@@ -9,8 +9,7 @@ until I get around to setting up Crowdin integration.
 
 import sys, os, glob, re, html, json
 
-dtdregex = re.compile(r'^<!ENTITY\s\s*(\S\S*)\s\s*"(.*)">$')
-propregex = re.compile(r'(\S\S*)\s*=\s*(.*)\s*')
+
 
 # newKey: (oldKey, defaultVal, <description [optional]>, <filter [optional]>)
 migrations = {
@@ -100,6 +99,9 @@ def main(args):
     assert os.path.exists(os.path.join(legacy_path, 'en-US', 'prompt.dtd')), \
         'Not a valid legacy locale path.'
 
+    dtdregex = re.compile(r'^<!ENTITY\s\s*(\S\S*)\s\s*"(.*)">$')
+    propregex = re.compile(r'(\S\S*)\s*=\s*(.*)\s*')
+
     for locale in map(os.path.basename, glob.glob(os.path.join(legacy_path,'*'))):
         translations = dict()
         for fname in glob.glob(os.path.join(legacy_path, locale, '*.dtd')):
@@ -109,19 +111,20 @@ def main(args):
                 for line in dtdfile.readlines():
                     res = dtdregex.search(line)
                     if res:
-                        translations[res.group(1)] = html.escape(res.group(2))
+                        translations[res.group(1)] = res.group(2) #html.escape(res.group(2))
         for fname in glob.glob(os.path.join(legacy_path, locale, '*.properties')):
             with open(fname,'r') as dtdfile:
                 for line in dtdfile.readlines():
                     res = propregex.search(line)
                     if res:
-                        translations[res.group(1)] = html.escape(res.group(2))
+                        translations[res.group(1)] = res.group(2) #html.escape(res.group(2))
 
         appkey = "MessageTag"
         appName = translations[appkey] if appkey in translations else "Send Later"
 
         def msgfilter(message):
-            #message = re.sub(r"[“”]", "&quot;", message)
+            #message = re.sub(r"[“”]", '"', message)
+            message = re.sub("\\\\n", "\n", message)
             message = re.sub("{NAME}", appName, message)
             message = re.sub(r":\s*$", "", message)
             message = re.sub("%S:%S", "%S", message)
@@ -158,6 +161,9 @@ def main(args):
 
         locale_dir = locale.replace('-','_')
         os.makedirs(os.path.join("_locales",locale_dir), exist_ok=True)
+
+        if (locale == "en-US"):
+            print(i18n)
 
         with open(os.path.join("_locales", locale_dir, "messages.json"),'w') as msgs:
             msgs.write(json.dumps(i18n, indent=2, ensure_ascii=False))
