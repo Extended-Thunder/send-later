@@ -1,8 +1,5 @@
 // Pseudo-namespace encapsulation for global-ish variables.
 const SendLater = {
-    // Track unresolved promises that can be resolved by some future event.
-    _PromiseMap: new Map(),
-
     prefCache: {},
 
     composeState: {},
@@ -263,18 +260,14 @@ browser.compose.onBeforeSend.addListener(tab => {
 // Button clicks in the UI popup window send messages back to this function
 // via the WebExtension messaging API.
 browser.runtime.onMessage.addListener((message) => {
-  const resolve = SendLater._PromiseMap.get(message.tabId);
+  switch (message.action) {
+    case "alert": {
+      browser.SL3U.alert(message.title, message.text);
+      break;
+    }
+    case "doSendNow": {
+      SLStatic.debug("User requested send immediately.");
 
-  if (message.action === "alert") {
-    browser.SL3U.alert(message.title, message.text);
-  } else if (message.action === "doSendNow" ) {
-    SLStatic.debug("User requested send immediately.");
-    if (resolve !== undefined) {
-      // If already blocking a send operation, just get out of the way.
-      SendLater._PromiseMap.delete(message.tabId);
-      resolve({ cancel: false });
-    } else {
-      // Otherwise, initiate a new send operation.
       if (browser.SL3U.isOffline()) {
         browser.SL3U.alert("Thunderbird is offline.",
                            "Cannot send message at this time.");
@@ -284,27 +277,25 @@ browser.runtime.onMessage.addListener((message) => {
           setTimeout(() => delete SendLater.composeState[message.tabId], 1000);
         });
       }
+      break;
     }
-  } else if (message.action === "doSendLater") {
-    SLStatic.debug("User requested send later.");
-    const options = { sendAt: message.sendAt,
-                      recurSpec: message.recurSpec,
-                      args: message.args,
-                      cancelOnReply: message.cancelOnReply };
-    SendLater.scheduleSendLater(message.tabId, options);
-    if (resolve !== undefined) {
-      SendLater._PromiseMap.delete(message.tabId);
-      resolve({ cancel: true });
+    case "doSendLater": {
+      SLStatic.debug("User requested send later.");
+      const options = { sendAt: message.sendAt,
+                        recurSpec: message.recurSpec,
+                        args: message.args,
+                        cancelOnReply: message.cancelOnReply };
+      SendLater.scheduleSendLater(message.tabId, options);
+      break;
     }
-  } else if (message.action === "reloadPrefCache") {
-    browser.storage.local.get({preferences: {}}).then(storage => {
-      SendLater.prefCache = storage.preferences;
-    });
-  } else {
-    SLStatic.warn(`Unrecognized operation <${message.action}>.`);
-    if (resolve !== undefined) {
-      SendLater._PromiseMap.delete(message.tabId);
-      resolve({ cancel: true });
+    case "reloadPrefCache": {
+      browser.storage.local.get({preferences: {}}).then(storage => {
+        SendLater.prefCache = storage.preferences;
+      });
+      break;
+    }
+    default: {
+      SLStatic.warn(`Unrecognized operation <${message.action}>.`);
     }
   }
 });
