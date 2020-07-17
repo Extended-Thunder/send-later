@@ -26,10 +26,10 @@ exports.init = function() {
     return a == b;
   }
 
-  function NextRecurNormalTest(sendat, recur, now, expected) {
+  async function NextRecurNormalTest(sendat, recur, now, expected) {
     let result;
     try {
-      result = SLStatic.NextRecurDate(new Date(sendat), recur, new Date(now));
+      result = await SLStatic.NextRecurDate(new Date(sendat), recur, new Date(now));
     } catch (ex) {
       return "Unexpected error: " + ex;
     }
@@ -41,13 +41,13 @@ exports.init = function() {
     }
   }
 
-  function NextRecurExceptionTest(sendat, recur, now, expected) {
+  async function NextRecurExceptionTest(sendat, recur, now, expected) {
     let result;
     try {
-      result = SLStatic.NextRecurDate(new Date(sendat), recur, new Date(now));
+      result = await SLStatic.NextRecurDate(new Date(sendat), recur, new Date(now));
       return "Expected exception, got " + result;
     } catch (ex) {
-      if (ex.message.match(expected)) {
+      if ((ex+"").indexOf(expected) !== -1) {
         return true;
       } else {
         return `Expected exception matching ${expected}, got ${ex.message}`;
@@ -55,17 +55,17 @@ exports.init = function() {
     }
   }
 
-  function NextRecurFunctionTest(sendat, recur, now, args, func_name,
+  async function NextRecurFunctionTest(sendat, recur, now, args, func_name,
                                  func, expected) {
-    global[func_name] = func;
+    SLStatic.ufuncs[func_name] = (func === undefined) ? undefined : {body:func};
     let result;
     try {
       now = new Date(now);
       sendat = new Date(sendat);
-      result = SLStatic.NextRecurDate(sendat, recur, now, args);
-      delete global[func_name];
+      result = await SLStatic.NextRecurDate(sendat, recur, now, args);
+      delete SLStatic.ufuncs[func_name];
     } catch (ex) {
-      delete global[func_name];
+      delete SLStatic.ufuncs[func_name];
       return "Unexpected error: " + ex.message;
     }
     if (DeepCompare(result, expected)) {
@@ -75,17 +75,17 @@ exports.init = function() {
     }
   }
 
-  function NextRecurFunctionExceptionTest(sendat, recur, now, func_name,
+  async function NextRecurFunctionExceptionTest(sendat, recur, now, func_name,
                                           func, expected) {
-    global[func_name] = func;
+    SLStatic.ufuncs[func_name] = (func === undefined) ? undefined : {body:func};
     try {
       let result;
-      result = SLStatic.NextRecurDate(new Date(sendat), recur, new Date(now));
-      delete global[func_name];
+      result = await SLStatic.NextRecurDate(new Date(sendat), recur, new Date(now));
+      delete SLStatic.ufuncs[func_name];
       return "Expected exception, got " + result;
     } catch (ex) {
-      delete global[func_name];
-      if (ex.message.match(expected)) {
+      delete SLStatic.ufuncs[func_name];
+      if ((ex+"").indexOf(expected) !== -1) {
         return true;
       } else {
         return `Expected exception matching ${expected}, got ${ex.message}`;
@@ -124,56 +124,50 @@ exports.init = function() {
 
   SLTests.AddTest("NextRecurDate nonexistent function",
                    NextRecurExceptionTest, ["10/3/2012", "function foo",
-                   "10/3/2012", "is not defined"]);
-  SLTests.AddTest("NextRecurDate bad function type", NextRecurExceptionTest,
-                   ["10/3/2012", "function SLStatic", "10/3/2012",
-                   "is not a function"]);
+                   undefined, "is not defined"]);
 
   SLTests.AddTest("NextRecurDate function doesn't return a value",
                    NextRecurFunctionExceptionTest,
                    ["10/3/2012", "function Test1", "10/3/2012", "Test1",
-                    (()=>undefined), "did not return a value"]);
+                    'return undefined', "did not return a value"]);
   SLTests.AddTest("NextRecurDate function doesn't return number or array",
                    NextRecurFunctionExceptionTest,
                    ["10/3/2012", "function Test2", "10/3/2012", "Test2",
-                   (()=>"foo"), "did not return number or array" ]);
+                   'return "foo"', "did not return number, Date, or array" ]);
   SLTests.AddTest("NextRecurDate function returns too-short array",
                    NextRecurFunctionExceptionTest,
                    ["10/3/2012", "function Test3", "10/3/2012", "Test3",
-                   (()=>new Array()), "is too short"]);
+                   'return new Array()', "is too short"]);
   SLTests.AddTest("NextRecurDate function did not start with a number",
                    NextRecurFunctionExceptionTest,
                    ["10/3/2012", "function Test4", "10/3/2012", "Test4",
-                   (()=>new Array("monthly", "extra")),
+                   'return new Array("monthly", "extra");',
                    "did not start with a number"]);
   SLTests.AddTest("NextRecurDate function finished recurring",
                    NextRecurFunctionTest,
                    ["10/3/2012", "function Test5", "10/3/2012", null, "Test5",
-                   (()=>-1), null]);
+                   "return -1;", null]);
 
   const d1 = new Date();
   d1.setTime((new Date("10/3/2012")).getTime() + 5 * 60 * 1000);
   SLTests.AddTest("NextRecurDate function returning minutes",
                    NextRecurFunctionTest,
                    ["10/3/2012", "function Test6", "10/4/2012", null, "Test6",
-                   (()=>5), [d1, null]]);
+                   'return 5', [d1, null]]);
 
   const d2 = new Date();
   d2.setTime((new Date("10/3/2012")).getTime() + 7 * 60 * 1000);
   SLTests.AddTest("NextRecurDate function returning array",
                    NextRecurFunctionTest,
                    ["10/3/2012", "function Test7", "10/4/2012", null, "Test7",
-                   (()=>new Array(7, "monthly 5")), [d2, "monthly 5"]]);
+                   'return new Array(7, "monthly 5")', [d2, "monthly 5"]]);
   SLTests.AddTest("NextRecurDate function returning array with args",
                    NextRecurFunctionTest,
                    ["10/3/2012", "function Test8", "10/4/2012", ["froodle"],
-                   "Test8", ((prev,args)=>{
-                     if (args[0] != "froodle") {
-                       throw "bad args: " + args;
-                     } else {
-                       return [7, "monthly 5", "freeble"];
-                     }
-                   }), [d2, "monthly 5", "freeble"]]);
+                   "Test8",
+                   'if (args[0] !== "froodle") { throw `bad args: ${args}`; }' +
+                   'else { return [7, "monthly 5", "freeble"]; }',
+                   [d2, "monthly 5", "freeble"]]);
 
   SLTests.AddTest("NextRecurDate between before", NextRecurNormalTest,
                    ["3/1/2016 17:00", "minutely / 600 between 0900 1700",

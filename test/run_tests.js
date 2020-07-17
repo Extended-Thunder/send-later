@@ -5,30 +5,28 @@ global.SLTests = {
     SLTests.UnitTests.push([test_name, test_function, test_args]);
   },
 
-  RunTests: function(event, names) {
+  RunTests: async function(event, names) {
     for (const params of SLTests.UnitTests) {
       const name = params[0];
       const func = params[1];
       const args = params[2];
 
-      if (names && names.indexOf(name) == -1) {
+      if (names && names.indexOf(name) === -1) {
         continue;
       }
 
-      let result;
-      try {
-        result = func.apply(null, args);
-      } catch (ex) {
+      await Promise.resolve(func.apply(null, args)).then(result => {
+        if (result === true) {
+          console.info(`+ TEST ${name} PASS`);
+        } else if (result === false) {
+          console.warn(`- TEST ${name} FAIL`);
+        } else {
+          console.warn(`- TEST ${name} FAIL ${result}`);
+        }
+      }).catch(ex => {
         console.warn(`- TEST ${name} EXCEPTION: ${ex.message}`);
-        continue;
-      }
-      if (result === true) {
-        console.info(`+ TEST ${name} PASS`);
-      } else if (result === false) {
-        console.warn(`- TEST ${name} FAIL`);
-      } else {
-        console.warn(`- TEST ${name} FAIL ${result}`);
-      }
+      });
+
     }
   }
 }
@@ -48,4 +46,4 @@ for (let i=0; i<testPaths.length; i++) {
   tests.init();
 }
 
-SLTests.RunTests();
+SLTests.RunTests().catch(console.error);

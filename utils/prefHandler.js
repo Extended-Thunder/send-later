@@ -6,13 +6,13 @@
   const logPrefs = function() {
     browser.storage.local.get("preferences").then(storage => {
       const prefs = storage.preferences || {};
-      if (["all", "trace", "debug"].includes(prefs["logConsoleLevel"])) {
-        browser.storage.local.get().then(results => {
-          Object.entries(results).forEach(([key, value]) => {
-            console.debug(key, value)
-          });
-        });
-      }
+      // if (["all", "trace", "debug"].includes(prefs["logConsoleLevel"])) {
+      //   browser.storage.local.get().then(results => {
+      //     Object.entries(results).forEach(([key, value]) => {
+      //       console.debug(key, value)
+      //     });
+      //   });
+      // }
     });
   };
 

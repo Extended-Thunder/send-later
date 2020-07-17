@@ -1,4 +1,8 @@
 const SLStatic = {
+  // Not so static after all. TODO: Figure out some way to handle these user-
+  // defined functions in a more functional style.
+  ufuncs: null,
+
   timeRegex: /^(2[0-3]|[01]?\d):?([0-5]\d)$/,
 
   async logger(msg, level, stream) {
@@ -67,7 +71,7 @@ const SLStatic = {
       case "!==":
         return !SLStatic.compareTimes(a,"===",b);
       default:
-        throw ("Unknown comparison: "+comparison);
+        throw new Error("Unknown comparison: "+comparison);
         break;
     }
   },
@@ -94,9 +98,9 @@ const SLStatic = {
     return `${hours}:${minutes}`;
   },
 
-  scopedFunctionFromString: function(contents) {
-    "use strict";
-     return eval(contents);
+  call: function(name, body, prev, args) {
+    const argStr = SLStatic.unparseArgs(args);
+    return browser.SL3U.call(name, body, prev.getTime(), argStr);
   },
 
   setState: function(enabled) {
@@ -137,7 +141,7 @@ const SLStatic = {
   unparseArgs: function(args) {
     // Convert a list into its string representation, WITHOUT the square
     // braces around the entire list.
-    let arglist = JSON.stringify(args, null, ' ');
+    let arglist = JSON.stringify(args||[], null, ' ');
     arglist = arglist.replace(/\r?\n\s*/g,' '); // Remove newlines from stringify
     arglist = arglist.replace(/\[\s*/g,'[').replace(/\s*\]/g,']'); // Cleanup
     arglist = arglist.replace(/^\[|\]$/g, ''); // Strip outer brackets
@@ -204,8 +208,9 @@ const SLStatic = {
       spec += " " + parsed.yearly.month + " " + parsed.yearly.date;
     } else if (parsed.type === "function") {
       spec += " " + parsed.function;
-      if (parsed.finished)
+      if (parsed.finished) {
         spec += " finished";
+      }
     }
 
     if (parsed.multiplier) {
@@ -239,19 +244,19 @@ const SLStatic = {
     parsed.type = params.shift();
     if (!['none','minutely','daily','weekly','monthly','yearly',
         'function'].includes(parsed.type)) {
-      throw "Invalid recurrence type in " + spec;
+      throw new Error("Invalid recurrence type in " + spec);
     }
     switch (parsed.type) {
       case "none":
         if (params.length) {
-          throw "Extra arguments in " + spec;
+          throw new Error("Extra arguments in " + spec);
         } else {
           return null;
         }
         break;
       case "monthly":
         if (!/^\d+$/.test(params[0])) {
-          throw "Invalid first monthly argument in " + spec;
+          throw new Error("Invalid first monthly argument in " + spec);
         }
         if (/^[1-9]\d*$/.test(params[1])) {
           parsed.monthly_day = {
@@ -259,15 +264,15 @@ const SLStatic = {
             week: params.shift()
           };
           if (parsed.monthly_day.day < 0 || parsed.monthly_day.day > 6) {
-            throw "Invalid monthly day argument in " + spec;
+            throw new Error("Invalid monthly day argument in " + spec);
           }
           if (parsed.monthly_day.week < 1 || parsed.monthly_day.week > 5) {
-            throw "Invalid monthly week argument in " + spec;
+            throw new Error("Invalid monthly week argument in " + spec);
           }
         } else {
           parsed.monthly = params.shift();
           if (parsed.monthly > 31)
-            throw "Invalid monthly date argument in " + spec;
+            throw new Error("Invalid monthly date argument in " + spec);
         }
         break;
       case "yearly":
@@ -287,7 +292,7 @@ const SLStatic = {
         const test = new Date(2000, parsed.yearly.month, parsed.yearly.date);
         if ((test.getMonth() !== parsed.yearly.month) ||
             (test.getDate() !== parsed.yearly.date)) {
-          throw "Invalid yearly date in " + spec;
+          throw new Error("Invalid yearly date in " + spec);
         }
         break;
       case "function":
@@ -296,7 +301,7 @@ const SLStatic = {
         parsed.finished = (params[0] === "finished");
 
         if (!parsed.function) {
-          throw "Invalid function recurrence spec";
+          throw new Error("Invalid function recurrence spec");
         }
         break;
       default:
@@ -308,7 +313,7 @@ const SLStatic = {
       if (slashIndex > -1) {
           const multiplier = params[slashIndex + 1];
           if (!/^[1-9]\d*$/.test(multiplier)){
-            throw "Invalid multiplier argument in " + spec;
+            throw new Error("Invalid multiplier argument in " + spec);
           }
           parsed.multiplier = +multiplier;
           params.splice(slashIndex, 2);
@@ -321,9 +326,9 @@ const SLStatic = {
       const endTimeStr = params[btwnIdx + 2];
 
       if (! SLStatic.timeRegex.test(startTimeStr)) {
-        throw "Invalid between start in " + spec;
+        throw new Error("Invalid between start in " + spec);
       } else if (! SLStatic.timeRegex.test(endTimeStr)) {
-        throw "Invalid between end in " + spec;
+        throw new Error("Invalid between end in " + spec);
       }
 
       parsed.between = {
@@ -339,90 +344,102 @@ const SLStatic = {
       while (/^\d$/.test(params[onIndex])) {
         const day = params.splice(onIndex, 1)[0];
         if (day > 6) {
-          throw "Bad restriction day in " + spec;
+          throw new Error("Bad restriction day in " + spec);
         }
         parsed.days.push(Number(day));
       }
       if (!parsed.days.length) {
-        throw "Day restriction with no days in spec "+spec;
+        throw new Error("Day restriction with no days in spec "+spec);
       }
     }
     if (params.length) {
-      throw "Extra arguments in " + spec;
+      throw new Error("Extra arguments in " + spec);
     }
     return parsed;
   },
 
-  NextRecurFunction: function(next, recurSpec, recur, args, saveFunction) {
-    const funcName = recur.function;
+  NextRecurFunction: async function(prev, recurSpec, recur, args, saveFunction) {
+    if (!SLStatic.ufuncs) {
+      throw new Error("SLStatic ufuncs object has not been initialzied.");
+    } else if (!recur.function) {
+      throw new Error(`Invalid recurrence specification '${recurSpec}': ` +
+                      "No function defined");
+    }
+
+    const funcName = recur.function.replace(/^ufunc:/, "");
+
     let nextRecur;
-    if (funcName.startsWith("ufunc:")) {
-      throw "ufunc recurrence not yet implemented.";
-      //nextRecur = sl3uf.callByName(funcName.slice(6), next, args);
+    if (SLStatic.ufuncs[funcName] === undefined) {
+      throw new Error(`Invalid recurrence specification '${recurSpec}': ` +
+                      `${funcName} is not defined.`);
     } else {
-      // Yes, I realize this is terrible. I'll fix it later.
-      const func = eval(funcName);
-      if (typeof(func) === 'undefined') {
-        throw new Error("Send Later: Invalid recurrence specification " +
-                        `'${recurSpec}': ${funcName} is not defined.`);
-      } else if (typeof(func) !== "function") {
-        throw new Error("Send Later: Invalid recurrence specification " +
-                        `'${recurSpec}': ${funcName} is not a function.`);
-      } else {
-        nextRecur = func(next, args);
+      try {
+        const func = SLStatic.ufuncs[funcName];
+        nextRecur = await SLStatic.call(funcName, func.body, prev, args);
+      } catch (ex) {
+        throw new Error(`Recurrence function failed with error: ${ex.message}`);
       }
     }
-    if (!next)
-      next = new Date();
-    if (!nextRecur)
-      throw new Error(`Send Later: Recurrence function '${funcName}' did not` +
-                      " return a value");
-    if (typeof(nextRecur) == "number") {
-      if (nextRecur == -1)
-        return null;
-      next.setTime(next.getTime() + nextRecur * 60 * 1000);
-      nextRecur = [next, null];
+
+    if (!prev) {
+      prev = new Date();
     }
+
+    if (nextRecur === undefined) {
+      throw new Error(`Send Later: Recurrence function '${funcName}' did not` +
+                      " return a value" + SLStatic.ufuncs[funcName].body);
+    }
+    if (typeof(nextRecur) === "number") {
+      if (nextRecur <= 0) {
+        return null;
+      } else {
+        const next = new Date(prev.getTime() + nextRecur * 60 * 1000);
+        nextRecur = [next, null];
+      }
+    }
+
     if (nextRecur.getTime) {
       nextRecur = [nextRecur, null];
     }
 
-    if (!nextRecur.splice)
-      throw new Error("Send Later: Recurrence function '" + funcName +
-                      "' did not return number or array");
-    if (nextRecur.length < 2)
-      throw new Error("Send Later: Array returned by recurrence " +
-                      "function '" + funcName + "' is too short");
-    if (typeof(nextRecur[0]) != "number" &&
-        !(nextRecur[0] && nextRecur[0].getTime))
-      throw new Error("Send Later: Array " + nextRecur +
-                      " returned by recurrence function '" + funcName +
-                      "' did not start with a number or Date");
-    if (!nextRecur[0].getTime) {
-      next.setTime(next.getTime() + nextRecur[0] * 60 * 1000);
+    if (!nextRecur.splice) {
+      throw `Recurrence function "${funcName}" did not return number, Date, or array`;
+    }
+    if (nextRecur.length < 2) {
+      throw new Error(`Array returned by recurrence function "${funcName}" is too short`);
+    }
+    if (typeof(nextRecur[0]) !== "number" && !(nextRecur[0] && nextRecur[0].getTime)) {
+      throw new Error(`Send Later: Array ${nextRecur} returned by recurrence function ` +
+            `"${funcName}" did not start with a number or Date`);
+    }
+    if (typeof(nextRecur[0]) === "number") {
+      const next = new Date(prev.getTime() + nextRecur[0] * 60 * 1000);
       nextRecur[0] = next;
     }
+    if (!nextRecur[1] && saveFunction) {
+      nextRecur[1] = `function "${funcName}" finished`;
+    }
 
-    if (!nextRecur[1] && saveFunction)
-      nextRecur[1] = "function " + funcName + " finished";
-
-    if (!nextRecur[1] && (recur.between || recur.days))
+    if (!nextRecur[1] && (recur.between || recur.days)) {
       nextRecur[1] = "none";
+    }
 
     if (nextRecur[1]) {
       // Merge restrictions from old spec into this one.
       const functionSpec = SLStatic.ParseRecurSpec(nextRecur[1]);
-      if (recur.between)
+      if (recur.between) {
         functionSpec.between = recur.between;
-      if (recur.days)
+      }
+      if (recur.days) {
         functionSpec.days = recur.days;
+      }
       nextRecur[1] = SLStatic.unparseRecurSpec(functionSpec);
     }
 
     return nextRecur;
   },
 
-  NextRecurDate: function(next, recurSpec, now, args) {
+  NextRecurDate: async function(next, recurSpec, now, args) {
     // Make sure we don't modify our input!
     next = new Date(next.getTime());
     const recur = SLStatic.ParseRecurSpec(recurSpec);
@@ -435,7 +452,7 @@ const SLStatic = {
       if (recur.finished) {
         return null;
       }
-      const results = SLStatic.NextRecurFunction(next, recurSpec, recur, args);
+      const results = await SLStatic.NextRecurFunction(next, recurSpec, recur, args);
       if (results && results[0] && (recur.between || recur.days))
         results[0] = SLStatic.AdjustDateForRestrictions(
                             results[0], recur.between && recur.between.start,
@@ -513,7 +530,7 @@ const SLStatic = {
           next.setDate(recur.yearly.date);
           break;
         default:
-          throw ("Send Later internal error: unrecognized recurrence type: " +
+          throw new Error("Send Later error: unrecognized recurrence type: " +
                  recur.type);
           break;
       }
@@ -685,7 +702,16 @@ if (typeof browser === "undefined") {
       setHeader: function (key,value){},
       getHeader: function(key){return key;},
       getLegacyPref: function(name, dtype, def){return null;},
-      alert: function(msg) {console.warn(`ALERT ${msg}`);}
+      alert: function(msg) {console.warn(`ALERT ${msg}`);},
+      async call(name, body, prev, argstring) {
+        body = `let next, nextspec, nextargs; ${body}; ` +
+                "return([next, nextspec, nextargs]);";
+        prev = new Date(prev);
+        const args = JSON.parse(`[${argstring||""}]`);
+        const FUNC = Function.apply(null, ["specname", "prev", "args", body]);
+
+        return FUNC(name, prev, args);
+      }
     }
   }
 
@@ -705,5 +731,11 @@ if (typeof browser === "undefined") {
     ).then(locale => {
       localeMessages = locale;
     });
+  }
+
+  SLStatic.ufuncs = {
+    ReadMeFirst: {help: "", body: "// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;"},
+    BusinessHours: {help:"",body:"// Defaults\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Start of the work day as [H, M]\nvar workEnd = [17, 30]; // End of the work day as [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Not expected in normal usage, but used as the current time for testing.\n    next = new Date(prev);\nelse\n    next = new Date();\n// If we're past the end of the workday or not on a workday, move to the work\n// start time on the next day.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// If we're before the beginning of the workday, move to its start time.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}"},
+    DaysInARow: {help:"",body:"// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;"}
   }
 }

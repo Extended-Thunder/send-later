@@ -9,6 +9,8 @@ const SLOptions = {
             "quickOptions2Value", "quickOptions3Value", "logDumpLevel",
             "logConsoleLevel"],
 
+  builtinFuncs: ["ReadMeFirst", "BusinessHours", "DaysInARow", "newFunctionName"],
+
   async applyPrefsToUI() {
     // Saves the UI preferences to preference storage.
     browser.storage.local.get("preferences").then( (storage) => {
@@ -58,13 +60,14 @@ const SLOptions = {
     return browser.storage.local.set({ ufuncs });
   },
 
-  async saveUserFunction(funcName, funcContent) {
-    if (validateFuncName(funcName) &&
-        !["ReadMeFirst", "newFunctionName"].includes(funcName)) {
-      SLStatic.info(`Storing user function ${funcName}`);
+  async saveUserFunction(name, body, help) {
+    if (validateFuncName(name) && !SLOptions.builtinFuncs.includes(name)) {
+      SLStatic.info(`Storing user function ${name}`);
       const { ufuncs } = await browser.storage.local.get({ufuncs:{}});
-      ufuncs[funcName] = funcContent;
-      browser.storage.local.set({ ufuncs });
+      ufuncs[name] = { body, help };
+      browser.storage.local.set({ ufuncs }).then(() => {
+        browser.runtime.sendMessage({ action: "reloadUfuncs" });
+      });
       return true;
     } else {
       browser.runtime.sendMessage({ action: "alert",
@@ -83,11 +86,12 @@ const SLOptions = {
     if (document.getElementById(`ufunc-${funcName}`)) {
       return;
     } else {
-      const funcSelect = document.getElementById("functionNames");
       const newOpt = document.createElement('option');
       newOpt.id = `ufunc-${funcName}`;
       newOpt.value = funcName;
       newOpt.textContent = funcName;
+
+      const funcSelect = document.getElementById("functionNames");
       funcSelect.children[0].after(newOpt);
       if (active) {
         funcSelect.value = funcName;
@@ -248,13 +252,13 @@ const SLOptions = {
       const resetBtn = document.getElementById("funcEditReset");
       const deleteBtn = document.getElementById("funcEditDelete");
 
-      if (funcName === "ReadMeFirst") {
+      if (SLOptions.builtinFuncs.includes(funcName)) {
         funcContentElmt.disabled = true;
         funcNameElmt.disabled = true;
         saveBtn.disabled = true;
         resetBtn.disabled = true;
         deleteBtn.disabled = true;
-        funcNameElmt.value = "";
+        funcNameElmt.value = funcName;
       } else {
         funcContentElmt.disabled = false;
         funcNameElmt.disabled = false;
@@ -282,7 +286,7 @@ const SLOptions = {
     document.getElementById("funcEditDelete").addEventListener("click", evt => {
       const funcNameSelect = document.getElementById("functionNames");
       const funcName = funcNameSelect.value;
-      if (["ReadMeFirst", "newFunctionName"].includes(funcName)) {
+      if ([...SLOptions.builtinFuncs, "newFunctionName"].includes(funcName)) {
         // Shouldn't be possible
         SLStatic.error("Trying to delete builtin user func.");
       } else {
@@ -303,10 +307,6 @@ const SLOptions = {
       });
     });
 
-    // const enabler = SLStatic.setState(true);
-    // const disabler = SLStatic.setState(false);
-    // disabler(document.getElementById("functionEditorInputs"));
-
     // And attach a listener to the "Reset Preferences" button
     const clearPrefsBtn = document.getElementById("clearPrefs");
     clearPrefsBtn.addEventListener("click", SLOptions.clearPrefsListener);
@@ -314,8 +314,10 @@ const SLOptions = {
   async onLoad() {
     setTimeout(async () => {
       const { ufuncs } = await browser.storage.local.get({ufuncs:{}});
-      if (!ufuncs.ReadMeFirst) {
+      if (!ufuncs.ReadMeFirst || !ufuncs.BusinessHours || !ufuncs.DaysInARow) {
         ufuncs.ReadMeFirst = browser.i18n.getMessage("EditorReadMeCode");
+        ufuncs.BusinessHours = browser.i18n.getMessage("_BusinessHoursCode");
+        ufuncs.DaysInARow = browser.i18n.getMessage("DaysInARowCode");
         browser.storage.local.set({ ufuncs });
       }
     }, 1000);

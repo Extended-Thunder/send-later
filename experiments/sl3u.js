@@ -147,6 +147,16 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return Utils.isOffline;
         },
 
+        async call(name, body, prev, argstring) {
+          body = `let next, nextspec, nextargs; ${body}; ` +
+                  "return([next, nextspec, nextargs]);";
+          prev = new Date(prev);
+          const args = JSON.parse(`[${argstring||""}]`);
+
+          const FUNC = Function.apply(null, ["specname", "prev", "args", body]);
+          return FUNC(name, prev, args);
+        },
+
         async getLegacyPref(name, dtype, defVal) {
           // Prefix for legacy preferences.
           const prefName = `extensions.sendlater3.${name}`;

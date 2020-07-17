@@ -200,6 +200,18 @@ const SendLater = {
       }
     },
 
+    init: function() {
+      browser.storage.local.get({preferences: {}, ufuncs:{}}).then(storage => {
+        SendLater.prefCache = storage.preferences;
+        SLStatic.ufuncs = storage.ufuncs;
+      });
+
+      browser.SL3U.bindAltShiftEnter();
+
+      // Start background loop to check for scheduled messages.
+      setTimeout(SendLater.mainLoop, 0);
+    },
+
     mainLoop: function() {
       SLStatic.debug("Entering main loop.");
 
@@ -235,9 +247,7 @@ browser.compose.onBeforeSend.addListener(tab => {
   if (SendLater.composeState[tab.id] === "sending") {
     // Avoid blocking extension's own send events
     return { cancel: false };
-  }
-
-  if (SendLater.prefCache.sendDoesSL) {
+  } else if (SendLater.prefCache.sendDoesSL) {
     if (SendLater.prefCache.altBinding) {
       SLStatic.log("Ignoring onBeforeSend, because alt+shift+enter is bound");
       return ({ cancel: false });
@@ -257,8 +267,6 @@ browser.compose.onBeforeSend.addListener(tab => {
   }
 });
 
-// Button clicks in the UI popup window send messages back to this function
-// via the WebExtension messaging API.
 browser.runtime.onMessage.addListener((message) => {
   switch (message.action) {
     case "alert": {
@@ -294,17 +302,15 @@ browser.runtime.onMessage.addListener((message) => {
       });
       break;
     }
+    case "reloadUfuncs":
+      browser.storage.local.get({ ufuncs: {} }).then(storage => {
+        SLStatic.ufuncs = storage.ufuncs;
+      });
+      break;
     default: {
       SLStatic.warn(`Unrecognized operation <${message.action}>.`);
     }
   }
 });
 
-browser.storage.local.get({preferences: {}}).then(storage => {
-  SendLater.prefCache = storage.preferences;
-});
-
-browser.SL3U.bindAltShiftEnter();
-
-// Start background loop to check for scheduled messages.
-setTimeout(SendLater.mainLoop, 0);
+SendLater.init();

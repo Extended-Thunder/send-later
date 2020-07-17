@@ -20,6 +20,8 @@ lint:
 	addons-linter .
 
 unit_test: $(shell find $(shell cat dev/include-manifest) 2>/dev/null)
-	node test/run_tests.js
+	@node test/run_tests.js 2>&1 \
+		| sed -e '/^+ TEST'/s//"`printf '\033[32m+ TEST\033[0m'`"'/' \
+		| sed -e '/^- TEST'/s//"`printf '\033[31m- TEST\033[0m'`"'/'
 
 test: lint unit_test

@@ -60,7 +60,7 @@ exports.init = function() {
       const out = SLStatic.ParseRecurSpec(spec);
       return "expected exception, got " + JSON.stringify(out);
     } catch (ex) {
-      if (!ex.match(expected)) {
+      if ((ex+"").indexOf(expected) === -1) {
         return "exception " + ex + " did not match " + expected;
       } else {
         return true;
