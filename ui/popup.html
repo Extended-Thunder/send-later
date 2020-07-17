@@ -7,7 +7,7 @@
   </head>
 
   <body style="padding:1em;">
-    <section style="display:block;">
+    <section style="display:block;" id="sendAtTimeDateDiv">
       <span style="margin-right:0.5em;"
             class="localized __MSG_sendAtLabel__">Send at</span>
       <input id="send-date" type="date"/>
@@ -49,7 +49,7 @@
           <label id="function-recur-radio">
             <input type="radio" id="function" name="recur" value="function"/>
             <span class="localized __MSG_recurFunctionLabel__">Function</span>
-            <select id="recurFunction">
+            <select id="recurFuncSelect">
             </select>
           </label>
           <br/>
@@ -180,7 +180,7 @@
     </section>
 
     <section style="clear:both;display:block;">
-      <button style="width:100%; margin:0;" id="sendAt" disabled>
+      <button style="width:100%; margin:0;" id="sendScheduleButton" disabled>
         Enter a valid date above
       </button>
       <br/>

@@ -9,7 +9,7 @@ const SLOptions = {
             "quickOptions2Value", "quickOptions3Value", "logDumpLevel",
             "logConsoleLevel"],
 
-  builtinFuncs: ["ReadMeFirst", "BusinessHours", "DaysInARow", "newFunctionName"],
+  builtinFuncs: ["ReadMeFirst", "BusinessHours", "DaysInARow"],
 
   async applyPrefsToUI() {
     // Saves the UI preferences to preference storage.
@@ -53,13 +53,6 @@ const SLOptions = {
     browser.runtime.sendMessage({ action: "reloadPrefCache" });
   },
 
-  async delUserFunction(funcName) {
-    document.getElementById(`ufunc-${funcName}`).remove();
-    const { ufuncs } = await browser.storage.local.get({ufuncs:{}});
-    delete ufuncs[funcName];
-    return browser.storage.local.set({ ufuncs });
-  },
-
   async saveUserFunction(name, body, help) {
     if (validateFuncName(name) && !SLOptions.builtinFuncs.includes(name)) {
       SLStatic.info(`Storing user function ${name}`);
@@ -75,11 +68,6 @@ const SLOptions = {
         text: browser.i18n.getMessage("BadSaveBody")});
       return false;
     }
-  },
-
-  async getUserFunction(funcName) {
-    const { ufuncs } = await browser.storage.local.get({ufuncs:{}});
-    return ufuncs[funcName];
   },
 
   async addFuncOption(funcName, active) {
@@ -147,59 +135,53 @@ const SLOptions = {
     }
   },
 
-  async clearPrefsListener(clrEvent) {
-    // Executes when user clicls the "Reset Preferences" button.
-    const confDiv = document.createElement("div");
-    confDiv.style.margin = "0 2em";
-    confDiv.style.display = "inline";
+  doubleCheckButtonClick(callback) {
+    // Closure for event listeners on important buttons like reset preferences
+    // and delete user functions. This returns a listener function that double
+    // checks the user input before executing the real callback function.
+    return (evt => {
+      const confDiv = document.createElement("div");
+      confDiv.style.margin = "0 2em";
+      confDiv.style.display = "inline";
 
-    const confirmPrompt = document.createElement("span");
-    confirmPrompt.textContent = "Are you sure?"; // browser.i18n.getMessage("confirmPrompt")
-    confirmPrompt.style.fontWeight = "bold";
-    confirmPrompt.style.color = "red";
-    confirmPrompt.style.display = "inline";
-    confirmPrompt.style.margin = "0 0.5em";
-    confDiv.appendChild(confirmPrompt);
+      const confirmPrompt = document.createElement("span");
+      confirmPrompt.textContent = "Are you sure?"; // browser.i18n.getMessage("confirmPrompt")
+      confirmPrompt.style.fontWeight = "bold";
+      confirmPrompt.style.color = "red";
+      confirmPrompt.style.display = "inline";
+      confirmPrompt.style.margin = "0 0.5em";
+      confDiv.appendChild(confirmPrompt);
 
-    const confirmBtn = document.createElement("button");
-    confirmBtn.type = "button";
-    confirmBtn.textContent = "Yes"; // browser.i18n.getMessage("answerYes")
-    confirmBtn.style.fontWeight = "bold";
-    confirmBtn.style.display = "inline";
-    confirmBtn.style.margin = "0 0.5em";
-    confDiv.appendChild(confirmBtn);
+      const confirmBtn = document.createElement("button");
+      confirmBtn.type = "button";
+      confirmBtn.textContent = "Yes"; // browser.i18n.getMessage("answerYes")
+      confirmBtn.style.fontWeight = "bold";
+      confirmBtn.style.display = "inline";
+      confirmBtn.style.margin = "0 0.5em";
+      confDiv.appendChild(confirmBtn);
 
-    const cancelBtn = document.createElement("button");
-    cancelBtn.type = "button";
-    cancelBtn.textContent = "No"; // browser.i18n.getMessage("answerNo")
-    cancelBtn.style.fontWeight = "bold";
-    cancelBtn.style.display = "inline";
-    cancelBtn.style.margin = "0 0.5em";
-    confDiv.appendChild(cancelBtn);
+      const cancelBtn = document.createElement("button");
+      cancelBtn.type = "button";
+      cancelBtn.textContent = "No"; // browser.i18n.getMessage("answerNo")
+      cancelBtn.style.fontWeight = "bold";
+      cancelBtn.style.display = "inline";
+      cancelBtn.style.margin = "0 0.5em";
+      confDiv.appendChild(cancelBtn);
 
-    confirmBtn.addEventListener("click", confClickEvent => {
-        confDiv.remove();
-        clrEvent.target.disabled = false;
+      confirmBtn.addEventListener("click", confClickEvent => {
+          confDiv.remove();
+          evt.target.disabled = false;
+          callback(confClickEvent);
+      });
 
-        const defPrefs = "/utils/defaultPrefs.json";
-        fetch(defPrefs).then(ptxt => ptxt.json()).then(defaults => {
-            const prefs = Object.keys(defaults).reduce( (result,key) => {
-                result[key]=defaults[key][1];
-                return result;
-            }, {});
-            browser.storage.local.set({ preferences: prefs }).then(() => {
-              browser.runtime.sendMessage({ action: "reloadPrefCache" });
-            });
-        }).then(() => SLOptions.applyPrefsToUI());
+      cancelBtn.addEventListener("click", cancelClickEvent => {
+          confDiv.remove();
+          evt.target.disabled = false;
+      });
+
+      evt.target.parentNode.appendChild(confDiv);
+      evt.target.disabled = true;
     });
-
-    cancelBtn.addEventListener("click", cancelClickEvent => {
-        confDiv.remove();
-        clrEvent.target.disabled = false;
-    });
-
-    clrEvent.target.parentNode.appendChild(confDiv);
-    clrEvent.target.disabled = true;
   },
 
   async checkBoxSetListeners(ids) {
@@ -274,8 +256,9 @@ const SLOptions = {
         }
       }
 
-      SLOptions.getUserFunction(funcName).then(content => {
-        funcContentElmt.value = content || "";
+      browser.storage.local.get({ ufuncs: {} }).then(({ ufuncs }) => {
+        const thisFunc = ufuncs[funcName] || {};
+        funcContentElmt.value = thisFunc.body || "";
       });
     });
 
@@ -283,18 +266,6 @@ const SLOptions = {
         resetFunctionInput);
     document.getElementById("funcEditReset").addEventListener("click",
         resetFunctionInput);
-    document.getElementById("funcEditDelete").addEventListener("click", evt => {
-      const funcNameSelect = document.getElementById("functionNames");
-      const funcName = funcNameSelect.value;
-      if ([...SLOptions.builtinFuncs, "newFunctionName"].includes(funcName)) {
-        // Shouldn't be possible
-        SLStatic.error("Trying to delete builtin user func.");
-      } else {
-        funcNameSelect.value = "ReadMeFirst";
-        resetFunctionInput();
-        SLOptions.delUserFunction(funcName);
-      }
-    });
 
     document.getElementById("funcEditSave").addEventListener("click", async evt => {
       const funcName = document.getElementById("functionName").value;
@@ -307,17 +278,54 @@ const SLOptions = {
       });
     });
 
+    // Verify with user before deleting a scheduling function
+    const doubleCheckDeleteListener = SLOptions.doubleCheckButtonClick(evt => {
+      const funcNameSelect = document.getElementById("functionNames");
+      const funcName = funcNameSelect.value;
+      funcNameSelect.value = "ReadMeFirst";
+      resetFunctionInput();
+      document.getElementById(`ufunc-${funcName}`).remove();
+      browser.storage.local.get({ ufuncs: {} }).then(({ ufuncs }) => {
+        delete ufuncs[funcName];
+        browser.storage.local.set({ ufuncs });
+      }).catch(SLStatic.error);
+    });
+    document.getElementById("funcEditDelete").addEventListener("click", evt => {
+      const funcNameSelect = document.getElementById("functionNames");
+      const funcName = funcNameSelect.value;
+      if ([...SLOptions.builtinFuncs, "newFunctionName"].includes(funcName)) {
+        SLStatic.error("Trying to delete builtin user func.");
+        return;
+      } else {
+        doubleCheckDeleteListener(evt);
+      }
+    });
+
     // And attach a listener to the "Reset Preferences" button
+    const clearPrefsListener = SLOptions.doubleCheckButtonClick(evt => {
+      const defPrefs = "/utils/defaultPrefs.json";
+      fetch(defPrefs).then(ptxt => ptxt.json()).then(defaults => {
+          const prefs = Object.keys(defaults).reduce( (result,key) => {
+              result[key]=defaults[key][1];
+              return result;
+          }, {});
+          browser.storage.local.set({ preferences: prefs }).then(() => {
+            browser.runtime.sendMessage({ action: "reloadPrefCache" });
+          });
+      }).then(() => SLOptions.applyPrefsToUI());
+    });
     const clearPrefsBtn = document.getElementById("clearPrefs");
-    clearPrefsBtn.addEventListener("click", SLOptions.clearPrefsListener);
+    clearPrefsBtn.addEventListener("click", clearPrefsListener);
   },
   async onLoad() {
     setTimeout(async () => {
       const { ufuncs } = await browser.storage.local.get({ufuncs:{}});
-      if (!ufuncs.ReadMeFirst || !ufuncs.BusinessHours || !ufuncs.DaysInARow) {
-        ufuncs.ReadMeFirst = browser.i18n.getMessage("EditorReadMeCode");
-        ufuncs.BusinessHours = browser.i18n.getMessage("_BusinessHoursCode");
-        ufuncs.DaysInARow = browser.i18n.getMessage("DaysInARowCode");
+      if (!(ufuncs.ReadMeFirst && ufuncs.ReadMeFirst.body) ||
+          !(ufuncs.BusinessHours && ufuncs.BusinessHours.body) ||
+          !(ufuncs.DaysInARow && ufuncs.DaysInARow.body)) {
+        ufuncs.ReadMeFirst = {help:"",body:browser.i18n.getMessage("EditorReadMeCode")};
+        ufuncs.BusinessHours = {help:"",body:browser.i18n.getMessage("_BusinessHoursCode")};
+        ufuncs.DaysInARow = {help:"",body:browser.i18n.getMessage("DaysInARowCode")};
         browser.storage.local.set({ ufuncs });
       }
     }, 1000);

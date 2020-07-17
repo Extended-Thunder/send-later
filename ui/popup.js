@@ -1,6 +1,24 @@
 // initialize popup window
-const initialize = () => {
-  function doSendDelay(delay) {
+const SLPopup = {
+  async debugSchedule() {
+    // Dump current header values to console.
+    const inputs = SLPopup.objectifyFormValues();
+    const schedule = SLPopup.parseInputs(inputs);
+    if (schedule && !schedule.err) {
+      hdr = {
+        'send-at': SLStatic.dateTimeFormat(schedule.sendAt),
+        'recur': SLStatic.unparseRecurSpec(schedule.recur),
+        'args': schedule.recur.args,
+        'cancel-on-reply': schedule.recur.cancelOnReply
+      }
+      const debugMsg = Object.keys(hdr).reduce((msg,name) => {
+        msg.push(`${name}: ${hdr[name]}`); return msg;
+      },[]).join("\n    ");
+      console.debug(`DEBUG [SendLater]: Header values:\n    ${debugMsg}`);
+    }
+  },
+
+  scheduleSendWithDelay(delay) {
       return (async (event) => {
         SLStatic.debug(`Scheduling message in ${delay} minutes`);
 
@@ -19,22 +37,22 @@ const initialize = () => {
 
         setTimeout((() => window.close()), 150);
       });
-  }
+  },
 
-  function domElementsAsArray() {
+  domElementsAsArray() {
     return [...document.querySelectorAll("*")];
-  }
+  },
 
-  function objectifyDOMElements() {
-    const dom = domElementsAsArray();
+  objectifyDOMElements() {
+    const dom = SLPopup.domElementsAsArray();
     return dom.reduce((obj,item) => {
       obj[item.id] = item;
       return obj;
     }, {});
-  }
+  },
 
-  function objectifyFormValues() {
-    const domArray = domElementsAsArray();
+  objectifyFormValues() {
+    const domArray = SLPopup.domElementsAsArray();
     const inputs = domArray.reduce((obj,item) => {
         if (item.tagName === "INPUT" || item.tagName === "SELECT") {
           if (item.type === "checkbox" || item.type === "radio") {
@@ -62,9 +80,9 @@ const initialize = () => {
       }
     });
     return inputs;
-  }
+  },
 
-  function parseInputs(inputs) {
+  parseInputs(inputs) {
     // Parse send date and time
     const sendAtDate = inputs["send-date"];
     const sendAtTime = inputs["send-time"];
@@ -111,9 +129,17 @@ const initialize = () => {
         };
         break;
       case "function":
-        recur.function = inputs["recurFunction"];
+        recur.function = inputs["recurFuncSelect"];
         recur.finished = false;
-        recur.args = inputs["recur-function-args"];
+        try {
+          recur.args = SLStatic.unparseArgs(
+                          SLStatic.parseArgs(inputs["recur-function-args"]));
+        } catch (ex) {
+          console.warn(ex);
+          return { err: ("<b>" + browser.i18n.getMessage("InvalidArgsTitle")
+                        + ":</b> "
+                        + browser.i18n.getMessage("InvalidArgsBody")) };
+        }
         break;
       default:
         SLStatic.error(`unrecognized recurrence type <${recur.type}>`);
@@ -155,78 +181,99 @@ const initialize = () => {
 
     const schedule = { sendAt, recur };
     return schedule;
-  }
+  },
 
-  function setScheduleButton(scheduleSendButton, schedule) {
+  async setScheduleButton(schedule) {
+    const sendScheduleButton = document.getElementById("sendScheduleButton");
+
     if (schedule.err) {
-      scheduleSendButton.innerHTML = schedule.err;
-      scheduleSendButton.disabled = true;
+      sendScheduleButton.innerHTML = schedule.err;
+      sendScheduleButton.disabled = true;
       return false;
+    } else {
+      browser.storage.local.get({ "preferences": {} }).then(storage => {
+        const logConsoleLevel = storage.preferences.logConsoleLevel;
+        if (["debug", "trace", "all"].includes(logConsoleLevel)) {
+          SLPopup.debugSchedule();
+        }
+      });
     }
 
     try {
       const sendAt = schedule.sendAt;
       const recurSpec = schedule.recur;
+      const enabler = SLStatic.stateSetter(true);
+      const disabler = SLStatic.stateSetter(false);
 
-      let scheduleText = browser.i18n.getMessage("sendAtLabel");
-      scheduleText += " " + SLStatic.dateTimeFormat(sendAt);
-      //let scheduleText = moment(sendAt).calendar();
+      if (recurSpec.type === "function") {
+        disabler(document.getElementById("sendAtTimeDateDiv"));
+        sendScheduleButton.innerHTML =
+          browser.i18n.getMessage("sendwithfunction", [recurSpec.function]);
+        sendScheduleButton.disabled = false;
+        return true;
+      } else {
+        enabler(document.getElementById("sendAtTimeDateDiv"));
 
-      if (recurSpec.type !== "none" && recurSpec.type !== "function") {
-        scheduleText += "<br/>" + browser.i18n.getMessage("recurLabel") + " ";
-        if (recurSpec.monthly_day) {
-          const ordDay = browser.i18n.getMessage("ord" + recurSpec.monthly_day.week);
-          const dayName = SLStatic.getWkdayName(recurSpec.monthly_day.day, "long");
-          scheduleText += browser.i18n.getMessage(
-            "sendlater.prompt.every.label").toLowerCase() + " " +
-            browser.i18n.getMessage("everymonthly_short", [ordDay, dayName]);
-        } else {
-          scheduleText += browser.i18n.getMessage("every_"+recurSpec.type,
-                                                  (recurSpec.multiplier || 1));
-        }
+        let scheduleText = browser.i18n.getMessage("sendAtLabel");
+        scheduleText += " " + SLStatic.dateTimeFormat(sendAt);
+        //let scheduleText = moment(sendAt).calendar();
 
-        if (recurSpec.between) {
-          const start = SLStatic.formatTime(recurSpec.between.start);
-          const end = SLStatic.formatTime(recurSpec.between.end);
-          //scheduleText += "<br/>"
-          scheduleText += " "
-          scheduleText += browser.i18n.getMessage("betw_times", [start, end]);
-        }
-
-        if (recurSpec.days) {
-          // TODO: internationalize this
-          const days = recurSpec.days.map(v=>SLStatic.getWkdayName(v));
-          let onDays;
-          if (days.length === 1) {
-            onDays = days;
-          } else if (days.length === 2) {
-            onDays = days.join(" and ");
+        if (recurSpec.type !== "none" && recurSpec.type !== "function") {
+          scheduleText += "<br/>" + browser.i18n.getMessage("recurLabel") + " ";
+          if (recurSpec.monthly_day) {
+            const ordDay = browser.i18n.getMessage("ord" + recurSpec.monthly_day.week);
+            const dayName = SLStatic.getWkdayName(recurSpec.monthly_day.day, "long");
+            scheduleText += browser.i18n.getMessage(
+              "sendlater.prompt.every.label").toLowerCase() + " " +
+              browser.i18n.getMessage("everymonthly_short", [ordDay, dayName]);
           } else {
-            const ndays = days.length;
-            days[ndays-1] = `and ${days[ndays-1]}`;
-            onDays = days.join(", ");
+            scheduleText += browser.i18n.getMessage("every_"+recurSpec.type,
+                                                    (recurSpec.multiplier || 1));
           }
-          scheduleText += "<br/>"+browser.i18n.getMessage("only_on_days",onDays);
+
+          if (recurSpec.between) {
+            const start = SLStatic.formatTime(recurSpec.between.start);
+            const end = SLStatic.formatTime(recurSpec.between.end);
+            //scheduleText += "<br/>"
+            scheduleText += " "
+            scheduleText += browser.i18n.getMessage("betw_times", [start, end]);
+          }
+
+          if (recurSpec.days) {
+            // TODO: internationalize this
+            const days = recurSpec.days.map(v=>SLStatic.getWkdayName(v));
+            let onDays;
+            if (days.length === 1) {
+              onDays = days;
+            } else if (days.length === 2) {
+              onDays = days.join(" and ");
+            } else {
+              const ndays = days.length;
+              days[ndays-1] = `and ${days[ndays-1]}`;
+              onDays = days.join(", ");
+            }
+            scheduleText += "<br/>"+browser.i18n.getMessage("only_on_days",onDays);
+          }
         }
-      }
 
-      if (recurSpec.cancelOnReply) {
-        scheduleText += "<br/>" + browser.i18n.getMessage("cancel_on_reply");
-      }
+        if (recurSpec.cancelOnReply) {
+          scheduleText += "<br/>" + browser.i18n.getMessage("cancel_on_reply");
+        }
 
-      scheduleSendButton.innerHTML = scheduleText;
-      scheduleSendButton.disabled = false;
-      return true;
+        sendScheduleButton.innerHTML = scheduleText;
+        sendScheduleButton.disabled = false;
+        return true;
+      }
     } catch (e) { SLStatic.log(e) }
 
-    scheduleSendButton.textContent = moment.localeData().invalidDate();
-    scheduleSendButton.disabled = true;
+    sendScheduleButton.textContent = moment.localeData().invalidDate();
+    sendScheduleButton.disabled = true;
     return false;
-  }
+  },
 
-  function saveDefaults() {
+  async saveDefaults() {
     const defaults = {};
-    const dom = objectifyDOMElements();
+    const dom = SLPopup.objectifyDOMElements();
     Object.keys(dom).forEach(key => {
       const element = dom[key];
       if (element.tagName === "INPUT" || element.tagName === "SELECT") {
@@ -244,16 +291,30 @@ const initialize = () => {
     });
     SLStatic.debug("Saving default values",defaults);
     browser.storage.local.set({ defaults });
-  }
+  },
 
-  function clearDefaults() {
+  async clearDefaults() {
     SLStatic.debug("Clearing default dialog values");
     browser.storage.local.set({ defaults: {} });
-  }
+  },
 
-  async function applyDefaults() {
-    browser.storage.local.get("defaults").then(storage => {
-      const dom = objectifyDOMElements();
+  async applyDefaults() {
+    browser.storage.local.get({defaults:{},ufuncs:{}}).then(storage => {
+      const dom = SLPopup.objectifyDOMElements();
+
+      const recurFuncSelect = dom['recurFuncSelect'];
+      [...Object.keys(storage.ufuncs)].sort().forEach(funcName => {
+        if (funcName !== "ReadMeFirst" && funcName !== "newFunctionName") {
+          const newOpt = document.createElement('option');
+          newOpt.id = `ufunc-${funcName}`;
+          newOpt.value = funcName;
+          newOpt.textContent = funcName;
+          recurFuncSelect.appendChild(newOpt);
+        }
+      });
+
+      SLStatic.stateSetter(recurFuncSelect.length > 0)(recurFuncSelect);
+
       if (storage.defaults && storage.defaults.daily !== undefined) {
         SLStatic.debug("Applying default values",storage.defaults);
         Object.keys(dom).forEach(key => {
@@ -284,37 +345,35 @@ const initialize = () => {
       dom["send-date"].value = fmtDate.format(soon);
       dom["send-time"].value = fmtTime.format(soon);
 
-      const inputs = objectifyFormValues();
-      const schedule = parseInputs(inputs);
+      const inputs = SLPopup.objectifyFormValues();
+      const schedule = SLPopup.parseInputs(inputs);
 
       // Trigger some fake events to activate listeners
-      SLStatic.setState(dom["sendon"].checked)(dom["onlyOnDiv"]);
-      SLStatic.setState(dom["sendbetween"].checked)(dom["betweenDiv"]);
+      SLStatic.stateSetter(dom["sendon"].checked)(dom["onlyOnDiv"]);
+      SLStatic.stateSetter(dom["sendbetween"].checked)(dom["betweenDiv"]);
       dom['once'].dispatchEvent(new Event('change'));
     });
-  }
+  },
 
-  function attachListeners() {
-    const dom = objectifyDOMElements();
+  async attachListeners() {
+    const dom = SLPopup.objectifyDOMElements();
 
-    const functionSelect = dom["recurFunction"];
-    SLStatic.setState(functionSelect.length > 0)(dom["function-recur-radio"]);
-    SLStatic.setState(dom["sendon"].checked)(dom["onlyOnDiv"]);
-    SLStatic.setState(dom["sendbetween"].checked)(dom["betweenDiv"]);
+    SLStatic.stateSetter(dom["sendon"].checked)(dom["onlyOnDiv"]);
+    SLStatic.stateSetter(dom["sendbetween"].checked)(dom["betweenDiv"]);
     dom["sendon"].addEventListener("change",async evt =>
-      SLStatic.setState(evt.target.checked)(dom["onlyOnDiv"]));
+      SLStatic.stateSetter(evt.target.checked)(dom["onlyOnDiv"]));
     dom["sendbetween"].addEventListener("change", async evt =>
-      SLStatic.setState(evt.target.checked)(dom["betweenDiv"])
+      SLStatic.stateSetter(evt.target.checked)(dom["betweenDiv"])
     );
     Object.keys(dom).forEach(key => {
       const element = dom[key];
       if ((element.tagName === "INPUT" || element.tagName === "SELECT") &&
             (element.type !== "button")) {
         element.addEventListener("change", async evt => {
-          const inputs = objectifyFormValues();
-          const schedule = parseInputs(inputs);
+          const inputs = SLPopup.objectifyFormValues();
+          const schedule = SLPopup.parseInputs(inputs);
           if (schedule) {
-            setScheduleButton(dom["sendAt"], schedule);
+            SLPopup.setScheduleButton(schedule);
           }
         });
       }
@@ -328,33 +387,33 @@ const initialize = () => {
         if (recurrence) {
           const timeArgs = dom['recur-time-args-div'];
           const funcArgs = dom['recur-function-args-div'];
-          const sendAtDateInput = dom["send-date"];
-          const sendAtTimeInput = dom["send-time"];
-          const sendAt = SLStatic.parseDateTime(sendAtDateInput.value,
-                                                sendAtTimeInput.value);
+          const sendAt = SLStatic.parseDateTime(dom["send-date"].value,
+                                                dom["send-time"].value);
 
           timeArgs.style.display = (recurrence === "function") ? "none" : "block";
           funcArgs.style.display = (recurrence === "function") ? "block" : "none";
 
-          let pluralTxt = browser.i18n.getMessage(`plural_${recurrence}`);
-          if (recurrence === "yearly") {
-            const dateTxt = SLStatic.dateTimeFormat(sendAt,
-              {month: "long", day: "numeric", hour: "numeric",
-                minute: "numeric"}, "default");
-            pluralTxt += ", " + browser.i18n.getMessage("only_on_days", dateTxt);
-          } else if (recurrence === "monthly") {
-            const dayOrd = localeData.ordinal(sendAt.getDate());
-            pluralTxt += ", " + browser.i18n.getMessage("only_on_days", dayOrd);
-          } else if (recurrence === "weekly") {
-            const dateTxt = localeData.weekdays()[sendAt.getDay()];
-            pluralTxt += ", " + browser.i18n.getMessage("only_on_days", dateTxt);
-          } else if (recurrence === "daily") {
-            const atText = " at "; // TODO: translate this.
-            const timeTxt = SLStatic.dateTimeFormat(sendAt,
-                {hour: "numeric", minute: "numeric" }, "default");
-            pluralTxt += atText + timeTxt;
+          if (recurrence !== "function") {
+            let pluralTxt = browser.i18n.getMessage(`plural_${recurrence}`);
+            if (recurrence === "yearly") {
+              const dateTxt = SLStatic.dateTimeFormat(sendAt,
+                {month: "long", day: "numeric", hour: "numeric",
+                  minute: "numeric"}, "default");
+              pluralTxt += ", " + browser.i18n.getMessage("only_on_days", dateTxt);
+            } else if (recurrence === "monthly") {
+              const dayOrd = localeData.ordinal(sendAt.getDate());
+              pluralTxt += ", " + browser.i18n.getMessage("only_on_days", dayOrd);
+            } else if (recurrence === "weekly") {
+              const dateTxt = localeData.weekdays()[sendAt.getDay()];
+              pluralTxt += ", " + browser.i18n.getMessage("only_on_days", dateTxt);
+            } else if (recurrence === "daily") {
+              const atText = " at "; // TODO: translate this.
+              const timeTxt = SLStatic.dateTimeFormat(sendAt,
+                  {hour: "numeric", minute: "numeric" }, "default");
+              pluralTxt += atText + timeTxt;
+            }
+            dom["recurperiod_plural"].textContent = pluralTxt;
           }
-          dom["recurperiod_plural"].textContent = pluralTxt;
 
           specDiv.style.display = "block";
 
@@ -364,7 +423,8 @@ const initialize = () => {
               (recurrence === "monthly") ? "" : "none";
 
           dom['section-between'].style.display =
-              (recurrence === "minutely") ? "" : "none";
+            (recurrence === "minutely" || recurrence === "function") ?
+              "" : "none";
 
           dom['recur-limits'].style.display = "block";
         } else {
@@ -373,13 +433,13 @@ const initialize = () => {
         }
       }));
 
-    dom["save-defaults"].addEventListener("click", saveDefaults);
-    dom["clear-defaults"].addEventListener("click", clearDefaults);
+    dom["save-defaults"].addEventListener("click", SLPopup.saveDefaults);
+    dom["clear-defaults"].addEventListener("click", SLPopup.clearDefaults);
 
-    dom["sendAt"].addEventListener("click", async evt => {
+    dom["sendScheduleButton"].addEventListener("click", async evt => {
       const tabs = await browser.tabs.query({ active:true, currentWindow:true });
-      const inputs = objectifyFormValues();
-      const schedule = parseInputs(inputs);
+      const inputs = SLPopup.objectifyFormValues();
+      const schedule = SLPopup.parseInputs(inputs);
       if (schedule && !schedule.err) {
         const message = {
           tabId: tabs[0].id,
@@ -408,15 +468,19 @@ const initialize = () => {
       quick2el.value = moment(new Date(Date.now()+60000*quick2val)).fromNow();
       quick3el.value = moment(new Date(Date.now()+60000*quick3val)).fromNow();
 
-      quick1el.addEventListener("click", doSendDelay(quick1val));
-      quick2el.addEventListener("click", doSendDelay(quick2val));
-      quick3el.addEventListener("click", doSendDelay(quick3val));
+      quick1el.addEventListener("click", SLPopup.scheduleSendWithDelay(quick1val));
+      quick2el.addEventListener("click", SLPopup.scheduleSendWithDelay(quick2val));
+      quick3el.addEventListener("click", SLPopup.scheduleSendWithDelay(quick3val));
     });
 
-    dom["sendNow"].addEventListener("click", doSendDelay(0));
+    dom["sendNow"].addEventListener("click", SLPopup.scheduleSendWithDelay(0));
+  },
+
+  init() {
+    SLPopup.applyDefaults().then(() => {
+      SLPopup.attachListeners();
+    });
   }
-  attachListeners();
-  applyDefaults();
 };
 
 // For testing purposes, because the browser mock script needs to
@@ -425,7 +489,7 @@ function waitAndInit() {
   if (browser.i18n.getMessage("recurMonthlyLabel") === "recurMonthlyLabel") {
     setTimeout(waitAndInit, 10);
   } else {
-    initialize();
+    SLPopup.init();
   }
 }
 

@@ -103,7 +103,7 @@ const SLStatic = {
     return browser.SL3U.call(name, body, prev.getTime(), argStr);
   },
 
-  setState: function(enabled) {
+  stateSetter: function(enabled) {
     // closure for disabling UI components
     return (async element => {
         try{
@@ -114,7 +114,7 @@ const SLStatic = {
         } catch (ex) {
           SLStatic.error(ex);
         }
-        const enabler = SLStatic.setState(enabled);
+        const enabler = SLStatic.stateSetter(enabled);
         [...element.childNodes].forEach(enabler);
       });
   },
@@ -225,10 +225,6 @@ const SLStatic = {
 
     if (parsed.days) {
       spec += " on " + parsed.days.join(' ');
-    }
-
-    if (spec === "none") {
-      return null;
     }
 
     return spec;
