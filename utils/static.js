@@ -174,10 +174,6 @@ const SLStatic = {
 
     if (recurSpec.type  !== "none") {
       scheduleText += "<br/>" + SLStatic.formatRecurForUI(recurSpec);
-
-      if (recurSpec.cancelOnReply) {
-        scheduleText += "<br/>" + browser.i18n.getMessage("cancel_on_reply");
-      }
     }
 
     return scheduleText;

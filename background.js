@@ -4,6 +4,28 @@ const SendLater = {
 
     composeState: {},
 
+    async setReplywatch(newMessageId, originalMessageId) {
+      // Outgoing messages get unique message IDs. We need to keep track that
+      // responses to `newMessageId` are really replies to `originalMessageId`
+      browser.storage.local.get({ watchForReply: {} }).then(
+        ({ watchForReply }) => {
+          watchForReply[newMessageId] = originalMessageId;
+          browser.storage.local.set({ watchForReply });
+        }
+      );
+    },
+
+    async removeReplyWatch(msgId) {
+      browser.storage.local.get({ watchForReply: {} }).then(
+        ({ watchForReply }) => {
+          if (watchForReply[msgId]) {
+            delete watchForReply[msgId];
+            browser.storage.local.set({ watchForReply });
+          }
+        }
+      );
+    },
+
     async isEditing(msgId) {
       // Look through each of the compose windows, check for this message UUID.
       return await browser.SL3U.editingMessage(msgId);
@@ -15,7 +37,7 @@ const SendLater = {
         return folder;
       } else {
         const drafts = [];
-        for (subFolder of folder.subFolders) {
+        for (let subFolder of folder.subFolders) {
           drafts.push(SendLater.findDraftsHelper(subFolder));
         }
         return Promise.all(drafts);
@@ -83,18 +105,17 @@ const SendLater = {
 
       if (options.recurSpec) {
         customHeaders['x-send-later-recur'] = options.recurSpec;
+        if (options.cancelOnReply) {
+          customHeaders['x-send-later-cancel-on-reply'] = "true";
+        }
       }
 
       if (options.args) {
         customHeaders['x-send-later-args'] = options.args;
       }
 
-      if (options.cancelOnReply) {
-        customHeaders['x-send-later-cancel-on-reply'] = options.cancelOnReply;
-      }
-
       const inserted = Object.keys(customHeaders).map(name =>
-        browser.SL3U.setHeader(name, customHeaders[name])
+        browser.SL3U.setHeader(name, (""+customHeaders[name]))
       );
       await Promise.all(inserted);
       SLStatic.debug('headers',customHeaders);
@@ -111,7 +132,7 @@ const SendLater = {
     },
 
     async possiblySendMessage(id) {
-      if (browser.SL3U.isOffline()) {
+      if (await browser.SL3U.isOffline()) {
         return;
       }
       // Determines whether or not a particular draft message is due to be sent
@@ -120,7 +141,9 @@ const SendLater = {
       const msgSendAt = msg.headers['x-send-later-at'] ? msg.headers['x-send-later-at'][0] : undefined;
       const msgRecurSpec = msg.headers['x-send-later-recur'] ? msg.headers['x-send-later-recur'][0] : undefined;
       const msgRecurArgs = msg.headers['x-send-later-args'] ? msg.headers['x-send-later-args'][0] : undefined;
-      const msgRecurCancelOnReply = msg.headers['x-send-later-cancel-on-reply'] ? msg.headers['x-send-later-cancel-on-reply'][0] : undefined;
+      const msgRecurCancelOnReply =
+        (msg.headers['x-send-later-cancel-on-reply'] &&
+        msg.headers['x-send-later-cancel-on-reply'][0] === "true");
       const msgId = msg.headers['message-id'] ? msg.headers['message-id'][0] : undefined;
 
       if (msgSendAt === undefined) {
@@ -130,7 +153,7 @@ const SendLater = {
       const { preferences } = await browser.storage.local.get({"preferences":{}});
       const { lock } = await browser.storage.local.get({"lock":{}});
 
-      const nextSend = lock[msgId] ? lock[msgId].nextRecur : new Date(msgSendAt);
+      const nextSend = new Date(lock[msgId] ? lock[msgId].nextRecur : msgSendAt);
 
       if (Date.now() < nextSend.getTime()) {
         SLStatic.debug(`Message ${id} not due for send until ${nextSend.toLocaleString()}`);
@@ -179,11 +202,26 @@ const SendLater = {
       SLStatic.info(`Sending message ${msgId}.`);
       const rawContent = await browser.messages.getRaw(id);
 
-      browser.SL3U.sendRaw(SLStatic.prepNewMessageHeaders(rawContent));
+      const newMessageId = await browser.SL3U.sendRaw(
+        SLStatic.prepNewMessageHeaders(rawContent)).catch(ex=>{
+          SLStatic.error(`Error sending raw message from drafts`,ex);
+          return null;
+        });
+
+      if (!newMessageId) {
+        SLStatic.error(`Something went wrong while sending message ${msgId}`);
+        return;
+      }
+
+      if (msgRecurCancelOnReply) {
+        SendLater.setReplywatch(newMessageId, msgId);
+      }
+
 
       let nextRecur;
       if (recur.type !== "none") {
-        nextRecur = SLStatic.NextRecurDate(nextSend, msgRecurSpec, new Date(), args);
+        nextRecur = await SLStatic.NextRecurDate(nextSend, msgRecurSpec,
+                                                  new Date(), args);
       }
 
       // TODO: Update the draft message with a new x-send-at header. This
@@ -192,7 +230,10 @@ const SendLater = {
       if (nextRecur) {
         SLStatic.info(`Scheduling next recurrence of message ${msgId} ` +
           `at ${nextRecur.toLocaleString()}, with recurSpec "${msgRecurSpec}"`);
-        lock[msgId] = { lastSent: new Date(), nextRecur };
+        lock[msgId] = {
+          lastSent: SLStatic.dateTimeFormat(new Date()),
+          nextRecur: SLStatic.dateTimeFormat(nextRecur)
+        };
         browser.storage.local.set({ lock });
       } else {
         SLStatic.info(`No recurrences for message ${msgId}. Deleting draft.`);
@@ -216,7 +257,7 @@ const SendLater = {
       SLStatic.debug("Entering main loop.");
 
       SendLater.forAllDrafts(
-        async msg => SendLater.possiblySendMessage(msg.id)
+        async msg => SendLater.possiblySendMessage(msg.id).catch(SLStatic.error)
       ).catch(SLStatic.error);
 
       browser.storage.local.get({ "preferences": {} }).then(storage => {
@@ -260,14 +301,14 @@ browser.compose.onBeforeSend.addListener(tab => {
     // Avoid blocking extension's own send events
     return { cancel: false };
   } else if (SendLater.prefCache.sendDoesSL) {
-    if (SendLater.prefCache.altBinding) {
-      SLStatic.log("Ignoring onBeforeSend, because alt+shift+enter is bound");
-      return ({ cancel: false });
-    } else {
+    // if (SendLater.prefCache.altBinding) {
+    //   SLStatic.log("Ignoring onBeforeSend, because alt+shift+enter is bound");
+    //   return ({ cancel: false });
+    // } else {
       browser.composeAction.enable(tab.id);
       browser.composeAction.openPopup();
       return ({ cancel: true });
-    }
+    // }
   } else if (SendLater.prefCache.sendDoesDelay) {
     const sendDelay = SendLater.prefCache.sendDelay;
     SLStatic.debug(`Scheduling SendLater ${sendDelay} minutes from now.`);
@@ -289,7 +330,7 @@ browser.runtime.onMessage.addListener(async (message) => {
     case "doSendNow": {
       SLStatic.debug("User requested send immediately.");
 
-      if (browser.SL3U.isOffline()) {
+      if (await browser.SL3U.isOffline()) {
         browser.SL3U.alert("Thunderbird is offline.",
                            "Cannot send message at this time.");
       } else {
@@ -358,6 +399,67 @@ browser.runtime.onMessage.addListener(async (message) => {
     }
   }
   return response;
+});
+
+browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
+  // Message ID of sent messages do not correspond with the message id of
+  // original draft versions. The local storage `watchForReply` object maps
+  // between the message IDs that we have sent and the message Id of the
+  // original draft messages.
+
+  // First, we want to skip onNewMailReceived events triggered locally during
+  // regular send operations.
+  if (folder.type === "archives") {
+    return;
+  }
+  const myself = SLStatic.flatten(await browser.accounts.list().then(accts =>
+    accts.map(acct => acct.identities.map(identity => identity.email))));
+
+  messagelist.messages.forEach(async hdr => {
+    for (let email of myself) {
+      if (hdr.author.indexOf(email) > -1) {
+        SLStatic.debug(`Skipping onNewMailReceived for outgoing message "${hdr.subject}"`);
+        return;
+      }
+    }
+    SLStatic.debug("Received message",hdr);
+    try {
+      browser.messages.getFull(hdr.id).then(async fullRecvdMsg => {
+        (fullRecvdMsg.headers['references'] || []).forEach(async refMsgId => {
+          // incoming message references `refMsgId`. Let's check if we
+          // need to cancel a recurring message because of that.
+          const { watchForReply } = await browser.storage.local.get({ watchForReply: {} });
+          if (watchForReply[refMsgId]) {
+            const isReplyTo = watchForReply[refMsgId];
+
+            SLStatic.info(`Received reply to message ${isReplyTo}.`);
+
+            // Look through drafts for message with original message id.
+            SendLater.forAllDrafts(async draftMsg => {
+              const fullDraftMsg = await browser.messages.getFull(draftMsg.id);
+              if (fullDraftMsg.headers['message-id'][0] === isReplyTo) {
+                SLStatic.info(`Deleting draft ${draftMsg.id} of message ${isReplyTo}`);
+                browser.messages.delete([draftMsg.id], true);
+              }
+            });
+
+            // There may be multiple outgoing messages that are attached to
+            // the same draft message. Let's clear those out of the watch list.
+            let count = 0;
+            for (let key of Object.keys(watchForReply)) {
+              if (watchForReply[key] === isReplyTo) {
+                SendLater.removeReplyWatch(key);
+                count++;
+              }
+            }
+            SLStatic.debug(`Stopped listeneing for replies to ${count} outgoing messages`);
+          }
+        });
+      })
+    } catch (ex) {
+      SLStatic.error(ex);
+    }
+  });
 });
 
 SendLater.init();

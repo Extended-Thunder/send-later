@@ -74,7 +74,7 @@ function queueSendUnsentMessages() {
         ].getService(Ci.nsIMsgSendLater);
       msgSendLater.sendUnsentMessages(null);
     } catch (ex) {
-      console.error(ex);
+      console.error("Error triggering send from unsent messages folder.", ex);
     }
   }
 }
@@ -240,7 +240,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                                     "$1" + newMessageId);
           content = content.slice(1);
           if (content.indexOf(newMessageId) === -1) {
-            console.error({content, newMessageId});
             throw "Message ID substitution failed.";
           }
 
@@ -275,6 +274,8 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             SetMessageKey: function(key) {}
           }
           CopyStringMessageToFolder(content, fdrunsent, listener);
+
+          return newMessageId;
         },
 
         async addMsgSendLaterListener() {
@@ -316,12 +317,29 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               // Highjack keycode presses for the actual Send Later button.
               const sendLaterKey = window.document.getElementById("key_sendLater");
               if (sendLaterKey) {
+                console.log("found key_sendLater");
                 sendLaterKey.setAttribute("observes", "");
                 sendLaterKey.setAttribute("oncommand", "//");
                 sendLaterKey.addEventListener("command", event => {
                   event.preventDefault();
+                  console.log('key_sendLater',event);
                   keyCodeEventTracker.emit("key_sendLater");
                 });
+              } else {
+                console.log("could not find key_sendLater");
+              }
+              const sendLaterMenuItem = window.document.getElementById("menu_sendLater");
+              if (sendLaterMenuItem) {
+              console.log("found menu_sendLater");
+                sendLaterMenuItem.setAttribute("observes", "");
+                sendLaterMenuItem.setAttribute("oncommand", "//");
+                sendLaterMenuItem.addEventListener("command", event => {
+                  event.preventDefault();
+                  console.log('menu_sendLater',event);
+                  keyCodeEventTracker.emit("menu_sendLater");
+                });
+              } else {
+                console.log("could not find menu_sendLater");
               }
             }
           });
