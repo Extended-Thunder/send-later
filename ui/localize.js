@@ -1,5 +1,5 @@
 const localizer = {
-  translateDocument() {
+  async translateDocument() {
     const elements = document.querySelectorAll(".localized");
     elements.forEach(async e => {
       try {
@@ -16,7 +16,7 @@ const localizer = {
           e.textContent = msg;
         }
       } catch (err) {
-        console.error(err);
+        SLStatic.error("Localization error", err, e);
       }
     });
   }

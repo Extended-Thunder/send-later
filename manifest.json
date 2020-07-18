@@ -56,6 +56,13 @@
     "default_title": "__MSG_extensionName__"
   },
 
+  "message_display_action": {
+    "browser_style": true,
+    "default_icon": "/ui/icons/icon.png",
+    "default_popup": "/ui/msgDisplayPopup.html",
+    "default_title": "__MSG_extensionName__"
+  },
+
   "default_locale": "en",
 
   "experiment_apis": {

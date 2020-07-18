@@ -394,6 +394,36 @@ browser.runtime.onMessage.addListener(async (message) => {
       }
       break;
     }
+    case "getScheduleText": {
+      try {
+        const dispMsg = await browser.messageDisplay.
+          getDisplayedMessage(message.tabId).then(
+            async hdr => await browser.messages.getFull(hdr.id));
+
+        const headerSendAt = new Date(dispMsg.headers['x-send-later-at'][0]);
+        const msgId = (dispMsg.headers['message-id'] || [])[0];
+
+        if (headerSendAt === undefined) {
+          response.err = "Message is not scheduled by Send Later.";
+          break;
+        } else if (msgId === undefined) {
+          response.err = "Message somehow has no message-id header";
+          break;
+        }
+
+        const msgLock = await browser.storage.local.get({ lock: {} }).then(
+          ({ lock }) => (lock[msgId] || {}));
+        const sendAt = new Date(msgLock.nextRecur || headerSendAt);
+
+        const recurSpec = (dispMsg.headers['x-send-later-recur'] || ["none"])[0];
+        const recur = SLStatic.ParseRecurSpec(recurSpec);
+        response.scheduleTxt = SLStatic.formatScheduleForUI({ sendAt, recur });
+      } catch (ex) {
+        response.err = ex.message;
+      }
+
+      break;
+    }
     default: {
       SLStatic.warn(`Unrecognized operation <${message.action}>.`);
     }
@@ -460,6 +490,16 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
       SLStatic.error(ex);
     }
   });
+});
+
+browser.messageDisplay.onMessageDisplayed.addListener(async (tab, hdr) => {
+  browser.messages.getFull(hdr.id).then(fullMessage => {
+    if (fullMessage.headers['x-send-later-at']) {
+      browser.messageDisplayAction.enable(tab.id);
+    } else {
+      browser.messageDisplayAction.disable(tab.id);
+    }
+  })
 });
 
 SendLater.init();

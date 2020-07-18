@@ -161,7 +161,7 @@ const SLStatic = {
 
   formatScheduleForUI(schedule) {
     const sendAt = schedule.sendAt;
-    const recurSpec = schedule.recur;
+    const recur = schedule.recur;
 
     let scheduleText;
     if (!sendAt && (recurSpec.type === "function")) {
@@ -172,8 +172,8 @@ const SLStatic = {
       scheduleText += " " + SLStatic.dateTimeFormat(sendAt);
     }
 
-    if (recurSpec.type  !== "none") {
-      scheduleText += "<br/>" + SLStatic.formatRecurForUI(recurSpec);
+    if (recur.type  !== "none") {
+      scheduleText += "<br/>" + SLStatic.formatRecurForUI(recur);
     }
 
     return scheduleText;

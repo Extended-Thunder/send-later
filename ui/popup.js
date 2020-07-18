@@ -33,7 +33,7 @@ const SLPopup = {
           msg.sendAt.setTime(msg.sendAt.getTime() + delay * 60 * 1000);
         }
 
-        browser.runtime.sendMessage(msg);
+        browser.runtime.sendMessage(msg).catch(SLStatic.error);
 
         setTimeout((() => window.close()), 150);
       });
