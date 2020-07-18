@@ -87,7 +87,7 @@ const SLPopup = {
     const sendAtDate = inputs["send-date"];
     const sendAtTime = inputs["send-time"];
     if (!sendAtDate || !sendAtTime) {
-      return;
+      return { err: browser.i18n.getMessage("entervalid") };
     }
     const sendAt = SLStatic.parseDateTime(sendAtDate, sendAtTime);
     if (SLStatic.compareTimes(sendAt, '<', new Date(), true)) {
@@ -135,7 +135,7 @@ const SLPopup = {
           recur.args = SLStatic.unparseArgs(
                           SLStatic.parseArgs(inputs["recur-function-args"]));
         } catch (ex) {
-          console.warn(ex);
+          SLStatic.warn(ex);
           return { err: ("<b>" + browser.i18n.getMessage("InvalidArgsTitle")
                         + ":</b> "
                         + browser.i18n.getMessage("InvalidArgsBody")) };
@@ -190,85 +190,44 @@ const SLPopup = {
       sendScheduleButton.innerHTML = schedule.err;
       sendScheduleButton.disabled = true;
       return false;
-    } else {
-      browser.storage.local.get({ "preferences": {} }).then(storage => {
-        const logConsoleLevel = storage.preferences.logConsoleLevel;
-        if (["debug", "trace", "all"].includes(logConsoleLevel)) {
-          SLPopup.debugSchedule();
-        }
-      });
     }
 
-    try {
-      const sendAt = schedule.sendAt;
-      const recurSpec = schedule.recur;
-      const enabler = SLStatic.stateSetter(true);
-      const disabler = SLStatic.stateSetter(false);
+    browser.storage.local.get({ "preferences": {} }).then(storage => {
+      const logConsoleLevel = storage.preferences.logConsoleLevel;
+      if (["debug", "trace", "all"].includes(logConsoleLevel)) {
+        SLPopup.debugSchedule();
+      }
+    });
 
-      if (recurSpec.type === "function") {
-        disabler(document.getElementById("sendAtTimeDateDiv"));
-        sendScheduleButton.innerHTML =
-          browser.i18n.getMessage("sendwithfunction", [recurSpec.function]);
+    try {
+      const scheduleText = SLStatic.formatScheduleForUI(schedule);
+      if (scheduleText) {
+        sendScheduleButton.innerHTML = scheduleText;
+        SLStatic.stateSetter(schedule.recur.type !== "function")(
+          document.getElementById("sendAtTimeDateDiv"));
         sendScheduleButton.disabled = false;
         return true;
       } else {
-        enabler(document.getElementById("sendAtTimeDateDiv"));
-
-        let scheduleText = browser.i18n.getMessage("sendAtLabel");
-        scheduleText += " " + SLStatic.dateTimeFormat(sendAt);
-        //let scheduleText = moment(sendAt).calendar();
-
-        if (recurSpec.type !== "none" && recurSpec.type !== "function") {
-          scheduleText += "<br/>" + browser.i18n.getMessage("recurLabel") + " ";
-          if (recurSpec.monthly_day) {
-            const ordDay = browser.i18n.getMessage("ord" + recurSpec.monthly_day.week);
-            const dayName = SLStatic.getWkdayName(recurSpec.monthly_day.day, "long");
-            scheduleText += browser.i18n.getMessage(
-              "sendlater.prompt.every.label").toLowerCase() + " " +
-              browser.i18n.getMessage("everymonthly_short", [ordDay, dayName]);
-          } else {
-            scheduleText += browser.i18n.getMessage("every_"+recurSpec.type,
-                                                    (recurSpec.multiplier || 1));
-          }
-
-          if (recurSpec.between) {
-            const start = SLStatic.formatTime(recurSpec.between.start);
-            const end = SLStatic.formatTime(recurSpec.between.end);
-            //scheduleText += "<br/>"
-            scheduleText += " "
-            scheduleText += browser.i18n.getMessage("betw_times", [start, end]);
-          }
-
-          if (recurSpec.days) {
-            // TODO: internationalize this
-            const days = recurSpec.days.map(v=>SLStatic.getWkdayName(v));
-            let onDays;
-            if (days.length === 1) {
-              onDays = days;
-            } else if (days.length === 2) {
-              onDays = days.join(" and ");
-            } else {
-              const ndays = days.length;
-              days[ndays-1] = `and ${days[ndays-1]}`;
-              onDays = days.join(", ");
-            }
-            scheduleText += "<br/>"+browser.i18n.getMessage("only_on_days",onDays);
-          }
-        }
-
-        if (recurSpec.cancelOnReply) {
-          scheduleText += "<br/>" + browser.i18n.getMessage("cancel_on_reply");
-        }
-
-        sendScheduleButton.innerHTML = scheduleText;
-        sendScheduleButton.disabled = false;
-        return true;
+        SLStatic.debug('scheduleText',scheduleText);
       }
-    } catch (e) { SLStatic.log(e) }
-
+    } catch (ex) {
+      SLStatic.debug(ex);
+    }
     sendScheduleButton.textContent = moment.localeData().invalidDate();
     sendScheduleButton.disabled = true;
     return false;
+  },
+
+  async loadFunctionHelpText() {
+    const { ufuncs } = await browser.storage.local.get({ ufuncs: {} });
+    const funcName = document.getElementById("recurFuncSelect").value;
+    if (ufuncs[funcName]) {
+      const helpTxt = ufuncs[funcName].help;
+      const funcHelpDiv = document.getElementById('funcHelpDiv');
+      funcHelpDiv.textContent = helpTxt;
+    } else {
+      SLStatic.warn(`Cannot set help text. Unrecognized function: ${funcName}`);
+    }
   },
 
   async saveDefaults() {
@@ -313,8 +272,6 @@ const SLPopup = {
         }
       });
 
-      SLStatic.stateSetter(recurFuncSelect.length > 0)(recurFuncSelect);
-
       if (storage.defaults && storage.defaults.daily !== undefined) {
         SLStatic.debug("Applying default values",storage.defaults);
         Object.keys(dom).forEach(key => {
@@ -348,9 +305,12 @@ const SLPopup = {
       const inputs = SLPopup.objectifyFormValues();
       const schedule = SLPopup.parseInputs(inputs);
 
-      // Trigger some fake events to activate listeners
       SLStatic.stateSetter(dom["sendon"].checked)(dom["onlyOnDiv"]);
       SLStatic.stateSetter(dom["sendbetween"].checked)(dom["betweenDiv"]);
+
+      SLPopup.loadFunctionHelpText();
+
+      // Trigger some fake events to activate listeners
       dom['once'].dispatchEvent(new Event('change'));
     });
   },
@@ -384,14 +344,31 @@ const SLPopup = {
         const specs = ["minutely","daily","weekly","monthly","yearly","function"];
         const recurrence = specs.find(s => dom[s].checked);
         const specDiv = dom['recurrence-spec'];
+
+        const timeArgs = dom['recur-time-args-div'];
+        const funcArgs = dom['recur-function-args-div'];
+        const funcHelpToggler = dom['showHideFunctionHelp'];
+        const funcHelpDiv = dom['funcHelpDiv'];
+
+        if (recurrence === "function") {
+          funcHelpToggler.style.display = "inline-block";
+        } else {
+          funcHelpDiv.style.display = "none";
+          funcHelpToggler.style.display = "none";
+        }
+
         if (recurrence) {
-          const timeArgs = dom['recur-time-args-div'];
-          const funcArgs = dom['recur-function-args-div'];
           const sendAt = SLStatic.parseDateTime(dom["send-date"].value,
                                                 dom["send-time"].value);
 
           timeArgs.style.display = (recurrence === "function") ? "none" : "block";
           funcArgs.style.display = (recurrence === "function") ? "block" : "none";
+          if (recurrence === "function") {
+            funcHelpToggler.style.display = "inline-block";
+          } else {
+            funcHelpDiv.style.display = "none";
+            funcHelpToggler.style.display = "none";
+          }
 
           if (recurrence !== "function") {
             let pluralTxt = browser.i18n.getMessage(`plural_${recurrence}`);
@@ -431,7 +408,44 @@ const SLPopup = {
           specDiv.style.display = "none";
           dom['recur-limits'].style.display = "none";
         }
+
+        SLStatic.stateSetter(dom['recurFuncSelect'].length > 0)(dom['function-recur-radio']);
+        SLStatic.stateSetter((recurrence === "function"))(dom['recurFuncSelect']);
       }));
+
+    dom['recurFuncSelect'].addEventListener("change", SLPopup.loadFunctionHelpText);
+
+    dom['showHideFunctionHelp'].addEventListener("click",
+        async evt => {
+          const specs = ["minutely","daily","weekly","monthly","yearly","function"];
+          const recurrence = specs.find(s => dom[s].checked);
+          if (recurrence === "function") {
+            const currentState = (dom['funcHelpDiv'].style.display === "block");
+            dom['funcHelpDiv'].style.display = currentState ? "none" : "block";
+          }
+        }
+      );
+
+    dom['function-test-button'].addEventListener("click",
+      async evt => {
+        const message = {
+          action: "evaluateUfuncByName",
+          name: dom["recurFuncSelect"].value,
+          time: Date.now(),
+          argStr: dom["recur-function-args"].value
+        }
+        browser.runtime.sendMessage(message).then(response => {
+          if (response.err) {
+            dom["sendScheduleButton"].innerHTML = "<b>Error:</b> " + response.err;
+          } else {
+            const sendAt = new Date(response.next);
+            const recur = SLStatic.ParseRecurSpec(response.nextspec);
+            recur.args = response.nextargs;
+            const schedule = { sendAt, recur };
+            SLPopup.setScheduleButton(schedule);
+          }
+        })
+      });
 
     dom["save-defaults"].addEventListener("click", SLPopup.saveDefaults);
     dom["clear-defaults"].addEventListener("click", SLPopup.clearDefaults);

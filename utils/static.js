@@ -103,6 +103,86 @@ const SLStatic = {
     return browser.SL3U.call(name, body, prev.getTime(), argStr);
   },
 
+  formatRecurForUI(recurSpec) {
+    let recurText;
+    if (recurSpec.type === "function") {
+      // Almost certainly doesn't work for all languages. Need a new translation
+      // for "recur according to function $1"
+      recurText = browser.i18n.getMessage("sendwithfunction",
+                                  [recurSpec.function]).replace(/^\S*/,
+                                    browser.i18n.getMessage("recurLabel"));
+      recurText += "<br/>" +
+          browser.i18n.getMessage("sendlater.prompt.functionargs.label") +
+          `: [${recurSpec.args}]`;
+    } else if (recurSpec.type === "none") {
+      return "";
+    } else {
+      recurText = browser.i18n.getMessage("recurLabel") + " ";
+      if (recurSpec.monthly_day) {
+        const ordDay = browser.i18n.getMessage("ord" + recurSpec.monthly_day.week);
+        const dayName = SLStatic.getWkdayName(recurSpec.monthly_day.day, "long");
+        recurText += browser.i18n.getMessage("sendlater.prompt.every.label")
+                        .toLowerCase() + " " +
+                      browser.i18n.getMessage("everymonthly_short",
+                                              [ordDay, dayName]);
+      } else {
+        recurText += browser.i18n.getMessage("every_"+recurSpec.type,
+                                            (recurSpec.multiplier || 1));
+      }
+
+      if (recurSpec.between) {
+        const start = SLStatic.formatTime(recurSpec.between.start);
+        const end = SLStatic.formatTime(recurSpec.between.end);
+        recurText += " " + browser.i18n.getMessage("betw_times", [start, end]);
+      }
+
+      if (recurSpec.days) {
+        // TODO: internationalize this
+        const days = recurSpec.days.map(v=>SLStatic.getWkdayName(v));
+        let onDays;
+        if (days.length === 1) {
+          onDays = days;
+        } else if (days.length === 2) {
+          onDays = days.join(" and ");
+        } else {
+          const ndays = days.length;
+          days[ndays-1] = `and ${days[ndays-1]}`;
+          onDays = days.join(", ");
+        }
+        recurText += "<br/>"+browser.i18n.getMessage("only_on_days",onDays);
+      }
+
+      if (recurSpec.cancelOnReply) {
+        recurText += "<br/>" + browser.i18n.getMessage("cancel_on_reply");
+      }
+    }
+    return recurText;
+  },
+
+  formatScheduleForUI(schedule) {
+    const sendAt = schedule.sendAt;
+    const recurSpec = schedule.recur;
+
+    let scheduleText;
+    if (!sendAt && (recurSpec.type === "function")) {
+      scheduleText = browser.i18n.getMessage("sendwithfunction",
+                                              [recurSpec.function]);
+    } else {
+      scheduleText = browser.i18n.getMessage("sendAtLabel");
+      scheduleText += " " + SLStatic.dateTimeFormat(sendAt);
+    }
+
+    if (recurSpec.type  !== "none") {
+      scheduleText += "<br/>" + SLStatic.formatRecurForUI(recurSpec);
+
+      if (recurSpec.cancelOnReply) {
+        scheduleText += "<br/>" + browser.i18n.getMessage("cancel_on_reply");
+      }
+    }
+
+    return scheduleText;
+  },
+
   stateSetter: function(enabled) {
     // closure for disabling UI components
     return (async element => {
@@ -651,15 +731,20 @@ if (typeof browser === "undefined") {
     storage: {
       local: {
         async get(key) {
+          if (typeof key === "string") {
+            const keyobj = {};
+            keyobj[key] = {};
+            key = keyobj;
+          }
           const ret = {};
-          if (typeof key === "object") {
-            key = Object.keys(key)[0];
-          }
-          if (mockStorage[key]) {
-            ret[key] = mockStorage[key];
-          } else {
-            ret[key] = { };
-          }
+          Object.keys(key).forEach(key => {
+            if (mockStorage[key]) {
+              ret[key] = mockStorage[key];
+            } else {
+              ret[key] = { };
+            }
+          });
+
           return ret;
         },
         async set (item) {
@@ -730,8 +815,10 @@ if (typeof browser === "undefined") {
   }
 
   SLStatic.ufuncs = {
-    ReadMeFirst: {help: "", body: "// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;"},
-    BusinessHours: {help:"",body:"// Defaults\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Start of the work day as [H, M]\nvar workEnd = [17, 30]; // End of the work day as [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Not expected in normal usage, but used as the current time for testing.\n    next = new Date(prev);\nelse\n    next = new Date();\n// If we're past the end of the workday or not on a workday, move to the work\n// start time on the next day.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// If we're before the beginning of the workday, move to its start time.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}"},
-    DaysInARow: {help:"",body:"// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;"}
+    ReadMeFirst: {help: "Any text you put here will be displayed as a tooltip when you hover over the name of the function in the menu. You can use this to document what the function does and what arguments it accepts.", body: "// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;"},
+    BusinessHours: {help:"Send the message now if it is during business hours, or at the beginning of the next work day. You can change the definition of work days (default: Mon - Fri) by passing in an array of work-day numbers as the first argument, where 0 is Sunday and 6 is Saturday. You can change the work start or end time (default: 8:30 - 17:30) by passing in an array of [H, M] as the second or third argument. Specify “null” for earlier arguments you don't change. For example, “null, [9, 0], [17, 0]” changes the work hours without changing the work days.",body:"// Defaults\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Start of the work day as [H, M]\nvar workEnd = [17, 30]; // End of the work day as [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Not expected in normal usage, but used as the current time for testing.\n    next = new Date(prev);\nelse\n    next = new Date();\n// If we're past the end of the workday or not on a workday, move to the work\n// start time on the next day.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// If we're before the beginning of the workday, move to its start time.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}"},
+    DaysInARow: {help:"Send the message now, and subsequently once per day at the same time, until it has been sent three times. Specify a number as an argument to change the total number of sends.",body:"// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;"}
   }
+
+  mockStorage.ufuncs = SLStatic.ufuncs;
 }

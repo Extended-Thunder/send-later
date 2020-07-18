@@ -130,11 +130,57 @@
           <input type="text" id="functionName" class="pre"/>
           <span class="pre"> (specname, prev, args) { </span><br/>
           <pre>  let next, nextspec, nextargs;</pre>
-          <textarea id="functionEditorContent" type="textbox"
+          <textarea id="functionEditorContent" type="textbox" disabled
             class="pre localized __MSG_EditorReadMeCode__"
-            style="width:98%;height:15em;margin-left:1%;"></textarea>
+            style="width:98%;height:18em;margin-left:1%;"></textarea>
           <pre>  return ([next, nextspec, nextargs]);</pre>
           <pre>}</pre>
+
+          <span class="localized __MSG_helptextheader__" style="margin:1em;">
+            Function help text</span>
+          <textarea id="functionHelpText" type="textbox" disabled
+            class="pre localized __MSG_EditorReadMeHelp__"
+            style="width:98%;height:6em;margin-left:1%;margin-top:0.25em;"></textarea>
+
+          <fieldset id="functionTestFields">
+            <legend>Test</legend>
+            <div class="div-table" style="width:100%;">
+              <div class="div-table-row">
+                <div class="div-table-cell" style="white-space:nowrap;">
+                  <label for="functionTestDateTimeGroup"
+                     class="option-label localized __MSG_inputtime__">
+                     Input time
+                  </label>
+                </div>
+                <div class="div-table-cell" style="width:100%;">
+                  <input id="functionTestDate" type="date"/>
+                  <input id="functionTestTime" type="time"/>
+                </div>
+              </div>
+              <div class="div-table-row">
+                <div class="div-table-cell" style="white-space:nowrap;">
+                  <label for="functionTestArgs"
+                     class="option-label localized __MSG_inputargs__">
+                     Input arguments
+                  </label>
+                </div>
+                <div class="div-table-cell" style="width:100%;">
+                  <input type="text" id="functionTestArgs"
+                    class="preference" style="width:98%;"/>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div style="display: table-cell;height:2em;line-height:2em;white-space:nowrap;padding-right:0.5em;">
+                <input id="funcTestRun" type="button"
+                  value="Execute function" class="localized __MSG_run.label__">
+                =>
+                <span class="option-label localized __MSG_output__">Output</span>:
+              </div>
+              <div id="functionTestOutput"class="pre"></div>
+            </div>
+          </fieldset>
 
           <div>
             <input id="funcEditSave" type="button" style="margin-right:0.5em;"

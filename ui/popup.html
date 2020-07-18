@@ -51,8 +51,13 @@
             <span class="localized __MSG_recurFunctionLabel__">Function</span>
             <select id="recurFuncSelect">
             </select>
+            <div id="showHideFunctionHelp">
+              (<span class="localized __MSG_helptextheader__">
+                Function help text
+              </span>)
+            </div>
+            <div id="funcHelpDiv"></div>
           </label>
-          <br/>
 
           <div id="recurrence-spec" style="display:none;margin-top:0.5em;">
             <div id="recur-time-args-div">
@@ -91,6 +96,8 @@
                 </span>
                 <input type="text" id="recur-function-args"/>
               </label>
+              <input type="button" id="function-test-button"
+                class="localized __MSG_sendlater.prompt.calculate.label__"/>
             </div>
             <div>
               <label>

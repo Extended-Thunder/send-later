@@ -114,7 +114,7 @@ function CopyStringMessageToFolder(content, folder, listener) {
                                             listener, msgWindow);
 }
 
-const altShiftEnterEventTracker = {
+const keyCodeEventTracker = {
   listeners: new Set(),
 
   add(listener) {
@@ -125,9 +125,9 @@ const altShiftEnterEventTracker = {
     this.listeners.delete(listener);
   },
 
-  emit() {
+  emit(keyid) {
     for (let listener of this.listeners) {
-      listener();
+      listener(keyid);
     }
   }
 };
@@ -148,13 +148,17 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
         },
 
         async call(name, body, prev, argstring) {
-          body = `let next, nextspec, nextargs; ${body}; ` +
-                  "return([next, nextspec, nextargs]);";
-          prev = new Date(prev);
-          const args = JSON.parse(`[${argstring||""}]`);
+          try {
+            body = `let next, nextspec, nextargs; ${body}; ` +
+                    "return([next, nextspec, nextargs]);";
+            prev = new Date(prev);
+            const args = JSON.parse(`[${argstring||""}]`);
 
-          const FUNC = Function.apply(null, ["specname", "prev", "args", body]);
-          return FUNC(name, prev, args);
+            const FUNC = Function.apply(null, ["specname", "prev", "args", body]);
+            return FUNC(name, prev, args);
+          } catch (ex) {
+            return [null, null, null, ex.message];
+          }
         },
 
         async getLegacyPref(name, dtype, defVal) {
@@ -283,9 +287,8 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             msgSendLater.removeListener(this.sendUnsentMessagesListener);
         },
 
-        bindAltShiftEnter() {
-          // Add an overlay to messenger compose windows to listen for
-          // Alt+Shift+Enter key command.
+        bindKeyCodes() {
+          // Add an overlay to messenger compose windows to listen for key commands
           ExtensionSupport.registerWindowListener("composeListener", {
             chromeURLs: [
               "chrome://messenger/content/messengercompose/messengercompose.xhtml",
@@ -303,11 +306,22 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                 keyElement.setAttribute("oncommand", "//");
                 keyElement.addEventListener("command", event => {
                   event.preventDefault();
-                  altShiftEnterEventTracker.emit();
+                  keyCodeEventTracker.emit("key_altShiftEnter");
                 });
                 tasksKeys.appendChild(keyElement);
               } else {
                 console.warn("Unable to add keycode listener for Alt+Shift+Enter");
+              }
+
+              // Highjack keycode presses for the actual Send Later button.
+              const sendLaterKey = window.document.getElementById("key_sendLater");
+              if (sendLaterKey) {
+                sendLaterKey.setAttribute("observes", "");
+                sendLaterKey.setAttribute("oncommand", "//");
+                sendLaterKey.addEventListener("command", event => {
+                  event.preventDefault();
+                  keyCodeEventTracker.emit("key_sendLater");
+                });
               }
             }
           });
@@ -315,15 +329,15 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
         // This eventmanager needs the 'inputHandling' property, or else
         // openPopup() will be disabled.
-        onAltShiftEnter: new ExtensionCommon.EventManager({
+        onKeyCode: new ExtensionCommon.EventManager({
           context,
-          name: "SL3U.onAltShiftEnter",
+          name: "SL3U.onKeyCode",
           inputHandling: true,
           register: fire => {
-            const callback = (event => fire.async());
-            altShiftEnterEventTracker.add(callback);
+            const callback = (evt => fire.async(evt));
+            keyCodeEventTracker.add(callback);
             return function() {
-              altShiftEnterEventTracker.remove(callback);
+              keyCodeEventTracker.remove(callback);
             };
           },
         }).api(),

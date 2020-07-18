@@ -33,6 +33,25 @@ button, input[type=button] {
   cursor: pointer;
 }
 
+#showHideFunctionHelp {
+  display:none;
+  font-size:small;
+  font-family:monospace;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#funcHelpDiv {
+  display:none;
+  font-size:small;
+  font-family:monospace;
+  border:1px solid #ccc;
+  padding:0.5em;
+  margin-top:0.5em;
+  white-space:normal;
+}
+
 input[type=date], input[type=time] {
   height: 1.75em;
   padding-left:0.5em;

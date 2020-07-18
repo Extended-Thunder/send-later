@@ -128,7 +128,7 @@
         ]
       },
       {
-        "name":"bindAltShiftEnter",
+        "name":"bindKeyCodes",
         "type":"function",
         "description":"Bind Alt+Shift+Enter shortcut in composition windows",
         "parameters":[]
@@ -136,7 +136,7 @@
     ],
     "events": [
       {
-        "name": "onAltShiftEnter",
+        "name": "onKeyCode",
         "type": "function",
         "description": "Fires from message compose windows on Alt+Shift+Enter",
         "parameters": []

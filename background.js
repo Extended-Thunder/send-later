@@ -48,7 +48,7 @@ const SendLater = {
           });
         });
       } catch (ex) {
-        console.error(ex);
+        SLStatic.error(ex);
       }
     },
 
@@ -206,7 +206,7 @@ const SendLater = {
         SLStatic.ufuncs = storage.ufuncs;
       });
 
-      browser.SL3U.bindAltShiftEnter();
+      browser.SL3U.bindKeyCodes();
 
       // Start background loop to check for scheduled messages.
       setTimeout(SendLater.mainLoop, 0);
@@ -234,11 +234,23 @@ const SendLater = {
 
 };
 
-browser.SL3U.onAltShiftEnter.addListener(() => {
-  if (SendLater.prefCache.altBinding) {
-    browser.composeAction.openPopup();
-  } else {
-    SLStatic.warn("Ignoring Alt+Shift+Enter on account of user preferences");
+browser.SL3U.onKeyCode.addListener((keyid) => {
+  switch (keyid) {
+    case "key_altShiftEnter": {
+      if (SendLater.prefCache.altBinding) {
+        browser.composeAction.openPopup();
+      } else {
+        SLStatic.warn("Ignoring Alt+Shift+Enter on account of user preferences");
+      }
+      break;
+    }
+    case "key_sendLater": {
+      browser.composeAction.openPopup();
+      break;
+    }
+    default: {
+      SLStatic.error(`Unrecognized keycode ${keyid}`);
+    }
   }
 });
 
@@ -267,7 +279,8 @@ browser.compose.onBeforeSend.addListener(tab => {
   }
 });
 
-browser.runtime.onMessage.addListener((message) => {
+browser.runtime.onMessage.addListener(async (message) => {
+  const response = {};
   switch (message.action) {
     case "alert": {
       browser.SL3U.alert(message.title, message.text);
@@ -307,10 +320,44 @@ browser.runtime.onMessage.addListener((message) => {
         SLStatic.ufuncs = storage.ufuncs;
       });
       break;
+    case "evaluateUfuncByContents":
+    case "evaluateUfuncByName": {
+      const { name, time, argStr } = message;
+      SLStatic.debug(`Evaluating function ${name}`);
+
+      let body;
+      if (message.action === "evaluateUfuncByName") {
+        const { ufuncs } = await browser.storage.local.get({ ufuncs: {} });
+        const func = ufuncs[name];
+        body = func.body;
+      } else if (message.action === "evaluateUfuncByContents") {
+        body = message.body;
+      } else {
+        // How did we get here?
+        break;
+      }
+
+      const [next, nextspec, nextargs, error] =
+        await browser.SL3U.call(name, body, time, argStr).catch(ex => {
+          SLStatic.error(`User function ${name} failed with exception`,ex);
+          return [undefined, undefined, undefined, ex.message];
+        });
+      SLStatic.debug("User function returned:",
+                      {next, nextspec, nextargs, error});
+      if (error) {
+        response.err = error;
+      } else {
+        response.next = SLStatic.dateTimeFormat(next);
+        response.nextspec = nextspec;
+        response.nextargs = nextargs;
+      }
+      break;
+    }
     default: {
       SLStatic.warn(`Unrecognized operation <${message.action}>.`);
     }
   }
+  return response;
 });
 
 SendLater.init();

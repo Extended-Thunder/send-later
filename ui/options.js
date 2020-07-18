@@ -54,7 +54,9 @@ const SLOptions = {
   },
 
   async saveUserFunction(name, body, help) {
-    if (validateFuncName(name) && !SLOptions.builtinFuncs.includes(name)) {
+    if ((name !== browser.i18n.getMessage("functionnameplaceholder")) &&
+        !SLOptions.builtinFuncs.includes(name) &&
+        validateFuncName(name) ) {
       SLStatic.info(`Storing user function ${name}`);
       const { ufuncs } = await browser.storage.local.get({ufuncs:{}});
       ufuncs[name] = { body, help };
@@ -224,11 +226,12 @@ const SLOptions = {
     const resetFunctionInput = (() => {
       const funcName = document.getElementById("functionNames").value;
       if (!funcName) {
-        console.error(`Unspecified function: ${funcName}`)
+        SLStatic.error(`Unspecified function: ${funcName}`)
         return;
       }
 
       const funcContentElmt = document.getElementById("functionEditorContent");
+      const funcHelpElmt = document.getElementById("functionHelpText")
       const funcNameElmt = document.getElementById("functionName");
       const saveBtn = document.getElementById("funcEditSave");
       const resetBtn = document.getElementById("funcEditReset");
@@ -236,6 +239,7 @@ const SLOptions = {
 
       if (SLOptions.builtinFuncs.includes(funcName)) {
         funcContentElmt.disabled = true;
+        funcHelpElmt.disabled = true;
         funcNameElmt.disabled = true;
         saveBtn.disabled = true;
         resetBtn.disabled = true;
@@ -243,12 +247,15 @@ const SLOptions = {
         funcNameElmt.value = funcName;
       } else {
         funcContentElmt.disabled = false;
+        funcHelpElmt.disabled = false;
         funcNameElmt.disabled = false;
         saveBtn.disabled = false;
         if (funcName === "newFunctionName") {
-          funcNameElmt.value = "";
+          funcNameElmt.value = browser.i18n.getMessage("functionnameplaceholder");
+          funcContentElmt.value = browser.i18n.getMessage("codeplaceholder");
+          funcHelpElmt.value = browser.i18n.getMessage("helptextplaceholder");
           deleteBtn.disabled = true;
-          resetBtn.disabled = true;
+          resetBtn.disabled = false;
         } else {
           deleteBtn.disabled = false;
           resetBtn.disabled = false;
@@ -256,10 +263,13 @@ const SLOptions = {
         }
       }
 
-      browser.storage.local.get({ ufuncs: {} }).then(({ ufuncs }) => {
-        const thisFunc = ufuncs[funcName] || {};
-        funcContentElmt.value = thisFunc.body || "";
-      });
+      if (funcName !== "newFunctionName") {
+        browser.storage.local.get({ ufuncs: {} }).then(({ ufuncs }) => {
+          const thisFunc = ufuncs[funcName] || {};
+          funcContentElmt.value = thisFunc.body || "";
+          funcHelpElmt.value = thisFunc.help || "";
+        });
+      }
     });
 
     document.getElementById("functionNames").addEventListener("change",
@@ -270,7 +280,8 @@ const SLOptions = {
     document.getElementById("funcEditSave").addEventListener("click", async evt => {
       const funcName = document.getElementById("functionName").value;
       const funcContent = document.getElementById("functionEditorContent").value;
-      SLOptions.saveUserFunction(funcName, funcContent).then(success => {
+      const funcHelp = document.getElementById("functionHelpText").value;
+      SLOptions.saveUserFunction(funcName, funcContent, funcHelp).then(success => {
         if (success) {
           SLOptions.addFuncOption(funcName, true);
           SLOptions.showCheckMark(evt.target, "green");
@@ -301,6 +312,33 @@ const SLOptions = {
       }
     });
 
+    document.getElementById("funcTestRun").addEventListener("click",
+      async evt => {
+        const funcName = document.getElementById("functionName").value;
+        const funcBody = document.getElementById("functionEditorContent").value;
+        const funcTestDate = document.getElementById("functionTestDate").value;
+        const funcTestTime = document.getElementById("functionTestTime").value;
+        const testDateTime = SLStatic.parseDateTime(funcTestDate, funcTestTime);
+        const funcTestArgs = document.getElementById("functionTestArgs").value;
+        const message = {
+          action: "evaluateUfuncByContents",
+          name: funcName,
+          body: funcBody,
+          time: testDateTime.getTime(),
+          argStr: funcTestArgs
+        }
+        browser.runtime.sendMessage(message).then(response => {
+          const outputCell = document.getElementById("functionTestOutput");
+          if (response.err) {
+            outputCell.innerHTML = "<b>Error:</b> " + response.err;
+          } else {
+            outputCell.innerHTML = `<b>next:</b> ${response.next}<br/>` +
+              `<b>nextspec:</b> ${response.nextspec}<br/>` +
+              `<b>nextargs:</b> ${response.nextargs}`;
+          }
+        })
+      });
+
     // And attach a listener to the "Reset Preferences" button
     const clearPrefsListener = SLOptions.doubleCheckButtonClick(evt => {
       const defPrefs = "/utils/defaultPrefs.json";
@@ -320,17 +358,41 @@ const SLOptions = {
   async onLoad() {
     setTimeout(async () => {
       const { ufuncs } = await browser.storage.local.get({ufuncs:{}});
-      if (!(ufuncs.ReadMeFirst && ufuncs.ReadMeFirst.body) ||
-          !(ufuncs.BusinessHours && ufuncs.BusinessHours.body) ||
-          !(ufuncs.DaysInARow && ufuncs.DaysInARow.body)) {
-        ufuncs.ReadMeFirst = {help:"",body:browser.i18n.getMessage("EditorReadMeCode")};
-        ufuncs.BusinessHours = {help:"",body:browser.i18n.getMessage("_BusinessHoursCode")};
-        ufuncs.DaysInARow = {help:"",body:browser.i18n.getMessage("DaysInARowCode")};
+      const isComplete = (v => (v && v.body && v.help));
+      if (!isComplete(ufuncs.ReadMeFirst) ||
+          !isComplete(ufuncs.BusinessHours) ||
+          !isComplete(ufuncs.DaysInARow)) {
+        ufuncs.ReadMeFirst = {
+          help:browser.i18n.getMessage("EditorReadMeHelp"),
+          body:browser.i18n.getMessage("EditorReadMeCode")
+        };
+        ufuncs.BusinessHours = {
+          help:browser.i18n.getMessage("BusinessHoursHelp"),
+          body:browser.i18n.getMessage("_BusinessHoursCode")
+        };
+        ufuncs.DaysInARow = {
+          help:browser.i18n.getMessage("DaysInARowHelp"),
+          body:browser.i18n.getMessage("DaysInARowCode")
+        };
         browser.storage.local.set({ ufuncs });
       }
     }, 1000);
 
-    for (let id of ["functionEditorContent","functionName","funcEditSave","funcEditReset","funcEditDelete"]) {
+    (() => {
+      const funcTestDate = document.getElementById("functionTestDate");
+      const funcTestTime = document.getElementById("functionTestTime");
+      const fmtDate = new Intl.DateTimeFormat('en-CA',
+        { year: "numeric", month: "2-digit", day: "2-digit" });
+      const fmtTime = new Intl.DateTimeFormat('default',
+        { hour: "2-digit", minute: "2-digit", hour12: false });
+
+      const soon = new Date(Date.now() + 60 * 1000);
+      funcTestDate.value = fmtDate.format(soon);
+      funcTestTime.value = fmtTime.format(soon);
+    })();
+
+    for (let id of ["functionEditorContent","functionHelpText","functionName",
+                    "funcEditSave","funcEditReset","funcEditDelete"]) {
       const el = document.getElementById(id);
       el.disabled = true;
     }
