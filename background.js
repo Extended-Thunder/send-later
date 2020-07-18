@@ -275,17 +275,38 @@ const SendLater = {
 
 };
 
-browser.SL3U.onKeyCode.addListener((keyid) => {
+browser.SL3U.onKeyCode.addListener(async (keyid) => {
+  console.info(`Received keycode ${keyid}`);
   switch (keyid) {
     case "key_altShiftEnter": {
       if (SendLater.prefCache.altBinding) {
         browser.composeAction.openPopup();
       } else {
-        SLStatic.warn("Ignoring Alt+Shift+Enter on account of user preferences");
+        SLStatic.info("Ignoring Alt+Shift+Enter on account of user preferences");
       }
       break;
     }
     case "key_sendLater": {
+      // User pressed ctrl+shift+enter
+      const { preferences } = await browser.storage.local.get({preferences: {}});
+      if (preferences.altBinding) {
+        SLStatic.info("Passing Ctrl+Shift+Enter along to builtin send later.");
+        const tabs = await browser.tabs.query({ active:true, currentWindow:true });
+        const tabId = tabs[0].id;
+        SendLater.composeState[tabId] = "sending";
+        browser.SL3U.builtInSendLater().then(()=>{
+          setTimeout(() => delete SendLater.composeState[tabId], 1000);
+        }).catch(SLStatic.error);
+        return;
+      } else {
+        browser.composeAction.openPopup();
+      }
+      break;
+    }
+    case "cmd_sendLater":
+    {
+      // User clicked the "Send Later" menu item, which should always be bound
+      // to the send later plugin.
       browser.composeAction.openPopup();
       break;
     }
@@ -297,6 +318,7 @@ browser.SL3U.onKeyCode.addListener((keyid) => {
 
 // Intercept sent messages. Decide whether to handle them or just pass them on.
 browser.compose.onBeforeSend.addListener(tab => {
+  console.info(`Received onBeforeSend from tab`,tab);
   if (SendLater.composeState[tab.id] === "sending") {
     // Avoid blocking extension's own send events
     return { cancel: false };

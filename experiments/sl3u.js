@@ -4,12 +4,7 @@ const { ExtensionCommon } = ChromeUtils.import("resource://gre/modules/Extension
 const { ExtensionSupport } = ChromeUtils.import("resource:///modules/ExtensionSupport.jsm");
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 const { Utils } = ChromeUtils.import("resource://services-settings/Utils.jsm");
-
-// Load helper functions from legacy jsm modules
-//const { ExtensionParent } = ChromeUtils.import("resource://gre/modules/ExtensionParent.jsm");
-//const extension = ExtensionParent.GlobalManager.getExtension("jph@extended-thunder.org");
-//const sl3uf = ChromeUtils.import(extension.rootURI.resolve("modules/ufuncs.jsm"));
-////const sl3uf = ChromeUtils.import(extension.getURL("modules/ufuncs.jsm"));
+const { AppConstants } = ChromeUtils.import("resource://gre/modules/AppConstants.jsm");
 
 const SendLaterVars = {
   fileNumber: 0,
@@ -211,6 +206,28 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           // Sends the message from the current composition window
           const cw = Services.wm.getMostRecentWindow("msgcompose");
           cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.Now);
+          let sendInBackground = Services.prefs.getBoolPref(
+            "mailnews.sendInBackground"
+          );
+          if (sendInBackground && AppConstants.platform != "macosx") {
+            let count = [...Services.wm.getEnumerator(null)].length;
+            if (count == 1) {
+              sendInBackground = false;
+            }
+          }
+
+          cw.GenericSendMessage(sendInBackground ?
+                            Ci.nsIMsgCompDeliverMode.Background :
+                            Ci.nsIMsgCompDeliverMode.Now);
+          cw.ExitFullscreenMode();
+        },
+
+        async builtInSendLater() {
+          // Sends the message from the current composition window
+          // using thunderbird's default send later mechanism.
+          const cw = Services.wm.getMostRecentWindow("msgcompose");
+          cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.Later);
+          cw.ExitFullscreenMode();
         },
 
         async setHeader(name, value) {
@@ -296,50 +313,49 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               "chrome://messenger/content/messengercompose/messengercompose.xul"
             ],
             onLoadWindow(window) {
-              console.debug("Applying overlay to messenger compose window");
+              console.debug("Binding to send later events like a barnicle.");
+
               const tasksKeys = window.document.getElementById("tasksKeys");
               if (tasksKeys) {
-                console.debug("Adding keycode listener for Alt+Shift+Enter");
                 const keyElement = window.document.createXULElement("key");
                 keyElement.id = "key-alt-shift-enter";
                 keyElement.setAttribute("keycode", "VK_RETURN");
                 keyElement.setAttribute("modifiers", "alt, shift");
                 keyElement.setAttribute("oncommand", "//");
                 keyElement.addEventListener("command", event => {
-                  event.preventDefault();
                   keyCodeEventTracker.emit("key_altShiftEnter");
                 });
                 tasksKeys.appendChild(keyElement);
               } else {
-                console.warn("Unable to add keycode listener for Alt+Shift+Enter");
+                console.error("Unable to add keycode listener for Alt+Shift+Enter");
               }
 
               // Highjack keycode presses for the actual Send Later button.
               const sendLaterKey = window.document.getElementById("key_sendLater");
               if (sendLaterKey) {
-                console.log("found key_sendLater");
-                sendLaterKey.setAttribute("observes", "");
-                sendLaterKey.setAttribute("oncommand", "//");
-                sendLaterKey.addEventListener("command", event => {
-                  event.preventDefault();
-                  console.log('key_sendLater',event);
+                const keyClone = sendLaterKey.cloneNode(true);
+                keyClone.removeAttribute('oncommand')
+                sendLaterKey.parentNode.replaceChild(keyClone, sendLaterKey);
+                keyClone.addEventListener('command', event => {
                   keyCodeEventTracker.emit("key_sendLater");
                 });
               } else {
-                console.log("could not find key_sendLater");
+                console.error("Could not find key_sendLater element. " +
+                            "Cannot bind to sendlater keypress events.");
               }
-              const sendLaterMenuItem = window.document.getElementById("menu_sendLater");
-              if (sendLaterMenuItem) {
-              console.log("found menu_sendLater");
-                sendLaterMenuItem.setAttribute("observes", "");
-                sendLaterMenuItem.setAttribute("oncommand", "//");
-                sendLaterMenuItem.addEventListener("command", event => {
-                  event.preventDefault();
-                  console.log('menu_sendLater',event);
-                  keyCodeEventTracker.emit("menu_sendLater");
+
+              // And events from the send later File menu item
+              const sendLaterCmd = window.document.getElementById("cmd_sendLater");
+              if (sendLaterCmd) {
+                const cmdClone = sendLaterCmd.cloneNode(true);
+                cmdClone.removeAttribute('oncommand')
+                sendLaterCmd.parentNode.replaceChild(cmdClone, sendLaterCmd);
+                cmdClone.addEventListener('command', event => {
+                  keyCodeEventTracker.emit("cmd_sendLater");
                 });
               } else {
-                console.log("could not find menu_sendLater");
+                console.error("Could not find cmd_sendLater element. " +
+                              "Cannot bind to sendlater menu events.");
               }
             }
           });

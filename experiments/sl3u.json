@@ -57,7 +57,14 @@
         "name": "SendNow",
         "type": "function",
         "async": true,
-        "description": "Initiate send of current composition window",
+        "description": "Initiate send from current composition window",
+        "parameters": []
+      },
+      {
+        "name": "builtInSendLater",
+        "type": "function",
+        "async": true,
+        "description": "Initiate send from current composition window using thunderbirds builtin send later funcion.",
         "parameters": []
       },
       {
