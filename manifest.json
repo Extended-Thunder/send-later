@@ -39,15 +39,6 @@
     "browser_style": false
   },
 
-  "commands": {
-    "doSendLater": {
-      "suggested_key": {
-        "default": "Alt+Shift+S"
-      },
-      "description": "Execute the Send Later plugin"
-    }
-  },
-
   "compose_action": {
     "browser_style": true,
     "default_area": "maintoolbar",
