@@ -79,7 +79,8 @@ migrations = {
     "showHeaderPrefLabel":("showsendlaterheader.caption", "Show Send Later header"),
     "showStatusPrefLabel":("showsendlaterstatus.caption", "Show Send Later in status bar"),
     "userGuideLabel":("helplink.value", "Website"),
-    "errorDateInPast":(None,"Selected date is in the past")
+    "errorDateInPast":(None,"Selected date is in the past"),
+    "DelayFunctionHelp": (None,"Simply delay message by some number of minutes. First argument is taken as the delay time.")
 }
 
 def main(args):
@@ -161,9 +162,6 @@ def main(args):
 
         locale_dir = locale.replace('-','_')
         os.makedirs(os.path.join("_locales",locale_dir), exist_ok=True)
-
-        if (locale == "en-US"):
-            print(i18n)
 
         with open(os.path.join("_locales", locale_dir, "messages.json"),'w') as msgs:
             msgs.write(json.dumps(i18n, indent=2, ensure_ascii=False))

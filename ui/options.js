@@ -5,43 +5,48 @@ const SLOptions = {
   inputIds: ["checkTimePref", "sendDoesDelay", "sendDelay", "sendDoesSL",
             "altBinding", "markDraftsRead", "showColumn", "showHeader",
             "showStatus", "blockLateMessages", "lateGracePeriod",
-            "enforceTimeRestrictions", "quickOptions1Value",
-            "quickOptions2Value", "quickOptions3Value", "logDumpLevel",
-            "logConsoleLevel"],
+            "enforceTimeRestrictions", "logDumpLevel", "logConsoleLevel",
+            "quickOptions1Label", "quickOptions1funcselect", "quickOptions1Args",
+            "quickOptions2Label", "quickOptions2funcselect", "quickOptions2Args",
+            "quickOptions3Label", "quickOptions3funcselect", "quickOptions3Args"],
 
-  builtinFuncs: ["ReadMeFirst", "BusinessHours", "DaysInARow"],
+  builtinFuncs: ["ReadMeFirst", "BusinessHours", "DaysInARow", "Delay"],
 
   async applyPrefsToUI() {
     // Saves the UI preferences to preference storage.
-    browser.storage.local.get("preferences").then( (storage) => {
-      const prefs = storage.preferences || {};
-      for (const id of SLOptions.inputIds) {
-        (async (e, v) => {
-          if (e.tagName === "INPUT") {
-              switch (e.type) {
-                  case "checkbox":
-                    e.checked = (v !== undefined) && v;
-                    break;
-                  case "text":
-                  case "number":
-                    e.value = v ? v : "";
-                    break;
-                  case "radio":
-                    e.checked = (v !== undefined) && (e.value === v);
-                    break;
-                  default:
-                    SLStatic.error("SendLater: Unable to populate input element of type "+e.type);
-              }
-          } else if (e.tagName === "SELECT") {
-              e.value = v;
-          }
-        })(document.getElementById(id), prefs[id]);
-      }
-    });
-    browser.storage.local.get({ufuncs:{}}).then( storage => {
+    await browser.storage.local.get({ufuncs:{}}).then( storage => {
       Object.keys(storage.ufuncs).forEach(funcName => {
         SLOptions.addFuncOption(funcName, false);
       })
+    });
+    browser.storage.local.get("preferences").then(storage => {
+      const prefs = storage.preferences || {};
+      for (const id of SLOptions.inputIds) {
+        (async (e, v) => {
+          if (!e) {
+            SLStatic.error(id, e, v);
+          } else {
+            if (e.tagName === "INPUT") {
+                switch (e.type) {
+                    case "checkbox":
+                      e.checked = (v !== undefined) && v;
+                      break;
+                    case "text":
+                    case "number":
+                      e.value = v ? v : "";
+                      break;
+                    case "radio":
+                      e.checked = (v !== undefined) && (e.value === v);
+                      break;
+                    default:
+                      SLStatic.error("SendLater: Unable to populate input element of type "+e.type);
+                }
+            } else if (e.tagName === "SELECT") {
+                e.value = v;
+            }
+          }
+        })(document.getElementById(id), prefs[id]);
+      }
     });
   },
 
@@ -73,9 +78,7 @@ const SLOptions = {
   },
 
   async addFuncOption(funcName, active) {
-    if (document.getElementById(`ufunc-${funcName}`)) {
-      return;
-    } else {
+    if (!document.getElementById(`ufunc-${funcName}`)) {
       const newOpt = document.createElement('option');
       newOpt.id = `ufunc-${funcName}`;
       newOpt.value = funcName;
@@ -85,6 +88,19 @@ const SLOptions = {
       funcSelect.children[0].after(newOpt);
       if (active) {
         funcSelect.value = funcName;
+      }
+    }
+    if (funcName !== "ReadMeFirst") {
+      for (let i=1; i<4; i++) {
+        if (!document.getElementById(`ufunc-shortcut-${i}-${funcName}`)) {
+          const newOpt = document.createElement('option');
+          newOpt.id = `ufunc-shortcut-${i}-${funcName}`;
+          newOpt.value = funcName;
+          newOpt.textContent = funcName;
+
+          const funcSelect = document.getElementById(`quickOptions${i}funcselect`);
+          funcSelect.appendChild(newOpt);
+        }
       }
     }
   },
@@ -296,6 +312,9 @@ const SLOptions = {
       funcNameSelect.value = "ReadMeFirst";
       resetFunctionInput();
       document.getElementById(`ufunc-${funcName}`).remove();
+      for (let i=1; i<4; i++) {
+        document.getElementById(`ufunc-shortcut-${i}-${funcName}`).remove();
+      }
       browser.storage.local.get({ ufuncs: {} }).then(({ ufuncs }) => {
         delete ufuncs[funcName];
         browser.storage.local.set({ ufuncs });
@@ -326,7 +345,7 @@ const SLOptions = {
           body: funcBody,
           time: testDateTime.getTime(),
           argStr: funcTestArgs
-        }
+        };
         browser.runtime.sendMessage(message).then(response => {
           const outputCell = document.getElementById("functionTestOutput");
           if (response.err) {
@@ -336,7 +355,7 @@ const SLOptions = {
               `<b>nextspec:</b> ${response.nextspec}<br/>` +
               `<b>nextargs:</b> ${response.nextargs}`;
           }
-        })
+        });
       });
 
     // And attach a listener to the "Reset Preferences" button
@@ -356,28 +375,6 @@ const SLOptions = {
     clearPrefsBtn.addEventListener("click", clearPrefsListener);
   },
   async onLoad() {
-    setTimeout(async () => {
-      const { ufuncs } = await browser.storage.local.get({ufuncs:{}});
-      const isComplete = (v => (v && v.body && v.help));
-      if (!isComplete(ufuncs.ReadMeFirst) ||
-          !isComplete(ufuncs.BusinessHours) ||
-          !isComplete(ufuncs.DaysInARow)) {
-        ufuncs.ReadMeFirst = {
-          help:browser.i18n.getMessage("EditorReadMeHelp"),
-          body:browser.i18n.getMessage("EditorReadMeCode")
-        };
-        ufuncs.BusinessHours = {
-          help:browser.i18n.getMessage("BusinessHoursHelp"),
-          body:browser.i18n.getMessage("_BusinessHoursCode")
-        };
-        ufuncs.DaysInARow = {
-          help:browser.i18n.getMessage("DaysInARowHelp"),
-          body:browser.i18n.getMessage("DaysInARowCode")
-        };
-        browser.storage.local.set({ ufuncs });
-      }
-    }, 1000);
-
     (() => {
       const funcTestDate = document.getElementById("functionTestDate");
       const funcTestTime = document.getElementById("functionTestTime");

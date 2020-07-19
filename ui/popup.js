@@ -3,7 +3,7 @@ const SLPopup = {
   async debugSchedule() {
     // Dump current header values to console.
     const inputs = SLPopup.objectifyFormValues();
-    const schedule = SLPopup.parseInputs(inputs);
+    const schedule = await SLPopup.parseInputs(inputs);
     if (schedule && !schedule.err) {
       hdr = {
         'send-at': SLStatic.dateTimeFormat(schedule.sendAt),
@@ -18,25 +18,32 @@ const SLPopup = {
     }
   },
 
-  scheduleSendWithDelay(delay) {
-      return (async (event) => {
-        SLStatic.debug(`Scheduling message in ${delay} minutes`);
+  async doSendWithSchedule(schedule) {
+    const tabs = await browser.tabs.query({ active:true, currentWindow:true });
+    if (schedule && !schedule.err) {
+      const message = {
+        tabId: tabs[0].id,
+        action: "doSendLater",
+        sendAt: schedule.sendAt,
+        recurSpec: SLStatic.unparseRecurSpec(schedule.recur),
+        args: schedule.recur.args,
+        cancelOnReply: schedule.recur.cancelOnReply
+      };
+      SLStatic.debug(message);
+      browser.runtime.sendMessage(message).catch(SLStatic.error);
+      setTimeout((() => window.close()), 150);
+    }
+  },
 
-        const tabs = await browser.tabs.query({ active:true, currentWindow:true });
-        const msg = { tabId: tabs[0].id };
-        if (delay === 0) {
-          msg.action = "doSendNow";
-          msg.sendAt = null;
-        } else {
-          msg.action = "doSendLater";
-          msg.sendAt = new Date();
-          msg.sendAt.setTime(msg.sendAt.getTime() + delay * 60 * 1000);
-        }
-
-        browser.runtime.sendMessage(msg).catch(SLStatic.error);
-
-        setTimeout((() => window.close()), 150);
-      });
+  async doSendNow() {
+    const tabs = await browser.tabs.query({ active:true, currentWindow:true });
+    const message = {
+      tabId: tabs[0].id,
+      action: "doSendNow"
+    };
+    SLStatic.debug(message);
+    browser.runtime.sendMessage(message).catch(SLStatic.error);
+    setTimeout((() => window.close()), 150);
   },
 
   domElementsAsArray() {
@@ -82,7 +89,54 @@ const SLPopup = {
     return inputs;
   },
 
-  parseInputs(inputs) {
+  async evaluateUfunc(funcName, argStr) {
+    try {
+      argStr = SLStatic.unparseArgs(SLStatic.parseArgs(argStr));
+    } catch (ex) {
+      SLStatic.warn(ex);
+      return { err: ("<b>" + browser.i18n.getMessage("InvalidArgsTitle")
+                    + ":</b> "
+                    + browser.i18n.getMessage("InvalidArgsBody")) };
+    }
+    const message = {
+      action: "evaluateUfuncByName",
+      name: funcName,
+      time: 0,
+      argStr: argStr
+    };
+    const response = await browser.runtime.sendMessage(message);
+    if (response.err) {
+      throw new Error(response.err);
+    } else {
+      const sendAt = new Date(response.next);
+      let recur = SLStatic.ParseRecurSpec(response.nextspec) || {type:"none"};
+      if (recur.type !== "none") {
+        recur.args = response.nextargs;
+      }
+      const schedule = { sendAt, recur };
+      return schedule;
+    }
+  },
+
+  async parseInputs(inputs) {
+    // Construct a recur object { type: "...", multiplier: "...", ... }
+    const recur = { type: inputs.radio.recur };
+
+    if (recur.type === "function") {
+      try {
+        const funcName = inputs["recurFuncSelect"];
+        let argStr = inputs["recur-function-args"];
+        const schedule = await SLPopup.evaluateUfunc(funcName, argStr);
+        schedule.recur.cancelOnReply = inputs[`recur-cancelonreply`];
+        if (SLStatic.compareTimes(schedule.sendAt, '<', new Date(), true)) {
+          return { err: browser.i18n.getMessage("errorDateInPast") };
+        }
+        return schedule;
+      } catch (ex) {
+        return { err: ex.message };
+      }
+    }
+
     // Parse send date and time
     const sendAtDate = inputs["send-date"];
     const sendAtTime = inputs["send-time"];
@@ -94,8 +148,6 @@ const SLPopup = {
       return { err: browser.i18n.getMessage("errorDateInPast") };
     }
 
-    // Construct a recur object { type: "...", multiplier: "...", ... }
-    const recur = { type: inputs.radio.recur };
     if (recur.type !== "none") {
       recur.cancelOnReply = inputs[`recur-cancelonreply`];
 
@@ -127,19 +179,6 @@ const SLPopup = {
           month: sendAt.getMonth(),
           date: sendAt.getDate()
         };
-        break;
-      case "function":
-        recur.function = inputs["recurFuncSelect"];
-        recur.finished = false;
-        try {
-          recur.args = SLStatic.unparseArgs(
-                          SLStatic.parseArgs(inputs["recur-function-args"]));
-        } catch (ex) {
-          SLStatic.warn(ex);
-          return { err: ("<b>" + browser.i18n.getMessage("InvalidArgsTitle")
-                        + ":</b> "
-                        + browser.i18n.getMessage("InvalidArgsBody")) };
-        }
         break;
       default:
         SLStatic.error(`unrecognized recurrence type <${recur.type}>`);
@@ -302,9 +341,6 @@ const SLPopup = {
       dom["send-date"].value = fmtDate.format(soon);
       dom["send-time"].value = fmtTime.format(soon);
 
-      const inputs = SLPopup.objectifyFormValues();
-      const schedule = SLPopup.parseInputs(inputs);
-
       SLStatic.stateSetter(dom["sendon"].checked)(dom["onlyOnDiv"]);
       SLStatic.stateSetter(dom["sendbetween"].checked)(dom["betweenDiv"]);
 
@@ -331,10 +367,8 @@ const SLPopup = {
             (element.type !== "button")) {
         element.addEventListener("change", async evt => {
           const inputs = SLPopup.objectifyFormValues();
-          const schedule = SLPopup.parseInputs(inputs);
-          if (schedule) {
-            SLPopup.setScheduleButton(schedule);
-          }
+          const schedule = await SLPopup.parseInputs(inputs);
+          SLPopup.setScheduleButton(schedule);
         });
       }
     });
@@ -415,82 +449,42 @@ const SLPopup = {
 
     dom['recurFuncSelect'].addEventListener("change", SLPopup.loadFunctionHelpText);
 
-    dom['showHideFunctionHelp'].addEventListener("click",
-        async evt => {
-          const specs = ["minutely","daily","weekly","monthly","yearly","function"];
-          const recurrence = specs.find(s => dom[s].checked);
-          if (recurrence === "function") {
-            const currentState = (dom['funcHelpDiv'].style.display === "block");
-            dom['funcHelpDiv'].style.display = currentState ? "none" : "block";
-          }
+    dom['showHideFunctionHelp'].addEventListener("click", async evt => {
+        const specs = ["minutely","daily","weekly","monthly","yearly","function"];
+        const recurrence = specs.find(s => dom[s].checked);
+        if (recurrence === "function") {
+          const currentState = (dom['funcHelpDiv'].style.display === "block");
+          dom['funcHelpDiv'].style.display = currentState ? "none" : "block";
         }
-      );
-
-    dom['function-test-button'].addEventListener("click",
-      async evt => {
-        const message = {
-          action: "evaluateUfuncByName",
-          name: dom["recurFuncSelect"].value,
-          time: Date.now(),
-          argStr: dom["recur-function-args"].value
-        }
-        browser.runtime.sendMessage(message).then(response => {
-          if (response.err) {
-            dom["sendScheduleButton"].innerHTML = "<b>Error:</b> " + response.err;
-          } else {
-            const sendAt = new Date(response.next);
-            const recur = SLStatic.ParseRecurSpec(response.nextspec);
-            recur.args = response.nextargs;
-            const schedule = { sendAt, recur };
-            SLPopup.setScheduleButton(schedule);
-          }
-        })
       });
 
     dom["save-defaults"].addEventListener("click", SLPopup.saveDefaults);
     dom["clear-defaults"].addEventListener("click", SLPopup.clearDefaults);
 
     dom["sendScheduleButton"].addEventListener("click", async evt => {
-      const tabs = await browser.tabs.query({ active:true, currentWindow:true });
       const inputs = SLPopup.objectifyFormValues();
-      const schedule = SLPopup.parseInputs(inputs);
-      if (schedule && !schedule.err) {
-        const message = {
-          tabId: tabs[0].id,
-          action: "doSendLater",
-          sendAt: schedule.sendAt,
-          recurSpec: SLStatic.unparseRecurSpec(schedule.recur),
-          args: schedule.recur.args,
-          cancelOnReply: schedule.recur.cancelOnReply
-        };
-        SLStatic.debug(message);
-        browser.runtime.sendMessage(message);
-        setTimeout((() => window.close()), 150);
+      const schedule = await SLPopup.parseInputs(inputs);
+      SLPopup.doSendWithSchedule(schedule);
+    });
+
+    browser.storage.local.get({ preferences: {} }).then(({ preferences }) => {
+      for (let i=1;i<4;i++) {
+        const funcName = preferences[`quickOptions${i}funcselect`];
+        const funcArgs = preferences[`quickOptions${i}Args`];
+
+        const quickBtn = dom[`quick-opt-${i}`];
+        quickBtn.value = preferences[`quickOptions${i}Label`];
+        quickBtn.addEventListener("click", async () => {
+          const schedule = await SLPopup.evaluateUfunc(funcName, funcArgs);
+          SLPopup.doSendWithSchedule(schedule);
+        });
       }
     });
 
-    browser.storage.local.get({ "preferences": {} }).then(storage => {
-      const quick1val = storage.preferences.quickOptions1Value || 15;
-      const quick2val = storage.preferences.quickOptions2Value || 30;
-      const quick3val = storage.preferences.quickOptions3Value || 120;
-
-      const quick1el = dom["quick-delay-1"];
-      const quick2el = dom["quick-delay-2"];
-      const quick3el = dom["quick-delay-3"];
-
-      quick1el.value = moment(new Date(Date.now()+60000*quick1val)).fromNow();
-      quick2el.value = moment(new Date(Date.now()+60000*quick2val)).fromNow();
-      quick3el.value = moment(new Date(Date.now()+60000*quick3val)).fromNow();
-
-      quick1el.addEventListener("click", SLPopup.scheduleSendWithDelay(quick1val));
-      quick2el.addEventListener("click", SLPopup.scheduleSendWithDelay(quick2val));
-      quick3el.addEventListener("click", SLPopup.scheduleSendWithDelay(quick3val));
-    });
-
-    dom["sendNow"].addEventListener("click", SLPopup.scheduleSendWithDelay(0));
+    dom["sendNow"].addEventListener("click", SLPopup.doSendNow);
   },
 
-  init() {
+  async init() {
     SLPopup.applyDefaults().then(() => {
       SLPopup.attachListeners();
     });

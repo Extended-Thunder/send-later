@@ -38,6 +38,10 @@ label:hover {
   background-color: #EAEFF2;
 }
 
+.option-label {
+  white-space: nowrap;
+}
+
 .title {
   font-size: 1.2em;
   margin-bottom: 0.5em;

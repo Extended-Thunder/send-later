@@ -146,7 +146,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           try {
             body = `let next, nextspec, nextargs; ${body}; ` +
                     "return([next, nextspec, nextargs]);";
-            prev = new Date(prev);
+            prev = (prev > 0) ? new Date(prev) : null;
             const args = JSON.parse(`[${argstring||""}]`);
 
             const FUNC = Function.apply(null, ["specname", "prev", "args", body]);
@@ -205,29 +205,14 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
         async SendNow() {
           // Sends the message from the current composition window
           const cw = Services.wm.getMostRecentWindow("msgcompose");
-          cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.Now);
-          let sendInBackground = Services.prefs.getBoolPref(
-            "mailnews.sendInBackground"
-          );
-          if (sendInBackground && AppConstants.platform != "macosx") {
-            let count = [...Services.wm.getEnumerator(null)].length;
-            if (count == 1) {
-              sendInBackground = false;
-            }
-          }
-
-          cw.GenericSendMessage(sendInBackground ?
-                            Ci.nsIMsgCompDeliverMode.Background :
-                            Ci.nsIMsgCompDeliverMode.Now);
-          cw.ExitFullscreenMode();
+          cw.SendMessageWithCheck();
         },
 
         async builtInSendLater() {
           // Sends the message from the current composition window
           // using thunderbird's default send later mechanism.
           const cw = Services.wm.getMostRecentWindow("msgcompose");
-          cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.Later);
-          cw.ExitFullscreenMode();
+          cw.SendMessageLater();
         },
 
         async setHeader(name, value) {

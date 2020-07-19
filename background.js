@@ -411,8 +411,8 @@ browser.runtime.onMessage.addListener(async (message) => {
         response.err = error;
       } else {
         response.next = SLStatic.dateTimeFormat(next);
-        response.nextspec = nextspec;
-        response.nextargs = nextargs;
+        response.nextspec = nextspec || "none";
+        response.nextargs = nextargs || "";
       }
       break;
     }
@@ -439,6 +439,9 @@ browser.runtime.onMessage.addListener(async (message) => {
 
         const recurSpec = (dispMsg.headers['x-send-later-recur'] || ["none"])[0];
         const recur = SLStatic.ParseRecurSpec(recurSpec);
+        recur.cancelOnReply =
+          (dispMsg.headers['x-send-later-cancel-on-reply']||[""])[0] === "true";
+        recur.args = (dispMsg.headers['x-send-later-args']||[""])[0];
         response.scheduleTxt = SLStatic.formatScheduleForUI({ sendAt, recur });
       } catch (ex) {
         response.err = ex.message;
@@ -462,6 +465,7 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
   // First, we want to skip onNewMailReceived events triggered locally during
   // regular send operations.
   if (folder.type === "archives") {
+    SLStatic.debug(`Skipping onNewMailReceived for outgoing message(s)`,messagelist);
     return;
   }
   const myself = SLStatic.flatten(await browser.accounts.list().then(accts =>
@@ -475,42 +479,44 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
       }
     }
     SLStatic.debug("Received message",hdr);
-    try {
-      browser.messages.getFull(hdr.id).then(async fullRecvdMsg => {
-        (fullRecvdMsg.headers['references'] || []).forEach(async refMsgId => {
-          // incoming message references `refMsgId`. Let's check if we
-          // need to cancel a recurring message because of that.
-          const { watchForReply } = await browser.storage.local.get({ watchForReply: {} });
-          if (watchForReply[refMsgId]) {
-            const isReplyTo = watchForReply[refMsgId];
+    // We can't do this processing right away, because the message will not be
+    // accessible via browser.messages
+    setTimeout(() => (async () => {
+      const fullRecvdMsg = await browser.messages.getFull(hdr.id).catch(
+        ex => SLStatic.error(`Cannot fetch full message ${hdr.id}`,ex));
+      SLStatic.debug(`Full message`,fullRecvdMsg);
+      (fullRecvdMsg.headers['references'] || []).forEach(async refMsgId => {
+        SLStatic.debug(`Message in reference to ${refMsgId}`);
+        // incoming message references `refMsgId`. Let's check if we
+        // need to cancel a recurring message because of that.
+        const { watchForReply } = await browser.storage.local.get({ watchForReply: {} });
+        if (watchForReply[refMsgId]) {
+          const isReplyTo = watchForReply[refMsgId];
 
-            SLStatic.info(`Received reply to message ${isReplyTo}.`);
+          SLStatic.info(`Received reply to message ${isReplyTo}.`);
 
-            // Look through drafts for message with original message id.
-            SendLater.forAllDrafts(async draftMsg => {
-              const fullDraftMsg = await browser.messages.getFull(draftMsg.id);
-              if (fullDraftMsg.headers['message-id'][0] === isReplyTo) {
-                SLStatic.info(`Deleting draft ${draftMsg.id} of message ${isReplyTo}`);
-                browser.messages.delete([draftMsg.id], true);
-              }
-            });
-
-            // There may be multiple outgoing messages that are attached to
-            // the same draft message. Let's clear those out of the watch list.
-            let count = 0;
-            for (let key of Object.keys(watchForReply)) {
-              if (watchForReply[key] === isReplyTo) {
-                SendLater.removeReplyWatch(key);
-                count++;
-              }
+          // Look through drafts for message with original message id.
+          SendLater.forAllDrafts(async draftMsg => {
+            const fullDraftMsg = await browser.messages.getFull(draftMsg.id);
+            if (fullDraftMsg.headers['message-id'][0] === isReplyTo) {
+              SLStatic.info(`Deleting draft ${draftMsg.id} of message ${isReplyTo}`);
+              browser.messages.delete([draftMsg.id], true);
             }
-            SLStatic.debug(`Stopped listeneing for replies to ${count} outgoing messages`);
+          });
+
+          // There may be multiple outgoing messages that are attached to
+          // the same draft message. Let's clear those out of the watch list.
+          let count = 0;
+          for (let key of Object.keys(watchForReply)) {
+            if (watchForReply[key] === isReplyTo) {
+              SendLater.removeReplyWatch(key);
+              count++;
+            }
           }
-        });
-      })
-    } catch (ex) {
-      SLStatic.error(ex);
-    }
+          SLStatic.debug(`Stopped listeneing for replies to ${count} outgoing messages`);
+        }
+      });
+    })().catch(ex => SLStatic.error('Error processing message',ex)), 1000);
   });
 });
 

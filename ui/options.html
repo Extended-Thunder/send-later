@@ -4,6 +4,11 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/ui/options.css"/>
+
+    <script type="text/javascript" defer="true" src="/utils/static.js"></script>
+    <script type="text/javascript" defer="true" src="/utils/varNameValidator.js"></script>
+    <script type="text/javascript" defer="true" src="/ui/options.js"></script>
+    <script type="text/javascript" defer="true" src="/ui/localize.js"></script>
   </head>
 
   <body>
@@ -79,24 +84,66 @@
 
     <section>
       <div class="title option-label" id="shortcutOptionsTitle">Shortcuts</div>
-      <label>
-        <span class="option-label localized __MSG_quickOptionsLabel1Label__">Shortcut 1</span>:
-        <input type="number" id="quickOptions1Value" style="width:6em;" class="preference"/>
-        <span class="option-label localized __MSG_quickOptionsValueLabel__">Minutes</span>
-      </label>
 
-      <label>
-        <span class="option-label localized __MSG_quickOptionsLabel2Label__">Shortcut 2</span>:
-        <input type="number" id="quickOptions2Value" style="width:6em;" class="preference"/>
-        <span class="option-label localized __MSG_quickOptionsValueLabel__">Minutes</span>
-      </label>
-
-      <label>
-        <span class="option-label localized __MSG_quickOptionsLabel3Label__">Shortcut 3</span>:
-        <input type="number" id="quickOptions3Value" style="width:6em;" class="preference"/>
-        <span class="option-label localized __MSG_quickOptionsValueLabel__">Minutes</span>
-
-      </label>
+      <div class="div-table">
+        <div class="div-table-row" style="font-weight:bold;">
+          <div class="div-table-cell"></div>
+          <div class="div-table-cell locallized __MSG_quickoptionname.label__"
+             style="padding-left:1em;">Button label</div>
+          <div class="div-table-cell locallized __MSG_functionnameplaceholder__"
+             style="padding-left:1em;">Function name</div>
+          <div class="div-table-cell locallized __MSG_sendlater.prompt.functionargs.label__"
+             style="padding-left:1em;">Input arguments</div>
+        </div>
+        <div class="div-table-row">
+          <div class="div-table-cell">
+            <span class="option-label localized __MSG_quickOptionsLabel1Label__">Shortcut 1</span>:
+          </div>
+          <div class="div-table-cell">
+            <input type="text" id="quickOptions1Label" style="width:10em;" class="preference"/>
+          </div>
+          <div class="div-table-cell">
+            <select id="quickOptions1funcselect" style="margin-bottom:0.5em;margin-left:0.5em;min-width:10em;">
+            </select>
+          </div>
+          <div class="div-table-cell" style="width:100%;">
+            <input type="text" id="quickOptions1Args" style="width:95%;"
+              class="preference" value="15"/>
+          </div>
+        </div>
+        <div class="div-table-row">
+          <div class="div-table-cell">
+            <span class="option-label localized __MSG_quickOptionsLabel2Label__">Shortcut 2</span>:
+          </div>
+          <div class="div-table-cell">
+            <input type="text" id="quickOptions2Label" style="width:10em;" class="preference"/>
+          </div>
+          <div class="div-table-cell">
+            <select id="quickOptions2funcselect" style="margin-bottom:0.5em;margin-left:0.5em;min-width:10em;">
+            </select>
+          </div>
+          <div class="div-table-cell" style="width:100%;">
+            <input type="text" id="quickOptions2Args" style="width:95%;"
+              class="preference" value="30"/>
+          </div>
+        </div>
+        <div class="div-table-row">
+          <div class="div-table-cell">
+            <span class="option-label localized __MSG_quickOptionsLabel3Label__">Shortcut 3</span>:
+          </div>
+          <div class="div-table-cell">
+            <input type="text" id="quickOptions3Label" style="width:10em;" class="preference"/>
+          </div>
+          <div class="div-table-cell">
+            <select id="quickOptions3funcselect" style="margin-bottom:0.5em;margin-left:0.5em;min-width:10em;">
+            </select>
+          </div>
+          <div class="div-table-cell" style="width:100%;">
+            <input type="text" id="quickOptions3Args" style="width:95%;"
+              class="preference" value="120"/>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section>
@@ -118,6 +165,9 @@
           </option>
           <option value="DaysInARow" id="ufunc-DaysInARow">
             DaysInARow
+          </option>
+          <option value="Delay" id="ufunc-Delay">
+            Delay
           </option>
           <option value="newFunctionName" id="ufunc-newFunctionName"
             class="option-label localized __MSG_createnewfunction__">
@@ -251,11 +301,6 @@
       <a href="https://github.com/Extended-Thunder/send-later"
         class="option-label localized __MSG_userGuideLabel__">Website</a>
     </div>
-
-    <script src="/utils/static.js"></script>
-    <script src="/utils/varNameValidator.js"></script>
-    <script src="/ui/options.js"></script>
-    <script src="/ui/localize.js"></script>
   </body>
 
 </html>
