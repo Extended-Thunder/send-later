@@ -275,7 +275,7 @@ const SendLater = {
 
 };
 
-browser.SL3U.onKeyCode.addListener(async (keyid) => {
+browser.SL3U.onKeyCode.addListener(keyid => {
   console.info(`Received keycode ${keyid}`);
   switch (keyid) {
     case "key_altShiftEnter": {
@@ -288,17 +288,19 @@ browser.SL3U.onKeyCode.addListener(async (keyid) => {
     }
     case "key_sendLater": {
       // User pressed ctrl+shift+enter
-      const { preferences } = await browser.storage.local.get({preferences: {}});
-      if (preferences.altBinding) {
-        SLStatic.info("Passing Ctrl+Shift+Enter along to builtin send later.");
-        const tabs = await browser.tabs.query({ active:true, currentWindow:true });
-        const tabId = tabs[0].id;
-        SendLater.composeState[tabId] = "sending";
-        browser.SL3U.builtInSendLater().then(()=>{
-          setTimeout(() => delete SendLater.composeState[tabId], 1000);
-        }).catch(SLStatic.error);
-        return;
+      SLStatic.debug("Received Ctrl+Shift+Enter.");
+      if (SendLater.prefCache.altBinding) {
+        SLStatic.info("Passing Ctrl+Shift+Enter along to builtin send later " +
+                      "because user bound alt+shift+enter instead.");
+        browser.tabs.query({ active:true, currentWindow:true }).then(tabs => {
+          const tabId = tabs[0].id;
+          SendLater.composeState[tabId] = "sending";
+          browser.SL3U.builtInSendLater().then(()=>{
+            setTimeout(() => delete SendLater.composeState[tabId], 1000);
+          });
+        }).catch(ex => SLStatic.error("Error starting builtin send later",ex));
       } else {
+        SLStatic.info("Opening popup");
         browser.composeAction.openPopup();
       }
       break;
@@ -323,14 +325,10 @@ browser.compose.onBeforeSend.addListener(tab => {
     // Avoid blocking extension's own send events
     return { cancel: false };
   } else if (SendLater.prefCache.sendDoesSL) {
-    // if (SendLater.prefCache.altBinding) {
-    //   SLStatic.log("Ignoring onBeforeSend, because alt+shift+enter is bound");
-    //   return ({ cancel: false });
-    // } else {
-      browser.composeAction.enable(tab.id);
-      browser.composeAction.openPopup();
-      return ({ cancel: true });
-    // }
+    SLStatic.info("Send does send later. Opening popup.")
+    browser.composeAction.enable(tab.id);
+    browser.composeAction.openPopup();
+    return ({ cancel: true });
   } else if (SendLater.prefCache.sendDoesDelay) {
     const sendDelay = SendLater.prefCache.sendDelay;
     SLStatic.debug(`Scheduling SendLater ${sendDelay} minutes from now.`);
@@ -365,11 +363,15 @@ browser.runtime.onMessage.addListener(async (message) => {
     }
     case "doSendLater": {
       SLStatic.debug("User requested send later.");
-      const options = { sendAt: message.sendAt,
-                        recurSpec: message.recurSpec,
-                        args: message.args,
-                        cancelOnReply: message.cancelOnReply };
-      SendLater.scheduleSendLater(message.tabId, options);
+      if (await browser.SL3U.preSendCheck()) {
+        const options = { sendAt: message.sendAt,
+                          recurSpec: message.recurSpec,
+                          args: message.args,
+                          cancelOnReply: message.cancelOnReply };
+        SendLater.scheduleSendLater(message.tabId, options);
+      } else {
+        SLStatic.info("User cancelled send via presendcheck.");
+      }
       break;
     }
     case "reloadPrefCache": {
@@ -521,13 +523,18 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
 });
 
 browser.messageDisplay.onMessageDisplayed.addListener(async (tab, hdr) => {
-  browser.messages.getFull(hdr.id).then(fullMessage => {
-    if (fullMessage.headers['x-send-later-at']) {
-      browser.messageDisplayAction.enable(tab.id);
-    } else {
-      browser.messageDisplayAction.disable(tab.id);
-    }
-  })
+  browser.messageDisplayAction.disable(tab.id);
+  if (hdr.folder.type === "drafts") {
+    const enableDisplayAction = () => {
+      browser.messages.getFull(hdr.id).then(fullMessage => {
+        if (fullMessage.headers['x-send-later-at']) {
+          SLStatic.debug("Displayed message has send later headers.");
+          browser.messageDisplayAction.enable(tab.id);
+        }
+      }).catch(ex => SLStatic.error("Could not get full message contents",ex));
+    };
+    setTimeout(enableDisplayAction, 0);
+  }
 });
 
 SendLater.init();

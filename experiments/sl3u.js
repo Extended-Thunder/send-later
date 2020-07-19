@@ -195,6 +195,97 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
         },
 
+        // Mostly borrowed from MsgComposeCommands.js
+        async preSendCheck() {
+          const cw = Services.wm.getMostRecentWindow("msgcompose");
+
+          let msgCompFields = cw.GetComposeDetails();
+          let subject = msgCompFields.subject;
+          cw.expandRecipients();
+          // Check if e-mail addresses are complete, in case user turned off
+          // autocomplete to local domain.
+          if (!cw.CheckValidEmailAddress(msgCompFields)) {
+            return;
+          }
+
+          const SetMsgBodyFrameFocus = function() {
+            // window.content.focus() fails to blur the currently focused element
+            cw.document.commandDispatcher.advanceFocusIntoSubtree(
+              cw.document.getElementById("appcontent")
+            );
+          }
+
+          // i18n globals
+          let _gComposeBundle;
+          const getComposeBundle = function() {
+            // That one has to be lazy. Getting a reference to an element with a XBL
+            // binding attached will cause the XBL constructors to fire if they haven't
+            // already. If we get a reference to the compose bundle at script load-time,
+            // this will cause the XBL constructor that's responsible for the personas to
+            // fire up, thus executing the personas code while the DOM is not fully built.
+            // Since this <script> comes before the <statusbar>, the Personas code will
+            // fail.
+            if (!_gComposeBundle) {
+              _gComposeBundle = cw.document.getElementById("bundle_composeMsgs");
+            }
+            return _gComposeBundle;
+          }
+
+          // Do we need to check the spelling?
+          if (Services.prefs.getBoolPref("mail.SpellCheckBeforeSend")) {
+            // We disable spellcheck for the following -subject line, attachment
+            // pane, identity and addressing widget therefore we need to explicitly
+            // focus on the mail body when we have to do a spellcheck.
+            SetMsgBodyFrameFocus();
+            cw.cancelSendMessage = false;
+            cw.openDialog(
+              "chrome://messenger/content/messengercompose/EdSpellCheck.xhtml",
+              "_blank",
+              "dialog,close,titlebar,modal,resizable",
+              true,
+              true,
+              false
+            );
+
+            if (cw.cancelSendMessage) {
+              return false;
+            }
+
+            // Strip trailing spaces and long consecutive WSP sequences from the
+            // subject line to prevent getting only WSP chars on a folded line.
+            let fixedSubject = subject.replace(/\s{74,}/g, "    ").trimRight();
+            if (fixedSubject != subject) {
+              subject = fixedSubject;
+              msgCompFields.subject = fixedSubject;
+              cw.document.getElementById("msgSubject").value = fixedSubject;
+            }
+          }
+
+          // Remind the person if there isn't a subject
+          if (subject === "") {
+            if (
+              Services.prompt.confirmEx(
+                cw,
+                getComposeBundle().getString("subjectEmptyTitle"),
+                getComposeBundle().getString("subjectEmptyMessage"),
+                Services.prompt.BUTTON_TITLE_IS_STRING *
+                  Services.prompt.BUTTON_POS_0 +
+                  Services.prompt.BUTTON_TITLE_IS_STRING *
+                    Services.prompt.BUTTON_POS_1,
+                getComposeBundle().getString("sendWithEmptySubjectButton"),
+                getComposeBundle().getString("cancelSendingButton"),
+                null,
+                null,
+                { value: 0 }
+              ) === 1
+            ) {
+              cw.document.getElementById("msgSubject").focus();
+              return false;
+            }
+          }
+          return true;
+        },
+
         async SaveAsDraft() {
           // Saves the current compose window message as a draft.
           // (Window remains open)
@@ -268,7 +359,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                 }
               }
               if (Components.isSuccessCode(status)) {
-                queueSendUnsentMessages();
+                setTimeout(queueSendUnsentMessages, 1000);
               } else {
                 console.error(status);
               }
@@ -308,9 +399,11 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                 keyElement.setAttribute("modifiers", "alt, shift");
                 keyElement.setAttribute("oncommand", "//");
                 keyElement.addEventListener("command", event => {
+                  event.preventDefault();
                   keyCodeEventTracker.emit("key_altShiftEnter");
                 });
                 tasksKeys.appendChild(keyElement);
+                //console.debug("New alt+shift+enter key element",keyElement);
               } else {
                 console.error("Unable to add keycode listener for Alt+Shift+Enter");
               }
@@ -319,11 +412,14 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               const sendLaterKey = window.document.getElementById("key_sendLater");
               if (sendLaterKey) {
                 const keyClone = sendLaterKey.cloneNode(true);
-                keyClone.removeAttribute('oncommand')
-                sendLaterKey.parentNode.replaceChild(keyClone, sendLaterKey);
+                keyClone.setAttribute("oncommand", "//");
+                keyClone.setAttribute("observes", "");
                 keyClone.addEventListener('command', event => {
+                  event.preventDefault();
                   keyCodeEventTracker.emit("key_sendLater");
                 });
+                sendLaterKey.parentNode.replaceChild(keyClone, sendLaterKey);
+                //console.debug("Cloned key element",keyClone);
               } else {
                 console.error("Could not find key_sendLater element. " +
                             "Cannot bind to sendlater keypress events.");
@@ -333,11 +429,13 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               const sendLaterCmd = window.document.getElementById("cmd_sendLater");
               if (sendLaterCmd) {
                 const cmdClone = sendLaterCmd.cloneNode(true);
-                cmdClone.removeAttribute('oncommand')
-                sendLaterCmd.parentNode.replaceChild(cmdClone, sendLaterCmd);
+                cmdClone.setAttribute("oncommand", "//");
                 cmdClone.addEventListener('command', event => {
+                  event.preventDefault();
                   keyCodeEventTracker.emit("cmd_sendLater");
                 });
+                sendLaterCmd.parentNode.replaceChild(cmdClone, sendLaterCmd);
+                //console.debug("Cloned menu command element",cmdClone);
               } else {
                 console.error("Could not find cmd_sendLater element. " +
                               "Cannot bind to sendlater menu events.");

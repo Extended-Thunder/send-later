@@ -54,6 +54,13 @@
         "parameters": []
       },
       {
+        "name": "preSendCheck",
+        "type": "function",
+        "async": true,
+        "description": "Check empty subject etc",
+        "parameters": []
+      },
+      {
         "name": "SendNow",
         "type": "function",
         "async": true,

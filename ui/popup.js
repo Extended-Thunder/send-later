@@ -337,7 +337,7 @@ const SLPopup = {
       const fmtTime = new Intl.DateTimeFormat('default',
         { hour: "2-digit", minute: "2-digit", hour12: false });
 
-      const soon = new Date(Date.now()+600000);
+      const soon = new Date(Date.now()+60000); // 1 minute in the future
       dom["send-date"].value = fmtDate.format(soon);
       dom["send-time"].value = fmtTime.format(soon);
 
