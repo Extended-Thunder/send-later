@@ -359,7 +359,8 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                 }
               }
               if (Components.isSuccessCode(status)) {
-                setTimeout(queueSendUnsentMessages, 1000);
+                const mailWindow = Services.wm.getMostRecentWindow("mail:3pane");
+                mailWindow.setTimeout(queueSendUnsentMessages, 1000);
               } else {
                 console.error(status);
               }
