@@ -34,7 +34,7 @@ exports.init = function() {
   }
 
   const goodTests = [
-    ["none", null],
+    ["none", { type: "none" }],
     ["minutely", { type: "minutely" }],
     ["daily", { type: "daily" }],
     ["weekly", { type: "weekly" }],
