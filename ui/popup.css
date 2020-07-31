@@ -1,0 +1,70 @@
+body {
+  font-family: sans-serif;
+  font-size: 0.9em;
+  font-weight: 300;
+  vertical-align: middle;
+  padding: 1em 0.5em;
+}
+
+button, input[type=button] {
+  text-align:center;
+}
+
+#sendNow {
+  float: left;
+  margin-left: 2%;
+  width: 45%;
+  padding:0.25em;
+}
+
+#cancel {
+  float: right;
+  margin-right: 2%;
+  width: 45%;
+  padding:0.25em;
+}
+
+#save-defaults, #clear-defaults {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#showHideFunctionHelp {
+  display:none;
+  font-size:small;
+  font-family:monospace;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#funcHelpDiv {
+  display:none;
+  font-size:small;
+  font-family:monospace;
+  border:1px solid #ccc;
+  padding:0.5em;
+  margin-top:0.5em;
+  white-space:normal;
+}
+
+input[type=date], input[type=time] {
+  height: 1.75em;
+  padding-left:0.5em;
+}
+
+button, input[type=button] {
+  padding:0.2em;
+}
+
+section {
+  padding: 0.5em 0.25em 0.5em 0em;
+}
+
+label {
+  white-space: nowrap;
+}

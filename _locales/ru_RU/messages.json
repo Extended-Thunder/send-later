@@ -1,0 +1,1070 @@
+{
+  "extensionName": {
+    "message": "Send Later",
+    "description": "The name of the add-on, displayed in various places."
+  },
+  "extensionDescription": {
+    "message": "“Send Later” - планировщик времени отправки сообщений электронной почты.",
+    "description": "A short description of the add-on."
+  },
+  "advancedOptionsTitle": {
+    "message": "Дополнительные",
+    "description": ""
+  },
+  "altBindingPrefLabel": {
+    "message": "Заменить Alt-Shift-Enter на Ctrl-Shift-Enter",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel1": {
+    "message": "Не доставлять сообщения позднее, чем",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel2": {
+    "message": "минут",
+    "description": ""
+  },
+  "cancelLabel": {
+    "message": "Отмена",
+    "description": ""
+  },
+  "checkTimePrefLabel1": {
+    "message": "Проверять каждые",
+    "description": ""
+  },
+  "checkTimePrefLabel2": {
+    "message": "мин.",
+    "description": ""
+  },
+  "clearDefaultsLabel": {
+    "message": "Сбросить настройки по умолчанию",
+    "description": ""
+  },
+  "contactAuthorLabel": {
+    "message": "Связаться с автором",
+    "description": ""
+  },
+  "enforceRestrictionsPrefLabel": {
+    "message": "Обеспечить ограничение времени и дня во время доставки",
+    "description": ""
+  },
+  "generalOptionsTitle": {
+    "message": "Основные",
+    "description": ""
+  },
+  "logConsoleLevelLabel": {
+    "message": "Уровень логирования для консоли",
+    "description": ""
+  },
+  "logDumpLevelLabel": {
+    "message": "Уровень логирования для дампа",
+    "description": ""
+  },
+  "logLevelAll": {
+    "message": "All",
+    "description": ""
+  },
+  "logLevelDebug": {
+    "message": "Debug",
+    "description": ""
+  },
+  "logLevelError": {
+    "message": "Error",
+    "description": ""
+  },
+  "logLevelFatal": {
+    "message": "Fatal",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "Info",
+    "description": ""
+  },
+  "logLevelTrace": {
+    "message": "Trace",
+    "description": ""
+  },
+  "logLevelWarn": {
+    "message": "Warn",
+    "description": ""
+  },
+  "markReadPrefLabel": {
+    "message": "Отметить запланированный черновик как прочитанный",
+    "description": ""
+  },
+  "quickOptionsLabel1Label": {
+    "message": "Сокращение 1",
+    "description": ""
+  },
+  "quickOptionsLabel2Label": {
+    "message": "Сокращение 2",
+    "description": ""
+  },
+  "quickOptionsLabel3Label": {
+    "message": "Сокращение 3",
+    "description": ""
+  },
+  "quickOptionsValueLabel": {
+    "message": "Минут(у)",
+    "description": ""
+  },
+  "recurAnnuallyLabel": {
+    "message": "ежегодно",
+    "description": ""
+  },
+  "recurDailyLabel": {
+    "message": "ежедневно",
+    "description": ""
+  },
+  "recurFunctionLabel": {
+    "message": "по функции",
+    "description": ""
+  },
+  "recurLabel": {
+    "message": "Повторять",
+    "description": ""
+  },
+  "recurMinutelyLabel": {
+    "message": "ежеминутно",
+    "description": ""
+  },
+  "recurMonthlyLabel": {
+    "message": "ежемесячно",
+    "description": ""
+  },
+  "recurOnceLabel": {
+    "message": "однажды",
+    "description": ""
+  },
+  "recurWeeklyLabel": {
+    "message": "еженедельно",
+    "description": ""
+  },
+  "resetPrefsButton": {
+    "message": "Reset Preferences",
+    "description": ""
+  },
+  "saveDefaultsLabel": {
+    "message": "Сохранить эти значения по умолчанию",
+    "description": ""
+  },
+  "sendAtDefaultLabel": {
+    "message": "Введите время и дату",
+    "description": "Displayed in place of send at time before user makes selections"
+  },
+  "sendAtLabel": {
+    "message": "Отправить в",
+    "description": ""
+  },
+  "sendBtwnLabel": {
+    "message": "Между",
+    "description": ""
+  },
+  "sendButtonPrefLabel": {
+    "message": "Заменить «Отправить» на «Отправить позже»",
+    "description": ""
+  },
+  "sendDelayPrefLabel1": {
+    "message": "\"Send\" delays messages by",
+    "description": ""
+  },
+  "sendDelayPrefLabel2": {
+    "message": "minutes",
+    "description": ""
+  },
+  "sendSundayLabel": {
+    "message": "Воскресенье",
+    "description": ""
+  },
+  "sendMondayLabel": {
+    "message": "Понедельник",
+    "description": ""
+  },
+  "sendTuesdayLabel": {
+    "message": "Вторник",
+    "description": ""
+  },
+  "sendWednesdayLabel": {
+    "message": "Среда",
+    "description": ""
+  },
+  "sendThursdayLabel": {
+    "message": "Четверг",
+    "description": ""
+  },
+  "sendFridayLabel": {
+    "message": "Пятница",
+    "description": ""
+  },
+  "sendSaturdayLabel": {
+    "message": "Суббота",
+    "description": ""
+  },
+  "sendNowLabel": {
+    "message": "Отправить сейчас",
+    "description": ""
+  },
+  "sendOnlyOnLabel": {
+    "message": "Только в",
+    "description": ""
+  },
+  "sendUnsentMessagesPrefLabel": {
+    "message": "Отправка не отправленных сообщений из папки «Исходящие»",
+    "description": ""
+  },
+  "showColumnPrefLabel": {
+    "message": "Показать столбец Send Later",
+    "description": ""
+  },
+  "showHeaderPrefLabel": {
+    "message": "Показывать заголовок Send Later",
+    "description": ""
+  },
+  "showStatusPrefLabel": {
+    "message": "Показывать Send Later в строке состояния",
+    "description": ""
+  },
+  "userGuideLabel": {
+    "message": "Руководство Пользователя",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.label": {
+    "message": "Поместить в «Исходящие»",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.accesskey": {
+    "message": "И",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "Вместо того, чтобы планировать доставку в течение определенного времени, переместите сообщение в папку «Исходящие» для доставки в следующий раз, когда будут отправлены не отправленные сообщения.",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.accesskey": {
+    "message": "с",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.tooltip": {
+    "message": "Отправка сообщения минуя Send Later.",
+    "description": ""
+  },
+  "sendlater.prompt.close.accesskey": {
+    "message": "О",
+    "description": ""
+  },
+  "sendlater.prompt.close.tooltip": {
+    "message": "Вернуться к редактированию сообщения.",
+    "description": ""
+  },
+  "sendlater.prompt.title.label": {
+    "message": "Отложенная отправка письма",
+    "description": ""
+  },
+  "sendlater.prompt.or.label": {
+    "message": "или",
+    "description": ""
+  },
+  "sendlater.prompt.textbox.emptytext": {
+    "message": "пример: “3:00pm Thursday”, “12/31/2012 15:27”",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.label": {
+    "message": "Отправить позже в указанное время",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Сохранить сообщение в «Черновиках» для автоматической доставки в указанное время.",
+    "description": ""
+  },
+  "sendlater.prompt.functionargs.label": {
+    "message": "Аргументы функции",
+    "description": ""
+  },
+  "sendlater.prompt.calculate.label": {
+    "message": "Вычислить",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.label": {
+    "message": "Отправить позже",
+    "description": ""
+  },
+  "sendlater.toolbar.textbox.emptytext": {
+    "message": "время отправки",
+    "description": ""
+  },
+  "sendlater.prompt.every.label": {
+    "message": "Каждые",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "15 минут спустя",
+    "description": ""
+  },
+  "sendlater.button2.label": {
+    "message": "30 минут спустя",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "2 часа спустя",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.label": {
+    "message": "Отменить повторную отправку после ответа",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Отслеживать ответы, для отмены отправки копий рекурсивных сообщений. Отменяет повторяющиеся сообщения и удаляет их из «Черновиков», после получения ответа.",
+    "description": ""
+  },
+  "sendlater3header.label": {
+    "message": "Send Later",
+    "description": ""
+  },
+  "prefwindow.title": {
+    "message": "Настройки Send Later",
+    "description": ""
+  },
+  "pane1.title": {
+    "message": "Настройки Send Later",
+    "description": ""
+  },
+  "checktimepref.tooltip": {
+    "message": "Интервал в минутах между проверками черновиков, чье время доставки уже наступило. Увеличьте это число, если ваши черновики иногда не отправляются вовремя, или если количество сообщений в вашей строке состояния не отражает все запланированные отправки.",
+    "description": ""
+  },
+  "quickoptionname.label": {
+    "message": "Имя кнопки",
+    "description": ""
+  },
+  "showsendlatercolumn.tooltip": {
+    "message": "Показывать столбец «Send Later» при просмотре черновиков",
+    "description": ""
+  },
+  "showsendlaterheader.tooltip": {
+    "message": "Указывать, показывать ли заголовок «X-Send-Later-At», то есть время отправки черновика, в заголовке при просмотре сообщения.",
+    "description": ""
+  },
+  "showsendlaterprogress.caption": {
+    "message": "Показывать фоновый прогресс в строке состояния",
+    "description": ""
+  },
+  "showsendlaterunsentmessages.tooltip": {
+    "message": "Если вы отключите эту опцию, то Send Later не будет доставлять сообщения, а поместит их в папку «Исходящие», когда они будут запланированы для доставки. Отключение этой опции нужно, например, если вы используете другое расширение, скажем, BlunderDelay для периодической отправки сообщений из папки «Исходящие». Когда эта опция активна, то всякий раз при отправке сообщений через Send Later, ВСЕ сообщения в вашей папке «Исходящие» будут доставлены.",
+    "description": ""
+  },
+  "sendlatersendbutton.tooltip": {
+    "message": "Когда эта опция активна, то команда «Отправить» (и кнопка и нажатие на Ctrl-Enter) выполняется так же как и «Отправить позже».",
+    "description": ""
+  },
+  "contactauthor.tooltip": {
+    "message": "Написать письмо автору Send Later.",
+    "description": ""
+  },
+  "helplink.tooltip": {
+    "message": "Посмотреть документацию на Send Later.",
+    "description": ""
+  },
+  "releasenotes.value": {
+    "message": "Примечания к выпуску",
+    "description": ""
+  },
+  "donatelink.value": {
+    "message": "Пожертвовать",
+    "description": ""
+  },
+  "editorlink.value": {
+    "message": "Редактор динамических функций",
+    "description": ""
+  },
+  "enforcerestrictions.tooltip": {
+    "message": "Если сообщение, которое должно быть доставлено, выходит за пределы своих ограничений по времени, например, из-за того, что Thunderbird не работал в запланированное время, то его доставка задержится до тех пор, пока не будут соблюдены ограничения по времени и дню.",
+    "description": ""
+  },
+  "blocklatemessages.tooltip": {
+    "message": "Не доставлять запланированные сообщения, которые были задержаны до их запланированного времени, например, из-за того, что Thunderbird не был запущен в этот момент.",
+    "description": ""
+  },
+  "editorbutton": {
+    "message": "Открыть редактор динамических функций…",
+    "description": ""
+  },
+  "editortip": {
+    "message": "Открыть окно для создания и редактирования JavaScript функций, реализующих сложную логику планирования.",
+    "description": ""
+  },
+  "sendlater.ask.title.label": {
+    "message": "Поддержка Send Later",
+    "description": ""
+  },
+  "sendlater.ask.message1": {
+    "message": "Целая вечность была затрачена на разработку, обслуживание и поддержку этого дополнения.",
+    "description": ""
+  },
+  "sendlater.ask.message2": {
+    "message": "Пожалуйста, подумайте о пожертвовании для поддержки дальнейших разработок!",
+    "description": ""
+  },
+  "sendlater.ask.message3": {
+    "message": "Большое спасибо!",
+    "description": ""
+  },
+  "sendlater.ask.donate.accesskey": {
+    "message": "П",
+    "description": ""
+  },
+  "sendlater.ask.donate.label": {
+    "message": "Поддержать",
+    "description": ""
+  },
+  "sendlater.ask.remind.accesskey": {
+    "message": "Н",
+    "description": ""
+  },
+  "sendlater.ask.remind.label": {
+    "message": "Напомнить позже",
+    "description": ""
+  },
+  "sendlater.ask.already.accesskey": {
+    "message": "У",
+    "description": ""
+  },
+  "sendlater.ask.already.label": {
+    "message": "Уже поддержал",
+    "description": ""
+  },
+  "sendlater.ask.stop.accesskey": {
+    "message": "в",
+    "description": ""
+  },
+  "sendlater.ask.stop.label": {
+    "message": "Не уведомлять",
+    "description": ""
+  },
+  "windowtitle": {
+    "message": "Редактор Динамических Функций Send Later",
+    "description": ""
+  },
+  "selectfunction": {
+    "message": "Выбрать функцию",
+    "description": ""
+  },
+  "selectfunctiontip": {
+    "message": "Выберете функцию для редактирования или удаления. Либо “(создать новую функцию)” для создания новой функции.",
+    "description": ""
+  },
+  "createnewfunction": {
+    "message": "(создать новую функцию)",
+    "description": ""
+  },
+  "delete.label": {
+    "message": "Удалить",
+    "description": ""
+  },
+  "delete.accesskey": {
+    "message": "д",
+    "description": ""
+  },
+  "functionnametip": {
+    "message": "Введите или отредактируйте имя функции. Если вы поменяли имя существующей функции, вам будет предложено сохранить, переименовать или создать новую функцию с измененным именем.",
+    "description": ""
+  },
+  "functionnameplaceholder": {
+    "message": "имя функции",
+    "description": ""
+  },
+  "codetip": {
+    "message": "Вводите свой исходный код для функции здесь. Смотрите примеры кодов функций в “ReadMeFirst”.",
+    "description": ""
+  },
+  "codeplaceholder": {
+    "message": "исходный код функции",
+    "description": ""
+  },
+  "helptextheader": {
+    "message": "Текст подсказки функции",
+    "description": ""
+  },
+  "helptexttip": {
+    "message": "Текст, который вы напишите здесь, будет отображен когда пользователь задержит курсор над именем функции в выпадающем меню. Используйте его для объяснения того, что функция делает и какие аргументы принимает.",
+    "description": ""
+  },
+  "helptextplaceholder": {
+    "message": "текст подсказки",
+    "description": ""
+  },
+  "run.label": {
+    "message": "Выполнить функцию",
+    "description": ""
+  },
+  "run.accesskey": {
+    "message": "В",
+    "description": ""
+  },
+  "inputtime": {
+    "message": "Введите время",
+    "description": ""
+  },
+  "inputtimetip": {
+    "message": "Здесь вы можете ввести дату и время в любом формате, который понимает Send Later.",
+    "description": ""
+  },
+  "inputtimeplaceholder": {
+    "message": "дата и время (если есть) для передачи в функцию для тестирования",
+    "description": ""
+  },
+  "inputargs": {
+    "message": "Введите аргументы",
+    "description": ""
+  },
+  "inputargstip": {
+    "message": "Аргументы должны быть указаны в формате JavaScript, например, строки должны быть в кавычках.",
+    "description": ""
+  },
+  "inputargsplaceholder": {
+    "message": "аргументы (если есть), разделенные запятой, для проверки",
+    "description": ""
+  },
+  "output": {
+    "message": "Вывод",
+    "description": ""
+  },
+  "import.label": {
+    "message": "Импорт…",
+    "description": ""
+  },
+  "import.accesskey": {
+    "message": "И",
+    "description": ""
+  },
+  "importtip": {
+    "message": "Импорт динамической функции, ранее экспортированной из редактора.",
+    "description": ""
+  },
+  "export.label": {
+    "message": "Экспорт…",
+    "description": ""
+  },
+  "export.accesskey": {
+    "message": "к",
+    "description": ""
+  },
+  "exporttip": {
+    "message": "Экспорт текущей функции в файл для резервного копирования или совместного использования.",
+    "description": ""
+  },
+  "reset.label": {
+    "message": "Отменить изменения",
+    "description": ""
+  },
+  "reset.accesskey": {
+    "message": "О",
+    "description": ""
+  },
+  "save.label": {
+    "message": "Сорхранить",
+    "description": ""
+  },
+  "save.accesskey": {
+    "message": "С",
+    "description": ""
+  },
+  "close.label": {
+    "message": "Закрыть",
+    "description": ""
+  },
+  "close.accesskey": {
+    "message": "З",
+    "description": ""
+  },
+  "close.cmdkey": {
+    "message": "w",
+    "description": ""
+  },
+  "sendaround": {
+    "message": "Отправить примерно",
+    "description": ""
+  },
+  "entervalid": {
+    "message": "Введите корректную дату выше",
+    "description": ""
+  },
+  "sendwithfunction": {
+    "message": "Отправить в соответствии с функцией “$1“",
+    "description": ""
+  },
+  "sendspecifyfunction": {
+    "message": "Выберете функцию из меню выше",
+    "description": ""
+  },
+  "January": {
+    "message": "Январь",
+    "description": ""
+  },
+  "February": {
+    "message": "Февраль",
+    "description": ""
+  },
+  "March": {
+    "message": "Март",
+    "description": ""
+  },
+  "April": {
+    "message": "Апрель",
+    "description": ""
+  },
+  "May": {
+    "message": "Май",
+    "description": ""
+  },
+  "June": {
+    "message": "Июнь",
+    "description": ""
+  },
+  "July": {
+    "message": "Июль",
+    "description": ""
+  },
+  "August": {
+    "message": "Август",
+    "description": ""
+  },
+  "September": {
+    "message": "Сентябрь",
+    "description": ""
+  },
+  "October": {
+    "message": "Октябрь",
+    "description": ""
+  },
+  "November": {
+    "message": "Ноябрь",
+    "description": ""
+  },
+  "December": {
+    "message": "Декабрь",
+    "description": ""
+  },
+  "OptionShortcutAlertTitle": {
+    "message": "Недопустимое сокращение",
+    "description": ""
+  },
+  "OptionShortcutAlertText": {
+    "message": "Ярлык $1 имеет недопустимое значение ”$2”",
+    "description": ""
+  },
+  "SendingUnsentError": {
+    "message": "Send Later: Ошибка отправления недоставленных сообщений. Папка «Исходящие» может быть повреждена, и ваши запланированные сообщения не могут быть доставлены. Смотрите https://blog.kamens.us/send-later/#outbox.",
+    "description": ""
+  },
+  "CopyUnsentError": {
+    "message": "Send Later: Ошибка копирования запланированного сообщения в папку «Исходящие» (код ошибки $1). Send Later недоступен! Смотрите https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "description": ""
+  },
+  "CopyRecurError": {
+    "message": "Send Later: Ошибка копирования повторяющегося сообщения в папку «Черновики» (код ошибки $1). Send Later недоступен! Смотрите https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "description": ""
+  },
+  "CorruptFolderError": {
+    "message": "Send Later: Папка $1 может быть повреждена. Пожалуйста, откройте ее свойства восстановите их. Смотрите https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "description": ""
+  },
+  "MessageResendError": {
+    "message": "Send Later: Попытка переотправить уже отправленное сообщение. Папка «Исходящие» или «Черновики» $1 вероятно повреждена. Пожалуйста, восстановите их как сказано здесь https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "description": ""
+  },
+  "minutely": {
+    "message": "ежеминутно",
+    "description": ""
+  },
+  "daily": {
+    "message": "ежедневно",
+    "description": ""
+  },
+  "weekly": {
+    "message": "еженедельно",
+    "description": ""
+  },
+  "monthly": {
+    "message": "ежемесячно",
+    "description": ""
+  },
+  "yearly": {
+    "message": "ежегодно",
+    "description": ""
+  },
+  "plural_minutely": {
+    "message": "мин.",
+    "description": ""
+  },
+  "plural_daily": {
+    "message": "дн.",
+    "description": ""
+  },
+  "plural_weekly": {
+    "message": "нед.",
+    "description": ""
+  },
+  "plural_monthly": {
+    "message": "месяцев",
+    "description": ""
+  },
+  "plural_yearly": {
+    "message": "лет",
+    "description": ""
+  },
+  "every_minutely": {
+    "message": "каждые $1 минут",
+    "description": ""
+  },
+  "every_daily": {
+    "message": "каждые $1 дней",
+    "description": ""
+  },
+  "every_weekly": {
+    "message": "каждые $1 недель",
+    "description": ""
+  },
+  "every_monthly": {
+    "message": "каждые $1 месяцев",
+    "description": ""
+  },
+  "every_yearly": {
+    "message": "каждые $1 лет",
+    "description": ""
+  },
+  "everyempty": {
+    "message": "неделя месяца",
+    "description": ""
+  },
+  "everymonthly": {
+    "message": "$1 $2 месяца",
+    "description": ""
+  },
+  "everymonthly_day0": {
+    "message": "Воскресенье",
+    "description": ""
+  },
+  "everymonthly_day1": {
+    "message": "Понедельник",
+    "description": ""
+  },
+  "everymonthly_day2": {
+    "message": "Вторник",
+    "description": ""
+  },
+  "everymonthly_day3": {
+    "message": "Среда",
+    "description": ""
+  },
+  "everymonthly_day4": {
+    "message": "Четверг",
+    "description": ""
+  },
+  "everymonthly_day5": {
+    "message": "Пятница",
+    "description": ""
+  },
+  "everymonthly_day6": {
+    "message": "Суббота",
+    "description": ""
+  },
+  "everymonthly_short": {
+    "message": "$1 $2",
+    "description": ""
+  },
+  "everymonthly_short_day0": {
+    "message": "Воскресенье",
+    "description": ""
+  },
+  "everymonthly_short_day1": {
+    "message": "Понедельник",
+    "description": ""
+  },
+  "everymonthly_short_day2": {
+    "message": "Вторник",
+    "description": ""
+  },
+  "everymonthly_short_day3": {
+    "message": "Среда",
+    "description": ""
+  },
+  "everymonthly_short_day4": {
+    "message": "Четверг",
+    "description": ""
+  },
+  "everymonthly_short_day5": {
+    "message": "Пятница",
+    "description": ""
+  },
+  "everymonthly_short_day6": {
+    "message": "Суббота",
+    "description": ""
+  },
+  "betw_times": {
+    "message": "между $1 и $2",
+    "description": ""
+  },
+  "only_on_days": {
+    "message": "на $1",
+    "description": ""
+  },
+  "only_on_day0": {
+    "message": "Воскресенье",
+    "description": ""
+  },
+  "only_on_day1": {
+    "message": "Понедельник",
+    "description": ""
+  },
+  "only_on_day2": {
+    "message": "Вторник",
+    "description": ""
+  },
+  "only_on_day3": {
+    "message": "Среда",
+    "description": ""
+  },
+  "only_on_day4": {
+    "message": "Четверг",
+    "description": ""
+  },
+  "only_on_day5": {
+    "message": "Пятница",
+    "description": ""
+  },
+  "only_on_day6": {
+    "message": "Суббота",
+    "description": ""
+  },
+  "ord1": {
+    "message": "1й",
+    "description": ""
+  },
+  "ord2": {
+    "message": "2й",
+    "description": ""
+  },
+  "ord3": {
+    "message": "3й",
+    "description": ""
+  },
+  "ord4": {
+    "message": "4й",
+    "description": ""
+  },
+  "ord5": {
+    "message": "5й",
+    "description": ""
+  },
+  "draftSaveWarning": {
+    "message": "ПРЕДУПРЕЖДЕНИЕ: Чтобы предотвратить отправку через Send Later во время редактирования сообщения, его запланированное время отправки отменено. Пожалуйста, перепланируйте отправку сообщения, когда закончите его редактирование.",
+    "description": ""
+  },
+  "AreYouSure": {
+    "message": "Вы уверены?",
+    "description": ""
+  },
+  "OutboxConfirmMessage": {
+    "message": "Нажатие на “Поместить в «Исходящие»” помещает сообщение в папку «Исходящие» немедленно. Оно НЕ ПЛАНИРУЕТ отправку сообщения в указанное время. Для этого, нажмите на кнопку “Отправить примерно” в зеленой области после указания корректного времени. Вы уверены, что хотите поместить сообщение в папку «Исходящие»?",
+    "description": ""
+  },
+  "SendNowConfirmMessage": {
+    "message": "Нажатие на “Отправить сейчас” отправляет сообщение немедленно. Оно НЕ ПЛАНИРУЕТ отправку сообщения в указанное время. Для этого, нажмите на кнопку “Отправить примерно” в зеленой области после указания корректного времени. Вы уверены, что хотите отправить сообщение сейчас?",
+    "description": ""
+  },
+  "ConfirmAgain": {
+    "message": "Показывать это предупреждение в следующий раз",
+    "description": ""
+  },
+  "ScheduledMessagesWarningTitle": {
+    "message": "Предупреждение запланированных сообщений",
+    "description": ""
+  },
+  "ScheduledMessagesWarningQuitRequested": {
+    "message": "Запланированные для отправки сообщения. Send Later может отправлять сообщения только когда $1 запущен. Вы уверены, что хотите выйти?",
+    "description": ""
+  },
+  "ScheduledMessagesWarningQuit": {
+    "message": "Send Later может отправлять сообщения только когда $1 запущен. Пожалуйста, не забудьте включить его, прежде чем запланированные сообщения будут отправлены!",
+    "description": ""
+  },
+  "EnigmailIncompatTitle": {
+    "message": "Совместимость Send Later / Enigmail",
+    "description": ""
+  },
+  "EnigmailIncompatText": {
+    "message": "Установленная версия Enigmail несовместима с Send Later, поэтому планирование сообщения через Send Later недоступно. Для помощи, пожалуйста, свяжитесь с поддержкой Send Later (jik@kamens.us).",
+    "description": ""
+  },
+  "TimeMismatchConfirmTitle": {
+    "message": "Несоответствие времени отправки / ограничения",
+    "description": ""
+  },
+  "TimeMismatchConfirmBody": {
+    "message": "Время отправки $1 не попадает в указанные временные ограничения. Нажмите Отмена для редактирования времени отправки или ограничений, или OK для автоматической подстройки к $2.",
+    "description": ""
+  },
+  "endTimeWarningTitle": {
+    "message": "Недопустимое ограничение времени сообщения",
+    "description": ""
+  },
+  "endTimeWarningBody": {
+    "message": "При задании ограничения времени сообщения, время окончания не может быть раньше, чем время начала. Пожалуйста, настройте ограничение по времени или отключить его.",
+    "description": ""
+  },
+  "missingDaysWarningTitle": {
+    "message": "Недопустимое ограничение дня",
+    "description": ""
+  },
+  "missingDaysWarningBody": {
+    "message": "Вы включили ограничение для сообщений без указания дней. Отключите ограничение по дням или укажите как минимум один день доставки.",
+    "description": ""
+  },
+  "InvalidArgsTitle": {
+    "message": "Недопустимые аргументы функции",
+    "description": ""
+  },
+  "InvalidArgsBody": {
+    "message": "Недопустимые аргументы функции. Укажите список JavaScript без заключения в квадратные скобки.",
+    "description": ""
+  },
+  "BlockedLateMessage": {
+    "message": "Сообщение с темой “$1” в папке «Черновики» $2 было запланировано для отправки более чем $3 минут(ы) назад, поэтому доставка заблокирована. Вы можете отредактировать этот черновик, и или отправить его самостоятельно или запланировать отправку. Вы можете заблокировать настройку “Не доставлять сообщения позже чем # минут”, для прекращения блокировки отправления задержанных сообщений.",
+    "description": ""
+  },
+  "EditorReadMeCode": {
+    "message": "// Добро пожаловать в редактор функций Send Later!\n//\n// Редактор позволит вам создать JavaScript функции осуществляющие комплексную\n// логику планирования сообщений с возможностью связать ее с кнопками быстрого доступа или\n// в выбранном в Send Later диалогом.\n//\n// Как вы могли видеть выше, когда функция планирования вызвана, ей будут переданы\n// три аргумента:\n// * \"specname\" необходим, если вы хотите, чтобы эта функция повторялась (см. ниже)\n// * \"prev\" это предыдущее запланированное время отправки, если\n//   это повторяющейся вызов\n// * \"args\" это дополнительные аргументы, возвращенные предыдущим вызовом\n//   если это повторяющиеся вызовы\n//\n// Вам нужно задать следующие переменные \"next\", \"nextspec\", и\n// \"nextargs\" следующим образом:\n//\n// * \"next\" указывается либо в минутах, либо через объект Дата\n//   указывает, когда сообщение должно быть отправлено.\n// * \"nextspec\" это характеристика повторения, если предполагается, что это\n//   повторяющиеся сообщение (смотрите\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). Если вы не укажите\n//   это, то сообщения будут отправленны лишь однажды. Замечение: если вы хотите\n//   чтобы ваша функция вызывалась повторно, выполните:\n//     nextspec = \"function \" + specname;\n// * \"nextargs\" это массив аргументов, которые вы хотите передать в\n//   следующий вызов функции, как \"args\".\n//\n// Пока вы работаете над функцией, вы можете проверить ее заполнив значения\n// \"prev\" и \"args\" в текстовых окнах ниже и затем нажать \"Выполнить\" для\n// выполнения функции и просмотра ее результатов.\n//\n// Имеются две преднастроенные функции, \"BusinessHours\" и\n// \"DaysInARow\", которые вы можете посмотреть и воспользоваться для обучения.\n//\n// Функция \"ReadMeFirst\" просто выполняет немедленную отправку сообщения,\n// через следующую строчку.\nnext = new Date();",
+    "description": ""
+  },
+  "EditorReadMeHelp": {
+    "message": "Любой текст, что вы оставите здесь, будет отображен как подсказка когда вы задержите курсор над именем функции в меню. Вы можете пользоваться этим для документирования того, что делает функция и какие аргументы принимает.",
+    "description": ""
+  },
+  "_BusinessHoursCode": {
+    "message": "// Defaults\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Start of the work day as [H, M]\nvar workEnd = [17, 30]; // End of the work day as [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Not expected in normal usage, but used as the current time for testing.\n    next = new Date(prev);\nelse\n    next = newDate();\n// If we're past the end of the workday or not on a workday, move to the work\n// start time on the next day.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// If we're before the beginning of the workday, move to its start time.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
+    "description": ""
+  },
+  "BusinessHoursHelp": {
+    "message": "Отправить сообщение немедленно, если сейчас рабочее время, или в начале следующего рабочего дня. Вы можете изменить определения рабочих дней (по умолчанию: Пн - Пт), передав в массив рабочих дней числа, как первый аргумент, где 0 это Воскресенье и 6 это Суббота. Вы можете изменить начало и конец рабочего времени (по умолчанию: 8:30 - 17:30), введя в массив [H, M], как второй и третий аргументы. Укажите “null” для первых элементов, если вы их не меняете. Для примера, “null, [9, 0], [17, 0]” изменяет рабочие часы без изменения рабочих дней.",
+    "description": ""
+  },
+  "DaysInARowCode": {
+    "message": "// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
+    "description": ""
+  },
+  "DaysInARowHelp": {
+    "message": "Отправить сообщение сейчас, и последующие сообщения раз в день в то же время, до тех пор, пока оно не будет отправлено три раза. Укажите число в качестве аргумента для изменения общего количества отправлений.",
+    "description": ""
+  },
+  "DiscardConfirmTitle": {
+    "message": "Отменить изменения?",
+    "description": ""
+  },
+  "DiscardConfirmBody": {
+    "message": "Есть несохраненные изменения. Вы действительно хотите отменить их?",
+    "description": ""
+  },
+  "UntestedSaveTitle": {
+    "message": "Сохранить непроверенную функцию?",
+    "description": ""
+  },
+  "UntestedSaveBody": {
+    "message": "Функция не была проверена (через кнопку «Выполнить») с момента последнего изменеия. Вы уверены, что хотите сохранить и экспортировать ее?",
+    "description": ""
+  },
+  "BadSaveTitle": {
+    "message": "Недопустимое имя функции или исходный код",
+    "description": ""
+  },
+  "BadSaveBody": {
+    "message": "Пожалуйста, убедитесь, что имя функции и ее код корректны, до ее сохранения или экспорта.",
+    "description": ""
+  },
+  "ReplacingFunctionTitle": {
+    "message": "Перезаписать существующую функцию?",
+    "description": ""
+  },
+  "ReplacingFunctionBody": {
+    "message": "Функция с указанным именем уже существует. Вы уверены, что хотите заменить ее?",
+    "description": ""
+  },
+  "NoNextValueError": {
+    "message": "Функция не устанавливает значение “next”.",
+    "description": ""
+  },
+  "BadNextValueError": {
+    "message": "Значение “next” “$1” не является числом или Датой",
+    "description": ""
+  },
+  "BadNextArgsError": {
+    "message": "Значение “nextargs” “$1” не является массивом",
+    "description": ""
+  },
+  "FunctionDeleteConfirmBody": {
+    "message": "Вы уверены, что хотите удалить эту функцию? Если она связана с кнопками быстрого доступа, то они перестанут работать, и, если имеются повторяющиеся сообщения, использующие ее, то они не смогут перенести расписание после того, как будут отправлены.",
+    "description": ""
+  },
+  "ImportTitle": {
+    "message": "Выберете файл для импорта",
+    "description": ""
+  },
+  "SLJFilterLabel": {
+    "message": "Send Later JSON Files",
+    "description": ""
+  },
+  "ImportError": {
+    "message": "Импорт ошибок",
+    "description": ""
+  },
+  "ExportTitle": {
+    "message": "Выбрать папку",
+    "description": ""
+  },
+  "RenameFunctionTitle": {
+    "message": "Переименовать существующую функцию?",
+    "description": ""
+  },
+  "RenameFunctionBody": {
+    "message": "Вы изменили имя существующей функции “$1”. Вы хотите изменить имя существующей функции или сохранить ее под новым именем?",
+    "description": ""
+  },
+  "RenameFunctionRenameButton": {
+    "message": "Переименовать",
+    "description": ""
+  },
+  "RenameFunctionNewButton": {
+    "message": "Создать",
+    "description": ""
+  },
+  "FunctionErrorTitle": {
+    "message": "Ошибка вызова динамической функции",
+    "description": ""
+  },
+  "FunctionErrorBody": {
+    "message": "Ошибка вызова функции динамического планирования: «$1»",
+    "description": ""
+  },
+  "cancel_on_reply": {
+    "message": "отменить после ответа",
+    "description": ""
+  },
+  "PendingMessage": {
+    "message": "В ОЖИДАНИИ $1",
+    "description": ""
+  },
+  "IdleMessage": {
+    "message": "БЕЗДЕЙСТВУЕТ",
+    "description": ""
+  },
+  "DisabledMessage": {
+    "message": "ОТКЛЮЧЕНО",
+    "description": ""
+  }
+}

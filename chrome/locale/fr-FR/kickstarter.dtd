@@ -1,9 +1,0 @@
-<!-- -*- coding: utf-8 -*- -->
-<!ENTITY windowTitle "URGENT : Envoyer Plus Tard a besoin de vous (ou il va bientôt disparaître) !">
-<!ENTITY pitchMessage "J'AI BESOIN DE VOTRE AIDE !
-Envoyer Plus Tard, ainsi que mes autres modules complémentaires, sont gratuits depuis de nombreuses années, mais cette situation n'est aujourd'hui plus tenable. Une somme importante d'efforts et de temps a été nécessaires pour opérer la mise à jour pour Thunderbird 68, et celle vers Thunderbird 78, qui sera déployée au cours de cette année, en demandera plus encore. Malheureusement, je ne peux pas envisager de le faire, à moins qu'un nombre suffisant d'utilisateurs s'engagent, à l'avance, à payer un petit peu pour financer cela.
-Vous pouvez cliquer ci-dessous pour en savoir plus et pour soutenir la campagne Kickstarter. A titre de bonus, les contributeurs pourront souscrire des licences à des prix très réduits.
-Merci pour votre soutien !">
-<!ENTITY pledgeLabel "Soutenir maintenant !">
-<!ENTITY remindLabel "Me rappeler plus tard">
-<!ENTITY alreadyLabel "J'ai déjà souscrit">

@@ -1,0 +1,1090 @@
+{
+  "extensionName": {
+    "message": "延期發信",
+    "description": "The name of the add-on, displayed in various places."
+  },
+  "extensionDescription": {
+    "message": "用來預定傳送信件的時間寄信",
+    "description": "A short description of the add-on."
+  },
+  "advancedOptionsTitle": {
+    "message": "進階",
+    "description": ""
+  },
+  "altBindingPrefLabel": {
+    "message": "綁定快捷鍵 Alt-Shift-Enter 代替 Ctrl-Shift-Enter",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel1": {
+    "message": "不將晚了",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel2": {
+    "message": "分鐘以上的訊息寄出",
+    "description": ""
+  },
+  "cancelLabel": {
+    "message": "取消",
+    "description": ""
+  },
+  "checkTimePrefLabel1": {
+    "message": "檢查間隔：",
+    "description": ""
+  },
+  "checkTimePrefLabel2": {
+    "message": "分鐘",
+    "description": ""
+  },
+  "clearDefaultsLabel": {
+    "message": "清除預設值",
+    "description": ""
+  },
+  "contactAuthorLabel": {
+    "message": "聯絡作者",
+    "description": ""
+  },
+  "enforceRestrictionsPrefLabel": {
+    "message": "在寄訊息時強制執行時間和日期的限制",
+    "description": ""
+  },
+  "generalOptionsTitle": {
+    "message": "一般",
+    "description": ""
+  },
+  "logConsoleLevelLabel": {
+    "message": "控制台除錯紀錄層級：",
+    "description": ""
+  },
+  "logDumpLevelLabel": {
+    "message": "除錯紀錄層級：",
+    "description": ""
+  },
+  "logLevelAll": {
+    "message": "所有訊息",
+    "description": ""
+  },
+  "logLevelDebug": {
+    "message": "除錯訊息",
+    "description": ""
+  },
+  "logLevelError": {
+    "message": "錯誤訊息",
+    "description": ""
+  },
+  "logLevelFatal": {
+    "message": "嚴重錯誤訊息",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "參考訊息",
+    "description": ""
+  },
+  "logLevelTrace": {
+    "message": "追蹤錯誤訊息",
+    "description": ""
+  },
+  "logLevelWarn": {
+    "message": "警告訊息",
+    "description": ""
+  },
+  "markReadPrefLabel": {
+    "message": "標示排程草稿為已閱讀",
+    "description": ""
+  },
+  "quickOptionsLabel1Label": {
+    "message": "快捷按鈕 1",
+    "description": ""
+  },
+  "quickOptionsLabel2Label": {
+    "message": "快捷按鈕 2",
+    "description": ""
+  },
+  "quickOptionsLabel3Label": {
+    "message": "快捷按鈕 3",
+    "description": ""
+  },
+  "quickOptionsValueLabel": {
+    "message": "分鐘：",
+    "description": ""
+  },
+  "recurAnnuallyLabel": {
+    "message": "每年",
+    "description": ""
+  },
+  "recurDailyLabel": {
+    "message": "每天",
+    "description": ""
+  },
+  "recurFunctionLabel": {
+    "message": "功能：",
+    "description": ""
+  },
+  "recurLabel": {
+    "message": "重複寄送：",
+    "description": ""
+  },
+  "recurMinutelyLabel": {
+    "message": "每分鐘",
+    "description": ""
+  },
+  "recurMonthlyLabel": {
+    "message": "每月",
+    "description": ""
+  },
+  "recurOnceLabel": {
+    "message": "無",
+    "description": ""
+  },
+  "recurWeeklyLabel": {
+    "message": "每週",
+    "description": ""
+  },
+  "resetPrefsButton": {
+    "message": "Reset Preferences",
+    "description": ""
+  },
+  "saveDefaultsLabel": {
+    "message": "將這些設成預設值",
+    "description": ""
+  },
+  "sendAtDefaultLabel": {
+    "message": "請輸入日期和時間，格式任意。像”下星期六 下午3:00”這種時間格式也可以被支援。",
+    "description": "Displayed in place of send at time before user makes selections"
+  },
+  "sendAtLabel": {
+    "message": "發信時間：",
+    "description": ""
+  },
+  "sendBtwnLabel": {
+    "message": "介於",
+    "description": ""
+  },
+  "sendButtonPrefLabel": {
+    "message": "“發送”變成“延期發送”",
+    "description": ""
+  },
+  "sendDelayPrefLabel1": {
+    "message": "預設所有訊息自動延遲：",
+    "description": ""
+  },
+  "sendDelayPrefLabel2": {
+    "message": "分鐘",
+    "description": ""
+  },
+  "sendSundayLabel": {
+    "message": "星期日",
+    "description": ""
+  },
+  "sendMondayLabel": {
+    "message": "星期一",
+    "description": ""
+  },
+  "sendTuesdayLabel": {
+    "message": "星期二",
+    "description": ""
+  },
+  "sendWednesdayLabel": {
+    "message": "星期三",
+    "description": ""
+  },
+  "sendThursdayLabel": {
+    "message": "星期四",
+    "description": ""
+  },
+  "sendFridayLabel": {
+    "message": "星期五",
+    "description": ""
+  },
+  "sendSaturdayLabel": {
+    "message": "星期六",
+    "description": ""
+  },
+  "sendNowLabel": {
+    "message": "立即寄出",
+    "description": ""
+  },
+  "sendOnlyOnLabel": {
+    "message": "只在",
+    "description": ""
+  },
+  "sendUnsentMessagesPrefLabel": {
+    "message": "傳送寄件匣中的未傳送的信件",
+    "description": ""
+  },
+  "showColumnPrefLabel": {
+    "message": "顯示延期發信列",
+    "description": ""
+  },
+  "showHeaderPrefLabel": {
+    "message": "顯示延期發信標題",
+    "description": ""
+  },
+  "showStatusPrefLabel": {
+    "message": "在狀態欄中顯示延期發信",
+    "description": ""
+  },
+  "userGuideLabel": {
+    "message": "使用說明",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.label": {
+    "message": "存至寄件匣",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.accesskey": {
+    "message": "O",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "不指定發送時間，而是移動信件至寄件匣，等待下一次傳送信件。",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.accesskey": {
+    "message": "N",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.tooltip": {
+    "message": "跳過延期發信, 馬上寄出訊息",
+    "description": ""
+  },
+  "sendlater.prompt.close.accesskey": {
+    "message": "C",
+    "description": ""
+  },
+  "sendlater.prompt.close.tooltip": {
+    "message": "回到編輯郵件。",
+    "description": ""
+  },
+  "sendlater.prompt.title.label": {
+    "message": "延期發送這封電子郵件",
+    "description": ""
+  },
+  "sendlater.prompt.or.label": {
+    "message": "或",
+    "description": ""
+  },
+  "sendlater.prompt.textbox.emptytext": {
+    "message": "例如： “2012/12/31 15:27”",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.label": {
+    "message": "延期到指定的時間發信",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "儲存信件至草稿，在上面設定的時間自動發信。",
+    "description": ""
+  },
+  "sendlater.prompt.functionargs.label": {
+    "message": "功能參數：",
+    "description": ""
+  },
+  "sendlater.prompt.calculate.label": {
+    "message": "計算",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.label": {
+    "message": "延期發信",
+    "description": ""
+  },
+  "sendlater.toolbar.textbox.emptytext": {
+    "message": "發信時間",
+    "description": ""
+  },
+  "sendlater.prompt.every.label": {
+    "message": "每",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "15 分鐘後",
+    "description": ""
+  },
+  "sendlater.button2.label": {
+    "message": "30 分鐘後",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "2 小時後",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.label": {
+    "message": "回覆後取消重覆發送",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "查看已發出的重覆電郵的所有回覆，如果已收到回覆，不再發送重覆電郵，並將它從草稿文件夾中刪除。",
+    "description": ""
+  },
+  "sendlater3header.label": {
+    "message": "延期發信",
+    "description": ""
+  },
+  "prefwindow.title": {
+    "message": "延期發信首選項",
+    "description": ""
+  },
+  "pane1.title": {
+    "message": "延期發信首選項",
+    "description": ""
+  },
+  "checktimepref.tooltip": {
+    "message": "檢查是否已到草稿的傳送時間的間隔，單位為分鐘。如果草稿沒能及時傳送，或者狀態欄的待傳送信件數比實際少時，請增加這個值。",
+    "description": ""
+  },
+  "quickoptionname.label": {
+    "message": "按鈕標籤：",
+    "description": ""
+  },
+  "showsendlatercolumn.tooltip": {
+    "message": "查看草稿箱時是否顯示延期發信列",
+    "description": ""
+  },
+  "showsendlaterheader.tooltip": {
+    "message": "查看信件時是否顯示“X-Send-Later-At”頭，即草稿預定要傳送的時間。",
+    "description": ""
+  },
+  "showsendlaterprogress.caption": {
+    "message": "在狀態欄中顯示背景進度",
+    "description": ""
+  },
+  "showsendlaterunsentmessages.tooltip": {
+    "message": "如果取消此選項，那麼達到信件的預定傳送時間時，延期發信 將不會完全傳送信件，只會將它們放到寄件匣。如果您使用一些其他的擴充元件，如 BlunderDelay， 來定期地發送您寄件匣的信件，請取消此選項。注意，勾選此選項後，只要 延期發信 發送信件，寄件匣的所有信件都將被傳送出去。",
+    "description": ""
+  },
+  "sendlatersendbutton.tooltip": {
+    "message": "啟用此選項時，“傳送”命令（按鈕或 Ctrl-Enter 快捷鍵）效果會變為“延期傳送”。",
+    "description": ""
+  },
+  "senddelay.tooltip": {
+    "message": "所有訊息自動使用預設延遲發送時間，“傳送”命令（按鈕或 Ctrl-Enter）均會由 延期發信 按照預設延遲發送時間自動發出。",
+    "description": ""
+  },
+  "composewindowhotkeys.tooltip": {
+    "message": "選擇使用快速鍵。完成準備訊息後，可以鍵入Ctrl-Alt-1，-2或-3快速鍵來完成編寫及使用預設延遲發送時間。",
+    "description": ""
+  },
+  "composewindowhotkeys.caption": {
+    "message": "使用 Ctrl-Alt-1，-2或-3快速鍵",
+    "description": ""
+  },
+  "contactauthor.tooltip": {
+    "message": "發信給延期發信的作者。",
+    "description": ""
+  },
+  "helplink.tooltip": {
+    "message": "查看延期發信文件。",
+    "description": ""
+  },
+  "releasenotes.value": {
+    "message": "發行說明",
+    "description": ""
+  },
+  "donatelink.value": {
+    "message": "贊助",
+    "description": ""
+  },
+  "editorlink.value": {
+    "message": "動態功能編輯器",
+    "description": ""
+  },
+  "enforcerestrictions.tooltip": {
+    "message": "假如該寄出的訊息不在時間與日期的限制內, 比如說, 當Thunderbird沒有在預計寄出的時刻執行,就將寄出的時刻延至下次符合時間與日期的限制內",
+    "description": ""
+  },
+  "blocklatemessages.tooltip": {
+    "message": "不將晚於預計寄出時間的訊息寄出. 比方說, Thunderbird在該時並沒有運作",
+    "description": ""
+  },
+  "editorbutton": {
+    "message": "開啟動態功能編輯器...",
+    "description": ""
+  },
+  "editortip": {
+    "message": "開啟視窗以開設並編輯JavaScript函數來實施複雜的排程邏輯",
+    "description": ""
+  },
+  "loglevel.config": {
+    "message": "配置信息",
+    "description": ""
+  },
+  "sendlater.ask.title.label": {
+    "message": "贊助延期發信",
+    "description": ""
+  },
+  "sendlater.ask.message1": {
+    "message": "此附加元件的開發、維護和支持花費了大量時間。",
+    "description": ""
+  },
+  "sendlater.ask.message2": {
+    "message": "請考慮贊助，以支持其繼續發展。",
+    "description": ""
+  },
+  "sendlater.ask.message3": {
+    "message": "謝謝！",
+    "description": ""
+  },
+  "sendlater.ask.donate.accesskey": {
+    "message": "D",
+    "description": ""
+  },
+  "sendlater.ask.donate.label": {
+    "message": "馬上贊助",
+    "description": ""
+  },
+  "sendlater.ask.remind.accesskey": {
+    "message": "R",
+    "description": ""
+  },
+  "sendlater.ask.remind.label": {
+    "message": "以後提醒我",
+    "description": ""
+  },
+  "sendlater.ask.already.accesskey": {
+    "message": "a",
+    "description": ""
+  },
+  "sendlater.ask.already.label": {
+    "message": "我已贊助",
+    "description": ""
+  },
+  "sendlater.ask.stop.accesskey": {
+    "message": "S",
+    "description": ""
+  },
+  "sendlater.ask.stop.label": {
+    "message": "不再詢問",
+    "description": ""
+  },
+  "windowtitle": {
+    "message": "延期發信動態函數編輯器",
+    "description": ""
+  },
+  "selectfunction": {
+    "message": "選擇函數：",
+    "description": ""
+  },
+  "selectfunctiontip": {
+    "message": "選擇並編輯或刪除一個函數，或&quot;(建立新函數)&quot;來建立新函數。",
+    "description": ""
+  },
+  "createnewfunction": {
+    "message": "(建立新函數)",
+    "description": ""
+  },
+  "delete.label": {
+    "message": "刪除",
+    "description": ""
+  },
+  "delete.accesskey": {
+    "message": "D",
+    "description": ""
+  },
+  "functionnametip": {
+    "message": "輸入或編輯一個字母數位的函數名稱。如果您修改現有的函數的名稱，系統將要求您保存時確認，是否要重新命名函數或創建一個新的函數。",
+    "description": ""
+  },
+  "functionnameplaceholder": {
+    "message": "函數名",
+    "description": ""
+  },
+  "codetip": {
+    "message": "把您的函數原始程式碼放在這裡。請參閱&quot;ReadMeFirst&quot;樣本函數，瞭解你的程式應如何編寫。",
+    "description": ""
+  },
+  "codeplaceholder": {
+    "message": "函數原始程式碼",
+    "description": ""
+  },
+  "helptextheader": {
+    "message": "函數説明文本：",
+    "description": ""
+  },
+  "helptexttip": {
+    "message": "當用戶將鼠標停留在彈出菜單中的函數名稱上時，將顯示您放在此處的文字。 請用它來解釋函數的功能和它接受的參數。",
+    "description": ""
+  },
+  "helptextplaceholder": {
+    "message": "幫助説明",
+    "description": ""
+  },
+  "run.label": {
+    "message": "執行函數：",
+    "description": ""
+  },
+  "run.accesskey": {
+    "message": "x",
+    "description": ""
+  },
+  "inputtime": {
+    "message": "輸入時間：",
+    "description": ""
+  },
+  "inputtimetip": {
+    "message": "您可以在此以延期發信對話方塊理解的任何格式輸入日期和時間。",
+    "description": ""
+  },
+  "inputtimeplaceholder": {
+    "message": "如有的話，將日期時間傳遞到函數作測試",
+    "description": ""
+  },
+  "inputargs": {
+    "message": "輸入參數：",
+    "description": ""
+  },
+  "inputargstip": {
+    "message": "應該以JavaScript格式指定參數。例如，字串應該用引號引起來。",
+    "description": ""
+  },
+  "inputargsplaceholder": {
+    "message": "如有的話，輸入以逗號分隔的參數以作測試",
+    "description": ""
+  },
+  "output": {
+    "message": "輸出：",
+    "description": ""
+  },
+  "import.label": {
+    "message": "匯入...",
+    "description": ""
+  },
+  "import.accesskey": {
+    "message": "m",
+    "description": ""
+  },
+  "importtip": {
+    "message": "將一個之前從編輯器匯出的動態函數匯入。",
+    "description": ""
+  },
+  "export.label": {
+    "message": "匯出...",
+    "description": ""
+  },
+  "export.accesskey": {
+    "message": "E",
+    "description": ""
+  },
+  "exporttip": {
+    "message": "將當前顯示的函數匯出作備份或分享。",
+    "description": ""
+  },
+  "reset.label": {
+    "message": "放棄修改",
+    "description": ""
+  },
+  "reset.accesskey": {
+    "message": "a",
+    "description": ""
+  },
+  "save.label": {
+    "message": "存檔",
+    "description": ""
+  },
+  "save.accesskey": {
+    "message": "S",
+    "description": ""
+  },
+  "close.label": {
+    "message": "關閉",
+    "description": ""
+  },
+  "close.accesskey": {
+    "message": "C",
+    "description": ""
+  },
+  "close.cmdkey": {
+    "message": "W",
+    "description": ""
+  },
+  "sendaround": {
+    "message": "大約發信時間",
+    "description": ""
+  },
+  "entervalid": {
+    "message": "請在上面輸入有效的日期",
+    "description": ""
+  },
+  "sendwithfunction": {
+    "message": "根據功能“$1”寄件",
+    "description": ""
+  },
+  "sendspecifyfunction": {
+    "message": "從以上選單選擇一個功能",
+    "description": ""
+  },
+  "January": {
+    "message": "一月",
+    "description": ""
+  },
+  "February": {
+    "message": "二月",
+    "description": ""
+  },
+  "March": {
+    "message": "三月",
+    "description": ""
+  },
+  "April": {
+    "message": "四月",
+    "description": ""
+  },
+  "May": {
+    "message": "五月",
+    "description": ""
+  },
+  "June": {
+    "message": "六月",
+    "description": ""
+  },
+  "July": {
+    "message": "七月",
+    "description": ""
+  },
+  "August": {
+    "message": "八月",
+    "description": ""
+  },
+  "September": {
+    "message": "九月",
+    "description": ""
+  },
+  "October": {
+    "message": "十月",
+    "description": ""
+  },
+  "November": {
+    "message": "十一月",
+    "description": ""
+  },
+  "December": {
+    "message": "十二月",
+    "description": ""
+  },
+  "OptionShortcutAlertTitle": {
+    "message": "無效的快捷按鈕值",
+    "description": ""
+  },
+  "OptionShortcutAlertText": {
+    "message": "快捷按鈕 $1 的值“$2”無效",
+    "description": ""
+  },
+  "SendingUnsentError": {
+    "message": "延期發信: 發送未發送郵件時出錯。您的寄件匣可能已損壞，預定要發送的郵件可能未被送出。參看 https://blog.kamens.us/send-later/#outbox",
+    "description": ""
+  },
+  "CopyUnsentError": {
+    "message": "延期發信: 複製未發送消息到寄件匣時出錯（錯誤代碼 $1）。延期發信已被停用！參看 https://blog.kamens.us/send-later/#outbox-copy-failure",
+    "description": ""
+  },
+  "CopyRecurError": {
+    "message": "延期發信: 複製週期性消息到草稿箱時出錯（錯誤代碼 $1）。延期發信已被停用！參看 https://blog.kamens.us/send-later/#drafts-copy-failure",
+    "description": ""
+  },
+  "CorruptFolderError": {
+    "message": "延期發信: 資料夾 $1 可能已損壞。請打開其屬性並修復它。參看 https://blog.kamens.us/send-later/#corrupt-drafts-error",
+    "description": ""
+  },
+  "MessageResendError": {
+    "message": "延期發信: 嘗試重新發送已經發出的信件？！發件箱或草稿文件夾$1可能已損壞。請根據https://blog.kamens.us/send-later/#corrupt-outbox 的說明來修復。",
+    "description": ""
+  },
+  "minutely": {
+    "message": "每分鐘",
+    "description": ""
+  },
+  "daily": {
+    "message": "每天",
+    "description": ""
+  },
+  "weekly": {
+    "message": "每週",
+    "description": ""
+  },
+  "monthly": {
+    "message": "每月",
+    "description": ""
+  },
+  "yearly": {
+    "message": "每年",
+    "description": ""
+  },
+  "plural_minutely": {
+    "message": "分鐘",
+    "description": ""
+  },
+  "plural_daily": {
+    "message": "天",
+    "description": ""
+  },
+  "plural_weekly": {
+    "message": "星期",
+    "description": ""
+  },
+  "plural_monthly": {
+    "message": "月",
+    "description": ""
+  },
+  "plural_yearly": {
+    "message": "年",
+    "description": ""
+  },
+  "every_minutely": {
+    "message": "每$1分鐘",
+    "description": ""
+  },
+  "every_daily": {
+    "message": "每 $1 天",
+    "description": ""
+  },
+  "every_weekly": {
+    "message": "每 $1 個星期",
+    "description": ""
+  },
+  "every_monthly": {
+    "message": "每 $1 個月",
+    "description": ""
+  },
+  "every_yearly": {
+    "message": "每 $1 年",
+    "description": ""
+  },
+  "everyempty": {
+    "message": "一個月中的星期",
+    "description": ""
+  },
+  "everymonthly": {
+    "message": "每月 $1 $2",
+    "description": ""
+  },
+  "everymonthly_day0": {
+    "message": "星期日",
+    "description": ""
+  },
+  "everymonthly_day1": {
+    "message": "星期一",
+    "description": ""
+  },
+  "everymonthly_day2": {
+    "message": "星期二",
+    "description": ""
+  },
+  "everymonthly_day3": {
+    "message": "星期三",
+    "description": ""
+  },
+  "everymonthly_day4": {
+    "message": "星期四",
+    "description": ""
+  },
+  "everymonthly_day5": {
+    "message": "星期五",
+    "description": ""
+  },
+  "everymonthly_day6": {
+    "message": "星期六",
+    "description": ""
+  },
+  "everymonthly_short": {
+    "message": "$1 $2",
+    "description": ""
+  },
+  "everymonthly_short_day0": {
+    "message": "星期日",
+    "description": ""
+  },
+  "everymonthly_short_day1": {
+    "message": "星期一",
+    "description": ""
+  },
+  "everymonthly_short_day2": {
+    "message": "星期二",
+    "description": ""
+  },
+  "everymonthly_short_day3": {
+    "message": "星期三",
+    "description": ""
+  },
+  "everymonthly_short_day4": {
+    "message": "星期四",
+    "description": ""
+  },
+  "everymonthly_short_day5": {
+    "message": "星期五",
+    "description": ""
+  },
+  "everymonthly_short_day6": {
+    "message": "星期六",
+    "description": ""
+  },
+  "betw_times": {
+    "message": "介於$1和$2之間",
+    "description": ""
+  },
+  "only_on_days": {
+    "message": "於$1",
+    "description": ""
+  },
+  "only_on_day0": {
+    "message": "星期日",
+    "description": ""
+  },
+  "only_on_day1": {
+    "message": "星期一",
+    "description": ""
+  },
+  "only_on_day2": {
+    "message": "星期二",
+    "description": ""
+  },
+  "only_on_day3": {
+    "message": "星期三",
+    "description": ""
+  },
+  "only_on_day4": {
+    "message": "星期四",
+    "description": ""
+  },
+  "only_on_day5": {
+    "message": "星期五",
+    "description": ""
+  },
+  "only_on_day6": {
+    "message": "星期六",
+    "description": ""
+  },
+  "ord1": {
+    "message": "第 1 個",
+    "description": ""
+  },
+  "ord2": {
+    "message": "第 2 個",
+    "description": ""
+  },
+  "ord3": {
+    "message": "第 3 個",
+    "description": ""
+  },
+  "ord4": {
+    "message": "第 4 個",
+    "description": ""
+  },
+  "ord5": {
+    "message": "第 5 個",
+    "description": ""
+  },
+  "draftSaveWarning": {
+    "message": "警告：為了防止延期發信在編輯時發出電郵，這篇電郵的排程時間經已取消。請在完成編輯重新設定發送時間。",
+    "description": ""
+  },
+  "AreYouSure": {
+    "message": "您確定嗎？",
+    "description": ""
+  },
+  "OutboxConfirmMessage": {
+    "message": "按\"放在寄件匣\"並立即將郵件送到寄件匣中。這個動作不會安排郵件在排程時間發送。要在排程時間發送，按一下綠色框中的\"發送於\"按鈕。你確定想要把郵件送到寄件匣中？",
+    "description": ""
+  },
+  "SendNowConfirmMessage": {
+    "message": "按\"立即發出\"並立即發出郵件。這個動作不會安排郵件在特定時間發送。要在特定時間發送，按一下綠色框中的\"發送於\"按鈕。你確定想要把郵件立即發出？",
+    "description": ""
+  },
+  "ConfirmAgain": {
+    "message": "下次顯示此警告訊息",
+    "description": ""
+  },
+  "ScheduledMessagesWarningTitle": {
+    "message": "排程郵件警告",
+    "description": ""
+  },
+  "ScheduledMessagesWarningQuitRequested": {
+    "message": "有排程郵件尚未發出。延期發信只會在$1開啟時才能發送訊息。確定要退出嗎？",
+    "description": ""
+  },
+  "ScheduledMessagesWarningQuit": {
+    "message": "延期發信只會在$1開啟時才能發送訊息。請記得在郵件排程時間前重新開啟。",
+    "description": ""
+  },
+  "EnigmailIncompatTitle": {
+    "message": "延期發信與Enigmail相容性問題",
+    "description": ""
+  },
+  "EnigmailIncompatText": {
+    "message": "Enigmail 版本與延期發信不相容，因此延期發信的排程訊息已經關閉。請與延期發信的維護者 (jik@kamens.us)聯繫。",
+    "description": ""
+  },
+  "TimeMismatchConfirmTitle": {
+    "message": "寄出的時間/限制不吻合",
+    "description": ""
+  },
+  "TimeMismatchConfirmBody": {
+    "message": "你輸入寄出的時間$1並不在設定的時間限制中. 如想修改請按取銷, 如想自動修正為$2請按確認.",
+    "description": ""
+  },
+  "endTimeWarningTitle": {
+    "message": "訊息時間的限制無效",
+    "description": ""
+  },
+  "endTimeWarningBody": {
+    "message": "當輸入寄出時間的限制時, 結束時間不可早於開始時間, 請調整時間限制或取消此限制.",
+    "description": ""
+  },
+  "missingDaysWarningTitle": {
+    "message": "日期限制無效",
+    "description": ""
+  },
+  "missingDaysWarningBody": {
+    "message": "你開啟了訊息排程限制，但並指定任何時間。請停用訊息排程限制，或指定選擇一個發送日期。",
+    "description": ""
+  },
+  "InvalidArgsTitle": {
+    "message": "錯誤函數參數",
+    "description": ""
+  },
+  "InvalidArgsBody": {
+    "message": "函數參數無效。指定一個 JavaScript 清單，指定一個不包括方括號的JavaScript列表。",
+    "description": ""
+  },
+  "BlockedLateMessage": {
+    "message": "這封標題為“$1”的郵件被排程於超過$2分鐘前發出，所以未能發出。請到$3草稿文件匣手動發出或重新排程。你亦可以停用「不要於超過#分鐘後發出」選項，發出超過排程時間的郵件。",
+    "description": ""
+  },
+  "EditorReadMeCode": {
+    "message": "/歡迎使用延期發信功能編輯器！\n//\n//這個編輯器讓您使用JavaScript函數，利用快捷按鈕\n//，以及延期發信對話框中的選擇，\n//建立複雜的郵件排程邏輯。\n//\n//如上所述，當調用調度函數時，它將被給予\n//三個參數：\n//如果您希望此函數重覆執行　（見下文），需要提供“*”specname“\n// *如果需要重覆執行，您需要提供“prev”，即之前的預定發送時間\n// *“args”是上一次調用返回的額外參數，如果這是一個排程調用\n//\n//你的編程需要如下般設置“next”，“nextspec”和\n//“nextargs”變數(variables)：\n//\n// *“next”是將來的分鐘數或Date對象(object)\n//，指示消息何時發送。\n// *“nextspec”是一個重複執行的規格(recurring specification)，用作執行\n//排程郵件（見\n// https://blog.kamens.us/send-later/#dynamic-recurrence）。如果你沒有提供\n//這個變數，那麼訊息只會被發送一次。注意：如果你想要\n//函數重複排程執行，請執行以下操作：\n// nextspec =“function”+ specname;\n// *“nextargs”是一組數組的參數，會被傳遞為下一個\n//排程函數調用的“args”參數。\n//\n//在編寫您的函數時，可以透過填寫以下的“prev”和“args”文本框\n//進行測試，單擊“Execute”\n//執行該函數並查看結果。\n//\n//這裡有兩個預先配置的示例函數“BusinessHours”和\n//“DaysInArow”，你可以參考及試用，以了解更多。\n//\n//這個“ReadMeFirst”函數只是通過以下編程，\n//令訊息即發送。\nnext = new Date（）;",
+    "description": ""
+  },
+  "EditorReadMeHelp": {
+    "message": "任何放置在此處的文字，均會在鼠標停在菜單功能名稱以提示方式顯示。你可以使用它來描述函數和接受的參數。",
+    "description": ""
+  },
+  "_BusinessHoursCode": {
+    "message": "// Defaults\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Start of the work day as [H, M]\nvar workEnd = [17, 30]; // End of the work day as [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Not expected in normal usage, but used as the current time for testing.\n    next = new Date(prev);\nelse\n    next = new Date();\n// If we're past the end of the workday or not on a workday, move to the work\n// start time on the next day.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// If we're before the beginning of the workday, move to its start time.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
+    "description": ""
+  },
+  "BusinessHoursHelp": {
+    "message": "在辦公時間內或在下一個工作日開始時立即發送消息。 您可以在第一個參數發出工作日數字數組(array)修改辦公時間（預設為週一至週五），其中0為星期日，6為星期六。您可在第二及第三個參數發出一個[H，M]數組，更改工作開始或結束時間（預設為8:30 - 17:30）。如不更改較早的參數，請指定“null”。 例如，“null，[9，0]，[17，0]”改變工作時間，而不改變工作日。",
+    "description": ""
+  },
+  "DaysInARowCode": {
+    "message": "//現在發送第一條訊息，隨後每天發送一條訊息。\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); //複製日期參數，以便我們不會修改它。\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n     // ^^^不要當試在過去發送，以防Thunderbird\n     //在預定的發送時間睡著了。\n\n}\nif (! args) //預設發送消息三次。\n    args = [3];\nnextargs = [args[0] - 1];\n//如果我們還沒有做完發送，就會重新執行\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
+    "description": ""
+  },
+  "DaysInARowHelp": {
+    "message": "立即發送訊息，隨後每天一次，直到發送三次至企。 提供一個數字作參數，來更改發送的總數。",
+    "description": ""
+  },
+  "DiscardConfirmTitle": {
+    "message": "放棄修改？",
+    "description": ""
+  },
+  "DiscardConfirmBody": {
+    "message": "還有未存檔的修改，你要放棄嗎？",
+    "description": ""
+  },
+  "UntestedSaveTitle": {
+    "message": "存未測試過的功能程式？",
+    "description": ""
+  },
+  "UntestedSaveBody": {
+    "message": "這個函數修改之後，尚未測試（以「執行」鍵）。你確定你要存檔或者匯出？",
+    "description": ""
+  },
+  "BadSaveTitle": {
+    "message": "無效的函數名稱或代碼",
+    "description": ""
+  },
+  "BadSaveBody": {
+    "message": "在存檔或匯出之前，請確定函數名和代碼都是有效的。",
+    "description": ""
+  },
+  "ReplacingFunctionTitle": {
+    "message": "覆蓋現有的函數？",
+    "description": ""
+  },
+  "ReplacingFunctionBody": {
+    "message": "已有同樣名稱的函數。你確定你要替換它？",
+    "description": ""
+  },
+  "NoNextValueError": {
+    "message": "函數沒有設定\"next\"值。",
+    "description": ""
+  },
+  "BadNextValueError": {
+    "message": "\"next\"值\"$1\"不是一個數位或日期",
+    "description": ""
+  },
+  "BadNextArgsError": {
+    "message": "\"nextargs\"值\"$1\"不是一個陣列",
+    "description": ""
+  },
+  "FunctionDeleteConfirmBody": {
+    "message": "你確定要刪除這個函數嗎？如果它連結到快捷按鈕，按鈕將會失效。如果有任何重複發送的信使用這個功能，也將會導致到下一次寄送後無法重新排程。",
+    "description": ""
+  },
+  "ImportTitle": {
+    "message": "選擇匯入的檔案",
+    "description": ""
+  },
+  "SLJFilterLabel": {
+    "message": "延期發信 JSON檔案",
+    "description": ""
+  },
+  "ImportError": {
+    "message": "匯入錯誤",
+    "description": ""
+  },
+  "ExportTitle": {
+    "message": "選擇匯出處",
+    "description": ""
+  },
+  "RenameFunctionTitle": {
+    "message": "對現有的函數改名？",
+    "description": ""
+  },
+  "RenameFunctionBody": {
+    "message": "您已修改了現有功能的名稱，“$1”。你要重命名的現有函數或以新的名稱保存一個獨立的函數嗎？",
+    "description": ""
+  },
+  "RenameFunctionRenameButton": {
+    "message": "改名",
+    "description": ""
+  },
+  "RenameFunctionNewButton": {
+    "message": "新",
+    "description": ""
+  },
+  "FunctionErrorTitle": {
+    "message": "啟動動態功能錯誤",
+    "description": ""
+  },
+  "FunctionErrorBody": {
+    "message": "啟動動態排程功能 “$1”錯誤",
+    "description": ""
+  },
+  "cancel_on_reply": {
+    "message": "回覆後取消",
+    "description": ""
+  },
+  "PendingMessage": {
+    "message": "等待 $1",
+    "description": ""
+  },
+  "IdleMessage": {
+    "message": "閒置",
+    "description": ""
+  },
+  "DisabledMessage": {
+    "message": "已停用",
+    "description": ""
+  },
+  "CheckingMessage": {
+    "message": "正在檢查延遲發送訊息",
+    "description": ""
+  }
+}

@@ -1,9 +1,0 @@
-<!-- -*- coding: utf-8 -*- -->
-<!ENTITY windowTitle "KRITISK: Send Later vil forsvinne snart, med mindre du støtter det!">
-<!ENTITY pitchMessage "JEG BEHØVER DIN HJELP!
-Send Later og mine andre utvidelser har vært gratis i mange år, men det er ikke lenger en fungerende strategi. Det tok meg en haug med tid og innsats å oppdatere dem for Thunderbird 68, og enda mere arbeid vil bli nødvendig for Thunderbird 78, som vil bli lansert senere i år. Dessverre er jeg rett og slett ikke i stand til å gjøre det, med mindre nok brukere forhåndsforplikter seg til å betale en liten del for det.
-Vennligst klikk nedenfor for å lære mer om og støtte Kickstarter-kampanjen. Som en bonus, kan kampanjestøttere kjøpe lisenser til en betydelig prisreduksjon.
-Tusen takk for støtten din!">
-<!ENTITY pledgeLabel "Bidra nå!">
-<!ENTITY remindLabel "Minn meg på dette senere">
-<!ENTITY alreadyLabel "Jeg har allerede bidratt">

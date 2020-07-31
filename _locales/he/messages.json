@@ -1,0 +1,1086 @@
+{
+  "extensionName": {
+    "message": "‫שלח מאוחר יותר‬",
+    "description": "The name of the add-on, displayed in various places."
+  },
+  "extensionDescription": {
+    "message": "‫'שלח מאוחר יותר' משמש לשליחת הודעות במועד עתידי‬",
+    "description": "A short description of the add-on."
+  },
+  "advancedOptionsTitle": {
+    "message": "‫מתקדם‬",
+    "description": ""
+  },
+  "altBindingPrefLabel": {
+    "message": "‫השתמש בצרוף המקשים Alt-Shift-Enter במקום הצרוף Ctrl-Shift-Enter‬",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel1": {
+    "message": "אל תשתלח הודעה יותר מ",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel2": {
+    "message": "דקות מאוחר יותר",
+    "description": ""
+  },
+  "cancelLabel": {
+    "message": "‫בטל‬",
+    "description": ""
+  },
+  "checkTimePrefLabel1": {
+    "message": "‫בדוק כל :‬",
+    "description": ""
+  },
+  "checkTimePrefLabel2": {
+    "message": "‫דקות‬",
+    "description": ""
+  },
+  "clearDefaultsLabel": {
+    "message": "נקה ברירות מחדל",
+    "description": ""
+  },
+  "contactAuthorLabel": {
+    "message": "‫צור קשר עם המפתח‬",
+    "description": ""
+  },
+  "enforceRestrictionsPrefLabel": {
+    "message": "כפה הגבלות יום ושעה על מועד המשלוח",
+    "description": ""
+  },
+  "generalOptionsTitle": {
+    "message": "‫כללי‬",
+    "description": ""
+  },
+  "logConsoleLevelLabel": {
+    "message": "‫רמת ההתראות לתיעוד במסוף הבקרה‬",
+    "description": ""
+  },
+  "logDumpLevelLabel": {
+    "message": "‫רמת ההתראות לתיעוד במסוף הג'אווה‬",
+    "description": ""
+  },
+  "logLevelAll": {
+    "message": "כולם",
+    "description": ""
+  },
+  "logLevelDebug": {
+    "message": "ניפוי באגים",
+    "description": ""
+  },
+  "logLevelError": {
+    "message": "שגיאה",
+    "description": ""
+  },
+  "logLevelFatal": {
+    "message": "גורלי",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "מידע",
+    "description": ""
+  },
+  "logLevelTrace": {
+    "message": "מעקב",
+    "description": ""
+  },
+  "logLevelWarn": {
+    "message": "התראה",
+    "description": ""
+  },
+  "markReadPrefLabel": {
+    "message": "סמן טיוטות כנקראו",
+    "description": ""
+  },
+  "quickOptionsLabel1Label": {
+    "message": "‫קיצור דרך 1‬",
+    "description": ""
+  },
+  "quickOptionsLabel2Label": {
+    "message": "‫קיצור דרך 2‬",
+    "description": ""
+  },
+  "quickOptionsLabel3Label": {
+    "message": "‫קיצור דרך 3‬",
+    "description": ""
+  },
+  "quickOptionsValueLabel": {
+    "message": "‫דקות:‬",
+    "description": ""
+  },
+  "recurAnnuallyLabel": {
+    "message": "‫שנתי‬",
+    "description": ""
+  },
+  "recurDailyLabel": {
+    "message": "‫השהה‬",
+    "description": ""
+  },
+  "recurFunctionLabel": {
+    "message": "פונקציה",
+    "description": ""
+  },
+  "recurLabel": {
+    "message": "‫מחזור",
+    "description": ""
+  },
+  "recurMinutelyLabel": {
+    "message": "דקתי",
+    "description": ""
+  },
+  "recurMonthlyLabel": {
+    "message": "‫חודשי‬",
+    "description": ""
+  },
+  "recurOnceLabel": {
+    "message": "‫ללא‬",
+    "description": ""
+  },
+  "recurWeeklyLabel": {
+    "message": "‫שבועי‬",
+    "description": ""
+  },
+  "resetPrefsButton": {
+    "message": "Reset Preferences",
+    "description": ""
+  },
+  "saveDefaultsLabel": {
+    "message": "שמור את הערכים הללו כברירת מחדל",
+    "description": ""
+  },
+  "sendAtDefaultLabel": {
+    "message": "‫הגדר תאריך ושעה למשלוח",
+    "description": "Displayed in place of send at time before user makes selections"
+  },
+  "sendAtLabel": {
+    "message": "‫שלח ב:‬",
+    "description": ""
+  },
+  "sendBtwnLabel": {
+    "message": "בין",
+    "description": ""
+  },
+  "sendButtonPrefLabel": {
+    "message": "‫הפוך את 'שלח' ל 'שלח מאוחר יותר'‬",
+    "description": ""
+  },
+  "sendDelayPrefLabel1": {
+    "message": "עכב משלוח הודעות ב",
+    "description": ""
+  },
+  "sendDelayPrefLabel2": {
+    "message": "דקות",
+    "description": ""
+  },
+  "sendSundayLabel": {
+    "message": "‫יום ראשון‬",
+    "description": ""
+  },
+  "sendMondayLabel": {
+    "message": "‫יום שני‬",
+    "description": ""
+  },
+  "sendTuesdayLabel": {
+    "message": "‫יום שלישי‬",
+    "description": ""
+  },
+  "sendWednesdayLabel": {
+    "message": "‫יום רביעי‬",
+    "description": ""
+  },
+  "sendThursdayLabel": {
+    "message": "‫יום חמישי‬",
+    "description": ""
+  },
+  "sendFridayLabel": {
+    "message": "‫יום שישי‬",
+    "description": ""
+  },
+  "sendSaturdayLabel": {
+    "message": "‫יום שבת‬",
+    "description": ""
+  },
+  "sendNowLabel": {
+    "message": "‫שלח כעת‬",
+    "description": ""
+  },
+  "sendOnlyOnLabel": {
+    "message": "רק כאשר",
+    "description": ""
+  },
+  "sendUnsentMessagesPrefLabel": {
+    "message": "‫הפעל שליחת הודעה שלא נשלחה מתיבת דואר יוצא‬",
+    "description": ""
+  },
+  "showColumnPrefLabel": {
+    "message": "‫הצג את הטור '‫שלח מאוחר יותר‬'‬",
+    "description": ""
+  },
+  "showHeaderPrefLabel": {
+    "message": "‫הצג את הכותרת '‫שלח מאוחר יותר‬'‬",
+    "description": ""
+  },
+  "showStatusPrefLabel": {
+    "message": "‫הצג את '‫שלח מאוחר יותר‬' בשורת המצב‬",
+    "description": ""
+  },
+  "userGuideLabel": {
+    "message": "‫מדריך למשתמש‬",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.label": {
+    "message": "‫העבר לתיבת דואר יוצא‬",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.accesskey": {
+    "message": "ה",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "‫במקום לקבוע מועד משלוח מוגדר, העבר את ההודעה לתיבת הדואר היוצא כדי לשלוח אותה בפעם הבאה, יחד עם שאר ההודעות הממתינות למשלוח‬",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.accesskey": {
+    "message": "כ",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.tooltip": {
+    "message": "שלח מייד את ההודעה, ועקוף את &quot;‫שלח מאוחר יותר‬&quot;.",
+    "description": ""
+  },
+  "sendlater.prompt.close.accesskey": {
+    "message": "ב",
+    "description": ""
+  },
+  "sendlater.prompt.close.tooltip": {
+    "message": "‫חזור להמשך עריכת ההודעה‬",
+    "description": ""
+  },
+  "sendlater.prompt.title.label": {
+    "message": "‫שלח הודעת דוא&quot;ל זו מאוחר יותר‬",
+    "description": ""
+  },
+  "sendlater.prompt.or.label": {
+    "message": "‫דוג: '3:00pm Thursday', '12/27/2012 15:17'‬",
+    "description": ""
+  },
+  "sendlater.prompt.textbox.emptytext": {
+    "message": "‫‬",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.label": {
+    "message": "‫שלח מאוחר יותר במועד(ים) שהוגדרו לעיל‬",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "‫שמור את ההודעה בתיקית הטיוטות למשלוח אוטומטי במועד שהוגדר לעיל‬",
+    "description": ""
+  },
+  "sendlater.prompt.functionargs.label": {
+    "message": "ארגומנטי פונקציה",
+    "description": ""
+  },
+  "sendlater.prompt.calculate.label": {
+    "message": "חשב",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.label": {
+    "message": "‫שלח מאוחר יותר‬",
+    "description": ""
+  },
+  "sendlater.toolbar.textbox.emptytext": {
+    "message": "‫זמן המשלוח‬",
+    "description": ""
+  },
+  "sendlater.prompt.every.label": {
+    "message": "‫כל‬",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "‫15 דקות מאוחר יותר‬",
+    "description": ""
+  },
+  "sendlater.button2.label": {
+    "message": "‫30 דקות מאוחר יותר‬",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "‫שעתיים מאוחר יותר‬",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.label": {
+    "message": "בטל חזרה בתשובה",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "המתן לתגובות לעותקי הודעות חוזרות שנשלחו בעבר. בטל הודעה חוזרת והסר אותה מתיקיית הטיוטות כאשר מתקבלת תשובה.",
+    "description": ""
+  },
+  "sendlater3header.label": {
+    "message": "‫‫שלח מאוחר יותר‬‬",
+    "description": ""
+  },
+  "prefwindow.title": {
+    "message": "‫העדפות ‫שלח מאוחר יותר‬‬",
+    "description": ""
+  },
+  "pane1.title": {
+    "message": "‫העדפות ‫שלח מאוחר יותר‬‬",
+    "description": ""
+  },
+  "checktimepref.tooltip": {
+    "message": "‫המרווח, בדקות, בין הבדיקות להודעות טיוטה שמועד שליחתן הגיע. הגדל ערך זה אם קורה לעיטים שהטיוטות שהכנת אינן נשלחות במועדן או שלפעמים מספר ההודעות הממתינות, המופיע בשורת המצב, אינו תואם למספר הטיוטות המיועדות למשלוח בפועל‬",
+    "description": ""
+  },
+  "quickoptionname.label": {
+    "message": "‫תווית הכפתור :‬",
+    "description": ""
+  },
+  "showsendlatercolumn.tooltip": {
+    "message": "‫האם להציג את הטור '‫שלח מאוחר יותר‬' כאשר צופים בתיקית הטיוטות‬",
+    "description": ""
+  },
+  "showsendlaterheader.tooltip": {
+    "message": "‫האם להציג את הכותרת 'X-Send-Later-At', כלומר הזמן בו מיועדת הטיוטה להישלח, בשורת הכותרת כאשר צופים בהודעה‬",
+    "description": ""
+  },
+  "showsendlaterprogress.caption": {
+    "message": "‫הצג את תהליכי הרקע בשורת המצב‬",
+    "description": ""
+  },
+  "showsendlaterunsentmessages.tooltip": {
+    "message": "‫במידה ולא תסומן אפשרות זו, '‫שלח מאוחר יותר‬' לא ישלח את ההודעות בפועל, אלא רק יעביר אותן לתיבת הדואר היוצא במועד המשלוח המתוכנן שלהן. אל תסמן אפשרות זו, למשל, אם יש לעיטים שימוש בתוסף אחר למשלוח הודעות מתיבת הדואר היוצא. שים לב שאם נבחרה האפשרות הזו ישלח '‫שלח מאוחר יותר‬' את כל ההודעות מתיבת הדואר היוצא בעת שליחת הודעה מתוכננת,‬",
+    "description": ""
+  },
+  "sendlatersendbutton.tooltip": {
+    "message": "‫בחירה באפשרות זו תהפוך את פקודת ה 'שלח' (גם הלחצן וגם צרוף המקשים) לפקודה 'שלח מאוחר יותר'‬",
+    "description": ""
+  },
+  "senddelay.tooltip": {
+    "message": "בחירה באפשרות זו, תגרום לכך שכל ההודעות הנשלחות עם הפקודה &quot;שלח&quot; (בין אם לחיצה על הכפתור או עם קיצור המקלדת Ctrl-Enter) יעוכבו במספר הדקות שהוגדרו מראש עם ‫שלח מאוחר יותר‬",
+    "description": ""
+  },
+  "composewindowhotkeys.tooltip": {
+    "message": "ניתן ללחוץ על צירופי המקשים Ctrl-Alt-1, 2 או 3 כדי להפעיל את כפתורי קיצורי התזמון הראשון, השני או השלישי שתוכנתו מראש, במהלך חיבור הודעה. אם בוטל הסימון לתכונה זו, יושבתו צירופי מקשים אילו.",
+    "description": ""
+  },
+  "composewindowhotkeys.caption": {
+    "message": "אפשר הפעלת צירופי מקשים מתוכנתים מראש בחלון העריכה",
+    "description": ""
+  },
+  "contactauthor.tooltip": {
+    "message": "‫שלח הודעת דוא&quot;ל למפתח של '‫שלח מאוחר יותר‬'‬",
+    "description": ""
+  },
+  "helplink.tooltip": {
+    "message": "‫צפה במסמכי התיעוד של '‫שלח מאוחר יותר‬'‬",
+    "description": ""
+  },
+  "releasenotes.value": {
+    "message": "הערות למהדורה",
+    "description": ""
+  },
+  "donatelink.value": {
+    "message": "‫תרום‬",
+    "description": ""
+  },
+  "editorlink.value": {
+    "message": "עורך פונקציה דינמית",
+    "description": ""
+  },
+  "enforcerestrictions.tooltip": {
+    "message": "במידה ומגבלות הזמן או היום שנקבעו למשלוח ההודעה חרגו מעבר להגדרה המקורית, למשל בגלל שתנדרבירד לא פעל במועד המתוכנן, דחה את משלוח ההודעה בהתאם מגבלות הזמן והיום המקוריות שנקבעו.",
+    "description": ""
+  },
+  "blocklatemessages.tooltip": {
+    "message": "אל תשלח הודעות מתוזמנות שמועד המשלוח המתוכנן שלהן חלף, למשל בגלל שתנדרבירד לא פעל במועד המתוכנן.",
+    "description": ""
+  },
+  "editorbutton": {
+    "message": "פתח עורך פונקציה דינמית…",
+    "description": ""
+  },
+  "editortip": {
+    "message": "פתח חלון ליצירה ולעריכה של פונקציות JavaScript המטמיעות לוגיקת תזמון מורכבת.",
+    "description": ""
+  },
+  "loglevel.config": {
+    "message": "תצורה",
+    "description": ""
+  },
+  "sendlater.ask.title.label": {
+    "message": "‫תמוך בפיתוח '‫שלח מאוחר יותר‬'‬",
+    "description": ""
+  },
+  "sendlater.ask.message1": {
+    "message": "‫שעות רבות הושקעו בפיתוח, בתמיכה ובתחזוקת התוסף הזה‬",
+    "description": ""
+  },
+  "sendlater.ask.message2": {
+    "message": "‫אנא שיקלו לתמוך בהמשך הפיתוח בעזרת תרומה סמלית‬",
+    "description": ""
+  },
+  "sendlater.ask.message3": {
+    "message": "‫תודה רבה‬",
+    "description": ""
+  },
+  "sendlater.ask.donate.accesskey": {
+    "message": "ת",
+    "description": ""
+  },
+  "sendlater.ask.donate.label": {
+    "message": "‫תרום כעת‬",
+    "description": ""
+  },
+  "sendlater.ask.remind.accesskey": {
+    "message": "ז",
+    "description": ""
+  },
+  "sendlater.ask.remind.label": {
+    "message": "‫הזכר לי מאוחר יותר‬",
+    "description": ""
+  },
+  "sendlater.ask.already.accesskey": {
+    "message": "ע",
+    "description": ""
+  },
+  "sendlater.ask.already.label": {
+    "message": "‫תרמתי בעבר‬",
+    "description": ""
+  },
+  "sendlater.ask.stop.accesskey": {
+    "message": "פ",
+    "description": ""
+  },
+  "sendlater.ask.stop.label": {
+    "message": "‫הפסק לשאול‬",
+    "description": ""
+  },
+  "windowtitle": {
+    "message": "‫שלח מאוחר יותר‬ עורך פונקציות דינמי",
+    "description": ""
+  },
+  "selectfunction": {
+    "message": "בחר פונקציה",
+    "description": ""
+  },
+  "selectfunctiontip": {
+    "message": "בחר פונקציה לעריכה או למחיקה, או &quot;(צור פונקציה חדשה)&quot; כדי ליצור פונקציה חדשה.",
+    "description": ""
+  },
+  "createnewfunction": {
+    "message": "(צור פונקציה חדשה)",
+    "description": ""
+  },
+  "delete.label": {
+    "message": "מחק",
+    "description": ""
+  },
+  "delete.accesskey": {
+    "message": "מ",
+    "description": ""
+  },
+  "functionnametip": {
+    "message": "הזן או ערוך שם פונקציה אלפאנומרית. במידה ותשנה את השם של פונקציה קיימת תתבקש לציין, בזמן השמירה, אם ברצונך לשנות את שם הפונקציה או ליצור פונקציה חדשה בשם החדש.",
+    "description": ""
+  },
+  "functionnameplaceholder": {
+    "message": "שם פונקציה",
+    "description": ""
+  },
+  "codetip": {
+    "message": "הזן כאן את קוד המקור עבור הפונקציה שלך. ראה פונקציית דוגמה &quot;ReadMeFirst&quot; לקבלת פרטים אודות הפעולה שהקוד שלך אמור לבצע.",
+    "description": ""
+  },
+  "codeplaceholder": {
+    "message": "קוד מקור של הפונקציה",
+    "description": ""
+  },
+  "helptextheader": {
+    "message": "טקסט עזרה לפונקציה",
+    "description": ""
+  },
+  "helptexttip": {
+    "message": "כל טקסט שתזין כאן יוצר כאשר המשתמש יעביר את מצביע העכבר מעל לשם הפונקציה בתפריט הנפתח. הזן טקסט שיסביר מה הפונקציה עושה ואילו ארגומנטים היא מקבלת.",
+    "description": ""
+  },
+  "helptextplaceholder": {
+    "message": "טקסט עזרה",
+    "description": ""
+  },
+  "run.label": {
+    "message": "בצע פונקציה",
+    "description": ""
+  },
+  "run.accesskey": {
+    "message": "פ",
+    "description": ""
+  },
+  "inputtime": {
+    "message": "הזן זמן",
+    "description": ""
+  },
+  "inputtimetip": {
+    "message": "תוכל להזין האן תאריכים וזמנים אותם תיבת הדו שיח ‫שלח מאוחר יותר‬ מבינה.",
+    "description": ""
+  },
+  "inputtimeplaceholder": {
+    "message": "תאריך ושעה, אם ישנם, אשר יועברו אל הפונקציה לצורך בדיקה",
+    "description": ""
+  },
+  "inputargs": {
+    "message": "הזן ארגומנטים",
+    "description": ""
+  },
+  "inputargstip": {
+    "message": "יש להזין ארגומנטים בתבנית JavaScript, לדוגמה יש להזין מחרוזות בתוך מרכאות.",
+    "description": ""
+  },
+  "inputargsplaceholder": {
+    "message": "ארגומנטים מופרדים באמצעות פסיק, אם ישנם, אשר יועברו לצורך בדיקה",
+    "description": ""
+  },
+  "output": {
+    "message": "פלט",
+    "description": ""
+  },
+  "import.label": {
+    "message": "ייבא…",
+    "description": ""
+  },
+  "import.accesskey": {
+    "message": "ב",
+    "description": ""
+  },
+  "importtip": {
+    "message": "הזן פונקציה דינמית שיוצאה קודם לכן מהעורך.",
+    "description": ""
+  },
+  "export.label": {
+    "message": "ייצא…",
+    "description": ""
+  },
+  "export.accesskey": {
+    "message": "צ",
+    "description": ""
+  },
+  "exporttip": {
+    "message": "ייצא את הפונקציה המוצגת כעת לקובץ לצורך גיבוי או שיתוף.",
+    "description": ""
+  },
+  "reset.label": {
+    "message": "בטל שינויים",
+    "description": ""
+  },
+  "reset.accesskey": {
+    "message": "ט",
+    "description": ""
+  },
+  "save.label": {
+    "message": "שמור",
+    "description": ""
+  },
+  "save.accesskey": {
+    "message": "ש",
+    "description": ""
+  },
+  "close.label": {
+    "message": "סגור",
+    "description": ""
+  },
+  "close.accesskey": {
+    "message": "ס",
+    "description": ""
+  },
+  "close.cmdkey": {
+    "message": "w",
+    "description": ""
+  },
+  "sendaround": {
+    "message": "‫שלח בערך‬",
+    "description": ""
+  },
+  "entervalid": {
+    "message": "‫הקלד תאריך תקף למעלה‬",
+    "description": ""
+  },
+  "sendwithfunction": {
+    "message": "שלח על פי הפונקציה “$1”",
+    "description": ""
+  },
+  "sendspecifyfunction": {
+    "message": "בחר פונקציה מהתפריט שלמעלה",
+    "description": ""
+  },
+  "January": {
+    "message": "‫ינואר‬",
+    "description": ""
+  },
+  "February": {
+    "message": "‫פברואר‬",
+    "description": ""
+  },
+  "March": {
+    "message": "‫מרץ‬",
+    "description": ""
+  },
+  "April": {
+    "message": "‫אפריל‬",
+    "description": ""
+  },
+  "May": {
+    "message": "‫מאי‬",
+    "description": ""
+  },
+  "June": {
+    "message": "‫יוני‬",
+    "description": ""
+  },
+  "July": {
+    "message": "‫יולי‬",
+    "description": ""
+  },
+  "August": {
+    "message": "‫אוגוסט‬",
+    "description": ""
+  },
+  "September": {
+    "message": "‫ספטמבר‬",
+    "description": ""
+  },
+  "October": {
+    "message": "‫אוקטובר‬",
+    "description": ""
+  },
+  "November": {
+    "message": "‫נובמבר‬",
+    "description": ""
+  },
+  "December": {
+    "message": "‫דצמבר‬",
+    "description": ""
+  },
+  "OptionShortcutAlertTitle": {
+    "message": "‫ערך קיצור דרך שגוי‬",
+    "description": ""
+  },
+  "OptionShortcutAlertText": {
+    "message": "‫לקיצור הדרך \"Sיש ערך שגוי\"$1%1$‬",
+    "description": ""
+  },
+  "SendingUnsentError": {
+    "message": "‫‫שלח מאוחר יותר‬: שגיאה בשליחת הודעות שלא נשלחו. יתכן שתיבת הדואר היוצא פגומה, לכן יתכן וההודעות שנועדו למשלוח לא נשלחו כמתוכנן. לפרטים ראה https://blog.kamens.us/send-later/#outbox.‬",
+    "description": ""
+  },
+  "CopyUnsentError": {
+    "message": "‫‫שלח מאוחר יותר‬: שגיאה בהעתקת הודעה מתוזמנת לתיבת הדואר היוצא למשלוח (קוד $1) ‫שלח מאוחר יותר‬ הושבת מפעילות לפרטים ראה: https://blog.kamens.us/send-later/#outbox-copy-failure.‬",
+    "description": ""
+  },
+  "CopyRecurError": {
+    "message": "‫‫שלח מאוחר יותר‬: שגיאה בהעתקת הודעות חוזרות לתיקיית הטיוטות (קוד $1) ‫שלח מאוחר יותר‬ הושבת מפעילות לפרטים ראה: https://blog.kamens.us/send-later/#drafts-copy-failure.‬",
+    "description": ""
+  },
+  "CorruptFolderError": {
+    "message": "‫‫שלח מאוחר יותר‬: יתכן והתיקייה $1 נפגמה. אנא פתח את התכונות שלה ותקן את התקלה. ראה: https://blog.kamens.us/send-later/#corrupt-drafts-error.‬",
+    "description": ""
+  },
+  "MessageResendError": {
+    "message": "‫שלח מאוחר יותר‬: ניסית לשלוח מאוחר יותר, הודעה שכבר נשלחה?! יתכן ותיקיית הדואר היוצא או תיקיית הטיוטות $1 נפגמו. נסה לתקנן כפי שמתואר בקישור: https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "description": ""
+  },
+  "minutely": {
+    "message": "דקתי",
+    "description": ""
+  },
+  "daily": {
+    "message": "‫עכב משלוח‬",
+    "description": ""
+  },
+  "weekly": {
+    "message": "‫שבועי‬",
+    "description": ""
+  },
+  "monthly": {
+    "message": "‫חודשי‬",
+    "description": ""
+  },
+  "yearly": {
+    "message": "‫שנתי‬",
+    "description": ""
+  },
+  "plural_minutely": {
+    "message": "דקות",
+    "description": ""
+  },
+  "plural_daily": {
+    "message": "‫ימים‬",
+    "description": ""
+  },
+  "plural_weekly": {
+    "message": "‫שבועות‬",
+    "description": ""
+  },
+  "plural_monthly": {
+    "message": "‫חודשים‬",
+    "description": ""
+  },
+  "plural_yearly": {
+    "message": "‫שנים‬",
+    "description": ""
+  },
+  "every_minutely": {
+    "message": "דקות $1 כל",
+    "description": ""
+  },
+  "every_daily": {
+    "message": "‫כל $1 ימים‬",
+    "description": ""
+  },
+  "every_weekly": {
+    "message": "‫בל $1 שבועות‬",
+    "description": ""
+  },
+  "every_monthly": {
+    "message": "‫כל $1 חודשים‬",
+    "description": ""
+  },
+  "every_yearly": {
+    "message": "‫כל $1 שנים‬",
+    "description": ""
+  },
+  "everyempty": {
+    "message": "‫השבוע בחודש‬",
+    "description": ""
+  },
+  "everymonthly": {
+    "message": "‫$1 $2 של החודש‬",
+    "description": ""
+  },
+  "everymonthly_day0": {
+    "message": "‫יום ראשון‬",
+    "description": ""
+  },
+  "everymonthly_day1": {
+    "message": "‫יום שני‬",
+    "description": ""
+  },
+  "everymonthly_day2": {
+    "message": "‫יום שלישי‬",
+    "description": ""
+  },
+  "everymonthly_day3": {
+    "message": "‫יום רביעי‬",
+    "description": ""
+  },
+  "everymonthly_day4": {
+    "message": "‫יום חמישי‬",
+    "description": ""
+  },
+  "everymonthly_day5": {
+    "message": "‫יום שישי‬",
+    "description": ""
+  },
+  "everymonthly_day6": {
+    "message": "‫יום שבת‬",
+    "description": ""
+  },
+  "everymonthly_short": {
+    "message": "‫$1 $2‬",
+    "description": ""
+  },
+  "everymonthly_short_day0": {
+    "message": "‫יום ראשון‬",
+    "description": ""
+  },
+  "everymonthly_short_day1": {
+    "message": "‫יום שני‬",
+    "description": ""
+  },
+  "everymonthly_short_day2": {
+    "message": "‫יום שלישי‬",
+    "description": ""
+  },
+  "everymonthly_short_day3": {
+    "message": "‫יום רביעי‬",
+    "description": ""
+  },
+  "everymonthly_short_day4": {
+    "message": "‫יום חמישי‬",
+    "description": ""
+  },
+  "everymonthly_short_day5": {
+    "message": "‫יום שישי‬",
+    "description": ""
+  },
+  "everymonthly_short_day6": {
+    "message": "‫יום שבת‬",
+    "description": ""
+  },
+  "betw_times": {
+    "message": "בין. $1 לבין $2",
+    "description": ""
+  },
+  "only_on_days": {
+    "message": "ב $1",
+    "description": ""
+  },
+  "only_on_day0": {
+    "message": "‫יום ראשון‬",
+    "description": ""
+  },
+  "only_on_day1": {
+    "message": "‫יום שני‬",
+    "description": ""
+  },
+  "only_on_day2": {
+    "message": "‫יום שלישי‬",
+    "description": ""
+  },
+  "only_on_day3": {
+    "message": "‫יום רביעי‬",
+    "description": ""
+  },
+  "only_on_day4": {
+    "message": "‫יום חמישי‬",
+    "description": ""
+  },
+  "only_on_day5": {
+    "message": "‫יום שישי‬",
+    "description": ""
+  },
+  "only_on_day6": {
+    "message": "‫יום שבת‬",
+    "description": ""
+  },
+  "ord1": {
+    "message": "‫ראשון",
+    "description": ""
+  },
+  "ord2": {
+    "message": "‫שני‬",
+    "description": ""
+  },
+  "ord3": {
+    "message": "‫שלישי‬",
+    "description": ""
+  },
+  "ord4": {
+    "message": "‫רביעי‬",
+    "description": ""
+  },
+  "ord5": {
+    "message": "‫חמישי‬",
+    "description": ""
+  },
+  "draftSaveWarning": {
+    "message": "‫הזהרה: כדי למנוע מ '‫שלח מאוחר יותר‬' לשלוח הודעה בזמן עריכתה, מועד המשלוח שתוכנן בוטל. אנא קבע מועד משלוח חדש להודעה בתום תהליך העריכה.‬",
+    "description": ""
+  },
+  "AreYouSure": {
+    "message": "האם אתה בטוח?",
+    "description": ""
+  },
+  "OutboxConfirmMessage": {
+    "message": "בחירה ב \"שלח\" מעבירה את ההודעה לתיבת הדואר היוצא באופן מיידי ולא מתבצע תיזמון משלוח של ההודעה למועד ספציפי. לשם קביעת מועד, יש לבחור בכפתור \"שלח בערך\" בתיבה  הירוקה לאחר שקבעת מועד מתאים למשלוח. האם את/ה בטוח שאת/ה מעוניין להעביר את ההודעה לתיבת הדואר היוצא כעט?",
+    "description": ""
+  },
+  "SendNowConfirmMessage": {
+    "message": "לחיצה על \"שלח כעת\" תשלח את ההודעה מייד. פונקציה זו אינה מתזמנת את ההודעה לשליחה בזמן ספציפי. לשם כך, לחץ \"שלח בערך\" בתיבה הירוקה לארח הזנת זמן שליחה תקין. האם אתה בטוח שברצונך לשלוח את ההודעה כעת?",
+    "description": ""
+  },
+  "ConfirmAgain": {
+    "message": "הצג אזהרה זו בפעם הבאה",
+    "description": ""
+  },
+  "ScheduledMessagesWarningTitle": {
+    "message": "התראת לוח זמנים",
+    "description": ""
+  },
+  "ScheduledMessagesWarningQuitRequested": {
+    "message": "קיימות הודעות הממתינות למשלוח. \"‫שלח מאוחר יותר‬\" תשלח הודעות רק כאשר $1 פועלת. האם אתם רוצים לצאת עכשיו?",
+    "description": ""
+  },
+  "ScheduledMessagesWarningQuit": {
+    "message": "\"‫שלח מאוחר יותר‬\" תשלח הודעות רק כאשר $1 פועלת. אנא זכרו להפעילה מחדש לפני המועד המתוכנן למשלוח ההודעות!‬",
+    "description": ""
+  },
+  "EnigmailIncompatTitle": {
+    "message": "בעיות התאמה בין '‫שלח מאוחר יותר‬' לבין Engimail.",
+    "description": ""
+  },
+  "EnigmailIncompatText": {
+    "message": "הגרסה המותקנת של התוסף Engimail אינה תואמת ל'‫שלח מאוחר יותר‬', לכן תכונת משלוח הודעות עתידי עם '‫שלח מאוחר יותר‬' הושבתה. אנא צרו קשר עם המפתח של '‫שלח מאוחר יותר‬' לסיוע במייל (jik@kamens.us).",
+    "description": ""
+  },
+  "TimeMismatchConfirmTitle": {
+    "message": "זמן המשלוח אינו תואם למגבלות שנקבעו",
+    "description": ""
+  },
+  "TimeMismatchConfirmBody": {
+    "message": "זמן המשלוח שקבעת, $1, אינו בתחום מגבלות הזמן שהגדרת. לחץ  'ביטול' לעריכת זמן המשלוח מחדש או 'אשר' לביצוע עריכה אוטומטית ל $2.",
+    "description": ""
+  },
+  "endTimeWarningTitle": {
+    "message": "מגבלת זמן ההודעה שאינה תואמת",
+    "description": ""
+  },
+  "endTimeWarningBody": {
+    "message": "זמן המשלוח הסופי אינו יכול להקדים את זמן תחילת המשלוח בעת קביעת מגבלות זמן להודעה. אנא בדוק מחדש את המגבלות שקבעת או בטל אותן.",
+    "description": ""
+  },
+  "missingDaysWarningTitle": {
+    "message": "מגבלת ימים שאינה תואמת",
+    "description": ""
+  },
+  "missingDaysWarningBody": {
+    "message": "תכונת מגבלת המשלוח לפי ימים, מאופשרת, אך לא נקבעו ימים למגבלה זו, אנא ציין יום אחד, לפחות, למגבלה זו או בטל אותה.",
+    "description": ""
+  },
+  "InvalidArgsTitle": {
+    "message": "ארגומנטים לא תקינים לפונקציה",
+    "description": ""
+  },
+  "InvalidArgsBody": {
+    "message": "ארגומנטי הפונקציה אינם תקינים. ציין רשימת JavaScript מבלי להוסיף סוגריים מרובעים מסביבה.",
+    "description": ""
+  },
+  "BlockedLateMessage": {
+    "message": "ההודעה עם הנושא “$1” הנמצאת בתיקיית הטיוטות  $2 תוכננה להישלח לפני יותר מ $3 דקות, לכן המשלוח נחסם. עליך לערוך את הודעת הטיוטה מחדש ולשלוח אותה באופן מיידי או לקבוע מועד משלוח חדש. יש באפשרותך לבטל את התכונה \"אל תשלח הודעות אם מועד המשלוח המתוכנן שלהן חלף ביותר מ # דקות\" כדי למנוע חסימת משלוח הודעות בעתיד.",
+    "description": ""
+  },
+  "EditorReadMeCode": {
+    "message": "// ברוך הבא אל עורך הפונקציות של ‫שלח מאוחר יותר‬!\n//\n// בעזרת עורך זה תוכל ליצור פונקציות JavaScript המיישמות לוגיקה מורכבת של תזמון הודעות אותה ניתן לשייך ללחצני קיצור או לבחור בה מתיבת הדו שיח של ‫שלח מאוחר יותר‬\n//\n// כפי שניתן לראות למעלה, כאשר מתבצעת קריאה לפונקציית תזמון, יש לספק לה שלושה ארגומנטים: \n// * \"specname\" נדרש במידה ותרצה להפעיל את הפונקציה בצורה רקורסיבית (ראה בהמשך)\n// * \"prev\" הינו זמן השליחה הקודם שתוזמן, במידה וזו הפעלה חוזרת\n// * \"args\" הינם הארגומנטים הנוספים שהוחזרו בהפעלה הקודמת, במידה וזו הפעלה חוזרת\n//\n// על הקוד שלך לקבוע את המשתנים \"next\", \"nextspec\", וכן \n// \"nextargs\" באופן הבא:\n//\n// * \"next\" הינו מספר הדקות בעתיד או אובייקט Date המציין מתי יש לשלוח את ההודעה\n//   indicating when the message should be sent.\n// * \"nextspec\" הינו מפרט החזרה במידה וזו אמורה להיות הודעה חוזרת (ראה \n//   https://blog.kamens.us/send-later/#dynamic-recurrence). במידה ולא תספק ערך לארגומנט זה, \n//  ההודעה תישלח פעם אחת בלבד. הערה: אם תרצה \n//  לקרוא שנית לפונקציה לצורך חזרה, עליך לבצע:\n\n//     nextspec = \"function \" + specname;\n\n// * \"nextargs\" הינו מערך ארגומנטים אותם תרצה להעביר \n//   להפעלה הבאה של הפונקציה כ-\"args\".\n//\n// במהלך העבודה על הפונקציה, תוכל לבדוק אותה על ידי הזנת ערכים\n// עבור \"prev\" ו-\"args\" בתיבות הטקסט שבהמשך ולאחר מכן ללחוץ על  \"Execute\" כדי\n// לבצע את הפונקציה ולצפות בתוצאות.\n//\n// ישנן שתי פונקציות דוגמה מוגדרות מראש, \"BusinessHours\" וכן\n// \"DaysInARow\", שתוכל להשתמש בהן ולבצע בעזרתן ניסויים לצורך למידה.\n//\n// פונקציה \"ReadMeFirst\" גורמת רק לשליחה של ההודעה כעת, פחות או יותר, \n// באמצעות הפעלת השורה הבאה.\n\nnext = new Date();",
+    "description": ""
+  },
+  "EditorReadMeHelp": {
+    "message": "כל טקסט שתזין כאן יוצג כתיאור כלי כאשר תעביר את מצביע העכבר מעל לשם הפונקציה בתפריט. תוכל להשתמש בכך כדי לתעד את פעולת הפונקציה ואת הארגומנטים שהיא מקבלת.",
+    "description": ""
+  },
+  "_BusinessHoursCode": {
+    "message": "// Defaults / ברירות מחדל\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Start of the work day as [H, M]\nvar workEnd = [17, 30]; // End of the work day as [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // לא אמור להיות בשימוש רגיל, אך משמש כזמן הנוכחי לצורך בדיקה.\n    next = new Date(prev);\nelse\n    next = new Date();\n// במידה ועברנו את סוף יום העבודה או אם זהו אינו יום עבודה, עבור \n// לשעת התחלת העבודה של היום הבא.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// במידה והזמן הנוכחי הינו לפני תחילת יום העבודה, שנה לזמן ההתחלה.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
+    "description": ""
+  },
+  "BusinessHoursHelp": {
+    "message": "שלח את ההודעה כעת אם הזמן הנוכחי הינו במהלך שעות העבודה, או בתחילת יום העבודה הבא. תוכל לשנות את הגדרת ימי העבודה (ברירת מחדל: שני עד שישי) על ידי העברת מערך של מספרי ימי עבודה כארגומנט הראשון, כאשר 0 הינו יום ראשון ו-6 הינו יום שבת. תוכל לשנות את זמן ההתחלה או הסיום של יום העבודה (ברירת מחדל: 8:30 - 17:30) על ידי העברת מערכת מסוג [H, M] כארגומנט השני או השלישי, ולציין \"null\" עבור ארגומנטים קודמים שאינך משנה. לדוגמה, \"null, [9,0], [17,0]\" משנה את שעות העבודה מבלי לשנות את ימי העבודה.",
+    "description": ""
+  },
+  "DaysInARowCode": {
+    "message": "// JavaScript really wants to be left-to-right, so let's start this\n// file with English.\n//\n// שלח את ההודעה הראשונה כעת, ואת ההודעות הבאות פעם ביום.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ אל תנסה לשלוח בתאריך שעבר, במידה ו-Thunderbird לא היה פעיל\n    // בזמן שנקבע.\n}\nif (! args) // כברירת מחדל, שלח הודעות שלוש פעמים.\n    args = [3];\nnextargs = [args[0] - 1];\n// חזור במידה ועדיין לא בוצעו מספיק שליחות.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
+    "description": ""
+  },
+  "DaysInARowHelp": {
+    "message": "שלח את ההודעה כעת, ולאחר מכן פעם ביום באותה השעה, עד שההודעה תישלח שלוש פעמים. ציין מספר כארגומנט לשינוי המספר הכולל של שליחות.",
+    "description": ""
+  },
+  "DiscardConfirmTitle": {
+    "message": "לבטל את השינויים?",
+    "description": ""
+  },
+  "DiscardConfirmBody": {
+    "message": "ישנם נשמרו שינויים. האם למחוק אותן?",
+    "description": ""
+  },
+  "UntestedSaveTitle": {
+    "message": "לשמור פונקציה שלא נבדקה?",
+    "description": ""
+  },
+  "UntestedSaveBody": {
+    "message": "הפונקציה לא נבדקה (בלחיצה על \"Execute\") מאז הפעם האחרונה בה היא נשמרה. האם אתה בטוח שברצונך לשמור או לייצא אותה?",
+    "description": ""
+  },
+  "BadSaveTitle": {
+    "message": "שם פונקציה או קוד לא חוקיים",
+    "description": ""
+  },
+  "BadSaveBody": {
+    "message": "ודא ששם הפונקציה ושהקוד חוקיים לפני שמירה או ייצוא.",
+    "description": ""
+  },
+  "ReplacingFunctionTitle": {
+    "message": "להחליף פונקציה קיימת?",
+    "description": ""
+  },
+  "ReplacingFunctionBody": {
+    "message": "פונקציה בשם זה כבר קיימת. האם אתה בטוח שברצונך להחליף אותה?",
+    "description": ""
+  },
+  "NoNextValueError": {
+    "message": "הפונקציה לא קבעה ערך \"next\".",
+    "description": ""
+  },
+  "BadNextValueError": {
+    "message": "ערך “next” “$1” אינו מספר או תאריך (Date)",
+    "description": ""
+  },
+  "BadNextArgsError": {
+    "message": "ערך “nextargs” “$1” אינו מערך",
+    "description": ""
+  },
+  "FunctionDeleteConfirmBody": {
+    "message": "האם אתה בטוח שברצונך למחוק את הפונקציה? במידה והיא משוייכת ללחצני קיצור, הם יפסיקו לפעול. כמו כן, אם ישנן הודעות חוזרות אשר משתמשות בו, הן לא יתוזמנות מחדש לאחר הפעם הבאה שהןם תישלחנה.",
+    "description": ""
+  },
+  "ImportTitle": {
+    "message": "בחר קובץ לייבוא",
+    "description": ""
+  },
+  "SLJFilterLabel": {
+    "message": "קובצי ‫שלח מאוחר יותר‬ JSON",
+    "description": ""
+  },
+  "ImportError": {
+    "message": "שגיאת ייבוא",
+    "description": ""
+  },
+  "ExportTitle": {
+    "message": "בחר ביעד הייצוא",
+    "description": ""
+  },
+  "RenameFunctionTitle": {
+    "message": "לשנות את שם הפונקציה הקיימת?",
+    "description": ""
+  },
+  "RenameFunctionBody": {
+    "message": "שינית שם של פונקציה קיימת, “$1”. האם תרצה לשנות את שם הפונקציה הקיימת או לשמור פונקציה נפרדת בשם החדש?",
+    "description": ""
+  },
+  "RenameFunctionRenameButton": {
+    "message": "שנה שם",
+    "description": ""
+  },
+  "RenameFunctionNewButton": {
+    "message": "חדש",
+    "description": ""
+  },
+  "FunctionErrorTitle": {
+    "message": "שגיאה בהפעלת פונקציה דינמית",
+    "description": ""
+  },
+  "FunctionErrorBody": {
+    "message": "שגיאה בהפעלת פונקציית תזמון דינמית: “$1”",
+    "description": ""
+  },
+  "cancel_on_reply": {
+    "message": "בטל בתגובה",
+    "description": ""
+  },
+  "PendingMessage": {
+    "message": "‫ממתין‬ $1",
+    "description": ""
+  },
+  "IdleMessage": {
+    "message": "‫מצב סרק‬",
+    "description": ""
+  },
+  "DisabledMessage": {
+    "message": "‫נטרל פעולה‬",
+    "description": ""
+  }
+}

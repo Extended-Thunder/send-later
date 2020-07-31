@@ -1,8 +1,0 @@
-<!-- -*- coding: utf-8 -*- -->
-<!ENTITY sendlater.ask.message3 "Teşekkürler!">
-<!ENTITY sendlater.ask.donate.accesskey "b">
-<!ENTITY sendlater.ask.donate.label "Şimdi bağış yapın">
-<!ENTITY sendlater.ask.remind.accesskey "h">
-<!ENTITY sendlater.ask.remind.label "Bana sonra hatırlat">
-<!ENTITY sendlater.ask.already.label "Zaten bağış yaptım">
-<!ENTITY sendlater.ask.stop.label "Sormayı bırak">

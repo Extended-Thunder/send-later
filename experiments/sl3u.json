@@ -1,0 +1,160 @@
+[
+  {
+    "namespace": "SL3U",
+    "functions": [
+      {
+        "name":"isOffline",
+        "type":"function",
+        "async":true,
+        "parameters":[]
+      },
+      {
+        "name":"alert",
+        "type":"function",
+        "async":true,
+        "parameters":[
+          {
+            "name":"title",
+            "type":"string"
+          },
+          {
+            "name":"text",
+            "type":"string"
+          }
+        ]
+      },
+      {
+        "name":"call",
+        "type":"function",
+        "async":true,
+        "parameters":[
+          {
+            "name":"name",
+            "type":"string"
+          },
+          {
+            "name":"body",
+            "type":"string"
+          },
+          {
+            "name":"prev",
+            "type":"integer"
+          },
+          {
+            "name":"argstring",
+            "type":"string"
+          }
+        ]
+      },
+      {
+        "name": "SaveAsDraft",
+        "type": "function",
+        "async": true,
+        "description": "",
+        "parameters": []
+      },
+      {
+        "name": "preSendCheck",
+        "type": "function",
+        "async": true,
+        "description": "Check empty subject etc",
+        "parameters": []
+      },
+      {
+        "name": "SendNow",
+        "type": "function",
+        "async": true,
+        "description": "Initiate send from current composition window",
+        "parameters": []
+      },
+      {
+        "name": "builtInSendLater",
+        "type": "function",
+        "async": true,
+        "description": "Initiate send from current composition window using thunderbirds builtin send later funcion.",
+        "parameters": []
+      },
+      {
+        "name": "sendRaw",
+        "type": "function",
+        "async": true,
+        "description": "Sends email from raw message content",
+        "parameters": [
+          {
+            "name": "content",
+            "type": "string",
+            "description": "Contents of message to send"
+          }
+        ]
+      },
+      {
+        "name":"setHeader",
+        "type":"function",
+        "async":true,
+        "description":"Add a custom header to the current compose message",
+        "parameters": [
+          {
+            "name":"name",
+            "type":"string",
+            "description":"Name of the header to set"
+          },
+          {
+            "name":"value",
+            "type":"string",
+            "description":"Value of custom header"
+          }
+        ]
+      },
+      {
+        "name":"editingMessage",
+        "type":"function",
+        "async":true,
+        "description":"Fetch value of message header from window with id",
+        "parameters": [
+          {
+            "name":"msgId",
+            "type":"string",
+            "description":"uuid to find"
+          }
+        ]
+      },
+      {
+        "name": "getLegacyPref",
+        "type": "function",
+        "description": "Gets a preference.",
+        "async": true,
+        "parameters": [
+          {
+            "name": "name",
+            "type": "string",
+            "description": "The preference name"
+          },
+          {
+            "name": "dtype",
+            "type": "string",
+            "description": "Data type of the preference"
+          },
+          {
+            "name": "def",
+            "type": "string",
+            "description": "Fallback value if nothing is returned."
+          }
+        ]
+      },
+      {
+        "name":"bindKeyCodes",
+        "type":"function",
+        "description":"Bind Alt+Shift+Enter shortcut in composition windows",
+        "parameters":[]
+      }
+    ],
+    "events": [
+      {
+        "name": "onKeyCode",
+        "type": "function",
+        "description": "Fires from message compose windows on Alt+Shift+Enter",
+        "parameters": []
+      }
+    ]
+  }
+]
