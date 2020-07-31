@@ -128,7 +128,7 @@ const SLPopup = {
         let argStr = inputs["recur-function-args"];
         const schedule = await SLPopup.evaluateUfunc(funcName, argStr);
         schedule.recur.cancelOnReply = inputs[`recur-cancelonreply`];
-        if (SLStatic.compareTimes(schedule.sendAt, '<', new Date(), true)) {
+        if (SLStatic.compareDateTimes(schedule.sendAt, '<', new Date(), true)) {
           return { err: browser.i18n.getMessage("errorDateInPast") };
         }
         return schedule;
@@ -144,7 +144,7 @@ const SLPopup = {
       return { err: browser.i18n.getMessage("entervalid") };
     }
     const sendAt = SLStatic.parseDateTime(sendAtDate, sendAtTime);
-    if (SLStatic.compareTimes(sendAt, '<', new Date(), true)) {
+    if (SLStatic.compareDateTimes(sendAt, '<', new Date(), true)) {
       return { err: browser.i18n.getMessage("errorDateInPast") };
     }
 
