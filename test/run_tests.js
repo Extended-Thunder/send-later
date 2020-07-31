@@ -1,0 +1,49 @@
+global.SLTests = {
+  UnitTests: [],
+
+  AddTest: function(test_name, test_function, test_args) {
+    SLTests.UnitTests.push([test_name, test_function, test_args]);
+  },
+
+  RunTests: async function(event, names) {
+    for (const params of SLTests.UnitTests) {
+      const name = params[0];
+      const func = params[1];
+      const args = params[2];
+
+      if (names && names.indexOf(name) === -1) {
+        continue;
+      }
+
+      await Promise.resolve(func.apply(null, args)).then(result => {
+        if (result === true) {
+          console.info(`+ TEST ${name} PASS`);
+        } else if (result === false) {
+          console.warn(`- TEST ${name} FAIL`);
+        } else {
+          console.warn(`- TEST ${name} FAIL ${result}`);
+        }
+      }).catch(ex => {
+        console.warn(`- TEST ${name} EXCEPTION: ${ex.message}`);
+      });
+
+    }
+  }
+}
+
+require('../utils/static.js');
+
+const testPaths = [
+  "./adjustdaterestrictionstests.js",
+  "./formatrecurtests.js",
+  "./nextrecurtests.js",
+  "./parserecurtests.js",
+  "./miscellaneoustests.js"
+];
+
+for (let i=0; i<testPaths.length; i++) {
+  const tests = require(testPaths[i]);
+  tests.init();
+}
+
+SLTests.RunTests().catch(console.error);

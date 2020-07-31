@@ -1,0 +1,774 @@
+{
+  "extensionName": {
+    "message": "Ուղարկել ավելի ուշ",
+    "description": "The name of the add-on, displayed in various places."
+  },
+  "extensionDescription": {
+    "message": "«Ուղարկել ավելի ուշ»-ը ապահովում է նամակները ավելի ուշ ուղարկելու հնարավորություն",
+    "description": "A short description of the add-on."
+  },
+  "advancedOptionsTitle": {
+    "message": "Լրացուցիչ",
+    "description": ""
+  },
+  "altBindingPrefLabel": {
+    "message": "Կապել Alt-Shift-Enter-ը՝ Ctrl-Shift-Enter-ի փոխարեն",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel1": {
+    "message": "Չուղարկել նամակները, որոնք՝",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel2": {
+    "message": "րոպե ուշ",
+    "description": ""
+  },
+  "cancelLabel": {
+    "message": "Չեղարկել",
+    "description": ""
+  },
+  "checkTimePrefLabel1": {
+    "message": "Ստուգել ամեն՝",
+    "description": ""
+  },
+  "checkTimePrefLabel2": {
+    "message": "րոպե",
+    "description": ""
+  },
+  "clearDefaultsLabel": {
+    "message": "Մաքրել սկզբնադիրները",
+    "description": ""
+  },
+  "contactAuthorLabel": {
+    "message": "Կապնվեք հեղինակի հետ",
+    "description": ""
+  },
+  "enforceRestrictionsPrefLabel": {
+    "message": "Ապահովել ժամանակը և օրվա սահմանափակումները՝ ուղարկելու ժամանակ",
+    "description": ""
+  },
+  "generalOptionsTitle": {
+    "message": "Գլխավորը",
+    "description": ""
+  },
+  "logConsoleLevelLabel": {
+    "message": "Console մատյանի աստիճանը՝",
+    "description": ""
+  },
+  "logDumpLevelLabel": {
+    "message": "Dump մատյանի աստիճանը՝",
+    "description": ""
+  },
+  "logLevelAll": {
+    "message": "All",
+    "description": ""
+  },
+  "logLevelDebug": {
+    "message": "Debug",
+    "description": ""
+  },
+  "logLevelError": {
+    "message": "Error",
+    "description": ""
+  },
+  "logLevelFatal": {
+    "message": "Fatal",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "Info",
+    "description": ""
+  },
+  "logLevelTrace": {
+    "message": "Trace",
+    "description": ""
+  },
+  "logLevelWarn": {
+    "message": "Warn",
+    "description": ""
+  },
+  "markReadPrefLabel": {
+    "message": "Նշել հերթագրված սևագրերը որպես ընթերցված",
+    "description": ""
+  },
+  "quickOptionsLabel1Label": {
+    "message": "Պիտակ 1",
+    "description": ""
+  },
+  "quickOptionsLabel2Label": {
+    "message": "Պիտակ 2",
+    "description": ""
+  },
+  "quickOptionsLabel3Label": {
+    "message": "Պիտակ 3",
+    "description": ""
+  },
+  "quickOptionsValueLabel": {
+    "message": "Րոպե.",
+    "description": ""
+  },
+  "recurAnnuallyLabel": {
+    "message": "տարեկան",
+    "description": ""
+  },
+  "recurDailyLabel": {
+    "message": "օրական",
+    "description": ""
+  },
+  "recurFunctionLabel": {
+    "message": "գործառույթ.",
+    "description": ""
+  },
+  "recurLabel": {
+    "message": "Վերադառնալ՝",
+    "description": ""
+  },
+  "recurMinutelyLabel": {
+    "message": "րոպե",
+    "description": ""
+  },
+  "recurMonthlyLabel": {
+    "message": "ամսական",
+    "description": ""
+  },
+  "recurOnceLabel": {
+    "message": "ոչ մի",
+    "description": ""
+  },
+  "recurWeeklyLabel": {
+    "message": "շաբաթական",
+    "description": ""
+  },
+  "resetPrefsButton": {
+    "message": "Reset Preferences",
+    "description": ""
+  },
+  "saveDefaultsLabel": {
+    "message": "Պահպանել որպես սկզբնադիր",
+    "description": ""
+  },
+  "sendAtDefaultLabel": {
+    "message": "Նշեք ամսաթիվը և ժամանակը: Կարող եք նշել նաև “հաջորդ Հինգշաբթի 3:00pm”",
+    "description": "Displayed in place of send at time before user makes selections"
+  },
+  "sendAtLabel": {
+    "message": "Ուղարկել՝",
+    "description": ""
+  },
+  "sendBtwnLabel": {
+    "message": "Միջև",
+    "description": ""
+  },
+  "sendButtonPrefLabel": {
+    "message": "«Ուղարկելը»-ը «Ուղարկել ավելի ուշ»-ն է",
+    "description": ""
+  },
+  "sendDelayPrefLabel1": {
+    "message": "\"Send\" delays messages by",
+    "description": ""
+  },
+  "sendDelayPrefLabel2": {
+    "message": "minutes",
+    "description": ""
+  },
+  "sendSundayLabel": {
+    "message": "Կիրակի",
+    "description": ""
+  },
+  "sendMondayLabel": {
+    "message": "Երկուշաբթի",
+    "description": ""
+  },
+  "sendTuesdayLabel": {
+    "message": "Երեքշաբթի",
+    "description": ""
+  },
+  "sendWednesdayLabel": {
+    "message": "Չորեքշաբթի",
+    "description": ""
+  },
+  "sendThursdayLabel": {
+    "message": "Հինգշաբթի",
+    "description": ""
+  },
+  "sendFridayLabel": {
+    "message": "Ուրբաթ",
+    "description": ""
+  },
+  "sendSaturdayLabel": {
+    "message": "Շաբաթ",
+    "description": ""
+  },
+  "sendNowLabel": {
+    "message": "Ուղարկել հիմա",
+    "description": ""
+  },
+  "sendOnlyOnLabel": {
+    "message": "Միայն՝",
+    "description": ""
+  },
+  "sendUnsentMessagesPrefLabel": {
+    "message": "Սկսել չուղարկված նամակների առաքումը Ելքայինից",
+    "description": ""
+  },
+  "showColumnPrefLabel": {
+    "message": "Ցուցադրել «Ուղարկել ավելի ուշ»-ի սյունը",
+    "description": ""
+  },
+  "showHeaderPrefLabel": {
+    "message": "Ցուցադրել «Ուղարկել ավելի ուշ»-ի գլխագիրը",
+    "description": ""
+  },
+  "showStatusPrefLabel": {
+    "message": "Ցուցադրել «Ուղարկել ավելի ուշ»-ը Վիճակի տողում",
+    "description": ""
+  },
+  "userGuideLabel": {
+    "message": "Օգտվողի ուղեցույցը",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.label": {
+    "message": "Պահել Ելքայինում",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.accesskey": {
+    "message": "Պ",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "Ուղարկելը որոշակի ժամանակում պլանավորելու փոխարեն՝ տեղափոխեք նամակը Ելքային թղթապանակ՝ հաջորդ անգամ չուղարկած նամակները ուղարկելիս այն ևս ուղարկելու համար",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.accesskey": {
+    "message": "Ո",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.tooltip": {
+    "message": "Նամակը ուղարկել անմիջապես՝ շրջանցելով «Ուղարկել ավելի ուշ»-ն",
+    "description": ""
+  },
+  "sendlater.prompt.close.accesskey": {
+    "message": "Չ",
+    "description": ""
+  },
+  "sendlater.prompt.close.tooltip": {
+    "message": "Վերադառնալ խմբագրմանը",
+    "description": ""
+  },
+  "sendlater.prompt.title.label": {
+    "message": "Ուղարկել նամակը ավելի ուշ",
+    "description": ""
+  },
+  "sendlater.prompt.or.label": {
+    "message": "կամ՝",
+    "description": ""
+  },
+  "sendlater.prompt.textbox.emptytext": {
+    "message": "օր.՝ “3:00pm Հինգշաբթի”, “12/31/2012 15:27”",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.label": {
+    "message": "Ուղարկել նշված ժամանակ",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Պահպանել նամակը Սևագրում՝ հետո նշված ժամանակում այն ուղարկելու համար",
+    "description": ""
+  },
+  "sendlater.prompt.functionargs.label": {
+    "message": "Գործառույթի արգումենտ",
+    "description": ""
+  },
+  "sendlater.prompt.calculate.label": {
+    "message": "Հաշվել",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.label": {
+    "message": "Ուղարկել ավելի ուշ",
+    "description": ""
+  },
+  "sendlater.toolbar.textbox.emptytext": {
+    "message": "ուղարկելու ժամանակը",
+    "description": ""
+  },
+  "sendlater.prompt.every.label": {
+    "message": "Ամեն՝",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "15 րոպե անց",
+    "description": ""
+  },
+  "sendlater.button2.label": {
+    "message": "30 րոպե անց",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "2 ժամ անց",
+    "description": ""
+  },
+  "sendlater3header.label": {
+    "message": "Ուղարկել ավելի ուշ",
+    "description": ""
+  },
+  "prefwindow.title": {
+    "message": "«Ուղարկել ավելի ուշ»-ի կարգավորումները",
+    "description": ""
+  },
+  "pane1.title": {
+    "message": "«Ուղարկել ավելի ուշ»-ի կարգավորումները",
+    "description": ""
+  },
+  "checktimepref.tooltip": {
+    "message": "Դադարը րոպեներով՝ ստուգելու համար սևագրերի այն նամակները, որոնց ուղարկելու ժամանակ եկել է: Նվազեցրեք դադարը, եթե սևագրերը երբեմն չեն ուղարկվում ժամանակին կամ ոչ բոլոր պլանավորված նամակներն են ցուցադրվում",
+    "description": ""
+  },
+  "quickoptionname.label": {
+    "message": "Կոճակի անունը.",
+    "description": ""
+  },
+  "showsendlatercolumn.tooltip": {
+    "message": "Անկախ ամեն ինչից ցուցադրել «Ուղարկել ավելի ուշ»-ի սյունը՝ սևագրերը դիտելիս",
+    "description": ""
+  },
+  "showsendlaterheader.tooltip": {
+    "message": "Անկախ ամեն ինչից ցուցադրել “X-Send-Later-At” գլխագիրը, այսինքն՝ ժամանակը, երբ սևագիրը պետք է ուղարկվի, գլխագրում՝ նամակը դիտելիս",
+    "description": ""
+  },
+  "showsendlaterprogress.caption": {
+    "message": "Ցուցադրել խորապատկերի ընթացքը Վիճակի տողում",
+    "description": ""
+  },
+  "showsendlaterunsentmessages.tooltip": {
+    "message": "Եթե ապանշեք այս ընտրանքը, ապա «Ուղարկել ավելի ուշ»-ը ամբողջությամբ չի առաքի նամակները, այլ դրանք կդնի Ելքայինում: Մի նշեք այս ընտրանքը, եթե օգտագործում եք նմանատիպ այլ հավելումներ",
+    "description": ""
+  },
+  "sendlatersendbutton.tooltip": {
+    "message": "Եթե միացված է՝ “Ուղարկել” հրամանը (և կոճակը և Ctrl-Enter սեղմելիս) կնշանակի նույնը՝ “Ուղարկել ավելի ուշ”",
+    "description": ""
+  },
+  "contactauthor.tooltip": {
+    "message": "Նամակ ուղարկել «Ուղարկել ավելի ուշ»-ի հեղինակին",
+    "description": ""
+  },
+  "helplink.tooltip": {
+    "message": "«Ուղարկել ավելի ուշ»-ի թղթաբանությունը",
+    "description": ""
+  },
+  "releasenotes.value": {
+    "message": "Թողարկման նշումներ",
+    "description": ""
+  },
+  "donatelink.value": {
+    "message": "Նվիրատվութուն",
+    "description": ""
+  },
+  "editorlink.value": {
+    "message": "Փոփոխական գործառույթի խմբագիր",
+    "description": ""
+  },
+  "enforcerestrictions.tooltip": {
+    "message": "Եթե նամակը պլանավորված ժամանակ չի ուղարկվել կամ օրվա սահմանափակման պատճառով, ապա ուշացնել նամակի ուղարկումը՝ մինչև համապատասխանի ժամանակի և օրվա սահմանափակումներին",
+    "description": ""
+  },
+  "blocklatemessages.tooltip": {
+    "message": "Չուղարկել պլանավորված նամակները, որոնք ուշացվել են",
+    "description": ""
+  },
+  "editorbutton": {
+    "message": "Բացել փոփոխական գործառույթի խմբագիրը…",
+    "description": ""
+  },
+  "editortip": {
+    "message": "Բացել JavaScript գործառույթներ ստեղծելու և խմբագրելու պատուհանը",
+    "description": ""
+  },
+  "sendlater.ask.title.label": {
+    "message": "Աջակցեք «Ուղարկել ավելի ուշ»-ին",
+    "description": ""
+  },
+  "sendlater.ask.message1": {
+    "message": "Բավական երկար ժամանակ է ծախսվել այս հավելման ստեղծման, սպասարկման և աջակցման համար",
+    "description": ""
+  },
+  "sendlater.ask.message2": {
+    "message": "Խնդրում ենք կատարել փոքրիկ նվիրատվություն՝ աջակցելու ծրագրի զարգացմանը",
+    "description": ""
+  },
+  "sendlater.ask.message3": {
+    "message": "Շնորհակալություն",
+    "description": ""
+  },
+  "sendlater.ask.donate.accesskey": {
+    "message": "Ն",
+    "description": ""
+  },
+  "sendlater.ask.donate.label": {
+    "message": "Նվիրատվություն",
+    "description": ""
+  },
+  "sendlater.ask.remind.accesskey": {
+    "message": "ի",
+    "description": ""
+  },
+  "sendlater.ask.remind.label": {
+    "message": "Հիշեցնել ավելի ուշ",
+    "description": ""
+  },
+  "sendlater.ask.already.accesskey": {
+    "message": "Ե",
+    "description": ""
+  },
+  "sendlater.ask.already.label": {
+    "message": "Ես արդեն օգնել եմ",
+    "description": ""
+  },
+  "sendlater.ask.stop.accesskey": {
+    "message": "Չ",
+    "description": ""
+  },
+  "sendlater.ask.stop.label": {
+    "message": "Չհարցնել",
+    "description": ""
+  },
+  "sendaround": {
+    "message": "Ուղարկել մոտ.՝",
+    "description": ""
+  },
+  "entervalid": {
+    "message": "Նշեք ճիշտ ամսաթիվ",
+    "description": ""
+  },
+  "January": {
+    "message": "Հունվար",
+    "description": ""
+  },
+  "February": {
+    "message": "Փետրվար",
+    "description": ""
+  },
+  "March": {
+    "message": "Մարտ",
+    "description": ""
+  },
+  "April": {
+    "message": "Ապրիլ",
+    "description": ""
+  },
+  "May": {
+    "message": "Մայիս",
+    "description": ""
+  },
+  "June": {
+    "message": "Հունիս",
+    "description": ""
+  },
+  "July": {
+    "message": "Հուլիս",
+    "description": ""
+  },
+  "August": {
+    "message": "Օգոստոս",
+    "description": ""
+  },
+  "September": {
+    "message": "Սեպտեմբեր",
+    "description": ""
+  },
+  "October": {
+    "message": "Հոկտեմբեր",
+    "description": ""
+  },
+  "November": {
+    "message": "Նոյեմբեր",
+    "description": ""
+  },
+  "December": {
+    "message": "Դեկտեմբեր",
+    "description": ""
+  },
+  "OptionShortcutAlertTitle": {
+    "message": "Պիտակի նշանկ-ը սխալ է",
+    "description": ""
+  },
+  "OptionShortcutAlertText": {
+    "message": "$1 պիտակը ունի սխալ նշան-ուն՝ “$2”",
+    "description": ""
+  },
+  "SendingUnsentError": {
+    "message": "«Ուղարկել ավելի ուշ». Սխալ՝ չուղարկված նամակները ուղարկելիս: Հնարավոր է Ելքայինը վնասված է և պլանավորված նամակները չեն կարող ուղարկվել: Մանրամասները՝ https://blog.kamens.us/send-later/#outbox",
+    "description": ""
+  },
+  "CopyUnsentError": {
+    "message": "Ուղարկել ավելի ուշ. Սխալ՝ պլանավորված նամակը առաքման համար Ելքայինում պատճենելիս (կոդը՝ $1): Ուղարկել ավելի ուշ-ը անջատվել է: Մանրամասները՝ https://blog.kamens.us/send-later/#outbox-copy-failure",
+    "description": ""
+  },
+  "CopyRecurError": {
+    "message": "Ուղարկել ավելի ուշ. Սխալ՝ վերադարձված նամակը Սևագիր թղթապանակում պատճենելիս (կոդը՝ $1): Ուղարկել ավելի ուշ-ը անջատվել է: Մանրամասները՝ https://blog.kamens.us/send-later/#drafts-copy-failure",
+    "description": ""
+  },
+  "CorruptFolderError": {
+    "message": "«Ուղարկել ավելի ուշ». $1 թղթապանակը հնարավոր է վնասված է: Բացեք նրա հատկություները և վերականգնեք: Մանրամասնեը՝ https://blog.kamens.us/send-later/#corrupt-drafts-error",
+    "description": ""
+  },
+  "MessageResendError": {
+    "message": "Ուղարկել ավելի ուշ. Ուղարկել հետո. Կրկի՞ն ուղարկել արդեն ուղարկված նամակները: Ձեր $1 Ելքային կամ Սևագրեր թղթապանակը հնարավոր է վնասված է: Ուղղեք այն ինչպես նկարագրված է https://blog.kamens.us/send-later/#corrupt-outbox-ում",
+    "description": ""
+  },
+  "minutely": {
+    "message": "յուրք. րոպե",
+    "description": ""
+  },
+  "daily": {
+    "message": "օրական",
+    "description": ""
+  },
+  "weekly": {
+    "message": "շաբաթական",
+    "description": ""
+  },
+  "monthly": {
+    "message": "ամսական",
+    "description": ""
+  },
+  "yearly": {
+    "message": "տարեկան",
+    "description": ""
+  },
+  "plural_minutely": {
+    "message": "րոպե",
+    "description": ""
+  },
+  "plural_daily": {
+    "message": "օր",
+    "description": ""
+  },
+  "plural_weekly": {
+    "message": "շաբաթ",
+    "description": ""
+  },
+  "plural_monthly": {
+    "message": "ամիս",
+    "description": ""
+  },
+  "plural_yearly": {
+    "message": "տարի",
+    "description": ""
+  },
+  "every_minutely": {
+    "message": "յուրք. $1 րոպե",
+    "description": ""
+  },
+  "every_daily": {
+    "message": "ամեն $1 օր",
+    "description": ""
+  },
+  "every_weekly": {
+    "message": "ամեն $1 շաբաթ",
+    "description": ""
+  },
+  "every_monthly": {
+    "message": "ամեն $1 ամիս",
+    "description": ""
+  },
+  "every_yearly": {
+    "message": "ամեն $1 տարի",
+    "description": ""
+  },
+  "everyempty": {
+    "message": "ամսվա շաբաթին",
+    "description": ""
+  },
+  "everymonthly": {
+    "message": "$1 $2 ամսվա",
+    "description": ""
+  },
+  "everymonthly_day0": {
+    "message": "Կիրակի",
+    "description": ""
+  },
+  "everymonthly_day1": {
+    "message": "Երկուշաբթի",
+    "description": ""
+  },
+  "everymonthly_day2": {
+    "message": "Երեքշաբթի",
+    "description": ""
+  },
+  "everymonthly_day3": {
+    "message": "Չորեքշաբթի",
+    "description": ""
+  },
+  "everymonthly_day4": {
+    "message": "Հինգշաբթի",
+    "description": ""
+  },
+  "everymonthly_day5": {
+    "message": "Ուրբաթ",
+    "description": ""
+  },
+  "everymonthly_day6": {
+    "message": "Շաբաթ",
+    "description": ""
+  },
+  "everymonthly_short": {
+    "message": "$1 $2",
+    "description": ""
+  },
+  "everymonthly_short_day0": {
+    "message": "Կիրակի",
+    "description": ""
+  },
+  "everymonthly_short_day1": {
+    "message": "Երկուշաբթի",
+    "description": ""
+  },
+  "everymonthly_short_day2": {
+    "message": "Երեքշաբթի",
+    "description": ""
+  },
+  "everymonthly_short_day3": {
+    "message": "Չորեքշաբթի",
+    "description": ""
+  },
+  "everymonthly_short_day4": {
+    "message": "Հինգշաբթի",
+    "description": ""
+  },
+  "everymonthly_short_day5": {
+    "message": "Ուրբաթ",
+    "description": ""
+  },
+  "everymonthly_short_day6": {
+    "message": "Շաբաթ",
+    "description": ""
+  },
+  "betw_times": {
+    "message": "$1-ից $2",
+    "description": ""
+  },
+  "only_on_days": {
+    "message": "$1-ին",
+    "description": ""
+  },
+  "only_on_day0": {
+    "message": "Կիրակի",
+    "description": ""
+  },
+  "only_on_day1": {
+    "message": "Երկուշաբթի",
+    "description": ""
+  },
+  "only_on_day2": {
+    "message": "Երեքշաբթի",
+    "description": ""
+  },
+  "only_on_day3": {
+    "message": "Չորեքշաբթի",
+    "description": ""
+  },
+  "only_on_day4": {
+    "message": "Հինգշաբթի",
+    "description": ""
+  },
+  "only_on_day5": {
+    "message": "Ուրբաթ",
+    "description": ""
+  },
+  "only_on_day6": {
+    "message": "Շաբաթ",
+    "description": ""
+  },
+  "ord1": {
+    "message": "1-ին",
+    "description": ""
+  },
+  "ord2": {
+    "message": "2-րդ",
+    "description": ""
+  },
+  "ord3": {
+    "message": "3-րդ",
+    "description": ""
+  },
+  "ord4": {
+    "message": "4-րդ",
+    "description": ""
+  },
+  "ord5": {
+    "message": "5-րդ",
+    "description": ""
+  },
+  "draftSaveWarning": {
+    "message": "ԶԳՈՒՇԱՑՈՒՄ. Կանխելու համար նամակի ուղարկումը Ուղարկել ավելի ուշ-ով, երբ Դուք այն խմբագրում եք՝ առաքման ժամանակը չեղարկվել է: Կրկին պլանավորեք նամակի ուղարկումը՝ խմբագրումը ավարտելուց հետո",
+    "description": ""
+  },
+  "AreYouSure": {
+    "message": "Դուք համոզված էք?",
+    "description": ""
+  },
+  "OutboxConfirmMessage": {
+    "message": "Սեղմելով “Դնել ելքայինում”՝ նամակը միանգամից կտեղափոխվի Ելքային թղթապանակ: Այն ՉԻ պլանավորի ուղարկելու նամակը որոշակի ժամի: Դրա համար սեղմեք “Ուղարկել հետո” կոճակը՝ կանաչ դաշտում նշելով ոիղարկելու ժամանակը: Այժմ դնե՞լ նամակը Ելքայինում",
+    "description": ""
+  },
+  "SendNowConfirmMessage": {
+    "message": "Սեղմելով «Ուղարկել հիմա»՝ նամակը անմիջապես կուղարկվի: Այն ՉԻ պլանավորում նամակ ուղարկելը: Դրա համար սեղմեք «Ուղարկել մոտավորապես» կոճակը: Ուղարկե՞լ հիմա",
+    "description": ""
+  },
+  "ConfirmAgain": {
+    "message": "Ցույց տալ այս զգուշացումը հաջորդ անգամ",
+    "description": ""
+  },
+  "ScheduledMessagesWarningTitle": {
+    "message": "Պլանավորված նամակի զգուշացում",
+    "description": ""
+  },
+  "EnigmailIncompatTitle": {
+    "message": "Ուղարկել ավելի ուշ / Enigmail համատեղության խնդիր",
+    "description": ""
+  },
+  "EnigmailIncompatText": {
+    "message": "Enigmail-ի տարբերակը անհամատեղելի է «Ուղարկել ավելի ուշ»-ի հետ, ուստի նամակների պլանավորումը անջատված է: Օգնության համար գրեք մեզ՝ jik@kamens.us",
+    "description": ""
+  },
+  "TimeMismatchConfirmTitle": {
+    "message": "Ուղարկելու ժամանակը / սահմանափակման անհամապատասխանություն",
+    "description": ""
+  },
+  "TimeMismatchConfirmBody": {
+    "message": "Վերջնաժամանակը, որ մուտքագրել եք՝ $1, չի տեղավորվում հակորոշված ժամանակի սահմանափակումներում: Սեղմեք Չեղարկել՝ խմբագրելու ուղարկելու ժամանակը կամ Լավ՝ այն $2-ին ինքնաբար կարգաբերեու համար",
+    "description": ""
+  },
+  "endTimeWarningTitle": {
+    "message": "Նամակի ժամանակի անվավեր սահմանափակում",
+    "description": ""
+  },
+  "endTimeWarningBody": {
+    "message": "Երբ հատկորոշում եք նամակի ժամանակի սահմանափակում՝ վերջնաժամանակը չի կարող լինել ավելի վաղ, քան սկսելու ժամանակը: Նշեք ճիշտ սահմանափակում կամ անջատեք այն",
+    "description": ""
+  },
+  "missingDaysWarningTitle": {
+    "message": "Օրվա անվավեր սահմանափակում",
+    "description": ""
+  },
+  "missingDaysWarningBody": {
+    "message": "Դուք նշել եք օրվա սահմանափակում՝ առանց որևէ օր նշելու: Անջատեք օրվա սահմանափակումը կամ հատկորոշեք գոնե մեկ օր",
+    "description": ""
+  },
+  "BlockedLateMessage": {
+    "message": "“$1” վերնարով նամակը $2 Սևագրեր թղթապանակում պլանավորված էր ուղարկել ավելի քան $3 րոպե առաջ, ուստի այն չի ուղարկվի: Դուք պետք է խմբագրեք սևագիրը կամ ուղարկեք այն ինքներդ: Նաև կարող եք անջատել «Չուղարկել ավելի քան # րոպե ուշացրած նամակները» նախապատվությունը, որպեսզի ուշացրած նամակաները ուղարկվեն",
+    "description": ""
+  },
+  "DisabledMessage": {
+    "message": "ԱՆՋԱՏՎԱԾ",
+    "description": ""
+  }
+}

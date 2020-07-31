@@ -1,9 +1,0 @@
-<!-- -*- coding: utf-8 -*- -->
-<!ENTITY windowTitle "BRÅDSKANDE: Skicka Senare kommer snart att upphöra, om du inte stödjer det!">
-<!ENTITY pitchMessage "JAG BEHÖVER DIN HJÄLP!
-Skicka Senare och mina andra tillägg har varit gratis i många år, men det är inte längre hållbart. Det tog en hel del tid och ansträngning att uppdatera dem för Thunderbird 68, och ännu mer arbete kommer att behövas för Thunderbird 78, som kommer att släppas senare i år. Tyvärr kan jag inte fortsätta göra det om inte tillräckligt många användare förbinder sig i förväg att betala lite för det. 
-Klicka nedan för att läsa mer och stödja Kickstarter-kampanjen. Som en bonus kan du som supportar vår kampanj köpa licenser med en väl tilltagen rabatt.
-Tack för ditt stöd!">
-<!ENTITY pledgeLabel "Donera nu!">
-<!ENTITY remindLabel "Påminn mig senare">
-<!ENTITY alreadyLabel "Jag har redan donerat">

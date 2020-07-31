@@ -1,0 +1,1094 @@
+{
+  "extensionName": {
+    "message": "Send Later",
+    "description": "The name of the add-on, displayed in various places."
+  },
+  "extensionDescription": {
+    "message": "以后发送用来预定发送消息的时间并延期发送",
+    "description": "A short description of the add-on."
+  },
+  "advancedOptionsTitle": {
+    "message": "高级",
+    "description": ""
+  },
+  "altBindingPrefLabel": {
+    "message": "绑定快捷键 Alt-Shift-Enter 代替 Ctrl-Shift-Enter",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel1": {
+    "message": "如果已经比预定时间晚了",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel2": {
+    "message": "分钟则不要发送消息",
+    "description": ""
+  },
+  "cancelLabel": {
+    "message": "取消",
+    "description": ""
+  },
+  "checkTimePrefLabel1": {
+    "message": "检查间隔：",
+    "description": ""
+  },
+  "checkTimePrefLabel2": {
+    "message": "分钟",
+    "description": ""
+  },
+  "clearDefaultsLabel": {
+    "message": "清除默认",
+    "description": ""
+  },
+  "contactAuthorLabel": {
+    "message": "联系作者",
+    "description": ""
+  },
+  "enforceRestrictionsPrefLabel": {
+    "message": "强制执行发送的时间和日期限制",
+    "description": ""
+  },
+  "generalOptionsTitle": {
+    "message": "常规",
+    "description": ""
+  },
+  "logConsoleLevelLabel": {
+    "message": "控制台日志级别：",
+    "description": ""
+  },
+  "logDumpLevelLabel": {
+    "message": "转储日志级别：",
+    "description": ""
+  },
+  "logLevelAll": {
+    "message": "所有",
+    "description": ""
+  },
+  "logLevelDebug": {
+    "message": "调试",
+    "description": ""
+  },
+  "logLevelError": {
+    "message": "错误",
+    "description": ""
+  },
+  "logLevelFatal": {
+    "message": "严重的",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "信息",
+    "description": ""
+  },
+  "logLevelTrace": {
+    "message": "追查",
+    "description": ""
+  },
+  "logLevelWarn": {
+    "message": "警告",
+    "description": ""
+  },
+  "markReadPrefLabel": {
+    "message": "标记日程草稿为已读",
+    "description": ""
+  },
+  "quickOptionsLabel1Label": {
+    "message": "快捷按钮 1",
+    "description": ""
+  },
+  "quickOptionsLabel2Label": {
+    "message": "快捷按钮 2",
+    "description": ""
+  },
+  "quickOptionsLabel3Label": {
+    "message": "快捷按钮 3",
+    "description": ""
+  },
+  "quickOptionsValueLabel": {
+    "message": "分钟：",
+    "description": ""
+  },
+  "recurAnnuallyLabel": {
+    "message": "每年",
+    "description": ""
+  },
+  "recurDailyLabel": {
+    "message": "每天",
+    "description": ""
+  },
+  "recurFunctionLabel": {
+    "message": "函数：",
+    "description": ""
+  },
+  "recurLabel": {
+    "message": "周期：",
+    "description": ""
+  },
+  "recurMinutelyLabel": {
+    "message": "每分钟",
+    "description": ""
+  },
+  "recurMonthlyLabel": {
+    "message": "每月",
+    "description": ""
+  },
+  "recurOnceLabel": {
+    "message": "无",
+    "description": ""
+  },
+  "recurWeeklyLabel": {
+    "message": "每周",
+    "description": ""
+  },
+  "resetPrefsButton": {
+    "message": "Reset Preferences",
+    "description": ""
+  },
+  "saveDefaultsLabel": {
+    "message": "将这些数值保存为默认",
+    "description": ""
+  },
+  "sendAtDefaultLabel": {
+    "message": "请输入日期和时间，格式任意。像“下星期六 下午3:00”这种时间格式也可以被支持。",
+    "description": "Displayed in place of send at time before user makes selections"
+  },
+  "sendAtLabel": {
+    "message": "发送时间：",
+    "description": ""
+  },
+  "sendBtwnLabel": {
+    "message": "时间段",
+    "description": ""
+  },
+  "sendButtonPrefLabel": {
+    "message": "“发送”变成“延期发送”",
+    "description": ""
+  },
+  "sendDelayPrefLabel1": {
+    "message": "预设所有讯息自动延迟：",
+    "description": ""
+  },
+  "sendDelayPrefLabel2": {
+    "message": "分钟",
+    "description": ""
+  },
+  "sendSundayLabel": {
+    "message": "星期日",
+    "description": ""
+  },
+  "sendMondayLabel": {
+    "message": "星期一",
+    "description": ""
+  },
+  "sendTuesdayLabel": {
+    "message": "星期二",
+    "description": ""
+  },
+  "sendWednesdayLabel": {
+    "message": "星期三",
+    "description": ""
+  },
+  "sendThursdayLabel": {
+    "message": "星期四",
+    "description": ""
+  },
+  "sendFridayLabel": {
+    "message": "星期五",
+    "description": ""
+  },
+  "sendSaturdayLabel": {
+    "message": "星期六",
+    "description": ""
+  },
+  "sendNowLabel": {
+    "message": "立即发送",
+    "description": ""
+  },
+  "sendOnlyOnLabel": {
+    "message": "指定时间",
+    "description": ""
+  },
+  "sendUnsentMessagesPrefLabel": {
+    "message": "发送发件箱中的未发送消息",
+    "description": ""
+  },
+  "showColumnPrefLabel": {
+    "message": "显示Send Later列",
+    "description": ""
+  },
+  "showHeaderPrefLabel": {
+    "message": "显示Send Later消息头",
+    "description": ""
+  },
+  "showStatusPrefLabel": {
+    "message": "在状态栏显示 Send Later",
+    "description": ""
+  },
+  "userGuideLabel": {
+    "message": "用户指南",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.label": {
+    "message": "放到发件箱",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.accesskey": {
+    "message": "O",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "不指定发送时间，而是移动消息到发件箱，等待下一次发送未发送消息时发送。",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.accesskey": {
+    "message": "N",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.tooltip": {
+    "message": "立即发送消息，跳过 “Send Later”。",
+    "description": ""
+  },
+  "sendlater.prompt.close.accesskey": {
+    "message": "C",
+    "description": ""
+  },
+  "sendlater.prompt.close.tooltip": {
+    "message": "回到编写消息。",
+    "description": ""
+  },
+  "sendlater.prompt.title.label": {
+    "message": "延期发送这封电子邮件",
+    "description": ""
+  },
+  "sendlater.prompt.or.label": {
+    "message": "或",
+    "description": ""
+  },
+  "sendlater.prompt.textbox.emptytext": {
+    "message": "例如： “2012/12/31 15:27”",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.label": {
+    "message": "延期到指定的时间发送",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "保存消息到草稿箱，在上面设定的时间自动发送。",
+    "description": ""
+  },
+  "sendlater.prompt.functionargs.label": {
+    "message": "函数参数：",
+    "description": ""
+  },
+  "sendlater.prompt.calculate.label": {
+    "message": "计算",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.label": {
+    "message": "延期发送",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.tooltip": {
+    "message": "在文本框中输入想要发送的时间之后激活 Send Later 安排发送消息。此按钮本身没有任何内容；您还需要将文本框或日期/时间选择器(并非在所有 Thunderbird 版本中支持) 添加到工具栏，以使此按钮有用。",
+    "description": ""
+  },
+  "sendlater.toolbar.textbox.emptytext": {
+    "message": "发送时间",
+    "description": ""
+  },
+  "sendlater.prompt.every.label": {
+    "message": "每",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "15 分钟后",
+    "description": ""
+  },
+  "sendlater.button2.label": {
+    "message": "30 分钟后",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "2 小时后",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.label": {
+    "message": "回复后取消重复发送",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "查看已发送的重复电子邮件的所有回复，如果已收到回复，不再发送重复电子邮件，并将它从草稿文件夹中删除。",
+    "description": ""
+  },
+  "sendlater3header.label": {
+    "message": "Send Later",
+    "description": ""
+  },
+  "prefwindow.title": {
+    "message": "Send Later首选项",
+    "description": ""
+  },
+  "pane1.title": {
+    "message": "Send Later首选项",
+    "description": ""
+  },
+  "checktimepref.tooltip": {
+    "message": "检查是否已到草稿的发送时间的时间间隔，单位为分钟。如果草稿没能及时发送，或者状态栏的待发送消息数比实际少时，请增大这个值。",
+    "description": ""
+  },
+  "quickoptionname.label": {
+    "message": "按钮标签：",
+    "description": ""
+  },
+  "showsendlatercolumn.tooltip": {
+    "message": "查看草稿箱时是否显示Send Later列",
+    "description": ""
+  },
+  "showsendlaterheader.tooltip": {
+    "message": "查看消息时是否显示“X-Send-Later-At”头，即草稿预定要发送的时间。",
+    "description": ""
+  },
+  "showsendlaterprogress.caption": {
+    "message": "在状态栏中显示后台进度",
+    "description": ""
+  },
+  "showsendlaterunsentmessages.tooltip": {
+    "message": "如果取消此选项，那么达到消息的预定发送时间时，Send Later 将不会完全发送消息，只会将它们放到发件箱里。如果您使用一些其他的扩展，如 BlunderDelay， 来定期地发送您发件箱里的消息，请取消此选项。注意，勾选此选项后，只要 Send Later 发送消息，发件箱里的所有消息都将被发送出去。",
+    "description": ""
+  },
+  "sendlatersendbutton.tooltip": {
+    "message": "启用此选项时，“发送”命令（按钮或 Ctrl-Enter 快捷键）效果会变为“延期发送”。",
+    "description": ""
+  },
+  "senddelay.tooltip": {
+    "message": "所有讯息自动使用预设延迟发送时间，“传送”命令（按钮或 Ctrl-Enter）均会由 Send Later 延迟发送。",
+    "description": ""
+  },
+  "composewindowhotkeys.tooltip": {
+    "message": "选择使用快速键。完成准备讯息后，可以键入Ctrl-Alt-1，-2或-3快速键来完成编写及使用预设延迟发送时间。",
+    "description": ""
+  },
+  "composewindowhotkeys.caption": {
+    "message": "使用 Ctrl-Alt-1，-2或-3快速键",
+    "description": ""
+  },
+  "contactauthor.tooltip": {
+    "message": "发邮件给Send Later作者。",
+    "description": ""
+  },
+  "helplink.tooltip": {
+    "message": "查看 Send Later 文挡。",
+    "description": ""
+  },
+  "releasenotes.value": {
+    "message": "更新日志",
+    "description": ""
+  },
+  "donatelink.value": {
+    "message": "捐赠",
+    "description": ""
+  },
+  "editorlink.value": {
+    "message": "动态函数编辑器",
+    "description": ""
+  },
+  "enforcerestrictions.tooltip": {
+    "message": "如果预定发送的消息超出了它的时间和日期限制，比如雷鸟在消息预定发送时间没有在运行，那么延迟发送消息直到满足它的发送时间和日期限制。",
+    "description": ""
+  },
+  "blocklatemessages.tooltip": {
+    "message": "如果预定发送的消息被延迟超过了它们预定的时间，比如雷鸟客户端当时没有在运行，则不发送这些消息。",
+    "description": ""
+  },
+  "editorbutton": {
+    "message": "打开动态函数编辑器",
+    "description": ""
+  },
+  "editortip": {
+    "message": "打开一个窗口以创建编辑执行复杂的调度逻辑的JavaScript函数",
+    "description": ""
+  },
+  "loglevel.config": {
+    "message": "配置",
+    "description": ""
+  },
+  "sendlater.ask.title.label": {
+    "message": "支持Send Later",
+    "description": ""
+  },
+  "sendlater.ask.message1": {
+    "message": "此附加组件的开发、维护和支持花费了大量时间。",
+    "description": ""
+  },
+  "sendlater.ask.message2": {
+    "message": "请考虑捐赠，以支持其继续发展。",
+    "description": ""
+  },
+  "sendlater.ask.message3": {
+    "message": "谢谢！",
+    "description": ""
+  },
+  "sendlater.ask.donate.accesskey": {
+    "message": "D",
+    "description": ""
+  },
+  "sendlater.ask.donate.label": {
+    "message": "马上捐赠",
+    "description": ""
+  },
+  "sendlater.ask.remind.accesskey": {
+    "message": "R",
+    "description": ""
+  },
+  "sendlater.ask.remind.label": {
+    "message": "以后提醒我",
+    "description": ""
+  },
+  "sendlater.ask.already.accesskey": {
+    "message": "a",
+    "description": ""
+  },
+  "sendlater.ask.already.label": {
+    "message": "我已捐赠",
+    "description": ""
+  },
+  "sendlater.ask.stop.accesskey": {
+    "message": "S",
+    "description": ""
+  },
+  "sendlater.ask.stop.label": {
+    "message": "不再询问",
+    "description": ""
+  },
+  "windowtitle": {
+    "message": "Send Later动态函数编辑器",
+    "description": ""
+  },
+  "selectfunction": {
+    "message": "选择函数：",
+    "description": ""
+  },
+  "selectfunctiontip": {
+    "message": "选择一个函数以编辑或删除，或者点击“（创建新函数）”。",
+    "description": ""
+  },
+  "createnewfunction": {
+    "message": "（创建新函数）",
+    "description": ""
+  },
+  "delete.label": {
+    "message": "删除",
+    "description": ""
+  },
+  "delete.accesskey": {
+    "message": "d",
+    "description": ""
+  },
+  "functionnametip": {
+    "message": "输入或编辑一个字母函数名称。如果修改一个已存在函数的名称，当保存时，你会被询问是否重命名或者以新名字创建新函数。",
+    "description": ""
+  },
+  "functionnameplaceholder": {
+    "message": "函数名称",
+    "description": ""
+  },
+  "codetip": {
+    "message": "在此处输入函数源代码。参见“必读事项”中样本函数以了解有关你的代码应该具备的细节。",
+    "description": ""
+  },
+  "codeplaceholder": {
+    "message": "函数源代码",
+    "description": ""
+  },
+  "helptextheader": {
+    "message": "函数帮助文本：",
+    "description": ""
+  },
+  "helptexttip": {
+    "message": "置于此处的文本将会在使用者将鼠标移至弹出菜单的函数名上的显示。这些文本用于解释函数作用及其接受的参数。",
+    "description": ""
+  },
+  "helptextplaceholder": {
+    "message": "帮助文本",
+    "description": ""
+  },
+  "run.label": {
+    "message": "执行函数：",
+    "description": ""
+  },
+  "run.accesskey": {
+    "message": "x",
+    "description": ""
+  },
+  "inputtime": {
+    "message": "输入时间：",
+    "description": ""
+  },
+  "inputtimetip": {
+    "message": "你可以在此处以任何格式输入Send Later理解的时间日期",
+    "description": ""
+  },
+  "inputtimeplaceholder": {
+    "message": "时间和日期，如果有的话，会被输入函数中用于测试",
+    "description": ""
+  },
+  "inputargs": {
+    "message": "输入参数：",
+    "description": ""
+  },
+  "inputargstip": {
+    "message": "参数应当以JavaScript格式确定，比如字符串应该带引号。",
+    "description": ""
+  },
+  "inputargsplaceholder": {
+    "message": "以逗号分隔的参数，如果有的话，将被输入进行测试",
+    "description": ""
+  },
+  "output": {
+    "message": "输出：",
+    "description": ""
+  },
+  "import.label": {
+    "message": "导入…",
+    "description": ""
+  },
+  "import.accesskey": {
+    "message": "m",
+    "description": ""
+  },
+  "importtip": {
+    "message": "导入一个之前由编辑器导出的动态函数。",
+    "description": ""
+  },
+  "export.label": {
+    "message": "导出…",
+    "description": ""
+  },
+  "export.accesskey": {
+    "message": "e",
+    "description": ""
+  },
+  "exporttip": {
+    "message": "导出当前显示的函数到文件中以备份或分享。",
+    "description": ""
+  },
+  "reset.label": {
+    "message": "放弃更改",
+    "description": ""
+  },
+  "reset.accesskey": {
+    "message": "a",
+    "description": ""
+  },
+  "save.label": {
+    "message": "保存",
+    "description": ""
+  },
+  "save.accesskey": {
+    "message": "s",
+    "description": ""
+  },
+  "close.label": {
+    "message": "关闭",
+    "description": ""
+  },
+  "close.accesskey": {
+    "message": "w",
+    "description": ""
+  },
+  "close.cmdkey": {
+    "message": "c",
+    "description": ""
+  },
+  "sendaround": {
+    "message": "将在此时间附近发送",
+    "description": ""
+  },
+  "entervalid": {
+    "message": "请在上面输入有效的日期",
+    "description": ""
+  },
+  "sendwithfunction": {
+    "message": "根据函数“$1”发送",
+    "description": ""
+  },
+  "sendspecifyfunction": {
+    "message": "从上方菜单中选择一个函数",
+    "description": ""
+  },
+  "January": {
+    "message": "一月",
+    "description": ""
+  },
+  "February": {
+    "message": "二月",
+    "description": ""
+  },
+  "March": {
+    "message": "三月",
+    "description": ""
+  },
+  "April": {
+    "message": "四月",
+    "description": ""
+  },
+  "May": {
+    "message": "五月",
+    "description": ""
+  },
+  "June": {
+    "message": "六月",
+    "description": ""
+  },
+  "July": {
+    "message": "七月",
+    "description": ""
+  },
+  "August": {
+    "message": "八月",
+    "description": ""
+  },
+  "September": {
+    "message": "九月",
+    "description": ""
+  },
+  "October": {
+    "message": "十月",
+    "description": ""
+  },
+  "November": {
+    "message": "十一月",
+    "description": ""
+  },
+  "December": {
+    "message": "十二月",
+    "description": ""
+  },
+  "OptionShortcutAlertTitle": {
+    "message": "无效的快捷按钮值",
+    "description": ""
+  },
+  "OptionShortcutAlertText": {
+    "message": "快捷按钮 $1 的值“$2”无效",
+    "description": ""
+  },
+  "SendingUnsentError": {
+    "message": "Send Later: 发送未发送消息时出错。您的发件箱可能已损坏，预定要发送的消息可能未被发出。参看 https://blog.kamens.us/send-later/#outbox",
+    "description": ""
+  },
+  "CopyUnsentError": {
+    "message": "Send Later: 复制未发送消息到发件箱时出错（错误代码 $1）。Send Later已被禁用！参看 https://blog.kamens.us/send-later/#outbox-copy-failure",
+    "description": ""
+  },
+  "CopyRecurError": {
+    "message": "Send Later: 复制周期性消息到草稿箱时出错（错误代码 $1）。Send Later已被禁用！参看 https://blog.kamens.us/send-later/#drafts-copy-failure",
+    "description": ""
+  },
+  "CorruptFolderError": {
+    "message": "Send Later: 文件夹 $1 可能已损坏。请打开其属性并修复它。参看 https://blog.kamens.us/send-later/#corrupt-drafts-error",
+    "description": ""
+  },
+  "MessageResendError": {
+    "message": "Send Later: 尝试重新发送已发送的消息？！你的发件箱或草稿文件夹 $1 可能已损坏。请按照 https://blog.kamens.us/send-later/#corrupt-outbox 上的描述进行修复。",
+    "description": ""
+  },
+  "minutely": {
+    "message": "每分钟",
+    "description": ""
+  },
+  "daily": {
+    "message": "每天",
+    "description": ""
+  },
+  "weekly": {
+    "message": "每周",
+    "description": ""
+  },
+  "monthly": {
+    "message": "每月",
+    "description": ""
+  },
+  "yearly": {
+    "message": "每年",
+    "description": ""
+  },
+  "plural_minutely": {
+    "message": "分钟",
+    "description": ""
+  },
+  "plural_daily": {
+    "message": "天",
+    "description": ""
+  },
+  "plural_weekly": {
+    "message": "星期",
+    "description": ""
+  },
+  "plural_monthly": {
+    "message": "月",
+    "description": ""
+  },
+  "plural_yearly": {
+    "message": "年",
+    "description": ""
+  },
+  "every_minutely": {
+    "message": "每 $1 分钟",
+    "description": ""
+  },
+  "every_daily": {
+    "message": "每 $1 天",
+    "description": ""
+  },
+  "every_weekly": {
+    "message": "每 $1 个星期",
+    "description": ""
+  },
+  "every_monthly": {
+    "message": "每 $1 个月",
+    "description": ""
+  },
+  "every_yearly": {
+    "message": "每 $1 年",
+    "description": ""
+  },
+  "everyempty": {
+    "message": "一个月中的星期",
+    "description": ""
+  },
+  "everymonthly": {
+    "message": "每月 $1 $2",
+    "description": ""
+  },
+  "everymonthly_day0": {
+    "message": "星期日",
+    "description": ""
+  },
+  "everymonthly_day1": {
+    "message": "星期一",
+    "description": ""
+  },
+  "everymonthly_day2": {
+    "message": "星期二",
+    "description": ""
+  },
+  "everymonthly_day3": {
+    "message": "星期三",
+    "description": ""
+  },
+  "everymonthly_day4": {
+    "message": "星期四",
+    "description": ""
+  },
+  "everymonthly_day5": {
+    "message": "星期五",
+    "description": ""
+  },
+  "everymonthly_day6": {
+    "message": "星期六",
+    "description": ""
+  },
+  "everymonthly_short": {
+    "message": "$1 $2",
+    "description": ""
+  },
+  "everymonthly_short_day0": {
+    "message": "星期日",
+    "description": ""
+  },
+  "everymonthly_short_day1": {
+    "message": "星期一",
+    "description": ""
+  },
+  "everymonthly_short_day2": {
+    "message": "星期二",
+    "description": ""
+  },
+  "everymonthly_short_day3": {
+    "message": "星期三",
+    "description": ""
+  },
+  "everymonthly_short_day4": {
+    "message": "星期四",
+    "description": ""
+  },
+  "everymonthly_short_day5": {
+    "message": "星期五",
+    "description": ""
+  },
+  "everymonthly_short_day6": {
+    "message": "星期六",
+    "description": ""
+  },
+  "betw_times": {
+    "message": "betw. $1 and $2",
+    "description": ""
+  },
+  "only_on_days": {
+    "message": "on $1",
+    "description": ""
+  },
+  "only_on_day0": {
+    "message": "星期日",
+    "description": ""
+  },
+  "only_on_day1": {
+    "message": "星期一",
+    "description": ""
+  },
+  "only_on_day2": {
+    "message": "星期二",
+    "description": ""
+  },
+  "only_on_day3": {
+    "message": "星期三",
+    "description": ""
+  },
+  "only_on_day4": {
+    "message": "星期四",
+    "description": ""
+  },
+  "only_on_day5": {
+    "message": "星期五",
+    "description": ""
+  },
+  "only_on_day6": {
+    "message": "星期六",
+    "description": ""
+  },
+  "ord1": {
+    "message": "第 1 个",
+    "description": ""
+  },
+  "ord2": {
+    "message": "第 2 个",
+    "description": ""
+  },
+  "ord3": {
+    "message": "第 3 个",
+    "description": ""
+  },
+  "ord4": {
+    "message": "第 4 个",
+    "description": ""
+  },
+  "ord5": {
+    "message": "第 5 个",
+    "description": ""
+  },
+  "draftSaveWarning": {
+    "message": "警告：为了防止“Send Later”发送您正在编辑的消息，预定的发送时间已被取消。请在您完成编辑后重新设置消息的发送时间。",
+    "description": ""
+  },
+  "AreYouSure": {
+    "message": "您确定吗？",
+    "description": ""
+  },
+  "OutboxConfirmMessage": {
+    "message": "点击“放到发件箱”会立即将消息放到你的发件箱中。它不会安排消息在特定的时间发送。如果要指定发送时间，请在输入有效的发送时间后，点击绿色框中的“将在此时间附近发送”按钮。你确定要立即将消息放到发件箱中吗？",
+    "description": ""
+  },
+  "SendNowConfirmMessage": {
+    "message": "点击“现在发送”以立即发送消息。这 并不会 为消息安排日程。如有日程需要，以合法格式输入发送时间后，点击位于绿色输入框旁的“在此时发送”按钮。你希望现在发送消息吗？",
+    "description": ""
+  },
+  "ConfirmAgain": {
+    "message": "下次仍显示此警告文本",
+    "description": ""
+  },
+  "ScheduledMessagesWarningTitle": {
+    "message": "预定消息警告",
+    "description": ""
+  },
+  "ScheduledMessagesWarningQuitRequested": {
+    "message": "您有预定发送的消息。“Send Later”只能在 $1 运行的时候发送您的消息。您确定要退出吗？",
+    "description": ""
+  },
+  "ScheduledMessagesWarningQuit": {
+    "message": "“Send Later”只能在 $1 运行的时候发送消息。请记得在您的预定发送时间之前重新运行程序！",
+    "description": ""
+  },
+  "EnigmailIncompatTitle": {
+    "message": "Send Later以及Enigmail兼容性问题",
+    "description": ""
+  },
+  "EnigmailIncompatText": {
+    "message": "现在安装的Enigmail版本与Send Later不兼容，因此Send Later消息日程已禁用。请联系Send Later维护人员(jik@kamens.us)以获得帮助。",
+    "description": ""
+  },
+  "TimeMismatchConfirmTitle": {
+    "message": "发送时间与限制不匹配",
+    "description": ""
+  },
+  "TimeMismatchConfirmBody": {
+    "message": "您输入的发送时间 $1 不在指定的时间限制里。点击取消来编辑您的发送时间，或者点击确定来自动调制发送时间到 $2。",
+    "description": ""
+  },
+  "endTimeWarningTitle": {
+    "message": "无效消息时间限制",
+    "description": ""
+  },
+  "endTimeWarningBody": {
+    "message": "当指定消息的时间限制时，结束时间不能在开始时间之前。请调整您的时间限制或者禁用此选项。",
+    "description": ""
+  },
+  "missingDaysWarningTitle": {
+    "message": "无效日期限制",
+    "description": ""
+  },
+  "missingDaysWarningBody": {
+    "message": "您启用了消息日期限制但没有指定任何日期。请禁用消息日期限制或者至少指定一个发送日。",
+    "description": ""
+  },
+  "InvalidArgsTitle": {
+    "message": "非法函数参数",
+    "description": ""
+  },
+  "InvalidArgsBody": {
+    "message": "这一函数参数不可用。指定一个不带方括号的JavaScript表单。",
+    "description": ""
+  },
+  "BlockedLateMessage": {
+    "message": "在草稿夹 $1 中标题为“$2”的消息的预定发送时间在 $3 分钟之前，所以被阻止发送。您需要编辑草稿并手动发送或重新预定时间。您也可以禁用“如果已经比预定时间晚了 # 分钟则不要发送消息”选项以避免阻止发送超时的消息。",
+    "description": ""
+  },
+  "EditorReadMeCode": {
+    "message": "// Welcome to the Send Later function editor!\n//\n// The editor allows you to create JavaScript functions implementing complex\n// message scheduling logic which can be associated with shortcut buttons or\n// selected in the Send Later dialog.\n//\n// As you can see above, when a scheduling function is called, it will be given\n// three arguments:\n// * \"specname\" is needed if you want this function to recur (see below)\n// * \"prev\" is the previous scheduled send time, if this is a recurring\n//   invocation\n// * \"args\" is the extra arguments returned by the previous invocation if this\n//   is a recurring invocation\n//\n// Your code needs to set the variables \"next\", \"nextspec\", and\n// \"nextargs\" as follows:\n//\n// * \"next\" is either the number of minutes in the future or a Date object\n//   indicating when the message should be sent.\n// * \"nextspec\" is a recurrence specification if this is intended to be a\n//   recurring message (see\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). If you don't set\n//   this, then the message will only be sent once. Note: if you want your\n//   function to be called again for recurrence, do:\n//     nextspec = \"function \" + specname;\n// * \"nextargs\" is an array of arguments you want to be passed into the next\n//   invocation of the function as \"args\".\n//\n// While you are working on your function, you can test it by filling in values\n// for \"prev\" and \"args\" in the Text boxes below and then clicking \"Execute\" to\n// execute the function and see the results.\n//\n// There are two pre-configured sample functions, \"BusinessHours\" and\n// \"DaysInARow\", which you can look at and play with to learn more.\n//\n// This \"ReadMeFirst\" function just causes the message to be sent around now,\n// via the following line.\nnext = new Date();",
+    "description": ""
+  },
+  "EditorReadMeHelp": {
+    "message": "任何放置在此处的文字，均会在鼠标悬停在菜单功能名称以提示方式显示。你可以使用它来描述函数和接受的参数。",
+    "description": ""
+  },
+  "_BusinessHoursCode": {
+    "message": "// Defaults\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Start of the work day as [H, M]\nvar workEnd = [17, 30]; // End of the work day as [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Not expected in normal usage, but used as the current time for testing.\n    next = new Date(prev);\nelse\n    next = new Date();\n// If we're past the end of the workday or not on a workday, move to the work\n// start time on the next day.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// If we're before the beginning of the workday, move to its start time.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
+    "description": ""
+  },
+  "BusinessHoursHelp": {
+    "message": "在办公时间内或在下一个工作日开始时立即发送消息。 你可以在第一个参数发出工作日数字数组(array)修改办公时间（预设为周一至周五），其中0为星期日，6为星期六。你可在第二及第三个参数发出一个[H，M]数组，更改工作开始或结束时间（预设为8:30 - 17:30）。如不更改较早的参数，请指定“null”。 例如，“null，[9，0]，[17，0]”改变工作时间，而不改变工作日。",
+    "description": ""
+  },
+  "DaysInARowCode": {
+    "message": "// 现在发送第一条消息，随后发送一条消息。\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // 复制日期参数，以便我們不会修改它。\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n     // ^^^不要尝试在过去发送，以防 Thunderbird\n     // 在预定的发送时间睡着了。\n\n}\nif (! args) // 预设发送消息三次。\n    args = [3];\nnextargs = [args[0] - 1];\n// 如果我们还没有做完发送，就会重新执行\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
+    "description": ""
+  },
+  "DaysInARowHelp": {
+    "message": "立即发送消息，随后每天一次，直到发送三次至止。 提供一个数字作参数，來更改发送的总数。",
+    "description": ""
+  },
+  "DiscardConfirmTitle": {
+    "message": "放弃更改？",
+    "description": ""
+  },
+  "DiscardConfirmBody": {
+    "message": "有未保存的更改？放弃吗？",
+    "description": ""
+  },
+  "UntestedSaveTitle": {
+    "message": "保存未测试函数？",
+    "description": ""
+  },
+  "UntestedSaveBody": {
+    "message": "这个函数修改之后，尚未测试（以”运行“键）。你确定要保存或导出？",
+    "description": ""
+  },
+  "BadSaveTitle": {
+    "message": "非法函数名称或代码",
+    "description": ""
+  },
+  "BadSaveBody": {
+    "message": "请在保存或导出前确认函数名称及代码合法。",
+    "description": ""
+  },
+  "ReplacingFunctionTitle": {
+    "message": "覆写现存函数？",
+    "description": ""
+  },
+  "ReplacingFunctionBody": {
+    "message": "已有同名的函数。你确定要替换它？",
+    "description": ""
+  },
+  "NoNextValueError": {
+    "message": "函数沒有设定\"next\"值。",
+    "description": ""
+  },
+  "BadNextValueError": {
+    "message": "\"next\"值\"$1\"不是一个数字或日期",
+    "description": ""
+  },
+  "BadNextArgsError": {
+    "message": "\"nextargs\"值\"$1\"不是一个数组",
+    "description": ""
+  },
+  "FunctionDeleteConfirmBody": {
+    "message": "你确定要删除这个函数吗？如果它关联到快捷按钮，按钮将会失效。如果有任何重复发送的信使用这个功能，也将会导致到下一次发送后无法重新排期。",
+    "description": ""
+  },
+  "ImportTitle": {
+    "message": "选择导入文件",
+    "description": ""
+  },
+  "SLJFilterLabel": {
+    "message": "Send Later的JSON文件",
+    "description": ""
+  },
+  "ImportError": {
+    "message": "导入错误",
+    "description": ""
+  },
+  "ExportTitle": {
+    "message": "选择导入目标",
+    "description": ""
+  },
+  "RenameFunctionTitle": {
+    "message": "重命名现存函数？",
+    "description": ""
+  },
+  "RenameFunctionBody": {
+    "message": "你已修改现存函数名，“$1”。你希望重命名现存函数还是以这一新名称保存一个不同的函数？",
+    "description": ""
+  },
+  "RenameFunctionRenameButton": {
+    "message": "重命名",
+    "description": ""
+  },
+  "RenameFunctionNewButton": {
+    "message": "新建",
+    "description": ""
+  },
+  "FunctionErrorTitle": {
+    "message": "启动动态功能错误",
+    "description": ""
+  },
+  "FunctionErrorBody": {
+    "message": "启动动态排期功能 “$1”错误",
+    "description": ""
+  },
+  "cancel_on_reply": {
+    "message": "回复后取消",
+    "description": ""
+  },
+  "PendingMessage": {
+    "message": "等待 $1",
+    "description": ""
+  },
+  "IdleMessage": {
+    "message": "空闲",
+    "description": ""
+  },
+  "DisabledMessage": {
+    "message": "已禁用",
+    "description": ""
+  },
+  "CheckingMessage": {
+    "message": "正在检查",
+    "description": ""
+  }
+}

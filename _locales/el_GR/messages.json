@@ -1,0 +1,1078 @@
+{
+  "extensionName": {
+    "message": "Send Later",
+    "description": "The name of the add-on, displayed in various places."
+  },
+  "extensionDescription": {
+    "message": "Πραγματική «Στείλετε αργότερα» λειτουργικότητα για να προγραμματίσετε την ώρα για την αποστολή μηνύματοςμέσω ηλεκτρονικού ταχυδρομείου.",
+    "description": "A short description of the add-on."
+  },
+  "advancedOptionsTitle": {
+    "message": "Προχωρημένες",
+    "description": ""
+  },
+  "altBindingPrefLabel": {
+    "message": "Δέσμευση του συνδυασμού πλήκτρων Alt-Shift-Enter αντί για Ctrl-Shift-Enter",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel1": {
+    "message": "Να μην στέλνονται μηνύματα μετά από",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel2": {
+    "message": "λεπτά καθυστέρησης",
+    "description": ""
+  },
+  "cancelLabel": {
+    "message": "Ακύρωση",
+    "description": ""
+  },
+  "checkTimePrefLabel1": {
+    "message": "Έλεγχος κάθε",
+    "description": ""
+  },
+  "checkTimePrefLabel2": {
+    "message": "λεπτά",
+    "description": ""
+  },
+  "clearDefaultsLabel": {
+    "message": "Καθαρισμός προεπιλογών",
+    "description": ""
+  },
+  "contactAuthorLabel": {
+    "message": "Επικοινωνία με τον δημιουργό",
+    "description": ""
+  },
+  "enforceRestrictionsPrefLabel": {
+    "message": "Να ικανοποιούνται οι χρονικοί περιορισμοί κατά την αποστολή",
+    "description": ""
+  },
+  "generalOptionsTitle": {
+    "message": "Γενικές",
+    "description": ""
+  },
+  "logConsoleLevelLabel": {
+    "message": "Επίπεδο καταγραφής κονσόλας",
+    "description": ""
+  },
+  "logDumpLevelLabel": {
+    "message": "Επίπεδο καταγραφής ένδειξης σφαλμάτων",
+    "description": ""
+  },
+  "logLevelAll": {
+    "message": "Όλα",
+    "description": ""
+  },
+  "logLevelDebug": {
+    "message": "Αποσφαλμάτωση",
+    "description": ""
+  },
+  "logLevelError": {
+    "message": "Σφάλμα",
+    "description": ""
+  },
+  "logLevelFatal": {
+    "message": "Ανεπανόρθωτο",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "Πληροφορία",
+    "description": ""
+  },
+  "logLevelTrace": {
+    "message": "Ίχνος",
+    "description": ""
+  },
+  "logLevelWarn": {
+    "message": "Προειδοποίηση",
+    "description": ""
+  },
+  "markReadPrefLabel": {
+    "message": "Μαρκάρετε τα προγραμματισμένα πρόχειρα ως αναγνωσμένα",
+    "description": ""
+  },
+  "quickOptionsLabel1Label": {
+    "message": "Συντόμευση 1",
+    "description": ""
+  },
+  "quickOptionsLabel2Label": {
+    "message": "Συντόμευση 2",
+    "description": ""
+  },
+  "quickOptionsLabel3Label": {
+    "message": "Συντόμευση 3",
+    "description": ""
+  },
+  "quickOptionsValueLabel": {
+    "message": "Λεπτά",
+    "description": ""
+  },
+  "recurAnnuallyLabel": {
+    "message": "ετήσια",
+    "description": ""
+  },
+  "recurDailyLabel": {
+    "message": "καθημερινά",
+    "description": ""
+  },
+  "recurFunctionLabel": {
+    "message": "συνάρτηση",
+    "description": ""
+  },
+  "recurLabel": {
+    "message": "Επανάληψη",
+    "description": ""
+  },
+  "recurMinutelyLabel": {
+    "message": "κάθε λεπτό",
+    "description": ""
+  },
+  "recurMonthlyLabel": {
+    "message": "μηνιαία",
+    "description": ""
+  },
+  "recurOnceLabel": {
+    "message": "μία φορά",
+    "description": ""
+  },
+  "recurWeeklyLabel": {
+    "message": "εβδομαδιαία",
+    "description": ""
+  },
+  "resetPrefsButton": {
+    "message": "Reset Preferences",
+    "description": ""
+  },
+  "saveDefaultsLabel": {
+    "message": "Αποθήκευση αυτών των τιμών ως προεπιλεγμένων",
+    "description": ""
+  },
+  "sendAtDefaultLabel": {
+    "message": "Εισάγετε ημερομηνία και ώρα",
+    "description": "Displayed in place of send at time before user makes selections"
+  },
+  "sendAtLabel": {
+    "message": "Αποστολή στις",
+    "description": ""
+  },
+  "sendBtwnLabel": {
+    "message": "Μεταξύ",
+    "description": ""
+  },
+  "sendButtonPrefLabel": {
+    "message": "Η “Αποστολή” στέλνει αργότερα",
+    "description": ""
+  },
+  "sendDelayPrefLabel1": {
+    "message": "\"Send\" delays messages by",
+    "description": ""
+  },
+  "sendDelayPrefLabel2": {
+    "message": "minutes",
+    "description": ""
+  },
+  "sendSundayLabel": {
+    "message": "Κυριακή",
+    "description": ""
+  },
+  "sendMondayLabel": {
+    "message": "Δευτέρα",
+    "description": ""
+  },
+  "sendTuesdayLabel": {
+    "message": "Τρίτη",
+    "description": ""
+  },
+  "sendWednesdayLabel": {
+    "message": "Τετάρτη",
+    "description": ""
+  },
+  "sendThursdayLabel": {
+    "message": "Πέμπτη",
+    "description": ""
+  },
+  "sendFridayLabel": {
+    "message": "Παρασκευή",
+    "description": ""
+  },
+  "sendSaturdayLabel": {
+    "message": "Σάββατο",
+    "description": ""
+  },
+  "sendNowLabel": {
+    "message": "Αποστολή τώρα",
+    "description": ""
+  },
+  "sendOnlyOnLabel": {
+    "message": "Μόνο",
+    "description": ""
+  },
+  "sendUnsentMessagesPrefLabel": {
+    "message": "Να προκαλείται η παράδοση των Εξερχόμενων",
+    "description": ""
+  },
+  "showColumnPrefLabel": {
+    "message": "Εμφάνιση της στήλης του Send Later",
+    "description": ""
+  },
+  "showHeaderPrefLabel": {
+    "message": "Εμφάνιση επικεφαλίδας Send Later",
+    "description": ""
+  },
+  "showStatusPrefLabel": {
+    "message": "Εμφάνιση του Send Later στη γραμμή κατάστασης",
+    "description": ""
+  },
+  "userGuideLabel": {
+    "message": "Οδηγίες χρήσης",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.label": {
+    "message": "Τοποθέτηση στα Εξερχόμενα",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.accesskey": {
+    "message": "Τ",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "Αντί για την αποστολή σε συγκεκριμένη ημερομηνία, να μετακινηθεί στα Εξερχόμενα ώστε να σταλεί την επόμενη φορά που θα σταλούν τα μη απεσταλμένα μηνύματα.",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.accesskey": {
+    "message": "π",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.tooltip": {
+    "message": "Παρακάμπτει το “Send Later” και στέλνει το μήνυμα αμέσως.",
+    "description": ""
+  },
+  "sendlater.prompt.close.accesskey": {
+    "message": "Α",
+    "description": ""
+  },
+  "sendlater.prompt.close.tooltip": {
+    "message": "Επιστροφή στην επεξεργασία του μηνύματος.",
+    "description": ""
+  },
+  "sendlater.prompt.title.label": {
+    "message": "Αποστολή του μηνύματος αργότερα",
+    "description": ""
+  },
+  "sendlater.prompt.or.label": {
+    "message": "ή",
+    "description": ""
+  },
+  "sendlater.prompt.textbox.emptytext": {
+    "message": "πχ: “3:00pm Thursday”, “12/31/2012 15:27”",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.label": {
+    "message": "Αποστολή στο(υς) χρόνο(ους) που καθορίστηκαν",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Αποθηκεύει το μήνυμα στα Πρόχειρα για αυτόματη αποστολή στο χρόνο που καθορίστηκε.",
+    "description": ""
+  },
+  "sendlater.prompt.functionargs.label": {
+    "message": "Ορίσματα συνάρτησης",
+    "description": ""
+  },
+  "sendlater.prompt.calculate.label": {
+    "message": "Υπολογισμός",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.label": {
+    "message": "Αποστολή αργότερα",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.tooltip": {
+    "message": "Ενεργοποιείστε Send Later για να προγραμματίσετε την εμφάνιση μηνύματος κατά την επιθυμητή ώρα που εισάγατε στο πλαίσιο. Το κουμπί αυτό δεν κάνει κάτι από μόνο του. Πρέπει να επιλέξετε και την ημερομηνία/ώρα (δεν υποστηρίζεται για εκδόσεις Thunderbird) για να λειτουργήσει.",
+    "description": ""
+  },
+  "sendlater.toolbar.textbox.emptytext": {
+    "message": "ώρα αποστολής",
+    "description": ""
+  },
+  "sendlater.prompt.every.label": {
+    "message": "Κάθε",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "σε 15 λεπτά",
+    "description": ""
+  },
+  "sendlater.button2.label": {
+    "message": "σε 30 λεπτά",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "σε 2 ώρες",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.label": {
+    "message": "Ακυρώσετε την επανάληψη μετά την απάντηση",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Παρακολουθήστε για απαντήσεις σε προηγούμενα αντίγραφα των επαναλαμβανόμενων μηνυμάτων. Ακυρώστε ένα επαναλαμβανόμενο μήνυμα και αφαιρέστε το από το φάκελο &quot;Πρόχειρα&quot; όταν ληφθεί μια απάντηση.",
+    "description": ""
+  },
+  "sendlater3header.label": {
+    "message": "Send Later",
+    "description": ""
+  },
+  "prefwindow.title": {
+    "message": "Επιλογές του Send Later",
+    "description": ""
+  },
+  "pane1.title": {
+    "message": "Επιλογές του Send Later",
+    "description": ""
+  },
+  "checktimepref.tooltip": {
+    "message": "Χρονικό διάστημα σε λεπτά ανάμεσα σε ελέγχους για πρόχειρα μηνύματα των οποίων έφτασε ο χρόνος αποστολής. Αυξήστε το αν μερικές φορές τα μηνύματα δεν στέλνονται στην καθορισμένη ώρα ή αν η μέτρηση των μηνυμάτων στην ουρά είναι ανακριβής.",
+    "description": ""
+  },
+  "quickoptionname.label": {
+    "message": "Ετικέτα κουμπιού",
+    "description": ""
+  },
+  "showsendlatercolumn.tooltip": {
+    "message": "Ορίζει αν θα εμφανίζεται η στήλη “Send Later” όταν προβάλλεται ένας φάκελος πρόχειρων",
+    "description": ""
+  },
+  "showsendlaterheader.tooltip": {
+    "message": "Ορίζει αν θα εμφανίζεται η επικεφλαίδα “X-Send-Later-At”, δηλ. ο χρόνος που έχει καθοριστεί για την αποστολή του μηνύματος, στην επικεφαλίδα όταν προβάλλεται ένα μήνυμα.",
+    "description": ""
+  },
+  "showsendlaterprogress.caption": {
+    "message": "Εμφάνιση παρασκηνιακών διαδικασιών στη γραμμή κατάστασης",
+    "description": ""
+  },
+  "showsendlaterunsentmessages.tooltip": {
+    "message": "Αν απενεργοποιήσετε αυτή την επιλογή, τότε την καθορισμένη στιγμή αποστολής των μηνυμάτων το Send Later δεν θα στέλνει τα μηνύματα, αλλά θα τα τοποθετεί στα Εξερχόμενα. Αυτό είναι χρήσιμο αν, για παράδειγμα, χρησιμοποιείτε κάποιο άλλο πρόσθετο, πχ το BlunderDelay, για να στέλνει περιοδικά τα μηνύματα που βρίσκονται στα Εξερχόμενά σας. Να έχετε υπόψιν ότι όταν αν η επιλογή είναι ενεργοποιημένη, τότε όποτε το Send Later στέλνει ένα μήνυμα, στέλνονται και ΟΛΑ τα υπόλοιπα μηνύματα που βρίσκονται στα Εξερχόμενά σας.",
+    "description": ""
+  },
+  "sendlatersendbutton.tooltip": {
+    "message": "Με αυτή την επιλογή, η εντολή “Αποστολή” (είτε το κουμπί είτε ο συνδυασμός πλήκτρων Ctrl-Enter) μετατρέπεται σε “Αποστολή αργότερα”.",
+    "description": ""
+  },
+  "contactauthor.tooltip": {
+    "message": "Στείλτε ηλεκτρονικό μήνυμα στον δημιουργό του Send Later.",
+    "description": ""
+  },
+  "helplink.tooltip": {
+    "message": "Προβολή της τεκμηρίωσης του Send Later.",
+    "description": ""
+  },
+  "releasenotes.value": {
+    "message": "Σημειώσεις έκδοσης",
+    "description": ""
+  },
+  "donatelink.value": {
+    "message": "Δωρεά",
+    "description": ""
+  },
+  "editorlink.value": {
+    "message": "Επεξεργαστής Δυναμικής Συνάρτησης",
+    "description": ""
+  },
+  "enforcerestrictions.tooltip": {
+    "message": "Αν ένα μήνυμα πρόκειται να σταλεί εκτός των χρονικών περιορισμών που έχουν τεθεί, πχ επειδή ο Thunderbird δεν έτρεχε την καθορισμένη στιγμή αποστολής, τότε η αποστολή του να καθυστερήσει μέχρι την επόμενη φορά που θα βρίσκεται εντός των περιορισμών.",
+    "description": ""
+  },
+  "blocklatemessages.tooltip": {
+    "message": "Ακυρώνει την αποστολή μηνυμάτων που έχουν καθυστερήσει σε σχέση με τον καθορισμένο χρόνο, πχ επειδή το Thunderbird είχε κλείσει.",
+    "description": ""
+  },
+  "editorbutton": {
+    "message": "Άνοιγμα επεξεργαστή δυναμικής συνάρτησης...",
+    "description": ""
+  },
+  "editortip": {
+    "message": "Ανοίξτε ένα παράθυρο για τη δημιουργία και επεξεργασία συναρτήσεων JavaScript που εφαρμόζουν χρονικά πολύπλοκη λογική.",
+    "description": ""
+  },
+  "loglevel.config": {
+    "message": "Ρύθμηση",
+    "description": ""
+  },
+  "sendlater.ask.title.label": {
+    "message": "Υποστηρίξτε το Send Later",
+    "description": ""
+  },
+  "sendlater.ask.message1": {
+    "message": "Αμέτρητες ώρες έχουν αφιερωθεί στην ανάπτυξη και υποστήριξη αυτού του πρόσθετου.",
+    "description": ""
+  },
+  "sendlater.ask.message2": {
+    "message": "Παρακαλούμε, σκεφτείτε σοβαρά να κάνετε μια δωρεά για να υποστηρίξετε την ανάπτυξή του!",
+    "description": ""
+  },
+  "sendlater.ask.message3": {
+    "message": "Σας ευχαριστούμε!",
+    "description": ""
+  },
+  "sendlater.ask.donate.accesskey": {
+    "message": "Δ",
+    "description": ""
+  },
+  "sendlater.ask.donate.label": {
+    "message": "Δωρεά",
+    "description": ""
+  },
+  "sendlater.ask.remind.accesskey": {
+    "message": "Υ",
+    "description": ""
+  },
+  "sendlater.ask.remind.label": {
+    "message": "Υπενθύμιση αργότερα",
+    "description": ""
+  },
+  "sendlater.ask.already.accesskey": {
+    "message": "ω",
+    "description": ""
+  },
+  "sendlater.ask.already.label": {
+    "message": "Έχω ήδη κάνει δωρεά",
+    "description": ""
+  },
+  "sendlater.ask.stop.accesskey": {
+    "message": "Ν",
+    "description": ""
+  },
+  "sendlater.ask.stop.label": {
+    "message": "Να μην εμφανίζεται",
+    "description": ""
+  },
+  "windowtitle": {
+    "message": "Επεξεργαστής Δυναμικής Συνάρτησης Send Later",
+    "description": ""
+  },
+  "selectfunction": {
+    "message": "Επιλέξτε συνάρτηση",
+    "description": ""
+  },
+  "selectfunctiontip": {
+    "message": "Επιλέξτε μια συνάρτηση για να την επεξεργαστείτε ή να την διαγράψετε ή «(δημιουργήστε μία νέα συνάρτηση)» για να δημιουργήσετε μια νέα συνάρτηση.",
+    "description": ""
+  },
+  "createnewfunction": {
+    "message": "(δημιουργία νέας εντολής)",
+    "description": ""
+  },
+  "delete.label": {
+    "message": "διαγραφή",
+    "description": ""
+  },
+  "delete.accesskey": {
+    "message": "δ",
+    "description": ""
+  },
+  "functionnametip": {
+    "message": "Εισαγάγετε ή επεξεργαστείτε ένα αλφαριθμητικό όνομα συνάρτησης. Εάν τροποποιήσετε το όνομα μιας υπάρχουσας συνάρτησης, θα σας ζητηθεί όταν αποθηκεύετε αν θέλετε να μετονομάσετε τη συνάρτηση ή να δημιουργήσετε μια νέα συνάρτηση με το τροποποιημένο όνομα.",
+    "description": ""
+  },
+  "functionnameplaceholder": {
+    "message": "όνομα της συνάρτησης",
+    "description": ""
+  },
+  "codetip": {
+    "message": "Βάλτε τον πηγαίο κώδικα για τη συνάρτησή σας εδώ. Ανατρέξτε στο παράδειγμα συνάρτησης «ReadMeFirst» για λεπτομέρειες σχετικά με το τι πρέπει να κάνει ο κώδικάς σας.",
+    "description": ""
+  },
+  "codeplaceholder": {
+    "message": "κώδικας της συνάρτησης",
+    "description": ""
+  },
+  "helptextheader": {
+    "message": "Βοηθητικό κείμενο της συνάρτησης",
+    "description": ""
+  },
+  "helptexttip": {
+    "message": "Οποιοδήποτε κείμενο βάζετε εδώ θα εμφανίζεται, όταν ο χρήστης περνάει το ποντίκι πάνω από το όνομα της συνάρτησης, στο αναδυόμενο μενού. Χρησιμοποιήστε το για να εξηγήσετε τι κάνει η συνάρτηση και τι ορίσματα δέχεται.",
+    "description": ""
+  },
+  "helptextplaceholder": {
+    "message": "κείμενο βοήθειας",
+    "description": ""
+  },
+  "run.label": {
+    "message": "Εκτελέστε τη συνάρτηση",
+    "description": ""
+  },
+  "run.accesskey": {
+    "message": "κ",
+    "description": ""
+  },
+  "inputtime": {
+    "message": "Χρόνος εισόδου",
+    "description": ""
+  },
+  "inputtimetip": {
+    "message": "Μπορείτε να εισάγετε την ημέρα και ώρα σε οποιαδήποτε μορφή δέχεται ο διάλογος του Send Later.",
+    "description": ""
+  },
+  "inputtimeplaceholder": {
+    "message": "ημέρα και ώρα, αν υπάρχουν, για να χρησιμοποιήσει η συνάρτηση για δοκιμή",
+    "description": ""
+  },
+  "inputargs": {
+    "message": "Ορίσματα εισόδου",
+    "description": ""
+  },
+  "inputargstip": {
+    "message": "Τα ορίσματα θα πρέπει να έχουν ορισθεί στη μορφή JavaScript, π.χ., οι συμβολοσηρές θα πρέπει να βρίσκονται έγκληστες σε εισαγωγικά.",
+    "description": ""
+  },
+  "inputargsplaceholder": {
+    "message": "ορίσματα, χωρισμένα με κόμματα, αν υπάρχουν, για δοκιμή",
+    "description": ""
+  },
+  "output": {
+    "message": "Έξοδος",
+    "description": ""
+  },
+  "import.label": {
+    "message": "Εισαγωγή...",
+    "description": ""
+  },
+  "import.accesskey": {
+    "message": "ι",
+    "description": ""
+  },
+  "importtip": {
+    "message": "Εισαγάγετε μια δυναμική συνάρτηση που είχε προηγουμένως εξαχθεί από τον επεξεργαστή.",
+    "description": ""
+  },
+  "export.label": {
+    "message": "Εξαγωγή...",
+    "description": ""
+  },
+  "export.accesskey": {
+    "message": "Ε",
+    "description": ""
+  },
+  "exporttip": {
+    "message": "Εξαγωγή συνάρτησης εμφανίζεται αυτή τη στιγμή σε αρχείο για τη δημιουργία αντιγράφων ασφαλείας (backup) ή την κοινή χρήση.",
+    "description": ""
+  },
+  "reset.label": {
+    "message": "Απόρριψη αλλαγών",
+    "description": ""
+  },
+  "reset.accesskey": {
+    "message": "α",
+    "description": ""
+  },
+  "save.label": {
+    "message": "Αποθήκευση",
+    "description": ""
+  },
+  "save.accesskey": {
+    "message": "π",
+    "description": ""
+  },
+  "close.label": {
+    "message": "Κλείσιμο",
+    "description": ""
+  },
+  "close.accesskey": {
+    "message": "λ",
+    "description": ""
+  },
+  "close.cmdkey": {
+    "message": "w",
+    "description": ""
+  },
+  "sendaround": {
+    "message": "Αποστολή αργότερα",
+    "description": ""
+  },
+  "entervalid": {
+    "message": "Εισάγετε μία έγκυρη ημερομηνία",
+    "description": ""
+  },
+  "sendwithfunction": {
+    "message": "Αποστολή σύμφωνα με τη συνάρτηση “$1”",
+    "description": ""
+  },
+  "sendspecifyfunction": {
+    "message": "Επιλέξτε μία συνάρτηση από το παραπάνω μενού",
+    "description": ""
+  },
+  "January": {
+    "message": "Ιανουάριος",
+    "description": ""
+  },
+  "February": {
+    "message": "Φεβρουάριος",
+    "description": ""
+  },
+  "March": {
+    "message": "Μάρτιος",
+    "description": ""
+  },
+  "April": {
+    "message": "Απρίλιος",
+    "description": ""
+  },
+  "May": {
+    "message": "Μάιος",
+    "description": ""
+  },
+  "June": {
+    "message": "Ιούνιος",
+    "description": ""
+  },
+  "July": {
+    "message": "Ιούλιος",
+    "description": ""
+  },
+  "August": {
+    "message": "Άυγουστος",
+    "description": ""
+  },
+  "September": {
+    "message": "Σεπτέμβριος",
+    "description": ""
+  },
+  "October": {
+    "message": "Οκτώβριος",
+    "description": ""
+  },
+  "November": {
+    "message": "Νοέμβριος",
+    "description": ""
+  },
+  "December": {
+    "message": "Δεκέμβριος",
+    "description": ""
+  },
+  "OptionShortcutAlertTitle": {
+    "message": "Η συντόμευση δεν είναι έγκυρη.",
+    "description": ""
+  },
+  "OptionShortcutAlertText": {
+    "message": "Η τιμή “$1” της συντόμευσης $2 δεν είναι έγκυρη",
+    "description": ""
+  },
+  "SendingUnsentError": {
+    "message": "Send Later: Σφάλμα στην αποστολή των μη απεσταλμένων μηνυμάτων. Τα Εξερχόμενά σας μπορεί να είναι κατεστραμμένα και τα προγραμματισμένα μηνύματα μπορεί να μην έχουν σταλεί. Περισσότερες πληροφορίες στο https://blog.kamens.us/send-later/#outbox.",
+    "description": ""
+  },
+  "CopyUnsentError": {
+    "message": "Send Later: Σφάλμα στην αντιγραφή προγραμματισμένου μηνύματος στα Εξερχόμενα (κωδικός $1). Το Send Later απενεργοποιήθηκε! Περισσότερες πληροφορίες στο https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "description": ""
+  },
+  "CopyRecurError": {
+    "message": "Send Later: Σφάλμα στην αντιγραφή επαναλαμβανόμενου μηνύματος στα Πρόχειρα (κωδικός $1). Το Send Later απενεργοποιήθηκε! Περισσότερες πληροφορίες στο https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "description": ""
+  },
+  "CorruptFolderError": {
+    "message": "Send Later: Ο φάκελος $1 μπορεί να είναι κατεστραμμένος. Παρακαλούμε, ανοίξτε τις ιδιότητές του και επιδιορθώστε τον. Περισσότερες πληροφορίες στο https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "description": ""
+  },
+  "MessageResendError": {
+    "message": "Send Later: Να επιχειρηθεί η επαναποστολή του μηνύματος; Ο φάκελος $1 για Εξερχόμενα ή Πρόχειρα είναι πιθανότατα κατεστραμμένος. Παρακαλούμε επιδιορθώστε τον όπως περιγράφεται στο https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "description": ""
+  },
+  "minutely": {
+    "message": "κάθε λεπτό",
+    "description": ""
+  },
+  "daily": {
+    "message": "ημερήσια",
+    "description": ""
+  },
+  "weekly": {
+    "message": "εβδομαδιαία",
+    "description": ""
+  },
+  "monthly": {
+    "message": "μηνιαία",
+    "description": ""
+  },
+  "yearly": {
+    "message": "ετήσια",
+    "description": ""
+  },
+  "plural_minutely": {
+    "message": "λεπτά",
+    "description": ""
+  },
+  "plural_daily": {
+    "message": "ημέρες",
+    "description": ""
+  },
+  "plural_weekly": {
+    "message": "εβδομάδες",
+    "description": ""
+  },
+  "plural_monthly": {
+    "message": "μήνες",
+    "description": ""
+  },
+  "plural_yearly": {
+    "message": "χρόνια",
+    "description": ""
+  },
+  "every_minutely": {
+    "message": "κάθε $1 λεπτά",
+    "description": ""
+  },
+  "every_daily": {
+    "message": "κάθε $1 ημέρες",
+    "description": ""
+  },
+  "every_weekly": {
+    "message": "κάθε $1 εβδομάδες",
+    "description": ""
+  },
+  "every_monthly": {
+    "message": "κάθε $1 μήνες",
+    "description": ""
+  },
+  "every_yearly": {
+    "message": "κάθε $1 χρόνια",
+    "description": ""
+  },
+  "everyempty": {
+    "message": "εβδομάδα του μήνα",
+    "description": ""
+  },
+  "everymonthly": {
+    "message": "$1 $2 του μήνα",
+    "description": ""
+  },
+  "everymonthly_day0": {
+    "message": "Κυριακή",
+    "description": ""
+  },
+  "everymonthly_day1": {
+    "message": "Δευτέρα",
+    "description": ""
+  },
+  "everymonthly_day2": {
+    "message": "Τρίτη",
+    "description": ""
+  },
+  "everymonthly_day3": {
+    "message": "Τετάρτη",
+    "description": ""
+  },
+  "everymonthly_day4": {
+    "message": "Πέμπτη",
+    "description": ""
+  },
+  "everymonthly_day5": {
+    "message": "Παρασκευή",
+    "description": ""
+  },
+  "everymonthly_day6": {
+    "message": "Σάββατο",
+    "description": ""
+  },
+  "everymonthly_short": {
+    "message": "$1 $2",
+    "description": ""
+  },
+  "everymonthly_short_day0": {
+    "message": "Κυριακή",
+    "description": ""
+  },
+  "everymonthly_short_day1": {
+    "message": "Δευτέρα",
+    "description": ""
+  },
+  "everymonthly_short_day2": {
+    "message": "Τρίτη",
+    "description": ""
+  },
+  "everymonthly_short_day3": {
+    "message": "Τετάρτη",
+    "description": ""
+  },
+  "everymonthly_short_day4": {
+    "message": "Πέμπτη",
+    "description": ""
+  },
+  "everymonthly_short_day5": {
+    "message": "Παρασκευή",
+    "description": ""
+  },
+  "everymonthly_short_day6": {
+    "message": "Σάββατο",
+    "description": ""
+  },
+  "betw_times": {
+    "message": "μεταξύ $1 και $2",
+    "description": ""
+  },
+  "only_on_days": {
+    "message": "ημέρα $1",
+    "description": ""
+  },
+  "only_on_day0": {
+    "message": "Κυριακή",
+    "description": ""
+  },
+  "only_on_day1": {
+    "message": "Δευτέρα",
+    "description": ""
+  },
+  "only_on_day2": {
+    "message": "Τρίτη",
+    "description": ""
+  },
+  "only_on_day3": {
+    "message": "Τετάρτη",
+    "description": ""
+  },
+  "only_on_day4": {
+    "message": "Πέμπτη",
+    "description": ""
+  },
+  "only_on_day5": {
+    "message": "Παρασκευή",
+    "description": ""
+  },
+  "only_on_day6": {
+    "message": "Σάββατο",
+    "description": ""
+  },
+  "ord1": {
+    "message": "1η",
+    "description": ""
+  },
+  "ord2": {
+    "message": "2η",
+    "description": ""
+  },
+  "ord3": {
+    "message": "3η",
+    "description": ""
+  },
+  "ord4": {
+    "message": "4η",
+    "description": ""
+  },
+  "ord5": {
+    "message": "5η",
+    "description": ""
+  },
+  "draftSaveWarning": {
+    "message": "ΠΡΟΣΟΧΗ: Για να αποτραπεί η αποστολή του μηνύματος από τη Send Later όσο ακόμα το επεξεργάζεστε, ο καθορισμένος χρόνος αποστολής του ακυρώθηκε. Παρακαλούμε ορίστε καινούριο χρόνο αποστολής όταν ολοκληρώσετε την επεξεργασία.",
+    "description": ""
+  },
+  "AreYouSure": {
+    "message": "Είστε σίγουρος",
+    "description": ""
+  },
+  "OutboxConfirmMessage": {
+    "message": "Επιλέγοντας “Μετακίνηση στα Εξερχόμενα”, το μήνυμα μετακινείται αμέσως στα Εξερχόμενα. ΔΕΝ ορίζεται η αποστολή του σε καθορισμένη στιγμή. Για να γίνει αυτό, πατήστε το κουμπί “Αποστολή αργότερα” στα πράσινο πλαίσιο, αφού ορίσετε μία έγκυρη στιγμή αποστολής. Είστε σίγουρος πως θέλετε να μετακινήσετε το μήνυμα στα Εξερχόμενα τώρα;",
+    "description": ""
+  },
+  "SendNowConfirmMessage": {
+    "message": "Επιλέγοντας “Αποστολή τώρα”, το μήνυμα στέλνεται αμέσως. ΔΕΝ ορίζεται η αποστολή του σε καθορισμένη στιγμή. Για να γίνει αυτό, πατήστε το κουμπί “Αποστολή αργότερα” στα πράσινο πλαίσιο, αφού ορίσετε μία έγκυρη στιγμή αποστολής. Είστε σίγουρος πως θέλετε να στείλετε το μήνυμα τώρα;",
+    "description": ""
+  },
+  "ConfirmAgain": {
+    "message": "Προβολή αυτής της προειδοποίησης στο μέλλον",
+    "description": ""
+  },
+  "ScheduledMessagesWarningTitle": {
+    "message": "Προειδοποίηση για τα προγραμματισμένα μηνύματα",
+    "description": ""
+  },
+  "ScheduledMessagesWarningQuitRequested": {
+    "message": "Υπάρχουν μηνύματα που πρόκειται να σταλούν αργότερα. Το Send Later μπορεί να στέλνει μηνύματα μόνο εφόσον το $1 τρέχει. Είστε σίγουρος ότι θέλετε να το κλείσετε;",
+    "description": ""
+  },
+  "ScheduledMessagesWarningQuit": {
+    "message": "Το Send Later μπορεί να στέλνει μηνύματα μόνο εφόσον το $1 τρέχει. Παρακαλούμε επανεκκινήστε το πριν τη στιγμή που πρέπει να σταλούν τα μηνύματά σας!",
+    "description": ""
+  },
+  "EnigmailIncompatTitle": {
+    "message": "Πρόβλημα συμβατότητας ανάμεσα στο Send Later και το Enigmail.",
+    "description": ""
+  },
+  "EnigmailIncompatText": {
+    "message": "Η εγκατεστημένη έκδοση του Enigmail είναι ασύμβατη με το Send Later, επομένως ο προγραμματισμός αποστολής μηνυμάτων με το Send Later απενεργοποιήθηκε. Παρακαλούμε επικοινωνήστε με τον διαχειριστή του Send Later (jik@kamens.us) για βοήθεια.",
+    "description": ""
+  },
+  "TimeMismatchConfirmTitle": {
+    "message": "Ασυμφωνία χρόνου αποστολής / περιορισμού",
+    "description": ""
+  },
+  "TimeMismatchConfirmBody": {
+    "message": "Ο χρόνος αποστολής $1 δεν εμπίπτει εντός των περιορισμών για το καθορισμένο χρονικό διάστημα. Κάντε κλικ στο κουμπί \"Άκυρο\" για να επεξεργαστείτε τον χρόνο αποστολής σας ή τους περιορισμούς, ή ΟΚ για να ρυθμιστεί αυτόματα ως $2.",
+    "description": ""
+  },
+  "endTimeWarningTitle": {
+    "message": "Μη έγκυρο μήνυμα χρονικού περιορισμού",
+    "description": ""
+  },
+  "endTimeWarningBody": {
+    "message": "Όταν καθορίζετε ένα μήνυμα με χρονικο περιορισμό, ο χρόνος λήξης δεν μπορεί να είναι νωρίτερα από την ώρα έναρξης. Παρακαλώ ρυθμίστε τον περιορισμό χρόνου σας ή να τον απενεργοποιήσετε.",
+    "description": ""
+  },
+  "missingDaysWarningTitle": {
+    "message": "Μη έγκυρη ημέρα περιορισμού",
+    "description": ""
+  },
+  "missingDaysWarningBody": {
+    "message": "Έχετε ενεργοποιήσει ένα μήνυμα με χρονικό περιορισμό ημέρα χωρίς να καθορίσετε οποιεσδήποτε ημέρες. Παρακαλούμε να απενεργοποιήσετε τον χρονικό περιορισμό ημέρα ή καθορίστε τουλάχιστον μία ημέρα παράδοσης.",
+    "description": ""
+  },
+  "InvalidArgsTitle": {
+    "message": "Μη έγκυρη λειτουργία ορισμών",
+    "description": ""
+  },
+  "InvalidArgsBody": {
+    "message": "Η λειτουργία επιχειρήματα δεν είναι έγκυρη. Καθορίσετε μια λίστα JavaScript, χωρίς το περικλείει τετράγωνα κουτιά.",
+    "description": ""
+  },
+  "BlockedLateMessage": {
+    "message": "Το μήνυμα με θέμα “$1“ στο φάκελο Πρόχειρα $2 είχε προγραμματιστεί να παραδοθεί περισσότερα πριν από $3 λεπτά, οπότε η παράδοση έχει μπλοκαριστεί. Θα πρέπει να επεξεργαστείτε το σχέδιο και στείλτε το με το χέρι ή να το επαναπρογραμματίσετε. Μπορείτε επίσης να απενεργοποιήσετε το \"Δεν παραδίδει μηνύματα περισσότερα από # λεπτά καθυστέρηση\" για να σταματήσουν να εμποδίζουν την παράδοση μηνυμάτων αργά.",
+    "description": ""
+  },
+  "EditorReadMeCode": {
+    "message": "// Καλώς ήλθατε στο πρόγραμμα επεξεργασίας συνάρτησης Send Later!\n//\n// Το πρόγραμμα επεξεργασίας σας επιτρέπει να δημιουργήσετε πολύπλοκες λειτουργίες εφαρμογής JavaScript \n// μήνυμα προγραμματισμού λογικής η οποία μπορεί να συσχετιστεί με πλήκτρα συντόμευσης ή \n// επιλεγμένο παράθυρο διαλόγου Send Later.\n// Όπως μπορείτε να δείτε παραπάνω, όταν καλείτε μια λειτουργία προγραμματισμού, θα δοθούν\n// τρία επιχειρήματα:\n// * \"specname\" είναι απαραίτητη αν θέλετε αυτή η λειτουργία να επαναληφθεί (βλέπε παρακάτω)\n// * \"prev\" είναι η προηγούμενη προγραμματισμένη χρονική αποστολή, αν αυτό είναι επαναλαμβανόμενη\n// επίκληση\n// * \"args\" είναι επιπλέον επιχειρήματα που επιστρέφουν από προηγούμενη επίκληση αν αυτό\n// είναι μια επαναλαμβανόμενη επίκληση\n// \n// Ο κωδικό σας πρέπει να ορίσει τις μεταβλητές \"next\", \"nextspec\", και\n// \"nextargs\" ως εξής:\n//\n// * \"next\" είναι ο αριθμός των λεπτών στο μέλλον ή μία ημερομηνία αντικειμένου\n// που δείχνει πότε πρέπει να σταλεί το μήνυμα. \n//* \"nextspec\" είναι μια προδιαγραφή επανάληψης εάν αυτό προορίζεται να είναι ένα\n// επαναλαμβανόμενο μήνυμα (βλ.\n// https://blog.kamens.us/send-later/#dynamic-recurrence). Αν δεν ορίσετε\n// αυτό, τότε το μήνυμα θα σταλεί μόνο μία φορά. Σημείωση: αν θέλετε \n// η συνάρτηση σας για να κληθεί ξανά για υποτροπή, κάνει:\n// nextspec = \"function \" + specname;\n// * \"nextargs\" είναι μια σειρά με ορισμούς που θέλετε να περάσει στην επόμενη\n// επίκληση της συνάρτησης ως \"args\".\n// Ενώ εργάζεστε σε λειτουργία σας, μπορείτε να το δοκιμάσετε, συμπληρώνοντας τις τιμες\n// για \"prev\" και \"args\" στα παρακάτω πλαίσια κειμένου και, στη συνέχεια, κάνοντας κλικ στο κουμπί \"Execute\" να\n// εκτέλεση τη συνάρτηση και να δείτε τα αποτελέσματα. \n// Υπάρχουν δύο προ-διαμορφωμένο δείγματα λειτουργίας, \"BusinessHours\" και\n// \"DaysInARow\", το οποίο μπορείτε να εξετάσετε και να παίξετε για να μάθετε περισσότερα.\n// Αυτή τη λειτουργία \"ReadMeFirst\" προκαλεί ακριβώς το μήνυμα να σταλεί περίπου τώρα, \n// μέσω της ακόλουθης γραμμής. \nnext = new Date();",
+    "description": ""
+  },
+  "EditorReadMeHelp": {
+    "message": "Οποιοδήποτε κείμενο που βάζετε εδώ θα εμφανιστεί ως επεξήγηση εργαλείου όταν αιωρείστε πάνω από το όνομα της λειτουργίας στο μενού. Μπορείτε να χρησιμοποιήσετε αυτό για να τεκμηριώσει τι κάνει η λειτουργία και τι επιχειρήματα δέχεται.",
+    "description": ""
+  },
+  "_BusinessHoursCode": {
+    "message": "// Προεπιλογές\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6 \nvar workStart = [8, 30]; // Start of the work day as [H, M] \nvar workEnd = [17, 30]; // End of the work day as [H, M] \nif (args && args[0])\n     workDays = args[0];\nif (args && args[1])\n     workStart = args[1]; \nif (args && args[2])\n     workEnd = args[2];\n if (prev)\n     // Δεν αναμένεται σε κανονική χρήση, αλλά χρησιμοποιείται την τρέχουσα ώρα για τη δοκιμή.\n     next = new Date(prev); \nelse\n     next = new Date();\n // Αν είμαστε πέρα από το τέλος της εργάσιμης μέρας ή όχι σε μια εργάσιμη μέρα, να μετακινηθεί η εργασία\n// σε ώρα έναρξης της επόμενης ημέρας.\nwhile ((next.getHours() > workEnd[0]) ||\n        (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n        (workDays.indexOf(next.getDay()) == -1)) {     next.setDate(next.getDate() + 1);\n     next.setHours(workStart[0]);\n     next.setMinutes(workStart[1]);\n } \n// If we're before the beginning of the workday, move to its start time. \nif ((next.getHours() < workStart[0]) ||\n     (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n     next.setHours(workStart[0]);\n     next.setMinutes(workStart[1]); \n}",
+    "description": ""
+  },
+  "BusinessHoursHelp": {
+    "message": "Στείλτε τώρα το μήνυμα , αν είναι κατά τις εργάσιμες ώρες, ή στην αρχή της επόμενης εργάσιμης ημέρας. Μπορείτε να αλλάξετε τον ορισμό των ημερών εργασίας (προεπιλογή: Δευ - Παρ) περνώντας σε μια σειρά από αριθμούς ημέρας εργασίας ως το πρώτο επιχείρημα, όπου 0 είναι η Κυριακή και 6 είναι το Σάββατο. Μπορείτε να αλλάξετε την έναρξη εργασίας ή χρόνος λήξης (προεπιλογή: 8:30-17:30) με το πέρασμα σε μια σειρά από [H, M] ως το δεύτερο ή τρίτο όρισμα. Καθορίστε \"null\" για παλαιότερες επιχειρήματα, δεν μπορείτε να αλλάξετε. Για παράδειγμα, “null, [9, 0], [17, 0]” αλλάζει τις ώρες εργασίας, χωρίς να αλλάζουν οι ημέρες εργασίας.",
+    "description": ""
+  },
+  "DaysInARowCode": {
+    "message": "//Στείλτε το πρώτο μήνυμα τώρα, επόμενα μηνύματα μιά φορά ανά ημέρα. \nif (! prev)\n     next = new Date(); \nelse {\n     var now = new Date();\n     next = new Date(prev); // Αντιγράψτε τον ορισμό ημερομηνία, ώστε να μην το τροποποιήσουμε .\n    do {            \nnext.setDate(next.getDate() + 1);\n     } while (next < now);\n     // ^^^ Μην προσπαθείτε να στείλετε στο παρελθόν, σε περίπτωση που κοιμόταν το Thunderbird \n // την προγραμματισμένη ώρα αποστολής. \n} if (! args) // στείλετε μηνύματα τρεις φορές από προεπιλογή.\n    args = [3]; \nnextargs = [args[0] - 1];\nΝα επαναληφθεί εάν δεν κάναμε αρκετά σταλμένα ακόμα. \nif (nextargs[0] > 0)     nextspec = \"function \" + specname;",
+    "description": ""
+  },
+  "DaysInARowHelp": {
+    "message": "Στείλτε το μήνυμα τώρα, και στη συνέχεια μία φορά ανά ημέρα, την ίδια στιγμή, έως ότου έχει σταλεί τρεις φορές. Καθορίστε έναν αριθμό ως επιχείρημα για να αλλάξετε το συνολικό αριθμό των σταλμένων.",
+    "description": ""
+  },
+  "DiscardConfirmTitle": {
+    "message": "Απόρριψη αλλαγών;",
+    "description": ""
+  },
+  "DiscardConfirmBody": {
+    "message": "Υπάρχουν μη αποθηκευμένες αλλαγές. Θέλετε να τις απορρίψετε;",
+    "description": ""
+  },
+  "UntestedSaveTitle": {
+    "message": "Αποθηκεύσετε αδοκίμαστες λειτουργίες;",
+    "description": ""
+  },
+  "UntestedSaveBody": {
+    "message": "Η λειτουργία δεν έχει δοκιμαστεί (με το κουμπί “Execute” ), δεδομένου ότι τροποποιήθηκε. Είστε βέβαιοι ότι θέλετε να αποθηκεύσετε ή να εξαγάγετε;",
+    "description": ""
+  },
+  "BadSaveTitle": {
+    "message": "Μη έγκυρη λειτουργία όνομα ή κωδικός",
+    "description": ""
+  },
+  "BadSaveBody": {
+    "message": "Παρακαλώ βεβαιωθείτε ότι το όνομα και ο κωδικός της συνάρτησης  είναι έγκυρα πριν από την αποθήκευση ή εξαγωγή.",
+    "description": ""
+  },
+  "ReplacingFunctionTitle": {
+    "message": "Αντικατάσταση υπάρχοντος αρχείου;",
+    "description": ""
+  },
+  "ReplacingFunctionBody": {
+    "message": "Η λειτουργία με το καθορισμένο όνομα υπάρχει ήδη. Είστε βέβαιοι ότι θέλετε να την αντικαταστήσετε;",
+    "description": ""
+  },
+  "NoNextValueError": {
+    "message": "Στη λειτουργία δεν έχει οριστεί μια τιμή “next”.",
+    "description": ""
+  },
+  "BadNextValueError": {
+    "message": "Η τιμή “next” “$1“ δεν είναι αριθμός ή ημερομηνία",
+    "description": ""
+  },
+  "BadNextArgsError": {
+    "message": "Η τιμή “nextargs” “$1” δεν είναι μια σειρά",
+    "description": ""
+  },
+  "FunctionDeleteConfirmBody": {
+    "message": "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτή τη λειτουργία; Εαν σχετίζεται με οποιαδήποτε πλήκτρα συντόμευσης, αυτά θα σταματήσουν να λειτουργούν, και εάν υπάρχουν τυχόν επαναλαμβανόμενα μηνύματα χρησιμοποιώντας τα, θα αποτύχουν να προγραμματιστούν εκ νέου μετά την επόμενη φορά που θα σταλούν.",
+    "description": ""
+  },
+  "ImportTitle": {
+    "message": "Επιλέξτε αρχείο για εισαγωγή",
+    "description": ""
+  },
+  "SLJFilterLabel": {
+    "message": "Send Later JSON αρχεία",
+    "description": ""
+  },
+  "ImportError": {
+    "message": "Σφάλμα εισαγωγής",
+    "description": ""
+  },
+  "ExportTitle": {
+    "message": "Επιλέξτε τον προορισμό των εξαγωγών",
+    "description": ""
+  },
+  "RenameFunctionTitle": {
+    "message": "Μετονομάστε την υπάρχουσα λειτουργία;",
+    "description": ""
+  },
+  "RenameFunctionBody": {
+    "message": "Έχετε τροποποιήσει το όνομα μιας υπάρχουσας συνάρτησης, “$1”. Θέλετε να μετονομάσετε την υπάρχουσα λειτουργία ή να αποθηκεύσετε μια ξεχωριστή λειτουργία με το νέο όνομα;",
+    "description": ""
+  },
+  "RenameFunctionRenameButton": {
+    "message": "Μετονομασία",
+    "description": ""
+  },
+  "RenameFunctionNewButton": {
+    "message": "Νέο",
+    "description": ""
+  },
+  "FunctionErrorTitle": {
+    "message": "Σφάλμα επίκληση δυναμικής λειτουργίας",
+    "description": ""
+  },
+  "FunctionErrorBody": {
+    "message": "Σφάλμα επίκλησης δυναμικής λειτουργίας προγραμματισμού: “$1”",
+    "description": ""
+  },
+  "cancel_on_reply": {
+    "message": "ακυρώστε την απάντηση",
+    "description": ""
+  },
+  "PendingMessage": {
+    "message": "Σε Εκρεμότητα $1",
+    "description": ""
+  },
+  "IdleMessage": {
+    "message": "Αδρανές",
+    "description": ""
+  },
+  "DisabledMessage": {
+    "message": "Απενεργοποιημένο",
+    "description": ""
+  }
+}

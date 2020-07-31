@@ -1,25 +1,70 @@
 {
-    "name": "__MSG_appName__",
-    "version": "7.3.9",
-    "description": "__MSG_appDesc__",
-    "author": "Jonathan Kamens",
-    "default_locale": "en-US",
-    "homepage_url": "https://blog.kamens.us/send-later/",
-    "legacy": {
-        "options": {
-            "page": "chrome://sendlater3/content/options.xul",
-            "open_in_tab": true
-        }
-    },
-    "applications": {
-        "gecko": {
-            "id": "sendlater3@kamens.us",
-            "strict_min_version": "68.0a1",
-            "strict_max_version": "71.*"
-        }
-    },
-    "icons": {
-        "48": "icon.png"
-    },
-    "manifest_version": 2
+  "manifest_version": 2,
+  "name": "__MSG_extensionName__",
+  "description": "__MSG_extensionDescription__",
+  "version": "8.0.1",
+  "homepage_url": "https://github.com/Extended-Thunder/send-later/",
+  "icons": {
+    "48": "ui/icons/icon.png"
+  },
+  "applications": {
+    "gecko": {
+      "id": "jph@extended-thunder.org",
+      "strict_min_version": "78.0a1"
+    }
+  },
+  "permissions": [
+    "storage",
+    "accountsRead",
+    "accountsFolders",
+    "menus",
+    "menus.overrideContext",
+    "activeTab",
+    "messagesMove",
+    "messagesRead",
+    "compose"
+  ],
+
+  "background": {
+    "scripts": [
+      "/utils/moment.min.js",
+      "/utils/static.js",
+      "/utils/prefHandler.js",
+      "/background.js"
+    ]
+  },
+
+  "options_ui": {
+    "page": "/ui/options.html",
+    "open_in_tab": false,
+    "browser_style": false
+  },
+
+  "compose_action": {
+    "browser_style": true,
+    "default_area": "maintoolbar",
+    "default_icon": "/ui/icons/icon.png",
+    "default_popup": "/ui/popup.html",
+    "default_title": "__MSG_extensionName__"
+  },
+
+  "message_display_action": {
+    "browser_style": true,
+    "default_icon": "/ui/icons/icon.png",
+    "default_popup": "/ui/msgDisplayPopup.html",
+    "default_title": "__MSG_extensionName__"
+  },
+
+  "default_locale": "en",
+
+  "experiment_apis": {
+    "SL3U": {
+      "schema": "experiments/sl3u.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "paths": [["SL3U"]],
+        "script": "experiments/sl3u.js"
+      }
+    }
+  }
 }

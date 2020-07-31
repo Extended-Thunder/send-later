@@ -1,66 +1,37 @@
-SHELL=/bin/bash
-export LC_COLLATE=C
-export PYTHONPATH=$(CURDIR)
+.PHONY: release
 
-all: send_later.xpi
+version=$(shell grep -o '"version"\s*:\s*"\S*"' manifest.json | sed -e 's/.*"\([0-9]\S*\)".*/\1/')
 
-send_later.xpi: utils/check-locales.pl utils/propagate_strings.py \
-    utils/check-accesskeys.py utils/check-locale-integration.py \
-    utils/check-manifests.sh Makefile include-manifest exclude-manifest2 \
-    $(shell ls $(shell cat include-manifest) 2>/dev/null)
-	-rm -rf build
-	./utils/check-manifests.sh --excludes exclude-manifest2 --overlap \
-		--extra
-	./utils/fix-addon-ids.pl --check
-	./utils/make-manifest-locales.pl
-	./utils/check-locale-integration.py
-	mkdir build
-	# Some locale files are generated dynamically below, and therefore
-	# tar won't be able to find them here.
-	tar c --files-from include-manifest \
-          2> >(egrep -v '^tar: chrome/.*: No such file or directory|due to previous errors' \
-               >/tmp/$@.errors) | tar -C build -x
-	@if [ -s /tmp/$@.errors ]; then \
-	    cat /tmp/$@.errors; \
-	    exit 1; \
-        fi
-	@rm -f /tmp/$@.errors
-	cd build; ../utils/check-locales.pl --replace
-	cd build; ../utils/propagate_strings.py
-	cd build; ../utils/check-accesskeys.py
-	cd build; ../utils/check-manifests.sh --includes ../include-manifest \
-	    --excludes ../exclude-manifest2 --missing --extra
-	cd build; zip -q -r $@.tmp -@ < ../include-manifest
-	mv build/$@.tmp $@
+# Kludgey temporary workaround until Crowdin integration is fixed.
+_locales: dev/migrate_locales.py
+	mkdir -p "$@"
+	git restore -s ef21bfd -- chrome/locale
+	./dev/migrate_locales.py chrome/locale
+	rm -rf chrome
 
-clean:: ; -rm -rf *.xpi *.tmp */*.pyc _locales build
-clean:: ; -rm -f exclude-manifest2
+utils/moment.min.js:
+	curl -sL https://momentjs.com/downloads/moment-with-locales.min.js | \
+		sed -e 's/.*sourceMappingURL.*//' > "$@"
 
-exclude-manifest2: exclude-manifest
-	cat $< > $@.tmp
-	echo $@ >> $@.tmp
-	find contrib -type f >> $@.tmp
-	mv -f $@.tmp $@
+send_later.xpi: $(shell find $(shell cat dev/include-manifest) 2>/dev/null)
+	zip -q -r "$@" . -i@dev/include-manifest
 
-locale_import: crowdin.yaml
-	crowdin-cli download translations
-	sed -i -e '/^$$/d' $$(ls chrome/locale/*/* | grep -v /en-US/)
-	sed -i -e 's/\(<!ENTITY [^ ]* \)  */\1/' \
-	  $$(ls chrome/locale/*/*.dtd | grep -v /en-US/)
-	sed -i -e '/^#X-Generator: crowdin.com/d' -e 's/\\\([#:!=]\)/\1/g' \
-	  $$(ls chrome/locale/*/*.properties | grep -v /en-US/)
-	wc -l chrome/locale/*/* | awk '$$1 == 1 {print $$2}' | \
-	  xargs grep -l utf-8 | xargs --no-run-if-empty rm
+release/send_later-${version}-tb.xpi: send_later.xpi
+	mkdir -p "`dirname $@`"
+	cp send_later.xpi "$@"
 
-locale_export: crowdin.yaml
-	crowdin-cli upload sources
+release: release/send_later-${version}-tb.xpi
 
-# Be very careful about this because it could mess with translation
-# work in progress.
-upload_translations:
-	crowdin-cli upload translations --import-eq-suggestions
+## Requires the Node 'addons-linter' package is installed
+## npm install -g addons-linter
+## Note: this will produce a lot of "UNSUPPORTED_API" and "MANIFEST_PERMISSIONS"
+## warnings because the addons-linter assumes vanilla firefox target.
+lint:
+	addons-linter .
 
-crowdin.yaml: crowdin.yaml.template
-	set -e; echo -n "Enter Crowdin API key: "; read api_key; \
-	sed -e "s/{{api_key}}/$$api_key/" $< > $@.tmp
-	mv -f $@.tmp $@
+unit_test: $(shell find $(shell cat dev/include-manifest) 2>/dev/null)
+	@node test/run_tests.js 2>&1 \
+		| sed -e '/^+ TEST'/s//"`printf '\033[32m+ TEST\033[0m'`"'/' \
+		| sed -e '/^- TEST'/s//"`printf '\033[31m- TEST\033[0m'`"'/'
+
+test: lint unit_test

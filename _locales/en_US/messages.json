@@ -1,0 +1,1094 @@
+{
+  "extensionName": {
+    "message": "Send Later",
+    "description": "The name of the add-on, displayed in various places."
+  },
+  "extensionDescription": {
+    "message": "True “Send Later” functionality to schedule the time for sending an email.",
+    "description": "A short description of the add-on."
+  },
+  "advancedOptionsTitle": {
+    "message": "Advanced",
+    "description": ""
+  },
+  "altBindingPrefLabel": {
+    "message": "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel1": {
+    "message": "Don't deliver messages more than",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel2": {
+    "message": "minutes late",
+    "description": ""
+  },
+  "cancelLabel": {
+    "message": "Cancel",
+    "description": ""
+  },
+  "checkTimePrefLabel1": {
+    "message": "Check every",
+    "description": ""
+  },
+  "checkTimePrefLabel2": {
+    "message": "minutes",
+    "description": ""
+  },
+  "clearDefaultsLabel": {
+    "message": "Clear defaults",
+    "description": ""
+  },
+  "contactAuthorLabel": {
+    "message": "Contact the author",
+    "description": ""
+  },
+  "enforceRestrictionsPrefLabel": {
+    "message": "Enforce time and day restrictions at delivery time",
+    "description": ""
+  },
+  "generalOptionsTitle": {
+    "message": "General",
+    "description": ""
+  },
+  "logConsoleLevelLabel": {
+    "message": "Console log level",
+    "description": ""
+  },
+  "logDumpLevelLabel": {
+    "message": "Dump log level",
+    "description": ""
+  },
+  "logLevelAll": {
+    "message": "All",
+    "description": ""
+  },
+  "logLevelDebug": {
+    "message": "Debug",
+    "description": ""
+  },
+  "logLevelError": {
+    "message": "Error",
+    "description": ""
+  },
+  "logLevelFatal": {
+    "message": "Fatal",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "Info",
+    "description": ""
+  },
+  "logLevelTrace": {
+    "message": "Trace",
+    "description": ""
+  },
+  "logLevelWarn": {
+    "message": "Warn",
+    "description": ""
+  },
+  "markReadPrefLabel": {
+    "message": "Mark scheduled drafts as read",
+    "description": ""
+  },
+  "quickOptionsLabel1Label": {
+    "message": "Shortcut 1",
+    "description": ""
+  },
+  "quickOptionsLabel2Label": {
+    "message": "Shortcut 2",
+    "description": ""
+  },
+  "quickOptionsLabel3Label": {
+    "message": "Shortcut 3",
+    "description": ""
+  },
+  "quickOptionsValueLabel": {
+    "message": "Minutes",
+    "description": ""
+  },
+  "recurAnnuallyLabel": {
+    "message": "yearly",
+    "description": ""
+  },
+  "recurDailyLabel": {
+    "message": "daily",
+    "description": ""
+  },
+  "recurFunctionLabel": {
+    "message": "function",
+    "description": ""
+  },
+  "recurLabel": {
+    "message": "Recur",
+    "description": ""
+  },
+  "recurMinutelyLabel": {
+    "message": "minutely",
+    "description": ""
+  },
+  "recurMonthlyLabel": {
+    "message": "monthly",
+    "description": ""
+  },
+  "recurOnceLabel": {
+    "message": "once",
+    "description": ""
+  },
+  "recurWeeklyLabel": {
+    "message": "weekly",
+    "description": ""
+  },
+  "resetPrefsButton": {
+    "message": "Reset Preferences",
+    "description": ""
+  },
+  "saveDefaultsLabel": {
+    "message": "Save these values as the defaults",
+    "description": ""
+  },
+  "sendAtDefaultLabel": {
+    "message": "Enter a date and time",
+    "description": "Displayed in place of send at time before user makes selections"
+  },
+  "sendAtLabel": {
+    "message": "Send at",
+    "description": ""
+  },
+  "sendBtwnLabel": {
+    "message": "Between",
+    "description": ""
+  },
+  "sendButtonPrefLabel": {
+    "message": "“Send” does “Send Later”",
+    "description": ""
+  },
+  "sendDelayPrefLabel1": {
+    "message": "“Send” delays messages by",
+    "description": ""
+  },
+  "sendDelayPrefLabel2": {
+    "message": "minutes",
+    "description": ""
+  },
+  "sendSundayLabel": {
+    "message": "Sunday",
+    "description": ""
+  },
+  "sendMondayLabel": {
+    "message": "Monday",
+    "description": ""
+  },
+  "sendTuesdayLabel": {
+    "message": "Tuesday",
+    "description": ""
+  },
+  "sendWednesdayLabel": {
+    "message": "Wednesday",
+    "description": ""
+  },
+  "sendThursdayLabel": {
+    "message": "Thursday",
+    "description": ""
+  },
+  "sendFridayLabel": {
+    "message": "Friday",
+    "description": ""
+  },
+  "sendSaturdayLabel": {
+    "message": "Saturday",
+    "description": ""
+  },
+  "sendNowLabel": {
+    "message": "Send Now",
+    "description": ""
+  },
+  "sendOnlyOnLabel": {
+    "message": "Only on",
+    "description": ""
+  },
+  "sendUnsentMessagesPrefLabel": {
+    "message": "Trigger unsent message delivery from Outbox",
+    "description": ""
+  },
+  "showColumnPrefLabel": {
+    "message": "Show Send Later Column",
+    "description": ""
+  },
+  "showHeaderPrefLabel": {
+    "message": "Show Send Later Header",
+    "description": ""
+  },
+  "showStatusPrefLabel": {
+    "message": "Show Send Later In Status Bar",
+    "description": ""
+  },
+  "userGuideLabel": {
+    "message": "User guide",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.label": {
+    "message": "Put in Outbox",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.accesskey": {
+    "message": "O",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "Rather than scheduling delivery for a specific time, move the message to the Outbox folder for delivery next time unsent messages are sent.",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.accesskey": {
+    "message": "N",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.tooltip": {
+    "message": "Send the message immediately, bypassing “Send Later”.",
+    "description": ""
+  },
+  "sendlater.prompt.close.accesskey": {
+    "message": "C",
+    "description": ""
+  },
+  "sendlater.prompt.close.tooltip": {
+    "message": "Go back to editing the message.",
+    "description": ""
+  },
+  "sendlater.prompt.title.label": {
+    "message": "Send this email later",
+    "description": ""
+  },
+  "sendlater.prompt.or.label": {
+    "message": "or",
+    "description": ""
+  },
+  "sendlater.prompt.textbox.emptytext": {
+    "message": "ex: “3:00pm Thursday”, “12/31/2012 15:27”",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.label": {
+    "message": "Send later at time(s) specified above",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Save message in Drafts folder for automatic delivery at the time set above.",
+    "description": ""
+  },
+  "sendlater.prompt.functionargs.label": {
+    "message": "Function arguments",
+    "description": ""
+  },
+  "sendlater.prompt.calculate.label": {
+    "message": "Calculate",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.label": {
+    "message": "Send Later",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.tooltip": {
+    "message": "Activate Send Later to schedule a message after entering the desired send time in the text box. This button does not do anything by itself; you also need to add the text box or date/time pickers (not supported in all Thunderbird versions) to the toolbar for this button to be useful.",
+    "description": ""
+  },
+  "sendlater.toolbar.textbox.emptytext": {
+    "message": "send time",
+    "description": ""
+  },
+  "sendlater.prompt.every.label": {
+    "message": "Every",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "15 mins later",
+    "description": ""
+  },
+  "sendlater.button2.label": {
+    "message": "30 mins later",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "2 hours later",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.label": {
+    "message": "Cancel recurrence upon reply",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Watch for replies to previously sent copies of recurring messages. Cancel a recurring message and remove it from the Drafts folder when a reply is received.",
+    "description": ""
+  },
+  "sendlater3header.label": {
+    "message": "Send Later",
+    "description": ""
+  },
+  "prefwindow.title": {
+    "message": "Send Later preferences",
+    "description": ""
+  },
+  "pane1.title": {
+    "message": "Send Later preferences",
+    "description": ""
+  },
+  "checktimepref.tooltip": {
+    "message": "Interval, in minutes, between checks for drafts whose delivery time has arrived. Increase this value if your drafts sometimes aren't sent on time or the pending message count in your status bar sometimes doesn't reflect all scheduled drafts.",
+    "description": ""
+  },
+  "quickoptionname.label": {
+    "message": "Button Label",
+    "description": ""
+  },
+  "showsendlatercolumn.tooltip": {
+    "message": "Whether to show the “Send Later” column when viewing draft folders",
+    "description": ""
+  },
+  "showsendlaterheader.tooltip": {
+    "message": "Whether to show the “X-Send-Later-At” header, i.e., the time when a draft is scheduled to be sent, in the header when viewing a message.",
+    "description": ""
+  },
+  "showsendlaterprogress.caption": {
+    "message": "Show Background Progress In Status Bar",
+    "description": ""
+  },
+  "showsendlaterunsentmessages.tooltip": {
+    "message": "If you unset this option, then Send Later will not fully deliver messages, but instead will just put them in your Outbox when they are scheduled for delivery. Unset this option, for example, if you use some other extension, e.g., BlunderDelay, to periodically send messages from your Outbox. Note that when this option is set, then whenever Send Later delivers a message, ALL messages in your Outbox will be delivered.",
+    "description": ""
+  },
+  "sendlatersendbutton.tooltip": {
+    "message": "With this option enabled, the “Send” command (either the button or typing Ctrl-Enter) acts the same as “Send Later”.",
+    "description": ""
+  },
+  "senddelay.tooltip": {
+    "message": "With this option enabled, all messages sent with the “Send” command (either the button or typing Ctrl-Enter) are delayed by the specified number of minutes by scheduling them with Send Later.",
+    "description": ""
+  },
+  "composewindowhotkeys.tooltip": {
+    "message": "While composing a message you can type Ctrl-Alt-1, -2, or -3 to activate the first, second, or third preset button, unless you uncheck this preference, in which case these key bindings are disabled.",
+    "description": ""
+  },
+  "composewindowhotkeys.caption": {
+    "message": "Enable compose window key bindings for presets",
+    "description": ""
+  },
+  "contactauthor.tooltip": {
+    "message": "Send a mail message to the author of Send Later.",
+    "description": ""
+  },
+  "helplink.tooltip": {
+    "message": "View the Send Later documentation.",
+    "description": ""
+  },
+  "releasenotes.value": {
+    "message": "Release notes",
+    "description": ""
+  },
+  "donatelink.value": {
+    "message": "Donate",
+    "description": ""
+  },
+  "editorlink.value": {
+    "message": "Dynamic function editor",
+    "description": ""
+  },
+  "enforcerestrictions.tooltip": {
+    "message": "If a message that is due to be delivered is outside its time or day restrictions, e.g., because Thunderbird was not running at its scheduled delivery time, then delay its delivery until the time and day restrictions are met.",
+    "description": ""
+  },
+  "blocklatemessages.tooltip": {
+    "message": "Don't deliver scheduled messages that have been delayed past their scheduled time, e.g., because Thunderbird wasn't running at that time.",
+    "description": ""
+  },
+  "editorbutton": {
+    "message": "Open dynamic function editor…",
+    "description": ""
+  },
+  "editortip": {
+    "message": "Open a window for creating and editing JavaScript functions implementing complex scheduling logic.",
+    "description": ""
+  },
+  "loglevel.config": {
+    "message": "Config",
+    "description": ""
+  },
+  "sendlater.ask.title.label": {
+    "message": "Support Send Later",
+    "description": ""
+  },
+  "sendlater.ask.message1": {
+    "message": "Countless hours have gone into the development, maintenance and support of this add-on.",
+    "description": ""
+  },
+  "sendlater.ask.message2": {
+    "message": "Please consider making a donation to support its continued development!",
+    "description": ""
+  },
+  "sendlater.ask.message3": {
+    "message": "Thank you!",
+    "description": ""
+  },
+  "sendlater.ask.donate.accesskey": {
+    "message": "D",
+    "description": ""
+  },
+  "sendlater.ask.donate.label": {
+    "message": "Donate now",
+    "description": ""
+  },
+  "sendlater.ask.remind.accesskey": {
+    "message": "R",
+    "description": ""
+  },
+  "sendlater.ask.remind.label": {
+    "message": "Remind me later",
+    "description": ""
+  },
+  "sendlater.ask.already.accesskey": {
+    "message": "a",
+    "description": ""
+  },
+  "sendlater.ask.already.label": {
+    "message": "I already donated",
+    "description": ""
+  },
+  "sendlater.ask.stop.accesskey": {
+    "message": "S",
+    "description": ""
+  },
+  "sendlater.ask.stop.label": {
+    "message": "Stop asking",
+    "description": ""
+  },
+  "windowtitle": {
+    "message": "Send Later Dynamic Function Editor",
+    "description": ""
+  },
+  "selectfunction": {
+    "message": "Select function",
+    "description": ""
+  },
+  "selectfunctiontip": {
+    "message": "Select a function to edit or delete, or “(create new function)” to create a new function.",
+    "description": ""
+  },
+  "createnewfunction": {
+    "message": "(create new function)",
+    "description": ""
+  },
+  "delete.label": {
+    "message": "Delete",
+    "description": ""
+  },
+  "delete.accesskey": {
+    "message": "D",
+    "description": ""
+  },
+  "functionnametip": {
+    "message": "Enter or edit an alphanumeric function name. If you modify the name of an existing function, you will be asked when you save whether to rename the function or create a new function with the modified name.",
+    "description": ""
+  },
+  "functionnameplaceholder": {
+    "message": "function name",
+    "description": ""
+  },
+  "codetip": {
+    "message": "Put the source code for your function here. See the “ReadMeFirst” sample function for details about what your code should do.",
+    "description": ""
+  },
+  "codeplaceholder": {
+    "message": "function source code",
+    "description": ""
+  },
+  "helptextheader": {
+    "message": "Function help text",
+    "description": ""
+  },
+  "helptexttip": {
+    "message": "Any text you put here will be displayed when the user hovers over the function name in the pop-up menu. Use it to explain what the function does and what arguments it accepts.",
+    "description": ""
+  },
+  "helptextplaceholder": {
+    "message": "help text",
+    "description": ""
+  },
+  "run.label": {
+    "message": "Execute function",
+    "description": ""
+  },
+  "run.accesskey": {
+    "message": "x",
+    "description": ""
+  },
+  "inputtime": {
+    "message": "Input time",
+    "description": ""
+  },
+  "inputtimetip": {
+    "message": "You can enter dates and times here in any format that the Send Later dialog understands.",
+    "description": ""
+  },
+  "inputtimeplaceholder": {
+    "message": "date and time, if any, to pass into the function for testing",
+    "description": ""
+  },
+  "inputargs": {
+    "message": "Input arguments",
+    "description": ""
+  },
+  "inputargstip": {
+    "message": "Arguments should be specified in JavaScript format, e.g., strings should be in quotation marks.",
+    "description": ""
+  },
+  "inputargsplaceholder": {
+    "message": "comma-separated arguments, if any, to pass in for testing",
+    "description": ""
+  },
+  "output": {
+    "message": "Output",
+    "description": ""
+  },
+  "import.label": {
+    "message": "Import…",
+    "description": ""
+  },
+  "import.accesskey": {
+    "message": "m",
+    "description": ""
+  },
+  "importtip": {
+    "message": "Import a dynamic function previously exported from the editor.",
+    "description": ""
+  },
+  "export.label": {
+    "message": "Export…",
+    "description": ""
+  },
+  "export.accesskey": {
+    "message": "E",
+    "description": ""
+  },
+  "exporttip": {
+    "message": "Export the currently displayed function into a file for backup or sharing.",
+    "description": ""
+  },
+  "reset.label": {
+    "message": "Discard changes",
+    "description": ""
+  },
+  "reset.accesskey": {
+    "message": "a",
+    "description": ""
+  },
+  "save.label": {
+    "message": "Save",
+    "description": ""
+  },
+  "save.accesskey": {
+    "message": "S",
+    "description": ""
+  },
+  "close.label": {
+    "message": "Close",
+    "description": ""
+  },
+  "close.accesskey": {
+    "message": "C",
+    "description": ""
+  },
+  "close.cmdkey": {
+    "message": "w",
+    "description": ""
+  },
+  "sendaround": {
+    "message": "Send around",
+    "description": ""
+  },
+  "entervalid": {
+    "message": "Enter a valid date above",
+    "description": ""
+  },
+  "sendwithfunction": {
+    "message": "Send according to function “$1”",
+    "description": ""
+  },
+  "sendspecifyfunction": {
+    "message": "Select a function from the menu above",
+    "description": ""
+  },
+  "January": {
+    "message": "January",
+    "description": ""
+  },
+  "February": {
+    "message": "February",
+    "description": ""
+  },
+  "March": {
+    "message": "March",
+    "description": ""
+  },
+  "April": {
+    "message": "April",
+    "description": ""
+  },
+  "May": {
+    "message": "May",
+    "description": ""
+  },
+  "June": {
+    "message": "June",
+    "description": ""
+  },
+  "July": {
+    "message": "July",
+    "description": ""
+  },
+  "August": {
+    "message": "August",
+    "description": ""
+  },
+  "September": {
+    "message": "September",
+    "description": ""
+  },
+  "October": {
+    "message": "October",
+    "description": ""
+  },
+  "November": {
+    "message": "November",
+    "description": ""
+  },
+  "December": {
+    "message": "December",
+    "description": ""
+  },
+  "OptionShortcutAlertTitle": {
+    "message": "Invalid shortcut value",
+    "description": ""
+  },
+  "OptionShortcutAlertText": {
+    "message": "Shortcut $1 has invalid value “$2”",
+    "description": ""
+  },
+  "SendingUnsentError": {
+    "message": "Send Later: Error sending unsent messages. Your Outbox may be corrupt, and your scheduled messages may not have been sent. See https://blog.kamens.us/send-later/#outbox.",
+    "description": ""
+  },
+  "CopyUnsentError": {
+    "message": "Send Later: Error copying scheduled message to Outbox for delivery (code $1). Send Later has been disabled! See https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "description": ""
+  },
+  "CopyRecurError": {
+    "message": "Send Later: Error copying recurring message into Drafts folder (code $1). Send Later has been disabled! See https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "description": ""
+  },
+  "CorruptFolderError": {
+    "message": "Send Later: Folder $1 may be corrupt. Please open its properties and repair it. See https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "description": ""
+  },
+  "MessageResendError": {
+    "message": "Send Later: Attempt to resend already sent message?! Your Outbox or Drafts folder $1 is probably corrupt. Please repair them as described at https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "description": ""
+  },
+  "minutely": {
+    "message": "minutely",
+    "description": ""
+  },
+  "daily": {
+    "message": "daily",
+    "description": ""
+  },
+  "weekly": {
+    "message": "weekly",
+    "description": ""
+  },
+  "monthly": {
+    "message": "monthly",
+    "description": ""
+  },
+  "yearly": {
+    "message": "yearly",
+    "description": ""
+  },
+  "plural_minutely": {
+    "message": "minutes",
+    "description": ""
+  },
+  "plural_daily": {
+    "message": "days",
+    "description": ""
+  },
+  "plural_weekly": {
+    "message": "weeks",
+    "description": ""
+  },
+  "plural_monthly": {
+    "message": "months",
+    "description": ""
+  },
+  "plural_yearly": {
+    "message": "years",
+    "description": ""
+  },
+  "every_minutely": {
+    "message": "every $1 minutes",
+    "description": ""
+  },
+  "every_daily": {
+    "message": "every $1 days",
+    "description": ""
+  },
+  "every_weekly": {
+    "message": "every $1 weeks",
+    "description": ""
+  },
+  "every_monthly": {
+    "message": "every $1 months",
+    "description": ""
+  },
+  "every_yearly": {
+    "message": "every $1 years",
+    "description": ""
+  },
+  "everyempty": {
+    "message": "week of the month",
+    "description": ""
+  },
+  "everymonthly": {
+    "message": "$1 $2 of the month",
+    "description": ""
+  },
+  "everymonthly_day0": {
+    "message": "Sunday",
+    "description": ""
+  },
+  "everymonthly_day1": {
+    "message": "Monday",
+    "description": ""
+  },
+  "everymonthly_day2": {
+    "message": "Tuesday",
+    "description": ""
+  },
+  "everymonthly_day3": {
+    "message": "Wednesday",
+    "description": ""
+  },
+  "everymonthly_day4": {
+    "message": "Thursday",
+    "description": ""
+  },
+  "everymonthly_day5": {
+    "message": "Friday",
+    "description": ""
+  },
+  "everymonthly_day6": {
+    "message": "Saturday",
+    "description": ""
+  },
+  "everymonthly_short": {
+    "message": "$1 $2",
+    "description": ""
+  },
+  "everymonthly_short_day0": {
+    "message": "Sunday",
+    "description": ""
+  },
+  "everymonthly_short_day1": {
+    "message": "Monday",
+    "description": ""
+  },
+  "everymonthly_short_day2": {
+    "message": "Tuesday",
+    "description": ""
+  },
+  "everymonthly_short_day3": {
+    "message": "Wednesday",
+    "description": ""
+  },
+  "everymonthly_short_day4": {
+    "message": "Thursday",
+    "description": ""
+  },
+  "everymonthly_short_day5": {
+    "message": "Friday",
+    "description": ""
+  },
+  "everymonthly_short_day6": {
+    "message": "Saturday",
+    "description": ""
+  },
+  "betw_times": {
+    "message": "betw. $1 and $2",
+    "description": ""
+  },
+  "only_on_days": {
+    "message": "on $1",
+    "description": ""
+  },
+  "only_on_day0": {
+    "message": "Sunday",
+    "description": ""
+  },
+  "only_on_day1": {
+    "message": "Monday",
+    "description": ""
+  },
+  "only_on_day2": {
+    "message": "Tuesday",
+    "description": ""
+  },
+  "only_on_day3": {
+    "message": "Wednesday",
+    "description": ""
+  },
+  "only_on_day4": {
+    "message": "Thursday",
+    "description": ""
+  },
+  "only_on_day5": {
+    "message": "Friday",
+    "description": ""
+  },
+  "only_on_day6": {
+    "message": "Saturday",
+    "description": ""
+  },
+  "ord1": {
+    "message": "1st",
+    "description": ""
+  },
+  "ord2": {
+    "message": "2nd",
+    "description": ""
+  },
+  "ord3": {
+    "message": "3rd",
+    "description": ""
+  },
+  "ord4": {
+    "message": "4th",
+    "description": ""
+  },
+  "ord5": {
+    "message": "5th",
+    "description": ""
+  },
+  "draftSaveWarning": {
+    "message": "WARNING: To prevent the message from being delivered by Send Later while you are editing it, its scheduled send time has been canceled. Please reschedule the message when you are done editing it.",
+    "description": ""
+  },
+  "AreYouSure": {
+    "message": "Are you sure?",
+    "description": ""
+  },
+  "OutboxConfirmMessage": {
+    "message": "Clicking “Put in Outbox” puts the message in your Outbox immediately. It DOES NOT schedule the message to be sent at a specific time. For that, click the “Send around” button in the green box after entering a valid send time. Are you sure you want to put the message in your Outbox now?",
+    "description": ""
+  },
+  "SendNowConfirmMessage": {
+    "message": "Clicking “Send Now” sends the message immediately. It DOES NOT schedule the message to be sent at a specific time. For that, click the “Send around” button in the green box after entering a valid send time. Are you sure you want to send the message now?",
+    "description": ""
+  },
+  "ConfirmAgain": {
+    "message": "Show this warning next time",
+    "description": ""
+  },
+  "ScheduledMessagesWarningTitle": {
+    "message": "Scheduled messages warning",
+    "description": ""
+  },
+  "ScheduledMessagesWarningQuitRequested": {
+    "message": "There are messages scheduled to be sent. Send Later can only send messages when $1 is running. Are you sure you want to exit?",
+    "description": ""
+  },
+  "ScheduledMessagesWarningQuit": {
+    "message": "Send Later can only send messages when $1 is running. Please remember to restart it before your messages are scheduled to be sent!",
+    "description": ""
+  },
+  "EnigmailIncompatTitle": {
+    "message": "Send Later / Enigmail compatibility issue",
+    "description": ""
+  },
+  "EnigmailIncompatText": {
+    "message": "The installed version of Enigmail is incompatible with Send Later, so scheduling messages with Send Later has been disabled. Please contact the maintainer of Send Later (jik@kamens.us) for assistance.",
+    "description": ""
+  },
+  "TimeMismatchConfirmTitle": {
+    "message": "Send time / restriction mismatch",
+    "description": ""
+  },
+  "TimeMismatchConfirmBody": {
+    "message": "The send time $1 does not fall within the specified time restrictions. Click Cancel to edit your send time or restrictions, or OK to adjust it automatically to $2.",
+    "description": ""
+  },
+  "endTimeWarningTitle": {
+    "message": "Invalid message time restriction",
+    "description": ""
+  },
+  "endTimeWarningBody": {
+    "message": "When specifying a message time restriction, the end time cannot be earlier than the start time. Please adjust your time restriction or disable it.",
+    "description": ""
+  },
+  "missingDaysWarningTitle": {
+    "message": "Invalid day restriction",
+    "description": ""
+  },
+  "missingDaysWarningBody": {
+    "message": "You have enabled a message day restriction without specifying any days. Please disable the day restriction or specify at least one delivery day.",
+    "description": ""
+  },
+  "InvalidArgsTitle": {
+    "message": "Invalid function arguments",
+    "description": ""
+  },
+  "InvalidArgsBody": {
+    "message": "The function arguments are not valid. Specify a JavaScript list, without the enclosing square braces.",
+    "description": ""
+  },
+  "BlockedLateMessage": {
+    "message": "The message with subject “$1” in Drafts folder $2 was scheduled to be delivered more than $3 minutes ago, so delivery has been blocked. You should edit the draft and either send it by hand or reschedule it. You can also disable the “Don't deliver messages more than # minutes late” preference to stop blocking delivery of late messages.",
+    "description": ""
+  },
+  "EditorReadMeCode": {
+    "message": "// Welcome to the Send Later function editor!\n//\n// The editor allows you to create JavaScript functions implementing complex\n// message scheduling logic which can be associated with shortcut buttons or\n// selected in the Send Later dialog.\n//\n// As you can see above, when a scheduling function is called, it will be given\n// three arguments:\n// * \"specname\" is needed if you want this function to recur (see below)\n// * \"prev\" is the previous scheduled send time, if this is a recurring\n//   invocation\n// * \"args\" is the extra arguments returned by the previous invocation if this\n//   is a recurring invocation\n//\n// Your code needs to set the variables \"next\", \"nextspec\", and\n// \"nextargs\" as follows:\n//\n// * \"next\" is either the number of minutes in the future or a Date object\n//   indicating when the message should be sent.\n// * \"nextspec\" is a recurrence specification if this is intended to be a\n//   recurring message (see\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). If you don't set\n//   this, then the message will only be sent once. Note: if you want your\n//   function to be called again for recurrence, do:\n//     nextspec = \"function \" + specname;\n// * \"nextargs\" is an array of arguments you want to be passed into the next\n//   invocation of the function as \"args\".\n//\n// While you are working on your function, you can test it by filling in values\n// for \"prev\" and \"args\" in the Text boxes below and then clicking \"Execute\" to\n// execute the function and see the results.\n//\n// There are two pre-configured sample functions, \"BusinessHours\" and\n// \"DaysInARow\", which you can look at and play with to learn more.\n//\n// This \"ReadMeFirst\" function just causes the message to be sent around now,\n// via the following line.\nnext = new Date();",
+    "description": ""
+  },
+  "EditorReadMeHelp": {
+    "message": "Any text you put here will be displayed as a tooltip when you hover over the name of the function in the menu. You can use this to document what the function does and what arguments it accepts.",
+    "description": ""
+  },
+  "_BusinessHoursCode": {
+    "message": "// Defaults\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Start of the work day as [H, M]\nvar workEnd = [17, 30]; // End of the work day as [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Not expected in normal usage, but used as the current time for testing.\n    next = new Date(prev);\nelse\n    next = new Date();\n// If we're past the end of the workday or not on a workday, move to the work\n// start time on the next day.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// If we're before the beginning of the workday, move to its start time.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
+    "description": ""
+  },
+  "BusinessHoursHelp": {
+    "message": "Send the message now if it is during business hours, or at the beginning of the next work day. You can change the definition of work days (default: Mon - Fri) by passing in an array of work-day numbers as the first argument, where 0 is Sunday and 6 is Saturday. You can change the work start or end time (default: 8:30 - 17:30) by passing in an array of [H, M] as the second or third argument. Specify “null” for earlier arguments you don't change. For example, “null, [9, 0], [17, 0]” changes the work hours without changing the work days.",
+    "description": ""
+  },
+  "DaysInARowCode": {
+    "message": "// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
+    "description": ""
+  },
+  "DaysInARowHelp": {
+    "message": "Send the message now, and subsequently once per day at the same time, until it has been sent three times. Specify a number as an argument to change the total number of sends.",
+    "description": ""
+  },
+  "DiscardConfirmTitle": {
+    "message": "Discard changes?",
+    "description": ""
+  },
+  "DiscardConfirmBody": {
+    "message": "There are unsaved changes. Do you want to discard them?",
+    "description": ""
+  },
+  "UntestedSaveTitle": {
+    "message": "Save untested function?",
+    "description": ""
+  },
+  "UntestedSaveBody": {
+    "message": "The function has not been tested (with the “Execute” button) since it was last modified. Are you sure you want to save or export it?",
+    "description": ""
+  },
+  "BadSaveTitle": {
+    "message": "Invalid function name or code",
+    "description": ""
+  },
+  "BadSaveBody": {
+    "message": "Please ensure that the function name and code are valid before save or export.",
+    "description": ""
+  },
+  "ReplacingFunctionTitle": {
+    "message": "Overwrite existing function?",
+    "description": ""
+  },
+  "ReplacingFunctionBody": {
+    "message": "A function with the specified name already exists. Are you sure you want to replace it?",
+    "description": ""
+  },
+  "NoNextValueError": {
+    "message": "Function did not set a “next” value.",
+    "description": ""
+  },
+  "BadNextValueError": {
+    "message": "“next” value “$1” is not a number or Date",
+    "description": ""
+  },
+  "BadNextArgsError": {
+    "message": "“nextargs” value “$1” is not an Array",
+    "description": ""
+  },
+  "FunctionDeleteConfirmBody": {
+    "message": "Are you sure you want to delete this function? If it is associated with any shortcut buttons, they will stop working, and if there are any recurring messages using it, they will fail to reschedule after the next time they are sent.",
+    "description": ""
+  },
+  "ImportTitle": {
+    "message": "Choose file to import",
+    "description": ""
+  },
+  "SLJFilterLabel": {
+    "message": "Send Later JSON Files",
+    "description": ""
+  },
+  "ImportError": {
+    "message": "Import Error",
+    "description": ""
+  },
+  "ExportTitle": {
+    "message": "Choose export destination",
+    "description": ""
+  },
+  "RenameFunctionTitle": {
+    "message": "Rename existing function?",
+    "description": ""
+  },
+  "RenameFunctionBody": {
+    "message": "You have modified the name of an existing function, “$1”. Do you want to rename the existing function or save a separate function with the new name?",
+    "description": ""
+  },
+  "RenameFunctionRenameButton": {
+    "message": "Rename",
+    "description": ""
+  },
+  "RenameFunctionNewButton": {
+    "message": "New",
+    "description": ""
+  },
+  "FunctionErrorTitle": {
+    "message": "Error invoking dynamic function",
+    "description": ""
+  },
+  "FunctionErrorBody": {
+    "message": "Error invoking dynamic scheduling function: “$1”",
+    "description": ""
+  },
+  "cancel_on_reply": {
+    "message": "cancel on reply",
+    "description": ""
+  },
+  "PendingMessage": {
+    "message": "PEND $1",
+    "description": ""
+  },
+  "IdleMessage": {
+    "message": "IDLE",
+    "description": ""
+  },
+  "DisabledMessage": {
+    "message": "DISABLED",
+    "description": ""
+  },
+  "CheckingMessage": {
+    "message": "CHECKING",
+    "description": ""
+  }
+}

@@ -1,9 +1,0 @@
-<!-- -*- coding: utf-8 -*- -->
-<!ENTITY windowTitle "DRINGEND: Ohne Deine Unterstützung wird es Send Later bald nicht mehr geben!">
-<!ENTITY pitchMessage "ICH BRAUCHE EURE HILFE!
-Send Later und meine anderen Add-Ons waren viele Jahre kostenlos verfügbar, aber das kann nicht länger gewährleistet werden. Es benötigte viel Zeit und Aufwand, die Add-Ons für Thunderbird 68 zu aktualisieren, und Thunderbird 78, der im Laufe des Jahres veröffentlicht werden soll, wird noch mehr Arbeit bereiten. Diese kann ich leider nicht leisten, so lange sich nicht genug Anwender finden, die sich vorab zur Zahlung eines geringen Beitrags bereit erklären.
-Bitte klickt auf den nachstehenden Link und unterstützt die Kickstarter-Kampagne. Alle Teilnehmer der Kickstarter-Kampagne erhalten als Bonus einen deutlichen Rabatt.
-Vielen Dank für Eure Unterstützung!">
-<!ENTITY pledgeLabel "Erkläre Deine Unterstützung!">
-<!ENTITY remindLabel "Später erinnern">
-<!ENTITY alreadyLabel "Ich bin bereits Unterstützer">

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/ui/options.css"/>
+
+    <script type="text/javascript" defer="true" src="/utils/static.js"></script>
+    <script type="text/javascript" defer="true" src="/utils/varNameValidator.js"></script>
+    <script type="text/javascript" defer="true" src="/ui/options.js"></script>
+    <script type="text/javascript" defer="true" src="/ui/localize.js"></script>
+  </head>
+
+  <body>
+    <section style="margin-top:0px;">
+      <div class="title option-label localized __MSG_generalOptionsTitle__">General Options</div>
+      <label>
+        <span class="option-label localized __MSG_checkTimePrefLabel1__">Check every</span>
+        <input type="number" min=1 id="checkTimePref" style="width:6em;" class="preference"/>
+        <span class="option-label localized __MSG_checkTimePrefLabel2__">minutes</span>
+      </label>
+
+      <label>
+        <input type="checkbox" id="sendDoesDelay" class="preference"/>
+        <span class="option-label localized __MSG_sendDelayPrefLabel1__">
+          &quot;Send&quot; delays messages by
+        </span>
+        <input type="number" min=1 style="width:6em;" id="sendDelay" class="preference"/>
+        <span class="option-label localized __MSG_sendDelayPrefLabel2__">minutes</span>
+      </label>
+
+      <label>
+        <input type="checkbox" id="sendDoesSL" class="preference"/>
+        <span class="option-label localized __MSG_sendButtonPrefLabel__">
+          &quot;Send&quot; does &quot;Send later&quot;
+        </span>
+      </label>
+
+      <label>
+        <input type="checkbox" id="altBinding" class="preference"/>
+        <span class="option-label localized __MSG_altBindingPrefLabel__">
+          Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter</span>
+      </label>
+
+      <label>
+        <input type="checkbox" id="markDraftsRead" class="preference"/>
+        <span class="option-label localized __MSG_markReadPrefLabel__">
+          Mark scheduled drafts as read</span>
+      </label>
+
+      <label style="display:none;">
+        <input type="checkbox" id="showColumn" class="preference"/>
+        <span class="option-label localized __MSG_showColumnPrefLabel__">
+          Show Send Later column</span>
+      </label>
+
+      <label style="display:none;">
+        <input type="checkbox" id="showHeader" class="preference"/>
+        <span class="option-label localized __MSG_showHeaderPrefLabel__">
+          Show Send Later header</span>
+      </label>
+
+      <label style="display:none;">
+        <input type="checkbox" id="showStatus" class="preference"/>
+        <span class="option-label localized __MSG_showStatusPrefLabel__">
+          Show Send Later in status bar</span>
+      </label>
+
+      <label>
+        <input type="checkbox" id="blockLateMessages" class="preference"/>
+        <span class="option-label localized __MSG_blockLateMessagesPrefLabel1__">
+          Don't deliver messages more than</span>
+        <input type="number" min=1 style="width:6em;" id="lateGracePeriod" class="preference"/>
+        <span class="option-label localized __MSG_blockLateMessagesPrefLabel2__">
+          minutes late</span>
+      </label>
+
+      <label>
+        <input type="checkbox" id="enforceTimeRestrictions" class="preference"/>
+        <span class="option-label localized __MSG_enforceRestrictionsPrefLabel__">
+          Enforce time and day restrictions at delivery time</span>
+      </label>
+    </section>
+
+    <section>
+      <div class="title option-label" id="shortcutOptionsTitle">Shortcuts</div>
+
+      <div class="div-table">
+        <div class="div-table-row" style="font-weight:bold;">
+          <div class="div-table-cell"></div>
+          <div class="div-table-cell locallized __MSG_quickoptionname.label__"
+             style="padding-left:1em;">Button label</div>
+          <div class="div-table-cell locallized __MSG_functionnameplaceholder__"
+             style="padding-left:1em;">Function name</div>
+          <div class="div-table-cell locallized __MSG_sendlater.prompt.functionargs.label__"
+             style="padding-left:1em;">Input arguments</div>
+        </div>
+        <div class="div-table-row">
+          <div class="div-table-cell">
+            <span class="option-label localized __MSG_quickOptionsLabel1Label__">Shortcut 1</span>:
+          </div>
+          <div class="div-table-cell">
+            <input type="text" id="quickOptions1Label" style="width:10em;" class="preference"/>
+          </div>
+          <div class="div-table-cell">
+            <select id="quickOptions1funcselect" style="margin-bottom:0.5em;margin-left:0.5em;min-width:10em;">
+            </select>
+          </div>
+          <div class="div-table-cell" style="width:100%;">
+            <input type="text" id="quickOptions1Args" style="width:95%;"
+              class="preference" value="15"/>
+          </div>
+        </div>
+        <div class="div-table-row">
+          <div class="div-table-cell">
+            <span class="option-label localized __MSG_quickOptionsLabel2Label__">Shortcut 2</span>:
+          </div>
+          <div class="div-table-cell">
+            <input type="text" id="quickOptions2Label" style="width:10em;" class="preference"/>
+          </div>
+          <div class="div-table-cell">
+            <select id="quickOptions2funcselect" style="margin-bottom:0.5em;margin-left:0.5em;min-width:10em;">
+            </select>
+          </div>
+          <div class="div-table-cell" style="width:100%;">
+            <input type="text" id="quickOptions2Args" style="width:95%;"
+              class="preference" value="30"/>
+          </div>
+        </div>
+        <div class="div-table-row">
+          <div class="div-table-cell">
+            <span class="option-label localized __MSG_quickOptionsLabel3Label__">Shortcut 3</span>:
+          </div>
+          <div class="div-table-cell">
+            <input type="text" id="quickOptions3Label" style="width:10em;" class="preference"/>
+          </div>
+          <div class="div-table-cell">
+            <select id="quickOptions3funcselect" style="margin-bottom:0.5em;margin-left:0.5em;min-width:10em;">
+            </select>
+          </div>
+          <div class="div-table-cell" style="width:100%;">
+            <input type="text" id="quickOptions3Args" style="width:95%;"
+              class="preference" value="120"/>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div id="functionEditorTitle" class="title option-label" style="cursor:pointer;">
+        <span id="functionEditorVisibleIndicator"
+          style="margin-right: 0.25em;">+</span>
+        <span class="localized __MSG_editorlink.value__">
+          Dynamic function editor</span>
+      </div>
+
+      <div id="FunctionEditorDiv" style="display:none;">
+        Select function
+        <select id="functionNames" style="margin-bottom:0.5em;margin-left:0.5em">
+          <option value="ReadMeFirst" id="ufunc-ReadMeFirst" selected>
+            ReadMeFirst
+          </option>
+          <option value="BusinessHours" id="ufunc-BusinessHours">
+            BusinessHours
+          </option>
+          <option value="DaysInARow" id="ufunc-DaysInARow">
+            DaysInARow
+          </option>
+          <option value="Delay" id="ufunc-Delay">
+            Delay
+          </option>
+          <option value="newFunctionName" id="ufunc-newFunctionName"
+            class="option-label localized __MSG_createnewfunction__">
+            Create new function
+          </option>
+        </select>
+
+        <div id="functionEditorInputs">
+          <span class="pre">function </span>
+          <input type="text" id="functionName" class="pre"/>
+          <span class="pre"> (specname, prev, args) { </span><br/>
+          <pre>  let next, nextspec, nextargs;</pre>
+          <textarea id="functionEditorContent" type="textbox" disabled
+            class="pre localized __MSG_EditorReadMeCode__"
+            style="width:98%;height:18em;margin-left:1%;"></textarea>
+          <pre>  return ([next, nextspec, nextargs]);</pre>
+          <pre>}</pre>
+
+          <span class="localized __MSG_helptextheader__" style="margin:1em;">
+            Function help text</span>
+          <textarea id="functionHelpText" type="textbox" disabled
+            class="pre localized __MSG_EditorReadMeHelp__"
+            style="width:98%;height:6em;margin-left:1%;margin-top:0.25em;"></textarea>
+
+          <fieldset id="functionTestFields">
+            <legend>Test</legend>
+            <div class="div-table" style="width:100%;">
+              <div class="div-table-row">
+                <div class="div-table-cell" style="white-space:nowrap;">
+                  <label for="functionTestDateTimeGroup"
+                     class="option-label localized __MSG_inputtime__">
+                     Input time
+                  </label>
+                </div>
+                <div class="div-table-cell" style="width:100%;">
+                  <input id="functionTestDate" type="date"/>
+                  <input id="functionTestTime" type="time"/>
+                </div>
+              </div>
+              <div class="div-table-row">
+                <div class="div-table-cell" style="white-space:nowrap;">
+                  <label for="functionTestArgs"
+                     class="option-label localized __MSG_inputargs__">
+                     Input arguments
+                  </label>
+                </div>
+                <div class="div-table-cell" style="width:100%;">
+                  <input type="text" id="functionTestArgs"
+                    class="preference" style="width:98%;"/>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div style="display: table-cell;height:2em;line-height:2em;white-space:nowrap;padding-right:0.5em;">
+                <input id="funcTestRun" type="button"
+                  value="Execute function" class="localized __MSG_run.label__">
+                =>
+                <span class="option-label localized __MSG_output__">Output</span>:
+              </div>
+              <div id="functionTestOutput"class="pre"></div>
+            </div>
+          </fieldset>
+
+          <div>
+            <input id="funcEditSave" type="button" style="margin-right:0.5em;"
+              value="Save" class="localized __MSG_save.label__">
+            <input id="funcEditReset" type="button" style="margin-right:0.5em;"
+              value="Discard changes" class="localized __MSG_reset.label__">
+            <input id="funcEditDelete" type="button" style="margin-right:0.5em;"
+              value="Discard changes" class="localized __MSG_delete.label__">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="title option-label localized __MSG_advancedOptionsTitle__">Advanced</div>
+
+      <label for="logDumpLevel" style="display:none;">
+        <span class="option-label localized __MSG_logDumpLevelLabel__">File log level</span>:
+        <select id="logDumpLevel" class="preference">
+          <option value="fatal"
+            class="option-label localized __MSG_logLevelFatal__">Fatal</option>
+          <option value="error"
+            class="option-label localized __MSG_logLevelError__">Error</option>
+          <option value="warn"
+            class="option-label localized __MSG_logLevelWarn__">Warn</option>
+          <option value="info"
+            class="option-label localized __MSG_logLevelInfo__">Info</option>
+          <option value="debug"
+            class="option-label localized __MSG_logLevelDebug__">Debug</option>
+          <option value="trace"
+            class="option-label localized __MSG_logLevelTrace__">Trace</option>
+          <option value="all"
+            class="option-label localized __MSG_logLevelAll__">All</option>
+        </select>
+      </label>
+
+      <label for="logConsoleLevel">
+        <span class="option-label localized __MSG_logConsoleLevelLabel__">Console log level</span>:
+        <select id="logConsoleLevel" class="preference">
+          <option value="fatal"
+            class="option-label localized __MSG_logLevelFatal__">Fatal</option>
+          <option value="error"
+            class="option-label localized __MSG_logLevelError__">Error</option>
+          <option value="warn"
+            class="option-label localized __MSG_logLevelWarn__">Warn</option>
+          <option value="info"
+            class="option-label localized __MSG_logLevelInfo__">Info</option>
+          <option value="debug"
+            class="option-label localized __MSG_logLevelDebug__">Debug</option>
+          <option value="trace"
+            class="option-label localized __MSG_logLevelTrace__">Trace</option>
+          <option value="all"
+            class="option-label localized __MSG_logLevelAll__">All</option>
+        </select>
+      </label>
+    </section>
+
+    <hr/>
+
+    <div style="width:100%;padding:0 auto;">
+      <button type="button" id="clearPrefs" style="display:compact;"
+          class="localized __MSG_resetPrefsButton__">Reset Preferences</button>
+    </div>
+
+    <div class="footer">
+      <a href="mailto:jph@extended-thunder.org"
+        class="option-label localized __MSG_contactAuthorLabel__">Contact Maintainer</a>
+      <a href="https://github.com/Extended-Thunder/send-later"
+        class="option-label localized __MSG_userGuideLabel__">Website</a>
+    </div>
+  </body>
+
+</html>
