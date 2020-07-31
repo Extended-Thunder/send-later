@@ -46,34 +46,52 @@ const SLStatic = {
     return fm.format(thisdate || (new Date()));
   },
 
-  compareTimes: function(a,comparison,b,ignoreSec) {
-    // Compare time of day, ignoring date.
-    const aHrs = a.getHours(), aMins = a.getMinutes();
-    const bHrs = b.getHours(), bMins = b.getMinutes();
-    const aSec = a.getSeconds(), bSec = b.getSeconds();
+  compare: function (a, comparison, b) {
     switch (comparison) {
       case "<":
-        return ((aHrs<bHrs) || (aHrs === bHrs && aMins<bMins) ||
-                (!ignoreSec && aHrs === bHrs && aMins === bMins && aSec < bSec));
+        return (a < b);
       case ">":
-        return ((aHrs>bHrs) || (aHrs === bHrs && aMins>bMins) ||
-                (!ignoreSec && aHrs === bHrs && aMins === bMins && aSec > bSec));
+        return (a > b);
       case "<=":
-        return ((aHrs<bHrs) || (aHrs === bHrs && aMins<=bMins) ||
-                (!ignoreSec && aHrs === bHrs && aMins === bMins && aSec <= bSec));
+        return (a <= b);
       case ">=":
-        return ((aHrs>bHrs) || (aHrs === bHrs && aMins>=bMins) ||
-                (!ignoreSec && aHrs === bHrs && aMins === bMins && aSec >= bSec));
+        return (a >= b);
       case "==":
+        return (a == b);
       case "===":
-        return (aHrs === bHrs && aMins === bMins && (ignoreSec || aSec === bSec));
+        return (a === b);
       case "!=":
+        return (a != b);
       case "!==":
-        return !SLStatic.compareTimes(a,"===",b);
+        return (a !== b);
       default:
         throw new Error("Unknown comparison: "+comparison);
         break;
     }
+  },
+
+  compareDates: function(a,comparison,b) {
+    const A = new Date(a.getFullYear(), a.getMonth(), a.getDate());
+    const B = new Date(b.getFullYear(), b.getMonth(), b.getDate());
+    return SLStatic.compare(A.getTime(),comparison,B.getTime());
+  },
+
+  compareTimes: function(a,comparison,b,ignoreSec) {
+    const A = new Date(2000, 0, 01, a.getHours(), a.getMinutes(),
+                        (ignoreSec ? 0 : a.getSeconds()));
+    const B = new Date(2000, 0, 01, b.getHours(), b.getMinutes(),
+                        (ignoreSec ? 0 : b.getSeconds()));
+    return SLStatic.compare(A.getTime(),comparison,B.getTime());
+  },
+
+  compareDateTimes: function(a, comparison, b, ignoreSec) {
+    const A = new Date(a.getTime());
+    const B = new Date(b.getTime());
+    if (ignoreSec) {
+      A.setSeconds(0);
+      B.setSeconds(0);
+    }
+    return SLStatic.compare(A.getTime(), comparison, B.getTime());
   },
 
   getWkdayName: function(i, style) {

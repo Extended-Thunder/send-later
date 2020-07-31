@@ -20,26 +20,55 @@ exports.init = function() {
     return (result === expected) || `Expected "${expected}", got "${result}"`;
   }, [ "Sun Feb 01 1998 15:03:00 GMT+2", "Sun, Feb 1, 1998, 13:03:00" ]);
 
-  function TestCompareTimes(a,comparison,b,expected) {
+  function TestComparison(func,a,comparison,b,ignoreSec,expected) {
     a = new Date(a), b = new Date(b);
-    const result = SLStatic.compareTimes(a,comparison,b);
+    const result = func(a,comparison,b,ignoreSec);
     return (result === expected) || `Expected "${expected}", got "${result}"`;
   }
 
-  SLTests.AddTest("Test compareTimes a < b", TestCompareTimes, [
-    "8/31/2020, 05:00:00 AM", "<", "8/30/2020, 07:00:00 AM", true
+  SLTests.AddTest("Test compareTimes a < b", TestComparison, [
+    SLStatic.compareTimes,
+    "8/31/2020, 05:00:00 AM", "<", "8/30/2020, 07:00:00 AM", false, true
   ]);
-  SLTests.AddTest("Test compareTimes a >= b", TestCompareTimes, [
-    "8/31/2020, 05:00:00 AM", "<=", "8/30/2020, 05:00:00 AM", true
+  SLTests.AddTest("Test compareTimes a >= b", TestComparison, [
+    SLStatic.compareTimes,
+    "8/31/2020, 05:00:00 AM", "<=", "8/30/2020, 05:00:00 AM", false, true
   ]);
-  SLTests.AddTest("Test compareTimes a > b", TestCompareTimes, [
-    "8/31/2020, 05:15:00 PM", ">", "8/30/2020, 05:00:00 AM", true
+  SLTests.AddTest("Test compareTimes a > b", TestComparison, [
+    SLStatic.compareTimes,
+    "8/31/2020, 05:15:00 PM", ">", "8/30/2020, 05:00:00 AM", false, true
   ]);
-  SLTests.AddTest("Test compareTimes a >= b", TestCompareTimes, [
-    "8/31/2020, 05:15:00 PM", ">=", "8/30/2020, 05:15:00 AM", true
+  SLTests.AddTest("Test compareTimes a >= b", TestComparison, [
+    SLStatic.compareTimes,
+    "8/31/2020, 05:15:00 PM", ">=", "8/30/2020, 05:15:00 AM", false, true
   ]);
-  SLTests.AddTest("Test compareTimes a === b", TestCompareTimes, [
-    "8/31/2019, 05:01:00 PM", "===", "8/30/2020, 05:01:00 PM", true
+  SLTests.AddTest("Test compareTimes a === b", TestComparison, [
+    SLStatic.compareTimes,
+    "8/31/2019, 05:01:00 PM", "===", "8/30/2020, 05:01:00 PM", false, true
+  ]);
+  SLTests.AddTest("Test compareDates a < b differentmonth", TestComparison, [
+    SLStatic.compareDates,
+    "7/31/2020, 09:01:00 AM", "<", "8/01/2020, 05:01:00 AM", null, true
+  ]);
+  SLTests.AddTest("Test compareDates ! a == b false", TestComparison, [
+    SLStatic.compareDates,
+    "7/31/2020, 09:01:00 AM", "==", "8/01/2020, 05:01:00 AM", null, false
+  ]);
+  SLTests.AddTest("Test compareDates a == b false", TestComparison, [
+    SLStatic.compareDates,
+    "7/31/2020, 09:01:00 AM", "==", "7/31/2020, 05:01:00 AM", null, true
+  ]);
+  SLTests.AddTest("Test compareDateTimes a === b !ignoreSec", TestComparison, [
+    SLStatic.compareDateTimes,
+    "7/31/2020, 09:00:00 AM", "===", "7/31/2020, 09:00:20 AM", false, false
+  ]);
+  SLTests.AddTest("Test compareDateTimes a === b ignoreSec", TestComparison, [
+    SLStatic.compareDateTimes,
+    "7/31/2020, 09:00:00 AM", "===", "7/31/2020, 09:00:20 AM", true, true
+  ]);
+  SLTests.AddTest("Test compareDateTimes a < b differentmonth", TestComparison, [
+    SLStatic.compareDateTimes,
+    "7/31/2020, 09:01:00 AM", "<", "8/01/2020, 05:01:00 AM", false, true
   ]);
 
   SLTests.AddTest("Test parseDateTime", (dstr,tstr,expected) => {
