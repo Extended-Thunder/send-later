@@ -32,6 +32,8 @@ lint:
 unit_test: $(shell find $(shell cat dev/include-manifest) 2>/dev/null)
 	@node test/run_tests.js 2>&1 \
 		| sed -e '/^+ TEST'/s//"`printf '\033[32m+ TEST\033[0m'`"'/' \
-		| sed -e '/^- TEST'/s//"`printf '\033[31m- TEST\033[0m'`"'/'
+		| sed -e '/^- TEST'/s//"`printf '\033[31m- TEST\033[0m'`"'/' \
+		| sed -e 's/All tests are passing!'/"`printf '\033[1m\033[32m'`"'All tests are passing!'"`printf '\033[0m'`"/ \
+		| sed -e 's/\([0-9]*\) tests failed.'/"`printf '\033[1m\033[31m'`"'\1 tests failed.'"`printf '\033[0m'`"/
 
 test: lint unit_test
