@@ -6,6 +6,7 @@ global.SLTests = {
   },
 
   RunTests: async function(event, names) {
+    let n_fail = 0;
     for (const params of SLTests.UnitTests) {
       const name = params[0];
       const func = params[1];
@@ -20,13 +21,20 @@ global.SLTests = {
           console.info(`+ TEST ${name} PASS`);
         } else if (result === false) {
           console.warn(`- TEST ${name} FAIL`);
+          n_fail = false;
         } else {
           console.warn(`- TEST ${name} FAIL ${result}`);
+          n_fail += 1;
         }
       }).catch(ex => {
         console.warn(`- TEST ${name} EXCEPTION: ${ex.message}`);
+        n_fail += 1;
       });
-
+    }
+    if (n_fail === 0) {
+      console.info('\n  All tests are passing!\n');
+    } else {
+      console.info(`\n  ${n_fail} tests failed.\n`);
     }
   }
 }
