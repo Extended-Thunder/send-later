@@ -6,7 +6,7 @@ const SLPopup = {
     const schedule = await SLPopup.parseInputs(inputs);
     if (schedule && !schedule.err) {
       hdr = {
-        'send-at': SLStatic.dateTimeFormat(schedule.sendAt),
+        'send-at': SLStatic.parseableDateTimeFormat(schedule.sendAt),
         'recur': SLStatic.unparseRecurSpec(schedule.recur),
         'args': schedule.recur.args,
         'cancel-on-reply': schedule.recur.cancelOnReply
@@ -332,14 +332,9 @@ const SLPopup = {
         });
       }
 
-      const fmtDate = new Intl.DateTimeFormat('en-CA',
-        { year: "numeric", month: "2-digit", day: "2-digit" });
-      const fmtTime = new Intl.DateTimeFormat('default',
-        { hour: "2-digit", minute: "2-digit", hour12: false });
-
-      const soon = new Date(Date.now()+60000); // 1 minute in the future
-      dom["send-date"].value = fmtDate.format(soon);
-      dom["send-time"].value = fmtTime.format(soon);
+      const soon = new Date(Date.now()+ (5*60*1000)); // 5 minutes from now default
+      dom["send-date"].value = moment(soon).format('YYYY-MM-DD');
+      dom["send-time"].value = moment(soon).format('HH:mm');
 
       SLStatic.stateSetter(dom["sendon"].checked)(dom["onlyOnDiv"]);
       SLStatic.stateSetter(dom["sendbetween"].checked)(dom["betweenDiv"]);
@@ -384,17 +379,11 @@ const SLPopup = {
         const funcHelpToggler = dom['showHideFunctionHelp'];
         const funcHelpDiv = dom['funcHelpDiv'];
 
-        if (recurrence === "function") {
-          funcHelpToggler.style.display = "inline-block";
-        } else {
-          funcHelpDiv.style.display = "none";
-          funcHelpToggler.style.display = "none";
-        }
-
         if (recurrence) {
           const sendAt = SLStatic.parseDateTime(dom["send-date"].value,
                                                 dom["send-time"].value);
 
+          // Toggle vis of time recurrence options and function recurrence options
           timeArgs.style.display = (recurrence === "function") ? "none" : "block";
           funcArgs.style.display = (recurrence === "function") ? "block" : "none";
           if (recurrence === "function") {
@@ -405,23 +394,25 @@ const SLPopup = {
           }
 
           if (recurrence !== "function") {
+            // Setup the plural text (e.g. every [] minutes)
             let pluralTxt = browser.i18n.getMessage(`plural_${recurrence}`);
             if (recurrence === "yearly") {
-              const dateTxt = SLStatic.dateTimeFormat(sendAt,
-                {month: "long", day: "numeric", hour: "numeric",
-                  minute: "numeric"}, "default");
+              // ... , on [RECUR DATE]
+              const dateTxt = (new Intl.DateTimeFormat('default', {month: "long",
+                  day: "numeric", hour: "numeric", minute: "numeric"})).format(sendAt);
               pluralTxt += ", " + browser.i18n.getMessage("only_on_days", dateTxt);
             } else if (recurrence === "monthly") {
+              // ... , on [RECUR DAY]
               const dayOrd = localeData.ordinal(sendAt.getDate());
               pluralTxt += ", " + browser.i18n.getMessage("only_on_days", dayOrd);
             } else if (recurrence === "weekly") {
+              // ... , on [RECUR WEEKDAY]
               const dateTxt = localeData.weekdays()[sendAt.getDay()];
               pluralTxt += ", " + browser.i18n.getMessage("only_on_days", dateTxt);
             } else if (recurrence === "daily") {
-              const atText = " at "; // TODO: translate this.
-              const timeTxt = SLStatic.dateTimeFormat(sendAt,
-                  {hour: "numeric", minute: "numeric" }, "default");
-              pluralTxt += atText + timeTxt;
+              // ... , at [RECUR TIME]
+              const fmt = localeData.longDateFormat('LT')
+              pluralTxt += ` at ${moment(sendAt).format(fmt)}`; // TODO: translate this.
             }
             dom["recurperiod_plural"].textContent = pluralTxt;
           }

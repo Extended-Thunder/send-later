@@ -1,3 +1,5 @@
+var moment = require('../utils/moment.min.js');
+
 exports.init = function() {
   // Example
   SLTests.AddTest("Test name", (input, expected) => {
@@ -12,13 +14,11 @@ exports.init = function() {
   }, [ [[2,3,4,1],[1,5,2],[1],[44,4],[7]],
        [2,3,4,1,1,5,2,1,44,4,7] ]);
 
-  SLTests.AddTest("Test dateTimeFormat", (input, expected) => {
-    opts = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric',
-      hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'UTC',
-      hour12: false };
-    const result = SLStatic.dateTimeFormat(new Date(input),opts);
-    return (result === expected) || `Expected "${expected}", got "${result}"`;
-  }, [ "Sun Feb 01 1998 15:03:00 GMT+2", "Sun, Feb 1, 1998, 13:03:00" ]);
+  SLTests.AddTest("Test parseableDateTimeFormat", (input, expected) => {
+    const result = SLStatic.parseableDateTimeFormat(new Date(input));
+    return moment(result, 'YYYY-MM-DDTHH:mm:ssZ', true).isSame(expected) ||
+          `Expected "${expected}", got "${result}"`;
+  }, [ "Sun Feb 01 1998 15:03:00 GMT+2", "Sun, 01 Feb 1998 13:03:00 GMT" ]);
 
   function TestComparison(func,a,comparison,b,ignoreSec,expected) {
     a = new Date(a), b = new Date(b);

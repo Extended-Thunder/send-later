@@ -30,20 +30,12 @@ const SLStatic = {
                       ), []);
   },
 
-  dateTimeFormat: function(thisdate, opts, locale) {
-    const defaults = {
-      weekday: 'short',
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      timeZoneName: 'short',
-      hour12: false
-    };
-    const fm = new Intl.DateTimeFormat((locale || 'en-GB'), (opts || defaults));
-    return fm.format(thisdate || (new Date()));
+  parseableDateTimeFormat: function(date) {
+    return moment(date || (new Date())).format();
+  },
+
+  humanDateTimeFormat: function(date) {
+    return moment(date).format('LLL');
   },
 
   compare: function (a, comparison, b) {
@@ -101,6 +93,7 @@ const SLStatic = {
   },
 
   parseDateTime: function(dstr,tstr) {
+    // Inputs: dstr (formatted YYYY/MM/DD), tstr (formatted HH:MM)
     const dpts = dstr ? dstr.split(/\D/) : [0,1,0];
     const tpts = SLStatic.timeRegex.test(tstr) ?
                     SLStatic.timeRegex.exec(tstr) : [null, 0, 0];
@@ -188,7 +181,8 @@ const SLStatic = {
                                               [recurSpec.function]);
     } else {
       scheduleText = browser.i18n.getMessage("sendAtLabel");
-      scheduleText += " " + SLStatic.dateTimeFormat(sendAt);
+      scheduleText += " " + SLStatic.humanDateTimeFormat(sendAt);
+      scheduleText += ` (${moment(sendAt).fromNow()})`;
     }
 
     if (recur.type  !== "none") {
@@ -222,7 +216,7 @@ const SLStatic = {
   },
 
   prepNewMessageHeaders: function(content) {
-    content = SLStatic.replaceHeader(content, "Date", SLStatic.dateTimeFormat());
+    content = SLStatic.replaceHeader(content, "Date", SLStatic.parseableDateTimeFormat());
     content = SLStatic.replaceHeader(content, "X-Send-Later-.*");
     content = SLStatic.replaceHeader(content, "X-Enigmail-Draft-Status");
     content = SLStatic.replaceHeader(content, "Openpgp");
@@ -741,6 +735,7 @@ in both node.js and browser environments without a lot of awkward redundency.
 if (typeof browser === "undefined") {
   var browserMocking = true;
   var mockStorage = {};
+  var moment = require('./moment.min.js');
 
   var browser = {
     storage: {
