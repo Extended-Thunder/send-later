@@ -94,10 +94,10 @@ const SendLater = {
       // Determine time at which this message should be sent
       if (options.sendAt !== undefined) {
         const sendAt = new Date(options.sendAt);
-        customHeaders["x-send-later-at"] = SLStatic.dateTimeFormat(sendAt);
+        customHeaders["x-send-later-at"] = SLStatic.parseableDateTimeFormat(sendAt);
       } else if (options.delay !== undefined) {
         const sendAt = new Date(Date.now() + options.delay*60000);
-        customHeaders["x-send-later-at"] = SLStatic.dateTimeFormat(sendAt);
+        customHeaders["x-send-later-at"] = SLStatic.parseableDateTimeFormat(sendAt);
       } else {
         SLStatic.error("scheduleSendLater requires scheduling information");
         return;
@@ -155,8 +155,8 @@ const SendLater = {
 
       const nextSend = new Date(lock[msgId] ? lock[msgId].nextRecur : msgSendAt);
 
-      if (Date.now() < nextSend.getTime()) {
-        SLStatic.debug(`Message ${id} not due for send until ${nextSend.toLocaleString()}`);
+      if (!(Date.now() >= nextSend.getTime())) {
+        SLStatic.debug(`Message ${id} not due for send until ${SLStatic.humanDateTimeFormat(nextSend)}`);
         return;
       }
 
@@ -231,8 +231,8 @@ const SendLater = {
         SLStatic.info(`Scheduling next recurrence of message ${msgId} ` +
           `at ${nextRecur.toLocaleString()}, with recurSpec "${msgRecurSpec}"`);
         lock[msgId] = {
-          lastSent: SLStatic.dateTimeFormat(new Date()),
-          nextRecur: SLStatic.dateTimeFormat(nextRecur)
+          lastSent: SLStatic.parseableDateTimeFormat(new Date()),
+          nextRecur: SLStatic.parseableDateTimeFormat(nextRecur)
         };
         browser.storage.local.set({ lock });
       } else {
@@ -375,7 +375,7 @@ browser.runtime.onMessage.addListener(async (message) => {
       break;
     }
     case "reloadPrefCache": {
-      browser.storage.local.get({preferences: {}}).then(storage => {
+      await browser.storage.local.get({preferences: {}}).then(storage => {
         SendLater.prefCache = storage.preferences;
       });
       break;
@@ -412,7 +412,7 @@ browser.runtime.onMessage.addListener(async (message) => {
       if (error) {
         response.err = error;
       } else {
-        response.next = SLStatic.dateTimeFormat(next);
+        response.next = SLStatic.parseableDateTimeFormat(next);
         response.nextspec = nextspec || "none";
         response.nextargs = nextargs || "";
       }
