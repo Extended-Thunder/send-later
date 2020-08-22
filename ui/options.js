@@ -12,6 +12,8 @@ const SLOptions = {
 
   builtinFuncs: ["ReadMeFirst", "BusinessHours", "DaysInARow", "Delay"],
 
+  checkboxGroups: {},
+
   async applyPrefsToUI() {
     // Saves the UI preferences to preference storage.
     await browser.storage.local.get({ufuncs:{}}).then( storage => {
@@ -48,14 +50,6 @@ const SLOptions = {
         })(document.getElementById(id), prefs[id]);
       }
     });
-  },
-
-  async setPref(key, value) {
-    // Sets a single preference to new value.
-    const { preferences } = await browser.storage.local.get({"preferences":{}});
-    preferences[key] = value;
-    await browser.storage.local.set({ preferences });
-    browser.runtime.sendMessage({ action: "reloadPrefCache" });
   },
 
   async saveUserFunction(name, body, help) {
@@ -125,28 +119,42 @@ const SLOptions = {
   async updatePrefListener(event) {
     // Respond to changes in UI input fields
     const element = event.target;
+    const { preferences } = await browser.storage.local.get({"preferences":{}});
     try {
       if (element.tagName === "INPUT") {
         switch(element.type) {
           case "checkbox":
           case "radio":
-            SLOptions.setPref(element.id, element.checked);
+            preferences[element.id] = element.checked;
             SLOptions.showCheckMark(element, "green");
-            return;
+            if (element.checked && SLOptions.checkboxGroups[element.id] !== null)
+              for (const id2 of SLOptions.checkboxGroups[element.id]) {
+                const element2 = document.getElementById(id2);
+                if (element2.checked) {
+                  element2.checked = false;
+                  preferences[id2] = false;
+                  SLOptions.showCheckMark(element2, "green");
+                }
+              }
+            break;
           case "text":
           case "number":
-            SLOptions.setPref(element.id, element.value);
+            preferences[element.id] = element.value;
             SLOptions.showCheckMark(element, "green");
-            return;
+            break;
           default:
             throw new Error("Unexpected element type: "+element.type);
         }
       } else if (element.tagName === "SELECT") {
-        SLOptions.setPref(element.id, element.value);
+        preferences[element.id] = element.value;
         SLOptions.showCheckMark(element, "green");
         return;
+      } else {
+        throw new Error("Unable to process change in element: "+element);
       }
-      throw new Error("Unable to process change in element: "+element);
+
+      await browser.storage.local.set({ preferences });
+      await browser.runtime.sendMessage({ action: "reloadPrefCache" });
     } catch (ex) {
       SLStatic.error(ex);
       SLOptions.showCheckMark(element, "red");
@@ -203,15 +211,11 @@ const SLOptions = {
   },
 
   async checkBoxSetListeners(ids) {
-    ids.forEach(id=>{
-      document.getElementById(id).addEventListener("change", async evt => {
-        if (evt.target.checked) {
-          ids.forEach(async otherId => {
-            if (otherId !== id) {
-              document.getElementById(otherId).checked = false;
-            }
-          });
-        }
+    ids.forEach(id1 => {
+      SLOptions.checkboxGroups[id1] = [];
+      ids.forEach(async id2 => {
+        if (id1 !== id2)
+          SLOptions.checkboxGroups[id1].push(id2);
       });
     });
   },
