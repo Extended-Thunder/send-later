@@ -280,7 +280,7 @@ const SLStatic = {
   specification so that it'll be set properly in the dialog if the user
   edits the scheduled message.
 
-  The other fields can be followed by " between HHMM HHMM" to indicate a
+  The other fields can be followed by " between HH:MM HH:MM" to indicate a
   time restriction or " on # ..." to indicate a day restriction.
   */
 
