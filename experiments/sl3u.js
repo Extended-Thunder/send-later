@@ -4,7 +4,7 @@ const { ExtensionCommon } = ChromeUtils.import("resource://gre/modules/Extension
 const { ExtensionSupport } = ChromeUtils.import("resource:///modules/ExtensionSupport.jsm");
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 const { Utils } = ChromeUtils.import("resource://services-settings/Utils.jsm");
-const { AppConstants } = ChromeUtils.import("resource://gre/modules/AppConstants.jsm");
+// const { AppConstants } = ChromeUtils.import("resource://gre/modules/AppConstants.jsm");
 
 const SendLaterVars = {
   fileNumber: 0,
@@ -129,6 +129,7 @@ const keyCodeEventTracker = {
 
 var SL3U = class extends ExtensionCommon.ExtensionAPI {
   getAPI(context) {
+    let { extension } = context;
     context.callOnClose(this);
 
     return {
@@ -384,6 +385,64 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
         async removeMsgSendLaterListener() {
             const msgSendLater = Cc.getService(Ci.nsIMsgSendLater);
             msgSendLater.removeListener(this.sendUnsentMessagesListener);
+        },
+
+        /*
+         * Notify observer with local storage key-value object. The object is
+         * obtained from our local storage via browser.storage.local.get() in
+         * background.js, as |browser| is not available (maybe) here.
+         * The observer will notfiy us when ready to accept the data, on
+         * startup. Otherwise send the data.
+         *
+         * @param {Object} storageLocalData - The key-value object.
+         * @param {Boolean} startup         - If true, wait for notification
+         *                                    from chrome code before sending
+         *                                    data; otherwise do it now.
+         * @implements {nsIObserver}
+         */
+        notifyStorageLocal(storageLocalData, startup) {
+          let getStorageLocalMap = () => {
+            let storageLocalMap = new Map();
+            Object.entries(storageLocalData).forEach(([key, value]) =>
+              storageLocalMap.set(key, value)
+            );
+            return JSON.stringify([...storageLocalMap]);
+          };
+
+          let observerTopic = `extension:${extension.id}:ready`;
+          let notificationTopic = `extension:${extension.id}:storage-local`;
+          let dataStr = getStorageLocalMap();
+          let Observer = {
+            observe(subject, topic, data) {
+              if (topic == observerTopic) {
+                // console.debug("notifyStorageLocal.Observer: " + topic);
+                Services.obs.removeObserver(Observer, observerTopic);
+                Services.obs.notifyObservers(null, notificationTopic, dataStr);
+              }
+            },
+          };
+          // console.debug("notifyStorageLocal: START - " + notificationTopic);
+          if (startup) {
+            Services.obs.addObserver(Observer, observerTopic);
+          } else {
+            Services.obs.notifyObservers(null, notificationTopic, dataStr);
+          }
+        },
+
+        injectScript(filename, windowType) {
+          let window = Services.wm.getMostRecentWindow(windowType);
+          if (window) {
+            (async ()=>{
+              let context = window.document.defaultView;
+              try {
+                let scriptURI = extension.rootURI.resolve(filename);
+                let script = await ChromeUtils.compileScript(scriptURI);
+                script.executeInGlobal(context);
+              } catch (ex) {
+                console.error("[SendLater]: Unable to inject script.",ex);
+              }
+            })();
+          }
         },
 
         bindKeyCodes() {
