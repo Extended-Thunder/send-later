@@ -31,7 +31,8 @@ const SLStatic = {
   },
 
   parseableDateTimeFormat: function(date) {
-    return moment(date || (new Date())).format();
+    const DATE_RFC2822 = "ddd, DD MMM YYYY HH:mm:ss ZZ";
+    return moment(date || (new Date())).locale("en").format(DATE_RFC2822);
   },
 
   humanDateTimeFormat: function(date) {
@@ -279,7 +280,7 @@ const SLStatic = {
   specification so that it'll be set properly in the dialog if the user
   edits the scheduled message.
 
-  The other fields can be followed by " between HHMM HHMM" to indicate a
+  The other fields can be followed by " between HH:MM HH:MM" to indicate a
   time restriction or " on # ..." to indicate a day restriction.
   */
 
