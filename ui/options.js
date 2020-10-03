@@ -4,7 +4,7 @@ const SLOptions = {
   // localization strings.
   inputIds: ["checkTimePref", "sendDoesDelay", "sendDelay", "sendDoesSL",
             "altBinding", "markDraftsRead", "showColumn", "showHeader",
-            "showStatus", "blockLateMessages", "lateGracePeriod",
+            "showStatus", "blockLateMessages", "lateGracePeriod", "sendUnsentMsgs",
             "enforceTimeRestrictions", "logDumpLevel", "logConsoleLevel",
             "quickOptions1Label", "quickOptions1funcselect", "quickOptions1Args",
             "quickOptions2Label", "quickOptions2funcselect", "quickOptions2Args",

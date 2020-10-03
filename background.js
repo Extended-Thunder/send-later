@@ -203,7 +203,8 @@ const SendLater = {
       const rawContent = await browser.messages.getRaw(id);
 
       const newMessageId = await browser.SL3U.sendRaw(
-        SLStatic.prepNewMessageHeaders(rawContent)).catch(ex=>{
+        SLStatic.prepNewMessageHeaders(rawContent),
+        preferences.sendUnsentMsgs).catch(ex=>{
           SLStatic.error(`Error sending raw message from drafts`,ex);
           return null;
         });
