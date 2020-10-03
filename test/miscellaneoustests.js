@@ -16,9 +16,9 @@ exports.init = function() {
 
   SLTests.AddTest("Test parseableDateTimeFormat", (input, expected) => {
     const result = SLStatic.parseableDateTimeFormat(new Date(input));
-    return moment(result, 'YYYY-MM-DDTHH:mm:ssZ', true).isSame(expected) ||
+    return moment(result, "ddd, DD MMM YYYY HH:mm:ss ZZ", true).isSame(expected) ||
           `Expected "${expected}", got "${result}"`;
-  }, [ "Sun Feb 01 1998 15:03:00 GMT+2", "Sun, 01 Feb 1998 13:03:00 GMT" ]);
+  }, [ "Sun Feb 01 1998 15:03:00 GMT+2", "Sun, 01 Feb 1998 05:03:00 -0800" ]);
 
   function TestComparison(func,a,comparison,b,ignoreSec,expected) {
     a = new Date(a), b = new Date(b);
