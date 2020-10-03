@@ -324,7 +324,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return false;
         },
 
-        async sendRaw(content) {
+        async sendRaw(content, sendUnsentMsgs) {
           // Replace message-id header with newly generated id.
           const idkey = (/\nX-Identity-Key:\s*(\S+)/i.exec(content))[1];
           const newMessageId = generateMsgId(idkey);
@@ -359,8 +359,12 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                 }
               }
               if (Components.isSuccessCode(status)) {
-                const mailWindow = Services.wm.getMostRecentWindow("mail:3pane");
-                mailWindow.setTimeout(queueSendUnsentMessages, 1000);
+                if (sendUnsentMsgs) {
+                  const mailWindow = Services.wm.getMostRecentWindow("mail:3pane");
+                  mailWindow.setTimeout(queueSendUnsentMessages, 1000);
+                } else {
+                  console.debug(`Not triggering send operation per user prefs.`);
+                }
               } else {
                 console.error(status);
               }
