@@ -127,7 +127,7 @@ const SLOptions = {
           case "radio":
             preferences[element.id] = element.checked;
             SLOptions.showCheckMark(element, "green");
-            if (element.checked && SLOptions.checkboxGroups[element.id] !== null)
+            if (element.checked && SLOptions.checkboxGroups[element.id])
               for (const id2 of SLOptions.checkboxGroups[element.id]) {
                 const element2 = document.getElementById(id2);
                 if (element2.checked) {
