@@ -326,9 +326,9 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
         async sendRaw(content, sendUnsentMsgs) {
           // Replace message-id header with newly generated id.
+          content = "\n" + content;
           const idkey = (/\nX-Identity-Key:\s*(\S+)/i.exec(content))[1];
           const newMessageId = generateMsgId(idkey);
-          content = "\n" + content;
           content = content.replace(/(\nMessage-ID:.*)<.*>/i,
                                     "$1" + newMessageId);
           content = content.slice(1);
