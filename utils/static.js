@@ -31,7 +31,8 @@ const SLStatic = {
   },
 
   parseableDateTimeFormat: function(date) {
-    return moment(date || (new Date())).format();
+    const DATE_RFC2822 = "ddd, DD MMM YYYY HH:mm:ss ZZ";
+    return moment(date || (new Date())).locale("en").format(DATE_RFC2822);
   },
 
   humanDateTimeFormat: function(date) {
