@@ -143,7 +143,8 @@ const SendLater = {
       const msgRecurArgs = msg.headers['x-send-later-args'] ? msg.headers['x-send-later-args'][0] : undefined;
       const msgRecurCancelOnReply =
         (msg.headers['x-send-later-cancel-on-reply'] &&
-        msg.headers['x-send-later-cancel-on-reply'][0] === "true");
+          (msg.headers['x-send-later-cancel-on-reply'][0] === "true"
+        || msg.headers['x-send-later-cancel-on-reply'][0] === "yes"));
       const msgId = msg.headers['message-id'] ? msg.headers['message-id'][0] : undefined;
 
       if (msgSendAt === undefined) {
@@ -242,13 +243,23 @@ const SendLater = {
       }
     },
 
-    init: function() {
+    init: async function() {
       browser.storage.local.get({preferences: {}, ufuncs:{}}).then(storage => {
         SendLater.prefCache = storage.preferences;
         SLStatic.ufuncs = storage.ufuncs;
       });
 
+      SLStatic.debug("Registering window listeners");
       browser.SL3U.bindKeyCodes();
+
+      await browser.storage.local.get({preferences: {}}).then(storage => {
+        storage.preferences['sendLaterColumnLabel'] = browser.i18n.getMessage("extensionName");
+        storage.preferences['sendLaterColumnTooltip'] = browser.i18n.getMessage("extensionDescription");
+        browser.SL3U.notifyStorageLocal(storage.preferences, true);
+      });
+      browser.SL3U.injectScript("utils/moment.min.js","mail:3pane");
+      browser.SL3U.injectScript("utils/static.js","mail:3pane");
+      browser.SL3U.injectScript("experiments/DraftsColumn.js","mail:3pane");
 
       // Start background loop to check for scheduled messages.
       setTimeout(SendLater.mainLoop, 0);
@@ -378,6 +389,10 @@ browser.runtime.onMessage.addListener(async (message) => {
     case "reloadPrefCache": {
       await browser.storage.local.get({preferences: {}}).then(storage => {
         SendLater.prefCache = storage.preferences;
+
+        storage.preferences['sendLaterColumnLabel'] = browser.i18n.getMessage("extensionName");
+        storage.preferences['sendLaterColumnTooltip'] = browser.i18n.getMessage("extensionDescription");
+        browser.SL3U.notifyStorageLocal(storage.preferences, false);
       });
       break;
     }
@@ -443,7 +458,8 @@ browser.runtime.onMessage.addListener(async (message) => {
         const recurSpec = (dispMsg.headers['x-send-later-recur'] || ["none"])[0];
         const recur = SLStatic.ParseRecurSpec(recurSpec);
         recur.cancelOnReply =
-          (dispMsg.headers['x-send-later-cancel-on-reply']||[""])[0] === "true";
+          ((dispMsg.headers['x-send-later-cancel-on-reply']||[""])[0] === "true"
+        || (dispMsg.headers['x-send-later-cancel-on-reply']||[""])[0] === "yes");
         recur.args = (dispMsg.headers['x-send-later-args']||[""])[0];
         response.scheduleTxt = SLStatic.formatScheduleForUI({ sendAt, recur });
       } catch (ex) {
@@ -527,6 +543,17 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
   });
 });
 
+browser.windows.onCreated.addListener(async (window) => {
+  await browser.storage.local.get({preferences: {}}).then(storage => {
+    storage.preferences['sendLaterColumnLabel'] = browser.i18n.getMessage("extensionName");
+    storage.preferences['sendLaterColumnTooltip'] = browser.i18n.getMessage("extensionDescription");
+    browser.SL3U.notifyStorageLocal(storage.preferences, true);
+  });
+  browser.SL3U.injectScript("utils/moment.min.js","mail:3pane");
+  browser.SL3U.injectScript("utils/static.js","mail:3pane");
+  browser.SL3U.injectScript("experiments/DraftsColumn.js","mail:3pane");
+});
+
 browser.messageDisplay.onMessageDisplayed.addListener(async (tab, hdr) => {
   browser.messageDisplayAction.disable(tab.id);
   if (hdr.folder.type === "drafts") {
@@ -535,10 +562,14 @@ browser.messageDisplay.onMessageDisplayed.addListener(async (tab, hdr) => {
         if (fullMessage.headers['x-send-later-at']) {
           SLStatic.debug("Displayed message has send later headers.");
           browser.messageDisplayAction.enable(tab.id);
+        } else {
+          SLStatic.debug("This message does not have Send Later headers.");
         }
       }).catch(ex => SLStatic.error("Could not get full message contents",ex));
     };
     setTimeout(enableDisplayAction, 0);
+  } else {
+    SLStatic.debug("This is not a Drafts folder, so Send Later will not scan it.");
   }
 });
 

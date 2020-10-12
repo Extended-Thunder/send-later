@@ -34,6 +34,10 @@
     ]
   },
 
+  "user_scripts": {
+    "api_script": "experiments/DraftsColumn.js"
+  },
+
   "options_ui": {
     "page": "/ui/options.html",
     "open_in_tab": false,

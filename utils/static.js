@@ -39,6 +39,12 @@ const SLStatic = {
     return moment(date).format('LLL');
   },
 
+  shortHumanDateTimeFormat: function(date) {
+    //return moment(date).format("M/D/YYYY, h:mm A");
+    return date.toLocaleString([], {month:'numeric',day:'numeric',year:'numeric',
+                                    hour:'numeric',minute:'2-digit'});
+  },
+
   compare: function (a, comparison, b) {
     switch (comparison) {
       case "<":
@@ -133,8 +139,8 @@ const SLStatic = {
       if (recurSpec.monthly_day) {
         const ordDay = browser.i18n.getMessage("ord" + recurSpec.monthly_day.week);
         const dayName = SLStatic.getWkdayName(recurSpec.monthly_day.day, "long");
-        recurText += browser.i18n.getMessage("sendlater.prompt.every.label")
-                        .toLowerCase() + " " +
+        recurText += (browser.i18n.getMessage("sendlater.prompt.every.label")
+                        .toLowerCase()) + " " +
                       browser.i18n.getMessage("everymonthly_short",
                                               [ordDay, dayName]);
       } else {
@@ -172,14 +178,38 @@ const SLStatic = {
     return recurText;
   },
 
+  formatScheduleForUIColumn(schedule) {
+      let sendAt = schedule.sendAt;
+      let recur = schedule.recur;
+
+      if (typeof recur === "string") {
+        recur = SLStatic.ParseRecurSpec(recur);
+      }
+
+      let scheduleText;
+      if (recur !== undefined && !sendAt && (recur.type === "function")) {
+        scheduleText = browser.i18n.getMessage("sendwithfunction",
+                                                [recur.function]);
+      } else {
+        scheduleText = SLStatic.shortHumanDateTimeFormat(sendAt);
+      }
+
+      if (recur !== undefined && recur.type !== "none") {
+        const rTxt = SLStatic.formatRecurForUI(recur).replace(/<br\/>/g," ");
+        scheduleText += ` (${rTxt})`;
+      }
+
+      return scheduleText;
+  },
+
   formatScheduleForUI(schedule) {
     const sendAt = schedule.sendAt;
     const recur = schedule.recur;
 
     let scheduleText;
-    if (!sendAt && (recurSpec.type === "function")) {
+    if (!sendAt && (recur.type === "function")) {
       scheduleText = browser.i18n.getMessage("sendwithfunction",
-                                              [recurSpec.function]);
+                                              [recur.function]);
     } else {
       scheduleText = browser.i18n.getMessage("sendAtLabel");
       scheduleText += " " + SLStatic.humanDateTimeFormat(sendAt);
@@ -287,7 +317,9 @@ const SLStatic = {
   unparseRecurSpec: function(parsed) {
     let spec = parsed.type;
 
-    if (parsed.type === "monthly") {
+    if (parsed.type === "none") {
+      return "none";
+    } else if (parsed.type === "monthly") {
       spec += " ";
       if (parsed.monthly_day) {
         spec += parsed.monthly_day.day + " " + parsed.monthly_day.week;
@@ -733,7 +765,7 @@ Unit tests and functional tests require a mocked version of the browser object.
 Defining it inside this file makes it a little less awkward to test these files
 in both node.js and browser environments without a lot of awkward redundency.
 */
-if (typeof browser === "undefined") {
+if (typeof browser === "undefined" && typeof require !== "undefined") {
   var browserMocking = true;
   var mockStorage = {};
   var moment = require('./moment.min.js');
