@@ -87,6 +87,14 @@ const SendLater = {
       });
     },
 
+    async expandRecipients(tabId) {
+      let details = {};
+      for (let type of ["to", "cc", "bcc"]) {
+        details[type] = await browser.SL3U.expandRecipients(type);
+      }
+      await browser.compose.setComposeDetails(tabId, details);
+    },
+
     async scheduleSendLater(tabId, options) {
       SLStatic.info(`Scheduling send later: ${tabId} with options`,options);
       const customHeaders = {};
@@ -117,6 +125,7 @@ const SendLater = {
       const inserted = Object.keys(customHeaders).map(name =>
         browser.SL3U.setHeader(name, (""+customHeaders[name]))
       );
+      await SendLater.expandRecipients(tabId);
       await Promise.all(inserted);
       SLStatic.debug('headers',customHeaders);
 

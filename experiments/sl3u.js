@@ -196,17 +196,25 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
         },
 
+        async expandRecipients(field) {
+          const cw = Services.wm.getMostRecentWindow("msgcompose");
+          let msgCompFields = cw.GetComposeDetails();
+          cw.expandRecipients();
+          return msgCompFields[field];
+        },
+
         // Mostly borrowed from MsgComposeCommands.js
         async preSendCheck() {
           const cw = Services.wm.getMostRecentWindow("msgcompose");
 
           let msgCompFields = cw.GetComposeDetails();
           let subject = msgCompFields.subject;
+          // Calling getComposeDetails collapses mailing lists. Expand them again.
           cw.expandRecipients();
           // Check if e-mail addresses are complete, in case user turned off
           // autocomplete to local domain.
           if (!cw.CheckValidEmailAddress(msgCompFields)) {
-            return;
+            return false;
           }
 
           const SetMsgBodyFrameFocus = function() {
@@ -284,6 +292,58 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               return false;
             }
           }
+
+          // Before sending the message, check what to do with HTML message,
+          // eventually abort.
+          let convert = cw.DetermineConvertibility();
+          let action = cw.DetermineHTMLAction(convert);
+
+          if (action == Ci.nsIMsgCompSendFormat.AskUser) {
+            let recommAction =
+              convert == Ci.nsIMsgCompConvertible.No
+                ? Ci.nsIMsgCompSendFormat.AskUser
+                : Ci.nsIMsgCompSendFormat.PlainText;
+            let result2 = {
+              action: recommAction,
+              convertible: convert,
+              abort: false,
+            };
+            window.openDialog(
+              "chrome://messenger/content/messengercompose/askSendFormat.xhtml",
+              "askSendFormatDialog",
+              "chrome,modal,titlebar,centerscreen",
+              result2
+            );
+            if (result2.abort) {
+              return false;
+            }
+            action = result2.action;
+          }
+
+          // We will remember the users "send format" decision in the address
+          // collector code (see nsAbAddressCollector::CollectAddress())
+          // by using msgCompFields.forcePlainText and msgCompFields.useMultipartAlternative
+          // to determine the nsIAbPreferMailFormat (unknown, plaintext, or html).
+          // If the user sends both, we remember html.
+          switch (action) {
+            case Ci.nsIMsgCompSendFormat.PlainText:
+              msgCompFields.forcePlainText = true;
+              msgCompFields.useMultipartAlternative = false;
+              break;
+            case Ci.nsIMsgCompSendFormat.HTML:
+              msgCompFields.forcePlainText = false;
+              msgCompFields.useMultipartAlternative = false;
+              break;
+            case Ci.nsIMsgCompSendFormat.Both:
+              msgCompFields.forcePlainText = false;
+              msgCompFields.useMultipartAlternative = true;
+              break;
+            default:
+              throw new Error(
+                "Invalid nsIMsgCompSendFormat action; action=" + action
+              );
+          }
+
           return true;
         },
 
