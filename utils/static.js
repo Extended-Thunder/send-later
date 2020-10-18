@@ -1,4 +1,4 @@
-const SLStatic = {
+var SLStatic = {
   // Not so static after all. TODO: Figure out some way to handle these user-
   // defined functions in a more functional style.
   ufuncs: null,
