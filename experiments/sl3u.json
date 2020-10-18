@@ -61,6 +61,18 @@
         "parameters": []
       },
       {
+        "name": "expandRecipients",
+        "type": "function",
+        "async": true,
+        "description": "Expand recipient lists.",
+        "parameters": [
+          {
+            "name": "field",
+            "type": "string"
+          }
+        ]
+      },
+      {
         "name": "SendNow",
         "type": "function",
         "async": true,
