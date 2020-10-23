@@ -22,7 +22,7 @@
              messageName = messageName.toLowerCase();
 
              const ext = (window.ExtensionParent.GlobalManager.extensionMap
-                          .get('jph@extended-thunder.org'));
+                          .get("sendlater3@kamens.us"));
 
              let messages, str;
 
@@ -89,7 +89,7 @@
    DE_BUG: false,
 
    get addonId() {
-     return "jph@extended-thunder.org";
+     return "sendlater3@kamens.us";
    },
 
    get obsTopicStorageLocal() {
