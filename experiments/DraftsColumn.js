@@ -7,7 +7,7 @@
  var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
  var gMessenger = Cc["@mozilla.org/messenger;1"].createInstance(Ci.nsIMessenger);
 
- var DraftsColumn = {
+ var SLDraftsColumn = {
    e(elementId) {
      return document.getElementById(elementId);
    },
@@ -378,28 +378,28 @@
        console.debug(`observing: ${subject} ${topic}`);
        if (topic == "MsgCreateDBView") {
          // console.debug("Observer: " + topic + ", data - " + data);
-         DraftsColumn.onMsgCreateDBView();
+         SLDraftsColumn.onMsgCreateDBView();
        } else if (
          topic == "nsPref:changed" &&
          data == "mail.pane_config.dynamic"
        ) {
          // console.debug("Observer: " + topic + ", data - " + data);
-         window.setTimeout(() => DraftsColumn.UpdateColumnElement(), 100);
-       } else if (topic == DraftsColumn.obsTopicStorageLocal) {
-         DraftsColumn.storageLocalMap = new Map(JSON.parse(data));
-         DraftsColumn.localeMessagesMap = new Map();
-         DraftsColumn.InitializeOverlayElements();
+         window.setTimeout(() => SLDraftsColumn.UpdateColumnElement(), 100);
+       } else if (topic == SLDraftsColumn.obsTopicStorageLocal) {
+         SLDraftsColumn.storageLocalMap = new Map(JSON.parse(data));
+         SLDraftsColumn.localeMessagesMap = new Map();
+         SLDraftsColumn.InitializeOverlayElements();
        }
      },
    },
 
    TabMonitor: {
-     monitorName: "DraftsColumn",
+     monitorName: "SLDraftsColumn",
      onTabTitleChanged() {},
      onTabSwitched(tab, oldTab) {
        console.debug("onTabSwitched: title - " + tab.title);
        if (tab.mode.type == "folder" || tab.mode.name == "glodaList") {
-         DraftsColumn.UpdateSecondarySortIndicator();
+         SLDraftsColumn.UpdateSecondarySortIndicator();
        }
      },
    },
@@ -407,7 +407,7 @@
    FolderDisplayListener: {
      onSortChanged(folderDisplay) {
        console.debug("onSortChanged: START ");
-       DraftsColumn.UpdateSecondarySortIndicator();
+       SLDraftsColumn.UpdateSecondarySortIndicator();
      },
    },
 
@@ -416,11 +416,11 @@
     */
    AddonListener: {
      resetSession(addon, who) {
-       if (addon.id != DraftsColumn.addonId) {
+       if (addon.id != SLDraftsColumn.addonId) {
          return;
        }
        // console.debug("AddonListener.resetSession: who - " + who);
-       DraftsColumn.onUnload();
+       SLDraftsColumn.onUnload();
        console.info("[SendLater] Deregistering drafts column overlay");
      },
      onUninstalling(addon) {
@@ -448,11 +448,11 @@
      const isDrafts = (gDBView.viewFolder !== null && gDBView.viewFolder.flags & Ci.nsMsgFolderFlags.Drafts);
      if (showColumnPref && isDrafts) {
        this.e(this.columnId).hidden = false;
-       gDBView.addColumnHandler(DraftsColumn.columnId, DraftsColumn);
+       gDBView.addColumnHandler(SLDraftsColumn.columnId, SLDraftsColumn);
        // console.log("onMsgCreateDBView: addColumnHandler --> sendLaterCol");
        window.setTimeout(() => {
-         DraftsColumn.UpdateColumnElement();
-         DraftsColumn.UpdateSecondarySortIndicator();
+         SLDraftsColumn.UpdateColumnElement();
+         SLDraftsColumn.UpdateSecondarySortIndicator();
        });
      } else {
        console.info('Hiding Send Later column.');
@@ -982,16 +982,16 @@
        }
      });
    },
- }; // DraftsColumn
+ }; // SLDraftsColumn
 
- // console.debug("DraftsColumn: readystate - " + window.document.readyState);
+ // console.debug("SLDraftsColumn: readystate - " + window.document.readyState);
  if (window.document.readyState == "complete") {
-   DraftsColumn.onLoad();
-   DraftsColumn.onMsgCreateDBView();
+   SLDraftsColumn.onLoad();
+   SLDraftsColumn.onMsgCreateDBView();
  } else {
    window.addEventListener(
      "load",
-     () => { DraftsColumn.onLoad(); },
+     () => { SLDraftsColumn.onLoad(); },
      { once: true }
    );
  }

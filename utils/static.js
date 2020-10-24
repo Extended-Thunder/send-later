@@ -10,9 +10,15 @@ var SLStatic = {
 
   async logger(msg, level, stream) {
     const levels = ["all","trace","debug","info","warn","error","fatal"];
-    const prefs = await browser.storage.local.get("preferences").then(s=>
-      (s.preferences||{})
-    );
+    let prefs;
+    try {
+      prefs = await browser.storage.local.get("preferences").then(s=>
+        (s.preferences||{})
+      );
+    } catch {
+      prefs = { logConsoleLevel: "all" };
+    }
+    
     if (levels.indexOf(level) >= levels.indexOf(prefs.logConsoleLevel)) {
       const output = stream || console.log;
       output(`${level.toUpperCase()} [SendLater]:`, ...msg);
@@ -764,24 +770,16 @@ var SLStatic = {
 }
 
 /*
-Unit tests and functional tests require a mocked version of the browser object.
-Defining it inside this file makes it a little less awkward to test these files
-in both node.js and browser environments without a lot of awkward redundency.
-*/
-
-/*
 We need to mock certain functions depending on the execution context. We made it
 to this point either through the extension itself, or through an experiment context,
 or via a Node-based unit test.
 */
 
-/*
-First, we need access to the i18n localization strings. This is trivial if
-we are inside of the extension context, but from outside of that context we
-need to access the extension, or create a mock translation service.
-*/
+// First, we need access to the i18n localization strings. This is trivial if
+// we are inside of the extension context, but from outside of that context we
+// need to access the extension, or create a mock translation service.
 if (SLStatic.i18n === null) {
-  if (typeof browser !== "undefined") {
+  if (typeof browser !== "undefined" && browser.i18n) {
     // We're in the extension context.
     SLStatic.i18n = browser.i18n;
   } else if (typeof require === "undefined") {
@@ -882,6 +880,7 @@ if (typeof browser === "undefined" && typeof require !== "undefined") {
   var mockStorage = {};
   var moment = require('./moment.min.js');
 
+  console.info("Defining mock browser object for Node unit tests.");
   var browser = {
     storage: {
       local: {
