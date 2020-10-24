@@ -1,7 +1,10 @@
+
 var SLStatic = {
   // Not so static after all. TODO: Figure out some way to handle these user-
   // defined functions in a more functional style.
   ufuncs: null,
+
+  i18n: null,
 
   timeRegex: /^(2[0-3]|[01]?\d):?([0-5]\d)$/,
 
@@ -126,32 +129,32 @@ var SLStatic = {
     if (recurSpec.type === "function") {
       // Almost certainly doesn't work for all languages. Need a new translation
       // for "recur according to function $1"
-      recurText = browser.i18n.getMessage("sendwithfunction",
+      recurText = this.i18n.getMessage("sendwithfunction",
                                   [recurSpec.function]).replace(/^\S*/,
-                                    browser.i18n.getMessage("recurLabel"));
+                                    this.i18n.getMessage("recurLabel"));
       recurText += "<br/>" +
-          browser.i18n.getMessage("sendlater.prompt.functionargs.label") +
+          this.i18n.getMessage("sendlater.prompt.functionargs.label") +
           `: [${recurSpec.args}]`;
     } else if (recurSpec.type === "none") {
       return "";
     } else {
-      recurText = browser.i18n.getMessage("recurLabel") + " ";
+      recurText = this.i18n.getMessage("recurLabel") + " ";
       if (recurSpec.monthly_day) {
-        const ordDay = browser.i18n.getMessage("ord" + recurSpec.monthly_day.week);
+        const ordDay = this.i18n.getMessage("ord" + recurSpec.monthly_day.week);
         const dayName = SLStatic.getWkdayName(recurSpec.monthly_day.day, "long");
-        recurText += (browser.i18n.getMessage("sendlater.prompt.every.label")
+        recurText += (this.i18n.getMessage("sendlater.prompt.every.label")
                         .toLowerCase()) + " " +
-                      browser.i18n.getMessage("everymonthly_short",
+                      this.i18n.getMessage("everymonthly_short",
                                               [ordDay, dayName]);
       } else {
-        recurText += browser.i18n.getMessage("every_"+recurSpec.type,
+        recurText += this.i18n.getMessage("every_"+recurSpec.type,
                                             (recurSpec.multiplier || 1));
       }
 
       if (recurSpec.between) {
         const start = SLStatic.formatTime(recurSpec.between.start);
         const end = SLStatic.formatTime(recurSpec.between.end);
-        recurText += " " + browser.i18n.getMessage("betw_times", [start, end]);
+        recurText += " " + this.i18n.getMessage("betw_times", [start, end]);
       }
 
       if (recurSpec.days) {
@@ -167,12 +170,12 @@ var SLStatic = {
           days[ndays-1] = `and ${days[ndays-1]}`;
           onDays = days.join(", ");
         }
-        recurText += "<br/>"+browser.i18n.getMessage("only_on_days",onDays);
+        recurText += "<br/>"+this.i18n.getMessage("only_on_days",onDays);
       }
     }
 
     if (recurSpec.cancelOnReply) {
-      recurText += "<br/>" + browser.i18n.getMessage("cancel_on_reply");
+      recurText += "<br/>" + this.i18n.getMessage("cancel_on_reply");
     }
 
     return recurText;
@@ -188,7 +191,7 @@ var SLStatic = {
 
       let scheduleText;
       if (recur !== undefined && !sendAt && (recur.type === "function")) {
-        scheduleText = browser.i18n.getMessage("sendwithfunction",
+        scheduleText = this.i18n.getMessage("sendwithfunction",
                                                 [recur.function]);
       } else {
         scheduleText = SLStatic.shortHumanDateTimeFormat(sendAt);
@@ -208,10 +211,10 @@ var SLStatic = {
 
     let scheduleText;
     if (!sendAt && (recur.type === "function")) {
-      scheduleText = browser.i18n.getMessage("sendwithfunction",
+      scheduleText = this.i18n.getMessage("sendwithfunction",
                                               [recur.function]);
     } else {
-      scheduleText = browser.i18n.getMessage("sendAtLabel");
+      scheduleText = this.i18n.getMessage("sendAtLabel");
       scheduleText += " " + SLStatic.humanDateTimeFormat(sendAt);
       scheduleText += ` (${moment(sendAt).fromNow()})`;
     }
@@ -681,38 +684,38 @@ var SLStatic = {
         }
 
         if (recur.multiplier === 1) {
-          fragments.push(browser.i18n.getMessage(recur.type));
+          fragments.push(this.i18n.getMessage(recur.type));
         } else {
-          fragments.push(browser.i18n.getMessage("every_" + recur.type,
+          fragments.push(this.i18n.getMessage("every_" + recur.type,
                                                   recur.multiplier));
         }
       }
 
       if (recur.monthly_day) {
-        const ordDay = browser.i18n.getMessage("ord" + recur.monthly_day.week);
+        const ordDay = this.i18n.getMessage("ord" + recur.monthly_day.week);
         const dayName = SLStatic.getWkdayName(recur.monthly_day.day, "long");
-        fragments.push(browser.i18n.getMessage("everymonthly_short",
+        fragments.push(this.i18n.getMessage("everymonthly_short",
                                                 ordDay, dayName));
       }
 
       if (recur.between) {
         const start = SLStatic.formatTime(recur.between.start);
         const end = SLStatic.formatTime(recur.between.end);
-        fragments.push(browser.i18n.getMessage("betw_times", start, end));
+        fragments.push(this.i18n.getMessage("betw_times", start, end));
       }
 
       if (recur.days) {
         let days = [];
         for (const day of recur.days) {
-          days.push(browser.i18n.getMessage(`only_on_day${day}`));
+          days.push(this.i18n.getMessage(`only_on_day${day}`));
         }
         days = days.join(", ");
-        fragments.push(browser.i18n.getMessage("only_on_days", days));
+        fragments.push(this.i18n.getMessage("only_on_days", days));
       }
     }
 
     if (cancelOnReply) {
-      fragments.push(browser.i18n.getMessage("cancel_on_reply"));
+      fragments.push(this.i18n.getMessage("cancel_on_reply"));
     }
 
     return fragments.join(" ");
@@ -765,6 +768,115 @@ Unit tests and functional tests require a mocked version of the browser object.
 Defining it inside this file makes it a little less awkward to test these files
 in both node.js and browser environments without a lot of awkward redundency.
 */
+
+/*
+We need to mock certain functions depending on the execution context. We made it
+to this point either through the extension itself, or through an experiment context,
+or via a Node-based unit test.
+*/
+
+/*
+First, we need access to the i18n localization strings. This is trivial if
+we are inside of the extension context, but from outside of that context we
+need to access the extension, or create a mock translation service.
+*/
+if (SLStatic.i18n === null) {
+  if (typeof browser !== "undefined") {
+    // We're in the extension context.
+    SLStatic.i18n = browser.i18n;
+  } else if (typeof require === "undefined") {
+    // We're in an experiment context.
+    try {
+      SLStatic.i18n = {
+        getMessage: function(messageName, substitutions = [], options = {}) {
+          try {
+            messageName = messageName.toLowerCase();
+
+            const ext = (window.ExtensionParent.GlobalManager.extensionMap
+                          .get("sendlater3@kamens.us"));
+
+            let messages, str;
+
+            const defaultLocale = ext.localeData.defaultLocale;
+            if (ext.localeData.messages.has(defaultLocale)) {
+              messages = ext.localeData.messages.get(defaultLocale);
+              if (messages.has(messageName)) {
+                str = messages.get(messageName);
+              }
+            }
+
+            if (str === undefined) {
+              console.warn(`Unable to find message ${messageName} in locale ${defaultLocale}`);
+              for (let locale of ext.localeData.availableLocales) {
+                if (ext.localeData.messages.has(locale)) {
+                  messages = ext.localeData.messages.get(locale);
+                  if (messages.has(messageName)) {
+                    str = messages.get(messageName);
+                    break;
+                  }
+                }
+              }
+            }
+
+            if (!str.includes("$")) {
+              return str;
+            }
+
+            if (!Array.isArray(substitutions)) {
+              substitutions = [substitutions];
+            }
+
+            let replacer = (matched, index, dollarSigns) => {
+                if (index) {
+                  // This is not quite Chrome-compatible. Chrome consumes any number
+                  // of digits following the $, but only accepts 9 substitutions. We
+                  // accept any number of substitutions.
+                  index = parseInt(index, 10) - 1;
+                  return index in substitutions ? substitutions[index] : "";
+                }
+                // For any series of contiguous `$`s, the first is dropped, and
+                // the rest remain in the output string.
+                return dollarSigns;
+              };
+              return str.replace(/\$(?:([1-9]\d*)|(\$+))/g, replacer);
+          } catch (e) {
+            console.warn("Unable to get localized message.",e);
+          }
+          return "";
+        },
+      };
+      console.debug("Got i18n locales from extension", SLStatic.i18n);
+    } catch (e) {
+      console.debug("Unable to load i18n from extension.",e);
+    }
+  } else {
+    // We're in a node process (unit test).
+    SLStatic.i18n = {
+      getMessage(key, ...args) {
+        try {
+          let msg;
+          if (typeof localeMessages === "object") {
+            // browser environment
+            msg = localeMessages[key].message;
+          } else {
+            // node.js environment
+            msg = global.localeMessages[key].message;
+          }
+          return msg.replace(/\$\d/g, (i) => args[--i[1]] );
+        } catch (e) {
+          console.warn(e);
+          return key;
+        }
+      }
+    };
+  }
+}
+
+/*
+Unit and functional tests require other mocked browser objects. Since we don't
+need to worry about polluting the global namespace in a unit test, we'll just
+create a mock global browser object here.
+*/
 if (typeof browser === "undefined" && typeof require !== "undefined") {
   var browserMocking = true;
   var mockStorage = {};
@@ -800,24 +912,6 @@ if (typeof browser === "undefined" && typeof require !== "undefined") {
     runtime: {
       sendMessage(...args) {
         console.debug("Sent message to background script",args);
-      }
-    },
-    i18n: {
-      getMessage(key, ...args) {
-        try {
-          let msg;
-          if (typeof localeMessages === "object") {
-            // browser environment
-            msg = localeMessages[key].message;
-          } else {
-            // node.js environment
-            msg = global.localeMessages[key].message;
-          }
-          return msg.replace(/\$\d/g, (i) => args[--i[1]] );
-        } catch (e) {
-          console.warn(e);
-          return key;
-        }
       }
     },
     SL3U: {

@@ -7,80 +7,6 @@
  var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
  var gMessenger = Cc["@mozilla.org/messenger;1"].createInstance(Ci.nsIMessenger);
 
- if (typeof browser === "undefined") {
-   // We need access to the i18n localization strings for formatting recurrence
-   // specs in the send later column. However, those locale strings are owned by
-   // the extension, and not visible in the global locale messages.
-   //
-   // The following will create a mock 'browser.i18n.getMessage' function with
-   // access to the Send Later extension context.
-   try {
-     var browser = {
-       i18n: {
-         getMessage: function(messageName, substitutions = [], options = {}) {
-           try {
-             messageName = messageName.toLowerCase();
-
-             const ext = (window.ExtensionParent.GlobalManager.extensionMap
-                          .get("sendlater3@kamens.us"));
-
-             let messages, str;
-
-             const defaultLocale = ext.localeData.defaultLocale;
-             if (ext.localeData.messages.has(defaultLocale)) {
-               messages = ext.localeData.messages.get(defaultLocale);
-               if (messages.has(messageName)) {
-                 str = messages.get(messageName);
-               }
-             }
-
-             if (str === undefined) {
-               console.warn(`Unable to find message ${messageName} in locale ${defaultLocale}`);
-               for (let locale of ext.localeData.availableLocales) {
-                 if (ext.localeData.messages.has(locale)) {
-                   messages = ext.localeData.messages.get(locale);
-                   if (messages.has(messageName)) {
-                     str = messages.get(messageName);
-                     break;
-                   }
-                 }
-               }
-             }
-
-             if (!str.includes("$")) {
-               return str;
-             }
-
-             if (!Array.isArray(substitutions)) {
-               substitutions = [substitutions];
-             }
-
-             let replacer = (matched, index, dollarSigns) => {
-                if (index) {
-                  // This is not quite Chrome-compatible. Chrome consumes any number
-                  // of digits following the $, but only accepts 9 substitutions. We
-                  // accept any number of substitutions.
-                  index = parseInt(index, 10) - 1;
-                  return index in substitutions ? substitutions[index] : "";
-                }
-                // For any series of contiguous `$`s, the first is dropped, and
-                // the rest remain in the output string.
-                return dollarSigns;
-              };
-              return str.replace(/\$(?:([1-9]\d*)|(\$+))/g, replacer);
-           } catch (e) {
-             console.warn("Unable to get localized message.",e);
-           }
-           return "";
-         },
-       }
-     };
-     console.debug("Got partial browser object from global", browser);
-   } catch (e) {
-     console.debug("Unable to define browser from global objects",e);
-   }
- }
-
  var DraftsColumn = {
    e(elementId) {
      return document.getElementById(elementId);
@@ -519,7 +445,7 @@
      }
 
      const showColumnPref = this.getStorageLocal("showColumn");
-     const isDrafts = (gDBView.viewFolder.flags & Ci.nsMsgFolderFlags.Drafts);
+     const isDrafts = (gDBView.viewFolder !== null && gDBView.viewFolder.flags & Ci.nsMsgFolderFlags.Drafts);
      if (showColumnPref && isDrafts) {
        this.e(this.columnId).hidden = false;
        gDBView.addColumnHandler(DraftsColumn.columnId, DraftsColumn);
