@@ -293,8 +293,7 @@ const SendLater = {
         setTimeout(SendLater.mainLoop, 60000*interval);
       });
     }
-
-};
+}; // SendLater
 
 browser.SL3U.onKeyCode.addListener(keyid => {
   console.info(`Received keycode ${keyid}`);

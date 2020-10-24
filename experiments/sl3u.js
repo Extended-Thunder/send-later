@@ -8,124 +8,127 @@ const { Utils } = ChromeUtils.import("resource://services-settings/Utils.jsm");
 
 const SendLaterVars = {
   fileNumber: 0,
-  copyService: null
+  copyService: null,
 }
 
-function WaitAndDelete(file_arg) {
-  const timer = Cc["@mozilla.org/timer;1"].createInstance(Ci.nsITimer);
-  const callback = {
-    file: file_arg,
-    // creating a circular reference on purpose so objects won't be
-    // deleted until we eliminate the circular reference.
-    timer_ref: timer,
-    notify: function(timer) {
+const SendLaterFunctions = {
+  WaitAndDelete(file_arg) {
+    const timer = Cc["@mozilla.org/timer;1"].createInstance(Ci.nsITimer);
+    const callback = {
+      file: file_arg,
+      // creating a circular reference on purpose so objects won't be
+      // deleted until we eliminate the circular reference.
+      timer_ref: timer,
+      notify: function(timer) {
+        try {
+          this.file.remove(true);
+          this.timer_ref = undefined;
+          timer.cancel();
+          console.info("Successfully deleted queued " + this.file.path);
+        } catch (ex) {
+          console.warn("Failed to delete " + this.file.path);
+        }
+      }
+    };
+    timer.initWithCallback(callback, 100, Ci.nsITimer.TYPE_REPEATING_SLACK);
+  },
+  
+  generateMsgId(idkey) {
+    const accounts = Cc["@mozilla.org/messenger/account-manager;1"]
+      .getService(Ci.nsIMsgAccountManager);
+    const identity = accounts.getIdentity(idkey);
+    if (identity) {
+      const compUtils = Cc["@mozilla.org/messengercompose/computils;1"]
+        .createInstance(Ci.nsIMsgCompUtils);
+      const newMessageId = compUtils.msgGenerateMessageId(identity);
+      if (newMessageId) {
+        return newMessageId;
+      } else {
+        throw (`compUtils.msgGenerateMessageId(${identity}) failed`);
+      }
+    } else {
+      throw (`MSGID: accounts.getIdentity(${idkey}) failed`);
+    }
+    return null;
+  },
+  
+  getUnsentMessagesFolder() {
+    // Find the local outbox folder
+    const msgSendLater = Cc[
+        "@mozilla.org/messengercompose/sendlater;1"
+      ].getService(Ci.nsIMsgSendLater);
+    return msgSendLater.getUnsentMessagesFolder(null);
+  },
+  
+  queueSendUnsentMessages() {
+    if (Utils.isOffline) {
+      console.debug("Deferring sendUnsentMessages while offline");
+    } else {
       try {
-        this.file.remove(true);
-        this.timer_ref = undefined;
-        timer.cancel();
-        console.info("Successfully deleted queued " + this.file.path);
+        const msgSendLater = Cc[
+            "@mozilla.org/messengercompose/sendlater;1"
+          ].getService(Ci.nsIMsgSendLater);
+        msgSendLater.sendUnsentMessages(null);
       } catch (ex) {
-        console.warn("Failed to delete " + this.file.path);
+        console.error("Error triggering send from unsent messages folder.", ex);
       }
     }
-  };
-  timer.initWithCallback(callback, 100, Ci.nsITimer.TYPE_REPEATING_SLACK);
-}
-
-function generateMsgId(idkey) {
-  const accounts = Cc["@mozilla.org/messenger/account-manager;1"]
-    .getService(Ci.nsIMsgAccountManager);
-  const identity = accounts.getIdentity(idkey);
-  if (identity) {
-    const compUtils = Cc["@mozilla.org/messengercompose/computils;1"]
-      .createInstance(Ci.nsIMsgCompUtils);
-    const newMessageId = compUtils.msgGenerateMessageId(identity);
-    if (newMessageId) {
-      return newMessageId;
-    } else {
-      throw (`compUtils.msgGenerateMessageId(${identity}) failed`);
+  },
+  
+  CopyStringMessageToFolder(content, folder, listener) {
+    const dirService =
+      Cc["@mozilla.org/file/directory_service;1"].getService(Ci.nsIProperties);
+    const tempDir = dirService.get("TmpD", Ci.nsIFile);
+    const sfile0 = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
+    sfile0.initWithPath(tempDir.path);
+    sfile0.appendRelativePath("tempMsg" + (SendLaterVars.fileNumber++) + ".eml");
+    const filePath = sfile0.path;
+    console.info("Saving message to " + filePath);
+    if (sfile0.exists()) {
+      sfile0.remove(true);
     }
-  } else {
-    throw (`MSGID: accounts.getIdentity(${idkey}) failed`);
-  }
-  return null;
-}
-
-function getUnsentMessagesFolder() {
-  // Find the local outbox folder
-  const msgSendLater = Cc[
-      "@mozilla.org/messengercompose/sendlater;1"
-    ].getService(Ci.nsIMsgSendLater);
-  return msgSendLater.getUnsentMessagesFolder(null);
-}
-
-function queueSendUnsentMessages() {
-  if (Utils.isOffline) {
-    console.debug("Deferring sendUnsentMessages while offline");
-  } else {
-    try {
-      const msgSendLater = Cc[
-          "@mozilla.org/messengercompose/sendlater;1"
-        ].getService(Ci.nsIMsgSendLater);
-      msgSendLater.sendUnsentMessages(null);
-    } catch (ex) {
-      console.error("Error triggering send from unsent messages folder.", ex);
+    sfile0.create(sfile0.NORMAL_FILE_TYPE, 0o600);
+    const stream = Cc[
+        '@mozilla.org/network/file-output-stream;1'
+      ].createInstance(Ci.nsIFileOutputStream);
+    stream.init(sfile0, 2, 0x200, false);
+    stream.write(content, content.length);
+    stream.close();
+    // Separate stream required for reading, since
+    // nsIFileOutputStream is write-only on Windows
+    const sfile1 = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
+    sfile1.initWithPath(filePath);
+    listener.localFile = sfile1;
+    if (!SendLaterVars.copyService) {
+      SendLaterVars.copyService = Cc[
+          "@mozilla.org/messenger/messagecopyservice;1"
+        ].getService(Ci.nsIMsgCopyService);
     }
-  }
-}
-
-function CopyStringMessageToFolder(content, folder, listener) {
-  const dirService =
-    Cc["@mozilla.org/file/directory_service;1"].getService(Ci.nsIProperties);
-  const tempDir = dirService.get("TmpD", Ci.nsIFile);
-  const sfile0 = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
-  sfile0.initWithPath(tempDir.path);
-  sfile0.appendRelativePath("tempMsg" + (SendLaterVars.fileNumber++) + ".eml");
-  const filePath = sfile0.path;
-  console.info("Saving message to " + filePath);
-  if (sfile0.exists()) {
-    sfile0.remove(true);
-  }
-  sfile0.create(sfile0.NORMAL_FILE_TYPE, 0o600);
-  const stream = Cc[
-      '@mozilla.org/network/file-output-stream;1'
-    ].createInstance(Ci.nsIFileOutputStream);
-  stream.init(sfile0, 2, 0x200, false);
-  stream.write(content, content.length);
-  stream.close();
-  // Separate stream required for reading, since
-  // nsIFileOutputStream is write-only on Windows
-  const sfile1 = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
-  sfile1.initWithPath(filePath);
-  listener.localFile = sfile1;
-  if (!SendLaterVars.copyService) {
-    SendLaterVars.copyService = Cc[
-        "@mozilla.org/messenger/messagecopyservice;1"
-      ].getService(Ci.nsIMsgCopyService);
-  }
-  let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"].createInstance();
-  msgWindow = msgWindow.QueryInterface(Ci.nsIMsgWindow);
-  SendLaterVars.copyService.CopyFileMessage(sfile1, folder, null, false, 0, "",
-                                            listener, msgWindow);
-}
-
-const keyCodeEventTracker = {
-  listeners: new Set(),
-
-  add(listener) {
-    this.listeners.add(listener);
+    let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"].createInstance();
+    msgWindow = msgWindow.QueryInterface(Ci.nsIMsgWindow);
+    SendLaterVars.copyService.CopyFileMessage(sfile1, folder, null, false, 0, "",
+                                              listener, msgWindow);
   },
 
-  remove(listener) {
-    this.listeners.delete(listener);
-  },
-
-  emit(keyid) {
-    for (let listener of this.listeners) {
-      listener(keyid);
+  keyCodeEventTracker: {
+    listeners: new Set(),
+  
+    add(listener) {
+      this.listeners.add(listener);
+    },
+  
+    remove(listener) {
+      this.listeners.delete(listener);
+    },
+  
+    emit(keyid) {
+      for (let listener of this.listeners) {
+        listener(keyid);
+      }
     }
   }
-};
+}
+
 
 var SL3U = class extends ExtensionCommon.ExtensionAPI {
   getAPI(context) {
@@ -351,6 +354,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           // Saves the current compose window message as a draft.
           // (Window remains open)
           const cw = Services.wm.getMostRecentWindow("msgcompose");
+          console.debug("Saving message to drafts.", cw.gMsgCompose.compFields);
           cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
         },
 
@@ -389,7 +393,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           // Replace message-id header with newly generated id.
           content = "\n" + content;
           const idkey = (/\nX-Identity-Key:\s*(\S+)/i.exec(content))[1];
-          const newMessageId = generateMsgId(idkey);
+          const newMessageId = SendLaterFunctions.generateMsgId(idkey);
           content = content.replace(/(\nMessage-ID:.*)<.*>/i,
                                     "$1" + newMessageId);
           content = content.slice(1);
@@ -398,7 +402,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
 
           // Dump message content as new message in the outbox folder
-          const fdrunsent = getUnsentMessagesFolder();
+          const fdrunsent = SendLaterFunctions.getUnsentMessagesFolder();
           const listener = {
             QueryInterface: function(iid) {
               if (iid.equals(Ci.nsIMsgCopyServiceListener) ||
@@ -416,13 +420,13 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                   copying.remove(true);
                 } catch (ex) {
                   console.debug(`Failed to delete ${copying.path}.`);
-                  WaitAndDelete(copying);
+                  SendLaterFunctions.waitAndDelete(copying);
                 }
               }
               if (Components.isSuccessCode(status)) {
                 if (sendUnsentMsgs) {
                   const mailWindow = Services.wm.getMostRecentWindow("mail:3pane");
-                  mailWindow.setTimeout(queueSendUnsentMessages, 1000);
+                  mailWindow.setTimeout(SendLaterFunctions.queueSendUnsentMessages, 1000);
                 } else {
                   console.debug(`Not triggering send operation per user prefs.`);
                 }
@@ -432,7 +436,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             },
             SetMessageKey: function(key) {}
           }
-          CopyStringMessageToFolder(content, fdrunsent, listener);
+          SendLaterFunctions.CopyStringMessageToFolder(content, fdrunsent, listener);
 
           return newMessageId;
         },
@@ -524,7 +528,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                 keyElement.setAttribute("oncommand", "//");
                 keyElement.addEventListener("command", event => {
                   event.preventDefault();
-                  keyCodeEventTracker.emit("key_altShiftEnter");
+                  SendLaterFunctions.keyCodeEventTracker.emit("key_altShiftEnter");
                 });
                 tasksKeys.appendChild(keyElement);
                 //console.debug("New alt+shift+enter key element",keyElement);
@@ -540,7 +544,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                 keyClone.setAttribute("observes", "");
                 keyClone.addEventListener('command', event => {
                   event.preventDefault();
-                  keyCodeEventTracker.emit("key_sendLater");
+                  SendLaterFunctions.keyCodeEventTracker.emit("key_sendLater");
                 });
                 sendLaterKey.parentNode.replaceChild(keyClone, sendLaterKey);
                 //console.debug("Cloned key element",keyClone);
@@ -556,7 +560,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                 cmdClone.setAttribute("oncommand", "//");
                 cmdClone.addEventListener('command', event => {
                   event.preventDefault();
-                  keyCodeEventTracker.emit("cmd_sendLater");
+                  SendLaterFunctions.keyCodeEventTracker.emit("cmd_sendLater");
                 });
                 sendLaterCmd.parentNode.replaceChild(cmdClone, sendLaterCmd);
                 //console.debug("Cloned menu command element",cmdClone);
@@ -576,9 +580,9 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           inputHandling: true,
           register: fire => {
             const callback = (evt => fire.async(evt));
-            keyCodeEventTracker.add(callback);
+            SendLaterFunctions.keyCodeEventTracker.add(callback);
             return function() {
-              keyCodeEventTracker.remove(callback);
+              SendLaterFunctions.keyCodeEventTracker.remove(callback);
             };
           },
         }).api(),
