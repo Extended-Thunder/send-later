@@ -350,12 +350,20 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return true;
         },
 
-        async SaveAsDraft() {
+        async SaveAsDraft(idkey) {
           // Saves the current compose window message as a draft.
           // (Window remains open)
           const cw = Services.wm.getMostRecentWindow("msgcompose");
-          console.debug("Saving message to drafts.", cw.gMsgCompose.compFields);
-          cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
+
+          const newMessageId = SendLaterFunctions.generateMsgId(idkey);
+          cw.gMsgCompose.compFields.setHeader("message-id",newMessageId);
+          const verifyId = cw.gMsgCompose.compFields.getHeader("message-id");
+
+          if (verifyId === newMessageId) {
+            cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
+          } else {
+            console.error(`Message ID not set correctly, ${verifyId} != ${newMessageId}`);
+          }
         },
 
         async SendNow() {

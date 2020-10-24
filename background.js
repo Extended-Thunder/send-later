@@ -129,7 +129,9 @@ const SendLater = {
       await Promise.all(inserted);
       SLStatic.debug('headers',customHeaders);
 
-      await browser.SL3U.SaveAsDraft();
+      const composeDetails = await browser.compose.getComposeDetails(tabId);
+      await browser.SL3U.SaveAsDraft(composeDetails.identityId);
+
       browser.storage.local.get({preferences:{}}).then(storage => {
         if (storage.preferences.markDraftsRead) {
           setTimeout(SendLater.markDraftsRead, 5000);
