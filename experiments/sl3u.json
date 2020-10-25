@@ -110,6 +110,29 @@
         ]
       },
       {
+        "name": "saveMessage",
+        "type": "function",
+        "async": true,
+        "description": "Replace a message with new raw content",
+        "parameters": [
+          {
+            "name": "accountId",
+            "type": "string",
+            "description": "New message contents"
+          },
+          {
+            "name": "path",
+            "type": "string",
+            "description": "New message contents"
+          },
+          {
+            "name": "content",
+            "type": "string",
+            "description": "New message contents"
+          }
+        ]
+      },
+      {
         "name":"setHeader",
         "type":"function",
         "async":true,
