@@ -165,6 +165,7 @@ const SendLater = {
       const { preferences } = await browser.storage.local.get({"preferences":{}});
       const { lock } = await browser.storage.local.get({"lock":{}});
 
+      // TODO: depreciate reliance on lock object in favor of stored header values
       const nextSend = new Date(lock[msgId] ? lock[msgId].nextRecur : msgSendAt);
 
       if (!(Date.now() >= nextSend.getTime())) {
@@ -237,17 +238,28 @@ const SendLater = {
                                                   new Date(), args);
       }
 
-      // TODO: Update the draft message with a new x-send-at header. This
-      // method does not work if send later is installed on two browsers with an
-      // IMAP account. (Although that situation is not well supported anyway)
       if (nextRecur) {
         SLStatic.info(`Scheduling next recurrence of message ${msgId} ` +
           `at ${nextRecur.toLocaleString()}, with recurSpec "${msgRecurSpec}"`);
-        lock[msgId] = {
-          lastSent: SLStatic.parseableDateTimeFormat(new Date()),
-          nextRecur: SLStatic.parseableDateTimeFormat(nextRecur)
-        };
+        lock[msgId] = { nextRecur: SLStatic.parseableDateTimeFormat(nextRecur) };
         browser.storage.local.set({ lock });
+
+        const nextRecurStr = SLStatic.parseableDateTimeFormat(nextRecur);
+        const newMsgContent = SLStatic.replaceHeader(rawContent, "X-Send-Later-At", nextRecurStr);
+        const msgHdr = await browser.messages.get(id);
+        const folder = msgHdr.folder;
+
+        browser.SL3U.saveMessage(folder.accountId, folder.path, newMsgContent).then(newMsgId => {
+          if (newMsgId) {
+            if (preferences.markDraftsRead) {
+              setTimeout(SendLater.markDraftsRead, 5000);
+            }
+            SLStatic.info(`Scheduled next occurrence of message <${msgId}>. Deleting original.`);
+            browser.messages.delete([id], true);
+          }
+        }).catch(ex => {
+          SLStatic.error(`Error replacing Draft message for next occurrence`,ex);
+        });
       } else {
         SLStatic.info(`No recurrences for message ${msgId}. Deleting draft.`);
         browser.messages.delete([id], true);
@@ -285,7 +297,7 @@ const SendLater = {
 
       browser.storage.local.get({ "preferences": {} }).then(storage => {
         if (storage.preferences.markDraftsRead) {
-          SendLater.markDraftsRead()
+          SendLater.markDraftsRead();
         }
 
         // TODO: Should use a persistent reference to the this timeout that can be

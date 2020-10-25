@@ -5,6 +5,7 @@ const { ExtensionSupport } = ChromeUtils.import("resource:///modules/ExtensionSu
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 const { Utils } = ChromeUtils.import("resource://services-settings/Utils.jsm");
 // const { AppConstants } = ChromeUtils.import("resource://gre/modules/AppConstants.jsm");
+const { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 
 const SendLaterVars = {
   fileNumber: 0,
@@ -50,6 +51,36 @@ const SendLaterFunctions = {
       throw (`MSGID: accounts.getIdentity(${idkey}) failed`);
     }
     return null;
+  },
+
+  /** From ext-mail.js
+   * Convert a human-friendly path to a folder URI. This function does not assume that the
+   * folder referenced exists.
+   * @return {String}
+   */
+  folderPathToURI(accountId, path) {
+    let server = MailServices.accounts.getAccount(accountId).incomingServer;
+    let rootURI = server.rootFolder.URI;
+    if (path == "/") {
+      return rootURI;
+    }
+    // The .URI property of an IMAP folder doesn't have %-encoded characters.
+    // If encoded here, the folder lookup service won't find the folder.
+    if (server.type == "imap") {
+      return rootURI + path;
+    }
+    return (
+      rootURI +
+      path
+        .split("/")
+        .map(p =>
+          encodeURIComponent(p).replace(
+            /[!'()*]/g,
+            c => "%" + c.charCodeAt(0).toString(16)
+          )
+        )
+        .join("/")
+    );
   },
   
   getUnsentMessagesFolder() {
@@ -445,6 +476,55 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             SetMessageKey: function(key) {}
           }
           SendLaterFunctions.CopyStringMessageToFolder(content, fdrunsent, listener);
+
+          return newMessageId;
+        },
+
+        // Saves raw message content in specified folder.
+        async saveMessage(accountId, path, content) {
+          // Replace message-id header with newly generated id.
+          content = "\n" + content;
+          const idkey = (/\nX-Identity-Key:\s*(\S+)/i.exec(content))[1];
+          const newMessageId = SendLaterFunctions.generateMsgId(idkey);
+          content = content.replace(/(\nMessage-ID:.*)<.*>/i,
+                                    "$1" + newMessageId);
+          content = content.slice(1);
+          if (content.indexOf(newMessageId) === -1) {
+            throw "Message ID substitution failed.";
+          }
+
+          const listener = {
+            QueryInterface: function(iid) {
+              if (iid.equals(Ci.nsIMsgCopyServiceListener) ||
+                  iid.equals(Ci.nsISupports)) {
+                return this;
+              }
+              throw Components.results.NS_NOINTERFACE;
+            },
+            OnProgress: function(progress, progressMax) {},
+            OnStartCopy: function() {},
+            OnStopCopy: function(status) {
+              const copying = this.localFile;
+              if (copying.exists()) {
+                try {
+                  copying.remove(true);
+                } catch (ex) {
+                  console.debug(`Failed to delete ${copying.path}.`);
+                  SendLaterFunctions.waitAndDelete(copying);
+                }
+              }
+              if (Components.isSuccessCode(status)) {
+                console.debug("Saved updated message");
+              } else {
+                console.error(status);
+              }
+            },
+            SetMessageKey: function(key) {}
+          }
+
+          const uri = SendLaterFunctions.folderPathToURI(accountId, path);
+          const folder = MailServices.folderLookup.getFolderForURL(uri);
+          SendLaterFunctions.CopyStringMessageToFolder(content, folder, listener);
 
           return newMessageId;
         },
