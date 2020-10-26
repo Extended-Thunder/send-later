@@ -8,6 +8,8 @@ var SLStatic = {
 
   timeRegex: /^(2[0-3]|[01]?\d):?([0-5]\d)$/,
 
+  created: new Date(),
+
   async logger(msg, level, stream) {
     const levels = ["all","trace","debug","info","warn","error","fatal"];
     let prefs;
@@ -213,6 +215,7 @@ var SLStatic = {
 
   formatScheduleForUI(schedule) {
     const sendAt = schedule.sendAt;
+    sendAt.setSeconds(this.created.getSeconds());
     const recur = schedule.recur;
 
     let scheduleText;
