@@ -44,7 +44,8 @@ const SLOptions = {
                       SLStatic.error("SendLater: Unable to populate input element of type "+e.type);
                 }
             } else if (e.tagName === "SELECT") {
-                e.value = v;
+              console.debug(`Applying stored default ${e.id}: ${v}`);
+              e.value = v;
             }
           }
         })(document.getElementById(id), prefs[id]);
@@ -127,18 +128,21 @@ const SLOptions = {
           case "radio":
             preferences[element.id] = element.checked;
             SLOptions.showCheckMark(element, "green");
+            console.debug(`Set option (radio) ${element.id}: ${element.value}`);
             if (element.checked && SLOptions.checkboxGroups[element.id])
               for (const id2 of SLOptions.checkboxGroups[element.id]) {
                 const element2 = document.getElementById(id2);
                 if (element2.checked) {
                   element2.checked = false;
                   preferences[id2] = false;
+                  console.debug(`Set option (radio) ${id2}: false`);
                   SLOptions.showCheckMark(element2, "green");
                 }
               }
             break;
           case "text":
           case "number":
+            console.debug(`Set option (number) ${element.id}: ${preferences[element.id]} -> ${element.value}`);
             preferences[element.id] = element.value;
             SLOptions.showCheckMark(element, "green");
             break;
@@ -146,9 +150,9 @@ const SLOptions = {
             throw new Error("Unexpected element type: "+element.type);
         }
       } else if (element.tagName === "SELECT") {
+        console.debug(`Set option (select) ${element.id}: ${preferences[element.id]} -> ${element.value}`);
         preferences[element.id] = element.value;
         SLOptions.showCheckMark(element, "green");
-        return;
       } else {
         throw new Error("Unable to process change in element: "+element);
       }
