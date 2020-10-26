@@ -13,7 +13,7 @@ const SendLaterVars = {
 }
 
 const SendLaterFunctions = {
-  WaitAndDelete(file_arg) {
+  waitAndDelete(file_arg) {
     const timer = Cc["@mozilla.org/timer;1"].createInstance(Ci.nsITimer);
     const callback = {
       file: file_arg,
