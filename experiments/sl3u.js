@@ -105,8 +105,8 @@ const SendLaterFunctions = {
       }
     }
   },
-  
-  CopyStringMessageToFolder(content, folder, listener) {
+
+  copyStringMessageToFolder(content, folder, listener) {
     const dirService =
       Cc["@mozilla.org/file/directory_service;1"].getService(Ci.nsIProperties);
     const tempDir = dirService.get("TmpD", Ci.nsIFile);
@@ -475,7 +475,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             },
             SetMessageKey: function(key) {}
           }
-          SendLaterFunctions.CopyStringMessageToFolder(content, fdrunsent, listener);
+          SendLaterFunctions.copyStringMessageToFolder(content, fdrunsent, listener);
 
           return newMessageId;
         },
@@ -524,7 +524,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
           const uri = SendLaterFunctions.folderPathToURI(accountId, path);
           const folder = MailServices.folderLookup.getFolderForURL(uri);
-          SendLaterFunctions.CopyStringMessageToFolder(content, folder, listener);
+          SendLaterFunctions.copyStringMessageToFolder(content, folder, listener);
 
           return newMessageId;
         },
