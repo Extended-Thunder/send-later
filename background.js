@@ -256,6 +256,8 @@ const SendLater = {
             }
             SLStatic.info(`Scheduled next occurrence of message <${msgId}>. Deleting original.`);
             browser.messages.delete([id], true);
+          } else {
+            SLStatic.error("Unable to schedule next recuurrence.");
           }
         }).catch(ex => {
           SLStatic.error(`Error replacing Draft message for next occurrence`,ex);
