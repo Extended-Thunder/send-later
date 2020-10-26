@@ -114,7 +114,7 @@ const SendLater = {
       if (options.recurSpec) {
         customHeaders['x-send-later-recur'] = options.recurSpec;
         if (options.cancelOnReply) {
-          customHeaders['x-send-later-cancel-on-reply'] = "true";
+          customHeaders['x-send-later-cancel-on-reply'] = "yes";
         }
       }
 
