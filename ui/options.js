@@ -104,7 +104,7 @@ const SLOptions = {
       // Appends a green checkmark as element's last sibling. Disappears after a
       // timeout (1.5 sec). If already displayed, then restart timeout.
       const checkmark = document.createElement("span");
-      checkmark.innerHTML = "&#x2714;";
+      checkmark.textContent = String.fromCharCode(0x2714);
       checkmark.style.color = color;
       checkmark.className = "success_icon";
 
@@ -356,12 +356,29 @@ const SLOptions = {
         };
         browser.runtime.sendMessage(message).then(response => {
           const outputCell = document.getElementById("functionTestOutput");
+          const mkSpan = function(text, bold) {
+            const e = document.createElement("SPAN");
+            e.style.fontWeight = bold ? 'bold' : 'normal';
+            e.textContent = text;
+            return e;
+          };
+          const mkBlock = function(...contents) {
+            const div = document.createElement("DIV");
+            div.style.display = 'block';
+            contents.forEach(e => {
+              div.appendChild(e);
+            });
+            return div;
+          };
+
+          outputCell.textContent = "";
           if (response.err) {
-            outputCell.innerHTML = "<b>Error:</b> " + response.err;
+            outputCell.appendChild(mkSpan('Error:',true));
+            outputCell.appendChild(mkSpan(response.err));
           } else {
-            outputCell.innerHTML = `<b>next:</b> ${response.next}<br/>` +
-              `<b>nextspec:</b> ${response.nextspec}<br/>` +
-              `<b>nextargs:</b> ${response.nextargs}`;
+            outputCell.appendChild(mkBlock(mkSpan("next:",true), mkSpan(response.next)));
+            outputCell.appendChild(mkBlock(mkSpan("nextspec:",true), mkSpan(response.nextspec)));
+            outputCell.appendChild(mkBlock(mkSpan("nextargs:",true), mkSpan(response.nextargs)));
           }
         });
       });
