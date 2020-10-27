@@ -132,42 +132,47 @@ var SLStatic = {
     return browser.SL3U.call(name, body, prev.getTime(), argStr);
   },
 
-  formatRecurForUI(recurSpec) {
+  formatRecurForUI(recur) {
     let recurText;
-    if (recurSpec.type === "function") {
+    if (recur.type === "function") {
       // Almost certainly doesn't work for all languages. Need a new translation
       // for "recur according to function $1"
       recurText = this.i18n.getMessage("sendwithfunction",
-                                  [recurSpec.function]).replace(/^\S*/,
+                                  [recur.function]).replace(/^\S*/,
                                     this.i18n.getMessage("recurLabel"));
       recurText += "<br/>" +
           this.i18n.getMessage("sendlater.prompt.functionargs.label") +
-          `: [${recurSpec.args}]`;
-    } else if (recurSpec.type === "none") {
+          `: [${recur.args}]`;
+    } else if (recur.type === "none") {
       return "";
     } else {
       recurText = this.i18n.getMessage("recurLabel") + " ";
-      if (recurSpec.monthly_day) {
-        const ordDay = this.i18n.getMessage("ord" + recurSpec.monthly_day.week);
-        const dayName = SLStatic.getWkdayName(recurSpec.monthly_day.day, "long");
+      if (recur.monthly_day) {
+        const ordDay = this.i18n.getMessage("ord" + recur.monthly_day.week);
+        const dayName = SLStatic.getWkdayName(recur.monthly_day.day, "long");
         recurText += (this.i18n.getMessage("sendlater.prompt.every.label")
                         .toLowerCase()) + " " +
                       this.i18n.getMessage("everymonthly_short",
                                               [ordDay, dayName]);
       } else {
-        recurText += this.i18n.getMessage("every_"+recurSpec.type,
-                                            (recurSpec.multiplier || 1));
+        const multiplier = (recur.multiplier || 1);
+        if (multiplier === 1) {
+          recurText += this.i18n.getMessage(recur.type);
+        } else {
+          recurText += this.i18n.getMessage("every_"+recur.type,
+                                            multiplier);
+        }
       }
 
-      if (recurSpec.between) {
-        const start = SLStatic.formatTime(recurSpec.between.start);
-        const end = SLStatic.formatTime(recurSpec.between.end);
+      if (recur.between) {
+        const start = SLStatic.formatTime(recur.between.start);
+        const end = SLStatic.formatTime(recur.between.end);
         recurText += " " + this.i18n.getMessage("betw_times", [start, end]);
       }
 
-      if (recurSpec.days) {
+      if (recur.days) {
         // TODO: internationalize this
-        const days = recurSpec.days.map(v=>SLStatic.getWkdayName(v));
+        const days = recur.days.map(v=>SLStatic.getWkdayName(v));
         let onDays;
         if (days.length === 1) {
           onDays = days;
@@ -182,7 +187,7 @@ var SLStatic = {
       }
     }
 
-    if (recurSpec.cancelOnReply) {
+    if (recur.cancelOnReply) {
       recurText += "<br/>" + this.i18n.getMessage("cancel_on_reply");
     }
 
@@ -688,15 +693,12 @@ var SLStatic = {
           fragments.push("function " + recur.function.replace(/^ufunc:/, ""));
         }
       } else if (recur.type !== "none") {
-        if (!recur.multiplier) {
-          recur.multiplier = 1;
-        }
-
-        if (recur.multiplier === 1) {
+        const multiplier = (recur.multiplier || 1);
+        if (multiplier === 1) {
           fragments.push(this.i18n.getMessage(recur.type));
         } else {
           fragments.push(this.i18n.getMessage("every_" + recur.type,
-                                                  recur.multiplier));
+                                              multiplier));
         }
       }
 
