@@ -381,7 +381,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return true;
         },
 
-        async SaveAsDraft(idkey) {
+        async saveAsDraft(idkey) {
           // Saves the current compose window message as a draft.
           // (Window remains open)
           const cw = Services.wm.getMostRecentWindow("msgcompose");
@@ -397,7 +397,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
         },
 
-        async SendNow() {
+        async sendNow() {
           // Sends the message from the current composition window
           const cw = Services.wm.getMostRecentWindow("msgcompose");
           cw.SendMessageWithCheck();

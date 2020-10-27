@@ -140,9 +140,11 @@ var SLStatic = {
       recurText = this.i18n.getMessage("sendwithfunction",
                                   [recur.function]).replace(/^\S*/,
                                     this.i18n.getMessage("recurLabel"));
-      recurText += "<br/>" +
+      if (recur.args) {
+        recurText += "<br/>" +
           this.i18n.getMessage("sendlater.prompt.functionargs.label") +
           `: [${recur.args}]`;
+      }
     } else if (recur.type === "none") {
       return "";
     } else {
@@ -199,7 +201,7 @@ var SLStatic = {
       let recur = schedule.recur;
 
       if (typeof recur === "string") {
-        recur = SLStatic.ParseRecurSpec(recur);
+        recur = SLStatic.parseRecurSpec(recur);
       }
 
       let scheduleText;
@@ -331,111 +333,113 @@ var SLStatic = {
   time restriction or " on # ..." to indicate a day restriction.
   */
 
-  unparseRecurSpec: function(parsed) {
-    let spec = parsed.type;
+  // recur (object) -> recurSpec (string)
+  unparseRecurSpec: function(recur) {
+    let spec = recur.type;
 
-    if (parsed.type === "none") {
+    if (recur.type === "none") {
       return "none";
-    } else if (parsed.type === "monthly") {
+    } else if (recur.type === "monthly") {
       spec += " ";
-      if (parsed.monthly_day) {
-        spec += parsed.monthly_day.day + " " + parsed.monthly_day.week;
+      if (recur.monthly_day) {
+        spec += recur.monthly_day.day + " " + recur.monthly_day.week;
       } else {
-        spec += parsed.monthly;
+        spec += recur.monthly;
       }
-    } else if (parsed.type === "yearly") {
-      spec += " " + parsed.yearly.month + " " + parsed.yearly.date;
-    } else if (parsed.type === "function") {
-      spec += " " + parsed.function;
-      if (parsed.finished) {
+    } else if (recur.type === "yearly") {
+      spec += " " + recur.yearly.month + " " + recur.yearly.date;
+    } else if (recur.type === "function") {
+      spec += " " + recur.function;
+      if (recur.finished) {
         spec += " finished";
       }
     }
 
-    if (parsed.multiplier) {
-      spec += " / " + parsed.multiplier;
+    if (recur.multiplier) {
+      spec += " / " + recur.multiplier;
     }
 
-    if (parsed.between) {
-      const start = SLStatic.formatTime(parsed.between.start);
-      const end = SLStatic.formatTime(parsed.between.end);
+    if (recur.between) {
+      const start = SLStatic.formatTime(recur.between.start);
+      const end = SLStatic.formatTime(recur.between.end);
       spec += ` between ${start} ${end}`;
     }
 
-    if (parsed.days) {
-      spec += " on " + parsed.days.join(' ');
+    if (recur.days) {
+      spec += " on " + recur.days.join(' ');
     }
 
     return spec;
   },
 
-  ParseRecurSpec: function(spec) {
-    if (!spec) {
+  // recurSpec (string) -> recur (object)
+  parseRecurSpec: function(recurSpec) {
+    if (!recurSpec) {
       return { type: "none" };
     }
 
-    const params = spec.split(/\s+/);
-    const parsed = {};
-    parsed.type = params.shift();
+    const params = recurSpec.split(/\s+/);
+    const recur = {};
+    recur.type = params.shift();
     if (!['none','minutely','daily','weekly','monthly','yearly',
-        'function'].includes(parsed.type)) {
-      throw new Error("Invalid recurrence type in " + spec);
+        'function'].includes(recur.type)) {
+      throw new Error("Invalid recurrence type in " + recurSpec);
     }
-    switch (parsed.type) {
+    switch (recur.type) {
       case "none":
         if (params.length) {
-          throw new Error("Extra arguments in " + spec);
+          throw new Error("Extra arguments in " + recurSpec);
         } else {
           return { type: "none" };
         }
         break;
       case "monthly":
         if (!/^\d+$/.test(params[0])) {
-          throw new Error("Invalid first monthly argument in " + spec);
+          throw new Error("Invalid first monthly argument in " + recurSpec);
         }
         if (/^[1-9]\d*$/.test(params[1])) {
-          parsed.monthly_day = {
+          recur.monthly_day = {
             day: params.shift(),
             week: params.shift()
           };
-          if (parsed.monthly_day.day < 0 || parsed.monthly_day.day > 6) {
-            throw new Error("Invalid monthly day argument in " + spec);
+          if (recur.monthly_day.day < 0 || recur.monthly_day.day > 6) {
+            throw new Error("Invalid monthly day argument in " + recurSpec);
           }
-          if (parsed.monthly_day.week < 1 || parsed.monthly_day.week > 5) {
-            throw new Error("Invalid monthly week argument in " + spec);
+          if (recur.monthly_day.week < 1 || recur.monthly_day.week > 5) {
+            throw new Error("Invalid monthly week argument in " + recurSpec);
           }
         } else {
-          parsed.monthly = params.shift();
-          if (parsed.monthly > 31)
-            throw new Error("Invalid monthly date argument in " + spec);
+          recur.monthly = params.shift();
+          if (recur.monthly > 31)
+            throw new Error("Invalid monthly date argument in " + recurSpec);
         }
         break;
       case "yearly":
         if (!/^\d+$/.test(params[0])) {
-          throw "Invalid first yearly argument in " + spec;
+          throw "Invalid first yearly argument in " + recurSpec;
         }
         if (!/^[1-9]\d*$/.test(params[1])) {
-          throw "Invalid second yearly argument in " + spec;
+          throw "Invalid second yearly argument in " + recurSpec;
         }
-        parsed.yearly = {
+        recur.yearly = {
           month: +params.shift(),
           date: +params.shift()
         };
 
         // Check that this month/date combination is possible at all.
         // Use a leap year for this test.
-        const test = new Date(2000, parsed.yearly.month, parsed.yearly.date);
-        if ((test.getMonth() !== parsed.yearly.month) ||
-            (test.getDate() !== parsed.yearly.date)) {
-          throw new Error("Invalid yearly date in " + spec);
+        const test = new Date(2000, recur.yearly.month, recur.yearly.date);
+        if ((test.getMonth() !== recur.yearly.month) ||
+            (test.getDate() !== recur.yearly.date)) {
+          throw new Error("Invalid yearly date in " + recurSpec);
         }
         break;
       case "function":
-        parsed.function = params.shift();
+        recur.function = params.shift();
         const finishedIndex = params.indexOf("finished");
-        parsed.finished = (params[0] === "finished");
+        recur.finished = (params[0] === "finished");
 
-        if (!parsed.function) {
+        if (!recur.function) {
           throw new Error("Invalid function recurrence spec");
         }
         break;
@@ -443,14 +447,14 @@ var SLStatic = {
         break;
     }
 
-    if (parsed.type !== "function") {
+    if (recur.type !== "function") {
       const slashIndex = params.indexOf("/");
       if (slashIndex > -1) {
           const multiplier = params[slashIndex + 1];
           if (!/^[1-9]\d*$/.test(multiplier)){
-            throw new Error("Invalid multiplier argument in " + spec);
+            throw new Error("Invalid multiplier argument in " + recurSpec);
           }
-          parsed.multiplier = +multiplier;
+          recur.multiplier = +multiplier;
           params.splice(slashIndex, 2);
       }
     }
@@ -461,12 +465,12 @@ var SLStatic = {
       const endTimeStr = params[btwnIdx + 2];
 
       if (! SLStatic.timeRegex.test(startTimeStr)) {
-        throw new Error("Invalid between start in " + spec);
+        throw new Error("Invalid between start in " + recurSpec);
       } else if (! SLStatic.timeRegex.test(endTimeStr)) {
-        throw new Error("Invalid between end in " + spec);
+        throw new Error("Invalid between end in " + recurSpec);
       }
 
-      parsed.between = {
+      recur.between = {
         start: SLStatic.formatTime(startTimeStr),
         end: SLStatic.formatTime(endTimeStr)
       };
@@ -474,26 +478,26 @@ var SLStatic = {
     }
     const onIndex = params.indexOf("on");
     if (onIndex > -1) {
-      parsed.days = [];
+      recur.days = [];
       params.splice(onIndex, 1);
       while (/^\d$/.test(params[onIndex])) {
         const day = params.splice(onIndex, 1)[0];
         if (day > 6) {
-          throw new Error("Bad restriction day in " + spec);
+          throw new Error("Bad restriction day in " + recurSpec);
         }
-        parsed.days.push(Number(day));
+        recur.days.push(Number(day));
       }
-      if (!parsed.days.length) {
-        throw new Error("Day restriction with no days in spec "+spec);
+      if (!recur.days.length) {
+        throw new Error("Day restriction with no days in spec "+recurSpec);
       }
     }
     if (params.length) {
-      throw new Error("Extra arguments in " + spec);
+      throw new Error("Extra arguments in " + recurSpec);
     }
-    return parsed;
+    return recur;
   },
 
-  NextRecurFunction: async function(prev, recurSpec, recur, args, saveFunction) {
+  nextRecurFunction: async function(prev, recurSpec, recur, args, saveFunction) {
     if (!SLStatic.ufuncs) {
       throw new Error("SLStatic ufuncs object has not been initialzied.");
     } else if (!recur.function) {
@@ -561,7 +565,7 @@ var SLStatic = {
 
     if (nextRecur[1]) {
       // Merge restrictions from old spec into this one.
-      const functionSpec = SLStatic.ParseRecurSpec(nextRecur[1]);
+      const functionSpec = SLStatic.parseRecurSpec(nextRecur[1]);
       if (recur.between) {
         functionSpec.between = recur.between;
       }
@@ -574,10 +578,10 @@ var SLStatic = {
     return nextRecur;
   },
 
-  NextRecurDate: async function(next, recurSpec, now, args) {
+  nextRecurDate: async function(next, recurSpec, now, args) {
     // Make sure we don't modify our input!
     next = new Date(next.getTime());
-    const recur = SLStatic.ParseRecurSpec(recurSpec);
+    const recur = SLStatic.parseRecurSpec(recurSpec);
 
     if (recur.type === "none") {
       return null;
@@ -587,9 +591,9 @@ var SLStatic = {
       if (recur.finished) {
         return null;
       }
-      const results = await SLStatic.NextRecurFunction(next, recurSpec, recur, args);
+      const results = await SLStatic.nextRecurFunction(next, recurSpec, recur, args);
       if (results && results[0] && (recur.between || recur.days))
-        results[0] = SLStatic.AdjustDateForRestrictions(
+        results[0] = SLStatic.adjustDateForRestrictions(
                             results[0], recur.between && recur.between.start,
                             recur.between && recur.between.end, recur.days);
       return results;
@@ -674,62 +678,12 @@ var SLStatic = {
     }
 
     if (recur.between || recur.days) {
-      next = SLStatic.AdjustDateForRestrictions(next,
+      next = SLStatic.adjustDateForRestrictions(next,
                       (recur.between && recur.between.start),
                       (recur.between && recur.between.end), recur.days);
     }
 
     return next;
-  },
-
-  FormatRecur: function(recurSpec, cancelOnReply) {
-    const fragments = [];
-
-    if (recurSpec) {
-      const recur = SLStatic.ParseRecurSpec(recurSpec);
-
-      if (recur.type === "function") {
-        if (!recur.finished) {
-          fragments.push("function " + recur.function.replace(/^ufunc:/, ""));
-        }
-      } else if (recur.type !== "none") {
-        const multiplier = (recur.multiplier || 1);
-        if (multiplier === 1) {
-          fragments.push(this.i18n.getMessage(recur.type));
-        } else {
-          fragments.push(this.i18n.getMessage("every_" + recur.type,
-                                              multiplier));
-        }
-      }
-
-      if (recur.monthly_day) {
-        const ordDay = this.i18n.getMessage("ord" + recur.monthly_day.week);
-        const dayName = SLStatic.getWkdayName(recur.monthly_day.day, "long");
-        fragments.push(this.i18n.getMessage("everymonthly_short",
-                                                ordDay, dayName));
-      }
-
-      if (recur.between) {
-        const start = SLStatic.formatTime(recur.between.start);
-        const end = SLStatic.formatTime(recur.between.end);
-        fragments.push(this.i18n.getMessage("betw_times", start, end));
-      }
-
-      if (recur.days) {
-        let days = [];
-        for (const day of recur.days) {
-          days.push(this.i18n.getMessage(`only_on_day${day}`));
-        }
-        days = days.join(", ");
-        fragments.push(this.i18n.getMessage("only_on_days", days));
-      }
-    }
-
-    if (cancelOnReply) {
-      fragments.push(this.i18n.getMessage("cancel_on_reply"));
-    }
-
-    return fragments.join(" ");
   },
 
   // dt is a Date object for the scheduled send time we need to adjust.
@@ -747,7 +701,7 @@ var SLStatic = {
   //    change the day to the smallest day in the restriction that is larger
   //    than the scheduled day, or if there is none, then the smallest day in
   //    the restriction overall.
-  AdjustDateForRestrictions: function(sendAt, start_time, end_time, days) {
+  adjustDateForRestrictions: function(sendAt, start_time, end_time, days) {
     let dt = new Date(sendAt.getTime());
     start_time = start_time && SLStatic.parseDateTime(null,start_time);
     end_time = end_time && SLStatic.parseDateTime(null,end_time);
@@ -855,7 +809,10 @@ if (SLStatic.i18n === null) {
   } else {
     // We're in a node process (unit test).
     SLStatic.i18n = {
-      getMessage(key, ...args) {
+      getMessage(key, args) {
+        if (typeof args !== "object") {
+          args = [args];
+        }
         try {
           let msg;
           if (typeof localeMessages === "object") {
@@ -919,8 +876,8 @@ if (typeof browser === "undefined" && typeof require !== "undefined") {
       }
     },
     SL3U: {
-      SaveAsDraft: function(){},
-      SendNow: function(batch){},
+      saveAsDraft: function(){},
+      sendNow: function(batch){},
       setHeader: function (key,value){},
       getHeader: function(key){return key;},
       getLegacyPref: function(name, dtype, def){return null;},

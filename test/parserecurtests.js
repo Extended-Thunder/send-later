@@ -24,7 +24,7 @@ exports.init = function() {
   }
 
   function ParseRecurGoodTest(spec, expected) {
-    const out = SLStatic.ParseRecurSpec(spec);
+    const out = SLStatic.parseRecurSpec(spec);
     if (CompareRecurs(out, expected)) {
       return true;
     } else {
@@ -52,12 +52,12 @@ exports.init = function() {
     ["minutely on 1 2 3 4 5", { type: "minutely", days: [1, 2, 3, 4, 5] }]
   ];
   for (const test of goodTests) {
-    SLTests.AddTest("ParseRecurSpec " + test[0], ParseRecurGoodTest, test);
+    SLTests.AddTest("parseRecurSpec " + test[0], ParseRecurGoodTest, test);
   }
 
   function ParseRecurBadTest(spec, expected) {
     try {
-      const out = SLStatic.ParseRecurSpec(spec);
+      const out = SLStatic.parseRecurSpec(spec);
       return "expected exception, got " + JSON.stringify(out);
     } catch (ex) {
       if ((ex+"").indexOf(expected) === -1) {
@@ -92,6 +92,6 @@ exports.init = function() {
     ["minutely on 8", "Bad restriction day"]
   ];
   for (const test of badTests) {
-    SLTests.AddTest("ParseRecurSpec " + test[0], ParseRecurBadTest, test);
+    SLTests.AddTest("parseRecurSpec " + test[0], ParseRecurBadTest, test);
   }
 }
