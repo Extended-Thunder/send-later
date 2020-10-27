@@ -94,9 +94,8 @@ const SLPopup = {
       argStr = SLStatic.unparseArgs(SLStatic.parseArgs(argStr));
     } catch (ex) {
       SLStatic.warn(ex);
-      return { err: ("<b>" + browser.i18n.getMessage("InvalidArgsTitle")
-                    + ":</b> "
-                    + browser.i18n.getMessage("InvalidArgsBody")) };
+      return { err: (browser.i18n.getMessage("InvalidArgsTitle") + ": " +
+                     browser.i18n.getMessage("InvalidArgsBody")) };
     }
     const message = {
       action: "evaluateUfuncByName",
@@ -194,9 +193,8 @@ const SLPopup = {
           end: SLStatic.parseDateTime(null,end)
         };
         if (SLStatic.compareTimes(between.start,'>=',between.end)) {
-          return { err: ("<b>" + browser.i18n.getMessage("endTimeWarningTitle")
-                        + ":</b> "
-                        + browser.i18n.getMessage("endTimeWarningBody")) };
+          return { err: (browser.i18n.getMessage("endTimeWarningTitle") + ": " +
+                          browser.i18n.getMessage("endTimeWarningBody")) };
         } else {
           recur.between = between;
         }
@@ -212,9 +210,8 @@ const SLPopup = {
         return obj;
       }, []);
       if (recur.days.length === 0) {
-        return { err: ("<b>" + browser.i18n.getMessage("missingDaysWarningTitle")
-                      + ":</b> "
-                      + browser.i18n.getMessage("missingDaysWarningBody")) };
+        return { err: (browser.i18n.getMessage("missingDaysWarningTitle") + ": " +
+                       browser.i18n.getMessage("missingDaysWarningBody")) };
       }
     }
 
@@ -226,7 +223,7 @@ const SLPopup = {
     const sendScheduleButton = document.getElementById("sendScheduleButton");
 
     if (schedule.err) {
-      sendScheduleButton.innerHTML = schedule.err;
+      sendScheduleButton.textContent = schedule.err;
       sendScheduleButton.disabled = true;
       return false;
     }
@@ -241,7 +238,16 @@ const SLPopup = {
     try {
       const scheduleText = SLStatic.formatScheduleForUI(schedule);
       if (scheduleText) {
-        sendScheduleButton.innerHTML = scheduleText;
+        sendScheduleButton.textContent = "";
+        scheduleText.split("<br/>").forEach(segment => {
+          const lineNode = document.createElement("DIV");
+          lineNode.style.display = "block";
+          lineNode.style.margin = "0px";
+          lineNode.style.width = "100%";
+          lineNode.style.textAlign = "center";
+          lineNode.textContent = segment.trim();
+          sendScheduleButton.appendChild(lineNode);
+        });
         SLStatic.stateSetter(schedule.recur.type !== "function")(
           document.getElementById("sendAtTimeDateDiv"));
         sendScheduleButton.disabled = false;
