@@ -130,7 +130,7 @@ const SendLater = {
       SLStatic.debug('headers',customHeaders);
 
       const composeDetails = await browser.compose.getComposeDetails(tabId);
-      await browser.SL3U.SaveAsDraft(composeDetails.identityId);
+      await browser.SL3U.saveAsDraft(composeDetails.identityId);
 
       browser.storage.local.get({preferences:{}}).then(storage => {
         if (storage.preferences.markDraftsRead) {
@@ -178,7 +178,7 @@ const SendLater = {
         return;
       }
 
-      const recur = SLStatic.ParseRecurSpec(msgRecurSpec);
+      const recur = SLStatic.parseRecurSpec(msgRecurSpec);
       const args = SLStatic.parseArgs(msgRecurArgs);
 
       if (preferences.enforceTimeRestrictions) {
@@ -234,7 +234,7 @@ const SendLater = {
 
       let nextRecur;
       if (recur.type !== "none") {
-        nextRecur = await SLStatic.NextRecurDate(nextSend, msgRecurSpec,
+        nextRecur = await SLStatic.nextRecurDate(nextSend, msgRecurSpec,
                                                   new Date(), args);
       }
 
@@ -391,7 +391,7 @@ browser.runtime.onMessage.addListener(async (message) => {
                            "Cannot send message at this time.");
       } else {
         SendLater.composeState[message.tabId] = "sending";
-        browser.SL3U.SendNow().then(()=>{
+        browser.SL3U.sendNow().then(()=>{
           setTimeout(() => delete SendLater.composeState[message.tabId], 1000);
         });
       }
@@ -480,7 +480,7 @@ browser.runtime.onMessage.addListener(async (message) => {
         const sendAt = new Date(msgLock.nextRecur || headerSendAt);
 
         const recurSpec = (dispMsg.headers['x-send-later-recur'] || ["none"])[0];
-        const recur = SLStatic.ParseRecurSpec(recurSpec);
+        const recur = SLStatic.parseRecurSpec(recurSpec);
         recur.cancelOnReply =
           ((dispMsg.headers['x-send-later-cancel-on-reply']||[""])[0] === "true"
         || (dispMsg.headers['x-send-later-cancel-on-reply']||[""])[0] === "yes");
