@@ -109,7 +109,7 @@ const SLPopup = {
       throw new Error(response.err);
     } else {
       const sendAt = new Date(response.next);
-      let recur = SLStatic.ParseRecurSpec(response.nextspec) || {type:"none"};
+      let recur = SLStatic.parseRecurSpec(response.nextspec) || {type:"none"};
       if (recur.type !== "none") {
         recur.args = response.nextargs;
       }

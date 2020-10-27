@@ -47,7 +47,7 @@
         ]
       },
       {
-        "name": "SaveAsDraft",
+        "name": "saveAsDraft",
         "type": "function",
         "async": true,
         "description": "",
@@ -78,7 +78,7 @@
         ]
       },
       {
-        "name": "SendNow",
+        "name": "sendNow",
         "type": "function",
         "async": true,
         "description": "Initiate send from current composition window",
