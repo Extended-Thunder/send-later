@@ -313,6 +313,41 @@ const SLOptions = {
       });
     });
 
+    const resetAdvConfigEditor = (async () => {
+      const prefsNode = document.getElementById("advancedConfigText");
+      prefsNode.disabled = true;
+      prefsNode.textContent = "";
+      const { preferences } = await browser.storage.local.get({"preferences":{}});
+      prefsNode.textContent = JSON.stringify(preferences, null, 2);
+      prefsNode.disabled = false;
+    });
+
+    document.getElementById("advancedEditorTitle").addEventListener("mousedown",
+      (() => {
+        const advEditorDiv = document.getElementById("advancedConfigEditor");
+        const visIndicator = document.getElementById("advancedEditorVisibleIndicator");
+        if (advEditorDiv.style.display === "none") {
+          resetAdvConfigEditor();
+          advEditorDiv.style.display = "block";
+          visIndicator.textContent = "-";
+        } else {
+          advEditorDiv.style.display = "none";
+          visIndicator.textContent = "+";
+        }
+      }));
+
+    document.getElementById("advancedEditReset").addEventListener("click",
+      resetAdvConfigEditor);
+
+    document.getElementById("advancedEditSave").addEventListener("click", evt => {
+      const prefContent = document.getElementById("advancedConfigText").value;
+      const prefs = JSON.parse(prefContent);
+      browser.storage.local.set({ preferences: prefs }).then(() => {
+        browser.runtime.sendMessage({ action: "reloadPrefCache" });
+        SLOptions.applyPrefsToUI();
+      });
+    });
+
     // Verify with user before deleting a scheduling function
     const doubleCheckDeleteListener = SLOptions.doubleCheckButtonClick(evt => {
       const funcNameSelect = document.getElementById("functionNames");
@@ -393,8 +428,9 @@ const SLOptions = {
           }, {});
           browser.storage.local.set({ preferences: prefs }).then(() => {
             browser.runtime.sendMessage({ action: "reloadPrefCache" });
+            SLOptions.applyPrefsToUI();
           });
-      }).then(() => SLOptions.applyPrefsToUI());
+      });
     });
     const clearPrefsBtn = document.getElementById("clearPrefs");
     clearPrefsBtn.addEventListener("click", clearPrefsListener);
