@@ -293,11 +293,14 @@ const SendLater = {
     mainLoop: function() {
       SLStatic.debug("Entering main loop.");
 
-      SendLater.forAllDrafts(
-        async msg => SendLater.possiblySendMessage(msg.id).catch(SLStatic.error)
-      ).catch(SLStatic.error);
-
       browser.storage.local.get({ "preferences": {} }).then(storage => {
+
+        if (storage.preferences.sendDrafts) {
+          SendLater.forAllDrafts(
+            async msg => SendLater.possiblySendMessage(msg.id).catch(SLStatic.error)
+          ).catch(SLStatic.error);
+        }
+
         if (storage.preferences.markDraftsRead) {
           SendLater.markDraftsRead();
         }
