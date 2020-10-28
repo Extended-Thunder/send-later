@@ -89,7 +89,7 @@ const SLPopup = {
     return inputs;
   },
 
-  async evaluateUfunc(funcName, argStr) {
+  async evaluateUfunc(funcName, prev, argStr) {
     try {
       argStr = SLStatic.unparseArgs(SLStatic.parseArgs(argStr));
     } catch (ex) {
@@ -100,7 +100,7 @@ const SLPopup = {
     const message = {
       action: "evaluateUfuncByName",
       name: funcName,
-      time: 0,
+      time: prev.getTime(),
       argStr: argStr
     };
     const response = await browser.runtime.sendMessage(message);
@@ -113,6 +113,7 @@ const SLPopup = {
         recur.args = response.nextargs;
       }
       const schedule = { sendAt, recur };
+      SLStatic.debug("Popup.js received ufunc response: ",schedule);
       return schedule;
     }
   },
@@ -121,12 +122,21 @@ const SLPopup = {
     // Construct a recur object { type: "...", multiplier: "...", ... }
     const recur = { type: inputs.radio.recur };
 
+    const sendAtDate = inputs["send-date"];
+    const sendAtTime = inputs["send-time"];
+    if (!sendAtDate || !sendAtTime) {
+      return { err: browser.i18n.getMessage("entervalid") };
+    }
+    const sendAt = SLStatic.parseDateTime(sendAtDate, sendAtTime);
+
     if (recur.type === "function") {
       try {
         const funcName = inputs["recurFuncSelect"];
         let argStr = inputs["recur-function-args"];
-        const schedule = await SLPopup.evaluateUfunc(funcName, argStr);
-        schedule.recur.cancelOnReply = inputs[`recur-cancelonreply`];
+        const schedule = await SLPopup.evaluateUfunc(funcName, sendAt, argStr);
+        if (schedule.recur.type !== "none") {
+          schedule.recur.cancelOnReply = inputs[`recur-cancelonreply`];
+        }
         if (SLStatic.compareDateTimes(schedule.sendAt, '<', new Date(), true)) {
           return { err: browser.i18n.getMessage("errorDateInPast") };
         }
@@ -136,13 +146,6 @@ const SLPopup = {
       }
     }
 
-    // Parse send date and time
-    const sendAtDate = inputs["send-date"];
-    const sendAtTime = inputs["send-time"];
-    if (!sendAtDate || !sendAtTime) {
-      return { err: browser.i18n.getMessage("entervalid") };
-    }
-    const sendAt = SLStatic.parseDateTime(sendAtDate, sendAtTime);
     if (SLStatic.compareDateTimes(sendAt, '<', new Date(), true)) {
       return { err: browser.i18n.getMessage("errorDateInPast") };
     }
@@ -248,8 +251,8 @@ const SLPopup = {
           lineNode.textContent = segment.trim();
           sendScheduleButton.appendChild(lineNode);
         });
-        SLStatic.stateSetter(schedule.recur.type !== "function")(
-          document.getElementById("sendAtTimeDateDiv"));
+        // SLStatic.stateSetter(schedule.recur.type !== "function")(
+        //   document.getElementById("sendAtTimeDateDiv"));
         sendScheduleButton.disabled = false;
         return true;
       } else {
@@ -369,6 +372,7 @@ const SLPopup = {
         element.addEventListener("change", async evt => {
           const inputs = SLPopup.objectifyFormValues();
           const schedule = await SLPopup.parseInputs(inputs);
+          SLStatic.stateSetter(schedule.recur.type !== "none")(dom['cancel-on-reply-div']);
           SLPopup.setScheduleButton(schedule);
         });
       }
@@ -472,7 +476,7 @@ const SLPopup = {
         const quickBtn = dom[`quick-opt-${i}`];
         quickBtn.value = preferences[`quickOptions${i}Label`];
         quickBtn.addEventListener("click", async () => {
-          const schedule = await SLPopup.evaluateUfunc(funcName, funcArgs);
+          const schedule = await SLPopup.evaluateUfunc(funcName, new Date(), funcArgs);
           SLPopup.doSendWithSchedule(schedule);
         });
       }

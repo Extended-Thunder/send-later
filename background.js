@@ -442,8 +442,9 @@ browser.runtime.onMessage.addListener(async (message) => {
         break;
       }
 
+      const prev = (new Date(time)).getTime();
       const [next, nextspec, nextargs, error] =
-        await browser.SL3U.call(name, body, time, argStr).catch(ex => {
+        await browser.SL3U.call(name, body, prev, argStr).catch(ex => {
           SLStatic.error(`User function ${name} failed with exception`,ex);
           return [undefined, undefined, undefined, ex.message];
         });
