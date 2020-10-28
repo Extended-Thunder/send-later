@@ -244,7 +244,7 @@
             <input id="funcEditReset" type="button" style="margin-right:0.5em;"
               value="Discard changes" class="localized __MSG_reset.label__">
             <input id="funcEditDelete" type="button" style="margin-right:0.5em;"
-              value="Discard changes" class="localized __MSG_delete.label__">
+              value="Delete" class="localized __MSG_delete.label__">
           </div>
         </div>
       </div>
@@ -252,6 +252,25 @@
 
     <section>
       <div class="title option-label localized __MSG_advancedOptionsTitle__">Advanced</div>
+
+      <div id="advancedEditorTitle" class="subtitle option-label" style="cursor:pointer;">
+        <span id="advancedEditorVisibleIndicator"
+          style="margin-right: 0.25em;">+</span>
+        <span class="localized __MSG_advancededitor.title__">
+          Advanced configuration editor</span>
+      </div>
+
+      <div id="advancedConfigEditor" style="display:none;">
+        <textarea id="advancedConfigText" type="textbox"
+            class="pre"
+            style="width:98%;height:60em;margin: 0.25em 0px 0.25em 1em;"></textarea>
+        <div style="padding-left: 4em;">
+          <input id="advancedEditSave" type="button" style="margin-right:0.5em;"
+            value="Save" class="localized __MSG_save.label__">
+          <input id="advancedEditReset" type="button" style="margin-right:0.5em;"
+            value="Discard changes" class="localized __MSG_reset.label__">
+        </div>
+      </div>
 
       <label for="logDumpLevel" style="display:none;">
         <span class="option-label localized __MSG_logDumpLevelLabel__">File log level</span>:
