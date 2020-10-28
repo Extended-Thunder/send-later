@@ -314,11 +314,12 @@ const SLOptions = {
     });
 
     const resetAdvConfigEditor = (async () => {
+      SLStatic.debug("Refreshing advanced config editor contents");
       const prefsNode = document.getElementById("advancedConfigText");
       prefsNode.disabled = true;
-      prefsNode.textContent = "";
+      prefsNode.value = "";
       const { preferences } = await browser.storage.local.get({"preferences":{}});
-      prefsNode.textContent = JSON.stringify(preferences, null, 2);
+      prefsNode.value = JSON.stringify(preferences, null, 2);
       prefsNode.disabled = false;
     });
 
