@@ -48,6 +48,12 @@ label:hover {
   font-weight: bold;
 }
 
+.subtitle {
+  /* font-size: 1.0em; */
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+
 .pre {
   font-family: monospace;
   margin:0px;
