@@ -141,7 +141,7 @@ var SLStatic = {
                                   [recur.function]).replace(/^\S*/,
                                     this.i18n.getMessage("recurLabel"));
       if (recur.args) {
-        recurText += "<br/>" +
+        recurText += "\n" +
           this.i18n.getMessage("sendlater.prompt.functionargs.label") +
           `: [${recur.args}]`;
       }
@@ -185,12 +185,12 @@ var SLStatic = {
           days[ndays-1] = `and ${days[ndays-1]}`;
           onDays = days.join(", ");
         }
-        recurText += "<br/>"+this.i18n.getMessage("only_on_days",onDays);
+        recurText += "\n"+this.i18n.getMessage("only_on_days",onDays);
       }
     }
 
     if (recur.cancelOnReply) {
-      recurText += "<br/>" + this.i18n.getMessage("cancel_on_reply");
+      recurText += "\n" + this.i18n.getMessage("cancel_on_reply");
     }
 
     return recurText;
@@ -199,10 +199,6 @@ var SLStatic = {
   formatScheduleForUIColumn(schedule) {
       let sendAt = schedule.sendAt;
       let recur = schedule.recur;
-
-      if (typeof recur === "string") {
-        recur = SLStatic.parseRecurSpec(recur);
-      }
 
       let scheduleText;
       if (recur !== undefined && !sendAt && (recur.type === "function")) {
@@ -213,7 +209,7 @@ var SLStatic = {
       }
 
       if (recur !== undefined && recur.type !== "none") {
-        const rTxt = SLStatic.formatRecurForUI(recur).replace(/<br\/>/g," ");
+        const rTxt = SLStatic.formatRecurForUI(recur).replace(/\n/gm," ");
         scheduleText += ` (${rTxt})`;
       }
 
@@ -236,7 +232,7 @@ var SLStatic = {
     }
 
     if (recur.type  !== "none") {
-      scheduleText += "<br/>" + SLStatic.formatRecurForUI(recur);
+      scheduleText += "\n" + SLStatic.formatRecurForUI(recur);
     }
 
     return scheduleText;
