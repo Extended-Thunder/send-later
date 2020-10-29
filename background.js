@@ -231,7 +231,6 @@ const SendLater = {
         SendLater.setReplywatch(newMessageId, msgId);
       }
 
-
       let nextRecur;
       if (recur.type !== "none") {
         nextRecur = await SLStatic.nextRecurDate(nextSend, msgRecurSpec,
@@ -244,13 +243,15 @@ const SendLater = {
         lock[msgId] = { nextRecur: SLStatic.parseableDateTimeFormat(nextRecur) };
         browser.storage.local.set({ lock });
 
-        const nextRecurStr = SLStatic.parseableDateTimeFormat(nextRecur);
-        const newMsgContent = SLStatic.replaceHeader(rawContent, "X-Send-Later-At", nextRecurStr);
         const msgHdr = await browser.messages.get(id);
         const folder = msgHdr.folder;
+        const nextRecurStr = SLStatic.parseableDateTimeFormat(nextRecur);
+        let newMsgContent = rawContent;
+        newMsgContent = SLStatic.replaceHeader(newMsgContent, "X-Send-Later-At", nextRecurStr);
+        newMsgContent = SLStatic.replaceHeader(newMsgContent, 'Message-ID', newMessageId);
 
-        browser.SL3U.saveMessage(folder.accountId, folder.path, newMsgContent).then(newMsgId => {
-          if (newMsgId) {
+        browser.SL3U.saveMessage(folder.accountId, folder.path, newMsgContent).then(success => {
+          if (success) {
             if (preferences.markDraftsRead) {
               setTimeout(SendLater.markDraftsRead, 5000);
             }
