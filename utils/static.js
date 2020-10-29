@@ -197,6 +197,10 @@ var SLStatic = {
   },
 
   formatScheduleForUIColumn(schedule) {
+      if ((/encrypted/i).test(schedule.contentType)) {
+        return "Warning: Message is encrypted and will not be processed by Send Later";
+      }
+
       let sendAt = schedule.sendAt;
       let recur = schedule.recur;
 

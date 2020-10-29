@@ -144,11 +144,17 @@ const SendLater = {
       const msgRecurSpec = header(message, 'x-send-later-recur');
       const msgRecurArgs = header(message, 'x-send-later-args');
       const originalMsgId = header(message, 'message-id');
+      const contentType = header(message, 'content-type');
 
       if (msgSendAt === undefined) {
         return;
       }
       const nextSend = new Date(msgSendAt);
+
+      if ((/encrypted/i).test(contentType)) {
+        SLStatic.warn(`Message ${originalMsgId} is encrypted, and will not be processed by Send Later.`);
+        return;
+      }
 
       const { preferences } = await browser.storage.local.get({"preferences":{}});
 
@@ -464,10 +470,15 @@ browser.runtime.onMessage.addListener(async (message) => {
           break;
         }
 
-        const msgLock = await browser.storage.local.get({ lock: {} }).then(
-          ({ lock }) => (lock[msgId] || {}));
-        const sendAt = new Date(msgLock.nextRecur || headerSendAt);
+        let contentType = dispMsg.headers['content-type'];
+        if (contentType) {
+          if ((/encrypted/i).test(contentType[0])) {
+            response.err = "Message is encrypted and will not be processed by Send Later.";
+            break;
+          }
+        }
 
+        const sendAt = new Date(headerSendAt);
         const recurSpec = (dispMsg.headers['x-send-later-recur'] || ["none"])[0];
         const recur = SLStatic.parseRecurSpec(recurSpec);
         recur.cancelOnReply =
