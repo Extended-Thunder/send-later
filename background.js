@@ -136,34 +136,29 @@ const SendLater = {
         return;
       }
       // Determines whether or not a particular draft message is due to be sent
-      const msg = await browser.messages.getFull(id);
+      const message = await browser.messages.getFull(id);
 
-      const msgSendAt = msg.headers['x-send-later-at'] ? msg.headers['x-send-later-at'][0] : undefined;
-      const msgRecurSpec = msg.headers['x-send-later-recur'] ? msg.headers['x-send-later-recur'][0] : undefined;
-      const msgRecurArgs = msg.headers['x-send-later-args'] ? msg.headers['x-send-later-args'][0] : undefined;
-      const msgRecurCancelOnReply =
-        (msg.headers['x-send-later-cancel-on-reply'] &&
-          (msg.headers['x-send-later-cancel-on-reply'][0] === "true"
-        || msg.headers['x-send-later-cancel-on-reply'][0] === "yes"));
-      const msgId = msg.headers['message-id'] ? msg.headers['message-id'][0] : undefined;
+      const header = (msg, hdr) => (msg.headers[hdr] ? msg.headers[hdr][0] : undefined);
+
+      const msgSendAt = header(message, 'x-send-later-at');
+      const msgRecurSpec = header(message, 'x-send-later-recur');
+      const msgRecurArgs = header(message, 'x-send-later-args');
+      const originalMsgId = header(message, 'message-id');
 
       if (msgSendAt === undefined) {
         return;
       }
+      const nextSend = new Date(msgSendAt);
 
       const { preferences } = await browser.storage.local.get({"preferences":{}});
-      const { lock } = await browser.storage.local.get({"lock":{}});
-
-      // TODO: depreciate reliance on lock object in favor of stored header values
-      const nextSend = new Date(lock[msgId] ? lock[msgId].nextRecur : msgSendAt);
 
       if (!(Date.now() >= nextSend.getTime())) {
         SLStatic.debug(`Message ${id} not due for send until ${SLStatic.humanDateTimeFormat(nextSend)}`);
         return;
       }
 
-      if (await SendLater.isEditing(msgId)) {
-        SLStatic.debug(`Skipping message ${msgId} while it is being edited`);
+      if (await SendLater.isEditing(originalMsgId)) {
+        SLStatic.debug(`Skipping message ${originalMsgId} while it is being edited`);
         return;
       }
 
@@ -201,7 +196,7 @@ const SendLater = {
       }
 
       // Initiate send from draft message
-      SLStatic.info(`Sending message ${msgId}.`);
+      SLStatic.info(`Sending message ${originalMsgId}.`);
       const rawContent = await browser.messages.getRaw(id);
 
       const success = await browser.SL3U.sendRaw(
@@ -212,7 +207,7 @@ const SendLater = {
         });
 
       if (!success) {
-        SLStatic.error(`Something went wrong while sending message ${msgId}`);
+        SLStatic.error(`Something went wrong while sending message ${originalMsgId}`);
         return;
       }
 
@@ -223,10 +218,8 @@ const SendLater = {
       }
 
       if (nextRecur) {
-        SLStatic.info(`Scheduling next recurrence of message ${msgId} ` +
+        SLStatic.info(`Scheduling next recurrence of message ${originalMsgId} ` +
           `at ${nextRecur.toLocaleString()}, with recurSpec "${msgRecurSpec}"`);
-        lock[msgId] = { nextRecur: SLStatic.parseableDateTimeFormat(nextRecur) };
-        browser.storage.local.set({ lock });
 
         const msgHdr = await browser.messages.get(id);
         const folder = msgHdr.folder;
@@ -236,23 +229,17 @@ const SendLater = {
         const nextRecurStr = SLStatic.parseableDateTimeFormat(nextRecur);
         newMsgContent = SLStatic.replaceHeader(newMsgContent, "X-Send-Later-At", nextRecurStr);
 
-        const newMessageId = browser.SL3U.generateMsgId(rawContent);
+        const newMessageId = await browser.SL3U.generateMsgId(rawContent);
         newMsgContent = SLStatic.replaceHeader(newMsgContent, 'Message-ID', newMessageId);
 
-        // This isn't necessary unless this message is to be canceled when a reply is received
-        // but I don't see a problem with doing it regardless, and it should allow grouping
-        // of recurrant messages as threads.
-        //if (msgRecurCancelOnReply) {
-          const oldMessageId = ((/^Message-ID:\s*(.+)/im).exec(rawContent))[1].trim();
-          newMsgContent = SLStatic.appendHeader(newMsgContent, "References", oldMessageId);
-        //}
+        newMsgContent = SLStatic.appendHeader(newMsgContent, "References", originalMsgId);
 
         browser.SL3U.saveMessage(folder.accountId, folder.path, newMsgContent).then(success => {
           if (success) {
             if (preferences.markDraftsRead) {
               setTimeout(SendLater.markDraftsRead, 5000);
             }
-            SLStatic.info(`Scheduled next occurrence of message <${msgId}>. Deleting original.`);
+            SLStatic.info(`Scheduled next occurrence of message <${originalMsgId}>. Deleting original.`);
             browser.messages.delete([id], true);
           } else {
             SLStatic.error("Unable to schedule next recuurrence.");
@@ -261,7 +248,7 @@ const SendLater = {
           SLStatic.error(`Error replacing Draft message for next occurrence`,ex);
         });
       } else {
-        SLStatic.info(`No recurrences for message ${msgId}. Deleting draft.`);
+        SLStatic.info(`No recurrences for message ${originalMsgId}. Deleting draft.`);
         browser.messages.delete([id], true);
       }
     },
@@ -501,14 +488,11 @@ browser.runtime.onMessage.addListener(async (message) => {
   return response;
 });
 
+// Listen for incoming messages, and check if they are in reponse to a scheduled
+// message with a 'cancel-on-reply' header.
 browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
-  // Message ID of sent messages do not correspond with the message id of
-  // original draft versions. The local storage `watchForReply` object maps
-  // between the message IDs that we have sent and the message Id of the
-  // original draft messages.
-
   // First, we want to skip onNewMailReceived events triggered locally during
-  // regular send operations.
+  // regular send, move, and copy operations.
   if (folder.type === "archives") {
     SLStatic.debug(`Skipping onNewMailReceived for outgoing message(s)`,messagelist);
     return;
@@ -516,56 +500,49 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
   const myself = SLStatic.flatten(await browser.accounts.list().then(accts =>
     accts.map(acct => acct.identities.map(identity => identity.email))));
 
-  messagelist.messages.forEach(async hdr => {
+  messagelist.messages.forEach(msgHdr => {
     for (let email of myself) {
-      if (hdr.author.indexOf(email) > -1) {
-        SLStatic.debug(`Skipping onNewMailReceived for outgoing message "${hdr.subject}"`);
+      if (msgHdr.author.indexOf(email) > -1) {
+        SLStatic.debug(`Skipping onNewMailReceived for message "${msgHdr.subject}"`);
         return;
       }
     }
-    SLStatic.debug("Received message",hdr);
+    SLStatic.debug("Received message",msgHdr);
     // We can't do this processing right away, because the message will not be
-    // accessible via browser.messages
-    setTimeout(() => (async () => {
+    // accessible via browser.messages, so we'll schedule it via setTimeout.
+    const scanIncomingMessage = async (hdr) => {
       const fullRecvdMsg = await browser.messages.getFull(hdr.id).catch(
         ex => SLStatic.error(`Cannot fetch full message ${hdr.id}`,ex));
       if (fullRecvdMsg === undefined) {
         SLStatic.debug(`getFull returned undefined message in onNewMailReceived listener`);
       } else {
         SLStatic.debug(`Full message`,fullRecvdMsg);
-        (fullRecvdMsg.headers['references'] || []).forEach(async refMsgId => {
-          SLStatic.debug(`Message in reference to ${refMsgId}`);
-          // incoming message references `refMsgId`. Let's check if we
-          // need to cancel a recurring message because of that.
-          const { watchForReply } = await browser.storage.local.get({ watchForReply: {} });
-          if (watchForReply[refMsgId]) {
-            const isReplyTo = watchForReply[refMsgId];
-
-            SLStatic.info(`Received reply to message ${isReplyTo}.`);
-
-            // Look through drafts for message with original message id.
-            SendLater.forAllDrafts(async draftMsg => {
-              const fullDraftMsg = await browser.messages.getFull(draftMsg.id);
-              if (fullDraftMsg.headers['message-id'][0] === isReplyTo) {
-                SLStatic.info(`Deleting draft ${draftMsg.id} of message ${isReplyTo}`);
+        // const recvdMsgRefs = (fullRecvdMsg.headers['references'] || []);
+        const isReplyToStr = (fullRecvdMsg.headers['in-reply-to']||[""])[0];
+        const isReplyTo = [...isReplyToStr.matchAll(/(<\S*>)/gim)].map(i=>i[1]);
+        if (isReplyTo) {
+          SendLater.forAllDrafts(async draftMsg => {
+            const fullDraftMsg = await browser.messages.getFull(draftMsg.id);
+            const cancelOnReply = (fullDraftMsg.headers['x-send-later-cancel-on-reply'] &&
+                        (fullDraftMsg.headers['x-send-later-cancel-on-reply'][0] === "true"
+                      || fullDraftMsg.headers['x-send-later-cancel-on-reply'][0] === "yes"));
+            if (cancelOnReply) {
+              const draftMsgRefStr = (fullDraftMsg.headers['references'] || [""])[0];
+              const draftMsgRefs = [...draftMsgRefStr.matchAll(/(<\S*>)/gim)].map(i=>i[1]);
+              //const isReferenced = draftMsgRefs.some(item => recvdMsgRefs.includes(item));
+              const isReferenced = draftMsgRefs.some(item => isReplyTo.includes(item));
+              if (isReferenced) {
+                const msgId = fullDraftMsg.headers['message-id'][0];
+                SLStatic.info(`Received response to message ${msgId}. Deleting scheduled draft.`);
+                SLStatic.debug(fullDraftMsg);
                 browser.messages.delete([draftMsg.id], true);
               }
-            });
-
-            // There may be multiple outgoing messages that are attached to
-            // the same draft message. Let's clear those out of the watch list.
-            let count = 0;
-            for (let key of Object.keys(watchForReply)) {
-              if (watchForReply[key] === isReplyTo) {
-                SendLater.removeReplyWatch(key);
-                count++;
-              }
             }
-            SLStatic.debug(`Stopped listeneing for replies to ${count} outgoing messages`);
-          }
-        });
+          });
+        }
       }
-    })().catch(ex => SLStatic.error('Error processing message',ex)), 1000);
+    };
+    setTimeout((() => { scanIncomingMessage(msgHdr) }), 5000);
   });
 });
 
