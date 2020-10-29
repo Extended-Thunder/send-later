@@ -47,6 +47,18 @@
         ]
       },
       {
+        "name": "generateMsgId",
+        "type": "function",
+        "async": true,
+        "description": "",
+        "parameters": [
+          {
+            "name": "idkey",
+            "type": "string"
+          }
+        ]
+      },
+      {
         "name": "saveAsDraft",
         "type": "function",
         "async": true,

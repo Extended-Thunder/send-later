@@ -4,17 +4,6 @@ const SendLater = {
 
     composeState: {},
 
-    async setReplywatch(newMessageId, originalMessageId) {
-      // Outgoing messages get unique message IDs. We need to keep track that
-      // responses to `newMessageId` are really replies to `originalMessageId`
-      browser.storage.local.get({ watchForReply: {} }).then(
-        ({ watchForReply }) => {
-          watchForReply[newMessageId] = originalMessageId;
-          browser.storage.local.set({ watchForReply });
-        }
-      );
-    },
-
     async removeReplyWatch(msgId) {
       browser.storage.local.get({ watchForReply: {} }).then(
         ({ watchForReply }) => {
@@ -215,20 +204,16 @@ const SendLater = {
       SLStatic.info(`Sending message ${msgId}.`);
       const rawContent = await browser.messages.getRaw(id);
 
-      const newMessageId = await browser.SL3U.sendRaw(
+      const success = await browser.SL3U.sendRaw(
         SLStatic.prepNewMessageHeaders(rawContent),
         preferences.sendUnsentMsgs).catch(ex=>{
           SLStatic.error(`Error sending raw message from drafts`,ex);
           return null;
         });
 
-      if (!newMessageId) {
+      if (!success) {
         SLStatic.error(`Something went wrong while sending message ${msgId}`);
         return;
-      }
-
-      if (msgRecurCancelOnReply) {
-        SendLater.setReplywatch(newMessageId, msgId);
       }
 
       let nextRecur;
@@ -245,10 +230,22 @@ const SendLater = {
 
         const msgHdr = await browser.messages.get(id);
         const folder = msgHdr.folder;
-        const nextRecurStr = SLStatic.parseableDateTimeFormat(nextRecur);
+
         let newMsgContent = rawContent;
+
+        const nextRecurStr = SLStatic.parseableDateTimeFormat(nextRecur);
         newMsgContent = SLStatic.replaceHeader(newMsgContent, "X-Send-Later-At", nextRecurStr);
+
+        const newMessageId = browser.SL3U.generateMsgId(rawContent);
         newMsgContent = SLStatic.replaceHeader(newMsgContent, 'Message-ID', newMessageId);
+
+        // This isn't necessary unless this message is to be canceled when a reply is received
+        // but I don't see a problem with doing it regardless, and it should allow grouping
+        // of recurrant messages as threads.
+        //if (msgRecurCancelOnReply) {
+          const oldMessageId = ((/^Message-ID:\s*(.+)/im).exec(rawContent))[1].trim();
+          newMsgContent = SLStatic.appendHeader(newMsgContent, "References", oldMessageId);
+        //}
 
         browser.SL3U.saveMessage(folder.accountId, folder.path, newMsgContent).then(success => {
           if (success) {
