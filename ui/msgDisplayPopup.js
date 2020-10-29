@@ -19,7 +19,7 @@ const SLMsgDisplay = {
     } else {
       const contentElement = document.getElementById("content");
       contentElement.textContent = "";
-      scheduleTxt.split("<br/>").forEach(segment => {
+      scheduleTxt.split("\n").forEach(segment => {
         const lineNode = document.createElement("DIV");
         lineNode.style.display = "block";
         lineNode.style.margin = "0px";

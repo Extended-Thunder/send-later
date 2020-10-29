@@ -590,15 +590,18 @@
    },
 
    parseRawMessage(content) {
-     const regex = /(x-send-later-[a-z]*):[ ]*([^\r\n]*)/img;
+     const regex = /(x-send-later-[a-z\-]*):[ ]*([^\r\n]*)/img;
      const hdrs = [...content.matchAll(regex)].reduce(
         (a,c)=>{ a[c[1].toLowerCase().trim()]=c[2]; return a; }, {});
      let schedule = {};
      if (hdrs['x-send-later-at'] !== undefined) {
-       schedule = { sendAt: new Date(hdrs['x-send-later-at']),
-                    recur: hdrs['x-send-later-recur'],
-                    cancelOnReply: hdrs['x-send-later-cancel-on-reply'],
-                    args: hdrs['x-send-later-args'] };
+       schedule.sendAt = new Date(hdrs['x-send-later-at']);
+       if (hdrs['x-send-later-recur']) {
+        schedule.recur = SLStatic.parseRecurSpec(hdrs['x-send-later-recur']);
+        schedule.recur.cancelOnReply = (hdrs['x-send-later-cancel-on-reply'] === "yes" ||
+                                        hdrs['x-send-later-cancel-on-reply'] === "true");
+        schedule.recur.args = hdrs['x-send-later-args'];
+       }
      }
      return schedule;
    },

@@ -242,7 +242,7 @@ const SLPopup = {
       const scheduleText = SLStatic.formatScheduleForUI(schedule);
       if (scheduleText) {
         sendScheduleButton.textContent = "";
-        scheduleText.split("<br/>").forEach(segment => {
+        scheduleText.split("\n").forEach(segment => {
           const lineNode = document.createElement("DIV");
           lineNode.style.display = "block";
           lineNode.style.margin = "0px";
