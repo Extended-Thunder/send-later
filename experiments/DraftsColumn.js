@@ -497,9 +497,9 @@
      if (this.hasSchedule(msgHdr)) {
        const schedule = this.getSchedule(msgHdr);
        if (schedule !== null && schedule.sendAt !== undefined) {
-         return schedule.sendAt.valueOf() / 1000;
+         return schedule.sendAt.getTime();
        } else {
-         return 0;
+         return Number.MAX_SAFE_INTEGER;
        }
      }
    },
