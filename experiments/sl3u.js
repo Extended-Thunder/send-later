@@ -428,18 +428,12 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return false;
         },
 
-        async sendRaw(content, sendUnsentMsgs) {
-          // Replace message-id header with newly generated id.
-          content = "\n" + content;
-          const idkey = (/\nX-Identity-Key:\s*(\S+)/i.exec(content))[1];
-          const newMessageId = SendLaterFunctions.generateMsgId(idkey);
-          content = content.replace(/(\nMessage-ID:.*)<.*>/i,
-                                    "$1" + newMessageId);
-          content = content.slice(1);
-          if (content.indexOf(newMessageId) === -1) {
-            throw "Message ID substitution failed.";
-          }
+        async generateMsgId(content) {
+          const idkey = ((/\nX-Identity-Key:\s*(\S+)/i).exec('\n'+content))[1];
+          return SendLaterFunctions.generateMsgId(idkey);
+        },
 
+        async sendRaw(content, sendUnsentMsgs) {
           // Dump message content as new message in the outbox folder
           const fdrunsent = SendLaterFunctions.getUnsentMessagesFolder();
           const listener = {
@@ -477,7 +471,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
           SendLaterFunctions.copyStringMessageToFolder(content, fdrunsent, listener);
 
-          return newMessageId;
+          return true;
         },
 
         // Saves raw message content in specified folder.
