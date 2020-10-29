@@ -482,17 +482,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
         // Saves raw message content in specified folder.
         async saveMessage(accountId, path, content) {
-          // Replace message-id header with newly generated id.
-          content = "\n" + content;
-          const idkey = (/\nX-Identity-Key:\s*(\S+)/i.exec(content))[1];
-          const newMessageId = SendLaterFunctions.generateMsgId(idkey);
-          content = content.replace(/(\nMessage-ID:.*)<.*>/i,
-                                    "$1" + newMessageId);
-          content = content.slice(1);
-          if (content.indexOf(newMessageId) === -1) {
-            throw "Message ID substitution failed.";
-          }
-
           const listener = {
             QueryInterface: function(iid) {
               if (iid.equals(Ci.nsIMsgCopyServiceListener) ||
@@ -526,7 +515,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           const folder = MailServices.folderLookup.getFolderForURL(uri);
           SendLaterFunctions.copyStringMessageToFolder(content, folder, listener);
 
-          return newMessageId;
+          return true;
         },
 
         async addMsgSendLaterListener() {
