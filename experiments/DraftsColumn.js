@@ -590,10 +590,11 @@
    },
 
    parseRawMessage(content) {
+     const contentType = ""+content.match(/^content-type:[ ]*(.*)/im)[1];
      const regex = /(x-send-later-[a-z\-]*):[ ]*([^\r\n]*)/img;
      const hdrs = [...content.matchAll(regex)].reduce(
         (a,c)=>{ a[c[1].toLowerCase().trim()]=c[2]; return a; }, {});
-     let schedule = {};
+     let schedule = { contentType };
      if (hdrs['x-send-later-at'] !== undefined) {
        schedule.sendAt = new Date(hdrs['x-send-later-at']);
        if (hdrs['x-send-later-recur']) {
