@@ -258,11 +258,33 @@ var SLStatic = {
       });
   },
 
+  getHeader: function(content, header) {
+    const regex = new RegExp(`^${header}:([^\r\n]*)\r\n(\\s[^\r\n]*\r\n)*`,'im');
+    if (regex.test(content)) {
+      return content.match(regex)[0].trim();
+    } else {
+      return undefined;
+    }
+  },
+
   replaceHeader: function(content, header, value) {
     const replacement = (value) ? `\r\n${header}: ${value}\r\n` : '\r\n';
     const regex = `\r\n${header}:.*(?:\r\n|\n)([ \t].*(?:\r\n|\n))*`;
     content = ("\r\n" + content).replace(new RegExp(regex,'im'), replacement);
     return content.slice(2);
+  },
+
+  appendHeader: function(content, header, value) {
+    const regex = new RegExp(`^${header}:([^\r\n]*)\r\n(\\s[^\r\n]*\r\n)*`,'im');
+    if (regex.test(content)) {
+      const values = content.match(regex)[0].trim().slice(
+        header.length+1).trim().split(/\r\n/).map(s=>s.trim());
+      values.push(value);
+      content = content.replace(regex, `${header}: ${values.join("\r\n ")}\r\n`);
+      return content;
+    } else {
+      return `${header}: ${value}\r\n${content}`;
+    }
   },
 
   prepNewMessageHeaders: function(content) {
