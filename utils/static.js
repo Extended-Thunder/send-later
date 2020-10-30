@@ -797,6 +797,10 @@ if (SLStatic.i18n === null) {
               }
             }
 
+            if (str === undefined) {
+              str = messageName;
+            }
+
             if (!str.includes("$")) {
               return str;
             }
