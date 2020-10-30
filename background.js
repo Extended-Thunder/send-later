@@ -259,6 +259,14 @@ const SendLater = {
       }
     },
 
+    injectScripts: async function() {
+      const { preferences } = await browser.storage.local.get({"preferences":{}});
+      await browser.SL3U.notifyStorageLocal(preferences, true);
+      await browser.SL3U.injectScript("utils/moment.min.js","mail:3pane");
+      await browser.SL3U.injectScript("utils/static.js","mail:3pane");
+      await browser.SL3U.injectScript("experiments/headerView.js","mail:3pane");
+    },
+
     init: async function() {
       browser.storage.local.get({preferences: {}, ufuncs:{}}).then(storage => {
         SendLater.prefCache = storage.preferences;
@@ -266,17 +274,10 @@ const SendLater = {
       });
 
       SLStatic.debug("Registering window listeners");
-      browser.SL3U.startObservers();
-      browser.SL3U.bindKeyCodes();
-
-      await browser.storage.local.get({preferences: {}}).then(storage => {
-        storage.preferences['sendLaterColumnLabel'] = browser.i18n.getMessage("extensionName");
-        storage.preferences['sendLaterColumnTooltip'] = browser.i18n.getMessage("extensionDescription");
-        browser.SL3U.notifyStorageLocal(storage.preferences, true);
-      });
-      browser.SL3U.injectScript("utils/moment.min.js","mail:3pane");
-      browser.SL3U.injectScript("utils/static.js","mail:3pane");
-      browser.SL3U.injectScript("experiments/DraftsColumn.js","mail:3pane");
+      await browser.SL3U.initializeSendLater();
+      await browser.SL3U.startObservers();
+      await browser.SL3U.bindKeyCodes();
+      await SendLater.injectScripts();
 
       // Start background loop to check for scheduled messages.
       setTimeout(SendLater.mainLoop, 0);
@@ -286,8 +287,9 @@ const SendLater = {
       SLStatic.debug("Entering main loop.");
 
       browser.storage.local.get({ "preferences": {} }).then(storage => {
+        let interval = (+storage.preferences.checkTimePref) || 0;
 
-        if (storage.preferences.sendDrafts) {
+        if (storage.preferences.sendDrafts && interval > 0) {
           SendLater.forAllDrafts(
             async msg => SendLater.possiblySendMessage(msg.id).catch(SLStatic.error)
           ).catch(SLStatic.error);
@@ -299,8 +301,8 @@ const SendLater = {
 
         // TODO: Should use a persistent reference to the this timeout that can be
         // scrapped and restarted upon changes in the delay preference.
-        const interval = +storage.preferences.checkTimePref || 1;
-        SLStatic.debug(`Next main loop iteration in ${interval} minutes.`);
+        interval = Math.max(1,interval);
+        SLStatic.debug(`Next main loop iteration in ${interval} minute${interval > 1 ? "s" : ""}.`);
         setTimeout(SendLater.mainLoop, 60000*interval);
       });
     }
@@ -408,9 +410,6 @@ browser.runtime.onMessage.addListener(async (message) => {
     case "reloadPrefCache": {
       await browser.storage.local.get({preferences: {}}).then(storage => {
         SendLater.prefCache = storage.preferences;
-
-        storage.preferences['sendLaterColumnLabel'] = browser.i18n.getMessage("extensionName");
-        storage.preferences['sendLaterColumnTooltip'] = browser.i18n.getMessage("extensionDescription");
         browser.SL3U.notifyStorageLocal(storage.preferences, false);
       });
       break;
@@ -559,14 +558,7 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
 });
 
 browser.windows.onCreated.addListener(async (window) => {
-  await browser.storage.local.get({preferences: {}}).then(storage => {
-    storage.preferences['sendLaterColumnLabel'] = browser.i18n.getMessage("extensionName");
-    storage.preferences['sendLaterColumnTooltip'] = browser.i18n.getMessage("extensionDescription");
-    browser.SL3U.notifyStorageLocal(storage.preferences, true);
-  });
-  browser.SL3U.injectScript("utils/moment.min.js","mail:3pane");
-  browser.SL3U.injectScript("utils/static.js","mail:3pane");
-  browser.SL3U.injectScript("experiments/DraftsColumn.js","mail:3pane");
+  SendLater.injectScripts();
 });
 
 browser.messageDisplay.onMessageDisplayed.addListener(async (tab, hdr) => {

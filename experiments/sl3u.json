@@ -202,7 +202,7 @@
         "name": "notifyStorageLocal",
         "type": "function",
         "description": "Make local indexedDB storage available to an overlay extension implementing an observer for 'extension:storage-local'.",
-        "async": false,
+        "async": true,
         "parameters": [
           {
             "name": "storageLocalData",
@@ -234,7 +234,7 @@
         "name":"injectScript",
         "type":"function",
         "description":"Inject script into a global document.",
-        "async":false,
+        "async":true,
         "parameters": [
           {
             "name":"filename",

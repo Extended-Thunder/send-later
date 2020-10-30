@@ -147,6 +147,126 @@ const SendLaterFunctions = {
                                               listener, msgWindow);
   },
 
+  rebuildDraftsFolders() {
+    let accountManager = Components
+      .classes["@mozilla.org/messenger/account-manager;1"]
+      .getService(Ci.nsIMsgAccountManager);
+    let fdrlocal = accountManager.localFoldersServer.rootFolder;
+    var msgWindow = Cc[
+      "@mozilla.org/messenger/msgwindow;1"
+    ].createInstance();
+    msgWindow = msgWindow.QueryInterface(Ci.nsIMsgWindow);
+    let folderstocheck = new Object();
+    let foldersdone = new Object();
+    let CheckFolder = function(folder) {
+      let uri = folder.URI;
+      if (folderstocheck[uri] || foldersdone[uri]) {
+          console.debug("Already done - " + uri);
+          return;
+      }
+      foldersdone[uri] = 1;
+      console.log("Compacting folder",folder);
+      //folder.compact(null, msgWindow);
+      //const msgDb = folder.msgDatabase.QueryInterface(Ci.nsIMsgDatabase);
+      const msgStore = folder.msgStore.QueryInterface(Ci.nsIMsgPluggableStore);
+      //console.log(msgDb, msgStore);
+      function CustomListener() {};
+      CustomListener.prototype = {
+        QueryInterface: ChromeUtils.generateQI(["nsIUrlListener"]),
+        OnStopRunningUrl(url, exitCode) {
+          console.log(url, exitCode);
+          let nssErrorsService = Cc["@mozilla.org/nss_errors_service;1"].getService(
+            Ci.nsINSSErrorsService
+          );
+          try {
+            let errorClass = nssErrorsService.getErrorClass(exitCode);
+            if (errorClass == Ci.nsINSSErrorsService.ERROR_CLASS_BAD_CERT) {
+              let mailNewsUrl = url.QueryInterface(Ci.nsIMsgMailNewsUrl);
+              let secInfo = mailNewsUrl.failedSecInfo;
+              InformUserOfCertError(secInfo, url.asciiHostPort);
+            }
+          } catch (e) {
+          }
+        },
+        OnStartCopy() {},
+        OnStopCopy(aExitCode) { console.log("OnStopCopy",aExitCode); },
+        SetMessageKey(dstKey) { console.log("SetMessageKey",dstKey); }
+      }
+      const listener = (new CustomListener());
+      try {
+        /*
+         * From comm/mailnews/base/public/nsIMsgPluggableStore.idl:
+         * void rebuildIndex(in nsIMsgFolder aFolder, in nsIMsgDatabase aMsgDB,
+         *                   in nsIMsgWindow aMsgWindow, in nsIUrlListener aListener);
+         */
+        console.log(folder instanceof Ci.nsIMsgFolder, folder.msgDatabase instanceof Ci.nsIMsgDatabase,
+                    msgWindow instanceof Ci.nsIMsgWindow, listener instanceof (Ci.nsIUrlListener));
+        msgStore.rebuildIndex(folder, folder.msgDatabase, msgWindow, listener);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    let folder = fdrlocal.findSubFolder("Drafts");
+    if (folder)
+        CheckFolder(folder);
+    else
+        console.warn("SL3U.FindSubFolder(fdrlocal, \"Drafts\") " +
+            "returned nothing");
+
+    let draft_folder_pref = 'mail.identity.default.draft_folder';
+    let local_draft_pref = Services.prefs.getStringPref(draft_folder_pref);
+    console.debug("mail.identity.default.draft_folder=" + local_draft_pref);
+    if (local_draft_pref) {
+      try {
+        folder = MailServices.folderLookup.getFolderForURL(local_draft_pref);
+        //folder = MailUtils.getExistingFolder(local_draft_pref);
+        if (folder) {
+          CheckFolder(folder);
+        }
+      } catch (e) {
+        console.debug("default Drafts folder " + local_draft_pref +
+                        " does not exist?");
+      }
+    }
+    let allaccounts = accountManager.accounts;
+    let acindex, numAccounts;
+    numAccounts = allaccounts.length;
+    console.log(numAccounts, allaccounts);
+    for (acindex = 0; acindex<numAccounts; acindex++) {
+      let thisaccount = allaccounts[acindex].QueryInterface(Ci.nsIMsgAccount);
+      if (thisaccount) {
+        let numIdentities = thisaccount.identities.length;
+        console.debug(
+          thisaccount.incomingServer.type +
+            " - Identities [" +
+            numIdentities +
+            "]"
+        );
+        switch (thisaccount.incomingServer.type) {
+          case "pop3":
+          case "imap":
+          case "owl":
+            let identityNum;
+            for (identityNum = 0; identityNum < numIdentities; identityNum++) {
+              try {
+                console.log(thisaccount.identities);
+                let identity = thisaccount.identities[identityNum].QueryInterface(Ci.nsIMsgIdentity);
+                let thisfolder = MailServices.folderLookup.getFolderForURL(identity.draftFolder);
+                CheckFolder(thisfolder);
+              } catch (e) {
+                console.warn("Error getting identity:",e);
+              }
+            }
+            break;
+          default:
+            console.debug("skipping this server type - " + thisaccount);
+            break;
+        }
+      }
+    }
+
+  },
+
   keyCodeEventTracker: {
     listeners: new Set(),
   
@@ -623,14 +743,34 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return true;
         },
 
-        async addMsgSendLaterListener() {
-            const msgSendLater = Cc.getService(Ci.nsIMsgSendLater);
-            msgSendLater.addListener(this.sendUnsentMessagesListener);
-        },
+        async initializeSendLater() {
+          // mailnews.customDBHeaders
+          let originals = [];
+          try {
+            originals = Services.prefs.getCharPref(
+              "mailnews.customDBHeaders", ""
+              ).split(/\s+/).filter(v=>(v!==""));
+          } catch(e) {}
+          let wantedHeaders = ["x-send-later-at", "x-send-later-recur",
+            "x-send-later-args", "x-send-later-cancel-on-reply"];
 
-        async removeMsgSendLaterListener() {
-            const msgSendLater = Cc.getService(Ci.nsIMsgSendLater);
-            msgSendLater.removeListener(this.sendUnsentMessagesListener);
+          const allDefined = wantedHeaders.every(hdr => originals.includes(hdr));
+          if (!allDefined) {
+            let chNames = originals.concat(wantedHeaders);
+            let uniqueHdrs = chNames.filter((v, i, s) => (s.indexOf(v) === i));
+            const customHdrString = uniqueHdrs.join(" ");
+            console.info(`Setting mailnews.customDBHeaders: ${customHdrString}` +
+                         `\nPreviously: ${originals.join(" ")}`);
+            Services.prefs.setCharPref("mailnews.customDBHeaders",
+                                        customHdrString);
+            console.info("If you have scheduled messages from a previous " +
+                         "installation of Send Later, you may need to rebuild " +
+                         "your Drafts folders in order for Send Later to " +
+                         "properly recognize those messages.");
+            // TODO: Forcing rebuild of Drafts folders doesn't
+            // work yet.
+            // SendLaterFunctions.rebuildDraftsFolders();
+          }
         },
 
         /*
@@ -646,7 +786,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
          *                                    data; otherwise do it now.
          * @implements {nsIObserver}
          */
-        notifyStorageLocal(storageLocalData, startup) {
+        async notifyStorageLocal(storageLocalData, startup) {
           let getStorageLocalMap = () => {
             let storageLocalMap = new Map();
             Object.entries(storageLocalData).forEach(([key, value]) =>
@@ -675,19 +815,21 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
         },
 
-        injectScript(filename, windowType) {
-          let window = Services.wm.getMostRecentWindow(windowType);
+        async injectScript(filename, windowType) {
+          let window = Services.wm.getMostRecentWindow(null);
           if (window) {
-            (async ()=>{
-              let context = window.document.defaultView;
+            const winType = window.document.documentElement.getAttribute("windowtype");
+            console.log(winType,windowType,winType === windowType);
+            if (winType === windowType) {
+              let windowContext = window.document.defaultView;
               try {
                 let scriptURI = extension.rootURI.resolve(filename);
                 let script = await ChromeUtils.compileScript(scriptURI);
-                script.executeInGlobal(context);
+                script.executeInGlobal(windowContext);
               } catch (ex) {
                 console.error("[SendLater]: Unable to inject script.",ex);
               }
-            })();
+            }
           }
         },
 
