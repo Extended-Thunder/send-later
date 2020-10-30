@@ -10,6 +10,9 @@ const { MailServices } = ChromeUtils.import("resource:///modules/MailServices.js
 const SendLaterVars = {
   fileNumber: 0,
   copyService: null,
+  sendingUnsentMessages: false,
+  needToSendUnsentMessages: false,
+  wantToCompactOutbox: false
 }
 
 const SendLaterFunctions = {
@@ -33,7 +36,7 @@ const SendLaterFunctions = {
     };
     timer.initWithCallback(callback, 100, Ci.nsITimer.TYPE_REPEATING_SLACK);
   },
-  
+
   generateMsgId(idkey) {
     const accounts = Cc["@mozilla.org/messenger/account-manager;1"]
       .getService(Ci.nsIMsgAccountManager);
@@ -82,7 +85,7 @@ const SendLaterFunctions = {
         .join("/")
     );
   },
-  
+
   getUnsentMessagesFolder() {
     // Find the local outbox folder
     const msgSendLater = Cc[
@@ -94,6 +97,9 @@ const SendLaterFunctions = {
   queueSendUnsentMessages() {
     if (Utils.isOffline) {
       console.debug("Deferring sendUnsentMessages while offline");
+    } else if (SendLaterVars.sendingUnsentMessages) {
+        console.debug("Deferring sendUnsentMessages");
+        SendLaterVars.needToSendUnsentMessages = true;
     } else {
       try {
         const msgSendLater = Cc[
@@ -158,7 +164,100 @@ const SendLaterFunctions = {
       }
     }
   }
-}
+};
+
+const SendLaterBackgrounding = function() {
+  var sl3log = {
+    Entering(functionName) {
+      console.debug("Entering function:",functionName);
+    },
+    Leaving(functionName) {
+      console.debug("Leaving function:",functionName);
+    }
+  };
+
+  var msgWindow = Components.classes["@mozilla.org/messenger/msgwindow;1"]
+      .createInstance();
+  msgWindow = msgWindow.QueryInterface(Components.interfaces.nsIMsgWindow);
+
+  // If you add a message to the Outbox and call nsIMsgSendLater when it's
+  // already in the middle of sending unsent messages, then it's possible
+  // that the message you just added won't get sent. Therefore, when we add a
+  // new message to the Outbox, we need to be aware of whether we're already
+  // in the middle of sending unsent messages, and if so, then trigger
+  // another send after it's finished.
+  var sendUnsentMessagesListener = {
+      onStartSending: function(aTotalMessageCount) {
+          sl3log.Entering("Sendlater3Backgrounding.sendUnsentMessagesListener.onStartSending");
+          SendLaterVars.wantToCompactOutbox =
+              SendLaterFunctions.getUnsentMessagesFolder().getTotalMessages(false) > 0;
+          SendLaterVars.sendingUnsentMessages = true;
+          SendLaterVars.needToSendUnsentMessages = false;
+          sl3log.Leaving("Sendlater3Backgrounding.sendUnsentMessagesListener.onStartSending");
+      },
+      onMessageStartSending: function(aCurrentMessage, aTotalMessageCount,
+          aMessageHeader, aIdentity) {},
+      onProgress: function(aCurrentMessage, aTotalMessage) {},
+      onMessageSendError: function(aCurrentMessage, aMessageHeader, aSstatus,
+          aMsg) {},
+      onMessageSendProgress: function(aCurrentMessage, aTotalMessageCount,
+          aMessageSendPercent,
+          aMessageCopyPercent) {},
+      onStatus: function(aMsg) {},
+      onStopSending: function(aStatus, aMsg, aTotalTried, aSuccessful) {
+          sl3log.Entering("Sendlater3Backgrounding.sendUnsentMessagesListener.onStopSending");
+          SendLaterVars.sendingUnsentMessages = false;
+          if (SendLaterVars.needToSendUnsentMessages) {
+              if (Utils.isOffline) {
+                  console.warn("Deferring sendUnsentMessages while offline");
+              } else {
+                  try {
+                      var msgSendLater = Components
+                          .classes["@mozilla.org/messengercompose/sendlater;1"]
+                          .getService(Components.interfaces.nsIMsgSendLater);
+                      msgSendLater.sendUnsentMessages(null);
+                  } catch (ex) {
+                      console.warn(ex);
+                  }
+              }
+          } else if (SendLaterVars.wantToCompactOutbox &&
+            SendLaterFunctions.getUnsentMessagesFolder().getTotalMessages(false) == 0) {
+              try {
+                  let fdrunsent = SendLaterFunctions.getUnsentMessagesFolder();
+                  fdrunsent.compact(null, msgWindow);
+                  SendLaterVars.wantToCompactOutbox = false;
+                  console.debug("Compacted Outbox");
+              } catch (ex) {
+                console.warn("Compacting Outbox failed: " + ex);
+              }
+          }
+          sl3log.Leaving("Sendlater3Backgrounding.sendUnsentMessagesListener.onStopSending");
+      }
+  }
+
+  function addMsgSendLaterListener() {
+      sl3log.Entering("Sendlater3Backgrounding.addMsgSendLaterListener");
+      var msgSendLater = Components
+          .classes["@mozilla.org/messengercompose/sendlater;1"]
+          .getService(Components.interfaces.nsIMsgSendLater);
+      msgSendLater.addListener(sendUnsentMessagesListener);
+      sl3log.Leaving("Sendlater3Backgrounding.addMsgSendLaterListener");
+  }
+
+  function removeMsgSendLaterListener() {
+      sl3log.Entering("Sendlater3Backgrounding.removeMsgSendLaterListener");
+      var msgSendLater = Components
+          .classes["@mozilla.org/messengercompose/sendlater;1"]
+          .getService(Components.interfaces.nsIMsgSendLater);
+      msgSendLater.removeListener(sendUnsentMessagesListener);
+      sl3log.Leaving("Sendlater3Backgrounding.removeMsgSendLaterListener");
+  }
+
+  const window = Services.wm.getMostRecentWindow(null); // "mail:3pane"
+  window.addEventListener("unload", removeMsgSendLaterListener, false);
+
+  addMsgSendLaterListener();
+};
 
 
 var SL3U = class extends ExtensionCommon.ExtensionAPI {
@@ -435,13 +534,20 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
         async sendRaw(content, sendUnsentMsgs) {
           // Dump message content as new message in the outbox folder
-          const fdrunsent = SendLaterFunctions.getUnsentMessagesFolder();
-          const listener = {
+          function CopyUnsentListener(triggerOutbox) {
+            this._sendUnsentMsgs = triggerOutbox
+          }
+          CopyUnsentListener.prototype = {
             QueryInterface: function(iid) {
+              console.debug("[SendLater]: Entering CopyUnsentListener.QueryInterface");
               if (iid.equals(Ci.nsIMsgCopyServiceListener) ||
                   iid.equals(Ci.nsISupports)) {
+                console.debug("[SendLater]: Returingn copyServiceListener.QueryInterface",
+                  this);
                 return this;
               }
+              console.error("CopyUnsentListener.QueryInterface",
+                Components.results.NS_NOINTERFACE);
               throw Components.results.NS_NOINTERFACE;
             },
             OnProgress: function(progress, progressMax) {},
@@ -452,12 +558,15 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                 try {
                   copying.remove(true);
                 } catch (ex) {
-                  console.debug(`Failed to delete ${copying.path}.`);
+                  console.debug(`Failed to delete ${copying.path}.` +
+                                `Trying again with waitAndDelete.`);
                   SendLaterFunctions.waitAndDelete(copying);
                 }
               }
               if (Components.isSuccessCode(status)) {
-                if (sendUnsentMsgs) {
+                console.debug("Successfully copied message to outbox.");
+                if (this._sendUnsentMsgs) {
+                  console.debug("Triggering send unsent messages.")
                   const mailWindow = Services.wm.getMostRecentWindow("mail:3pane");
                   mailWindow.setTimeout(SendLaterFunctions.queueSendUnsentMessages, 1000);
                 } else {
@@ -469,6 +578,8 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             },
             SetMessageKey: function(key) {}
           }
+          const fdrunsent = SendLaterFunctions.getUnsentMessagesFolder();
+          const listener = new CopyUnsentListener(sendUnsentMsgs);
           SendLaterFunctions.copyStringMessageToFolder(content, fdrunsent, listener);
 
           return true;
@@ -580,7 +691,12 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
         },
 
-        bindKeyCodes() {
+        async startObservers() {
+          // Setup various observers.
+          SendLaterBackgrounding();
+        },
+
+        async bindKeyCodes() {
           // Add an overlay to messenger compose windows to listen for key commands
           ExtensionSupport.registerWindowListener("composeListener", {
             chromeURLs: [
