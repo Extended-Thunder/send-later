@@ -266,6 +266,7 @@ const SendLater = {
       });
 
       SLStatic.debug("Registering window listeners");
+      browser.SL3U.startObservers();
       browser.SL3U.bindKeyCodes();
 
       await browser.storage.local.get({preferences: {}}).then(storage => {
