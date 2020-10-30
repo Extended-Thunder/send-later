@@ -1,7 +1,7 @@
 exports.init = function() {
   function FormatRecurTest(spec, expected) {
     const recur = SLStatic.parseRecurSpec(spec);
-    const out = SLStatic.formatRecurForUI(recur).replace(/<br\/>/g," ");;
+    const out = SLStatic.formatRecurForUI(recur).replace(/\n/g," ");;
     if (out == expected) {
       return true;
     } else {
