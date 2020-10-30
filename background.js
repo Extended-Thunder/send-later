@@ -326,12 +326,23 @@ browser.SL3U.onKeyCode.addListener(keyid => {
       if (SendLater.prefCache.altBinding) {
         SLStatic.info("Passing Ctrl+Shift+Enter along to builtin send later " +
                       "because user bound alt+shift+enter instead.");
-        browser.tabs.query({ active:true, currentWindow:true }).then(tabs => {
-          const tabId = tabs[0].id;
-          SendLater.composeState[tabId] = "sending";
-          browser.SL3U.builtInSendLater().then(()=>{
-            setTimeout(() => delete SendLater.composeState[tabId], 1000);
-          });
+        browser.tabs.query({ active:true, mailTab:false }).then(tabs => {
+          let thistab = undefined;
+          for (let tab of tabs) {
+            if (!tab.mailTab) {
+              thistab = tab;
+              break;
+            }
+          }
+          if (thistab === undefined) {
+            SLStatic.error("Cannot find current compose window");
+            return;
+          } else {
+            SendLater.composeState[thistab.id] = "sending";
+            browser.SL3U.builtInSendLater().then(()=>{
+              setTimeout(() => delete SendLater.composeState[thistab.id], 1000);
+            });
+          }
         }).catch(ex => SLStatic.error("Error starting builtin send later",ex));
       } else {
         SLStatic.info("Opening popup");
@@ -357,6 +368,7 @@ browser.compose.onBeforeSend.addListener(tab => {
   console.info(`Received onBeforeSend from tab`,tab);
   if (SendLater.composeState[tab.id] === "sending") {
     // Avoid blocking extension's own send events
+    setTimeout(() => delete SendLater.composeState[tab.id], 1000);
     return { cancel: false };
   } else if (SendLater.prefCache.sendDoesSL) {
     SLStatic.info("Send does send later. Opening popup.")
@@ -385,6 +397,7 @@ browser.runtime.onMessage.addListener(async (message) => {
       SLStatic.debug("User requested send immediately.");
 
       if (await browser.SL3U.isOffline()) {
+        // TODO -> Option to place in outbox.
         browser.SL3U.alert("Thunderbird is offline.",
                            "Cannot send message at this time.");
       } else {
