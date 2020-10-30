@@ -303,6 +303,7 @@ const SendLater = {
         // scrapped and restarted upon changes in the delay preference.
         interval = Math.max(1,interval);
         SLStatic.debug(`Next main loop iteration in ${interval} minute${interval > 1 ? "s" : ""}.`);
+        SLStatic.previousLoop = new Date();
         setTimeout(SendLater.mainLoop, 60000*interval);
       });
     }

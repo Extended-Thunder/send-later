@@ -8,7 +8,7 @@ var SLStatic = {
 
   timeRegex: /^(2[0-3]|[01]?\d):?([0-5]\d)$/,
 
-  created: new Date(),
+  previousLoop: new Date(),
 
   async logger(msg, level, stream) {
     const levels = ["all","trace","debug","info","warn","error","fatal"];
@@ -20,7 +20,7 @@ var SLStatic = {
     } catch {
       prefs = { logConsoleLevel: "all" };
     }
-    
+
     if (levels.indexOf(level) >= levels.indexOf(prefs.logConsoleLevel)) {
       const output = stream || console.log;
       output(`${level.toUpperCase()} [SendLater]:`, ...msg);
@@ -222,7 +222,7 @@ var SLStatic = {
 
   formatScheduleForUI(schedule) {
     const sendAt = schedule.sendAt;
-    sendAt.setSeconds(this.created.getSeconds());
+    sendAt.setSeconds(this.previousLoop.getSeconds());
     const recur = schedule.recur;
 
     let scheduleText;
