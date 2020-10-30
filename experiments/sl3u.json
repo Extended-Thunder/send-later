@@ -217,6 +217,20 @@
         ]
       },
       {
+        "name": "initializeSendLater",
+        "type": "function",
+        "async": true,
+        "description": "",
+        "parameters": []
+      },
+      {
+        "name": "startObservers",
+        "type": "function",
+        "async": true,
+        "description": "",
+        "parameters": []
+      },
+      {
         "name":"injectScript",
         "type":"function",
         "description":"Inject script into a global document.",
@@ -237,6 +251,7 @@
       {
         "name":"bindKeyCodes",
         "type":"function",
+        "async":true,
         "description":"Bind Alt+Shift+Enter shortcut in composition windows",
         "parameters":[]
       }
