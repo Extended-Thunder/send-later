@@ -205,8 +205,8 @@
         "async": true,
         "parameters": [
           {
-            "name": "storageLocalData",
-            "type": "any",
+            "name": "dataStr",
+            "type": "string",
             "description": "The storage.local object for this extension."
           },
           {
@@ -240,11 +240,6 @@
             "name":"filename",
             "type":"string",
             "description":"Path to script file."
-          },
-          {
-            "name":"windowType",
-            "type":"string",
-            "description":"In which types of windows this script should run."
           }
         ]
       },
