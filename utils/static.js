@@ -10,6 +10,9 @@ var SLStatic = {
 
   previousLoop: new Date(),
 
+  // Indicator to initiate a preference migration.
+  CURRENT_LEGACY_MIGRATION: 3,
+
   async logger(msg, level, stream) {
     const levels = ["all","trace","debug","info","warn","error","fatal"];
     let prefs;

@@ -29,7 +29,6 @@
     "scripts": [
       "/utils/moment.min.js",
       "/utils/static.js",
-      "/utils/prefHandler.js",
       "/background.js"
     ]
   },

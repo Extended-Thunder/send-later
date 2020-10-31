@@ -24,6 +24,21 @@
         ]
       },
       {
+        "name":"confirmAction",
+        "type":"function",
+        "async":true,
+        "parameters":[
+          {
+            "name":"title",
+            "type":"string"
+          },
+          {
+            "name":"message",
+            "type":"string"
+          }
+        ]
+      },
+      {
         "name":"call",
         "type":"function",
         "async":true,
@@ -145,6 +160,24 @@
         ]
       },
       {
+        "name": "compactFolder",
+        "type": "function",
+        "async": true,
+        "description": "Compact a folder.",
+        "parameters": [
+          {
+            "name": "accountId",
+            "type": "string",
+            "description": "Account ID associated with folder (ignored for 'outbox' path)"
+          },
+          {
+            "name": "path",
+            "type": "string",
+            "description": "Path of folder to compact, or 'outbox' for unsent messages folder"
+          }
+        ]
+      },
+      {
         "name":"setHeader",
         "type":"function",
         "async":true,
@@ -217,7 +250,14 @@
         ]
       },
       {
-        "name": "initializeSendLater",
+        "name": "setCustomDBHeaders",
+        "type": "function",
+        "async": true,
+        "description": "",
+        "parameters": []
+      },
+      {
+        "name": "countUnsentMessages",
         "type": "function",
         "async": true,
         "description": "",

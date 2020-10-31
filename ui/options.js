@@ -35,7 +35,7 @@ const SLOptions = {
                       break;
                     case "text":
                     case "number":
-                      e.value = v ? v : "";
+                      e.value = (v !== undefined) ? v : "";
                       break;
                     case "radio":
                       e.checked = (v !== undefined) && (e.value === v);
