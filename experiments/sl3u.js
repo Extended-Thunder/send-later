@@ -709,7 +709,11 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
         // Saves raw message content in specified folder.
         async saveMessage(accountId, path, content) {
-          const listener = {
+          function CopyRecurListener(folder) {
+            this._folder = folder;
+          }
+
+          CopyRecurListener.prototype = {
             QueryInterface: function(iid) {
               if (iid.equals(Ci.nsIMsgCopyServiceListener) ||
                   iid.equals(Ci.nsISupports)) {
@@ -735,11 +739,14 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                 console.error(status);
               }
             },
-            SetMessageKey: function(key) {}
+            SetMessageKey: function(key) {
+              this._key = key;
+            }
           }
 
           const uri = SendLaterFunctions.folderPathToURI(accountId, path);
           const folder = MailServices.folderLookup.getFolderForURL(uri);
+          const listener = new CopyRecurListener(folder);
           SendLaterFunctions.copyStringMessageToFolder(content, folder, listener);
 
           return true;
