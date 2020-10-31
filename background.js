@@ -259,25 +259,21 @@ const SendLater = {
       }
     },
 
-    injectScripts: async function() {
-      const { preferences } = await browser.storage.local.get({"preferences":{}});
-      await browser.SL3U.notifyStorageLocal(preferences, true);
-      await browser.SL3U.injectScript("utils/moment.min.js","mail:3pane");
-      await browser.SL3U.injectScript("utils/static.js","mail:3pane");
-      await browser.SL3U.injectScript("experiments/headerView.js","mail:3pane");
-    },
-
     init: async function() {
-      browser.storage.local.get({preferences: {}, ufuncs:{}}).then(storage => {
-        SendLater.prefCache = storage.preferences;
-        SLStatic.ufuncs = storage.ufuncs;
-      });
+      const storage = await browser.storage.local.get({preferences: {}, ufuncs:{}});
+      SendLater.prefCache = storage.preferences;
+      SLStatic.ufuncs = storage.ufuncs;
+      const prefString = JSON.stringify(storage.preferences);
+      await browser.SL3U.notifyStorageLocal(prefString, true);
+
+      await browser.SL3U.injectScript("utils/moment.min.js");
+      await browser.SL3U.injectScript("utils/static.js");
+      await browser.SL3U.injectScript("experiments/headerView.js");
 
       SLStatic.debug("Registering window listeners");
       await browser.SL3U.initializeSendLater();
       await browser.SL3U.startObservers();
       await browser.SL3U.bindKeyCodes();
-      await SendLater.injectScripts();
 
       // Start background loop to check for scheduled messages.
       setTimeout(SendLater.mainLoop, 0);
@@ -422,10 +418,11 @@ browser.runtime.onMessage.addListener(async (message) => {
       break;
     }
     case "reloadPrefCache": {
-      await browser.storage.local.get({preferences: {}}).then(storage => {
-        SendLater.prefCache = storage.preferences;
-        browser.SL3U.notifyStorageLocal(storage.preferences, false);
-      });
+      const storage = await browser.storage.local.get({preferences: {}});
+      SendLater.prefCache = storage.preferences;
+      SLStatic.ufuncs = storage.ufuncs;
+      const prefString = JSON.stringify(storage.preferences);
+      await browser.SL3U.notifyStorageLocal(prefString, false);
       break;
     }
     case "reloadUfuncs":
@@ -569,10 +566,6 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
     };
     setTimeout((() => { scanIncomingMessage(msgHdr) }), 5000);
   });
-});
-
-browser.windows.onCreated.addListener(async (window) => {
-  SendLater.injectScripts();
 });
 
 browser.messageDisplay.onMessageDisplayed.addListener(async (tab, hdr) => {

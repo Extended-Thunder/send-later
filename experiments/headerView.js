@@ -8,12 +8,11 @@ var { AddonManager } = ChromeUtils.import("resource://gre/modules/AddonManager.j
 var Sendlater3HeaderView = function () {
   console.debug("Entering Sendlater3HeaderView");
 
-  window.removeEventListener("load", Sendlater3HeaderView, false);
   const columnId = "sendlater3-colXSendLaterAt";
   const addonId = "sendlater3@kamens.us";
   const obsTopicStorageLocal = `extension:${addonId}:storage-local`;
   const obsNotificationReadyTopic = `extension:${addonId}:ready`;
-  var storageLocalMap = new Map();
+  let storageLocalMap = new Map();
 
   const sl3log = {
     Entering(functionName) {
@@ -21,6 +20,9 @@ var Sendlater3HeaderView = function () {
     },
     Leaving(functionName) {
       SLStatic.debug("Leaving function:",functionName);
+    },
+    Returning(functionName, value) {
+      SLStatic.debug(`Returning "${value}" from function: <${functionName}>`);
     }
   };
 
@@ -46,7 +48,6 @@ var Sendlater3HeaderView = function () {
       const schedule = getSchedule(hdr);
       if (schedule !== null) {
         const cellTxt = SLStatic.formatScheduleForUIColumn(schedule);
-        console.debug("Schedule",hdr.messageId,cellTxt);
         return cellTxt;
       } else {
         return "";
@@ -78,7 +79,79 @@ var Sendlater3HeaderView = function () {
   };
 
   function isThisDraft(msgFolder) {
-    return msgFolder !== null && (msgFolder.flags & Ci.nsMsgFolderFlags.Drafts);
+    uri = msgFolder == null ? "null" : msgFolder.URI;
+    sl3log.Entering("Sendlater3HeaderView.IsThisDraft", uri);
+    if (msgFolder == null) {
+      sl3log.Returning(
+        "Sendlater3HeaderView.IsThisDraft",
+        "false (msgFolder == null)");
+      return false;
+    }
+
+    let flag = Components.interfaces.nsMsgFolderFlags.Drafts;
+
+    if (msgFolder.isSpecialFolder(flag, false)) {
+      sl3log.Returning("Sendlater3HeaderView.IsThisDraft", "true (special)");
+      return true;
+    }
+
+    let accountManager = Components.classes[
+      "@mozilla.org/messenger/account-manager;1"
+    ].getService(Components.interfaces.nsIMsgAccountManager);
+    let fdrlocal = accountManager.localFoldersServer.rootFolder;
+
+    const findSubFolder = function(folder, name) {
+      return folder.findSubFolder(name);
+    }
+
+    if (findSubFolder(fdrlocal, "Drafts").URI == msgFolder.URI) {
+      sl3log.Returning("Sendlater3HeaderView.IsThisDraft", "true (local)");
+      return true;
+    }
+    if (
+      Services.prefs.getCharPref("mail.identity.default.draft_folder") ==
+      msgFolder.URI
+    ) {
+      sl3log.Returning("Sendlater3HeaderView.IsThisDraft", "true (default)");
+      return true;
+    }
+
+    let allaccounts = accountManager.accounts;
+    let acindex, numAccounts;
+    numAccounts = allaccounts.length;
+    for (acindex = 0; acindex < numAccounts; acindex++) {
+      let thisaccount = allaccounts[acindex].QueryInterface(Ci.nsIMsgAccount);
+      if (thisaccount) {
+        let numIdentities = thisaccount.identities.length;
+        switch (thisaccount.incomingServer.type) {
+          case "pop3":
+          case "imap":
+          case "owl":
+            let identityNum;
+            for (identityNum = 0; identityNum < numIdentities; identityNum++) {
+              try {
+                SLStatic.log(thisaccount.identities);
+                let identity = thisaccount.identities[identityNum].QueryInterface(
+                  Ci.nsIMsgIdentity
+                );
+                if (identity.draftFolder == msgFolder.URI) {
+                  sl3log.Returning("Sendlater3HeaderView.IsThisDraft","true (identity)");
+                  return true;
+                }
+              } catch (e) {
+                SLStatic.warn("Error getting identity:", e);
+              }
+            }
+            break;
+          default:
+            SLStatic.debug("skipping this server type - " + thisaccount);
+            break;
+        }
+      }
+    }
+
+    sl3log.Returning("Sendlater3HeaderView.IsThisDraft", "false (not found)");
+    return false;
   }
 
   var columnHandlerObserver = {
@@ -86,7 +159,7 @@ var Sendlater3HeaderView = function () {
     observe: function (aMsgFolder, aTopic, aData) {
       sl3log.Entering("Sendlater3HeaderView.columnHandlerObserver.observe");
       if (gDBView) {
-        console.log("Adding column handler for "+columnId);
+        SLStatic.log("Adding column handler for",columnId);
         gDBView.addColumnHandler(columnId, sendlater3columnHandler);
         // window.setTimeout(() => { UpdateColumnElement(); });
       }
@@ -96,19 +169,27 @@ var Sendlater3HeaderView = function () {
 
   var storageLocalObserver = {
     observe(subject, topic, data) {
-      console.debug(`observing: ${subject} ${topic}`);
-      storageLocalMap = new Map(JSON.parse(data));
+      let getStorageLocalMap = (storageLocalData) => {
+        let localStorage = new Map();
+        Object.entries(storageLocalData).forEach(([key, value]) =>
+        localStorage.set(key, value)
+        );
+        return localStorage;
+      };
+      storageLocalMap = getStorageLocalMap(JSON.parse(data));
+      console.log("StorageLocalMap:",storageLocalMap);
     },
   };
 
   function hideShowColumn() {
     sl3log.Entering("Sendlater3HeaderView.hideShowColumn");
-    const col = document.getElementById("sendlater3-colXSendLaterAt")
+    let col = document.getElementById("sendlater3-colXSendLaterAt")
     if (!col) {
       return;
     }
     if (isThisDraft(gDBView.viewFolder)) {
       if (storageLocalMap.get("showColumn")) {
+        SLStatic.debug("Setting SL column visible")
         col.hidden = false;
       } else {
         col.hidden = true;
@@ -123,48 +204,48 @@ var Sendlater3HeaderView = function () {
     sl3log.Entering("Sendlater3HeaderView.onBeforeShowHeaderPane");
     let isHidden = true;
     if (storageLocalMap.get("showHeader")) {
-      console.debug("headerView.js: onBeforeShowHeaderPane: showheader is true");
+      SLStatic.debug("headerView.js: onBeforeShowHeaderPane: showheader is true");
       if (isThisDraft(gDBView.viewFolder)) {
-        var msghdr;
+        let msghdr;
         try {
           msghdr = gDBView.hdrForFirstSelectedMessage;
         } catch (e) {
           msghdr = null;
         }
         if (msghdr != null) {
-          const schedule = getSchedule(msghdr);
+          let schedule = getSchedule(msghdr);
           if (schedule !== null) {
             try {
-              const hdrText = SLStatic.formatScheduleForUIColumn(schedule);
+              var hdrText = SLStatic.formatScheduleForUIColumn(schedule);
               document.getElementById("sendlater3-expanded-Box").headerValue = hdrText;
               isHidden = false;
-              console.debug(
+              SLStatic.debug(
                 "headerView.js: onBeforeShowHeaderPane: showing header"
               );
             } catch (e) {
-              console.debug(e);
+              SLStatic.debug(e);
               if (onBeforeShowHeaderPane.warning) {
-                console.warn(onBeforeShowHeaderPane.warning);
+                SLStatic.warn(onBeforeShowHeaderPane.warning);
                 onBeforeShowHeaderPane.warning = null;
               }
             }
           } else {
-            console.debug("headerView.js: onBeforeShowHeaderPane: hiding header (empty)");
+            SLStatic.debug("headerView.js: onBeforeShowHeaderPane: hiding header (empty)");
           }
         } else {
-          console.debug("headerView.js: onBeforeShowHeaderPane: hiding header (null msghdr)");
+          SLStatic.debug("headerView.js: onBeforeShowHeaderPane: hiding header (null msghdr)");
         }
       } else {
-        console.debug("headerView.js: onBeforeShowHeaderPane: hiding header (not draft)");
+        SLStatic.debug("headerView.js: onBeforeShowHeaderPane: hiding header (not draft)");
       }
     } else {
-      console.debug("headerView.js: onBeforeShowHeaderPane: showheader is false");
+      SLStatic.debug("headerView.js: onBeforeShowHeaderPane: showheader is false");
     }
     try {
       document.getElementById("sendlater3-expanded-Row").hidden = isHidden;
     } catch (e) {
       if (onBeforeShowHeaderPane.warning) {
-        console.warn(onBeforeShowHeaderPane.warning);
+        SLStatic.warn(onBeforeShowHeaderPane.warning);
         onBeforeShowHeaderPane.warning = null;
       }
     }
@@ -177,7 +258,7 @@ var Sendlater3HeaderView = function () {
     "headers are displayed? Further warnings will be suppressed.";
 
   function onBeforeShowHeaderPaneWrapper() {
-    console.debug(
+    SLStatic.debug(
       "headerView.js: onBeforeShowHeaderPaneWrapper: Discarding " +
         "onEndHeaders and replacing onBeforeShowHeaderPane");
     headerListener.onEndHeaders = function () {};
@@ -194,7 +275,7 @@ var Sendlater3HeaderView = function () {
   function InitializeOverlayElements() {
     sl3log.Entering("Sendlater3HeaderView.InitializeOverlayElements");
     while (document.getElementById(columnId)) {
-      console.log("removing existing column");
+      SLStatic.log("removing existing column");
       document.getElementById(columnId).remove();
     }
     if (GetThreadTree().columns[columnId]) {
@@ -263,12 +344,12 @@ var Sendlater3HeaderView = function () {
   /*
    * Listener for addon status changes.
    */
-  let AddonListener = {
+  var AddonListener = {
     resetSession(addon, who) {
       if (addon.id != addonId) {
         return;
       }
-      console.debug("AddonListener.resetSession: who - " + who);
+      SLStatic.debug("AddonListener.resetSession: who - " + who);
       onUnload();
     },
     onUninstalling(addon) {
@@ -288,10 +369,6 @@ var Sendlater3HeaderView = function () {
 
   function onLoad() {
     sl3log.Entering("Sendlater3HeaderView.onLoad");
-
-    Services.obs.addObserver(storageLocalObserver, obsTopicStorageLocal);
-    Services.obs.notifyObservers(null, obsNotificationReadyTopic);
-
     InitializeOverlayElements();
     gMessageListeners.push(headerListener);
     Services.obs.addObserver(columnHandlerObserver, "MsgCreateDBView", false);
@@ -314,7 +391,6 @@ var Sendlater3HeaderView = function () {
     const column = document.getElementById(columnId);
     if (column) { column.remove(); }
 
-    gMessageListeners.delete(headerListener);
     sl3log.Leaving("Sendlater3HeaderView.onUnload");
   }
 
@@ -326,11 +402,9 @@ var Sendlater3HeaderView = function () {
     }
   }
 
+  Services.obs.addObserver(storageLocalObserver, obsTopicStorageLocal);
+  Services.obs.notifyObservers(null, obsNotificationReadyTopic);
   doCheck();
 };
 
-if (window.document.readyState == "complete") {
-  Sendlater3HeaderView();
-} else {
-  window.addEventListener("load", Sendlater3HeaderView, {once:true});
-}
+Sendlater3HeaderView();
