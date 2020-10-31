@@ -12,7 +12,8 @@ const SendLaterVars = {
   copyService: null,
   sendingUnsentMessages: false,
   needToSendUnsentMessages: false,
-  wantToCompactOutbox: false
+  wantToCompactOutbox: false,
+  scriptListeners: new Set()
 }
 
 const SendLaterFunctions = {
@@ -786,28 +787,19 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
          *                                    data; otherwise do it now.
          * @implements {nsIObserver}
          */
-        async notifyStorageLocal(storageLocalData, startup) {
-          let getStorageLocalMap = () => {
-            let storageLocalMap = new Map();
-            Object.entries(storageLocalData).forEach(([key, value]) =>
-              storageLocalMap.set(key, value)
-            );
-            return JSON.stringify([...storageLocalMap]);
-          };
-
+        async notifyStorageLocal(dataStr, startup) {
           let observerTopic = `extension:${extension.id}:ready`;
           let notificationTopic = `extension:${extension.id}:storage-local`;
-          let dataStr = getStorageLocalMap();
           let Observer = {
             observe(subject, topic, data) {
               if (topic == observerTopic) {
-                // console.debug("notifyStorageLocal.Observer: " + topic);
+                console.debug("notifyStorageLocal.Observer: " + topic);
                 Services.obs.removeObserver(Observer, observerTopic);
                 Services.obs.notifyObservers(null, notificationTopic, dataStr);
               }
             },
           };
-          // console.debug("notifyStorageLocal: START - " + notificationTopic);
+          console.debug("notifyStorageLocal: START - " + notificationTopic);
           if (startup) {
             Services.obs.addObserver(Observer, observerTopic);
           } else {
@@ -815,22 +807,38 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
         },
 
-        async injectScript(filename, windowType) {
-          let window = Services.wm.getMostRecentWindow(null);
-          if (window) {
-            const winType = window.document.documentElement.getAttribute("windowtype");
-            console.log(winType,windowType,winType === windowType);
-            if (winType === windowType) {
-              let windowContext = window.document.defaultView;
-              try {
-                let scriptURI = extension.rootURI.resolve(filename);
-                let script = await ChromeUtils.compileScript(scriptURI);
-                script.executeInGlobal(windowContext);
-              } catch (ex) {
-                console.error("[SendLater]: Unable to inject script.",ex);
-              }
+        async injectScript(filename) {
+          let doInject = async function(aWindow, aFile) {
+            let windowContext = aWindow.document.defaultView;
+            try {
+              let scriptURI = extension.rootURI.resolve(aFile);
+              let script = await ChromeUtils.compileScript(scriptURI);
+              script.executeInGlobal(windowContext);
+            } catch (ex) {
+              console.error("[SendLater]: Unable to inject script.",ex);
             }
-          }
+          };
+
+          // for (let window of Services.wm.getEnumerator("mail:3pane")) {
+          //   //
+          //   doInject(window, filename);
+          // }
+
+          let listenerName = "injector";
+          listenerName += (/([^\/\.]+)\.[^\/]+$/.exec(filename)[1]);
+          listenerName += "Listener";
+          SendLaterVars.scriptListeners.add(listenerName);
+
+          ExtensionSupport.registerWindowListener(listenerName, {
+            chromeURLs: [
+              "chrome://messenger/content/messenger.xhtml",
+              "chrome://messenger/content/messenger.xul",
+            ],
+            onLoadWindow(window) {
+              console.log(`[SendLater]: onLoadWindow, inject script ${filename}`);
+              doInject(window, filename);
+            }
+          });
         },
 
         async startObservers() {
@@ -935,6 +943,10 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
     // Stop listening for new message compose windows.
     ExtensionSupport.unregisterWindowListener("composeListener");
+    for (let listener of SendLaterVars.scriptListeners) {
+      ExtensionSupport.unregisterWindowListener(listener);
+      SendLaterVars.scriptListeners.delete(listener);
+    }
 
     // Invalidate the cache to ensure we start clean if extension is reloaded.
     Services.obs.notifyObservers(null, "startupcache-invalidate", null);
