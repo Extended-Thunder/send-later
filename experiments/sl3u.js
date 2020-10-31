@@ -278,7 +278,7 @@ const SendLaterFunctions = {
     remove(listener) {
       this.listeners.delete(listener);
     },
-  
+
     emit(keyid) {
       for (let listener of this.listeners) {
         listener(keyid);
@@ -297,8 +297,9 @@ const SendLaterBackgrounding = function() {
     }
   };
 
-  var msgWindow = Components.classes["@mozilla.org/messenger/msgwindow;1"]
-      .createInstance();
+  var msgWindow = Cc[
+      "@mozilla.org/messenger/msgwindow;1"
+    ].createInstance();
   msgWindow = msgWindow.QueryInterface(Components.interfaces.nsIMsgWindow);
 
   // If you add a message to the Outbox and call nsIMsgSendLater when it's
@@ -333,9 +334,9 @@ const SendLaterBackgrounding = function() {
                   console.warn("Deferring sendUnsentMessages while offline");
               } else {
                   try {
-                      var msgSendLater = Components
-                          .classes["@mozilla.org/messengercompose/sendlater;1"]
-                          .getService(Components.interfaces.nsIMsgSendLater);
+                      const msgSendLater = Components.classes[
+                          "@mozilla.org/messengercompose/sendlater;1"
+                        ].getService(Components.interfaces.nsIMsgSendLater);
                       msgSendLater.sendUnsentMessages(null);
                   } catch (ex) {
                       console.warn(ex);
@@ -358,18 +359,18 @@ const SendLaterBackgrounding = function() {
 
   function addMsgSendLaterListener() {
       sl3log.Entering("Sendlater3Backgrounding.addMsgSendLaterListener");
-      var msgSendLater = Components
-          .classes["@mozilla.org/messengercompose/sendlater;1"]
-          .getService(Components.interfaces.nsIMsgSendLater);
+      const msgSendLater = Components.classes[
+          "@mozilla.org/messengercompose/sendlater;1"
+        ].getService(Ci.nsIMsgSendLater);
       msgSendLater.addListener(sendUnsentMessagesListener);
       sl3log.Leaving("Sendlater3Backgrounding.addMsgSendLaterListener");
   }
 
   function removeMsgSendLaterListener() {
       sl3log.Entering("Sendlater3Backgrounding.removeMsgSendLaterListener");
-      var msgSendLater = Components
-          .classes["@mozilla.org/messengercompose/sendlater;1"]
-          .getService(Components.interfaces.nsIMsgSendLater);
+      const msgSendLater = Components.classes[
+          "@mozilla.org/messengercompose/sendlater;1"
+        ].getService(Ci.nsIMsgSendLater);
       msgSendLater.removeListener(sendUnsentMessagesListener);
       sl3log.Leaving("Sendlater3Backgrounding.removeMsgSendLaterListener");
   }
@@ -744,13 +745,13 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return true;
         },
 
-        async initializeSendLater() {
+        async setCustomDBHeaders() {
           // mailnews.customDBHeaders
           let originals = [];
           try {
             originals = Services.prefs.getCharPref(
-              "mailnews.customDBHeaders", ""
-              ).split(/\s+/).filter(v=>(v!==""));
+                "mailnews.customDBHeaders", ""
+              ).toLowerCase().split(/\s+/).filter(v=>(v!==""));
           } catch(e) {}
           let wantedHeaders = ["x-send-later-at", "x-send-later-recur",
             "x-send-later-args", "x-send-later-cancel-on-reply"];
@@ -764,14 +765,46 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                          `\nPreviously: ${originals.join(" ")}`);
             Services.prefs.setCharPref("mailnews.customDBHeaders",
                                         customHdrString);
-            console.info("If you have scheduled messages from a previous " +
-                         "installation of Send Later, you may need to rebuild " +
-                         "your Drafts folders in order for Send Later to " +
-                         "properly recognize those messages.");
             // TODO: Forcing rebuild of Drafts folders doesn't
             // work yet.
             // SendLaterFunctions.rebuildDraftsFolders();
           }
+        },
+
+        async confirmAction(title, message) {
+          const prompts = Cc[
+              "@mozilla.org/embedcomp/prompt-service;1"
+            ].getService(Ci.nsIPromptService);
+          console.log("Prompting");
+          const result = prompts.confirm(null, title, message);
+          console.log("Returning",result);
+          return result;
+        },
+
+        async countUnsentMessages() {
+          return SendLaterFunctions.getUnsentMessagesFolder().getTotalMessages(false);
+        },
+
+        async compactFolder(accountId, path) {
+          let folder;
+          if (path.toLowerCase() === "outbox") {
+            folder = SendLaterFunctions.getUnsentMessagesFolder();
+          } else {
+            const uri = SendLaterFunctions.folderPathToURI(accountId, path);
+            folder = MailServices.folderLookup.getFolderForURL(uri);
+          }
+          if (folder !== undefined) {
+            let msgWindow = Cc[
+              "@mozilla.org/messenger/msgwindow;1"
+            ].createInstance();
+            msgWindow = msgWindow.QueryInterface(Ci.nsIMsgWindow);
+            folder.compact(null, msgWindow);
+            console.debug(`Compacted folder: ${path}`);
+            return true;
+          } else {
+            console.error(`Could not get folder ${path} for compacting.`);
+          }
+          return false;
         },
 
         /*
