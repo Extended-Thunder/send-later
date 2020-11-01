@@ -513,7 +513,7 @@ const SendLater = {
       return true;
     },
 
-    showRestartNotification: async function() {
+    showRestartNotification: async function(preferences) {
       const thisVersion = await browser.SL3U.getVersion();
       if (thisVersion !== preferences.versionNumber) {
         SLStatic.info(`Version upgraded from ${preferences.versionNumber} to ${thisVersion}`);
@@ -546,7 +546,7 @@ const SendLater = {
       });
 
       if (!preferences.hideRestartNotification) {
-        const okay = await SendLater.showRestartNotification();
+        const okay = await SendLater.showRestartNotification(preferences);
         if (okay === true) {
           SLStatic.warn("Continuing without restart.");
         } else if (okay === false) {
