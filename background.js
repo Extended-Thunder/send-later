@@ -523,7 +523,7 @@ const SendLater = {
         preferences: {}
       });
       const thisVersion = await browser.SL3U.getVersion();
-      if (thisVersion === preferences.versionNumber) {
+      if (thisVersion === preferences.versionNumber|0) {
         // Just a regular old restart. Not a version upgrade.
         return true;
       } else {
