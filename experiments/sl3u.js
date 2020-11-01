@@ -988,8 +988,12 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
     // Stop listening for new message compose windows.
     ExtensionSupport.unregisterWindowListener("composeListener");
     for (let listener of SendLaterVars.scriptListeners) {
-      ExtensionSupport.unregisterWindowListener(listener);
-      SendLaterVars.scriptListeners.delete(listener);
+      try {
+        ExtensionSupport.unregisterWindowListener(listener);
+        SendLaterVars.scriptListeners.delete(listener);
+      } catch (e) {
+        console.warn(`Could not deregister listener ${listener}`,e);
+      }
     }
 
     // Invalidate the cache to ensure we start clean if extension is reloaded.

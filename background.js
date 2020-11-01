@@ -4,7 +4,9 @@ const SendLater = {
 
     composeState: {},
 
-    async setPreferences(storage, initializing) {
+    async propagatePreferences(storage, initializing) {
+      // Make sure that changes to the local storage propagate
+      // to all of the various places that need to know about them.
       const preferences = storage.preferences;
       const ufuncs = storage.ufuncs;
       await browser.storage.local.set({ preferences });
@@ -353,8 +355,9 @@ const SendLater = {
         let legacyValuePromises = [];
 
         // Load values from legacy storage, substitute defaults if not defined.
-        const defaults = "/utils/defaultPrefs.json";
-        let prefDefaults = await fetch(defaults).then((ptxt) => ptxt.json());
+        let prefDefaults = await fetch(
+            "/utils/defaultPrefs.json"
+          ).then((ptxt) => ptxt.json());
         for (let prefName of Object.getOwnPropertyNames(prefDefaults)) {
           prefKeys.push(prefName);
           let dtype = prefDefaults[prefName][0];
@@ -513,53 +516,69 @@ const SendLater = {
       return true;
     },
 
-    showRestartNotification: async function(preferences) {
+    continueOnUpgrade: async function() {
+      let { preferences } = await browser.storage.local.get({
+        preferences: {}
+      });
       const thisVersion = await browser.SL3U.getVersion();
-      if (thisVersion !== preferences.versionNumber) {
-        SLStatic.info(`Version upgraded from ${preferences.versionNumber} to ${thisVersion}`);
-        preferences.versionNumber = thisVersion;
-        await browser.storage.local.set({ preferences });
-
-        let title = browser.i18n.getMessage("extensionName");
-        let message = `A new version of ${title} has been installed.\n\n` +
-          `To prevent unexpected behavior, it is recommended that you ` +
-          `restart Thunderbird before using any of its functionality. ` +
-          `This is especially important when a previous version was ` +
-          `actively running prior to this upgrade.\n\n`
-          `Click "OK" to continue loading Send Later, or "Cancel" to ` +
-          `wait until the next Thunderbird restart.`;
-        title += ` ${thisVersion}`;
-        return await browser.SL3U.confirmAction(title, message.trim());
+      if (thisVersion === preferences.versionNumber) {
+        // Just a regular old restart. Not a version upgrade.
+        return true;
       } else {
-        return null;
+        SLStatic.info(`Version upgraded from ${preferences.versionNumber} to ${thisVersion}`);
+        if (preferences.hideRestartNotification) {
+          //TODO: This is not yet implemented.
+          SLStatic.debug("User has chosen to hide notifications about restarts on upgrade.");
+          return true;
+        } else {
+          preferences.versionNumber = thisVersion;
+          await browser.storage.local.set({ preferences });
+
+          let title = browser.i18n.getMessage("extensionName");
+          let message = `A new version of ${title} has been installed.\n\n` +
+            `To prevent unexpected behavior, it is recommended that you ` +
+            `restart Thunderbird before using any of its functionality. ` +
+            `This is especially important when a previous version was ` +
+            `actively running prior to this upgrade.\n\n` +
+            `Click "OK" to continue loading Send Later, or "Cancel" to ` +
+            `wait until the next Thunderbird restart.`;
+          title += ` ${thisVersion}`;
+
+          const okay = await browser.SL3U.confirmAction(title, message.trim());
+          if (okay === true) {
+            SLStatic.warn("Continuing without restart.");
+            return true;
+          } else if (okay === false) {
+            SLStatic.info("Returning early, and waiting until next restart.");
+            return false;
+          }
+        }
       }
-      // TODO: Add option to disable future notifications.
     },
 
     init: async function () {
+      // Set custom DB headers preference, if not already set.
       await browser.SL3U.setCustomDBHeaders();
-      const migration = await SendLater.migratePreferences();
 
-      const { preferences, ufuncs } = await browser.storage.local.get({
-        preferences: {},
-        ufuncs: {},
-      });
-
-      if (!preferences.hideRestartNotification) {
-        const okay = await SendLater.showRestartNotification(preferences);
-        if (okay === true) {
-          SLStatic.warn("Continuing without restart.");
-        } else if (okay === false) {
-          SLStatic.info("Returning early, and waiting until next restart.");
-          return;
-        }
+      // Check if version has just been upgraded, and possibly
+      // prompt for restart if so.
+      if (!(await SendLater.continueOnUpgrade())) {
+        return;
       }
 
-      if (migration !== SLStatic.CURRENT_LEGACY_MIGRATION) {
+      // Perform any pending preference migrations.
+      const migration = await SendLater.migratePreferences();
+      if (migration < 3) {
+        // This really shouldn't be necessary, but we should check
+        // whether the outbox and drafts folders might be corrupted.
         await SendLater.doSanityCheck(migration);
       }
 
-      SendLater.setPreferences({ preferences, ufuncs }, true);
+      const { preferences, ufuncs } = await browser.storage.local.get({
+          preferences: {},
+          ufuncs: {},
+        });
+      SendLater.propagatePreferences({ preferences, ufuncs }, true);
 
       await browser.SL3U.injectScript("utils/moment.min.js");
       await browser.SL3U.injectScript("utils/static.js");
@@ -716,7 +735,7 @@ browser.runtime.onMessage.addListener(async (message) => {
     }
     case "reloadPrefCache": {
       const storage = await browser.storage.local.get({ preferences: {} });
-      await SendLater.setPreferences(storage, false);
+      await SendLater.propagatePreferences(storage, false);
       break;
     }
     case "reloadUfuncs":
