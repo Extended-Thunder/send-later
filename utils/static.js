@@ -216,7 +216,7 @@ var SLStatic = {
       }
 
       if (recur !== undefined && recur.type !== "none") {
-        const rTxt = SLStatic.formatRecurForUI(recur).replace(/\n/gm," ");
+        const rTxt = SLStatic.formatRecurForUI(recur).replace(/\n/gm,". ");
         scheduleText += ` (${rTxt})`;
       }
 
