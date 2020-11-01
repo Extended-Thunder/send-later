@@ -4,6 +4,17 @@ const SendLater = {
 
     composeState: {},
 
+    async setPreferences(storage, initializing) {
+      const preferences = storage.preferences;
+      const ufuncs = storage.ufuncs;
+      await browser.storage.local.set({ preferences });
+      SendLater.prefCache = preferences;
+      SLStatic.ufuncs = ufuncs;
+      const prefString = JSON.stringify(preferences);
+      await browser.SL3U.notifyStorageLocal(prefString, initializing);
+      return true;
+    },
+
     async isEditing(msgId) {
       // Look through each of the compose windows, check for this message UUID.
       return await browser.SL3U.editingMessage(msgId);
@@ -168,7 +179,7 @@ const SendLater = {
       });
 
       if (lock[originalMsgId]) {
-        SLStatic.log(`Skipping message <${originalMsgId}> -- resend!`);
+        SLStatic.log(`Skipping message ${originalMsgId} -- resend!`);
         const msgHdr = await browser.messages.get(id);
         const err = browser.i18n.getMessage("MessageResendError", [msgHdr.folder.path]);
         browser.SL3U.alert("", err);
@@ -510,14 +521,7 @@ const SendLater = {
         await SendLater.doSanityCheck(migration);
       }
 
-      const { preferences, ufuncs } = await browser.storage.local.get({
-          preferences: {},
-          ufuncs: {},
-        });
-      SendLater.prefCache = preferences;
-      SLStatic.ufuncs = ufuncs;
-      const prefString = JSON.stringify(preferences);
-      await browser.SL3U.notifyStorageLocal(prefString, true);
+      SendLater.setPreferences({ preferences, ufuncs }, true);
 
       await browser.SL3U.injectScript("utils/moment.min.js");
       await browser.SL3U.injectScript("utils/static.js");
@@ -673,17 +677,13 @@ browser.runtime.onMessage.addListener(async (message) => {
       break;
     }
     case "reloadPrefCache": {
-      const storage = await browser.storage.local.get({preferences: {}});
-      SendLater.prefCache = storage.preferences;
-      SLStatic.ufuncs = storage.ufuncs;
-      const prefString = JSON.stringify(storage.preferences);
-      await browser.SL3U.notifyStorageLocal(prefString, false);
+      const storage = await browser.storage.local.get({ preferences: {} });
+      await SendLater.setPreferences(storage, false);
       break;
     }
     case "reloadUfuncs":
-      browser.storage.local.get({ ufuncs: {} }).then(storage => {
-        SLStatic.ufuncs = storage.ufuncs;
-      });
+      const { ufuncs } = await browser.storage.local.get({ ufuncs: {} });
+      SLStatic.ufuncs = ufuncs;
       break;
     case "evaluateUfuncByContents":
     case "evaluateUfuncByName": {
