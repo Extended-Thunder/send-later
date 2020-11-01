@@ -15,16 +15,14 @@ var SLStatic = {
 
   async logger(msg, level, stream) {
     const levels = ["all","trace","debug","info","warn","error","fatal"];
-    let prefs;
+    let logConsoleLevel;
     try {
-      prefs = await browser.storage.local.get("preferences").then(s=>
-        (s.preferences||{})
-      );
+      const { preferences } = await browser.storage.local.get({"preferences": {}});
+      logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
     } catch {
-      prefs = { logConsoleLevel: "all" };
+      logConsoleLevel = "all";
     }
-
-    if (levels.indexOf(level) >= levels.indexOf(prefs.logConsoleLevel)) {
+    if (levels.indexOf(level) >= levels.indexOf(logConsoleLevel)) {
       const output = stream || console.log;
       output(`${level.toUpperCase()} [SendLater]:`, ...msg);
     }
