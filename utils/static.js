@@ -769,13 +769,11 @@ if (SLStatic.i18n === null) {
   } else if (typeof require === "undefined") {
     // We're in an experiment context.
     try {
+      const ext = window.ExtensionParent.GlobalManager.extensionMap.get("sendlater3@kamens.us");
       SLStatic.i18n = {
         getMessage: function(messageName, substitutions = [], options = {}) {
           try {
             messageName = messageName.toLowerCase();
-
-            const ext = (window.ExtensionParent.GlobalManager.extensionMap
-                          .get("sendlater3@kamens.us"));
 
             let messages, str;
 
