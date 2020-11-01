@@ -497,7 +497,9 @@ const SendLater = {
             `  "Cancel": Send Later will be disabled via its own preferences.\n` +
             `                    To re-enable Send Later, go to its options page and set\n` +
             `                    the "${browser.i18n.getMessage("checkTimePrefLabel1")}" ` +
-                                `preference to a non-zero value.`;
+                                `preference to a non-zero value.\n` +
+            `                    You will receive this prompt again next time you restart\n` +
+            `                    Thunderbird`;
           const okay = await browser.SL3U.confirmAction(title, message.trim());
           console.log("isokay",okay);
           if (!okay) {
