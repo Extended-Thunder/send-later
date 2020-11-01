@@ -331,22 +331,29 @@ const SLOptions = {
           resetAdvConfigEditor();
           advEditorDiv.style.display = "block";
           visIndicator.textContent = "-";
+          setTimeout(() =>
+            document.getElementById("advancedEditSave").scrollIntoView(
+              false,
+              { behavior: "smooth" }),
+            100);
         } else {
           advEditorDiv.style.display = "none";
           visIndicator.textContent = "+";
         }
       }));
 
-    document.getElementById("advancedEditReset").addEventListener("click",
-      resetAdvConfigEditor);
+    document.getElementById("advancedEditReset").addEventListener("click", async evt => {
+      await resetAdvConfigEditor();
+      SLOptions.showCheckMark(evt.target, "green");
+    });
 
-    document.getElementById("advancedEditSave").addEventListener("click", evt => {
+    document.getElementById("advancedEditSave").addEventListener("click", async evt => {
       const prefContent = document.getElementById("advancedConfigText").value;
       const prefs = JSON.parse(prefContent);
-      browser.storage.local.set({ preferences: prefs }).then(() => {
-        browser.runtime.sendMessage({ action: "reloadPrefCache" });
-        SLOptions.applyPrefsToUI();
-      });
+      await browser.storage.local.set({ preferences: prefs });
+      browser.runtime.sendMessage({ action: "reloadPrefCache" });
+      await SLOptions.applyPrefsToUI();
+      SLOptions.showCheckMark(evt.target, "green");
     });
 
     // Verify with user before deleting a scheduling function
