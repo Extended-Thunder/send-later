@@ -66,11 +66,12 @@ var SendLaterHeaderView = {
       }
     },
     getSortLongForRow(hdr) {
-      const schedule = SendLaterHeaderView.getSchedule(hdr);
-      if (schedule !== null) {
-        return schedule.sendAt.getTime();
+      const sendAtStr = hdr.getStringProperty("x-send-later-at");
+      if (sendAtStr) {
+        const sendAt = new Date(sendAtStr);
+        return sendAt.getTime()|0;
       } else {
-        return Number.MAX_SAFE_INTEGER;
+        return Number.MAX_SAFE_INTEGER|0;
       }
     },
     getSortStringForRow(hdr) {
