@@ -349,11 +349,23 @@ const SLOptions = {
 
     document.getElementById("advancedEditSave").addEventListener("click", async evt => {
       const prefContent = document.getElementById("advancedConfigText").value;
-      const prefs = JSON.parse(prefContent);
-      await browser.storage.local.set({ preferences: prefs });
-      browser.runtime.sendMessage({ action: "reloadPrefCache" });
-      await SLOptions.applyPrefsToUI();
-      SLOptions.showCheckMark(evt.target, "green");
+      let prefs;
+      try {
+        prefs = JSON.parse(prefContent);
+      } catch (err) {
+        SLStatic.warn(`JSON parsing failed with error`,err);
+        browser.runtime.sendMessage({
+          action: "alert",
+          title: "Warning",
+          text: `Preferences were not saved. JSON parsing failed with message:\n\n${err}`
+        });
+      }
+      if (prefs) {
+        await browser.storage.local.set({ preferences: prefs });
+        browser.runtime.sendMessage({ action: "reloadPrefCache" });
+        await SLOptions.applyPrefsToUI();
+        SLOptions.showCheckMark(evt.target, "green");
+      }
     });
 
     // Verify with user before deleting a scheduling function
