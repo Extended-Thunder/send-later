@@ -513,9 +513,47 @@ const SendLater = {
       return true;
     },
 
+    showRestartNotification: async function() {
+      const thisVersion = await browser.SL3U.getVersion();
+      if (thisVersion !== preferences.versionNumber) {
+        SLStatic.info(`Version upgraded from ${preferences.versionNumber} to ${thisVersion}`);
+        preferences.versionNumber = thisVersion;
+        await browser.storage.local.set({ preferences });
+
+        let title = browser.i18n.getMessage("extensionName");
+        let message = `A new version of ${title} has been installed.\n\n` +
+          `To prevent unexpected behavior, it is recommended that you ` +
+          `restart Thunderbird before using any of its functionality. ` +
+          `This is especially important when a previous version was ` +
+          `actively running prior to this upgrade.\n\n`
+          `Click "OK" to continue loading Send Later, or "Cancel" to ` +
+          `wait until the next Thunderbird restart.`;
+        title += ` ${thisVersion}`;
+        return await browser.SL3U.confirmAction(title, message.trim());
+      } else {
+        return null;
+      }
+      // TODO: Add option to disable future notifications.
+    },
+
     init: async function () {
       await browser.SL3U.setCustomDBHeaders();
       const migration = await SendLater.migratePreferences();
+
+      const { preferences, ufuncs } = await browser.storage.local.get({
+        preferences: {},
+        ufuncs: {},
+      });
+
+      if (!preferences.hideRestartNotification) {
+        const okay = await SendLater.showRestartNotification();
+        if (okay === true) {
+          SLStatic.warn("Continuing without restart.");
+        } else if (okay === false) {
+          SLStatic.info("Returning early, and waiting until next restart.");
+          return;
+        }
+      }
 
       if (migration !== SLStatic.CURRENT_LEGACY_MIGRATION) {
         await SendLater.doSanityCheck(migration);

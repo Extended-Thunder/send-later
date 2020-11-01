@@ -847,6 +847,10 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
         },
 
+        async getVersion() {
+          return extension.version;
+        },
+
         async injectScript(filename) {
           let doInject = async function(aWindow, aFile) {
             let windowContext = aWindow.document.defaultView;
