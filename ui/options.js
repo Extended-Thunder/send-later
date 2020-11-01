@@ -45,7 +45,16 @@ const SLOptions = {
                 }
             } else if (e.tagName === "SELECT") {
               console.debug(`Applying stored default ${e.id}: ${v}`);
-              e.value = v;
+              const matchingChildren = [...e.childNodes].filter(opt =>
+                  opt.tagName === "OPTION" && opt.value.toLowerCase() === v.toLowerCase()
+                );
+              if (matchingChildren.length === 1) {
+                e.value = matchingChildren[0].value;
+              } else if (matchingChildren.length > 1) {
+                console.log("Multiple options match",v,e);
+              } else {
+                console.log("Could not find value in element ",v,e);
+              }
             }
           }
         })(document.getElementById(id), prefs[id]);
