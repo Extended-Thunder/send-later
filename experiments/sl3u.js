@@ -309,6 +309,8 @@ const SendLaterBackgrounding = function() {
   // in the middle of sending unsent messages, and if so, then trigger
   // another send after it's finished.
   var sendUnsentMessagesListener = {
+    _copyProcess: { status: null },
+      QueryInterface: ChromeUtils.generateQI(["nsIMsgSendLaterListener"]),
       onStartSending: function(aTotalMessageCount) {
           sl3log.Entering("Sendlater3Backgrounding.sendUnsentMessagesListener.onStartSending");
           SendLaterVars.wantToCompactOutbox =
@@ -779,13 +781,19 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
         },
 
         async confirmAction(title, message) {
-          const prompts = Cc[
-              "@mozilla.org/embedcomp/prompt-service;1"
-            ].getService(Ci.nsIPromptService);
-          console.log("Prompting");
-          const result = prompts.confirm(null, title, message);
-          console.log("Returning",result);
-          return result;
+          function doConfirm(resolve, reject) {
+            try {
+              const prompts = Cc[
+                  "@mozilla.org/embedcomp/prompt-service;1"
+                ].getService(Ci.nsIPromptService);
+              const result = prompts.confirm(null, title, message);
+              console.log(`User input ${result ? "OK" : "Cancel"}`);
+              resolve(result);
+            } catch (err) {
+              reject(`An error occurred in SL3U.confirmAction: ${err}`);
+            }
+          }
+          return new Promise(doConfirm.bind(this));
         },
 
         async countUnsentMessages() {
