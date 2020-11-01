@@ -45,9 +45,9 @@ var SendLaterHeaderView = {
     const cancelStr = hdr.getStringProperty("x-send-later-cancel-on-reply");
     if (sendAtStr !== "") {
       const schedule = { sendAt: new Date(sendAtStr) };
-      schedule.cancelOnReply = cancelStr === "yes" || cancelStr === "true";
-      schedule.args = argsStr;
       schedule.recur = SLStatic.parseRecurSpec(recurStr);
+      schedule.recur.cancelOnReply = cancelStr === "yes" || cancelStr === "true";
+      schedule.recur.args = argsStr;
       return schedule;
     } else {
       return null;
