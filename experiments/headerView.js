@@ -38,17 +38,6 @@ var SendLaterHeaderView = {
   getStorageLocal(key) {
     return this.storageLocalMap.get(key);
   },
-  log: {
-    Entering(functionName) {
-      SLStatic.debug("Entering function:",functionName);
-    },
-    Leaving(functionName) {
-      SLStatic.debug("Leaving function:",functionName);
-    },
-    Returning(functionName, value) {
-      SLStatic.debug(`Returning "${value}" from function: <${functionName}>`);
-    }
-  },
   getSchedule(hdr) {
     const sendAtStr = hdr.getStringProperty("x-send-later-at");
     const recurStr = hdr.getStringProperty("x-send-later-recur");
@@ -103,9 +92,9 @@ var SendLaterHeaderView = {
 
   isDraftsFolder(msgFolder) {
     const uri = (msgFolder === null) ? "null" : msgFolder.URI;
-    this.log.Entering("SendLaterHeaderView.isDraftsFolder", uri);
+    SLStatic.debug("Entering function","SendLaterHeaderView.isDraftsFolder", uri);
     if (msgFolder === null) {
-      this.log.Returning(
+      SLStatic.debug("Returning from function",
         "SendLaterHeaderView.isDraftsFolder",
         "false (msgFolder == null)");
       return false;
@@ -114,7 +103,7 @@ var SendLaterHeaderView = {
     let flag = Components.interfaces.nsMsgFolderFlags.Drafts;
 
     if (msgFolder.isSpecialFolder(flag, false)) {
-      this.log.Returning("SendLaterHeaderView.isDraftsFolder", "true (special)");
+      SLStatic.debug("Returning from function","SendLaterHeaderView.isDraftsFolder", "true (special)");
       return true;
     }
 
@@ -128,14 +117,14 @@ var SendLaterHeaderView = {
     }
 
     if (findSubFolder(fdrlocal, "Drafts").URI === msgFolder.URI) {
-      this.log.Returning("SendLaterHeaderView.isDraftsFolder", "true (local)");
+      SLStatic.debug("Returning from function","SendLaterHeaderView.isDraftsFolder", "true (local)");
       return true;
     }
     if (
       Services.prefs.getCharPref("mail.identity.default.draft_folder") ===
       msgFolder.URI
     ) {
-      this.log.Returning("SendLaterHeaderView.isDraftsFolder", "true (default)");
+      SLStatic.debug("Returning from function","SendLaterHeaderView.isDraftsFolder", "true (default)");
       return true;
     }
 
@@ -158,7 +147,7 @@ var SendLaterHeaderView = {
                   Ci.nsIMsgIdentity
                 );
                 if (identity.draftFolder === msgFolder.URI) {
-                  this.log.Returning("SendLaterHeaderView.isDraftsFolder","true (identity)");
+                  SLStatic.debug("Returning from function","SendLaterHeaderView.isDraftsFolder","true (identity)");
                   return true;
                 }
               } catch (e) {
@@ -173,26 +162,26 @@ var SendLaterHeaderView = {
       }
     }
 
-    this.log.Returning("SendLaterHeaderView.isDraftsFolder", "false (not found)");
+    SLStatic.debug("Returning from function","SendLaterHeaderView.isDraftsFolder", "false (not found)");
     return false;
   },
 
   columnHandlerObserver: {
     // Ci.nsIObserver
     observe: function (aMsgFolder, aTopic, aData) {
-      SendLaterHeaderView.log.Entering("SendLaterHeaderView.columnHandlerObserver.observe");
+      SLStatic.debug("Entering function","SendLaterHeaderView.columnHandlerObserver.observe");
       if (gDBView) {
         SLStatic.log(`Adding column handler for ${SendLaterHeaderView.columnId}`);
         gDBView.addColumnHandler(SendLaterHeaderView.columnId,
           SendLaterHeaderView.ColumnHandler);
       }
-      SendLaterHeaderView.log.Leaving("SendLaterHeaderView.columnHandlerObserver.observe");
+      SLStatic.debug("Leaving function","SendLaterHeaderView.columnHandlerObserver.observe");
     },
   },
 
   storageLocalObserver: {
     observe(subject, topic, data) {
-      SendLaterHeaderView.log.Entering("SendLaterHeaderView.storageLocalObserver.observe");
+      SLStatic.debug("Entering function","SendLaterHeaderView.storageLocalObserver.observe");
       const storageMap = ((storageLocalData) => {
         let localStorage = new Map();
         Object.entries(storageLocalData).forEach(([key, value]) =>
@@ -202,12 +191,12 @@ var SendLaterHeaderView = {
       })(JSON.parse(data));
       SendLaterHeaderView.storageLocalMap = storageMap;
       SLStatic.debug("StorageLocalMap:",storageMap);
-      SendLaterHeaderView.log.Leaving("SendLaterHeaderView.storageLocalObserver.observe");
+      SLStatic.debug("Leaving function","SendLaterHeaderView.storageLocalObserver.observe");
     },
   },
 
   hideShowColumn() {
-    this.log.Entering("SendLaterHeaderView.hideShowColumn");
+    SLStatic.debug("Entering function","SendLaterHeaderView.hideShowColumn");
     let col = document.getElementById("sendlater-colXSendLaterAt")
     if (!col) {
       return;
@@ -222,15 +211,15 @@ var SendLaterHeaderView = {
     } else {
       col.hidden = true;
     }
-    this.log.Leaving("SendLaterHeaderView.hideShowColumn");
+    SLStatic.debug("Leaving function","SendLaterHeaderView.hideShowColumn");
   },
 
   onBeforeShowHeaderPane() {
-    this.log.Entering("SendLaterHeaderView.onBeforeShowHeaderPane");
+    SLStatic.debug("Entering function","SendLaterHeaderView.onBeforeShowHeaderPane");
     let isHidden = true;
-    if (this.getStorageLocal("showHeader")) {
+    if (SendLaterHeaderView.getStorageLocal("showHeader")) {
       SLStatic.debug("headerView.js: onBeforeShowHeaderPane: showheader is true");
-      if (this.isDraftsFolder(gDBView.viewFolder)) {
+      if (SendLaterHeaderView.isDraftsFolder(gDBView.viewFolder)) {
         let msghdr;
         try {
           msghdr = gDBView.hdrForFirstSelectedMessage;
@@ -238,7 +227,7 @@ var SendLaterHeaderView = {
           msghdr = null;
         }
         if (msghdr != null) {
-          let schedule = this.getSchedule(msghdr);
+          let schedule = SendLaterHeaderView.getSchedule(msghdr);
           if (schedule !== null) {
             try {
               let hdrText = SLStatic.formatScheduleForUIColumn(schedule);
@@ -249,9 +238,9 @@ var SendLaterHeaderView = {
               );
             } catch (e) {
               SLStatic.debug(e);
-              if (this.onBeforeShowHeaderPaneWarning) {
-                SLStatic.warn(this.onBeforeShowHeaderPaneWarning);
-                this.onBeforeShowHeaderPaneWarning = null;
+              if (SendLaterHeaderView.onBeforeShowHeaderPaneWarning) {
+                SLStatic.warn(SendLaterHeaderView.onBeforeShowHeaderPaneWarning);
+                SendLaterHeaderView.onBeforeShowHeaderPaneWarning = null;
               }
             }
           } else {
@@ -267,14 +256,14 @@ var SendLaterHeaderView = {
       SLStatic.debug("headerView.js: onBeforeShowHeaderPane: showheader is false");
     }
     try {
-      document.getElementById(this.hdrRowId).hidden = isHidden;
+      document.getElementById(SendLaterHeaderView.hdrRowId).hidden = isHidden;
     } catch (e) {
-      if (this.onBeforeShowHeaderPaneWarning) {
-        SLStatic.warn(this.onBeforeShowHeaderPaneWarning);
-        this.onBeforeShowHeaderPaneWarning = null;
+      if (SendLaterHeaderView.onBeforeShowHeaderPaneWarning) {
+        SLStatic.warn(SendLaterHeaderView.onBeforeShowHeaderPaneWarning);
+        SendLaterHeaderView.onBeforeShowHeaderPaneWarning = null;
       }
     }
-    this.log.Leaving("SendLaterHeaderView.sendlater_HeaderDisplay.onBeforeShowHeaderPane");
+    SLStatic.debug("Leaving function","SendLaterHeaderView.sendlater_HeaderDisplay.onBeforeShowHeaderPane");
   },
 
   onBeforeShowHeaderPaneWrapper() {
@@ -293,9 +282,9 @@ var SendLaterHeaderView = {
   },
 
   InitializeOverlayElements() {
-    this.log.Entering("SendLaterHeaderView.InitializeOverlayElements");
+    SLStatic.debug("Entering function","SendLaterHeaderView.InitializeOverlayElements");
     if (document.getElementById(this.columnId)) {
-      this.log.Leaving("SendLaterHeaderView.InitializeOverlayElements (column exists)");
+      SLStatic.debug("Leaving function","SendLaterHeaderView.InitializeOverlayElements (column exists)");
       return;
     }
 
@@ -354,7 +343,7 @@ var SendLaterHeaderView = {
       topViewNode.appendChild(newRowNode);
     }
 
-    this.log.Leaving("SendLaterHeaderView.InitializeOverlayElements");
+    SLStatic.debug("Leaving function","SendLaterHeaderView.InitializeOverlayElements");
   },
 
   AddonListener: {
@@ -381,7 +370,7 @@ var SendLaterHeaderView = {
   },
 
   onLoad() {
-    this.log.Entering("SendLaterHeaderView.onLoad");
+    SLStatic.debug("Entering function","SendLaterHeaderView.onLoad");
     Services.obs.addObserver(this.storageLocalObserver, this.obsTopicStorageLocal);
     Services.obs.notifyObservers(null, this.obsNotificationReadyTopic);
 
@@ -391,11 +380,11 @@ var SendLaterHeaderView = {
     document.getElementById("folderTree").addEventListener(
       "select", this.hideShowColumn.bind(this), false);
     AddonManager.addAddonListener(this.AddonListener);
-    this.log.Leaving("SendLaterHeaderView.onLoad");
+    SLStatic.debug("Leaving function","SendLaterHeaderView.onLoad");
   },
 
   onUnload() {
-    this.log.Entering("SendLaterHeaderView.onUnload");
+    SLStatic.debug("Entering function","SendLaterHeaderView.onUnload");
     if (gDBView) {
       try {
         gDBView.removeColumnHandler(this.columnId);
@@ -409,7 +398,7 @@ var SendLaterHeaderView = {
     const headerRow = document.getElementById(this.hdrRowId);
     if (headerRow) { headerRow.remove(); }
 
-    this.log.Leaving("SendLaterHeaderView.onUnload");
+    SLStatic.debug("Leaving function","SendLaterHeaderView.onUnload");
   }
 };
 
