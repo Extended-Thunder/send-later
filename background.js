@@ -278,14 +278,16 @@ const SendLater = {
         newMsgContent = SLStatic.replaceHeader(
           newMsgContent,
           "X-Send-Later-At",
-          nextRecurStr
+          nextRecurStr,
+          false
         );
 
         const newMessageId = await browser.SL3U.generateMsgId(rawContent);
         newMsgContent = SLStatic.replaceHeader(
           newMsgContent,
           "Message-ID",
-          newMessageId
+          newMessageId,
+          false
         );
 
         newMsgContent = SLStatic.appendHeader(newMsgContent, "References", originalMsgId);

@@ -46,6 +46,7 @@ const testPaths = [
   "./formatrecurtests.js",
   "./nextrecurtests.js",
   "./parserecurtests.js",
+  "./mimetests.js",
   "./miscellaneoustests.js"
 ];
 
