@@ -391,13 +391,25 @@ var SendLaterHeaderView = {
         gDBView.removeColumnHandler(this.columnId);
       } catch (ex) {}
     }
-    Services.obs.removeObserver(this.columnHandlerObserver, "MsgCreateDBView");
-    Services.obs.removeObserver(this.storageLocalObserver, this.obsTopicStorageLocal);
-    AddonManager.removeAddonListener(this.AddonListener);
-    const column = document.getElementById(this.columnId);
-    if (column) { column.remove(); }
-    const headerRow = document.getElementById(this.hdrRowId);
-    if (headerRow) { headerRow.remove(); }
+
+    try {
+      Services.obs.removeObserver(this.columnHandlerObserver, "MsgCreateDBView");
+    } catch (ex) { console.warn(ex); }
+
+    try {
+      Services.obs.removeObserver(this.storageLocalObserver, this.obsTopicStorageLocal);
+    } catch (ex) { console.warn(ex); }
+
+    try {
+      AddonManager.removeAddonListener(this.AddonListener);
+    } catch (ex) { console.warn(ex); }
+
+    try {
+      const column = document.getElementById(this.columnId);
+      if (column) { column.remove(); }
+      const headerRow = document.getElementById(this.hdrRowId);
+      if (headerRow) { headerRow.remove(); }
+    } catch (ex) { console.warn(ex); }
 
     SLStatic.debug("Leaving function","SendLaterHeaderView.onUnload");
   }
