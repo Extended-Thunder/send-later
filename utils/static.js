@@ -268,11 +268,11 @@ var SLStatic = {
     }
   },
 
-  replaceHeader: function(content, header, value) {
-    const replacement = (value) ? `\r\n${header}: ${value}\r\n` : '\r\n';
-    const regex = `\r\n${header}:.*(?:\r\n|\n)([ \t].*(?:\r\n|\n))*`;
-    content = ("\r\n" + content).replace(new RegExp(regex,'im'), replacement);
-    return content.slice(2);
+  replaceHeader: function(content, header, value, replaceAll) {
+    const regexStr = `^${header}:.*(?:\r\n|\n)([ \t].*(?:\r\n|\n))*`;
+    const replacement = (value) ? `${header}: ${value}\r\n` : '';
+    const regex = new RegExp(regexStr, (replaceAll ? 'img' : 'im'));
+    return content.replace(regex, replacement);
   },
 
   appendHeader: function(content, header, value) {
@@ -289,10 +289,10 @@ var SLStatic = {
   },
 
   prepNewMessageHeaders: function(content) {
-    content = SLStatic.replaceHeader(content, "Date", SLStatic.parseableDateTimeFormat());
-    content = SLStatic.replaceHeader(content, "X-Send-Later-.*");
-    content = SLStatic.replaceHeader(content, "X-Enigmail-Draft-Status");
-    content = SLStatic.replaceHeader(content, "Openpgp");
+    content = SLStatic.replaceHeader(content, "Date", SLStatic.parseableDateTimeFormat(), false);
+    content = SLStatic.replaceHeader(content, "X-Send-Later-[a-zA-Z0-9\-]*", null, true);
+    content = SLStatic.replaceHeader(content, "X-Enigmail-Draft-Status", null, false);
+    content = SLStatic.replaceHeader(content, "Openpgp", null, false);
     return content;
   },
 
