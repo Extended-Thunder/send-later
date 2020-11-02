@@ -437,82 +437,80 @@ const SendLater = {
       return allSchedules.filter(v => v !== null);
     },
 
-    doSanityCheck: async function(migration) {
+    doSanityCheck: async function() {
       const { preferences } = await browser.storage.local.get({ preferences: {} });
 
-      if (migration < 3) {
-        let message = "";
+      let message = "";
 
-        try { // Compact Drafts folders and Outbox folder
-          const compactedDrafts = await SendLater.forAllDraftFolders(
-            async folder => {
-              const accountId = folder.accountId, path = folder.path;
-              console.log(`Compacting folder <${path}> in account ${accountId}`);
-              return browser.SL3U.compactFolder(accountId, path);
-            });
-          const compactedOutbox = await browser.SL3U.compactFolder("", "outbox");
+      try { // Compact Drafts folders and Outbox folder
+        const compactedDrafts = await SendLater.forAllDraftFolders(
+          async folder => {
+            const accountId = folder.accountId, path = folder.path;
+            console.log(`Compacting folder <${path}> in account ${accountId}`);
+            return browser.SL3U.compactFolder(accountId, path);
+          });
+        const compactedOutbox = await browser.SL3U.compactFolder("", "outbox");
 
-          if (compactedDrafts.every(v => v === true)) {
-            SLStatic.debug("Successfully compacted Drafts.");
-          } else {
-            message += `\n\nCompacting Drafts folders failed without error message.`;
-          }
-          if (compactedOutbox) {
-            SLStatic.debug("Successfully compacted Outbox.");
-          } else {
-            message += `\n\nCompacting Outbox failed without error message.`;
-          }
-        } catch (e) {
-          SLStatic.error("Compacting Outbox and/or Drafts folders failed with error",e);
-          message += `\n\nCompacting Outbox and/or Drafts folders failed with error:\n${e}`;
+        if (compactedDrafts.every(v => v === true)) {
+          SLStatic.debug("Successfully compacted Drafts.");
+        } else {
+          message += `\n\nCompacting Drafts folders failed without error message.`;
         }
-
-        const activeSchedules = await SendLater.getActiveSchedules();
-        const nActive = activeSchedules.length;
-        if (nActive > 0) {
-          const soonest = new Date(Math.min(...activeSchedules));
-          const nextActiveText = SLStatic.humanDateTimeFormat(soonest) +
-            ` (${moment(soonest).fromNow()})`;
-          message += `\n\nYou have ${nActive} message${nActive === 1 ? "" : "s"} ` +
-            `scheduled to be delivered by Send Later.\nThe next one is ` +
-            `scheduled for ${nextActiveText}.`;
+        if (compactedOutbox) {
+          SLStatic.debug("Successfully compacted Outbox.");
+        } else {
+          message += `\n\nCompacting Outbox failed without error message.`;
         }
+      } catch (e) {
+        SLStatic.error("Compacting Outbox and/or Drafts folders failed with error",e);
+        message += `\n\nCompacting Outbox and/or Drafts folders failed with error:\n${e}`;
+      }
 
-        const nUnsentMessages = await browser.SL3U.countUnsentMessages();
-        if (nUnsentMessages > 0 && preferences.sendUnsentMsgs) {
-          message += `\n\nYou have ${nUnsentMessages} ` +
-            `unsent message${nUnsentMessages === 1 ? "" : "s"} which will be ` +
-            `triggered to send next time a scheduled message becomes due.`;
-        }
+      const activeSchedules = await SendLater.getActiveSchedules();
+      const nActive = activeSchedules.length;
+      if (nActive > 0) {
+        const soonest = new Date(Math.min(...activeSchedules));
+        const nextActiveText = SLStatic.humanDateTimeFormat(soonest) +
+          ` (${moment(soonest).fromNow()})`;
+        message += `\n\nYou have ${nActive} message${nActive === 1 ? "" : "s"} ` +
+          `scheduled to be delivered by Send Later.\nThe next one is ` +
+          `scheduled for ${nextActiveText}.`;
+      }
 
-        if (message !== "") {
-          const title = browser.i18n.getMessage("extensionName");
-          message += "\n\nIf these numbers don't look right to you, you might have " +
-            "a corrupted Outbox and/or Drafts folder(s). In that case it is " +
-            "advised that you compact and rebuild those folders before activating " +
-            "Send Later. See <https://blog.kamens.us/send-later/#corrupt-drafts-error> " +
-            "for more details.";
-          message += `\n\nSelect one of the options:\n`;
-          message += `  "OK": Proceed as usual. You will not be prompted again.\n\n` +
-            `  "Cancel": Send Later will be disabled via its own preferences.\n` +
-            `                    To re-enable Send Later, go to its options page and set\n` +
-            `                    the "${browser.i18n.getMessage("checkTimePrefLabel1")}" ` +
-                                `preference to a non-zero value.\n` +
-            `                    You will receive this prompt again next time you restart\n` +
-            `                    Thunderbird`;
-          const okay = await browser.SL3U.confirmAction(title, message.trim());
-          console.log("isokay",okay);
-          if (!okay) {
-            SLStatic.info("Disabling Send Later per user selection.");
-            preferences.checkTimePref = 0;
-            // We dont need to do the whole migration again next time, but
-            // we should run the sanity check once more until the user hits
-            // 'okay' to close it. Hard code back to legacy migration 2, because
-            // this sanity check was implemented in migration 3.
-            preferences.migratedLegacy = 2;
-            await browser.storage.local.set({ preferences });
-            return false;
-          }
+      const nUnsentMessages = await browser.SL3U.countUnsentMessages();
+      if (nUnsentMessages > 0 && preferences.sendUnsentMsgs) {
+        message += `\n\nYou have ${nUnsentMessages} ` +
+          `unsent message${nUnsentMessages === 1 ? "" : "s"} which will be ` +
+          `triggered to send next time a scheduled message becomes due.`;
+      }
+
+      if (message !== "") {
+        const title = browser.i18n.getMessage("extensionName");
+        message += "\n\nIf these numbers don't look right to you, you might have " +
+          "a corrupted Outbox and/or Drafts folder(s). In that case it is " +
+          "advised that you compact and rebuild those folders before activating " +
+          "Send Later. See <https://blog.kamens.us/send-later/#corrupt-drafts-error> " +
+          "for more details.";
+        message += `\n\nSelect one of the options:\n`;
+        message += `  "OK": Proceed as usual. You will not be prompted again.\n\n` +
+          `  "Cancel": Send Later will be disabled via its own preferences.\n` +
+          `                    To re-enable Send Later, go to its options page and set\n` +
+          `                    the "${browser.i18n.getMessage("checkTimePrefLabel1")}" ` +
+                              `preference to a non-zero value.\n` +
+          `                    You will receive this prompt again next time you restart\n` +
+          `                    Thunderbird`;
+        const okay = await browser.SL3U.confirmAction(title, message.trim());
+        console.log("isokay",okay);
+        if (!okay) {
+          SLStatic.info("Disabling Send Later per user selection.");
+          preferences.checkTimePref = 0;
+          // We dont need to do the whole migration again next time, but
+          // we should run the sanity check once more until the user hits
+          // 'okay' to close it. Hard code back to legacy migration 2, because
+          // this sanity check was implemented in migration 3.
+          preferences.migratedLegacy = 2;
+          await browser.storage.local.set({ preferences });
+          return false;
         }
       }
       return true;
@@ -523,7 +521,9 @@ const SendLater = {
         preferences: {}
       });
       const thisVersion = await browser.SL3U.getVersion();
+      const extensionName = browser.i18n.getMessage("extensionName");
       if (thisVersion === preferences.versionNumber|0) {
+        console.info(`Starting ${extensionName} version ${thisVersion}.`);
         // Just a regular old restart. Not a version upgrade.
         return true;
       } else {
@@ -542,7 +542,7 @@ const SendLater = {
             `restart Thunderbird before using any of its functionality. ` +
             `This is especially important when a previous version was ` +
             `actively running prior to this upgrade.\n\n` +
-            `Click "OK" to continue loading Send Later, or "Cancel" to ` +
+            `Click "OK" to continue loading ${extensionName}, or "Cancel" to ` +
             `wait until the next Thunderbird restart.`;
           title += ` ${thisVersion}`;
 
@@ -573,7 +573,7 @@ const SendLater = {
       if (migration < 3) {
         // This really shouldn't be necessary, but we should check
         // whether the outbox and drafts folders might be corrupted.
-        await SendLater.doSanityCheck(migration);
+        await SendLater.doSanityCheck();
       }
 
       const { preferences, ufuncs } = await browser.storage.local.get({
