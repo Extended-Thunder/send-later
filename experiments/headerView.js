@@ -199,7 +199,7 @@ var SendLaterHeaderView = {
   hideShowColumn() {
     SLStatic.debug("Entering function","SendLaterHeaderView.hideShowColumn");
     let col = document.getElementById("sendlater-colXSendLaterAt")
-    if (!col) {
+    if (!col || !gDBView) {
       return;
     }
     if (this.isDraftsFolder(gDBView.viewFolder)) {
