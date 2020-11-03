@@ -522,9 +522,14 @@ const SendLater = {
       let { preferences } = await browser.storage.local.get({
         preferences: {}
       });
-      const thisVersion = await browser.SL3U.getVersion();
+      let thisVersion = "0.0.0";
+      try {
+        thisVersion = await browser.SL3U.getVersion();
+      } catch (e) {
+        SLStatic.warn("Unable to read current Send Later version.", e);
+      }
       const extensionName = browser.i18n.getMessage("extensionName");
-      if (thisVersion === preferences.versionNumber|0) {
+      if (thisVersion === preferences.versionNumber) {
         console.info(`Starting ${extensionName} version ${thisVersion}.`);
         // Just a regular old restart. Not a version upgrade.
         return true;
