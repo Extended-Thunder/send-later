@@ -296,7 +296,6 @@ var SendLaterHeaderView = {
     const threadCols = document.getElementById("threadCols");
     threadCols.insertBefore(
       MozXULElement.parseXULToFragment(`
-        <splitter class="tree-splitter"/>
         <treecol id="${this.columnId}"
                 persist="ordinal width"
                 flex="1"
@@ -304,6 +303,7 @@ var SendLaterHeaderView = {
                 currentView="unthreaded"
                 label="${label}">
         </treecol>
+        <splitter class="tree-splitter"/>
         `),
       threadCols.firstChild
     );
