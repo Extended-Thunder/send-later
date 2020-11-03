@@ -565,7 +565,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               convertible: convert,
               abort: false,
             };
-            window.openDialog(
+            cw.openDialog(
               "chrome://messenger/content/messengercompose/askSendFormat.xhtml",
               "askSendFormatDialog",
               "chrome,modal,titlebar,centerscreen",
