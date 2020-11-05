@@ -68,3 +68,20 @@ section {
 label {
   white-space: nowrap;
 }
+
+.div-table {
+  display: table;
+  width:auto;
+}
+
+.div-table-row {
+  display: table-row;
+  width: auto;
+  clear: both;
+}
+
+.div-table-cell {
+  display: table-cell;
+  padding:0.1em;
+  padding-right: 1em;
+}

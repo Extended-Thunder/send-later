@@ -297,12 +297,23 @@ const SLPopup = {
       }
     });
     SLStatic.debug("Saving default values",defaults);
-    browser.storage.local.set({ defaults });
+    browser.storage.local.set({ defaults }).then(() => {
+      SLPopup.showCheckMark(dom["save-defaults"], "green");
+    }).catch((err) => {
+      SLStatic.error(err);
+      SLPopup.showCheckMark(dom["save-defaults"], "red");
+    });
   },
 
   async clearDefaults() {
     SLStatic.debug("Clearing default dialog values");
-    browser.storage.local.set({ defaults: {} });
+    const clrDefaultsElement = document.getElementById("clear-defaults");
+    browser.storage.local.set({ defaults: {} }).then(() => {
+      SLPopup.showCheckMark(clrDefaultsElement, "green");
+    }).catch((err) => {
+      SLStatic.error(err);
+      SLPopup.showCheckMark(clrDefaultsElement, "red");
+    });
   },
 
   async applyDefaults() {
@@ -344,6 +355,9 @@ const SLPopup = {
       const soon = new Date(Date.now()+ (5*60*1000)); // 5 minutes from now default
       dom["send-date"].value = moment(soon).format('YYYY-MM-DD');
       dom["send-time"].value = moment(soon).format('HH:mm');
+      const localeData = moment.localeData();
+      const fmt = localeData.longDateFormat('LLL');
+      dom["send-datetime"].value = moment(soon).format(fmt);
 
       SLStatic.stateSetter(dom["sendon"].checked)(dom["onlyOnDiv"]);
       SLStatic.stateSetter(dom["sendbetween"].checked)(dom["betweenDiv"]);
@@ -355,8 +369,45 @@ const SLPopup = {
     });
   },
 
+  async showCheckMark(element, color) {
+    // Appends a checkmark as element's last sibling. Disappears after a
+    // timeout (1.5 sec). If is already displayed, then restart timeout.
+    const checkmark = document.createElement("span");
+    checkmark.textContent = String.fromCharCode(0x2714);
+    checkmark.style.color = color;
+    checkmark.className = "success_icon";
+
+    const p = element.parentNode;
+    if (p.lastChild.className === 'success_icon') {
+      p.replaceChild(checkmark, p.lastChild);
+    } else {
+      p.appendChild(checkmark);
+    }
+    setTimeout(() => checkmark.remove(), 1500);
+  },
+
   async attachListeners() {
     const dom = SLPopup.objectifyDOMElements();
+
+    const dateTimeInputListener = (async (evt) => {
+      if (evt.target.id === "send-date" || evt.target.id === "send-time") {
+        if (dom["send-date"].value && dom["send-time"].value) {
+          const sendAt = SLStatic.parseDateTime(dom["send-date"].value, dom["send-time"].value);
+          const localeData = moment.localeData();
+          const fmt = localeData.longDateFormat('LLL');
+          dom["send-datetime"].value = moment(sendAt).format(fmt);
+        }
+      } else if (evt.target.id === "send-datetime") {
+        const sendAt = moment(dom["send-datetime"].value);
+        if (sendAt) {
+          dom["send-date"].value = sendAt.format('YYYY-MM-DD');
+          dom["send-time"].value = sendAt.format('HH:mm');
+        }
+      }
+    });
+    dom["send-date"].addEventListener("change", dateTimeInputListener);
+    dom["send-time"].addEventListener("change", dateTimeInputListener);
+    dom["send-datetime"].addEventListener("change", dateTimeInputListener);
 
     SLStatic.stateSetter(dom["sendon"].checked)(dom["onlyOnDiv"]);
     SLStatic.stateSetter(dom["sendbetween"].checked)(dom["betweenDiv"]);

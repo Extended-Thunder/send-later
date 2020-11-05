@@ -7,10 +7,24 @@
 
   <body style="padding:1em;">
     <section style="display:block;" id="sendAtTimeDateDiv">
-      <span style="margin-right:0.5em;"
-            class="localized __MSG_sendAtLabel__">Send at</span>
-      <input id="send-date" type="date"/>
-      <input id="send-time" type="time"/>
+      <div class="div-table">
+        <div class="div-table-row">
+          <div class="div-table-cell localized __MSG_sendAtLabel__">
+            Send at
+          </div>
+          <div class="div-table-cell">
+            <input id="send-date" type="date"/>
+            <input id="send-time" type="time"/>
+          </div>
+        </div>
+        <div class="div-table-row">
+          <div class="div-table-cell"></div>
+          <div class="div-table-cell">
+            <input id="send-datetime" type="text" style="width:100%"
+              class="localized __MSG_sendAtDefaultLabel__"/>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section style="display:block;">
