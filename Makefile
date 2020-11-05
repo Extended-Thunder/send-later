@@ -17,8 +17,9 @@ utils/moment.min.js:
 		sed -e 's/.*sourceMappingURL.*//' > "$@"
 
 send_later.xpi: dev/include-manifest $(shell find $(shell cat dev/include-manifest) -type f 2>/dev/null)
-	rm -f "$@"
-	zip -q -r "$@" . -i@dev/include-manifest
+	rm -f "$@" "$@".tmp
+	zip -q -r "$@".tmp . -i@dev/include-manifest
+	mv "$@".tmp "$@"
 
 release/send_later-${version}-tb.xpi: send_later.xpi
 	mkdir -p "`dirname $@`"
