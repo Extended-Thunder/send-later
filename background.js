@@ -59,7 +59,7 @@ const SendLater = {
       }
     },
 
-    async forAllDrafts(callback) {
+    async forAllDrafts(callback, sequential) {
       try {
         let results = [];
         let accounts = await browser.accounts.list();
@@ -69,7 +69,13 @@ const SendLater = {
             let page = await browser.messages.list(drafts);
             do {
               for (let message of page.messages) {
-                results.push(callback(message));
+                if (sequential === true) {
+                  const result = await callback(message);
+                  results.push(result);
+                } else {
+                  const resultPromise = callback(message);
+                  results.push(resultPromise);
+                }
               }
               if (page.id) {
                 page = await browser.messages.continueList(page.id);
@@ -77,7 +83,11 @@ const SendLater = {
             } while (page.id);
           }
         }
-        return Promise.all(results);
+        if (sequential === true) {
+          return results;
+        } else {
+          return Promise.all(results);
+        }
       } catch (ex) {
         SLStatic.error(ex);
       }
