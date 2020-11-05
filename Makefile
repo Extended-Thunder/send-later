@@ -16,7 +16,7 @@ utils/moment.min.js:
 	curl -sL https://momentjs.com/downloads/moment-with-locales.min.js | \
 		sed -e 's/.*sourceMappingURL.*//' > "$@"
 
-send_later.xpi: $(shell find $(shell cat dev/include-manifest) 2>/dev/null)
+send_later.xpi: $(shell find $(shell cat dev/include-manifest) -type f 2>/dev/null)
 	zip -q -r "$@" . -i@dev/include-manifest
 
 release/send_later-${version}-tb.xpi: send_later.xpi
