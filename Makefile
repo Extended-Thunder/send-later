@@ -1,6 +1,6 @@
 .PHONY: release
 
-version=$(shell grep -o '"version"\s*:\s*"\S*"' manifest.json | sed -e 's/.*"\([0-9]\S*\)".*/\1/')
+version=$(shell grep -o '"version"\s*:\s*"\S*"' manifest.json | sed -e 's/.*"\([0-9].*\)".*/\1/')
 
 # Kludgey temporary workaround until Crowdin integration is fixed.
 _locales: dev/migrate_locales.py
