@@ -705,6 +705,13 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return false;
         },
 
+        async generateUUID() {
+          const uuidGenerator = Cc["@mozilla.org/uuid-generator;1"].getService(
+            Ci.nsIUUIDGenerator
+          );
+          return uuidGenerator.generateUUID().toString();
+        },
+
         async generateMsgId(content) {
           const idkey = ((/\nX-Identity-Key:\s*(\S+)/i).exec('\n'+content))[1];
           return SendLaterFunctions.generateMsgId(idkey);
@@ -817,7 +824,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               ).toLowerCase().split(/\s+/).filter(v=>(v!==""));
           } catch(e) {}
           let wantedHeaders = ["x-send-later-at", "x-send-later-recur",
-            "x-send-later-args", "x-send-later-cancel-on-reply"];
+            "x-send-later-args", "x-send-later-cancel-on-reply", "x-send-later-uuid"];
 
           const allDefined = wantedHeaders.every(hdr => originals.includes(hdr));
           if (!allDefined) {

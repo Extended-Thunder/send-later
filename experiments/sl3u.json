@@ -62,6 +62,13 @@
         ]
       },
       {
+        "name": "generateUUID",
+        "type": "function",
+        "async": true,
+        "description": "",
+        "parameters": []
+      },
+      {
         "name": "generateMsgId",
         "type": "function",
         "async": true,
@@ -211,7 +218,7 @@
           {
             "name":"msgId",
             "type":"string",
-            "description":"uuid to find"
+            "description":"message-id to find"
           }
         ]
       },

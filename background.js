@@ -116,7 +116,11 @@ const SendLater = {
 
     async scheduleSendLater(tabId, options) {
       SLStatic.info(`Scheduling send later: ${tabId} with options`,options);
-      const customHeaders = {};
+      const { preferences } = await browser.storage.local.get({ preferences: {} });
+
+      const customHeaders = {
+        "x-send-later-uuid": preferences.instanceUUID
+      };
 
       // Determine time at which this message should be sent
       if (options.sendAt !== undefined) {
@@ -151,13 +155,10 @@ const SendLater = {
       const composeDetails = await browser.compose.getComposeDetails(tabId);
       await browser.SL3U.saveAsDraft(composeDetails.identityId);
 
-      browser.storage.local.get({preferences:{}}).then(storage => {
-        if (storage.preferences.markDraftsRead) {
-          setTimeout(SendLater.markDraftsRead, 5000);
-        } else {
-          SLStatic.debug("Skipping mark all read.",storage.preferences);
-        }
-      });
+      if (preferences.markDraftsRead) {
+        SLStatic.debug("Marking all Draft messages read");
+        setTimeout(SendLater.markDraftsRead, 5000);
+      }
       browser.tabs.remove(tabId);
     },
 
@@ -417,6 +418,20 @@ const SendLater = {
         });
       }
 
+      //if (currentMigrationNumber < 4)
+      if (!preferences.instanceUUID) {
+        let instance_uuid = await browser.SL3U.getLegacyPref(
+          "instance.uuid", "string", "");
+        if (instance_uuid) {
+          SLStatic.info(`Using migrated UUID: ${instance_uuid}`);
+        } else {
+          SLStatic.info(`Generating new UUID: ${instance_uuid}`);
+          instance_uuid = await browser.SL3U.generateUUID();
+        }
+        preferences.instanceUUID = instance_uuid;
+        browser.SL3U.setLegacyPref("instance.uuid", "string", instance_uuid);
+      }
+
       if (currentMigrationNumber < SLStatic.CURRENT_LEGACY_MIGRATION) {
         preferences.migratedLegacy = SLStatic.CURRENT_LEGACY_MIGRATION;
       }
@@ -586,8 +601,8 @@ const SendLater = {
       }
 
       // Perform any pending preference migrations.
-      const migration = await SendLater.migratePreferences();
-      if (migration < 3) {
+      const previousMigration = await SendLater.migratePreferences();
+      if (previousMigration < 3) {
         // This really shouldn't be necessary, but we should check
         // whether the outbox and drafts folders might be corrupted.
         await SendLater.doSanityCheck();
