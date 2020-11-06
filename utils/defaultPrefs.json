@@ -41,5 +41,6 @@
   "editorFirstUse": ["bool", true, "editor.first_use"],
   "promptDefaults": ["string", "", "prompt.defaults"],
   "markDraftsRead": ["bool", true, "mark_drafts_read"],
-  "composeWindowHotkeys": ["bool", true, "compose_window_hot_keys"]
+  "composeWindowHotkeys": ["bool", true, "compose_window_hot_keys"],
+  "instanceUUID": ["string", "", "instance.uuid"]
 }
