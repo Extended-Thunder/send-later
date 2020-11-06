@@ -414,37 +414,91 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
         },
 
+        async setLegacyPref(name, dtype, value) {
+          const prefName = `extensions.sendlater3.${name}`;
+
+          switch (dtype) {
+            case "bool": {
+              const prefValue = (value === "true");
+              try {
+                Services.prefs.setBoolPref(prefName, prefValue);
+                return true;
+              } catch (err) {
+                console.error(err);
+                return false;
+              }
+            }
+            case "int": {
+              const prefValue = (Number(value)|0);
+              try {
+                Services.prefs.setIntPref(prefName, prefValue);
+                return true;
+              } catch (err) {
+                console.error(err);
+                return false;
+              }
+            }
+            case "char": {
+              const prefValue = value;
+              try {
+                Services.prefs.setCharPref(prefName, prefValue);
+                return true;
+              } catch (err) {
+                console.error(err);
+                return false;
+              }
+            }
+            case "string": {
+              const prefValue = value;
+              try {
+                Services.prefs.setStringPref(prefName, prefValue);
+                return true;
+              } catch (err) {
+                console.error(err);
+                return false;
+              }
+            }
+            default: {
+              throw new Error("Unexpected pref type");
+            }
+          }
+        },
+
         async getLegacyPref(name, dtype, defVal) {
           // Prefix for legacy preferences.
           const prefName = `extensions.sendlater3.${name}`;
 
           switch (dtype) {
             case "bool": {
+              const prefDefault = (defVal === "true");
               try {
-                return Services.prefs.getBoolPref(prefName);
+                return Services.prefs.getBoolPref(prefName, prefDefault);
               } catch {
-                return (defVal === "true");
+                return prefDefault;
               }
             }
             case "int": {
+              const prefDefault = (Number(defVal)|0);
               try {
-                return Services.prefs.getIntPref(prefName);
+                return Services.prefs.getIntPref(prefName, prefDefault);
               } catch {
-                return (Number(defVal)|0);
+                return prefDefault;
               }
             }
             case "char": {
+              const prefDefault = defVal;
               try {
-                return Services.prefs.getCharPref(prefName);
-              } catch {
-                return defVal;
+                return Services.prefs.getCharPref(prefName, prefDefault);
+              } catch (err) {
+                return prefDefault;
               }
             }
             case "string": {
+              const prefDefault = defVal;
               try {
-                return Services.prefs.getStringPref(prefName);
-              } catch {
-                return defVal;
+                return Services.prefs.getStringPref(prefName, prefDefault);
+              } catch (err) {
+                return prefDefault;
               }
             }
             default: {
