@@ -153,7 +153,7 @@ exports.init = function() {
   SLTests.AddTest("nextRecurDate function returning minutes",
                    NextRecurFunctionTest,
                    ["10/3/2012", "function Test6", "10/4/2012", null, "Test6",
-                   'return 5', [d1, null]]);
+                   'return 5', [d1, null, null]]);
 
   const d2 = new Date();
   d2.setTime((new Date("10/3/2012")).getTime() + 7 * 60 * 1000);
