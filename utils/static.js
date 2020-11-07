@@ -13,6 +13,18 @@ var SLStatic = {
   // Indicator to initiate a preference migration.
   CURRENT_LEGACY_MIGRATION: 4,
 
+  // HTML element IDs correspond to preference keys, localization strings, and
+  // keys of preference values in local storage.
+  prefInputIds: ["checkTimePref", "sendDoesDelay", "sendDelay", "sendDoesSL",
+                 "altBinding", "markDraftsRead", "showColumn", "showHeader",
+                 "showStatus", "blockLateMessages", "lateGracePeriod",
+                 "sendUnsentMsgs", "enforceTimeRestrictions", "logDumpLevel",
+                 "logConsoleLevel", "quickOptions1Label",
+                 "quickOptions1funcselect", "quickOptions1Args",
+                 "quickOptions2Label", "quickOptions2funcselect",
+                 "quickOptions2Args", "quickOptions3Label",
+                 "quickOptions3funcselect", "quickOptions3Args"],
+
   async logger(msg, level, stream) {
     const levels = ["all","trace","debug","info","warn","error","fatal"];
     let logConsoleLevel;

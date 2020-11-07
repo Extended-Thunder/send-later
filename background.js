@@ -814,6 +814,42 @@ browser.compose.onBeforeSend.addListener(tab => {
   }
 });
 
+browser.runtime.onMessageExternal.addListener(
+  (message, sender, sendResponse) => {
+    if (message["action"] === "getPreferences") {
+      browser.storage.local.get({"preferences":{}}).then(storage => {
+        for (const prop in storage["preferences"]) {
+          if (!SLStatic.prefInputIds.includes(prop)) {
+            delete storage.preferences[prop];
+          }
+        }
+        sendResponse(storage.preferences);
+      });
+      return true;
+    }
+    else if (message["action"] === "setPreferences") {
+      new_prefs = message.preferences;
+      browser.storage.local.get({"preferences":{}}).then(storage => {
+        old_prefs = storage.preferences;
+        for (const prop in new_prefs) {
+          if (!SLStatic.prefInputIds.includes(prop)) {
+            throw `Property ${prop} is not a valid Send Later preference.`;
+          }
+          if (prop in old_prefs && typeof(old_prefs[prop]) != "undefined" &&
+              typeof(new_prefs[prop]) != "undefined" &&
+              typeof(old_prefs[prop]) != typeof(new_prefs[prop])) {
+            throw `Type of ${prop} is invalid: new ` +
+              `${typeof(new_prefs[prop])} vs. current ` +
+              `${typeof(old_prefs[prop])}.`;
+          }
+          old_prefs[prop] = new_prefs[prop];
+        }
+        browser.storage.local.set(storage);
+      });
+      return true;
+    }
+  });
+
 browser.runtime.onMessage.addListener(async (message) => {
   const response = {};
   switch (message.action) {

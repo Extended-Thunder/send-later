@@ -1,6 +1,9 @@
 .PHONY: release
 
-version=$(shell grep -o '"version"\s*:\s*"\S*"' manifest.json | sed -e 's/.*"\([0-9]\S*\)".*/\1/')
+all: send_later.xpi
+clean: ; -rm -f send_later.xpi
+
+version=$(shell grep -o '"version"\s*:\s*"\S*"' manifest.json | sed -e 's/.*"\([0-9].*\)".*/\1/')
 
 # Kludgey temporary workaround until Crowdin integration is fixed.
 _locales: dev/migrate_locales.py
@@ -13,8 +16,10 @@ utils/moment.min.js:
 	curl -sL https://momentjs.com/downloads/moment-with-locales.min.js | \
 		sed -e 's/.*sourceMappingURL.*//' > "$@"
 
-send_later.xpi: $(shell find $(shell cat dev/include-manifest) 2>/dev/null)
-	zip -q -r "$@" . -i@dev/include-manifest
+send_later.xpi: dev/include-manifest $(shell find $(shell cat dev/include-manifest) -type f 2>/dev/null)
+	rm -f "$@" "$@".tmp
+	zip -q -r "$@".tmp . -i@dev/include-manifest
+	mv "$@".tmp "$@"
 
 release/send_later-${version}-tb.xpi: send_later.xpi
 	mkdir -p "`dirname $@`"
