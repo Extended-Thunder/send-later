@@ -260,9 +260,11 @@ var SLStatic = {
   },
 
   getHeader: function(content, header) {
+    // Get header's value (e.g. "subject: foo bar    baz" returns "foo bar    baz")
     const regex = new RegExp(`^${header}:([^\r\n]*)\r\n(\\s[^\r\n]*\r\n)*`,'im');
     if (regex.test(content)) {
-      return content.match(regex)[0].trim();
+      const hdrLine = content.match(regex)[0];
+      return hdrLine.replace(/.*:/m,"").trim();
     } else {
       return undefined;
     }
