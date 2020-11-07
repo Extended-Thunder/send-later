@@ -2,16 +2,6 @@ window.browser = window.browser.extension.getBackgroundPage().browser;
 
 // Functions related to the options UI (accessed via options.html)
 const SLOptions = {
-  // HTML element IDs correspond to preference keys, and indirectly also to
-  // localization strings.
-  inputIds: ["checkTimePref", "sendDoesDelay", "sendDelay", "sendDoesSL",
-            "altBinding", "markDraftsRead", "showColumn", "showHeader",
-            "showStatus", "blockLateMessages", "lateGracePeriod", "sendUnsentMsgs",
-            "enforceTimeRestrictions", "logDumpLevel", "logConsoleLevel",
-            "quickOptions1Label", "quickOptions1funcselect", "quickOptions1Args",
-            "quickOptions2Label", "quickOptions2funcselect", "quickOptions2Args",
-            "quickOptions3Label", "quickOptions3funcselect", "quickOptions3Args"],
-
   builtinFuncs: ["ReadMeFirst", "BusinessHours", "DaysInARow", "Delay"],
 
   checkboxGroups: {},
@@ -25,7 +15,7 @@ const SLOptions = {
     });
     browser.storage.local.get("preferences").then(storage => {
       const prefs = storage.preferences || {};
-      for (const id of SLOptions.inputIds) {
+      for (const id of SLStatic.prefInputIds) {
         (async (e, v) => {
           if (!e) {
             SLStatic.error(id, e, v);
@@ -234,7 +224,7 @@ const SLOptions = {
 
   async attachListeners() {
     // Attach listeners for all input fields
-    for (const id of SLOptions.inputIds) {
+    for (const id of SLStatic.prefInputIds) {
       const el = document.getElementById(id);
       el.addEventListener("change", SLOptions.updatePrefListener);
     }
