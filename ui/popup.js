@@ -423,7 +423,8 @@ const SLPopup = {
         element.addEventListener("change", async evt => {
           const inputs = SLPopup.objectifyFormValues();
           const schedule = await SLPopup.parseInputs(inputs);
-          SLStatic.stateSetter(schedule.recur.type !== "none")(dom['cancel-on-reply-div']);
+          SLStatic.stateSetter(schedule.recur && schedule.recur.type !== "none")(
+            dom['cancel-on-reply-div']);
           SLPopup.setScheduleButton(schedule);
         });
       }

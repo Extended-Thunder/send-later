@@ -658,12 +658,11 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return true;
         },
 
-        async saveAsDraft(idkey) {
+        async saveAsDraft(newMessageId) {
           // Saves the current compose window message as a draft.
           // (Window remains open)
           const cw = Services.wm.getMostRecentWindow("msgcompose");
 
-          const newMessageId = SendLaterFunctions.generateMsgId(idkey);
           cw.gMsgCompose.compFields.setHeader("message-id",newMessageId);
           const verifyId = cw.gMsgCompose.compFields.getHeader("message-id");
 
@@ -714,8 +713,8 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return uuidGenerator.generateUUID().toString();
         },
 
-        async generateMsgId(content) {
-          const idkey = ((/\nX-Identity-Key:\s*(\S+)/i).exec('\n'+content))[1];
+        async generateMsgId(idkey) {
+          // const idkey = ((/\nX-Identity-Key:\s*(\S+)/i).exec('\n'+content))[1];
           return SendLaterFunctions.generateMsgId(idkey);
         },
 

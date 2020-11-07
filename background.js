@@ -89,19 +89,6 @@ const SendLater = {
       }
     },
 
-    async markDraftsRead() {
-      SendLater.forAllDrafts(async msg => {
-        const fullMsg = await browser.messages.getFull(msg.id);
-        if (fullMsg.headers['x-send-later-at']) {
-          const msgHdr = await browser.messages.get(msg.id);
-          if (!msgHdr.read) {
-            SLStatic.debug(`Marking message ${msg.id} read.`);
-            browser.messages.update(msg.id, { read: true });
-          }
-        }
-      });
-    },
-
     async expandRecipients(tabId) {
       let details = {};
       for (let type of ["to", "cc", "bcc"]) {
@@ -149,29 +136,33 @@ const SendLater = {
       SLStatic.debug('headers',customHeaders);
 
       const composeDetails = await browser.compose.getComposeDetails(tabId);
-      await browser.SL3U.saveAsDraft(composeDetails.identityId);
+      const newMessageId = await browser.SL3U.generateMsgId(composeDetails.identityId);
 
       if (preferences.markDraftsRead) {
-        SLStatic.debug("Marking all Draft messages read");
-        setTimeout(SendLater.markDraftsRead, 5000);
+        SendLater.watchAndMarkRead.add(newMessageId);
       }
+
+      await browser.SL3U.saveAsDraft(newMessageId);
+
       browser.tabs.remove(tabId);
     },
 
-    async possiblySendMessage(id) {
+    async possiblySendMessage(msgHdr) {
       if (await browser.SL3U.isOffline()) {
+        SLStatic.debug(`The option to send scheduled messages while ` +
+          `thunderbird is offline has not yet been implemented. Skipping.`);
         return;
       }
+
       // Determines whether or not a particular draft message is due to be sent
-      const message = await browser.messages.getFull(id);
+      const rawContent = await browser.messages.getRaw(msgHdr.id);
 
-      const header = (msg, hdr) => (msg.headers[hdr] ? msg.headers[hdr][0] : undefined);
-
-      const msgSendAt = header(message, 'x-send-later-at');
-      const msgRecurSpec = header(message, 'x-send-later-recur');
-      const msgRecurArgs = header(message, 'x-send-later-args');
-      const originalMsgId = header(message, 'message-id');
-      const contentType = header(message, 'content-type');
+      const msgSendAt = SLStatic.getHeader(rawContent, 'x-send-later-at');
+      const msgUUID = SLStatic.getHeader(rawContent, 'x-send-later-uuid');
+      const msgRecurSpec = SLStatic.getHeader(rawContent, 'x-send-later-recur');
+      const msgRecurArgs = SLStatic.getHeader(rawContent, 'x-send-later-args');
+      const originalMsgId = SLStatic.getHeader(rawContent, 'message-id');
+      const contentType = SLStatic.getHeader(rawContent, 'content-type');
 
       if (msgSendAt === undefined) {
         return;
@@ -187,9 +178,18 @@ const SendLater = {
         preferences: {}, lock: {}
       });
 
+      if (!msgUUID) {
+        SLStatic.debug(`Message <${originalMsgId}> has no uuid header.`);
+        return;
+      }
+
+      if (msgUUID !== preferences.instanceUUID) {
+        SLStatic.debug(`Message <${originalMsgId}> is scheduled by a different Thunderbird isntance.`);
+        return;
+      }
+
       if (lock[originalMsgId]) {
         SLStatic.log(`Skipping message ${originalMsgId} -- resend!`);
-        const msgHdr = await browser.messages.get(id);
         const err = browser.i18n.getMessage("MessageResendError", [msgHdr.folder.path]);
         browser.SL3U.alert("", err);
         preferences.checkTimePref = 0;
@@ -198,7 +198,7 @@ const SendLater = {
       }
 
       if (!(Date.now() >= nextSend.getTime())) {
-        SLStatic.debug(`Message ${id} not due for send until ${SLStatic.humanDateTimeFormat(nextSend)}`);
+        // SLStatic.debug(`Message ${msgHdr.id} not due for send until ${SLStatic.humanDateTimeFormat(nextSend)}`);
         return;
       }
 
@@ -217,7 +217,7 @@ const SendLater = {
         if (preferences.blockLateMessages) {
           const lateness = (now - nextSend.getTime()) / 60000;
           if (lateness > preferences.lateGracePeriod) {
-            SLStatic.info(`Grace period exceeded for message ${id}`);
+            SLStatic.info(`Grace period exceeded for message ${msgHdr.id}`);
             return;
           }
         }
@@ -225,7 +225,7 @@ const SendLater = {
         // Respect "send between" preference
         if (recur.between) {
           if ((now < recur.between.start) || (now > recur.between.end)) {
-            SLStatic.debug(`Message ${id} outside of sendable time range.`);
+            SLStatic.debug(`Message ${msgHdr.id} outside of sendable time range.`);
             return;
           }
         }
@@ -235,14 +235,13 @@ const SendLater = {
           const today = (new Date()).getDay();
           if (!recur.days.includes(today)) {
             const wkday = new Intl.DateTimeFormat('default', {weekday:'long'});
-            SLStatic.debug(`Message ${id} not scheduled to send on ${wkday.format(new Date())}`);
+            SLStatic.debug(`Message ${msgHdr.id} not scheduled to send on ${wkday.format(new Date())}`);
           }
         }
       }
 
       // Initiate send from draft message
       SLStatic.info(`Sending message ${originalMsgId}.`);
-      const rawContent = await browser.messages.getRaw(id);
 
       const success = await browser.SL3U.sendRaw(
         SLStatic.prepNewMessageHeaders(rawContent),
@@ -273,23 +272,54 @@ const SendLater = {
       }
 
       if (nextRecur) {
-        SLStatic.info(`Scheduling next recurrence of message ${originalMsgId} ` +
-          `at ${nextRecur.toLocaleString()}, with recurSpec "${msgRecurSpec}"`);
-
-        const msgHdr = await browser.messages.get(id);
-        const folder = msgHdr.folder;
+        let nextRecurAt, nextRecurSpec, nextRecurArgs;
+        if (nextRecur.getTime) {
+          nextRecurAt = nextRecur;
+        } else {
+          nextRecurAt = nextRecur[0];
+          nextRecurSpec = nextRecur[1];
+          nextRecurArgs = nextRecur[2];
+        }
+        SLStatic.info(`Scheduling next recurrence of message ${originalMsgId}`,
+          {nextRecurAt, nextRecurSpec, nextRecurArgs});
 
         let newMsgContent = rawContent;
 
-        const nextRecurStr = SLStatic.parseableDateTimeFormat(nextRecur);
         newMsgContent = SLStatic.replaceHeader(
           newMsgContent,
           "X-Send-Later-At",
-          nextRecurStr,
+          SLStatic.parseableDateTimeFormat(nextRecurAt),
           false
         );
 
-        const newMessageId = await browser.SL3U.generateMsgId(rawContent);
+        if (typeof nextRecurSpec === "string") {
+          newMsgContent = SLStatic.replaceHeader(
+            newMsgContent,
+            "X-Send-Later-Recur",
+            nextRecurSpec,
+            false,
+            true
+          );
+        }
+
+        if (typeof nextRecurArgs === "object") {
+          newMsgContent = SLStatic.replaceHeader(
+            newMsgContent,
+            "X-Send-Later-Args",
+            SLStatic.unparseArgs(nextRecurArgs),
+            false,
+            true
+          );
+        }
+
+        newMsgContent = SLStatic.appendHeader(
+          newMsgContent,
+          "References",
+          originalMsgId
+        );
+
+        const idkey = SLStatic.getHeader(rawContent, "X-Identity-Key");
+        const newMessageId = await browser.SL3U.generateMsgId(idkey);
         newMsgContent = SLStatic.replaceHeader(
           newMsgContent,
           "Message-ID",
@@ -297,29 +327,26 @@ const SendLater = {
           false
         );
 
-        newMsgContent = SLStatic.appendHeader(newMsgContent, "References", originalMsgId);
+        if (preferences.markDraftsRead) {
+          SendLater.watchAndMarkRead.add(newMessageId);
+        }
 
-        browser.SL3U.saveMessage(folder.accountId, folder.path, newMsgContent).then(success => {
-          if (success) {
-            if (preferences.markDraftsRead) {
-              setTimeout(SendLater.markDraftsRead, 5000);
-            }
-            SLStatic.info(
-              `Scheduled next occurrence of message <${originalMsgId}>. Deleting original.`
-            );
-            browser.messages.delete([id], true);
-          } else {
-            SLStatic.error("Unable to schedule next recuurrence.");
-          }
-        }).catch((ex) => {
-          SLStatic.error(
-            `Error replacing Draft message for next occurrence`,
-            ex
-          );
-        });
+        const success = await browser.SL3U.saveMessage(
+          msgHdr.folder.accountId,
+          msgHdr.folder.path,
+          newMsgContent
+        );
+
+        if (success) {
+          SLStatic.info(`Scheduled next occurrence of message ` +
+            `<${originalMsgId}>. Deleting original.`);
+          browser.messages.delete([msgHdr.id], true);
+        } else {
+          SLStatic.error("Unable to schedule next recuurrence.");
+        }
       } else {
-        SLStatic.info(`No recurrences for message ${originalMsgId}. Deleting draft.`);
-        browser.messages.delete([id], true);
+        SLStatic.info(`No recurrences for message <${originalMsgId}>. Deleting original.`);
+        browser.messages.delete([msgHdr.id], true);
       }
     },
 
@@ -443,14 +470,16 @@ const SendLater = {
       return currentMigrationNumber;
     },
 
-    getActiveSchedules: async function () {
-      const getHdr = (msg, hdr) =>
-          msg.headers[hdr] ? msg.headers[hdr][0] : undefined;
+    getActiveSchedules: async function (matchUUID) {
+      const { preferences } = await browser.storage.local.get({ preferences: {} });
 
       let allSchedules = await SendLater.forAllDrafts(async (msg) => {
-        const message = await browser.messages.getFull(msg.id);
-        const msgSendAt = getHdr(message, "x-send-later-at");
+        const rawMessage = await browser.messages.getRaw(msg.id);
+        const msgSendAt = SLStatic.getHeader(rawMessage, "x-send-later-at");
+        const msgUUID = SLStatic.getHeader(rawMessage, "x-send-later-uuid");
         if (msgSendAt === undefined) {
+          return null;
+        } else if (matchUUID && msgUUID !== preferences.instanceUUID) {
           return null;
         } else {
           const nextSend = new Date(msgSendAt).getTime();
@@ -489,7 +518,7 @@ const SendLater = {
         message += `\n\nCompacting Outbox and/or Drafts folders failed with error:\n${e}`;
       }
 
-      const activeSchedules = await SendLater.getActiveSchedules();
+      const activeSchedules = await SendLater.getActiveSchedules(false);
       const nActive = activeSchedules.length;
       if (nActive > 0) {
         const soonest = new Date(Math.min(...activeSchedules));
@@ -614,13 +643,15 @@ const SendLater = {
           const { preferences } =
             await browser.storage.local.get({ preferences: {} });
 
-          const newMessageId = await browser.SL3U.generateMsgId(rawContent);
+          const idkey = SLStatic.getHeader(rawContent, "X-Identity-Key");
+          const newMessageId = await browser.SL3U.generateMsgId(idkey);
 
           let newMsgContent = rawContent;
           newMsgContent = SLStatic.replaceHeader(
             newMsgContent, "Message-ID", newMessageId, false);
-          newMsgContent = SLStatic.appendHeader(
-            newMsgContent, "X-Send-Later-Uuid", preferences.instanceUUID);
+          newMsgContent = SLStatic.replaceHeader(
+            newMsgContent, "X-Send-Later-Uuid", preferences.instanceUUID,
+            false, true);
           newMsgContent = SLStatic.appendHeader(
             newMsgContent, "References", msgId);
 
@@ -715,13 +746,9 @@ const SendLater = {
         let interval = +storage.preferences.checkTimePref || 0;
 
         if (storage.preferences.sendDrafts && interval > 0) {
-          SendLater.forAllDrafts(async (msg) => {
-            SendLater.possiblySendMessage(msg.id).catch(SLStatic.error);
+          SendLater.forAllDrafts(async (msgHdr) => {
+            SendLater.possiblySendMessage(msgHdr).catch(SLStatic.error);
           }).catch(SLStatic.error);
-        }
-
-        if (storage.preferences.markDraftsRead) {
-          SendLater.markDraftsRead();
         }
 
         // TODO: Should use a persistent reference to the this timeout that can be
@@ -921,20 +948,23 @@ browser.runtime.onMessage.addListener(async (message) => {
     }
     case "getScheduleText": {
       try {
-        const dispMsg = await browser.messageDisplay.
-          getDisplayedMessage(message.tabId).then(
-            async hdr => await browser.messages.getFull(hdr.id));
+        const dispMsgHdr =
+          await browser.messageDisplay.getDisplayedMessage(message.tabId);
+        const dispMsg = await browser.messages.getFull(dispMsgHdr.id);
+        const { preferences } = await browser.storage.local.get({ preferences: {} });
 
-        const headerSendAt = new Date(dispMsg.headers['x-send-later-at'][0]);
-        const msgId = (dispMsg.headers['message-id'] || [])[0];
-
-        if (headerSendAt === undefined) {
+        if (!dispMsg.headers['x-send-later-at']) {
           response.err = "Message is not scheduled by Send Later.";
           break;
-        } else if (msgId === undefined) {
+        } else if (!dispMsg.headers['message-id']) {
           response.err = "Message somehow has no message-id header";
           break;
+        } else if (dispMsg.headers['x-send-later-uuid'][0] !== preferences.instanceUUID) {
+          response.err = "Message is scheduled by a different Thunderbird instance";
+          break;
         }
+
+        const headerSendAt = new Date(dispMsg.headers['x-send-later-at'][0]);
 
         let contentType = dispMsg.headers['content-type'];
         if (contentType) {
@@ -1041,11 +1071,18 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
 browser.messageDisplay.onMessageDisplayed.addListener(async (tab, hdr) => {
   browser.messageDisplayAction.disable(tab.id);
   if (hdr.folder.type === "drafts") {
+    const { preferences } = await browser.storage.local.get({ preferences: {} });
     const enableDisplayAction = () => {
       browser.messages.getFull(hdr.id).then(fullMessage => {
         if (fullMessage.headers['x-send-later-at']) {
-          SLStatic.debug("Displayed message has send later headers.");
-          browser.messageDisplayAction.enable(tab.id);
+          const msgUUID = fullMessage.headers['x-send-later-uuid'][0];
+          if (msgUUID === preferences.instanceUUID) {
+            SLStatic.debug("Displayed message has send later headers.");
+            browser.messageDisplayAction.enable(tab.id);
+          } else {
+            SLStatic.debug(`Displayed message is scheduled by a different ` +
+              `Thunderbird instance: ${msgUUID}`);
+          }
         } else {
           SLStatic.debug("This message does not have Send Later headers.");
         }
