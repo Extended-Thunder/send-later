@@ -1,3 +1,5 @@
+window.browser = window.browser.extension.getBackgroundPage().browser;
+
 // Functions related to the options UI (accessed via options.html)
 const SLOptions = {
   // HTML element IDs correspond to preference keys, and indirectly also to
@@ -69,9 +71,7 @@ const SLOptions = {
       SLStatic.info(`Storing user function ${name}`);
       const { ufuncs } = await browser.storage.local.get({ufuncs:{}});
       ufuncs[name] = { body, help };
-      browser.storage.local.set({ ufuncs }).then(() => {
-        browser.runtime.sendMessage({ action: "reloadUfuncs" });
-      });
+      await browser.storage.local.set({ ufuncs });
       return true;
     } else {
       browser.runtime.sendMessage({ action: "alert",
@@ -167,7 +167,6 @@ const SLOptions = {
       }
 
       await browser.storage.local.set({ preferences });
-      await browser.runtime.sendMessage({ action: "reloadPrefCache" });
     } catch (ex) {
       SLStatic.error(ex);
       SLOptions.showCheckMark(element, "red");
@@ -371,7 +370,6 @@ const SLOptions = {
       }
       if (prefs) {
         await browser.storage.local.set({ preferences: prefs });
-        browser.runtime.sendMessage({ action: "reloadPrefCache" });
         await SLOptions.applyPrefsToUI();
         SLOptions.showCheckMark(evt.target, "green");
       }
@@ -456,7 +454,6 @@ const SLOptions = {
               return result;
           }, {});
           browser.storage.local.set({ preferences: prefs }).then(() => {
-            browser.runtime.sendMessage({ action: "reloadPrefCache" });
             SLOptions.applyPrefsToUI();
           });
       });
