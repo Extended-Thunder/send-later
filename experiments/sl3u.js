@@ -669,9 +669,11 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
           if (verifyId === newMessageId) {
             cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
+            return newMessageId;
           } else {
             console.error(`Message ID not set correctly, ${verifyId} != ${newMessageId}`);
           }
+          return null;
         },
 
         async sendNow() {

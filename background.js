@@ -4,6 +4,8 @@ const SendLater = {
 
     composeState: {},
 
+    watchAndMarkRead: new Set(),
+
     async propagatePreferences(storage, initializing) {
       // Make sure that changes to the local storage propagate
       // to all of the various places that need to know about them.
@@ -590,6 +592,68 @@ const SendLater = {
       }
     },
 
+    async claimDrafts() {
+      /*
+       * Because the x-send-later-uuid header was omitted in beta
+       * releases <= 8.0.15, there may be some scheduled drafts
+       * which do not have an associated instance id.
+       *
+       * This function will scan all drafts for messages with an
+       * x-send-later-at header but no x-send-later-uuid header.
+       * It will create a new message with this instance's uuid,
+       * and delete the existing draft.
+       *
+       * This should only happen once, and only for users who
+       * have been following the beta releases.
+       */
+      let claimed = await SendLater.forAllDrafts(async (msg) => {
+        const rawContent = await browser.messages.getRaw(msg.id);
+        const sendAt = SLStatic.getHeader(rawContent, "x-send-later-at");
+        const uuid = SLStatic.getHeader(rawContent, 'x-send-later-uuid');
+
+        if (sendAt && !uuid) {
+          const msgId = SLStatic.getHeader(rawContent, 'message-id');
+          const subject = SLStatic.getHeader(rawContent, 'subject');
+
+          SLStatic.info(`Adding UUID to message ${msgId} (${subject})`);
+
+          const { preferences } =
+            await browser.storage.local.get({ preferences: {} });
+
+          const newMessageId = await browser.SL3U.generateMsgId(rawContent);
+
+          let newMsgContent = rawContent;
+          newMsgContent = SLStatic.replaceHeader(
+            newMsgContent, "Message-ID", newMessageId, false);
+          newMsgContent = SLStatic.appendHeader(
+            newMsgContent, "X-Send-Later-Uuid", preferences.instanceUUID);
+          newMsgContent = SLStatic.appendHeader(
+            newMsgContent, "References", msgId);
+
+          if (msg.read) {
+            SendLater.watchAndMarkRead.add(newMessageId);
+          }
+
+          const success = await browser.SL3U.saveMessage(
+            msg.folder.accountId,
+            msg.folder.path,
+            newMsgContent
+          );
+
+          if (success) {
+            SLStatic.log(`Saved new message id: ${newMessageId}. ` +
+              `Deleting original.`);
+            browser.messages.delete([msg.id], true);
+            return newMessageId;
+          } else {
+            SLStatic.error("Unable to claim message");
+          }
+        }
+      }, true);
+      claimed = claimed.filter(v => v !== null && v !== undefined);
+      SLStatic.info(`Claimed ${claimed.length} scheduled messages.`);
+    },
+
     init: async function () {
       // Set custom DB headers preference, if not already set.
       await browser.SL3U.setCustomDBHeaders();
@@ -607,6 +671,8 @@ const SendLater = {
         // whether the outbox and drafts folders might be corrupted.
         await SendLater.doSanityCheck();
       }
+
+      await SendLater.claimDrafts();
 
       const { preferences, ufuncs } = await browser.storage.local.get({
           preferences: {},
@@ -860,34 +926,50 @@ browser.runtime.onMessage.addListener(async (message) => {
 // message with a 'cancel-on-reply' header.
 browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
   // First, we want to skip onNewMailReceived events triggered locally during
-  // regular send, move, and copy operations.
+  // regular send, move, and copy operations. We never touch archives folders anyway,
+  // so we can immediately ignore this if it's an operation on an archives folder.
   if (folder.type === "archives") {
     SLStatic.debug(`Skipping onNewMailReceived for outgoing message(s)`,messagelist);
     return;
   }
-  const myself = SLStatic.flatten(await browser.accounts.list().then(accts =>
-    accts.map(acct => acct.identities.map(identity => identity.email))));
 
-  messagelist.messages.forEach(msgHdr => {
-    for (let email of myself) {
-      if (msgHdr.author.indexOf(email) > -1) {
-        SLStatic.debug(`Skipping onNewMailReceived for message "${msgHdr.subject}"`);
-        return;
-      }
-    }
-    SLStatic.debug("Received message",msgHdr);
-    // We can't do this processing right away, because the message will not be
-    // accessible via browser.messages, so we'll schedule it via setTimeout.
-    const scanIncomingMessage = async (hdr) => {
+  // We can't do this processing right away, because the message might not be
+  // accessible via browser.messages, so we'll schedule it for a few seconds from now.
+  setTimeout(async () => {
+    const myself = SLStatic.flatten(await browser.accounts.list().then(accts =>
+      accts.map(acct => acct.identities.map(identity => identity.email))));
+
+    for (let hdr of messagelist.messages) {
+      SLStatic.debug(`Received new message: ${hdr.subject}`);
+
       const fullRecvdMsg = await browser.messages.getFull(hdr.id).catch(
         ex => SLStatic.error(`Cannot fetch full message ${hdr.id}`,ex));
       if (fullRecvdMsg === undefined) {
         SLStatic.debug(`getFull returned undefined message in onNewMailReceived listener`);
       } else {
-        SLStatic.debug(`Full message`,fullRecvdMsg);
+        // Saving a message is processed as an incoming message. If we wanted to save it
+        // to drafts, we should do that now.
+        const messageId = fullRecvdMsg.headers['message-id'][0];
+        if (SendLater.watchAndMarkRead.has(messageId)) {
+          SLStatic.debug(`Marking draft message read ${messageId}`);
+          SendLater.watchAndMarkRead.delete(messageId);
+          browser.messages.update(hdr.id, { read: true });
+          return;
+        }
+
+        // And even if we didn't want to mark it read, if it is from this account
+        // then we don't want to treat it the same as an incoming message.
+        for (let email of myself) {
+          if (hdr.author.indexOf(email) > -1) {
+            SLStatic.debug(`Skipping onNewMailReceived for own message`);
+            return;
+          }
+        }
+
         // const recvdMsgRefs = (fullRecvdMsg.headers['references'] || []);
         const isReplyToStr = (fullRecvdMsg.headers['in-reply-to']||[""])[0];
         const isReplyTo = [...isReplyToStr.matchAll(/(<\S*>)/gim)].map(i=>i[1]);
+        SLStatic.debug(`Message is a reply to`,isReplyTo);
         if (isReplyTo) {
           SendLater.forAllDrafts(async draftMsg => {
             const fullDraftMsg = await browser.messages.getFull(draftMsg.id);
@@ -906,12 +988,11 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
                 browser.messages.delete([draftMsg.id], true);
               }
             }
-          });
+          }, true);
         }
       }
-    };
-    setTimeout((() => { scanIncomingMessage(msgHdr) }), 5000);
-  });
+    }
+  }, 5000);
 });
 
 browser.messageDisplay.onMessageDisplayed.addListener(async (tab, hdr) => {
