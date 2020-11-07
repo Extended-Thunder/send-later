@@ -276,17 +276,21 @@ var SLStatic = {
     const regex = new RegExp(`^${header}:([^\r\n]*)\r\n(\\s[^\r\n]*\r\n)*`,'im');
     if (regex.test(content)) {
       const hdrLine = content.match(regex)[0];
-      return hdrLine.replace(/.*:/m,"").trim();
+      return hdrLine.replace(/[^:]*:/m,"").trim();
     } else {
       return undefined;
     }
   },
 
-  replaceHeader: function(content, header, value, replaceAll) {
+  replaceHeader: function(content, header, value, replaceAll, addIfMissing) {
     const regexStr = `^${header}:.*(?:\r\n|\n)([ \t].*(?:\r\n|\n))*`;
     const replacement = (value) ? `${header}: ${value}\r\n` : '';
     const regex = new RegExp(regexStr, (replaceAll ? 'img' : 'im'));
-    return content.replace(regex, replacement);
+    if (addIfMissing && !regex.test(content)) {
+      return `${header}: ${value}\r\n${content}`;
+    } else {
+      return content.replace(regex, replacement);
+    }
   },
 
   appendHeader: function(content, header, value) {
@@ -544,6 +548,8 @@ var SLStatic = {
 
     const funcName = recur.function.replace(/^ufunc:/, "");
 
+    prev = new Date(prev);
+
     let nextRecur;
     if (SLStatic.ufuncs[funcName] === undefined) {
       throw new Error(`Invalid recurrence specification '${recurSpec}': ` +
@@ -557,10 +563,6 @@ var SLStatic = {
       }
     }
 
-    if (!prev) {
-      prev = new Date();
-    }
-
     if (nextRecur === undefined) {
       throw new Error(`Send Later: Recurrence function '${funcName}' did not` +
                       " return a value" + SLStatic.ufuncs[funcName].body);
@@ -570,12 +572,12 @@ var SLStatic = {
         return null;
       } else {
         const next = new Date(prev.getTime() + nextRecur * 60 * 1000);
-        nextRecur = [next, null];
+        nextRecur = [next, null, null];
       }
     }
 
     if (nextRecur.getTime) {
-      nextRecur = [nextRecur, null];
+      nextRecur = [nextRecur, null, null];
     }
 
     if (!nextRecur.splice) {

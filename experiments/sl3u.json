@@ -87,7 +87,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "idkey",
+            "name": "newMessageId",
             "type": "string"
           }
         ]
