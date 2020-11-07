@@ -5,15 +5,9 @@ const SendLater = {
     composeState: {},
 
     async propagatePreferences(storage, initializing) {
-      // Make sure that changes to the local storage propagate
-      // to all of the various places that need to know about them.
-      const preferences = storage.preferences;
-      const ufuncs = storage.ufuncs;
-      await browser.storage.local.set({ preferences });
-      SendLater.prefCache = preferences;
-      SLStatic.ufuncs = ufuncs;
-      const prefString = JSON.stringify(preferences);
-      await browser.SL3U.notifyStorageLocal(prefString, initializing);
+      // This is now handled by a storage.onChanged listener,
+      // so no need to call it manually. Leaving it here as
+      // a stub for the time being.
       return true;
     },
 
@@ -612,7 +606,29 @@ const SendLater = {
           preferences: {},
           ufuncs: {},
         });
-      SendLater.propagatePreferences({ preferences, ufuncs }, true);
+
+      SendLater.prefCache = preferences;
+      SLStatic.ufuncs = ufuncs;
+      const prefString = JSON.stringify(preferences);
+      await browser.SL3U.notifyStorageLocal(prefString, true);
+
+      // This listener should be added *after* all of the storate-related
+      // setup is complete. It makes sure that subsequent changes to storage
+      // are propagated to their respective
+      browser.storage.onChanged.addListener(async (changes, areaName) => {
+        if (areaName === "local") {
+          SLStatic.debug("Propagating changes from local storage");
+          const { preferences, ufuncs } =
+            await browser.storage.local.get({
+              preferences: {},
+              ufuncs: {}
+            });
+          SendLater.prefCache = preferences;
+          SLStatic.ufuncs = ufuncs;
+          const prefString = JSON.stringify(preferences);
+          await browser.SL3U.notifyStorageLocal(prefString, false);
+        }
+      });
 
       await browser.SL3U.injectScript("utils/moment.min.js");
       await browser.SL3U.injectScript("utils/static.js");
@@ -767,15 +783,6 @@ browser.runtime.onMessage.addListener(async (message) => {
       }
       break;
     }
-    case "reloadPrefCache": {
-      const storage = await browser.storage.local.get({ preferences: {} });
-      await SendLater.propagatePreferences(storage, false);
-      break;
-    }
-    case "reloadUfuncs":
-      const { ufuncs } = await browser.storage.local.get({ ufuncs: {} });
-      SLStatic.ufuncs = ufuncs;
-      break;
     case "evaluateUfuncByContents":
     case "evaluateUfuncByName": {
       const { name, time, argStr } = message;
