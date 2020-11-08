@@ -69,9 +69,10 @@ var SendLaterHeaderView = {
       const sendAtStr = hdr.getStringProperty("x-send-later-at");
       if (sendAtStr) {
         const sendAt = new Date(sendAtStr);
-        return sendAt.getTime()|0;
+        // Numbers will be truncated. Be sure this fits in 32 bits
+        return (sendAt.getTime()/1000)|0;
       } else {
-        return Number.MAX_SAFE_INTEGER|0;
+        return (Math.pow(2,31)-1)|0;
       }
     },
     getSortStringForRow(hdr) {
