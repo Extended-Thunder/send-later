@@ -368,7 +368,7 @@
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "Med detta alternativ aktiverat, kommer alla meddelanden som skickas med kommandot &quot;Skicka&quot; (antingen via knappen eller genom att skriva Ctrl-Enter) att fördröjas av det angivna antalet minuter genom att schemalägga dem med Skicka Senare.",
+    "message": "Med detta alternativ aktiverat, kommer alla meddelanden som skickas med kommandot “Skicka” (antingen via knappen eller genom att skriva Ctrl-Enter) att fördröjas av det angivna antalet minuter genom att schemalägga dem med Skicka Senare.",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {
@@ -476,7 +476,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "Välj en funktion för att redigera eller ta bort, eller &quot;(skapa ny funktion)&quot; för att skapa en ny funktion.",
+    "message": "Välj en funktion för att redigera eller ta bort, eller “(skapa ny funktion)” för att skapa en ny funktion.",
     "description": ""
   },
   "createnewfunction": {
@@ -500,7 +500,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "Placera källkoden för din funktion här. Se exempelfunktionen &quot;ReadMeFirst&quot; för mer information om vad koden ska göra.",
+    "message": "Placera källkoden för din funktion här. Se exempelfunktionen “ReadMeFirst” för mer information om vad koden ska göra.",
     "description": ""
   },
   "codeplaceholder": {

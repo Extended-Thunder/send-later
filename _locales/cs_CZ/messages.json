@@ -164,7 +164,7 @@
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&quot;Odeslat&quot; zdrží zprávy o",
+    "message": "“Odeslat” zdrží zprávy o",
     "description": ""
   },
   "sendDelayPrefLabel2": {
@@ -208,7 +208,7 @@
     "description": ""
   },
   "sendUnsentMessagesPrefLabel": {
-    "message": "Odeslat čekající zprávy ze složky &quot;K odeslání&quot;",
+    "message": "Odeslat čekající zprávy ze složky “K odeslání”",
     "description": ""
   },
   "showColumnPrefLabel": {
@@ -272,7 +272,7 @@
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
-    "message": "např.: &quot;3:00 hodin čtvrtek&quot;, &quot;12/31/2012 15:27&quot;",
+    "message": "např.: “3:00 hodin čtvrtek”, “12/31/2012 15:27”",
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
@@ -360,7 +360,7 @@
     "description": ""
   },
   "showsendlaterunsentmessages.tooltip": {
-    "message": "Vypnete-li toto nastavení, pak Odeslat Později nebude odesílat zprávy - pouze je uloží do složky &quot;K odeslání&quot;. Hodí se to když používáte jiná rozšíření, např. BlunderDelay pro pravidelné odesílání zpráv ze složky &quot;K odeslání&quot;. Pokud bude toto nastavení zapnuté, pokaždé, když Odeslat Později odešle zprávu, budou odeslány VŠECHNY zprávy z vaší složky &quot;K odeslání&quot;.",
+    "message": "Vypnete-li toto nastavení, pak Odeslat Později nebude odesílat zprávy - pouze je uloží do složky “K odeslání”. Hodí se to když používáte jiná rozšíření, např. BlunderDelay pro pravidelné odesílání zpráv ze složky “K odeslání”. Pokud bude toto nastavení zapnuté, pokaždé, když Odeslat Později odešle zprávu, budou odeslány VŠECHNY zprávy z vaší složky “K odeslání”.",
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
@@ -368,7 +368,7 @@
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "Pokud je tato možnost zapnutá, všechny zprávy odeslané příkazem &quot;Odeslat&quot; (tlačítkem nebo stisknutím Ctrl-Enter) budou zdrženy o zadaný čas naplánovaný pomocí Odeslat Později.",
+    "message": "Pokud je tato možnost zapnutá, všechny zprávy odeslané příkazem “Odeslat” (tlačítkem nebo stisknutím Ctrl-Enter) budou zdrženy o zadaný čas naplánovaný pomocí Odeslat Později.",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {
@@ -380,11 +380,11 @@
     "description": ""
   },
   "contactauthor.tooltip": {
-    "message": "Pošlete email autorovi rozšíření „Odeslat Později&quot;.",
+    "message": "Pošlete email autorovi rozšíření „Odeslat Později“.",
     "description": ""
   },
   "helplink.tooltip": {
-    "message": "Zobrazte dokumentaci rozšíření „Odeslat Později&quot;.",
+    "message": "Zobrazte dokumentaci rozšíření „Odeslat Později“.",
     "description": ""
   },
   "releasenotes.value": {
@@ -500,7 +500,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "Sem vložte zdrojový kód pro vaši funkci. Podívejte se na ukázkovou funkci &quot;ReadMeFirst&quot;, abyste zjistili, co má váš kód dělat.",
+    "message": "Sem vložte zdrojový kód pro vaši funkci. Podívejte se na ukázkovou funkci “ReadMeFirst”, abyste zjistili, co má váš kód dělat.",
     "description": ""
   },
   "codeplaceholder": {
