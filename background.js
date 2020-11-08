@@ -189,11 +189,16 @@ const SendLater = {
       }
 
       if (lock[originalMsgId]) {
-        SLStatic.log(`Skipping message ${originalMsgId} -- resend!`);
-        const err = browser.i18n.getMessage("MessageResendError", [msgHdr.folder.path]);
-        browser.SL3U.alert("", err);
-        preferences.checkTimePref = 0;
-        await browser.storage.local.set({ preferences });
+        const msgSubject = SLStatic.getHeader(rawContent, 'subject');
+        SLStatic.error(`Attempted to resend message "${msgSubject}" ${originalMsgId}.`)
+        const err = browser.i18n.getMessage("CorruptFolderError", [msgHdr.folder.path]) +
+          `\n\nSpecifically, it appears that message "${msgSubject}" ${originalMsgId} ` +
+          `has been sent before, but still exists in the Drafts folder. This may or may ` +
+          `not be indicative of a more serious problem. You might simply try deleting ` +
+          `(or re-scheduling) the message in question.` +
+          `\n\nSend Later will skip this message, but continue processing your other ` +
+          `scheduled draft messages when you close this alert.`;
+        await browser.SL3U.alert("", err);
         return;
       }
 
