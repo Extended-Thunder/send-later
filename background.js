@@ -485,7 +485,7 @@ const SendLater = {
           const nextSend = new Date(msgSendAt).getTime();
           return nextSend;
         }
-      });
+      }, true);
       return allSchedules.filter(v => v !== null);
     },
 
@@ -746,9 +746,10 @@ const SendLater = {
         let interval = +storage.preferences.checkTimePref || 0;
 
         if (storage.preferences.sendDrafts && interval > 0) {
-          SendLater.forAllDrafts(async (msgHdr) => {
-            SendLater.possiblySendMessage(msgHdr).catch(SLStatic.error);
-          }).catch(SLStatic.error);
+          SendLater.forAllDrafts(
+            SendLater.possiblySendMessage,
+            true
+          ).catch(SLStatic.error);
         }
 
         // TODO: Should use a persistent reference to the this timeout that can be
