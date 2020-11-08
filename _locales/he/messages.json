@@ -252,7 +252,7 @@
     "description": ""
   },
   "sendlater.prompt.sendnow.tooltip": {
-    "message": "שלח מייד את ההודעה, ועקוף את &quot;‫שלח מאוחר יותר‬&quot;.",
+    "message": "שלח מייד את ההודעה, ועקוף את “‫שלח מאוחר יותר‬”.",
     "description": ""
   },
   "sendlater.prompt.close.accesskey": {
@@ -264,7 +264,7 @@
     "description": ""
   },
   "sendlater.prompt.title.label": {
-    "message": "‫שלח הודעת דוא&quot;ל זו מאוחר יותר‬",
+    "message": "‫שלח הודעת דוא“ל זו מאוחר יותר‬",
     "description": ""
   },
   "sendlater.prompt.or.label": {
@@ -364,7 +364,7 @@
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "בחירה באפשרות זו, תגרום לכך שכל ההודעות הנשלחות עם הפקודה &quot;שלח&quot; (בין אם לחיצה על הכפתור או עם קיצור המקלדת Ctrl-Enter) יעוכבו במספר הדקות שהוגדרו מראש עם ‫שלח מאוחר יותר‬",
+    "message": "בחירה באפשרות זו, תגרום לכך שכל ההודעות הנשלחות עם הפקודה “שלח” (בין אם לחיצה על הכפתור או עם קיצור המקלדת Ctrl-Enter) יעוכבו במספר הדקות שהוגדרו מראש עם ‫שלח מאוחר יותר‬",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {
@@ -376,7 +376,7 @@
     "description": ""
   },
   "contactauthor.tooltip": {
-    "message": "‫שלח הודעת דוא&quot;ל למפתח של '‫שלח מאוחר יותר‬'‬",
+    "message": "‫שלח הודעת דוא“ל למפתח של '‫שלח מאוחר יותר‬'‬",
     "description": ""
   },
   "helplink.tooltip": {
@@ -472,7 +472,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "בחר פונקציה לעריכה או למחיקה, או &quot;(צור פונקציה חדשה)&quot; כדי ליצור פונקציה חדשה.",
+    "message": "בחר פונקציה לעריכה או למחיקה, או “(צור פונקציה חדשה)” כדי ליצור פונקציה חדשה.",
     "description": ""
   },
   "createnewfunction": {
@@ -496,7 +496,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "הזן כאן את קוד המקור עבור הפונקציה שלך. ראה פונקציית דוגמה &quot;ReadMeFirst&quot; לקבלת פרטים אודות הפעולה שהקוד שלך אמור לבצע.",
+    "message": "הזן כאן את קוד המקור עבור הפונקציה שלך. ראה פונקציית דוגמה “ReadMeFirst” לקבלת פרטים אודות הפעולה שהקוד שלך אמור לבצע.",
     "description": ""
   },
   "codeplaceholder": {

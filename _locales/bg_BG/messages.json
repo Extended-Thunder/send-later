@@ -160,7 +160,7 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Изпращане сега&quot; прави същото, като &quot;Изпращане по-късно&quot;",
+    "message": "“Изпращане сега” прави същото, като “Изпращане по-късно”",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -252,7 +252,7 @@
     "description": ""
   },
   "sendlater.prompt.sendnow.tooltip": {
-    "message": "Изпратете незабавно съобщението, като заобиколите &quot;Изпращане по-късно&quot;.",
+    "message": "Изпратете незабавно съобщението, като заобиколите “Изпращане по-късно”.",
     "description": ""
   },
   "sendlater.prompt.close.accesskey": {
@@ -272,7 +272,7 @@
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
-    "message": "пример: &quot;15:00 ч. Четвъртък&quot;, &quot;12/31/2012 15:27&quot;",
+    "message": "пример: “15:00 ч. Четвъртък”, “12/31/2012 15:27”",
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
@@ -280,7 +280,7 @@
     "description": ""
   },
   "sendlater.prompt.sendat.tooltip": {
-    "message": "Запазете съобщението в папка &quot;Чернови&quot; за автоматична доставка в посоченото по-горе време.",
+    "message": "Запазете съобщението в папка “Чернови” за автоматична доставка в посоченото по-горе време.",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -344,11 +344,11 @@
     "description": ""
   },
   "showsendlatercolumn.tooltip": {
-    "message": "Да се показва ли &quot;Изпращане по-късно&quot; колоната, когато разглеждате чернови папки",
+    "message": "Да се показва ли “Изпращане по-късно” колоната, когато разглеждате чернови папки",
     "description": ""
   },
   "showsendlaterheader.tooltip": {
-    "message": "Да се показва ли &quot;X-Send-Later-At&quot; заглавката, т.е. времето, когато се планира да бъде изпратена черновата, в заглавката, когато преглеждате съобщението.",
+    "message": "Да се показва ли “X-Send-Later-At” заглавката, т.е. времето, когато се планира да бъде изпратена черновата, в заглавката, когато преглеждате съобщението.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
@@ -360,7 +360,7 @@
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
-    "message": "С тази настройка е активирана командата &quot;Изпращане&quot; (натиснете бутона или въведете Ctrl-Enter) действа, също като &quot;Изпращане по-късно&quot;.",
+    "message": "С тази настройка е активирана командата “Изпращане” (натиснете бутона или въведете Ctrl-Enter) действа, също като “Изпращане по-късно”.",
     "description": ""
   },
   "contactauthor.tooltip": {
@@ -456,7 +456,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "Изберете функция, за да я редактирате или изтриете, или &quot;(създаване на нова функция)&quot; за да създадете нова функция.",
+    "message": "Изберете функция, за да я редактирате или изтриете, или “(създаване на нова функция)” за да създадете нова функция.",
     "description": ""
   },
   "createnewfunction": {
@@ -480,7 +480,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "Поставете изходния код за вашата функция тук. Вижте &quot;ReadMeFirst&quot; примерна функция за подробности относно това, което трябва да направи вашия код.",
+    "message": "Поставете изходния код за вашата функция тук. Вижте “ReadMeFirst” примерна функция за подробности относно това, което трябва да направи вашия код.",
     "description": ""
   },
   "codeplaceholder": {

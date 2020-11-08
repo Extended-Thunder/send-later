@@ -164,7 +164,7 @@
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&quot;Wyślij&quot; będzie opóźniony o",
+    "message": "“Wyślij” będzie opóźniony o",
     "description": ""
   },
   "sendDelayPrefLabel2": {
@@ -368,7 +368,7 @@
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "Gdy ta opcja jest włączona, wszystkie wiadomości wysłane poleceniem &quot;Wyślij&quot; (przyciskiem albo z użyciem Ctrl-Enter) są opóźnione o określoną liczbę minut, planując wysyłkę poprzez Send Later.",
+    "message": "Gdy ta opcja jest włączona, wszystkie wiadomości wysłane poleceniem “Wyślij” (przyciskiem albo z użyciem Ctrl-Enter) są opóźnione o określoną liczbę minut, planując wysyłkę poprzez Send Later.",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {

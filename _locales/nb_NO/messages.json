@@ -160,7 +160,7 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Send&quot; betyr &quot;Send senere&quot;",
+    "message": "“Send” betyr “Send senere”",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -272,7 +272,7 @@
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
-    "message": "f. eks.: &quot;15:00 torsdag&quot; &quot;31/12/2012 15:27&quot;",
+    "message": "f. eks.: “15:00 torsdag” “31/12/2012 15:27”",
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
@@ -364,7 +364,7 @@
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
-    "message": "Er dette alternativet blir aktivert, fungerer kommandoen &quot;Send&quot; (Enten knappen eller å trykke Ctrl-Enter) på samme måte som &quot;Send senere&quot;.",
+    "message": "Er dette alternativet blir aktivert, fungerer kommandoen “Send” (Enten knappen eller å trykke Ctrl-Enter) på samme måte som “Send senere”.",
     "description": ""
   },
   "senddelay.tooltip": {
@@ -476,7 +476,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "Velg en funksjon for å redigere eller slette, eller &quot;(create new function)&quot; for å opprette en ny funksjon.",
+    "message": "Velg en funksjon for å redigere eller slette, eller “(create new function)” for å opprette en ny funksjon.",
     "description": ""
   },
   "createnewfunction": {
@@ -500,7 +500,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "Skriv inn kildekoden til funksjonen din her. Se &quot;ReadMeFirst&quot;-utvalgsfunksjonen for detaljer om hva koden burde gjøre.",
+    "message": "Skriv inn kildekoden til funksjonen din her. Se “ReadMeFirst”-utvalgsfunksjonen for detaljer om hva koden burde gjøre.",
     "description": ""
   },
   "codeplaceholder": {
