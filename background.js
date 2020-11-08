@@ -956,37 +956,32 @@ browser.runtime.onMessage.addListener(async (message) => {
       try {
         const dispMsgHdr =
           await browser.messageDisplay.getDisplayedMessage(message.tabId);
-        const dispMsg = await browser.messages.getFull(dispMsgHdr.id);
+        const rawDispMsg = await browser.messages.getRaw(dispMsgHdr.id);
         const { preferences } = await browser.storage.local.get({ preferences: {} });
 
-        if (!dispMsg.headers['x-send-later-at']) {
+        const msgContentType = SLStatic.getHeader(rawDispMsg, "content-type");
+        const msgSendAt = SLStatic.getHeader(rawDispMsg, "x-send-later-at");
+        const msgUuid = SLStatic.getHeader(rawDispMsg, "x-send-later-uuid");
+        const msgRecur = SLStatic.getHeader(rawDispMsg, "x-send-later-recur");
+        const msgArgs = SLStatic.getHeader(rawDispMsg, "x-send-later-args");
+        const msgCancelOnReply = SLStatic.getHeader(rawDispMsg, "x-send-later-cancel-on-reply");
+
+        if (!msgSendAt) {
           response.err = "Message is not scheduled by Send Later.";
           break;
-        } else if (!dispMsg.headers['message-id']) {
-          response.err = "Message somehow has no message-id header";
-          break;
-        } else if (dispMsg.headers['x-send-later-uuid'][0] !== preferences.instanceUUID) {
+        } else if (msgUuid !== preferences.instanceUUID) {
           response.err = "Message is scheduled by a different Thunderbird instance";
           break;
+        } else if (msgContentType && (/encrypted/i).test(msgContentType)) {
+          response.err = "Message is encrypted and will not be processed by Send Later.";
+          break;
         }
 
-        const headerSendAt = new Date(dispMsg.headers['x-send-later-at'][0]);
-
-        let contentType = dispMsg.headers['content-type'];
-        if (contentType) {
-          if ((/encrypted/i).test(contentType[0])) {
-            response.err = "Message is encrypted and will not be processed by Send Later.";
-            break;
-          }
-        }
-
-        const sendAt = new Date(headerSendAt);
-        const recurSpec = (dispMsg.headers['x-send-later-recur'] || ["none"])[0];
+        const sendAt = new Date(msgSendAt);
+        const recurSpec = (msgRecur || "none");
         const recur = SLStatic.parseRecurSpec(recurSpec);
-        recur.cancelOnReply =
-          ((dispMsg.headers['x-send-later-cancel-on-reply']||[""])[0] === "true"
-        || (dispMsg.headers['x-send-later-cancel-on-reply']||[""])[0] === "yes");
-        recur.args = (dispMsg.headers['x-send-later-args']||[""])[0];
+        recur.cancelOnReply = ["true", "yes"].includes(msgCancelOnReply);
+        recur.args = msgArgs;
         response.scheduleTxt = SLStatic.formatScheduleForUI({ sendAt, recur });
       } catch (ex) {
         response.err = ex.message;
@@ -1021,17 +1016,17 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
     for (let hdr of messagelist.messages) {
       SLStatic.debug(`Received new message: ${hdr.subject}`);
 
-      const fullRecvdMsg = await browser.messages.getFull(hdr.id).catch(
-        ex => SLStatic.error(`Cannot fetch full message ${hdr.id}`,ex));
-      if (fullRecvdMsg === undefined) {
-        SLStatic.debug(`getFull returned undefined message in onNewMailReceived listener`);
+      const rawRecvdMsg = await browser.messages.getRaw(hdr.id).catch(
+        ex => SLStatic.error(`Cannot fetch raw message ${hdr.id}`,ex));
+      if (rawRecvdMsg === undefined) {
+        SLStatic.debug(`rawRecvdMsg returned undefined message in onNewMailReceived listener`);
       } else {
         // Saving a message is processed as an incoming message. If we wanted to save it
         // to drafts, we should do that now.
-        const messageId = fullRecvdMsg.headers['message-id'][0];
-        if (SendLater.watchAndMarkRead.has(messageId)) {
-          SLStatic.debug(`Marking draft message read ${messageId}`);
-          SendLater.watchAndMarkRead.delete(messageId);
+        const recvdMsgId = SLStatic.getHeader(rawRecvdMsg, "message-id");
+        if (SendLater.watchAndMarkRead.has(recvdMsgId)) {
+          SLStatic.debug(`Marking draft message read ${recvdMsgId}`);
+          SendLater.watchAndMarkRead.delete(recvdMsgId);
           browser.messages.update(hdr.id, { read: true });
           return;
         }
@@ -1045,25 +1040,24 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
           }
         }
 
-        // const recvdMsgRefs = (fullRecvdMsg.headers['references'] || []);
-        const isReplyToStr = (fullRecvdMsg.headers['in-reply-to']||[""])[0];
-        const isReplyTo = [...isReplyToStr.matchAll(/(<\S*>)/gim)].map(i=>i[1]);
-        SLStatic.debug(`Message is a reply to`,isReplyTo);
-        if (isReplyTo) {
+        const recvdMsgReplyToStr = SLStatic.getHeader(rawRecvdMsg, "in-reply-to");
+        if (recvdMsgReplyToStr) {
+          const recvdMsgReplyTo =[...recvdMsgReplyToStr.matchAll(/(<\S*>)/gim)].map(i=>i[1]);
+          SLStatic.debug(`Message is a reply to`, recvdMsgReplyTo);
+
           SendLater.forAllDrafts(async draftMsg => {
-            const fullDraftMsg = await browser.messages.getFull(draftMsg.id);
-            const cancelOnReply = (fullDraftMsg.headers['x-send-later-cancel-on-reply'] &&
-                        (fullDraftMsg.headers['x-send-later-cancel-on-reply'][0] === "true"
-                      || fullDraftMsg.headers['x-send-later-cancel-on-reply'][0] === "yes"));
+            const rawDraftMsg = await browser.messages.getRaw(draftMsg.id);
+            const draftId = SLStatic.getHeader(rawDraftMsg, "message-id");
+            const draftCancelOnReply = SLStatic.getHeader(rawDraftMsg, "x-send-later-cancel-on-reply");
+            const draftRefString = SLStatic.getHeader(rawDraftMsg, "references");
+
+            const cancelOnReply = (draftCancelOnReply &&
+              ["true", "yes"].includes(draftCancelOnReply));
             if (cancelOnReply) {
-              const draftMsgRefStr = (fullDraftMsg.headers['references'] || [""])[0];
-              const draftMsgRefs = [...draftMsgRefStr.matchAll(/(<\S*>)/gim)].map(i=>i[1]);
-              //const isReferenced = draftMsgRefs.some(item => recvdMsgRefs.includes(item));
-              const isReferenced = draftMsgRefs.some(item => isReplyTo.includes(item));
+              const draftMsgRefs = [...draftRefString.matchAll(/(<\S*>)/gim)].map(i=>i[1]);
+              const isReferenced = draftMsgRefs.some(item => recvdMsgReplyTo.includes(item));
               if (isReferenced) {
-                const msgId = fullDraftMsg.headers['message-id'][0];
-                SLStatic.info(`Received response to message ${msgId}. Deleting scheduled draft.`);
-                SLStatic.debug(fullDraftMsg);
+                SLStatic.info(`Received response to message ${draftId}. Deleting scheduled draft.`);
                 browser.messages.delete([draftMsg.id], true);
               }
             }
@@ -1075,26 +1069,28 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
 });
 
 browser.messageDisplay.onMessageDisplayed.addListener(async (tab, hdr) => {
-  browser.messageDisplayAction.disable(tab.id);
+  await browser.messageDisplayAction.disable(tab.id);
   if (hdr.folder.type === "drafts") {
     const { preferences } = await browser.storage.local.get({ preferences: {} });
-    const enableDisplayAction = () => {
-      browser.messages.getFull(hdr.id).then(fullMessage => {
-        if (fullMessage.headers['x-send-later-at']) {
-          const msgUUID = fullMessage.headers['x-send-later-uuid'][0];
-          if (msgUUID === preferences.instanceUUID) {
+    const instanceUUID = preferences.instanceUUID;
+
+    setTimeout(async () => {
+      const rawMessage = await browser.messages.getRaw(hdr.id).catch(ex =>
+        SLStatic.error("Could not get message contents",ex));
+      if (rawMessage) {
+        const msgSendAt = SLStatic.getHeader(rawMessage, "x-send-later-at");
+        const msgUuid = SLStatic.getHeader(rawMessage, "x-send-later-uuid");
+        if (msgSendAt) {
+          if (msgUuid === instanceUUID) {
             SLStatic.debug("Displayed message has send later headers.");
             browser.messageDisplayAction.enable(tab.id);
           } else {
             SLStatic.debug(`Displayed message is scheduled by a different ` +
-              `Thunderbird instance: ${msgUUID}`);
+                `Thunderbird instance: ${msgUuid}`);
           }
-        } else {
-          SLStatic.debug("This message does not have Send Later headers.");
         }
-      }).catch(ex => SLStatic.error("Could not get full message contents",ex));
-    };
-    setTimeout(enableDisplayAction, 0);
+      }
+    }, 0);
   } else {
     SLStatic.debug("This is not a Drafts folder, so Send Later will not scan it.");
   }
