@@ -164,7 +164,7 @@
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&quot;Enviar&quot; ajorna els missatges durant",
+    "message": "“Enviar” ajorna els missatges durant",
     "description": ""
   },
   "sendDelayPrefLabel2": {
@@ -368,7 +368,7 @@
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "Amb aquesta opció activada, tots els missatges enviats amb la comanda &quot;Enviar&quot; (amb el botó o prement Ctrl+Intro) s'ajornaran durant el número de minuts especificats programant-los amb Send Later.",
+    "message": "Amb aquesta opció activada, tots els missatges enviats amb la comanda “Enviar” (amb el botó o prement Ctrl+Intro) s'ajornaran durant el número de minuts especificats programant-los amb Send Later.",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {

@@ -164,7 +164,7 @@
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&quot;Senden&quot; verzögert den Nachrichtenversand um",
+    "message": "“Senden” verzögert den Nachrichtenversand um",
     "description": ""
   },
   "sendDelayPrefLabel2": {
@@ -252,7 +252,7 @@
     "description": ""
   },
   "sendlater.prompt.sendnow.tooltip": {
-    "message": "Die Nachricht sofort statt mit &quot;Später Senden&quot; senden.",
+    "message": "Die Nachricht sofort statt mit “Später Senden” senden.",
     "description": ""
   },
   "sendlater.prompt.close.accesskey": {
@@ -368,7 +368,7 @@
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "Wenn diese Option aktiviert ist, wird der Versand aller Nachrichten, die mit dem &quot;Senden&quot;-Befehl gesendet werden (mit der Schaltfläche oder mittels CRTL-Enter), als Später Senden um die angegebene Anzahl Minuten verzögert geplant.",
+    "message": "Wenn diese Option aktiviert ist, wird der Versand aller Nachrichten, die mit dem “Senden”-Befehl gesendet werden (mit der Schaltfläche oder mittels CRTL-Enter), als Später Senden um die angegebene Anzahl Minuten verzögert geplant.",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {
