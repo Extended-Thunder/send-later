@@ -364,7 +364,7 @@
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
-    "message": "Tämän valinnan ollessa käytössä &quot;Lähetä&quot; -komento (joko painike, tai näppäimet Ctrl-Enter) toimii kuten &quot;Lähetä myöhemmin&quot;.",
+    "message": "Tämän valinnan ollessa käytössä “Lähetä” -komento (joko painike, tai näppäimet Ctrl-Enter) toimii kuten “Lähetä myöhemmin”.",
     "description": ""
   },
   "senddelay.tooltip": {
