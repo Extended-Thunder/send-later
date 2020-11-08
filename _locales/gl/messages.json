@@ -160,7 +160,7 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Enviar&quot; funciona coma &quot;Enviar máis tarde&quot;",
+    "message": "“Enviar” funciona coma “Enviar máis tarde”",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -252,7 +252,7 @@
     "description": ""
   },
   "sendlater.prompt.sendnow.tooltip": {
-    "message": "Enviar a mensaxe inmediatamente, ignorando &quot;Send Later&quot;.",
+    "message": "Enviar a mensaxe inmediatamente, ignorando “Send Later”.",
     "description": ""
   },
   "sendlater.prompt.close.accesskey": {
@@ -272,7 +272,7 @@
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
-    "message": "Ex: ·Xoves 3:00pm&quot;, &quot;31/12/2012 15:27&quot;",
+    "message": "Ex: ·Xoves 3:00pm“, ”31/12/2012 15:27“",
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
@@ -344,11 +344,11 @@
     "description": ""
   },
   "showsendlatercolumn.tooltip": {
-    "message": "Establece se incluír ou non a columna &quot;Send Later&quot; ó amosar os cartafoles de borradores",
+    "message": "Establece se incluír ou non a columna “Send Later” ó amosar os cartafoles de borradores",
     "description": ""
   },
   "showsendlaterheader.tooltip": {
-    "message": "Establece se amosar o encabezado &quot;X-Send-Later-At&quot;, que marca a hora á que está programado o envío dun borrador, na cabeceira cando se ve o código dunha mensaxe.",
+    "message": "Establece se amosar o encabezado “X-Send-Later-At”, que marca a hora á que está programado o envío dun borrador, na cabeceira cando se ve o código dunha mensaxe.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
@@ -360,7 +360,7 @@
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
-    "message": "Con esta opción habilitada, o comando &quot;Enviar&quot; (tanto co botón coma premendo Ctrl+Intro) funciona igual que &quot;Enviar máis tarde&quot;.",
+    "message": "Con esta opción habilitada, o comando “Enviar” (tanto co botón coma premendo Ctrl+Intro) funciona igual que “Enviar máis tarde”.",
     "description": ""
   },
   "contactauthor.tooltip": {
@@ -456,7 +456,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "Seleccione unha función para editala ou eliminala, ou crea unha nova en &quot;(Crear nova función)”.",
+    "message": "Seleccione unha función para editala ou eliminala, ou crea unha nova en “(Crear nova función)”.",
     "description": ""
   },
   "createnewfunction": {
@@ -480,7 +480,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "Poña aquí o código fonte da súa función. Vexa a función de exemplo &quot;ReadMeFirst&quot; (léame primeiro) para máis detalles sobor do que debe facer o seu código.",
+    "message": "Poña aquí o código fonte da súa función. Vexa a función de exemplo “ReadMeFirst” (léame primeiro) para máis detalles sobor do que debe facer o seu código.",
     "description": ""
   },
   "codeplaceholder": {

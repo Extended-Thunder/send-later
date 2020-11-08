@@ -164,7 +164,7 @@
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&quot;Envoyer&quot; retarde l'envoi du message de",
+    "message": "“Envoyer” retarde l'envoi du message de",
     "description": ""
   },
   "sendDelayPrefLabel2": {
@@ -368,7 +368,7 @@
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "Quand cette option est activée, tous les messages envoyés avec la commande &quot;Envoyer&quot; (avec le bouton ou avec Ctrl+Entrée) sont retardés du nombre de minutes spécifié dans Envoyer Plus Tard.",
+    "message": "Quand cette option est activée, tous les messages envoyés avec la commande “Envoyer” (avec le bouton ou avec Ctrl+Entrée) sont retardés du nombre de minutes spécifié dans Envoyer Plus Tard.",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {

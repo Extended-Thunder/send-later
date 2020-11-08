@@ -472,7 +472,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "選擇並編輯或刪除一個函數，或&quot;(建立新函數)&quot;來建立新函數。",
+    "message": "選擇並編輯或刪除一個函數，或“(建立新函數)”來建立新函數。",
     "description": ""
   },
   "createnewfunction": {
@@ -496,7 +496,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "把您的函數原始程式碼放在這裡。請參閱&quot;ReadMeFirst&quot;樣本函數，瞭解你的程式應如何編寫。",
+    "message": "把您的函數原始程式碼放在這裡。請參閱“ReadMeFirst”樣本函數，瞭解你的程式應如何編寫。",
     "description": ""
   },
   "codeplaceholder": {

@@ -164,7 +164,7 @@
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&quot;Enviar&quot; posterga o envio por",
+    "message": "“Enviar” posterga o envio por",
     "description": ""
   },
   "sendDelayPrefLabel2": {
@@ -368,7 +368,7 @@
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "Com esta opção habilitada, todas as mensagens enviadas com o comando &quot;Enviar&quot; (com o botão ou digitando Ctrl-Enter) são atrasadas pelo número especificado de minutos do agendamento com Enviar mais tarde.",
+    "message": "Com esta opção habilitada, todas as mensagens enviadas com o comando “Enviar” (com o botão ou digitando Ctrl-Enter) são atrasadas pelo número especificado de minutos do agendamento com Enviar mais tarde.",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {

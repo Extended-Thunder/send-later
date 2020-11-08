@@ -160,7 +160,7 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "&quot;Trimite&quot; face &quot;Trimite mai târziu&quot;",
+    "message": "“Trimite” face “Trimite mai târziu”",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -348,7 +348,7 @@
     "description": ""
   },
   "showsendlatercolumn.tooltip": {
-    "message": "Dacă se afișează coloana &quot;Send Later&quot; când se vizualizează dosarele de mesaje nefinalizate",
+    "message": "Dacă se afișează coloana “Send Later” când se vizualizează dosarele de mesaje nefinalizate",
     "description": ""
   },
   "showsendlaterheader.tooltip": {
@@ -364,11 +364,11 @@
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
-    "message": "Cu această opțiune activată, comanda &quot;Trimite&quot; (fie butonul fie tastând Ctrl-Enter) acționează la fel ca &quot;Trimite mai târziu&quot;.",
+    "message": "Cu această opțiune activată, comanda “Trimite” (fie butonul fie tastând Ctrl-Enter) acționează la fel ca “Trimite mai târziu”.",
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "Când această opțiune este activată, toate mesajele trimise folosind comanda &quot;Trimite&quot; (indiferent dacă e vorba de buton sau de scurtătura Ctrl-Enter) vor fi trimise mai târziu cu numărul specificat de minute - prin programarea lor cu Send Later.",
+    "message": "Când această opțiune este activată, toate mesajele trimise folosind comanda “Trimite” (indiferent dacă e vorba de buton sau de scurtătura Ctrl-Enter) vor fi trimise mai târziu cu numărul specificat de minute - prin programarea lor cu Send Later.",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {

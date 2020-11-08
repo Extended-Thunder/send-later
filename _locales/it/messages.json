@@ -88,7 +88,7 @@
     "description": ""
   },
   "markReadPrefLabel": {
-    "message": "Imposta le bozze pianificate come &quot;lette&quot;",
+    "message": "Imposta le bozze pianificate come “lette”",
     "description": ""
   },
   "quickOptionsLabel1Label": {
@@ -164,7 +164,7 @@
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "&quot;Invia&quot; ritarderà sempre i messaggi di",
+    "message": "“Invia” ritarderà sempre i messaggi di",
     "description": ""
   },
   "sendDelayPrefLabel2": {
@@ -368,7 +368,7 @@
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "Con questa opzione attivata, tutti i messaggi inviati con il comando &quot;Invia&quot; (sia col pulsante che digitando Ctrl+Invio) sono ritardati del numero di minuti indicato, tramite la pianificazione di Invia Dopo.",
+    "message": "Con questa opzione attivata, tutti i messaggi inviati con il comando “Invia” (sia col pulsante che digitando Ctrl+Invio) sono ritardati del numero di minuti indicato, tramite la pianificazione di Invia Dopo.",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {

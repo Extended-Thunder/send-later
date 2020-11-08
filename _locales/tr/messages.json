@@ -304,7 +304,7 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "Düzenlemek veya silmek için bir işlev seçin, veya yeni bir işlev oluşturmak için &quot;(yeni işlev oluştur)&quot;u seçin.",
+    "message": "Düzenlemek veya silmek için bir işlev seçin, veya yeni bir işlev oluşturmak için “(yeni işlev oluştur)”u seçin.",
     "description": ""
   },
   "createnewfunction": {

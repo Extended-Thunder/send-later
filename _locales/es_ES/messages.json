@@ -324,7 +324,7 @@
     "description": ""
   },
   "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Monitoriza respuestas a copias previas de mensajes planificados de forma recurrente. Cancela un mensaje recurrente (planificado para su envío repetidas veces) y se elimina de la carpeta &quot;borradores&quot; cuando se recibe una respuesta al mismo.",
+    "message": "Monitoriza respuestas a copias previas de mensajes planificados de forma recurrente. Cancela un mensaje recurrente (planificado para su envío repetidas veces) y se elimina de la carpeta “borradores” cuando se recibe una respuesta al mismo.",
     "description": ""
   },
   "sendlater3header.label": {
@@ -376,7 +376,7 @@
     "description": ""
   },
   "composewindowhotkeys.caption": {
-    "message": "Habilitar atajos de teclas en la ventana de &quot;Redactar mensaje&quot; para predeterminados",
+    "message": "Habilitar atajos de teclas en la ventana de “Redactar mensaje” para predeterminados",
     "description": ""
   },
   "contactauthor.tooltip": {
