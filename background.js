@@ -6,6 +6,32 @@ const SendLater = {
 
     watchAndMarkRead: new Set(),
 
+    async getRaw(msgId, nTries) {
+      const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
+      let rawMsg = null;
+      let iteration = 0;
+      while (true) {
+        iteration += 1;
+
+        rawMsg = await browser.messages.getRaw(msgId).catch(err => {
+          SLStatic.warn(`Unable to fetch message ${msgId}.`, err);
+        });
+
+        if (rawMsg) {
+          console.log(`Got message ${msgId} on attempt ${iteration}`);
+          return rawMsg;
+        } else {
+          if (iteration >= nTries) {
+            console.error("Giving up on message. Too many retries.",msgId);
+            return null;
+          } else {
+            console.warn(`getRaw failed on attempt ${iteration} for message ${msgId}. Will try again.`);
+            await sleep(2000+(Math.random()*6000));
+          }
+        }
+      }
+    },
+
     async propagatePreferences(storage, initializing) {
       // This is now handled by a storage.onChanged listener,
       // so no need to call it manually. Leaving it here as
@@ -155,7 +181,11 @@ const SendLater = {
       }
 
       // Determines whether or not a particular draft message is due to be sent
-      const rawContent = await browser.messages.getRaw(msgHdr.id);
+      const rawContent = await SendLater.getRaw(msgHdr.id, 5);
+      if (rawContent === null) {
+        SLStatic.warn("possiblySendMessage failed. Unable to get raw message contents.",msgHdr);
+        return;
+      }
 
       const msgSendAt = SLStatic.getHeader(rawContent, 'x-send-later-at');
       const msgUUID = SLStatic.getHeader(rawContent, 'x-send-later-uuid');
@@ -479,7 +509,11 @@ const SendLater = {
       const { preferences } = await browser.storage.local.get({ preferences: {} });
 
       let allSchedules = await SendLater.forAllDrafts(async (msg) => {
-        const rawMessage = await browser.messages.getRaw(msg.id);
+        const rawMessage = await SendLater.getRaw(msg.id, 5);
+        if (rawMessage === null) {
+          SLStatic.warn("getActiveSchedules.forAllDrafts failed. Unable to get raw message contents.",msg);
+          return;
+        }
         const msgSendAt = SLStatic.getHeader(rawMessage, "x-send-later-at");
         const msgUUID = SLStatic.getHeader(rawMessage, "x-send-later-uuid");
         if (msgSendAt === undefined) {
@@ -635,7 +669,11 @@ const SendLater = {
        * have been following the beta releases.
        */
       let claimed = await SendLater.forAllDrafts(async (msg) => {
-        const rawContent = await browser.messages.getRaw(msg.id);
+        const rawContent = await SendLater.getRaw(msg.id, 5);
+        if (rawContent === null) {
+          SLStatic.warn("claimDrafts.forAllDrafts failed. Unable to get raw message contents.",msg);
+          return;
+        }
         const sendAt = SLStatic.getHeader(rawContent, "x-send-later-at");
         const uuid = SLStatic.getHeader(rawContent, 'x-send-later-uuid');
 
@@ -956,7 +994,12 @@ browser.runtime.onMessage.addListener(async (message) => {
       try {
         const dispMsgHdr =
           await browser.messageDisplay.getDisplayedMessage(message.tabId);
-        const rawDispMsg = await browser.messages.getRaw(dispMsgHdr.id);
+        const rawDispMsg = await SendLater.getRaw(dispMsgHdr.id, 5);
+        if (rawDispMsg === null) {
+          SLStatic.warn("getScheduleText failed. Unable to get raw message contents.",dispMsgHdr);
+          return;
+        }
+
         const { preferences } = await browser.storage.local.get({ preferences: {} });
 
         const msgContentType = SLStatic.getHeader(rawDispMsg, "content-type");
@@ -1002,8 +1045,8 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
   // First, we want to skip onNewMailReceived events triggered locally during
   // regular send, move, and copy operations. We never touch archives folders anyway,
   // so we can immediately ignore this if it's an operation on an archives folder.
-  if (folder.type === "archives") {
-    SLStatic.debug(`Skipping onNewMailReceived for outgoing message(s)`,messagelist);
+  if (["drafts", "sent", "trash", "archives", "junk", "outbox"].includes(folder.type)) {
+    SLStatic.debug(`Skipping onNewMailReceived for folder type ${folder.type}`);
     return;
   }
 
@@ -1016,10 +1059,10 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
     for (let hdr of messagelist.messages) {
       SLStatic.debug(`Received new message: ${hdr.subject}`);
 
-      const rawRecvdMsg = await browser.messages.getRaw(hdr.id).catch(
-        ex => SLStatic.error(`Cannot fetch raw message ${hdr.id}`,ex));
-      if (rawRecvdMsg === undefined) {
-        SLStatic.debug(`rawRecvdMsg returned undefined message in onNewMailReceived listener`);
+      const rawRecvdMsg = await SendLater.getRaw(hdr.id, 5);
+      if (rawRecvdMsg === null) {
+        SLStatic.warn("onNewMailReceived.scanMessage failed. Unable to get raw message contents.",hdr);
+        return;
       } else {
         // Saving a message is processed as an incoming message. If we wanted to save it
         // to drafts, we should do that now.
@@ -1046,7 +1089,12 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
           SLStatic.debug(`Message is a reply to`, recvdMsgReplyTo);
 
           SendLater.forAllDrafts(async draftMsg => {
-            const rawDraftMsg = await browser.messages.getRaw(draftMsg.id);
+            const rawDraftMsg = await SendLater.getRaw(draftMsg.id, 5);
+            if (rawDraftMsg === null) {
+              SLStatic.warn("onNewMailReceived.scanMessage.forAllDrafts failed. Unable to get raw message contents.",draftMsg);
+              return;
+            }
+
             const draftId = SLStatic.getHeader(rawDraftMsg, "message-id");
             const draftCancelOnReply = SLStatic.getHeader(rawDraftMsg, "x-send-later-cancel-on-reply");
             const draftRefString = SLStatic.getHeader(rawDraftMsg, "references");
@@ -1074,23 +1122,23 @@ browser.messageDisplay.onMessageDisplayed.addListener(async (tab, hdr) => {
     const { preferences } = await browser.storage.local.get({ preferences: {} });
     const instanceUUID = preferences.instanceUUID;
 
-    setTimeout(async () => {
-      const rawMessage = await browser.messages.getRaw(hdr.id).catch(ex =>
-        SLStatic.error("Could not get message contents",ex));
-      if (rawMessage) {
-        const msgSendAt = SLStatic.getHeader(rawMessage, "x-send-later-at");
-        const msgUuid = SLStatic.getHeader(rawMessage, "x-send-later-uuid");
-        if (msgSendAt) {
-          if (msgUuid === instanceUUID) {
-            SLStatic.debug("Displayed message has send later headers.");
-            browser.messageDisplayAction.enable(tab.id);
-          } else {
-            SLStatic.debug(`Displayed message is scheduled by a different ` +
-                `Thunderbird instance: ${msgUuid}`);
-          }
+    let rawMessage = await SendLater.getRaw(hdr.id, 5);
+    if (rawMessage === null) {
+      SLStatic.warn("onMessageDisplayed failed. Unable to get raw message contents.",hdr.id);
+      return;
+    } else {
+      const msgSendAt = SLStatic.getHeader(rawMessage, "x-send-later-at");
+      const msgUuid = SLStatic.getHeader(rawMessage, "x-send-later-uuid");
+      if (msgSendAt) {
+        if (msgUuid === instanceUUID) {
+          SLStatic.debug("Displayed message has send later headers.");
+          browser.messageDisplayAction.enable(tab.id);
+        } else {
+          SLStatic.debug(`Displayed message is scheduled by a different ` +
+              `Thunderbird instance: ${msgUuid}`);
         }
       }
-    }, 0);
+    }
   } else {
     SLStatic.debug("This is not a Drafts folder, so Send Later will not scan it.");
   }
