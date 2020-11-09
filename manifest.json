@@ -1,12 +1,20 @@
 {
   "manifest_version": 2,
+
   "name": "__MSG_extensionName__",
+
   "description": "__MSG_extensionDescription__",
+
   "version": "8.1.0",
+
   "homepage_url": "https://github.com/Extended-Thunder/send-later/",
+
   "icons": {
     "48": "ui/icons/icon.png"
   },
+
+  "default_locale": "en",
+
   "applications": {
     "gecko": {
       "id": "sendlater3@kamens.us",
@@ -33,9 +41,13 @@
     ]
   },
 
-  "user_scripts": {
-    "api_script": "experiments/DraftsColumn.js"
-  },
+  "web_accessible_resources": [
+    "experiments/sl3u.js",
+    "experiments/headerView.js",
+    "utils/moment.min.js",
+    "utils/static.js",
+    "utils/defaultPrefs.json"
+  ],
 
   "options_ui": {
     "page": "/ui/options.html",
@@ -57,8 +69,6 @@
     "default_popup": "/ui/msgDisplayPopup.html",
     "default_title": "__MSG_extensionName__"
   },
-
-  "default_locale": "en",
 
   "experiment_apis": {
     "SL3U": {
