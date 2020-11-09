@@ -915,7 +915,9 @@ browser.runtime.onMessageExternal.addListener(
           }
           old_prefs[prop] = new_prefs[prop];
         }
-        browser.storage.local.set(storage);
+        browser.storage.local.set(storage).then((result) => {
+          sendResponse(old_prefs)
+        });
       });
       return true;
     }
