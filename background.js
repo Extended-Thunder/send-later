@@ -1045,7 +1045,7 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
   // First, we want to skip onNewMailReceived events triggered locally during
   // regular send, move, and copy operations. We never touch archives folders anyway,
   // so we can immediately ignore this if it's an operation on an archives folder.
-  if (["drafts", "sent", "trash", "archives", "junk", "outbox"].includes(folder.type)) {
+  if (["sent", "trash", "archives", "junk", "outbox"].includes(folder.type)) {
     SLStatic.debug(`Skipping onNewMailReceived for folder type ${folder.type}`);
     return;
   }
