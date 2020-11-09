@@ -21,6 +21,9 @@
       "strict_min_version": "78.2.0"
     }
   },
+
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self';",
+
   "permissions": [
     "storage",
     "accountsRead",
