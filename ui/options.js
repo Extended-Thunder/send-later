@@ -6,52 +6,61 @@ const SLOptions = {
 
   checkboxGroups: {},
 
-  async applyPrefsToUI() {
-    // Saves the UI preferences to preference storage.
-    await browser.storage.local.get({ufuncs:{}}).then( storage => {
-      Object.keys(storage.ufuncs).forEach(funcName => {
-        SLOptions.addFuncOption(funcName, false);
-      })
-    });
-    browser.storage.local.get("preferences").then(storage => {
-      const prefs = storage.preferences || {};
-      for (const id of SLStatic.prefInputIds) {
-        (async (e, v) => {
-          if (!e) {
-            SLStatic.error(id, e, v);
-          } else {
-            if (e.tagName === "INPUT") {
-                switch (e.type) {
-                    case "checkbox":
-                      e.checked = (v !== undefined) && v;
-                      break;
-                    case "text":
-                    case "number":
-                      e.value = (v !== undefined) ? v : "";
-                      break;
-                    case "radio":
-                      e.checked = (v !== undefined) && (e.value === v);
-                      break;
-                    default:
-                      SLStatic.error("SendLater: Unable to populate input element of type "+e.type);
-                }
-            } else if (e.tagName === "SELECT") {
-              console.debug(`Applying stored default ${e.id}: ${v}`);
-              const matchingChildren = [...e.childNodes].filter(opt =>
-                  opt.tagName === "OPTION" && opt.value.toLowerCase() === v.toLowerCase()
-                );
-              if (matchingChildren.length === 1) {
-                e.value = matchingChildren[0].value;
-              } else if (matchingChildren.length > 1) {
-                console.log("Multiple options match",v,e);
-              } else {
-                console.log("Could not find value in element ",v,e);
-              }
-            }
+  async applyValue(id, value) {
+    const element = document.getElementById(id);
+    if (!element) {
+      SLStatic.error(id, element, value);
+    } else {
+      if (element.tagName === "INPUT") {
+          switch (element.type) {
+              case "checkbox":
+                element.checked = (value !== undefined) && value;
+                break;
+              case "text":
+              case "number":
+                element.value = (value !== undefined) ? value : "";
+                break;
+              case "radio":
+                element.checked = (value !== undefined) && (element.value === value);
+                break;
+              default:
+                SLStatic.error("SendLater: Unable to populate input element of type "+element.type);
           }
-        })(document.getElementById(id), prefs[id]);
+      } else if (element.tagName === "SELECT") {
+        SLStatic.debug(`Applying stored default ${element.id}: ${value}`);
+        const matchingChildren = [...element.childNodes].filter(opt =>
+            opt.tagName === "OPTION" && opt.value.toLowerCase() === value.toLowerCase()
+          );
+        if (matchingChildren.length === 1) {
+          element.value = matchingChildren[0].value;
+        } else if (matchingChildren.length > 1) {
+          console.log("[SendLater]: Multiple options match",value,element);
+        } else {
+          console.log("[SendLater]: Could not find value in element ",value,element);
+        }
       }
-    });
+    }
+  },
+
+  async applyPrefsToUI() {
+    const ufuncPromise =
+      browser.storage.local.get({ufuncs:{}}).then(({ ufuncs }) => {
+        Object.keys(ufuncs).forEach(funcName => {
+          console.debug(`Adding function element ${funcName}`);
+          SLOptions.addFuncOption(funcName, false);
+        })
+      });
+
+    const prefPromise =
+      browser.storage.local.get({ preferences: {} }).then(({ preferences }) => {
+        for (let id of SLStatic.prefInputIds) {
+          console.debug(`Setting ${id}: ${preferences[id]}`);
+          SLOptions.applyValue(
+            id, preferences[id]
+          ).catch(SLStatic.error);
+        }
+      });
+    return Promise.all([ufuncPromise, prefPromise]);
   },
 
   async saveUserFunction(name, body, help) {
@@ -71,7 +80,7 @@ const SLOptions = {
     }
   },
 
-  async addFuncOption(funcName, active) {
+  addFuncOption(funcName, active) {
     if (!document.getElementById(`ufunc-${funcName}`)) {
       const newOpt = document.createElement('option');
       newOpt.id = `ufunc-${funcName}`;
@@ -99,7 +108,7 @@ const SLOptions = {
     }
   },
 
-  async showCheckMark(element, color) {
+  showCheckMark(element, color) {
       // Appends a green checkmark as element's last sibling. Disappears after a
       // timeout (1.5 sec). If already displayed, then restart timeout.
       const checkmark = document.createElement("span");
@@ -212,7 +221,7 @@ const SLOptions = {
     });
   },
 
-  async checkBoxSetListeners(ids) {
+  checkBoxSetListeners(ids) {
     ids.forEach(id1 => {
       SLOptions.checkboxGroups[id1] = [];
       ids.forEach(async id2 => {
@@ -232,7 +241,7 @@ const SLOptions = {
     SLOptions.checkBoxSetListeners(["sendDoesSL","sendDoesDelay"]);
 
     document.getElementById("functionEditorTitle").addEventListener("mousedown",
-      async (evt) => {
+      (evt) => {
         const funcEditorDiv = document.getElementById("FunctionEditorDiv");
         const visIndicator = document.getElementById("functionEditorVisibleIndicator");
         if (funcEditorDiv.style.display === "none") {
@@ -322,11 +331,11 @@ const SLOptions = {
     });
 
     document.getElementById("advancedEditorTitle").addEventListener("mousedown",
-      (() => {
+      (async () => {
         const advEditorDiv = document.getElementById("advancedConfigEditor");
         const visIndicator = document.getElementById("advancedEditorVisibleIndicator");
         if (advEditorDiv.style.display === "none") {
-          resetAdvConfigEditor();
+          await resetAdvConfigEditor();
           advEditorDiv.style.display = "block";
           visIndicator.textContent = "-";
           setTimeout(() =>
@@ -340,130 +349,135 @@ const SLOptions = {
         }
       }));
 
-    document.getElementById("advancedEditReset").addEventListener("click", async evt => {
-      await resetAdvConfigEditor();
-      SLOptions.showCheckMark(evt.target, "green");
-    });
-
-    document.getElementById("advancedEditSave").addEventListener("click", async evt => {
-      const prefContent = document.getElementById("advancedConfigText").value;
-      let prefs;
-      try {
-        prefs = JSON.parse(prefContent);
-      } catch (err) {
-        SLStatic.warn(`JSON parsing failed with error`,err);
-        browser.runtime.sendMessage({
-          action: "alert",
-          title: "Warning",
-          text: `Preferences were not saved. JSON parsing failed with message:\n\n${err}`
-        });
-      }
-      if (prefs) {
-        await browser.storage.local.set({ preferences: prefs });
-        await SLOptions.applyPrefsToUI();
+    document.getElementById("advancedEditReset").addEventListener("click",
+      (async evt => {
+        await resetAdvConfigEditor();
         SLOptions.showCheckMark(evt.target, "green");
-      }
-    });
+      }));
+
+    document.getElementById("advancedEditSave").addEventListener("click",
+      (async evt => {
+        const prefContent = document.getElementById("advancedConfigText").value;
+        let prefs;
+        try {
+          prefs = JSON.parse(prefContent);
+        } catch (err) {
+          SLStatic.warn(`JSON parsing failed with error`,err);
+          browser.runtime.sendMessage({
+            action: "alert",
+            title: "Warning",
+            text: `Preferences were not saved. JSON parsing failed with message:\n\n${err}`
+          });
+        }
+        if (prefs) {
+          await browser.storage.local.set({ preferences: prefs });
+          await SLOptions.applyPrefsToUI();
+          SLOptions.showCheckMark(evt.target, "green");
+        }
+      }));
 
     // Verify with user before deleting a scheduling function
-    const doubleCheckDeleteListener = SLOptions.doubleCheckButtonClick(evt => {
-      const funcNameSelect = document.getElementById("functionNames");
-      const funcName = funcNameSelect.value;
-      funcNameSelect.value = "ReadMeFirst";
-      resetFunctionInput();
-      document.getElementById(`ufunc-${funcName}`).remove();
-      for (let i=1; i<4; i++) {
-        document.getElementById(`ufunc-shortcut-${i}-${funcName}`).remove();
-      }
-      browser.storage.local.get({ ufuncs: {} }).then(({ ufuncs }) => {
-        delete ufuncs[funcName];
-        browser.storage.local.set({ ufuncs });
-      }).catch(SLStatic.error);
-    });
-    document.getElementById("funcEditDelete").addEventListener("click", evt => {
-      const funcNameSelect = document.getElementById("functionNames");
-      const funcName = funcNameSelect.value;
-      if ([...SLOptions.builtinFuncs, "newFunctionName"].includes(funcName)) {
-        SLStatic.error("Trying to delete builtin user func.");
-        return;
-      } else {
-        doubleCheckDeleteListener(evt);
-      }
-    });
+    const doubleCheckDeleteListener = SLOptions.doubleCheckButtonClick(
+      (evt => {
+        const funcNameSelect = document.getElementById("functionNames");
+        const funcName = funcNameSelect.value;
+        funcNameSelect.value = "ReadMeFirst";
+        resetFunctionInput();
+        document.getElementById(`ufunc-${funcName}`).remove();
+        for (let i=1; i<4; i++) {
+          document.getElementById(`ufunc-shortcut-${i}-${funcName}`).remove();
+        }
+        browser.storage.local.get({ ufuncs: {} }).then(({ ufuncs }) => {
+          delete ufuncs[funcName];
+          browser.storage.local.set({ ufuncs });
+        }).catch(SLStatic.error);
+      }));
+    document.getElementById("funcEditDelete").addEventListener("click",
+      (evt => {
+        const funcNameSelect = document.getElementById("functionNames");
+        const funcName = funcNameSelect.value;
+        if ([...SLOptions.builtinFuncs, "newFunctionName"].includes(funcName)) {
+          SLStatic.error("Trying to delete builtin user func.");
+          return;
+        } else {
+          doubleCheckDeleteListener(evt);
+        }
+      }));
 
     document.getElementById("funcTestRun").addEventListener("click",
-      async evt => {
+      (() => {
         const funcName = document.getElementById("functionName").value;
         const funcBody = document.getElementById("functionEditorContent").value;
         const funcTestDate = document.getElementById("functionTestDate").value;
         const funcTestTime = document.getElementById("functionTestTime").value;
         const testDateTime = SLStatic.parseDateTime(funcTestDate, funcTestTime);
         const funcTestArgs = document.getElementById("functionTestArgs").value;
-        const message = {
-          action: "evaluateUfuncByContents",
-          name: funcName,
-          body: funcBody,
-          time: testDateTime.getTime(),
-          argStr: funcTestArgs
-        };
-        browser.runtime.sendMessage(message).then(response => {
-          const outputCell = document.getElementById("functionTestOutput");
-          const mkSpan = function(text, bold) {
-            const e = document.createElement("SPAN");
-            e.style.fontWeight = bold ? 'bold' : 'normal';
-            e.textContent = text;
-            return e;
-          };
-          const mkBlock = function(...contents) {
-            const div = document.createElement("DIV");
-            div.style.display = 'block';
-            contents.forEach(e => {
-              div.appendChild(e);
-            });
-            return div;
-          };
 
-          outputCell.textContent = "";
-          if (response.err) {
-            outputCell.appendChild(mkSpan('Error:',true));
-            outputCell.appendChild(mkSpan(response.err));
-          } else {
-            outputCell.appendChild(mkBlock(mkSpan("next:",true), mkSpan(response.next)));
-            outputCell.appendChild(mkBlock(mkSpan("nextspec:",true), mkSpan(response.nextspec)));
-            outputCell.appendChild(mkBlock(mkSpan("nextargs:",true), mkSpan(response.nextargs)));
-          }
-        });
-      });
+        const [next, nextspec, nextargs, error] = SLStatic.evaluateUfunc(
+            funcName,
+            funcBody,
+            testDateTime,
+            SLStatic.parseArgs(funcTestArgs)
+          );
+        SLStatic.debug("User function returned:", {next, nextspec, nextargs, error});
+        const outputCell = document.getElementById("functionTestOutput");
+        const mkSpan = function(text, bold) {
+          const e = document.createElement("SPAN");
+          e.style.fontWeight = bold ? 'bold' : 'normal';
+          e.textContent = text;
+          return e;
+        };
+        const mkBlock = function(...contents) {
+          const div = document.createElement("DIV");
+          div.style.display = 'block';
+          contents.forEach(e => {
+            div.appendChild(e);
+          });
+          return div;
+        };
+
+        outputCell.textContent = "";
+        if (error) {
+          outputCell.appendChild(mkSpan('Error:',true));
+          outputCell.appendChild(mkSpan(error));
+        } else {
+          const nextStr = SLStatic.parseableDateTimeFormat(next);
+          outputCell.appendChild(mkBlock(mkSpan("next:",true), mkSpan(nextStr)));
+          outputCell.appendChild(mkBlock(mkSpan("nextspec:",true), mkSpan(nextspec || "none")));
+          outputCell.appendChild(mkBlock(mkSpan("nextargs:",true), mkSpan(nextargs || "")));
+        }
+        // });
+      }));
 
     // And attach a listener to the "Reset Preferences" button
-    const clearPrefsListener = SLOptions.doubleCheckButtonClick(evt => {
-      const defPrefs = "/utils/defaultPrefs.json";
-      fetch(defPrefs).then(ptxt => ptxt.json()).then(defaults => {
-          const prefs = Object.keys(defaults).reduce( (result,key) => {
-              result[key]=defaults[key][1];
-              return result;
-          }, {});
-          browser.storage.local.set({ preferences: prefs }).then(() => {
-            SLOptions.applyPrefsToUI();
-          });
-      });
-    });
+    const clearPrefsListener = SLOptions.doubleCheckButtonClick(
+      (() => {
+        const defPrefs = "/utils/defaultPrefs.json";
+        fetch(defPrefs).then(ptxt => ptxt.json()).then(defaults => {
+            const prefs = Object.keys(defaults).reduce( (result,key) => {
+                result[key]=defaults[key][1];
+                return result;
+            }, {});
+            browser.storage.local.set({ preferences: prefs }).then(() => {
+              SLOptions.applyPrefsToUI();
+            });
+        });
+      }));
     const clearPrefsBtn = document.getElementById("clearPrefs");
     clearPrefsBtn.addEventListener("click", clearPrefsListener);
   },
-  async onLoad() {
-    (() => {
-      const funcTestDate = document.getElementById("functionTestDate");
-      const funcTestTime = document.getElementById("functionTestTime");
-      const fmtDate = new Intl.DateTimeFormat('en-CA',
-        { year: "numeric", month: "2-digit", day: "2-digit" });
-      const fmtTime = new Intl.DateTimeFormat('default',
-        { hour: "2-digit", minute: "2-digit", hour12: false });
 
-      const soon = new Date(Date.now() + 60 * 1000);
-      funcTestDate.value = fmtDate.format(soon);
-      funcTestTime.value = fmtTime.format(soon);
-    })();
+  onLoad() {
+    const funcTestDate = document.getElementById("functionTestDate");
+    const funcTestTime = document.getElementById("functionTestTime");
+    const fmtDate = new Intl.DateTimeFormat('en-CA',
+      { year: "numeric", month: "2-digit", day: "2-digit" });
+    const fmtTime = new Intl.DateTimeFormat('default',
+      { hour: "2-digit", minute: "2-digit", hour12: false });
+
+    const soon = new Date(Date.now() + 60 * 1000);
+    funcTestDate.value = fmtDate.format(soon);
+    funcTestTime.value = fmtTime.format(soon);
 
     for (let id of ["functionEditorContent","functionHelpText","functionName",
                     "funcEditSave","funcEditReset","funcEditDelete"]) {

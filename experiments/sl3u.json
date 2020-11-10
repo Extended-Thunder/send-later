@@ -39,29 +39,6 @@
         ]
       },
       {
-        "name":"call",
-        "type":"function",
-        "async":true,
-        "parameters":[
-          {
-            "name":"name",
-            "type":"string"
-          },
-          {
-            "name":"body",
-            "type":"string"
-          },
-          {
-            "name":"prev",
-            "type":"integer"
-          },
-          {
-            "name":"argstring",
-            "type":"string"
-          }
-        ]
-      },
-      {
         "name": "generateUUID",
         "type": "function",
         "async": true,
