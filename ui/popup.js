@@ -97,20 +97,21 @@ const SLPopup = {
       return { err: (browser.i18n.getMessage("InvalidArgsTitle") + ": " +
                      browser.i18n.getMessage("InvalidArgsBody")) };
     }
-    const message = {
-      action: "evaluateUfuncByName",
-      name: funcName,
-      time: prev.getTime(),
-      argStr: argStr
-    };
-    const response = await browser.runtime.sendMessage(message);
-    if (response.err) {
-      throw new Error(response.err);
+
+    const { ufuncs } = await browser.storage.local.get({ ufuncs: {} });
+    const body = ufuncs[funcName].body;
+
+    const [sendAt, nextspec, nextargs, error] =
+      SLStatic.evaluateUfunc(funcName, body, prev, SLStatic.parseArgs(argStr));
+    SLStatic.debug("User function returned:",
+                    {sendAt, nextspec, nextargs, error});
+
+    if (error) {
+      throw new Error(error);
     } else {
-      const sendAt = new Date(response.next);
-      let recur = SLStatic.parseRecurSpec(response.nextspec) || {type:"none"};
+      let recur = SLStatic.parseRecurSpec(nextspec || "none") || { type: "none" };
       if (recur.type !== "none") {
-        recur.args = response.nextargs;
+        recur.args = nextargs || "";
       }
       const schedule = { sendAt, recur };
       SLStatic.debug("Popup.js received ufunc response: ",schedule);

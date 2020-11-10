@@ -748,7 +748,6 @@ const SendLater = {
         });
 
       SendLater.prefCache = preferences;
-      SLStatic.ufuncs = ufuncs;
       const prefString = JSON.stringify(preferences);
       await browser.SL3U.notifyStorageLocal(prefString, true);
 
@@ -764,7 +763,6 @@ const SendLater = {
               ufuncs: {}
             });
           SendLater.prefCache = preferences;
-          SLStatic.ufuncs = ufuncs;
           const prefString = JSON.stringify(preferences);
           await browser.SL3U.notifyStorageLocal(prefString, false);
         }
@@ -955,40 +953,6 @@ browser.runtime.onMessage.addListener(async (message) => {
         SendLater.scheduleSendLater(message.tabId, options);
       } else {
         SLStatic.info("User cancelled send via presendcheck.");
-      }
-      break;
-    }
-    case "evaluateUfuncByContents":
-    case "evaluateUfuncByName": {
-      const { name, time, argStr } = message;
-      SLStatic.debug(`Evaluating function ${name}`);
-
-      let body;
-      if (message.action === "evaluateUfuncByName") {
-        const { ufuncs } = await browser.storage.local.get({ ufuncs: {} });
-        const func = ufuncs[name];
-        body = func.body;
-      } else if (message.action === "evaluateUfuncByContents") {
-        body = message.body;
-      } else {
-        // How did we get here?
-        break;
-      }
-
-      const prev = (new Date(time)).getTime();
-      const [next, nextspec, nextargs, error] =
-        await browser.SL3U.call(name, body, prev, argStr).catch(ex => {
-          SLStatic.error(`User function ${name} failed with exception`,ex);
-          return [undefined, undefined, undefined, ex.message];
-        });
-      SLStatic.debug("User function returned:",
-                      {next, nextspec, nextargs, error});
-      if (error) {
-        response.err = error;
-      } else {
-        response.next = SLStatic.parseableDateTimeFormat(next);
-        response.nextspec = nextspec || "none";
-        response.nextargs = nextargs || "";
       }
       break;
     }
