@@ -603,7 +603,7 @@ var SLStatic = {
     return recur;
   },
 
-  nextRecurFunction: async function(prev, recurSpec, recur, args, saveFunction) {
+  nextRecurFunction: async function(prev, recurSpec, recur, args) {
     if (!recur.function) {
       throw new Error(`Invalid recurrence specification '${recurSpec}': ` +
                       "No function defined");
@@ -625,9 +625,7 @@ var SLStatic = {
       return null;
     }
 
-    if (!nextRecur.nextspec && saveFunction) {
-      nextRecur.nextspec = `function "${funcName}" finished`;
-    } else if (!nextRecur.nextspec && (recur.between || recur.days)) {
+    if (!nextRecur.nextspec && (recur.between || recur.days)) {
       nextRecur.nextspec = "none";
     }
 

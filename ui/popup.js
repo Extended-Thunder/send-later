@@ -363,12 +363,10 @@ const SLPopup = {
         });
       }
 
-      const soon = new Date(Date.now()+ (5*60*1000)); // 5 minutes from now default
-      dom["send-date"].value = moment(soon).format('YYYY-MM-DD');
-      dom["send-time"].value = moment(soon).format('HH:mm');
-      const localeData = moment.localeData();
-      const fmt = localeData.longDateFormat('LLL');
-      dom["send-datetime"].value = moment(soon).format(fmt);
+      const soon = new Sugar.Date(Date.now()+ (5*60*1000)); // 5 minutes from now default
+      dom["send-date"].value = soon.format('%Y-%m-%d');
+      dom["send-time"].value = soon.format('%H:%M');
+      dom["send-datetime"].value = soon.long();
 
       SLStatic.stateSetter(dom["sendon"].checked)(dom["onlyOnDiv"]);
       SLStatic.stateSetter(dom["sendbetween"].checked)(dom["betweenDiv"]);
@@ -404,15 +402,15 @@ const SLPopup = {
       if (evt.target.id === "send-date" || evt.target.id === "send-time") {
         if (dom["send-date"].value && dom["send-time"].value) {
           const sendAt = SLStatic.parseDateTime(dom["send-date"].value, dom["send-time"].value);
-          const localeData = moment.localeData();
-          const fmt = localeData.longDateFormat('LLL');
-          dom["send-datetime"].value = moment(sendAt).format(fmt);
+          dom["send-datetime"].value = (new Sugar.Date(sendAt)).long();
         }
       } else if (evt.target.id === "send-datetime") {
-        const sendAt = moment(dom["send-datetime"].value);
+        const localeCode = browser.i18n.getUILanguage();
+        const sendAtDate = Sugar.Date.create(dom["send-datetime"].value, localeCode);
+        const sendAt = new Sugar.Date(sendAtDate);
         if (sendAt) {
-          dom["send-date"].value = sendAt.format('YYYY-MM-DD');
-          dom["send-time"].value = sendAt.format('HH:mm');
+          dom["send-date"].value = sendAt.format('%Y-%m-%d');
+          dom["send-time"].value = sendAt.format('%H:%M');
         }
       }
     });
@@ -546,6 +544,8 @@ const SLPopup = {
     });
 
     dom["sendNow"].addEventListener("click", SLPopup.doSendNow);
+
+    setTimeout(() => document.getElementById("send-datetime").select(), 100);
   },
 
   async init() {
