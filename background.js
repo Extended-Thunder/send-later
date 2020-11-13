@@ -243,7 +243,7 @@ const SendLater = {
       }
 
       const recur = SLStatic.parseRecurSpec(msgRecurSpec);
-      const args = SLStatic.parseArgs(msgRecurArgs);
+      const args = msgRecurArgs ? SLStatic.parseArgs(msgRecurArgs) : null;
 
       if (preferences.enforceTimeRestrictions) {
         const now = Date.now();

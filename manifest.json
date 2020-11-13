@@ -48,6 +48,7 @@
     "experiments/sl3u.js",
     "experiments/headerView.js",
     "utils/moment.min.js",
+    "utils/sugar-custom.js",
     "utils/static.js",
     "utils/defaultPrefs.json"
   ],
