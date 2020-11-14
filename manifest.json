@@ -38,18 +38,18 @@
 
   "background": {
     "scripts": [
-      "utils/sugar-custom.js",
+      "/utils/sugar-custom.js",
       "/utils/static.js",
       "/background.js"
     ]
   },
 
   "web_accessible_resources": [
-    "utils/sugar-custom.js",
-    "utils/static.js",
-    "utils/defaultPrefs.json",
-    "experiments/sl3u.js",
-    "experiments/headerView.js"
+    "/utils/sugar-custom.js",
+    "/utils/static.js",
+    "/utils/defaultPrefs.json",
+    "/experiments/sl3u.js",
+    "/experiments/headerView.js"
   ],
 
   "options_ui": {
