@@ -233,7 +233,80 @@ const SLPopup = {
     return schedule;
   },
 
-  async setScheduleButton(schedule) {
+  updateRecurrenceText() {
+    const dom = SLPopup.objectifyDOMElements();
+
+    const specs = ["minutely","daily","weekly","monthly","yearly","function"];
+    const recurrence = specs.find(s => dom[s].checked);
+    const specDiv = dom['recurrence-spec'];
+
+    const timeArgs = dom['recur-time-args-div'];
+    const funcArgs = dom['recur-function-args-div'];
+    const funcHelpToggler = dom['showHideFunctionHelp'];
+    const funcHelpDiv = dom['funcHelpDiv'];
+
+    if (recurrence) {
+      const sendAt = SLStatic.parseDateTime(dom["send-date"].value,
+                                            dom["send-time"].value);
+
+      // Toggle vis of time recurrence options and function recurrence options
+      timeArgs.style.display = (recurrence === "function") ? "none" : "block";
+      funcArgs.style.display = (recurrence === "function") ? "block" : "none";
+      if (recurrence === "function") {
+        funcHelpToggler.style.display = "inline-block";
+      } else {
+        funcHelpDiv.style.display = "none";
+        funcHelpToggler.style.display = "none";
+      }
+
+      if (recurrence !== "function") {
+        // Setup the plural text (e.g. every [] minutes)
+        let pluralTxt = browser.i18n.getMessage(`plural_${recurrence}`);
+        if (recurrence === "yearly") {
+          // ... , on [RECUR DATE]
+          const dateTxt = (new Intl.DateTimeFormat('default', {month: "long",
+              day: "numeric", hour: "numeric", minute: "numeric"})).format(sendAt);
+          pluralTxt += ", " + browser.i18n.getMessage("only_on_days", dateTxt);
+        } else if (recurrence === "monthly") {
+          // ... , on [RECUR DAY]
+          const dayOrd = (new Sugar.Date(sendAt)).format("{do}");
+          pluralTxt += ", " + browser.i18n.getMessage("only_on_days", `${dayOrd}`);
+        } else if (recurrence === "weekly") {
+          // ... , on [RECUR WEEKDAY]
+          const dateTxt = SLStatic.getWkdayName(sendAt);
+          //localeData.weekdays()[sendAt.getDay()];
+          pluralTxt += ", " + browser.i18n.getMessage("only_on_days", dateTxt);
+        } else if (recurrence === "daily") {
+          // ... , at [RECUR TIME]
+          pluralTxt += ` at ${(new Sugar.Date(sendAt)).format("%X")}`; // TODO: translate this.
+        }
+        dom["recurperiod_plural"].textContent = pluralTxt;
+      }
+
+      specDiv.style.display = "block";
+
+      dom['monthly-options-div'].style.display =
+          (recurrence === "monthly") ? "" : "none";
+      dom['recur-multiply'].style.display =
+          (recurrence === "monthly") ? "" : "none";
+
+      dom['section-between'].style.display =
+        (recurrence === "minutely" || recurrence === "function") ?
+          "" : "none";
+
+      dom['recur-limits'].style.display = "block";
+    } else {
+      specDiv.style.display = "none";
+      dom['recur-limits'].style.display = "none";
+    }
+
+    SLStatic.stateSetter(dom['recurFuncSelect'].length > 0)(dom['function-recur-radio']);
+    SLStatic.stateSetter((recurrence === "function"))(dom['recurFuncSelect']);
+  },
+
+  setScheduleButton(schedule) {
+    SLPopup.updateRecurrenceText();
+
     const sendScheduleButton = document.getElementById("sendScheduleButton");
 
     if (schedule.err) {
@@ -272,7 +345,7 @@ const SLPopup = {
     } catch (ex) {
       SLStatic.debug(ex);
     }
-    sendScheduleButton.textContent = moment.localeData().invalidDate();
+    sendScheduleButton.textContent = browser.i18n.getMessage("entervalid");
     sendScheduleButton.disabled = true;
     return false;
   },
@@ -407,10 +480,13 @@ const SLPopup = {
       } else if (evt.target.id === "send-datetime") {
         const localeCode = browser.i18n.getUILanguage();
         const sendAtDate = Sugar.Date.create(dom["send-datetime"].value, localeCode);
-        const sendAt = new Sugar.Date(sendAtDate);
-        if (sendAt) {
+        try {
+          const sendAt = new Sugar.Date(sendAtDate);
           dom["send-date"].value = sendAt.format('%Y-%m-%d');
           dom["send-time"].value = sendAt.format('%H:%M');
+        } catch (ex) {
+          dom["send-date"].value = '';
+          dom["send-time"].value = '';
         }
       }
     });
@@ -439,75 +515,7 @@ const SLPopup = {
       }
     });
     [...document.getElementsByName("recur")].forEach(element =>
-      element.addEventListener("change", async evt => {
-        const localeData = moment.localeData();
-        const specs = ["minutely","daily","weekly","monthly","yearly","function"];
-        const recurrence = specs.find(s => dom[s].checked);
-        const specDiv = dom['recurrence-spec'];
-
-        const timeArgs = dom['recur-time-args-div'];
-        const funcArgs = dom['recur-function-args-div'];
-        const funcHelpToggler = dom['showHideFunctionHelp'];
-        const funcHelpDiv = dom['funcHelpDiv'];
-
-        if (recurrence) {
-          const sendAt = SLStatic.parseDateTime(dom["send-date"].value,
-                                                dom["send-time"].value);
-
-          // Toggle vis of time recurrence options and function recurrence options
-          timeArgs.style.display = (recurrence === "function") ? "none" : "block";
-          funcArgs.style.display = (recurrence === "function") ? "block" : "none";
-          if (recurrence === "function") {
-            funcHelpToggler.style.display = "inline-block";
-          } else {
-            funcHelpDiv.style.display = "none";
-            funcHelpToggler.style.display = "none";
-          }
-
-          if (recurrence !== "function") {
-            // Setup the plural text (e.g. every [] minutes)
-            let pluralTxt = browser.i18n.getMessage(`plural_${recurrence}`);
-            if (recurrence === "yearly") {
-              // ... , on [RECUR DATE]
-              const dateTxt = (new Intl.DateTimeFormat('default', {month: "long",
-                  day: "numeric", hour: "numeric", minute: "numeric"})).format(sendAt);
-              pluralTxt += ", " + browser.i18n.getMessage("only_on_days", dateTxt);
-            } else if (recurrence === "monthly") {
-              // ... , on [RECUR DAY]
-              const dayOrd = localeData.ordinal(sendAt.getDate());
-              pluralTxt += ", " + browser.i18n.getMessage("only_on_days", dayOrd);
-            } else if (recurrence === "weekly") {
-              // ... , on [RECUR WEEKDAY]
-              const dateTxt = localeData.weekdays()[sendAt.getDay()];
-              pluralTxt += ", " + browser.i18n.getMessage("only_on_days", dateTxt);
-            } else if (recurrence === "daily") {
-              // ... , at [RECUR TIME]
-              const fmt = localeData.longDateFormat('LT')
-              pluralTxt += ` at ${moment(sendAt).format(fmt)}`; // TODO: translate this.
-            }
-            dom["recurperiod_plural"].textContent = pluralTxt;
-          }
-
-          specDiv.style.display = "block";
-
-          dom['monthly-options-div'].style.display =
-              (recurrence === "monthly") ? "" : "none";
-          dom['recur-multiply'].style.display =
-              (recurrence === "monthly") ? "" : "none";
-
-          dom['section-between'].style.display =
-            (recurrence === "minutely" || recurrence === "function") ?
-              "" : "none";
-
-          dom['recur-limits'].style.display = "block";
-        } else {
-          specDiv.style.display = "none";
-          dom['recur-limits'].style.display = "none";
-        }
-
-        SLStatic.stateSetter(dom['recurFuncSelect'].length > 0)(dom['function-recur-radio']);
-        SLStatic.stateSetter((recurrence === "function"))(dom['recurFuncSelect']);
-      }));
+      element.addEventListener("change", SLPopup.updateRecurrenceText));
 
     dom['recurFuncSelect'].addEventListener("change", SLPopup.loadFunctionHelpText);
 
@@ -545,7 +553,7 @@ const SLPopup = {
 
     dom["sendNow"].addEventListener("click", SLPopup.doSendNow);
 
-    setTimeout(() => document.getElementById("send-datetime").select(), 100);
+    setTimeout(() => document.getElementById("send-datetime").select(), 50);
   },
 
   async init() {

@@ -33,6 +33,22 @@ exports.init = function() {
   );
 
   SLTests.AddTest(
+    "MimeTests getHeader 01-plaintext.eml",
+    (hdrstring, expected) => {
+      const original = fs.readFileSync("test/data/01-plaintext.eml", {encoding: 'utf-8'});
+
+      result = SLStatic.getHeader(original, hdrstring);
+
+      if (result === expected) {
+        return true;
+      } else {
+        return `Expected "${expected}", got "${result}".`;
+      }
+    },
+    ["Subject", "1 plaintext"]
+  );
+
+  SLTests.AddTest(
     "MimeTests 21-plaintext.eml",
     () => {
       const original = fs.readFileSync("test/data/21-plaintext.eml", {encoding: 'utf-8'});
@@ -58,8 +74,9 @@ exports.init = function() {
       const expected = fs.readFileSync("test/data/05-HTML+embedded-image.eml.out", {encoding: 'utf-8'});
       let result = original;
 
-      SLStatic.appendHeader(result, hdrstring, "RANDOM INTERMEDIATE VALUE 1");
+      result = SLStatic.appendHeader(result, hdrstring, "RANDOM INTERMEDIATE VALUE 1");
       result = SLStatic.appendHeader(result, hdrstring, "RANDOM INTERMEDIATE VALUE 2");
+      result = SLStatic.appendHeader(result, hdrstring, "RANDOM INTERMEDIATE VALUE 3");
       result = SLStatic.replaceHeader(result, hdrstring, newvalue, true);
 
       if (result === expected) {
