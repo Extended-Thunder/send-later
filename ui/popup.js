@@ -90,19 +90,24 @@ const SLPopup = {
   },
 
   async evaluateUfunc(funcName, prev, argStr) {
-    try {
-      argStr = SLStatic.unparseArgs(SLStatic.parseArgs(argStr));
-    } catch (ex) {
-      SLStatic.warn(ex);
-      return { err: (browser.i18n.getMessage("InvalidArgsTitle") + ": " +
-                     browser.i18n.getMessage("InvalidArgsBody")) };
+    let args = null;
+
+    if (argStr) {
+      try {
+        argStr = SLStatic.unparseArgs(SLStatic.parseArgs(argStr));
+        args = SLStatic.parseArgs(argStr);
+      } catch (ex) {
+        SLStatic.warn(ex);
+        return { err: (browser.i18n.getMessage("InvalidArgsTitle") + ": " +
+                        browser.i18n.getMessage("InvalidArgsBody")) };
+      }
     }
 
     const { ufuncs } = await browser.storage.local.get({ ufuncs: {} });
     const body = ufuncs[funcName].body;
 
-    const [sendAt, nextspec, nextargs, error] =
-      SLStatic.evaluateUfunc(funcName, body, prev, SLStatic.parseArgs(argStr));
+    const { sendAt, nextspec, nextargs, error } =
+      SLStatic.evaluateUfunc(funcName, body, prev, args);
     SLStatic.debug("User function returned:",
                     {sendAt, nextspec, nextargs, error});
 
@@ -125,10 +130,11 @@ const SLPopup = {
 
     const sendAtDate = inputs["send-date"];
     const sendAtTime = inputs["send-time"];
-    if (!sendAtDate || !sendAtTime) {
-      return { err: browser.i18n.getMessage("entervalid") };
+    let sendAt = null;
+    if ((/\d\d\d\d.\d\d.\d\d/).test(sendAtDate) &&
+        (/\d\d.\d\d/).test(sendAtTime)) {
+      sendAt = SLStatic.parseDateTime(sendAtDate, sendAtTime);
     }
-    const sendAt = SLStatic.parseDateTime(sendAtDate, sendAtTime);
 
     if (recur.type === "function") {
       try {
@@ -138,13 +144,17 @@ const SLPopup = {
         if (schedule.recur.type !== "none") {
           schedule.recur.cancelOnReply = inputs[`recur-cancelonreply`];
         }
-        if (SLStatic.compareDateTimes(schedule.sendAt, '<', new Date(), true)) {
+        if (schedule.sendAt.getTime() < (new Date()).getTime()-60000) {
           return { err: browser.i18n.getMessage("errorDateInPast") };
         }
         return schedule;
       } catch (ex) {
         return { err: ex.message };
       }
+    }
+
+    if (!sendAt) {
+      return { err: browser.i18n.getMessage("entervalid") };
     }
 
     if (SLStatic.compareDateTimes(sendAt, '<', new Date(), true)) {
@@ -529,7 +539,7 @@ const SLPopup = {
         const quickBtn = dom[`quick-opt-${i}`];
         quickBtn.value = preferences[`quickOptions${i}Label`];
         quickBtn.addEventListener("click", async () => {
-          const schedule = await SLPopup.evaluateUfunc(funcName, new Date(), funcArgs);
+          const schedule = await SLPopup.evaluateUfunc(funcName, null, funcArgs);
           SLPopup.doSendWithSchedule(schedule);
         });
       }
