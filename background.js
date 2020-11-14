@@ -311,9 +311,9 @@ const SendLater = {
         if (nextRecur.getTime) {
           nextRecurAt = nextRecur;
         } else {
-          nextRecurAt = nextRecur[0];
-          nextRecurSpec = nextRecur[1];
-          nextRecurArgs = nextRecur[2];
+          nextRecurAt = nextRecur.sendAt;
+          nextRecurSpec = nextRecur.nextspec;
+          nextRecurArgs = nextRecur.nextargs;
         }
         SLStatic.info(`Scheduling next recurrence of message ${originalMsgId}`,
           {nextRecurAt, nextRecurSpec, nextRecurArgs});

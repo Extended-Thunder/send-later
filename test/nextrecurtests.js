@@ -1,27 +1,54 @@
 exports.init = function() {
   function DeepCompare(a, b) {
-    if (a && a.splice) {
+    if (a === b) {
+      return true;
+    } else if (a && a.splice) {
       if (b && b.splice) {
         if (a.length != b.length) {
+          console.log(a, '!=', b);
           return false;
         }
         for (let i = 0; i < a.length; i++) {
           if (!DeepCompare(a[i], b[i])) {
+            console.log(a[i], '!=', b[i]);
             return false;
           }
         }
         return true;
       }
+      console.log(a, '!=', b);
       return false;
-    }
-    if (b && b.splice) {
+    } else if (b && b.splice) {
+      console.log(a, '!=', b);
       return false;
-    }
-    if (a && a.getTime) {
+    } else if (a && a.getTime) {
       if (b && b.getTime) {
-        return a.getTime() == b.getTime();
+        if (a.getTime() == b.getTime()) {
+          return true;
+        } else {
+          console.log(a, '!=', b);
+          return false;
+        }
+      } else {
+        console.log(a, '!=', b);
+        return false;
       }
-      return false;
+    }
+    if (typeof a === "object" && typeof b === "object") {
+      const aKeys = [...Object.keys(a)];
+      const bKeys = [...Object.keys(b)];
+      if (DeepCompare(aKeys, bKeys)) {
+        for (let key of aKeys) {
+          if (!DeepCompare(a[key], b[key])) {
+            console.log(a[key], '!=', b[key]);
+            return false;
+          }
+        }
+      } else {
+        console.log(aKeys, '!=',bKeys);
+        return false;
+      }
+      return true;
     }
     return a == b;
   }
@@ -37,7 +64,7 @@ exports.init = function() {
     if (result.getTime() == expected.getTime()) {
       return true;
     } else {
-      return "expected " + expected + ", got " + result;
+      return `Expected ${expected}, got ${result}`;
     }
   }
 
@@ -56,16 +83,16 @@ exports.init = function() {
   }
 
   async function NextRecurFunctionTest(sendat, recur, now, args, func_name,
-                                 func, expected) {
-    SLStatic.ufuncs[func_name] = (func === undefined) ? undefined : {body:func};
+                                       func, expected) {
+    SLStatic.mockStorage.ufuncs[func_name] = (func === undefined) ? undefined : {body:func};
     let result;
     try {
       now = new Date(now);
       sendat = new Date(sendat);
       result = await SLStatic.nextRecurDate(sendat, recur, now, args);
-      delete SLStatic.ufuncs[func_name];
+      delete SLStatic.mockStorage.ufuncs[func_name];
     } catch (ex) {
-      delete SLStatic.ufuncs[func_name];
+      delete SLStatic.mockStorage.ufuncs[func_name];
       return "Unexpected error: " + ex.message;
     }
     if (DeepCompare(result, expected)) {
@@ -76,15 +103,15 @@ exports.init = function() {
   }
 
   async function NextRecurFunctionExceptionTest(sendat, recur, now, func_name,
-                                          func, expected) {
-    SLStatic.ufuncs[func_name] = (func === undefined) ? undefined : {body:func};
+                                                func, expected) {
+    SLStatic.mockStorage.ufuncs[func_name] = (func === undefined) ? undefined : {body:func};
     try {
       let result;
       result = await SLStatic.nextRecurDate(new Date(sendat), recur, new Date(now));
-      delete SLStatic.ufuncs[func_name];
+      delete SLStatic.mockStorage.ufuncs[func_name];
       return "Expected exception, got " + result;
     } catch (ex) {
-      delete SLStatic.ufuncs[func_name];
+      delete SLStatic.mockStorage.ufuncs[func_name];
       if ((ex+"").indexOf(expected) !== -1) {
         return true;
       } else {
@@ -146,28 +173,30 @@ exports.init = function() {
   SLTests.AddTest("nextRecurDate function finished recurring",
                    NextRecurFunctionTest,
                    ["10/3/2012", "function Test5", "10/3/2012", null, "Test5",
-                   "return -1;", null]);
+                   "return -1;", { sendAt: null }]);
 
   const d1 = new Date();
   d1.setTime((new Date("10/3/2012")).getTime() + 5 * 60 * 1000);
   SLTests.AddTest("nextRecurDate function returning minutes",
                    NextRecurFunctionTest,
                    ["10/3/2012", "function Test6", "10/4/2012", null, "Test6",
-                   'return 5', [d1, null, null]]);
+                   'return 5', { sendAt: d1 }]);
 
   const d2 = new Date();
   d2.setTime((new Date("10/3/2012")).getTime() + 7 * 60 * 1000);
   SLTests.AddTest("nextRecurDate function returning array",
                    NextRecurFunctionTest,
                    ["10/3/2012", "function Test7", "10/4/2012", null, "Test7",
-                   'return new Array(7, "monthly 5")', [d2, "monthly 5"]]);
+                   'return (new Array(7, "monthly 5"));', {sendAt: d2,
+                    nextspec: "monthly 5", nextargs: undefined, error: undefined}]);
   SLTests.AddTest("nextRecurDate function returning array with args",
                    NextRecurFunctionTest,
                    ["10/3/2012", "function Test8", "10/4/2012", ["froodle"],
                    "Test8",
                    'if (args[0] !== "froodle") { throw `bad args: ${args}`; }' +
                    'else { return [7, "monthly 5", "freeble"]; }',
-                   [d2, "monthly 5", "freeble"]]);
+                   {sendAt: d2, nextspec: "monthly 5", nextargs:"freeble",
+                    error:undefined}]);
 
   SLTests.AddTest("nextRecurDate between before", NextRecurNormalTest,
                    ["3/1/2016 17:00", "minutely / 600 between 0900 1700",
