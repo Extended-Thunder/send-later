@@ -431,9 +431,9 @@ const SendLater = {
           const isquickopt = prefName.match(/quickOptions(\d)Label/);
           if (isquickopt) {
             const localizedDelayLabel = [
-              moment(new Date(Date.now() + 60000 * 15)).fromNow(),
-              moment(new Date(Date.now() + 60000 * 30)).fromNow(),
-              moment(new Date(Date.now() + 60000 * 120)).fromNow(),
+              (new Sugar.Date(Date.now() + 60000 * 15)).relative(),
+              (new Sugar.Date(Date.now() + 60000 * 30)).relative(),
+              (new Sugar.Date(Date.now() + 60000 * 120)).relative()
             ][+isquickopt[1] - 1];
             pp = new Promise((resolve, reject) =>
               resolve(localizedDelayLabel)
@@ -553,9 +553,9 @@ const SendLater = {
       const activeSchedules = await SendLater.getActiveSchedules(false);
       const nActive = activeSchedules.length;
       if (nActive > 0) {
-        const soonest = new Date(Math.min(...activeSchedules));
+        const soonest = new Sugar.Date(Math.min(...activeSchedules));
         const nextActiveText = SLStatic.humanDateTimeFormat(soonest) +
-          ` (${moment(soonest).fromNow()})`;
+          ` (${soonest.relative()})`;
         message += `\n\nYou have ${nActive} message${nActive === 1 ? "" : "s"} ` +
           `scheduled to be delivered by Send Later.\nThe next one is ` +
           `scheduled for ${nextActiveText}.`;
@@ -761,7 +761,7 @@ const SendLater = {
         }
       });
 
-      await browser.SL3U.injectScript("utils/moment.min.js");
+      await browser.SL3U.injectScript("utils/sugar-custom.js");
       await browser.SL3U.injectScript("utils/static.js");
       await browser.SL3U.injectScript("experiments/headerView.js");
 

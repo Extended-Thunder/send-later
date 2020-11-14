@@ -46,13 +46,23 @@ exports.init = function() {
     ["minutely between 830 1730",
       { type: "minutely",
         between: {
-          start: "8:30",
-          end: "17:30"
+          start: "830",
+          end: "1730"
         } }],
     ["minutely on 1 2 3 4 5", { type: "minutely", days: [1, 2, 3, 4, 5] }]
   ];
-  for (const test of goodTests) {
+
+  for (let test of goodTests) {
     SLTests.AddTest("parseRecurSpec " + test[0], ParseRecurGoodTest, test);
+  }
+
+  for (let test of goodTests) {
+    SLTests.AddTest(`parseUnparseRecurSpec ${test[0]}`, (spec) => {
+      const parsed = SLStatic.parseRecurSpec(spec);
+      const unparsed = SLStatic.unparseRecurSpec(parsed);
+      return (spec === `${unparsed}`) ||
+              `Expected "${spec}", got "${unparsed}"`;
+    }, test);
   }
 
   function ParseRecurBadTest(spec, expected) {
