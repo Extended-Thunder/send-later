@@ -483,8 +483,8 @@ const SendLater = {
         if (instance_uuid) {
           SLStatic.info(`Using migrated UUID: ${instance_uuid}`);
         } else {
-          SLStatic.info(`Generating new UUID: ${instance_uuid}`);
-          instance_uuid = await browser.SL3U.generateUUID();
+          instance_uuid = SLStatic.generateUUID();
+          SLStatic.info(`Generated new UUID: ${instance_uuid}`);
         }
         preferences.instanceUUID = instance_uuid;
         browser.SL3U.setLegacyPref("instance.uuid", "string", instance_uuid);

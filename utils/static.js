@@ -50,6 +50,17 @@ var SLStatic = {
                       ), []);
   },
 
+  generateUUID: function() {
+    // Thanks to stackexchange for this one
+    //    https://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid
+    // Note: This will eventually be replaced with a standard uuid javascript module
+    // as part of the ecmascript standard.
+    const uuid = ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
+    return `{${uuid}}`;
+  },
+
   parseableDateTimeFormat: function(date) {
     const DATE_RFC2822 = "ddd, DD MMM YYYY HH:mm:ss ZZ";
     return moment(date || (new Date())).locale("en").format(DATE_RFC2822);
