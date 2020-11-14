@@ -62,16 +62,15 @@ var SLStatic = {
   },
 
   parseableDateTimeFormat: function(date) {
-    const DATE_RFC2822 = "ddd, DD MMM YYYY HH:mm:ss ZZ";
-    return moment(date || (new Date())).locale("en").format(DATE_RFC2822);
+    const DATE_RFC2822 = "%a, %d %b %Y %T %z";
+    return (new Sugar.Date(date || new Date())).format(DATE_RFC2822);
   },
 
   humanDateTimeFormat: function(date) {
-    return moment(date).format('LLL');
+    return (new Sugar.Date(date)).long();
   },
 
   shortHumanDateTimeFormat: function(date) {
-    //return moment(date).format("M/D/YYYY, h:mm A");
     return date.toLocaleString([], {month:'numeric',day:'numeric',year:'numeric',
                                     hour:'numeric',minute:'2-digit'});
   },
@@ -124,10 +123,15 @@ var SLStatic = {
     return SLStatic.compare(A.getTime(), comparison, B.getTime());
   },
 
-  getWkdayName: function(i, style) {
+  getWkdayName: function(input, style) {
     style = style || "long";
-    const d = new Date(2000,0,2+(+i)); // 2000/01/02 Happens to be a Sunday
-    return (new Intl.DateTimeFormat('default', {weekday:style})).format(d);
+    let date;
+    if (input.getTime) {
+      date = input;
+    } else {
+      date = new Date(2000,0,2+(+input)); // 2000/01/02 Happens to be a Sunday
+    }
+    return (new Intl.DateTimeFormat('default', {weekday:style})).format(date);
   },
 
   parseDateTime: function(dstr,tstr) {
@@ -138,13 +142,25 @@ var SLStatic = {
     return new Date(+dpts[0], --dpts[1], +dpts[2], +tpts[1], +tpts[2]);
   },
 
-  formatTime: function(datetime,zeropad) {
-    if (typeof datetime === "string" || typeof datetime === "number") {
-      datetime = SLStatic.parseDateTime(null, (""+datetime));
+  formatTime: function(datetime,zeropad,human) {
+    if (typeof datetime === "number") {
+      datetime = new Date(datetime);
+    } else if (typeof datetime === "string") {
+      datetime = SLStatic.parseDateTime(null,datetime);
     }
-    const hours = (""+datetime.getHours()).padStart((zeropad?2:1),"0");
-    const minutes = (""+datetime.getMinutes()).padStart(2,"0");
-    return `${hours}:${minutes}`;
+
+    if (datetime.getTime) {
+      const hours = (""+datetime.getHours()).padStart((zeropad?2:1),"0");
+      const minutes = (""+datetime.getMinutes()).padStart(2,"0");
+      if (human) {
+        return `${hours}:${minutes}`;
+      } else {
+        return `${hours}${minutes}`;
+      }
+    } else {
+      SLStatic.debug(`Unable to parse datetime`, datetime);
+      return null;
+    }
   },
 
   evaluateUfunc(name, body, prev, args) {
@@ -158,8 +174,7 @@ var SLStatic = {
       const FUNC = Function.apply(null, ["specname", "prev", "args", funcStr]);
       response = FUNC(name, prev, args);
     } catch (ex) {
-      console.log(ex);
-      console.log(funcStr);
+      SLStatic.warn(ex);
       return { error: ex.message };
     }
 
@@ -251,8 +266,8 @@ var SLStatic = {
       }
 
       if (recur.between) {
-        const start = SLStatic.formatTime(recur.between.start);
-        const end = SLStatic.formatTime(recur.between.end);
+        const start = SLStatic.formatTime(recur.between.start,false,true);
+        const end = SLStatic.formatTime(recur.between.end,false,true);
         recurText += " " + this.i18n.getMessage("betw_times", [start, end]);
       }
 
@@ -318,9 +333,9 @@ var SLStatic = {
       scheduleText += " " + SLStatic.humanDateTimeFormat(sendAt);
       const fromNow = (sendAt.getTime()-(new Date()).getTime())/1000;
       if (fromNow < 0 && fromNow > -90) {
-        scheduleText += ` (${moment((new Date()).getTime()+1000).fromNow()})`;
+        scheduleText += ` (${(new Sugar.Date((new Date()).getTime()+100)).relative()})`;
       } else {
-        scheduleText += ` (${moment(sendAt).fromNow()})`;
+        scheduleText += ` (${(new Sugar.Date(sendAt)).relative()})`;
       }
     }
 
@@ -332,7 +347,7 @@ var SLStatic = {
   },
 
   stateSetter: function(enabled) {
-    // closure for disabling UI components
+    // closure for enabling/disabling UI components
     return (async element => {
         try{
           if (["SPAN","DIV","LABEL"].includes(element.tagName)) {
@@ -350,8 +365,9 @@ var SLStatic = {
   getHeader: function(content, header) {
     // Get header's value (e.g. "subject: foo bar    baz" returns "foo bar    baz")
     const regex = new RegExp(`^${header}:([^\r\n]*)\r\n(\\s[^\r\n]*\r\n)*`,'im');
-    if (regex.test(content)) {
-      const hdrLine = content.match(regex)[0];
+    const hdrContent = content.split(/\r\n\r\n/m)[0]+'\r\n';
+    if (regex.test(hdrContent)) {
+      const hdrLine = hdrContent.match(regex)[0];
       return hdrLine.replace(/[^:]*:/m,"").trim();
     } else {
       return undefined;
@@ -359,26 +375,34 @@ var SLStatic = {
   },
 
   replaceHeader: function(content, header, value, replaceAll, addIfMissing) {
+    // Replaces the header content with a new value.
+    //    replaceAll: operate on all instances of the header (can be regex)
+    //    addIfMissing: If the header does not exist
     const regexStr = `^${header}:.*(?:\r\n|\n)([ \t].*(?:\r\n|\n))*`;
     const replacement = (value) ? `${header}: ${value}\r\n` : '';
     const regex = new RegExp(regexStr, (replaceAll ? 'img' : 'im'));
-    if (addIfMissing && !regex.test(content)) {
-      return `${header}: ${value}\r\n${content}`;
+    const hdrContent = content.split(/\r\n\r\n/m)[0]+'\r\n';
+    const msgContent = content.split(/\r\n\r\n/m).slice(1).join('\r\n\r\n');
+    if (addIfMissing && !regex.test(hdrContent)) {
+      return `${hdrContent.trim()}\r\n${header}: ${value}\r\n\r\n${msgContent}`;
     } else {
-      return content.replace(regex, replacement);
+      const newHdrs = hdrContent.replace(regex, replacement);
+      return `${newHdrs.trim()}\r\n\r\n${msgContent}`;
     }
   },
 
   appendHeader: function(content, header, value) {
     const regex = new RegExp(`^${header}:([^\r\n]*)\r\n(\\s[^\r\n]*\r\n)*`,'im');
-    if (regex.test(content)) {
-      const values = content.match(regex)[0].trim().slice(
+    const hdrContent = content.split(/\r\n\r\n/m)[0]+'\r\n';
+    const msgContent = content.split(/\r\n\r\n/m).slice(1).join('\r\n\r\n');
+    if (regex.test(hdrContent)) {
+      const values = hdrContent.match(regex)[0].trim().slice(
         header.length+1).trim().split(/\r\n/).map(s=>s.trim());
       values.push(value);
-      content = content.replace(regex, `${header}: ${values.join("\r\n ")}\r\n`);
-      return content;
+      const newHdrs = hdrContent.replace(regex, `${header}: ${values.join("\r\n ")}\r\n`);
+      return `${newHdrs.trim()}\r\n\r\n${msgContent}`;
     } else {
-      return `${header}: ${value}\r\n${content}`;
+      return `${hdrContent.trim()}\r\n${header}: ${value}\r\n\r\n${msgContent}`;
     }
   },
 
@@ -477,8 +501,8 @@ var SLStatic = {
     }
 
     if (recur.between) {
-      const start = SLStatic.formatTime(recur.between.start);
-      const end = SLStatic.formatTime(recur.between.end);
+      const start = SLStatic.formatTime(recur.between.start, false, false);
+      const end = SLStatic.formatTime(recur.between.end, false, false);
       spec += ` between ${start} ${end}`;
     }
 
@@ -588,8 +612,8 @@ var SLStatic = {
       }
 
       recur.between = {
-        start: SLStatic.formatTime(startTimeStr),
-        end: SLStatic.formatTime(endTimeStr)
+        start: SLStatic.formatTime(startTimeStr, false, false),
+        end: SLStatic.formatTime(endTimeStr, false, false)
       };
       params.splice(btwnIdx, 3);
     }
@@ -921,7 +945,7 @@ create a mock global browser object here.
 if (typeof browser === "undefined" && typeof require !== "undefined") {
   var browserMocking = true;
   SLStatic.mockStorage = {};
-  var moment = require('./moment.min.js');
+  var Sugar = require("./sugar-custom.js");
 
   console.info("Defining mock browser object for Node unit tests.");
   var browser = {

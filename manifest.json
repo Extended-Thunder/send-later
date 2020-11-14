@@ -38,19 +38,18 @@
 
   "background": {
     "scripts": [
-      "/utils/moment.min.js",
+      "utils/sugar-custom.js",
       "/utils/static.js",
       "/background.js"
     ]
   },
 
   "web_accessible_resources": [
-    "experiments/sl3u.js",
-    "experiments/headerView.js",
-    "utils/moment.min.js",
     "utils/sugar-custom.js",
     "utils/static.js",
-    "utils/defaultPrefs.json"
+    "utils/defaultPrefs.json",
+    "experiments/sl3u.js",
+    "experiments/headerView.js"
   ],
 
   "options_ui": {

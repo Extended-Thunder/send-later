@@ -1,4 +1,3 @@
-X-Send-Later-At: Fri, 30 Oct 2020 18:28:18 -0700
 To: test@example.com
 From: test@example.com
 Subject: 5 HTML + embedded image
@@ -10,6 +9,7 @@ MIME-Version: 1.0
 Content-Type: multipart/related;
  boundary="------------B2BBD36A919AB2B2F84E2469"
 Content-Language: en-GB
+X-Send-Later-At: Fri, 30 Oct 2020 18:28:18 -0700
 
 This is a multi-part message in MIME format.
 --------------B2BBD36A919AB2B2F84E2469
