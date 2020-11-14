@@ -692,13 +692,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return false;
         },
 
-        async generateUUID() {
-          const uuidGenerator = Cc["@mozilla.org/uuid-generator;1"].getService(
-            Ci.nsIUUIDGenerator
-          );
-          return uuidGenerator.generateUUID().toString();
-        },
-
         async generateMsgId(idkey) {
           // const idkey = ((/\nX-Identity-Key:\s*(\S+)/i).exec('\n'+content))[1];
           return SendLaterFunctions.generateMsgId(idkey);

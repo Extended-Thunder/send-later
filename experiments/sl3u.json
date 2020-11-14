@@ -39,13 +39,6 @@
         ]
       },
       {
-        "name": "generateUUID",
-        "type": "function",
-        "async": true,
-        "description": "",
-        "parameters": []
-      },
-      {
         "name": "generateMsgId",
         "type": "function",
         "async": true,
