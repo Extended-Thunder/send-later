@@ -431,9 +431,9 @@ const SendLater = {
           const isquickopt = prefName.match(/quickOptions(\d)Label/);
           if (isquickopt) {
             const localizedDelayLabel = [
-              (new Sugar.Date(Date.now() + 60000 * 15)).relative(),
-              (new Sugar.Date(Date.now() + 60000 * 30)).relative(),
-              (new Sugar.Date(Date.now() + 60000 * 120)).relative()
+              `${(new Sugar.Date(Date.now() + 60000 * 15)).relative()}`,
+              `${(new Sugar.Date(Date.now() + 60000 * 30)).relative()}`,
+              `${(new Sugar.Date(Date.now() + 60000 * 120)).relative()}`
             ][+isquickopt[1] - 1];
             pp = new Promise((resolve, reject) =>
               resolve(localizedDelayLabel)
