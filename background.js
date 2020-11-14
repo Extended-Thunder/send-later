@@ -32,13 +32,6 @@ const SendLater = {
       }
     },
 
-    async propagatePreferences(storage, initializing) {
-      // This is now handled by a storage.onChanged listener,
-      // so no need to call it manually. Leaving it here as
-      // a stub for the time being.
-      return true;
-    },
-
     async isEditing(msgId) {
       // Look through each of the compose windows, check for this message UUID.
       return await browser.SL3U.editingMessage(msgId);
