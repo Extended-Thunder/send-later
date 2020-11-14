@@ -410,16 +410,21 @@ const SLOptions = {
         const funcBody = document.getElementById("functionEditorContent").value;
         const funcTestDate = document.getElementById("functionTestDate").value;
         const funcTestTime = document.getElementById("functionTestTime").value;
-        const testDateTime = SLStatic.parseDateTime(funcTestDate, funcTestTime);
+        let testDateTime = null;
+        if ((/\d\d\d\d.\d\d.\d\d/).test(funcTestDate) &&
+            (/\d\d.\d\d/).test(funcTestTime)) {
+          testDateTime = SLStatic.parseDateTime(funcTestDate, funcTestTime);
+        }
         const funcTestArgs = document.getElementById("functionTestArgs").value;
 
-        const [next, nextspec, nextargs, error] = SLStatic.evaluateUfunc(
+        const { sendAt, nextspec, nextargs, error } =
+          SLStatic.evaluateUfunc(
             funcName,
             funcBody,
             testDateTime,
-            SLStatic.parseArgs(funcTestArgs)
+            funcTestArgs ? SLStatic.parseArgs(funcTestArgs) : null
           );
-        SLStatic.debug("User function returned:", {next, nextspec, nextargs, error});
+        SLStatic.debug("User function returned:", {sendAt, nextspec, nextargs, error});
         const outputCell = document.getElementById("functionTestOutput");
         const mkSpan = function(text, bold) {
           const e = document.createElement("SPAN");
@@ -441,7 +446,7 @@ const SLOptions = {
           outputCell.appendChild(mkSpan('Error:',true));
           outputCell.appendChild(mkSpan(error));
         } else {
-          const nextStr = SLStatic.parseableDateTimeFormat(next);
+          const nextStr = SLStatic.parseableDateTimeFormat(sendAt);
           outputCell.appendChild(mkBlock(mkSpan("next:",true), mkSpan(nextStr)));
           outputCell.appendChild(mkBlock(mkSpan("nextspec:",true), mkSpan(nextspec || "none")));
           outputCell.appendChild(mkBlock(mkSpan("nextargs:",true), mkSpan(nextargs || "")));

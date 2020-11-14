@@ -137,22 +137,72 @@ var SLStatic = {
   },
 
   evaluateUfunc(name, body, prev, args) {
-    SLStatic.debug(`Evaluating function ${name}`);
-
-    const funcStr = `"use strict";\n`+
-      `let specname = "${name}";\n` +
-      `let prev = new Date(${(new Date(prev)).getTime()});\n` +
-      `let args = JSON.parse("[${SLStatic.unparseArgs(args)||""}]");\n` +
+    const funcStr =
       `let next, nextspec, nextargs;\n` +
       `${body};\n` +
       "return([next, nextspec, nextargs]);";
 
-    return Function(funcStr)();
-  },
+    let response;
+    try {
+      const FUNC = Function.apply(null, ["specname", "prev", "args", funcStr]);
+      response = FUNC(name, prev, args);
+    } catch (ex) {
+      console.log(ex);
+      console.log(funcStr);
+      return { error: ex.message };
+    }
 
-  async evaluateUfuncByName(name, prev, args) {
-    const { ufuncs } = await browser.storage.local.get({ ufuncs: {} });
-    return SLStatic.evaluateUfunc(name, ufuncs[name].body, prev, args);
+    if (response === undefined) {
+      throw new Error(`Send Later: Recurrence function '${name}' did not` +
+                      " return a value.");
+    }
+
+    let recvdType;
+    if (typeof(response) === "number") {
+      recvdType = "number";
+    } else if (response.getTime) {
+      recvdType = "date";
+    } else if (response.splice) {
+      recvdType = "array";
+    } else {
+      throw `Recurrence function "${name}" did not return number, Date, or array`;
+    }
+
+    switch (recvdType) {
+      case "number":
+        if (response < 0) {
+          return { sendAt: null };
+        } else {
+          return {
+            sendAt: new Date((new Date(prev)).getTime() + response * 60 * 1000)
+          };
+        }
+      case "date":
+        return { sendAt: response };
+      case "array":
+        if (response.length < 2) {
+          throw new Error(`Array returned by recurrence function "${name}" is too short`);
+        }
+        let sendAt;
+        if (typeof response[0] === "number") {
+          if (response[0] < 0) {
+            return { sendAt: null };
+          } else {
+            sendAt = new Date((new Date(prev)).getTime() + response[0] * 60 * 1000);
+          }
+        } else if (response[0].getTime) {
+          sendAt = response[0];
+        } else {
+          throw new Error(`Send Later: Array ${response} returned by recurrence function ` +
+                `"${name}" did not start with a number or Date`);
+        }
+        return {
+          sendAt,
+          nextspec: response[1],
+          nextargs: response[2],
+          error: undefined
+        };
+    }
   },
 
   formatRecurForUI(recur) {
@@ -255,7 +305,12 @@ var SLStatic = {
     } else {
       scheduleText = this.i18n.getMessage("sendAtLabel");
       scheduleText += " " + SLStatic.humanDateTimeFormat(sendAt);
-      scheduleText += ` (${moment(sendAt).fromNow()})`;
+      const fromNow = (sendAt.getTime()-(new Date()).getTime())/1000;
+      if (fromNow < 0 && fromNow > -90) {
+        scheduleText += ` (${moment((new Date()).getTime()+1000).fromNow()})`;
+      } else {
+        scheduleText += ` (${moment(sendAt).fromNow()})`;
+      }
     }
 
     if (recur.type  !== "none") {
@@ -559,67 +614,33 @@ var SLStatic = {
 
     prev = new Date(prev);
 
-    if (ufuncs[name] === undefined) {
+    if (ufuncs[funcName] === undefined) {
       throw new Error(`Invalid recurrence specification '${recurSpec}': ` +
                       `${funcName} is not defined.`);
     }
 
-    let nextRecur;
-    try {
-      nextRecur = SLStatic.evaluateUfunc(funcName, ufuncs[name].body, prev, args);
-    } catch (ex) {
-      throw new Error(`Recurrence function failed with error: ${ex.message}`);
+    let nextRecur = SLStatic.evaluateUfunc(funcName, ufuncs[funcName].body, prev, args);
+
+    if (!nextRecur) {
+      return null;
     }
 
-    if (nextRecur === undefined) {
-      throw new Error(`Send Later: Recurrence function '${funcName}' did not` +
-                      " return a value.");
-    }
-    if (typeof(nextRecur) === "number") {
-      if (nextRecur <= 0) {
-        return null;
-      } else {
-        const next = new Date(prev.getTime() + nextRecur * 60 * 1000);
-        nextRecur = [next, null, null];
-      }
+    if (!nextRecur.nextspec && saveFunction) {
+      nextRecur.nextspec = `function "${funcName}" finished`;
+    } else if (!nextRecur.nextspec && (recur.between || recur.days)) {
+      nextRecur.nextspec = "none";
     }
 
-    if (nextRecur.getTime) {
-      nextRecur = [nextRecur, null, null];
-    }
-
-    if (!nextRecur.splice) {
-      throw `Recurrence function "${funcName}" did not return number, Date, or array`;
-    }
-    if (nextRecur.length < 2) {
-      throw new Error(`Array returned by recurrence function "${funcName}" is too short`);
-    }
-    if (typeof(nextRecur[0]) !== "number" && !(nextRecur[0] && nextRecur[0].getTime)) {
-      throw new Error(`Send Later: Array ${nextRecur} returned by recurrence function ` +
-            `"${funcName}" did not start with a number or Date`);
-    }
-    if (typeof(nextRecur[0]) === "number") {
-      const next = new Date(prev.getTime() + nextRecur[0] * 60 * 1000);
-      nextRecur[0] = next;
-    }
-    if (!nextRecur[1] && saveFunction) {
-      nextRecur[1] = `function "${funcName}" finished`;
-    }
-
-    if (!nextRecur[1] && (recur.between || recur.days)) {
-      nextRecur[1] = "none";
-    }
-
-    if (nextRecur[1]) {
+    if (nextRecur.nextspec) {
       // Merge restrictions from old spec into this one.
-      const functionSpec = SLStatic.parseRecurSpec(nextRecur[1]);
+      const functionSpec = SLStatic.parseRecurSpec(nextRecur.nextspec);
       if (recur.between) {
         functionSpec.between = recur.between;
       }
       if (recur.days) {
         functionSpec.days = recur.days;
       }
-      nextRecur[1] = SLStatic.unparseRecurSpec(functionSpec);
+      nextRecur.nextspec = SLStatic.unparseRecurSpec(functionSpec);
     }
 
     return nextRecur;
@@ -638,12 +659,14 @@ var SLStatic = {
       if (recur.finished) {
         return null;
       }
-      const results = await SLStatic.nextRecurFunction(next, recurSpec, recur, args);
-      if (results && results[0] && (recur.between || recur.days))
-        results[0] = SLStatic.adjustDateForRestrictions(
-                            results[0], recur.between && recur.between.start,
-                            recur.between && recur.between.end, recur.days);
-      return results;
+      const nextRecur = await SLStatic.nextRecurFunction(next, recurSpec, recur, args);
+      if (nextRecur && nextRecur.sendAt && (recur.between || recur.days)) {
+        nextRecur.sendAt = SLStatic.adjustDateForRestrictions(
+          nextRecur.sendAt, recur.between && recur.between.start,
+          recur.between && recur.between.end, recur.days
+        );
+      }
+      return nextRecur;
     }
 
     if (!now)
@@ -888,7 +911,7 @@ create a mock global browser object here.
 */
 if (typeof browser === "undefined" && typeof require !== "undefined") {
   var browserMocking = true;
-  var mockStorage = {};
+  SLStatic.mockStorage = {};
   var moment = require('./moment.min.js');
 
   console.info("Defining mock browser object for Node unit tests.");
@@ -903,8 +926,8 @@ if (typeof browser === "undefined" && typeof require !== "undefined") {
           }
           const ret = {};
           Object.keys(key).forEach(key => {
-            if (mockStorage[key]) {
-              ret[key] = mockStorage[key];
+            if (SLStatic.mockStorage[key]) {
+              ret[key] = SLStatic.mockStorage[key];
             } else {
               ret[key] = { };
             }
@@ -913,9 +936,9 @@ if (typeof browser === "undefined" && typeof require !== "undefined") {
           return ret;
         },
         async set (item) {
-          console.log("mock storage", mockStorage);
-          Object.assign(mockStorage, item);
-          console.log("mock storage", mockStorage);
+          console.log("mock storage", SLStatic.mockStorage);
+          Object.assign(SLStatic.mockStorage, item);
+          console.log("mock storage", SLStatic.mockStorage);
         }
       }
     },
@@ -952,7 +975,7 @@ if (typeof browser === "undefined" && typeof require !== "undefined") {
     });
   }
 
-  mockStorage.ufuncs = {
+  SLStatic.mockStorage.ufuncs = {
     ReadMeFirst: {help: "Any text you put here will be displayed as a tooltip when you hover over the name of the function in the menu. You can use this to document what the function does and what arguments it accepts.", body: "// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;"},
     BusinessHours: {help:"Send the message now if it is during business hours, or at the beginning of the next work day. You can change the definition of work days (default: Mon - Fri) by passing in an array of work-day numbers as the first argument, where 0 is Sunday and 6 is Saturday. You can change the work start or end time (default: 8:30 - 17:30) by passing in an array of [H, M] as the second or third argument. Specify “null” for earlier arguments you don't change. For example, “null, [9, 0], [17, 0]” changes the work hours without changing the work days.",body:"// Defaults\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Start of the work day as [H, M]\nvar workEnd = [17, 30]; // End of the work day as [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Not expected in normal usage, but used as the current time for testing.\n    next = new Date(prev);\nelse\n    next = new Date();\n// If we're past the end of the workday or not on a workday, move to the work\n// start time on the next day.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// If we're before the beginning of the workday, move to its start time.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}"},
     DaysInARow: {help:"Send the message now, and subsequently once per day at the same time, until it has been sent three times. Specify a number as an argument to change the total number of sends.",body:"// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;"},
