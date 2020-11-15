@@ -1,4 +1,3 @@
-var moment = require('../utils/moment.min.js');
 
 exports.init = function() {
   // Example
@@ -16,55 +15,55 @@ exports.init = function() {
 
   SLTests.AddTest("Test parseableDateTimeFormat", (input, expected) => {
     const result = SLStatic.parseableDateTimeFormat(new Date(input));
-    return moment(result, "ddd, DD MMM YYYY HH:mm:ss ZZ", true).isSame(expected) ||
+    return result == expected ||
           `Expected "${expected}", got "${result}"`;
   }, [ "Sun Feb 01 1998 15:03:00 GMT+2", "Sun, 01 Feb 1998 05:03:00 -0800" ]);
 
   SLTests.AddTest("Test humanDateTimeFormat", (input, expected) => {
     const result = SLStatic.humanDateTimeFormat(new Date(input));
-    return `${result}` === `${expected}` ||
+    return result == expected ||
           `Expected "${expected}", got "${result}"`;
   }, [ "Sun Feb 01 1998 15:03:00 GMT+2", "February 1, 1998 5:03 AM" ]);
 
   SLTests.AddTest("Test shortHumanDateTimeFormat", (input, expected) => {
     const result = SLStatic.shortHumanDateTimeFormat(new Date(input));
-    return `${result}` === `${expected}` ||
+    return result == expected ||
           `Expected "${expected}", got "${result}"`;
   }, [ "Sun Feb 01 1998 15:03:00 GMT+2", "2/1/1998, 5:03 AM" ]);
 
   SLTests.AddTest("Test getWkdayName Sunday", (input, expected) => {
     const result = SLStatic.getWkdayName(input[0], input[1]);
-    return `${result}` === `${expected}` ||
+    return result == expected ||
           `Expected "${expected}", got "${result}"`;
   }, [ [0, null], "Sunday" ]);
 
   SLTests.AddTest("Test getWkdayName Tuesday long", (input, expected) => {
     const result = SLStatic.getWkdayName(input[0], input[1]);
-    return `${result}` === `${expected}` ||
+    return result == expected ||
           `Expected "${expected}", got "${result}"`;
   }, [ [2, "long"], "Tuesday" ]);
 
   SLTests.AddTest("Test getWkdayName Wednesday short", (input, expected) => {
     const result = SLStatic.getWkdayName(input[0], input[1]);
-    return `${result}` === `${expected}` ||
+    return result == expected ||
           `Expected "${expected}", got "${result}"`;
   }, [ [3, "short"], "Wed" ]);
 
   SLTests.AddTest("Test formatTime from number", (input, expected) => {
     const result = SLStatic.formatTime(input[0], input[1]);
-    return `${result}` === `${expected}` ||
+    return result == expected ||
           `Expected "${expected}", got "${result}"`;
   }, [ [(new Date(2020,5,3,6,55)).getTime(), true], "0655" ]);
 
   SLTests.AddTest("Test formatTime from date", (input, expected) => {
     const result = SLStatic.formatTime(input[0], input[1]);
-    return `${result}` === `${expected}` ||
+    return result == expected ||
           `Expected "${expected}", got "${result}"`;
   }, [ [(new Date(2020,5,3,6,5)), false], "605" ]);
 
   SLTests.AddTest("Test formatTime from string", (input, expected) => {
     const result = SLStatic.formatTime(input[0], input[1]);
-    return `${result}` === `${expected}` ||
+    return result == expected ||
           `Expected "${expected}", got "${result}"`;
   }, [ ["4:02", true], "0402" ]);
 
