@@ -876,7 +876,7 @@ if (SLStatic.i18n === null) {
             }
 
             if (str === undefined) {
-              console.warn(`Unable to find message ${messageName} in locale ${defaultLocale}`);
+              SLStatic.warn(`Unable to find message ${messageName} in locale ${defaultLocale}`);
               for (let locale of ext.localeData.availableLocales) {
                 if (ext.localeData.messages.has(locale)) {
                   messages = ext.localeData.messages.get(locale);
@@ -919,9 +919,9 @@ if (SLStatic.i18n === null) {
           return "";
         },
       };
-      console.debug("Got i18n locales from extension", SLStatic.i18n);
+      SLStatic.debug("Got i18n locales from extension", SLStatic.i18n);
     } catch (e) {
-      console.debug("Unable to load i18n from extension.",e);
+      SLStatic.debug("Unable to load i18n from extension.",e);
     }
   } else {
     // We're in a node process (unit test).
