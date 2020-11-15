@@ -14,7 +14,7 @@ const SLPopup = {
       const debugMsg = Object.keys(hdr).reduce((msg,name) => {
         msg.push(`${name}: ${hdr[name]}`); return msg;
       },[]).join("\n    ");
-      console.debug(`DEBUG [SendLater]: Header values:\n    ${debugMsg}`);
+      SLStatic.debug(`DEBUG [SendLater]: Header values:\n    ${debugMsg}`);
     }
   },
 
