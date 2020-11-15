@@ -73,24 +73,11 @@ const SLOptions = {
       await browser.storage.local.set({ ufuncs });
       return true;
     } else {
-      try {
-        browser.notifications.create(null, {
-          type: "basic",
-          title: browser.i18n.getMessage("BadSaveTitle"),
-          message: browser.i18n.getMessage("BadSaveBody")
-        });
-      } catch (ex) {
-        try {
-          browser.runtime.sendMessage({
-            action: "alert",
-            title: browser.i18n.getMessage("BadSaveTitle"),
-            text: browser.i18n.getMessage("BadSaveBody")
-          });
-          SLStatic.error("Error occurred while alerting user",ex);
-        } catch (ex2) {
-          SLStatic.error("Errors occurred while alerting user",ex,ex2);
-        }
-      }
+      browser.runtime.sendMessage({
+        action: "alert",
+        title: browser.i18n.getMessage("BadSaveTitle"),
+        text: browser.i18n.getMessage("BadSaveBody")
+      });
       return false;
     }
   },
@@ -397,23 +384,24 @@ const SLOptions = {
       }));
 
     document.getElementById("advancedEditSave").addEventListener("click",
-      (async evt => {
+      (evt => {
         const prefContent = document.getElementById("advancedConfigText").value;
-        let prefs;
         try {
-          prefs = JSON.parse(prefContent);
+          const prefs = JSON.parse(prefContent);
+          if (prefs) {
+            browser.storage.local.set({ preferences: prefs }).then(() => {
+              SLOptions.applyPrefsToUI();
+            });
+            SLOptions.showCheckMark(evt.target, "green");
+          }
         } catch (err) {
           SLStatic.warn(`JSON parsing failed with error`,err);
+          SLOptions.showXMark(evt.target, "red");
           browser.runtime.sendMessage({
             action: "alert",
             title: "Warning",
             text: `Preferences were not saved. JSON parsing failed with message:\n\n${err}`
           });
-        }
-        if (prefs) {
-          await browser.storage.local.set({ preferences: prefs });
-          await SLOptions.applyPrefsToUI();
-          SLOptions.showCheckMark(evt.target, "green");
         }
       }));
 

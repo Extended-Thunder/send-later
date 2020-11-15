@@ -6,6 +6,15 @@ const SendLater = {
 
     watchAndMarkRead: new Set(),
 
+    notify(title, text) {
+      SLStatic.warn(`Alert: ${title}- ${text}`);
+      browser.notifications.create(null, {
+        "type": "basic",
+        "title": title,
+        "message": text
+      });
+    },
+
     async getRaw(msgId, nTries) {
       const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
       let rawMsg = null;
@@ -18,14 +27,14 @@ const SendLater = {
         });
 
         if (rawMsg) {
-          console.log(`Got message ${msgId} on attempt ${iteration}`);
+          SLStatic.debug(`Got message ${msgId} on attempt ${iteration}`);
           return rawMsg;
         } else {
           if (iteration >= nTries) {
-            console.error("Giving up on message. Too many retries.",msgId);
+            SLStatic.error("Giving up on message. Too many retries.",msgId);
             return null;
           } else {
-            console.warn(`getRaw failed on attempt ${iteration} for message ${msgId}. Will try again.`);
+            SLStatic.warn(`getRaw failed on attempt ${iteration} for message ${msgId}. Will try again.`);
             await sleep(2000+(Math.random()*6000));
           }
         }
@@ -167,7 +176,7 @@ const SendLater = {
     },
 
     async possiblySendMessage(msgHdr) {
-      if (await browser.SL3U.isOffline()) {
+      if (!window.navigator.onLine) {
         SLStatic.debug(`The option to send scheduled messages while ` +
           `thunderbird is offline has not yet been implemented. Skipping.`);
         return;
@@ -606,7 +615,8 @@ const SendLater = {
       });
       let thisVersion = "0.0.0";
       try {
-        thisVersion = await browser.SL3U.getVersion();
+        const manifest = browser.runtime.getManifest();
+        thisVersion = manifest.version;
       } catch (e) {
         SLStatic.warn("Unable to read current Send Later version.", e);
       }
@@ -919,16 +929,15 @@ browser.runtime.onMessage.addListener(async (message) => {
   const response = {};
   switch (message.action) {
     case "alert": {
-      browser.SL3U.alert(message.title, message.text);
+      SendLater.notify(message.title, message.text);
       break;
     }
     case "doSendNow": {
       SLStatic.debug("User requested send immediately.");
-
-      if (await browser.SL3U.isOffline()) {
+      if (!window.navigator.onLine) {
         // TODO -> Option to place in outbox.
-        browser.SL3U.alert("Thunderbird is offline.",
-                           "Cannot send message at this time.");
+        SendLater.notify("Thunderbird is offline.",
+                        "Cannot send message at this time.");
       } else {
         SendLater.composeState[message.tabId] = "sending";
         browser.SL3U.sendNow().then(()=>{
