@@ -13,7 +13,7 @@
   "showHeader": ["bool", true, "showheader"],
   "showColumn": ["bool", true, "showcolumn"],
   "showStatus": ["bool", true, "showstatus"],
-  "logConsoleLevel": ["string", "warn", "logging.console"],
+  "logConsoleLevel": ["string", "info", "logging.console"],
   "logDumpLevel": ["string", "fatal", "logging.dump"],
   "logFilter": ["string", "", "logging.filter"],
   "sendUnsentMsgs": ["bool", true, "sendunsentmessages"],
