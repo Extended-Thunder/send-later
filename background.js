@@ -541,7 +541,7 @@ const SendLater = {
         const compactedDrafts = await SendLater.forAllDraftFolders(
           async folder => {
             const accountId = folder.accountId, path = folder.path;
-            console.log(`Compacting folder <${path}> in account ${accountId}`);
+            SLStatic.log(`Compacting folder <${path}> in account ${accountId}`);
             return browser.SL3U.compactFolder(accountId, path);
           });
         const compactedOutbox = await browser.SL3U.compactFolder("", "outbox");
@@ -595,7 +595,6 @@ const SendLater = {
           `                    You will receive this prompt again next time you restart\n` +
           `                    Thunderbird`;
         const okay = await browser.SL3U.confirmAction(title, message.trim());
-        console.log("isokay",okay);
         if (!okay) {
           SLStatic.info("Disabling Send Later per user selection.");
           preferences.checkTimePref = 0;
@@ -731,6 +730,10 @@ const SendLater = {
       // Set custom DB headers preference, if not already set.
       await browser.SL3U.setCustomDBHeaders();
 
+      // Before preferences are available, let's set logging
+      // to the default level.
+      SLStatic.logConsoleLevel = "info";
+
       // Check if version has just been upgraded, and possibly
       // prompt for restart if so.
       if (!(await SendLater.continueOnUpgrade())) {
@@ -747,7 +750,7 @@ const SendLater = {
 
       await SendLater.claimDrafts();
 
-      const { preferences, ufuncs } = await browser.storage.local.get({
+      const { preferences } = await browser.storage.local.get({
           preferences: {},
           ufuncs: {},
         });
@@ -813,7 +816,7 @@ const SendLater = {
 }; // SendLater
 
 browser.SL3U.onKeyCode.addListener(keyid => {
-  console.info(`Received keycode ${keyid}`);
+  SLStatic.info(`Received keycode ${keyid}`);
   switch (keyid) {
     case "key_altShiftEnter": {
       if (SendLater.prefCache.altBinding) {
@@ -868,7 +871,7 @@ browser.SL3U.onKeyCode.addListener(keyid => {
 
 // Intercept sent messages. Decide whether to handle them or just pass them on.
 browser.compose.onBeforeSend.addListener(tab => {
-  console.info(`Received onBeforeSend from tab`,tab);
+  SLStatic.info(`Received onBeforeSend from tab`,tab);
   if (SendLater.composeState[tab.id] === "sending") {
     // Avoid blocking extension's own send events
     setTimeout(() => delete SendLater.composeState[tab.id], 1000);
