@@ -33,9 +33,9 @@ const SLOptions = {
         if (matchingChildren.length === 1) {
           element.value = matchingChildren[0].value;
         } else if (matchingChildren.length > 1) {
-          console.log("[SendLater]: Multiple options match",value,element);
+          SLStatic.log("[SendLater]: Multiple options match",value,element);
         } else {
-          console.log("[SendLater]: Could not find value in element ",value,element);
+          SLStatic.log("[SendLater]: Could not find value in element ",value,element);
         }
       }
     }
@@ -45,7 +45,7 @@ const SLOptions = {
     const ufuncPromise =
       browser.storage.local.get({ufuncs:{}}).then(({ ufuncs }) => {
         Object.keys(ufuncs).forEach(funcName => {
-          console.debug(`Adding function element ${funcName}`);
+          SLStatic.debug(`Adding function element ${funcName}`);
           SLOptions.addFuncOption(funcName, false);
         })
       });
@@ -54,7 +54,7 @@ const SLOptions = {
       browser.storage.local.get({ preferences: {} }).then(({ preferences }) => {
         SLStatic.logConsoleLevel = (preferences.logConsoleLevel||"all").toLowerCase();
         for (let id of SLStatic.prefInputIds) {
-          console.debug(`Setting ${id}: ${preferences[id]}`);
+          SLStatic.debug(`Setting ${id}: ${preferences[id]}`);
           SLOptions.applyValue(
             id, preferences[id]
           ).catch(SLStatic.error);
@@ -161,21 +161,21 @@ const SLOptions = {
           case "radio":
             preferences[element.id] = element.checked;
             SLOptions.showCheckMark(element, "green");
-            console.debug(`Set option (radio) ${element.id}: ${element.value}`);
+            SLStatic.debug(`Set option (radio) ${element.id}: ${element.value}`);
             if (element.checked && SLOptions.checkboxGroups[element.id])
               for (const id2 of SLOptions.checkboxGroups[element.id]) {
                 const element2 = document.getElementById(id2);
                 if (element2.checked) {
                   element2.checked = false;
                   preferences[id2] = false;
-                  console.debug(`Set option (radio) ${id2}: false`);
+                  SLStatic.debug(`Set option (radio) ${id2}: false`);
                   SLOptions.showCheckMark(element2, "green");
                 }
               }
             break;
           case "text":
           case "number":
-            console.debug(`Set option (number) ${element.id}: ${preferences[element.id]} -> ${element.value}`);
+            SLStatic.debug(`Set option (number) ${element.id}: ${preferences[element.id]} -> ${element.value}`);
             preferences[element.id] = element.value;
             SLOptions.showCheckMark(element, "green");
             break;
@@ -183,7 +183,7 @@ const SLOptions = {
             throw new Error("Unexpected element type: "+element.type);
         }
       } else if (element.tagName === "SELECT") {
-        console.debug(`Set option (select) ${element.id}: ${preferences[element.id]} -> ${element.value}`);
+        SLStatic.debug(`Set option (select) ${element.id}: ${preferences[element.id]} -> ${element.value}`);
         preferences[element.id] = element.value;
         SLOptions.showCheckMark(element, "green");
       } else {
