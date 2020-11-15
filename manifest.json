@@ -33,7 +33,8 @@
     "activeTab",
     "messagesMove",
     "messagesRead",
-    "compose"
+    "compose",
+    "notifications"
   ],
 
   "background": {

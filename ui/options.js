@@ -1,4 +1,3 @@
-window.browser = window.browser.extension.getBackgroundPage().browser;
 
 // Functions related to the options UI (accessed via options.html)
 const SLOptions = {
@@ -73,9 +72,24 @@ const SLOptions = {
       await browser.storage.local.set({ ufuncs });
       return true;
     } else {
-      browser.runtime.sendMessage({ action: "alert",
-        title: browser.i18n.getMessage("BadSaveTitle"),
-        text: browser.i18n.getMessage("BadSaveBody")});
+      try {
+        browser.notifications.create(null, {
+          type: "basic",
+          title: browser.i18n.getMessage("BadSaveTitle"),
+          message: browser.i18n.getMessage("BadSaveBody")
+        });
+      } catch (ex) {
+        try {
+          browser.runtime.sendMessage({
+            action: "alert",
+            title: browser.i18n.getMessage("BadSaveTitle"),
+            text: browser.i18n.getMessage("BadSaveBody")
+          });
+          SLStatic.error("Error occurred while alerting user",ex);
+        } catch (ex2) {
+          SLStatic.error("Errors occurred while alerting user",ex,ex2);
+        }
+      }
       return false;
     }
   },
@@ -109,20 +123,43 @@ const SLOptions = {
   },
 
   showCheckMark(element, color) {
-      // Appends a green checkmark as element's last sibling. Disappears after a
-      // timeout (1.5 sec). If already displayed, then restart timeout.
-      const checkmark = document.createElement("span");
-      checkmark.textContent = String.fromCharCode(0x2714);
-      checkmark.style.color = color;
-      checkmark.className = "success_icon";
+    // Appends a green checkmark as element's last sibling. Disappears after a
+    // timeout (1.5 sec). If already displayed, then restart timeout.
+    if (!color) {
+      color = "green";
+    }
+    const checkmark = document.createElement("span");
+    checkmark.textContent = String.fromCharCode(0x2714);
+    checkmark.style.color = color;
+    checkmark.className = "success_icon";
 
-      const p = element.parentNode;
-      if (p.lastChild.className === 'success_icon') {
-          p.replaceChild(checkmark, p.lastChild);
-      } else {
-          p.appendChild(checkmark);
-      }
-      setTimeout(() => checkmark.remove(), 1500);
+    const p = element.parentNode;
+    if (p.lastChild.className === 'success_icon') {
+        p.replaceChild(checkmark, p.lastChild);
+    } else {
+        p.appendChild(checkmark);
+    }
+    setTimeout(() => checkmark.remove(), 1500);
+  },
+
+  showXMark(element, color) {
+    // Appends a ballot X as element's last sibling. Disappears after a
+    // timeout (1.5 sec). If already displayed, then restart timeout.
+    if (!color) {
+      color = "red";
+    }
+    const marker = document.createElement("span");
+    marker.textContent = String.fromCharCode(0x2718);
+    marker.style.color = color;
+    marker.className = "success_icon";
+
+    const p = element.parentNode;
+    if (p.lastChild.className === 'success_icon') {
+        p.replaceChild(marker, p.lastChild);
+    } else {
+        p.appendChild(marker);
+    }
+    setTimeout(() => marker.remove(), 1500);
   },
 
   async updatePrefListener(event) {
@@ -168,7 +205,7 @@ const SLOptions = {
       await browser.storage.local.set({ preferences });
     } catch (ex) {
       SLStatic.error(ex);
-      SLOptions.showCheckMark(element, "red");
+      SLOptions.showXMark(element, "red");
     }
   },
 
@@ -316,6 +353,9 @@ const SLOptions = {
         if (success) {
           SLOptions.addFuncOption(funcName, true);
           SLOptions.showCheckMark(evt.target, "green");
+        } else {
+          document.getElementById("functionName").select();
+          SLOptions.showXMark(evt.target, "red");
         }
       });
     });
@@ -451,7 +491,6 @@ const SLOptions = {
           outputCell.appendChild(mkBlock(mkSpan("nextspec:",true), mkSpan(nextspec || "none")));
           outputCell.appendChild(mkBlock(mkSpan("nextargs:",true), mkSpan(nextargs || "")));
         }
-        // });
       }));
 
     // And attach a listener to the "Reset Preferences" button
