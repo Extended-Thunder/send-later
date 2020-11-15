@@ -194,13 +194,15 @@ var SLStatic = {
       throw `Recurrence function "${name}" did not return number, Date, or array`;
     }
 
+    const prevOrNow = prev ? (new Date(prev)).getTime() : Date.now();
+
     switch (recvdType) {
       case "number":
         if (response < 0) {
           return { sendAt: null };
         } else {
           return {
-            sendAt: new Date((new Date(prev)).getTime() + response * 60 * 1000)
+            sendAt: new Date(prevOrNow + response * 60 * 1000)
           };
         }
       case "date":
@@ -214,7 +216,7 @@ var SLStatic = {
           if (response[0] < 0) {
             return { sendAt: null };
           } else {
-            sendAt = new Date((new Date(prev)).getTime() + response[0] * 60 * 1000);
+            sendAt = new Date(prevOrNow + response[0] * 60 * 1000);
           }
         } else if (response[0].getTime) {
           sendAt = response[0];
