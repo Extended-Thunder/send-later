@@ -750,10 +750,10 @@ const SendLater = {
 
       await SendLater.claimDrafts();
 
-      const { preferences } = await browser.storage.local.get({
-          preferences: {},
-          ufuncs: {},
-        });
+      const { preferences } =
+        await browser.storage.local.get({ preferences: {} });
+      SendLater.prefCache = preferences;
+      SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
 
       // This listener should be added *after* all of the storate-related
       // setup is complete. It makes sure that subsequent changes to storage
@@ -761,11 +761,8 @@ const SendLater = {
       browser.storage.onChanged.addListener(async (changes, areaName) => {
         if (areaName === "local") {
           SLStatic.debug("Propagating changes from local storage");
-          const { preferences, ufuncs } =
-            await browser.storage.local.get({
-              preferences: {},
-              ufuncs: {}
-            });
+          const { preferences } =
+            await browser.storage.local.get({ preferences: {} });
           SendLater.prefCache = preferences;
           SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
           const prefString = JSON.stringify(preferences);
@@ -777,9 +774,10 @@ const SendLater = {
       await browser.SL3U.injectScript("utils/static.js");
       await browser.SL3U.injectScript("experiments/headerView.js");
 
-      SendLater.prefCache = preferences;
-      const prefString = JSON.stringify(preferences);
-      await browser.SL3U.notifyStorageLocal(prefString, true);
+      setTimeout(() => {
+        const prefString = JSON.stringify(preferences);
+        browser.SL3U.notifyStorageLocal(prefString, true);
+      }, 1000);
 
       SLStatic.debug("Registering window listeners");
       await browser.SL3U.startObservers();

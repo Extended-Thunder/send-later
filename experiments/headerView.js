@@ -384,8 +384,22 @@ var SendLaterHeaderView = {
     onOperationCancelled(addon) {},
   },
 
-  onLoad() {
+  async onLoad() {
     SLStatic.debug("Entering function","SendLaterHeaderView.onLoad");
+    try {
+      const ext = window.ExtensionParent.GlobalManager.extensionMap.get("sendlater3@kamens.us");
+      const localStorage = [...ext.views][0].apiCan.findAPIPath("storage.local");
+      const { preferences } = await localStorage.callMethodInParentProcess("get", [{ "preferences": {} }]);
+
+      let storageMap = new Map();
+      Object.entries(preferences).forEach(([key, value]) => {
+        storageMap.set(key, value);
+      });
+      this.storageLocalMap = storageMap;
+      SLStatic.logConsoleLevel =
+        (preferences.logConsoleLevel||"all").toLowerCase();
+    } catch (err) { SLStatic.error("Could not fetch preferences", err); }
+
     Services.obs.addObserver(this.storageLocalObserver, this.obsTopicStorageLocal);
     Services.obs.notifyObservers(null, this.obsNotificationReadyTopic);
 
