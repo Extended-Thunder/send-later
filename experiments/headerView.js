@@ -192,6 +192,7 @@ var SendLaterHeaderView = {
         return localStorage;
       })(JSON.parse(data));
       SendLaterHeaderView.storageLocalMap = storageMap;
+      SLStatic.logConsoleLevel = (storageMap.get("logConsoleLevel")||"all").toLowerCase();
       SLStatic.debug("StorageLocalMap:",storageMap);
       SLStatic.debug("Leaving function","SendLaterHeaderView.storageLocalObserver.observe");
     },

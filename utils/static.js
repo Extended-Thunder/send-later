@@ -21,27 +21,37 @@ var SLStatic = {
                  "quickOptions2Args", "quickOptions3Label",
                  "quickOptions3funcselect", "quickOptions3Args"],
 
-  async logger(msg, level, stream) {
-    const levels = ["all","trace","debug","info","warn","error","fatal"];
-    let logConsoleLevel;
-    try {
-      const { preferences } = await browser.storage.local.get({"preferences": {}});
-      logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
-    } catch {
-      logConsoleLevel = "all";
-    }
-    if (levels.indexOf(level) >= levels.indexOf(logConsoleLevel)) {
-      const output = stream || console.log;
-      output(`${level.toUpperCase()} [SendLater]:`, ...msg);
-    }
+  logConsoleLevel: null,
+
+  logger(msg, level, stream) {
+    (async (logConsoleLevel) => {
+      if (logConsoleLevel) {
+        return logConsoleLevel;
+      } else {
+        try {
+          console.log("Checking logConsoleLevel preference");
+          const { preferences } = await browser.storage.local.get({"preferences": {}});
+          return preferences.logConsoleLevel.toLowerCase();
+        } catch {
+          return "all";
+        }
+      }
+    })(this.logConsoleLevel).then((logConsoleLevel) => {
+      this.logConsoleLevel = logConsoleLevel;
+      const levels = ["all","trace","debug","info","warn","error","fatal"];
+      if (levels.indexOf(level) >= levels.indexOf(logConsoleLevel)) {
+        const output = stream || console.log;
+        output(`${level.toUpperCase()} [SendLater]:`, ...msg);
+      }
+    });
   },
 
-  async error(...msg)  { SLStatic.logger(msg, "error", console.error) },
-  async warn(...msg)   { SLStatic.logger(msg, "warn",  console.warn) },
-  async info(...msg)   { SLStatic.logger(msg, "info",  console.info) },
-  async log(...msg)    { SLStatic.logger(msg, "info",  console.log) },
-  async debug(...msg)  { SLStatic.logger(msg, "debug", console.debug) },
-  async trace(...msg)  { SLStatic.logger(msg, "trace", console.trace) },
+  error(...msg)  { SLStatic.logger(msg, "error", console.error) },
+  warn(...msg)   { SLStatic.logger(msg, "warn",  console.warn) },
+  info(...msg)   { SLStatic.logger(msg, "info",  console.info) },
+  log(...msg)    { SLStatic.logger(msg, "info",  console.log) },
+  debug(...msg)  { SLStatic.logger(msg, "debug", console.debug) },
+  trace(...msg)  { SLStatic.logger(msg, "trace", console.trace) },
 
   flatten: function(arr) {
     // Flattens an N-dimensional array.
