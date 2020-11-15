@@ -144,7 +144,6 @@ var SendLaterHeaderView = {
             let identityNum;
             for (identityNum = 0; identityNum < numIdentities; identityNum++) {
               try {
-                SLStatic.log(thisaccount.identities);
                 let identity = thisaccount.identities[identityNum].QueryInterface(
                   Ci.nsIMsgIdentity
                 );
@@ -200,20 +199,33 @@ var SendLaterHeaderView = {
 
   hideShowColumn() {
     SLStatic.debug("Entering function","SendLaterHeaderView.hideShowColumn");
-    let col = document.getElementById("sendlater-colXSendLaterAt")
-    if (!col || !gDBView) {
-      return;
-    }
-    if (this.isDraftsFolder(gDBView.viewFolder)) {
-      if (this.getStorageLocal("showColumn")) {
-        SLStatic.debug("Setting SL column visible")
-        col.hidden = false;
-      } else {
-        col.hidden = true;
+    const visible =
+      this.getStorageLocal("showColumn") &&
+      this.isDraftsFolder(gDBView.viewFolder);
+
+    const setColumnVisibility = (() => {
+      let col = document.getElementById("sendlater-colXSendLaterAt")
+      if (!col || !gDBView) {
+        return;
       }
-    } else {
-      col.hidden = true;
-    }
+      SLStatic.debug(`Setting SL column visible: ${visible}`);
+      if (visible) {
+        col.removeAttribute("hidden");
+      } else {
+        col.setAttribute("hidden", "true");
+      }
+    });
+
+    setColumnVisibility();
+
+    // The column does not always hide/show properly.
+    // (Related: https://bugzilla.mozilla.org/show_bug.cgi?id=1609378)
+    // This workaround is borrowed from Thunderbird Conversations.
+    setTimeout(() => {
+      SLStatic.debug("Double checking column status");
+      setColumnVisibility();
+    }, 1000);
+
     SLStatic.debug("Leaving function","SendLaterHeaderView.hideShowColumn");
   },
 
@@ -391,27 +403,29 @@ var SendLaterHeaderView = {
     if (gDBView) {
       try {
         gDBView.removeColumnHandler(this.columnId);
-      } catch (ex) {}
+      } catch (ex) {
+        console.warn("Unable to remove Send Later column handler", ex);
+      }
     }
 
     try {
       Services.obs.removeObserver(this.columnHandlerObserver, "MsgCreateDBView");
-    } catch (ex) { console.warn(ex); }
+    } catch (ex) { console.warn("Unable to remove msgcreatedbview observer", ex); }
 
     try {
       Services.obs.removeObserver(this.storageLocalObserver, this.obsTopicStorageLocal);
-    } catch (ex) { console.warn(ex); }
+    } catch (ex) { console.warn("Unable to remove storagelocalobserver", ex); }
 
     try {
       AddonManager.removeAddonListener(this.AddonListener);
-    } catch (ex) { console.warn(ex); }
+    } catch (ex) { console.warn("Unable to remove addon listener", ex); }
 
     try {
       const column = document.getElementById(this.columnId);
       if (column) { column.remove(); }
       const headerRow = document.getElementById(this.hdrRowId);
       if (headerRow) { headerRow.remove(); }
-    } catch (ex) { console.warn(ex); }
+    } catch (ex) { console.warn("Unable to remove Send Later column elements", ex); }
 
     SLStatic.debug("Leaving function","SendLaterHeaderView.onUnload");
   }
