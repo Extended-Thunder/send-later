@@ -997,8 +997,7 @@ if (typeof browser === "undefined" && typeof require !== "undefined") {
       sendNow: function(batch){},
       setHeader: function (key,value){},
       getHeader: function(key){return key;},
-      getLegacyPref: function(name, dtype, def){return null;},
-      alert: function(msg) {console.warn(`ALERT ${msg}`);}
+      getLegacyPref: function(name, dtype, def){return null;}
     }
   }
 

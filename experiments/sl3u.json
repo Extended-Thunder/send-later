@@ -3,12 +3,6 @@
     "namespace": "SL3U",
     "functions": [
       {
-        "name":"isOffline",
-        "type":"function",
-        "async":true,
-        "parameters":[]
-      },
-      {
         "name":"alert",
         "type":"function",
         "async":true,
@@ -80,13 +74,6 @@
             "type": "string"
           }
         ]
-      },
-      {
-        "name": "getVersion",
-        "type": "function",
-        "async": true,
-        "description": "Get the version number of the currently running extension.",
-        "parameters": []
       },
       {
         "name": "sendNow",
