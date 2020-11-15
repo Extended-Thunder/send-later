@@ -52,6 +52,7 @@ const SLOptions = {
 
     const prefPromise =
       browser.storage.local.get({ preferences: {} }).then(({ preferences }) => {
+        SLStatic.logConsoleLevel = (preferences.logConsoleLevel||"all").toLowerCase();
         for (let id of SLStatic.prefInputIds) {
           console.debug(`Setting ${id}: ${preferences[id]}`);
           SLOptions.applyValue(

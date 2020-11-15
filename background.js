@@ -756,6 +756,7 @@ const SendLater = {
               ufuncs: {}
             });
           SendLater.prefCache = preferences;
+          SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
           const prefString = JSON.stringify(preferences);
           await browser.SL3U.notifyStorageLocal(prefString, false);
         }
