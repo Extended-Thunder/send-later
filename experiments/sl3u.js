@@ -396,10 +396,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return Services.prompt.alert(window, (title || ""), (text || ""));
         },
 
-        async isOffline() {
-          return Utils.isOffline;
-        },
-
         async setLegacyPref(name, dtype, value) {
           const prefName = `extensions.sendlater3.${name}`;
 
@@ -894,10 +890,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           } else {
             Services.obs.notifyObservers(null, notificationTopic, dataStr);
           }
-        },
-
-        async getVersion() {
-          return extension.version;
         },
 
         async injectScript(filename) {
