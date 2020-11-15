@@ -479,7 +479,9 @@ const SendLater = {
       }
 
       //if (currentMigrationNumber < 4)
-      if (!preferences.instanceUUID) {
+      if (preferences.instanceUUID) {
+        SLStatic.info(`This instance's UUID: ${preferences.instanceUUID}`);
+      } else {
         let instance_uuid = await browser.SL3U.getLegacyPref(
           "instance.uuid", "string", "");
         if (instance_uuid) {
@@ -750,10 +752,6 @@ const SendLater = {
           ufuncs: {},
         });
 
-      SendLater.prefCache = preferences;
-      const prefString = JSON.stringify(preferences);
-      await browser.SL3U.notifyStorageLocal(prefString, true);
-
       // This listener should be added *after* all of the storate-related
       // setup is complete. It makes sure that subsequent changes to storage
       // are propagated to their respective
@@ -775,6 +773,10 @@ const SendLater = {
       await browser.SL3U.injectScript("utils/sugar-custom.js");
       await browser.SL3U.injectScript("utils/static.js");
       await browser.SL3U.injectScript("experiments/headerView.js");
+
+      SendLater.prefCache = preferences;
+      const prefString = JSON.stringify(preferences);
+      await browser.SL3U.notifyStorageLocal(prefString, true);
 
       SLStatic.debug("Registering window listeners");
       await browser.SL3U.startObservers();

@@ -25,14 +25,16 @@ var SLStatic = {
 
   logger(msg, level, stream) {
     (async (logConsoleLevel) => {
-      if (logConsoleLevel) {
+      if (typeof logConsoleLevel === "string") {
         return logConsoleLevel;
       } else {
         try {
-          console.log("Checking logConsoleLevel preference");
           const { preferences } = await browser.storage.local.get({"preferences": {}});
-          return preferences.logConsoleLevel.toLowerCase();
-        } catch {
+          logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
+          console.log(`Received logConsoleLevel: ${logConsoleLevel}`);
+          return logConsoleLevel;
+        } catch (err) {
+          // console.log(`Unable to fetch the log console level. Returning "all"`,err);
           return "all";
         }
       }
@@ -921,7 +923,7 @@ if (SLStatic.i18n === null) {
       };
       SLStatic.debug("Got i18n locales from extension", SLStatic.i18n);
     } catch (e) {
-      SLStatic.debug("Unable to load i18n from extension.",e);
+      SLStatic.warn("Unable to load i18n from extension.",e);
     }
   } else {
     // We're in a node process (unit test).
