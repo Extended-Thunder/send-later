@@ -6,6 +6,7 @@ const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 const { Utils } = ChromeUtils.import("resource://services-settings/Utils.jsm");
 // const { AppConstants } = ChromeUtils.import("resource://gre/modules/AppConstants.jsm");
 const { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
+var { AddonManager } = ChromeUtils.import("resource://gre/modules/AddonManager.jsm");
 
 const SendLaterVars = {
   fileNumber: 0,
@@ -361,7 +362,7 @@ const SendLaterBackgrounding = function() {
 
   function addMsgSendLaterListener() {
       sl3log.Entering("Sendlater3Backgrounding.addMsgSendLaterListener");
-      const msgSendLater = Components.classes[
+      const msgSendLater = Cc[
           "@mozilla.org/messengercompose/sendlater;1"
         ].getService(Ci.nsIMsgSendLater);
       msgSendLater.addListener(sendUnsentMessagesListener);
@@ -370,15 +371,42 @@ const SendLaterBackgrounding = function() {
 
   function removeMsgSendLaterListener() {
       sl3log.Entering("Sendlater3Backgrounding.removeMsgSendLaterListener");
-      const msgSendLater = Components.classes[
+      const msgSendLater = Cc[
           "@mozilla.org/messengercompose/sendlater;1"
         ].getService(Ci.nsIMsgSendLater);
       msgSendLater.removeListener(sendUnsentMessagesListener);
       sl3log.Leaving("Sendlater3Backgrounding.removeMsgSendLaterListener");
   }
 
+  const AddonListener = {
+    resetSession(addon, who) {
+      if (addon.id != "sendlater3@kamens.us") {
+        return;
+      }
+      console.debug("AddonListener.resetSession: who - " + who);
+      try {
+        AddonManager.removeAddonListener(this);
+      } catch (ex) { console.warn("Unable to remove addon listener", ex); }
+      removeMsgSendLaterListener();
+    },
+    onUninstalling(addon) {
+      this.resetSession(addon, "onUninstalling");
+    },
+    onInstalling(addon) {
+      this.resetSession(addon, "onInstalling");
+    },
+    onDisabling(addon) {
+      this.resetSession(addon, "onDisabling");
+    },
+    // The listener is removed so these aren't run; they aren't needed as the
+    // addon is installed by the addon system and runs our backgound.js loader.
+    onEnabling(addon) {},
+    onOperationCancelled(addon) {},
+  };
+
   const window = Services.wm.getMostRecentWindow(null); // "mail:3pane"
   window.addEventListener("unload", removeMsgSendLaterListener, false);
+  AddonManager.addAddonListener(AddonListener);
 
   addMsgSendLaterListener();
 };
