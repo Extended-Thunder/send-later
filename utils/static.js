@@ -23,29 +23,27 @@ var SLStatic = {
 
   logConsoleLevel: null,
 
+  async fetchLogConsoleLevel() {
+    try {
+      const { preferences } = await browser.storage.local.get({"preferences": {}});
+      this.logConsoleLevel = (preferences.logConsoleLevel || "all").toLowerCase();
+      console.log(`Received logConsoleLevel: ${logConsoleLevel}`);
+    } catch {}
+  },
+
   logger(msg, level, stream) {
-    (async (logConsoleLevel) => {
-      if (typeof logConsoleLevel === "string") {
-        return logConsoleLevel;
-      } else {
-        try {
-          const { preferences } = await browser.storage.local.get({"preferences": {}});
-          logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
-          console.log(`Received logConsoleLevel: ${logConsoleLevel}`);
-          return logConsoleLevel;
-        } catch (err) {
-          // console.log(`Unable to fetch the log console level. Returning "all"`,err);
-          return "all";
-        }
-      }
-    })(this.logConsoleLevel).then((logConsoleLevel) => {
-      this.logConsoleLevel = logConsoleLevel;
-      const levels = ["all","trace","debug","info","warn","error","fatal"];
-      if (levels.indexOf(level) >= levels.indexOf(logConsoleLevel)) {
-        const output = stream || console.log;
-        output(`${level.toUpperCase()} [SendLater]:`, ...msg);
-      }
-    });
+    let logConsoleLevel = "all";
+    if (typeof this.logConsoleLevel === "string") {
+      logConsoleLevel = this.logConsoleLevel;
+    } else {
+      this.fetchLogConsoleLevel();
+    }
+
+    const levels = ["all","trace","debug","info","warn","error","fatal"];
+    if (levels.indexOf(level) >= levels.indexOf(logConsoleLevel)) {
+      const output = stream || console.log;
+      output(`${level.toUpperCase()} [SendLater]:`, ...msg);
+    }
   },
 
   error(...msg)  { SLStatic.logger(msg, "error", console.error) },
