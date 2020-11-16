@@ -15,6 +15,16 @@ const SendLater = {
       });
     },
 
+    async printVersionInfo() {
+      const extensionName = browser.i18n.getMessage("extensionName");
+      const thisVersion = browser.runtime.getManifest().version;
+      const browserInfo = await browser.runtime.getBrowserInfo();
+      const platformInfo = await browser.runtime.getPlatformInfo();
+      console.info(`${extensionName} version ${thisVersion} on ` +
+        `${browserInfo.name} ${browserInfo.version} (${browserInfo.buildID}) ` +
+        `[${platformInfo.os} ${platformInfo.arch}]`);
+    },
+
     async getRaw(msgId, nTries) {
       const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
       let rawMsg = null;
@@ -387,7 +397,7 @@ const SendLater = {
       }
     },
 
-    migratePreferences: async function () {
+    async migratePreferences() {
       // Migrate legacy preferences to local storage.
       const { ufuncs, preferences } = await browser.storage.local.get({
           preferences: {},
@@ -509,7 +519,7 @@ const SendLater = {
       return currentMigrationNumber;
     },
 
-    getActiveSchedules: async function (matchUUID) {
+    async getActiveSchedules(matchUUID) {
       const { preferences } = await browser.storage.local.get({ preferences: {} });
 
       let allSchedules = await SendLater.forAllDrafts(async (msg) => {
@@ -532,7 +542,7 @@ const SendLater = {
       return allSchedules.filter(v => v !== null);
     },
 
-    doSanityCheck: async function() {
+    async doSanityCheck() {
       const { preferences } = await browser.storage.local.get({ preferences: {} });
 
       let message = "";
@@ -610,7 +620,7 @@ const SendLater = {
       return true;
     },
 
-    continueOnUpgrade: async function() {
+    async continueOnUpgrade() {
       let { preferences } = await browser.storage.local.get({
         preferences: {}
       });
@@ -623,7 +633,7 @@ const SendLater = {
       }
       const extensionName = browser.i18n.getMessage("extensionName");
       if (thisVersion === preferences.versionNumber) {
-        console.info(`Starting ${extensionName} version ${thisVersion}.`);
+        SLStatic.debug("Version unchanged");
         // Just a regular old restart. Not a version upgrade.
         return true;
       } else {
@@ -726,7 +736,9 @@ const SendLater = {
       SLStatic.info(`Claimed ${claimed.length} scheduled messages.`);
     },
 
-    init: async function () {
+    async init() {
+      await SendLater.printVersionInfo();
+
       // Set custom DB headers preference, if not already set.
       await browser.SL3U.setCustomDBHeaders();
 
