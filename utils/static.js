@@ -55,14 +55,14 @@ var SLStatic = {
   debug(...msg)  { SLStatic.logger(msg, "debug", console.debug) },
   trace(...msg)  { SLStatic.logger(msg, "trace", console.trace) },
 
-  flatten: function(arr) {
+  flatten(arr) {
     // Flattens an N-dimensional array.
     return arr.reduce((res, item) => res.concat(
                         Array.isArray(item) ? SLStatic.flatten(item) : item
                       ), []);
   },
 
-  generateUUID: function() {
+  generateUUID() {
     // Thanks to stackexchange for this one
     //    https://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid
     // Note: This will eventually be replaced with a standard uuid javascript module
@@ -73,21 +73,21 @@ var SLStatic = {
     return `{${uuid}}`;
   },
 
-  parseableDateTimeFormat: function(date) {
+  parseableDateTimeFormat(date) {
     const DATE_RFC2822 = "%a, %d %b %Y %T %z";
     return (new Sugar.Date(date || new Date())).format(DATE_RFC2822);
   },
 
-  humanDateTimeFormat: function(date) {
+  humanDateTimeFormat(date) {
     return (new Sugar.Date(date)).long();
   },
 
-  shortHumanDateTimeFormat: function(date) {
+  shortHumanDateTimeFormat(date) {
     return date.toLocaleString([], {month:'numeric',day:'numeric',year:'numeric',
                                     hour:'numeric',minute:'2-digit'});
   },
 
-  compare: function (a, comparison, b) {
+  compare(a, comparison, b) {
     switch (comparison) {
       case "<":
         return (a < b);
@@ -111,13 +111,13 @@ var SLStatic = {
     }
   },
 
-  compareDates: function(a,comparison,b) {
+  compareDates(a,comparison,b) {
     const A = new Date(a.getFullYear(), a.getMonth(), a.getDate());
     const B = new Date(b.getFullYear(), b.getMonth(), b.getDate());
     return SLStatic.compare(A.getTime(),comparison,B.getTime());
   },
 
-  compareTimes: function(a,comparison,b,ignoreSec) {
+  compareTimes(a,comparison,b,ignoreSec) {
     const A = new Date(2000, 0, 01, a.getHours(), a.getMinutes(),
                         (ignoreSec ? 0 : a.getSeconds()));
     const B = new Date(2000, 0, 01, b.getHours(), b.getMinutes(),
@@ -125,7 +125,7 @@ var SLStatic = {
     return SLStatic.compare(A.getTime(),comparison,B.getTime());
   },
 
-  compareDateTimes: function(a, comparison, b, ignoreSec) {
+  compareDateTimes(a, comparison, b, ignoreSec) {
     const A = new Date(a.getTime());
     const B = new Date(b.getTime());
     if (ignoreSec) {
@@ -135,7 +135,7 @@ var SLStatic = {
     return SLStatic.compare(A.getTime(), comparison, B.getTime());
   },
 
-  getWkdayName: function(input, style) {
+  getWkdayName(input, style) {
     style = style || "long";
     let date;
     if (input.getTime) {
@@ -146,7 +146,7 @@ var SLStatic = {
     return (new Intl.DateTimeFormat('default', {weekday:style})).format(date);
   },
 
-  parseDateTime: function(dstr,tstr) {
+  parseDateTime(dstr,tstr) {
     // Inputs: dstr (formatted YYYY/MM/DD), tstr (formatted HH:MM)
     const dpts = dstr ? dstr.split(/\D/) : [0,1,0];
     const tpts = SLStatic.timeRegex.test(tstr) ?
@@ -154,7 +154,7 @@ var SLStatic = {
     return new Date(+dpts[0], --dpts[1], +dpts[2], +tpts[1], +tpts[2]);
   },
 
-  formatTime: function(datetime,zeropad,human) {
+  formatTime(datetime,zeropad,human) {
     if (typeof datetime === "number") {
       datetime = new Date(datetime);
     } else if (typeof datetime === "string") {
@@ -360,7 +360,7 @@ var SLStatic = {
     return scheduleText;
   },
 
-  stateSetter: function(enabled) {
+  stateSetter(enabled) {
     // closure for enabling/disabling UI components
     return (async element => {
         try{
@@ -376,7 +376,7 @@ var SLStatic = {
       });
   },
 
-  getHeader: function(content, header) {
+  getHeader(content, header) {
     // Get header's value (e.g. "subject: foo bar    baz" returns "foo bar    baz")
     const regex = new RegExp(`^${header}:([^\r\n]*)\r\n(\\s[^\r\n]*\r\n)*`,'im');
     const hdrContent = content.split(/\r\n\r\n/m)[0]+'\r\n';
@@ -388,7 +388,7 @@ var SLStatic = {
     }
   },
 
-  replaceHeader: function(content, header, value, replaceAll, addIfMissing) {
+  replaceHeader(content, header, value, replaceAll, addIfMissing) {
     // Replaces the header content with a new value.
     //    replaceAll: operate on all instances of the header (can be regex)
     //    addIfMissing: If the header does not exist
@@ -405,7 +405,7 @@ var SLStatic = {
     }
   },
 
-  appendHeader: function(content, header, value) {
+  appendHeader(content, header, value) {
     const regex = new RegExp(`^${header}:([^\r\n]*)\r\n(\\s[^\r\n]*\r\n)*`,'im');
     const hdrContent = content.split(/\r\n\r\n/m)[0]+'\r\n';
     const msgContent = content.split(/\r\n\r\n/m).slice(1).join('\r\n\r\n');
@@ -420,7 +420,7 @@ var SLStatic = {
     }
   },
 
-  prepNewMessageHeaders: function(content) {
+  prepNewMessageHeaders(content) {
     content = SLStatic.replaceHeader(content, "Date", SLStatic.parseableDateTimeFormat(), false);
     content = SLStatic.replaceHeader(content, "X-Send-Later-[a-zA-Z0-9\-]*", null, true);
     content = SLStatic.replaceHeader(content, "X-Enigmail-Draft-Status", null, false);
@@ -428,11 +428,11 @@ var SLStatic = {
     return content;
   },
 
-  parseArgs: function(argstring) {
+  parseArgs(argstring) {
     return JSON.parse(`[${argstring||""}]`);
   },
 
-  unparseArgs: function(args) {
+  unparseArgs(args) {
     // Convert a list into its string representation, WITHOUT the square
     // braces around the entire list.
     let arglist = JSON.stringify(args||[], null, ' ');
@@ -489,7 +489,7 @@ var SLStatic = {
   */
 
   // recur (object) -> recurSpec (string)
-  unparseRecurSpec: function(recur) {
+  unparseRecurSpec(recur) {
     let spec = recur.type;
 
     if (recur.type === "none") {
@@ -528,7 +528,7 @@ var SLStatic = {
   },
 
   // recurSpec (string) -> recur (object)
-  parseRecurSpec: function(recurSpec) {
+  parseRecurSpec(recurSpec) {
     if (!recurSpec) {
       return { type: "none" };
     }
@@ -652,7 +652,7 @@ var SLStatic = {
     return recur;
   },
 
-  nextRecurFunction: async function(prev, recurSpec, recur, args) {
+  async nextRecurFunction(prev, recurSpec, recur, args) {
     if (!recur.function) {
       throw new Error(`Invalid recurrence specification '${recurSpec}': ` +
                       "No function defined");
@@ -693,7 +693,7 @@ var SLStatic = {
     return nextRecur;
   },
 
-  nextRecurDate: async function(next, recurSpec, now, args) {
+  async nextRecurDate(next, recurSpec, now, args) {
     // Make sure we don't modify our input!
     next = new Date(next.getTime());
     const recur = SLStatic.parseRecurSpec(recurSpec);
@@ -818,7 +818,7 @@ var SLStatic = {
   //    change the day to the smallest day in the restriction that is larger
   //    than the scheduled day, or if there is none, then the smallest day in
   //    the restriction overall.
-  adjustDateForRestrictions: function(sendAt, start_time, end_time, days) {
+  adjustDateForRestrictions(sendAt, start_time, end_time, days) {
     let dt = new Date(sendAt.getTime());
     start_time = start_time && SLStatic.parseDateTime(null,start_time);
     end_time = end_time && SLStatic.parseDateTime(null,end_time);
@@ -859,11 +859,11 @@ if (SLStatic.i18n === null) {
     // We're in the extension context.
     SLStatic.i18n = browser.i18n;
   } else if (typeof require === "undefined") {
-    // We're in an experiment context.
+    // We're in an overlay context.
     try {
       const ext = window.ExtensionParent.GlobalManager.extensionMap.get("sendlater3@kamens.us");
       SLStatic.i18n = {
-        getMessage: function(messageName, substitutions = [], options = {}) {
+        getMessage(messageName, substitutions = [], options = {}) {
           try {
             messageName = messageName.toLowerCase();
 
@@ -903,25 +903,24 @@ if (SLStatic.i18n === null) {
             }
 
             let replacer = (matched, index, dollarSigns) => {
-                if (index) {
-                  // This is not quite Chrome-compatible. Chrome consumes any number
-                  // of digits following the $, but only accepts 9 substitutions. We
-                  // accept any number of substitutions.
-                  index = parseInt(index, 10) - 1;
-                  return index in substitutions ? substitutions[index] : "";
-                }
-                // For any series of contiguous `$`s, the first is dropped, and
-                // the rest remain in the output string.
-                return dollarSigns;
-              };
-              return str.replace(/\$(?:([1-9]\d*)|(\$+))/g, replacer);
+              if (index) {
+                // This is not quite Chrome-compatible. Chrome consumes any number
+                // of digits following the $, but only accepts 9 substitutions. We
+                // accept any number of substitutions.
+                index = parseInt(index, 10) - 1;
+                return index in substitutions ? substitutions[index] : "";
+              }
+              // For any series of contiguous `$`s, the first is dropped, and
+              // the rest remain in the output string.
+              return dollarSigns;
+            };
+            return str.replace(/\$(?:([1-9]\d*)|(\$+))/g, replacer);
           } catch (e) {
             console.warn("Unable to get localized message.",e);
           }
           return "";
         },
       };
-      SLStatic.debug("Got i18n locales from extension", SLStatic.i18n);
     } catch (e) {
       SLStatic.warn("Unable to load i18n from extension.",e);
     }
@@ -995,11 +994,11 @@ if (typeof browser === "undefined" && typeof require !== "undefined") {
       }
     },
     SL3U: {
-      saveAsDraft: function(){},
-      sendNow: function(batch){},
-      setHeader: function (key,value){},
-      getHeader: function(key){return key;},
-      getLegacyPref: function(name, dtype, def){return null;}
+      saveAsDraft(){},
+      sendNow(batch){},
+      setHeader (key,value){},
+      getHeader(key){return key;},
+      getLegacyPref(name, dtype, def){return null;}
     }
   }
 
@@ -1017,7 +1016,7 @@ if (typeof browser === "undefined" && typeof require !== "undefined") {
     fetch("/_locales/en/messages.json").then(
       response => response.json()
     ).then(locale => {
-      localeMessages = locale;
+      window.localeMessages = locale;
     });
   }
 
