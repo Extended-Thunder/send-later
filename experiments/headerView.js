@@ -169,10 +169,10 @@ var SendLaterHeaderView = {
 
   columnHandlerObserver: {
     // Ci.nsIObserver
-    observe: function (aMsgFolder, aTopic, aData) {
+    observe(aMsgFolder, aTopic, aData) {
       SLStatic.debug("Entering function","SendLaterHeaderView.columnHandlerObserver.observe");
       if (gDBView) {
-        SLStatic.log(`Adding column handler for ${SendLaterHeaderView.columnId}`);
+        SLStatic.debug(`Adding column handler for ${SendLaterHeaderView.columnId}`);
         gDBView.addColumnHandler(SendLaterHeaderView.columnId,
           SendLaterHeaderView.ColumnHandler);
       }
@@ -224,7 +224,7 @@ var SendLaterHeaderView = {
     setTimeout(() => {
       SLStatic.debug("Double checking column status");
       setColumnVisibility();
-    }, 1000);
+    }, 500);
 
     SLStatic.debug("Leaving function","SendLaterHeaderView.hideShowColumn");
   },
@@ -291,9 +291,13 @@ var SendLaterHeaderView = {
   },
 
   headerListener: {
-    onStartHeaders: () => {},
-    onEndHeaders: () => SendLaterHeaderView.onBeforeShowHeaderPane(),
-    onBeforeShowHeaderPane: () => SendLaterHeaderView.onBeforeShowHeaderPaneWrapper(),
+    onStartHeaders() {},
+    onEndHeaders() {
+      SendLaterHeaderView.onBeforeShowHeaderPane()
+    },
+    onBeforeShowHeaderPane() {
+      SendLaterHeaderView.onBeforeShowHeaderPaneWrapper()
+    },
   },
 
   InitializeOverlayElements() {
@@ -385,7 +389,6 @@ var SendLaterHeaderView = {
   },
 
   async onLoad() {
-    SLStatic.debug("Entering function","SendLaterHeaderView.onLoad");
     try {
       const ext = window.ExtensionParent.GlobalManager.extensionMap.get("sendlater3@kamens.us");
       const localStorage = [...ext.views][0].apiCan.findAPIPath("storage.local");
@@ -399,6 +402,8 @@ var SendLaterHeaderView = {
       SLStatic.logConsoleLevel =
         (preferences.logConsoleLevel||"all").toLowerCase();
     } catch (err) { SLStatic.error("Could not fetch preferences", err); }
+
+    SLStatic.debug("Entering function","SendLaterHeaderView.onLoad");
 
     Services.obs.addObserver(this.storageLocalObserver, this.obsTopicStorageLocal);
     Services.obs.notifyObservers(null, this.obsNotificationReadyTopic);
