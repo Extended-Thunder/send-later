@@ -969,6 +969,45 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             onLoadWindow(window) {
               console.debug("Binding to send later events like a barnicle.");
 
+              window.setTimeout(() => {
+                try {
+                  const { document } = window;
+                  const toolbarId = "composeToolbar2";
+                  const toolbar = document.getElementById(toolbarId);
+                  const widgetId = ExtensionCommon.makeWidgetId(extension.id);
+                  const toolbarButtonId = `${widgetId}-composeAction-toolbarbutton`;
+                  const windowURL =
+                    "chrome://messenger/content/messengercompose/messengercompose.xhtml";
+                  let currentSet = Services.xulStore.getValue(
+                    windowURL,
+                    toolbarId,
+                    "currentset"
+                  );
+                  if (!currentSet) {
+                    console.error("Unable to find compose window toolbar area");
+                  } else if (currentSet.includes(toolbarButtonId)) {
+                    console.debug("Toolbar includes Send Later compose action button.");
+                  } else {
+                    console.info("Adding Send Later toolbar button");
+                    currentSet = currentSet.split(",");
+                    currentSet.push(toolbarButtonId);
+                    toolbar.currentSet = currentSet.join(",");
+                    toolbar.setAttribute("currentset",toolbar.currentSet);
+                    console.log("Current toolbar action buttons:", currentSet);
+                    Services.xulStore.setValue(
+                      windowURL,
+                      toolbarId,
+                      "currentset",
+                      currentSet.join(",")
+                    );
+                    // Services.xulStore.persist(toolbar, "currentset");
+                  }
+                  console.debug("Compose window has send later button now.");
+                } catch (err) {
+                  console.error("Error enabling toolbar button", err);
+                }
+              }, 1000);
+
               const tasksKeys = window.document.getElementById("tasksKeys");
               if (tasksKeys) {
                 const keyElement = window.document.createXULElement("key");
