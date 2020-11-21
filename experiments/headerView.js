@@ -413,6 +413,8 @@ var SendLaterHeaderView = {
     Services.obs.addObserver(this.columnHandlerObserver, "MsgCreateDBView", false);
     document.getElementById("folderTree").addEventListener(
       "select", this.hideShowColumn.bind(this), false);
+    // onLoad may have run when a folder is already being displayed.
+    try { this.hideShowColumn(); } catch (ex) { /* or maybe not */ }
     AddonManager.addAddonListener(this.AddonListener);
     SLStatic.debug("Leaving function","SendLaterHeaderView.onLoad");
   },
