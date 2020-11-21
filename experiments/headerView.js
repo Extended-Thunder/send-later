@@ -414,7 +414,10 @@ var SendLaterHeaderView = {
     document.getElementById("folderTree").addEventListener(
       "select", this.hideShowColumn.bind(this), false);
     // onLoad may have run when a folder is already being displayed.
-    try { this.hideShowColumn(); } catch (ex) { /* or maybe not */ }
+    try {
+      this.hideShowColumn();
+      this.columnHandlerObserver.observe();
+    } catch (ex) { /* or maybe not */ console.warn(ex); }
     AddonManager.addAddonListener(this.AddonListener);
     SLStatic.debug("Leaving function","SendLaterHeaderView.onLoad");
   },
