@@ -139,10 +139,6 @@
     "message": "týdně",
     "description": ""
   },
-  "resetPrefsButton": {
-    "message": "Reset Preferences",
-    "description": ""
-  },
   "saveDefaultsLabel": {
     "message": "Uložit tyto hodnoty jako výchozí",
     "description": ""
@@ -225,14 +221,6 @@
   },
   "userGuideLabel": {
     "message": "Uživatelská příručka",
-    "description": ""
-  },
-  "errorDateInPast": {
-    "message": "Selected date is in the past",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {

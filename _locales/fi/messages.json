@@ -168,7 +168,7 @@
     "description": ""
   },
   "sendDelayPrefLabel2": {
-    "message": "minuutti",
+    "message": "minuutilla",
     "description": ""
   },
   "sendSundayLabel": {
@@ -376,7 +376,7 @@
     "description": ""
   },
   "composewindowhotkeys.caption": {
-    "message": "Salli viestinkirjoituksessa mukautetut näppäinkomennot",
+    "message": "Salli esiasetettujen näppäinkommentojen käyttö viestinkirjoituksessa",
     "description": ""
   },
   "contactauthor.tooltip": {
@@ -624,7 +624,7 @@
     "description": ""
   },
   "January": {
-    "message": "tammikuu",
+    "message": "Tammikuu",
     "description": ""
   },
   "February": {
@@ -684,7 +684,7 @@
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Lähetä myöhemmin: Virhe kopioidessa ajastettua viestiä Lähtevät-kansioon lähetettäväksi (code $1). Lähetä myöhemmin -laajennuksen käyttö on poistettu käytöstä! Katso https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "message": "Lähetä myöhemmin: Virhe kopioidessa ajastettua viestiä Lähtevät-kansioon lähetettäväksi (code $1). Lähetä myöhemmin -laajennus on poistettu käytöstä! Katso https://blog.kamens.us/send-later/#outbox-copy-failure.",
     "description": ""
   },
   "CopyRecurError": {
@@ -692,11 +692,11 @@
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "Lähetä myöhemmin: Kansio $1 saattaa olla viallinen. Avaa kansion Ominaisuudet ja käynnistä ”Korjaa kansio” -toiminto. Katso https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "message": "Lähetä myöhemmin: Kansio $1 saattaa olla viallinen. Avaa kansion \"Ominaisuudet\" -välilehti ja käynnistä ”Korjaa kansio” -toiminto. Katso https://blog.kamens.us/send-later/#corrupt-drafts-error.",
     "description": ""
   },
   "MessageResendError": {
-    "message": "Lähetä myöhemmin: Yritetäänkö lähettää uudelleen jo kerran lähetettyä viestiä?! Lähtevät tai Luonnokset $1 -kansiosi on luultavasti vialllinen. Korjaa ne seuraavassa kuvatulla tavalla: https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "message": "Lähetä myöhemmin: Yritätkö lähettää uudelleen jo kerran lähetetyn viestin?! \"Lähtevät\" tai \"Luonnokset\" $1 -kansiosi on luultavasti vialllinen. Korjaa vika linkissä kuvatulla tavalla: https://blog.kamens.us/send-later/#corrupt-outbox.",
     "description": ""
   },
   "minutely": {
@@ -720,7 +720,7 @@
     "description": ""
   },
   "plural_minutely": {
-    "message": "minuutti",
+    "message": "minuutteitain",
     "description": ""
   },
   "plural_daily": {
@@ -740,7 +740,7 @@
     "description": ""
   },
   "every_minutely": {
-    "message": "joka $1. minuutti",
+    "message": "joka $1. minuuttia",
     "description": ""
   },
   "every_daily": {
@@ -760,7 +760,7 @@
     "description": ""
   },
   "everyempty": {
-    "message": "tietty päivä kuukauden tietyllä viikolla",
+    "message": "joka kuukauden tietyn viikon viikkopäivänä",
     "description": ""
   },
   "everymonthly": {
@@ -884,7 +884,7 @@
     "description": ""
   },
   "draftSaveWarning": {
-    "message": "VAROITUS: Jotta Lähetä myöhemmin ei lähettäisi viestiä kun olet muokkaamassa sitä, sen ajastettu lähetys on peruttu.\nOle hyvä ja ajasta viestin lähetys uudestaan, kun olet saanut valmiiksi sen muokkaamisen.",
+    "message": "VAROITUS: Jotta Lähetä myöhemmin ei lähettäisi viestiä kun olet muokkaamassa sitä, sen ajastettu lähetys on peruttu.\nOle hyvä ja ajasta viestin lähetys uudelleen, kun olet saanut sen valmiiksi.",
     "description": ""
   },
   "AreYouSure": {
@@ -1080,7 +1080,7 @@
     "description": ""
   },
   "IdleMessage": {
-    "message": "TOIMETON",
+    "message": "Ei ajastettuja viestejä",
     "description": ""
   },
   "DisabledMessage": {

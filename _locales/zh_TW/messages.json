@@ -139,10 +139,6 @@
     "message": "每週",
     "description": ""
   },
-  "resetPrefsButton": {
-    "message": "Reset Preferences",
-    "description": ""
-  },
   "saveDefaultsLabel": {
     "message": "將這些設成預設值",
     "description": ""
@@ -227,14 +223,6 @@
     "message": "使用說明",
     "description": ""
   },
-  "errorDateInPast": {
-    "message": "Selected date is in the past",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "存至寄件匣",
     "description": ""
@@ -293,6 +281,10 @@
   },
   "sendlater.toolbar.sendlater.button.label": {
     "message": "延期發信",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.tooltip": {
+    "message": "在文本框中輸入想要發送的時間之後激活 延期發信 安排發送消息。此按鈕本身沒有任何作用；您還需要將文本框或日期/時間選擇器(並非在所有 Thunderbird 版本中支持) 添加到工具欄，以使此按鈕有用。",
     "description": ""
   },
   "sendlater.toolbar.textbox.emptytext": {

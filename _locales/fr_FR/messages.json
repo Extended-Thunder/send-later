@@ -139,10 +139,6 @@
     "message": "hebdomadaire",
     "description": ""
   },
-  "resetPrefsButton": {
-    "message": "Reset Preferences",
-    "description": ""
-  },
   "saveDefaultsLabel": {
     "message": "Enregistrer ces valeurs comme « valeurs par défaut »",
     "description": ""
@@ -160,7 +156,7 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "Remplacer « Envoyer » par « Envoyer Plus Tard »",
+    "message": "« Envoyer » exécute « Envoyer Plus Tard »",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -225,14 +221,6 @@
   },
   "userGuideLabel": {
     "message": "Guide de l'utilisateur",
-    "description": ""
-  },
-  "errorDateInPast": {
-    "message": "Selected date is in the past",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {

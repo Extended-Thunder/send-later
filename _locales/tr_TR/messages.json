@@ -1,110 +1,6 @@
 {
-  "extensionName": {
-    "message": "Send Later",
-    "description": "The name of the add-on, displayed in various places."
-  },
-  "extensionDescription": {
-    "message": "True \"Send Later\" functionality to schedule the time for sending an email.",
-    "description": "A short description of the add-on."
-  },
-  "advancedOptionsTitle": {
-    "message": "Advanced",
-    "description": ""
-  },
-  "altBindingPrefLabel": {
-    "message": "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter",
-    "description": ""
-  },
-  "blockLateMessagesPrefLabel1": {
-    "message": "Don't deliver messages more than",
-    "description": ""
-  },
-  "blockLateMessagesPrefLabel2": {
-    "message": "minutes late",
-    "description": ""
-  },
-  "cancelLabel": {
-    "message": "Cancel",
-    "description": ""
-  },
-  "checkTimePrefLabel1": {
-    "message": "Check every",
-    "description": ""
-  },
-  "checkTimePrefLabel2": {
-    "message": "minutes",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "Varsayılanları temizle",
-    "description": ""
-  },
-  "contactAuthorLabel": {
-    "message": "Contact Maintainer",
-    "description": ""
-  },
-  "enforceRestrictionsPrefLabel": {
-    "message": "Enforce time and day restrictions at delivery time",
-    "description": ""
-  },
-  "generalOptionsTitle": {
-    "message": "General Options",
-    "description": ""
-  },
-  "logConsoleLevelLabel": {
-    "message": "Console log level",
-    "description": ""
-  },
-  "logDumpLevelLabel": {
-    "message": "File log level",
-    "description": ""
-  },
-  "logLevelAll": {
-    "message": "All",
-    "description": ""
-  },
-  "logLevelDebug": {
-    "message": "Debug",
-    "description": ""
-  },
-  "logLevelError": {
-    "message": "Error",
-    "description": ""
-  },
-  "logLevelFatal": {
-    "message": "Fatal",
-    "description": ""
-  },
-  "logLevelInfo": {
-    "message": "Info",
-    "description": ""
-  },
-  "logLevelTrace": {
-    "message": "Trace",
-    "description": ""
-  },
-  "logLevelWarn": {
-    "message": "Warn",
-    "description": ""
-  },
-  "markReadPrefLabel": {
-    "message": "Mark scheduled drafts as read",
-    "description": ""
-  },
-  "quickOptionsLabel1Label": {
-    "message": "Shortcut 1 label",
-    "description": ""
-  },
-  "quickOptionsLabel2Label": {
-    "message": "Shortcut 2 label",
-    "description": ""
-  },
-  "quickOptionsLabel3Label": {
-    "message": "Shortcut 3 label",
-    "description": ""
-  },
-  "quickOptionsValueLabel": {
-    "message": "quickOptionsValueLabel",
     "description": ""
   },
   "recurAnnuallyLabel": {
@@ -113,14 +9,6 @@
   },
   "recurDailyLabel": {
     "message": "günlük",
-    "description": ""
-  },
-  "recurFunctionLabel": {
-    "message": "Function",
-    "description": ""
-  },
-  "recurLabel": {
-    "message": "Recur",
     "description": ""
   },
   "recurMinutelyLabel": {
@@ -139,36 +27,12 @@
     "message": "haftalık",
     "description": ""
   },
-  "resetPrefsButton": {
-    "message": "Reset Preferences",
-    "description": ""
-  },
   "saveDefaultsLabel": {
     "message": "Bu değerleri varsayılan olarak kaydet",
     "description": ""
   },
-  "sendAtDefaultLabel": {
-    "message": "Enter a date above",
-    "description": "Displayed in place of send at time before user makes selections"
-  },
-  "sendAtLabel": {
-    "message": "Send at",
-    "description": ""
-  },
   "sendBtwnLabel": {
     "message": "Arasında",
-    "description": ""
-  },
-  "sendButtonPrefLabel": {
-    "message": "\"Send\" does \"Send later\"",
-    "description": ""
-  },
-  "sendDelayPrefLabel1": {
-    "message": "\"Send\" delays messages by",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "minutes",
     "description": ""
   },
   "sendSundayLabel": {
@@ -199,40 +63,8 @@
     "message": "Cumartesi",
     "description": ""
   },
-  "sendNowLabel": {
-    "message": "Send now",
-    "description": ""
-  },
   "sendOnlyOnLabel": {
     "message": "Yalnızca",
-    "description": ""
-  },
-  "sendUnsentMessagesPrefLabel": {
-    "message": "Trigger unsent message delivery from outbox",
-    "description": ""
-  },
-  "showColumnPrefLabel": {
-    "message": "Show Send Later column",
-    "description": ""
-  },
-  "showHeaderPrefLabel": {
-    "message": "Show Send Later header",
-    "description": ""
-  },
-  "showStatusPrefLabel": {
-    "message": "Show Send Later in status bar",
-    "description": ""
-  },
-  "userGuideLabel": {
-    "message": "Website",
-    "description": ""
-  },
-  "errorDateInPast": {
-    "message": "Selected date is in the past",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
     "description": ""
   },
   "sendlater.prompt.calculate.label": {

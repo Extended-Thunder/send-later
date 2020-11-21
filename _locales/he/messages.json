@@ -295,6 +295,10 @@
     "message": "‫שלח מאוחר יותר‬",
     "description": ""
   },
+  "sendlater.toolbar.sendlater.button.tooltip": {
+    "message": "הפעל ‫שלח מאוחר יותר‬ לתזמן את משלוח ההודעה אחרי שהוגדר מועד המשלוח הרצוי בתיבת הטקסט. כפתור זה אינו מבצע כל פעולה כשלעצמו, עליכם להוסיף את תיבת הטקסט או את תאי בוחירת התאריך/הזמן לסרגל הכלים כדי שכפתור זה יהפוך לשימושי (לא נתמך בכל גרסאות 'ציפור הרעם').",
+    "description": ""
+  },
   "sendlater.toolbar.textbox.emptytext": {
     "message": "‫זמן המשלוח‬",
     "description": ""
@@ -1081,6 +1085,10 @@
   },
   "DisabledMessage": {
     "message": "‫נטרל פעולה‬",
+    "description": ""
+  },
+  "CheckingMessage": {
+    "message": "בודק",
     "description": ""
   }
 }

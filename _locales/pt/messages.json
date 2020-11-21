@@ -60,15 +60,15 @@
     "description": ""
   },
   "logLevelAll": {
-    "message": "All",
+    "message": "Todos",
     "description": ""
   },
   "logLevelDebug": {
-    "message": "Debug",
+    "message": "Depuração de erros",
     "description": ""
   },
   "logLevelError": {
-    "message": "Error",
+    "message": "Erro",
     "description": ""
   },
   "logLevelFatal": {
@@ -76,15 +76,15 @@
     "description": ""
   },
   "logLevelInfo": {
-    "message": "Info",
+    "message": "Informação",
     "description": ""
   },
   "logLevelTrace": {
-    "message": "Trace",
+    "message": "Rastreio",
     "description": ""
   },
   "logLevelWarn": {
-    "message": "Warn",
+    "message": "Avisos",
     "description": ""
   },
   "markReadPrefLabel": {
@@ -164,11 +164,11 @@
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "\"Send\" delays messages by",
+    "message": "“Enviar” atrasa as mensagens em",
     "description": ""
   },
   "sendDelayPrefLabel2": {
-    "message": "minutes",
+    "message": "minutos",
     "description": ""
   },
   "sendSundayLabel": {
@@ -296,7 +296,7 @@
     "description": ""
   },
   "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "Ative Send Later para agendar uma mensagem após inserir o tempo de envio desejado na caixa de texto. Este botão não faz nada por si; você também precisa adicionar a caixa de texto ou os seletores de data/hora (não suportado em todas as versões do Thunderbird) para a barra de ferramentas para que este botão seja útil.",
+    "message": "Ative Send Later para agendar uma mensagem após inserir o tempo de envio desejado na caixa de texto. Este botão não faz nada sozinho; também precisa adicionar a caixa de texto ou os seletores de data/hora (não suportado em todas as versões do Thunderbird) para a barra de ferramentas para que este botão seja útil.",
     "description": ""
   },
   "sendlater.toolbar.textbox.emptytext": {
@@ -365,6 +365,18 @@
   },
   "sendlatersendbutton.tooltip": {
     "message": "Com esta opção activa, o comando “Enviar” (através do botão ou pressionando Ctrl-Enter) actua da mesma forma que “Enviar mais tarde”.",
+    "description": ""
+  },
+  "senddelay.tooltip": {
+    "message": "Com esta opção ativada, todas as mensagens enviadas com o comando “Enviar” (tanto no botão com o atalho Ctrl-Enter) são atrasadas pelo número especificado de minutos com Send Later.",
+    "description": ""
+  },
+  "composewindowhotkeys.tooltip": {
+    "message": "Enquanto escreve uma mensagem, pode digitar Ctrl-Alt-1, -2, ou -3 para ativar o primeiro, segundo, ou terceiro botão predefinido, a menos que desmarque esta opção, nesse caso combinações de teclas estão desativadas.",
+    "description": ""
+  },
+  "composewindowhotkeys.caption": {
+    "message": "Ativar combinações de teclas na janela de composição para predefinições",
     "description": ""
   },
   "contactauthor.tooltip": {

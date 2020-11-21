@@ -60,11 +60,11 @@
     "description": ""
   },
   "logLevelAll": {
-    "message": "All",
+    "message": "Todos",
     "description": ""
   },
   "logLevelDebug": {
-    "message": "Debug",
+    "message": "Depuración",
     "description": ""
   },
   "logLevelError": {
@@ -72,19 +72,19 @@
     "description": ""
   },
   "logLevelFatal": {
-    "message": "Fatal",
+    "message": "Crítico",
     "description": ""
   },
   "logLevelInfo": {
-    "message": "Info",
+    "message": "Información",
     "description": ""
   },
   "logLevelTrace": {
-    "message": "Trace",
+    "message": "Rastreo",
     "description": ""
   },
   "logLevelWarn": {
-    "message": "Warn",
+    "message": "Aviso",
     "description": ""
   },
   "markReadPrefLabel": {
@@ -139,10 +139,6 @@
     "message": "semanalmente",
     "description": ""
   },
-  "resetPrefsButton": {
-    "message": "Reset Preferences",
-    "description": ""
-  },
   "saveDefaultsLabel": {
     "message": "Garda estes valores coma predeterminados",
     "description": ""
@@ -164,11 +160,11 @@
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "\"Send\" delays messages by",
+    "message": "“Enviar” atrasa as mensaxes de",
     "description": ""
   },
   "sendDelayPrefLabel2": {
-    "message": "minutes",
+    "message": "minutos",
     "description": ""
   },
   "sendSundayLabel": {
@@ -225,14 +221,6 @@
   },
   "userGuideLabel": {
     "message": "Guía do usuario",
-    "description": ""
-  },
-  "errorDateInPast": {
-    "message": "Selected date is in the past",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -293,6 +281,10 @@
   },
   "sendlater.toolbar.sendlater.button.label": {
     "message": "Enviar máis tarde",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.tooltip": {
+    "message": "Activa Send Later para programar unha mensaxe despois de introducir a data de envío desexada na caixa de texto. Este botón non fai nada por si só; hai que engadir tamén a caixa de texto ou os seleccionadores de data/hora (non compatibles con todas as versións de Thunderbird) á barra de ferramentas para que este botón sexa útil.",
     "description": ""
   },
   "sendlater.toolbar.textbox.emptytext": {
@@ -363,6 +355,18 @@
     "message": "Con esta opción habilitada, o comando “Enviar” (tanto co botón coma premendo Ctrl+Intro) funciona igual que “Enviar máis tarde”.",
     "description": ""
   },
+  "senddelay.tooltip": {
+    "message": "Con esta opción habilitada, todas as mensaxes enviadas co comando “Enviar” (xa sexa pulsando o botón ou seleccionando Ctrl-Enter) atrasan o número de minutos especificado programados con Send Later.",
+    "description": ""
+  },
+  "composewindowhotkeys.tooltip": {
+    "message": "Ao escribir unha mensaxe, podes escribir Ctrl-Alt-1, -2 ou -3 para activar o primeiro, segundo ou terceiro botón preestablecido, a non ser que desmarques esta preferencia; nese caso estas ligazóns clave estarán desactivadas.",
+    "description": ""
+  },
+  "composewindowhotkeys.caption": {
+    "message": "Habilitar atallos de teclas na ventá de redacción da mensaxe para predeterminados",
+    "description": ""
+  },
   "contactauthor.tooltip": {
     "message": "Envía unha mensaxe de correo ó autor de Send Later.",
     "description": ""
@@ -397,6 +401,10 @@
   },
   "editortip": {
     "message": "Abre unha fiestra para crear e editar funcións JavaScript que implementan unha lóxica de programación complexa.",
+    "description": ""
+  },
+  "loglevel.config": {
+    "message": "Configurar",
     "description": ""
   },
   "sendlater.ask.title.label": {
@@ -1065,6 +1073,10 @@
   },
   "DisabledMessage": {
     "message": "Desactivado",
+    "description": ""
+  },
+  "CheckingMessage": {
+    "message": "COMPROBANDO",
     "description": ""
   }
 }

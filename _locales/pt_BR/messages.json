@@ -68,7 +68,7 @@
     "description": ""
   },
   "logLevelError": {
-    "message": "Error",
+    "message": "Erro",
     "description": ""
   },
   "logLevelFatal": {
@@ -84,7 +84,7 @@
     "description": ""
   },
   "logLevelWarn": {
-    "message": "Warn",
+    "message": "Aviso",
     "description": ""
   },
   "markReadPrefLabel": {
@@ -137,10 +137,6 @@
   },
   "recurWeeklyLabel": {
     "message": "semanalmente",
-    "description": ""
-  },
-  "resetPrefsButton": {
-    "message": "Reset Preferences",
     "description": ""
   },
   "saveDefaultsLabel": {
@@ -225,14 +221,6 @@
   },
   "userGuideLabel": {
     "message": "Manual",
-    "description": ""
-  },
-  "errorDateInPast": {
-    "message": "Selected date is in the past",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
