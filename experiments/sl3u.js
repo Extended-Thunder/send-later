@@ -580,15 +580,15 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             if (cw.cancelSendMessage) {
               return false;
             }
+          }
 
-            // Strip trailing spaces and long consecutive WSP sequences from the
-            // subject line to prevent getting only WSP chars on a folded line.
-            let fixedSubject = subject.replace(/\s{74,}/g, "    ").trimRight();
-            if (fixedSubject != subject) {
-              subject = fixedSubject;
-              msgCompFields.subject = fixedSubject;
-              cw.document.getElementById("msgSubject").value = fixedSubject;
-            }
+          // Strip trailing spaces and long consecutive WSP sequences from the
+          // subject line to prevent getting only WSP chars on a folded line.
+          let fixedSubject = subject.replace(/\s{74,}/g, "    ").trimRight();
+          if (fixedSubject != subject) {
+            subject = fixedSubject;
+            msgCompFields.subject = fixedSubject;
+            cw.document.getElementById("msgSubject").value = fixedSubject;
           }
 
           // Remind the person if there isn't a subject
@@ -612,6 +612,85 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               cw.document.getElementById("msgSubject").focus();
               return false;
             }
+          }
+
+          // Attachment Reminder: Alert the user if
+          //  - the user requested "Remind me later" from either the notification bar or the menu
+          //    (alert regardless of the number of files already attached: we can't guess for how many
+          //    or which files users want the reminder, and guessing wrong will annoy them a lot), OR
+          //  - the aggressive pref is set and the latest notification is still showing (implying
+          //    that the message has no attachment(s) yet, message still contains some attachment
+          //    keywords, and notification was not dismissed).
+          if (
+            cw.gManualAttachmentReminder ||
+            (Services.prefs.getBoolPref(
+              "mail.compose.attachment_reminder_aggressive"
+            ) &&
+              cw.gNotification.notificationbox.getNotificationWithValue(
+                "attachmentReminder"
+              ))
+          ) {
+            let flags =
+              Services.prompt.BUTTON_POS_0 * Services.prompt.BUTTON_TITLE_IS_STRING +
+              Services.prompt.BUTTON_POS_1 * Services.prompt.BUTTON_TITLE_IS_STRING;
+            let hadForgotten = Services.prompt.confirmEx(
+              cw,
+              getComposeBundle().getString("attachmentReminderTitle"),
+              getComposeBundle().getString("attachmentReminderMsg"),
+              flags,
+              getComposeBundle().getString("attachmentReminderFalseAlarm"),
+              getComposeBundle().getString("attachmentReminderYesIForgot"),
+              null,
+              null,
+              { value: 0 }
+            );
+            // Deactivate manual attachment reminder after showing the alert to avoid alert loop.
+            // We also deactivate reminder when user ignores alert with [x] or [ESC].
+            if (cw.gManualAttachmentReminder) {
+              cw.toggleAttachmentReminder(false);
+            }
+
+            if (hadForgotten) {
+              return false;
+            }
+          }
+
+          // Check if the user tries to send a message to a newsgroup through a mail
+          // account.
+          let identityList = cw.document.getElementById("msgIdentity");
+          let currentAccountKey = identityList.getAttribute("accountkey");
+          let account = MailServices.accounts.getAccount(currentAccountKey);
+          if (!account) {
+            throw new Error(
+              "currentAccountKey '" + currentAccountKey + "' has no matching account!"
+            );
+          }
+          if (
+            account.incomingServer.type != "nntp" &&
+            msgCompFields.newsgroups != ""
+          ) {
+            const kDontAskAgainPref = "mail.compose.dontWarnMail2Newsgroup";
+            // default to ask user if the pref is not set
+            let dontAskAgain = Services.prefs.getBoolPref(kDontAskAgainPref);
+            if (!dontAskAgain) {
+              let checkbox = { value: false };
+              let okToProceed = Services.prompt.confirmCheck(
+                cw,
+                getComposeBundle().getString("noNewsgroupSupportTitle"),
+                getComposeBundle().getString("recipientDlogMessage"),
+                getComposeBundle().getString("CheckMsg"),
+                checkbox
+              );
+              if (!okToProceed) {
+                return false;
+              }
+              if (checkbox.value) {
+                Services.prefs.setBoolPref(kDontAskAgainPref, true);
+              }
+            }
+            // remove newsgroups to prevent news_p to be set
+            // in nsMsgComposeAndSend::DeliverMessage()
+            msgCompFields.newsgroups = "";
           }
 
           // Before sending the message, check what to do with HTML message,
