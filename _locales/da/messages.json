@@ -8,19 +8,19 @@
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
-    "message": "Geavanceerd",
+    "message": "Advanced",
     "description": ""
   },
   "altBindingPrefLabel": {
-    "message": "Alt-Shift-Enter binden in plaats van Ctrl-Shift-Enter",
+    "message": "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter",
     "description": ""
   },
   "blockLateMessagesPrefLabel1": {
-    "message": "Berichten niet meer dan",
+    "message": "Don't deliver messages more than",
     "description": ""
   },
   "blockLateMessagesPrefLabel2": {
-    "message": "minuten te laat afleveren",
+    "message": "minutes late",
     "description": ""
   },
   "cancelLabel": {
@@ -28,11 +28,11 @@
     "description": ""
   },
   "checkTimePrefLabel1": {
-    "message": "Elke",
+    "message": "Check every",
     "description": ""
   },
   "checkTimePrefLabel2": {
-    "message": "minuten controleren",
+    "message": "minutes",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -40,23 +40,23 @@
     "description": ""
   },
   "contactAuthorLabel": {
-    "message": "Contact opnemen met de schrijver",
+    "message": "Contact Maintainer",
     "description": ""
   },
   "enforceRestrictionsPrefLabel": {
-    "message": "Tijds- en dagrestricties bij aflevertijd afdwingen",
+    "message": "Enforce time and day restrictions at delivery time",
     "description": ""
   },
   "generalOptionsTitle": {
-    "message": "Algemeen",
+    "message": "General Options",
     "description": ""
   },
   "logConsoleLevelLabel": {
-    "message": "Consolelogniveau",
+    "message": "Console log level",
     "description": ""
   },
   "logDumpLevelLabel": {
-    "message": "Dumplogniveau",
+    "message": "File log level",
     "description": ""
   },
   "logLevelAll": {
@@ -88,23 +88,23 @@
     "description": ""
   },
   "markReadPrefLabel": {
-    "message": "Markeer geplande concepten als gelezen",
+    "message": "Mark scheduled drafts as read",
     "description": ""
   },
   "quickOptionsLabel1Label": {
-    "message": "Sneltoets 1",
+    "message": "Shortcut 1 label",
     "description": ""
   },
   "quickOptionsLabel2Label": {
-    "message": "Sneltoets 2",
+    "message": "Shortcut 2 label",
     "description": ""
   },
   "quickOptionsLabel3Label": {
-    "message": "Sneltoets 3",
+    "message": "Shortcut 3 label",
     "description": ""
   },
   "quickOptionsValueLabel": {
-    "message": "Minuten",
+    "message": "quickOptionsValueLabel",
     "description": ""
   },
   "recurAnnuallyLabel": {
@@ -160,7 +160,7 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "‘Verzenden’ werkt als ‘Later verzenden’",
+    "message": "\"Send\" does \"Send later\"",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -208,23 +208,23 @@
     "description": ""
   },
   "sendUnsentMessagesPrefLabel": {
-    "message": "Niet-verzonden berichten in Postvak UIT afleveren",
+    "message": "Trigger unsent message delivery from outbox",
     "description": ""
   },
   "showColumnPrefLabel": {
-    "message": "Kolom Send Later tonen",
+    "message": "Show Send Later column",
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "Header Send Later tonen",
+    "message": "Show Send Later header",
     "description": ""
   },
   "showStatusPrefLabel": {
-    "message": "Send Later in statusbalk tonen",
+    "message": "Show Send Later in status bar",
     "description": ""
   },
   "userGuideLabel": {
-    "message": "Handleiding",
+    "message": "Website",
     "description": ""
   },
   "errorDateInPast": {
@@ -235,76 +235,192 @@
     "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
     "description": ""
   },
-  "prefwindow.title": {
-    "message": "Send Later-voorkeuren",
+  "sendlater.ask.title.label": {
+    "message": "sendlater.ask.title.label Send Later erstattes ved kørsel med det almindelige navn på tilføjelsen i denne oversættelse (hentning fra MessageTag i background. properties)",
     "description": ""
   },
-  "pane1.title": {
-    "message": "Send Later-voorkeuren",
+  "sendlater.ask.message1": {
+    "message": "Der er brugt utallige timer til udvikling, vedligeholdelse og support af denne tilføjelse.",
     "description": ""
   },
-  "checktimepref.tooltip": {
-    "message": "Interval, in minuten, tussen controles op concepten waarvoor de aflevertijd is bereikt. Vergroot deze waarde als uw concepten niet altijd op tijd worden verzonden of als het aantal af te handelen berichten in uw statusbalk niet altijd overeenkomt met het werkelijke aantal.",
+  "sendlater.ask.message2": {
+    "message": "Overvej om ikke du skulle yde en lille donation for at støtte for den fortsatte udvikling!",
     "description": ""
   },
-  "quickoptionname.label": {
-    "message": "Knoptekst",
+  "sendlater.ask.message3": {
+    "message": "Mange tak!",
     "description": ""
   },
-  "showsendlatercolumn.tooltip": {
-    "message": "Of de kolom ‘Send Later’ bij het bekijken van conceptmappen moet worden getoond",
+  "sendlater.ask.donate.accesskey": {
+    "message": "G",
     "description": ""
   },
-  "showsendlaterheader.tooltip": {
-    "message": "Of de header ‘X-Send-Later-At’ moet worden getoond als een bericht wordt bekeken, m.a.w. de tijd waarop een concept gepland staat om te worden verzonden.",
+  "sendlater.ask.donate.label": {
+    "message": "Giv en donation",
     "description": ""
   },
-  "showsendlaterprogress.caption": {
-    "message": "Achtergrondvoortgang in statusbalk tonen",
+  "sendlater.ask.remind.accesskey": {
+    "message": "M",
     "description": ""
   },
-  "showsendlaterunsentmessages.tooltip": {
-    "message": "Als u deze optie uitvinkt, zal Send Later berichten niet volledig verzenden, maar deze op het moment van verzenden alleen in uw Postvak UIT plaatsen. Vink deze optie uit als u bijvoorbeeld een andere extensie gebruikt, zoals BlunderDelay, die periodiek berichten uit uw Postvak UIT verzendt. Denk eraan dat als deze optie is aangevinkt, Send Later bij het afleveren van een bericht ALLE berichten in uw Postvak UIT aflevert.",
+  "sendlater.ask.remind.label": {
+    "message": "Mind mig om det senere",
     "description": ""
   },
-  "sendlatersendbutton.tooltip": {
-    "message": "Met deze optie ingeschakeld, werkt de opdracht ‘Verzenden’ (via zowel de knop als het intoetsen van Ctrl-Enter) hetzelfde als ‘Later verzenden’.",
+  "sendlater.ask.already.accesskey": {
+    "message": "a",
     "description": ""
   },
-  "contactauthor.tooltip": {
-    "message": "Een e-mailbericht naar de schrijver van Send Later verzenden (in het Engels)",
+  "sendlater.ask.already.label": {
+    "message": "Jeg har allerede doneret",
     "description": ""
   },
-  "helplink.tooltip": {
-    "message": "De documentatie voor Send Later bekijken",
+  "sendlater.ask.stop.accesskey": {
+    "message": "S",
     "description": ""
   },
-  "releasenotes.value": {
-    "message": "Uitgaveopmerkingen",
+  "sendlater.ask.stop.label": {
+    "message": "Spørg ikke igen",
     "description": ""
   },
-  "donatelink.value": {
-    "message": "Doneren",
+  "windowtitle": {
+    "message": "Send Later Redigér Dynamiske Funktioner",
     "description": ""
   },
-  "editorlink.value": {
-    "message": "Editor voor dynamische functies",
+  "selectfunction": {
+    "message": "Vælg funktion",
     "description": ""
   },
-  "enforcerestrictions.tooltip": {
-    "message": "Als een bericht dat dient te worden afgeleverd buiten de tijds- of dagrestricties komt, bijvoorbeeld omdat Thunderbird ten tijde van de geplande aflevertijd niet actief was, vertraag dan de aflevering totdat aan de tijds- en dagrestricties wordt voldaan.",
+  "selectfunctiontip": {
+    "message": "Vælg en funktion, der skal redigeres eller slettes, eller vælg “(opret ny funktion)” for at oprette en ny funktion.",
     "description": ""
   },
-  "blocklatemessages.tooltip": {
-    "message": "Geplande berichten die voorbij hun geplande tijd zijn vertraagd, bijvoorbeeld omdat Thunderbird niet actief was, niet afleveren",
+  "createnewfunction": {
+    "message": "(opret ny funktion)",
     "description": ""
   },
-  "editorbutton": {
-    "message": "Editor voor dynamische functies openen…",
+  "delete.label": {
+    "message": "Slet",
     "description": ""
   },
-  "editortip": {
-    "message": "Een venster openen voor het maken en bewerken van JavaScript-functies die complexe planningslogica implementeren.",
+  "delete.accesskey": {
+    "message": "S",
+    "description": ""
+  },
+  "functionnametip": {
+    "message": "Indtast eller rediger et alfanumerisk funktionsnavn. Hvis du ændrer navnet på en eksisterende funktion, bliver du spurgt, når du gemmer, om du vil omdøbe funktionen eller oprette en ny funktion med det ændrede navn.",
+    "description": ""
+  },
+  "functionnameplaceholder": {
+    "message": "funktions navn",
+    "description": ""
+  },
+  "codetip": {
+    "message": "Indsæt kildekoden til din funktion her. Se prøvefunktionen “ReadMeFirst” for detaljer om, hvad din kode burde gøre.",
+    "description": ""
+  },
+  "codeplaceholder": {
+    "message": "funktions kildekode",
+    "description": ""
+  },
+  "helptextheader": {
+    "message": "Funktionens hjælpetekst",
+    "description": ""
+  },
+  "helptexttip": {
+    "message": "Enhver tekst, du lægger her, vises, når musen “svæver” over funktionsnavnet i pop-up-menuen. Brug den til at forklare, hvad funktionen gør, og hvilke argumenter der kan bruges.",
+    "description": ""
+  },
+  "helptextplaceholder": {
+    "message": "hjælpetekst",
+    "description": ""
+  },
+  "run.label": {
+    "message": "Udfør funktion",
+    "description": ""
+  },
+  "run.accesskey": {
+    "message": "U",
+    "description": ""
+  },
+  "inputtime": {
+    "message": "Indtast tidspunkt",
+    "description": ""
+  },
+  "inputtimetip": {
+    "message": "Du kan indtaste datoer og tidspunkter her i ethvert format, som Send Later -dialogen forstår.",
+    "description": ""
+  },
+  "inputtimeplaceholder": {
+    "message": "evt. dato og klokkeslæt, som overføres til funktionen for afprøvning",
+    "description": ""
+  },
+  "inputargs": {
+    "message": "Indtast værdi",
+    "description": ""
+  },
+  "inputargstip": {
+    "message": "Argumenter skal specificeres i JavaScript-format, tekststrenge f.eks., skal være i anførselstegn.",
+    "description": ""
+  },
+  "inputargsplaceholder": {
+    "message": "eventuelle komma-adskilte værdier som sendes til test",
+    "description": ""
+  },
+  "output": {
+    "message": "Resultat",
+    "description": ""
+  },
+  "import.label": {
+    "message": "Importér…",
+    "description": ""
+  },
+  "import.accesskey": {
+    "message": "m",
+    "description": ""
+  },
+  "importtip": {
+    "message": "Importer en dynamisk funktion, der tidligere er eksporteret fra editoren.",
+    "description": ""
+  },
+  "export.label": {
+    "message": "Eksporter…",
+    "description": ""
+  },
+  "export.accesskey": {
+    "message": "E",
+    "description": ""
+  },
+  "exporttip": {
+    "message": "Eksporter den aktuelt viste funktion til en fil til sikkerhedskopiering eller deling.",
+    "description": ""
+  },
+  "reset.label": {
+    "message": "Kasser ændringer",
+    "description": ""
+  },
+  "reset.accesskey": {
+    "message": "a",
+    "description": ""
+  },
+  "save.label": {
+    "message": "Gem",
+    "description": ""
+  },
+  "save.accesskey": {
+    "message": "G",
+    "description": ""
+  },
+  "close.label": {
+    "message": "Luk",
+    "description": ""
+  },
+  "close.accesskey": {
+    "message": "L",
+    "description": ""
+  },
+  "close.cmdkey": {
+    "message": "w",
     "description": ""
   }
 }

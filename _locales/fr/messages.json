@@ -160,7 +160,7 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "Remplacer « Envoyer » par « Envoyer Plus Tard »",
+    "message": "« Envoyer » exécute « Envoyer Plus Tard »",
     "description": ""
   },
   "sendDelayPrefLabel1": {
