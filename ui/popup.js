@@ -479,7 +479,9 @@ const SLPopup = {
         }
       } else if (evt.target.id === "send-datetime") {
         const localeCode = browser.i18n.getUILanguage();
-        const sendAtDate = Sugar.Date.create(dom["send-datetime"].value, localeCode);
+        const sendAtDate = Sugar.Date.create(dom["send-datetime"].value,
+                                             {locale: localeCode,
+                                              future: true});
         try {
           const sendAt = new Sugar.Date(sendAtDate);
           dom["send-date"].value = sendAt.format('%Y-%m-%d');
