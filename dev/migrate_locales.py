@@ -12,6 +12,7 @@ import sys, os, glob, re, html, json
 
 
 # newKey: (oldKey, defaultVal, <description [optional]>, <filter [optional]>)
+# Note: defaultVal is ignored.
 migrations = {
     "extensionName": ("MessageTag", "Send Later",
                 "The name of the add-on, displayed in various places."),
@@ -104,6 +105,11 @@ def main(args):
     propregex = re.compile(r'(\S\S*)\s*=\s*(.*)\s*')
 
     for locale in map(os.path.basename, glob.glob(os.path.join(legacy_path,'*'))):
+        # if locale.lower().startswith("en"):
+        #     locale_dir = os.path.join("_locales",locale.replace('-','_'))
+        #     if os.path.exists(locale_dir):
+        #         continue
+
         translations = dict()
         for fname in glob.glob(os.path.join(legacy_path, locale, '*.dtd')):
             if 'kickstarter' in fname.lower():
@@ -142,7 +148,10 @@ def main(args):
             defaults = migrations[newkey]
             oldkey = defaults[0]
 
-            message = translations[oldkey] if (oldkey in translations) else defaults[1]
+            if not oldkey in translations:
+                continue
+
+            message = translations[oldkey]
 
             if (len(defaults) > 3) and (defaults[3] is not None):
                 message = defaults[3](message)
@@ -159,6 +168,13 @@ def main(args):
             else:
                 message = translations[key]
                 i18n[key] = dict(message=msgfilter(message), description="")
+
+        for key, value in i18n.items():
+            message = value['message']
+            while "&quot;" in message:
+                message = message.replace("&quot;", "\u201c", 1)
+                message = message.replace("&quot;", "\u201d", 1)
+            i18n[key]['message'] = message
 
         locale_dir = locale.replace('-','_')
         os.makedirs(os.path.join("_locales",locale_dir), exist_ok=True)

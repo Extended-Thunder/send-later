@@ -59,34 +59,6 @@
     "message": "Дъмп ниво на дневника",
     "description": ""
   },
-  "logLevelAll": {
-    "message": "All",
-    "description": ""
-  },
-  "logLevelDebug": {
-    "message": "Debug",
-    "description": ""
-  },
-  "logLevelError": {
-    "message": "Error",
-    "description": ""
-  },
-  "logLevelFatal": {
-    "message": "Fatal",
-    "description": ""
-  },
-  "logLevelInfo": {
-    "message": "Info",
-    "description": ""
-  },
-  "logLevelTrace": {
-    "message": "Trace",
-    "description": ""
-  },
-  "logLevelWarn": {
-    "message": "Warn",
-    "description": ""
-  },
   "markReadPrefLabel": {
     "message": "Маркиране на планираните чернови като прочетени",
     "description": ""
@@ -139,10 +111,6 @@
     "message": "ежеседмично",
     "description": ""
   },
-  "resetPrefsButton": {
-    "message": "Reset Preferences",
-    "description": ""
-  },
   "saveDefaultsLabel": {
     "message": "Записване на тези стойности по подразбиране",
     "description": ""
@@ -161,14 +129,6 @@
   },
   "sendButtonPrefLabel": {
     "message": "“Изпращане сега” прави същото, като “Изпращане по-късно”",
-    "description": ""
-  },
-  "sendDelayPrefLabel1": {
-    "message": "\"Send\" delays messages by",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "minutes",
     "description": ""
   },
   "sendSundayLabel": {
@@ -225,14 +185,6 @@
   },
   "userGuideLabel": {
     "message": "Ръководство на потребителя",
-    "description": ""
-  },
-  "errorDateInPast": {
-    "message": "Selected date is in the past",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {

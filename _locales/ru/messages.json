@@ -60,31 +60,31 @@
     "description": ""
   },
   "logLevelAll": {
-    "message": "All",
+    "message": "Все",
     "description": ""
   },
   "logLevelDebug": {
-    "message": "Debug",
+    "message": "Отладочные события",
     "description": ""
   },
   "logLevelError": {
-    "message": "Error",
+    "message": "Ошибки",
     "description": ""
   },
   "logLevelFatal": {
-    "message": "Fatal",
+    "message": "Фатальные ошибки",
     "description": ""
   },
   "logLevelInfo": {
-    "message": "Info",
+    "message": "Информация",
     "description": ""
   },
   "logLevelTrace": {
-    "message": "Trace",
+    "message": "Слежение",
     "description": ""
   },
   "logLevelWarn": {
-    "message": "Warn",
+    "message": "Предупреждения",
     "description": ""
   },
   "markReadPrefLabel": {
@@ -164,11 +164,11 @@
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "\"Send\" delays messages by",
+    "message": "«Отправить» откладывает сообщения на",
     "description": ""
   },
   "sendDelayPrefLabel2": {
-    "message": "minutes",
+    "message": "мин.",
     "description": ""
   },
   "sendSundayLabel": {
@@ -295,6 +295,10 @@
     "message": "Отправить позже",
     "description": ""
   },
+  "sendlater.toolbar.sendlater.button.tooltip": {
+    "message": "Активируйте Send Later, чтобы запланировать сообщение после ввода желаемого времени отправки в текстовое поле. Эта кнопка ничего не делает сама по себе; вам также нужно добавить текстовое поле или поле выбора даты/времени (поддерживается не во всех версиях Thunderbird) на панель инструментов, чтобы эта кнопка была полезной.",
+    "description": ""
+  },
   "sendlater.toolbar.textbox.emptytext": {
     "message": "время отправки",
     "description": ""
@@ -363,6 +367,18 @@
     "message": "Когда эта опция активна, то команда «Отправить» (и кнопка и нажатие на Ctrl-Enter) выполняется так же как и «Отправить позже».",
     "description": ""
   },
+  "senddelay.tooltip": {
+    "message": "Если эта опция включена, все сообщения, отправленные с помощью команды «Отправить» (либо кнопки, либо сочетания клавиш Ctrl-Enter), откладываются на указанное количество минут, запланированных с помощью Send Later.",
+    "description": ""
+  },
+  "composewindowhotkeys.tooltip": {
+    "message": "При написании сообщения вы можете нажать Ctrl-Alt-1, -2 или -3 для активации первой, второй, или третьей предустановленной кнопки, если вы не сняли флажок с этой настройки, в этом случае эти сочетания клавиш отключены.",
+    "description": ""
+  },
+  "composewindowhotkeys.caption": {
+    "message": "Включить привязку клавиш для предустановок в окне сообщения",
+    "description": ""
+  },
   "contactauthor.tooltip": {
     "message": "Написать письмо автору Send Later.",
     "description": ""
@@ -397,6 +413,10 @@
   },
   "editortip": {
     "message": "Открыть окно для создания и редактирования JavaScript функций, реализующих сложную логику планирования.",
+    "description": ""
+  },
+  "loglevel.config": {
+    "message": "Настройки",
     "description": ""
   },
   "sendlater.ask.title.label": {
@@ -1020,7 +1040,7 @@
     "description": ""
   },
   "ImportError": {
-    "message": "Импорт ошибок",
+    "message": "Ошибка импорта",
     "description": ""
   },
   "ExportTitle": {
@@ -1065,6 +1085,10 @@
   },
   "DisabledMessage": {
     "message": "ОТКЛЮЧЕНО",
+    "description": ""
+  },
+  "CheckingMessage": {
+    "message": "ПРОВЕРКА",
     "description": ""
   }
 }

@@ -395,6 +395,10 @@
     "message": "Donate",
     "description": ""
   },
+  "advancededitor.title": {
+    "message": "Advanced configuration editor",
+    "description": ""
+  },
   "editorlink.value": {
     "message": "Dynamic function editor",
     "description": ""

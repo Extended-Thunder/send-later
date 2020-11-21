@@ -139,10 +139,6 @@
     "message": "‫שבועי‬",
     "description": ""
   },
-  "resetPrefsButton": {
-    "message": "Reset Preferences",
-    "description": ""
-  },
   "saveDefaultsLabel": {
     "message": "שמור את הערכים הללו כברירת מחדל",
     "description": ""
@@ -227,14 +223,6 @@
     "message": "‫מדריך למשתמש‬",
     "description": ""
   },
-  "errorDateInPast": {
-    "message": "Selected date is in the past",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "‫העבר לתיבת דואר יוצא‬",
     "description": ""
@@ -293,6 +281,10 @@
   },
   "sendlater.toolbar.sendlater.button.label": {
     "message": "‫שלח מאוחר יותר‬",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.tooltip": {
+    "message": "הפעל ‫שלח מאוחר יותר‬ לתזמן את משלוח ההודעה אחרי שהוגדר מועד המשלוח הרצוי בתיבת הטקסט. כפתור זה אינו מבצע כל פעולה כשלעצמו, עליכם להוסיף את תיבת הטקסט או את תאי בוחירת התאריך/הזמן לסרגל הכלים כדי שכפתור זה יהפוך לשימושי (לא נתמך בכל גרסאות 'ציפור הרעם').",
     "description": ""
   },
   "sendlater.toolbar.textbox.emptytext": {
@@ -1081,6 +1073,10 @@
   },
   "DisabledMessage": {
     "message": "‫נטרל פעולה‬",
+    "description": ""
+  },
+  "CheckingMessage": {
+    "message": "בודק",
     "description": ""
   }
 }

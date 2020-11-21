@@ -139,10 +139,6 @@
     "message": "εβδομαδιαία",
     "description": ""
   },
-  "resetPrefsButton": {
-    "message": "Reset Preferences",
-    "description": ""
-  },
   "saveDefaultsLabel": {
     "message": "Αποθήκευση αυτών των τιμών ως προεπιλεγμένων",
     "description": ""
@@ -164,11 +160,11 @@
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "\"Send\" delays messages by",
+    "message": "Η “Αποστολή” καθυστερεί κατά",
     "description": ""
   },
   "sendDelayPrefLabel2": {
-    "message": "minutes",
+    "message": "λεπτά",
     "description": ""
   },
   "sendSundayLabel": {
@@ -225,14 +221,6 @@
   },
   "userGuideLabel": {
     "message": "Οδηγίες χρήσης",
-    "description": ""
-  },
-  "errorDateInPast": {
-    "message": "Selected date is in the past",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -365,6 +353,18 @@
   },
   "sendlatersendbutton.tooltip": {
     "message": "Με αυτή την επιλογή, η εντολή “Αποστολή” (είτε το κουμπί είτε ο συνδυασμός πλήκτρων Ctrl-Enter) μετατρέπεται σε “Αποστολή αργότερα”.",
+    "description": ""
+  },
+  "senddelay.tooltip": {
+    "message": "Ενεργοποιώντας την επιλογή, όλα τα μηνύματα που αποστέλλονται επιλέγοντας “Αποστολή” (είτε με το κουμπί είτε πατώντας Ctrl-Enter) καθυστερούν κατά τον καθορισμένο αριθμό λεπτών σε χρονοδρομολόγηση με Send Later.",
+    "description": ""
+  },
+  "composewindowhotkeys.tooltip": {
+    "message": "Καθώς γράφετε ένα μήνυμα μπορείτε πατώντας Ctrl-Alt-1, -2, or -3 να ενεργοποιήσετε τo πρώτο, δεύτερο ή τρίτο προκαθορισμένο κουμπί, εκτός αν ξετσεκάρετε την επιλογή, οπότε αυτοί οι συνδυασμεί πλήκτρων απενεργοποιούνται.",
+    "description": ""
+  },
+  "composewindowhotkeys.caption": {
+    "message": "Ενεργοποίηση των συνδυασμών πλήκτρων για τις προκαθορισμένες επιλογές στο παράθυρο νέου μηνύματος",
     "description": ""
   },
   "contactauthor.tooltip": {
@@ -1073,6 +1073,10 @@
   },
   "DisabledMessage": {
     "message": "Απενεργοποιημένο",
+    "description": ""
+  },
+  "CheckingMessage": {
+    "message": "Έλεγχος",
     "description": ""
   }
 }

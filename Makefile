@@ -6,6 +6,8 @@ clean: ; -rm -f send_later.xpi
 version=$(shell grep -o '"version"\s*:\s*"\S*"' manifest.json | sed -e 's/.*"\([0-9].*\)".*/\1/')
 
 # Kludgey temporary workaround until Crowdin integration is fixed.
+# Note that this merges locale updates from the last shared commit before
+# the 8.x branch forked away from 7.x. These are not quite up to date.
 _locales: dev/migrate_locales.py
 	mkdir -p "$@"
 	git restore -s ef21bfd -- chrome/locale
