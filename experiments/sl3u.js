@@ -756,7 +756,13 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           const verifyId = cw.gMsgCompose.compFields.getHeader("message-id");
 
           if (verifyId === newMessageId) {
-            cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
+            // Save the message to drafts
+            try {
+              cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
+            } catch (err) {
+              console.error("Unable to save message to drafts", err);
+              return false;
+            }
 
             // Set reply forward message flags
             try {
@@ -764,34 +770,38 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               const originalURI = cw.gMsgCompose.originalMsgURI;
               console.debug("[SendLater]: Setting message reply/forward flags", type, originalURI);
 
-              if ( !originalURI ) { return; }
-              const messenger = Cc["@mozilla.org/messenger;1"].getService(Ci.nsIMessenger);
-              var hdr = messenger.msgHdrFromURI(originalURI);
-              switch (type) {
-                case Ci.nsIMsgCompType.Reply:
-                case Ci.nsIMsgCompType.ReplyAll:
-                case Ci.nsIMsgCompType.ReplyToSender:
-                case Ci.nsIMsgCompType.ReplyToGroup:
-                case Ci.nsIMsgCompType.ReplyToSenderAndGroup:
-                case Ci.nsIMsgCompType.ReplyWithTemplate:
-                case Ci.nsIMsgCompType.ReplyToList:
-                  hdr.folder.addMessageDispositionState(
-                    hdr, hdr.folder.nsMsgDispositionState_Replied);
-                  break;
-                case Ci.nsIMsgCompType.ForwardAsAttachment:
-                case Ci.nsIMsgCompType.ForwardInline:
-                  hdr.folder.addMessageDispositionState(
-                    hdr, hdr.folder.nsMsgDispositionState_Forwarded);
-                  break;
+              if ( originalURI ) {
+                const messenger = Cc["@mozilla.org/messenger;1"].getService(Ci.nsIMessenger);
+                var hdr = messenger.msgHdrFromURI(originalURI);
+                switch (type) {
+                  case Ci.nsIMsgCompType.Reply:
+                  case Ci.nsIMsgCompType.ReplyAll:
+                  case Ci.nsIMsgCompType.ReplyToSender:
+                  case Ci.nsIMsgCompType.ReplyToGroup:
+                  case Ci.nsIMsgCompType.ReplyToSenderAndGroup:
+                  case Ci.nsIMsgCompType.ReplyWithTemplate:
+                  case Ci.nsIMsgCompType.ReplyToList:
+                    hdr.folder.addMessageDispositionState(
+                      hdr, hdr.folder.nsMsgDispositionState_Replied);
+                    break;
+                  case Ci.nsIMsgCompType.ForwardAsAttachment:
+                  case Ci.nsIMsgCompType.ForwardInline:
+                    hdr.folder.addMessageDispositionState(
+                      hdr, hdr.folder.nsMsgDispositionState_Forwarded);
+                    break;
+                }
+              } else {
+                console.debug("SendLater: Unable to set reply / forward flags " +
+                             "for message. Cannot find original message URI");
               }
             } catch (err) {
-              console.warn("Failed to set flag for reply / forward", err);
+              console.warn("SendLater: Failed to set flag for reply / forward", err);
             }
-            return newMessageId;
+            return true;
           } else {
-            console.error(`Message ID not set correctly, ${verifyId} != ${newMessageId}`);
+            console.error(`SendLater: Message ID not set correctly, ${verifyId} != ${newMessageId}`);
           }
-          return null;
+          return false;
         },
 
         async sendNow() {
