@@ -678,6 +678,36 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
           if (verifyId === newMessageId) {
             cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
+
+            // Set reply forward message flags
+            try {
+              const type = cw.gMsgCompose.type;
+              const originalURI = cw.gMsgCompose.originalMsgURI;
+              console.debug("[SendLater]: Setting message reply/forward flags", type, originalURI);
+
+              if ( !originalURI ) { return; }
+              const messenger = Cc["@mozilla.org/messenger;1"].getService(Ci.nsIMessenger);
+              var hdr = messenger.msgHdrFromURI(originalURI);
+              switch (type) {
+                case Ci.nsIMsgCompType.Reply:
+                case Ci.nsIMsgCompType.ReplyAll:
+                case Ci.nsIMsgCompType.ReplyToSender:
+                case Ci.nsIMsgCompType.ReplyToGroup:
+                case Ci.nsIMsgCompType.ReplyToSenderAndGroup:
+                case Ci.nsIMsgCompType.ReplyWithTemplate:
+                case Ci.nsIMsgCompType.ReplyToList:
+                  hdr.folder.addMessageDispositionState(
+                    hdr, hdr.folder.nsMsgDispositionState_Replied);
+                  break;
+                case Ci.nsIMsgCompType.ForwardAsAttachment:
+                case Ci.nsIMsgCompType.ForwardInline:
+                  hdr.folder.addMessageDispositionState(
+                    hdr, hdr.folder.nsMsgDispositionState_Forwarded);
+                  break;
+              }
+            } catch (err) {
+              console.warn("Failed to set flag for reply / forward", err);
+            }
             return newMessageId;
           } else {
             console.error(`Message ID not set correctly, ${verifyId} != ${newMessageId}`);
