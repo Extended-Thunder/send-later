@@ -180,9 +180,12 @@ const SendLater = {
         SendLater.watchAndMarkRead.add(newMessageId);
       }
 
-      await browser.SL3U.saveAsDraft(newMessageId);
-
-      browser.tabs.remove(tabId);
+      const success = await browser.SL3U.saveAsDraft(newMessageId);
+      if (success) {
+        browser.tabs.remove(tabId);
+      } else {
+        console.error("Something went wrong while scheduling this message.");
+      }
     },
 
     async possiblySendMessage(msgHdr) {
