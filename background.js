@@ -836,7 +836,8 @@ browser.compose.onBeforeSend.addListener(tab => {
     setTimeout(() => delete SendLater.composeState[tab.id], 1000);
     return { cancel: false };
   } else if (SendLater.prefCache.sendDoesSL) {
-    SLStatic.info("Send does send later. Opening popup.")
+    SLStatic.info("Send does send later. Opening popup.");
+    SendLater.composeState[tab.id] = "scheduling";
     browser.composeAction.enable(tab.id);
     browser.composeAction.openPopup();
     return ({ cancel: true });
@@ -912,15 +913,22 @@ browser.runtime.onMessage.addListener(async (message) => {
     }
     case "doSendLater": {
       SLStatic.debug("User requested send later.");
-      if (await browser.SL3U.preSendCheck()) {
+      if (SendLater.composeState[message.tabId] === "scheduling" ||
+          await browser.SL3U.preSendCheck()) {
         const options = { sendAt: message.sendAt,
                           recurSpec: message.recurSpec,
                           args: message.args,
                           cancelOnReply: message.cancelOnReply };
         SendLater.scheduleSendLater(message.tabId, options);
+        delete SendLater.composeState[message.tabId];
       } else {
         SLStatic.info("User cancelled send via presendcheck.");
       }
+      break;
+    }
+    case "closingComposePopup": {
+      delete SendLater.composeState[message.tabId];
+      console.log(`Removed tab ${message.tabId} from composeState map.`);
       break;
     }
     case "getScheduleText": {
