@@ -21,7 +21,7 @@ const SLPopup = {
   doSendWithSchedule(schedule) {
     if (schedule && !schedule.err) {
       const message = {
-        tabId: this.tabId,
+        tabId: SLPopup.tabId,
         action: "doSendLater",
         sendAt: schedule.sendAt,
         recurSpec: SLStatic.unparseRecurSpec(schedule.recur),
@@ -36,7 +36,7 @@ const SLPopup = {
 
   doSendNow() {
     const message = {
-      tabId: this.tabId,
+      tabId: SLPopup.tabId,
       action: "doSendNow"
     };
     SLStatic.debug(message);
@@ -101,7 +101,7 @@ const SLPopup = {
       }
     }
 
-    const body = this.ufuncs[funcName].body;
+    const body = SLPopup.ufuncs[funcName].body;
 
     const { sendAt, nextspec, nextargs, error } =
       SLStatic.evaluateUfunc(funcName, body, prev, args);
@@ -349,8 +349,8 @@ const SLPopup = {
 
   loadFunctionHelpText() {
     const funcName = document.getElementById("recurFuncSelect").value;
-    if (this.ufuncs[funcName]) {
-      const helpTxt = this.ufuncs[funcName].help;
+    if (SLPopup.ufuncs[funcName]) {
+      const helpTxt = SLPopup.ufuncs[funcName].help;
       const funcHelpDiv = document.getElementById('funcHelpDiv');
       funcHelpDiv.textContent = helpTxt;
     } else {
@@ -401,7 +401,7 @@ const SLPopup = {
     const dom = SLPopup.objectifyDOMElements();
 
     const recurFuncSelect = dom['recurFuncSelect'];
-    [...Object.keys(this.ufuncs)].sort().forEach(funcName => {
+    [...Object.keys(SLPopup.ufuncs)].sort().forEach(funcName => {
       if (funcName !== "ReadMeFirst" && funcName !== "newFunctionName") {
         const newOpt = document.createElement('option');
         newOpt.id = `ufunc-${funcName}`;
@@ -554,12 +554,12 @@ const SLPopup = {
   },
 
   async init() {
-    this.tabId = await browser.tabs.query({
+    SLPopup.tabId = await browser.tabs.query({
       active:true, currentWindow:true
     }).then(tabs => tabs[0].id);
 
     const { ufuncs } = await browser.storage.local.get({ ufuncs: {} });
-    this.ufuncs = ufuncs;
+    SLPopup.ufuncs = ufuncs;
 
     SLPopup.attachListeners();
 
