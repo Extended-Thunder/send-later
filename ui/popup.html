@@ -9,10 +9,11 @@
     <section style="display:block;" id="sendAtTimeDateDiv">
       <div class="div-table">
         <div class="div-table-row">
-          <div class="div-table-cell localized __MSG_sendAtLabel__">
+          <div class="div-table-cell localized __MSG_sendAtLabel__"
+                style="white-space: nowrap">
             Send at
           </div>
-          <div class="div-table-cell">
+          <div class="div-table-cell" style="width:100%">
             <input id="send-datetime" type="text" style="width:100%"
               class="localized __MSG_sendAtDefaultLabel__"/>
           </div>
@@ -84,14 +85,14 @@
               <input type="radio" name="monthly-recur-type" style="margin-left:1em;"
                   id='recur-monthly-byweek' value='recur-byweek'/>
               <span class="localized __MSG_sendlater.prompt.every.label__">Every</span>
-              <select id="recur-monthly-byweek-week">
+              <select id="recur-monthly-byweek-week" style="margin:0.15em;">
                 <option value="1" class="option-label localized __MSG_ord1__">1st</option>
                 <option value="2" class="option-label localized __MSG_ord2__">2nd</option>
                 <option value="3" class="option-label localized __MSG_ord3__">3rd</option>
                 <option value="4" class="option-label localized __MSG_ord4__">4th</option>
                 <option value="5" class="option-label localized __MSG_ord5__">5th</option>
               </select>
-              <select id="recur-monthly-byweek-day">
+              <select id="recur-monthly-byweek-day" style="margin:0.15em;">
                 <option value="0" class="option-label localized __MSG_everymonthly_day0__">Sunday</option>
                 <option value="1" class="option-label localized __MSG_everymonthly_day1__">Monday</option>
                 <option value="2" class="option-label localized __MSG_everymonthly_day2__">Tuesday</option>
@@ -205,11 +206,6 @@
       <table style="width:100%">
         <tr>
           <td>
-          <input type="button" value="Send Now" id="sendNow"
-            class="localized __MSG_sendNowLabel__"
-            style="margin:0 2.5%;width:95%;" class="delayButton"/>
-          </td>
-          <td>
           <input type="button" value="in 15 minutes" id="quick-opt-1"
             style="width:100%;" class="delayButton" />
           </td>
@@ -223,16 +219,21 @@
           </td>
         </tr>
       </table>
+      <table style="width:100%;float:center;">
+        <tr>
+          <td>
+          <input type="button" value="Send Now" id="sendNow"
+            class="localized __MSG_sendNowLabel__"
+            style="margin:0 2.5%;width:95%;" class="delayButton"/>
+          </td>
+          <td>
+            <input type="button" value="Put in Outbox" id="placeInOutbox"
+              class="localized __MSG_sendlater.prompt.sendlater.label__"
+              style="margin:0 2.5%;width:95%;" class="delayButton"/>
+            </td>
+        </tr>
+      </table>
     </section>
-
-    <!--
-    <section style="clear:both;display:block;">
-      <input type="button" value="Send Now" id="sendNow"
-        class="localized __MSG_sendNowLabel__"/>
-      <input type="button" value="Cancel" id="cancel"
-        class="localized __MSG_cancelLabel__"/>
-    </section>
-    -->
 
     <script type="text/javascript" src="/utils/sugar-custom.js"></script>
     <script type="text/javascript" src="/utils/static.js"></script>
