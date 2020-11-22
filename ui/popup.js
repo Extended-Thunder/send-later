@@ -1,5 +1,7 @@
 // initialize popup window
 const SLPopup = {
+  buttonUpdater: null,
+
   debugSchedule() {
     // Dump current header values to console.
     const inputs = SLPopup.objectifyFormValues();
@@ -14,7 +16,7 @@ const SLPopup = {
       const debugMsg = Object.keys(hdr).reduce((msg,name) => {
         msg.push(`${name}: ${hdr[name]}`); return msg;
       },[]).join("\n    ");
-      SLStatic.debug(`DEBUG [SendLater]: Header values:\n    ${debugMsg}`);
+      console.debug(`DEBUG [SendLater]: Header values:\n    ${debugMsg}`);
     }
   },
 
@@ -175,6 +177,7 @@ const SLPopup = {
         recur.multiplier = inputs[`recur-multiplier`];
       }
     }
+    recur.type = recur.type || "none";
     switch (recur.type) {
       case "none":
         break;
@@ -312,6 +315,10 @@ const SLPopup = {
   },
 
   setScheduleButton(schedule) {
+    if (SLPopup.buttonUpdater) {
+      clearTimeout(SLPopup.buttonUpdater);
+    }
+
     SLPopup.updateRecurrenceText();
 
     const sendScheduleButton = document.getElementById("sendScheduleButton");
@@ -345,6 +352,16 @@ const SLPopup = {
         // SLStatic.stateSetter(schedule.recur.type !== "function")(
         //   document.getElementById("sendAtTimeDateDiv"));
         sendScheduleButton.disabled = false;
+
+        // Update the button text between 1 and 60 seconds in the
+        // future, depending on how far out the schedule time is.
+        const fromNow = (schedule.sendAt.getTime() - Date.now());
+        SLPopup.buttonUpdater = setTimeout(() => {
+          SLPopup.parseSugarDate();
+          const newInputs = SLPopup.objectifyFormValues();
+          const newSchedule = SLPopup.parseInputs(newInputs);
+          SLPopup.setScheduleButton(newSchedule);
+        }, Math.min(Math.max(1000, fromNow/60), 60000));
         return true;
       } else {
         SLStatic.debug('scheduleText',scheduleText);
@@ -396,7 +413,7 @@ const SLPopup = {
   },
 
   clearDefaults() {
-    SLStatic.debug("Clearing default dialog values");
+    SLStatic.debug("Clearing default values");
     const clrDefaultsElement = document.getElementById("clear-defaults");
     browser.storage.local.set({ defaults: {} }).then(() => {
       SLPopup.showCheckMark(clrDefaultsElement, "green");
@@ -423,29 +440,41 @@ const SLPopup = {
 
     if (defaults && defaults.daily !== undefined) {
       SLStatic.debug("Applying default values",defaults);
-      Object.keys(dom).forEach(key => {
+      for (let key in dom) {
         const element = dom[key];
         if (element.tagName === "INPUT" || element.tagName === "SELECT") {
           const defaultValue = defaults[element.id];
           if (defaultValue === undefined || element.type === "button" ||
               ["send-date","send-time"].includes(element.id)) {
-            return;
+            continue;
           } else if (element.type === "radio" || element.type === "checkbox") {
             element.checked = (defaults[element.id]);
           } else if (element.tagName === "SELECT" ||
                     ["number","text","date","time"].includes(element.type)) {
             element.value = (defaults[element.id]);
           } else {
-            throw (`Unrecognized element <${element.tagName} type=${element.type}...>`);
+            SLStatic.warn(`Unrecognized element <${element.tagName} type=${element.type}...>`);
           }
         }
-      });
+        try {
+          let evt = document.createEvent("HTMLEvents");
+          evt.initEvent("change", false, true);
+          element.dispatchEvent(evt);
+        } catch (err) { console.log(err); }
+      }
+    } else {
+      let relativeTo = new Date();
+      const rSec = relativeTo.getSeconds(),
+            pSec = SLStatic.previousLoop.getSeconds();
+      if (rSec > pSec) {
+        const tdiff = rSec-pSec;
+        relativeTo = new Date(relativeTo.getTime() + 60000 - tdiff*1000);
+      }
+      const soon = new Sugar.Date(relativeTo.getTime() + (5*60*1000));
+      dom["send-date"].value = soon.format('%Y-%m-%d');
+      dom["send-time"].value = soon.format('%H:%M');
+      dom["send-datetime"].value = soon.long();
     }
-
-    const soon = new Sugar.Date(Date.now()+ (5*60*1000)); // 5 minutes from now default
-    dom["send-date"].value = soon.format('%Y-%m-%d');
-    dom["send-time"].value = soon.format('%H:%M');
-    dom["send-datetime"].value = soon.long();
 
     SLStatic.stateSetter(dom["sendon"].checked)(dom["onlyOnDiv"]);
     SLStatic.stateSetter(dom["sendbetween"].checked)(dom["betweenDiv"]);
@@ -473,6 +502,41 @@ const SLPopup = {
     setTimeout(() => checkmark.remove(), 1500);
   },
 
+  parseSugarDate() {
+    const dom = SLPopup.objectifyDOMElements();
+
+    // Because Send Later does not necessarily start its main loop on the minute,
+    // it's a little tricky to process relative times, and present them to the user
+    // in a logical way. For example, if right now is 10:25:53, and the main loop
+    // will execute at 14 seconds past the minute, then should input like
+    // "5 minutes from now" be rounded to 10:30 or 10:31?
+    //
+    // It seems most logical to round up in these cases, so that's what we'll do.
+    let relativeTo = new Date();
+    const rSec = relativeTo.getSeconds(),
+          pSec = SLStatic.previousLoop.getSeconds();
+    if (rSec > pSec) {
+      const tdiff = rSec-pSec;
+      relativeTo = new Date(relativeTo.getTime() + 60000 - tdiff*1000);
+    }
+
+    try {
+      const localeCode = browser.i18n.getUILanguage();
+      const sendAt = new Sugar.Date(
+        Sugar.Date.get(relativeTo,
+          dom["send-datetime"].value,
+          {locale: localeCode,
+          future: true})
+      );
+      dom["send-date"].value = sendAt.format('%Y-%m-%d');
+      dom["send-time"].value = sendAt.format('%H:%M');
+    } catch (ex) {
+      SLStatic.debug("Unable to parse user input", ex);
+      dom["send-date"].value = '';
+      dom["send-time"].value = '';
+    }
+  },
+
   attachListeners() {
     const dom = SLPopup.objectifyDOMElements();
 
@@ -483,18 +547,7 @@ const SLPopup = {
           dom["send-datetime"].value = (new Sugar.Date(sendAt)).long();
         }
       } else if (evt.target.id === "send-datetime") {
-        const localeCode = browser.i18n.getUILanguage();
-        const sendAtDate = Sugar.Date.create(dom["send-datetime"].value,
-                                             {locale: localeCode,
-                                              future: true});
-        try {
-          const sendAt = new Sugar.Date(sendAtDate);
-          dom["send-date"].value = sendAt.format('%Y-%m-%d');
-          dom["send-time"].value = sendAt.format('%H:%M');
-        } catch (ex) {
-          dom["send-date"].value = '';
-          dom["send-time"].value = '';
-        }
+        SLPopup.parseSugarDate();
       }
     });
     dom["send-date"].addEventListener("change", dateTimeInputListener);
@@ -569,8 +622,20 @@ const SLPopup = {
       active:true, currentWindow:true
     }).then(tabs => tabs[0].id);
 
+    await SLStatic.fetchLogConsoleLevel();
+
     const { ufuncs } = await browser.storage.local.get({ ufuncs: {} });
     SLPopup.ufuncs = ufuncs;
+
+    const mainLoop = await browser.runtime.sendMessage({
+        action: "getMainLoopStatus"
+      }).catch(SLStatic.warn);
+
+    if (mainLoop && mainLoop.previousLoop) {
+      SLStatic.previousLoop = new Date(mainLoop.previousLoop);
+    } else {
+      SLStatic.previousLoop.setSeconds(0);
+    }
 
     SLPopup.attachListeners();
 

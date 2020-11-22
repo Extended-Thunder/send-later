@@ -918,6 +918,10 @@ browser.runtime.onMessage.addListener(async (message) => {
       });
       break;
     }
+    case "getMainLoopStatus": {
+      response.previousLoop = SLStatic.previousLoop.getTime();
+      break;
+    }
     case "doSendLater": {
       SLStatic.debug("User requested send later.");
       if (SendLater.composeState[message.tabId] === "scheduling" ||
