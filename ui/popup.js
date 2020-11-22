@@ -18,11 +18,10 @@ const SLPopup = {
     }
   },
 
-  async doSendWithSchedule(schedule) {
-    const tabs = await browser.tabs.query({ active:true, currentWindow:true });
+  doSendWithSchedule(schedule) {
     if (schedule && !schedule.err) {
       const message = {
-        tabId: tabs[0].id,
+        tabId: this.tabId,
         action: "doSendLater",
         sendAt: schedule.sendAt,
         recurSpec: SLStatic.unparseRecurSpec(schedule.recur),
@@ -35,10 +34,9 @@ const SLPopup = {
     }
   },
 
-  async doSendNow() {
-    const tabs = await browser.tabs.query({ active:true, currentWindow:true });
+  doSendNow() {
     const message = {
-      tabId: tabs[0].id,
+      tabId: this.tabId,
       action: "doSendNow"
     };
     SLStatic.debug(message);
@@ -559,6 +557,9 @@ const SLPopup = {
   },
 
   async init() {
+    this.tabId = await browser.tabs.query({
+      active:true, currentWindow:true
+    }).then(tabs => tabs[0].id);
     SLPopup.applyDefaults().then(() => {
       SLPopup.attachListeners();
     });
@@ -576,3 +577,10 @@ function waitAndInit() {
 }
 
 window.addEventListener("load", waitAndInit, false);
+
+window.addEventListener("unload", (evt) => {
+  browser.runtime.sendMessage({
+    tabId: SLPopup.tabId,
+    action: "closingComposePopup"
+  }).catch(SLStatic.error);
+});
