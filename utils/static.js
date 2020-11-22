@@ -184,7 +184,7 @@ var SLStatic = {
       const FUNC = Function.apply(null, ["specname", "prev", "args", funcStr]);
       response = FUNC(name, prev, args);
     } catch (ex) {
-      SLStatic.warn(ex);
+      SLStatic.debug(`User function ${name} (prev: ${prev}, args: ${args}) returned error.`,ex);
       return { error: ex.message };
     }
 
