@@ -44,6 +44,16 @@ const SLPopup = {
     setTimeout((() => window.close()), 150);
   },
 
+  doPlaceInOutbox() {
+    const message = {
+      tabId: SLPopup.tabId,
+      action: "doPlaceInOutbox"
+    };
+    SLStatic.debug(message);
+    browser.runtime.sendMessage(message).catch(SLStatic.error);
+    setTimeout((() => window.close()), 150);
+  },
+
   domElementsAsArray() {
     return [...document.querySelectorAll("*")];
   },
@@ -549,6 +559,7 @@ const SLPopup = {
     });
 
     dom["sendNow"].addEventListener("click", SLPopup.doSendNow);
+    dom["placeInOutbox"].addEventListener("click", SLPopup.doPlaceInOutbox);
 
     setTimeout(() => document.getElementById("send-datetime").select(), 50);
   },

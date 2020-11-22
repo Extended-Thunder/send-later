@@ -900,7 +900,6 @@ browser.runtime.onMessage.addListener(async (message) => {
     case "doSendNow": {
       SLStatic.debug("User requested send immediately.");
       if (!window.navigator.onLine) {
-        // TODO -> Option to place in outbox.
         SendLater.notify("Thunderbird is offline.",
                         "Cannot send message at this time.");
       } else {
@@ -909,6 +908,14 @@ browser.runtime.onMessage.addListener(async (message) => {
           setTimeout(() => delete SendLater.composeState[message.tabId], 1000);
         });
       }
+      break;
+    }
+    case "doPlaceInOutbox": {
+      SLStatic.debug("User requested system send later.");
+      SendLater.composeState[message.tabId] = "sending";
+      browser.SL3U.builtInSendLater().then(()=>{
+        setTimeout(() => delete SendLater.composeState[message.tabId], 1000);
+      });
       break;
     }
     case "doSendLater": {
