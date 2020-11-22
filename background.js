@@ -623,54 +623,6 @@ const SendLater = {
       return true;
     },
 
-    async continueOnUpgrade() {
-      let { preferences } = await browser.storage.local.get({
-        preferences: {}
-      });
-      let thisVersion = "0.0.0";
-      try {
-        const manifest = browser.runtime.getManifest();
-        thisVersion = manifest.version;
-      } catch (e) {
-        SLStatic.warn("Unable to read current Send Later version.", e);
-      }
-      const extensionName = browser.i18n.getMessage("extensionName");
-      if (thisVersion === preferences.versionNumber) {
-        SLStatic.debug("Version unchanged");
-        // Just a regular old restart. Not a version upgrade.
-        return true;
-      } else {
-        SLStatic.info(`Version upgraded from ${preferences.versionNumber} to ${thisVersion}`);
-        if (preferences.hideRestartNotification) {
-          //TODO: This is not yet implemented.
-          SLStatic.debug("User has chosen to hide notifications about restarts on upgrade.");
-          return true;
-        } else {
-          preferences.versionNumber = thisVersion;
-          await browser.storage.local.set({ preferences });
-
-          let title = browser.i18n.getMessage("extensionName");
-          let message = `A new version of ${title} has been installed.\n\n` +
-            `To prevent unexpected behavior, it is recommended that you ` +
-            `restart Thunderbird before using any of its functionality. ` +
-            `This is especially important when a previous version was ` +
-            `actively running prior to this upgrade.\n\n` +
-            `Click "OK" to continue loading ${extensionName}, or "Cancel" to ` +
-            `wait until the next Thunderbird restart.`;
-          title += ` ${thisVersion}`;
-
-          const okay = await browser.SL3U.confirmAction(title, message.trim());
-          if (okay === true) {
-            SLStatic.warn("Continuing without restart.");
-            return true;
-          } else if (okay === false) {
-            SLStatic.info("Returning early, and waiting until next restart.");
-            return false;
-          }
-        }
-      }
-    },
-
     async claimDrafts() {
       /*
        * Because the x-send-later-uuid header was omitted in beta
@@ -748,12 +700,6 @@ const SendLater = {
       // Before preferences are available, let's set logging
       // to the default level.
       SLStatic.logConsoleLevel = "info";
-
-      // Check if version has just been upgraded, and possibly
-      // prompt for restart if so.
-      if (!(await SendLater.continueOnUpgrade())) {
-        return;
-      }
 
       // Perform any pending preference migrations.
       const previousMigration = await SendLater.migratePreferences();
@@ -1129,6 +1075,19 @@ browser.messageDisplay.onMessageDisplayed.addListener(async (tab, hdr) => {
   } else {
     SLStatic.debug("This is not a Drafts folder, so Send Later will not scan it.");
   }
+});
+
+browser.runtime.onUpdateAvailable.addListener((details) => {
+  const extensionName = browser.i18n.getMessage("extensionName");
+  const thisVersion = browser.runtime.getManifest().version;
+  const nextVersion = details.version||"";
+
+  browser.notifications.create(null, {
+    "type": "basic",
+    "title": `${extensionName} ${thisVersion}`,
+    "message": `${extensionName} ${nextVersion} is available and ` +
+               `will be upgraded next time you restart Thunderbird.`
+  });
 });
 
 SendLater.init();
