@@ -1004,6 +1004,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                   const { document } = window;
                   const toolbarId = "composeToolbar2";
                   const toolbar = document.getElementById(toolbarId);
+
                   const widgetId = ExtensionCommon.makeWidgetId(extension.id);
                   const toolbarButtonId = `${widgetId}-composeAction-toolbarbutton`;
                   const windowURL =
@@ -1032,6 +1033,16 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                     );
                     // Services.xulStore.persist(toolbar, "currentset");
                   }
+
+                  Services.xulStore.setValue(
+                    windowURL,
+                    toolbarId,
+                    "collapsed",
+                    "false"
+                  );
+                  toolbar.collapsed = false;
+                  toolbar.hidden = false;
+
                   console.debug("Compose window has send later button now.");
                 } catch (err) {
                   console.error("Error enabling toolbar button", err);
