@@ -444,6 +444,10 @@ const SendLater = {
         };
       }
 
+      const prefDefaults = await fetch(
+        "/utils/defaultPrefs.json"
+      ).then((ptxt) => ptxt.json());
+
       // Load legacy preferences
       if (currentMigrationNumber === 0) {
         // Merge any existing legacy preferences into the new storage system
@@ -451,9 +455,6 @@ const SendLater = {
         let legacyValuePromises = [];
 
         // Load values from legacy storage, substitute defaults if not defined.
-        let prefDefaults = await fetch(
-            "/utils/defaultPrefs.json"
-          ).then((ptxt) => ptxt.json());
         for (let prefName of Object.getOwnPropertyNames(prefDefaults)) {
           prefKeys.push(prefName);
           let dtype = prefDefaults[prefName][0];
@@ -462,14 +463,12 @@ const SendLater = {
           let pp; // Promise that resolves to this preference value.
           const isquickopt = prefName.match(/quickOptions(\d)Label/);
           if (isquickopt) {
-            const localizedDelayLabel = [
-              `${(new Sugar.Date(Date.now() + 60000 * 15)).relative()}`,
-              `${(new Sugar.Date(Date.now() + 60000 * 30)).relative()}`,
-              `${(new Sugar.Date(Date.now() + 60000 * 120)).relative()}`
-            ][+isquickopt[1] - 1];
-            pp = new Promise((resolve, reject) =>
+            const delayMins = (+prefDefaults[`quickOptions${isquickopt[1]}Args`][1])|0;
+            const localizedDelayLabel =
+              `${(new Sugar.Date(Date.now() + 60000 * delayMins)).relative()}`;
+            pp = new Promise((resolve, reject) => {
               resolve(localizedDelayLabel)
-            );
+            });
           } else if (legacyKey === null) {
             pp = new Promise((resolve, reject) => resolve(defVal));
           } else {
@@ -499,6 +498,17 @@ const SendLater = {
             preferences[key] = legacyPrefs[key];
           }
         });
+      }
+
+      SLStatic.logConsoleLevel = (preferences.logConsoleLevel||"info").toLowerCase();
+
+      // Pick up any new properties from defaults
+      for (let prefName of Object.getOwnPropertyNames(prefDefaults)) {
+        if (preferences[prefName] === undefined) {
+          const prefValue = prefDefaults[prefName][1];
+          SLStatic.debug(`Added new preference ${prefName}: ${prefValue}`);
+          preferences[prefName] = prefValue;
+        }
       }
 
       //if (currentMigrationNumber < 4)
@@ -724,7 +734,6 @@ const SendLater = {
       const { preferences } =
         await browser.storage.local.get({ preferences: {} });
       SendLater.prefCache = preferences;
-      SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
 
       // This listener should be added *after* all of the storate-related
       // setup is complete. It makes sure that subsequent changes to storage
