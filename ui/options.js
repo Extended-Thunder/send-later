@@ -5,7 +5,7 @@ const SLOptions = {
 
   checkboxGroups: {},
 
-  async applyValue(id, value) {
+  applyValue(id, value) {
     const element = document.getElementById(id);
     if (!element) {
       SLStatic.error(id, element, value);
@@ -41,6 +41,105 @@ const SLOptions = {
     }
   },
 
+  /*
+   * There is already a translation string for "minutes late", but
+   * it would be nice to allow the user to select "hours late" or
+   * "days late". Rather than try to localize all of those strings,
+   * we'll just hack something together from what we've got. That is,
+   * get the locale strings for 'minutes' 'hours' and 'days' from
+   * Sugar.js, then try to replace the word 'minutes' in the original
+   * locale string with a dropdown offering alternatives. I assume this
+   * should remain gramatically correct in all languages since it's
+   * just substituting a pluralized noun with a different pluralized
+   * noun in the same context.
+   */
+  replaceGracePeriodUnitSelect() {
+    const unitLabel = document.getElementById("gracePeriodUnitLabel");
+    if (!unitLabel) {
+      // This probably means the label has already been replaced,
+      // i.e. user reset all preferences, and the UI is refreshing.
+      return;
+    }
+
+    const delayStr = browser.i18n.getMessage("blockLateMessagesPrefLabel2");
+
+    const minutesStr = Sugar.Date.getLocale().units[10];
+    const hoursStr = Sugar.Date.getLocale().units[11];
+    const daysStr = Sugar.Date.getLocale().units[12];
+    if ((new RegExp(minutesStr,"i")).test(delayStr)) {
+      // Generate a dropdown menu for time units
+      const unitSelect = document.createElement('select');
+      unitSelect.id = "gracePeriodUnits";
+
+      const mopt = document.createElement('option');
+      mopt.value = "gracePeriodMinutes";
+      mopt.textContent = minutesStr;
+      unitSelect.appendChild(mopt);
+
+      const hopt = document.createElement('option');
+      hopt.value = "gracePeriodHours";
+      hopt.textContent = hoursStr;
+      unitSelect.appendChild(hopt);
+
+      const dopt = document.createElement('option');
+      dopt.value = "gracePeriodDays";
+      dopt.textContent = daysStr;
+      unitSelect.appendChild(dopt);
+
+      unitSelect.value = "gracePeriodMinutes";
+
+      // Split string, to replace time unit dropdown in gramatically
+      // correct spot.
+      const str2Spans = delayStr.split(minutesStr).map(v => {
+        const spanElement = document.createElement('span');
+        spanElement.textContent = v;
+        return spanElement;
+      });
+
+      // Now, create a small div to contain the combined elements
+      const unitOptions = document.createElement('div');
+      unitOptions.style.display = "inline";
+      unitOptions.style.whiteSpace = "nowrap";
+
+      if (str2Spans[0].textContent !== "") {
+        unitOptions.appendChild(str2Spans[0]);
+      }
+      unitOptions.appendChild(unitSelect);
+      if (str2Spans[1].textContent !== "") {
+        unitOptions.appendChild(str2Spans[0]);
+      }
+
+      // Swap out the original label with the new unit options
+      unitLabel.replaceWith(unitOptions);
+      unitSelect.addEventListener("change", SLOptions.updatePrefListener);
+    }
+  },
+
+  /*
+   * Grace period times are handled internally using minutes, but we
+   * will attempt to display the option to select 'days' or 'hours', in
+   * which case we need to convert the stored preferences into the
+   * relevant UI units.
+   */
+  autoConvertGracePeriodUnits() {
+    const gracePeriodUnits = document.getElementById("gracePeriodUnits");
+    if (gracePeriodUnits) {
+      const gracePeriodTime = document.getElementById("lateGracePeriod");
+      const gracePeriodTimeValue = +gracePeriodTime.value;
+      if (gracePeriodTimeValue > 60*24 &&
+          gracePeriodTimeValue%(60*24) === 0) {
+        gracePeriodUnits.value = "gracePeriodDays";
+        gracePeriodTime.value = gracePeriodTimeValue/(60*24);
+      } else if (gracePeriodTimeValue > 60 &&
+                  gracePeriodTimeValue%60 === 0) {
+        gracePeriodUnits.value = "gracePeriodHours";
+        gracePeriodTime.value = gracePeriodTimeValue/60;
+      } else {
+        gracePeriodUnits.value = "gracePeriodMinutes";
+      }
+    }
+  },
+
   async applyPrefsToUI() {
     const ufuncPromise =
       browser.storage.local.get({ufuncs:{}}).then(({ ufuncs }) => {
@@ -55,12 +154,19 @@ const SLOptions = {
         SLStatic.logConsoleLevel = (preferences.logConsoleLevel||"all").toLowerCase();
         for (let id of SLStatic.prefInputIds) {
           SLStatic.debug(`Setting ${id}: ${preferences[id]}`);
-          SLOptions.applyValue(
-            id, preferences[id]
-          ).catch(SLStatic.error);
+          SLOptions.applyValue(id, preferences[id]);
+        }
+
+        try {
+          // Attempt to setup UI alternative units for specifying
+          // grace period time.
+          SLOptions.replaceGracePeriodUnitSelect();
+          SLOptions.autoConvertGracePeriodUnits();
+        } catch (ex) {
+          SLStatic.debug("Unable to set time unit label",ex);
         }
       });
-    return Promise.all([ufuncPromise, prefPromise]);
+    return await Promise.all([ufuncPromise, prefPromise]);
   },
 
   async saveUserFunction(name, body, help) {
@@ -154,6 +260,31 @@ const SLOptions = {
     // Respond to changes in UI input fields
     const element = event.target;
     const { preferences } = await browser.storage.local.get({"preferences":{}});
+
+    const setRegularPref = (element) => {
+      let id = element.id;
+      let value = element.value;
+      if (["lateGracePeriod", "gracePeriodUnits"].includes(id)) {
+        const gracePeriodUnits = document.getElementById("gracePeriodUnits");
+        const gracePeriodValue = document.getElementById("lateGracePeriod").value;
+        if (gracePeriodUnits) {
+          const multiplier = {
+            "gracePeriodMinutes": 1,
+            "gracePeriodHours": 60,
+            "gracePeriodDays": 60*24
+          };
+          id = "lateGracePeriod";
+          value = gracePeriodValue * multiplier[gracePeriodUnits.value];
+        }
+      } else if (id === "logConsoleLevel") {
+        SLStatic.logConsoleLevel = value;
+      }
+
+      SLStatic.info(`Set option (${element.type}) ${id}: ${preferences[id]} -> ${value}`);
+      preferences[id] = value;
+      SLOptions.showCheckMark(element, "green");
+    };
+
     try {
       if (element.tagName === "INPUT") {
         switch(element.type) {
@@ -161,31 +292,27 @@ const SLOptions = {
           case "radio":
             preferences[element.id] = element.checked;
             SLOptions.showCheckMark(element, "green");
-            SLStatic.debug(`Set option (radio) ${element.id}: ${element.value}`);
+            SLStatic.info(`Set option (radio) ${element.id}: ${element.checked}`);
             if (element.checked && SLOptions.checkboxGroups[element.id])
               for (const id2 of SLOptions.checkboxGroups[element.id]) {
                 const element2 = document.getElementById(id2);
                 if (element2.checked) {
                   element2.checked = false;
                   preferences[id2] = false;
-                  SLStatic.debug(`Set option (radio) ${id2}: false`);
+                  SLStatic.info(`Set option (radio) ${id2}: false`);
                   SLOptions.showCheckMark(element2, "green");
                 }
               }
             break;
           case "text":
           case "number":
-            SLStatic.debug(`Set option (number) ${element.id}: ${preferences[element.id]} -> ${element.value}`);
-            preferences[element.id] = element.value;
-            SLOptions.showCheckMark(element, "green");
+            setRegularPref(element);
             break;
           default:
             throw new Error("Unexpected element type: "+element.type);
         }
       } else if (element.tagName === "SELECT") {
-        SLStatic.debug(`Set option (select) ${element.id}: ${preferences[element.id]} -> ${element.value}`);
-        preferences[element.id] = element.value;
-        SLOptions.showCheckMark(element, "green");
+        setRegularPref(element);
       } else {
         throw new Error("Unable to process change in element: "+element);
       }
@@ -249,14 +376,14 @@ const SLOptions = {
   checkBoxSetListeners(ids) {
     ids.forEach(id1 => {
       SLOptions.checkboxGroups[id1] = [];
-      ids.forEach(async id2 => {
+      ids.forEach(id2 => {
         if (id1 !== id2)
           SLOptions.checkboxGroups[id1].push(id2);
       });
     });
   },
 
-  async attachListeners() {
+  attachListeners() {
     // Attach listeners for all input fields
     for (const id of SLStatic.prefInputIds) {
       const el = document.getElementById(id);
@@ -333,7 +460,7 @@ const SLOptions = {
     document.getElementById("funcEditReset").addEventListener("click",
         resetFunctionInput);
 
-    document.getElementById("funcEditSave").addEventListener("click", async evt => {
+    document.getElementById("funcEditSave").addEventListener("click", evt => {
       const funcName = document.getElementById("functionName").value;
       const funcContent = document.getElementById("functionEditorContent").value;
       const funcHelp = document.getElementById("functionHelpText").value;
@@ -359,18 +486,19 @@ const SLOptions = {
     });
 
     document.getElementById("advancedEditorTitle").addEventListener("mousedown",
-      (async () => {
+      (() => {
         const advEditorDiv = document.getElementById("advancedConfigEditor");
         const visIndicator = document.getElementById("advancedEditorVisibleIndicator");
         if (advEditorDiv.style.display === "none") {
-          await resetAdvConfigEditor();
-          advEditorDiv.style.display = "block";
-          visIndicator.textContent = "-";
-          setTimeout(() =>
-            document.getElementById("advancedEditSave").scrollIntoView(
-              false,
-              { behavior: "smooth" }),
-            100);
+          resetAdvConfigEditor().then(() => {
+            advEditorDiv.style.display = "block";
+            visIndicator.textContent = "-";
+            setTimeout(() =>
+              document.getElementById("advancedEditSave").scrollIntoView(
+                false,
+                { behavior: "smooth" }),
+              100);
+          }).catch(SLStatic.error);
         } else {
           advEditorDiv.style.display = "none";
           visIndicator.textContent = "+";
@@ -378,9 +506,10 @@ const SLOptions = {
       }));
 
     document.getElementById("advancedEditReset").addEventListener("click",
-      (async evt => {
-        await resetAdvConfigEditor();
-        SLOptions.showCheckMark(evt.target, "green");
+      (evt => {
+        resetAdvConfigEditor().then(() => {
+          SLOptions.showCheckMark(evt.target, "green");
+        }).catch(SLStatic.error);
       }));
 
     document.getElementById("advancedEditSave").addEventListener("click",
