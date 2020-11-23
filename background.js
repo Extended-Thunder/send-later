@@ -93,7 +93,7 @@ const SendLater = {
       }
     },
 
-    async forAllDrafts(callback, sequential) {
+    async forAllDrafts(callback, sequential, getRaw) {
       try {
         let results = [];
         let accounts = await browser.accounts.list();
@@ -103,11 +103,22 @@ const SendLater = {
             let page = await browser.messages.list(drafts);
             do {
               for (let message of page.messages) {
+                let rawMessageContents;
+                if (getRaw) {
+                  rawMessageContents =
+                    await browser.messages.getRaw(message.id).catch(err => {
+                      SLStatic.warn(`Unable to fetch message ${message.id}.`, err);
+                    });
+                  if (!rawMessageContents) {
+                    SLStatic.debug("Unable to load message", message);
+                    continue;
+                  }
+                }
                 if (sequential === true) {
-                  const result = await callback(message);
+                  const result = await callback(message, rawMessageContents);
                   results.push(result);
                 } else {
-                  const resultPromise = callback(message);
+                  const resultPromise = callback(message, rawMessageContents);
                   results.push(resultPromise);
                 }
               }
@@ -120,7 +131,7 @@ const SendLater = {
         if (sequential === true) {
           return results;
         } else {
-          return Promise.all(results);
+          return await Promise.all(results);
         }
       } catch (ex) {
         SLStatic.error(ex);
@@ -188,17 +199,17 @@ const SendLater = {
       }
     },
 
-    async possiblySendMessage(msgHdr) {
-      if (!window.navigator.onLine) {
-        SLStatic.debug(`The option to send scheduled messages while ` +
-          `thunderbird is offline has not yet been implemented. Skipping.`);
+    async possiblySendMessage(msgHdr, rawContent) {
+      // Determines whether or not a particular draft message is due to be sent
+      // const rawContent = await SendLater.getRaw(msgHdr.id, 5);
+      if (!rawContent) {
+        SLStatic.warn("possiblySendMessage failed. Unable to get raw message contents.", msgHdr);
         return;
       }
 
-      // Determines whether or not a particular draft message is due to be sent
-      const rawContent = await SendLater.getRaw(msgHdr.id, 5);
-      if (rawContent === null) {
-        SLStatic.warn("possiblySendMessage failed. Unable to get raw message contents.",msgHdr);
+      if (!window.navigator.onLine) {
+        SLStatic.debug(`The option to send scheduled messages while ` +
+          `thunderbird is offline has not yet been implemented. Skipping.`);
         return;
       }
 
@@ -545,9 +556,8 @@ const SendLater = {
     async getActiveSchedules(matchUUID) {
       const { preferences } = await browser.storage.local.get({ preferences: {} });
 
-      let allSchedules = await SendLater.forAllDrafts(async (msg) => {
-        const rawMessage = await SendLater.getRaw(msg.id, 5);
-        if (rawMessage === null) {
+      let allSchedules = await SendLater.forAllDrafts(async (msg, rawMessage) => {
+        if (!rawMessage) {
           SLStatic.warn("getActiveSchedules.forAllDrafts failed. Unable to get raw message contents.",msg);
           return;
         }
@@ -561,7 +571,7 @@ const SendLater = {
           const nextSend = new Date(msgSendAt).getTime();
           return nextSend;
         }
-      }, true);
+      }, true, true);
       return allSchedules.filter(v => v !== null);
     },
 
@@ -657,9 +667,8 @@ const SendLater = {
        * This should only happen once, and only for users who
        * have been following the beta releases.
        */
-      let claimed = await SendLater.forAllDrafts(async (msg) => {
-        const rawContent = await SendLater.getRaw(msg.id, 5);
-        if (rawContent === null) {
+      let claimed = await SendLater.forAllDrafts(async (msg, rawContent) => {
+        if (!rawContent) {
           SLStatic.warn("claimDrafts.forAllDrafts failed. Unable to get raw message contents.",msg);
           return;
         }
@@ -706,7 +715,7 @@ const SendLater = {
             SLStatic.error("Unable to claim message");
           }
         }
-      }, true);
+      }, true, true);
       claimed = claimed.filter(v => v !== null && v !== undefined);
       SLStatic.info(`Claimed ${claimed.length} scheduled messages.`);
     },
@@ -776,6 +785,7 @@ const SendLater = {
         if (storage.preferences.sendDrafts && interval > 0) {
           SendLater.forAllDrafts(
             SendLater.possiblySendMessage,
+            false,
             true
           ).catch(SLStatic.error);
         }
@@ -1059,9 +1069,8 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
           const recvdMsgReplyTo =[...recvdMsgReplyToStr.matchAll(/(<\S*>)/gim)].map(i=>i[1]);
           SLStatic.debug(`Message is a reply to`, recvdMsgReplyTo);
 
-          SendLater.forAllDrafts(async draftMsg => {
-            const rawDraftMsg = await SendLater.getRaw(draftMsg.id, 5);
-            if (rawDraftMsg === null) {
+          SendLater.forAllDrafts(async (draftMsg, rawDraftMsg) => {
+            if (!rawDraftMsg) {
               SLStatic.warn("onNewMailReceived.scanMessage.forAllDrafts failed. Unable to get raw message contents.",draftMsg);
               return;
             }
@@ -1080,7 +1089,7 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
                 browser.messages.delete([draftMsg.id], true);
               }
             }
-          }, true);
+          }, true, true);
         }
       }
     }
