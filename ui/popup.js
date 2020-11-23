@@ -135,31 +135,33 @@ const SLPopup = {
 
   parseInputs(inputs) {
     // Construct a recur object { type: "...", multiplier: "...", ... }
-    const recur = { type: inputs.radio.recur };
+    const recurType = inputs.radio.recur;
 
     const sendAtDate = inputs["send-date"];
     const sendAtTime = inputs["send-time"];
-    let sendAt = null;
+    let sendAt, schedule;
+
     if ((/\d\d\d\d.\d\d.\d\d/).test(sendAtDate) &&
         (/\d\d.\d\d/).test(sendAtTime)) {
       sendAt = SLStatic.parseDateTime(sendAtDate, sendAtTime);
     }
 
-    if (recur.type === "function") {
+    if (recurType === "function") {
       try {
         const funcName = inputs["recurFuncSelect"];
         let argStr = inputs["recur-function-args"];
-        const schedule = SLPopup.evaluateUfunc(funcName, sendAt, argStr);
-        if (schedule.recur.type !== "none") {
-          schedule.recur.cancelOnReply = inputs[`recur-cancelonreply`];
-        }
+        schedule = SLPopup.evaluateUfunc(funcName, sendAt, argStr);
         if (schedule.sendAt.getTime() < (new Date()).getTime()-60000) {
           return { err: browser.i18n.getMessage("errorDateInPast") };
         }
-        return schedule;
       } catch (ex) {
         return { err: ex.message };
       }
+    } else {
+      schedule = {
+        sendAt,
+        recur: { type: recurType }
+      };
     }
 
     if (!sendAt) {
@@ -170,15 +172,15 @@ const SLPopup = {
       return { err: browser.i18n.getMessage("errorDateInPast") };
     }
 
-    if (recur.type !== "none") {
-      recur.cancelOnReply = inputs[`recur-cancelonreply`];
+    if (schedule.recur.type !== "none") {
+      schedule.recur.cancelOnReply = inputs[`recur-cancelonreply`];
 
-      if (recur.type !== "function") {
-        recur.multiplier = inputs[`recur-multiplier`];
+      if (schedule.recur.type !== "function") {
+        schedule.recur.multiplier = inputs[`recur-multiplier`];
       }
     }
-    recur.type = recur.type || "none";
-    switch (recur.type) {
+    schedule.recur.type = schedule.recur.type || "none";
+    switch (schedule.recur.type) {
       case "none":
         break;
       case "minutely":
@@ -189,22 +191,22 @@ const SLPopup = {
         break;
       case "monthly":
         if (inputs["recur-monthly-byweek"]) {
-          recur.monthly_day = {
+          schedule.recur.monthly_day = {
             day: +inputs["recur-monthly-byweek-day"],
             week: +inputs["recur-monthly-byweek-week"]
           };
         } else {
-          recur.monthly = sendAt.getDate();
+          schedule.recur.monthly = sendAt.getDate();
         }
         break;
       case "yearly":
-        recur.yearly = {
+        schedule.recur.yearly = {
           month: sendAt.getMonth(),
           date: sendAt.getDate()
         };
         break;
       default:
-        SLStatic.error(`unrecognized recurrence type <${recur.type}>`);
+        SLStatic.error(`unrecognized recurrence type <${schedule.recur.type}>`);
         break;
     }
 
@@ -220,26 +222,34 @@ const SLPopup = {
           return { err: (browser.i18n.getMessage("endTimeWarningTitle") + ": " +
                           browser.i18n.getMessage("endTimeWarningBody")) };
         } else {
-          recur.between = between;
+          schedule.recur.between = between;
         }
       }
     }
 
     if (inputs["sendon"]) {
       const dayLimit = inputs.groups["weekdayChecks"].vals;
-      recur.days = [...Array(7)].reduce((obj,item,idx) => {
+      schedule.recur.days = [...Array(7)].reduce((obj,item,idx) => {
         if (dayLimit[idx]) {
           obj.push(idx);
         }
         return obj;
       }, []);
-      if (recur.days.length === 0) {
+      if (schedule.recur.days.length === 0) {
         return { err: (browser.i18n.getMessage("missingDaysWarningTitle") + ": " +
                        browser.i18n.getMessage("missingDaysWarningBody")) };
       }
     }
 
-    const schedule = { sendAt, recur };
+    // console.log(schedule.recur.between);
+    // const starttime = (schedule.recur.between && schedule.recur.between.start)
+    // const endtime =(schedule.recur.between && schedule.recur.between.end);
+    // console.log(starttime, endtime);
+    schedule.sendAt = SLStatic.adjustDateForRestrictions(schedule.sendAt,
+                              (schedule.recur.between && schedule.recur.between.start),
+                              (schedule.recur.between && schedule.recur.between.end),
+                              schedule.recur.days);
+
     return schedule;
   },
 

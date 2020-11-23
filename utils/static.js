@@ -817,9 +817,27 @@ var SLStatic = {
   //    than the scheduled day, or if there is none, then the smallest day in
   //    the restriction overall.
   adjustDateForRestrictions(sendAt, start_time, end_time, days) {
+    convertTime = (t) => {
+      if (!t) {
+        return null;
+      } else if (typeof t === "string") {
+        return SLStatic.parseDateTime(null, t) || new Date(t);
+      } else if (typeof t === "number") {
+        if (t < 2401) {
+          return SLStatic.parseDateTime(null, `${t}`);
+        } else {
+          return new Date(t);
+        }
+      } else if (t.getTime) {
+        return new Date(t.getTime());
+      } else {
+        throw new Error(`Send Later error: unable to parse time format ${t}`);
+      }
+    }
+
     let dt = new Date(sendAt.getTime());
-    start_time = start_time && SLStatic.parseDateTime(null,start_time);
-    end_time = end_time && SLStatic.parseDateTime(null,end_time);
+    start_time = convertTime(start_time);
+    end_time = convertTime(end_time);
 
     if (start_time && SLStatic.compareTimes(dt, '<', start_time)) {
       // If there is a time restriction and the scheduled time is before it,
