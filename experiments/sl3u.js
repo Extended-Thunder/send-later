@@ -424,6 +424,21 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return Services.prompt.alert(window, (title || ""), (text || ""));
         },
 
+        async confirmCheck(title, message, checkMessage, state) {
+          function doConfirmCheck(resolve, reject) {
+            try {
+              let checkbox = { value: state };
+              let okToProceed = Services.prompt.confirmCheck(
+                null, title, message, checkMessage, checkbox
+              );
+              resolve(okToProceed && checkbox.value);
+            } catch (err) {
+              reject(`An error occurred in SL3U.doConfirmCheck: ${err}`);
+            }
+          }
+          return new Promise(doConfirmCheck.bind(this));
+        },
+
         async setLegacyPref(name, dtype, value) {
           const prefName = `extensions.sendlater3.${name}`;
 
