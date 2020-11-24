@@ -8,6 +8,8 @@ const { Utils } = ChromeUtils.import("resource://services-settings/Utils.jsm");
 const { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 var { AddonManager } = ChromeUtils.import("resource://gre/modules/AddonManager.jsm");
 
+const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+
 const SendLaterVars = {
   fileNumber: 0,
   copyService: null,
@@ -95,7 +97,7 @@ const SendLaterFunctions = {
       ].getService(Ci.nsIMsgSendLater);
     return msgSendLater.getUnsentMessagesFolder(null);
   },
-  
+
   queueSendUnsentMessages() {
     if (Utils.isOffline) {
       console.debug("Deferring sendUnsentMessages while offline");
@@ -271,11 +273,11 @@ const SendLaterFunctions = {
 
   keyCodeEventTracker: {
     listeners: new Set(),
-  
+
     add(listener) {
       this.listeners.add(listener);
     },
-  
+
     remove(listener) {
       this.listeners.delete(listener);
     },
@@ -1006,6 +1008,197 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
         async countUnsentMessages() {
           return SendLaterFunctions.getUnsentMessagesFolder().getTotalMessages(false);
+        },
+
+        async deleteDraftByUri(accountId, path, draftUri) {
+          const folderUri = SendLaterFunctions.folderPathToURI(accountId, path);
+          const folder = MailServices.folderLookup.getFolderForURL(folderUri);
+          const msgKey = draftUri.substr(draftUri.indexOf("#") + 1);
+          if (!folder) {
+            console.error("Cannot find folder");
+            return;
+          }
+          try {
+            console.info(`Deleting draft (${msgKey})`);
+            if (folder.getFlag(Ci.nsMsgFolderFlags.Drafts)) {
+              let msgs = Cc["@mozilla.org/array;1"].createInstance(
+                Ci.nsIMutableArray
+              );
+              msgs.appendElement(folder.GetMessageHeader(msgKey));
+              folder.deleteMessages(msgs, null, true, false, null, false);
+            }
+          } catch (ex) {
+            // couldn't find header - perhaps an imap folder.
+            console.debug(`couldn't find header - perhaps an imap folder.`);
+            let imapFolder = folder.QueryInterface(Ci.nsIMsgImapMailFolder);
+            if (imapFolder) {
+              imapFolder.storeImapFlags(
+                Ci.nsMsgFolderFlags.Expunged,
+                true,
+                [msgKey],
+                null
+              );
+            }
+          }
+        },
+
+        // async getMessageUri(accountId, path, messageKey) {
+        //   const folderUri = SendLaterFunctions.folderPathToURI(accountId, path);
+        //   const folder = MailServices.folderLookup.getFolderForURL(folderUri);
+        //   if (folder) {
+        //     const msgUri = folder.generateMessageURI(messageKey);
+        //     if (msgUri) {
+        //       console.log(`Got messageURI for ${messageKey}: ${msgUri}`);
+        //       return msgUri;
+        //     } else {
+        //       console.warn(`Unable to find message ${accountId}:${path}:${messageKey}`);
+        //     }
+        //   } else {
+        //     console.warn(`Unable to find folder ${accountId}:${path}`);
+        //     return null;
+        //   }
+        // },
+
+        async getAllScheduledMessages(accountId, path) {
+          const folderUri = SendLaterFunctions.folderPathToURI(accountId, path);
+          const folder = MailServices.folderLookup.getFolderForURL(folderUri);
+
+          console.log(`Folder URI: ${folderUri}`);
+
+          let allMessages = [];
+
+          function hasHeader(content, header) {
+            const regex = new RegExp(`^${header}:([^\r\n]*)\r\n(\\s[^\r\n]*\r\n)*`,'im');
+            const hdrContent = content.split(/\r\n\r\n/m)[0]+'\r\n';
+            return regex.test(hdrContent);
+          }
+
+          let N_MESSAGES = 0;
+          if (folder) {
+            let thisfolder = folder.QueryInterface(Ci.nsIMsgFolder)
+            let messageenumerator;
+            try {
+              messageenumerator = thisfolder.messages;
+            } catch (e) {
+              let lmf;
+              try {
+                lmf = thisfolder.QueryInterface(Ci.nsIMsgLocalMailFolder);
+              } catch (ex) {
+                if (// NS_MSG_ERROR_FOLDER_SUMMARY_OUT_OF_DATE
+                    (e.result == 0x80550005 ||
+                    // NS_MSG_ERROR_FOLDER_SUMMARY_MISSING
+                     e.result == 0x80550006) && lmf) {
+                  try {
+                    console.debug("Rebuilding summary: " + folder.URI);
+                    lmf.getDatabaseWithReparse(null, null);
+                  } catch (ex) {
+                    console.warn("Unable to rebuild summary.")
+                  }
+                } else {
+                  // Owl for Exchange, maybe others as well
+                  try {
+                    let o = {};
+                    let f = thisfolder.getDBFolderInfoAndDB(o);
+                    messageenumerator = f.EnumerateMessages();
+                  } catch (ex) {
+                    console.warn("Unable to get EnumerateMessages on DB as fallback");
+                  }
+                  if (messageenumerator) {
+                    console.info(".messages failed on " + folderUri +
+                                 ", using .EnumerateMessages on DB instead");
+                  } else {
+                    const window = Services.wm.getMostRecentWindow(null);
+                    Services.prompt.alert(window, null, "Encountered a corrupt folder "+folderUri);
+                    throw e;
+                  }
+                }
+              }
+            }
+
+            if (!messageenumerator) {
+              console.error("Unable to get message enumerator for folder.")
+            }
+
+            while (messageenumerator.hasMoreElements()) {
+              let next = messageenumerator.getNext();
+              if (next) {
+                N_MESSAGES++;
+                let msgHdr = next.QueryInterface(Ci.nsIMsgDBHdr);
+                const messageIdHeader = msgHdr.getStringProperty('message-id');
+                console.debug(`Loading message header for ${msgHdr.messageKey} <${messageIdHeader}>`);
+
+                let skipFlags = Ci.nsMsgMessageFlags.IMAPDeleted |
+                                Ci.nsMsgMessageFlags.Expunged;
+                if (msgHdr.flags & skipFlags) {
+                  continue;
+                }
+
+                let messageUri = folder.generateMessageURI(msgHdr.messageKey);
+
+                const messenger = Cc[
+                  "@mozilla.org/messenger;1"
+                ].createInstance(Ci.nsIMessenger);
+
+                const streamListener = Cc[
+                  "@mozilla.org/network/sync-stream-listener;1"
+                ].createInstance(Ci.nsISyncStreamListener);
+
+                const service = messenger.messageServiceFromURI(messageUri);
+
+                await new Promise((resolve, reject) => {
+                  service.streamMessage(
+                    messageUri,
+                    streamListener,
+                    null,
+                    {
+                      OnStartRunningUrl() {},
+                      OnStopRunningUrl(url, exitCode) {
+                        console.debug(
+                          `getRawMessage.streamListener.OnStopRunning ` +
+                          `received ${streamListener.inputStream.available()} bytes ` +
+                          `(exitCode: ${exitCode})`
+                        );
+                        if (exitCode === 0) {
+                          resolve();
+                        } else {
+                          Cu.reportError(exitCode);
+                          reject();
+                        }
+                      },
+                    },
+                    false,
+                    ""
+                  );
+                }).catch((ex) => {
+                  console.error(`Error reading message ${messageUri}`,ex);
+                });
+
+                const available = streamListener.inputStream.available();
+                if (available > 0) {
+                  const data = NetUtil.readInputStreamToString(
+                    streamListener.inputStream,
+                    available
+                  );
+                  if (hasHeader(data, "x-send-later-at")) {
+                    console.debug(`Message has send later headers ${messageUri}`);
+                    const hdr = {
+                      id: msgHdr.messageKey,
+                      uri: messageUri
+                    };
+                    allMessages.push({ hdr, data });
+                  }
+                } else {
+                  console.debug(`No data available`);
+                }
+              } else {
+                console.warn("Was promised more messages, but did not find them.");
+              }
+            }
+          } else {
+            console.error(`Unable to find folder ${accountId}:${path}`);
+          }
+          console.info(`Processed ${N_MESSAGES} messages in folder ${folderUri}`);
+          return allMessages;
         },
 
         async compactFolder(accountId, path) {

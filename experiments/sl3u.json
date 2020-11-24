@@ -154,6 +154,42 @@
         ]
       },
       {
+        "name": "getAllScheduledMessages",
+        "type": "function",
+        "async": true,
+        "description": "Get a raw message.",
+        "parameters": [
+          {
+            "name": "accountId",
+            "type": "string"
+          },
+          {
+            "name": "path",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "name": "deleteDraftByUri",
+        "type": "function",
+        "async": true,
+        "description": "Delete a draft message",
+        "parameters": [
+          {
+            "name": "accountId",
+            "type": "string"
+          },
+          {
+            "name": "path",
+            "type": "string"
+          },
+          {
+            "name": "draftUri",
+            "type": "string"
+          }
+        ]
+      },
+      {
         "name": "compactFolder",
         "type": "function",
         "async": true,
