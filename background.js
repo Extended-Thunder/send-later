@@ -25,30 +25,8 @@ const SendLater = {
         `[${platformInfo.os} ${platformInfo.arch}]`);
     },
 
-    async getRaw(msgId, nTries) {
-      const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
-      let rawMsg = null;
-      let iteration = 0;
-      while (true) {
-        iteration += 1;
-
-        rawMsg = await browser.messages.getRaw(msgId).catch(err => {
-          SLStatic.warn(`Unable to fetch message ${msgId}.`, err);
-        });
-
-        if (rawMsg) {
-          SLStatic.debug(`Got message ${msgId} on attempt ${iteration}`);
-          return rawMsg;
-        } else {
-          if (iteration >= nTries) {
-            SLStatic.error("Giving up on message. Too many retries.",msgId);
-            return null;
-          } else {
-            SLStatic.warn(`getRaw failed on attempt ${iteration} for message ${msgId}. Will try again.`);
-            await sleep(2000+(Math.random()*6000));
-          }
-        }
-      }
+    async preSendCheck() {
+      return await browser.SL3U.preSendCheck();
     },
 
     async isEditing(msgId) {
@@ -865,7 +843,7 @@ browser.compose.onBeforeSend.addListener(tab => {
   } else if (SendLater.prefCache.sendDoesDelay) {
     const sendDelay = SendLater.prefCache.sendDelay;
     SLStatic.debug(`Scheduling SendLater ${sendDelay} minutes from now.`);
-    SendLater.scheduleSendLater(tab.id, { delay: sendDelay });
+    SendLater.scheduleSendLater.call(SendLater, tab.id, { delay: sendDelay });
     return ({ cancel: true });
   } else {
     SLStatic.debug(`Bypassing send later.`);
@@ -945,17 +923,22 @@ browser.runtime.onMessage.addListener(async (message) => {
     }
     case "doSendLater": {
       SLStatic.debug("User requested send later.");
-      if (SendLater.composeState[message.tabId] === "scheduling" ||
-          await browser.SL3U.preSendCheck()) {
-        const options = { sendAt: message.sendAt,
-                          recurSpec: message.recurSpec,
-                          args: message.args,
-                          cancelOnReply: message.cancelOnReply };
-        SendLater.scheduleSendLater(message.tabId, options);
-        delete SendLater.composeState[message.tabId];
-      } else {
-        SLStatic.info("User cancelled send via presendcheck.");
-      }
+      (async () => {
+        return (SendLater.composeState[message.tabId] === "scheduling") ||
+                (await SendLater.preSendCheck.call(SendLater));
+      })().then(dosend => {
+        console.log(dosend);
+        if (dosend) {
+          const options = { sendAt: message.sendAt,
+                            recurSpec: message.recurSpec,
+                            args: message.args,
+                            cancelOnReply: message.cancelOnReply };
+          SendLater.scheduleSendLater.call(SendLater, message.tabId, options);
+          delete SendLater.composeState[message.tabId];
+        } else {
+          SLStatic.info("User cancelled send via presendcheck.");
+        }
+      });
       break;
     }
     case "closingComposePopup": {
@@ -967,7 +950,11 @@ browser.runtime.onMessage.addListener(async (message) => {
       try {
         const dispMsgHdr =
           await browser.messageDisplay.getDisplayedMessage(message.tabId);
-        const rawDispMsg = await SendLater.getRaw(dispMsgHdr.id, 5);
+        const rawDispMsg =
+          await browser.messages.getRaw(dispMsgHdr.id).catch(err => {
+            SLStatic.warn(`Unable to fetch message ${dispMsgHdr.id}.`, err);
+          });
+
         if (rawDispMsg === null) {
           SLStatic.warn("getScheduleText failed. Unable to get raw message contents.",dispMsgHdr);
           return;
@@ -1014,7 +1001,7 @@ browser.runtime.onMessage.addListener(async (message) => {
 
 // Listen for incoming messages, and check if they are in reponse to a scheduled
 // message with a 'cancel-on-reply' header.
-browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
+browser.messages.onNewMailReceived.addListener((folder, messagelist) => {
   // First, we want to skip onNewMailReceived events triggered locally during
   // regular send, move, and copy operations. We never touch archives folders anyway,
   // so we can immediately ignore this if it's an operation on an archives folder.
@@ -1032,7 +1019,10 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
     for (let hdr of messagelist.messages) {
       SLStatic.debug(`Received new message: ${hdr.subject}`);
 
-      const rawRecvdMsg = await SendLater.getRaw(hdr.id, 5);
+      const rawRecvdMsg =
+        await browser.messages.getRaw(hdr.id).catch(err => {
+          SLStatic.warn(`Unable to fetch message ${hdr.id}.`, err);
+        });
       if (rawRecvdMsg === null) {
         SLStatic.warn("onNewMailReceived.scanMessage failed. Unable to get raw message contents.",hdr);
         return;
@@ -1061,7 +1051,7 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
           const recvdMsgReplyTo =[...recvdMsgReplyToStr.matchAll(/(<\S*>)/gim)].map(i=>i[1]);
           SLStatic.debug(`Message is a reply to`, recvdMsgReplyTo);
 
-          SendLater.forAllDrafts(async (draftMsg) => {
+          SendLater.forAllDrafts.call(SendLater, async (draftMsg) => {
             const rawDraftMsg = await browser.messages.getRaw(draftMsg.id).catch(err => {
               SLStatic.warn(`Unable to fetch message ${draftMsg.id}.`, err);
             });
@@ -1094,10 +1084,11 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
 browser.messageDisplay.onMessageDisplayed.addListener(async (tab, hdr) => {
   await browser.messageDisplayAction.disable(tab.id);
   if (hdr.folder.type === "drafts") {
+    let rawMessage = await browser.messages.getRaw(hdr.id).catch(err => {
+        SLStatic.warn(`Unable to fetch message ${hdr.id}.`, err);
+      });
     const { preferences } = await browser.storage.local.get({ preferences: {} });
     const instanceUUID = preferences.instanceUUID;
-
-    let rawMessage = await SendLater.getRaw(hdr.id, 5);
     if (rawMessage === null) {
       SLStatic.warn("onMessageDisplayed failed. Unable to get raw message contents.",hdr.id);
       return;

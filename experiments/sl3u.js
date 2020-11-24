@@ -581,18 +581,27 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             // We disable spellcheck for the following -subject line, attachment
             // pane, identity and addressing widget therefore we need to explicitly
             // focus on the mail body when we have to do a spellcheck.
-            SetMsgBodyFrameFocus();
-            cw.cancelSendMessage = false;
-            cw.openDialog(
-              "chrome://messenger/content/messengercompose/EdSpellCheck.xhtml",
-              "_blank",
-              "dialog,close,titlebar,modal,resizable",
-              true,
-              true,
-              false
-            );
+            function doConfirm(resolve, reject) {
+              try {
+                SetMsgBodyFrameFocus();
+                cw.cancelSendMessage = false;
+                cw.openDialog(
+                  "chrome://messenger/content/messengercompose/EdSpellCheck.xhtml",
+                  "_blank",
+                  "dialog,close,titlebar,modal,resizable",
+                  true,
+                  true,
+                  false
+                );
+                resolve(cw.cancelSendMessage);
+              } catch (err) {
+                reject(`An error occurred in SL3U.confirmAction: ${err}`);
+              }
+            }
 
-            if (cw.cancelSendMessage) {
+            const cancelSendMessage = await (new Promise(doConfirm.bind(this)));
+
+            if (cancelSendMessage) {
               return false;
             }
           }
