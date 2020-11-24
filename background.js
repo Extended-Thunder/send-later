@@ -57,82 +57,66 @@ const SendLater = {
     },
 
     async findDraftsHelper(folder) {
+      const that = this;
       // Recursive helper function to look through an account for draft folders
       if (folder.type === "drafts") {
         return folder;
       } else {
         const drafts = [];
         for (let subFolder of folder.subFolders) {
-          drafts.push(SendLater.findDraftsHelper(subFolder));
+          drafts.push(that.findDraftsHelper(subFolder));
         }
-        return Promise.all(drafts);
+        return await Promise.all(drafts);
       }
     },
 
     async getDraftFolders(acct) {
+      const that = this;
       const draftSubFolders = [];
       acct.folders.forEach(folder => {
-        draftSubFolders.push(SendLater.findDraftsHelper(folder));
+        draftSubFolders.push(that.findDraftsHelper(folder));
       });
-      return Promise.all(draftSubFolders).then(SLStatic.flatten);
+      return await Promise.all(draftSubFolders).then(SLStatic.flatten);
     },
 
     async forAllDraftFolders(callback) {
+      const that = this;
       try {
         let results = [];
         let accounts = await browser.accounts.list();
         for (let acct of accounts) {
-          let draftFolders = await SendLater.getDraftFolders(acct);
+          let draftFolders = await that.getDraftFolders(acct);
           for (let folder of draftFolders) {
             results.push(callback(folder));
           }
         }
-        return Promise.all(results);
+        return await Promise.all(results);
       } catch (ex) {
         SLStatic.error(ex);
       }
     },
 
-    async forAllDrafts(callback, sequential, getRaw) {
+    async forAllDrafts(callback) {
+      const that = this;
       try {
         let results = [];
         let accounts = await browser.accounts.list();
         for (let acct of accounts) {
-          let draftFolders = await SendLater.getDraftFolders(acct);
+          let draftFolders = await that.getDraftFolders(acct);
           for (let drafts of draftFolders) {
             let page = await browser.messages.list(drafts);
             do {
-              for (let message of page.messages) {
-                let rawMessageContents;
-                if (getRaw) {
-                  rawMessageContents =
-                    await browser.messages.getRaw(message.id).catch(err => {
-                      SLStatic.warn(`Unable to fetch message ${message.id}.`, err);
-                    });
-                  if (!rawMessageContents) {
-                    SLStatic.debug("Unable to load message", message);
-                    continue;
-                  }
-                }
-                if (sequential === true) {
-                  const result = await callback(message, rawMessageContents);
-                  results.push(result);
-                } else {
-                  const resultPromise = callback(message, rawMessageContents);
-                  results.push(resultPromise);
-                }
-              }
+              let pageResults = page.messages.map(
+                message => callback.call(that, message)
+              );
+              results = results.concat(pageResults);
               if (page.id) {
                 page = await browser.messages.continueList(page.id);
               }
             } while (page.id);
           }
         }
-        if (sequential === true) {
-          return results;
-        } else {
-          return await Promise.all(results);
-        }
+        return await Promise.all(results);
       } catch (ex) {
         SLStatic.error(ex);
       }
@@ -180,7 +164,7 @@ const SendLater = {
       const inserted = Object.keys(customHeaders).map(name =>
         browser.SL3U.setHeader(name, (""+customHeaders[name]))
       );
-      await SendLater.expandRecipients(tabId);
+      await this.expandRecipients(tabId);
       await Promise.all(inserted);
       SLStatic.debug('headers',customHeaders);
 
@@ -188,7 +172,7 @@ const SendLater = {
       const newMessageId = await browser.SL3U.generateMsgId(composeDetails.identityId);
 
       if (preferences.markDraftsRead) {
-        SendLater.watchAndMarkRead.add(newMessageId);
+        this.watchAndMarkRead.add(newMessageId);
       }
 
       const success = await browser.SL3U.saveAsDraft(newMessageId);
@@ -199,9 +183,13 @@ const SendLater = {
       }
     },
 
-    async possiblySendMessage(msgHdr, rawContent) {
+    async possiblySendMessage(msgHdr) {
       // Determines whether or not a particular draft message is due to be sent
-      // const rawContent = await SendLater.getRaw(msgHdr.id, 5);
+      SLStatic.debug(`Checking message ${msgHdr.id}.`);
+
+      const rawContent = await browser.messages.getRaw(msgHdr.id).catch(err => {
+        SLStatic.warn(`Unable to fetch message ${msgHdr.id}.`, err);
+      });
       if (!rawContent) {
         SLStatic.warn("possiblySendMessage failed. Unable to get raw message contents.", msgHdr);
         return;
@@ -273,7 +261,7 @@ const SendLater = {
         return;
       }
 
-      if (await SendLater.isEditing(originalMsgId)) {
+      if (await this.isEditing(originalMsgId)) {
         SLStatic.debug(`Skipping message ${originalMsgId} while it is being edited`);
         return;
       }
@@ -399,7 +387,7 @@ const SendLater = {
         );
 
         if (preferences.markDraftsRead) {
-          SendLater.watchAndMarkRead.add(newMessageId);
+          this.watchAndMarkRead.add(newMessageId);
         }
 
         const success = await browser.SL3U.saveMessage(
@@ -556,7 +544,10 @@ const SendLater = {
     async getActiveSchedules(matchUUID) {
       const { preferences } = await browser.storage.local.get({ preferences: {} });
 
-      let allSchedules = await SendLater.forAllDrafts(async (msg, rawMessage) => {
+      let allSchedules = await this.forAllDrafts(async (msg) => {
+        const rawMessage = await browser.messages.getRaw(msg.id).catch(err => {
+          SLStatic.warn(`Unable to fetch message ${msg.id}.`, err);
+        });
         if (!rawMessage) {
           SLStatic.warn("getActiveSchedules.forAllDrafts failed. Unable to get raw message contents.",msg);
           return;
@@ -571,7 +562,7 @@ const SendLater = {
           const nextSend = new Date(msgSendAt).getTime();
           return nextSend;
         }
-      }, true, true);
+      });
       return allSchedules.filter(v => v !== null);
     },
 
@@ -581,7 +572,7 @@ const SendLater = {
       let message = "";
 
       try { // Compact Drafts folders and Outbox folder
-        const compactedDrafts = await SendLater.forAllDraftFolders(
+        const compactedDrafts = await this.forAllDraftFolders(
           async folder => {
             const accountId = folder.accountId, path = folder.path;
             SLStatic.log(`Compacting folder <${path}> in account ${accountId}`);
@@ -604,7 +595,7 @@ const SendLater = {
         message += `\n\nCompacting Outbox and/or Drafts folders failed with error:\n${e}`;
       }
 
-      const activeSchedules = await SendLater.getActiveSchedules(false);
+      const activeSchedules = await this.getActiveSchedules(false);
       const nActive = activeSchedules.length;
       if (nActive > 0) {
         const soonest = new Sugar.Date(Math.min(...activeSchedules));
@@ -667,7 +658,10 @@ const SendLater = {
        * This should only happen once, and only for users who
        * have been following the beta releases.
        */
-      let claimed = await SendLater.forAllDrafts(async (msg, rawContent) => {
+      let claimed = await this.forAllDrafts(async (msg) => {
+        const rawContent = await browser.messages.getRaw(msg.id).catch(err => {
+          SLStatic.warn(`Unable to fetch message ${msg.id}.`, err);
+        });
         if (!rawContent) {
           SLStatic.warn("claimDrafts.forAllDrafts failed. Unable to get raw message contents.",msg);
           return;
@@ -697,7 +691,7 @@ const SendLater = {
             newMsgContent, "References", msgId);
 
           if (msg.read) {
-            SendLater.watchAndMarkRead.add(newMessageId);
+            this.watchAndMarkRead.add(newMessageId);
           }
 
           const success = await browser.SL3U.saveMessage(
@@ -715,13 +709,13 @@ const SendLater = {
             SLStatic.error("Unable to claim message");
           }
         }
-      }, true, true);
+      });
       claimed = claimed.filter(v => v !== null && v !== undefined);
       SLStatic.info(`Claimed ${claimed.length} scheduled messages.`);
     },
 
     async init() {
-      await SendLater.printVersionInfo();
+      await this.printVersionInfo();
 
       // Set custom DB headers preference, if not already set.
       await browser.SL3U.setCustomDBHeaders();
@@ -731,18 +725,18 @@ const SendLater = {
       SLStatic.logConsoleLevel = "info";
 
       // Perform any pending preference migrations.
-      const previousMigration = await SendLater.migratePreferences();
+      const previousMigration = await this.migratePreferences();
       if (previousMigration < 3) {
         // This really shouldn't be necessary, but we should check
         // whether the outbox and drafts folders might be corrupted.
-        await SendLater.doSanityCheck();
+        await this.doSanityCheck();
       }
 
-      await SendLater.claimDrafts();
+      await this.claimDrafts();
 
       const { preferences } =
         await browser.storage.local.get({ preferences: {} });
-      SendLater.prefCache = preferences;
+      this.prefCache = preferences;
 
       // This listener should be added *after* all of the storate-related
       // setup is complete. It makes sure that subsequent changes to storage
@@ -752,7 +746,7 @@ const SendLater = {
           SLStatic.debug("Propagating changes from local storage");
           const { preferences } =
             await browser.storage.local.get({ preferences: {} });
-          SendLater.prefCache = preferences;
+          this.prefCache = preferences;
           SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
           const prefString = JSON.stringify(preferences);
           await browser.SL3U.notifyStorageLocal(prefString, false);
@@ -773,7 +767,7 @@ const SendLater = {
       await browser.SL3U.bindKeyCodes();
 
       // Start background loop to check for scheduled messages.
-      setTimeout(SendLater.mainLoop, 0);
+      setTimeout(SendLater.mainLoop.bind(this), 0);
     },
 
     mainLoop: function() {
@@ -783,10 +777,8 @@ const SendLater = {
         let interval = +storage.preferences.checkTimePref || 0;
 
         if (storage.preferences.sendDrafts && interval > 0) {
-          SendLater.forAllDrafts(
-            SendLater.possiblySendMessage,
-            false,
-            true
+          this.forAllDrafts(
+            this.possiblySendMessage
           ).catch(SLStatic.error);
         }
 
@@ -798,7 +790,7 @@ const SendLater = {
           `minute${interval > 1 ? "s" : ""}.`
         );
         SLStatic.previousLoop = new Date();
-        setTimeout(SendLater.mainLoop, 60000*interval);
+        setTimeout(SendLater.mainLoop.bind(this), 60000*interval);
       });
     }
 }; // SendLater
@@ -1069,7 +1061,10 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
           const recvdMsgReplyTo =[...recvdMsgReplyToStr.matchAll(/(<\S*>)/gim)].map(i=>i[1]);
           SLStatic.debug(`Message is a reply to`, recvdMsgReplyTo);
 
-          SendLater.forAllDrafts(async (draftMsg, rawDraftMsg) => {
+          SendLater.forAllDrafts(async (draftMsg) => {
+            const rawDraftMsg = await browser.messages.getRaw(draftMsg.id).catch(err => {
+              SLStatic.warn(`Unable to fetch message ${draftMsg.id}.`, err);
+            });
             if (!rawDraftMsg) {
               SLStatic.warn("onNewMailReceived.scanMessage.forAllDrafts failed. Unable to get raw message contents.",draftMsg);
               return;
@@ -1089,7 +1084,7 @@ browser.messages.onNewMailReceived.addListener(async (folder, messagelist) => {
                 browser.messages.delete([draftMsg.id], true);
               }
             }
-          }, true, true);
+          });
         }
       }
     }
