@@ -6,6 +6,8 @@ const SendLater = {
 
     watchAndMarkRead: new Set(),
 
+    loopTimeout: null,
+
     notify(title, text) {
       SLStatic.warn(`Alert: ${title}- ${text}`);
       browser.notifications.create(null, {
@@ -81,8 +83,8 @@ const SendLater = {
         let accounts = await browser.accounts.list();
         for (let acct of accounts) {
           let draftFolders = await that.getDraftFolders(acct);
-          for (let drafts of draftFolders) {
-            let page = await browser.messages.list(drafts);
+          for (let folder of draftFolders) {
+            let page = await browser.messages.list(folder);
             do {
               let pageResults = page.messages.map(
                 message => callback.call(that, message)
@@ -161,13 +163,13 @@ const SendLater = {
       }
     },
 
-    async possiblySendMessage(msgHdr) {
+    async possiblySendMessage(msgHdr, rawContent) {
       // Determines whether or not a particular draft message is due to be sent
-      SLStatic.debug(`Checking message ${msgHdr.id}.`);
+      SLStatic.debug(`Checking message ${msgHdr.uri}.`);
 
-      const rawContent = await browser.messages.getRaw(msgHdr.id).catch(err => {
-        SLStatic.warn(`Unable to fetch message ${msgHdr.id}.`, err);
-      });
+      // const rawContent = await browser.messages.getRaw(msgHdr.id).catch(err => {
+      //   SLStatic.warn(`Unable to fetch message ${msgHdr.id}.`, err);
+      // });
       if (!rawContent) {
         SLStatic.warn("possiblySendMessage failed. Unable to get raw message contents.", msgHdr);
         return;
@@ -235,7 +237,7 @@ const SendLater = {
       }
 
       if (!(Date.now() >= nextSend.getTime())) {
-        // SLStatic.debug(`Message ${msgHdr.id} not due for send until ${SLStatic.humanDateTimeFormat(nextSend)}`);
+        SLStatic.debug(`Message ${msgHdr.id} not due for send until ${SLStatic.humanDateTimeFormat(nextSend)}`);
         return;
       }
 
@@ -377,13 +379,15 @@ const SendLater = {
         if (success) {
           SLStatic.info(`Scheduled next occurrence of message ` +
             `<${originalMsgId}>. Deleting original.`);
-          browser.messages.delete([msgHdr.id], true);
+          // browser.messages.delete([msgHdr.id], true);
+          return "delete_original";
         } else {
           SLStatic.error("Unable to schedule next recuurrence.");
         }
       } else {
-        SLStatic.info(`No recurrences for message <${originalMsgId}>. Deleting original.`);
-        browser.messages.delete([msgHdr.id], true);
+        SLStatic.info(`No recurrences for message ${originalMsgId} (${msgHdr.id}). Deleting original.`);
+        //browser.messages.delete([msgHdr.id], true);
+        return "delete_original";
       }
     },
 
@@ -520,28 +524,54 @@ const SendLater = {
     },
 
     async getActiveSchedules(matchUUID) {
-      const { preferences } = await browser.storage.local.get({ preferences: {} });
+      const allSchedulePromises = await browser.accounts.list().then(accounts => {
+        let folderSchedules = [];
+        for (let acct of accounts) {
+          let draftFolders = getDraftFolders(acct);
+          if (draftFolders && draftFolders.length > 0) {
+            for (let draftFolder of draftFolders) {
+              if (draftFolder) {
+                try {
+                  SLStatic.debug(`Checking for messages in folder ${draftFolder.path}`);
+                  const accountId = draftFolder.accountId, path = draftFolder.path;
+                  const thisFoldersSchedulePromise = browser.SL3U.getAllScheduledMessages(
+                    accountId, path
+                  ).then(messages => {
+                    let schedules = [];
+                    for (let message of messages) {
+                      let hdr = message.hdr;
+                      hdr.folder = draftFolder;
 
-      let allSchedules = await this.forAllDrafts(async (msg) => {
-        const rawMessage = await browser.messages.getRaw(msg.id).catch(err => {
-          SLStatic.warn(`Unable to fetch message ${msg.id}.`, err);
-        });
-        if (!rawMessage) {
-          SLStatic.warn("getActiveSchedules.forAllDrafts failed. Unable to get raw message contents.",msg);
-          return;
+                      const rawMessage = message.data;
+
+                      const msgSendAt = SLStatic.getHeader(rawMessage, "x-send-later-at");
+                      const msgUUID = SLStatic.getHeader(rawMessage, "x-send-later-uuid");
+                      if (msgSendAt === undefined) {
+                        //return null;
+                      } else if (matchUUID && msgUUID != matchUUID) {
+                        //return null;
+                      } else {
+                        const nextSend = new Date(msgSendAt).getTime();
+                        schedules.push(nextSend);
+                      }
+                    }
+                    return schedules;
+                  });
+                  folderSchedules.push(thisFoldersSchedulePromise);
+                } catch (ex0) {
+                  SLStatic.error(ex0);
+                }
+              }
+            }
+          } else {
+            SLStatic.debug(`Unable to find drafts folder for account`, acct);
+          }
         }
-        const msgSendAt = SLStatic.getHeader(rawMessage, "x-send-later-at");
-        const msgUUID = SLStatic.getHeader(rawMessage, "x-send-later-uuid");
-        if (msgSendAt === undefined) {
-          return null;
-        } else if (matchUUID && msgUUID !== preferences.instanceUUID) {
-          return null;
-        } else {
-          const nextSend = new Date(msgSendAt).getTime();
-          return nextSend;
-        }
-      });
-      return allSchedules.filter(v => v !== null);
+        return SLStatic.flatten(folderSchedules);
+      }).catch(SLStatic.error);
+
+      const allSchedules = await Promise.all(allSchedulePromises);
+      return SLStatic.flatten(allSchedules);
     },
 
     async doSanityCheck() {
@@ -573,7 +603,7 @@ const SendLater = {
         message += `\n\nCompacting Outbox and/or Drafts folders failed with error:\n${e}`;
       }
 
-      const activeSchedules = await this.getActiveSchedules(false);
+      const activeSchedules = await this.getActiveSchedules(preferences.instanceUUID);
       const nActive = activeSchedules.length;
       if (nActive > 0) {
         const soonest = new Sugar.Date(Math.min(...activeSchedules));
@@ -710,13 +740,15 @@ const SendLater = {
         await this.doSanityCheck();
       }
 
-      await this.claimDrafts();
+      if (previousMigration > 0 && previousMigration < 4) {
+        await this.claimDrafts();
+      }
 
       const { preferences } =
         await browser.storage.local.get({ preferences: {} });
       this.prefCache = preferences;
 
-      // This listener should be added *after* all of the storate-related
+      // This listener should be added *after* all of the storage-related
       // setup is complete. It makes sure that subsequent changes to storage
       // are propagated to their respective
       browser.storage.onChanged.addListener(async (changes, areaName) => {
@@ -743,33 +775,6 @@ const SendLater = {
       SLStatic.debug("Registering window listeners");
       await browser.SL3U.startObservers();
       await browser.SL3U.bindKeyCodes();
-
-      // Start background loop to check for scheduled messages.
-      setTimeout(SendLater.mainLoop.bind(this), 0);
-    },
-
-    mainLoop: function() {
-      SLStatic.debug("Entering main loop.");
-
-      browser.storage.local.get({ preferences: {} }).then((storage) => {
-        let interval = +storage.preferences.checkTimePref || 0;
-
-        if (storage.preferences.sendDrafts && interval > 0) {
-          this.forAllDrafts(
-            this.possiblySendMessage
-          ).catch(SLStatic.error);
-        }
-
-        // TODO: Should use a persistent reference to the this timeout that can be
-        // scrapped and restarted upon changes in the delay preference.
-        interval = Math.max(1, interval);
-        SLStatic.debug(
-          `Next main loop iteration in ${interval} ` +
-          `minute${interval > 1 ? "s" : ""}.`
-        );
-        SLStatic.previousLoop = new Date();
-        setTimeout(SendLater.mainLoop.bind(this), 60000*interval);
-      });
     }
 }; // SendLater
 
@@ -955,7 +960,7 @@ browser.runtime.onMessage.addListener(async (message) => {
             SLStatic.warn(`Unable to fetch message ${dispMsgHdr.id}.`, err);
           });
 
-        if (rawDispMsg === null) {
+        if (!rawDispMsg) {
           SLStatic.warn("getScheduleText failed. Unable to get raw message contents.",dispMsgHdr);
           return;
         }
@@ -1023,7 +1028,7 @@ browser.messages.onNewMailReceived.addListener((folder, messagelist) => {
         await browser.messages.getRaw(hdr.id).catch(err => {
           SLStatic.warn(`Unable to fetch message ${hdr.id}.`, err);
         });
-      if (rawRecvdMsg === null) {
+      if (!rawRecvdMsg) {
         SLStatic.warn("onNewMailReceived.scanMessage failed. Unable to get raw message contents.",hdr);
         return;
       } else {
@@ -1051,30 +1056,50 @@ browser.messages.onNewMailReceived.addListener((folder, messagelist) => {
           const recvdMsgReplyTo =[...recvdMsgReplyToStr.matchAll(/(<\S*>)/gim)].map(i=>i[1]);
           SLStatic.debug(`Message is a reply to`, recvdMsgReplyTo);
 
-          SendLater.forAllDrafts.call(SendLater, async (draftMsg) => {
-            const rawDraftMsg = await browser.messages.getRaw(draftMsg.id).catch(err => {
-              SLStatic.warn(`Unable to fetch message ${draftMsg.id}.`, err);
-            });
-            if (!rawDraftMsg) {
-              SLStatic.warn("onNewMailReceived.scanMessage.forAllDrafts failed. Unable to get raw message contents.",draftMsg);
-              return;
-            }
+          // Loop over all draft messages, and check for overlap between this
+          // incoming message's 'in-reply-to' header, and any of the draft's
+          // 'references' headers.
+          browser.accounts.list().then(accounts => {
+            for (let acct of accounts) {
+              let draftFolders = getDraftFolders(acct);
+              if (draftFolders && draftFolders.length > 0) {
+                for (let draftFolder of draftFolders) {
+                  if (draftFolder) {
+                    try {
+                      SLStatic.debug(`Checking for messages in folder ${draftFolder.path}`);
+                      const accountId = draftFolder.accountId, path = draftFolder.path;
+                      browser.SL3U.getAllScheduledMessages(accountId, path).then(messages => {
+                        for (let message of messages) {
+                          let hdr = message.hdr;
+                          hdr.folder = draftFolder;
 
-            const draftId = SLStatic.getHeader(rawDraftMsg, "message-id");
-            const draftCancelOnReply = SLStatic.getHeader(rawDraftMsg, "x-send-later-cancel-on-reply");
-            const draftRefString = SLStatic.getHeader(rawDraftMsg, "references");
+                          const rawDraftMsg = message.data;
+                          const draftId = SLStatic.getHeader(rawDraftMsg, "message-id");
+                          const draftCancelOnReply = SLStatic.getHeader(rawDraftMsg, "x-send-later-cancel-on-reply");
+                          const draftRefString = SLStatic.getHeader(rawDraftMsg, "references");
 
-            const cancelOnReply = (draftCancelOnReply &&
-              ["true", "yes"].includes(draftCancelOnReply));
-            if (cancelOnReply) {
-              const draftMsgRefs = [...draftRefString.matchAll(/(<\S*>)/gim)].map(i=>i[1]);
-              const isReferenced = draftMsgRefs.some(item => recvdMsgReplyTo.includes(item));
-              if (isReferenced) {
-                SLStatic.info(`Received response to message ${draftId}. Deleting scheduled draft.`);
-                browser.messages.delete([draftMsg.id], true);
+                          const cancelOnReply = (draftCancelOnReply &&
+                            ["true", "yes"].includes(draftCancelOnReply));
+                          if (cancelOnReply) {
+                            const draftMsgRefs = [...draftRefString.matchAll(/(<\S*>)/gim)].map(i=>i[1]);
+                            const isReferenced = draftMsgRefs.some(item => recvdMsgReplyTo.includes(item));
+                            if (isReferenced) {
+                              SLStatic.info(`Received response to message ${draftId}. Deleting scheduled draft.`);
+                              browser.SL3U.deleteDraftByUri(accountId, path, hdr.uri);
+                            }
+                          }
+                        }
+                      }).catch(SLStatic.error);
+                    } catch (ex0) {
+                      SLStatic.error(ex0);
+                    }
+                  }
+                }
+              } else {
+                SLStatic.debug(`Unable to find drafts folder for account`, acct);
               }
             }
-          });
+          }).catch(SLStatic.error);
         }
       }
     }
@@ -1089,7 +1114,7 @@ browser.messageDisplay.onMessageDisplayed.addListener(async (tab, hdr) => {
       });
     const { preferences } = await browser.storage.local.get({ preferences: {} });
     const instanceUUID = preferences.instanceUUID;
-    if (rawMessage === null) {
+    if (!rawMessage) {
       SLStatic.warn("onMessageDisplayed failed. Unable to get raw message contents.",hdr.id);
       return;
     } else {
@@ -1123,4 +1148,86 @@ browser.runtime.onUpdateAvailable.addListener((details) => {
   });
 });
 
-SendLater.init();
+function findDraftsHelper(folder) {
+  const that = this;
+  // Recursive helper function to look through an account for draft folders
+  if (folder.type === "drafts") {
+    return folder;
+  } else {
+    const drafts = [];
+    for (let subFolder of folder.subFolders) {
+      drafts.push(that.findDraftsHelper(subFolder));
+    }
+    return drafts;
+  }
+}
+
+function getDraftFolders(acct) {
+  const that = this;
+  const draftSubFolders = [];
+  acct.folders.forEach(folder => {
+    draftSubFolders.push(that.findDraftsHelper(folder));
+  });
+  return SLStatic.flatten(draftSubFolders);
+}
+
+function mainLoop() {
+  SLStatic.debug("Entering main loop.");
+  if (SendLater.loopTimeout) {
+    clearTimeout(SendLater.loopTimeout);
+  }
+
+  browser.storage.local.get({ preferences: {} }).then((storage) => {
+    let interval = +storage.preferences.checkTimePref || 0;
+
+    if (storage.preferences.sendDrafts && interval > 0) {
+      browser.accounts.list().then(accounts => {
+        for (let acct of accounts) {
+          let draftFolders = getDraftFolders(acct);
+          if (draftFolders && draftFolders.length > 0) {
+            for (let draftFolder of draftFolders) {
+              if (draftFolder) {
+                try {
+                  SLStatic.debug(`Checking for messages in folder ${draftFolder.path}`);
+                  const accountId = draftFolder.accountId, path = draftFolder.path;
+                  browser.SL3U.getAllScheduledMessages(accountId, path).then(messages => {
+                    for (let message of messages) {
+                      let hdr = message.hdr;
+                      hdr.folder = draftFolder;
+                      let callback = SendLater.possiblySendMessage.bind(SendLater);
+                      callback(hdr, message.data).then(result => {
+                        if (result === "delete_original") {
+                          browser.SL3U.deleteDraftByUri(accountId, path, hdr.uri);
+                        }
+                      }).catch(SLStatic.error);
+                    }
+                  }).catch(SLStatic.error);
+                } catch (ex0) {
+                  SLStatic.error(ex0);
+                }
+
+              }
+            }
+          } else {
+            SLStatic.debug(`Unable to find drafts folder for account`, acct);
+          }
+        }
+      }).catch(SLStatic.error);
+    }
+
+    interval = Math.max(1, interval);
+    SLStatic.debug(
+      `Next main loop iteration in ${interval} ` +
+      `minute${interval > 1 ? "s" : ""}.`
+    );
+    SLStatic.previousLoop = new Date();
+    SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000*interval);
+  }).catch(ex => {
+    SLStatic.error(ex);
+    SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000);
+  });
+}
+
+SendLater.init().then(
+  mainLoop.bind(SendLater)
+).catch(SLStatic.error);
