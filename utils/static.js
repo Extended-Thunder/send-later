@@ -27,7 +27,7 @@ var SLStatic = {
     try {
       const { preferences } = await browser.storage.local.get({"preferences": {}});
       this.logConsoleLevel = (preferences.logConsoleLevel || "all").toLowerCase();
-      console.log(`Received logConsoleLevel: ${logConsoleLevel}`);
+      console.log(`Received logConsoleLevel: ${this.logConsoleLevel}`);
     } catch {}
   },
 

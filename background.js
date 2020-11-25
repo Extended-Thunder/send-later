@@ -159,7 +159,7 @@ const SendLater = {
       if (success) {
         browser.tabs.remove(tabId);
       } else {
-        console.error("Something went wrong while scheduling this message.");
+        SLStatic.error("Something went wrong while scheduling this message.");
       }
     },
 
@@ -931,7 +931,6 @@ browser.runtime.onMessage.addListener(async (message) => {
         return (SendLater.composeState[message.tabId] === "scheduling") ||
                 (await SendLater.preSendCheck.call(SendLater));
       })().then(dosend => {
-        console.log(dosend);
         if (dosend) {
           const options = { sendAt: message.sendAt,
                             recurSpec: message.recurSpec,
@@ -947,7 +946,7 @@ browser.runtime.onMessage.addListener(async (message) => {
     }
     case "closingComposePopup": {
       delete SendLater.composeState[message.tabId];
-      console.log(`Removed tab ${message.tabId} from composeState map.`);
+      SLStatic.debug(`Removed tab ${message.tabId} from composeState map.`);
       break;
     }
     case "getScheduleText": {
@@ -1012,6 +1011,8 @@ browser.messages.onNewMailReceived.addListener((folder, messagelist) => {
   if (["sent", "trash", "archives", "junk", "outbox"].includes(folder.type)) {
     SLStatic.debug(`Skipping onNewMailReceived for folder type ${folder.type}`);
     return;
+  } else {
+    SLStatic.debug(`Messages received in folder ${folder.path}`);
   }
 
   // We can't do this processing right away, because the message might not be
