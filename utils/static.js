@@ -85,6 +85,24 @@ var SLStatic = {
                                     hour:'numeric',minute:'2-digit'});
   },
 
+  convertTime(t) {
+    if (!t) {
+      return null;
+    } else if (typeof t === "string") {
+      return SLStatic.parseDateTime(null, t) || new Date(t);
+    } else if (typeof t === "number") {
+      if (t < 2401) {
+        return SLStatic.parseDateTime(null, `${t}`);
+      } else {
+        return new Date(t);
+      }
+    } else if (t.getTime) {
+      return new Date(t.getTime());
+    } else {
+      throw new Error(`Send Later error: unable to parse time format ${t}`);
+    }
+  },
+
   compare(a, comparison, b) {
     switch (comparison) {
       case "<":
@@ -116,6 +134,8 @@ var SLStatic = {
   },
 
   compareTimes(a,comparison,b,ignoreSec) {
+    a = SLStatic.convertTime(a);
+    b = SLStatic.convertTime(b);
     const A = new Date(2000, 0, 01, a.getHours(), a.getMinutes(),
                         (ignoreSec ? 0 : a.getSeconds()));
     const B = new Date(2000, 0, 01, b.getHours(), b.getMinutes(),
@@ -817,27 +837,9 @@ var SLStatic = {
   //    than the scheduled day, or if there is none, then the smallest day in
   //    the restriction overall.
   adjustDateForRestrictions(sendAt, start_time, end_time, days) {
-    convertTime = (t) => {
-      if (!t) {
-        return null;
-      } else if (typeof t === "string") {
-        return SLStatic.parseDateTime(null, t) || new Date(t);
-      } else if (typeof t === "number") {
-        if (t < 2401) {
-          return SLStatic.parseDateTime(null, `${t}`);
-        } else {
-          return new Date(t);
-        }
-      } else if (t.getTime) {
-        return new Date(t.getTime());
-      } else {
-        throw new Error(`Send Later error: unable to parse time format ${t}`);
-      }
-    }
-
     let dt = new Date(sendAt.getTime());
-    start_time = convertTime(start_time);
-    end_time = convertTime(end_time);
+    start_time = SLStatic.convertTime(start_time);
+    end_time = SLStatic.convertTime(end_time);
 
     if (start_time && SLStatic.compareTimes(dt, '<', start_time)) {
       // If there is a time restriction and the scheduled time is before it,
