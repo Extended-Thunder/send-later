@@ -222,6 +222,11 @@ SendLaterHeaderView = {
 
   hideShowColumn() {
     SLStatic.debug("Entering function","SendLaterHeaderView.hideShowColumn");
+    if (!gDBView) {
+      SLStatic.debug(`Leaving function SendLaterHeaderView.hideShowColumn. ` +
+        `(gDBView is ${gDBView})`);
+      return;
+    }
     const visible =
       this.getStorageLocal("showColumn") &&
       this.isDraftsFolder(gDBView.viewFolder);
