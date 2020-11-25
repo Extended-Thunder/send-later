@@ -16,10 +16,25 @@ const SendLaterVars = {
   sendingUnsentMessages: false,
   needToSendUnsentMessages: false,
   wantToCompactOutbox: false,
-  scriptListeners: new Set()
+  scriptListeners: new Set(),
+  logConsoleLevel: "info"
 }
 
 const SendLaterFunctions = {
+  logger(msg, level, stream) {
+    const levels = ["all","trace","debug","info","warn","error","fatal"];
+    if (levels.indexOf(level) >= levels.indexOf(SendLaterVars.logConsoleLevel)) {
+      const output = stream || console.log;
+      output(`${level.toUpperCase()} [SL3U]:`, ...msg);
+    }
+  },
+  error(...msg)  { this.logger(msg, "error", console.error) },
+  warn(...msg)   { this.logger(msg, "warn",  console.warn) },
+  info(...msg)   { this.logger(msg, "info",  console.info) },
+  log(...msg)    { this.logger(msg, "info",  console.log) },
+  debug(...msg)  { this.logger(msg, "debug", console.debug) },
+  trace(...msg)  { this.logger(msg, "trace", console.trace) },
+
   waitAndDelete(file_arg) {
     const timer = Cc["@mozilla.org/timer;1"].createInstance(Ci.nsITimer);
     const callback = {
@@ -32,9 +47,9 @@ const SendLaterFunctions = {
           this.file.remove(true);
           this.timer_ref = undefined;
           timer.cancel();
-          console.info("Successfully deleted queued " + this.file.path);
+          SendLaterFunctions.debug("Successfully deleted queued " + this.file.path);
         } catch (ex) {
-          console.warn("Failed to delete " + this.file.path);
+          SendLaterFunctions.warn("Failed to delete " + this.file.path);
         }
       }
     };
@@ -100,9 +115,9 @@ const SendLaterFunctions = {
 
   queueSendUnsentMessages() {
     if (Utils.isOffline) {
-      console.debug("Deferring sendUnsentMessages while offline");
+      SendLaterFunctions.debug("SendLaterFunctions.queueSendUnsentMessages Deferring sendUnsentMessages while offline");
     } else if (SendLaterVars.sendingUnsentMessages) {
-        console.debug("Deferring sendUnsentMessages");
+        SendLaterFunctions.debug("SendLaterFunctions.queueSendUnsentMessages Deferring sendUnsentMessages");
         SendLaterVars.needToSendUnsentMessages = true;
     } else {
       try {
@@ -111,7 +126,8 @@ const SendLaterFunctions = {
           ].getService(Ci.nsIMsgSendLater);
         msgSendLater.sendUnsentMessages(null);
       } catch (ex) {
-        console.error("Error triggering send from unsent messages folder.", ex);
+        SendLaterFunctions.error("SendLaterFunctions.queueSendUnsentMessages",
+          "Error triggering send from unsent messages folder.", ex);
       }
     }
   },
@@ -124,7 +140,7 @@ const SendLaterFunctions = {
     sfile0.initWithPath(tempDir.path);
     sfile0.appendRelativePath("tempMsg" + (SendLaterVars.fileNumber++) + ".eml");
     const filePath = sfile0.path;
-    console.info("Saving message to " + filePath);
+    SendLaterFunctions.debug("SendLaterFunctions.copyStringMessageToFolder","Saving message to " + filePath);
     if (sfile0.exists()) {
       sfile0.remove(true);
     }
@@ -165,20 +181,21 @@ const SendLaterFunctions = {
     let CheckFolder = function(folder) {
       let uri = folder.URI;
       if (folderstocheck[uri] || foldersdone[uri]) {
-          console.debug("Already done - " + uri);
+          SendLaterFunctions.debug("rebuildDraftsFolder.CheckFolder: Already done - " + uri);
           return;
       }
       foldersdone[uri] = 1;
-      console.log("Compacting folder",folder);
+      SendLaterFunctions.debug("SendLaterFunctions.rebuildDraftsFolder.CheckFolder","Compacting folder",folder);
       //folder.compact(null, msgWindow);
       //const msgDb = folder.msgDatabase.QueryInterface(Ci.nsIMsgDatabase);
       const msgStore = folder.msgStore.QueryInterface(Ci.nsIMsgPluggableStore);
-      //console.log(msgDb, msgStore);
       function CustomListener() {};
       CustomListener.prototype = {
         QueryInterface: ChromeUtils.generateQI(["nsIUrlListener"]),
         OnStopRunningUrl(url, exitCode) {
-          console.log(url, exitCode);
+          SendLaterFunctions.debug(
+            "SendLaterFunctions.rebuildDraftsFolder.CustomListener.OnStopRunningUrl",
+            url, exitCode);
           let nssErrorsService = Cc["@mozilla.org/nss_errors_service;1"].getService(
             Ci.nsINSSErrorsService
           );
@@ -190,11 +207,25 @@ const SendLaterFunctions = {
               InformUserOfCertError(secInfo, url.asciiHostPort);
             }
           } catch (e) {
+            SendLaterFunctions.warn(
+              "SendLaterFunctions.rebuildDraftsFolder.CustomListener.OnStopRunningUrl",
+              e
+            );
           }
         },
         OnStartCopy() {},
-        OnStopCopy(aExitCode) { console.log("OnStopCopy",aExitCode); },
-        SetMessageKey(dstKey) { console.log("SetMessageKey",dstKey); }
+        OnStopCopy(aExitCode) {
+          SendLaterFunctions.debug(
+            "SendLaterFunctions.rebuildDraftsFolder.CustomListener.OnStopCopy",
+            aExitCode
+          );
+        },
+        SetMessageKey(dstKey) {
+          SendLaterFunctions.debug(
+            "SendLaterFunctions.rebuildDraftsFolder.CustomListener.SetMessageKey",
+            dstKey
+          );
+        }
       }
       const listener = (new CustomListener());
       try {
@@ -203,23 +234,24 @@ const SendLaterFunctions = {
          * void rebuildIndex(in nsIMsgFolder aFolder, in nsIMsgDatabase aMsgDB,
          *                   in nsIMsgWindow aMsgWindow, in nsIUrlListener aListener);
          */
-        console.log(folder instanceof Ci.nsIMsgFolder, folder.msgDatabase instanceof Ci.nsIMsgDatabase,
-                    msgWindow instanceof Ci.nsIMsgWindow, listener instanceof (Ci.nsIUrlListener));
         msgStore.rebuildIndex(folder, folder.msgDatabase, msgWindow, listener);
       } catch (e) {
-        console.error(e);
+        SendLaterFunctions.error(
+          "SendLaterFunctions.rebuildDraftsFolder.CheckFolder",
+          e
+        );
       }
     }
     let folder = fdrlocal.findSubFolder("Drafts");
     if (folder)
         CheckFolder(folder);
     else
-        console.warn("SL3U.FindSubFolder(fdrlocal, \"Drafts\") " +
+      SendLaterFunctions.warn("rebuildDraftsFolder","FindSubFolder(fdrlocal, \"Drafts\") " +
             "returned nothing");
 
     let draft_folder_pref = 'mail.identity.default.draft_folder';
     let local_draft_pref = Services.prefs.getStringPref(draft_folder_pref);
-    console.debug("mail.identity.default.draft_folder=" + local_draft_pref);
+    SendLaterFunctions.debug("mail.identity.default.draft_folder=" + local_draft_pref);
     if (local_draft_pref) {
       try {
         folder = MailServices.folderLookup.getFolderForURL(local_draft_pref);
@@ -228,19 +260,19 @@ const SendLaterFunctions = {
           CheckFolder(folder);
         }
       } catch (e) {
-        console.debug("default Drafts folder " + local_draft_pref +
+        SendLaterFunctions.debug("default Drafts folder " + local_draft_pref +
                         " does not exist?");
       }
     }
     let allaccounts = accountManager.accounts;
     let acindex, numAccounts;
     numAccounts = allaccounts.length;
-    console.log(numAccounts, allaccounts);
+    SendLaterFunctions.debug("rebuildDraftsFolder", numAccounts, allaccounts);
     for (acindex = 0; acindex<numAccounts; acindex++) {
       let thisaccount = allaccounts[acindex].QueryInterface(Ci.nsIMsgAccount);
       if (thisaccount) {
         let numIdentities = thisaccount.identities.length;
-        console.debug(
+        SendLaterFunctions.debug(
           thisaccount.incomingServer.type +
             " - Identities [" +
             numIdentities +
@@ -253,17 +285,17 @@ const SendLaterFunctions = {
             let identityNum;
             for (identityNum = 0; identityNum < numIdentities; identityNum++) {
               try {
-                console.log(thisaccount.identities);
+                SendLaterFunctions.debug("rebuildDraftsFolder",thisaccount.identities);
                 let identity = thisaccount.identities[identityNum].QueryInterface(Ci.nsIMsgIdentity);
                 let thisfolder = MailServices.folderLookup.getFolderForURL(identity.draftFolder);
                 CheckFolder(thisfolder);
               } catch (e) {
-                console.warn("Error getting identity:",e);
+                SendLaterFunctions.warn("rebuildDraftsFolder","Error getting identity:",e);
               }
             }
             break;
           default:
-            console.debug("skipping this server type - " + thisaccount);
+            SendLaterFunctions.debug("rebuildDraftsFolder: skipping this server type - " + thisaccount);
             break;
         }
       }
@@ -293,10 +325,10 @@ const SendLaterFunctions = {
 const SendLaterBackgrounding = function() {
   var sl3log = {
     Entering(functionName) {
-      console.debug("Entering function:",functionName);
+      SendLaterFunctions.debug("Entering function:",functionName);
     },
     Leaving(functionName) {
-      console.debug("Leaving function:",functionName);
+      SendLaterFunctions.debug("Leaving function:",functionName);
     }
   };
 
@@ -336,7 +368,7 @@ const SendLaterBackgrounding = function() {
           SendLaterVars.sendingUnsentMessages = false;
           if (SendLaterVars.needToSendUnsentMessages) {
               if (Utils.isOffline) {
-                  console.warn("Deferring sendUnsentMessages while offline");
+                SendLaterFunctions.warn("Deferring sendUnsentMessages while offline");
               } else {
                   try {
                       const msgSendLater = Components.classes[
@@ -344,7 +376,10 @@ const SendLaterBackgrounding = function() {
                         ].getService(Components.interfaces.nsIMsgSendLater);
                       msgSendLater.sendUnsentMessages(null);
                   } catch (ex) {
-                      console.warn(ex);
+                    SendLaterFunctions.warn(
+                      "SendLaterFunctions.sendUnsentMessagesListener.OnStopSending",
+                      ex
+                    );
                   }
               }
           } else if (SendLaterVars.wantToCompactOutbox &&
@@ -353,9 +388,13 @@ const SendLaterBackgrounding = function() {
                   let fdrunsent = SendLaterFunctions.getUnsentMessagesFolder();
                   fdrunsent.compact(null, msgWindow);
                   SendLaterVars.wantToCompactOutbox = false;
-                  console.debug("Compacted Outbox");
+                  SendLaterFunctions.debug("Compacted Outbox");
               } catch (ex) {
-                console.warn("Compacting Outbox failed: " + ex);
+                SendLaterFunctions.warn(
+                  "SendLaterFunctions.sendUnsentMessagesListener.OnStopSending",
+                  "Compacting Outbox failed: ",
+                  ex
+                );
               }
           }
           sl3log.Leaving("Sendlater3Backgrounding.sendUnsentMessagesListener.onStopSending");
@@ -385,10 +424,15 @@ const SendLaterBackgrounding = function() {
       if (addon.id != "sendlater3@kamens.us") {
         return;
       }
-      console.debug("AddonListener.resetSession: who - " + who);
+      SendLaterFunctions.debug("AddonListener.resetSession: who - " + who);
       try {
         AddonManager.removeAddonListener(this);
-      } catch (ex) { console.warn("Unable to remove addon listener", ex); }
+      } catch (ex) {
+        SendLaterFunctions.warn(
+          "AddonListener.resetSession: Unable to remove addon listener",
+          ex
+        );
+      }
       removeMsgSendLaterListener();
     },
     onUninstalling(addon) {
@@ -451,7 +495,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                 Services.prefs.setBoolPref(prefName, prefValue);
                 return true;
               } catch (err) {
-                console.error(err);
+                SendLaterFunctions.error("SL3U.setLegacyPref.dtype="+dtype,err);
                 return false;
               }
             }
@@ -461,7 +505,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                 Services.prefs.setIntPref(prefName, prefValue);
                 return true;
               } catch (err) {
-                console.error(err);
+                SendLaterFunctions.error("SL3U.setLegacyPref.dtype="+dtype,err);
                 return false;
               }
             }
@@ -471,7 +515,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                 Services.prefs.setCharPref(prefName, prefValue);
                 return true;
               } catch (err) {
-                console.error(err);
+                SendLaterFunctions.error("SL3U.setLegacyPref.dtype="+dtype,err);
                 return false;
               }
             }
@@ -481,7 +525,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                 Services.prefs.setStringPref(prefName, prefValue);
                 return true;
               } catch (err) {
-                console.error(err);
+                SendLaterFunctions.error("SL3U.setLegacyPref.dtype="+dtype,err);
                 return false;
               }
             }
@@ -786,7 +830,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             try {
               cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
             } catch (err) {
-              console.error("Unable to save message to drafts", err);
+              SendLaterFunctions.error("SL3U.saveAsDraft","Unable to save message to drafts", err);
               return false;
             }
 
@@ -794,7 +838,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             try {
               const type = cw.gMsgCompose.type;
               const originalURI = cw.gMsgCompose.originalMsgURI;
-              console.debug("[SendLater]: Setting message reply/forward flags", type, originalURI);
+              SendLaterFunctions.debug("Setting message reply/forward flags", type, originalURI);
 
               if ( originalURI ) {
                 const messenger = Cc["@mozilla.org/messenger;1"].getService(Ci.nsIMessenger);
@@ -817,15 +861,18 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                     break;
                 }
               } else {
-                console.debug("SendLater: Unable to set reply / forward flags " +
+                SendLaterFunctions.debug("SL3U.saveAsDraft","Unable to set reply / forward flags " +
                              "for message. Cannot find original message URI");
               }
             } catch (err) {
-              console.warn("SendLater: Failed to set flag for reply / forward", err);
+              SendLaterFunctions.debug("SL3U.saveAsDraft","Failed to set flag for reply / forward", err);
             }
             return true;
           } else {
-            console.error(`SendLater: Message ID not set correctly, ${verifyId} != ${newMessageId}`);
+            SendLaterFunctions.error(
+              "SL3U.saveAsDraft",
+              `SendLater: Message ID not set correctly, ${verifyId} != ${newMessageId}`
+            );
           }
           return false;
         },
@@ -850,9 +897,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
         async editingMessage(msgId) {
           for (let cw of Services.wm.getEnumerator("msgcompose")) {
-            // for (let header of cw.gMsgCompose.compFields.headerNames) {
-            //   console.log(header);
-            // }
             const thisID = cw.gMsgCompose.compFields.getHeader("message-id");
             if (thisID === msgId) {
               return true;
@@ -873,14 +917,16 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
           CopyUnsentListener.prototype = {
             QueryInterface: function(iid) {
-              console.debug("[SendLater]: Entering CopyUnsentListener.QueryInterface");
+              SendLaterFunctions.debug("SL3U.sendRaw.CopyUnsentListener.QueryInterface: Entering");
               if (iid.equals(Ci.nsIMsgCopyServiceListener) ||
                   iid.equals(Ci.nsISupports)) {
-                console.debug("[SendLater]: Returingn copyServiceListener.QueryInterface",
-                  this);
+                    SendLaterFunctions.debug(
+                      "SL3U.sendRaw.CopyUnsentListener.QueryInterface: Returning",
+                      this
+                    );
                 return this;
               }
-              console.error("CopyUnsentListener.QueryInterface",
+              SendLaterFunctions.error("SL3U.sendRaw.CopyUnsentListener.QueryInterface",
                 Components.results.NS_NOINTERFACE);
               throw Components.results.NS_NOINTERFACE;
             },
@@ -892,22 +938,32 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                 try {
                   copying.remove(true);
                 } catch (ex) {
-                  console.debug(`Failed to delete ${copying.path}.` +
-                                `Trying again with waitAndDelete.`);
+                  SendLaterFunctions.debug(
+                    `SL3U.sendRaw.CopyUnsentListener.OnStopCopy:`,
+                    `Failed to delete ${copying.path}.` +
+                    `Trying again with waitAndDelete.`);
                   SendLaterFunctions.waitAndDelete(copying);
                 }
               }
               if (Components.isSuccessCode(status)) {
-                console.debug("Successfully copied message to outbox.");
+                SendLaterFunctions.debug(
+                  "SL3U.sendRaw.CopyUnsentListener.OnStopCopy:",
+                  "Successfully copied message to outbox.");
                 if (this._sendUnsentMsgs) {
-                  console.debug("Triggering send unsent messages.")
+                  SendLaterFunctions.debug(
+                    "SL3U.sendRaw.CopyUnsentListener.OnStopCopy:",
+                    "Triggering send unsent messages.")
                   const mailWindow = Services.wm.getMostRecentWindow("mail:3pane");
                   mailWindow.setTimeout(SendLaterFunctions.queueSendUnsentMessages, 1000);
                 } else {
-                  console.debug(`Not triggering send operation per user prefs.`);
+                  SendLaterFunctions.debug(
+                    "SL3U.sendRaw.CopyUnsentListener.OnStopCopy:",
+                    "Not triggering send operation per user prefs.");
                 }
               } else {
-                console.error(status);
+                SendLaterFunctions.error(
+                  "SL3U.sendRaw.CopyUnsentListener.OnStopCopy",
+                  status);
               }
             },
             SetMessageKey: function(key) {}
@@ -941,14 +997,14 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                 try {
                   copying.remove(true);
                 } catch (ex) {
-                  console.debug(`Failed to delete ${copying.path}.`);
+                  SendLaterFunctions.debug(`SL3U.saveMessage: Failed to delete ${copying.path}.`);
                   SendLaterFunctions.waitAndDelete(copying);
                 }
               }
               if (Components.isSuccessCode(status)) {
-                console.debug("Saved updated message");
+                SendLaterFunctions.debug("SL3U.saveMessage: Saved updated message");
               } else {
-                console.error(status);
+                SendLaterFunctions.error("SL3U.saveMessage:",status);
               }
             },
             SetMessageKey: function(key) {
@@ -980,7 +1036,8 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             let chNames = originals.concat(wantedHeaders);
             let uniqueHdrs = chNames.filter((v, i, s) => (s.indexOf(v) === i));
             const customHdrString = uniqueHdrs.join(" ");
-            console.info(`Setting mailnews.customDBHeaders: ${customHdrString}` +
+            SendLaterFunctions.debug(`SL3U.setCustomDBHeaders`,
+              `Setting mailnews.customDBHeaders: ${customHdrString}` +
                          `\nPreviously: ${originals.join(" ")}`);
             Services.prefs.setCharPref("mailnews.customDBHeaders",
                                         customHdrString);
@@ -997,7 +1054,8 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                   "@mozilla.org/embedcomp/prompt-service;1"
                 ].getService(Ci.nsIPromptService);
               const result = prompts.confirm(null, title, message);
-              console.log(`User input ${result ? "OK" : "Cancel"}`);
+              SendLaterFunctions.debug("SL3U.confirmAction",
+                `User input ${result ? "OK" : "Cancel"}`);
               resolve(result);
             } catch (err) {
               reject(`An error occurred in SL3U.confirmAction: ${err}`);
@@ -1015,11 +1073,11 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           const folder = MailServices.folderLookup.getFolderForURL(folderUri);
           const msgKey = draftUri.substr(draftUri.indexOf("#") + 1);
           if (!folder) {
-            console.error("Cannot find folder");
+            SendLaterFunctions.error("SL3U.deleteDraftByUri Cannot find folder");
             return;
           }
           try {
-            console.info(`Deleting draft (${msgKey})`);
+            SendLaterFunctions.debug(`Deleting draft (${msgKey})`);
             if (folder.getFlag(Ci.nsMsgFolderFlags.Drafts)) {
               let msgs = Cc["@mozilla.org/array;1"].createInstance(
                 Ci.nsIMutableArray
@@ -1029,7 +1087,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             }
           } catch (ex) {
             // couldn't find header - perhaps an imap folder.
-            console.debug(`couldn't find header - perhaps an imap folder.`);
+            SendLaterFunctions.debug(`SL3U.deleteDraftByUri couldn't find header - perhaps an imap folder.`,ex);
             let imapFolder = folder.QueryInterface(Ci.nsIMsgImapMailFolder);
             if (imapFolder) {
               imapFolder.storeImapFlags(
@@ -1042,28 +1100,11 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
         },
 
-        // async getMessageUri(accountId, path, messageKey) {
-        //   const folderUri = SendLaterFunctions.folderPathToURI(accountId, path);
-        //   const folder = MailServices.folderLookup.getFolderForURL(folderUri);
-        //   if (folder) {
-        //     const msgUri = folder.generateMessageURI(messageKey);
-        //     if (msgUri) {
-        //       console.log(`Got messageURI for ${messageKey}: ${msgUri}`);
-        //       return msgUri;
-        //     } else {
-        //       console.warn(`Unable to find message ${accountId}:${path}:${messageKey}`);
-        //     }
-        //   } else {
-        //     console.warn(`Unable to find folder ${accountId}:${path}`);
-        //     return null;
-        //   }
-        // },
-
         async getAllScheduledMessages(accountId, path, onlyDueForSend, onlyHeaders) {
           const folderUri = SendLaterFunctions.folderPathToURI(accountId, path);
           const folder = MailServices.folderLookup.getFolderForURL(folderUri);
 
-          console.log(`Folder URI: ${folderUri}`);
+          SendLaterFunctions.debug(`Entering getAllScheduledMessages folder URI: ${folderUri}`);
 
           let allMessages = [];
 
@@ -1089,10 +1130,10 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                     // NS_MSG_ERROR_FOLDER_SUMMARY_MISSING
                      e.result == 0x80550006) && lmf) {
                   try {
-                    console.debug("Rebuilding summary: " + folder.URI);
+                    SendLaterFunctions.warn("Rebuilding summary: " + folder.URI);
                     lmf.getDatabaseWithReparse(null, null);
                   } catch (ex) {
-                    console.warn("Unable to rebuild summary.")
+                    SendLaterFunctions.error("Unable to rebuild summary.")
                   }
                 } else {
                   // Owl for Exchange, maybe others as well
@@ -1101,11 +1142,11 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                     let f = thisfolder.getDBFolderInfoAndDB(o);
                     messageenumerator = f.EnumerateMessages();
                   } catch (ex) {
-                    console.warn("Unable to get EnumerateMessages on DB as fallback");
+                    SendLaterFunctions.warn("Unable to get EnumerateMessages on DB as fallback");
                   }
                   if (messageenumerator) {
-                    console.info(".messages failed on " + folderUri +
-                                 ", using .EnumerateMessages on DB instead");
+                    SendLaterFunctions.warn(".messages failed on " + folderUri +
+                                            ", using .EnumerateMessages on DB instead");
                   } else {
                     const window = Services.wm.getMostRecentWindow(null);
                     Services.prompt.alert(window, null, "Encountered a corrupt folder "+folderUri);
@@ -1116,7 +1157,8 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             }
 
             if (!messageenumerator) {
-              console.error("Unable to get message enumerator for folder.")
+              SendLaterFunctions.error("Unable to get message enumerator for folder.");
+              return null;
             }
 
             while (messageenumerator.hasMoreElements()) {
@@ -1125,7 +1167,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                 N_MESSAGES++;
                 let msgHdr = next.QueryInterface(Ci.nsIMsgDBHdr);
                 const messageIdHeader = msgHdr.getStringProperty('message-id');
-                console.debug(`Loading message header for ${msgHdr.messageKey} <${messageIdHeader}>`);
+                SendLaterFunctions.debug(`Loading message header for ${msgHdr.messageKey} <${messageIdHeader}>`);
 
                 let skipFlags = Ci.nsMsgMessageFlags.IMAPDeleted |
                                 Ci.nsMsgMessageFlags.Expunged;
@@ -1135,13 +1177,13 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
                 const sendAtHeader = msgHdr.getStringProperty('x-send-later-at');
                 if (!sendAtHeader) {
-                  console.debug(`No x-send-later headers in message ${msgHdr.messageKey}`);
+                  SendLaterFunctions.debug(`No x-send-later headers in message ${msgHdr.messageKey}`);
                   continue;
                 }
 
                 const sendAtDate = new Date(sendAtHeader);
                 if (onlyDueForSend && sendAtDate.getTime() > Date.now()) {
-                  console.debug(`Message ${msgHdr.messageKey} not due for send until ${sendAtHeader}`);
+                  SendLaterFunctions.debug(`Message ${msgHdr.messageKey} not due for send until ${sendAtHeader}`);
                   continue;
                 }
 
@@ -1161,7 +1203,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                 }
 
                 if (onlyHeaders) {
-                  console.debug(`Returning headers for message ${hdr["message-id"]}`);
+                  SendLaterFunctions.debug(`Returning headers for message ${hdr["message-id"]}`);
                   allMessages.push(hdr);
                   continue;
                 }
@@ -1184,7 +1226,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                     {
                       OnStartRunningUrl() {},
                       OnStopRunningUrl(url, exitCode) {
-                        console.debug(
+                        SendLaterFunctions.debug(
                           `getRawMessage.streamListener.OnStopRunning ` +
                           `received ${streamListener.inputStream.available()} bytes ` +
                           `(exitCode: ${exitCode})`
@@ -1201,7 +1243,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                     ""
                   );
                 }).catch((ex) => {
-                  console.error(`Error reading message ${messageUri}`,ex);
+                  SendLaterFunctions.error(`Error reading message ${messageUri}`,ex);
                 });
 
                 const available = streamListener.inputStream.available();
@@ -1212,16 +1254,16 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                   );
                   allMessages.push(hdr);
                 } else {
-                  console.debug(`No data available`);
+                  SendLaterFunctions.debug(`No data available`);
                 }
               } else {
-                console.warn("Was promised more messages, but did not find them.");
+                SendLaterFunctions.warn("Was promised more messages, but did not find them.");
               }
             }
           } else {
-            console.error(`Unable to find folder ${accountId}:${path}`);
+            SendLaterFunctions.error(`Unable to find folder ${accountId}:${path}`);
           }
-          console.info(`Processed ${N_MESSAGES} messages in folder ${folderUri}`);
+          SendLaterFunctions.debug(`Processed ${N_MESSAGES} messages in folder ${folderUri}`);
           return allMessages;
         },
 
@@ -1239,10 +1281,10 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             ].createInstance();
             msgWindow = msgWindow.QueryInterface(Ci.nsIMsgWindow);
             folder.compact(null, msgWindow);
-            console.debug(`Compacted folder: ${path}`);
+            SendLaterFunctions.debug("SL3U.compactFolder",`Compacted folder: ${path}`);
             return true;
           } else {
-            console.error(`Could not get folder ${path} for compacting.`);
+            SendLaterFunctions.debug("SL3U.compactFolder",`Could not get folder ${path} for compacting.`);
           }
           return false;
         },
@@ -1266,17 +1308,25 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           let Observer = {
             observe(subject, topic, data) {
               if (topic == observerTopic) {
-                console.debug("notifyStorageLocal.Observer: " + topic);
+                SendLaterFunctions.debug("SL3U.notifyStorageLocal",`Observer (${topic})`);
                 Services.obs.removeObserver(Observer, observerTopic);
                 Services.obs.notifyObservers(null, notificationTopic, dataStr);
               }
             },
           };
-          console.debug("notifyStorageLocal: START - " + notificationTopic);
+          SendLaterFunctions.debug("SL3U.notifyStorageLocal",` START - ${notificationTopic}`);
           if (startup) {
             Services.obs.addObserver(Observer, observerTopic);
           } else {
             Services.obs.notifyObservers(null, notificationTopic, dataStr);
+            try {
+              const data = JSON.parse(dataStr);
+              SendLaterVars.logConsoleLevel = (data.logConsoleLevel||"all").toLowerCase();
+            } catch (ex) {
+              SendLaterFunctions.warn(
+                `SL3U.notifyStorageLocal Unable to set SendLaterVars.logConsoleLevel`
+              );
+            }
           }
         },
 
@@ -1288,7 +1338,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               let script = await ChromeUtils.compileScript(scriptURI);
               script.executeInGlobal(windowContext);
             } catch (ex) {
-              console.error("[SendLater]: Unable to inject script.",ex);
+              SendLaterFunctions.error("SL3U.injectScript","Unable to inject script.",ex);
             }
           };
 
@@ -1308,13 +1358,28 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               "chrome://messenger/content/messenger.xul",
             ],
             onLoadWindow(window) {
-              console.log(`[SendLater]: onLoadWindow, inject script ${filename}`);
+              SendLaterFunctions.debug(`onLoadWindow, inject script ${filename}`);
               doInject(window, filename);
             }
           });
         },
 
         async startObservers() {
+          try {
+            // const ext = window.ExtensionParent.GlobalManager.extensionMap.get("sendlater3@kamens.us");
+            // const localStorage = [...ext.views][0].apiCan.findAPIPath("storage.local");
+            const localStorage = context.apiCan.findAPIPath("storage.local");
+            const { preferences } =
+              await localStorage.callMethodInParentProcess(
+                "get",
+                [{ "preferences": {} }]
+              );
+            SendLaterVars.logConsoleLevel =
+              (preferences.logConsoleLevel||"all").toLowerCase();
+          } catch (err) {
+            SendLaterFunctions.error("Could not fetch preferences", err);
+          }
+
           // Setup various observers.
           SendLaterBackgrounding();
         },
@@ -1327,7 +1392,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               "chrome://messenger/content/messengercompose/messengercompose.xul"
             ],
             onLoadWindow(window) {
-              console.debug("Binding to send later events like a barnicle.");
+              SendLaterFunctions.debug("Binding to send later events like a barnicle.");
 
               window.setTimeout(() => {
                 try {
@@ -1345,16 +1410,17 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                     "currentset"
                   );
                   if (!currentSet) {
-                    console.error("Unable to find compose window toolbar area");
+                    SendLaterFunctions.error("SL3U.bindKeyCodes.messengercompose.onLoadWindow",
+                                             "Unable to find compose window toolbar area");
                   } else if (currentSet.includes(toolbarButtonId)) {
-                    console.debug("Toolbar includes Send Later compose action button.");
+                    SendLaterFunctions.debug("Toolbar includes Send Later compose action button.");
                   } else {
-                    console.info("Adding Send Later toolbar button");
+                    SendLaterFunctions.debug("Adding Send Later toolbar button");
                     currentSet = currentSet.split(",");
                     currentSet.push(toolbarButtonId);
                     toolbar.currentSet = currentSet.join(",");
                     toolbar.setAttribute("currentset",toolbar.currentSet);
-                    console.log("Current toolbar action buttons:", currentSet);
+                    SendLaterFunctions.debug("Current toolbar action buttons:", currentSet);
                     Services.xulStore.setValue(
                       windowURL,
                       toolbarId,
@@ -1373,9 +1439,10 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                   toolbar.collapsed = false;
                   toolbar.hidden = false;
 
-                  console.debug("Compose window has send later button now.");
+                  SendLaterFunctions.debug("Compose window has send later button now.");
                 } catch (err) {
-                  console.error("Error enabling toolbar button", err);
+                  SendLaterFunctions.error("SL3U.bindKeyCodes.messengercompose.onLoadWindow",
+                                           "Error enabling toolbar button", err);
                 }
               }, 1000);
 
@@ -1391,9 +1458,9 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                   SendLaterFunctions.keyCodeEventTracker.emit("key_altShiftEnter");
                 });
                 tasksKeys.appendChild(keyElement);
-                //console.debug("New alt+shift+enter key element",keyElement);
               } else {
-                console.error("Unable to add keycode listener for Alt+Shift+Enter");
+                SendLaterFunctions.error("SL3U.bindKeyCodes.messengercompose.onLoadWindow",
+                                         "Unable to add keycode listener for Alt+Shift+Enter");
               }
 
               // Highjack keycode presses for the actual Send Later button.
@@ -1407,10 +1474,10 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                   SendLaterFunctions.keyCodeEventTracker.emit("key_sendLater");
                 });
                 sendLaterKey.parentNode.replaceChild(keyClone, sendLaterKey);
-                //console.debug("Cloned key element",keyClone);
               } else {
-                console.error("Could not find key_sendLater element. " +
-                            "Cannot bind to sendlater keypress events.");
+                SendLaterFunctions.error("SL3U.bindKeyCodes.messengercompose.onLoadWindow",
+                                         "Could not find key_sendLater element. " +
+                                         "Cannot bind to sendlater keypress events.");
               }
 
               // And events from the send later File menu item
@@ -1423,9 +1490,9 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                   SendLaterFunctions.keyCodeEventTracker.emit("cmd_sendLater");
                 });
                 sendLaterCmd.parentNode.replaceChild(cmdClone, sendLaterCmd);
-                //console.debug("Cloned menu command element",cmdClone);
               } else {
-                console.error("Could not find cmd_sendLater element. " +
+                SendLaterFunctions.error("SL3U.bindKeyCodes.messengercompose.onLoadWindow",
+                                         "Could not find cmd_sendLater element. " +
                               "Cannot bind to sendlater menu events.");
               }
             }
@@ -1455,7 +1522,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
   the cache to ensure the most recent version is always loaded on startup.
   */
   close() {
-    console.log("[SendLater]: Beginning close function");
+    SendLaterFunctions.debug("SL3U.close","Beginning close function");
 
     for (let cw of Services.wm.getEnumerator("msgcompose")) {
       const keyElement = cw.document.getElementById("key-alt-shift-enter");
@@ -1468,20 +1535,20 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
     try {
       ExtensionSupport.unregisterWindowListener("composeListener");
     } catch (err) {
-      console.warn(`Could not deregister listener <composeListener>`,err);
+      SendLaterFunctions.warn(`Could not deregister listener <composeListener>`,err);
     }
     for (let listener of SendLaterVars.scriptListeners) {
       try {
         ExtensionSupport.unregisterWindowListener(listener);
         SendLaterVars.scriptListeners.delete(listener);
       } catch (err) {
-        console.warn(`Could not deregister listener <${listener}>`,err);
+        SendLaterFunctions.warn(`Could not deregister listener <${listener}>`,err);
       }
     }
 
     // Invalidate the cache to ensure we start clean if extension is reloaded.
     Services.obs.notifyObservers(null, "startupcache-invalidate", null);
 
-    console.log("[SendLater]: Extension removed. Goodbye world.");
+    SendLaterFunctions.info("SL3U.close","Extension removed. Goodbye world.");
   }
 };
