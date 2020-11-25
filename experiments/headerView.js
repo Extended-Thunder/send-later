@@ -4,7 +4,31 @@ var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 var { AddonManager } = ChromeUtils.import("resource://gre/modules/AddonManager.jsm");
 var gMessenger = Cc["@mozilla.org/messenger;1"].createInstance(Ci.nsIMessenger);
 
-var SendLaterHeaderView = {
+var SendLaterHeaderView = null;
+var SendLaterFolderTreeListener = null;
+
+function SetSendLaterColumnVisible(visible, isdoublecheck) {
+  if (isdoublecheck) {
+    SLStatic.debug(`Double checking column visibility (${visible})`);
+  }
+
+  let col = document.getElementById("sendlater-colXSendLaterAt")
+  if (!col || !gDBView) {
+    return;
+  }
+  SLStatic.debug(`Setting SL column visible: ${visible}`);
+  if (visible) {
+    col.removeAttribute("hidden");
+  } else {
+    col.setAttribute("hidden", "true");
+  }
+
+  if (!isdoublecheck) {
+    setTimeout(() => SetSendLaterColumnVisible(visible, true), 500);
+  }
+}
+
+SendLaterHeaderView = {
   get columnId() {
     return "sendlater-colXSendLaterAt";
   },
@@ -192,7 +216,6 @@ var SendLaterHeaderView = {
       })(JSON.parse(data));
       SendLaterHeaderView.storageLocalMap = storageMap;
       SLStatic.logConsoleLevel = (storageMap.get("logConsoleLevel")||"all").toLowerCase();
-      SLStatic.debug("StorageLocalMap:",storageMap);
       SLStatic.debug("Leaving function","SendLaterHeaderView.storageLocalObserver.observe");
     },
   },
@@ -203,28 +226,7 @@ var SendLaterHeaderView = {
       this.getStorageLocal("showColumn") &&
       this.isDraftsFolder(gDBView.viewFolder);
 
-    const setColumnVisibility = (() => {
-      let col = document.getElementById("sendlater-colXSendLaterAt")
-      if (!col || !gDBView) {
-        return;
-      }
-      SLStatic.debug(`Setting SL column visible: ${visible}`);
-      if (visible) {
-        col.removeAttribute("hidden");
-      } else {
-        col.setAttribute("hidden", "true");
-      }
-    });
-
-    setColumnVisibility();
-
-    // The column does not always hide/show properly.
-    // (Related: https://bugzilla.mozilla.org/show_bug.cgi?id=1609378)
-    // This workaround is borrowed from Thunderbird Conversations.
-    setTimeout(() => {
-      SLStatic.debug("Double checking column status");
-      setColumnVisibility();
-    }, 500);
+    SetSendLaterColumnVisible(visible, false);
 
     SLStatic.debug("Leaving function","SendLaterHeaderView.hideShowColumn");
   },
@@ -411,8 +413,9 @@ var SendLaterHeaderView = {
     this.InitializeOverlayElements();
     gMessageListeners.push(this.headerListener);
     Services.obs.addObserver(this.columnHandlerObserver, "MsgCreateDBView", false);
-    document.getElementById("folderTree").addEventListener(
-      "select", this.hideShowColumn.bind(this), false);
+    SendLaterFolderTreeListener = this.hideShowColumn.bind(this);
+    let e = document.getElementById("folderTree")
+    e.addEventListener("select", SendLaterFolderTreeListener, false);
     // onLoad may have run when a folder is already being displayed.
     try {
       this.hideShowColumn();
@@ -428,28 +431,36 @@ var SendLaterHeaderView = {
       try {
         gDBView.removeColumnHandler(this.columnId);
       } catch (ex) {
-        console.warn("Unable to remove Send Later column handler", ex);
+        SLStatic.warn("Unable to remove Send Later column handler", ex);
       }
     }
 
     try {
+      let e = document.getElementById("folderTree");
+      e.removeEventListener("select", SendLaterFolderTreeListener, false);
+      SLStatic.debug("Removed folderTree listener");
+    } catch (ex) {
+      SLStatic.warn("Unable to remove folderTree listener",ex);
+    }
+
+    try {
       Services.obs.removeObserver(this.columnHandlerObserver, "MsgCreateDBView");
-    } catch (ex) { console.warn("Unable to remove msgcreatedbview observer", ex); }
+    } catch (ex) { SLStatic.warn("Unable to remove msgcreatedbview observer", ex); }
 
     try {
       Services.obs.removeObserver(this.storageLocalObserver, this.obsTopicStorageLocal);
-    } catch (ex) { console.warn("Unable to remove storagelocalobserver", ex); }
+    } catch (ex) { SLStatic.warn("Unable to remove storagelocalobserver", ex); }
 
     try {
       AddonManager.removeAddonListener(this.AddonListener);
-    } catch (ex) { console.warn("Unable to remove addon listener", ex); }
+    } catch (ex) { SLStatic.warn("Unable to remove addon listener", ex); }
 
     try {
       const column = document.getElementById(this.columnId);
       if (column) { column.remove(); }
       const headerRow = document.getElementById(this.hdrRowId);
       if (headerRow) { headerRow.remove(); }
-    } catch (ex) { console.warn("Unable to remove Send Later column elements", ex); }
+    } catch (ex) { SLStatic.warn("Unable to remove Send Later column elements", ex); }
 
     SLStatic.debug("Leaving function","SendLaterHeaderView.onUnload");
   }
