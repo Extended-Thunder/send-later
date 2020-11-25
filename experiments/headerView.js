@@ -253,11 +253,17 @@ SendLaterHeaderView = {
           if (schedule !== null) {
             try {
               let hdrText = SLStatic.formatScheduleForUIColumn(schedule);
-              document.getElementById("sendlater-expanded-Box").headerValue = hdrText;
-              isHidden = false;
-              SLStatic.debug(
-                "headerView.js: onBeforeShowHeaderPane: showing header"
-              );
+              const headerBoxElement = document.getElementById("sendlater-expanded-Box");
+              if (headerBoxElement) {
+                headerBoxElement.headerValue = hdrText;
+                isHidden = false;
+                SLStatic.debug(
+                  "headerView.js: onBeforeShowHeaderPane: showing header"
+                );
+              } else {
+                SLStatic.warn(`Unable to find sendlater-expanded-box element`);
+              }
+
             } catch (e) {
               SLStatic.debug(e);
               if (SendLaterHeaderView.onBeforeShowHeaderPaneWarning) {
