@@ -1059,7 +1059,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
         //   }
         // },
 
-        async getAllScheduledMessages(accountId, path) {
+        async getAllScheduledMessages(accountId, path, onlyDueForSend, onlyHeaders) {
           const folderUri = SendLaterFunctions.folderPathToURI(accountId, path);
           const folder = MailServices.folderLookup.getFolderForURL(folderUri);
 
@@ -1133,7 +1133,38 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                   continue;
                 }
 
+                const sendAtHeader = msgHdr.getStringProperty('x-send-later-at');
+                if (!sendAtHeader) {
+                  console.debug(`No x-send-later headers in message ${msgHdr.messageKey}`);
+                  continue;
+                }
+
+                const sendAtDate = new Date(sendAtHeader);
+                if (onlyDueForSend && sendAtDate.getTime() > Date.now()) {
+                  console.debug(`Message ${msgHdr.messageKey} not due for send until ${sendAtHeader}`);
+                  continue;
+                }
+
                 let messageUri = folder.generateMessageURI(msgHdr.messageKey);
+
+                const hdr = {
+                  id: msgHdr.messageKey,
+                  uri: messageUri
+                }
+                const allHdrKeys = [
+                  "x-send-later-at", "x-send-later-recur", "x-send-later-args",
+                  "x-send-later-cancel-on-reply", "x-send-later-uuid",
+                  "message-id", "references"
+                ];
+                for (let key of allHdrKeys) {
+                  hdr[key] = msgHdr.getStringProperty(key);
+                }
+
+                if (onlyHeaders) {
+                  console.debug(`Returning headers for message ${hdr["message-id"]}`);
+                  allMessages.push(hdr);
+                  continue;
+                }
 
                 const messenger = Cc[
                   "@mozilla.org/messenger;1"
@@ -1175,18 +1206,11 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
                 const available = streamListener.inputStream.available();
                 if (available > 0) {
-                  const data = NetUtil.readInputStreamToString(
+                  hdr.raw = NetUtil.readInputStreamToString(
                     streamListener.inputStream,
                     available
                   );
-                  if (hasHeader(data, "x-send-later-at")) {
-                    console.debug(`Message has send later headers ${messageUri}`);
-                    const hdr = {
-                      id: msgHdr.messageKey,
-                      uri: messageUri
-                    };
-                    allMessages.push({ hdr, data });
-                  }
+                  allMessages.push(hdr);
                 } else {
                   console.debug(`No data available`);
                 }

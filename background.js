@@ -538,17 +538,13 @@ const SendLater = {
                   SLStatic.debug(`Checking for messages in folder ${draftFolder.path}`);
                   const accountId = draftFolder.accountId, path = draftFolder.path;
                   const thisFoldersSchedulePromise = browser.SL3U.getAllScheduledMessages(
-                    accountId, path
+                    accountId, path, false, true
                   ).then(messages => {
                     let schedules = [];
                     for (let message of messages) {
-                      let hdr = message.hdr;
-                      hdr.folder = draftFolder;
+                      const msgSendAt = message["x-send-later-at"];
+                      const msgUUID = message["x-send-later-uuid"];
 
-                      const rawMessage = message.data;
-
-                      const msgSendAt = SLStatic.getHeader(rawMessage, "x-send-later-at");
-                      const msgUUID = SLStatic.getHeader(rawMessage, "x-send-later-uuid");
                       if (msgSendAt === undefined) {
                         //return null;
                       } else if (matchUUID && msgUUID != matchUUID) {
@@ -1071,15 +1067,11 @@ browser.messages.onNewMailReceived.addListener((folder, messagelist) => {
                     try {
                       SLStatic.debug(`Checking for messages in folder ${draftFolder.path}`);
                       const accountId = draftFolder.accountId, path = draftFolder.path;
-                      browser.SL3U.getAllScheduledMessages(accountId, path).then(messages => {
+                      browser.SL3U.getAllScheduledMessages(accountId, path, false, true).then(messages => {
                         for (let message of messages) {
-                          let hdr = message.hdr;
-                          hdr.folder = draftFolder;
-
-                          const rawDraftMsg = message.data;
-                          const draftId = SLStatic.getHeader(rawDraftMsg, "message-id");
-                          const draftCancelOnReply = SLStatic.getHeader(rawDraftMsg, "x-send-later-cancel-on-reply");
-                          const draftRefString = SLStatic.getHeader(rawDraftMsg, "references");
+                          const draftId = message["message-id"];
+                          const draftCancelOnReply = message["x-send-later-cancel-on-reply"];
+                          const draftRefString = message["references"];
 
                           const cancelOnReply = (draftCancelOnReply &&
                             ["true", "yes"].includes(draftCancelOnReply));
@@ -1088,7 +1080,7 @@ browser.messages.onNewMailReceived.addListener((folder, messagelist) => {
                             const isReferenced = draftMsgRefs.some(item => recvdMsgReplyTo.includes(item));
                             if (isReferenced) {
                               SLStatic.info(`Received response to message ${draftId}. Deleting scheduled draft.`);
-                              browser.SL3U.deleteDraftByUri(accountId, path, hdr.uri);
+                              browser.SL3U.deleteDraftByUri(accountId, path, message.uri);
                             }
                           }
                         }
@@ -1193,14 +1185,13 @@ function mainLoop() {
                 try {
                   SLStatic.debug(`Checking for messages in folder ${draftFolder.path}`);
                   const accountId = draftFolder.accountId, path = draftFolder.path;
-                  browser.SL3U.getAllScheduledMessages(accountId, path).then(messages => {
+                  browser.SL3U.getAllScheduledMessages(accountId, path, true, false).then(messages => {
                     for (let message of messages) {
-                      let hdr = message.hdr;
-                      hdr.folder = draftFolder;
+                      message.folder = draftFolder;
                       let callback = SendLater.possiblySendMessage.bind(SendLater);
-                      callback(hdr, message.data).then(result => {
+                      callback(message, message.raw).then(result => {
                         if (result === "delete_original") {
-                          browser.SL3U.deleteDraftByUri(accountId, path, hdr.uri);
+                          browser.SL3U.deleteDraftByUri(accountId, path, message.uri);
                         }
                       }).catch(SLStatic.error);
                     }
