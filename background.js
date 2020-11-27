@@ -1131,6 +1131,92 @@ browser.messageDisplay.onMessageDisplayed.addListener(async (tab, hdr) => {
   }
 });
 
+browser.commands.onCommand.addListener((cmd) => {
+  const cmdId = (/send-later-shortcut-([123])/.exec(cmd))[1];
+
+  if (["1","2","3"].includes(cmdId)) {
+    browser.windows.getAll({
+      populate: true,
+      windowTypes: ["messageCompose"]
+    }).then((allWindows) => {
+      // Current compose windows
+      const ccWins = allWindows.filter((cWindow) => (cWindow.focused === true));
+      if (ccWins.length === 1) {
+        const ccTabs = ccWins[0].tabs.filter(tab => (tab.active === true));
+        if (ccTabs.length !== 1) { // No tabs?
+          throw new Error(`Unexpected situation: no tabs found in current window`);
+        }
+        const tabId = ccTabs[0].id;
+
+        browser.storage.local.get({
+          preferences: {},
+          ufuncs: {}
+        }).then(({ preferences, ufuncs }) => {
+          function evaluateUfunc(funcName, prev, argStr) {
+            let args = null;
+            if (argStr) {
+              try {
+                argStr = SLStatic.unparseArgs(SLStatic.parseArgs(argStr));
+                args = SLStatic.parseArgs(argStr);
+              } catch (ex) {
+                SLStatic.warn(ex);
+                return { err: (browser.i18n.getMessage("InvalidArgsTitle") + ": " +
+                                browser.i18n.getMessage("InvalidArgsBody")) };
+              }
+            }
+
+            const { sendAt, nextspec, nextargs, error } =
+              SLStatic.evaluateUfunc(funcName, funcBody, prev, args);
+            SLStatic.debug("User function returned:",
+                            {sendAt, nextspec, nextargs, error});
+
+            if (error) {
+              throw new Error(error);
+            } else {
+              let recur = SLStatic.parseRecurSpec(nextspec || "none") || { type: "none" };
+              if (recur.type !== "none") {
+                recur.args = nextargs || "";
+              }
+              const schedule = { sendAt, recur };
+              SLStatic.debug("commands.onCommand received ufunc response: ",schedule);
+              return schedule;
+            }
+          }
+
+          const funcName = preferences[`quickOptions${cmdId}funcselect`];
+          const funcArgs = preferences[`quickOptions${cmdId}Args`];
+          SLStatic.info(`Executing shortcut ${cmdId}: ${funcName}(${funcArgs})`);
+          const funcBody = ufuncs[funcName].body;
+
+          const schedule = evaluateUfunc(funcName, null, funcArgs);
+
+          (async () => {
+            return (SendLater.composeState[tabId] === "scheduling") ||
+                    (await SendLater.preSendCheck.call(SendLater));
+          })().then(dosend => {
+            if (dosend) {
+              const options = { sendAt: schedule.sendAt,
+                                recurSpec: SLStatic.unparseRecurSpec(schedule.recur),
+                                args: schedule.recur.args,
+                                cancelOnReply: schedule.recur.cancelOnReply };
+              SendLater.scheduleSendLater.call(SendLater, tabId, options);
+              delete SendLater.composeState[tabId];
+            } else {
+              SLStatic.debug("User cancelled send via presendcheck.");
+            }
+          });
+        });
+      } else if (ccWins.length === 0) {
+        // No compose window is opened
+        SLStatic.warn(`The currently active window is not a messageCompose window`);
+      } else {
+        // Whaaaat!?!?
+        throw new Error(`Unexpected situation: multiple active windows found?`);
+      }
+    }).catch(SLStatic.error);
+  }
+});
+
 browser.runtime.onUpdateAvailable.addListener((details) => {
   const extensionName = browser.i18n.getMessage("extensionName");
   const thisVersion = browser.runtime.getManifest().version;

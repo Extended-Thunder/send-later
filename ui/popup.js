@@ -618,6 +618,24 @@ const SLPopup = {
           const schedule = SLPopup.evaluateUfunc(funcName, null, funcArgs);
           SLPopup.doSendWithSchedule(schedule);
         });
+        document.addEventListener("keydown", (event) => {
+          if ((event.ctrlKey || event.metaKey) && event.code === `Digit${i}`) {
+            // Note: also catches Ctrl+Alt+{i}
+            event.preventDefault();
+            SLStatic.debug(`Executing shortcut ${i}`);
+            const schedule = SLPopup.evaluateUfunc(funcName, null, funcArgs);
+            SLPopup.doSendWithSchedule(schedule);
+          }
+        });
+      }
+    });
+
+    document.addEventListener("keydown", function(event) {
+      if ((event.ctrlKey || event.metaKey) && event.code === "Enter") {
+        event.preventDefault();
+        const inputs = SLPopup.objectifyFormValues();
+        const schedule = SLPopup.parseInputs(inputs);
+        SLPopup.doSendWithSchedule(schedule);
       }
     });
 
