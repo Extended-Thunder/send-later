@@ -67,6 +67,21 @@
     "default_title": "__MSG_extensionName__"
   },
 
+  "commands": {
+    "send-later-shortcut-1": {
+      "suggested_key": { "default": "Ctrl+Alt+1" },
+      "description": "Execute Send Later's shortcut 1"
+    },
+    "send-later-shortcut-2": {
+      "suggested_key": { "default": "Ctrl+Alt+2" },
+      "description": "Execute Send Later's shortcut 2"
+    },
+    "send-later-shortcut-3": {
+      "suggested_key": { "default": "Ctrl+Alt+3" },
+      "description": "Execute Send Later's shortcut 3"
+    }
+  },
+
   "message_display_action": {
     "browser_style": true,
     "default_icon": "ui/icons/icon.png",
