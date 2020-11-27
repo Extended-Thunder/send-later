@@ -613,7 +613,18 @@ const SLPopup = {
         const funcArgs = preferences[`quickOptions${i}Args`];
 
         const quickBtn = dom[`quick-opt-${i}`];
-        quickBtn.value = preferences[`quickOptions${i}Label`];
+        const quickBtnLabel = preferences[`quickOptions${i}Label`];
+        const accelIdx = quickBtnLabel.indexOf("&");
+        if (accelIdx === -1) {
+          quickBtn.textContent = quickBtnLabel;
+        } else {
+          quickBtn.accessKey = quickBtnLabel[accelIdx+1];
+          const contents = SLStatic.underlineAccessKey(quickBtnLabel);
+          quickBtn.textContent = "";
+          for (let span of contents) {
+            quickBtn.appendChild(span);
+          }
+        }
         quickBtn.addEventListener("click", () => {
           const schedule = SLPopup.evaluateUfunc(funcName, null, funcArgs);
           SLPopup.doSendWithSchedule(schedule);
@@ -641,6 +652,29 @@ const SLPopup = {
 
     dom["sendNow"].addEventListener("click", SLPopup.doSendNow);
     dom["placeInOutbox"].addEventListener("click", SLPopup.doPlaceInOutbox);
+
+    (() => {
+      const label = browser.i18n.getMessage("sendNowLabel");
+      const accessKey = browser.i18n.getMessage("sendlater.prompt.sendnow.accesskey");
+      const contents = SLStatic.underlineAccessKey(label, accessKey);
+
+      dom["sendNow"].accessKey = accessKey;
+      dom["sendNow"].textContent = "";
+      for (let span of contents) {
+        dom["sendNow"].appendChild(span);
+      }
+    })();
+    (() => {
+      const label = browser.i18n.getMessage("sendlater.prompt.sendlater.label");
+      const accessKey = browser.i18n.getMessage("sendlater.prompt.sendlater.accesskey");
+      const contents = SLStatic.underlineAccessKey(label, accessKey);
+
+      dom["placeInOutbox"].accessKey = accessKey;
+      dom["placeInOutbox"].textContent = "";
+      for (let span of contents) {
+        dom["placeInOutbox"].appendChild(span);
+      }
+    })();
 
     setTimeout(() => document.getElementById("send-datetime").select(), 50);
   },
