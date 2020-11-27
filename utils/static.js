@@ -208,6 +208,31 @@ var SLStatic = {
     }
   },
 
+  // Splits a single label string into spans, where the first occurrence
+  // of the access key is in its own element, with an underline.
+  underlineAccessKey(label, modifier) {
+    let idx = label.indexOf(modifier||"&");
+    if (idx === -1 && modifier) {
+      modifier = modifier.toLowerCase();
+      idx = label.toLowerCase().indexOf(modifier);
+    }
+
+    if (idx === -1) {
+      const spanner = document.createElement("SPAN");
+      spanner.textContent = label;
+      return [spanner];
+    } else {
+      const span1 = document.createElement("SPAN");
+      span1.textContent = label.substr(0,idx);
+      const span2 = document.createElement("SPAN");
+      span2.style.textDecoration = "underline";
+      span2.textContent = modifier ? label[idx] : label[++idx];
+      const span3 = document.createElement("SPAN");
+      span3.textContent = label.substr(idx+1);
+      return [span1, span2, span3];
+    }
+  },
+
   evaluateUfunc(name, body, prev, args) {
     const funcStr =
       `let next, nextspec, nextargs;\n` +
