@@ -77,12 +77,21 @@ var SLStatic = {
   },
 
   humanDateTimeFormat(date) {
-    return (new Sugar.Date(date)).long();
+    date = new Date(date);
+    const options = {
+      hour: "numeric", minute: "numeric", weekday: "short",
+      month: "short", day: "numeric", year: "numeric"
+    }
+    return new Intl.DateTimeFormat([], options).format(date);
   },
 
   shortHumanDateTimeFormat(date) {
-    return date.toLocaleString([], {month:'numeric',day:'numeric',year:'numeric',
-                                    hour:'numeric',minute:'2-digit'});
+    date = new Date(date);
+    const options = {
+      hour: "numeric", minute: "numeric",
+      month: "numeric", day: "numeric", year: "numeric"
+    }
+    return new Intl.DateTimeFormat([], options).format(date);
   },
 
   convertTime(t) {

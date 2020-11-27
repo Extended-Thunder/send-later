@@ -483,7 +483,7 @@ const SLPopup = {
       const soon = new Sugar.Date(relativeTo.getTime() + (5*60*1000));
       dom["send-date"].value = soon.format('%Y-%m-%d');
       dom["send-time"].value = soon.format('%H:%M');
-      dom["send-datetime"].value = soon.long();
+      dom["send-datetime"].value = SLStatic.shortHumanDateTimeFormat(soon.getTime());
     }
 
     SLStatic.stateSetter(dom["sendon"].checked)(dom["onlyOnDiv"]);
@@ -554,7 +554,7 @@ const SLPopup = {
       if (evt.target.id === "send-date" || evt.target.id === "send-time") {
         if (dom["send-date"].value && dom["send-time"].value) {
           const sendAt = SLStatic.parseDateTime(dom["send-date"].value, dom["send-time"].value);
-          dom["send-datetime"].value = (new Sugar.Date(sendAt)).long();
+          dom["send-datetime"].value = SLStatic.shortHumanDateTimeFormat(sendAt);
         }
       } else if (evt.target.id === "send-datetime") {
         SLPopup.parseSugarDate();
