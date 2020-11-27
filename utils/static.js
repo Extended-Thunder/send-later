@@ -1,4 +1,11 @@
 
+try {
+  const UILocale = browser.i18n.getUILanguage();
+  Sugar.Date.setLocale(UILocale.split("-")[0]);
+} catch (ex) {
+  console.warn("[SendLater]: Unable to set date Sugar.js locale", ex);
+}
+
 var SLStatic = {
   i18n: null,
 
@@ -27,7 +34,6 @@ var SLStatic = {
     try {
       const { preferences } = await browser.storage.local.get({"preferences": {}});
       this.logConsoleLevel = (preferences.logConsoleLevel || "all").toLowerCase();
-      console.log(`Received logConsoleLevel: ${this.logConsoleLevel}`);
     } catch {}
   },
 
