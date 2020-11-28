@@ -134,7 +134,7 @@ var SLStatic = {
   parseableDateTimeFormat(date) {
     date = SLStatic.convertDate(date);
     const DATE_RFC2822 = "%a, %d %b %Y %T %z";
-    return Sugar.Date.format(date, DATE_RFC2822, "en");
+    return Sugar.Date.format(date||(new Date()), DATE_RFC2822, "en");
   },
 
   humanDateTimeFormat(date) {
