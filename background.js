@@ -814,10 +814,9 @@ browser.SL3U.onKeyCode.addListener(keyid => {
             SLStatic.error("Cannot find current compose window");
             return;
           } else {
+            SLStatic.debug(`Adding tab ${thistab.id} to composeSate map.`);
             SendLater.composeState[thistab.id] = "sending";
-            browser.SL3U.builtInSendLater().then(()=>{
-              setTimeout(() => delete SendLater.composeState[thistab.id], 1000);
-            });
+            browser.SL3U.builtInSendLater();
           }
         }).catch(ex => SLStatic.error("Error starting builtin send later",ex));
       } else {
@@ -841,13 +840,19 @@ browser.SL3U.onKeyCode.addListener(keyid => {
 
 // Intercept sent messages. Decide whether to handle them or just pass them on.
 browser.compose.onBeforeSend.addListener(tab => {
-  SLStatic.info(`Received onBeforeSend from tab`,tab);
-  if (SendLater.composeState[tab.id] === "sending") {
+  SLStatic.info(`Received onBeforeSend from tab ${tab.id}`);
+  if (SendLater.composeState[tab.id] === "sending" ||
+      SendLater.composeState[tab.id] === "sending_later") {
     // Avoid blocking extension's own send events
-    setTimeout(() => delete SendLater.composeState[tab.id], 1000);
+    SLStatic.debug(`User is currently in the process of sending this message.`);
+    setTimeout(() => {
+      SLStatic.debug(`Deleting tab ${tab.id} from composeSate map.`);
+      delete SendLater.composeState[tab.id]
+    }, 1000);
     return { cancel: false };
   } else if (SendLater.prefCache.sendDoesSL) {
     SLStatic.info("Send does send later. Opening popup.");
+    SLStatic.debug(`Adding tab ${tab.id} to composeSate map.`);
     SendLater.composeState[tab.id] = "scheduling";
     browser.composeAction.enable(tab.id);
     browser.composeAction.openPopup();
@@ -928,17 +933,23 @@ browser.runtime.onMessage.addListener(async (message) => {
                         "Cannot send message at this time.");
       } else {
         SendLater.composeState[message.tabId] = "sending";
-        browser.SL3U.sendNow().then(()=>{
-          setTimeout(() => delete SendLater.composeState[message.tabId], 1000);
-        });
+        browser.SL3U.sendNow().then(
+          () => {
+            SLStatic.debug(`Deleting tab ${message.tabId} from composeSate map.`);
+            delete SendLater.composeState[message.tabId]
+          }
+        );
       }
       break;
     }
     case "doPlaceInOutbox": {
       SLStatic.debug("User requested system send later.");
-      SendLater.composeState[message.tabId] = "sending";
+      SendLater.composeState[message.tabId] = "sending_later";
       browser.SL3U.builtInSendLater().then(()=>{
-        setTimeout(() => delete SendLater.composeState[message.tabId], 1000);
+        () => {
+          SLStatic.debug(`Done sending later. Deleting tab ${message.tabId} from composeSate map.`);
+          delete SendLater.composeState[message.tabId]
+        }
       });
       break;
     }
@@ -966,8 +977,11 @@ browser.runtime.onMessage.addListener(async (message) => {
       break;
     }
     case "closingComposePopup": {
-      delete SendLater.composeState[message.tabId];
-      SLStatic.debug(`Removed tab ${message.tabId} from composeState map.`);
+      if (SendLater.composeState[message.tabId] === "scheduling") {
+        SLStatic.debug(`Deleting tab ${message.tabId} from composeSate map.`);
+        delete SendLater.composeState[message.tabId]
+      }
+
       break;
     }
     case "getScheduleText": {
@@ -1221,6 +1235,7 @@ browser.commands.onCommand.addListener((cmd) => {
                                 args: schedule.recur.args,
                                 cancelOnReply: schedule.recur.cancelOnReply };
               SendLater.scheduleSendLater.call(SendLater, tabId, options);
+              SLStatic.debug(`Deleting tab ${tabId} from composeSate map.`);
               delete SendLater.composeState[tabId];
             } else {
               SLStatic.debug("User cancelled send via presendcheck.");

@@ -1399,7 +1399,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                   (preferences.logConsoleLevel||"all").toLowerCase();
                 return true;
               } catch (err) {
-                SendLaterFunctions.error("Could not fetch preferences", err);
+                // SendLaterFunctions.warn("Could not fetch preferences", err);
               }
               return false;
             };
@@ -1423,6 +1423,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             ],
             onLoadWindow(window) {
               SendLaterFunctions.debug("Binding to send later events like a barnicle.");
+              window.sendLaterReplacedElements = {};
 
               window.setTimeout(() => {
                 try {
@@ -1496,6 +1497,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               // Highjack keycode presses for the actual Send Later button.
               const sendLaterKey = window.document.getElementById("key_sendLater");
               if (sendLaterKey) {
+                window.sendLaterReplacedElements["key_sendLater"] = sendLaterKey;
                 const keyClone = sendLaterKey.cloneNode(true);
                 keyClone.setAttribute("oncommand", "//");
                 keyClone.setAttribute("observes", "");
@@ -1513,6 +1515,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               // And events from the send later File menu item
               const sendLaterCmd = window.document.getElementById("cmd_sendLater");
               if (sendLaterCmd) {
+                window.sendLaterReplacedElements["cmd_sendLater"] = sendLaterCmd;
                 const cmdClone = sendLaterCmd.cloneNode(true);
                 cmdClone.setAttribute("oncommand", "//");
                 cmdClone.addEventListener('command', event => {
@@ -1554,11 +1557,46 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
   close() {
     SendLaterFunctions.debug("SL3U.close","Beginning close function");
 
+    SendLaterFunctions.debug("Removing all msgcompose overlay elements");
     for (let cw of Services.wm.getEnumerator("msgcompose")) {
-      const keyElement = cw.document.getElementById("key-alt-shift-enter");
+      const { document } = cw;
+      const keyElement = document.getElementById("key-alt-shift-enter");
       if (keyElement) {
         keyElement.remove();
       }
+      if (cw.sendLaterReplacedElements) {
+        for (let elementId of Object.getOwnPropertyNames(cw.sendLaterReplacedElements)) {
+          try {
+            SendLaterFunctions.debug(`Replacing imposter element ${elementId}`);
+            const imposter = document.getElementById(elementId);
+            const original = cw.sendLaterReplacedElements[elementId];
+            if (imposter && original) {
+              imposter.parentNode.replaceChild(original, imposter);
+            } else {
+              SendLaterFunctions.debug(
+                "Unable to swap out imposter key_sendLater element.",
+                imposter, original);
+            }
+          } catch (ex) {
+            SendLaterFunctions.warn(ex);
+          }
+        }
+      } else {
+        SendLaterFunctions.debug(`No imposter elements to restore`);
+      }
+    }
+
+    SendLaterFunctions.debug("Removing all mail:3pane overlay elements");
+    for (let cw of Services.wm.getEnumerator("mail:3pane")) {
+      const overlayElements = cw.document.querySelectorAll(".sendlater-overlay");
+      overlayElements.forEach(async e => {
+        try {
+          e.remove();
+          SendLaterFunctions.debug("Removed element", e.id);
+        } catch (err) {
+          SendLaterFunctions.error("Unable to remove element",e, err);
+        }
+      });
     }
 
     // Stop listening for new message compose windows.
