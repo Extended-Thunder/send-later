@@ -1,3 +1,4 @@
+const Sugar = require("../utils/sugar-custom");
 
 exports.init = function() {
   // Example
@@ -13,11 +14,25 @@ exports.init = function() {
   }, [ [[2,3,4,1],[1,5,2],[1],[44,4],[7]],
        [2,3,4,1,1,5,2,1,44,4,7] ]);
 
-  SLTests.AddTest("Test parseableDateTimeFormat", (input, expected) => {
+  SLTests.AddTest("Test parseableDateTimeFormat (plain)", (input, expected) => {
     const result = SLStatic.parseableDateTimeFormat(new Date(input));
     return result == expected ||
           `Expected "${expected}", got "${result}"`;
   }, [ "Sun Feb 01 1998 15:03:00 GMT+2", "Sun, 01 Feb 1998 05:03:00 -0800" ]);
+
+  SLTests.AddTest("Test parseableDateTimeFormat (current time fallback)", () => {
+    const result = SLStatic.parseableDateTimeFormat();
+    const expected = SLStatic.parseableDateTimeFormat(Date.now());
+    return SLStatic.compareDateTimes(result, "==", expected, 100) ||
+          `Expected "${expected}", got "${result}"`;
+  }, []);
+
+  SLTests.AddTest("Test parseableDateTimeFormat (relative time string)", () => {
+    const result = SLStatic.parseableDateTimeFormat("1 minute from now");
+    const expected = SLStatic.parseableDateTimeFormat(new Date(Date.now()+60000));
+    return SLStatic.compareDateTimes(result, "==", expected, 100) ||
+          `Expected "${expected}", got "${result}"`;
+  }, []);
 
   SLTests.AddTest("Test humanDateTimeFormat", (input, expected) => {
     const result = SLStatic.humanDateTimeFormat(new Date(input));
