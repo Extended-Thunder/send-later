@@ -332,15 +332,15 @@
         "parameters": []
       },
       {
-        "name":"injectScript",
+        "name":"injectScripts",
         "type":"function",
-        "description":"Inject script into a global document.",
+        "description":"Inject scripts into a global document.",
         "async":true,
         "parameters": [
           {
-            "name":"filename",
-            "type":"string",
-            "description":"Path to script file."
+            "name":"filenames",
+            "type":"any",
+            "description":"Array of paths to script files."
           }
         ]
       },

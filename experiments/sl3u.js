@@ -1330,25 +1330,11 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
         },
 
-        async injectScript(filename) {
-          let doInject = async function(aWindow, aFile) {
-            let windowContext = aWindow.document.defaultView;
-            try {
-              let scriptURI = extension.rootURI.resolve(aFile);
-              let script = await ChromeUtils.compileScript(scriptURI);
-              script.executeInGlobal(windowContext);
-            } catch (ex) {
-              SendLaterFunctions.error("SL3U.injectScript","Unable to inject script.",ex);
-            }
-          };
-
-          // for (let window of Services.wm.getEnumerator("mail:3pane")) {
-          //   //
-          //   doInject(window, filename);
-          // }
-
+        async injectScripts(filenames) {
           let listenerName = "injector";
-          listenerName += (/([^\/\.]+)\.[^\/]+$/.exec(filename)[1]);
+          for (let filename of filenames) {
+            listenerName += (/([^\/\.]+)\.[^\/]+$/.exec(filename)[1]);
+          }
           listenerName += "Listener";
           SendLaterVars.scriptListeners.add(listenerName);
 
@@ -1358,26 +1344,45 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               "chrome://messenger/content/messenger.xul",
             ],
             onLoadWindow(window) {
-              SendLaterFunctions.debug(`onLoadWindow, inject script ${filename}`);
-              doInject(window, filename);
+              (async () => {
+                for (let filename of filenames) {
+                  let windowContext = window.document.defaultView;
+                  try {
+                    let scriptURI = extension.rootURI.resolve(filename);
+                    let script = await ChromeUtils.compileScript(scriptURI);
+                    script.executeInGlobal(windowContext);
+                    SendLaterFunctions.info(`onLoadWindow, inject script ${scriptURI}`);
+                  } catch (ex) {
+                    SendLaterFunctions.error("SL3U.injectScript","Unable to inject script.",ex);
+                  }
+                }
+              })();
             }
           });
         },
 
         async startObservers() {
-          try {
-            // const ext = window.ExtensionParent.GlobalManager.extensionMap.get("sendlater3@kamens.us");
-            // const localStorage = [...ext.views][0].apiCan.findAPIPath("storage.local");
-            const localStorage = context.apiCan.findAPIPath("storage.local");
-            const { preferences } =
-              await localStorage.callMethodInParentProcess(
-                "get",
-                [{ "preferences": {} }]
-              );
-            SendLaterVars.logConsoleLevel =
-              (preferences.logConsoleLevel||"all").toLowerCase();
-          } catch (err) {
-            SendLaterFunctions.error("Could not fetch preferences", err);
+          const loadPrefs = async () => {
+            try {
+              // const ext = window.ExtensionParent.GlobalManager.extensionMap.get("sendlater3@kamens.us");
+              // const localStorage = [...ext.views][0].apiCan.findAPIPath("storage.local");
+              const localStorage = context.apiCan.findAPIPath("storage.local");
+              const { preferences } =
+                await localStorage.callMethodInParentProcess(
+                  "get",
+                  [{ "preferences": {} }]
+                );
+              SendLaterVars.logConsoleLevel =
+                (preferences.logConsoleLevel||"all").toLowerCase();
+              return true;
+            } catch (err) {
+              SendLaterFunctions.error("Could not fetch preferences", err);
+            }
+            return false;
+          };
+
+          if (!await loadPrefs()) {
+            setTimeout(loadPrefs, 1000);
           }
 
           // Setup various observers.
