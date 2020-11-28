@@ -113,11 +113,16 @@ var SLStatic = {
         }
       }
       const localeCode = SLStatic.i18n.getUILanguage();
-      const sugarDate = Sugar.Date.get(
-        relativeTo,
-        date,
-        {locale: localeCode, future: true}
+      let sugarDate = Sugar.Date.get(
+        relativeTo, date, {locale: localeCode, future: true}
       );
+      if (!sugarDate.getTime()) {
+        // If that didn't work, try 'en' locale.
+        sugarDate = Sugar.Date.get(
+          relativeTo, date, {locale: "en", future: true}
+        );
+      }
+
       if (sugarDate.getTime()) {
         return new Date(sugarDate.getTime());
       } else {
@@ -143,7 +148,7 @@ var SLStatic = {
       hour: "numeric", minute: "numeric", weekday: "short",
       month: "short", day: "numeric", year: "numeric"
     }
-    return new Intl.DateTimeFormat([], options).format(date);
+    return new Intl.DateTimeFormat([], options).format(date||(new Date()));
   },
 
   shortHumanDateTimeFormat(date) {
@@ -152,7 +157,7 @@ var SLStatic = {
       hour: "numeric", minute: "numeric",
       month: "numeric", day: "numeric", year: "numeric"
     }
-    return new Intl.DateTimeFormat([], options).format(date);
+    return new Intl.DateTimeFormat([], options).format(date||(new Date()));
   },
 
   compare(a, comparison, b, tolerance) {
