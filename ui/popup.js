@@ -515,16 +515,18 @@ const SLPopup = {
   parseSugarDate() {
     const dom = SLPopup.objectifyDOMElements();
     try {
-      const sendAt = new Sugar.Date(
-        SLStatic.convertDate(dom["send-datetime"].value, true)
-      );
-      dom["send-date"].value = sendAt.format('%Y-%m-%d');
-      dom["send-time"].value = sendAt.format('%H:%M');
+      const sendAt = SLStatic.convertDate(dom["send-datetime"].value, true);
+      if (sendAt) {
+        const sugarSendAt = new Sugar.Date(sendAt);
+        dom["send-date"].value = sugarSendAt.format('%Y-%m-%d');
+        dom["send-time"].value = sugarSendAt.format('%H:%M');
+        return sendAt;
+      }
     } catch (ex) {
       SLStatic.debug("Unable to parse user input", ex);
-      dom["send-date"].value = '';
-      dom["send-time"].value = '';
     }
+    dom["send-date"].value = '';
+    dom["send-time"].value = '';
   },
 
   attachListeners() {
