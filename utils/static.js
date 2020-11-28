@@ -113,25 +113,28 @@ var SLStatic = {
         }
       }
       const localeCode = SLStatic.i18n.getUILanguage();
-      sugarDate = Sugar.Date.get(
+      const sugarDate = Sugar.Date.get(
         relativeTo,
         date,
         {locale: localeCode, future: true}
       );
-      return new Date(sugarDate.getTime());
+      if (sugarDate.getTime()) {
+        return new Date(sugarDate.getTime());
+      } else {
+        return null;
+      }
     } else if (typeof date === "number") {
       return new Date(date);
     } else if (date.getTime) {
       return new Date(date.getTime());
-    } else {
-      throw new Error(`Send Later error: unable to parse date format`, date);
     }
+    throw new Error(`Send Later error: unable to parse date format`, date);
   },
 
   parseableDateTimeFormat(date) {
     date = SLStatic.convertDate(date);
     const DATE_RFC2822 = "%a, %d %b %Y %T %z";
-    return (new Sugar.Date(date || new Date())).format(DATE_RFC2822);
+    return Sugar.Date.format(date, DATE_RFC2822, "en");
   },
 
   humanDateTimeFormat(date) {
