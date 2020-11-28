@@ -396,9 +396,9 @@ var SLStatic = {
     } else {
       scheduleText = this.i18n.getMessage("sendAtLabel");
       scheduleText += " " + SLStatic.humanDateTimeFormat(sendAt);
-      const fromNow = (sendAt.getTime()-(new Date()).getTime())/1000;
+      const fromNow = (sendAt.getTime()-Date.now())/1000;
       if (fromNow < 0 && fromNow > -90) {
-        scheduleText += ` (${(new Sugar.Date((new Date()).getTime()+100)).relative()})`;
+        scheduleText += ` (${(new Sugar.Date(Date.now()+100)).relative()})`;
       } else {
         scheduleText += ` (${(new Sugar.Date(sendAt)).relative()})`;
       }
@@ -915,7 +915,7 @@ if (SLStatic.i18n === null) {
       const ext = window.ExtensionParent.GlobalManager.extensionMap.get("sendlater3@kamens.us");
       SLStatic.i18n = {
         getUILanguage() {
-          return ext.localeData.defaultLocale;
+          return ext.localeData.selectedLocale;
         },
         getMessage(messageName, substitutions = [], options = {}) {
           try {
@@ -923,16 +923,16 @@ if (SLStatic.i18n === null) {
 
             let messages, str;
 
-            const defaultLocale = ext.localeData.defaultLocale;
-            if (ext.localeData.messages.has(defaultLocale)) {
-              messages = ext.localeData.messages.get(defaultLocale);
+            const selectedLocale = ext.localeData.selectedLocale;
+            if (ext.localeData.messages.has(selectedLocale)) {
+              messages = ext.localeData.messages.get(selectedLocale);
               if (messages.has(messageName)) {
                 str = messages.get(messageName);
               }
             }
 
             if (str === undefined) {
-              SLStatic.warn(`Unable to find message ${messageName} in locale ${defaultLocale}`);
+              SLStatic.warn(`Unable to find message ${messageName} in locale ${selectedLocale}`);
               for (let locale of ext.localeData.availableLocales) {
                 if (ext.localeData.messages.has(locale)) {
                   messages = ext.localeData.messages.get(locale);
