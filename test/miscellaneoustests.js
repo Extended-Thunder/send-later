@@ -23,7 +23,7 @@ exports.init = function() {
     const result = SLStatic.humanDateTimeFormat(new Date(input));
     return result == expected ||
           `Expected "${expected}", got "${result}"`;
-  }, [ "Sun Feb 01 1998 15:03:00 GMT+2", "February 1, 1998 5:03 AM" ]);
+  }, [ "Sun Feb 01 1998 15:03:00 GMT+2", "Sun, Feb 1, 1998, 5:03 AM" ]);
 
   SLTests.AddTest("Test shortHumanDateTimeFormat", (input, expected) => {
     const result = SLStatic.shortHumanDateTimeFormat(new Date(input));

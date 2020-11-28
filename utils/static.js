@@ -1,11 +1,4 @@
 
-try {
-  const UILocale = browser.i18n.getUILanguage();
-  Sugar.Date.setLocale(UILocale.split("-")[0]);
-} catch (ex) {
-  console.warn("[SendLater]: Unable to set date Sugar.js locale", ex);
-}
-
 var SLStatic = {
   i18n: null,
 
@@ -921,6 +914,9 @@ if (SLStatic.i18n === null) {
     try {
       const ext = window.ExtensionParent.GlobalManager.extensionMap.get("sendlater3@kamens.us");
       SLStatic.i18n = {
+        getUILanguage() {
+          return ext.localeData.defaultLocale;
+        },
         getMessage(messageName, substitutions = [], options = {}) {
           try {
             messageName = messageName.toLowerCase();
@@ -985,6 +981,9 @@ if (SLStatic.i18n === null) {
   } else {
     // We're in a node process (unit test).
     SLStatic.i18n = {
+      getUILanguage() {
+        return "en-US";
+      },
       getMessage(key, args) {
         if (typeof args !== "object") {
           args = [args];
@@ -1084,4 +1083,11 @@ if (typeof browser === "undefined" && typeof require !== "undefined") {
     DaysInARow: {help:"Send the message now, and subsequently once per day at the same time, until it has been sent three times. Specify a number as an argument to change the total number of sends.",body:"// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;"},
     Delay: {help:"Simply delay message by some number of minutes. First argument is taken as the delay time.", body:"next = new Date(Date.now() + args[0]*60000);"}
   };
+}
+
+try {
+  const UILocale = SLStatic.i18n.getUILanguage();
+  Sugar.Date.setLocale(UILocale.split("-")[0]);
+} catch (ex) {
+  console.warn("[SendLater]: Unable to set date Sugar.js locale", ex);
 }
