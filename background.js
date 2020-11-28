@@ -891,6 +891,29 @@ browser.runtime.onMessageExternal.addListener(
       });
       return true;
     }
+    else if (message["action"] === "parseDate") {
+      let relativeTo = new Date();
+      const rSec = relativeTo.getSeconds(),
+            pSec = SLStatic.previousLoop.getSeconds();
+      if (rSec > pSec) {
+        const tdiff = rSec-pSec;
+        relativeTo = new Date(relativeTo.getTime() + 60000 - tdiff*1000);
+      }
+      try {
+        const localeCode = browser.i18n.getUILanguage();
+        const date = Sugar.Date.get(
+          relativeTo,
+          message["value"],
+          {locale: localeCode, future: true}
+        );
+        const dateStr = SLStatic.parseableDateTimeFormat(date);
+        sendResponse(dateStr);
+        return;
+      } catch (ex) {
+        SLStatic.debug("Unable to parse date/time",ex);
+      }
+      sendResponse(null);
+    }
   });
 
 browser.runtime.onMessage.addListener(async (message) => {
