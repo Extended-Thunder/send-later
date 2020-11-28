@@ -70,29 +70,6 @@ var SLStatic = {
     return `{${uuid}}`;
   },
 
-  parseableDateTimeFormat(date) {
-    const DATE_RFC2822 = "%a, %d %b %Y %T %z";
-    return (new Sugar.Date(date || new Date())).format(DATE_RFC2822);
-  },
-
-  humanDateTimeFormat(date) {
-    date = new Date(date);
-    const options = {
-      hour: "numeric", minute: "numeric", weekday: "short",
-      month: "short", day: "numeric", year: "numeric"
-    }
-    return new Intl.DateTimeFormat([], options).format(date);
-  },
-
-  shortHumanDateTimeFormat(date) {
-    date = new Date(date);
-    const options = {
-      hour: "numeric", minute: "numeric",
-      month: "numeric", day: "numeric", year: "numeric"
-    }
-    return new Intl.DateTimeFormat([], options).format(date);
-  },
-
   convertTime(t) {
     if (!t) {
       return null;
@@ -111,24 +88,89 @@ var SLStatic = {
     }
   },
 
-  compare(a, comparison, b) {
+  convertDate(date, compareToLoop) {
+    if (!date) {
+      return null;
+    } else if (date.raw) {
+      date = date.raw;
+    }
+
+    if (typeof date === "string") {
+      let relativeTo = new Date();
+      if (compareToLoop) {
+        // Because Send Later does not necessarily start its main loop on the minute,
+        // it's a little tricky to process relative times, and present them to the user
+        // in a logical way. For example, if right now is 10:25:53, and the main loop
+        // will execute at 14 seconds past the minute, then should input like
+        // "5 minutes from now" be rounded to 10:30 or 10:31?
+        //
+        // It seems most logical to round up in these cases, so that's what we'll do.
+        const rSec = relativeTo.getSeconds(),
+              pSec = SLStatic.previousLoop.getSeconds();
+        if (rSec > pSec) {
+          const tdiff = rSec-pSec;
+          relativeTo = new Date(relativeTo.getTime() + 60000 - tdiff*1000);
+        }
+      }
+      const localeCode = SLStatic.i18n.getUILanguage();
+      sugarDate = Sugar.Date.get(
+        relativeTo,
+        date,
+        {locale: localeCode, future: true}
+      );
+      return new Date(sugarDate.getTime());
+    } else if (typeof date === "number") {
+      return new Date(date);
+    } else if (date.getTime) {
+      return new Date(date.getTime());
+    } else {
+      throw new Error(`Send Later error: unable to parse date format`, date);
+    }
+  },
+
+  parseableDateTimeFormat(date) {
+    date = SLStatic.convertDate(date);
+    const DATE_RFC2822 = "%a, %d %b %Y %T %z";
+    return (new Sugar.Date(date || new Date())).format(DATE_RFC2822);
+  },
+
+  humanDateTimeFormat(date) {
+    date = SLStatic.convertDate(date);
+    const options = {
+      hour: "numeric", minute: "numeric", weekday: "short",
+      month: "short", day: "numeric", year: "numeric"
+    }
+    return new Intl.DateTimeFormat([], options).format(date);
+  },
+
+  shortHumanDateTimeFormat(date) {
+    date = SLStatic.convertDate(date);
+    const options = {
+      hour: "numeric", minute: "numeric",
+      month: "numeric", day: "numeric", year: "numeric"
+    }
+    return new Intl.DateTimeFormat([], options).format(date);
+  },
+
+  compare(a, comparison, b, tolerance) {
+    if (!tolerance) {
+      tolerance = 0;
+    }
     switch (comparison) {
       case "<":
-        return (a < b);
+        return (a-b) < tolerance;
       case ">":
-        return (a > b);
+        return (a-b) > tolerance;
       case "<=":
-        return (a <= b);
+        return (a-b) <= tolerance;
       case ">=":
-        return (a >= b);
+        return (a-b) >= tolerance;
       case "==":
-        return (a == b);
       case "===":
-        return (a === b);
+        return Math.abs(a-b) <= tolerance;
       case "!=":
-        return (a != b);
       case "!==":
-        return (a !== b);
+        return Math.abs(a-b) > tolerance;
       default:
         throw new Error("Unknown comparison: "+comparison);
         break;
@@ -136,29 +178,31 @@ var SLStatic = {
   },
 
   compareDates(a,comparison,b) {
+    a = SLStatic.convertDate(a); b = SLStatic.convertDate(b);
     const A = new Date(a.getFullYear(), a.getMonth(), a.getDate());
     const B = new Date(b.getFullYear(), b.getMonth(), b.getDate());
     return SLStatic.compare(A.getTime(),comparison,B.getTime());
   },
 
-  compareTimes(a,comparison,b,ignoreSec) {
-    a = SLStatic.convertTime(a);
-    b = SLStatic.convertTime(b);
+  compareTimes(a,comparison, b, ignoreSec, tolerance) {
+    a = SLStatic.convertTime(a); b = SLStatic.convertTime(b);
     const A = new Date(2000, 0, 01, a.getHours(), a.getMinutes(),
                         (ignoreSec ? 0 : a.getSeconds()));
     const B = new Date(2000, 0, 01, b.getHours(), b.getMinutes(),
                         (ignoreSec ? 0 : b.getSeconds()));
-    return SLStatic.compare(A.getTime(),comparison,B.getTime());
+    return SLStatic.compare(A.getTime(), comparison, B.getTime(), tolerance);
   },
 
-  compareDateTimes(a, comparison, b, ignoreSec) {
-    const A = new Date(a.getTime());
-    const B = new Date(b.getTime());
+  compareDateTimes(a, comparison, b, ignoreSec, tolerance) {
+    const A = SLStatic.convertDate(a)
+    const B = SLStatic.convertDate(b);
+    A.setMilliseconds(0);
+    B.setMilliseconds(0);
     if (ignoreSec) {
       A.setSeconds(0);
       B.setSeconds(0);
     }
-    return SLStatic.compare(A.getTime(), comparison, B.getTime());
+    return SLStatic.compare(A.getTime(), comparison, B.getTime(), tolerance);
   },
 
   getWkdayName(input, style) {

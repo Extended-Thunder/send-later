@@ -514,29 +514,9 @@ const SLPopup = {
 
   parseSugarDate() {
     const dom = SLPopup.objectifyDOMElements();
-
-    // Because Send Later does not necessarily start its main loop on the minute,
-    // it's a little tricky to process relative times, and present them to the user
-    // in a logical way. For example, if right now is 10:25:53, and the main loop
-    // will execute at 14 seconds past the minute, then should input like
-    // "5 minutes from now" be rounded to 10:30 or 10:31?
-    //
-    // It seems most logical to round up in these cases, so that's what we'll do.
-    let relativeTo = new Date();
-    const rSec = relativeTo.getSeconds(),
-          pSec = SLStatic.previousLoop.getSeconds();
-    if (rSec > pSec) {
-      const tdiff = rSec-pSec;
-      relativeTo = new Date(relativeTo.getTime() + 60000 - tdiff*1000);
-    }
-
     try {
-      const localeCode = browser.i18n.getUILanguage();
       const sendAt = new Sugar.Date(
-        Sugar.Date.get(relativeTo,
-          dom["send-datetime"].value,
-          {locale: localeCode,
-          future: true})
+        SLStatic.convertDate(dom["send-datetime"].value, true)
       );
       dom["send-date"].value = sendAt.format('%Y-%m-%d');
       dom["send-time"].value = sendAt.format('%H:%M');

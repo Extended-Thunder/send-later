@@ -605,9 +605,10 @@ const SendLater = {
       const activeSchedules = await this.getActiveSchedules(preferences.instanceUUID);
       const nActive = activeSchedules.length;
       if (nActive > 0) {
-        const soonest = new Sugar.Date(Math.min(...activeSchedules));
+        console.log(activeSchedules);
+        const soonest = new Date(Math.min(...activeSchedules));
         const nextActiveText = SLStatic.humanDateTimeFormat(soonest) +
-          ` (${soonest.relative()})`;
+          ` (${(new Sugar.Date(soonest)).relative()})`;
         message += `\n\nYou have ${nActive} message${nActive === 1 ? "" : "s"} ` +
           `scheduled to be delivered by Send Later.\nThe next one is ` +
           `scheduled for ${nextActiveText}.`;
@@ -892,21 +893,9 @@ browser.runtime.onMessageExternal.addListener(
       return true;
     }
     else if (message["action"] === "parseDate") {
-      let relativeTo = new Date();
-      const rSec = relativeTo.getSeconds(),
-            pSec = SLStatic.previousLoop.getSeconds();
-      if (rSec > pSec) {
-        const tdiff = rSec-pSec;
-        relativeTo = new Date(relativeTo.getTime() + 60000 - tdiff*1000);
-      }
       try {
-        const localeCode = browser.i18n.getUILanguage();
-        const date = Sugar.Date.get(
-          relativeTo,
-          message["value"],
-          {locale: localeCode, future: true}
-        );
-        const dateStr = SLStatic.parseableDateTimeFormat(date);
+        const date = SLStatic.convertDate(message["value"], true);
+        const dateStr = SLStatic.parseableDateTimeFormat(date.getTime());
         sendResponse(dateStr);
         return;
       } catch (ex) {
