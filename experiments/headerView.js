@@ -332,9 +332,10 @@ SendLaterHeaderView = {
                 flex="1"
                 closemenu="none"
                 currentView="unthreaded"
-                label="${label}">
+                label="${label}"
+                class="sendlater-overlay">
         </treecol>
-        <splitter class="tree-splitter"/>
+        <splitter class="tree-splitter sendlater-overlay"/>
         `),
       threadCols.firstChild
     );

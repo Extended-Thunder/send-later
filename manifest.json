@@ -50,7 +50,8 @@
     "utils/static.js",
     "utils/defaultPrefs.json",
     "experiments/sl3u.js",
-    "experiments/headerView.js"
+    "experiments/headerView.js",
+    "experiments/statusBar.js"
   ],
 
   "options_ui": {
