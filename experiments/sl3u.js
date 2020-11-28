@@ -1362,28 +1362,31 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
         },
 
         async startObservers() {
-          const loadPrefs = async () => {
-            try {
-              // const ext = window.ExtensionParent.GlobalManager.extensionMap.get("sendlater3@kamens.us");
-              // const localStorage = [...ext.views][0].apiCan.findAPIPath("storage.local");
-              const localStorage = context.apiCan.findAPIPath("storage.local");
-              const { preferences } =
-                await localStorage.callMethodInParentProcess(
-                  "get",
-                  [{ "preferences": {} }]
-                );
-              SendLaterVars.logConsoleLevel =
-                (preferences.logConsoleLevel||"all").toLowerCase();
-              return true;
-            } catch (err) {
-              SendLaterFunctions.error("Could not fetch preferences", err);
-            }
-            return false;
-          };
+          try {
+            const loadPrefs = async () => {
+              try {
+                // const ext = window.ExtensionParent.GlobalManager.extensionMap.get("sendlater3@kamens.us");
+                // const localStorage = [...ext.views][0].apiCan.findAPIPath("storage.local");
+                const localStorage = context.apiCan.findAPIPath("storage.local");
+                const { preferences } =
+                  await localStorage.callMethodInParentProcess(
+                    "get",
+                    [{ "preferences": {} }]
+                  );
+                SendLaterVars.logConsoleLevel =
+                  (preferences.logConsoleLevel||"all").toLowerCase();
+                return true;
+              } catch (err) {
+                SendLaterFunctions.error("Could not fetch preferences", err);
+              }
+              return false;
+            };
 
-          if (!await loadPrefs()) {
-            setTimeout(loadPrefs, 1000);
-          }
+            if (!await loadPrefs()) {
+              const window = Services.wm.getMostRecentWindow(null);
+              window.setTimeout(loadPrefs, 1000);
+            }
+          } catch {}
 
           // Setup various observers.
           SendLaterBackgrounding();
