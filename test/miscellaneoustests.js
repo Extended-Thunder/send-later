@@ -134,4 +134,28 @@ exports.init = function() {
     const result = SLStatic.unparseArgs(input);
     return (result === expected) || `Expected "${expected}", got "${result}"`;
   }, [[1,2,"foo",[1,"bar"], 6], '1, 2, "foo", [1, "bar"], 6']);
+
+  SLTests.AddTest("Test convertDate (text string relative)", (input,expected) => {
+    const result = SLStatic.convertDate(input, false);
+    return SLStatic.compareDateTimes(result, "==", expected, 100) ||
+            `Expected "${expected.getTime()}", got "${result.getTime()}"`;
+  }, ['in 1 minute', new Date(Date.now()+60000)]);
+
+  SLTests.AddTest("Test convertDate (text string absolute)", (input,expected) => {
+    const result = SLStatic.convertDate(input);
+    return SLStatic.compareDateTimes(result, "==", expected, 100) ||
+            `Expected "${expected.getTime()}", got "${result.getTime()}"`;
+  }, ["8/01/2020, 05:01:00 AM", new Date("8/01/2020, 05:01:00 AM")]);
+
+  SLTests.AddTest("Test convertDate (number)", (input,expected) => {
+    const result = SLStatic.convertDate(input);
+    return SLStatic.compareDateTimes(result, "==", expected, 100) ||
+            `Expected "${expected}", got "${result}"`;
+  }, [Date.now(), new Date()]);
+
+  SLTests.AddTest("Test convertDate (Date)", (input,expected) => {
+    const result = SLStatic.convertDate(input);
+    return SLStatic.compareDateTimes(result, "==", expected, 100) ||
+            `Expected "${expected}", got "${result}"`;
+  }, [new Date(), new Date()]);
 }
