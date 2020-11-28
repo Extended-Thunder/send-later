@@ -763,9 +763,11 @@ const SendLater = {
         }
       });
 
-      await browser.SL3U.injectScript("utils/sugar-custom.js");
-      await browser.SL3U.injectScript("utils/static.js");
-      await browser.SL3U.injectScript("experiments/headerView.js");
+      await browser.SL3U.injectScripts([
+        "utils/sugar-custom.js",
+        "utils/static.js",
+        "experiments/headerView.js"
+      ]);
 
       setTimeout(() => {
         const prefString = JSON.stringify(preferences);
