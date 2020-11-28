@@ -33,6 +33,25 @@
         ]
       },
       {
+        "name":"showStatus",
+        "type":"function",
+        "async":true,
+        "parameters":[
+          {
+            "name":"message1",
+            "type":"string"
+          },
+          {
+            "name":"message2",
+            "type":"string"
+          },
+          {
+            "name":"timeout",
+            "type":"integer"
+          }
+        ]
+      },
+      {
         "name":"confirmCheck",
         "type":"function",
         "async":true,
