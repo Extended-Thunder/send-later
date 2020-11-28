@@ -605,7 +605,6 @@ const SendLater = {
       const activeSchedules = await this.getActiveSchedules(preferences.instanceUUID);
       const nActive = activeSchedules.length;
       if (nActive > 0) {
-        console.log(activeSchedules);
         const soonest = new Date(Math.min(...activeSchedules));
         const nextActiveText = SLStatic.humanDateTimeFormat(soonest) +
           ` (${(new Sugar.Date(soonest)).relative()})`;
@@ -766,8 +765,14 @@ const SendLater = {
       await browser.SL3U.injectScripts([
         "utils/sugar-custom.js",
         "utils/static.js",
-        "experiments/headerView.js"
+        "experiments/headerView.js",
+        "experiments/statusBar.js"
       ]);
+      setTimeout(() => {
+        const extName = browser.i18n.getMessage("extensionName");
+        const idleMsg = browser.i18n.getMessage("IdleMessage");
+        browser.SL3U.showStatus(`${extName} [${idleMsg}]`, "", 0);
+      }, 1000);
 
       setTimeout(() => {
         const prefString = JSON.stringify(preferences);
@@ -1279,6 +1284,14 @@ function mainLoop() {
     let interval = +storage.preferences.checkTimePref || 0;
 
     if (storage.preferences.sendDrafts && interval > 0) {
+      const extName = browser.i18n.getMessage("extensionName");
+      const statusMsg = browser.i18n.getMessage("CheckingMessage");
+      const idleMsg = browser.i18n.getMessage("IdleMessage");
+      browser.SL3U.showStatus(
+        `${extName} [${statusMsg}]`,
+        `${extName} [${idleMsg}]`,
+        3000);
+
       browser.accounts.list().then(accounts => {
         for (let acct of accounts) {
           let draftFolders = getDraftFolders(acct);
@@ -1310,6 +1323,10 @@ function mainLoop() {
           }
         }
       }).catch(SLStatic.error);
+    } else {
+      const extName = browser.i18n.getMessage("extensionName");
+      const disabledMsg = browser.i18n.getMessage("DisabledMessage");
+      browser.SL3U.showStatus(`${extName} [${disabledMsg}]`, "", 0);
     }
 
     interval = Math.max(1, interval);
