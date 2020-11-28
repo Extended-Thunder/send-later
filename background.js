@@ -897,9 +897,11 @@ browser.runtime.onMessageExternal.addListener(
     else if (message["action"] === "parseDate") {
       try {
         const date = SLStatic.convertDate(message["value"], true);
-        const dateStr = SLStatic.parseableDateTimeFormat(date.getTime());
-        sendResponse(dateStr);
-        return;
+        if (date) {
+          const dateStr = SLStatic.parseableDateTimeFormat(date.getTime());
+          sendResponse(dateStr);
+          return;
+        }
       } catch (ex) {
         SLStatic.debug("Unable to parse date/time",ex);
       }
