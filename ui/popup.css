@@ -6,10 +6,6 @@ body {
   padding: 1em 0.5em;
 }
 
-button, input[type=button] {
-  text-align:center;
-}
-
 #sendNow {
   float: left;
   margin-left: 2%;
@@ -52,12 +48,12 @@ button, input[type=button] {
   white-space:normal;
 }
 
-input[type=date], input[type=time] {
-  height: 1.75em;
-  padding-left:0.5em;
+input[type=text] {
+  padding: 3pt 2pt;
 }
 
 button, input[type=button] {
+  text-align:center;
   padding:0.2em;
 }
 
