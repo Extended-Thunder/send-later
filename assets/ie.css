@@ -1,0 +1,247 @@
+/*
+Styles for older IE versions (previous to IE9).
+*/
+
+body {
+	background-color: #f1f1f1;
+}
+body.custom-background-empty {
+	background-color: #fff;
+}
+body.custom-background-empty .site,
+body.custom-background-white .site {
+	box-shadow: none;
+	margin-bottom: 0;
+	margin-top: 0;
+	padding: 0;
+}
+.assistive-text,
+.site .screen-reader-text {
+	clip: rect(1px 1px 1px 1px); /* IE7 */
+}
+.full-width .site-content {
+	float: none;
+	width: 100%;
+}
+img.size-full,
+img.size-large,
+img.header-image,
+img.wp-post-image,
+img[class*="align"],
+img[class*="wp-image-"],
+img[class*="attachment-"] {
+	width: auto; /* Prevent stretching of full-size and large-size images with height and width attributes in IE8 */
+}
+
+.site {
+	box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
+	margin: 0 auto;
+	max-width: 1040px;
+	overflow: hidden;
+	padding: 24px 24px 0;
+}
+.site-content {
+	float: left;
+	width: 65.104166667%;
+	padding: 30px 2% 0 1%;
+}
+
+.author-avatar {
+	float: left;
+	margin-top: 10px;
+}
+.author-description {
+	float: right;
+	width: 80%;
+}
+
+body.template-front-page .site-content,
+body.single-attachment .site-content,
+body.full-width .site-content {
+	width: 100%;
+}
+.widget-area {
+	float: right;
+	width: 26.041666667%;
+	padding: 0 2% 0 0;
+}
+.site-header h1,
+.site-header h2 {
+	text-align: left;
+}
+.site-header h1 {
+	font-size: 26px;
+	line-height: 1.846153846;
+}
+.themonic-nav ul.nav-menu,
+.themonic-nav div.nav-menu > ul {
+	border-bottom: 5px solid #16A1E7;
+	border-top: 1px solid #ededed;
+	display: inline-block !important;
+	text-align: left;
+	width: 100%;
+}
+.themonic-nav ul {
+	margin: 0;
+	text-indent: 0;
+}
+.themonic-nav li a,
+.themonic-nav li {
+	display: inline-block;
+	text-decoration: none;
+}
+.ie7 .themonic-nav li a,
+.ie7 .themonic-nav li {
+	display: inline;
+}
+.themonic-nav li a {
+	border-bottom: 0;
+	color: #6a6a6a;
+	line-height: 3.692307692;
+	text-transform: uppercase;
+}
+.themonic-nav li a:hover {
+	color: #000;
+}
+.themonic-nav li {
+	margin: 0px;
+	position: relative;
+}
+.themonic-nav li ul {
+	display: none;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 100%;
+	z-index: 1;
+}
+.ie7 .themonic-nav li ul {
+	left: 0;
+}
+.themonic-nav li ul ul,
+.ie7 .themonic-nav li ul ul {
+	top: 0;
+	left: 100%;
+}
+.themonic-nav ul li:hover > ul {
+	border-left: 0;
+	display: block;
+}
+.themonic-nav li ul li a {
+	background: #efefef;
+	border-bottom: 1px solid #ededed;
+	display: block;
+	font-size: 11px;
+	line-height: 2.181818182;
+	padding: 8px 10px;
+	width: 160px;
+}
+.themonic-nav li ul li a:hover {
+	background: #e9e9e9;
+	color: #444;
+}
+.themonic-nav .current-menu-item > a,
+.themonic-nav .current-menu-ancestor > a,
+.themonic-nav .current_page_item > a,
+.themonic-nav .current_page_ancestor > a {
+	color: #636363;
+	font-weight: bold;
+}
+.menu-toggle {
+	display: none;
+}
+.entry-header .entry-title {
+	font-size: 22px;
+}
+#respond form input[type="text"] {
+	width: 46.333333333%;
+}
+#respond form textarea.blog-textarea {
+	width: 79.666666667%;
+}
+.template-front-page .site-content,
+.template-front-page article {
+	overflow: hidden;
+}
+.template-front-page.has-post-thumbnail article {
+	float: left;
+	width: 47.916666667%;
+}
+.entry-page-image {
+	float: right;
+	margin-bottom: 0;
+	width: 47.916666667%;
+}
+.template-front-page .widget-area .widget,
+.template-front-page.two-sidebars .widget-area .front-widgets {
+	float: left;
+	margin-bottom: 24px;
+	width: 51.875%;
+}
+.template-front-page .widget-area .widget:nth-child(odd) {
+	clear: right;
+}
+.template-front-page .widget-area .widget:nth-child(even),
+.template-front-page.two-sidebars .widget-area .front-widgets + .front-widgets {
+	float: right;
+	margin: 0 0 24px;
+	width: 39.0625%;
+}
+.template-front-page.two-sidebars .widget,
+.template-front-page.two-sidebars .widget:nth-child(even) {
+	float: none;
+	width: auto;
+}
+
+/* =RTL overrides for IE7 and IE8
+-------------------------------------------------------------- */
+.rtl .site-header h1,
+.rtl .site-header h2 {
+	text-align: right;
+}
+.rtl .widget-area,
+.rtl .author-description {
+	float: left;
+}
+.rtl .author-avatar,
+.rtl .site-content {
+	float: right;
+}
+.rtl .themonic-nav ul.nav-menu,
+.rtl .themonic-nav div.nav-menu > ul {
+	text-align: right;
+}
+.rtl .themonic-nav ul li ul li,
+.rtl .themonic-nav ul li ul li ul li {
+	margin-left: 40px;
+	margin-right: auto;
+}
+.rtl .themonic-nav li ul ul {
+	position: absolute;
+	bottom: 0;
+	right: 100%;
+	z-index: 1;
+}
+.ie7 .rtl .themonic-nav li ul ul {
+	position: absolute;
+	bottom: 0;
+	right: 100%;
+	z-index: 1;
+}
+.ie7 .rtl .themonic-nav ul li {
+	z-index: 99;
+}
+.ie7 .rtl .themonic-nav li ul {
+	position: absolute;
+	bottom: 100%;
+	right: 0;
+	z-index: 1;
+}
+.ie7 .rtl .themonic-nav li {
+	margin-right: auto;
+	margin-left: 40px;
+}
+.ie7 .rtl .themonic-nav li ul ul ul {
+	position: relative;
+	z-index: 1;
+}
