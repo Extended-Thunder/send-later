@@ -141,6 +141,7 @@ const SLOptions = {
   },
 
   async applyPrefsToUI() {
+    // Sets all UI element states from stored preferences
     const ufuncPromise =
       browser.storage.local.get({ufuncs:{}}).then(({ ufuncs }) => {
         Object.keys(ufuncs).forEach(funcName => {
@@ -165,6 +166,9 @@ const SLOptions = {
         } catch (ex) {
           SLStatic.debug("Unable to set time unit label",ex);
         }
+        SLStatic.stateSetter(
+          document.getElementById("enforceTimeRestrictions").checked
+        )(document.getElementById("gracePeriodOptionBox"));
       });
     return await Promise.all([ufuncPromise, prefPromise]);
   },
@@ -317,6 +321,10 @@ const SLOptions = {
         throw new Error("Unable to process change in element: "+element);
       }
 
+      SLStatic.stateSetter(
+        document.getElementById("enforceTimeRestrictions").checked
+      )(document.getElementById("gracePeriodOptionBox"));
+
       await browser.storage.local.set({ preferences });
     } catch (ex) {
       SLStatic.error(ex);
@@ -373,7 +381,9 @@ const SLOptions = {
     });
   },
 
-  checkBoxSetListeners(ids) {
+  exclusiveCheckboxSet(ids) {
+    // Creates a set of checkbox elements in which a maximum of
+    // one item can be selected at any time.
     ids.forEach(id1 => {
       SLOptions.checkboxGroups[id1] = [];
       ids.forEach(id2 => {
@@ -390,7 +400,7 @@ const SLOptions = {
       el.addEventListener("change", SLOptions.updatePrefListener);
     }
 
-    SLOptions.checkBoxSetListeners(["sendDoesSL","sendDoesDelay"]);
+    SLOptions.exclusiveCheckboxSet(["sendDoesSL","sendDoesDelay"]);
 
     document.getElementById("functionEditorTitle").addEventListener("mousedown",
       (evt) => {
