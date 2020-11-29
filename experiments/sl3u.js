@@ -1465,6 +1465,17 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                   SendLaterFunctions.error("SL3U.bindKeyCodes.messengercompose.onLoadWindow",
                                            "Error enabling toolbar button", err);
                 }
+
+                try {
+                  if (window.gEditingDraft) {
+                    SendLaterFunctions.info(`Saving draft to overwrite any original SendLater headers.`);
+                    window.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
+                  } else {
+                    SendLaterFunctions.debug(`We are not editing an existing draft message (${window.gEditingDraft})`);
+                  }
+                } catch (ex) {
+                  SendLaterFunctions.error(`Error re-saving edited draft.`,ex);
+                }
               }, 1000);
 
               const tasksKeys = window.document.getElementById("tasksKeys");
