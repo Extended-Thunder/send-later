@@ -179,12 +179,6 @@ const SendLater = {
         return;
       }
 
-      if (!window.navigator.onLine) {
-        SLStatic.debug(`The option to send scheduled messages while ` +
-          `thunderbird is offline has not yet been implemented. Skipping.`);
-        return;
-      }
-
       const msgSendAt = SLStatic.getHeader(rawContent, 'x-send-later-at');
       const msgUUID = SLStatic.getHeader(rawContent, 'x-send-later-uuid');
       const msgRecurSpec = SLStatic.getHeader(rawContent, 'x-send-later-recur');
@@ -205,6 +199,11 @@ const SendLater = {
       const { preferences, lock } = await browser.storage.local.get({
         preferences: {}, lock: {}
       });
+
+      if (!preferences.sendWhileOffline && !window.navigator.onLine) {
+        SLStatic.debug(`Send Later is configured to disable sending while offline. Skipping.`);
+        return;
+      }
 
       if (!msgUUID) {
         SLStatic.debug(`Message <${originalMsgId}> has no uuid header.`);
