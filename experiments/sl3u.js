@@ -485,24 +485,16 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return new Promise(doConfirmCheck.bind(this));
         },
 
-        async showStatus(message1, message2, timeout) {
+        async showStatus(message) {
           for (let window of Services.wm.getEnumerator("mail:3pane")) {
             const { document } = window;
             const statusMenu = document.getElementById("sendlater3-panel");
             if (statusMenu) {
-              if (!message2) {
-                message2 = statusMenu.getAttribute("label");
-              }
-              statusMenu.setAttribute("label", message1);
-              if (timeout) {
-                return window.setTimeout(() => {
-                  statusMenu.setAttribute("label", message2);
-                }, timeout);
-              } else {
-                return true;
-              }
+              statusMenu.setAttribute("label", message);
+              return true;
             } else {
               SendLaterFunctions.debug("Unable to find status-bar menu element");
+              return false;
             }
           }
         },
