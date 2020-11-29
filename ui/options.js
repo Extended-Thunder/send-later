@@ -106,7 +106,7 @@ const SLOptions = {
       }
       unitOptions.appendChild(unitSelect);
       if (str2Spans[1].textContent !== "") {
-        unitOptions.appendChild(str2Spans[0]);
+        unitOptions.appendChild(str2Spans[1]);
       }
 
       // Swap out the original label with the new unit options
