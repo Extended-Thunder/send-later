@@ -1,3 +1,23 @@
 theme: jekyll-theme-slate
 title: 'Send Later Thunderbird extension'
 description: 'Schedule email messages to be sent later'
+
+markdown:    kramdown
+encoding:    utf-8
+# See https://stackoverflow.com/questions/25596792/how-do-i-turn-off-smart-quotes-in-jekyll
+kramdown:
+    input: GFM
+    syntax_highlighter: rouge
+    smart_quotes: ["apos", "apos", "quot", "quot"]
+
+exclude:
+  - _archive
+  - _etc
+  - Makefile
+  - Gemfile
+  - Gemfile.lock
+  - '*.tex'
+  - '*.log'
+  - '*.aux'
+  - '*.out'
+  - '*.sh'
