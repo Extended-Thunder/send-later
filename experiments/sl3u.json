@@ -38,16 +38,8 @@
         "async":true,
         "parameters":[
           {
-            "name":"message1",
+            "name":"message",
             "type":"string"
-          },
-          {
-            "name":"message2",
-            "type":"string"
-          },
-          {
-            "name":"timeout",
-            "type":"integer"
           }
         ]
       },
