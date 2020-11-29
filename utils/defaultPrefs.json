@@ -42,5 +42,6 @@
   "promptDefaults": ["string", "", "prompt.defaults"],
   "markDraftsRead": ["bool", true, "mark_drafts_read"],
   "composeWindowHotkeys": ["bool", true, "compose_window_hot_keys"],
-  "instanceUUID": ["string", "", "instance.uuid"]
+  "instanceUUID": ["string", "", "instance.uuid"],
+  "throttleDelay": ["int", 0, null]
 }

@@ -302,6 +302,12 @@ const SendLater = {
         browser.storage.local.set({ lock }).then(() => {
           SLStatic.debug(`Locked message <${originalMsgId}> from re-sending.`);
         });
+        if (preferences.throttleDelay) {
+          SLStatic.debug(`Throttling send rate: ${preferences.throttleDelay/1000}s`);
+          await new Promise(resolve =>
+            setTimeout(resolve, preferences.throttleDelay)
+          );
+        }
       } else {
         SLStatic.error(`Something went wrong while sending message ${originalMsgId}`);
         return;
@@ -1318,11 +1324,12 @@ function mainLoop() {
 
   browser.storage.local.get({ preferences: {} }).then((storage) => {
     let interval = +storage.preferences.checkTimePref || 0;
+    const throttleDelay = storage.preferences.throttleDelay;
 
     if (storage.preferences.sendDrafts && interval > 0) {
       SendLater.setStatusBarIndicator.call(SendLater, true);
 
-      browser.accounts.list().then(accounts => {
+      browser.accounts.list().then(async (accounts) => {
         for (let acct of accounts) {
           let draftFolders = getDraftFolders(acct);
           if (draftFolders && draftFolders.length > 0) {
@@ -1331,32 +1338,47 @@ function mainLoop() {
                 try {
                   SLStatic.debug(`Checking for messages in folder ${draftFolder.path}`);
                   const accountId = draftFolder.accountId, path = draftFolder.path;
-                  browser.SL3U.getAllScheduledMessages(accountId, path, true, false).then(messages => {
+                  let loopMessagesPromise = browser.SL3U.getAllScheduledMessages(
+                    accountId, path, true, false
+                  ).then(async (messages) => {
                     for (let message of messages) {
                       message.folder = draftFolder;
                       let callback = SendLater.possiblySendMessage.bind(SendLater);
-                      callback(message, message.raw).then(result => {
+                      let possiblySendPromise = callback(message, message.raw).then(async (result) => {
                         if (result === "delete_original") {
                           browser.SL3U.deleteDraftByUri(accountId, path, message.uri);
                         }
                       }).catch(SLStatic.error);
+                      if (throttleDelay) {
+                        await possiblySendPromise;
+                      }
                     }
                   }).catch(SLStatic.error);
+                  if (throttleDelay) {
+                    await loopMessagesPromise;
+                  }
                 } catch (ex0) {
                   SLStatic.error(ex0);
                 }
-
               }
             }
           } else {
             SLStatic.debug(`Unable to find drafts folder for account`, acct);
           }
         }
-      }).catch(SLStatic.error);
-
-      setTimeout(() => {
+      }).then(() => {
+        // If there is a throttle delay set, then we have already 'awaited'
+        // all of the action, and we can remove the status indicator now.
+        // Otherwise, let's leave it up for a bit, since the loop may still
+        // be processing asynchronously.
+        let statusMsgDuration = throttleDelay ? 0 : 4000;
+        setTimeout(() => {
+          SendLater.setStatusBarIndicator.call(SendLater, false);
+        }, statusMsgDuration);
+      }).catch((err) => {
+        SLStatic.error(err);
         SendLater.setStatusBarIndicator.call(SendLater, false);
-      }, 4000);
+      });
     } else {
       const extName = browser.i18n.getMessage("extensionName");
       const disabledMsg = browser.i18n.getMessage("DisabledMessage");
