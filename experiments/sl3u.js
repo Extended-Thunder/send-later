@@ -491,10 +491,8 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             const statusMenu = document.getElementById("sendlater3-panel");
             if (statusMenu) {
               statusMenu.setAttribute("label", message);
-              return true;
             } else {
               SendLaterFunctions.debug("Unable to find status-bar menu element");
-              return false;
             }
           }
         },
