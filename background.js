@@ -39,7 +39,7 @@ const SendLater = {
     async findDraftsHelper(folder) {
       const that = this;
       // Recursive helper function to look through an account for draft folders
-      if (folder.type === "drafts") {
+      if (folder.type === "drafts" || folder.type === "templates") {
         return folder;
       } else {
         const drafts = [];
@@ -1165,7 +1165,7 @@ browser.messages.onNewMailReceived.addListener((folder, messagelist) => {
 
 browser.messageDisplay.onMessageDisplayed.addListener(async (tab, hdr) => {
   await browser.messageDisplayAction.disable(tab.id);
-  if (hdr.folder.type === "drafts") {
+  if (hdr.folder.type === "drafts" || folder.type === "templates") {
     let rawMessage = await browser.messages.getRaw(hdr.id).catch(err => {
         SLStatic.warn(`Unable to fetch message ${hdr.id}.`, err);
       });
@@ -1295,7 +1295,7 @@ browser.runtime.onUpdateAvailable.addListener((details) => {
 function findDraftsHelper(folder) {
   const that = this;
   // Recursive helper function to look through an account for draft folders
-  if (folder.type === "drafts") {
+  if (folder.type === "drafts" || folder.type === "templates") {
     return folder;
   } else {
     const drafts = [];
