@@ -25,7 +25,7 @@ slightly different for older versions.
 Installation
 ------------------------------
 
-## Method 1
+### Method 1
 
 1.  In Thunderbird, open the add-ons dialog with the "Tools \> Add-ons"
     menu-bar command or "Add-ons" from the three-lines menu in the upper
@@ -35,7 +35,7 @@ Installation
     search results and click the "Add to Thunderbird" button.
 4.  When it's done installing, restart Thunderbird.
 
-## Method 2 (use only if Method 1 doesn't work)
+### Method 2 (use only if Method 1 doesn't work)
 
 1.  Download the add-on as an ".xpi" file from
     [addons.thunderbird.net](https://addons.thunderbird.net/thunderbird/addon/send-later-3/),
@@ -108,7 +108,7 @@ Here is what you can do from this dialog:
 -   **Go back to editing the message.** Click the "Cancel" button to go
     back to editing the message.
 
-## Time-of-day and day-of-week restrictions
+### Time-of-day and day-of-week restrictions
 
 You can also specify time-of-day and day-of-week restrictions for when
 your message will be delivered. **IMPORTANT NOTE:** You will only see
@@ -130,7 +130,7 @@ effects based on what kind of scheduling you are doing:
     they will be applied as above and also each time the message is
     rescheduled.
 
-## Saving defaults
+### Saving defaults
 
 You can save whatever settings you enter here as the default settings
 for when you bring up this dialog in the future, or clear previously
@@ -143,7 +143,7 @@ whenever you pop up the dialog, the default behavior will be to send the
 message now or reschedule it for when it is during business hours.
 Nifty, eh?
 
-## []{#buttons}The "Put in Outbox" and "Send Now" buttons
+### []{#buttons}The "Put in Outbox" and "Send Now" buttons
 
 As noted above, the "Send Now" button in the Send Later dialog causes
 the message to be sent immediately, i.e., it bypasses the scheduled send
@@ -173,7 +173,7 @@ you actually want to send the message right away, you can simply close
 the dialog or click the Cancel button and then send the message
 normally.
 
-## What happens when you schedule a message?
+### What happens when you schedule a message?
 
 When you schedule a message for delivery, it is saved in your Drafts
 folder with the necessary scheduling information embedded in it. If you
@@ -183,7 +183,7 @@ a scheduled message delivery, edit the draft and save it normally
 without "Send Later" (or just send it immediately, if that's what you
 want to do), and the scheduling information will be removed.
 
-## [Date formats](#toc){#date-formats}
+### [Date formats](#toc){#date-formats}
 
 The part of Send Later that interprets the send times you type into the
 text box is pretty smart. You're welcome to type a full date and time,
@@ -232,7 +232,7 @@ srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAA
 sizes="(max-width: 300px) 100vw, 300px"
 srcset="assets/2019-09-23_11-43.png 300w, assets/2019-09-23_11-43.png 660w, assets/2019-09-23_11-43.png 710w"}](assets/2019-09-23_11-43.png
 
-## Check every \# minutes
+### Check every \# minutes
 
 This preference controls how often the add-on checks for messages whose
 delivery time has arrived. The default, once per minute, is adequate for
@@ -241,7 +241,7 @@ frequency) if you have a very large number of messages in your Drafts
 folder and the Send Later progress bar at the bottom of your Thunderbird
 window never goes away.
 
-## "Send" does "Send Later"
+### "Send" does "Send Later"
 
 If it is enabled, this preference causes the scheduling dialog to pop up
 not only when you run the "Send Later" command, but also, when you run
@@ -252,7 +252,7 @@ This feature is *not* enabled by default.
 
 Note that this preference and the following one are mutually exclusive.
 
-## []{#send-delay}"Send" delays messages by: \# minutes
+### []{#send-delay}"Send" delays messages by: \# minutes
 
 If enabled, this preference causes all messages you send by clicking
 Send or typing Ctrl-Enter to be automatically scheduled to be sent by
@@ -268,7 +268,7 @@ scheduled send.
 
 Note that this preference and the previous one are mutually exclusive.
 
-## Mark scheduled drafts as read
+### Mark scheduled drafts as read
 
 By default when Send Later saves a scheduled messages into your Drafts
 folder, it marks the message as "read" so that your Drafts folder
@@ -276,7 +276,7 @@ doesn't show up in the folder list as having unread messages in it. If
 you prefer for scheduled Drafts to show up as "unread" to remind you
 that they're there, uncheck this preference.
 
-## Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter
+### Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter
 
 This preference causes the pop-up Send Later dialog to be bound to the
 key sequence Alt-Shift-Enter instead of Ctrl-Shift-Enter. When this
@@ -284,34 +284,34 @@ feature is activated, Ctrl-Shift-Enter remains the original Thunderbird
 functionality, i.e., depositing the message into the Outbox for sending
 later.
 
-## Enable compose window key bindings for presets
+### Enable compose window key bindings for presets
 
 When you're composing a message, you can type Ctrl-Alt-1, Ctrl-Alt-2, or
 Ctrl-Alt-3 to activate the corresponding preset button without popping
 up the Send Later prompt window. If you don't want these key bindings to
 be active, uncheck this preference to disable them.
 
-## Show Send Later Column
+### Show Send Later Column
 
 This preference controls whether a column showing the scheduled delivery
 times of messages that have them is displayed when viewing a Drafts
 folder.
 
-## Show Send Later Header
+### Show Send Later Header
 
 This preference controls whether the "x-send-later-at" message header,
 which is where the add-on stores information about when a draft should
 be delivered, is displayed when viewing drafts that have them. *(Note
 that this setting does not work when the Mnenhy add-on is installed.)*
 
-## Show Send Later In Status Bar
+### Show Send Later In Status Bar
 
 This preference controls whether the add-on shows its current status in
 the Status Bar at the bottom of the Thunderbird window. The number of
 pending scheduled messages, or "IDLE" if there are none, is displayed.
 If this preference is unset, then the next one is ignored.
 
-## Show Background Progress In Status Bar
+### Show Background Progress In Status Bar
 
 This preference controls whether an animated progress bar is shown in
 your Thunderbird status bar when the add-on is working, i.e., when it
@@ -319,7 +319,7 @@ wakes up periodically to check for messages whose delivery time has
 arrived. If the previous preference is unset, then this preference is
 ignored.
 
-## Trigger unsent message delivery from Outbox
+### Trigger unsent message delivery from Outbox
 
 This preference controls whether the add-on actually sends messages when
 their delivery time arrives, or rather should just deposit them into
@@ -329,7 +329,7 @@ you use some other add-on, e.g., BlunderDelay, to manage your message
 delivery. See the [Caveats section below](#caveats) for more information
 about this.
 
-## Don't deliver messages more than \# minutes late
+### Don't deliver messages more than \# minutes late
 
 This preference controls what happens when Send Later that's late
 because Thunderbird wasn't running or your computer was asleep at the
@@ -340,7 +340,7 @@ enable this preference, and then instead of delivering a late message,
 Send Later will pop up a warning about it and leave it for you to edit
 to either reschedule its send time or send it immediately by hand.
 
-## Enforce time and day restrictions at delivery time
+### Enforce time and day restrictions at delivery time
 
 As described [below](#recurring), Send Later supports restrictions on
 the time of day and day of the week when recurring scheduled messages
@@ -358,13 +358,13 @@ time/weekday restrictions. In contrast, when the preference is enabled,
 the add-on waits until the time/weekday restrictions are satisfied
 before delivery.
 
-## Links
+### Links
 
 Following these settings are links you can click on to send me email,
 view the user guide (i.e., this page), or make a donation to support
 continued development of the add-on.
 
-## [Preset buttons](#toc){#presets}
+### [Preset buttons](#toc){#presets}
 
 In addition to these main settings, you can change the behavior of the
 preset buttons by editing the settings of the "Shortcut" tabs of the
@@ -413,7 +413,7 @@ srcset="assets/toolbar.png 300w, assets/toolbar.png 578w"}](assets/toolbar.png
 
 The toolbar items you see here are as follows:
 
-## Send Later button
+### Send Later button
 
 Schedules the message to be sent at the time specified in the "send
 time" text field (the second toolbar item shown above and described
@@ -422,14 +422,14 @@ toolbar is to finish scheduling a message after you've already entered a
 send time in the text box. This button does not pop up the scheduling
 dialog. See [below](#magicslr) if you want a button that does that.
 
-## "Send time" text box
+### "Send time" text box
 
 You can enter a scheduled delivery time in this box just like in the
 text box in the Send Later dialog, then click the "Send Later" toolbar
 button or just hit enter in the text box to schedule the message for
 delivery.
 
-## Shortcut buttons
+### Shortcut buttons
 
 The same shortcut buttons that appear in the Send Later dialog can also
 be added to your toolbar.
@@ -438,7 +438,7 @@ Please note that the Send Later toolbar controls are disabled when you
 are editing a [recurring message](#recurring); you need to use the
 pop-up window to reschedule such a message.
 
-## []{#magicslr}["I want a 'Send Later' button!"](#toc){#send-later-button}
+### []{#magicslr}["I want a 'Send Later' button!"](#toc){#send-later-button}
 
 If you want there to be a button on your toolbar to pop up the Send
 Later prompt window, i.e., a button that does the same thing as File \>
@@ -525,7 +525,7 @@ Some things to keep in mind:
     the add-on which is intended to replace ExQuilla, when configured as
     described [below](#owl).
 
-## [Send Later doesn't work with mail servers that discard its "X-Send-Later" headers](#toc){#bad-mail-servers}
+### [Send Later doesn't work with mail servers that discard its "X-Send-Later" headers](#toc){#bad-mail-servers}
 
 Some mail servers (most notably, but not exclusively, Microsoft Exchange
 used through its IMAP gateway) prevent Send Later from working by
@@ -546,7 +546,7 @@ only valid when you are accessing Exchange as a generic IMAP server,
 *not* when you are using ExQuilla, which as noted [just
 above](#exquilla) is incompatible with Send Later.
 
-## [Thunderbird must be running for scheduled messages to be sent](#toc){#running}
+### [Thunderbird must be running for scheduled messages to be sent](#toc){#running}
 
 You need to keep Thunderbird running (and your computer turned on!) for
 Send Later to be able to send scheduled messages (note that on Mac OS,
@@ -584,7 +584,7 @@ should not be construed as an endorsement of any of these services. I
 don't use them and don't know how well they work or how trustworthy they
 are.
 
-## [Return receipts don't work](#toc){#receipt}
+### [Return receipts don't work](#toc){#receipt}
 
 If you enable the Return Receipt option on a message you are composing,
 and then you schedule the message to be sent later, when it is sent, no
@@ -634,7 +634,7 @@ schedule a message to be sent later, do the following (thanks to
     "Disposition-Notification-To: *address*", where *address* is the
     email address to which you would like return receipts sent.
 
-## [Thunderbird hangs frequently on Windows](#toc){#windows-hangs}
+### [Thunderbird hangs frequently on Windows](#toc){#windows-hangs}
 
 A number of Send Later users on Windows have reported that when they
 have Send Later installed, Thunderbird periodically hangs for annoyingly
@@ -740,9 +740,9 @@ If you encounter this issue and come up with a solution that works and
 is different from the solutions outlined above, please [let us
 know](/cdn-cgi/l/email-protection#2152444f450c4d405544530c525451514e535561445955444f4544450c5549544f4544530f4e53461e5254434b4442551c7549544f4544534348534504131149404f4652)!
 
-## [Errors you might encounter](#toc){#errors}
+### [Errors you might encounter](#toc){#errors}
 
-### [Missing drafts folder](#toc){#missing-drafts-folder}
+#### [Missing drafts folder](#toc){#missing-drafts-folder}
 
 If Thunderbird warns you repeatedly when Send Later is installed that
 you are missing a Drafts folder, you need to go through your accounts
@@ -759,7 +759,7 @@ all of them. Here's the most reliable way to do that:
 5.  When are done, close the window and delete the draft from the Drafts
     folder of the last account into which you saved it.
 
-### ["Error sending unsent messages"](#toc){#outbox-copy-failure}
+#### ["Error sending unsent messages"](#toc){#outbox-copy-failure}
 
 If you're reading this section, it's probably because you got a pop-up
 alert that said this (or the equivalent in another language):
@@ -797,7 +797,7 @@ temporarily. You should:
     us](/cdn-cgi/l/email-protection#bbc8ded5df96d7dacfdec996c8cecbcbd4c9cffbdec3cfded5dfdedf96cfd3ced5dfdec995d4c9dc)
     and we'll try to help you figure out what's wrong and how to fix it.
 
-### ["Error copying recurring message"](#toc){#drafts-copy-failure}
+#### ["Error copying recurring message"](#toc){#drafts-copy-failure}
 
 If you're reading this section, it's probably because you got a pop-up
 alert that said this (or the equivalent in another language):
@@ -828,7 +828,7 @@ to be save. You should:
     us](/cdn-cgi/l/email-protection#97e4f2f9f3bafbf6e3f2e5bae4e2e7e7f8e5e3d7f2efe3f2f9f3f2f3bae3ffe2f9f3f2e5b9f8e5f0)
     and we'll try to help you figure out what's wrong and how to fix it.
 
-### [Corrupt drafts folder](#toc){#corrupt-drafts-error}
+#### [Corrupt drafts folder](#toc){#corrupt-drafts-error}
 
 If you're reading this section, it's probably because you got a pop-up
 alert that said something like this (or the equivalent in another
@@ -871,7 +871,7 @@ and we'll try to help.
 Advanced usage
 ---------------------------------
 
-## [Hot keys](#toc){#hotkeys}
+### [Hot keys](#toc){#hotkeys}
 
 You can hit Ctrl-1, Ctrl-2, or Ctrl-3 in the pop-up to activate the
 first, second or third preset key, respectively. You can hit the "Esc"
@@ -886,7 +886,7 @@ In the composition window itself (i.e., not in the Send Later pop-up),
 you can hit Ctrl-Alt-1, Ctrl-Alt-2, or Ctrl-Alt-3 to activate the
 corresponding preset key.
 
-## [Recurring messages](#toc){#recurring}
+### [Recurring messages](#toc){#recurring}
 
 You can schedule a message to be sent repeatedly by selecting
 "minutely", "daily", "weekly", "monthly" or "yearly" in the Send Later
@@ -956,7 +956,7 @@ Here are some things to keep in mind about recurring messages:
     of that message instead of seven, and then reschedule it for
     delivery again tomorrow.
 
-### Time/date restrictions on recurring messages
+#### Time/date restrictions on recurring messages
 
 When you schedule a recurring message, you can optionally enable
 restrictions on the time of day and day of week when the message is
@@ -969,7 +969,7 @@ the current time falls outside the time or weekday restrictions. If you
 would like these restrictions to be enforced at delivery time as well,
 [there's a preference for that](#prefs).
 
-## [Mail Merge add-on](#toc){#mailmerge}
+### [Mail Merge add-on](#toc){#mailmerge}
 
 The [Mail Merge
 add-on](https://addons.thunderbird.net/thunderbird/addon/mail-merge/)
@@ -992,7 +992,7 @@ Mail Merge Dialog, you usually want to use something like this:
 {{Date}} {{Time}} (There are probably other use cases with different
 variables as well.)
 
-## [Owl for Exchange add-on](#toc){#owl}
+### [Owl for Exchange add-on](#toc){#owl}
 
 The [Owl for
 Exchange](https://addons.thunderbird.net/thunderbird/addon/owl-for-exchange/)
@@ -1088,7 +1088,7 @@ messages:
     want to use.
 5.  Click "OK".
 
-## [Dynamic functions for complex scheduling rules](#toc){#dynamic}
+### [Dynamic functions for complex scheduling rules](#toc){#dynamic}
 
 The scheduling functionality built into Send Later is quite flexible,
 but sometimes you may want to implement more complex scheduling rules.
@@ -1186,7 +1186,7 @@ contributed by other Send Later users. Also, consider sharing the
 functions you create! That page has instructions there for adding to the
 library.
 
-### [Dynamic recurrence](#toc){#dynamic-recurrence}
+#### [Dynamic recurrence](#toc){#dynamic-recurrence}
 
 In addition to supporting arbitrary logic for scheduling a message once,
 dynamic functions can also support arbitrary logic for sending messages
@@ -1255,7 +1255,7 @@ recurring message:
     it should set "next" to -1 and not set "nextspec" to anything, and
     Send Later will stop the message immediately.
 
-## [Suppressing scheduled message delivery](#toc){#senddrafts}
+### [Suppressing scheduled message delivery](#toc){#senddrafts}
 
 If you set the preference "extensions.sendlater3.senddrafts" to false in
 the advanced config editor (described [above](#config-editor)), then
@@ -1272,7 +1272,7 @@ at the same time, thus causing unpredictable behavior and/or duplicate
 messages. He can avoid this issue by setting the "senddrafts" preference
 to false.
 
-## [Server-side Send Later](#toc){#server-side}
+### [Server-side Send Later](#toc){#server-side}
 
 *(This is very advanced usage. It can be complicated to set up, and
 things could go embarrassingly wrong if you mess it up. Proceed at your
@@ -1329,7 +1329,7 @@ you don't receive the recurring message at the scheduled time, you know
 that Thunderbird on the server has stopped running and you can log in
 and restart it.
 
-### []{#matching-accounts}Accounts and identities on different computers
+#### []{#matching-accounts}Accounts and identities on different computers
 
 When you compose a draft message, Thunderbird inserts special, hidden
 settings into the message indicating the account and identity used to
@@ -1379,7 +1379,7 @@ There are several ways to avoid this problem:
     for the faint of heart, and make sure you save a backup copy you can
     restore if you screw things up!*
 
-## [Making "Send" do "Send Later" only some of the time](#toc){#dynamic_sendbutton}
+### [Making "Send" do "Send Later" only some of the time](#toc){#dynamic_sendbutton}
 
 You may be in a situation where some of the time, you want to make sure
 to schedule every message you send, while other times, you want to send
@@ -1446,7 +1446,7 @@ if (! SendButtonPrefTimer) {
 // one window.
 ```
 
-## [Checking for scheduled messages more than once per minute](#toc){#milliseconds}
+### [Checking for scheduled messages more than once per minute](#toc){#milliseconds}
 
 If you need to control when messages are sent with smaller granularity
 than one minute, you can tweak the Send Later configuration options to
@@ -1481,9 +1481,9 @@ Important notes:
 Troubleshooting
 -----------------------------------------
 
-## [Messages don't send or send multiple times](#toc){#outbox}
+### [Messages don't send or send multiple times](#toc){#outbox}
 
-### Are you using the add-on correctly?
+#### Are you using the add-on correctly?
 
 If scheduled messages get moved into your Outbox (underneath Local
 Folders) at the scheduled send time but don't get delivered from there,
@@ -1526,7 +1526,7 @@ is discarding the Send Later headers, as described
 [above](#bad-mail-servers). If not, then proceed with the following
 troubleshooting steps.
 
-### Messages not being sent: isolating the problem
+#### Messages not being sent: isolating the problem
 
 If Send Later fails to deliver messages at the scheduled time, or if
 scheduled messages are delivered repeatedly, the two most likely causes
@@ -1540,7 +1540,7 @@ If your messages aren't being delivered properly, then please perform
 the following two diagnostic tests to isolate exactly where the problem
 lies:
 
-#### Test \#1
+##### Test \#1
 
 1.  Disable the Send Later add-on.
 2.  Restart Thunderbird.
@@ -1563,7 +1563,7 @@ Rather, one of the following is wrong:
     profile](https://support.mozilla.org/en-US/kb/using-multiple-profiles) and
     get rid of the old one.
 
-#### Test \#2
+##### Test \#2
 
 1.  Start with a successful Test \#1, above.
 2.  Check the "Outbox" folder underneath "Local Folders" and confirm
@@ -1578,7 +1578,7 @@ if the message does not send successfully when you execute this command,
 ,then *Send Later is not the problem.* Rather, one of the problems and
 solutions listed above in "Test \#1" applies.
 
-#### Test \#3
+##### Test \#3
 
 1.  Start with successful Tests \#1 and \#2 above.
 2.  Re-enable the Send Later add-on and restart Thunderbird.
@@ -1597,7 +1597,7 @@ error message you're
 getting](/cdn-cgi/l/email-protection#cbb8aea5afe6a7aabfaeb9e6b8bebbbba4b9bf8baeb3bfaea5afaeafe6bfa3bea5afaeb9e5a4b9ac)
 and we'll try to help.
 
-#### Test \#4
+##### Test \#4
 
 1.  Start with a successful Test \#3, above.
 2.  Enable the "Send Later" column in the message list in your Drafts
@@ -1609,7 +1609,7 @@ and we'll try to help.
     save Drafts locally rather than on the mail server --- to be able to
     use Send Later.
 
-#### Test \#5
+##### Test \#5
 
 1.  Start with a successful Test \#4, above.
 2.  Wait for the scheduled send time of the message and confirm that it
@@ -1618,7 +1618,7 @@ and we'll try to help.
     [contact us for further
     assistance](/cdn-cgi/l/email-protection#36455358521b5a574253441b4543464659444276534e4253585253521b425e435852534418594451).
 
-### []{#corrupt-outbox}Corrupt Outbox folder
+#### []{#corrupt-outbox}Corrupt Outbox folder
 
 If your messages aren't being delivered or are being delivered multiple
 times, then the first thing you should try is clearing your Outbox.
@@ -1643,7 +1643,7 @@ Here's how to do that:
 7.  Try scheduling a message with Send Later again and see if the
     problem is gone.
 
-### []{#drafts-cleanup}Corrupt Drafts folders
+#### []{#drafts-cleanup}Corrupt Drafts folders
 
 A good sign that one of your Drafts folders is corrupted is if Send
 Later isn't noticing that there are scheduled messages, i.e., the
@@ -1664,7 +1664,7 @@ if the message says "PEND". You need to repair them all:
 and sorting, so if you've customized the columns and/or sorting, you'll
 have to put the customizations back after repairing the folders.
 
-### []{#wintemp}Full temporary directory on Windows
+#### []{#wintemp}Full temporary directory on Windows
 
 If your Windows temporary directory ends up with too many files in it,
 which is partially Thunderbird's fault since it has a habit of creating
@@ -1678,7 +1678,7 @@ selected. If you this you may be running into this problem, you should
 run the Windows Disk Cleanup utility and tell it to clean up temporary
 files.
 
-### []{#gmail}Send errors with Gmail when Thunderbird is configured to save copies
+#### []{#gmail}Send errors with Gmail when Thunderbird is configured to save copies
 
 Many users of Send Later report errors when the add-on attempts to send
 scheduled messages through a Gmail account. These errors happen more
@@ -1700,7 +1700,7 @@ experiencing errors with Send Later through a Gmail account, check your
 account settings to see if you have "Place a copy in" checked in the
 "Copies & Folders" settings, and if so, turn it off.
 
-## [Debug logging](#toc){#debug}
+### [Debug logging](#toc){#debug}
 
 If you ask us for help with a problem you are having with the add-on
 that we can't reproduce ourselves, then we may ask you to enable debug
@@ -1727,7 +1727,7 @@ to do that.
     select "Select All".
 10. Copy and paste the selected messages into an email message to us.
 
-### Alternative instructions
+#### Alternative instructions
 
 If the instructions above don't work, we might ask you to do the
 following instead.
@@ -1780,7 +1780,7 @@ following instead.
 Helping to improve the add-on
 -----------------------------------------------
 
-## [Translations](#toc){#translate}
+### [Translations](#toc){#translate}
 
 **NOTE:** This information about translating is currently out-of-date
 because we are not yet set up to manage translations for the new version
@@ -1801,7 +1801,7 @@ on into your language, feel free to either [email us about
 it](/cdn-cgi/l/email-protection#dba8beb5bff6b7baafbea9f6a8aeababb4a9af9bbea3afbeb5bfbebff6afb3aeb5bfbea9f5b4a9bc)
 or just jump right in on Crowdin. Thanks!
 
-## [Hacking](#toc){#hacking}
+### [Hacking](#toc){#hacking}
 
 The complete source code for the add-on is [available on
 Github](https://github.com/jikamens/send-later).
@@ -1809,14 +1809,14 @@ Github](https://github.com/jikamens/send-later).
 Getting help
 ---------------------------
 
-## [The "Send Later users" mailing list](#toc){#mailing-list}
+### [The "Send Later users" mailing list](#toc){#mailing-list}
 
 The [Send Later users mailing
 list](https://groups.google.com/group/send-later-users) is a great place
 to ask questions about the add-on, chat with other users about how to
 use it, or discuss future enhancements with the developer.
 
-## [Contacting the developer](#toc){#contact-me}
+### [Contacting the developer](#toc){#contact-me}
 
 Please do not post bug reports or requests for support as comments below
 (feature requests are fine, though!). If you need help using the add-on,
@@ -1825,7 +1825,7 @@ us](/cdn-cgi/l/email-protection#6211070c064f0e031607104f111712120d101622071a1607
 instead and we will respond as soon as we can (which is usually very
 quickly). Thanks!
 
-## [Remote support](#toc){#remote-support}
+### [Remote support](#toc){#remote-support}
 
 In rare cases, when you are having a problem with Send Later that we
 cannot reproduce, we may need to connect to your computer remotely to
@@ -1839,7 +1839,7 @@ your TeamViewer ID and password (please **do not** email them to us
 unless we've asked you for them!). Thanks to TeamViewer for providing
 its software for free for non-commercial use!
 
-## [Other resources](#toc){#resources}
+### [Other resources](#toc){#resources}
 
 The kind folks at [TCH-Support](http://www.tch-support.com/) have
 published a [video
@@ -1965,7 +1965,7 @@ and Wang.H.K from BabelZilla (Simplified Chinese). Please [see
 below](#translate) if you would like to help add another translation.
 It's not hard!
 
-## [Supporters](#toc){#supporters}
+### [Supporters](#toc){#supporters}
 
 I am grateful to the hundreds of people who have [made monetary
 contributions](#donate) to support the ongoing development of Send
@@ -1973,7 +1973,7 @@ Later. Too many have contributed to be able to list you all here, but
 special recognition is due to those who have contributed significantly
 more than the suggested donation.
 
-### Gold supporters (\>\$50)
+#### Gold supporters (\>\$50)
 
 -   ![](assets/LEADSExplorer1.jpg "LEADSExplorer"){.alignnone
     .size-full .wp-image-2734 .jetpack-lazy-image width="212"
@@ -2015,7 +2015,7 @@ more than the suggested donation.
 -   [Ripcord Engineering](https://www.ripcordengineering.com/)
 -   Anonymous
 
-### Silver supporters (\>\$25)
+#### Silver supporters (\>\$25)
 
 -   ![](https://i1.wp.com/multicraft.org/images/banner_half.png?resize=234%2C60&ssl=1 "Multicraft"){.alignnone
     .jetpack-lazy-image width="234" height="60"
@@ -2058,7 +2058,7 @@ more than the suggested donation.
 -   Tilman Berger
 -   Anonymous (multiple)
 
-### Bronze supporters (\>\$10)
+#### Bronze supporters (\>\$10)
 
 -   [MagicLamp Networks ― Dallas Web Design &
     eCommerce](http://magiclamp.net/)
