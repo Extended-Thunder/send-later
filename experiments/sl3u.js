@@ -1083,6 +1083,10 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
         async deleteDraftByUri(accountId, path, draftUri) {
           const folderUri = SendLaterFunctions.folderPathToURI(accountId, path);
           const folder = MailServices.folderLookup.getFolderForURL(folderUri);
+          if (draftUri.indexOf("#") === -1) {
+            SendLaterFunctions.error("SL3U.deleteDraftByUri Message URI not formatted like a Draft message.");
+            return;
+          }
           const msgKey = draftUri.substr(draftUri.indexOf("#") + 1);
           if (!folder) {
             SendLaterFunctions.error("SL3U.deleteDraftByUri Cannot find folder");
