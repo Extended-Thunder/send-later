@@ -1,6 +1,8 @@
-theme: jekyll-theme-slate
+theme: jekyll-theme-minimal
 title: 'Send Later Thunderbird extension'
 description: 'Schedule email messages to be sent later'
+logo: 'https://github.com/Extended-Thunder/send-later/raw/webpage/assets/logo-big1.png'
+show_downloads: 'true'
 
 markdown:    kramdown
 encoding:    utf-8
