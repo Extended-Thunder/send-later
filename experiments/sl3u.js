@@ -1048,9 +1048,9 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             let chNames = originals.concat(wantedHeaders);
             let uniqueHdrs = chNames.filter((v, i, s) => (s.indexOf(v) === i));
             const customHdrString = uniqueHdrs.join(" ");
-            SendLaterFunctions.debug(`SL3U.setCustomDBHeaders`,
-              `Setting mailnews.customDBHeaders: ${customHdrString}` +
-                         `\nPreviously: ${originals.join(" ")}`);
+            SendLaterFunctions.info(`SL3U.setCustomDBHeaders`,
+              `Setting mailnews.customDBHeaders Updated: ${customHdrString}`,
+              `Previously: ${originals.join(" ")}`);
             Services.prefs.setCharPref("mailnews.customDBHeaders",
                                         customHdrString);
             // TODO: Forcing rebuild of Drafts folders doesn't
@@ -1084,7 +1084,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           const folderUri = SendLaterFunctions.folderPathToURI(accountId, path);
           const folder = MailServices.folderLookup.getFolderForURL(folderUri);
           if (draftUri.indexOf("#") === -1) {
-            SendLaterFunctions.error("SL3U.deleteDraftByUri Message URI not formatted like a Draft message.");
+            SendLaterFunctions.error("SL3U.deleteDraftByUri Unexpected message URI format");
             return;
           }
           const msgKey = draftUri.substr(draftUri.indexOf("#") + 1);
@@ -1093,7 +1093,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             return;
           }
           try {
-            SendLaterFunctions.debug(`Deleting draft (${msgKey})`);
+            SendLaterFunctions.debug(`Deleting message (${draftUri})`);
             if (folder.getFlag(Ci.nsMsgFolderFlags.Drafts)) {
               let msgs = Cc["@mozilla.org/array;1"].createInstance(
                 Ci.nsIMutableArray
@@ -1124,15 +1124,9 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
           let allMessages = [];
 
-          function hasHeader(content, header) {
-            const regex = new RegExp(`^${header}:([^\r\n]*)\r\n(\\s[^\r\n]*\r\n)*`,'im');
-            const hdrContent = content.split(/\r\n\r\n/m)[0]+'\r\n';
-            return regex.test(hdrContent);
-          }
-
           let N_MESSAGES = 0;
           if (folder) {
-            let thisfolder = folder.QueryInterface(Ci.nsIMsgFolder)
+            let thisfolder = folder.QueryInterface(Ci.nsIMsgFolder);
             let messageenumerator;
             try {
               messageenumerator = thisfolder.messages;
@@ -1270,7 +1264,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                   );
                   allMessages.push(hdr);
                 } else {
-                  SendLaterFunctions.debug(`No data available`);
+                  SendLaterFunctions.debug(`No data available for message ${messageUri}`);
                 }
               } else {
                 SendLaterFunctions.warn("Was promised more messages, but did not find them.");

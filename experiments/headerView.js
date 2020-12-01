@@ -62,40 +62,131 @@ SendLaterHeaderView = {
   getStorageLocal(key) {
     return this.storageLocalMap.get(key);
   },
+  setStorageLocal(key, val) {
+    this.storageLocalMap.set(key, val);
+  },
+  async getRawMessage(hdr) {
+    let folder = hdr.folder.QueryInterface(Ci.nsIMsgFolder);
+    let messageUri = folder.generateMessageURI(hdr.messageKey);
+    const messenger = Cc[
+      "@mozilla.org/messenger;1"
+    ].createInstance(Ci.nsIMessenger);
+
+    const streamListener = Cc[
+      "@mozilla.org/network/sync-stream-listener;1"
+    ].createInstance(Ci.nsISyncStreamListener);
+
+    const service = messenger.messageServiceFromURI(messageUri);
+
+    await new Promise((resolve, reject) => {
+      service.streamMessage(
+        messageUri,
+        streamListener,
+        null,
+        {
+          OnStartRunningUrl() {},
+          OnStopRunningUrl(url, exitCode) {
+            SLStatic.debug(
+              `SendLaterHeaderView.getRawMessage.streamListener.OnStopRunning ` +
+              `received ${streamListener.inputStream.available()} bytes ` +
+              `(exitCode: ${exitCode})`
+            );
+            if (exitCode === 0) {
+              resolve();
+            } else {
+              Cu.reportError(exitCode);
+              reject();
+            }
+          },
+        },
+        false,
+        ""
+      );
+    }).catch((ex) => {
+      SLStatic.error(`Error reading message ${messageUri}`,ex);
+    });
+
+    const available = streamListener.inputStream.available();
+    if (available > 0) {
+      const rawMessage = NetUtil.readInputStreamToString(
+        streamListener.inputStream,
+        available
+      );
+      return rawMessage;
+    } else {
+      SLStatic.debug(`No data available for message ${messageUri}`);
+      return null;
+    }
+  },
+  checkValidSchedule(hdr) {
+    const instanceUUID = this.getStorageLocal("instanceUUID");
+    const msgId = hdr.getStringProperty('message-id');
+    const CTPropertyName = `content-type-${msgId}`;
+    const msgContentType = this.getStorageLocal(CTPropertyName);
+    const sendAtStr = hdr.getStringProperty("x-send-later-at");
+    const msgUuid = hdr.getStringProperty("x-send-later-uuid");
+    if (!sendAtStr) {
+      return { valid: false, detail: "Not scheduled" };
+    } else if (!msgContentType) {
+      return { valid: false, detail: "Missing ContentType" };
+    } else if (/encrypted/i.test(msgContentType)) {
+      return { valid: false, detail: "Encrypted", msg: "Error: encrypted" };
+    } else if (msgUuid !== instanceUUID) {
+      return { valid: false, detail: "Wrong UUID", msg: `${msgUuid} != ${instanceUUID}` };
+    }
+    return { valid: true };
+  },
   getSchedule(hdr) {
     const sendAtStr = hdr.getStringProperty("x-send-later-at");
     const recurStr = hdr.getStringProperty("x-send-later-recur");
     const argsStr = hdr.getStringProperty("x-send-later-args");
     const cancelStr = hdr.getStringProperty("x-send-later-cancel-on-reply");
-    if (sendAtStr !== "") {
-      const schedule = { sendAt: new Date(sendAtStr) };
-      schedule.recur = SLStatic.parseRecurSpec(recurStr);
-      schedule.recur.cancelOnReply = cancelStr === "yes" || cancelStr === "true";
-      schedule.recur.args = argsStr;
-      return schedule;
-    } else {
-      return null;
-    }
+
+    const schedule = { sendAt: new Date(sendAtStr) };
+    schedule.recur = SLStatic.parseRecurSpec(recurStr);
+    schedule.recur.cancelOnReply = cancelStr === "yes" || cancelStr === "true";
+    schedule.recur.args = argsStr;
+
+    return schedule;
   },
 
   ColumnHandler: {
     getCellText(row, col) {
       const hdr = gDBView.getMsgHdrAt(row);
-      const schedule = SendLaterHeaderView.getSchedule(hdr);
-      if (schedule !== null) {
+      const status = SendLaterHeaderView.checkValidSchedule(hdr);
+
+      if (status.detail === "Missing ContentType") {
+        // The content-type header is not included in the MsgHdr object, so
+        // we need to actually read the whole message, and find it manually.
+        SendLaterHeaderView.getRawMessage(hdr).then((rawMessage) => {
+          const msgId = hdr.getStringProperty('message-id');
+          const CTPropertyName = `content-type-${msgId}`;
+          const msgContentType = SLStatic.getHeader(rawMessage, "content-type");
+          SendLaterHeaderView.setStorageLocal(CTPropertyName, msgContentType);
+          gDBView.NoteChange(row, 1, 2);
+        });
+      }
+
+      if (status.valid === true || status.detail === "Missing ContentType") {
+        const schedule = SendLaterHeaderView.getSchedule(hdr);
         const cellTxt = SLStatic.formatScheduleForUIColumn(schedule);
         return cellTxt;
       } else {
-        return "";
+        return status.msg||"";
       }
     },
     getSortLongForRow(hdr) {
-      const sendAtStr = hdr.getStringProperty("x-send-later-at");
-      if (sendAtStr) {
+      const status = SendLaterHeaderView.checkValidSchedule(hdr);
+      if (status.valid === true) {
+        const sendAtStr = hdr.getStringProperty("x-send-later-at");
         const sendAt = new Date(sendAtStr);
         // Numbers will be truncated. Be sure this fits in 32 bits
         return (sendAt.getTime()/1000)|0;
-      } else {
+      } else if (status.detail === "Missing ContentType") {
+        return (Math.pow(2,31)-3)|0;
+      } else if (status.detail === "Encrypted") {
+        return (Math.pow(2,31)-2)|0;
+      } else { // Not scheduled or wrong UUID
         return (Math.pow(2,31)-1)|0;
       }
     },
