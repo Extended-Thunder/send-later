@@ -1345,7 +1345,9 @@ function mainLoop() {
                       let callback = SendLater.possiblySendMessage.bind(SendLater);
                       let possiblySendPromise = callback(message, message.raw).then(async (result) => {
                         if (result === "delete_original") {
-                          browser.SL3U.deleteDraftByUri(accountId, path, message.uri);
+                          browser.SL3U.deleteDraftByUri(accountId, path, message.uri).catch((ex) => {
+                            SLStatic.error(`mainLoop.deleteDraftByUri error:`, ex);
+                          });
                         }
                       }).catch(SLStatic.error);
                       if (throttleDelay) {
