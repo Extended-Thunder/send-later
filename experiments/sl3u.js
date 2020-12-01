@@ -1048,9 +1048,9 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             let chNames = originals.concat(wantedHeaders);
             let uniqueHdrs = chNames.filter((v, i, s) => (s.indexOf(v) === i));
             const customHdrString = uniqueHdrs.join(" ");
-            SendLaterFunctions.debug(`SL3U.setCustomDBHeaders`,
-              `Setting mailnews.customDBHeaders: ${customHdrString}` +
-                         `\nPreviously: ${originals.join(" ")}`);
+            SendLaterFunctions.info(`SL3U.setCustomDBHeaders`,
+              `Setting mailnews.customDBHeaders Updated: ${customHdrString}`,
+              `Previously: ${originals.join(" ")}`);
             Services.prefs.setCharPref("mailnews.customDBHeaders",
                                         customHdrString);
             // TODO: Forcing rebuild of Drafts folders doesn't
@@ -1126,7 +1126,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
           let N_MESSAGES = 0;
           if (folder) {
-            let thisfolder = folder.QueryInterface(Ci.nsIMsgFolder)
+            let thisfolder = folder.QueryInterface(Ci.nsIMsgFolder);
             let messageenumerator;
             try {
               messageenumerator = thisfolder.messages;
