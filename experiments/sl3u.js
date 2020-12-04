@@ -1133,41 +1133,45 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             } catch (e) {
               let lmf;
               try {
+                SendLaterFunctions.debug(`Unable to get message enumerator. ` +
+                                         `Trying as LocalMailFolder (${folder.URI})`);
                 lmf = thisfolder.QueryInterface(Ci.nsIMsgLocalMailFolder);
               } catch (ex) {
-                if (// NS_MSG_ERROR_FOLDER_SUMMARY_OUT_OF_DATE
-                    (e.result == 0x80550005 ||
-                    // NS_MSG_ERROR_FOLDER_SUMMARY_MISSING
-                     e.result == 0x80550006) && lmf) {
-                  try {
-                    SendLaterFunctions.warn("Rebuilding summary: " + folder.URI);
-                    lmf.getDatabaseWithReparse(null, null);
-                  } catch (ex) {
-                    SendLaterFunctions.error("Unable to rebuild summary.")
-                  }
+                SendLaterFunctions.warn("Unable to get folder as nsIMsgLocalMailFolder");
+              }
+
+              if (// NS_MSG_ERROR_FOLDER_SUMMARY_OUT_OF_DATE
+                  (e.result == 0x80550005 ||
+                  // NS_MSG_ERROR_FOLDER_SUMMARY_MISSING
+                    e.result == 0x80550006) && lmf) {
+                try {
+                  SendLaterFunctions.warn("Rebuilding summary: " + folder.URI);
+                  lmf.getDatabaseWithReparse(null, null);
+                } catch (ex) {
+                  SendLaterFunctions.error("Unable to rebuild summary.")
+                }
+              } else {
+                // Owl for Exchange, maybe others as well
+                try {
+                  let o = {};
+                  let f = thisfolder.getDBFolderInfoAndDB(o);
+                  messageenumerator = f.EnumerateMessages();
+                } catch (ex) {
+                  SendLaterFunctions.warn("Unable to get EnumerateMessages on DB as fallback");
+                }
+                if (messageenumerator) {
+                  SendLaterFunctions.warn(".messages failed on " + folderUri +
+                                          ", using .EnumerateMessages on DB instead");
                 } else {
-                  // Owl for Exchange, maybe others as well
-                  try {
-                    let o = {};
-                    let f = thisfolder.getDBFolderInfoAndDB(o);
-                    messageenumerator = f.EnumerateMessages();
-                  } catch (ex) {
-                    SendLaterFunctions.warn("Unable to get EnumerateMessages on DB as fallback");
-                  }
-                  if (messageenumerator) {
-                    SendLaterFunctions.warn(".messages failed on " + folderUri +
-                                            ", using .EnumerateMessages on DB instead");
-                  } else {
-                    const window = Services.wm.getMostRecentWindow(null);
-                    Services.prompt.alert(window, null, "Encountered a corrupt folder "+folderUri);
-                    throw e;
-                  }
+                  const window = Services.wm.getMostRecentWindow(null);
+                  Services.prompt.alert(window, null, "Encountered a corrupt folder "+folderUri);
+                  throw e;
                 }
               }
             }
 
             if (!messageenumerator) {
-              SendLaterFunctions.error("Unable to get message enumerator for folder.");
+              SendLaterFunctions.error(`Unable to get message enumerator for folder ${folderURI}`);
               return null;
             }
 
