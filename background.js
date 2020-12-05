@@ -1387,12 +1387,13 @@ function mainLoop() {
       browser.SL3U.showStatus(`${extName} [${disabledMsg}]`);
     }
 
-    interval = Math.max(1, interval);
+    SLStatic.previousLoop = new Date();
+
+    interval = interval || 1;
     SLStatic.debug(
       `Next main loop iteration in ${interval} ` +
-      `minute${interval > 1 ? "s" : ""}.`
+      `minute${interval === 1 ? "" : "s"}.`
     );
-    SLStatic.previousLoop = new Date();
     SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000*interval);
   }).catch(ex => {
     SLStatic.error(ex);
