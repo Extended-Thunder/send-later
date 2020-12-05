@@ -1583,14 +1583,27 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                 }
 
                 try {
-                  if (window.gEditingDraft) {
-                    SendLaterFunctions.info(`Saving draft to overwrite any original SendLater headers.`);
-                    window.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
-                  } else {
-                    SendLaterFunctions.debug(`We are not editing an existing draft message (${window.gEditingDraft})`);
+                  // Check for x-send-later headers
+                  if (window.gMsgCompose !== null) {
+                    const msgCompFields = window.gMsgCompose.compFields;
+                    if (msgCompFields && msgCompFields.draftId!="") {
+                      const messageURI = msgCompFields.draftId.replace(/\?.*/, "");
+                      SendLaterFunctions.debug(`Checking ${messageURI} for x-send-later-* headers`);
+                      const messenger = Cc[
+                        "@mozilla.org/messenger;1"
+                      ].getService(Ci.nsIMessenger);
+                      const messageHDR = messenger.msgHdrFromURI(messageURI);
+                      const sendLaterAtHdr = messageHDR.getStringProperty("x-send-later-at");
+                      if (sendLaterAtHdr) {
+                        SendLaterFunctions.info(
+                          `Message ${messageURI} has x-send-later headers. Overwriting saved draft.`
+                        );
+                        window.goDoCommand("cmd_saveAsDraft");
+                      }
+                    }
                   }
                 } catch (ex) {
-                  SendLaterFunctions.error(`Error re-saving edited draft.`,ex);
+                  SendLaterFunctions.error(`Error checking headers in compose window`,ex);
                 }
               }, 1000);
 
