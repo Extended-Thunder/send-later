@@ -726,10 +726,3 @@ function waitAndInit() {
 }
 
 window.addEventListener("load", waitAndInit, false);
-
-window.addEventListener("unload", (evt) => {
-  browser.runtime.sendMessage({
-    tabId: SLPopup.tabId,
-    action: "closingComposePopup"
-  }).catch(SLStatic.error);
-});
