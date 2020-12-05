@@ -1322,6 +1322,8 @@ function mainLoop() {
 
   browser.storage.local.get({ preferences: {} }).then((storage) => {
     let interval = +storage.preferences.checkTimePref || 0;
+    if (storage.preferences.checkTimePref_isMilliseconds)
+      interval /= 60000;
     const throttleDelay = storage.preferences.throttleDelay;
 
     if (storage.preferences.sendDrafts && interval > 0) {
