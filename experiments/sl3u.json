@@ -142,6 +142,24 @@
         ]
       },
       {
+        "name": "isDraftsFolder",
+        "type": "function",
+        "async": true,
+        "description": "Check whether folder is a Drafts folder",
+        "parameters": [
+          {
+            "name": "accountId",
+            "type": "string",
+            "description": "New message contents"
+          },
+          {
+            "name": "path",
+            "type": "string",
+            "description": "New message contents"
+          }
+        ]
+      },
+      {
         "name": "saveMessage",
         "type": "function",
         "async": true,

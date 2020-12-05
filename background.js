@@ -40,36 +40,13 @@ const SendLater = {
       return await browser.SL3U.editingMessage(msgId);
     },
 
-    async findDraftsHelper(folder) {
-      const that = this;
-      // Recursive helper function to look through an account for draft folders
-      if (folder.type === "drafts" || folder.type === "templates") {
-        return folder;
-      } else {
-        const drafts = [];
-        for (let subFolder of folder.subFolders) {
-          drafts.push(that.findDraftsHelper(subFolder));
-        }
-        return await Promise.all(drafts);
-      }
-    },
-
-    async getDraftFolders(acct) {
-      const that = this;
-      const draftSubFolders = [];
-      acct.folders.forEach(folder => {
-        draftSubFolders.push(that.findDraftsHelper(folder));
-      });
-      return await Promise.all(draftSubFolders).then(SLStatic.flatten);
-    },
-
     async forAllDraftFolders(callback) {
       const that = this;
       try {
         let results = [];
         let accounts = await browser.accounts.list();
         for (let acct of accounts) {
-          let draftFolders = await that.getDraftFolders(acct);
+          let draftFolders = await getDraftFolders(acct);
           for (let folder of draftFolders) {
             results.push(callback(folder));
           }
@@ -86,7 +63,7 @@ const SendLater = {
         let results = [];
         let accounts = await browser.accounts.list();
         for (let acct of accounts) {
-          let draftFolders = await that.getDraftFolders(acct);
+          let draftFolders = await getDraftFolders(acct);
           for (let folder of draftFolders) {
             let page = await browser.messages.list(folder);
             do {
@@ -257,12 +234,10 @@ const SendLater = {
       const args = msgRecurArgs ? SLStatic.parseArgs(msgRecurArgs) : null;
 
       if (preferences.enforceTimeRestrictions) {
-        const now = Date.now();
-
         // Respect "send between" preference
         if (recur.between) {
-          if (SLStatic.compareTimes(now, '<', recur.between.start) ||
-              SLStatic.compareTimes(now, '>', recur.between.end)) {
+          if (SLStatic.compareTimes(Date.now(), '<=', recur.between.start) ||
+              SLStatic.compareTimes(Date.now(), '>=', recur.between.end)) {
             SLStatic.debug(
               `Message ${msgHdr.id} ${originalMsgId} outside of sendable time range.`,
               recur.between);
@@ -282,7 +257,7 @@ const SendLater = {
 
       // Respect late message blocker
       if (preferences.blockLateMessages) {
-        const lateness = (now - nextSend.getTime()) / 60000;
+        const lateness = (Date.now() - nextSend.getTime()) / 60000;
         if (lateness > preferences.lateGracePeriod) {
           SLStatic.warn(`Grace period exceeded for message ${msgHdr.id}`);
           if (!this.warnedAboutLateMessageBlocked.has(originalMsgId)) {
@@ -558,10 +533,10 @@ const SendLater = {
     },
 
     async getActiveSchedules(matchUUID) {
-      const allSchedulePromises = await browser.accounts.list().then(accounts => {
+      const allSchedulePromises = await browser.accounts.list().then(async accounts => {
         let folderSchedules = [];
         for (let acct of accounts) {
-          let draftFolders = getDraftFolders(acct);
+          let draftFolders = await getDraftFolders(acct);
           if (draftFolders && draftFolders.length > 0) {
             for (let draftFolder of draftFolders) {
               if (draftFolder) {
@@ -594,7 +569,7 @@ const SendLater = {
               }
             }
           } else {
-            SLStatic.debug(`Unable to find drafts folder for account`, acct);
+            SLStatic.debug(`getActiveSchedules: Unable to find drafts folder for account`, acct);
           }
         }
         return SLStatic.flatten(folderSchedules);
@@ -1142,9 +1117,9 @@ browser.messages.onNewMailReceived.addListener((folder, messagelist) => {
           // Loop over all draft messages, and check for overlap between this
           // incoming message's 'in-reply-to' header, and any of the draft's
           // 'references' headers.
-          browser.accounts.list().then(accounts => {
+          browser.accounts.list().then(async accounts => {
             for (let acct of accounts) {
-              let draftFolders = getDraftFolders(acct);
+              let draftFolders = await getDraftFolders(acct);
               if (draftFolders && draftFolders.length > 0) {
                 for (let draftFolder of draftFolders) {
                   if (draftFolder) {
@@ -1175,7 +1150,7 @@ browser.messages.onNewMailReceived.addListener((folder, messagelist) => {
                   }
                 }
               } else {
-                SLStatic.debug(`Unable to find drafts folder for account`, acct);
+                SLStatic.debug(`onNewMailReceived: Unable to find drafts folder for account`, acct);
               }
             }
           }).catch(SLStatic.error);
@@ -1314,27 +1289,28 @@ browser.runtime.onUpdateAvailable.addListener((details) => {
   });
 });
 
-function findDraftsHelper(folder) {
-  const that = this;
+async function getDraftFoldersHelper(folder) {
   // Recursive helper function to look through an account for draft folders
-  if (folder.type === "drafts" || folder.type === "templates") {
+  const accountId = folder.accountId, path = folder.path;
+  if (await browser.SL3U.isDraftsFolder(accountId, path)) {
     return folder;
   } else {
     const drafts = [];
     for (let subFolder of folder.subFolders) {
-      drafts.push(that.findDraftsHelper(subFolder));
+      drafts.push(await getDraftFoldersHelper(subFolder));
     }
     return drafts;
   }
 }
 
-function getDraftFolders(acct) {
-  const that = this;
+async function getDraftFolders(acct) {
   const draftSubFolders = [];
-  acct.folders.forEach(folder => {
-    draftSubFolders.push(that.findDraftsHelper(folder));
-  });
-  return SLStatic.flatten(draftSubFolders);
+  for (let folder of acct.folders) {
+    draftSubFolders.push(await getDraftFoldersHelper(folder));
+  }
+  const allDraftFolders = SLStatic.flatten(draftSubFolders);
+  SLStatic.debug(`Found Draft folder(s) for account ${acct.name}`,allDraftFolders);
+  return allDraftFolders;
 }
 
 function mainLoop() {
@@ -1352,7 +1328,7 @@ function mainLoop() {
 
       browser.accounts.list().then(async (accounts) => {
         for (let acct of accounts) {
-          let draftFolders = getDraftFolders(acct);
+          let draftFolders = await getDraftFolders(acct);
           if (draftFolders && draftFolders.length > 0) {
             for (let draftFolder of draftFolders) {
               if (draftFolder) {
@@ -1386,7 +1362,7 @@ function mainLoop() {
               }
             }
           } else {
-            SLStatic.debug(`Unable to find drafts folder for account`, acct);
+            SLStatic.debug(`mainLoop: Unable to find drafts folder for account`, acct.name);
           }
         }
       }).then(() => {
