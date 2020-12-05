@@ -6,7 +6,7 @@ Introduction
 
 The Send Later Thunderbird add-on allows you you to write an email
 message and then tell Thunderbird when you want it to be sent. The
-message is saved back into your Drafts folder, and delivered at
+message is saved into your Drafts folder, and delivered at
 approximately the specified time. The add-on is available for download from
 [addons.thunderbird.net](https://addons.thunderbird.net/thunderbird/addon/send-later-3/).
 Release notes for each new version of Send Later are published there and
@@ -18,9 +18,8 @@ already installed the add-on from
 [addons.thunderbird.net](https://addons.thunderbird.net/thunderbird/addon/send-later-3/)
 and restarted Thunderbird. If you have any comments, questions or feedback about
 the add-on, please feel free to
-[email the maintainers](mailto:send-later-support@extended-thunder.org?subject=Send%20Later)
-or
-[open a bug report](https://github.com/Extended-Thunder/send-later/issues/).
+[open a bug report](https://github.com/Extended-Thunder/send-later/issues/)
+or [email the maintainers](mailto:send-later-support@extended-thunder.org?subject=Send%20Later).
 
 This user manual is written for Thunderbird 78 or newer. Things might be
 slightly different for older versions.
@@ -30,8 +29,8 @@ Installation
 
 ### Method 1
 
-1.  In Thunderbird, open the extension manager with the `Tools \> Add-ons`
-    menu-bar command or `Add-ons` from the three-lines menu in the upper right
+1.  In Thunderbird, open the extension manager with the `Tools > Add-ons`
+    menu-bar command or `Add-ons` from the hamburger menu in the upper right
     corner of the main Thunderbird window.
 2.  Enter "Send Later" in the search box and hit Enter.
 3.  Find the "Send Later" add-on in the search results and click the
@@ -46,10 +45,10 @@ Installation
     * Note: download the file using `Right click > Save link as`, otherwise
       your web browser might think you are trying to install a browser extension.
 2.  In Thunderbird, select the `Tools > Add-ons` menu-bar command or `Add-ons`
-    from the three-lines menu.
+    from the hamburger menu.
 3.  From here you can either drag-drop the `.xpi` file into Thunderbird, or
-    click the gear icon at the top of the page and select
-    `Install Add-on From File...` and browse to the path of your downloaded
+    click the gear icon at the top of the page, select
+    `Install Add-on From File...`, and browse to the path of your downloaded
     `.xpi` package.
 4.  Recommended: restart Thunderbird after the add-on is installed.
 
@@ -68,22 +67,21 @@ Here is what you can do from this dialog:
     Later in the text box when you would like the message to be sent, or
     use the date and time pickers below the text box if you prefer. The
     text box understands [lots of different formats](#date-formats), so
-    give it a try! When you've entered a date/time that the add-on
-    understands, the button below it will become active and "Enter a
-    valid date above" will be replaced with what you entered. Click the
-    button or type Ctrl-Enter to schedule the message.
+    give it a try! When you've entered a date/time that the add-on (thinks it)
+    understands, the button below it will show you what it believes you meant,
+    and allow you to schedule the message to send at that time.
 -   **Schedule a recurring message.** See [below](#recurring).
 -   **Schedule a one-shot or recurring message using one of the built-in scheduling functions or a function you've written or imported yourself.** See [below](#dynamic).
 -   **Send the message using one of the shortcut buttons.** Click "15 mins
     later", "30 mins later", or "2 hours later" to send the message the
-    indicated amount of time into the future.
+    indicated amount of time into the future. The functionality of these
+    shortcuts can be customized.
 -   **Deposit the message into your Outbox for later delivery by Thunderbird.**
-    If you click "Put in Outbox" the message will be
-    copied immediately into your Outbox. This is the behavior of the
-    standard Thunderbird "Send Later" command before you installed the
-    add-on. The message will then be sent if you execute
-    `File > Send Unsent Messages`, or if you go into and out of offline mode,
-    or if you exit and restart Thunderbird. In the latter two cases,
+    If you click "Put in Outbox" the message will be copied immediately into
+    your Outbox. This is the behavior of the standard Thunderbird "Send Later"
+    command before you installed the add-on. The message will then be sent if
+    you execute `File > Send Unsent Messages`, or if you go into and out of
+    offline mode, or if you exit and restart Thunderbird. In the latter two cases,
     Thunderbird may or may not prompt for confirmation before sending
     unsent messages, depending on how you have configured it.
 -   **Send the message immediately.** If you click "Send Now" the
@@ -91,8 +89,6 @@ Here is what you can do from this dialog:
     "Send" command instead of "Send Later". Note that you can activate
     this button by hitting Alt+Shift+N or the equivalent on your platform or
     in your language.
--   **Go back to editing the message.** Click the "Cancel" button to go
-    back to editing the message.
 
 ### Time-of-day and day-of-week restrictions
 
@@ -144,7 +140,7 @@ a scheduled message delivery, edit the draft and save it normally
 without "Send Later" (or just send it immediately, if that's what you
 want to do), and the scheduling information will be removed.
 
-### Date formats
+### <a name="date-formats"></a> Date formats
 
 The part of Send Later that interprets the send times you type into the
 text box is pretty smart. You're welcome to type a full date and time,
@@ -175,10 +171,9 @@ Preferences
 You can get to the add-on's Preferences window in two ways:
 
 1.  Click on "Send Later" in the status bar at the bottom of your main
-    window and select "Send Later preferences" from the pop-up menu
-    (there are also several other useful things in this menu). The
+    window and select "Send Later preferences" from the pop-up menu. The
     preferences will open in a new tab.
-2.  Select "Add-ons" from the three-lines menu or the Tools menu. The extension
+2.  Select "Add-ons" from the hamburger menu or the Tools menu. The extension
     manager will open in a new tab. Click on "Send Later", and then on the
     "Preferences" tab.
 
@@ -193,15 +188,15 @@ This preference controls how often the add-on checks for messages whose
 delivery time has arrived. The default, once per minute, is adequate for
 most people. In rare cases, you may need to use a higher value (lower
 frequency) if you have a very large number of messages in your Drafts
-folder and the Send Later progress bar at the bottom of your Thunderbird
-window never goes away.
+folder and the Send Later status indicator at the bottom of your Thunderbird
+window is constantly "Checking".
 
 ### "Send" does "Send Later"
 
 If it is enabled, this preference causes the scheduling dialog to pop up
 not only when you run the "Send Later" command, but also, when you run
-"Send", whether it's by clicking the "Send" button, selecting File \|
-Send Now, or typing Ctrl-Enter. It'll therefore prevent you from
+"Send", whether it's by clicking the "Send" button, selecting `File >
+Send Now`, or typing `Ctrl-Enter`. It'll therefore prevent you from
 accidentally sending a message now that you meant to schedule for later.
 This feature is *not* enabled by default.
 
@@ -235,9 +230,8 @@ that they're there, uncheck this preference.
 
 This preference causes the pop-up Send Later dialog to be bound to the
 key sequence Alt-Shift-Enter instead of Ctrl-Shift-Enter. When this
-feature is activated, Ctrl-Shift-Enter remains the original Thunderbird
-functionality, i.e., depositing the message into the Outbox for sending
-later.
+feature is activated, Ctrl-Shift-Enter reverts to the original Thunderbird
+functionality, i.e. depositing the message into the Outbox.
 
 ### Show Send Later Column
 
@@ -281,39 +275,40 @@ before delivery.
 
 ### Don't deliver messages more than <u>&nbsp;#&nbsp;</u> minutes late
 
-This preference controls what happens when Send Later that's late
-because Thunderbird wasn't running or your computer was asleep at the
-time it was supposed to be sent. By default, Send Later will deliver
-such a message at the earliest opportunity to do so after its scheduled
-send time. If you would rather not have messages delivered late, you can
-enable this preference, and then instead of delivering a late message,
-Send Later will pop up a warning about it and leave it for you to edit
-to either reschedule its send time or send it immediately by hand.
+This preference controls what happens when Send Later encounters a message that
+was scheduled to send some time in the past. This can happen if Thunderbird was
+closed, or the computer was asleep at the actual scheduled time. If this option
+is disabled, those messages will be sent immediately next time Send Later is
+able to do so. If this option is enabled, then Send Later will pop up a warning
+about any such messages and leave them for you to reschedule by editing the
+relevant draft message by hand.
 
 ### Shortcut buttons
 
 In addition to these main settings, you can change the behavior of the
 shortcut buttons. Each of these buttons is bound to a
 [dynamic function](#dynamic), which by default is set to perform a simple
-"Delay," and passed different arguments to impose different delay times.
-However, you can choose any dynamic function you'd like, or write your own,
-using the dynamic function editor, described below.
+delay. However, you can choose any dynamic function you'd like, or write your
+own using the dynamic function editor, described below. Each button can pass
+different arguments to the dynamic function, thereby enabling you to reuse a
+single function for multiple shortcuts.
 
-You can also change shortcut labels, or
+The shortcuts can be accessed from within a message composition window using the
+keyboard commands `Ctrl+Alt+1`, `Ctrl+Alt+2`, and`Ctrl+Alt+3`, or from within
+the scheduler popup dialog using `Ctrl+1`, `Ctrl+2`, and `Ctrl+3`.
 
 ![Send Later shortcut preferences](/assets/prefs3.png)
 
 -   **Button label** specifies the string that is displayed in the
     button.
 
-    You can bind shortcuts to keyboard actions by placing an `&` in front of
-    any letter. For example, setting a button label to `&Business hours` will
-    be displayed in the scheduler dialog as "<u>B</u>usiness hours", and can
-    be activated with Alt+Shift+B. Note: this assumes that nothing else in the
-    dialog is bound to Alt+Shift+B, which may not be the case depending on
+    You can bind shortcuts to "[access keys](https://www.w3schools.com/jsref/prop_html_accesskey.asp)" by placing an `&` in front of any letter. For
+    example, setting a button label to `&Business hours` will be displayed in the scheduler dialog as "<u>B</u>usiness hours", and can be activated with
+    `Alt+Shift+B` (`Ctrl+Option+B` on Mac). Note: this assumes that nothing else
+    in the dialog is bound to Alt+Shift+B, which may not be the case depending on
     your language settings.
--   **Function name** Specifies which dynamic function will be bound to this
-    shortcut button.
+-   **Function name** Specifies which [dynamic function](#dynamic) will be
+    attached to this shortcut button.
 -   **Input arguments** Arguments that will be passed to the dynamic function
     that may modify its behavior. See the section on
     [dynamic functions](#dynamic) for details on what these arguments can do.
@@ -345,17 +340,17 @@ functions.
 There are some preferences which do not have corresponding UI elements in the
 options dialog. Also, there are occasions where you just need fine-grained
 control over your preferences. The advanced configuration editor allows you
-to modify all of Send Later's preferences by hand, using text input.
-The format is basic JSON, and the interface is relatively self explanatory, but
-I highly recommend avoiding this feature unless you know what you're doing.
+to modify all of Send Later's preferences manually, using JSON-formatted input.
+Hopefully the interface is pretty self explanatory, but I highly recommend
+avoiding this feature unless you know what you're doing.
 
 ### Console log level
 
 Controls how much detail you want to see in the debug console. Setting this to
 "Debug", "Trace", or "All" will make Send Later very chatty, and can actually
 start to slow down Thunderbird over time as the debug log gets very long.
-I recommend leaving this on the default "Info" level unless you need to track
-down the source of a bug.
+I recommend leaving this on the default "Info" level unless you need to
+investigate the source of a bug.
 
 ### Reset preferences
 
@@ -437,7 +432,7 @@ there are no "X-Send-Later" headers.
 
 To work around this problem, you need to store your drafts for the
 affected account in some other Drafts folder, e.g., the one underneath
-Local Folders. You can set this preference by going to `Edit > Account Settings...` or `Three-lines menu > Account Settings...` and viewing the
+Local Folders. You can set this preference by going to `Edit > Account Settings...` or `Hamburger menu > Account Settings...` and viewing the
 "Copies & Folders" page for the affected account.
 
 Please note: for Microsoft Exchange in particular, this workaround is
