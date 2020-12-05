@@ -6,6 +6,10 @@ const SendLater = {
 
     watchAndMarkRead: new Set(),
 
+    // The user should be alerted about messages which are
+    // beyond their late grace period once per session.
+    warnedAboutLateMessageBlocked: new Set(),
+
     loopTimeout: null,
 
     notify(title, text) {
@@ -280,7 +284,17 @@ const SendLater = {
       if (preferences.blockLateMessages) {
         const lateness = (now - nextSend.getTime()) / 60000;
         if (lateness > preferences.lateGracePeriod) {
-          SLStatic.info(`Grace period exceeded for message ${msgHdr.id}`);
+          SLStatic.warn(`Grace period exceeded for message ${msgHdr.id}`);
+          if (!this.warnedAboutLateMessageBlocked.has(originalMsgId)) {
+            const msgSubject = SLStatic.getHeader(rawContent, "subject");
+            const warningMsg = browser.i18n.getMessage(
+              "BlockedLateMessage",
+              [msgSubject, msgHdr.folder.path, preferences.lateGracePeriod]
+            );
+            const warningTitle = browser.i18n.getMessage("ScheduledMessagesWarningTitle");
+            this.warnedAboutLateMessageBlocked.add(originalMsgId);
+            browser.SL3U.alert(warningTitle, warningMsg)
+          }
           return;
         }
       }
