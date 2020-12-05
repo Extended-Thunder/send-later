@@ -533,18 +533,27 @@ const SLPopup = {
     const dom = SLPopup.objectifyDOMElements();
 
     const dateTimeInputListener = ((evt) => {
-      if (evt.target.id === "send-date" || evt.target.id === "send-time") {
-        if (dom["send-date"].value && dom["send-time"].value) {
-          const sendAt = SLStatic.parseDateTime(dom["send-date"].value, dom["send-time"].value);
-          dom["send-datetime"].value = SLStatic.shortHumanDateTimeFormat(sendAt);
-        }
-      } else if (evt.target.id === "send-datetime") {
-        SLPopup.parseSugarDate();
+      switch (evt.target.id) {
+        case "send-date":
+        case "send-time":
+          if (dom["send-date"].value && dom["send-time"].value) {
+            const sendAt = SLStatic.parseDateTime(dom["send-date"].value, dom["send-time"].value);
+            dom["send-datetime"].value = SLStatic.shortHumanDateTimeFormat(sendAt);
+          }
+          break;
+        case "send-datetime":
+          SLPopup.parseSugarDate();
+          break;
+        default:
+          return;
       }
+      const inputs = SLPopup.objectifyFormValues();
+      const schedule = SLPopup.parseInputs(inputs);
+      SLPopup.setScheduleButton(schedule);
     });
-    dom["send-date"].addEventListener("change", dateTimeInputListener);
-    dom["send-time"].addEventListener("change", dateTimeInputListener);
-    dom["send-datetime"].addEventListener("change", dateTimeInputListener);
+    dom["send-date"].addEventListener("keyup", dateTimeInputListener);
+    dom["send-time"].addEventListener("keyup", dateTimeInputListener);
+    dom["send-datetime"].addEventListener("keyup", dateTimeInputListener);
 
     SLStatic.stateSetter(dom["sendon"].checked)(dom["onlyOnDiv"]);
     SLStatic.stateSetter(dom["sendbetween"].checked)(dom["betweenDiv"]);
