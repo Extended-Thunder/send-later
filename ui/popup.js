@@ -215,8 +215,8 @@ const SLPopup = {
       const end = inputs["sendbetween-end"];
       if (start && end) {
         const between = {
-          start: SLStatic.parseDateTime(null,start),
-          end: SLStatic.parseDateTime(null,end)
+          start: SLStatic.convertTime(start),
+          end: SLStatic.convertTime(end)
         };
         if (SLStatic.compareTimes(between.start,'>=',between.end)) {
           return { err: (browser.i18n.getMessage("endTimeWarningTitle") + ": " +
@@ -241,15 +241,34 @@ const SLPopup = {
       }
     }
 
-    // console.log(schedule.recur.between);
-    // const starttime = (schedule.recur.between && schedule.recur.between.start)
-    // const endtime =(schedule.recur.between && schedule.recur.between.end);
-    // console.log(starttime, endtime);
-    schedule.sendAt = SLStatic.adjustDateForRestrictions(schedule.sendAt,
-                              (schedule.recur.between && schedule.recur.between.start),
-                              (schedule.recur.between && schedule.recur.between.end),
-                              schedule.recur.days);
-
+    if (schedule.recur.type === "none" && schedule.recur.between) {
+      // Similar to SLStatic.adjustDateForRestrictions, but also brings
+      // the scheduled time to the next available minute. (e.g. scheduling
+      // "now" at 10:00 on a Saturday but with a M-F/9-5 restriction should
+      // result in sending at 9:00 on Monday)
+      const { start, end } = schedule.recur.between;
+      if (start && SLStatic.compareTimes(schedule.sendAt, '<', start, true, 1000)) {
+        schedule.sendAt.setHours(start.getHours());
+        schedule.sendAt.setMinutes(start.getMinutes());
+      } else if (end && SLStatic.compareTimes(schedule.sendAt, '>', end, true, 1000)) {
+        schedule.sendAt.setHours(start.getHours());
+        schedule.sendAt.setMinutes(start.getMinutes());
+      }
+      while (schedule.recur.days &&
+            !schedule.recur.days.includes(schedule.sendAt.getDay())) {
+        schedule.sendAt.setDate(schedule.sendAt.getDate()+1);
+        schedule.sendAt.setHours(start.getHours());
+        schedule.sendAt.setMinutes(start.getMinutes());
+      }
+    } else {
+      // For ordinary recurrence, we can rely on the usual
+      // adjustDateForRestrictions function, which will leave the time
+      // unchanged if it is within the restrictions.
+      schedule.sendAt = SLStatic.adjustDateForRestrictions(schedule.sendAt,
+          (schedule.recur.between && schedule.recur.between.start),
+          (schedule.recur.between && schedule.recur.between.end),
+           schedule.recur.days);
+    }
     return schedule;
   },
 
@@ -314,10 +333,8 @@ const SLPopup = {
         (recurrence === "minutely" || recurrence === "function") ?
           "" : "none";
 
-      dom['recur-limits'].style.display = "block";
     } else {
       specDiv.style.display = "none";
-      dom['recur-limits'].style.display = "none";
     }
 
     SLStatic.stateSetter(dom['recurFuncSelect'].length > 0)(dom['function-recur-radio']);
