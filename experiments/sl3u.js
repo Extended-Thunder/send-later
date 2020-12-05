@@ -597,6 +597,78 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return msgCompFields[field];
         },
 
+        async isDraftsFolder(accountId, path) {
+          const msgFolderUri = SendLaterFunctions.folderPathToURI(accountId, path);
+          let msgFolder = MailServices.folderLookup.getFolderForURL(msgFolderUri);
+
+          // SendLaterFunctions.debug("Entering function","SL3U.isDraftsFolder", msgFolder.URI);
+          if (msgFolder === null) {
+            // SendLaterFunctions.debug("Returning from function","SL3U.isDraftsFolder",
+            //                          "false (msgFolder == null)");
+            return false;
+          }
+
+          let flag = Ci.nsMsgFolderFlags.Drafts;
+
+          if (msgFolder.isSpecialFolder(flag, false)) {
+            // SendLaterFunctions.debug("Returning from function","SL3U.isDraftsFolder", "true (special)");
+            return true;
+          }
+
+          let accountManager = Cc[
+            "@mozilla.org/messenger/account-manager;1"
+          ].getService(Ci.nsIMsgAccountManager);
+          let fdrlocal = accountManager.localFoldersServer.rootFolder;
+
+          if (fdrlocal.findSubFolder("Drafts").URI === msgFolder.URI) {
+            // SendLaterFunctions.debug("Returning from function","SL3U.isDraftsFolder", "true (local)");
+            return true;
+          }
+          if (
+            Services.prefs.getCharPref("mail.identity.default.draft_folder") ===
+            msgFolder.URI
+          ) {
+            // SendLaterFunctions.debug("Returning from function","SL3U.isDraftsFolder", "true (default)");
+            return true;
+          }
+
+          let allaccounts = accountManager.accounts;
+          let acindex, numAccounts;
+          numAccounts = allaccounts.length;
+          for (acindex = 0; acindex < numAccounts; acindex++) {
+            let thisaccount = allaccounts[acindex].QueryInterface(Ci.nsIMsgAccount);
+            if (thisaccount) {
+              let numIdentities = thisaccount.identities.length;
+              switch (thisaccount.incomingServer.type) {
+                case "pop3":
+                case "imap":
+                case "owl":
+                  let identityNum;
+                  for (identityNum = 0; identityNum < numIdentities; identityNum++) {
+                    try {
+                      let identity = thisaccount.identities[identityNum].QueryInterface(
+                        Ci.nsIMsgIdentity
+                      );
+                      if (identity.draftFolder === msgFolder.URI) {
+                        // SendLaterFunctions.debug("Returning from function","SL3U.isDraftsFolder","true (identity)");
+                        return true;
+                      }
+                    } catch (e) {
+                      // SendLaterFunctions.warn("Error getting identity:", e);
+                    }
+                  }
+                  break;
+                default:
+                  // SendLaterFunctions.debug("skipping this server type - " + thisaccount);
+                  break;
+              }
+            }
+          }
+
+          // SendLaterFunctions.debug("Returning from function","SL3U.isDraftsFolder", "false (not found)");
+          return false;
+        },
+
         // Mostly borrowed from MsgComposeCommands.js
         async preSendCheck() {
           const cw = Services.wm.getMostRecentWindow("msgcompose");
