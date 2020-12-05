@@ -1162,7 +1162,8 @@ browser.messages.onNewMailReceived.addListener((folder, messagelist) => {
 
 browser.messageDisplay.onMessageDisplayed.addListener(async (tab, hdr) => {
   await browser.messageDisplayAction.disable(tab.id);
-  if (hdr.folder.type === "drafts" || folder.type === "templates") {
+  const accountId = hdr.folder.accountId, path = hdr.folder.path;
+  if (await browser.SL3U.isDraftsFolder(accountId, path)) {
     let rawMessage = await browser.messages.getRaw(hdr.id).catch(err => {
         SLStatic.warn(`Unable to fetch message ${hdr.id}.`, err);
       });
