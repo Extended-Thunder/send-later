@@ -926,12 +926,12 @@ var SLStatic = {
     start_time = SLStatic.convertTime(start_time);
     end_time = SLStatic.convertTime(end_time);
 
-    if (start_time && SLStatic.compareTimes(dt, '<', start_time)) {
+    if (start_time && SLStatic.compareTimes(dt, '<=', start_time, 1000)) {
       // If there is a time restriction and the scheduled time is before it,
       // reschedule to the beginning of the time restriction.
       dt.setHours(start_time.getHours());
       dt.setMinutes(start_time.getMinutes());
-    } else if (end_time && SLStatic.compareTimes(dt, '>', end_time)) {
+    } else if (end_time && SLStatic.compareTimes(dt, '>=', end_time, 1000)) {
       // If there is a time restriction and the scheduled time is after it,
       // reschedule to the beginning of the time restriction the next day.
       dt.setDate(dt.getDate() + 1); // works on end of month, too.
