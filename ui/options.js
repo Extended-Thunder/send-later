@@ -166,9 +166,6 @@ const SLOptions = {
         } catch (ex) {
           SLStatic.debug("Unable to set time unit label",ex);
         }
-        SLStatic.stateSetter(
-          document.getElementById("enforceTimeRestrictions").checked
-        )(document.getElementById("gracePeriodOptionBox"));
       });
     return await Promise.all([ufuncPromise, prefPromise]);
   },
@@ -320,10 +317,6 @@ const SLOptions = {
       } else {
         throw new Error("Unable to process change in element: "+element);
       }
-
-      SLStatic.stateSetter(
-        document.getElementById("enforceTimeRestrictions").checked
-      )(document.getElementById("gracePeriodOptionBox"));
 
       await browser.storage.local.set({ preferences });
     } catch (ex) {
