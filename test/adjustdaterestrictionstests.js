@@ -13,7 +13,8 @@ exports.init = function() {
     if (orig_days && String(orig_days) != String(days)) {
       throw "AdjustedDateForRestrictions modified days!";
     }
-    return expected.getTime() == result.getTime();
+    return (expected.getTime() == result.getTime()) ||
+            `Expected ${expected}, got ${result}`;
   }
 
   SLTests.AddTest("adjustDateForRestrictions no-op", NormalTest,
