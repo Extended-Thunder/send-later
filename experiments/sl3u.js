@@ -908,11 +908,14 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
           cw.gMsgCompose.compFields.setHeader("message-id",newMessageId);
           const verifyId = cw.gMsgCompose.compFields.getHeader("message-id");
+          const type = cw.gMsgCompose.type;
+          const originalURI = cw.gMsgCompose.originalMsgURI;
 
           if (verifyId === newMessageId) {
             // Save the message to drafts
             try {
-              cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
+              // cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
+              cw.goDoCommand("cmd_saveAsDraft");
             } catch (err) {
               SendLaterFunctions.error("SL3U.saveAsDraft","Unable to save message to drafts", err);
               return false;
@@ -920,8 +923,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
             // Set reply forward message flags
             try {
-              const type = cw.gMsgCompose.type;
-              const originalURI = cw.gMsgCompose.originalMsgURI;
               SendLaterFunctions.debug("Setting message reply/forward flags", type, originalURI);
 
               if ( originalURI ) {
@@ -961,6 +962,11 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return false;
         },
 
+        async goDoCommand(command) {
+          const cw = Services.wm.getMostRecentWindow("msgcompose");
+          cw.goDoCommand(command);
+        },
+
         async sendNow() {
           // Sends the message from the current composition window
           const cw = Services.wm.getMostRecentWindow("msgcompose");
@@ -971,7 +977,43 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           // Sends the message from the current composition window
           // using thunderbird's default send later mechanism.
           const cw = Services.wm.getMostRecentWindow("msgcompose");
-          cw.SendMessageLater();
+          const type = cw.gMsgCompose.type;
+          const originalURI = cw.gMsgCompose.originalMsgURI;
+
+          //cw.SendMessageLater();
+          cw.goDoCommand("cmd_sendLater");
+
+          // Set reply forward message flags
+          try {
+            SendLaterFunctions.debug("Setting message reply/forward flags", type, originalURI);
+
+            if ( originalURI ) {
+              const messenger = Cc["@mozilla.org/messenger;1"].getService(Ci.nsIMessenger);
+              var hdr = messenger.msgHdrFromURI(originalURI);
+              switch (type) {
+                case Ci.nsIMsgCompType.Reply:
+                case Ci.nsIMsgCompType.ReplyAll:
+                case Ci.nsIMsgCompType.ReplyToSender:
+                case Ci.nsIMsgCompType.ReplyToGroup:
+                case Ci.nsIMsgCompType.ReplyToSenderAndGroup:
+                case Ci.nsIMsgCompType.ReplyWithTemplate:
+                case Ci.nsIMsgCompType.ReplyToList:
+                  hdr.folder.addMessageDispositionState(
+                    hdr, hdr.folder.nsMsgDispositionState_Replied);
+                  break;
+                case Ci.nsIMsgCompType.ForwardAsAttachment:
+                case Ci.nsIMsgCompType.ForwardInline:
+                  hdr.folder.addMessageDispositionState(
+                    hdr, hdr.folder.nsMsgDispositionState_Forwarded);
+                  break;
+              }
+            } else {
+              SendLaterFunctions.debug("SL3U.saveAsDraft","Unable to set reply / forward flags " +
+                          "for message. Cannot find original message URI");
+            }
+          } catch (err) {
+            SendLaterFunctions.debug("SL3U.saveAsDraft","Failed to set flag for reply / forward", err);
+          }
         },
 
         async setHeader(name, value) {
@@ -1569,40 +1611,31 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                                          "Unable to add keycode listener for Alt+Shift+Enter");
               }
 
-              // Highjack keycode presses for the actual Send Later button.
-              const sendLaterKey = window.document.getElementById("key_sendLater");
-              if (sendLaterKey) {
-                window.sendLaterReplacedElements["key_sendLater"] = sendLaterKey;
-                const keyClone = sendLaterKey.cloneNode(true);
-                keyClone.setAttribute("oncommand", "//");
-                keyClone.setAttribute("observes", "");
-                keyClone.addEventListener('command', event => {
-                  event.preventDefault();
-                  SendLaterFunctions.keyCodeEventTracker.emit("key_sendLater");
-                });
-                sendLaterKey.parentNode.replaceChild(keyClone, sendLaterKey);
-              } else {
-                SendLaterFunctions.error("SL3U.bindKeyCodes.messengercompose.onLoadWindow",
-                                         "Could not find key_sendLater element. " +
-                                         "Cannot bind to sendlater keypress events.");
-              }
-
-              // And events from the send later File menu item
-              const sendLaterCmd = window.document.getElementById("cmd_sendLater");
-              if (sendLaterCmd) {
-                window.sendLaterReplacedElements["cmd_sendLater"] = sendLaterCmd;
-                const cmdClone = sendLaterCmd.cloneNode(true);
-                cmdClone.setAttribute("oncommand", "//");
-                cmdClone.addEventListener('command', event => {
-                  event.preventDefault();
-                  SendLaterFunctions.keyCodeEventTracker.emit("cmd_sendLater");
-                });
-                sendLaterCmd.parentNode.replaceChild(cmdClone, sendLaterCmd);
-              } else {
-                SendLaterFunctions.error("SL3U.bindKeyCodes.messengercompose.onLoadWindow",
-                                         "Could not find cmd_sendLater element. " +
-                              "Cannot bind to sendlater menu events.");
-              }
+              [
+                "key_send",
+                "key_sendLater",
+                "cmd_sendLater",
+                "key_send",
+                "cmd_sendWithCheck",
+                "cmd_sendButton",
+                "cmd_sendNow"
+              ].forEach((itemId) => {
+                const element = window.document.getElementById(itemId);
+                if (element) {
+                  window.sendLaterReplacedElements[itemId] = element;
+                  const keyClone = element.cloneNode(true);
+                  keyClone.setAttribute("oncommand", "//");
+                  keyClone.setAttribute("observes", "");
+                  keyClone.addEventListener('command', event => {
+                    event.preventDefault();
+                    SendLaterFunctions.keyCodeEventTracker.emit(itemId);
+                  });
+                  element.parentNode.replaceChild(keyClone, element);
+                } else {
+                  SendLaterFunctions.error("SL3U.bindKeyCodes.messengercompose.onLoadWindow",
+                                           `Could not find ${itemId} element.`);
+                }
+              });
             }
           });
         },

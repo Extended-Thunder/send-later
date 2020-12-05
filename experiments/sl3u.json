@@ -160,6 +160,19 @@
         ]
       },
       {
+        "name": "goDoCommand",
+        "type": "function",
+        "async": true,
+        "description": "Compact a folder.",
+        "parameters": [
+          {
+            "name": "command",
+            "type": "string",
+            "description": "Command to execute in current compose window."
+          }
+        ]
+      },
+      {
         "name": "saveMessage",
         "type": "function",
         "async": true,
