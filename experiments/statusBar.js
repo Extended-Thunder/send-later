@@ -45,8 +45,33 @@ var SendLaterStatusbar = {
       })(JSON.parse(data));
       SendLaterStatusbar.storageLocalMap = storageMap;
       SLStatic.logConsoleLevel = (storageMap.get("logConsoleLevel")||"all").toLowerCase();
+      SendLaterStatusbar.hideShowStatus();
       SLStatic.debug("Leaving function","SendLaterStatusbar.storageLocalObserver.observe");
     },
+  },
+
+  hideShowStatus() {
+    SLStatic.debug("Entering function","SendLaterStatusbar.hideShowColumn");
+    if (!gDBView) {
+      SLStatic.debug(
+        `Leaving function SendLaterStatusbar.hideShowColumn.`,
+        `(gDBView is ${gDBView})`
+      );
+      return;
+    }
+
+    let statusbutton = document.getElementById("sendlater3-panel")
+    if (statusbutton) {
+      const visible = this.getStorageLocal("showStatus");
+      SLStatic.debug(`Setting status visible: ${visible}`);
+      if (visible) {
+        statusbutton.removeAttribute("hidden");
+      } else {
+        statusbutton.setAttribute("hidden", "true");
+      }
+    }
+
+    SLStatic.debug("Leaving function","SendLaterStatusbar.hideShowColumn");
   },
 
   InitializeOverlayElements() {
@@ -136,10 +161,9 @@ var SendLaterStatusbar = {
 
     this.InitializeOverlayElements();
 
-    // try {
-    //   // this.hideShowColumn();
-    //   // this.columnHandlerObserver.observe();
-    // } catch (ex) { /* or maybe not */ console.warn(ex); }
+    try {
+      this.hideShowStatus();
+    } catch (ex) { console.warn(ex); }
     AddonManager.addAddonListener(this.AddonListener);
     SLStatic.debug("Leaving function","SendLaterStatusbar.onLoad");
   },
