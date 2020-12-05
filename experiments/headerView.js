@@ -307,6 +307,7 @@ SendLaterHeaderView = {
       })(JSON.parse(data));
       SendLaterHeaderView.storageLocalMap = storageMap;
       SLStatic.logConsoleLevel = (storageMap.get("logConsoleLevel")||"all").toLowerCase();
+      SendLaterHeaderView.hideShowColumn();
       SLStatic.debug("Leaving function","SendLaterHeaderView.storageLocalObserver.observe");
     },
   },
