@@ -2,7 +2,89 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="/ui/popup.css"/>
+    <style>
+      body {
+        font-family: sans-serif;
+        vertical-align: middle;
+        padding: 1em 0.5em;
+      }
+
+      #sendNow {
+        float: left;
+        margin-left: 2%;
+        width: 45%;
+        padding:0.25em;
+      }
+
+      #cancel {
+        float: right;
+        margin-right: 2%;
+        width: 45%;
+        padding:0.25em;
+      }
+
+      #save-defaults, #clear-defaults {
+        background: none!important;
+        border: none;
+        padding: 0!important;
+        color: #069;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      #showHideFunctionHelp {
+        display:none;
+        font-size:small;
+        font-family:monospace;
+        color: blue;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      #funcHelpDiv {
+        display:none;
+        font-size:small;
+        font-family:monospace;
+        border:1px solid #ccc;
+        padding:0.5em;
+        margin-top:0.5em;
+        white-space:normal;
+      }
+
+      input[type=text] {
+        padding: 3pt 2pt;
+      }
+
+      button, input[type=button] {
+        text-align:center;
+        padding:0.2em;
+      }
+
+      section {
+        padding: 0.5em 0.25em 0.5em 0em;
+      }
+
+      label {
+        white-space: nowrap;
+      }
+
+      .div-table {
+        display: table;
+        width:auto;
+      }
+
+      .div-table-row {
+        display: table-row;
+        width: auto;
+        clear: both;
+      }
+
+      .div-table-cell {
+        display: table-cell;
+        padding:0.1em;
+        padding-right: 1em;
+      }
+    </style>
   </head>
 
   <body style="padding:1em;">
