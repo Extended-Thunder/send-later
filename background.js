@@ -255,15 +255,6 @@ const SendLater = {
       if (preferences.enforceTimeRestrictions) {
         const now = Date.now();
 
-        // Respect late message blocker
-        if (preferences.blockLateMessages) {
-          const lateness = (now - nextSend.getTime()) / 60000;
-          if (lateness > preferences.lateGracePeriod) {
-            SLStatic.info(`Grace period exceeded for message ${msgHdr.id}`);
-            return;
-          }
-        }
-
         // Respect "send between" preference
         if (recur.between) {
           if (SLStatic.compareTimes(now, '<', recur.between.start) ||
@@ -282,6 +273,15 @@ const SendLater = {
             const wkday = new Intl.DateTimeFormat('default', {weekday:'long'});
             SLStatic.debug(`Message ${msgHdr.id} not scheduled to send on ${wkday.format(new Date())}`,recur.days);
           }
+        }
+      }
+
+      // Respect late message blocker
+      if (preferences.blockLateMessages) {
+        const lateness = (now - nextSend.getTime()) / 60000;
+        if (lateness > preferences.lateGracePeriod) {
+          SLStatic.info(`Grace period exceeded for message ${msgHdr.id}`);
+          return;
         }
       }
 
