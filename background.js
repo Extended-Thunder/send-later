@@ -338,6 +338,14 @@ const SendLater = {
 
         newMsgContent = SLStatic.replaceHeader(
           newMsgContent,
+          "Date",
+          SLStatic.parseableDateTimeFormat(Date.now()),
+          false, /* replaceAll */
+          true /* addIfMissing */
+        );
+
+        newMsgContent = SLStatic.replaceHeader(
+          newMsgContent,
           "X-Send-Later-At",
           SLStatic.parseableDateTimeFormat(nextRecurAt),
           false
