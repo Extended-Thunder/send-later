@@ -633,7 +633,7 @@ const SLPopup = {
     });
 
     document.addEventListener("keydown", function(event) {
-      if ((event.ctrlKey || event.metaKey) && event.code === "Enter") {
+      if (event.code === "Enter") {
         event.preventDefault();
         const inputs = SLPopup.objectifyFormValues();
         const schedule = SLPopup.parseInputs(inputs);
