@@ -2,8 +2,6 @@
 const SendLater = {
     prefCache: {},
 
-    composeState: {},
-
     watchAndMarkRead: new Set(),
 
     // The user should be alerted about messages which are
@@ -819,75 +817,81 @@ browser.SL3U.onKeyCode.addListener(keyid => {
       }
       break;
     }
-    case "key_sendLater": {
-      // User pressed ctrl+shift+enter
-      SLStatic.debug("Received Ctrl+Shift+Enter.");
-      if (SendLater.prefCache.altBinding) {
-        SLStatic.info("Passing Ctrl+Shift+Enter along to builtin send later " +
-                      "because user bound alt+shift+enter instead.");
-        browser.tabs.query({ active:true, mailTab:false }).then(tabs => {
-          let thistab = undefined;
-          for (let tab of tabs) {
-            if (!tab.mailTab) {
-              thistab = tab;
-              break;
-            }
-          }
-          if (thistab === undefined) {
-            SLStatic.error("Cannot find current compose window");
-            return;
-          } else {
-            SLStatic.debug(`Adding tab ${thistab.id} to composeSate map.`);
-            SendLater.composeState[thistab.id] = "sending";
-            browser.SL3U.builtInSendLater();
-          }
-        }).catch(ex => SLStatic.error("Error starting builtin send later",ex));
-      } else {
-        SLStatic.info("Opening popup");
-        browser.composeAction.openPopup();
+    case "key_sendLater":
+      { // User pressed ctrl+shift+enter
+        SLStatic.debug("Received Ctrl+Shift+Enter.");
+        if (SendLater.prefCache.altBinding) {
+          SLStatic.info("Passing Ctrl+Shift+Enter along to builtin send later " +
+                        "because user bound alt+shift+enter instead.");
+          browser.SL3U.builtInSendLater().catch((ex) => {
+            SLStatic.error("Error during builtin send later",ex);
+          });
+        } else {
+          SLStatic.info("Opening popup");
+          browser.composeAction.openPopup();
+        }
+        break;
       }
-      break;
-    }
     case "cmd_sendLater":
-    {
-      // User clicked the "Send Later" menu item, which should always be bound
-      // to the send later plugin.
-      browser.composeAction.openPopup();
-      break;
-    }
+      { // User clicked the "Send Later" menu item, which should always
+        // open the Send Later popup.
+        browser.composeAction.openPopup();
+        break;
+      }
+    case "cmd_sendNow":
+    case "cmd_sendButton":
+    case "key_send":
+      {
+        if (SendLater.prefCache.sendDoesSL) {
+          SLStatic.debug("Opening scheduler dialog.");
+          browser.composeAction.openPopup();
+        } else if (SendLater.prefCache.sendDoesDelay) {
+          //Schedule with delay
+          const sendDelay = SendLater.prefCache.sendDelay;
+          SLStatic.info(`Scheduling Send Later ${sendDelay} minutes from now.`);
+
+          browser.windows.getAll({
+            populate: true,
+            windowTypes: ["messageCompose"]
+          }).then((allWindows) => {
+            // Current compose windows
+            const ccWins = allWindows.filter((cWindow) => (cWindow.focused === true));
+            if (ccWins.length === 1) {
+              const ccTabs = ccWins[0].tabs.filter(tab => (tab.active === true));
+              if (ccTabs.length !== 1) { // No tabs?
+                throw new Error(`Unexpected situation: no tabs found in current window`);
+              }
+              const tabId = ccTabs[0].id;
+
+              SendLater.preSendCheck.call(SendLater).then(dosend => {
+                if (dosend) {
+                  SendLater.scheduleSendLater.call(SendLater, tabId, { delay: sendDelay });
+                } else {
+                  SLStatic.info("User cancelled send via pre-send check.");
+                }
+              });
+            } else if (ccWins.length === 0) {
+              // No compose window is opened
+              SLStatic.warn(`The currently active window is not a messageCompose window`);
+            } else {
+              // Whaaaat!?!?
+              throw new Error(`Unexpected situation: multiple active windows found?`);
+            }
+          });
+        } else {
+          // Just pass along to the builtin command
+          let command = keyid;
+          if (command === "key_send")
+            command = "cmd_sendWithCheck";
+          browser.SL3U.goDoCommand(command).catch((ex) => {
+            SLStatic.error("Error during builtin send operation",ex);
+          });
+        }
+        break;
+      }
     default: {
       SLStatic.error(`Unrecognized keycode ${keyid}`);
     }
-  }
-});
-
-// Intercept sent messages. Decide whether to handle them or just pass them on.
-browser.compose.onBeforeSend.addListener(tab => {
-  SLStatic.info(`Received onBeforeSend from tab ${tab.id}`);
-  if (SendLater.composeState[tab.id] === "sending" ||
-      SendLater.composeState[tab.id] === "sending_later") {
-    // Avoid blocking extension's own send events
-    SLStatic.debug(`User is currently in the process of sending this message.`);
-    setTimeout(() => {
-      SLStatic.debug(`Deleting tab ${tab.id} from composeSate map.`);
-      delete SendLater.composeState[tab.id]
-    }, 1000);
-    return { cancel: false };
-  } else if (SendLater.prefCache.sendDoesSL) {
-    SLStatic.info("Send does send later. Opening popup.");
-    SLStatic.debug(`Adding tab ${tab.id} to composeSate map.`);
-    SendLater.composeState[tab.id] = "scheduling";
-    browser.composeAction.enable(tab.id);
-    browser.composeAction.openPopup();
-    return ({ cancel: true });
-  } else if (SendLater.prefCache.sendDoesDelay) {
-    const sendDelay = SendLater.prefCache.sendDelay;
-    SLStatic.debug(`Scheduling SendLater ${sendDelay} minutes from now.`);
-    SendLater.scheduleSendLater.call(SendLater, tab.id, { delay: sendDelay });
-    return ({ cancel: true });
-  } else {
-    SLStatic.debug(`Bypassing send later.`);
-    return ({ cancel: false });
   }
 });
 
@@ -951,60 +955,35 @@ browser.runtime.onMessage.addListener(async (message) => {
     }
     case "doSendNow": {
       SLStatic.debug("User requested send immediately.");
-      if (!window.navigator.onLine) {
-        SendLater.notify("Thunderbird is offline.",
-                        "Cannot send message at this time.");
-      } else {
-        SendLater.composeState[message.tabId] = "sending";
-        browser.SL3U.sendNow().then(
-          () => {
-            SLStatic.debug(`Deleting tab ${message.tabId} from composeSate map.`);
-            delete SendLater.composeState[message.tabId]
-          }
-        );
-      }
+      browser.SL3U.goDoCommand("cmd_sendNow").catch((ex) => {
+        SLStatic.error("Error during builtin send operation",ex);
+      });
       break;
     }
     case "doPlaceInOutbox": {
       SLStatic.debug("User requested system send later.");
-      SendLater.composeState[message.tabId] = "sending_later";
-      browser.SL3U.builtInSendLater().then(()=>{
-        () => {
-          SLStatic.debug(`Done sending later. Deleting tab ${message.tabId} from composeSate map.`);
-          delete SendLater.composeState[message.tabId]
-        }
+      browser.SL3U.builtInSendLater().catch((ex) => {
+        SLStatic.error("Error during builtin send later operation",ex);
       });
-      break;
-    }
-    case "getMainLoopStatus": {
-      response.previousLoop = SLStatic.previousLoop.getTime();
       break;
     }
     case "doSendLater": {
       SLStatic.debug("User requested send later.");
-      (async () => {
-        return (SendLater.composeState[message.tabId] === "scheduling") ||
-                (await SendLater.preSendCheck.call(SendLater));
-      })().then(dosend => {
+      SendLater.preSendCheck.call(SendLater).then(dosend => {
         if (dosend) {
           const options = { sendAt: message.sendAt,
                             recurSpec: message.recurSpec,
                             args: message.args,
                             cancelOnReply: message.cancelOnReply };
           SendLater.scheduleSendLater.call(SendLater, message.tabId, options);
-          delete SendLater.composeState[message.tabId];
         } else {
           SLStatic.info("User cancelled send via presendcheck.");
         }
       });
       break;
     }
-    case "closingComposePopup": {
-      if (SendLater.composeState[message.tabId] === "scheduling") {
-        SLStatic.debug(`Deleting tab ${message.tabId} from composeSate map.`);
-        delete SendLater.composeState[message.tabId]
-      }
-
+    case "getMainLoopStatus": {
+      response.previousLoop = SLStatic.previousLoop.getTime();
       break;
     }
     case "getScheduleText": {
@@ -1249,20 +1228,15 @@ browser.commands.onCommand.addListener((cmd) => {
 
           const schedule = evaluateUfunc(funcName, null, funcArgs);
 
-          (async () => {
-            return (SendLater.composeState[tabId] === "scheduling") ||
-                    (await SendLater.preSendCheck.call(SendLater));
-          })().then(dosend => {
+          SendLater.preSendCheck.call(SendLater).then(dosend => {
             if (dosend) {
               const options = { sendAt: schedule.sendAt,
                                 recurSpec: SLStatic.unparseRecurSpec(schedule.recur),
                                 args: schedule.recur.args,
                                 cancelOnReply: schedule.recur.cancelOnReply };
               SendLater.scheduleSendLater.call(SendLater, tabId, options);
-              SLStatic.debug(`Deleting tab ${tabId} from composeSate map.`);
-              delete SendLater.composeState[tabId];
             } else {
-              SLStatic.debug("User cancelled send via presendcheck.");
+              SLStatic.info("User cancelled send via presendcheck.");
             }
           });
         });
