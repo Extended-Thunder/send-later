@@ -366,7 +366,9 @@ Resets all preferences to their default state. Will prompt for confirmation
 before proceeding, but cannot be undone without manually setting everything
 again by hand.
 
-<a name="caveats"></a>Caveats and known issues
+<a name="caveats"></a>
+
+Caveats and known issues
 ------------------------------------------
 
 Some things to keep in mind:
@@ -428,7 +430,8 @@ Some things to keep in mind:
     the add-on which is intended to replace ExQuilla, when configured as
     described [below](#owl).
 
-### <a name="bad-mail-servers"></a>Send Later doesn't work with mail servers that discard its "X-Send-Later" headers
+<a name="bad-mail-servers"></a>
+### Send Later doesn't work with mail servers that discard its "X-Send-Later" headers
 
 Some mail servers (most notably, but not exclusively, Microsoft Exchange used
 through its IMAP gateway) prevent Send Later from working by discarding the
@@ -791,7 +794,8 @@ In the composition window itself (i.e., not in the Send Later pop-up),
 you can hit `Ctrl-Alt-1`, `Ctrl-Alt-2`, or `Ctrl-Alt-3` to activate the
 corresponding shortcut key.
 
-### <a name="recurring"></a>Recurring messages
+<a name="recurring"></a>
+### Recurring messages
 
 You can schedule a message to be sent repeatedly by selecting
 "minutely", "daily", "weekly", "monthly" or "yearly" in the Send Later
@@ -885,7 +889,8 @@ Mail Merge Dialog, you usually want to use something like this:
 \{\{Date\}\} \{\{Time\}\}  
 (There are probably other use cases with different variables as well.)
 
-### <a name="owl"></a>Owl for Exchange add-on
+<a name="owl"></a>
+### Owl for Exchange add-on
 
 The [Owl for Exchange](https://addons.thunderbird.net/thunderbird/addon/owl-for-exchange/)
 add-on allows Thunderbird to send and receive email through a Microsoft
@@ -1006,7 +1011,8 @@ In fact, the `BusinessHours` function is an implementation of the "Send
 this message at the start of the next work day" logic I've been asked
 for so many times!
 
-#### <a name="dynamic"></a>Using dynamic scheduling functions
+<a name="dynamic"></a>
+#### Using dynamic scheduling functions
 
 There are two ways to use a dynamic scheduling function
 
@@ -1049,7 +1055,8 @@ contributed by other Send Later users. Also, consider sharing the
 functions you create! That page has instructions there for adding to the
 library.
 
-#### <a name="dynamic-recurrence"></a>Dynamic recurrence
+<a name="dynamic-recurrence"></a>
+#### Dynamic recurrence
 
 In addition to supporting arbitrary logic for scheduling a message once,
 dynamic functions can also support arbitrary logic for sending messages
@@ -1108,7 +1115,8 @@ is the last one, then it should simply not set `nextspec` to
 anything (i.e., leave it `null`), and Send Later will use the final
 send time it provided and then not schedule the message any further.
 
-### <a name="senddrafts"></a>Suppressing scheduled message delivery
+<a name="senddrafts"></a>
+### Suppressing scheduled message delivery
 
 If you set the "Check every <u>&nbsp;#&nbsp;</u> minutes" option to "0", then
 Send Later won't deliver scheduled drafts when their time comes; it'll just
@@ -1124,7 +1132,8 @@ same time, thus causing unpredictable behavior and/or duplicate messages. This
 is avoided by disabling Send Later from actually sending later, and only using
 it for its scheduling functionality.
 
-### <a name="server-side"></a>Server-side Send Later
+<a name="server-side"></a>
+### Server-side Send Later
 
 *(This is very advanced usage. It can be complicated to set up, and things could
 go embarrassingly wrong if you mess it up. Proceed at your own risk.)*
@@ -1171,7 +1180,8 @@ yourself as a simple monitor --- if you don't receive the recurring message at
 the scheduled time, you know that Thunderbird on the server has stopped running
 and you can log in and restart it.
 
-#### <a name="matching-accounts"></a>Accounts and identities on different computers
+<a name="matching-accounts"></a>
+#### Accounts and identities on different computers
 
 When you compose a draft message, Thunderbird inserts special, hidden
 settings into the message indicating the account and identity used to
@@ -1439,7 +1449,8 @@ and we'll try to help.
 3.  If it isn't, and all the other tests above were successful, then
     [contact us for further assistance](mailto:send-later-support@extended-thunder.org?subject=Send%20Later).
 
-#### <a name="corrupt-outbox"></a>Corrupt Outbox folder
+<a name="corrupt-outbox"></a>
+#### Corrupt Outbox folder
 
 If your messages aren't being delivered or are being delivered multiple
 times, then the first thing you should try is clearing your Outbox.
@@ -1464,7 +1475,8 @@ Here's how to do that:
 7.  Try scheduling a message with Send Later again and see if the
     problem is gone.
 
-#### <a name="drafts-cleanup"></a>Corrupt Drafts folders
+<a name="drafts-cleanup"></a>
+#### Corrupt Drafts folders
 
 A good sign that one of your Drafts folders is corrupted is if Send Later isn't
 noticing that there are scheduled messages, i.e., the message at the bottom of
@@ -1482,7 +1494,8 @@ corrupted Drafts folder even if the message says "PEND".
 and sorting, so if you've customized the columns and/or sorting, you'll
 have to put the customizations back after repairing the folders.
 
-#### <a name="wintemp"></a>Full temporary directory on Windows
+<a name="wintemp"></a>
+#### Full temporary directory on Windows
 
 If your Windows temporary directory ends up with too many files in it,
 which is partially Thunderbird's fault since it has a habit of creating
@@ -1541,7 +1554,8 @@ to do that.
 Helping to improve the add-on
 -----------------------------------------------
 
-### <a name="translate"></a>Translations
+<a name="translate"></a>
+### Translations
 
 **NOTE:** This information about translating is currently out-of-date
 because we are not yet set up to manage translations for the new version
@@ -1589,7 +1603,9 @@ The kind folks at [TCH-Support](http://www.tch-support.com/) have published a
 to use Send Later. They've also produced an
 [English version](https://www.youtube.com/watch?v=5bhLO9GQIsA). Enjoy!
 
-<a name="donate"></a>Support Send Later!
+<a name="donate"></a>
+
+Support Send Later!
 ------------------------------------
 
 I have dedicated countless hours to developing and supporting Send Later. I
@@ -1700,7 +1716,8 @@ and Wang.H.K from BabelZilla (Simplified Chinese).
 
 Please [see above](#translate) if you would like to help add another translation.
 
-### <a name="supporters"></a>Supporters
+<a name="supporters"></a>
+### Supporters
 
 I am grateful to the hundreds of people who have
 [made monetary contributions](#donate) to support the ongoing development of
