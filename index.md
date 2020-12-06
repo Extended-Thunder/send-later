@@ -139,7 +139,8 @@ a scheduled message delivery, edit the draft and save it normally
 without "Send Later" (or just send it immediately, if that's what you
 want to do), and the scheduling information will be removed.
 
-### <a name="date-formats"></a> Date formats
+<a name="date-formats"></a>
+### Date formats
 
 The part of Send Later that interprets the send times you type into the
 text box is pretty smart. You're welcome to type a full date and time,
@@ -164,7 +165,8 @@ in English. If you encounter something you think the add-on should
 understand but doesn't,
 [let us know](mailto:send-later-support@extended-thunder.org?subject=Send%20Later).
 
-<a name="prefs"></a>Preferences
+<a name="prefs"></a>
+Preferences
 ---------------------------
 
 You can get to the add-on's preferences page in two ways:
