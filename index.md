@@ -1644,7 +1644,7 @@ queue and get to them as soon as we can.
 Check out my other add-ons
 -------------------------------------------------
 
-Jonathan Kamens (the long time developer and maintainer of Send Later) has also
+Jonathan Kamens (long time developer and maintainer of Send Later) has also
 written or maintained several
 [other add-ons](https://addons.thunderbird.net/thunderbird/user/jikamens/)
 which you may find useful:
@@ -1777,7 +1777,6 @@ the suggested donation.
 -   ![HubAustin](assets/HubAustinLogo1.png)
     --- South Austin's only coworking space
 -   The EML Group of companies in New Zealand and Australia
--   Erowid
 -   [konehead design™](http://www.koneheaddesign.com/) --- Communication
     Ideas that work. Discover the affordability of quality design.
 -   [Exports International LLC](http://www.exportsinternational.com) ---
@@ -1786,41 +1785,37 @@ the suggested donation.
     of Los Angeles -- Custom Private Luxury Tours in California
 -   Christoph from Germany --- "Interesting: Don't pay for software, but
     support the idea behind it ..."
--   "Keep up the terrific work and don't stop developing Send Later!"
-    --- Mike C.
+-   "Keep up the terrific work and don't stop developing Send Later!" -- Mike C.
 -   kathi and the vom Viersen Rottweilers, Chicago, IL
--   [Telapost](http://telapost.com/) -- Thank you for the excellent
-    add-on!
+-   [Telapost](http://telapost.com/) -- Thank you for the excellent add-on!
 -   [Tdotwire.com](http://www.tdotwire.com/) --- Free Dating in Toronto
 -   ![purple_heart](assets/purple_heart1.png)
     "Excellent add-on for both Thunderbird and Posbox! Support is second
     to none!" --- Jerry (Pop) Fairfield
 -   [Bome Software](http://www.bome.com/)
--   [www.radiocity.ch](http://www.radiocity.ch/) --- internet code &
-    design, Zurich, Switzerland
+-   [www.radiocity.ch](http://www.radiocity.ch/) --- internet code & design,
+    Zurich, Switzerland
 -   Conrad from New Jersey
 -   Naoaki Ichihara
 -   [Fensons -- web design and development](http://www.fensons.com/)
 -   Charles Manske and [Optimage Health](http://www.optimagehealth.com)
-    support good software like 'Send Later' because if it's valuable,
-    you should pay something for it!
+    support good software like 'Send Later' because if it's valuable, you
+    should pay something for it!
 -   [Call the Ninja](http://www.calltheninja.com/ "Call the Ninja")
-    \$200 Flat-rate Data Recovery. No recovery, no fee. Serving clients
-    across LA and the United States.
+    \$200 Flat-rate Data Recovery. No recovery, no fee. Serving clients across
+    LA and the United States.
 -   David Terrell
 -   Paul Wright
 -   Michael Sachs, M.D.
 -   [Marco Cirspini](https://about.me/marco.crispini)
 -   Patrick Murphy, James Valley Hutterian Brethren
--   [Cafe Astrology](https://cafeastrology.com/) --- "The add-on is
-    extremely useful and works well."
--   Thierry Viéville, [Inria](https://www.inria.fr) --- "so smart, so
-    useful : i saved so much time and avoid also many mistakes 🙂 for
-    years by sending later with Send Later, thanks also for the help
-    when i did need it"
--   [![](assets/Obee-App-Table-Booking-System1.png)](https://obeeapp.com/)
--   ![](assets/Logo_Contidos.png)
-    [Contidos Dixitais](http://www.contidosdixitais.com/)
+-   [Cafe Astrology](https://cafeastrology.com/) --- "The add-on is extremely
+    useful and works well."
+-   Thierry Viéville, [Inria](https://www.inria.fr) --- "so smart, so useful :
+    i saved so much time and avoid also many mistakes 🙂 for years by sending
+    later with Send Later, thanks also for the help when i did need it"
+-   [![](assets/Obee-App-Table-Booking-System1.png)Obee](https://obeeapp.com/)
+-   [![](assets/Logo_Contidos.png) Contidos Dixitais](http://www.contidosdixitais.com/)
 -   Felix Salmones from Spain --- "Don't send now, what you can Send later... 🙂"
 -   bwithage --- "Canada --- Hockey Stars and Nanaimo Bars"
 -   Thanks for a great extension! Jim Roper, in Brazil
@@ -1829,7 +1824,8 @@ the suggested donation.
 -   Angelo V. -- SanGio.de -- Thank you for the excellent add-on!
 -   Patrick Bell
 -   ![](https://blog.kamens.us/wp-content/uploads/2018/10/igmcpibggnclpian.ico)
-    Brian S. Wilson: Great plugin and something Thunderbird has needed for a long time.
+    Brian S. Wilson: Great plugin and something Thunderbird has needed for a
+    long time.
 -   Tomas Flaska
 -   [ender informatics gmbh](https://www.ender-informatics.ch/)
 -   Jörg-Ingo from Germany
