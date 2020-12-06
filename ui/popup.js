@@ -164,11 +164,11 @@ const SLPopup = {
       };
     }
 
-    if (!sendAt) {
+    if (!schedule.sendAt) {
       return { err: browser.i18n.getMessage("entervalid") };
     }
 
-    if (SLStatic.compareDateTimes(sendAt, '<', new Date(), true)) {
+    if (SLStatic.compareDateTimes(schedule.sendAt, '<', new Date(), true)) {
       return { err: browser.i18n.getMessage("errorDateInPast") };
     }
 
@@ -196,14 +196,16 @@ const SLPopup = {
             week: +inputs["recur-monthly-byweek-week"]
           };
         } else {
-          schedule.recur.monthly = sendAt.getDate();
+          schedule.recur.monthly = schedule.sendAt.getDate();
         }
         break;
       case "yearly":
         schedule.recur.yearly = {
-          month: sendAt.getMonth(),
-          date: sendAt.getDate()
+          month: schedule.sendAt.getMonth(),
+          date: schedule.sendAt.getDate()
         };
+        break;
+      case "function":
         break;
       default:
         SLStatic.error(`unrecognized recurrence type <${schedule.recur.type}>`);
