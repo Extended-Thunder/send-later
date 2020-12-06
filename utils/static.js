@@ -350,7 +350,9 @@ var SLStatic = {
 
   formatRecurForUI(recur) {
     let recurText;
-    if (recur.type === "function") {
+    if (recur.type === "none") {
+      return ""
+    } else if (recur.type === "function") {
       // Almost certainly doesn't work for all languages. Need a new translation
       // for "recur according to function $1"
       recurText = this.i18n.getMessage("sendwithfunction",
@@ -361,48 +363,47 @@ var SLStatic = {
           this.i18n.getMessage("sendlater.prompt.functionargs.label") +
           `: [${recur.args}]`;
       }
-    } else if (recur.type === "none") {
-      return "";
     } else {
       recurText = this.i18n.getMessage("recurLabel") + " ";
-      if (recur.monthly_day) {
-        const ordDay = this.i18n.getMessage("ord" + recur.monthly_day.week);
-        const dayName = SLStatic.getWkdayName(recur.monthly_day.day, "long");
-        recurText += (this.i18n.getMessage("sendlater.prompt.every.label")
-                        .toLowerCase()) + " " +
-                      this.i18n.getMessage("everymonthly_short",
-                                              [ordDay, dayName]);
+    }
+
+    if (recur.monthly_day) {
+      const ordDay = this.i18n.getMessage("ord" + recur.monthly_day.week);
+      const dayName = SLStatic.getWkdayName(recur.monthly_day.day, "long");
+      recurText += (this.i18n.getMessage("sendlater.prompt.every.label")
+                      .toLowerCase()) + " " +
+                    this.i18n.getMessage("everymonthly_short",
+                                            [ordDay, dayName]);
+    } else {
+      const multiplier = (recur.multiplier || 1);
+      if (multiplier === 1) {
+        recurText += this.i18n.getMessage(recur.type);
       } else {
-        const multiplier = (recur.multiplier || 1);
-        if (multiplier === 1) {
-          recurText += this.i18n.getMessage(recur.type);
-        } else {
-          recurText += this.i18n.getMessage("every_"+recur.type,
-                                            multiplier);
-        }
+        recurText += this.i18n.getMessage("every_"+recur.type,
+                                          multiplier);
       }
+    }
 
-      if (recur.between) {
-        const start = SLStatic.formatTime(recur.between.start,false,true);
-        const end = SLStatic.formatTime(recur.between.end,false,true);
-        recurText += " " + this.i18n.getMessage("betw_times", [start, end]);
-      }
+    if (recur.between) {
+      const start = SLStatic.formatTime(recur.between.start,false,true);
+      const end = SLStatic.formatTime(recur.between.end,false,true);
+      recurText += " " + this.i18n.getMessage("betw_times", [start, end]);
+    }
 
-      if (recur.days) {
-        // TODO: internationalize this
-        const days = recur.days.map(v=>SLStatic.getWkdayName(v));
-        let onDays;
-        if (days.length === 1) {
-          onDays = days;
-        } else if (days.length === 2) {
-          onDays = days.join(" and ");
-        } else {
-          const ndays = days.length;
-          days[ndays-1] = `and ${days[ndays-1]}`;
-          onDays = days.join(", ");
-        }
-        recurText += "\n"+this.i18n.getMessage("only_on_days",onDays);
+    if (recur.days) {
+      // TODO: translate this
+      const days = recur.days.map(v=>SLStatic.getWkdayName(v));
+      let onDays;
+      if (days.length === 1) {
+        onDays = days;
+      } else if (days.length === 2) {
+        onDays = days.join(" and ");
+      } else {
+        const ndays = days.length;
+        days[ndays-1] = `and ${days[ndays-1]}`;
+        onDays = days.join(", ");
       }
+      recurText += "\n"+this.i18n.getMessage("only_on_days",onDays);
     }
 
     if (recur.cancelOnReply) {
