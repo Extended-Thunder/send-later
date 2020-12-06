@@ -342,7 +342,8 @@ Note that the builtin functions cannot be edited, but they can be copied/pasted
 into new functions. They provide a good starting point for creating your own
 scheduling functions.
 
-### <a name="config-editor"></a>Advanced configuration editor
+<a name="config-editor"></a>
+### Advanced configuration editor
 
 There are some preferences which do not have corresponding UI elements in the
 options dialog. Also, there are occasions where you just need fine-grained
