@@ -234,8 +234,8 @@ const SendLater = {
       if (preferences.enforceTimeRestrictions) {
         // Respect "send between" preference
         if (recur.between) {
-          if (SLStatic.compareTimes(Date.now(), '<=', recur.between.start) ||
-              SLStatic.compareTimes(Date.now(), '>=', recur.between.end)) {
+          if (SLStatic.compareTimes(Date.now(), '<', recur.between.start) ||
+              SLStatic.compareTimes(Date.now(), '>', recur.between.end)) {
             SLStatic.debug(
               `Message ${msgHdr.id} ${originalMsgId} outside of sendable time range.`,
               recur.between);
@@ -249,6 +249,7 @@ const SendLater = {
           if (!recur.days.includes(today)) {
             const wkday = new Intl.DateTimeFormat('default', {weekday:'long'});
             SLStatic.debug(`Message ${msgHdr.id} not scheduled to send on ${wkday.format(new Date())}`,recur.days);
+            return;
           }
         }
       }
