@@ -237,7 +237,7 @@ const SendLater = {
           if (SLStatic.compareTimes(Date.now(), '<', recur.between.start) ||
               SLStatic.compareTimes(Date.now(), '>', recur.between.end)) {
             SLStatic.debug(
-              `Message ${msgHdr.id} ${originalMsgId} outside of sendable time range.`,
+              `Message ${msgHdr.id} ${originalMsgId} outside of sendable time range. Skipping.`,
               recur.between);
             return;
           }
@@ -247,9 +247,52 @@ const SendLater = {
         if (recur.days) {
           const today = (new Date()).getDay();
           if (!recur.days.includes(today)) {
-            const wkday = new Intl.DateTimeFormat('default', {weekday:'long'});
-            SLStatic.debug(`Message ${msgHdr.id} not scheduled to send on ${wkday.format(new Date())}`,recur.days);
-            return;
+            // Reschedule for next valid time.
+            const start_time = recur.between && recur.between.start;
+            const end_time = recur.between && recur.between.end;
+            const nextRecurAt = SLStatic.adjustDateForRestrictions(
+              new Date(), start_time, end_time, recur.days, false
+            );
+
+            const this_wkday = new Intl.DateTimeFormat('default', {weekday:'long'});
+            SLStatic.info(`Message ${msgHdr.id} not scheduled to send on ` +
+              `${this_wkday.format(new Date())}. Rescheduling for ${nextRecurAt}`);
+
+            let newMsgContent = rawContent;
+
+            newMsgContent = SLStatic.replaceHeader(
+              newMsgContent,
+              "X-Send-Later-At",
+              SLStatic.parseableDateTimeFormat(nextRecurAt),
+              false
+            );
+
+            const idkey = SLStatic.getHeader(rawContent, "X-Identity-Key");
+            const newMessageId = await browser.SL3U.generateMsgId(idkey);
+            newMsgContent = SLStatic.replaceHeader(
+              newMsgContent,
+              "Message-ID",
+              newMessageId,
+              false
+            );
+
+            if (preferences.markDraftsRead) {
+              this.watchAndMarkRead.add(newMessageId);
+            }
+
+            const success = await browser.SL3U.saveMessage(
+              msgHdr.folder.accountId,
+              msgHdr.folder.path,
+              newMsgContent
+            );
+
+            if (success) {
+              SLStatic.debug(`Rescheduled message ${originalMsgId}. Deleting original.`);
+              return "delete_original";
+            } else {
+              SLStatic.error("Unable to schedule next recuurrence.");
+              return;
+            }
           }
         }
       }
