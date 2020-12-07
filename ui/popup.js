@@ -334,12 +334,15 @@ const SLPopup = {
       dom['recur-multiply'].style.display =
           (recurrence === "monthly") ? "" : "none";
 
-      dom['section-between'].style.display =
-        (recurrence === "minutely" || recurrence === "function") ?
-          "" : "none";
-
     } else {
       specDiv.style.display = "none";
+    }
+
+    if (dom["once"].checked ||
+        ["minutely", "function"].includes(recurrence)) {
+      dom['section-between'].style.display = "";
+    } else {
+      dom['section-between'].style.display = "none";
     }
 
     SLStatic.stateSetter(dom['recurFuncSelect'].length > 0)(dom['function-recur-radio']);
