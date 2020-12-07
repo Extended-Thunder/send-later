@@ -68,6 +68,18 @@ const SLPopup = {
     }, {});
   },
 
+  // Ensure input values are self-consistent.
+  normalizeInputs(inputs) {
+    // Can only place time restrictions on certain recurrence types
+    const dom_once = document.getElementById("once");
+    const dom_minutely = document.getElementById("minutely");
+    const dom_function = document.getElementById("function");
+    inputs.sendbetween &= (dom_once.checked ||
+                           dom_minutely.checked ||
+                           dom_function.checked);
+    return inputs;
+  },
+
   objectifyFormValues() {
     const domArray = SLPopup.domElementsAsArray();
     const inputs = domArray.reduce((obj,item) => {
@@ -96,7 +108,7 @@ const SLPopup = {
           }, { ids:[], vals:[] });
       }
     });
-    return inputs;
+    return this.normalizeInputs(inputs);
   },
 
   evaluateUfunc(funcName, prev, argStr) {
@@ -243,37 +255,18 @@ const SLPopup = {
       }
     }
 
-    if (schedule.recur.type === "none" && schedule.recur.between) {
-      // Similar to SLStatic.adjustDateForRestrictions, but also brings
-      // the scheduled time to the next available minute. (e.g. scheduling
-      // "now" at 10:00 on a Saturday but with a M-F/9-5 restriction should
-      // result in sending at 9:00 on Monday)
-      const { start, end } = schedule.recur.between;
-      if (start && SLStatic.compareTimes(schedule.sendAt, '<', start, true, 1000)) {
-        schedule.sendAt.setHours(start.getHours());
-        schedule.sendAt.setMinutes(start.getMinutes());
-      } else if (end && SLStatic.compareTimes(schedule.sendAt, '>', end, true, 1000)) {
-        schedule.sendAt.setHours(start.getHours());
-        schedule.sendAt.setMinutes(start.getMinutes());
-      }
-      while (schedule.sendAt.getTime() < Date.now()) {
-        schedule.sendAt.setDate(schedule.sendAt.getDate()+1);
-      }
-      while (schedule.recur.days &&
-            !schedule.recur.days.includes(schedule.sendAt.getDay())) {
-        schedule.sendAt.setDate(schedule.sendAt.getDate()+1);
-        schedule.sendAt.setHours(start.getHours());
-        schedule.sendAt.setMinutes(start.getMinutes());
-      }
-    } else {
-      // For ordinary recurrence, we can rely on the usual
-      // adjustDateForRestrictions function, which will leave the time
-      // unchanged if it is within the restrictions.
-      schedule.sendAt = SLStatic.adjustDateForRestrictions(schedule.sendAt,
-          (schedule.recur.between && schedule.recur.between.start),
-          (schedule.recur.between && schedule.recur.between.end),
-           schedule.recur.days);
-    }
+    // Adjust for restrictions
+    const use_soonest_valid = schedule.recur.type === "none";
+    const start_time = schedule.recur.between && schedule.recur.between.start;
+    const end_time = schedule.recur.between && schedule.recur.between.end;
+    schedule.sendAt =
+      SLStatic.adjustDateForRestrictions(
+        schedule.sendAt,
+        start_time, end_time,
+        schedule.recur.days,
+        use_soonest_valid
+      );
+
     return schedule;
   },
 
@@ -517,7 +510,7 @@ const SLPopup = {
     SLPopup.loadFunctionHelpText();
 
     // Trigger some fake events to activate listeners
-    dom['once'].dispatchEvent(new Event('change'));
+    dom['send-datetime'].dispatchEvent(new Event('change'));
   },
 
   showCheckMark(element, color) {
@@ -576,9 +569,10 @@ const SLPopup = {
       const schedule = SLPopup.parseInputs(inputs);
       SLPopup.setScheduleButton(schedule);
     });
-    dom["send-date"].addEventListener("keyup", dateTimeInputListener);
-    dom["send-time"].addEventListener("keyup", dateTimeInputListener);
+    dom["send-date"].addEventListener("change", dateTimeInputListener);
+    dom["send-time"].addEventListener("change", dateTimeInputListener);
     dom["send-datetime"].addEventListener("keyup", dateTimeInputListener);
+    dom["send-datetime"].addEventListener("change", dateTimeInputListener);
 
     SLStatic.stateSetter(dom["sendon"].checked)(dom["onlyOnDiv"]);
     SLStatic.stateSetter(dom["sendbetween"].checked)(dom["betweenDiv"]);
@@ -594,8 +588,8 @@ const SLPopup = {
         element.addEventListener("change", () => {
           const inputs = SLPopup.objectifyFormValues();
           const schedule = SLPopup.parseInputs(inputs);
-          SLStatic.stateSetter(schedule.recur && schedule.recur.type !== "none")(
-            dom['cancel-on-reply-div']);
+          dom["cancel-on-reply-div"].style.display =
+            (schedule.recur && schedule.recur.type !== "none") ? "" : "none";
           SLPopup.setScheduleButton(schedule);
         });
       }
