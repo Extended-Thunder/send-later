@@ -358,29 +358,29 @@ var SLStatic = {
       recurText = this.i18n.getMessage("sendwithfunction",
                                   [recur.function]).replace(/^\S*/,
                                     this.i18n.getMessage("recurLabel"));
+      recurText += "\n";
       if (recur.args) {
-        recurText += "\n" +
-          this.i18n.getMessage("sendlater.prompt.functionargs.label") +
+        recurText += this.i18n.getMessage("sendlater.prompt.functionargs.label") +
           `: [${recur.args}]`;
       }
     } else {
       recurText = this.i18n.getMessage("recurLabel") + " ";
-    }
 
-    if (recur.monthly_day) {
-      const ordDay = this.i18n.getMessage("ord" + recur.monthly_day.week);
-      const dayName = SLStatic.getWkdayName(recur.monthly_day.day, "long");
-      recurText += (this.i18n.getMessage("sendlater.prompt.every.label")
-                      .toLowerCase()) + " " +
-                    this.i18n.getMessage("everymonthly_short",
-                                            [ordDay, dayName]);
-    } else {
-      const multiplier = (recur.multiplier || 1);
-      if (multiplier === 1) {
-        recurText += this.i18n.getMessage(recur.type);
+      if (recur.monthly_day) {
+        const ordDay = this.i18n.getMessage("ord" + recur.monthly_day.week);
+        const dayName = SLStatic.getWkdayName(recur.monthly_day.day, "long");
+        recurText += (this.i18n.getMessage("sendlater.prompt.every.label")
+                        .toLowerCase()) + " " +
+                      this.i18n.getMessage("everymonthly_short",
+                                              [ordDay, dayName]);
       } else {
-        recurText += this.i18n.getMessage("every_"+recur.type,
-                                          multiplier);
+        const multiplier = (recur.multiplier || 1);
+        if (multiplier === 1) {
+          recurText += this.i18n.getMessage(recur.type);
+        } else {
+          recurText += this.i18n.getMessage("every_"+recur.type,
+                                            multiplier);
+        }
       }
     }
 
@@ -410,7 +410,7 @@ var SLStatic = {
       recurText += "\n" + this.i18n.getMessage("cancel_on_reply");
     }
 
-    return recurText;
+    return recurText.trim();
   },
 
   formatScheduleForUIColumn(schedule) {
@@ -907,45 +907,55 @@ var SLStatic = {
     return next;
   },
 
-  // dt is a Date object for the scheduled send time we need to adjust.
+  // sendAt is a Date object for the scheduled send time we need to adjust.
   // start_time and end_time are numbers like HHMM, e.g., 10:00am is
   // 1000, 5:35pm is 1735, or null if there is no time restriction.
   // days is an array of numbers, with 0 being Sunday and 6 being Saturday,
-  // or null if there is no day restriction.
+  // or null if there is no day restriction. soonest_valid indicates
+  // whether we should skip to the same time within the next valid day, or
+  // to the soonest time that satisfies all the conditions.
   // Algorithm:
-  // 1) Copy args so we don't modify them.
-  // 2) If there is a time restriction and the scheduled time is before it,
+  // 1) If there is a time restriction and the scheduled time is before it,
   //    change it to the beginning of the time restriction.
-  // 3) If there is a time restriction and the scheduled time is after it,
+  // 2) If there is a time restriction and the scheduled time is after it,
   //    change it to the beginning of the time restriction the next day.
-  // 4) If there is a day restriction and the scheduled day isn't in it,
+  // 3) If there is a day restriction and the scheduled day isn't in it,
   //    change the day to the smallest day in the restriction that is larger
   //    than the scheduled day, or if there is none, then the smallest day in
   //    the restriction overall.
-  adjustDateForRestrictions(sendAt, start_time, end_time, days) {
-    let dt = new Date(sendAt.getTime());
+  // 4) If this is a one-off schedule and the assigned day is not valid, then we
+  //    want to go to the beginning of the allowed time range on the next valid day.
+  adjustDateForRestrictions(sendAt, start_time, end_time, days, soonest_valid) {
+    // Copy argument variable to avoid modifying the original
+    // (Is this really necessary?)
+    sendAt = new Date(sendAt.getTime());
     start_time = SLStatic.convertTime(start_time);
     end_time = SLStatic.convertTime(end_time);
 
-    if (start_time && SLStatic.compareTimes(dt, '<', start_time, true, 1000)) {
-      // If there is a time restriction and the scheduled time is before it,
+    if (start_time && SLStatic.compareTimes(sendAt, '<', start_time, true, 1000)) {
+      // 1) If there is a time restriction and the scheduled time is before it,
       // reschedule to the beginning of the time restriction.
-      dt.setHours(start_time.getHours());
-      dt.setMinutes(start_time.getMinutes());
-    } else if (end_time && SLStatic.compareTimes(dt, '>', end_time, true, 1000)) {
-      // If there is a time restriction and the scheduled time is after it,
+      sendAt.setHours(start_time.getHours());
+      sendAt.setMinutes(start_time.getMinutes());
+    } else if (end_time && SLStatic.compareTimes(sendAt, '>', end_time, true, 1000)) {
+      // 2) If there is a time restriction and the scheduled time is after it,
       // reschedule to the beginning of the time restriction the next day.
-      dt.setDate(dt.getDate() + 1); // works on end of month, too.
-      dt.setHours(start_time.getHours());
-      dt.setMinutes(start_time.getMinutes());
+      sendAt.setDate(sendAt.getDate() + 1); // works on end of month, too.
+      sendAt.setHours(start_time.getHours());
+      sendAt.setMinutes(start_time.getMinutes());
     }
-    // If there is a day restriction and the scheduled day isn't in it, then
+    // 3) If there is a day restriction and the scheduled day isn't in it, then
     // increment the scheduled date by 1 day at a time until it reaches the
     // next unrestricted day.
-    while (days && !days.includes(dt.getDay())) {
-      dt.setDate(dt.getDate()+1);
+    while (days && !days.includes(sendAt.getDay())) {
+      sendAt.setDate(sendAt.getDate()+1);
+      if (soonest_valid && start_time) {
+        // 4) Go to soonest valid time, rather than just skipping days.
+        sendAt.setHours(start_time.getHours());
+        sendAt.setMinutes(start_time.getMinutes());
+      }
     }
-    return dt;
+    return sendAt;
   }
 }
 
@@ -1043,7 +1053,8 @@ if (SLStatic.i18n === null) {
         }
         try {
           let msg;
-          if (typeof localeMessages === "object") {
+          if (typeof window !== "undefined" &&
+              typeof window.localeMessages === "object") {
             // browser environment
             msg = localeMessages[key].message;
           } else {
