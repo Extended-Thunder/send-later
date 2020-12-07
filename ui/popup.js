@@ -256,6 +256,9 @@ const SLPopup = {
         schedule.sendAt.setHours(start.getHours());
         schedule.sendAt.setMinutes(start.getMinutes());
       }
+      while (schedule.sendAt.getTime() < Date.now()) {
+        schedule.sendAt.setDate(schedule.sendAt.getDate()+1);
+      }
       while (schedule.recur.days &&
             !schedule.recur.days.includes(schedule.sendAt.getDay())) {
         schedule.sendAt.setDate(schedule.sendAt.getDate()+1);
