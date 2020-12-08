@@ -366,20 +366,16 @@ var SLStatic = {
     } else {
       recurText = this.i18n.getMessage("recurLabel") + " ";
 
-      if (recur.monthly_day) {
-        const ordDay = this.i18n.getMessage("ord" + recur.monthly_day.week);
-        const dayName = SLStatic.getWkdayName(recur.monthly_day.day, "long");
-        recurText += (this.i18n.getMessage("sendlater.prompt.every.label")
-                        .toLowerCase()) + " " +
-                      this.i18n.getMessage("everymonthly_short",
-                                              [ordDay, dayName]);
+      const multiplier = (recur.multiplier || 1);
+      if (multiplier === 1) {
+        recurText += this.i18n.getMessage(recur.type);
       } else {
-        const multiplier = (recur.multiplier || 1);
-        if (multiplier === 1) {
-          recurText += this.i18n.getMessage(recur.type);
-        } else {
-          recurText += this.i18n.getMessage("every_"+recur.type,
-                                            multiplier);
+        recurText += this.i18n.getMessage("every_"+recur.type, multiplier);
+
+        if (recur.monthly_day) {
+          const ordDay = this.i18n.getMessage("ord" + recur.monthly_day.week);
+          const dayName = SLStatic.getWkdayName(recur.monthly_day.day, "long");
+          recurText += ` (${this.i18n.getMessage("everymonthly", [ordDay, dayName])})`;
         }
       }
     }
@@ -403,7 +399,7 @@ var SLStatic = {
         days[ndays-1] = `and ${days[ndays-1]}`;
         onDays = days.join(", ");
       }
-      recurText += "\n"+this.i18n.getMessage("only_on_days",onDays);
+      recurText += `\n${this.i18n.getMessage("sendOnlyOnLabel")} ${onDays}`;
     }
 
     if (recur.cancelOnReply) {
