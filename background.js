@@ -799,6 +799,9 @@ const SendLater = {
       // to the default level.
       SLStatic.logConsoleLevel = "info";
 
+      // Clear the current message settings cache
+      browser.storage.local.set({ scheduleCache: {} });
+
       // Perform any pending preference migrations.
       const previousMigration = await this.migratePreferences();
       if (previousMigration < 3) {

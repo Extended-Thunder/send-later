@@ -383,8 +383,8 @@ const SLPopup = {
     }
   },
 
-  saveDefaults() {
-    const defaults = {};
+  serializeInputs() {
+    const inputs = {};
     const dom = SLPopup.objectifyDOMElements();
     Object.keys(dom).forEach(key => {
       const element = dom[key];
@@ -392,16 +392,31 @@ const SLPopup = {
         if (element.type === "button" || ["send-date", "send-time"].includes(element.id)) {
           // do nothing
         } else if (element.type === "radio" || element.type === "checkbox") {
-          defaults[element.id] = element.checked;
+          inputs[element.id] = element.checked;
         } else if (element.tagName === "SELECT" ||
                   ["number","text","date","time"].includes(element.type)) {
-          defaults[element.id] = element.value;
+                    inputs[element.id] = element.value;
         } else {
           throw (`Unrecognized element <${element.tagName} type=${element.type}...>`);
         }
       }
     });
-    SLStatic.debug("Saving default values",defaults);
+    return inputs;
+  },
+
+  async cacheSchedule() {
+    SLStatic.debug(`Caching current input values`);
+    const { scheduleCache } = await browser.storage.local.get({ scheduleCache: {} });
+    const cwin = await browser.windows.getCurrent();
+    scheduleCache[cwin.id] = SLPopup.serializeInputs();
+    browser.storage.local.set({ scheduleCache }).catch((err) => {
+      SLStatic.error(err);
+    });
+  },
+
+  saveDefaults() {
+    const defaults = SLPopup.serializeInputs();
+    SLStatic.debug("Saving default values", defaults);
     browser.storage.local.set({ defaults }).then(() => {
       SLPopup.showCheckMark(dom["save-defaults"], "green");
     }).catch((err) => {
@@ -413,7 +428,10 @@ const SLPopup = {
   clearDefaults() {
     SLStatic.debug("Clearing default values");
     const clrDefaultsElement = document.getElementById("clear-defaults");
-    browser.storage.local.set({ defaults: {} }).then(() => {
+    browser.storage.local.set({
+      defaults: {},
+      scheduleCache: {}
+    }).then(() => {
       SLPopup.showCheckMark(clrDefaultsElement, "green");
     }).catch((err) => {
       SLStatic.error(err);
@@ -422,7 +440,14 @@ const SLPopup = {
   },
 
   async applyDefaults() {
-    const { defaults } = await browser.storage.local.get({ defaults: {} });
+    const storage = await browser.storage.local.get({
+      defaults: {},
+      scheduleCache: {}
+    });
+
+    const cwin = await browser.windows.getCurrent();
+    const defaults = storage.scheduleCache[cwin.id] || storage.defaults;
+
     const dom = SLPopup.objectifyDOMElements();
 
     const recurFuncSelect = dom['recurFuncSelect'];
@@ -567,6 +592,8 @@ const SLPopup = {
         (dom["monthly"].checked) ? "" : "none";
 
       SLPopup.setScheduleButton(schedule);
+
+      SLPopup.cacheSchedule();
 
       const hdrs = SLPopup.debugSchedule();
       // Would be useful for debugging, but doesn't seem to work in a popup.
