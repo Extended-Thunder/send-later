@@ -231,11 +231,31 @@ const SendLater = {
       const recur = SLStatic.parseRecurSpec(msgRecurSpec);
       const args = msgRecurArgs ? SLStatic.parseArgs(msgRecurArgs) : null;
 
+      // Respect late message blocker
+      if (preferences.blockLateMessages) {
+        const lateness = (Date.now() - nextSend.getTime()) / 60000;
+        if (lateness > preferences.lateGracePeriod) {
+          SLStatic.warn(`Grace period exceeded for message ${msgHdr.id}`);
+          if (!this.warnedAboutLateMessageBlocked.has(originalMsgId)) {
+            const msgSubject = SLStatic.getHeader(rawContent, "subject");
+            const warningMsg = browser.i18n.getMessage(
+              "BlockedLateMessage",
+              [msgSubject, msgHdr.folder.path, preferences.lateGracePeriod]
+            );
+            const warningTitle = browser.i18n.getMessage("ScheduledMessagesWarningTitle");
+            this.warnedAboutLateMessageBlocked.add(originalMsgId);
+            browser.SL3U.alert(warningTitle, warningMsg)
+          }
+          return;
+        }
+      }
+
       if (preferences.enforceTimeRestrictions) {
         // Respect "send between" preference
         if (recur.between) {
           if (SLStatic.compareTimes(Date.now(), '<', recur.between.start) ||
               SLStatic.compareTimes(Date.now(), '>', recur.between.end)) {
+            // Skip message this time, but don't explicitly reschedule it.
             SLStatic.debug(
               `Message ${msgHdr.id} ${originalMsgId} outside of sendable time range. Skipping.`,
               recur.between);
@@ -294,25 +314,6 @@ const SendLater = {
               return;
             }
           }
-        }
-      }
-
-      // Respect late message blocker
-      if (preferences.blockLateMessages) {
-        const lateness = (Date.now() - nextSend.getTime()) / 60000;
-        if (lateness > preferences.lateGracePeriod) {
-          SLStatic.warn(`Grace period exceeded for message ${msgHdr.id}`);
-          if (!this.warnedAboutLateMessageBlocked.has(originalMsgId)) {
-            const msgSubject = SLStatic.getHeader(rawContent, "subject");
-            const warningMsg = browser.i18n.getMessage(
-              "BlockedLateMessage",
-              [msgSubject, msgHdr.folder.path, preferences.lateGracePeriod]
-            );
-            const warningTitle = browser.i18n.getMessage("ScheduledMessagesWarningTitle");
-            this.warnedAboutLateMessageBlocked.add(originalMsgId);
-            browser.SL3U.alert(warningTitle, warningMsg)
-          }
-          return;
         }
       }
 
