@@ -7,16 +7,13 @@ const SLPopup = {
     const inputs = SLPopup.objectifyFormValues();
     const schedule = SLPopup.parseInputs(inputs);
     if (schedule && !schedule.err) {
-      hdr = {
-        'send-at': SLStatic.parseableDateTimeFormat(schedule.sendAt),
-        'recur': SLStatic.unparseRecurSpec(schedule.recur),
-        'args': schedule.recur.args,
-        'cancel-on-reply': schedule.recur.cancelOnReply
-      }
-      const debugMsg = Object.keys(hdr).reduce((msg,name) => {
-        msg.push(`${name}: ${hdr[name]}`); return msg;
-      },[]).join("\n    ");
-      console.debug(`DEBUG [SendLater]: Header values:\n    ${debugMsg}`);
+      const sendAt = SLStatic.parseableDateTimeFormat(schedule.sendAt);
+      const recur = SLStatic.unparseRecurSpec(schedule.recur);
+      const hdr = `x-send-later-at: ${sendAt}\n    ` +
+                  `x-send-later-recur: ${recur}\n    ` +
+                  `x-send-later-args: ${schedule.recur.args}\n    ` +
+                  `x-send-later-cancel-on-reply: ${schedule.recur.cancelOnReply ? "yes" : "no"}`;
+      console.debug(`DEBUG [SendLater]: Header values:\n    ${hdr}`);
     }
   },
 
@@ -270,7 +267,7 @@ const SLPopup = {
     return schedule;
   },
 
-  updateRecurrenceText() {
+  updateRecurrenceInputs() {
     const dom = SLPopup.objectifyDOMElements();
 
     const specs = ["minutely","daily","weekly","monthly","yearly","function"];
@@ -320,24 +317,12 @@ const SLPopup = {
     } else {
       specDiv.style.display = "none";
     }
-
-    if (dom["once"].checked ||
-        ["minutely", "function"].includes(recurrence)) {
-      dom['section-between'].style.display = "";
-    } else {
-      dom['section-between'].style.display = "none";
-    }
-
-    SLStatic.stateSetter(dom['recurFuncSelect'].length > 0)(dom['function-recur-radio']);
-    SLStatic.stateSetter((recurrence === "function"))(dom['recurFuncSelect']);
   },
 
   setScheduleButton(schedule) {
     if (SLPopup.buttonUpdater) {
       clearTimeout(SLPopup.buttonUpdater);
     }
-
-    SLPopup.updateRecurrenceText();
 
     const sendScheduleButton = document.getElementById("sendScheduleButton");
 
@@ -346,13 +331,6 @@ const SLPopup = {
       sendScheduleButton.disabled = true;
       return false;
     }
-
-    browser.storage.local.get({ "preferences": {} }).then(storage => {
-      const logConsoleLevel = storage.preferences.logConsoleLevel;
-      if (["debug", "trace", "all"].includes(logConsoleLevel)) {
-        SLPopup.debugSchedule();
-      }
-    });
 
     try {
       const scheduleText = SLStatic.formatScheduleForUI(schedule);
@@ -481,17 +459,13 @@ const SLPopup = {
         } catch (err) { console.log(err); }
       }
     } else {
-      let relativeTo = new Date();
-      const rSec = relativeTo.getSeconds(),
-            pSec = SLStatic.previousLoop.getSeconds();
-      if (rSec > pSec) {
-        const tdiff = rSec-pSec;
-        relativeTo = new Date(relativeTo.getTime() + 60000 - tdiff*1000);
-      }
-      const soon = new Sugar.Date(relativeTo.getTime() + (5*60*1000));
-      dom["send-date"].value = soon.format('%Y-%m-%d');
-      dom["send-time"].value = soon.format('%H:%M');
-      dom["send-datetime"].value = SLStatic.shortHumanDateTimeFormat(soon.getTime());
+      const soon = new Sugar.Date(Date.now() + (5*60*1000));
+      dom["send-datetime"].value = soon.relative();
+      try {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("change", false, true);
+        dom["send-datetime"].dispatchEvent(evt);
+      } catch (err) { console.log(err); }
     }
 
     SLStatic.stateSetter(dom["sendon"].checked)(dom["onlyOnDiv"]);
@@ -561,6 +535,12 @@ const SLPopup = {
 
       SLStatic.stateSetter(dom["sendon"].checked)(dom["onlyOnDiv"]);
       SLStatic.stateSetter(dom["sendbetween"].checked)(dom["betweenDiv"]);
+
+      SLStatic.stateSetter(dom['recurFuncSelect'].length > 0)(dom['function-recur-radio']);
+      SLStatic.stateSetter(dom["function"].checked)(dom['recurFuncSelect']);
+
+      SLStatic.stateSetter(dom["recur-monthly-byweek"].checked)(dom["recur-monthly-byweek-options"])
+
       dom["cancel-on-reply-div"].style.display =
         (schedule.recur && schedule.recur.type !== "none") ? "" : "none";
 
@@ -575,12 +555,23 @@ const SLPopup = {
         dom['showHideFunctionHelp'].style.display = "none";
       }
 
+      if (["once", "minutely", "function"].find(s => dom[s].checked)) {
+        dom['section-between'].style.display = "";
+      } else {
+        dom['section-between'].style.display = "none";
+      }
+
       dom['monthly-options-div'].style.display =
-        (dom["monthly"].checked) ? "" : "none";
-      dom['recur-multiply'].style.display =
         (dom["monthly"].checked) ? "" : "none";
 
       SLPopup.setScheduleButton(schedule);
+
+      browser.storage.local.get({ "preferences": {} }).then(({ preferences }) => {
+        const logConsoleLevel = preferences.logConsoleLevel;
+        if (["debug", "trace", "all"].includes(logConsoleLevel)) {
+          SLPopup.debugSchedule();
+        }
+      });
     };
 
     Object.keys(dom).forEach((key) => {
@@ -597,11 +588,10 @@ const SLPopup = {
     dom["recur-function-args"],addEventListener("keyup", onInput);
 
     [...document.getElementsByName("recur")].forEach(element =>
-      element.addEventListener("change", SLPopup.updateRecurrenceText));
+      element.addEventListener("change", SLPopup.updateRecurrenceInputs));
 
     dom["sendNow"].addEventListener("click", SLPopup.doSendNow);
     dom["placeInOutbox"].addEventListener("click", SLPopup.doPlaceInOutbox);
-
     dom["sendScheduleButton"].addEventListener("click", () => {
       const inputs = SLPopup.objectifyFormValues();
       const schedule = SLPopup.parseInputs(inputs);
