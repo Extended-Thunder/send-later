@@ -370,13 +370,13 @@ var SLStatic = {
       if (multiplier === 1) {
         recurText += this.i18n.getMessage(recur.type);
       } else {
-        recurText += this.i18n.getMessage("every_"+recur.type, multiplier);
-
         if (recur.monthly_day) {
           const ordDay = this.i18n.getMessage("ord" + recur.monthly_day.week);
           const dayName = SLStatic.getWkdayName(recur.monthly_day.day, "long");
-          recurText += ` (${this.i18n.getMessage("everymonthly", [ordDay, dayName])})`;
+          recurText += `${this.i18n.getMessage("everymonthly", [ordDay, dayName])}, `;
         }
+
+        recurText += this.i18n.getMessage("every_"+recur.type, multiplier);
       }
     }
 
@@ -387,16 +387,19 @@ var SLStatic = {
     }
 
     if (recur.days) {
-      // TODO: translate this
       const days = recur.days.map(v=>SLStatic.getWkdayName(v));
       let onDays;
-      if (days.length === 1) {
-        onDays = days;
-      } else if (days.length === 2) {
-        onDays = days.join(" and ");
+      if (/en/i.test(SLStatic.i18n.getUILanguage())) {
+        if (days.length === 1) {
+          onDays = days;
+        } else if (days.length === 2) {
+          onDays = days.join(" and ");
+        } else {
+          const ndays = days.length;
+          days[ndays-1] = `and ${days[ndays-1]}`;
+          onDays = days.join(", ");
+        }
       } else {
-        const ndays = days.length;
-        days[ndays-1] = `and ${days[ndays-1]}`;
         onDays = days.join(", ");
       }
       recurText += `\n${this.i18n.getMessage("sendOnlyOnLabel")} ${onDays}`;
