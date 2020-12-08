@@ -3,17 +3,19 @@ const SLPopup = {
   buttonUpdater: null,
 
   debugSchedule() {
-    // Dump current header values to console.
     const inputs = SLPopup.objectifyFormValues();
     const schedule = SLPopup.parseInputs(inputs);
-    if (schedule && !schedule.err) {
-      const sendAt = SLStatic.parseableDateTimeFormat(schedule.sendAt);
-      const recur = SLStatic.unparseRecurSpec(schedule.recur);
-      const hdr = `x-send-later-at: ${sendAt}\n    ` +
-                  `x-send-later-recur: ${recur}\n    ` +
-                  `x-send-later-args: ${schedule.recur.args}\n    ` +
-                  `x-send-later-cancel-on-reply: ${schedule.recur.cancelOnReply ? "yes" : "no"}`;
-      console.debug(`DEBUG [SendLater]: Header values:\n    ${hdr}`);
+    if (!schedule) {
+      return null;
+    } else if (schedule.err) {
+      return [ schedule.err ];
+    } else {
+      return [
+        `x-send-later-at: ${SLStatic.parseableDateTimeFormat(schedule.sendAt)}`,
+        `x-send-later-recur: ${SLStatic.unparseRecurSpec(schedule.recur)}`,
+        `x-send-later-args: ${schedule.recur.args}`,
+        `x-send-later-cancel-on-reply: ${schedule.recur.cancelOnReply ? "yes" : "no"}`
+      ];
     }
   },
 
@@ -566,12 +568,11 @@ const SLPopup = {
 
       SLPopup.setScheduleButton(schedule);
 
-      browser.storage.local.get({ "preferences": {} }).then(({ preferences }) => {
-        const logConsoleLevel = preferences.logConsoleLevel;
-        if (["debug", "trace", "all"].includes(logConsoleLevel)) {
-          SLPopup.debugSchedule();
-        }
-      });
+      const hdrs = SLPopup.debugSchedule();
+      // Would be useful for debugging, but doesn't seem to work in a popup.
+      // const scheduleButton = document.getElementById("sendScheduleButton");
+      // scheduleButton.title = hdrs.join(' | ');
+      SLStatic.debug(`Header values:\n    ${hdrs.join("\n    ")}`);
     };
 
     Object.keys(dom).forEach((key) => {
