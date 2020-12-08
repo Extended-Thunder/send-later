@@ -221,7 +221,7 @@ var SLStatic = {
     } else {
       date = new Date(2000,0,2+(+input)); // 2000/01/02 Happens to be a Sunday
     }
-    return (new Intl.DateTimeFormat('default', {weekday:style})).format(date);
+    return (new Intl.DateTimeFormat([], {weekday:style})).format(date);
   },
 
   parseDateTime(dstr,tstr) {
