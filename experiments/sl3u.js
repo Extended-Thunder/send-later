@@ -633,7 +633,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               let okToProceed = Services.prompt.confirmCheck(
                 null, title, message, checkMessage, checkbox
               );
-              resolve(okToProceed && checkbox.value);
+              resolve({ ok: okToProceed, check: checkbox.value });
             } catch (err) {
               reject(`An error occurred in SL3U.doConfirmCheck: ${err}`);
             }

@@ -200,14 +200,14 @@ const SendLater = {
           SLStatic.debug(`Encountered previously sent message "${msgSubject}" ${originalMsgId}.`);
         } else {
           SLStatic.error(`Attempted to resend message "${msgSubject}" ${originalMsgId}.`);
-          const confirmation = await browser.SL3U.confirmCheck(
+          const result = await browser.SL3U.confirmCheck(
             browser.i18n.getMessage("ScheduledMessagesWarningTitle"),
             browser.i18n.getMessage("CorruptFolderError", [msgHdr.folder.path]) + "\n\n" +
               browser.i18n.getMessage("CorruptFolderErrorDetails", [msgSubject, originalMsgId]),
             browser.i18n.getMessage("ConfirmAgain"),
             true
           );
-          preferences.optOutResendWarning = (confirmation === false);
+          preferences.optOutResendWarning = (result.ok === false);
           await browser.storage.local.set({ preferences });
         }
         return;
@@ -999,6 +999,25 @@ browser.runtime.onMessage.addListener(async (message) => {
     }
     case "doSendNow": {
       SLStatic.debug("User requested send immediately.");
+      const { preferences } = await browser.storage.local.get({ preferences: {} });
+      if (preferences.showSendNowAlert) {
+        const result = await browser.SL3U.confirmCheck(
+          browser.i18n.getMessage("AreYouSure"),
+          browser.i18n.getMessage("SendNowConfirmMessage"),
+          browser.i18n.getMessage("ConfirmAgain"),
+          true
+        ).catch((err) => {
+          SLStatic.trace(err);
+        });
+        if (result.check === false) {
+          preferences.showSendNowAlert = false;
+          browser.storage.local.set({ preferences });
+        }
+        if (!result.ok) {
+          SLStatic.debug(`User cancelled send now.`);
+          break;
+        }
+      }
       browser.SL3U.goDoCommand("cmd_sendNow").catch((ex) => {
         SLStatic.error("Error during builtin send operation",ex);
       });
@@ -1006,6 +1025,25 @@ browser.runtime.onMessage.addListener(async (message) => {
     }
     case "doPlaceInOutbox": {
       SLStatic.debug("User requested system send later.");
+      const { preferences } = await browser.storage.local.get({ preferences: {} });
+      if (preferences.showOutboxAlert) {
+        const result = await browser.SL3U.confirmCheck(
+          browser.i18n.getMessage("AreYouSure"),
+          browser.i18n.getMessage("OutboxConfirmMessage"),
+          browser.i18n.getMessage("ConfirmAgain"),
+          true
+        ).catch((err) => {
+          SLStatic.trace(err);
+        });
+        if (result.check === false) {
+          preferences.showOutboxAlert = false;
+          browser.storage.local.set({ preferences });
+        }
+        if (!result.ok) {
+          SLStatic.debug(`User cancelled send later.`);
+          break;
+        }
+      }
       browser.SL3U.builtInSendLater().catch((ex) => {
         SLStatic.error("Error during builtin send later operation",ex);
       });
