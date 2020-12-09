@@ -778,6 +778,7 @@ const SendLater = {
         const { preferences } = await browser.storage.local.get({ preferences: {} });
         const activeSchedules = await this.getActiveSchedules(preferences.instanceUUID);
         const nActive = activeSchedules.length;
+        browser.SL3U.setSendLaterVar("messages_pending", nActive);
         if (nActive > 0) {
           statusMsg = browser.i18n.getMessage("PendingMessage", [nActive]);
         } else {
@@ -1341,6 +1342,12 @@ function mainLoop() {
   if (SendLater.loopTimeout) {
     clearTimeout(SendLater.loopTimeout);
   }
+
+  // This variable gets set to "true" when a user is warned about
+  // leaving TB open, but it may not get set back to false if
+  // some other quit-requested-observer aborts the quit. So just
+  // just in case, we'll periodically set it back to "false".
+  browser.SL3U.setSendLaterVar("quit_confirmed", false);
 
   browser.storage.local.get({ preferences: {} }).then((storage) => {
     let interval = +storage.preferences.checkTimePref || 0;
