@@ -908,7 +908,7 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "A versão instalada do Enigmail é incompatível com o Send Later, por isso o agendamento de mensagens com o Send Later foi desactivado. Por favor contacte o criador do Send Later (jik@kamens.us) para obter ajuda.",
+    "message": "A versão instalada do Enigmail é incompatível com o Send Later, por isso o agendamento de mensagens com o Send Later foi desactivado. Por favor contacte o criador do Send Later (send-later-support@extended-thunder.org) para obter ajuda.",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {

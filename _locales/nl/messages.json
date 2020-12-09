@@ -920,7 +920,7 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "De geïnstalleerde versie van Enigmail is niet compatibel met Send Later, dus het inplannen van berichten met Send Later is uitgeschakeld. Neem contact op met de beheerder van Send Later (jik@kamens.us) voor hulp.",
+    "message": "De geïnstalleerde versie van Enigmail is niet compatibel met Send Later, dus het inplannen van berichten met Send Later is uitgeschakeld. Neem contact op met de beheerder van Send Later (send-later-support@extended-thunder.org) voor hulp.",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {

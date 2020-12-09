@@ -920,7 +920,7 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "Nainstalovaná verze programu „Enigmail“ není kompatibilní s rozšířením „Odeslat Později“, proto bylo plánování odesílání zpráv s „Odeslat Později“ zakázáno. Kontaktujte, prosím, vývojáře „Odeslat Později“ (jik@kamens.us) s žádostí o pomoc.",
+    "message": "Nainstalovaná verze programu „Enigmail“ není kompatibilní s rozšířením „Odeslat Později“, proto bylo plánování odesílání zpráv s „Odeslat Později“ zakázáno. Kontaktujte, prosím, vývojáře „Odeslat Později“ (send-later-support@extended-thunder.org) s žádostí o pomoc.",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {

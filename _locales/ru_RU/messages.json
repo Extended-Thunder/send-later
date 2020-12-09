@@ -908,7 +908,7 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "Установленная версия Enigmail несовместима с Send Later, поэтому планирование сообщения через Send Later недоступно. Для помощи, пожалуйста, свяжитесь с поддержкой Send Later (jik@kamens.us).",
+    "message": "Установленная версия Enigmail несовместима с Send Later, поэтому планирование сообщения через Send Later недоступно. Для помощи, пожалуйста, свяжитесь с поддержкой Send Later (send-later-support@extended-thunder.org).",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {

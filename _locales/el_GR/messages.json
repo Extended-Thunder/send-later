@@ -908,7 +908,7 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "Η εγκατεστημένη έκδοση του Enigmail είναι ασύμβατη με το Send Later, επομένως ο προγραμματισμός αποστολής μηνυμάτων με το Send Later απενεργοποιήθηκε. Παρακαλούμε επικοινωνήστε με τον διαχειριστή του Send Later (jik@kamens.us) για βοήθεια.",
+    "message": "Η εγκατεστημένη έκδοση του Enigmail είναι ασύμβατη με το Send Later, επομένως ο προγραμματισμός αποστολής μηνυμάτων με το Send Later απενεργοποιήθηκε. Παρακαλούμε επικοινωνήστε με τον διαχειριστή του Send Later (send-later-support@extended-thunder.org) για βοήθεια.",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {
