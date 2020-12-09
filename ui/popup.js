@@ -41,8 +41,9 @@ const SLPopup = {
       action: "doSendNow"
     };
     SLStatic.debug(message);
-    browser.runtime.sendMessage(message).catch(SLStatic.error);
-    setTimeout((() => window.close()), 150);
+    browser.runtime.sendMessage(message).catch(
+      (err) => SLStatic.error(err)
+    );
   },
 
   doPlaceInOutbox() {
@@ -51,8 +52,9 @@ const SLPopup = {
       action: "doPlaceInOutbox"
     };
     SLStatic.debug(message);
-    browser.runtime.sendMessage(message).catch(SLStatic.error);
-    setTimeout((() => window.close()), 150);
+    browser.runtime.sendMessage(message).catch(
+      (err) => SLStatic.trace(err)
+    );
   },
 
   domElementsAsArray() {
