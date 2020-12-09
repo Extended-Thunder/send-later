@@ -35,6 +35,66 @@ const SendLaterFunctions = {
   debug(...msg)  { this.logger(msg, "debug", console.debug) },
   trace(...msg)  { this.logger(msg, "trace", console.trace) },
 
+  getMessage(context, messageName, substitutions) {
+    // from static.js
+    try {
+      messageName = messageName.toLowerCase();
+
+      let messages, str;
+
+      const ext = context.extension;
+      const selectedLocale = ext.localeData.selectedLocale;
+      if (ext.localeData.messages.has(selectedLocale)) {
+        messages = ext.localeData.messages.get(selectedLocale);
+        if (messages.has(messageName)) {
+          str = messages.get(messageName);
+        }
+      }
+
+      if (str === undefined) {
+        SendLaterFunctions.warn(`Unable to find message ${messageName} in locale ${selectedLocale}`);
+        for (let locale of ext.localeData.availableLocales) {
+          if (ext.localeData.messages.has(locale)) {
+            messages = ext.localeData.messages.get(locale);
+            if (messages.has(messageName)) {
+              str = messages.get(messageName);
+              break;
+            }
+          }
+        }
+      }
+
+      if (str === undefined) {
+        str = messageName;
+      }
+
+      if (!str.includes("$")) {
+        return str;
+      }
+
+      if (!Array.isArray(substitutions)) {
+        substitutions = [substitutions];
+      }
+
+      let replacer = (matched, index, dollarSigns) => {
+        if (index) {
+          // This is not quite Chrome-compatible. Chrome consumes any number
+          // of digits following the $, but only accepts 9 substitutions. We
+          // accept any number of substitutions.
+          index = parseInt(index, 10) - 1;
+          return index in substitutions ? substitutions[index] : "";
+        }
+        // For any series of contiguous `$`s, the first is dropped, and
+        // the rest remain in the output string.
+        return dollarSigns;
+      };
+      return str.replace(/\$(?:([1-9]\d*)|(\$+))/g, replacer);
+    } catch (e) {
+      console.warn("Unable to get localized message.",e);
+    }
+    return "";
+  },
+
   waitAndDelete(file_arg) {
     const timer = Cc["@mozilla.org/timer;1"].createInstance(Ci.nsITimer);
     const callback = {
@@ -1450,6 +1510,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             try {
               const data = JSON.parse(dataStr);
               SendLaterVars.logConsoleLevel = (data.logConsoleLevel||"all").toLowerCase();
+              SendLaterVars.ask_quit = data.askQuit;
             } catch (ex) {
               SendLaterFunctions.warn(
                 `SL3U.notifyStorageLocal Unable to set SendLaterVars.logConsoleLevel`
@@ -1489,6 +1550,10 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           });
         },
 
+        async setSendLaterVar(key, value) {
+          SendLaterVars[key] = value;
+        },
+
         async startObservers() {
           try {
             const loadPrefs = async () => {
@@ -1503,6 +1568,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                   );
                 SendLaterVars.logConsoleLevel =
                   (preferences.logConsoleLevel||"all").toLowerCase();
+                SendLaterVars.ask_quit = preferences.askQuit;
                 return true;
               } catch (err) {
                 // SendLaterFunctions.warn("Could not fetch preferences", err);
@@ -1515,6 +1581,85 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               window.setTimeout(loadPrefs, 1000);
             }
           } catch {}
+
+          const QuitObserver = {
+            observe(subject, topic, data) {
+              const appName = Services.appinfo.name;
+              const scheduledMessagesWarningTitle =
+                SendLaterFunctions.getMessage(context, "scheduledMessagesWarningTitle");
+              const scheduledMessagesWarningQuitRequested =
+                SendLaterFunctions.getMessage(context, "scheduledMessagesWarningQuitRequested", [appName]);
+              const scheduledMessagesWarningQuit =
+                SendLaterFunctions.getMessage(context, "ScheduledMessagesWarningQuit", [appName]);
+              const confirmAgain =
+                SendLaterFunctions.getMessage(context, "confirmAgain");
+
+              const localStorage = context.apiCan.findAPIPath("storage.local");
+              let check, result;
+              switch (topic) {
+                case "quit-application-requested":
+                  if (!SendLaterVars.messages_pending ||
+                      !SendLaterVars.ask_quit) {
+                    return;
+                  }
+
+                  SendLaterVars.quit_confirmed = true;
+                  check = { value: true };
+                  result = Services.prompt.confirmCheck(
+                    null, scheduledMessagesWarningTitle,
+                    scheduledMessagesWarningQuitRequested,
+                    confirmAgain, check
+                  );
+                  if (!check.value) {
+                    localStorage.callMethodInParentProcess(
+                      "get", [{ "preferences": {} }]
+                    ).then(({ preferences }) => {
+                      preferences.askQuit = false;
+                      localStorage.callMethodInParentProcess(
+                        "set", [{ preferences }]
+                      ).then(
+                        () => { console.log("Successfully set preferences.askQuit = false"); }
+                      );
+                    }).catch(SendLaterFunctions.error);
+                  }
+                  if (!result) {
+                    subject.QueryInterface(Ci.nsISupportsPRBool);
+                    subject.data = true;
+                  }
+                  break;
+                case "quit-application-granted":
+                  if (SendLaterVars.quit_confirmed ||
+                      !SendLaterVars.messages_pending ||
+                      !SendLaterVars.ask_quit) {
+                    return;
+                  }
+                  check = { value: true };
+                  result = Services.prompt.alertCheck(
+                    null, scheduledMessagesWarningTitle,
+                    scheduledMessagesWarningQuit,
+                    confirmAgain, check
+                  );
+                  if (!check.value) {
+                    localStorage.callMethodInParentProcess(
+                      "get", [{ "preferences": {} }]
+                    ).then(({ preferences }) => {
+                      preferences.askQuit = false;
+                      localStorage.callMethodInParentProcess(
+                        "set", [{ preferences }]
+                      ).then(
+                        () => { console.log("Successfully set preferences.askQuit = false"); }
+                      );
+                    }).catch(SendLaterFunctions.error);
+                  }
+                  break;
+                default:
+                  break;
+              }
+            },
+          }
+
+          Services.obs.addObserver(QuitObserver, "quit-application-requested");
+          Services.obs.addObserver(QuitObserver, "quit-application-granted");
 
           // Setup various observers.
           SendLaterBackgrounding();
