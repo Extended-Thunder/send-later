@@ -1354,6 +1354,11 @@ function mainLoop() {
       SendLater.setStatusBarIndicator.call(SendLater, true);
 
       browser.accounts.list().then(async (accounts) => {
+        let folderProcessPromises = [/*
+          Will be filled with promises (one for each drafts folder), each resolves
+          to an array of promises (one per message in that folder), which in turn
+          resolve when that message has been processed.
+        */];
         for (let acct of accounts) {
           let draftFolders = await getDraftFolders(acct);
           if (draftFolders && draftFolders.length > 0) {
@@ -1362,63 +1367,77 @@ function mainLoop() {
                 try {
                   SLStatic.debug(`Checking for messages in folder ${draftFolder.path}`);
                   const accountId = draftFolder.accountId, path = draftFolder.path;
-                  let loopMessagesPromise = browser.SL3U.getAllScheduledMessages(
+                  let messageProcessPromises = browser.SL3U.getAllScheduledMessages(
                     accountId, path, true, false
                   ).then(async (messages) => {
+                    let sendPromises = [/*
+                      Filled with promises (one per message in this folder), which resolve
+                      as soon as each message is processed.
+                    */];
                     for (let message of messages) {
                       message.folder = draftFolder;
                       let callback = SendLater.possiblySendMessage.bind(SendLater);
-                      let possiblySendPromise = callback(message, message.raw).then(async (result) => {
+                      let possiblySendPromise = callback(message, message.raw).then((result) => {
                         if (result === "delete_original") {
-                          browser.SL3U.deleteDraftByUri(accountId, path, message.uri).catch((ex) => {
+                          return browser.SL3U.deleteDraftByUri(accountId, path, message.uri).catch((ex) => {
                             SLStatic.error(`mainLoop.deleteDraftByUri error:`, ex);
                           });
+                        } else {
+                          return new Promise((resolve, reject) => resolve(message));
                         }
                       }).catch(SLStatic.error);
+                      sendPromises.push(possiblySendPromise);
                       if (throttleDelay) {
                         await possiblySendPromise;
                       }
                     }
-                  }).catch(SLStatic.error);
+                    return sendPromises;
+                  }).catch(err => SLStatic.trace(err));
+                  folderProcessPromises.push(messageProcessPromises);
                   if (throttleDelay) {
-                    await loopMessagesPromise;
+                    await messageProcessPromises;
                   }
-                } catch (ex0) {
-                  SLStatic.error(ex0);
-                }
+                } catch (ex0) { SLStatic.error(ex0); }
               }
             }
           } else {
             SLStatic.debug(`mainLoop: Unable to find drafts folder for account`, acct.name);
           }
         }
+        if (!throttleDelay) {
+          for (messageProcessPromises of await Promise.all(folderProcessPromises)) {
+            // messageProcessPromises is an array of promises which will each
+            // resolve as soon as that message has been processed. We don't
+            // actually need to know about the result of these promises, just
+            // be sure to wait for them to resolve before continuing.
+            await Promise.all(messageProcessPromises);
+          }
+        }
+        return true;
       }).then(() => {
-        // If there is a throttle delay set, then we have already 'awaited'
-        // all of the action, and we can remove the status indicator now.
-        // Otherwise, let's leave it up for a bit, since the loop may still
-        // be processing asynchronously.
-        let statusMsgDuration = throttleDelay ? 0 : 4000;
-        setTimeout(() => {
-          SendLater.setStatusBarIndicator.call(SendLater, false);
-        }, statusMsgDuration);
+        SLStatic.previousLoop = new Date();
+        SendLater.setStatusBarIndicator.call(SendLater, false);
+
+        SLStatic.previousLoop = new Date();
+        SLStatic.debug(`Next main loop iteration in ${interval} ` +
+                       `minute${interval === 1 ? "" : "s"}.`);
+        SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000*interval);
       }).catch((err) => {
         SLStatic.error(err);
         SendLater.setStatusBarIndicator.call(SendLater, false);
+
+        SLStatic.previousLoop = new Date();
+        SLStatic.debug(`Next main loop iteration in ${interval} ` +
+                       `minute${interval === 1 ? "" : "s"}.`);
+        SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000*interval);
       });
     } else {
       const extName = browser.i18n.getMessage("extensionName");
       const disabledMsg = browser.i18n.getMessage("DisabledMessage");
       browser.SL3U.showStatus(`${extName} [${disabledMsg}]`);
+      SLStatic.previousLoop = new Date();
+      SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000);
     }
-
-    SLStatic.previousLoop = new Date();
-
-    interval = interval || 1;
-    SLStatic.debug(
-      `Next main loop iteration in ${interval} ` +
-      `minute${interval === 1 ? "" : "s"}.`
-    );
-    SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000*interval);
   }).catch(ex => {
     SLStatic.error(ex);
     SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000);
