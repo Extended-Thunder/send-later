@@ -908,7 +908,7 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "A versão instalada de Enigmail é incompatível com Enviar mais tarde: o serviço de agendar mensagens com Enviar mais tarde foi desativado. Contate o responsável por Enviar mais tarde (jik@kamens.us) para assistência.",
+    "message": "A versão instalada de Enigmail é incompatível com Enviar mais tarde: o serviço de agendar mensagens com Enviar mais tarde foi desativado. Contate o responsável por Enviar mais tarde (send-later-support@extended-thunder.org) para assistência.",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {

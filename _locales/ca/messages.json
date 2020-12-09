@@ -920,7 +920,7 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "La versió instal·lada d'Enigmail és incompatible amb Send Later, per això la programació de missatges amb Send Later s'ha deshabilitat. Si us plau, contacti amb el responsable de Send Later (jik@kamens.us) per ser atesos.",
+    "message": "La versió instal·lada d'Enigmail és incompatible amb Send Later, per això la programació de missatges amb Send Later s'ha deshabilitat. Si us plau, contacti amb el responsable de Send Later (send-later-support@extended-thunder.org) per ser atesos.",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {

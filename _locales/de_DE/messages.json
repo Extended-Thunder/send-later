@@ -908,7 +908,7 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "Die installierte Version von Enigmail ist mit „Später Senden” nicht kompatibel, das Planen von Nachrichten mit „Später Senden” ist also deaktiviert. Kontaktieren Sie bitte den Später Senden-Entwickler (jik@kamens.us), um Hilfe zu erhalten.",
+    "message": "Die installierte Version von Enigmail ist mit „Später Senden” nicht kompatibel, das Planen von Nachrichten mit „Später Senden” ist also deaktiviert. Kontaktieren Sie bitte den Später Senden-Entwickler (send-later-support@extended-thunder.org), um Hilfe zu erhalten.",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {
