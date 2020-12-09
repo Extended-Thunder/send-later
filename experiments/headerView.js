@@ -130,7 +130,7 @@ SendLaterHeaderView = {
     } else if (!msgContentType) {
       return { valid: false, detail: "Missing ContentType" };
     } else if (/encrypted/i.test(msgContentType)) {
-      return { valid: false, detail: "Encrypted", msg: "Error: encrypted" };
+      return { valid: false, detail: "Encrypted", msg: SLStatic.i18n.getMessage("EnigmailIncompatTitle") };
     } else if (msgUuid !== instanceUUID) {
       return { valid: false, detail: "Wrong UUID", msg: `${msgUuid} != ${instanceUUID}` };
     }

@@ -908,7 +908,7 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "现在安装的Enigmail版本与Send Later不兼容，因此Send Later消息日程已禁用。请联系Send Later维护人员(jik@kamens.us)以获得帮助。",
+    "message": "现在安装的Enigmail版本与Send Later不兼容，因此Send Later消息日程已禁用。请联系Send Later维护人员(send-later-support@extended-thunder.org)以获得帮助。",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {
