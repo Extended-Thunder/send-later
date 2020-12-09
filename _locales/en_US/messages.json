@@ -924,7 +924,7 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "The installed version of Enigmail is incompatible with Send Later, so scheduling messages with Send Later has been disabled. Please contact the maintainer of Send Later (jik@kamens.us) for assistance.",
+    "message": "The installed version of Enigmail is incompatible with Send Later, so scheduling messages with Send Later has been disabled. Please contact the maintainer of Send Later (send-later-support@extended-thunder.org) for assistance.",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {

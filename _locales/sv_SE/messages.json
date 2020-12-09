@@ -908,7 +908,7 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "Den installerade versionen av Enigmail är inkompatibel med Skicka Senare och schemaläggning med Skicka Senare är avaktiverad. Kontakta utvecklare av Skicka Senare (jik@kamens.us) för assistans.",
+    "message": "Den installerade versionen av Enigmail är inkompatibel med Skicka Senare och schemaläggning med Skicka Senare är avaktiverad. Kontakta utvecklare av Skicka Senare (send-later-support@extended-thunder.org) för assistans.",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {

@@ -908,7 +908,7 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "Enigmailin asennettu versio ei ole yhteensopiva ”Lähetä myöhemmin” kanssa, joten viestien ajastus ”Lähetä myöhemmin” on poistettu käytöstä. Ota yhteys ”Lähetä myöhemmin” ylläpitäjään (jik@kamens.us) avun saamiseksi.",
+    "message": "Enigmailin asennettu versio ei ole yhteensopiva ”Lähetä myöhemmin” kanssa, joten viestien ajastus ”Lähetä myöhemmin” on poistettu käytöstä. Ota yhteys ”Lähetä myöhemmin” ylläpitäjään (send-later-support@extended-thunder.org) avun saamiseksi.",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {

@@ -908,7 +908,7 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "La versione di Enigmail installata non è compatibile con Invia Dopo, quindi la pianificazione dei messaggi con Invia Dopo è stata disattivata. Per cortesia contattare l'autore di Invia Dopo (jik@kamens.us) per assistenza.",
+    "message": "La versione di Enigmail installata non è compatibile con Invia Dopo, quindi la pianificazione dei messaggi con Invia Dopo è stata disattivata. Per cortesia contattare l'autore di Invia Dopo (send-later-support@extended-thunder.org) per assistenza.",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {

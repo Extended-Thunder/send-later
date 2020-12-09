@@ -920,7 +920,7 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "La version installée d'Enigmail est incompatible avec Envoyer Plus Tard. Par conséquent, la programmation des envois de messages par Envoyer Plus Tard a été désactivée. Merci de contacter l'administrateur de Envoyer Plus Tard (jik@kamens.us) pour toute demande d'assistance.",
+    "message": "La version installée d'Enigmail est incompatible avec Envoyer Plus Tard. Par conséquent, la programmation des envois de messages par Envoyer Plus Tard a été désactivée. Merci de contacter l'administrateur de Envoyer Plus Tard (send-later-support@extended-thunder.org) pour toute demande d'assistance.",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {

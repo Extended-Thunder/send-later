@@ -908,7 +908,7 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "Zainstalowana wersja Enigmail jest jest niezgodna z “Send Later”, z tego względu “Send Later” został wyłączony. Skontaktuj się z twórcą “Send Later” celem konsultacji i asysty (jik@kamens.us).",
+    "message": "Zainstalowana wersja Enigmail jest jest niezgodna z “Send Later”, z tego względu “Send Later” został wyłączony. Skontaktuj się z twórcą “Send Later” celem konsultacji i asysty (send-later-support@extended-thunder.org).",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {
