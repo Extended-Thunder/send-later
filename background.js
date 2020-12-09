@@ -634,16 +634,19 @@ const SendLater = {
         if (compactedDrafts.every(v => v === true)) {
           SLStatic.debug("Successfully compacted Drafts.");
         } else {
-          message += `\n\nCompacting Drafts folders failed without error message.`;
+          let errMsg = browser.i18n.getMessage("CompactionFailureNoError", ["Drafts"]);
+          message += "\n\n"+errMsg;
         }
         if (compactedOutbox) {
           SLStatic.debug("Successfully compacted Outbox.");
         } else {
-          message += `\n\nCompacting Outbox failed without error message.`;
+          let errMsg = browser.i18n.getMessage("CompactionFailureNoError", ["Outbox"]);
+          message += "\n\n"+errMsg;
         }
       } catch (e) {
         SLStatic.error("Compacting Outbox and/or Drafts folders failed with error",e);
-        message += `\n\nCompacting Outbox and/or Drafts folders failed with error:\n${e}`;
+        let errMsg = browser.i18n.getMessage("CompactionFailureWithError");
+        message += `\n\n${errMsg}\n${e}`;
       }
 
       const activeSchedules = await this.getActiveSchedules(preferences.instanceUUID);
@@ -652,33 +655,18 @@ const SendLater = {
         const soonest = new Date(Math.min(...activeSchedules));
         const nextActiveText = SLStatic.humanDateTimeFormat(soonest) +
           ` (${(new Sugar.Date(soonest)).relative()})`;
-        message += `\n\nYou have ${nActive} message${nActive === 1 ? "" : "s"} ` +
-          `scheduled to be delivered by Send Later.\nThe next one is ` +
-          `scheduled for ${nextActiveText}.`;
+        message += "\n\n" + browser.i18n.getMessage("SanityCheckDrafts", [nActive, nextActiveText]);
       }
 
       const nUnsentMessages = await browser.SL3U.countUnsentMessages();
       if (nUnsentMessages > 0 && preferences.sendUnsentMsgs) {
-        message += `\n\nYou have ${nUnsentMessages} ` +
-          `unsent message${nUnsentMessages === 1 ? "" : "s"} which will be ` +
-          `triggered to send next time a scheduled message becomes due.`;
+        message += "\n\n" + browser.i18n.getMessage("SanityCheckOutbox", [nUnsentMessages]);
       }
 
       if (message !== "") {
         const title = browser.i18n.getMessage("extensionName");
-        message += "\n\nIf these numbers don't look right to you, you might have " +
-          "a corrupted Outbox and/or Drafts folder(s). In that case it is " +
-          "advised that you compact and rebuild those folders before activating " +
-          "Send Later. See <https://blog.kamens.us/send-later/#corrupt-drafts-error> " +
-          "for more details.";
-        message += `\n\nSelect one of the options:\n`;
-        message += `  "OK": Proceed as usual. You will not be prompted again.\n\n` +
-          `  "Cancel": Send Later will be disabled via its own preferences.\n` +
-          `                    To re-enable Send Later, go to its options page and set\n` +
-          `                    the "${browser.i18n.getMessage("checkTimePrefLabel1")}" ` +
-                              `preference to a non-zero value.\n` +
-          `                    You will receive this prompt again next time you restart\n` +
-          `                    Thunderbird`;
+        message += "\n\n" + browser.i18n.getMessage("SanityCheckCorruptFolderWarning");
+        message += `\n\n` + browser.i18n.getMessage("SanityCheckConfirmOptionMessage");
         const okay = await browser.SL3U.confirm(title, message.trim());
         if (!okay) {
           SLStatic.info("Disabling Send Later per user selection.");
