@@ -200,14 +200,14 @@ const SendLater = {
           SLStatic.debug(`Encountered previously sent message "${msgSubject}" ${originalMsgId}.`);
         } else {
           SLStatic.error(`Attempted to resend message "${msgSubject}" ${originalMsgId}.`);
-          const result = await browser.SL3U.confirmCheck(
-            browser.i18n.getMessage("ScheduledMessagesWarningTitle"),
+          const result = await browser.SL3U.alertCheck(
+            "",
             browser.i18n.getMessage("CorruptFolderError", [msgHdr.folder.path]) + "\n\n" +
               browser.i18n.getMessage("CorruptFolderErrorDetails", [msgSubject, originalMsgId]),
             browser.i18n.getMessage("ConfirmAgain"),
             true
           );
-          preferences.optOutResendWarning = (result.ok === false);
+          preferences.optOutResendWarning = (result.check === false);
           await browser.storage.local.set({ preferences });
         }
         return;
@@ -679,7 +679,7 @@ const SendLater = {
                               `preference to a non-zero value.\n` +
           `                    You will receive this prompt again next time you restart\n` +
           `                    Thunderbird`;
-        const okay = await browser.SL3U.confirmAction(title, message.trim());
+        const okay = await browser.SL3U.confirm(title, message.trim());
         if (!okay) {
           SLStatic.info("Disabling Send Later per user selection.");
           preferences.checkTimePref = 0;
