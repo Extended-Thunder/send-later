@@ -626,6 +626,35 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return Services.prompt.alert(window, (title || ""), (text || ""));
         },
 
+        async alertCheck(title, message, checkMessage, state) {
+          function doAlertCheck(resolve, reject) {
+            try {
+              let checkbox = { value: state };
+              Services.prompt.clertCheck(
+                null, title, message, checkMessage, checkbox
+              );
+              resolve({ check: checkbox.value });
+            } catch (err) {
+              reject(`An error occurred in SL3U.doConfirmCheck: ${err}`);
+            }
+          }
+          return new Promise(doAlertCheck.bind(this));
+        },
+
+        async confirm(title, message) {
+          function doConfirm(resolve, reject) {
+            try {
+              const result = Services.prompt.confirm(null, title, message);
+              SendLaterFunctions.debug("SL3U.confirm",
+                                       `User input ${result ? "OK" : "Cancel"}`);
+              resolve(result);
+            } catch (err) {
+              reject(`An error occurred in SL3U.confirmAction: ${err}`);
+            }
+          }
+          return new Promise(doConfirm.bind(this));
+        },
+
         async confirmCheck(title, message, checkMessage, state) {
           function doConfirmCheck(resolve, reject) {
             try {
@@ -881,7 +910,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                 );
                 resolve(cw.cancelSendMessage);
               } catch (err) {
-                reject(`An error occurred in SL3U.confirmAction: ${err}`);
+                reject(`An error occurred in SL3U.preSendCheck.SpellCheckBeforeSend:`, err);
               }
             }
 
@@ -1343,23 +1372,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             // work yet.
             // SendLaterFunctions.rebuildDraftsFolders();
           }
-        },
-
-        async confirmAction(title, message) {
-          function doConfirm(resolve, reject) {
-            try {
-              const prompts = Cc[
-                  "@mozilla.org/embedcomp/prompt-service;1"
-                ].getService(Ci.nsIPromptService);
-              const result = prompts.confirm(null, title, message);
-              SendLaterFunctions.debug("SL3U.confirmAction",
-                `User input ${result ? "OK" : "Cancel"}`);
-              resolve(result);
-            } catch (err) {
-              reject(`An error occurred in SL3U.confirmAction: ${err}`);
-            }
-          }
-          return new Promise(doConfirm.bind(this));
         },
 
         async countUnsentMessages() {
