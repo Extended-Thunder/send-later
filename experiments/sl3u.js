@@ -1245,7 +1245,23 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               } else {
                 SendLaterFunctions.error(
                   "SL3U.sendRaw.CopyUnsentListener.OnStopCopy",
-                  status);
+                  status
+                );
+
+                const localStorage = context.apiCan.findAPIPath("storage.local");
+                localStorage.callMethodInParentProcess(
+                  "get", [{ "preferences": {} }]
+                ).then(({ preferences }) => {
+                  preferences.checkEvery = 0;
+                  localStorage.callMethodInParentProcess(
+                    "set", { preferences }
+                  );
+                }).catch((err) =>
+                  SendLaterFunctions.error(`Unable to disable extension`,err)
+                );
+                const CopyUnsentError =
+                  SendLaterFunctions.getMessage(context, "CopyUnsentError", [status]);
+                Services.prompt.alert(null, null, CopyUnsentError);
               }
             },
             SetMessageKey: function(key) {}
