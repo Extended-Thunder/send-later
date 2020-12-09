@@ -1775,6 +1775,33 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                           `Message ${messageURI} has x-send-later headers. Overwriting saved draft.`
                         );
                         window.goDoCommand("cmd_saveAsDraft");
+
+                        const localStorage = context.apiCan.findAPIPath("storage.local");
+                        localStorage.callMethodInParentProcess(
+                          "get", [{ "preferences": {} }]
+                        ).then(({ preferences }) => {
+                          if (preferences.showEditAlert) {
+                            const draftSaveWarning =
+                              SendLaterFunctions.getMessage(context, "draftSaveWarning");
+                            const confirmAgain =
+                              SendLaterFunctions.getMessage(context, "confirmAgain");
+
+                            let check = { value: true };
+                            Services.prompt.alertCheck(
+                              null, null, draftSaveWarning,
+                              confirmAgain, check
+                            );
+
+                            if (!check.value) {
+                              preferences.showEditAlert = false;
+                              localStorage.callMethodInParentProcess(
+                                "set", [{ preferences }]
+                              ).then(() => {
+                                  console.log("Successfully set preferences.showEditAlert = false");
+                              });
+                            }
+                          }
+                        }).catch((err) => SendLaterFunctions.error(err));
                       }
                     }
                   }
