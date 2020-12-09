@@ -699,6 +699,9 @@
     "message": "Send Later: Folder $1 may be corrupt. Please open its properties and repair it. See https://blog.kamens.us/send-later/#corrupt-drafts-error.",
     "description": ""
   },
+  "CorruptFolderErrorDetails": {
+    "message": "Specifically, it appears that message \"$1\" $2 has been sent before, but still exists in the Drafts folder. This may or may not be indicative of a more serious problem. You might simply try deleting (or re-scheduling) the message in question.\n\nSend Later will skip this message, but continue processing your other scheduled draft messages when you close this alert."
+  },
   "MessageResendError": {
     "message": "Send Later: Attempt to resend already sent message?! Your Outbox or Drafts folder $1 is probably corrupt. Please repair them as described at https://blog.kamens.us/send-later/#corrupt-outbox.",
     "description": ""

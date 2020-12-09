@@ -202,13 +202,8 @@ const SendLater = {
           SLStatic.error(`Attempted to resend message "${msgSubject}" ${originalMsgId}.`);
           const confirmation = await browser.SL3U.confirmCheck(
             browser.i18n.getMessage("ScheduledMessagesWarningTitle"),
-            browser.i18n.getMessage("CorruptFolderError", [msgHdr.folder.path]) +
-              `\n\nSpecifically, it appears that message "${msgSubject}" ${originalMsgId} ` +
-              `has been sent before, but still exists in the Drafts folder. This may or may ` +
-              `not be indicative of a more serious problem. You might simply try deleting ` +
-              `(or re-scheduling) the message in question.` +
-              `\n\nSend Later will skip this message, but continue processing your other ` +
-              `scheduled draft messages when you close this alert.`,
+            browser.i18n.getMessage("CorruptFolderError", [msgHdr.folder.path]) + "\n\n" +
+              browser.i18n.getMessage("CorruptFolderErrorDetails", [msgSubject, originalMsgId]),
             browser.i18n.getMessage("ConfirmAgain"),
             true
           );
