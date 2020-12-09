@@ -67,6 +67,21 @@
         ]
       },
       {
+        "name":"setSendLaterVar",
+        "type":"function",
+        "async":true,
+        "parameters":[
+          {
+            "name":"key",
+            "type":"string"
+          },
+          {
+            "name":"value",
+            "type":"any"
+          }
+        ]
+      },
+      {
         "name": "generateMsgId",
         "type": "function",
         "async": true,
