@@ -908,7 +908,7 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "Az Enigmail telepített verziója összeegyeztethetetlen a Küldés később-kiegészítővel, így a(z) Küldés később üzenetek ütemezése le van tiltva. Kérjük, forduljon a Küldés később (jik@kamens.us) karbantartójához segítségért.",
+    "message": "Az Enigmail telepített verziója összeegyeztethetetlen a Küldés később-kiegészítővel, így a(z) Küldés később üzenetek ütemezése le van tiltva. Kérjük, forduljon a Küldés később (send-later-support@extended-thunder.org) karbantartójához segítségért.",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {

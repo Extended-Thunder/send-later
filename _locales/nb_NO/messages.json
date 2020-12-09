@@ -908,7 +908,7 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "Den installerte versjonen av Enigmail er ikke kompatibel med Send senere, så det å planlegge meldinger med Send senere er deaktivert. Kontakt den ansvarlige for Send senere (jik@kamens.us) for hjelp.",
+    "message": "Den installerte versjonen av Enigmail er ikke kompatibel med Send senere, så det å planlegge meldinger med Send senere er deaktivert. Kontakt den ansvarlige for Send senere (send-later-support@extended-thunder.org) for hjelp.",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {

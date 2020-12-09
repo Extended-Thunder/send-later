@@ -1065,7 +1065,7 @@ browser.runtime.onMessage.addListener(async (message) => {
           response.err = "Message is scheduled by a different Thunderbird instance";
           break;
         } else if (msgContentType && (/encrypted/i).test(msgContentType)) {
-          response.err = "Message is encrypted and will not be processed by Send Later.";
+          response.err = browser.i18n.getMessage("EnigmailIncompatText");
           break;
         }
 
