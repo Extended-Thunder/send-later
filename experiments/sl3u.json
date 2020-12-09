@@ -18,7 +18,7 @@
         ]
       },
       {
-        "name":"confirmAction",
+        "name":"alertCheck",
         "type":"function",
         "async":true,
         "parameters":[
@@ -29,14 +29,26 @@
           {
             "name":"message",
             "type":"string"
+          },
+          {
+            "name": "checkMessage",
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "type": "boolean"
           }
         ]
       },
       {
-        "name":"showStatus",
+        "name":"confirm",
         "type":"function",
         "async":true,
         "parameters":[
+          {
+            "name":"title",
+            "type":"string"
+          },
           {
             "name":"message",
             "type":"string"
@@ -63,6 +75,17 @@
           {
             "name": "state",
             "type": "boolean"
+          }
+        ]
+      },
+      {
+        "name":"showStatus",
+        "type":"function",
+        "async":true,
+        "parameters":[
+          {
+            "name":"message",
+            "type":"string"
           }
         ]
       },
