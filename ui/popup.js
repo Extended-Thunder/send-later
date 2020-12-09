@@ -67,18 +67,6 @@ const SLPopup = {
     }, {});
   },
 
-  // Ensure input values are self-consistent.
-  normalizeInputs(inputs) {
-    // Can only place time restrictions on certain recurrence types
-    const dom_once = document.getElementById("once");
-    const dom_minutely = document.getElementById("minutely");
-    const dom_function = document.getElementById("function");
-    inputs.sendbetween &= (dom_once.checked ||
-                           dom_minutely.checked ||
-                           dom_function.checked);
-    return inputs;
-  },
-
   objectifyFormValues() {
     const domArray = SLPopup.domElementsAsArray();
     const inputs = domArray.reduce((obj,item) => {
@@ -107,7 +95,7 @@ const SLPopup = {
           }, { ids:[], vals:[] });
       }
     });
-    return this.normalizeInputs(inputs);
+    return inputs;
   },
 
   evaluateUfunc(funcName, prev, argStr) {
@@ -580,12 +568,6 @@ const SLPopup = {
         dom['recur-function-args-div'].style.display = "none";
         dom['funcHelpDiv'].style.display = "none";
         dom['showHideFunctionHelp'].style.display = "none";
-      }
-
-      if (["once", "minutely", "function"].find(s => dom[s].checked)) {
-        dom['section-between'].style.display = "";
-      } else {
-        dom['section-between'].style.display = "none";
       }
 
       dom['monthly-options-div'].style.display =
