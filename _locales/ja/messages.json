@@ -920,7 +920,7 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "インストールされている Enigmail は Send Later と互換性がありません。Send Later でスケジュールされたメッセージは無効化されています。Send Later の開発者(jik@kamens.us) に連絡してください。",
+    "message": "インストールされている Enigmail は Send Later と互換性がありません。Send Later でスケジュールされたメッセージは無効化されています。Send Later の開発者(send-later-support@extended-thunder.org) に連絡してください。",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {

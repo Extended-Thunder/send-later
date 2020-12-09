@@ -908,7 +908,7 @@
     "description": ""
   },
   "EnigmailIncompatText": {
-    "message": "Enigmail 版本與延期發信不相容，因此延期發信的排程訊息已經關閉。請與延期發信的維護者 (jik@kamens.us)聯繫。",
+    "message": "Enigmail 版本與延期發信不相容，因此延期發信的排程訊息已經關閉。請與延期發信的維護者 (send-later-support@extended-thunder.org)聯繫。",
     "description": ""
   },
   "TimeMismatchConfirmTitle": {
