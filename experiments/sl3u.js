@@ -17,7 +17,102 @@ const SendLaterVars = {
   needToSendUnsentMessages: false,
   wantToCompactOutbox: false,
   scriptListeners: new Set(),
-  logConsoleLevel: "info"
+  logConsoleLevel: "info",
+  context: null
+}
+
+const SendLaterObservers = {
+  QuitObserver: {
+    observerTopics: [
+      "quit-application-requested",
+      "quit-application-granted"
+    ],
+    observe(subject, topic, data) {
+      const appName = Services.appinfo.name;
+      const scheduledMessagesWarningTitle =
+        SendLaterFunctions.getMessage(SendLaterVars.context, "scheduledMessagesWarningTitle");
+      const scheduledMessagesWarningQuitRequested =
+        SendLaterFunctions.getMessage(SendLaterVars.context, "scheduledMessagesWarningQuitRequested", [appName]);
+      const scheduledMessagesWarningQuit =
+        SendLaterFunctions.getMessage(SendLaterVars.context, "ScheduledMessagesWarningQuit", [appName]);
+      const confirmAgain =
+        SendLaterFunctions.getMessage(SendLaterVars.context, "confirmAgain");
+
+      const localStorage = SendLaterVars.context.apiCan.findAPIPath("storage.local");
+      let check, result;
+      switch (topic) {
+        case "quit-application-requested":
+          if (!SendLaterVars.messages_pending ||
+              !SendLaterVars.ask_quit) {
+            return;
+          }
+
+          SendLaterVars.quit_confirmed = true;
+          check = { value: true };
+          result = Services.prompt.confirmCheck(
+            null, scheduledMessagesWarningTitle,
+            scheduledMessagesWarningQuitRequested,
+            confirmAgain, check
+          );
+          if (!check.value) {
+            localStorage.callMethodInParentProcess(
+              "get", [{ "preferences": {} }]
+            ).then(({ preferences }) => {
+              preferences.askQuit = false;
+              localStorage.callMethodInParentProcess(
+                "set", [{ preferences }]
+              ).then(
+                () => { console.log("Successfully set preferences.askQuit = false"); }
+              );
+            }).catch(SendLaterFunctions.error);
+          }
+          if (!result) {
+            subject.QueryInterface(Ci.nsISupportsPRBool);
+            subject.data = true;
+          }
+          break;
+        case "quit-application-granted":
+          if (SendLaterVars.quit_confirmed ||
+              !SendLaterVars.messages_pending ||
+              !SendLaterVars.ask_quit) {
+            return;
+          }
+          check = { value: true };
+          result = Services.prompt.alertCheck(
+            null, scheduledMessagesWarningTitle,
+            scheduledMessagesWarningQuit,
+            confirmAgain, check
+          );
+          if (!check.value) {
+            localStorage.callMethodInParentProcess(
+              "get", [{ "preferences": {} }]
+            ).then(({ preferences }) => {
+              preferences.askQuit = false;
+              localStorage.callMethodInParentProcess(
+                "set", [{ preferences }]
+              ).then(
+                () => { console.log("Successfully set preferences.askQuit = false"); }
+              );
+            }).catch(SendLaterFunctions.error);
+          }
+          break;
+        default:
+          break;
+      }
+    },
+  },
+
+  StorageObserver: {
+    observerTopics: [],
+    notificationTopic: '',
+    observe(subject, topic, data) {
+      if (this.observerTopics.includes(topic)) {
+        SendLaterFunctions.debug("SL3U.notifyStorageLocal",`Observer (${topic})`);
+        Services.obs.removeObserver(this, topic);
+        Services.obs.notifyObservers(null, this.notificationTopic, dataStr);
+      }
+    },
+  }
 }
 
 const SendLaterFunctions = {
@@ -521,6 +616,7 @@ const SendLaterBackgrounding = function() {
 var SL3U = class extends ExtensionCommon.ExtensionAPI {
   getAPI(context) {
     let { extension } = context;
+    SendLaterVars.context = context;
     context.callOnClose(this);
 
     return {
@@ -1491,20 +1587,13 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
          * @implements {nsIObserver}
          */
         async notifyStorageLocal(dataStr, startup) {
-          let observerTopic = `extension:${extension.id}:ready`;
           let notificationTopic = `extension:${extension.id}:storage-local`;
-          let Observer = {
-            observe(subject, topic, data) {
-              if (topic == observerTopic) {
-                SendLaterFunctions.debug("SL3U.notifyStorageLocal",`Observer (${topic})`);
-                Services.obs.removeObserver(Observer, observerTopic);
-                Services.obs.notifyObservers(null, notificationTopic, dataStr);
-              }
-            },
-          };
+          let observationTopic = `extension:${extension.id}:ready`;
+          SendLaterObservers.StorageObserver.observerTopics[0] = observationTopic;
+          SendLaterObservers.StorageObserver.notificationTopic = notificationTopic;
           SendLaterFunctions.debug("SL3U.notifyStorageLocal",` START - ${notificationTopic}`);
           if (startup) {
-            Services.obs.addObserver(Observer, observerTopic);
+            Services.obs.addObserver(SendLaterObservers.StorageObserver, observationTopic);
           } else {
             Services.obs.notifyObservers(null, notificationTopic, dataStr);
             try {
@@ -1582,84 +1671,10 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             }
           } catch {}
 
-          const QuitObserver = {
-            observe(subject, topic, data) {
-              const appName = Services.appinfo.name;
-              const scheduledMessagesWarningTitle =
-                SendLaterFunctions.getMessage(context, "scheduledMessagesWarningTitle");
-              const scheduledMessagesWarningQuitRequested =
-                SendLaterFunctions.getMessage(context, "scheduledMessagesWarningQuitRequested", [appName]);
-              const scheduledMessagesWarningQuit =
-                SendLaterFunctions.getMessage(context, "ScheduledMessagesWarningQuit", [appName]);
-              const confirmAgain =
-                SendLaterFunctions.getMessage(context, "confirmAgain");
-
-              const localStorage = context.apiCan.findAPIPath("storage.local");
-              let check, result;
-              switch (topic) {
-                case "quit-application-requested":
-                  if (!SendLaterVars.messages_pending ||
-                      !SendLaterVars.ask_quit) {
-                    return;
-                  }
-
-                  SendLaterVars.quit_confirmed = true;
-                  check = { value: true };
-                  result = Services.prompt.confirmCheck(
-                    null, scheduledMessagesWarningTitle,
-                    scheduledMessagesWarningQuitRequested,
-                    confirmAgain, check
-                  );
-                  if (!check.value) {
-                    localStorage.callMethodInParentProcess(
-                      "get", [{ "preferences": {} }]
-                    ).then(({ preferences }) => {
-                      preferences.askQuit = false;
-                      localStorage.callMethodInParentProcess(
-                        "set", [{ preferences }]
-                      ).then(
-                        () => { console.log("Successfully set preferences.askQuit = false"); }
-                      );
-                    }).catch(SendLaterFunctions.error);
-                  }
-                  if (!result) {
-                    subject.QueryInterface(Ci.nsISupportsPRBool);
-                    subject.data = true;
-                  }
-                  break;
-                case "quit-application-granted":
-                  if (SendLaterVars.quit_confirmed ||
-                      !SendLaterVars.messages_pending ||
-                      !SendLaterVars.ask_quit) {
-                    return;
-                  }
-                  check = { value: true };
-                  result = Services.prompt.alertCheck(
-                    null, scheduledMessagesWarningTitle,
-                    scheduledMessagesWarningQuit,
-                    confirmAgain, check
-                  );
-                  if (!check.value) {
-                    localStorage.callMethodInParentProcess(
-                      "get", [{ "preferences": {} }]
-                    ).then(({ preferences }) => {
-                      preferences.askQuit = false;
-                      localStorage.callMethodInParentProcess(
-                        "set", [{ preferences }]
-                      ).then(
-                        () => { console.log("Successfully set preferences.askQuit = false"); }
-                      );
-                    }).catch(SendLaterFunctions.error);
-                  }
-                  break;
-                default:
-                  break;
-              }
-            },
+          for (let topic of SendLaterObservers.QuitObserver.observerTopics) {
+            Services.obs.addObserver(SendLaterObservers.QuitObserver, topic);
+            console.debug(`[SL3U]: Added observer to topic ${topic}`);
           }
-
-          Services.obs.addObserver(QuitObserver, "quit-application-requested");
-          Services.obs.addObserver(QuitObserver, "quit-application-granted");
 
           // Setup various observers.
           SendLaterBackgrounding();
@@ -1849,6 +1864,21 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
         }
       } else {
         SendLaterFunctions.debug(`No imposter elements to restore`);
+      }
+    }
+
+    for (let obsName of Object.getOwnPropertyNames(SendLaterObservers)) {
+      let observer = SendLaterObservers[obsName];
+      for (let topic of observer.observerTopics) {
+        try {
+          Services.obs.removeObserver(observer, topic);
+          SendLaterFunctions.debug(`Removed observer from topic ${topic}`);
+        } catch (ex) {
+          SendLaterFunctions.error(
+            `Unable to remove observer from topic ${topic}`,
+            observer, ex
+          );
+        }
       }
     }
 
