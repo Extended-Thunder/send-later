@@ -349,10 +349,8 @@ var SLStatic = {
   },
 
   formatRecurForUI(recur) {
-    let recurText;
-    if (recur.type === "none") {
-      return ""
-    } else if (recur.type === "function") {
+    let recurText = "";
+    if (recur.type === "function") {
       // Almost certainly doesn't work for all languages. Need a new translation
       // for "recur according to function $1"
       recurText = this.i18n.getMessage("sendwithfunction",
@@ -363,19 +361,33 @@ var SLStatic = {
         recurText += this.i18n.getMessage("sendlater.prompt.functionargs.label") +
           `: [${recur.args}]`;
       }
-    } else {
+    } else if (recur.type === "monthly") {
+      recurText = this.i18n.getMessage("recurLabel") + " ";
+
+      let monthlyRecurParts = [];
+
+      if (!recur.multiplier) {
+        monthlyRecurParts.push(this.i18n.getMessage(recur.type));
+      }
+
+      if (recur.monthly_day) {
+        const ordDay = this.i18n.getMessage("ord" + recur.monthly_day.week);
+        const dayName = SLStatic.getWkdayName(recur.monthly_day.day, "long");
+        monthlyRecurParts.push(`${this.i18n.getMessage("everymonthly", [ordDay, dayName])}`);
+      }
+
+      if (recur.multiplier) {
+        monthlyRecurParts.push(this.i18n.getMessage("every_"+recur.type, recur.multiplier));
+      }
+
+      recurText += monthlyRecurParts.join(", ");
+    } else if (recur.type !== "none") {
       recurText = this.i18n.getMessage("recurLabel") + " ";
 
       const multiplier = (recur.multiplier || 1);
       if (multiplier === 1) {
         recurText += this.i18n.getMessage(recur.type);
       } else {
-        if (recur.monthly_day) {
-          const ordDay = this.i18n.getMessage("ord" + recur.monthly_day.week);
-          const dayName = SLStatic.getWkdayName(recur.monthly_day.day, "long");
-          recurText += `${this.i18n.getMessage("everymonthly", [ordDay, dayName])}, `;
-        }
-
         recurText += this.i18n.getMessage("every_"+recur.type, multiplier);
       }
     }
@@ -595,9 +607,7 @@ var SLStatic = {
   unparseRecurSpec(recur) {
     let spec = recur.type;
 
-    if (recur.type === "none") {
-      return "none";
-    } else if (recur.type === "monthly") {
+    if (recur.type === "monthly") {
       spec += " ";
       if (recur.monthly_day) {
         spec += recur.monthly_day.day + " " + recur.monthly_day.week;
@@ -614,6 +624,9 @@ var SLStatic = {
     }
 
     if (recur.multiplier) {
+      if (recur.type === "none") {
+        throw new Error("Cannot use multiplier with one-off schedule.");
+      }
       spec += " / " + recur.multiplier;
     }
 
@@ -645,11 +658,7 @@ var SLStatic = {
     }
     switch (recur.type) {
       case "none":
-        if (params.length) {
-          throw new Error("Extra arguments in " + recurSpec);
-        } else {
-          return { type: "none" };
-        }
+        /* pass */
         break;
       case "monthly":
         if (!/^\d+$/.test(params[0])) {
