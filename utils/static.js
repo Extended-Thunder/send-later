@@ -349,6 +349,9 @@ var SLStatic = {
   },
 
   formatRecurForUI(recur) {
+    if (!recur) {
+      return "";
+    }
     let recurText = "";
     if (recur.type === "function") {
       // Almost certainly doesn't work for all languages. Need a new translation
@@ -440,8 +443,8 @@ var SLStatic = {
         scheduleText = SLStatic.shortHumanDateTimeFormat(sendAt);
       }
 
-      if (recur !== undefined && recur.type !== "none") {
-        const rTxt = SLStatic.formatRecurForUI(recur).replace(/\n/gm,". ");
+      const rTxt = SLStatic.formatRecurForUI(recur).replace(/\n/gm,". ");
+      if (rTxt) {
         scheduleText += ` (${rTxt})`;
       }
 
@@ -468,11 +471,9 @@ var SLStatic = {
       }
     }
 
-    if (recur.type  !== "none") {
-      scheduleText += "\n" + SLStatic.formatRecurForUI(recur);
-    }
+    scheduleText += "\n" + SLStatic.formatRecurForUI(recur);
 
-    return scheduleText;
+    return scheduleText.trim();
   },
 
   stateSetter(enabled) {
