@@ -57,7 +57,8 @@ Basic usage
 
 When you want to schedule a message for later delivery, either select the
 `File > Send Later` menu command in the message composition window, or hit
-`Ctrl-Shift-Enter`. This will pop up the following dialog:
+`Ctrl-Shift-Enter`, or click on the "Send Later" button in the composition
+window's toolbar. This will pop up the following dialog:
 
 ![Send Later prompt window](assets/dialog.png)
 
@@ -207,7 +208,7 @@ Note that this preference and the following one are mutually exclusive.
 ### "Send" delays messages by: <u>&nbsp;#&nbsp;</u> minutes
 
 If enabled, this preference causes all messages you send by clicking
-Send or typing Ctrl-Enter to be automatically scheduled to be sent by
+Send or typing `Ctrl-Enter` to be automatically scheduled to be sent by
 Send Later at the specified number of minutes into the future.
 
 This essentially replicates the functionality provided by some email
@@ -231,8 +232,8 @@ that they're there, then uncheck this preference.
 ### Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter
 
 This preference causes the pop-up Send Later dialog to be bound to the
-key sequence Alt-Shift-Enter instead of Ctrl-Shift-Enter. When this
-feature is activated, Ctrl-Shift-Enter reverts to the original Thunderbird
+key sequence Alt-Shift-Enter instead of `Ctrl-Shift-Enter`. When this
+feature is activated, `Ctrl-Shift-Enter` reverts to the original Thunderbird
 functionality, i.e. depositing the message into the Outbox.
 
 ### Show Send Later Column
