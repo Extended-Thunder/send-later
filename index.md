@@ -12,16 +12,16 @@ add-on is available for download from
 Release notes for each new version of Send Later are published there and
 [on GitHub](https://github.com/Extended-Thunder/send-later/releases).
 What follows is a user manual for the add-on.
-Everything below (except for the installation section) assumes that you've
-already installed the add-on from
-[addons.thunderbird.net](https://addons.thunderbird.net/thunderbird/addon/send-later-3/)
-and restarted Thunderbird.
+Everything below (except for the [installation section](#install)) assumes that
+you've already installed the add-on and restarted Thunderbird.
 
-If you have any comments, questions or feedback about the add-on, please
+If you have any comments, questions, or feedback about the add-on, please
 [get in touch](#help).
 
 *This user manual is written for Thunderbird 78 or newer. Things might be
 slightly different for older versions.*
+
+<a name="install"></a>
 
 Installation
 ------------------------------
