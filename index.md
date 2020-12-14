@@ -15,11 +15,11 @@ What follows is a user manual for the add-on.
 Everything below (except for the installation section) assumes that you've
 already installed the add-on from
 [addons.thunderbird.net](https://addons.thunderbird.net/thunderbird/addon/send-later-3/)
+and restarted Thunderbird.
 
-and restarted Thunderbird. If you have any comments, questions or feedback about
-the add-on, please feel free to
-[open a bug report](https://github.com/Extended-Thunder/send-later/issues/)
-or [email the maintainers](mailto:send-later-support@extended-thunder.org?subject=Send%20Later).
+If you have any comments, questions or feedback about the add-on, please
+[start a discussion](https://github.com/Extended-Thunder/send-later/discussions)
+or [open a bug report](https://github.com/Extended-Thunder/send-later/issues/).
 
 *This user manual is written for Thunderbird 78 or newer. Things might be
 slightly different for older versions.*
@@ -164,7 +164,7 @@ See [this page](https://sugarjs.com/dates/#/Parsing) for more examples.
 These apply in all of the languages that Send Later supports, not just
 in English. If you encounter something you think the add-on should
 understand but doesn't,
-[let us know](mailto:send-later-support@extended-thunder.org?subject=Send%20Later).
+[let us know](#help).
 
 <a name="prefs"></a>
 
@@ -645,7 +645,7 @@ fully supported.
 
 If you encounter this issue and come up with a solution that works and
 is different from the solutions outlined above, please
-[let us know](mailto:send-later-support@extended-thunder.org?subject=Send%20Later)!
+[let us know](#help)!
 
 ### Errors you might encounter
 
@@ -705,8 +705,7 @@ You should:
     non-zero value.
 5.  If the problem persists, follow [these instructions](#corrupt-outbox) for
     repairing a corrupt Outbox.
-6.  If the problem persists after that,
-    [contact us](mailto:send-later-support@extended-thunder.org?subject=Send%20Later)
+6.  If the problem persists after that, [let us know](#help).
 
 <!--
 #### "Error copying recurring message"
@@ -775,9 +774,7 @@ problem, then do the following:
 6.  When all that is done, repair all of the drafts folders as described
     [below](#drafts-cleanup).
 
-If this doesn't fix the problem for you, then
-[email us](mailto:send-later-support@extended-thunder.org?subject=Send%20Later)
-and we'll try to help.
+If this doesn't fix the problem for you, then [ask for help](#help).
 
 Advanced usage
 ---------------------------------
@@ -1434,9 +1431,8 @@ If, instead of the message being saved into the Drafts folder, you get an error,
 then try repairing your Drafts folder and then repeat this test. If that doesn't
 fix the problem, then the error you're getting probably isn't a Send Later
 issue, it's a generic Thunderbird issue, but if you can't figure out what the
-problem is, feel free to
-[send us the error message you're getting](mailto:send-later-support@extended-thunder.org?subject=Send%20Later)
-and we'll try to help.
+problem is, feel free to [send us the error message you're getting](#help) and
+we'll try to help.
 
 ##### Test \#4
 
@@ -1455,7 +1451,7 @@ and we'll try to help.
 2.  Wait for the scheduled send time of the message and confirm that it
     is sent correctly by Send Later.
 3.  If it isn't, and all the other tests above were successful, then
-    [contact us for further assistance](mailto:send-later-support@extended-thunder.org?subject=Send%20Later).
+    [contact us for further assistance](#help).
 
 <a name="corrupt-outbox"></a>
 #### Corrupt Outbox folder
@@ -1579,8 +1575,7 @@ and is quite easy. Everything you need to know is
 am happy to help you out if you encounter any problems with Crowdin or
 have any questions, and my wonderful team of current translators are
 available to help as well. If you are interested in translating the add
-on into your language, feel free to either
-[email us about it](mailto:send-later-support@extended-thunder.org?subject=Send%20Later)
+on into your language, feel free to either [start a discussion about it](#help)
 or just jump right in on Crowdin. Thanks!
 
 ### Hacking
@@ -1588,21 +1583,24 @@ or just jump right in on Crowdin. Thanks!
 The complete source code for the add-on is
 [available on Github](https://github.com/Extended-Thunder/send-later).
 
+<a name="help"></a>
+
 Getting help
 ---------------------------
 
-### The "Send Later users" mailing list
+### Discussion forum
 
-The
-[Send Later users mailing list](https://groups.google.com/group/send-later-users)
-is a great place to ask questions about the add-on, chat with other users about
-how to use it, or discuss future enhancements with the developer.
+Most support questions can be handled through Send Later's
+[discussion forum](https://github.com/Extended-Thunder/send-later/discussions).
+Be sure to check whether your question has been asked/answered already, and
+post a new discussion topic if not.
 
 ### Contacting the maintainers
 
-If you need help using the add-on, please
-[e-mail us](mailto:send-later-support@extended-thunder.org?subject=Send%20Later)
-and we will respond as soon as we can (which is usually very quickly). Thanks!
+If your question or comment cannot be addressed through the discussion forum
+for whatever reason, then please
+[e-mail us directly](mailto:send-later-support@extended-thunder.org?subject=Send%20Later)
+and we will respond as soon as we can.
 
 ### Other resources
 
