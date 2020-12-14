@@ -18,8 +18,7 @@ already installed the add-on from
 and restarted Thunderbird.
 
 If you have any comments, questions or feedback about the add-on, please
-[start a discussion](https://github.com/Extended-Thunder/send-later/discussions)
-or [open a bug report](https://github.com/Extended-Thunder/send-later/issues/).
+[get in touch](#help).
 
 *This user manual is written for Thunderbird 78 or newer. Things might be
 slightly different for older versions.*
