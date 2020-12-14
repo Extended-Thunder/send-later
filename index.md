@@ -258,9 +258,8 @@ This preference controls whether the add-on actually sends messages when
 their delivery time arrives, or rather should just deposit them into
 your Outbox and leave them there until the next time you send unsent
 messages as described above. You might want to disable this setting if
-you use some other add-on, e.g., BlunderDelay, to manage your message
-delivery. See the [Caveats section below](#caveats) for more information
-about this.
+you use some other add-on to manage your message delivery. See the
+[Caveats section below](#caveats) for more information about this.
 
 ### Enforce time and day restrictions at delivery time
 
@@ -374,7 +373,9 @@ Caveats and known issues
 Some things to keep in mind:
 
 1.  Whenever Send Later delivers a scheduled message, any other messages
-    pending delivery in your Outbox will also be delivered.
+    pending delivery in your Outbox will also be delivered. This is assuming
+    Send Later is configured to deliver unsent messages at send time (see the
+    "Trigger unsent message delivery from Outbox" [preference](#prefs)).
 2.  Scheduled drafts are locked to a particular Thunderbird profile and
     will only be delivered by a Thunderbird running against the same
     profile that originally scheduled them. This means that if you use
@@ -395,37 +396,35 @@ Some things to keep in mind:
     when a recurring message is sent and automatically rescheduled, Send
     Later does *not* capture a new version of the attached files.
 5.  Outgoing message format preferences
-    (`Preferences > Composition > Send Options...`) do not work with Send Later.
-    (Note, this may no longer be the case, but I haven't tried it lately. If
-    you do experiment with it let me know the results.)
-6.  I have been told by multiple people that messages sent
-    from or to iCloud or me.com accounts never appear in the recipient's
-    inbox even though Thunderbird says they were sent successfully.
-    Please note that this is *not* a bug in Send Later or Thunderbird,
-    it's a problem with iCloud. Apparently, Apple thinks it's OK to run
-    a mail server which arbitrarily and completely silently discards
-    valid email messages with no notification to either the sender or
-    recipient that this has occurred (this is discussed by others on the
-    internet, e.g.,
+    (`Preferences > Composition > Send Options...`) do not work with Send Later.  
+    *Note*: this may no longer be the case, but I haven't checked lately. If
+    you do experiment with it let me know the results.
+6.  I have been told by multiple people that messages sent from or to iCloud or
+    me.com accounts never appear in the recipient's inbox even though
+    Thunderbird says they were sent successfully. Please note that this is *not*
+    a bug in Send Later or Thunderbird, it's a problem with iCloud. Apparently,
+    Apple thinks it's OK to run a mail server which arbitrarily and completely
+    silently discards valid email messages with no notification to either the
+    sender or recipient that this has occurred (this is discussed by others on
+    the internet, e.g.:
     [here](https://www.macworld.com/article/2029570/silent-email-filtering-makes-icloud-an-unreliable-option.html),
     [here](https://discussions.apple.com/thread/3153039),
     [here](https://www.cultofmac.com/103703/apple-may-be-invisibly-filtering-your-outgoing-mobileme-email-exclusive/103703/),
     [here](https://www.imore.com/apple-slipping-lately#comment-610145)).
-    I have tried, unfortunately without success, to find a fix or
-    workaround for this problem. The only possible fix I've been able to
-    find --- and I'm not actually sure it works --- is to check your
-    account settings and confirm that the outbound SMTP configuration in
-    Thunderbird for your iCloud account matches the
+    I have tried, unfortunately without success, to find a fix or workaround for
+    this problem. The only possible fix I've been able to find --- and I'm not
+    actually sure it works --- is to check your account settings and confirm
+    that the outbound SMTP configuration in Thunderbird for your iCloud account
+    matches the
     [settings Apple says you should be using](https://support.apple.com/en-us/HT202304).
 7.  <a name="exquilla"></a>Send Later does not work with ExQuilla, because Send
-    Later depends on being able to put messages into your local Outbox
-    and then send them with the "Send Unsent Messages" command, but
+    Later depends on being able to put messages into your local Outbox and then
+    send them with the "Send Unsent Messages" command, but
     ["Send Unsent Messages" is not implemented in ExQuilla](https://exquilla.zendesk.com/entries/25723967-Messages-stuck-in-Outbox).
-    If you would like to see Send Later work with ExQuilla, I suggest
-    you contact the maintainers of ExQuilla and ask them to make sending
-    messages to ExQuilla from the local Outbox work properly; the more
-    people ask, the more likely it is that they will fix this problem.
-    Send Later *does* work with
+    If you would like to see Send Later work with ExQuilla, I suggest you
+    contact the maintainers of ExQuilla and ask them to make sending messages to
+    ExQuilla from the local Outbox work properly; the more people ask, the more
+    likely it is that they will fix this problem. Send Later *does* work with
     [Owl for Exchange](https://addons.thunderbird.net/thunderbird/addon/owl-for-exchange/),
     the add-on which is intended to replace ExQuilla, when configured as
     described [below](#owl).
@@ -479,15 +478,13 @@ Or you can consider using a third-party service that holds and delivers
 scheduled messages for you, instead of Send Later. See, for example:
 
 -   <http://www.timecave.com/timecave/about.jsp>
--   <http://www.etn.nl/poptools/sendmail.htm#sendmail>
 -   <http://www.lettermelater.com/>
--   <http://www.rightinbox.com/>
--   <http://www.boomeranggmail.com/> (for Gmail)
+-   <http://www.rightinbox.com/> (Gmail only)
+-   <http://www.boomeranggmail.com/> (Gmail only)
 
-The list of sites above is provided for informational purposes only; it
-should not be construed as an endorsement of any of these services. I
-don't use them and don't know how well they work or how trustworthy they
-are.
+The list of sites above is provided for informational purposes only; it should
+not be construed as an endorsement of any of these services. I don't use them
+and don't know how well they work or how trustworthy they are.
 
 ### Return receipts don't work
 
@@ -668,6 +665,7 @@ all of them. Here's the most reliable way to do that:
     each of them.
 5.  When are done, close the window and delete the draft from the Drafts
     folder of the last account into which you saved it.
+-->
 
 #### "Error sending unsent messages"
 
@@ -685,7 +683,10 @@ Drafts folder at the same time. If this is the case, then there is a
 risk that Send Later will keep trying to send it over and over again
 every minute, and as a result many copies of the message could end up
 being sent. To prevent this from happening, Send Later disables itself
-temporarily. You should:
+temporarily, by setting the "Check every <u>&nbsp;#&nbsp;</u> minutes"
+preference to `0`, [disabling the message send process](#senddrafts).
+
+You should:
 
 1.  Check your Outbox (under Local Folders) to see if there is a
     scheduled message stuck there waiting to be sent. If so, and the
@@ -698,13 +699,15 @@ temporarily. You should:
     there of the message that you just sent from your Outbox, and if so,
     delete it from Drafts (unless it's a recurring message, in which
     case you should open and reschedule it for the next time you want it
-    to be sent). After doing this, restart Thunderbird to turn Send
-    Later back on.
-4.  If the problem persists, follow [these
-    instructions](#corrupt-outbox) for repairing a corrupt Outbox.
-5.  If the problem persists after that,
+    to be sent).
+4.  Change the "Check every <u>&nbsp;#&nbsp;</u> minutes" preference to a
+    non-zero value.
+5.  If the problem persists, follow [these instructions](#corrupt-outbox) for
+    repairing a corrupt Outbox.
+6.  If the problem persists after that,
     [contact us](mailto:send-later-support@extended-thunder.org?subject=Send%20Later)
 
+<!--
 #### "Error copying recurring message"
 
 If you're reading this section, it's probably because you got a pop-up
@@ -828,7 +831,11 @@ are as follows:
 -   If you check "Cancel recurrence upon reply", then Send Later watches
     for incoming messages that are replies to recurring messages you've
     scheduled, and if a reply is received, then Send Later automatically
-    deletes the recurring message from your Drafts folder.
+    deletes the recurring message from your Drafts folder.  
+    **Note:** This is only guaranteed to work if Thunderbird is running when the
+    reply is received. If you receive a response while offline, Send Later may
+    not be notified about it when you go online again, and therefore the draft
+    message may not be deleted and recurrence will continue.
 
 Here are some things to keep in mind about recurring messages:
 
