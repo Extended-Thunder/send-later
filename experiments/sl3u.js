@@ -276,10 +276,26 @@ const SendLaterFunctions = {
         SendLaterVars.needToSendUnsentMessages = true;
     } else {
       try {
-        const msgSendLater = Cc[
+        // From mailWindowOverlay.js
+        let msgSendLater = Cc[
             "@mozilla.org/messengercompose/sendlater;1"
           ].getService(Ci.nsIMsgSendLater);
-        msgSendLater.sendUnsentMessages(null);
+        for (let identity of MailServices.accounts.allIdentities) {
+          let msgFolder = msgSendLater.getUnsentMessagesFolder(identity);
+          if (msgFolder) {
+            let numMessages = msgFolder.getTotalMessages(
+              false /* include subfolders */
+            );
+            if (numMessages > 0) {
+              msgSendLater.sendUnsentMessages(identity);
+              // Right now, all identities point to the same unsent messages
+              // folder, so to avoid sending multiple copies of the
+              // unsent messages, we only call messenger.SendUnsentMessages() once.
+              // See bug #89150 for details.
+              break;
+            }
+          }
+        }
       } catch (ex) {
         SendLaterFunctions.error("SendLaterFunctions.queueSendUnsentMessages",
           "Error triggering send from unsent messages folder.", ex);
