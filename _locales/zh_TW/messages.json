@@ -227,24 +227,12 @@
     "message": "存至寄件匣",
     "description": ""
   },
-  "sendlater.prompt.sendlater.accesskey": {
-    "message": "O",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.tooltip": {
     "message": "不指定發送時間，而是移動信件至寄件匣，等待下一次傳送信件。",
     "description": ""
   },
-  "sendlater.prompt.sendnow.accesskey": {
-    "message": "N",
-    "description": ""
-  },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "跳過延期發信, 馬上寄出訊息",
-    "description": ""
-  },
-  "sendlater.prompt.close.accesskey": {
-    "message": "C",
     "description": ""
   },
   "sendlater.prompt.close.tooltip": {
@@ -423,32 +411,16 @@
     "message": "謝謝！",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "D",
-    "description": ""
-  },
   "sendlater.ask.donate.label": {
     "message": "馬上贊助",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "R",
     "description": ""
   },
   "sendlater.ask.remind.label": {
     "message": "以後提醒我",
     "description": ""
   },
-  "sendlater.ask.already.accesskey": {
-    "message": "a",
-    "description": ""
-  },
   "sendlater.ask.already.label": {
     "message": "我已贊助",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "S",
     "description": ""
   },
   "sendlater.ask.stop.label": {
@@ -473,10 +445,6 @@
   },
   "delete.label": {
     "message": "刪除",
-    "description": ""
-  },
-  "delete.accesskey": {
-    "message": "D",
     "description": ""
   },
   "functionnametip": {
@@ -511,10 +479,6 @@
     "message": "執行函數：",
     "description": ""
   },
-  "run.accesskey": {
-    "message": "x",
-    "description": ""
-  },
   "inputtime": {
     "message": "輸入時間：",
     "description": ""
@@ -547,20 +511,12 @@
     "message": "匯入...",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "將一個之前從編輯器匯出的動態函數匯入。",
     "description": ""
   },
   "export.label": {
     "message": "匯出...",
-    "description": ""
-  },
-  "export.accesskey": {
-    "message": "E",
     "description": ""
   },
   "exporttip": {
@@ -571,24 +527,12 @@
     "message": "放棄修改",
     "description": ""
   },
-  "reset.accesskey": {
-    "message": "a",
-    "description": ""
-  },
   "save.label": {
     "message": "存檔",
     "description": ""
   },
-  "save.accesskey": {
-    "message": "S",
-    "description": ""
-  },
   "close.label": {
     "message": "關閉",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "C",
     "description": ""
   },
   "close.cmdkey": {
@@ -783,10 +727,6 @@
     "message": "星期六",
     "description": ""
   },
-  "everymonthly_short": {
-    "message": "$1 $2",
-    "description": ""
-  },
   "everymonthly_short_day0": {
     "message": "星期日",
     "description": ""
@@ -953,10 +893,6 @@
   },
   "EditorReadMeHelp": {
     "message": "任何放置在此處的文字，均會在鼠標停在菜單功能名稱以提示方式顯示。你可以使用它來描述函數和接受的參數。",
-    "description": ""
-  },
-  "_BusinessHoursCode": {
-    "message": "// Defaults\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Start of the work day as [H, M]\nvar workEnd = [17, 30]; // End of the work day as [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Not expected in normal usage, but used as the current time for testing.\n    next = new Date(prev);\nelse\n    next = new Date();\n// If we're past the end of the workday or not on a workday, move to the work\n// start time on the next day.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// If we're before the beginning of the workday, move to its start time.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
     "description": ""
   },
   "BusinessHoursHelp": {
