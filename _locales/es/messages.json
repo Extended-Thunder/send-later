@@ -292,7 +292,7 @@
     "description": ""
   },
   "sendlater.toolbar.sendlater.button.label": {
-    "message": "Enviar más tarde",
+    "message": "Send Later",
     "description": ""
   },
   "sendlater.toolbar.sendlater.button.tooltip": {
@@ -395,6 +395,10 @@
     "message": "Donar",
     "description": ""
   },
+  "advancededitor.title": {
+    "message": "Advanced configuration editor",
+    "description": ""
+  },
   "editorlink.value": {
     "message": "Editor de funciones dinámicas",
     "description": ""
@@ -488,7 +492,7 @@
     "description": ""
   },
   "delete.accesskey": {
-    "message": "B",
+    "message": "D",
     "description": ""
   },
   "functionnametip": {
@@ -584,7 +588,7 @@
     "description": ""
   },
   "reset.accesskey": {
-    "message": "D",
+    "message": "Y",
     "description": ""
   },
   "save.label": {
@@ -592,7 +596,7 @@
     "description": ""
   },
   "save.accesskey": {
-    "message": "G",
+    "message": "e",
     "description": ""
   },
   "close.label": {
@@ -695,6 +699,9 @@
     "message": "Send Later: La carpeta $1 puede estar dañada. Por favor, abra sus propiedades y repárela. Vea https://blog.kamens.us/send-later/#corrupt-drafts-error.",
     "description": ""
   },
+  "CorruptFolderErrorDetails": {
+    "message": "Specifically, it appears that message “$1” $2 has been sent before, but still exists in the Drafts folder. This may or may not be indicative of a more serious problem. You might simply try deleting (or re-scheduling) the message in question.\n\nSend Later will skip this message, but continue processing your other scheduled draft messages when you close this alert."
+  },
   "MessageResendError": {
     "message": "Send Later: ¡¿Intenta volver a remitir un mensaje ya enviado?! Su Bandeja de Salida o su carpeta de Borradores $1 probablemente está dañada. Por favor, repárelas como se describe en https://blog.kamens.us/send-later/#corrupt-outbox.",
     "description": ""
@@ -720,7 +727,7 @@
     "description": ""
   },
   "plural_minutely": {
-    "message": "minutos",
+    "message": "minuto(s)",
     "description": ""
   },
   "plural_daily": {
@@ -906,6 +913,24 @@
   "ScheduledMessagesWarningTitle": {
     "message": "Aviso de mensajes programados",
     "description": ""
+  },
+  "CompactionFailureWithError": {
+    "message": "Compacting Outbox and/or Drafts folders failed with error:"
+  },
+  "CompactionFailureNoError": {
+    "message": "Compacting $1 failed without error message."
+  },
+  "SanityCheckOutbox": {
+    "message": "You have $1 unsent message(s) which will be triggered to send next time a scheduled message becomes due."
+  },
+  "SanityCheckDrafts": {
+    "message": "You have $1 message(s) scheduled to be delivered by Send Later.\nThe next one is scheduled for $2."
+  },
+  "SanityCheckCorruptFolderWarning": {
+    "message": "If these numbers don't look right to you, you might have a corrupted Outbox and/or Drafts folder(s). In that case it is advised that you compact and rebuild those folders before activating Send Later. See <https://blog.kamens.us/send-later/#corrupt-outbox> and <https://blog.kamens.us/send-later/#corrupt-drafts-error> for more details."
+  },
+  "SanityCheckConfirmOptionMessage": {
+    "message": "Select one of the options:\n  “OK”: Proceed as usual. You will not be prompted again.\n\n  “Cancel”: Send Later will be disabled via its own preferences.\n                    To re-enable Send Later, go to its options page and set\n                    the “Check every ___ minutes” preference to a non-zero value.\n                    You will receive this prompt again next time you restart\n                    Thunderbird"
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Hay mensajes programados para ser enviados. Send Later sólo puede enviar mensajes cuando $1 está en funcionamiento. ¿Está seguro de que quiere salir?",
