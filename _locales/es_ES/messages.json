@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Send Later",
-    "description": "The name of the add-on, displayed in various places."
-  },
   "extensionDescription": {
     "message": "Funcionalidad “Enviar más tarde” para programar la hora de envío.",
     "description": "A short description of the add-on."
@@ -65,18 +61,6 @@
   },
   "logLevelDebug": {
     "message": "Depurar",
-    "description": ""
-  },
-  "logLevelError": {
-    "message": "Error",
-    "description": ""
-  },
-  "logLevelFatal": {
-    "message": "Fatal",
-    "description": ""
-  },
-  "logLevelInfo": {
-    "message": "Info",
     "description": ""
   },
   "logLevelTrace": {
@@ -243,10 +227,6 @@
     "message": "Envía el mensaje inmediatamente, ignorando “Send Later”.",
     "description": ""
   },
-  "sendlater.prompt.close.accesskey": {
-    "message": "C",
-    "description": ""
-  },
   "sendlater.prompt.close.tooltip": {
     "message": "Regresa a la edición del mensaje.",
     "description": ""
@@ -279,10 +259,6 @@
     "message": "Calcular",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Enviar más tarde",
-    "description": ""
-  },
   "sendlater.toolbar.sendlater.button.tooltip": {
     "message": "Activa Send Later para programar un mensaje después de introducir el tiempo de envío deseado en el cuadro de texto. Este botón no hace nada por sí mismo; también necesitas añadir el cuadro de texto o los selectores de fecha/hora (no soportados en todas las versiones de Thunderbird) a la barra de herramientas para que este botón sea útil.",
     "description": ""
@@ -313,10 +289,6 @@
   },
   "sendlater.prompt.cancelonreply.tooltip": {
     "message": "Monitoriza respuestas a copias previas de mensajes planificados de forma recurrente. Cancela un mensaje recurrente (planificado para su envío repetidas veces) y se elimina de la carpeta “borradores” cuando se recibe una respuesta al mismo.",
-    "description": ""
-  },
-  "sendlater3header.label": {
-    "message": "Send Later",
     "description": ""
   },
   "prefwindow.title": {
@@ -403,10 +375,6 @@
     "message": "Abre una ventana para crear y editar funciones JavaScript que implementan una lógica de planificación compleja.",
     "description": ""
   },
-  "loglevel.config": {
-    "message": "Config",
-    "description": ""
-  },
   "sendlater.ask.title.label": {
     "message": "Apoyar a Send Later",
     "description": ""
@@ -423,16 +391,8 @@
     "message": "¡Gracias!",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "D",
-    "description": ""
-  },
   "sendlater.ask.donate.label": {
     "message": "Donar ahora",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "R",
     "description": ""
   },
   "sendlater.ask.remind.label": {
@@ -473,10 +433,6 @@
   },
   "delete.label": {
     "message": "Borrar",
-    "description": ""
-  },
-  "delete.accesskey": {
-    "message": "B",
     "description": ""
   },
   "functionnametip": {
@@ -547,10 +503,6 @@
     "message": "Importar…",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Importa una función dinámica previamente exportada desde el editor.",
     "description": ""
@@ -572,7 +524,7 @@
     "description": ""
   },
   "reset.accesskey": {
-    "message": "D",
+    "message": "Y",
     "description": ""
   },
   "save.label": {
@@ -580,19 +532,11 @@
     "description": ""
   },
   "save.accesskey": {
-    "message": "G",
+    "message": "e",
     "description": ""
   },
   "close.label": {
     "message": "Cerrar",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "C",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -708,7 +652,7 @@
     "description": ""
   },
   "plural_minutely": {
-    "message": "minutos",
+    "message": "minuto(s)",
     "description": ""
   },
   "plural_daily": {
@@ -781,10 +725,6 @@
   },
   "everymonthly_day6": {
     "message": "Sábado",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
@@ -968,7 +908,7 @@
     "description": ""
   },
   "DaysInARowHelp": {
-    "message": "[Días seguidos] — Envia el mensaje ahora, y subsecuentemente una vez al día a la misma hora, hasta que haya sido enviado tres veces. Especifique un número como argumento para cambiar el número total de envíos",
+    "message": "[Días seguidos] — Envia el mensaje ahora, y subsecuentemente una vez al día a la misma hora, hasta que haya sido enviado tres veces. Especifique un número como argumento para cambiar el número total de envíos.",
     "description": ""
   },
   "DiscardConfirmTitle": {
