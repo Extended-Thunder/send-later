@@ -1005,10 +1005,14 @@ browser.runtime.onMessage.addListener(async (message) => {
           SLStatic.debug(`User cancelled send now.`);
           break;
         }
+        browser.SL3U.goDoCommand("cmd_sendNow").catch((ex) => {
+          SLStatic.error("Error during cmd_sendNow operation", ex);
+        });
+      } else {
+        browser.SL3U.goDoCommand("cmd_sendWithCheck").catch((ex) => {
+          SLStatic.error("Error during cmd_sendWithCheck operation", ex);
+        });
       }
-      browser.SL3U.goDoCommand("cmd_sendNow").catch((ex) => {
-        SLStatic.error("Error during builtin send operation",ex);
-      });
       break;
     }
     case "doPlaceInOutbox": {
