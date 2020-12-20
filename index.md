@@ -1560,27 +1560,24 @@ Helping to improve the add-on
 <a name="translate"></a>
 ### Translations
 
-**NOTE:** This information about translating is currently out-of-date
-because we are not yet set up to manage translations for the new version
-of Send Later for Thunderbird 78. It's left here for reference purposes,
-but contrary to what's written below, you shouldn't "just jump right in"
-to translating on Crowdin, until we've updated things.
-
 If the add-on's messages display in a different language than the rest
 of Thunderbird, then that means that it hasn't been translated for your
-language. Translating the add-on is done through [Crowdin](https://crowdin.com/)
-and is quite easy. Everything you need to know is
-[here](https://github.com/jikamens/send-later/blob/master/TRANSLATING.md). I
-am happy to help you out if you encounter any problems with Crowdin or
-have any questions, and my wonderful team of current translators are
+language. Translating the add-on is done through
+[Crowdin](https://crwd.in/sendlater) and is quite easy.
+Everything you need to know is explained
+[here](https://github.com/Extended-Thunder/send-later/blob/master/TRANSLATING.md).
+
+I am happy to help you out if you encounter any problems with Crowdin or
+have any questions, and the wonderful team of current translators are
 available to help as well. If you are interested in translating the add
-on into your language, feel free to either [start a discussion about it](#help)
+on into your language, feel free to either [start a discussion about it](#help),
 or just jump right in on Crowdin. Thanks!
 
 ### Hacking
 
 The complete source code for the add-on is
-[available on Github](https://github.com/Extended-Thunder/send-later).
+[available on Github](https://github.com/Extended-Thunder/send-later). Code
+contributions are very welcome!
 
 <a name="help"></a>
 
