@@ -139,10 +139,6 @@
     "message": "‫שבועי‬",
     "description": ""
   },
-  "resetPrefsButton": {
-    "message": "Reset Preferences",
-    "description": ""
-  },
   "saveDefaultsLabel": {
     "message": "שמור את הערכים הללו כברירת מחדל",
     "description": ""
@@ -225,14 +221,6 @@
   },
   "userGuideLabel": {
     "message": "‫מדריך למשתמש‬",
-    "description": ""
-  },
-  "errorDateInPast": {
-    "message": "Selected date is in the past",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -393,10 +381,6 @@
   },
   "donatelink.value": {
     "message": "‫תרום‬",
-    "description": ""
-  },
-  "advancededitor.title": {
-    "message": "Advanced configuration editor",
     "description": ""
   },
   "editorlink.value": {
@@ -605,10 +589,6 @@
   },
   "close.accesskey": {
     "message": "ב",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
