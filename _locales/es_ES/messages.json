@@ -139,6 +139,10 @@
     "message": "semanalmente",
     "description": ""
   },
+  "resetPrefsButton": {
+    "message": "Reset Preferences",
+    "description": ""
+  },
   "saveDefaultsLabel": {
     "message": "Guardar estos valores como predeterminados",
     "description": ""
@@ -223,6 +227,14 @@
     "message": "Guía de usuario",
     "description": ""
   },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
+    "description": ""
+  },
   "sendlater.prompt.sendlater.label": {
     "message": "Poner en la Bandeja de Salida",
     "description": ""
@@ -280,7 +292,7 @@
     "description": ""
   },
   "sendlater.toolbar.sendlater.button.label": {
-    "message": "Enviar más tarde",
+    "message": "Send Later",
     "description": ""
   },
   "sendlater.toolbar.sendlater.button.tooltip": {
@@ -383,6 +395,10 @@
     "message": "Donar",
     "description": ""
   },
+  "advancededitor.title": {
+    "message": "Advanced configuration editor",
+    "description": ""
+  },
   "editorlink.value": {
     "message": "Editor de funciones dinámicas",
     "description": ""
@@ -476,7 +492,7 @@
     "description": ""
   },
   "delete.accesskey": {
-    "message": "B",
+    "message": "D",
     "description": ""
   },
   "functionnametip": {
@@ -572,7 +588,7 @@
     "description": ""
   },
   "reset.accesskey": {
-    "message": "D",
+    "message": "Y",
     "description": ""
   },
   "save.label": {
@@ -580,7 +596,7 @@
     "description": ""
   },
   "save.accesskey": {
-    "message": "G",
+    "message": "e",
     "description": ""
   },
   "close.label": {
@@ -708,7 +724,7 @@
     "description": ""
   },
   "plural_minutely": {
-    "message": "minutos",
+    "message": "minuto(s)",
     "description": ""
   },
   "plural_daily": {
