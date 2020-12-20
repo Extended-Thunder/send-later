@@ -71,6 +71,14 @@
     "message": "Fel",
     "description": ""
   },
+  "logLevelFatal": {
+    "message": "Fatal",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "Info",
+    "description": ""
+  },
   "logLevelTrace": {
     "message": "Spår",
     "description": ""
@@ -415,6 +423,10 @@
     "message": "Tack för ditt stöd!",
     "description": ""
   },
+  "sendlater.ask.donate.accesskey": {
+    "message": "D",
+    "description": ""
+  },
   "sendlater.ask.donate.label": {
     "message": "Donera nu",
     "description": ""
@@ -433,6 +445,10 @@
   },
   "sendlater.ask.already.label": {
     "message": "Jag har redan donerat",
+    "description": ""
+  },
+  "sendlater.ask.stop.accesskey": {
+    "message": "S",
     "description": ""
   },
   "sendlater.ask.stop.label": {
@@ -531,12 +547,20 @@
     "message": "Importera…",
     "description": ""
   },
+  "import.accesskey": {
+    "message": "m",
+    "description": ""
+  },
   "importtip": {
     "message": "Importera en dynamisk funktion som tidigare exporterats från editorn.",
     "description": ""
   },
   "export.label": {
     "message": "Exportera…",
+    "description": ""
+  },
+  "export.accesskey": {
+    "message": "E",
     "description": ""
   },
   "exporttip": {
@@ -547,8 +571,16 @@
     "message": "Ignorera ändringar",
     "description": ""
   },
+  "reset.accesskey": {
+    "message": "a",
+    "description": ""
+  },
   "save.label": {
     "message": "Spara",
+    "description": ""
+  },
+  "save.accesskey": {
+    "message": "S",
     "description": ""
   },
   "close.label": {
@@ -557,6 +589,10 @@
   },
   "close.accesskey": {
     "message": "g",
+    "description": ""
+  },
+  "close.cmdkey": {
+    "message": "w",
     "description": ""
   },
   "sendaround": {
