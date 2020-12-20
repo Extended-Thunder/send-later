@@ -206,5 +206,109 @@
   "close.accesskey": {
     "message": "p",
     "description": ""
+  },
+  "minutely": {
+    "message": "dakikalık",
+    "description": ""
+  },
+  "daily": {
+    "message": "günlük",
+    "description": ""
+  },
+  "weekly": {
+    "message": "haftalık",
+    "description": ""
+  },
+  "monthly": {
+    "message": "aylık",
+    "description": ""
+  },
+  "yearly": {
+    "message": "yıllık",
+    "description": ""
+  },
+  "everymonthly_day0": {
+    "message": "Pazar",
+    "description": ""
+  },
+  "everymonthly_day1": {
+    "message": "Pazartesi",
+    "description": ""
+  },
+  "everymonthly_day2": {
+    "message": "Salı",
+    "description": ""
+  },
+  "everymonthly_day3": {
+    "message": "Çarşamba",
+    "description": ""
+  },
+  "everymonthly_day4": {
+    "message": "Perşembe",
+    "description": ""
+  },
+  "everymonthly_day5": {
+    "message": "Cuma",
+    "description": ""
+  },
+  "everymonthly_day6": {
+    "message": "Cumartesi",
+    "description": ""
+  },
+  "everymonthly_short_day0": {
+    "message": "Pazar",
+    "description": ""
+  },
+  "everymonthly_short_day1": {
+    "message": "Pazartesi",
+    "description": ""
+  },
+  "everymonthly_short_day2": {
+    "message": "Salı",
+    "description": ""
+  },
+  "everymonthly_short_day3": {
+    "message": "Çarşamba",
+    "description": ""
+  },
+  "everymonthly_short_day4": {
+    "message": "Perşembe",
+    "description": ""
+  },
+  "everymonthly_short_day5": {
+    "message": "Cuma",
+    "description": ""
+  },
+  "everymonthly_short_day6": {
+    "message": "Cumartesi",
+    "description": ""
+  },
+  "only_on_day0": {
+    "message": "Pazar",
+    "description": ""
+  },
+  "only_on_day1": {
+    "message": "Pazartesi",
+    "description": ""
+  },
+  "only_on_day2": {
+    "message": "Salı",
+    "description": ""
+  },
+  "only_on_day3": {
+    "message": "Çarşamba",
+    "description": ""
+  },
+  "only_on_day4": {
+    "message": "Perşembe",
+    "description": ""
+  },
+  "only_on_day5": {
+    "message": "Cuma",
+    "description": ""
+  },
+  "only_on_day6": {
+    "message": "Cumartesi",
+    "description": ""
   }
 }

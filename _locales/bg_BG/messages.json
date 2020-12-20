@@ -131,6 +131,10 @@
     "message": "“Изпращане сега” прави същото, като “Изпращане по-късно”",
     "description": ""
   },
+  "sendDelayPrefLabel2": {
+    "message": "минути",
+    "description": ""
+  },
   "sendSundayLabel": {
     "message": "Неделя",
     "description": ""

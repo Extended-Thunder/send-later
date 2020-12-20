@@ -223,6 +223,14 @@
     "message": "Den valgte dato er tidligere",
     "description": ""
   },
+  "sendlater.toolbar.sendlater.button.label": {
+    "message": "Sende Senere",
+    "description": ""
+  },
+  "sendlater3header.label": {
+    "message": "Sende Senere",
+    "description": ""
+  },
   "sendlater.ask.title.label": {
     "message": "Støt Send Senere",
     "description": ""
@@ -597,6 +605,54 @@
   },
   "everymonthly_short_day1": {
     "message": "Mandag",
+    "description": ""
+  },
+  "everymonthly_short_day2": {
+    "message": "Tirsdag",
+    "description": ""
+  },
+  "everymonthly_short_day3": {
+    "message": "Onsdag",
+    "description": ""
+  },
+  "everymonthly_short_day4": {
+    "message": "Torsdag",
+    "description": ""
+  },
+  "everymonthly_short_day5": {
+    "message": "Fredag",
+    "description": ""
+  },
+  "everymonthly_short_day6": {
+    "message": "Lørdag",
+    "description": ""
+  },
+  "only_on_day0": {
+    "message": "Søndag",
+    "description": ""
+  },
+  "only_on_day1": {
+    "message": "Mandag",
+    "description": ""
+  },
+  "only_on_day2": {
+    "message": "Tirsdag",
+    "description": ""
+  },
+  "only_on_day3": {
+    "message": "Onsdag",
+    "description": ""
+  },
+  "only_on_day4": {
+    "message": "Torsdag",
+    "description": ""
+  },
+  "only_on_day5": {
+    "message": "Fredag",
+    "description": ""
+  },
+  "only_on_day6": {
+    "message": "Lørdag",
     "description": ""
   }
 }
