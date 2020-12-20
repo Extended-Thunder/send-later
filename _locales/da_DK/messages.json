@@ -32,7 +32,7 @@
     "description": ""
   },
   "sendlater.ask.title.label": {
-    "message": "sendlater.ask.title.label Send Later erstattes ved kørsel med det almindelige navn på tilføjelsen i denne oversættelse (hentning fra MessageTag i background. properties)",
+    "message": "Støt Send Senere",
     "description": ""
   },
   "sendlater.ask.message1": {
