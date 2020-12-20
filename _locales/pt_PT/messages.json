@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Send Later",
-    "description": "The name of the add-on, displayed in various places."
-  },
   "extensionDescription": {
     "message": "Funcionalidade do “Enviar mais tarde” para marcar a hora de envio",
     "description": "A short description of the add-on."
@@ -69,10 +65,6 @@
   },
   "logLevelError": {
     "message": "Erro",
-    "description": ""
-  },
-  "logLevelFatal": {
-    "message": "Fatal",
     "description": ""
   },
   "logLevelInfo": {
@@ -243,10 +235,6 @@
     "message": "Envie a mensagem imediatamente, ignorando “Send Later”.",
     "description": ""
   },
-  "sendlater.prompt.close.accesskey": {
-    "message": "C",
-    "description": ""
-  },
   "sendlater.prompt.close.tooltip": {
     "message": "Voltar à edição da mensagem.",
     "description": ""
@@ -279,10 +267,6 @@
     "message": "Calcular",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Enviar mais Tarde",
-    "description": ""
-  },
   "sendlater.toolbar.sendlater.button.tooltip": {
     "message": "Ative Send Later para agendar uma mensagem após inserir o tempo de envio desejado na caixa de texto. Este botão não faz nada sozinho; também precisa adicionar a caixa de texto ou os seletores de data/hora (não suportado em todas as versões do Thunderbird) para a barra de ferramentas para que este botão seja útil.",
     "description": ""
@@ -313,10 +297,6 @@
   },
   "sendlater.prompt.cancelonreply.tooltip": {
     "message": "Verifique as respostas às cópias enviadas anteriormente de mensagens recorrentes. Cancele uma mensagem recorrente e apague-a da pasta Rascunhos quando uma resposta for recebida.",
-    "description": ""
-  },
-  "sendlater3header.label": {
-    "message": "Send Later",
     "description": ""
   },
   "prefwindow.title": {
@@ -423,10 +403,6 @@
     "message": "Obrigado!",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "D",
-    "description": ""
-  },
   "sendlater.ask.donate.label": {
     "message": "Doar agora",
     "description": ""
@@ -475,10 +451,6 @@
     "message": "Apagar",
     "description": ""
   },
-  "delete.accesskey": {
-    "message": "A",
-    "description": ""
-  },
   "functionnametip": {
     "message": "Introduza ou edite o nome de uma função alfanumérica. Se modificar o nome de uma função existente, será questionado sobre ao guardar sobre a possibilidade de mudar efetivamente o nome da função ou criar uma nova função com esse nome.",
     "description": ""
@@ -509,10 +481,6 @@
   },
   "run.label": {
     "message": "Executar função",
-    "description": ""
-  },
-  "run.accesskey": {
-    "message": "x",
     "description": ""
   },
   "inputtime": {
@@ -547,20 +515,12 @@
     "message": "Importar…",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Importar uma função dinâmica anteriormente exportada através do editor.",
     "description": ""
   },
   "export.label": {
     "message": "Exportar…",
-    "description": ""
-  },
-  "export.accesskey": {
-    "message": "E",
     "description": ""
   },
   "exporttip": {
@@ -572,7 +532,7 @@
     "description": ""
   },
   "reset.accesskey": {
-    "message": "D",
+    "message": "J",
     "description": ""
   },
   "save.label": {
@@ -580,19 +540,11 @@
     "description": ""
   },
   "save.accesskey": {
-    "message": "G",
+    "message": "P",
     "description": ""
   },
   "close.label": {
     "message": "Fechar",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "F",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -688,7 +640,7 @@
     "description": ""
   },
   "minutely": {
-    "message": "a cada minuto",
+    "message": "ao minuto",
     "description": ""
   },
   "daily": {
@@ -781,10 +733,6 @@
   },
   "everymonthly_day6": {
     "message": "Sábado",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
