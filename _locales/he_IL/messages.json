@@ -164,7 +164,7 @@
     "description": ""
   },
   "sendDelayPrefLabel2": {
-    "message": "דקות",
+    "message": "‫דקות‬",
     "description": ""
   },
   "sendSundayLabel": {
@@ -316,7 +316,7 @@
     "description": ""
   },
   "sendlater3header.label": {
-    "message": "‫‫שלח מאוחר יותר‬‬",
+    "message": "‫שלח מאוחר יותר‬",
     "description": ""
   },
   "prefwindow.title": {
@@ -476,7 +476,7 @@
     "description": ""
   },
   "delete.accesskey": {
-    "message": "מ",
+    "message": "ת",
     "description": ""
   },
   "functionnametip": {
@@ -572,7 +572,7 @@
     "description": ""
   },
   "reset.accesskey": {
-    "message": "ט",
+    "message": "ע",
     "description": ""
   },
   "save.label": {
@@ -580,7 +580,7 @@
     "description": ""
   },
   "save.accesskey": {
-    "message": "ש",
+    "message": "פ",
     "description": ""
   },
   "close.label": {
@@ -588,11 +588,7 @@
     "description": ""
   },
   "close.accesskey": {
-    "message": "ס",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
+    "message": "ב",
     "description": ""
   },
   "sendaround": {
@@ -692,7 +688,7 @@
     "description": ""
   },
   "daily": {
-    "message": "‫עכב משלוח‬",
+    "message": "‫השהה‬",
     "description": ""
   },
   "weekly": {
@@ -708,7 +704,7 @@
     "description": ""
   },
   "plural_minutely": {
-    "message": "דקות",
+    "message": "‫דקות‬",
     "description": ""
   },
   "plural_daily": {
