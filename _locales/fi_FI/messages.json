@@ -139,10 +139,6 @@
     "message": "viikoittain",
     "description": ""
   },
-  "resetPrefsButton": {
-    "message": "Reset Preferences",
-    "description": ""
-  },
   "saveDefaultsLabel": {
     "message": "Tallenna oletusarvoiksi",
     "description": ""
@@ -225,14 +221,6 @@
   },
   "userGuideLabel": {
     "message": "Käyttäjän opas",
-    "description": ""
-  },
-  "errorDateInPast": {
-    "message": "Selected date is in the past",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -393,10 +381,6 @@
   },
   "donatelink.value": {
     "message": "Lahjoita",
-    "description": ""
-  },
-  "advancededitor.title": {
-    "message": "Advanced configuration editor",
     "description": ""
   },
   "editorlink.value": {
@@ -607,10 +591,6 @@
     "message": "P",
     "description": ""
   },
-  "close.cmdkey": {
-    "message": "w",
-    "description": ""
-  },
   "sendaround": {
     "message": "Lähetä",
     "description": ""
@@ -797,10 +777,6 @@
   },
   "everymonthly_day6": {
     "message": "lauantai",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
