@@ -292,7 +292,7 @@
     "description": ""
   },
   "sendlater.toolbar.sendlater.button.label": {
-    "message": "Skicka senare",
+    "message": "Skicka Senare",
     "description": ""
   },
   "sendlater.toolbar.sendlater.button.tooltip": {
@@ -395,6 +395,10 @@
     "message": "Donera",
     "description": ""
   },
+  "advancededitor.title": {
+    "message": "Advanced configuration editor",
+    "description": ""
+  },
   "editorlink.value": {
     "message": "Dynamisk funktionseditor",
     "description": ""
@@ -488,7 +492,7 @@
     "description": ""
   },
   "delete.accesskey": {
-    "message": "T",
+    "message": "D",
     "description": ""
   },
   "functionnametip": {
@@ -584,7 +588,7 @@
     "description": ""
   },
   "reset.accesskey": {
-    "message": "a",
+    "message": "J",
     "description": ""
   },
   "save.label": {
@@ -600,7 +604,7 @@
     "description": ""
   },
   "close.accesskey": {
-    "message": "g",
+    "message": "A",
     "description": ""
   },
   "close.cmdkey": {
@@ -695,12 +699,15 @@
     "message": "Skicka Senare: Mappen $1 kan vara skadad. Var vänlig öppna dess egenskaper och reparera den. Läs mer på https://blog.kamens.us/send-later/#corrupt-drafts-error.",
     "description": ""
   },
+  "CorruptFolderErrorDetails": {
+    "message": "Specifically, it appears that message “$1” $2 has been sent before, but still exists in the Drafts folder. This may or may not be indicative of a more serious problem. You might simply try deleting (or re-scheduling) the message in question.\n\nSend Later will skip this message, but continue processing your other scheduled draft messages when you close this alert."
+  },
   "MessageResendError": {
     "message": "Skicka Senare: Försöker du skicka ett meddelande som redan har skickats?! Din Utkorg- eller Utkast-mapp $1 är antagligen skadad. Reparera dem genom att följa instruktionerna på https://blog.kamens.us/send-later/#corrupt-outbox.",
     "description": ""
   },
   "minutely": {
-    "message": "varje minut",
+    "message": "var minut",
     "description": ""
   },
   "daily": {
@@ -906,6 +913,24 @@
   "ScheduledMessagesWarningTitle": {
     "message": "Varning: Schemalagda meddelanden",
     "description": ""
+  },
+  "CompactionFailureWithError": {
+    "message": "Compacting Outbox and/or Drafts folders failed with error:"
+  },
+  "CompactionFailureNoError": {
+    "message": "Compacting $1 failed without error message."
+  },
+  "SanityCheckOutbox": {
+    "message": "You have $1 unsent message(s) which will be triggered to send next time a scheduled message becomes due."
+  },
+  "SanityCheckDrafts": {
+    "message": "You have $1 message(s) scheduled to be delivered by Send Later.\nThe next one is scheduled for $2."
+  },
+  "SanityCheckCorruptFolderWarning": {
+    "message": "If these numbers don't look right to you, you might have a corrupted Outbox and/or Drafts folder(s). In that case it is advised that you compact and rebuild those folders before activating Send Later. See <https://blog.kamens.us/send-later/#corrupt-outbox> and <https://blog.kamens.us/send-later/#corrupt-drafts-error> for more details."
+  },
+  "SanityCheckConfirmOptionMessage": {
+    "message": "Select one of the options:\n  “OK”: Proceed as usual. You will not be prompted again.\n\n  “Cancel”: Send Later will be disabled via its own preferences.\n                    To re-enable Send Later, go to its options page and set\n                    the “Check every ___ minutes” preference to a non-zero value.\n                    You will receive this prompt again next time you restart\n                    Thunderbird"
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Det finns meddelanden som har schemalagts för sändning. Skicka Senare kan endast skicka meddelanden när $1 körs. Är du säker på att du vill avsluta?",
