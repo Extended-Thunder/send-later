@@ -1,4 +1,100 @@
 {
+  "extensionName": {
+    "message": "Sende Senere",
+    "description": "The name of the add-on, displayed in various places."
+  },
+  "extensionDescription": {
+    "message": "Sandt “Send senere” funktionalitet til at planlægge tid til at sende en e-mail.",
+    "description": "A short description of the add-on."
+  },
+  "advancedOptionsTitle": {
+    "message": "Avanceret",
+    "description": ""
+  },
+  "altBindingPrefLabel": {
+    "message": "Benyt Alt-Shift-Enter i stedet for Ctrl-Shift-Enter",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel1": {
+    "message": "Lever ikke beskeder mere end",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel2": {
+    "message": "minutter for sent",
+    "description": ""
+  },
+  "checkTimePrefLabel1": {
+    "message": "Tjek hvert",
+    "description": ""
+  },
+  "checkTimePrefLabel2": {
+    "message": "minut",
+    "description": ""
+  },
+  "clearDefaultsLabel": {
+    "message": "Ryd standarder",
+    "description": ""
+  },
+  "contactAuthorLabel": {
+    "message": "Kontakt forfatteren",
+    "description": ""
+  },
+  "enforceRestrictionsPrefLabel": {
+    "message": "Håndhæv tids- og dagbegrænsninger på leveringstidspunktet",
+    "description": ""
+  },
+  "generalOptionsTitle": {
+    "message": "Generelt",
+    "description": ""
+  },
+  "logConsoleLevelLabel": {
+    "message": "Konsol logniveau",
+    "description": ""
+  },
+  "logLevelAll": {
+    "message": "Alle",
+    "description": ""
+  },
+  "logLevelDebug": {
+    "message": "Fejlfinde",
+    "description": ""
+  },
+  "logLevelError": {
+    "message": "Fejl",
+    "description": ""
+  },
+  "logLevelFatal": {
+    "message": "Fatal",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "Informere",
+    "description": ""
+  },
+  "logLevelTrace": {
+    "message": "Spor",
+    "description": ""
+  },
+  "logLevelWarn": {
+    "message": "Advar",
+    "description": ""
+  },
+  "markReadPrefLabel": {
+    "message": "Markér planlagte kladder som læst",
+    "description": ""
+  },
+  "quickOptionsLabel1Label": {
+    "message": "Genvej 1",
+    "description": ""
+  },
+  "quickOptionsLabel2Label": {
+    "message": "Genvej 2",
+    "description": ""
+  },
+  "quickOptionsLabel3Label": {
+    "message": "Genvej 3",
+    "description": ""
+  },
   "quickOptionsValueLabel": {
     "message": "Minutter",
     "description": ""
@@ -15,6 +111,10 @@
     "message": "funktion",
     "description": ""
   },
+  "recurLabel": {
+    "message": "Gentage sig",
+    "description": ""
+  },
   "recurMinutelyLabel": {
     "message": "minutter",
     "description": ""
@@ -29,6 +129,98 @@
   },
   "recurWeeklyLabel": {
     "message": "ugentligt",
+    "description": ""
+  },
+  "resetPrefsButton": {
+    "message": "Nulstil Præferencer",
+    "description": ""
+  },
+  "saveDefaultsLabel": {
+    "message": "Gem disse værdier som standardindstillinger",
+    "description": ""
+  },
+  "sendAtDefaultLabel": {
+    "message": "Indtast en dato og tid",
+    "description": "Displayed in place of send at time before user makes selections"
+  },
+  "sendAtLabel": {
+    "message": "Send kl.",
+    "description": ""
+  },
+  "sendBtwnLabel": {
+    "message": "Mellem",
+    "description": ""
+  },
+  "sendButtonPrefLabel": {
+    "message": "\"Send\" betyder \"send senere\"",
+    "description": ""
+  },
+  "sendDelayPrefLabel1": {
+    "message": "“Send” forsinker meddelelser med",
+    "description": ""
+  },
+  "sendDelayPrefLabel2": {
+    "message": "minutter",
+    "description": ""
+  },
+  "sendSundayLabel": {
+    "message": "Søndag",
+    "description": ""
+  },
+  "sendMondayLabel": {
+    "message": "Mandag",
+    "description": ""
+  },
+  "sendTuesdayLabel": {
+    "message": "Tirsdag",
+    "description": ""
+  },
+  "sendWednesdayLabel": {
+    "message": "Onsdag",
+    "description": ""
+  },
+  "sendThursdayLabel": {
+    "message": "Torsdag",
+    "description": ""
+  },
+  "sendFridayLabel": {
+    "message": "Fredag",
+    "description": ""
+  },
+  "sendSaturdayLabel": {
+    "message": "Lørdag",
+    "description": ""
+  },
+  "sendNowLabel": {
+    "message": "Sende Nu",
+    "description": ""
+  },
+  "sendOnlyOnLabel": {
+    "message": "Sende kun",
+    "description": ""
+  },
+  "sendUnsentMessagesPrefLabel": {
+    "message": "Udløsere sendte levering af beskeder fra udbakken",
+    "description": ""
+  },
+  "showColumnPrefLabel": {
+    "message": "Vis kolonnen Send senere",
+    "description": ""
+  },
+  "showHeaderPrefLabel": {
+    "message": "Vis overskriften Send senere",
+    "description": ""
+  },
+  "showStatusPrefLabel": {
+    "message": "Vis menuen Send senere i statuslinjen",
+    "description": ""
+  },
+  "userGuideLabel": {
+    "message": "Brugervejledning",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "Den valgte dato er tidligere",
     "description": ""
   },
   "sendlater.ask.title.label": {
@@ -200,7 +392,7 @@
     "description": ""
   },
   "save.label": {
-    "message": "Gem",
+    "message": "Gemme",
     "description": ""
   },
   "save.accesskey": {
@@ -217,6 +409,194 @@
   },
   "close.cmdkey": {
     "message": "w",
+    "description": ""
+  },
+  "sendaround": {
+    "message": "Sende kl.",
+    "description": ""
+  },
+  "entervalid": {
+    "message": "Indtast venligst en gyldig dato ovenfor",
+    "description": ""
+  },
+  "sendwithfunction": {
+    "message": "Send i henhold til funktion \"$1\"",
+    "description": ""
+  },
+  "January": {
+    "message": "Januar",
+    "description": ""
+  },
+  "February": {
+    "message": "Februar",
+    "description": ""
+  },
+  "March": {
+    "message": "Marts",
+    "description": ""
+  },
+  "April": {
+    "message": "April",
+    "description": ""
+  },
+  "May": {
+    "message": "Maj",
+    "description": ""
+  },
+  "June": {
+    "message": "Juni",
+    "description": ""
+  },
+  "July": {
+    "message": "Juli",
+    "description": ""
+  },
+  "August": {
+    "message": "August",
+    "description": ""
+  },
+  "September": {
+    "message": "September",
+    "description": ""
+  },
+  "October": {
+    "message": "Oktober",
+    "description": ""
+  },
+  "November": {
+    "message": "November",
+    "description": ""
+  },
+  "December": {
+    "message": "December",
+    "description": ""
+  },
+  "SendingUnsentError": {
+    "message": "Sende senere: Fejl ved afsendelse af usendte beskeder. Din udbakke kan være korrumperet, og dine planlagte beskeder er muligvis ikke blevet sendt. Se https://blog.kamens.us/send-later/#outbox.",
+    "description": ""
+  },
+  "CopyUnsentError": {
+    "message": "Sende senere: Fejl ved kopiering af planlagt besked til udbakke for levering (kode $1). Sende senere er blevet deaktiveret! Se https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "description": ""
+  },
+  "CopyRecurError": {
+    "message": "Sende senere: Fejl ved kopiering af tilbagevendende besked til Kladdemappe (kode $1). Sende senere er blevet deaktiveret! Se https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "description": ""
+  },
+  "CorruptFolderError": {
+    "message": "Sende senere: Mappe $1 kan være korrupt. Åbn venligst dens egenskaber og reparer den. Se https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "description": ""
+  },
+  "MessageResendError": {
+    "message": "Sende senere: Forsøg på at gensende allerede sendt besked?! Din udbakke eller kladdemappe $1 er sandsynligvis korrupt. Reparér dem som beskrevet på https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "description": ""
+  },
+  "minutely": {
+    "message": "hvertminut",
+    "description": ""
+  },
+  "daily": {
+    "message": "hverdag",
+    "description": ""
+  },
+  "weekly": {
+    "message": "hveruge",
+    "description": ""
+  },
+  "monthly": {
+    "message": "hvertmåned",
+    "description": ""
+  },
+  "yearly": {
+    "message": "hvertår",
+    "description": ""
+  },
+  "plural_minutely": {
+    "message": "minut",
+    "description": ""
+  },
+  "plural_daily": {
+    "message": "dag",
+    "description": ""
+  },
+  "plural_weekly": {
+    "message": "uge",
+    "description": ""
+  },
+  "plural_monthly": {
+    "message": "måned",
+    "description": ""
+  },
+  "plural_yearly": {
+    "message": "år",
+    "description": ""
+  },
+  "every_minutely": {
+    "message": "hvert $1 minut",
+    "description": ""
+  },
+  "every_daily": {
+    "message": "hver $1 dage",
+    "description": ""
+  },
+  "every_weekly": {
+    "message": "hver $1 uge",
+    "description": ""
+  },
+  "every_monthly": {
+    "message": "hver $1 måned",
+    "description": ""
+  },
+  "every_yearly": {
+    "message": "hver $1 år",
+    "description": ""
+  },
+  "everyempty": {
+    "message": "uge i måneden",
+    "description": ""
+  },
+  "everymonthly": {
+    "message": "$1 $2 i måneden",
+    "description": ""
+  },
+  "everymonthly_day0": {
+    "message": "Søndag",
+    "description": ""
+  },
+  "everymonthly_day1": {
+    "message": "Mandag",
+    "description": ""
+  },
+  "everymonthly_day2": {
+    "message": "Tirsdag",
+    "description": ""
+  },
+  "everymonthly_day3": {
+    "message": "Onsdag",
+    "description": ""
+  },
+  "everymonthly_day4": {
+    "message": "Torsdag",
+    "description": ""
+  },
+  "everymonthly_day5": {
+    "message": "Fredag",
+    "description": ""
+  },
+  "everymonthly_day6": {
+    "message": "Lørdag",
+    "description": ""
+  },
+  "everymonthly_short": {
+    "message": "$1 $2",
+    "description": ""
+  },
+  "everymonthly_short_day0": {
+    "message": "Søndag",
+    "description": ""
+  },
+  "everymonthly_short_day1": {
+    "message": "Mandag",
     "description": ""
   }
 }
