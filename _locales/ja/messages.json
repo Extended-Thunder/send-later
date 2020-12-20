@@ -292,7 +292,7 @@
     "description": ""
   },
   "sendlater.toolbar.sendlater.button.label": {
-    "message": "後で送信",
+    "message": "Send Later",
     "description": ""
   },
   "sendlater.toolbar.sendlater.button.tooltip": {
@@ -393,6 +393,10 @@
   },
   "donatelink.value": {
     "message": "寄付",
+    "description": ""
+  },
+  "advancededitor.title": {
+    "message": "Advanced configuration editor",
     "description": ""
   },
   "editorlink.value": {
@@ -584,7 +588,7 @@
     "description": ""
   },
   "reset.accesskey": {
-    "message": "a",
+    "message": "S",
     "description": ""
   },
   "save.label": {
@@ -592,7 +596,7 @@
     "description": ""
   },
   "save.accesskey": {
-    "message": "S",
+    "message": "U",
     "description": ""
   },
   "close.label": {
@@ -695,12 +699,15 @@
     "message": "Send Later: フォルダ $1 は壊れている可能性があります。プロパティを開き、修復してください。https://blog.kamens.us/send-later/#corrupt-drafts-error を参照してください。",
     "description": ""
   },
+  "CorruptFolderErrorDetails": {
+    "message": "Specifically, it appears that message “$1” $2 has been sent before, but still exists in the Drafts folder. This may or may not be indicative of a more serious problem. You might simply try deleting (or re-scheduling) the message in question.\n\nSend Later will skip this message, but continue processing your other scheduled draft messages when you close this alert."
+  },
   "MessageResendError": {
     "message": "Send Later: すでに送信済みのメッセージを再送信しようとしていませんか？！ [送信トレイ] か [下書き] フォルダ $1 が壊れている可能性があります。修復するには https://blog.kamens.us/send-later/#corrupt-outbox を参照してください。",
     "description": ""
   },
   "minutely": {
-    "message": "毎分",
+    "message": "毎時",
     "description": ""
   },
   "daily": {
@@ -720,7 +727,7 @@
     "description": ""
   },
   "plural_minutely": {
-    "message": "分ごとに",
+    "message": "分",
     "description": ""
   },
   "plural_daily": {
@@ -907,6 +914,24 @@
     "message": "送信予定のメッセージがあります",
     "description": ""
   },
+  "CompactionFailureWithError": {
+    "message": "Compacting Outbox and/or Drafts folders failed with error:"
+  },
+  "CompactionFailureNoError": {
+    "message": "Compacting $1 failed without error message."
+  },
+  "SanityCheckOutbox": {
+    "message": "You have $1 unsent message(s) which will be triggered to send next time a scheduled message becomes due."
+  },
+  "SanityCheckDrafts": {
+    "message": "You have $1 message(s) scheduled to be delivered by Send Later.\nThe next one is scheduled for $2."
+  },
+  "SanityCheckCorruptFolderWarning": {
+    "message": "If these numbers don't look right to you, you might have a corrupted Outbox and/or Drafts folder(s). In that case it is advised that you compact and rebuild those folders before activating Send Later. See <https://blog.kamens.us/send-later/#corrupt-outbox> and <https://blog.kamens.us/send-later/#corrupt-drafts-error> for more details."
+  },
+  "SanityCheckConfirmOptionMessage": {
+    "message": "Select one of the options:\n  “OK”: Proceed as usual. You will not be prompted again.\n\n  “Cancel”: Send Later will be disabled via its own preferences.\n                    To re-enable Send Later, go to its options page and set\n                    the “Check every ___ minutes” preference to a non-zero value.\n                    You will receive this prompt again next time you restart\n                    Thunderbird"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "送信予定のメッセージがあります。Send Later は $1 が起動しているときのみ、メッセージを送信することができます。終了してもよろしいですか？",
     "description": ""
@@ -957,6 +982,10 @@
   },
   "BlockedLateMessage": {
     "message": "下書きフォルダ $1 の件名 “$2” のメッセージは、 $3 分よりも前に配送されるようにスケジュールされたため、配送がブロックされました。下書きメッセージを編集し、手動もしくは再スケジュールして送るようにしてください。",
+    "description": ""
+  },
+  "EditorReadMeCode": {
+    "message": "// Welcome to the Send Later function editor!\n//\n// The editor allows you to create JavaScript functions implementing complex\n// message scheduling logic which can be associated with shortcut buttons or\n// selected in the Send Later dialog.\n//\n// As you can see above, when a scheduling function is called, it will be given\n// three arguments:\n// * \"specname\" is needed if you want this function to recur (see below)\n// * \"prev\" is the previous scheduled send time, if this is a recurring\n//   invocation\n// * \"args\" is the extra arguments returned by the previous invocation if this\n//   is a recurring invocation\n//\n// Your code needs to set the variables \"next\", \"nextspec\", and\n// \"nextargs\" as follows:\n//\n// * \"next\" is either the number of minutes in the future or a Date object\n//   indicating when the message should be sent.\n// * \"nextspec\" is a recurrence specification if this is intended to be a\n//   recurring message (see\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). If you don't set\n//   this, then the message will only be sent once. Note: if you want your\n//   function to be called again for recurrence, do:\n//     nextspec = \"function \" + specname;\n// * \"nextargs\" is an array of arguments you want to be passed into the next\n//   invocation of the function as \"args\".\n//\n// While you are working on your function, you can test it by filling in values\n// for \"prev\" and \"args\" in the Text boxes below and then clicking \"Execute\" to\n// execute the function and see the results.\n//\n// There are two pre-configured sample functions, \"BusinessHours\" and\n// \"DaysInARow\", which you can look at and play with to learn more.\n//\n// This \"ReadMeFirst\" function just causes the message to be sent around now,\n// via the following line.\nnext = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {
