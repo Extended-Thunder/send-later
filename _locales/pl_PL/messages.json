@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Send Later",
-    "description": "The name of the add-on, displayed in various places."
-  },
   "extensionDescription": {
     "message": "Dodaje funkcję “wyślij później”, aby można było wysyłać wiadomości o zaplanowanym czasie.",
     "description": "A short description of the add-on."
@@ -73,10 +69,6 @@
   },
   "logLevelFatal": {
     "message": "Krytyczny",
-    "description": ""
-  },
-  "logLevelInfo": {
-    "message": "Info",
     "description": ""
   },
   "logLevelTrace": {
@@ -279,10 +271,6 @@
     "message": "wylicz",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Wyślij później",
-    "description": ""
-  },
   "sendlater.toolbar.sendlater.button.tooltip": {
     "message": "Użyj Send Later aby zaplanować wysyłkę wiadomości po wprowadzeniu żądanego czasu wysyłki w polu tekstowym. Przycisk ten nie robi nic samodzielnie; musisz również dodać pole tekstowe lub wybieranie daty/czasu (nie obsługiwane we wszystkich wersjach Thunderbird) do paska narzędzi, aby ten przycisk był przydatny.",
     "description": ""
@@ -313,10 +301,6 @@
   },
   "sendlater.prompt.cancelonreply.tooltip": {
     "message": "Oczekuj na odpowiedź do poprzednio ponowionych wiadomości. Zatrzymaj ponawianie i usuń je z folderu Szkice gdy nadejdzie odpowiedź.",
-    "description": ""
-  },
-  "sendlater3header.label": {
-    "message": "Send Later",
     "description": ""
   },
   "prefwindow.title": {
@@ -476,7 +460,7 @@
     "description": ""
   },
   "delete.accesskey": {
-    "message": "U",
+    "message": "W",
     "description": ""
   },
   "functionnametip": {
@@ -543,24 +527,12 @@
     "message": "Wynik",
     "description": ""
   },
-  "import.label": {
-    "message": "Import…",
-    "description": ""
-  },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Zaimportuj funkcję specjalną poprzednio wyeksportowaną z edytora.",
     "description": ""
   },
   "export.label": {
     "message": "Eksport…",
-    "description": ""
-  },
-  "export.accesskey": {
-    "message": "E",
     "description": ""
   },
   "exporttip": {
@@ -572,7 +544,7 @@
     "description": ""
   },
   "reset.accesskey": {
-    "message": "R",
+    "message": "J",
     "description": ""
   },
   "save.label": {
@@ -580,7 +552,7 @@
     "description": ""
   },
   "save.accesskey": {
-    "message": "Z",
+    "message": "N",
     "description": ""
   },
   "close.label": {
@@ -588,11 +560,7 @@
     "description": ""
   },
   "close.accesskey": {
-    "message": "a",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
+    "message": "A",
     "description": ""
   },
   "sendaround": {
@@ -692,7 +660,7 @@
     "description": ""
   },
   "daily": {
-    "message": "codziennie",
+    "message": "co dzień",
     "description": ""
   },
   "weekly": {
@@ -708,7 +676,7 @@
     "description": ""
   },
   "plural_minutely": {
-    "message": "min.",
+    "message": "minut",
     "description": ""
   },
   "plural_daily": {
@@ -781,10 +749,6 @@
   },
   "everymonthly_day6": {
     "message": "Sobota",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
