@@ -1563,7 +1563,7 @@ Helping to improve the add-on
 If the add-on's messages display in a different language than the rest
 of Thunderbird, then that means that it hasn't been translated for your
 language. Translating the add-on is done through
-[Crowdin](https://crwd.in/sendlater) and is quite easy.
+[Crowdin](https://crwd.in/send-later) and is quite easy.
 Everything you need to know is explained
 [here](https://github.com/Extended-Thunder/send-later/blob/master/TRANSLATING.md).
 
