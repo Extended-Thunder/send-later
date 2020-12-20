@@ -1599,7 +1599,9 @@ post a new discussion topic if not.
 If your question or comment cannot be addressed through the discussion forum
 for whatever reason, then please
 [e-mail us directly](mailto:send-later-support@extended-thunder.org?subject=Send%20Later)
-and we will respond as soon as we can.
+and we will respond as soon as we can. Please note that we may direct you to the
+[discussion forum](https://github.com/Extended-Thunder/send-later/discussions)
+if your question would be more appropriate there.
 
 ### Other resources
 
