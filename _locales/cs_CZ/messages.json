@@ -75,10 +75,6 @@
     "message": "Kritický",
     "description": ""
   },
-  "logLevelInfo": {
-    "message": "Info",
-    "description": ""
-  },
   "logLevelTrace": {
     "message": "Trasovat",
     "description": ""
@@ -280,7 +276,7 @@
     "description": ""
   },
   "sendlater.toolbar.sendlater.button.label": {
-    "message": "Odeslat později",
+    "message": "Odeslat Později",
     "description": ""
   },
   "sendlater.toolbar.sendlater.button.tooltip": {
@@ -476,7 +472,7 @@
     "description": ""
   },
   "delete.accesskey": {
-    "message": "S",
+    "message": "n",
     "description": ""
   },
   "functionnametip": {
@@ -547,20 +543,12 @@
     "message": "Importovat…",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Importuje dynamickou funkci dříve exportovanou z editoru.",
     "description": ""
   },
   "export.label": {
     "message": "Exportovat…",
-    "description": ""
-  },
-  "export.accesskey": {
-    "message": "E",
     "description": ""
   },
   "exporttip": {
@@ -572,7 +560,7 @@
     "description": ""
   },
   "reset.accesskey": {
-    "message": "a",
+    "message": "j",
     "description": ""
   },
   "save.label": {
@@ -580,7 +568,7 @@
     "description": ""
   },
   "save.accesskey": {
-    "message": "U",
+    "message": "s",
     "description": ""
   },
   "close.label": {
@@ -589,10 +577,6 @@
   },
   "close.accesskey": {
     "message": "Z",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -781,10 +765,6 @@
   },
   "everymonthly_day6": {
     "message": "Sobotu",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
