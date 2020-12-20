@@ -591,6 +591,10 @@
     "message": "S",
     "description": ""
   },
+  "close.cmdkey": {
+    "message": "w",
+    "description": ""
+  },
   "sendaround": {
     "message": "Lähetä",
     "description": ""
@@ -777,6 +781,10 @@
   },
   "everymonthly_day6": {
     "message": "Lauantai",
+    "description": ""
+  },
+  "everymonthly_short": {
+    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
