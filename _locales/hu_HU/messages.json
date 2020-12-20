@@ -139,6 +139,10 @@
     "message": "hetente",
     "description": ""
   },
+  "resetPrefsButton": {
+    "message": "Reset Preferences",
+    "description": ""
+  },
   "saveDefaultsLabel": {
     "message": "Mentse ezeket az értékeket alapértelmezettként",
     "description": ""
@@ -221,6 +225,14 @@
   },
   "userGuideLabel": {
     "message": "Felhasználói útmutató",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -383,6 +395,10 @@
     "message": "Adományozás",
     "description": ""
   },
+  "advancededitor.title": {
+    "message": "Advanced configuration editor",
+    "description": ""
+  },
   "editorlink.value": {
     "message": "Erőteljes függvény szerkesztő",
     "description": ""
@@ -476,7 +492,7 @@
     "description": ""
   },
   "delete.accesskey": {
-    "message": "s",
+    "message": "A",
     "description": ""
   },
   "functionnametip": {
@@ -572,7 +588,7 @@
     "description": ""
   },
   "reset.accesskey": {
-    "message": "e",
+    "message": "M",
     "description": ""
   },
   "save.label": {
@@ -580,7 +596,7 @@
     "description": ""
   },
   "save.accesskey": {
-    "message": "M",
+    "message": "l",
     "description": ""
   },
   "close.label": {
@@ -588,7 +604,7 @@
     "description": ""
   },
   "close.accesskey": {
-    "message": "B",
+    "message": "M",
     "description": ""
   },
   "close.cmdkey": {
@@ -708,7 +724,7 @@
     "description": ""
   },
   "plural_minutely": {
-    "message": "percenként",
+    "message": "perc",
     "description": ""
   },
   "plural_daily": {
@@ -756,31 +772,31 @@
     "description": ""
   },
   "everymonthly_day0": {
-    "message": "vasárnapja",
+    "message": "vasárnap",
     "description": ""
   },
   "everymonthly_day1": {
-    "message": "hétfője",
+    "message": "hétfő",
     "description": ""
   },
   "everymonthly_day2": {
-    "message": "keddje",
+    "message": "kedd",
     "description": ""
   },
   "everymonthly_day3": {
-    "message": "szerdája",
+    "message": "szerda",
     "description": ""
   },
   "everymonthly_day4": {
-    "message": "csütörtöke",
+    "message": "csütörtök",
     "description": ""
   },
   "everymonthly_day5": {
-    "message": "pénteke",
+    "message": "péntek",
     "description": ""
   },
   "everymonthly_day6": {
-    "message": "szombata",
+    "message": "szombat",
     "description": ""
   },
   "everymonthly_short": {
@@ -824,31 +840,31 @@
     "description": ""
   },
   "only_on_day0": {
-    "message": "vasárnapon",
+    "message": "vasárnap",
     "description": ""
   },
   "only_on_day1": {
-    "message": "hétfőn",
+    "message": "hétfő",
     "description": ""
   },
   "only_on_day2": {
-    "message": "kedden",
+    "message": "kedd",
     "description": ""
   },
   "only_on_day3": {
-    "message": "szerdán",
+    "message": "szerda",
     "description": ""
   },
   "only_on_day4": {
-    "message": "csütörtökön",
+    "message": "csütörtök",
     "description": ""
   },
   "only_on_day5": {
-    "message": "pénteken",
+    "message": "péntek",
     "description": ""
   },
   "only_on_day6": {
-    "message": "szombaton",
+    "message": "szombat",
     "description": ""
   },
   "ord1": {
