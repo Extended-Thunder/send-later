@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Send Later",
-    "description": "The name of the add-on, displayed in various places."
-  },
   "extensionDescription": {
     "message": "Echte functionaliteit voor ‘Later verzenden’ om het verzendtijdstip van een e-mailbericht te plannen.",
     "description": "A short description of the add-on."
@@ -75,10 +71,6 @@
     "message": "Onherstelbaar",
     "description": ""
   },
-  "logLevelInfo": {
-    "message": "Info",
-    "description": ""
-  },
   "logLevelTrace": {
     "message": "Tracering",
     "description": ""
@@ -137,10 +129,6 @@
   },
   "recurWeeklyLabel": {
     "message": "wekelijks",
-    "description": ""
-  },
-  "resetPrefsButton": {
-    "message": "Reset Preferences",
     "description": ""
   },
   "saveDefaultsLabel": {
@@ -227,14 +215,6 @@
     "message": "Handleiding",
     "description": ""
   },
-  "errorDateInPast": {
-    "message": "Selected date is in the past",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "In Postvak UIT plaatsen",
     "description": ""
@@ -245,10 +225,6 @@
   },
   "sendlater.prompt.sendlater.tooltip": {
     "message": "Niet een tijdstip voor verzending kiezen, maar in het Postvak UIT plaatsen voor verzending wanneer de nog niet verzonden berichten worden verzonden",
-    "description": ""
-  },
-  "sendlater.prompt.sendnow.accesskey": {
-    "message": "N",
     "description": ""
   },
   "sendlater.prompt.sendnow.tooltip": {
@@ -291,10 +267,6 @@
     "message": "Berekenen",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Send Later",
-    "description": ""
-  },
   "sendlater.toolbar.sendlater.button.tooltip": {
     "message": "Activeer Send Later om een bericht in te plannen nadat de gewenste verzendtijd in het tekstvak is ingevoerd. Deze knop doet op zichzelf niets; u dient ook het tekstvak of datum-/tijdkiezers (niet in alle Thunderbird-versies ondersteund) aan de werkbalk toe te voegen om deze knop te laten werken.",
     "description": ""
@@ -325,10 +297,6 @@
   },
   "sendlater.prompt.cancelonreply.tooltip": {
     "message": "Op eerder verzonden kopieën van herhalende berichten letten. Een herhalend bericht annuleren en het uit de map Concepten verwijderen als een antwoord is ontvangen.",
-    "description": ""
-  },
-  "sendlater3header.label": {
-    "message": "Send Later",
     "description": ""
   },
   "prefwindow.title": {
@@ -395,10 +363,6 @@
     "message": "Doneren",
     "description": ""
   },
-  "advancededitor.title": {
-    "message": "Advanced configuration editor",
-    "description": ""
-  },
   "editorlink.value": {
     "message": "Editor voor dynamische functies",
     "description": ""
@@ -453,10 +417,6 @@
   },
   "sendlater.ask.remind.label": {
     "message": "Mij later herinneren",
-    "description": ""
-  },
-  "sendlater.ask.already.accesskey": {
-    "message": "a",
     "description": ""
   },
   "sendlater.ask.already.label": {
@@ -563,10 +523,6 @@
     "message": "Importeren…",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Een dynamische functie importeren die eerder uit de editor is geëxporteerd",
     "description": ""
@@ -575,20 +531,12 @@
     "message": "Exporteren…",
     "description": ""
   },
-  "export.accesskey": {
-    "message": "E",
-    "description": ""
-  },
   "exporttip": {
     "message": "De momenteel weergegeven functie exporteren naar een bestand voor een back-up of om te delen",
     "description": ""
   },
   "reset.label": {
     "message": "Wijzigingen verwerpen",
-    "description": ""
-  },
-  "reset.accesskey": {
-    "message": "a",
     "description": ""
   },
   "save.label": {
@@ -605,10 +553,6 @@
   },
   "close.accesskey": {
     "message": "A",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -797,10 +741,6 @@
   },
   "everymonthly_day6": {
     "message": "zaterdag",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
