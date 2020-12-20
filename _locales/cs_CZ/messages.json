@@ -75,6 +75,10 @@
     "message": "Kritický",
     "description": ""
   },
+  "logLevelInfo": {
+    "message": "Info",
+    "description": ""
+  },
   "logLevelTrace": {
     "message": "Trasovat",
     "description": ""
@@ -543,6 +547,10 @@
     "message": "Importovat…",
     "description": ""
   },
+  "import.accesskey": {
+    "message": "m",
+    "description": ""
+  },
   "importtip": {
     "message": "Importuje dynamickou funkci dříve exportovanou z editoru.",
     "description": ""
@@ -551,12 +559,20 @@
     "message": "Exportovat…",
     "description": ""
   },
+  "export.accesskey": {
+    "message": "E",
+    "description": ""
+  },
   "exporttip": {
     "message": "Exportujte aktuálně zobrazenou funkci do souboru pro zálohování nebo sdílení.",
     "description": ""
   },
   "reset.label": {
     "message": "Zahodit změny",
+    "description": ""
+  },
+  "reset.accesskey": {
+    "message": "a",
     "description": ""
   },
   "save.label": {
@@ -573,6 +589,10 @@
   },
   "close.accesskey": {
     "message": "Z",
+    "description": ""
+  },
+  "close.cmdkey": {
+    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -761,6 +781,10 @@
   },
   "everymonthly_day6": {
     "message": "Sobotu",
+    "description": ""
+  },
+  "everymonthly_short": {
+    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
