@@ -75,10 +75,6 @@
     "message": "Kritický",
     "description": ""
   },
-  "logLevelInfo": {
-    "message": "Info",
-    "description": ""
-  },
   "logLevelTrace": {
     "message": "Trasovat",
     "description": ""
@@ -137,10 +133,6 @@
   },
   "recurWeeklyLabel": {
     "message": "týdně",
-    "description": ""
-  },
-  "resetPrefsButton": {
-    "message": "Reset Preferences",
     "description": ""
   },
   "saveDefaultsLabel": {
@@ -225,14 +217,6 @@
   },
   "userGuideLabel": {
     "message": "Uživatelská příručka",
-    "description": ""
-  },
-  "errorDateInPast": {
-    "message": "Selected date is in the past",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -393,10 +377,6 @@
   },
   "donatelink.value": {
     "message": "Přispějte",
-    "description": ""
-  },
-  "advancededitor.title": {
-    "message": "Advanced configuration editor",
     "description": ""
   },
   "editorlink.value": {
@@ -563,20 +543,12 @@
     "message": "Importovat…",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Importuje dynamickou funkci dříve exportovanou z editoru.",
     "description": ""
   },
   "export.label": {
     "message": "Exportovat…",
-    "description": ""
-  },
-  "export.accesskey": {
-    "message": "E",
     "description": ""
   },
   "exporttip": {
@@ -605,10 +577,6 @@
   },
   "close.accesskey": {
     "message": "Z",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -797,10 +765,6 @@
   },
   "everymonthly_day6": {
     "message": "Sobotu",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
