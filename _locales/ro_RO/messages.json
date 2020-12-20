@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Send Later",
-    "description": "The name of the add-on, displayed in various places."
-  },
   "extensionDescription": {
     "message": "Funcționalitate completă \"Trimite mai târziu\" pentru a programa trimiterea unui email.",
     "description": "A short description of the add-on."
@@ -47,10 +43,6 @@
     "message": "Impune restricțiile de oră și zi în momentul livrării",
     "description": ""
   },
-  "generalOptionsTitle": {
-    "message": "General",
-    "description": ""
-  },
   "logConsoleLevelLabel": {
     "message": "Nivel jurnal consolă",
     "description": ""
@@ -69,18 +61,6 @@
   },
   "logLevelError": {
     "message": "Eroare",
-    "description": ""
-  },
-  "logLevelFatal": {
-    "message": "Fatal",
-    "description": ""
-  },
-  "logLevelInfo": {
-    "message": "Info",
-    "description": ""
-  },
-  "logLevelTrace": {
-    "message": "Trace",
     "description": ""
   },
   "logLevelWarn": {
@@ -137,10 +117,6 @@
   },
   "recurWeeklyLabel": {
     "message": "săptămânal",
-    "description": ""
-  },
-  "resetPrefsButton": {
-    "message": "Reset Preferences",
     "description": ""
   },
   "saveDefaultsLabel": {
@@ -227,14 +203,6 @@
     "message": "Ghidul utilizatorului",
     "description": ""
   },
-  "errorDateInPast": {
-    "message": "Selected date is in the past",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "Pune în „De trimis”",
     "description": ""
@@ -291,10 +259,6 @@
     "message": "Calculează",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Send Later",
-    "description": ""
-  },
   "sendlater.toolbar.sendlater.button.tooltip": {
     "message": "Activează Send Later pentru a programa un mesaj după introducerea momentului trimiterii în caseta de text. Acest buton nu face nimic singur; caseta de text sau selectorul de dată/oră (nedisponibile în toate versiunile de Thunderbird) trebuie adăugate în bara de instrumente pentru a-l putea folosi.",
     "description": ""
@@ -325,10 +289,6 @@
   },
   "sendlater.prompt.cancelonreply.tooltip": {
     "message": "Monitorizează primirea de răspuns la trimiterile anterioare ale mesajelor repetitive. Anulează un mesaj repetitiv și șterge-l din dosarul „Mesaje netrimise” când se primește răspuns.",
-    "description": ""
-  },
-  "sendlater3header.label": {
-    "message": "Send Later",
     "description": ""
   },
   "prefwindow.title": {
@@ -395,10 +355,6 @@
     "message": "Donează",
     "description": ""
   },
-  "advancededitor.title": {
-    "message": "Advanced configuration editor",
-    "description": ""
-  },
   "editorlink.value": {
     "message": "Editor dinamic de funcții",
     "description": ""
@@ -439,10 +395,6 @@
     "message": "Mulțumesc!",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "D",
-    "description": ""
-  },
   "sendlater.ask.donate.label": {
     "message": "Donează acum",
     "description": ""
@@ -453,10 +405,6 @@
   },
   "sendlater.ask.remind.label": {
     "message": "Amintește-mi mai târziu",
-    "description": ""
-  },
-  "sendlater.ask.already.accesskey": {
-    "message": "a",
     "description": ""
   },
   "sendlater.ask.already.label": {
@@ -491,10 +439,6 @@
     "message": "Șterge",
     "description": ""
   },
-  "delete.accesskey": {
-    "message": "D",
-    "description": ""
-  },
   "functionnametip": {
     "message": "Introdu sau modifică un nume de funcție alfanumeric. Dacă se modifică numele unei funcții existente, vei fi întrebat la salvare dacă se redenumește funcția sau se creează o nouă funcție cu numele modificat.",
     "description": ""
@@ -525,10 +469,6 @@
   },
   "run.label": {
     "message": "Execută funcția",
-    "description": ""
-  },
-  "run.accesskey": {
-    "message": "x",
     "description": ""
   },
   "inputtime": {
@@ -563,10 +503,6 @@
     "message": "Importă …",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Importă o funcție dinamică exportată anterior din editor.",
     "description": ""
@@ -575,20 +511,12 @@
     "message": "Exportă …",
     "description": ""
   },
-  "export.accesskey": {
-    "message": "E",
-    "description": ""
-  },
   "exporttip": {
     "message": "Exporta funcția afișată într-un fișier pentru backup sau partajare.",
     "description": ""
   },
   "reset.label": {
     "message": "Renunță la modificări",
-    "description": ""
-  },
-  "reset.accesskey": {
-    "message": "a",
     "description": ""
   },
   "save.label": {
@@ -605,10 +533,6 @@
   },
   "close.accesskey": {
     "message": "A",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -799,10 +723,6 @@
     "message": "sâmbătă",
     "description": ""
   },
-  "everymonthly_short": {
-    "message": "$1 $2",
-    "description": ""
-  },
   "everymonthly_short_day0": {
     "message": "duminică",
     "description": ""
@@ -963,24 +883,12 @@
     "message": "Mesajul cu subiectul \"$1\" din dosarul „Mesaje nefinalizate” $2 a fost programat să fie livrat acum $3 minute, deci livrarea a fost blocată. Editează ciorna și fie trimite manual, fie reprogramează trimiterea. De asemenea, se poate dezactiva opțiunea \"Nu trimite mesaje mai târziu de # minute\" pentru a dezactiva blocarea mesajelor întârziate.",
     "description": ""
   },
-  "EditorReadMeCode": {
-    "message": "// Welcome to the Send Later function editor!\n//\n// The editor allows you to create JavaScript functions implementing complex\n// message scheduling logic which can be associated with shortcut buttons or\n// selected in the Send Later dialog.\n//\n// As you can see above, when a scheduling function is called, it will be given\n// three arguments:\n// * \"specname\" is needed if you want this function to recur (see below)\n// * \"prev\" is the previous scheduled send time, if this is a recurring\n//   invocation\n// * \"args\" is the extra arguments returned by the previous invocation if this\n//   is a recurring invocation\n//\n// Your code needs to set the variables \"next\", \"nextspec\", and\n// \"nextargs\" as follows:\n//\n// * \"next\" is either the number of minutes in the future or a Date object\n//   indicating when the message should be sent.\n// * \"nextspec\" is a recurrence specification if this is intended to be a\n//   recurring message (see\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). If you don't set\n//   this, then the message will only be sent once. Note: if you want your\n//   function to be called again for recurrence, do:\n//     nextspec = \"function \" + specname;\n// * \"nextargs\" is an array of arguments you want to be passed into the next\n//   invocation of the function as \"args\".\n//\n// While you are working on your function, you can test it by filling in values\n// for \"prev\" and \"args\" in the Text boxes below and then clicking \"Execute\" to\n// execute the function and see the results.\n//\n// There are two pre-configured sample functions, \"BusinessHours\" and\n// \"DaysInARow\", which you can look at and play with to learn more.\n//\n// This \"ReadMeFirst\" function just causes the message to be sent around now,\n// via the following line.\nnext = new Date();",
-    "description": ""
-  },
   "EditorReadMeHelp": {
     "message": "Orice text pus aici va fi afișat când utilizatorul planează deasupra numelui funcției în meniu. Se poate utiliza pentru a explica ce face funcția și ce argumente acceptă.",
     "description": ""
   },
-  "_BusinessHoursCode": {
-    "message": "// Defaults\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Start of the work day as [H, M]\nvar workEnd = [17, 30]; // End of the work day as [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Not expected in normal usage, but used as the current time for testing.\n    next = new Date(prev);\nelse\n    next = new Date();\n// If we're past the end of the workday or not on a workday, move to the work\n// start time on the next day.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// If we're before the beginning of the workday, move to its start time.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
-    "description": ""
-  },
   "BusinessHoursHelp": {
     "message": "Trimite mesajul acum dacă e în timpul orelor de lucru, sau la începutul următoarei zi lucrătoare. Definiția zilelor lucrătoare se poate schimba (implicit: Lun - Vin) când primul argument este un „array” cu numerele zilelor lucrătoare, unde 0 este duminică și 6 este sâmbătă. Pentru a schimba orele de lucru (implicit: 8:30 - 17:30) se pot transmite argumentele 2 sau 3 cu „array”-uri de forma [H, M]. Folosește „null” pentru argumentele din față care dorești să rămână neschimbate. De exemplu, “null, [9, 0], [17, 0]” schimba orele de lucru fără a schimba zilele lucrătoare.",
-    "description": ""
-  },
-  "DaysInARowCode": {
-    "message": "// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
     "description": ""
   },
   "DaysInARowHelp": {
