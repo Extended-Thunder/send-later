@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Send Later",
-    "description": "The name of the add-on, displayed in various places."
-  },
   "extensionDescription": {
     "message": "Dodaje funkcję “wyślij później”, aby można było wysyłać wiadomości o zaplanowanym czasie.",
     "description": "A short description of the add-on."
@@ -75,10 +71,6 @@
     "message": "Krytyczny",
     "description": ""
   },
-  "logLevelInfo": {
-    "message": "Info",
-    "description": ""
-  },
   "logLevelTrace": {
     "message": "Śledzenie",
     "description": ""
@@ -137,10 +129,6 @@
   },
   "recurWeeklyLabel": {
     "message": "co tydzień",
-    "description": ""
-  },
-  "resetPrefsButton": {
-    "message": "Reset Preferences",
     "description": ""
   },
   "saveDefaultsLabel": {
@@ -227,14 +215,6 @@
     "message": "Podręcznik użytkownika",
     "description": ""
   },
-  "errorDateInPast": {
-    "message": "Selected date is in the past",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "Umieść w skrzynce nadawczej",
     "description": ""
@@ -291,10 +271,6 @@
     "message": "wylicz",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Send Later",
-    "description": ""
-  },
   "sendlater.toolbar.sendlater.button.tooltip": {
     "message": "Użyj Send Later aby zaplanować wysyłkę wiadomości po wprowadzeniu żądanego czasu wysyłki w polu tekstowym. Przycisk ten nie robi nic samodzielnie; musisz również dodać pole tekstowe lub wybieranie daty/czasu (nie obsługiwane we wszystkich wersjach Thunderbird) do paska narzędzi, aby ten przycisk był przydatny.",
     "description": ""
@@ -325,10 +301,6 @@
   },
   "sendlater.prompt.cancelonreply.tooltip": {
     "message": "Oczekuj na odpowiedź do poprzednio ponowionych wiadomości. Zatrzymaj ponawianie i usuń je z folderu Szkice gdy nadejdzie odpowiedź.",
-    "description": ""
-  },
-  "sendlater3header.label": {
-    "message": "Send Later",
     "description": ""
   },
   "prefwindow.title": {
@@ -393,10 +365,6 @@
   },
   "donatelink.value": {
     "message": "Dotacja…",
-    "description": ""
-  },
-  "advancededitor.title": {
-    "message": "Advanced configuration editor",
     "description": ""
   },
   "editorlink.value": {
@@ -559,24 +527,12 @@
     "message": "Wynik",
     "description": ""
   },
-  "import.label": {
-    "message": "Import…",
-    "description": ""
-  },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Zaimportuj funkcję specjalną poprzednio wyeksportowaną z edytora.",
     "description": ""
   },
   "export.label": {
     "message": "Eksport…",
-    "description": ""
-  },
-  "export.accesskey": {
-    "message": "E",
     "description": ""
   },
   "exporttip": {
@@ -605,10 +561,6 @@
   },
   "close.accesskey": {
     "message": "A",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -797,10 +749,6 @@
   },
   "everymonthly_day6": {
     "message": "Sobota",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
