@@ -63,10 +63,6 @@
     "message": "Tutto",
     "description": ""
   },
-  "logLevelDebug": {
-    "message": "Debug",
-    "description": ""
-  },
   "logLevelError": {
     "message": "Errore",
     "description": ""
@@ -137,10 +133,6 @@
   },
   "recurWeeklyLabel": {
     "message": "settimanale",
-    "description": ""
-  },
-  "resetPrefsButton": {
-    "message": "Reset Preferences",
     "description": ""
   },
   "saveDefaultsLabel": {
@@ -225,14 +217,6 @@
   },
   "userGuideLabel": {
     "message": "Manuale utente",
-    "description": ""
-  },
-  "errorDateInPast": {
-    "message": "Selected date is in the past",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -395,10 +379,6 @@
     "message": "Donazioni",
     "description": ""
   },
-  "advancededitor.title": {
-    "message": "Advanced configuration editor",
-    "description": ""
-  },
   "editorlink.value": {
     "message": "Editor di funzioni dinamiche",
     "description": ""
@@ -439,16 +419,8 @@
     "message": "Grazie!",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "D",
-    "description": ""
-  },
   "sendlater.ask.donate.label": {
     "message": "Dona ora",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "R",
     "description": ""
   },
   "sendlater.ask.remind.label": {
@@ -489,10 +461,6 @@
   },
   "delete.label": {
     "message": "Elimina",
-    "description": ""
-  },
-  "delete.accesskey": {
-    "message": "D",
     "description": ""
   },
   "functionnametip": {
@@ -563,10 +531,6 @@
     "message": "Importa…",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Importa una funzione dinamica precedentemente esportata dall'editor.",
     "description": ""
@@ -605,10 +569,6 @@
   },
   "close.accesskey": {
     "message": "A",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -797,10 +757,6 @@
   },
   "everymonthly_day6": {
     "message": "sabato",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
