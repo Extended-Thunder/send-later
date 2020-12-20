@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Send Later",
-    "description": "The name of the add-on, displayed in various places."
-  },
   "extensionDescription": {
     "message": "Πραγματική «Στείλετε αργότερα» λειτουργικότητα για να προγραμματίσετε την ώρα για την αποστολή μηνύματοςμέσω ηλεκτρονικού ταχυδρομείου.",
     "description": "A short description of the add-on."
@@ -139,10 +135,6 @@
     "message": "εβδομαδιαία",
     "description": ""
   },
-  "resetPrefsButton": {
-    "message": "Reset Preferences",
-    "description": ""
-  },
   "saveDefaultsLabel": {
     "message": "Αποθήκευση αυτών των τιμών ως προεπιλεγμένων",
     "description": ""
@@ -227,14 +219,6 @@
     "message": "Οδηγίες χρήσης",
     "description": ""
   },
-  "errorDateInPast": {
-    "message": "Selected date is in the past",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "Τοποθέτηση στα Εξερχόμενα",
     "description": ""
@@ -291,10 +275,6 @@
     "message": "Υπολογισμός",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Send Later",
-    "description": ""
-  },
   "sendlater.toolbar.sendlater.button.tooltip": {
     "message": "Ενεργοποιείστε Send Later για να προγραμματίσετε την εμφάνιση μηνύματος κατά την επιθυμητή ώρα που εισάγατε στο πλαίσιο. Το κουμπί αυτό δεν κάνει κάτι από μόνο του. Πρέπει να επιλέξετε και την ημερομηνία/ώρα (δεν υποστηρίζεται για εκδόσεις Thunderbird) για να λειτουργήσει.",
     "description": ""
@@ -325,10 +305,6 @@
   },
   "sendlater.prompt.cancelonreply.tooltip": {
     "message": "Παρακολουθήστε για απαντήσεις σε προηγούμενα αντίγραφα των επαναλαμβανόμενων μηνυμάτων. Ακυρώστε ένα επαναλαμβανόμενο μήνυμα και αφαιρέστε το από το φάκελο “Πρόχειρα” όταν ληφθεί μια απάντηση.",
-    "description": ""
-  },
-  "sendlater3header.label": {
-    "message": "Send Later",
     "description": ""
   },
   "prefwindow.title": {
@@ -393,10 +369,6 @@
   },
   "donatelink.value": {
     "message": "Δωρεά",
-    "description": ""
-  },
-  "advancededitor.title": {
-    "message": "Advanced configuration editor",
     "description": ""
   },
   "editorlink.value": {
@@ -607,10 +579,6 @@
     "message": "Α",
     "description": ""
   },
-  "close.cmdkey": {
-    "message": "w",
-    "description": ""
-  },
   "sendaround": {
     "message": "Αποστολή αργότερα",
     "description": ""
@@ -797,10 +765,6 @@
   },
   "everymonthly_day6": {
     "message": "Σάββατο",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
