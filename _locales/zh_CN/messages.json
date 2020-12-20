@@ -1,4 +1,8 @@
 {
+  "extensionName": {
+    "message": "Send Later",
+    "description": "The name of the add-on, displayed in various places."
+  },
   "extensionDescription": {
     "message": "以后发送用来预定发送消息的时间并延期发送",
     "description": "A short description of the add-on."
@@ -223,12 +227,24 @@
     "message": "放到发件箱",
     "description": ""
   },
+  "sendlater.prompt.sendlater.accesskey": {
+    "message": "O",
+    "description": ""
+  },
   "sendlater.prompt.sendlater.tooltip": {
     "message": "不指定发送时间，而是移动消息到发件箱，等待下一次发送未发送消息时发送。",
     "description": ""
   },
+  "sendlater.prompt.sendnow.accesskey": {
+    "message": "N",
+    "description": ""
+  },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "立即发送消息，跳过 “Send Later”。",
+    "description": ""
+  },
+  "sendlater.prompt.close.accesskey": {
+    "message": "C",
     "description": ""
   },
   "sendlater.prompt.close.tooltip": {
@@ -297,6 +313,10 @@
   },
   "sendlater.prompt.cancelonreply.tooltip": {
     "message": "查看已发送的重复电子邮件的所有回复，如果已收到回复，不再发送重复电子邮件，并将它从草稿文件夹中删除。",
+    "description": ""
+  },
+  "sendlater3header.label": {
+    "message": "Send Later",
     "description": ""
   },
   "prefwindow.title": {
@@ -403,16 +423,32 @@
     "message": "谢谢！",
     "description": ""
   },
+  "sendlater.ask.donate.accesskey": {
+    "message": "D",
+    "description": ""
+  },
   "sendlater.ask.donate.label": {
     "message": "马上捐赠",
+    "description": ""
+  },
+  "sendlater.ask.remind.accesskey": {
+    "message": "R",
     "description": ""
   },
   "sendlater.ask.remind.label": {
     "message": "以后提醒我",
     "description": ""
   },
+  "sendlater.ask.already.accesskey": {
+    "message": "a",
+    "description": ""
+  },
   "sendlater.ask.already.label": {
     "message": "我已捐赠",
+    "description": ""
+  },
+  "sendlater.ask.stop.accesskey": {
+    "message": "S",
     "description": ""
   },
   "sendlater.ask.stop.label": {
@@ -475,6 +511,10 @@
     "message": "执行函数：",
     "description": ""
   },
+  "run.accesskey": {
+    "message": "x",
+    "description": ""
+  },
   "inputtime": {
     "message": "输入时间：",
     "description": ""
@@ -507,6 +547,10 @@
     "message": "导入…",
     "description": ""
   },
+  "import.accesskey": {
+    "message": "m",
+    "description": ""
+  },
   "importtip": {
     "message": "导入一个之前由编辑器导出的动态函数。",
     "description": ""
@@ -525,6 +569,10 @@
   },
   "reset.label": {
     "message": "放弃更改",
+    "description": ""
+  },
+  "reset.accesskey": {
+    "message": "a",
     "description": ""
   },
   "save.label": {
@@ -735,6 +783,10 @@
     "message": "星期六",
     "description": ""
   },
+  "everymonthly_short": {
+    "message": "$1 $2",
+    "description": ""
+  },
   "everymonthly_short_day0": {
     "message": "星期日",
     "description": ""
@@ -761,6 +813,14 @@
   },
   "everymonthly_short_day6": {
     "message": "星期六",
+    "description": ""
+  },
+  "betw_times": {
+    "message": "betw. $1 and $2",
+    "description": ""
+  },
+  "only_on_days": {
+    "message": "on $1",
     "description": ""
   },
   "only_on_day0": {
@@ -887,8 +947,16 @@
     "message": "在草稿夹 $1 中标题为“$2”的消息的预定发送时间在 $3 分钟之前，所以被阻止发送。您需要编辑草稿并手动发送或重新预定时间。您也可以禁用“如果已经比预定时间晚了 # 分钟则不要发送消息”选项以避免阻止发送超时的消息。",
     "description": ""
   },
+  "EditorReadMeCode": {
+    "message": "// Welcome to the Send Later function editor!\n//\n// The editor allows you to create JavaScript functions implementing complex\n// message scheduling logic which can be associated with shortcut buttons or\n// selected in the Send Later dialog.\n//\n// As you can see above, when a scheduling function is called, it will be given\n// three arguments:\n// * \"specname\" is needed if you want this function to recur (see below)\n// * \"prev\" is the previous scheduled send time, if this is a recurring\n//   invocation\n// * \"args\" is the extra arguments returned by the previous invocation if this\n//   is a recurring invocation\n//\n// Your code needs to set the variables \"next\", \"nextspec\", and\n// \"nextargs\" as follows:\n//\n// * \"next\" is either the number of minutes in the future or a Date object\n//   indicating when the message should be sent.\n// * \"nextspec\" is a recurrence specification if this is intended to be a\n//   recurring message (see\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). If you don't set\n//   this, then the message will only be sent once. Note: if you want your\n//   function to be called again for recurrence, do:\n//     nextspec = \"function \" + specname;\n// * \"nextargs\" is an array of arguments you want to be passed into the next\n//   invocation of the function as \"args\".\n//\n// While you are working on your function, you can test it by filling in values\n// for \"prev\" and \"args\" in the Text boxes below and then clicking \"Execute\" to\n// execute the function and see the results.\n//\n// There are two pre-configured sample functions, \"BusinessHours\" and\n// \"DaysInARow\", which you can look at and play with to learn more.\n//\n// This \"ReadMeFirst\" function just causes the message to be sent around now,\n// via the following line.\nnext = new Date();",
+    "description": ""
+  },
   "EditorReadMeHelp": {
     "message": "任何放置在此处的文字，均会在鼠标悬停在菜单功能名称以提示方式显示。你可以使用它来描述函数和接受的参数。",
+    "description": ""
+  },
+  "_BusinessHoursCode": {
+    "message": "// Defaults\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Start of the work day as [H, M]\nvar workEnd = [17, 30]; // End of the work day as [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Not expected in normal usage, but used as the current time for testing.\n    next = new Date(prev);\nelse\n    next = new Date();\n// If we're past the end of the workday or not on a workday, move to the work\n// start time on the next day.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// If we're before the beginning of the workday, move to its start time.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
     "description": ""
   },
   "BusinessHoursHelp": {
