@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Send Later",
-    "description": "The name of the add-on, displayed in various places."
-  },
   "extensionDescription": {
     "message": "Πραγματική «Στείλετε αργότερα» λειτουργικότητα για να προγραμματίσετε την ώρα για την αποστολή μηνύματοςμέσω ηλεκτρονικού ταχυδρομείου.",
     "description": "A short description of the add-on."
@@ -279,10 +275,6 @@
     "message": "Υπολογισμός",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Αποστολή αργότερα",
-    "description": ""
-  },
   "sendlater.toolbar.sendlater.button.tooltip": {
     "message": "Ενεργοποιείστε Send Later για να προγραμματίσετε την εμφάνιση μηνύματος κατά την επιθυμητή ώρα που εισάγατε στο πλαίσιο. Το κουμπί αυτό δεν κάνει κάτι από μόνο του. Πρέπει να επιλέξετε και την ημερομηνία/ώρα (δεν υποστηρίζεται για εκδόσεις Thunderbird) για να λειτουργήσει.",
     "description": ""
@@ -313,10 +305,6 @@
   },
   "sendlater.prompt.cancelonreply.tooltip": {
     "message": "Παρακολουθήστε για απαντήσεις σε προηγούμενα αντίγραφα των επαναλαμβανόμενων μηνυμάτων. Ακυρώστε ένα επαναλαμβανόμενο μήνυμα και αφαιρέστε το από το φάκελο “Πρόχειρα” όταν ληφθεί μια απάντηση.",
-    "description": ""
-  },
-  "sendlater3header.label": {
-    "message": "Send Later",
     "description": ""
   },
   "prefwindow.title": {
@@ -476,7 +464,7 @@
     "description": ""
   },
   "delete.accesskey": {
-    "message": "δ",
+    "message": "Δ",
     "description": ""
   },
   "functionnametip": {
@@ -572,7 +560,7 @@
     "description": ""
   },
   "reset.accesskey": {
-    "message": "α",
+    "message": "ω",
     "description": ""
   },
   "save.label": {
@@ -580,7 +568,7 @@
     "description": ""
   },
   "save.accesskey": {
-    "message": "π",
+    "message": "Ν",
     "description": ""
   },
   "close.label": {
@@ -588,11 +576,7 @@
     "description": ""
   },
   "close.accesskey": {
-    "message": "λ",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
+    "message": "Α",
     "description": ""
   },
   "sendaround": {
@@ -692,7 +676,7 @@
     "description": ""
   },
   "daily": {
-    "message": "ημερήσια",
+    "message": "καθημερινά",
     "description": ""
   },
   "weekly": {
@@ -781,10 +765,6 @@
   },
   "everymonthly_day6": {
     "message": "Σάββατο",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
