@@ -292,7 +292,7 @@
     "description": ""
   },
   "sendlater.toolbar.sendlater.button.label": {
-    "message": "Αποστολή αργότερα",
+    "message": "Send Later",
     "description": ""
   },
   "sendlater.toolbar.sendlater.button.tooltip": {
@@ -395,6 +395,10 @@
     "message": "Δωρεά",
     "description": ""
   },
+  "advancededitor.title": {
+    "message": "Advanced configuration editor",
+    "description": ""
+  },
   "editorlink.value": {
     "message": "Επεξεργαστής Δυναμικής Συνάρτησης",
     "description": ""
@@ -488,7 +492,7 @@
     "description": ""
   },
   "delete.accesskey": {
-    "message": "δ",
+    "message": "Δ",
     "description": ""
   },
   "functionnametip": {
@@ -584,7 +588,7 @@
     "description": ""
   },
   "reset.accesskey": {
-    "message": "α",
+    "message": "ω",
     "description": ""
   },
   "save.label": {
@@ -592,7 +596,7 @@
     "description": ""
   },
   "save.accesskey": {
-    "message": "π",
+    "message": "Ν",
     "description": ""
   },
   "close.label": {
@@ -600,7 +604,7 @@
     "description": ""
   },
   "close.accesskey": {
-    "message": "λ",
+    "message": "Α",
     "description": ""
   },
   "close.cmdkey": {
@@ -695,6 +699,9 @@
     "message": "Send Later: Ο φάκελος $1 μπορεί να είναι κατεστραμμένος. Παρακαλούμε, ανοίξτε τις ιδιότητές του και επιδιορθώστε τον. Περισσότερες πληροφορίες στο https://blog.kamens.us/send-later/#corrupt-drafts-error.",
     "description": ""
   },
+  "CorruptFolderErrorDetails": {
+    "message": "Specifically, it appears that message “$1” $2 has been sent before, but still exists in the Drafts folder. This may or may not be indicative of a more serious problem. You might simply try deleting (or re-scheduling) the message in question.\n\nSend Later will skip this message, but continue processing your other scheduled draft messages when you close this alert."
+  },
   "MessageResendError": {
     "message": "Send Later: Να επιχειρηθεί η επαναποστολή του μηνύματος; Ο φάκελος $1 για Εξερχόμενα ή Πρόχειρα είναι πιθανότατα κατεστραμμένος. Παρακαλούμε επιδιορθώστε τον όπως περιγράφεται στο https://blog.kamens.us/send-later/#corrupt-outbox.",
     "description": ""
@@ -704,7 +711,7 @@
     "description": ""
   },
   "daily": {
-    "message": "ημερήσια",
+    "message": "καθημερινά",
     "description": ""
   },
   "weekly": {
@@ -906,6 +913,24 @@
   "ScheduledMessagesWarningTitle": {
     "message": "Προειδοποίηση για τα προγραμματισμένα μηνύματα",
     "description": ""
+  },
+  "CompactionFailureWithError": {
+    "message": "Compacting Outbox and/or Drafts folders failed with error:"
+  },
+  "CompactionFailureNoError": {
+    "message": "Compacting $1 failed without error message."
+  },
+  "SanityCheckOutbox": {
+    "message": "You have $1 unsent message(s) which will be triggered to send next time a scheduled message becomes due."
+  },
+  "SanityCheckDrafts": {
+    "message": "You have $1 message(s) scheduled to be delivered by Send Later.\nThe next one is scheduled for $2."
+  },
+  "SanityCheckCorruptFolderWarning": {
+    "message": "If these numbers don't look right to you, you might have a corrupted Outbox and/or Drafts folder(s). In that case it is advised that you compact and rebuild those folders before activating Send Later. See <https://blog.kamens.us/send-later/#corrupt-outbox> and <https://blog.kamens.us/send-later/#corrupt-drafts-error> for more details."
+  },
+  "SanityCheckConfirmOptionMessage": {
+    "message": "Select one of the options:\n  “OK”: Proceed as usual. You will not be prompted again.\n\n  “Cancel”: Send Later will be disabled via its own preferences.\n                    To re-enable Send Later, go to its options page and set\n                    the “Check every ___ minutes” preference to a non-zero value.\n                    You will receive this prompt again next time you restart\n                    Thunderbird"
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Υπάρχουν μηνύματα που πρόκειται να σταλούν αργότερα. Το Send Later μπορεί να στέλνει μηνύματα μόνο εφόσον το $1 τρέχει. Είστε σίγουρος ότι θέλετε να το κλείσετε;",
