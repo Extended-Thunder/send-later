@@ -1,4 +1,108 @@
 {
+  "extensionDescription": {
+    "message": "True \"Send Later\" functionality to schedule the time for sending an email.",
+    "description": "A short description of the add-on."
+  },
+  "clearDefaultsLabel": {
+    "message": "Clear Defaults",
+    "description": ""
+  },
+  "contactAuthorLabel": {
+    "message": "Contact Maintainer",
+    "description": ""
+  },
+  "generalOptionsTitle": {
+    "message": "General Options",
+    "description": ""
+  },
+  "logDumpLevelLabel": {
+    "message": "File log level",
+    "description": ""
+  },
+  "quickOptionsLabel1Label": {
+    "message": "Shortcut 1 label",
+    "description": ""
+  },
+  "quickOptionsLabel2Label": {
+    "message": "Shortcut 2 label",
+    "description": ""
+  },
+  "quickOptionsLabel3Label": {
+    "message": "Shortcut 3 label",
+    "description": ""
+  },
+  "quickOptionsValueLabel": {
+    "message": "quickOptionsValueLabel",
+    "description": ""
+  },
+  "recurAnnuallyLabel": {
+    "message": "Annually",
+    "description": ""
+  },
+  "recurDailyLabel": {
+    "message": "Daily",
+    "description": ""
+  },
+  "recurFunctionLabel": {
+    "message": "Function",
+    "description": ""
+  },
+  "recurMinutelyLabel": {
+    "message": "Minutely",
+    "description": ""
+  },
+  "recurMonthlyLabel": {
+    "message": "Monthly",
+    "description": ""
+  },
+  "recurOnceLabel": {
+    "message": "Once",
+    "description": ""
+  },
+  "recurWeeklyLabel": {
+    "message": "Weekly",
+    "description": ""
+  },
+  "saveDefaultsLabel": {
+    "message": "Save these values as defaults",
+    "description": ""
+  },
+  "sendAtDefaultLabel": {
+    "message": "Enter a date above",
+    "description": "Displayed in place of send at time before user makes selections"
+  },
+  "sendButtonPrefLabel": {
+    "message": "\"Send\" does \"Send later\"",
+    "description": ""
+  },
+  "sendDelayPrefLabel1": {
+    "message": "\"Send\" delays messages by",
+    "description": ""
+  },
+  "sendNowLabel": {
+    "message": "Send now",
+    "description": ""
+  },
+  "sendUnsentMessagesPrefLabel": {
+    "message": "Trigger unsent message delivery from outbox",
+    "description": ""
+  },
+  "showColumnPrefLabel": {
+    "message": "Show Send Later column",
+    "description": ""
+  },
+  "showHeaderPrefLabel": {
+    "message": "Show Send Later header",
+    "description": ""
+  },
+  "showStatusPrefLabel": {
+    "message": "Show Send Later in status bar",
+    "description": ""
+  },
+  "userGuideLabel": {
+    "message": "Website",
+    "description": ""
+  },
   "sendlater.ask.title.label": {
     "message": "sendlater.ask.title.label Send Later erstattes ved kørsel med det almindelige navn på tilføjelsen i denne oversættelse (hentning fra MessageTag i background. properties)",
     "description": ""
@@ -31,16 +135,8 @@
     "message": "Mind mig om det senere",
     "description": ""
   },
-  "sendlater.ask.already.accesskey": {
-    "message": "a",
-    "description": ""
-  },
   "sendlater.ask.already.label": {
     "message": "Jeg har allerede doneret",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "S",
     "description": ""
   },
   "sendlater.ask.stop.label": {
@@ -68,7 +164,7 @@
     "description": ""
   },
   "delete.accesskey": {
-    "message": "S",
+    "message": "G",
     "description": ""
   },
   "functionnametip": {
@@ -139,20 +235,12 @@
     "message": "Importér…",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Importer en dynamisk funktion, der tidligere er eksporteret fra editoren.",
     "description": ""
   },
   "export.label": {
     "message": "Eksporter…",
-    "description": ""
-  },
-  "export.accesskey": {
-    "message": "E",
     "description": ""
   },
   "exporttip": {
@@ -163,28 +251,32 @@
     "message": "Kasser ændringer",
     "description": ""
   },
-  "reset.accesskey": {
-    "message": "a",
-    "description": ""
-  },
   "save.label": {
     "message": "Gem",
-    "description": ""
-  },
-  "save.accesskey": {
-    "message": "G",
     "description": ""
   },
   "close.label": {
     "message": "Luk",
     "description": ""
   },
-  "close.accesskey": {
-    "message": "L",
+  "minutely": {
+    "message": "Minutely",
     "description": ""
   },
-  "close.cmdkey": {
-    "message": "w",
+  "daily": {
+    "message": "Daily",
+    "description": ""
+  },
+  "weekly": {
+    "message": "Weekly",
+    "description": ""
+  },
+  "monthly": {
+    "message": "Monthly",
+    "description": ""
+  },
+  "yearly": {
+    "message": "Annually",
     "description": ""
   }
 }
