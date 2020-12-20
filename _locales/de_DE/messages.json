@@ -547,10 +547,6 @@
     "message": "Importieren…",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Importieren Sie eine dynamische Funtkion, die zuvor aus dem Editor exportiert wurde.",
     "description": ""
@@ -579,20 +575,12 @@
     "message": "Speichern",
     "description": ""
   },
-  "save.accesskey": {
-    "message": "S",
-    "description": ""
-  },
   "close.label": {
     "message": "Schließen",
     "description": ""
   },
   "close.accesskey": {
     "message": "c",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -623,10 +611,6 @@
     "message": "März",
     "description": ""
   },
-  "April": {
-    "message": "April",
-    "description": ""
-  },
   "May": {
     "message": "Mai",
     "description": ""
@@ -639,20 +623,8 @@
     "message": "Juli",
     "description": ""
   },
-  "August": {
-    "message": "August",
-    "description": ""
-  },
-  "September": {
-    "message": "September",
-    "description": ""
-  },
   "October": {
     "message": "Oktober",
-    "description": ""
-  },
-  "November": {
-    "message": "November",
     "description": ""
   },
   "December": {
@@ -781,10 +753,6 @@
   },
   "everymonthly_day6": {
     "message": "Samstag",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
