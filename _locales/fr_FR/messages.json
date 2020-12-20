@@ -31,10 +31,6 @@
     "message": "Vérifier toutes les",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "minutes",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "Réinitialiser les valeurs par défaut",
     "description": ""
@@ -79,10 +75,6 @@
     "message": "Informations",
     "description": ""
   },
-  "logLevelTrace": {
-    "message": "Trace",
-    "description": ""
-  },
   "logLevelWarn": {
     "message": "Avertissement",
     "description": ""
@@ -101,10 +93,6 @@
   },
   "quickOptionsLabel3Label": {
     "message": "3e délai",
-    "description": ""
-  },
-  "quickOptionsValueLabel": {
-    "message": "Minutes",
     "description": ""
   },
   "recurAnnuallyLabel": {
@@ -139,10 +127,6 @@
     "message": "hebdomadaire",
     "description": ""
   },
-  "resetPrefsButton": {
-    "message": "Reset Preferences",
-    "description": ""
-  },
   "saveDefaultsLabel": {
     "message": "Enregistrer ces valeurs comme « valeurs par défaut »",
     "description": ""
@@ -165,10 +149,6 @@
   },
   "sendDelayPrefLabel1": {
     "message": "“Envoyer” retarde l'envoi du message de",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "minutes",
     "description": ""
   },
   "sendSundayLabel": {
@@ -225,14 +205,6 @@
   },
   "userGuideLabel": {
     "message": "Guide de l'utilisateur",
-    "description": ""
-  },
-  "errorDateInPast": {
-    "message": "Selected date is in the past",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -395,10 +367,6 @@
     "message": "Faire un don",
     "description": ""
   },
-  "advancededitor.title": {
-    "message": "Advanced configuration editor",
-    "description": ""
-  },
   "editorlink.value": {
     "message": "Éditeur de fonction dynamique",
     "description": ""
@@ -527,10 +495,6 @@
     "message": "Exécuter la fonction",
     "description": ""
   },
-  "run.accesskey": {
-    "message": "x",
-    "description": ""
-  },
   "inputtime": {
     "message": "Date et heure",
     "description": ""
@@ -561,10 +525,6 @@
   },
   "import.label": {
     "message": "Importer…",
-    "description": ""
-  },
-  "import.accesskey": {
-    "message": "m",
     "description": ""
   },
   "importtip": {
@@ -605,10 +565,6 @@
   },
   "close.accesskey": {
     "message": "A",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -723,10 +679,6 @@
     "message": "annuelle",
     "description": ""
   },
-  "plural_minutely": {
-    "message": "minutes",
-    "description": ""
-  },
   "plural_daily": {
     "message": "jours",
     "description": ""
@@ -797,10 +749,6 @@
   },
   "everymonthly_day6": {
     "message": "Samedi",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
