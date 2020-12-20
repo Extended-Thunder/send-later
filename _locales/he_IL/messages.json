@@ -591,6 +591,10 @@
     "message": "ס",
     "description": ""
   },
+  "close.cmdkey": {
+    "message": "w",
+    "description": ""
+  },
   "sendaround": {
     "message": "‫שלח בערך‬",
     "description": ""
