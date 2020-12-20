@@ -131,6 +131,10 @@
     "message": "«Ուղարկելը»-ը «Ուղարկել ավելի ուշ»-ն է",
     "description": ""
   },
+  "sendDelayPrefLabel2": {
+    "message": "րոպե",
+    "description": ""
+  },
   "sendSundayLabel": {
     "message": "Կիրակի",
     "description": ""
@@ -389,6 +393,22 @@
   },
   "sendlater.ask.stop.label": {
     "message": "Չհարցնել",
+    "description": ""
+  },
+  "delete.accesskey": {
+    "message": "Ն",
+    "description": ""
+  },
+  "reset.accesskey": {
+    "message": "Ե",
+    "description": ""
+  },
+  "save.accesskey": {
+    "message": "Չ",
+    "description": ""
+  },
+  "close.accesskey": {
+    "message": "Չ",
     "description": ""
   },
   "sendaround": {
