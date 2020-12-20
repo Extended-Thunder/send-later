@@ -23,6 +23,10 @@
     "message": "minutter for sent",
     "description": ""
   },
+  "cancelLabel": {
+    "message": "Afbryd",
+    "description": ""
+  },
   "checkTimePrefLabel1": {
     "message": "Tjek hvert",
     "description": ""
@@ -221,6 +225,22 @@
   },
   "errorDateInPast": {
     "message": "Den valgte dato er tidligere",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.label": {
+    "message": "Læg i udbakke",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.tooltip": {
+    "message": "Send beskeden med det samme, undlad “Send senere”.",
+    "description": ""
+  },
+  "sendlater.prompt.close.tooltip": {
+    "message": "Gå tilbage til redigering af beskeden.",
+    "description": ""
+  },
+  "sendlater.prompt.or.label": {
+    "message": "eller",
     "description": ""
   },
   "sendlater.toolbar.sendlater.button.label": {
