@@ -95,10 +95,6 @@
     "message": "2 saat sonra",
     "description": ""
   },
-  "sendlater3header.label": {
-    "message": "Send Later",
-    "description": ""
-  },
   "sendlater.ask.message3": {
     "message": "Teşekkürler!",
     "description": ""
@@ -155,10 +151,6 @@
     "message": "işlev adı",
     "description": ""
   },
-  "run.accesskey": {
-    "message": "x",
-    "description": ""
-  },
   "inputtime": {
     "message": "Giriş saati",
     "description": ""
@@ -185,10 +177,6 @@
   },
   "reset.label": {
     "message": "Değişiklikleri gözardı et",
-    "description": ""
-  },
-  "reset.accesskey": {
-    "message": "a",
     "description": ""
   },
   "save.label": {
