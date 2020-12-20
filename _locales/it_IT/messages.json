@@ -63,6 +63,10 @@
     "message": "Tutto",
     "description": ""
   },
+  "logLevelDebug": {
+    "message": "Debug",
+    "description": ""
+  },
   "logLevelError": {
     "message": "Errore",
     "description": ""
@@ -419,8 +423,16 @@
     "message": "Grazie!",
     "description": ""
   },
+  "sendlater.ask.donate.accesskey": {
+    "message": "D",
+    "description": ""
+  },
   "sendlater.ask.donate.label": {
     "message": "Dona ora",
+    "description": ""
+  },
+  "sendlater.ask.remind.accesskey": {
+    "message": "R",
     "description": ""
   },
   "sendlater.ask.remind.label": {
@@ -535,6 +547,10 @@
     "message": "Importa…",
     "description": ""
   },
+  "import.accesskey": {
+    "message": "m",
+    "description": ""
+  },
   "importtip": {
     "message": "Importa una funzione dinamica precedentemente esportata dall'editor.",
     "description": ""
@@ -555,12 +571,28 @@
     "message": "Annulla modifiche",
     "description": ""
   },
+  "reset.accesskey": {
+    "message": "a",
+    "description": ""
+  },
   "save.label": {
     "message": "Salva",
     "description": ""
   },
+  "save.accesskey": {
+    "message": "S",
+    "description": ""
+  },
   "close.label": {
     "message": "Chiudi",
+    "description": ""
+  },
+  "close.accesskey": {
+    "message": "C",
+    "description": ""
+  },
+  "close.cmdkey": {
+    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -749,6 +781,10 @@
   },
   "everymonthly_day6": {
     "message": "sabato",
+    "description": ""
+  },
+  "everymonthly_short": {
+    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
