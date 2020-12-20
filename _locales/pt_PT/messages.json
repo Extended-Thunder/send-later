@@ -1,4 +1,8 @@
 {
+  "extensionName": {
+    "message": "Send Later",
+    "description": "The name of the add-on, displayed in various places."
+  },
   "extensionDescription": {
     "message": "Funcionalidade do “Enviar mais tarde” para marcar a hora de envio",
     "description": "A short description of the add-on."
@@ -65,6 +69,10 @@
   },
   "logLevelError": {
     "message": "Erro",
+    "description": ""
+  },
+  "logLevelFatal": {
+    "message": "Fatal",
     "description": ""
   },
   "logLevelInfo": {
@@ -235,6 +243,10 @@
     "message": "Envie a mensagem imediatamente, ignorando “Send Later”.",
     "description": ""
   },
+  "sendlater.prompt.close.accesskey": {
+    "message": "C",
+    "description": ""
+  },
   "sendlater.prompt.close.tooltip": {
     "message": "Voltar à edição da mensagem.",
     "description": ""
@@ -301,6 +313,10 @@
   },
   "sendlater.prompt.cancelonreply.tooltip": {
     "message": "Verifique as respostas às cópias enviadas anteriormente de mensagens recorrentes. Cancele uma mensagem recorrente e apague-a da pasta Rascunhos quando uma resposta for recebida.",
+    "description": ""
+  },
+  "sendlater3header.label": {
+    "message": "Send Later",
     "description": ""
   },
   "prefwindow.title": {
@@ -407,6 +423,10 @@
     "message": "Obrigado!",
     "description": ""
   },
+  "sendlater.ask.donate.accesskey": {
+    "message": "D",
+    "description": ""
+  },
   "sendlater.ask.donate.label": {
     "message": "Doar agora",
     "description": ""
@@ -491,6 +511,10 @@
     "message": "Executar função",
     "description": ""
   },
+  "run.accesskey": {
+    "message": "x",
+    "description": ""
+  },
   "inputtime": {
     "message": "Hora de entrada",
     "description": ""
@@ -523,12 +547,20 @@
     "message": "Importar…",
     "description": ""
   },
+  "import.accesskey": {
+    "message": "m",
+    "description": ""
+  },
   "importtip": {
     "message": "Importar uma função dinâmica anteriormente exportada através do editor.",
     "description": ""
   },
   "export.label": {
     "message": "Exportar…",
+    "description": ""
+  },
+  "export.accesskey": {
+    "message": "E",
     "description": ""
   },
   "exporttip": {
@@ -557,6 +589,10 @@
   },
   "close.accesskey": {
     "message": "F",
+    "description": ""
+  },
+  "close.cmdkey": {
+    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -745,6 +781,10 @@
   },
   "everymonthly_day6": {
     "message": "Sábado",
+    "description": ""
+  },
+  "everymonthly_short": {
+    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
