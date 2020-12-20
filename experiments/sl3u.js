@@ -1856,7 +1856,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               }
 
               [
-                "key_send",
                 "key_sendLater",
                 "cmd_sendLater",
                 "key_send",
