@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Send Later",
-    "description": "The name of the add-on, displayed in various places."
-  },
   "extensionDescription": {
     "message": "“Enviar més tard” és la funció per programar quan vols fer l'enviament.",
     "description": "A short description of the add-on."
@@ -47,10 +43,6 @@
     "message": "Fer complir les restriccions de dia i hora en el moment de lliurar",
     "description": ""
   },
-  "generalOptionsTitle": {
-    "message": "General",
-    "description": ""
-  },
   "logConsoleLevelLabel": {
     "message": "Nivell de consola de registre",
     "description": ""
@@ -65,10 +57,6 @@
   },
   "logLevelDebug": {
     "message": "Depuració",
-    "description": ""
-  },
-  "logLevelError": {
-    "message": "Error",
     "description": ""
   },
   "logLevelFatal": {
@@ -137,10 +125,6 @@
   },
   "recurWeeklyLabel": {
     "message": "setmanal",
-    "description": ""
-  },
-  "resetPrefsButton": {
-    "message": "Reset Preferences",
     "description": ""
   },
   "saveDefaultsLabel": {
@@ -227,14 +211,6 @@
     "message": "Guia d'usuari",
     "description": ""
   },
-  "errorDateInPast": {
-    "message": "Selected date is in the past",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "Posar a la Safata de Sortida",
     "description": ""
@@ -253,10 +229,6 @@
   },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "Enviar el missatge immediatament, ignorant “Send Later”.",
-    "description": ""
-  },
-  "sendlater.prompt.close.accesskey": {
-    "message": "C",
     "description": ""
   },
   "sendlater.prompt.close.tooltip": {
@@ -291,10 +263,6 @@
     "message": "Calcular",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Send Later",
-    "description": ""
-  },
   "sendlater.toolbar.sendlater.button.tooltip": {
     "message": "Activeu Send Later per a planificar un missatge després d'introduir l'hora d'enviament desitjada al quadre de text. Aquest botó no fa cap cosa ell mateix; també cal afegir el quadre de text o selector de data/hora (no suportat en totes les versions de Thunderbird) a la barra d'eines per a que aquest botó siga útil.",
     "description": ""
@@ -325,10 +293,6 @@
   },
   "sendlater.prompt.cancelonreply.tooltip": {
     "message": "Monitoritza les respostes a les còpies enviades prèviament de missatges repetitius. Cancel·la les repeticions del missatge i l'esborra de la safata d'esborranys quan es rep una resposta.",
-    "description": ""
-  },
-  "sendlater3header.label": {
-    "message": "Send Later",
     "description": ""
   },
   "prefwindow.title": {
@@ -395,10 +359,6 @@
     "message": "Fer una donació",
     "description": ""
   },
-  "advancededitor.title": {
-    "message": "Advanced configuration editor",
-    "description": ""
-  },
   "editorlink.value": {
     "message": "Editor de funcions dinàmiques",
     "description": ""
@@ -439,16 +399,8 @@
     "message": "Gràcies!",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "D",
-    "description": ""
-  },
   "sendlater.ask.donate.label": {
     "message": "Donar ara",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "R",
     "description": ""
   },
   "sendlater.ask.remind.label": {
@@ -489,10 +441,6 @@
   },
   "delete.label": {
     "message": "Eliminar",
-    "description": ""
-  },
-  "delete.accesskey": {
-    "message": "D",
     "description": ""
   },
   "functionnametip": {
@@ -601,14 +549,6 @@
   },
   "close.label": {
     "message": "Tancar",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "C",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -797,10 +737,6 @@
   },
   "everymonthly_day6": {
     "message": "dissabte",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
@@ -1077,10 +1013,6 @@
   },
   "cancel_on_reply": {
     "message": "cancel·lar si respost",
-    "description": ""
-  },
-  "PendingMessage": {
-    "message": "PEND $1",
     "description": ""
   },
   "IdleMessage": {
