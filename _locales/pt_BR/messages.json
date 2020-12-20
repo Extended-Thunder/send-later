@@ -59,8 +59,28 @@
     "message": "Nível de log de descarga",
     "description": ""
   },
+  "logLevelAll": {
+    "message": "All",
+    "description": ""
+  },
+  "logLevelDebug": {
+    "message": "Debug",
+    "description": ""
+  },
   "logLevelError": {
     "message": "Erro",
+    "description": ""
+  },
+  "logLevelFatal": {
+    "message": "Fatal",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "Info",
+    "description": ""
+  },
+  "logLevelTrace": {
+    "message": "Trace",
     "description": ""
   },
   "logLevelWarn": {
@@ -259,6 +279,10 @@
     "message": "Calcular",
     "description": ""
   },
+  "sendlater.toolbar.sendlater.button.label": {
+    "message": "Send Later",
+    "description": ""
+  },
   "sendlater.toolbar.sendlater.button.tooltip": {
     "message": "Ative Enviar mais tarde para agendar uma mensagem depois de entrar o horário desejado de envio na caixa de texto. Este botão não funciona por si; você também precisa adicionar a caixa de texto ou seletor de data/horário (não suportado em todas as versões do Thunderbird) à barra de ferramentas para que este botão seja útil.",
     "description": ""
@@ -379,6 +403,10 @@
     "message": "Abre uma janela para a criação e edição de funções JavaScript para implementação de lógica complexa de agendamento.",
     "description": ""
   },
+  "loglevel.config": {
+    "message": "Config",
+    "description": ""
+  },
   "sendlater.ask.title.label": {
     "message": "Contribua com Enviar mais tarde",
     "description": ""
@@ -483,6 +511,10 @@
     "message": "Executar função",
     "description": ""
   },
+  "run.accesskey": {
+    "message": "x",
+    "description": ""
+  },
   "inputtime": {
     "message": "Horário de entrada",
     "description": ""
@@ -515,12 +547,20 @@
     "message": "Importar…",
     "description": ""
   },
+  "import.accesskey": {
+    "message": "m",
+    "description": ""
+  },
   "importtip": {
     "message": "Importar uma função dinâmica previamente exportada do editor.",
     "description": ""
   },
   "export.label": {
     "message": "Exportar…",
+    "description": ""
+  },
+  "export.accesskey": {
+    "message": "E",
     "description": ""
   },
   "exporttip": {
@@ -539,12 +579,20 @@
     "message": "Salvar",
     "description": ""
   },
+  "save.accesskey": {
+    "message": "S",
+    "description": ""
+  },
   "close.label": {
     "message": "Fechar",
     "description": ""
   },
   "close.accesskey": {
     "message": "F",
+    "description": ""
+  },
+  "close.cmdkey": {
+    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -733,6 +781,10 @@
   },
   "everymonthly_day6": {
     "message": "sábado",
+    "description": ""
+  },
+  "everymonthly_short": {
+    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
