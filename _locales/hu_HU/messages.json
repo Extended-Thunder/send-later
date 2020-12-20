@@ -783,10 +783,6 @@
     "message": "szombata",
     "description": ""
   },
-  "everymonthly_short": {
-    "message": "$1 $2",
-    "description": ""
-  },
   "everymonthly_short_day0": {
     "message": "vasárnap",
     "description": ""
