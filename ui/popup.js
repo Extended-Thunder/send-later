@@ -407,11 +407,12 @@ const SLPopup = {
   saveDefaults() {
     const defaults = SLPopup.serializeInputs();
     SLStatic.debug("Saving default values", defaults);
+    const saveDefaultsElement = document.getElementById("save-defaults");
     browser.storage.local.set({ defaults }).then(() => {
-      SLPopup.showCheckMark(dom["save-defaults"], "green");
+      SLPopup.showCheckMark(saveDefaultsElement, "green");
     }).catch((err) => {
       SLStatic.error(err);
-      SLPopup.showCheckMark(dom["save-defaults"], "red");
+      SLPopup.showCheckMark(saveDefaultsElement, "red");
     });
   },
 
