@@ -71,14 +71,6 @@
     "message": "Fel",
     "description": ""
   },
-  "logLevelFatal": {
-    "message": "Fatal",
-    "description": ""
-  },
-  "logLevelInfo": {
-    "message": "Info",
-    "description": ""
-  },
   "logLevelTrace": {
     "message": "Spår",
     "description": ""
@@ -137,10 +129,6 @@
   },
   "recurWeeklyLabel": {
     "message": "varje vecka",
-    "description": ""
-  },
-  "resetPrefsButton": {
-    "message": "Reset Preferences",
     "description": ""
   },
   "saveDefaultsLabel": {
@@ -225,14 +213,6 @@
   },
   "userGuideLabel": {
     "message": "Användarhandbok",
-    "description": ""
-  },
-  "errorDateInPast": {
-    "message": "Selected date is in the past",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -395,10 +375,6 @@
     "message": "Donera",
     "description": ""
   },
-  "advancededitor.title": {
-    "message": "Advanced configuration editor",
-    "description": ""
-  },
   "editorlink.value": {
     "message": "Dynamisk funktionseditor",
     "description": ""
@@ -439,10 +415,6 @@
     "message": "Tack för ditt stöd!",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "D",
-    "description": ""
-  },
   "sendlater.ask.donate.label": {
     "message": "Donera nu",
     "description": ""
@@ -461,10 +433,6 @@
   },
   "sendlater.ask.already.label": {
     "message": "Jag har redan donerat",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "S",
     "description": ""
   },
   "sendlater.ask.stop.label": {
@@ -489,10 +457,6 @@
   },
   "delete.label": {
     "message": "Ta bort",
-    "description": ""
-  },
-  "delete.accesskey": {
-    "message": "D",
     "description": ""
   },
   "functionnametip": {
@@ -563,20 +527,12 @@
     "message": "Importera…",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Importera en dynamisk funktion som tidigare exporterats från editorn.",
     "description": ""
   },
   "export.label": {
     "message": "Exportera…",
-    "description": ""
-  },
-  "export.accesskey": {
-    "message": "E",
     "description": ""
   },
   "exporttip": {
@@ -595,20 +551,12 @@
     "message": "Spara",
     "description": ""
   },
-  "save.accesskey": {
-    "message": "S",
-    "description": ""
-  },
   "close.label": {
     "message": "Stäng",
     "description": ""
   },
   "close.accesskey": {
     "message": "A",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
