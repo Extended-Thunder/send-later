@@ -13,7 +13,7 @@
     "48": "ui/icons/icon.png"
   },
 
-  "default_locale": "en",
+  "default_locale": "en_US",
 
   "applications": {
     "gecko": {

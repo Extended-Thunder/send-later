@@ -3,10 +3,6 @@
 
 "files": [
   {
-    "source" : "/_locales/en/messages.json",
-    "translation" : "/_locales/%two_letters_code%/messages.json"
-  },
-  {
     "source" : "/_locales/en_US/messages.json",
     "translation" : "/_locales/%locale_with_underscore%/messages.json"
   }
