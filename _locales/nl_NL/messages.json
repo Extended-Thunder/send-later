@@ -1,4 +1,8 @@
 {
+  "extensionName": {
+    "message": "Send Later",
+    "description": "The name of the add-on, displayed in various places."
+  },
   "extensionDescription": {
     "message": "Echte functionaliteit voor ‘Later verzenden’ om het verzendtijdstip van een e-mailbericht te plannen.",
     "description": "A short description of the add-on."
@@ -69,6 +73,10 @@
   },
   "logLevelFatal": {
     "message": "Onherstelbaar",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "Info",
     "description": ""
   },
   "logLevelTrace": {
@@ -227,6 +235,10 @@
     "message": "Niet een tijdstip voor verzending kiezen, maar in het Postvak UIT plaatsen voor verzending wanneer de nog niet verzonden berichten worden verzonden",
     "description": ""
   },
+  "sendlater.prompt.sendnow.accesskey": {
+    "message": "N",
+    "description": ""
+  },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "Bericht onmiddellijk verzenden zonder ‘Send Later’",
     "description": ""
@@ -301,6 +313,10 @@
   },
   "sendlater.prompt.cancelonreply.tooltip": {
     "message": "Op eerder verzonden kopieën van herhalende berichten letten. Een herhalend bericht annuleren en het uit de map Concepten verwijderen als een antwoord is ontvangen.",
+    "description": ""
+  },
+  "sendlater3header.label": {
+    "message": "Send Later",
     "description": ""
   },
   "prefwindow.title": {
@@ -423,6 +439,10 @@
     "message": "Mij later herinneren",
     "description": ""
   },
+  "sendlater.ask.already.accesskey": {
+    "message": "a",
+    "description": ""
+  },
   "sendlater.ask.already.label": {
     "message": "Ik heb al gedoneerd",
     "description": ""
@@ -527,12 +547,20 @@
     "message": "Importeren…",
     "description": ""
   },
+  "import.accesskey": {
+    "message": "m",
+    "description": ""
+  },
   "importtip": {
     "message": "Een dynamische functie importeren die eerder uit de editor is geëxporteerd",
     "description": ""
   },
   "export.label": {
     "message": "Exporteren…",
+    "description": ""
+  },
+  "export.accesskey": {
+    "message": "E",
     "description": ""
   },
   "exporttip": {
@@ -561,6 +589,10 @@
   },
   "close.accesskey": {
     "message": "S",
+    "description": ""
+  },
+  "close.cmdkey": {
+    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -749,6 +781,10 @@
   },
   "everymonthly_day6": {
     "message": "zaterdag",
+    "description": ""
+  },
+  "everymonthly_short": {
+    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
