@@ -280,7 +280,7 @@
     "description": ""
   },
   "sendlater.toolbar.sendlater.button.label": {
-    "message": "Später senden",
+    "message": "Später Senden",
     "description": ""
   },
   "sendlater.toolbar.sendlater.button.tooltip": {
@@ -476,7 +476,7 @@
     "description": ""
   },
   "delete.accesskey": {
-    "message": "L",
+    "message": "s",
     "description": ""
   },
   "functionnametip": {
@@ -547,10 +547,6 @@
     "message": "Importieren…",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Importieren Sie eine dynamische Funtkion, die zuvor aus dem Editor exportiert wurde.",
     "description": ""
@@ -572,7 +568,7 @@
     "description": ""
   },
   "reset.accesskey": {
-    "message": "A",
+    "message": "b",
     "description": ""
   },
   "save.label": {
@@ -580,7 +576,7 @@
     "description": ""
   },
   "save.accesskey": {
-    "message": "S",
+    "message": "N",
     "description": ""
   },
   "close.label": {
@@ -588,11 +584,7 @@
     "description": ""
   },
   "close.accesskey": {
-    "message": "c",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
+    "message": "A",
     "description": ""
   },
   "sendaround": {
@@ -623,10 +615,6 @@
     "message": "März",
     "description": ""
   },
-  "April": {
-    "message": "April",
-    "description": ""
-  },
   "May": {
     "message": "Mai",
     "description": ""
@@ -639,20 +627,8 @@
     "message": "Juli",
     "description": ""
   },
-  "August": {
-    "message": "August",
-    "description": ""
-  },
-  "September": {
-    "message": "September",
-    "description": ""
-  },
   "October": {
     "message": "Oktober",
-    "description": ""
-  },
-  "November": {
-    "message": "November",
     "description": ""
   },
   "December": {
@@ -781,10 +757,6 @@
   },
   "everymonthly_day6": {
     "message": "Samstag",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
