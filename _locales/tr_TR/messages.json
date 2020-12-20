@@ -1,6 +1,38 @@
 {
+  "extensionDescription": {
+    "message": "True \"Send Later\" functionality to schedule the time for sending an email.",
+    "description": "A short description of the add-on."
+  },
   "clearDefaultsLabel": {
     "message": "Varsayılanları temizle",
+    "description": ""
+  },
+  "contactAuthorLabel": {
+    "message": "Contact Maintainer",
+    "description": ""
+  },
+  "generalOptionsTitle": {
+    "message": "General Options",
+    "description": ""
+  },
+  "logDumpLevelLabel": {
+    "message": "File log level",
+    "description": ""
+  },
+  "quickOptionsLabel1Label": {
+    "message": "Shortcut 1 label",
+    "description": ""
+  },
+  "quickOptionsLabel2Label": {
+    "message": "Shortcut 2 label",
+    "description": ""
+  },
+  "quickOptionsLabel3Label": {
+    "message": "Shortcut 3 label",
+    "description": ""
+  },
+  "quickOptionsValueLabel": {
+    "message": "quickOptionsValueLabel",
     "description": ""
   },
   "recurAnnuallyLabel": {
@@ -9,6 +41,10 @@
   },
   "recurDailyLabel": {
     "message": "günlük",
+    "description": ""
+  },
+  "recurFunctionLabel": {
+    "message": "Function",
     "description": ""
   },
   "recurMinutelyLabel": {
@@ -31,8 +67,20 @@
     "message": "Bu değerleri varsayılan olarak kaydet",
     "description": ""
   },
+  "sendAtDefaultLabel": {
+    "message": "Enter a date above",
+    "description": "Displayed in place of send at time before user makes selections"
+  },
   "sendBtwnLabel": {
     "message": "Arasında",
+    "description": ""
+  },
+  "sendButtonPrefLabel": {
+    "message": "\"Send\" does \"Send later\"",
+    "description": ""
+  },
+  "sendDelayPrefLabel1": {
+    "message": "\"Send\" delays messages by",
     "description": ""
   },
   "sendSundayLabel": {
@@ -63,16 +111,36 @@
     "message": "Cumartesi",
     "description": ""
   },
+  "sendNowLabel": {
+    "message": "Send now",
+    "description": ""
+  },
   "sendOnlyOnLabel": {
     "message": "Yalnızca",
     "description": ""
   },
-  "sendlater.prompt.calculate.label": {
-    "message": "Hesapla",
+  "sendUnsentMessagesPrefLabel": {
+    "message": "Trigger unsent message delivery from outbox",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Sonra Gönder",
+  "showColumnPrefLabel": {
+    "message": "Show Send Later column",
+    "description": ""
+  },
+  "showHeaderPrefLabel": {
+    "message": "Show Send Later header",
+    "description": ""
+  },
+  "showStatusPrefLabel": {
+    "message": "Show Send Later in status bar",
+    "description": ""
+  },
+  "userGuideLabel": {
+    "message": "Website",
+    "description": ""
+  },
+  "sendlater.prompt.calculate.label": {
+    "message": "Hesapla",
     "description": ""
   },
   "sendlater.toolbar.textbox.emptytext": {
@@ -93,10 +161,6 @@
   },
   "sendlater.button3.label": {
     "message": "2 saat sonra",
-    "description": ""
-  },
-  "sendlater3header.label": {
-    "message": "Send Later",
     "description": ""
   },
   "sendlater.ask.message3": {
@@ -148,15 +212,11 @@
     "description": ""
   },
   "delete.accesskey": {
-    "message": "S",
+    "message": "b",
     "description": ""
   },
   "functionnameplaceholder": {
     "message": "işlev adı",
-    "description": ""
-  },
-  "run.accesskey": {
-    "message": "x",
     "description": ""
   },
   "inputtime": {
@@ -187,24 +247,116 @@
     "message": "Değişiklikleri gözardı et",
     "description": ""
   },
-  "reset.accesskey": {
-    "message": "a",
-    "description": ""
-  },
   "save.label": {
     "message": "Kaydet",
-    "description": ""
-  },
-  "save.accesskey": {
-    "message": "K",
     "description": ""
   },
   "close.label": {
     "message": "Kapat",
     "description": ""
   },
-  "close.accesskey": {
-    "message": "p",
+  "minutely": {
+    "message": "dakikalık",
+    "description": ""
+  },
+  "daily": {
+    "message": "günlük",
+    "description": ""
+  },
+  "weekly": {
+    "message": "haftalık",
+    "description": ""
+  },
+  "monthly": {
+    "message": "aylık",
+    "description": ""
+  },
+  "yearly": {
+    "message": "yıllık",
+    "description": ""
+  },
+  "everymonthly_day0": {
+    "message": "Pazar",
+    "description": ""
+  },
+  "everymonthly_day1": {
+    "message": "Pazartesi",
+    "description": ""
+  },
+  "everymonthly_day2": {
+    "message": "Salı",
+    "description": ""
+  },
+  "everymonthly_day3": {
+    "message": "Çarşamba",
+    "description": ""
+  },
+  "everymonthly_day4": {
+    "message": "Perşembe",
+    "description": ""
+  },
+  "everymonthly_day5": {
+    "message": "Cuma",
+    "description": ""
+  },
+  "everymonthly_day6": {
+    "message": "Cumartesi",
+    "description": ""
+  },
+  "everymonthly_short_day0": {
+    "message": "Pazar",
+    "description": ""
+  },
+  "everymonthly_short_day1": {
+    "message": "Pazartesi",
+    "description": ""
+  },
+  "everymonthly_short_day2": {
+    "message": "Salı",
+    "description": ""
+  },
+  "everymonthly_short_day3": {
+    "message": "Çarşamba",
+    "description": ""
+  },
+  "everymonthly_short_day4": {
+    "message": "Perşembe",
+    "description": ""
+  },
+  "everymonthly_short_day5": {
+    "message": "Cuma",
+    "description": ""
+  },
+  "everymonthly_short_day6": {
+    "message": "Cumartesi",
+    "description": ""
+  },
+  "only_on_day0": {
+    "message": "Pazar",
+    "description": ""
+  },
+  "only_on_day1": {
+    "message": "Pazartesi",
+    "description": ""
+  },
+  "only_on_day2": {
+    "message": "Salı",
+    "description": ""
+  },
+  "only_on_day3": {
+    "message": "Çarşamba",
+    "description": ""
+  },
+  "only_on_day4": {
+    "message": "Perşembe",
+    "description": ""
+  },
+  "only_on_day5": {
+    "message": "Cuma",
+    "description": ""
+  },
+  "only_on_day6": {
+    "message": "Cumartesi",
     "description": ""
   }
 }
