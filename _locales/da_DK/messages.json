@@ -31,8 +31,16 @@
     "message": "Mind mig om det senere",
     "description": ""
   },
+  "sendlater.ask.already.accesskey": {
+    "message": "a",
+    "description": ""
+  },
   "sendlater.ask.already.label": {
     "message": "Jeg har allerede doneret",
+    "description": ""
+  },
+  "sendlater.ask.stop.accesskey": {
+    "message": "S",
     "description": ""
   },
   "sendlater.ask.stop.label": {
@@ -131,6 +139,10 @@
     "message": "Importér…",
     "description": ""
   },
+  "import.accesskey": {
+    "message": "m",
+    "description": ""
+  },
   "importtip": {
     "message": "Importer en dynamisk funktion, der tidligere er eksporteret fra editoren.",
     "description": ""
@@ -139,12 +151,20 @@
     "message": "Eksporter…",
     "description": ""
   },
+  "export.accesskey": {
+    "message": "E",
+    "description": ""
+  },
   "exporttip": {
     "message": "Eksporter den aktuelt viste funktion til en fil til sikkerhedskopiering eller deling.",
     "description": ""
   },
   "reset.label": {
     "message": "Kasser ændringer",
+    "description": ""
+  },
+  "reset.accesskey": {
+    "message": "a",
     "description": ""
   },
   "save.label": {
@@ -161,6 +181,10 @@
   },
   "close.accesskey": {
     "message": "L",
+    "description": ""
+  },
+  "close.cmdkey": {
+    "message": "w",
     "description": ""
   }
 }
