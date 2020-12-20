@@ -395,6 +395,10 @@
     "message": "Adományozás",
     "description": ""
   },
+  "advancededitor.title": {
+    "message": "Advanced configuration editor",
+    "description": ""
+  },
   "editorlink.value": {
     "message": "Erőteljes függvény szerkesztő",
     "description": ""
@@ -488,7 +492,7 @@
     "description": ""
   },
   "delete.accesskey": {
-    "message": "s",
+    "message": "A",
     "description": ""
   },
   "functionnametip": {
@@ -584,7 +588,7 @@
     "description": ""
   },
   "reset.accesskey": {
-    "message": "e",
+    "message": "M",
     "description": ""
   },
   "save.label": {
@@ -592,7 +596,7 @@
     "description": ""
   },
   "save.accesskey": {
-    "message": "M",
+    "message": "l",
     "description": ""
   },
   "close.label": {
@@ -600,7 +604,7 @@
     "description": ""
   },
   "close.accesskey": {
-    "message": "B",
+    "message": "M",
     "description": ""
   },
   "close.cmdkey": {
@@ -695,6 +699,9 @@
     "message": "Küldés később: A(z) $1 mappa sérült lehet. Kérjük, nyissa meg a tulajdonságait és javítsa ki. Lásd: https://blog.kamens.us/send-later/#corrupt-drafts-error.",
     "description": ""
   },
+  "CorruptFolderErrorDetails": {
+    "message": "Specifically, it appears that message “$1” $2 has been sent before, but still exists in the Drafts folder. This may or may not be indicative of a more serious problem. You might simply try deleting (or re-scheduling) the message in question.\n\nSend Later will skip this message, but continue processing your other scheduled draft messages when you close this alert."
+  },
   "MessageResendError": {
     "message": "Küldés később: Megpróbál újra elküldeni a már elküldött üzenetet! A(z) $1 Kimenő vagy Piszkozatok mappa valószínűleg sérült. Kérjük, javítsa meg azokat a https://blog.kamens.us/send-later/#corrupt-outbox címen leírtak szerint.",
     "description": ""
@@ -720,7 +727,7 @@
     "description": ""
   },
   "plural_minutely": {
-    "message": "percenként",
+    "message": "perc",
     "description": ""
   },
   "plural_daily": {
@@ -768,31 +775,31 @@
     "description": ""
   },
   "everymonthly_day0": {
-    "message": "vasárnapja",
+    "message": "vasárnap",
     "description": ""
   },
   "everymonthly_day1": {
-    "message": "hétfője",
+    "message": "hétfő",
     "description": ""
   },
   "everymonthly_day2": {
-    "message": "keddje",
+    "message": "kedd",
     "description": ""
   },
   "everymonthly_day3": {
-    "message": "szerdája",
+    "message": "szerda",
     "description": ""
   },
   "everymonthly_day4": {
-    "message": "csütörtöke",
+    "message": "csütörtök",
     "description": ""
   },
   "everymonthly_day5": {
-    "message": "pénteke",
+    "message": "péntek",
     "description": ""
   },
   "everymonthly_day6": {
-    "message": "szombata",
+    "message": "szombat",
     "description": ""
   },
   "everymonthly_short": {
@@ -836,31 +843,31 @@
     "description": ""
   },
   "only_on_day0": {
-    "message": "vasárnapon",
+    "message": "vasárnap",
     "description": ""
   },
   "only_on_day1": {
-    "message": "hétfőn",
+    "message": "hétfő",
     "description": ""
   },
   "only_on_day2": {
-    "message": "kedden",
+    "message": "kedd",
     "description": ""
   },
   "only_on_day3": {
-    "message": "szerdán",
+    "message": "szerda",
     "description": ""
   },
   "only_on_day4": {
-    "message": "csütörtökön",
+    "message": "csütörtök",
     "description": ""
   },
   "only_on_day5": {
-    "message": "pénteken",
+    "message": "péntek",
     "description": ""
   },
   "only_on_day6": {
-    "message": "szombaton",
+    "message": "szombat",
     "description": ""
   },
   "ord1": {
@@ -906,6 +913,24 @@
   "ScheduledMessagesWarningTitle": {
     "message": "Ütemezett üzenetek figyelmeztetése",
     "description": ""
+  },
+  "CompactionFailureWithError": {
+    "message": "Compacting Outbox and/or Drafts folders failed with error:"
+  },
+  "CompactionFailureNoError": {
+    "message": "Compacting $1 failed without error message."
+  },
+  "SanityCheckOutbox": {
+    "message": "You have $1 unsent message(s) which will be triggered to send next time a scheduled message becomes due."
+  },
+  "SanityCheckDrafts": {
+    "message": "You have $1 message(s) scheduled to be delivered by Send Later.\nThe next one is scheduled for $2."
+  },
+  "SanityCheckCorruptFolderWarning": {
+    "message": "If these numbers don't look right to you, you might have a corrupted Outbox and/or Drafts folder(s). In that case it is advised that you compact and rebuild those folders before activating Send Later. See <https://blog.kamens.us/send-later/#corrupt-outbox> and <https://blog.kamens.us/send-later/#corrupt-drafts-error> for more details."
+  },
+  "SanityCheckConfirmOptionMessage": {
+    "message": "Select one of the options:\n  “OK”: Proceed as usual. You will not be prompted again.\n\n  “Cancel”: Send Later will be disabled via its own preferences.\n                    To re-enable Send Later, go to its options page and set\n                    the “Check every ___ minutes” preference to a non-zero value.\n                    You will receive this prompt again next time you restart\n                    Thunderbird"
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Vannak üzenetek, amelyeket el kell küldeni. Küldés később csak akkor küldhet üzeneteket, amikor a(z) $1 fut. Biztosan kilép?",
