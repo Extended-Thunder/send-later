@@ -139,10 +139,6 @@
     "message": "wöchentlich",
     "description": ""
   },
-  "resetPrefsButton": {
-    "message": "Reset Preferences",
-    "description": ""
-  },
   "saveDefaultsLabel": {
     "message": "Diese Werte als Defaultwerte speichern",
     "description": ""
@@ -225,14 +221,6 @@
   },
   "userGuideLabel": {
     "message": "Benutzerhandbuch",
-    "description": ""
-  },
-  "errorDateInPast": {
-    "message": "Selected date is in the past",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -393,10 +381,6 @@
   },
   "donatelink.value": {
     "message": "Spenden",
-    "description": ""
-  },
-  "advancededitor.title": {
-    "message": "Advanced configuration editor",
     "description": ""
   },
   "editorlink.value": {
@@ -563,10 +547,6 @@
     "message": "Importieren…",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Importieren Sie eine dynamische Funtkion, die zuvor aus dem Editor exportiert wurde.",
     "description": ""
@@ -607,10 +587,6 @@
     "message": "A",
     "description": ""
   },
-  "close.cmdkey": {
-    "message": "w",
-    "description": ""
-  },
   "sendaround": {
     "message": "Geschätzte Sendezeit",
     "description": ""
@@ -639,10 +615,6 @@
     "message": "März",
     "description": ""
   },
-  "April": {
-    "message": "April",
-    "description": ""
-  },
   "May": {
     "message": "Mai",
     "description": ""
@@ -655,20 +627,8 @@
     "message": "Juli",
     "description": ""
   },
-  "August": {
-    "message": "August",
-    "description": ""
-  },
-  "September": {
-    "message": "September",
-    "description": ""
-  },
   "October": {
     "message": "Oktober",
-    "description": ""
-  },
-  "November": {
-    "message": "November",
     "description": ""
   },
   "December": {
@@ -797,10 +757,6 @@
   },
   "everymonthly_day6": {
     "message": "Samstag",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
