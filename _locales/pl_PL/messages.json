@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Send Later",
-    "description": "The name of the add-on, displayed in various places."
-  },
   "extensionDescription": {
     "message": "Dodaje funkcję “wyślij później”, aby można było wysyłać wiadomości o zaplanowanym czasie.",
     "description": "A short description of the add-on."
@@ -73,10 +69,6 @@
   },
   "logLevelFatal": {
     "message": "Krytyczny",
-    "description": ""
-  },
-  "logLevelInfo": {
-    "message": "Info",
     "description": ""
   },
   "logLevelTrace": {
@@ -315,10 +307,6 @@
     "message": "Oczekuj na odpowiedź do poprzednio ponowionych wiadomości. Zatrzymaj ponawianie i usuń je z folderu Szkice gdy nadejdzie odpowiedź.",
     "description": ""
   },
-  "sendlater3header.label": {
-    "message": "Send Later",
-    "description": ""
-  },
   "prefwindow.title": {
     "message": "Ustawienia “Send Later”",
     "description": ""
@@ -543,24 +531,12 @@
     "message": "Wynik",
     "description": ""
   },
-  "import.label": {
-    "message": "Import…",
-    "description": ""
-  },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Zaimportuj funkcję specjalną poprzednio wyeksportowaną z edytora.",
     "description": ""
   },
   "export.label": {
     "message": "Eksport…",
-    "description": ""
-  },
-  "export.accesskey": {
-    "message": "E",
     "description": ""
   },
   "exporttip": {
@@ -589,10 +565,6 @@
   },
   "close.accesskey": {
     "message": "a",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -781,10 +753,6 @@
   },
   "everymonthly_day6": {
     "message": "Sobota",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
