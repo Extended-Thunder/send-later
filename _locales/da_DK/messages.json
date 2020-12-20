@@ -1,4 +1,36 @@
 {
+  "quickOptionsValueLabel": {
+    "message": "Minutter",
+    "description": ""
+  },
+  "recurAnnuallyLabel": {
+    "message": "årligt",
+    "description": ""
+  },
+  "recurDailyLabel": {
+    "message": "dagligt",
+    "description": ""
+  },
+  "recurFunctionLabel": {
+    "message": "funktion",
+    "description": ""
+  },
+  "recurMinutelyLabel": {
+    "message": "minutter",
+    "description": ""
+  },
+  "recurMonthlyLabel": {
+    "message": "månedligt",
+    "description": ""
+  },
+  "recurOnceLabel": {
+    "message": "én gang",
+    "description": ""
+  },
+  "recurWeeklyLabel": {
+    "message": "ugentligt",
+    "description": ""
+  },
   "sendlater.ask.title.label": {
     "message": "sendlater.ask.title.label Send Later erstattes ved kørsel med det almindelige navn på tilføjelsen i denne oversættelse (hentning fra MessageTag i background. properties)",
     "description": ""
