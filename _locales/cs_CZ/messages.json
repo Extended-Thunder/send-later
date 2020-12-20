@@ -139,6 +139,10 @@
     "message": "týdně",
     "description": ""
   },
+  "resetPrefsButton": {
+    "message": "Reset Preferences",
+    "description": ""
+  },
   "saveDefaultsLabel": {
     "message": "Uložit tyto hodnoty jako výchozí",
     "description": ""
@@ -223,6 +227,14 @@
     "message": "Uživatelská příručka",
     "description": ""
   },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
+    "description": ""
+  },
   "sendlater.prompt.sendlater.label": {
     "message": "Dát do „Pošty k odeslání“",
     "description": ""
@@ -280,7 +292,7 @@
     "description": ""
   },
   "sendlater.toolbar.sendlater.button.label": {
-    "message": "Odeslat později",
+    "message": "Odeslat Později",
     "description": ""
   },
   "sendlater.toolbar.sendlater.button.tooltip": {
@@ -383,6 +395,10 @@
     "message": "Přispějte",
     "description": ""
   },
+  "advancededitor.title": {
+    "message": "Advanced configuration editor",
+    "description": ""
+  },
   "editorlink.value": {
     "message": "Editor dynamických funkcí",
     "description": ""
@@ -476,7 +492,7 @@
     "description": ""
   },
   "delete.accesskey": {
-    "message": "S",
+    "message": "n",
     "description": ""
   },
   "functionnametip": {
@@ -572,7 +588,7 @@
     "description": ""
   },
   "reset.accesskey": {
-    "message": "a",
+    "message": "j",
     "description": ""
   },
   "save.label": {
@@ -580,7 +596,7 @@
     "description": ""
   },
   "save.accesskey": {
-    "message": "U",
+    "message": "s",
     "description": ""
   },
   "close.label": {
