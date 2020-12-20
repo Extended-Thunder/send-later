@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Send Later",
-    "description": "The name of the add-on, displayed in various places."
-  },
   "extensionDescription": {
     "message": "“Send Later”は指定した時間にメールを送信する機能を提供します。",
     "description": "A short description of the add-on."
@@ -227,24 +223,12 @@
     "message": "[送信トレイ] に置く",
     "description": ""
   },
-  "sendlater.prompt.sendlater.accesskey": {
-    "message": "O",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.tooltip": {
     "message": "送信日時を指定せず、メッセージを [送信トレイ] へ移し、次の機会に未送信のメッセージを送信します。",
     "description": ""
   },
-  "sendlater.prompt.sendnow.accesskey": {
-    "message": "N",
-    "description": ""
-  },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "“Send Later”をバイパスして、直ちにメッセージを送信します。",
-    "description": ""
-  },
-  "sendlater.prompt.close.accesskey": {
-    "message": "C",
     "description": ""
   },
   "sendlater.prompt.close.tooltip": {
@@ -313,10 +297,6 @@
   },
   "sendlater.prompt.cancelonreply.tooltip": {
     "message": "以前に送信した定期送信メールへの返信を監視します。もし返信を受信したら定期送信メールをキャンセルして下書きフォルダから削除します。",
-    "description": ""
-  },
-  "sendlater3header.label": {
-    "message": "Send Later",
     "description": ""
   },
   "prefwindow.title": {
@@ -423,10 +403,6 @@
     "message": "ありがとうございます！",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "D",
-    "description": ""
-  },
   "sendlater.ask.donate.label": {
     "message": "今すぐ寄付する",
     "description": ""
@@ -475,10 +451,6 @@
     "message": "削除",
     "description": ""
   },
-  "delete.accesskey": {
-    "message": "D",
-    "description": ""
-  },
   "functionnametip": {
     "message": "英数字の関数名を入力または編集します。既存の関数の名前を変更する場合は、保存するときに関数の名前を変更するか、変更された名前の新しい関数を作成するかどうかを聞かれます。",
     "description": ""
@@ -509,10 +481,6 @@
   },
   "run.label": {
     "message": "関数の実行",
-    "description": ""
-  },
-  "run.accesskey": {
-    "message": "x",
     "description": ""
   },
   "inputtime": {
@@ -547,20 +515,12 @@
     "message": "インポート…",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "エディタからエクスポートされた関数をインポートします。",
     "description": ""
   },
   "export.label": {
     "message": "エクスポート…",
-    "description": ""
-  },
-  "export.accesskey": {
-    "message": "E",
     "description": ""
   },
   "exporttip": {
@@ -571,28 +531,12 @@
     "message": "変更を破棄",
     "description": ""
   },
-  "reset.accesskey": {
-    "message": "a",
-    "description": ""
-  },
   "save.label": {
     "message": "保存",
     "description": ""
   },
-  "save.accesskey": {
-    "message": "S",
-    "description": ""
-  },
   "close.label": {
     "message": "閉じる",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "C",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -783,10 +727,6 @@
     "message": "土曜日",
     "description": ""
   },
-  "everymonthly_short": {
-    "message": "$1 $2",
-    "description": ""
-  },
   "everymonthly_short_day0": {
     "message": "日曜日",
     "description": ""
@@ -951,16 +891,8 @@
     "message": "メニュー内の関数の名前にカーソルを合わせると、ここに置かれた任意のテキストがツールチップとして表示されます。その関数が何をするのか、何の引数をとるのかのドキュメントとして使います。",
     "description": ""
   },
-  "_BusinessHoursCode": {
-    "message": "// Defaults\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Start of the work day as [H, M]\nvar workEnd = [17, 30]; // End of the work day as [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Not expected in normal usage, but used as the current time for testing.\n    next = new Date(prev);\nelse\n    next = new Date();\n// If we're past the end of the workday or not on a workday, move to the work\n// start time on the next day.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// If we're before the beginning of the workday, move to its start time.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
-    "description": ""
-  },
   "BusinessHoursHelp": {
     "message": "営業時間内か、または次の営業日の営業時間内であればすぐにメッセージを送信します。 第一引数 (デフォルトは月～金) として、0 は日曜日、6 が土曜日で営業日の数字の配列で渡すことによって、営業日の定義を変更することができます。第二または第三引数として [H, M] の配列を渡すことで、営業開始時刻や営業終了時刻 (デフォルトは 8:30～17:30) を変更できます。 “null” を指定すると、引数の値は変更されません。例えば、“null, [9, 0], [17, 0]” は、営業日を変更せずに、営業時間を変更します。",
-    "description": ""
-  },
-  "DaysInARowCode": {
-    "message": "// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
     "description": ""
   },
   "DaysInARowHelp": {
