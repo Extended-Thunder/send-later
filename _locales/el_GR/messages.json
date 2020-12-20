@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Send Later",
-    "description": "The name of the add-on, displayed in various places."
-  },
   "extensionDescription": {
     "message": "Πραγματική «Στείλετε αργότερα» λειτουργικότητα για να προγραμματίσετε την ώρα για την αποστολή μηνύματοςμέσω ηλεκτρονικού ταχυδρομείου.",
     "description": "A short description of the add-on."
@@ -315,10 +311,6 @@
     "message": "Παρακολουθήστε για απαντήσεις σε προηγούμενα αντίγραφα των επαναλαμβανόμενων μηνυμάτων. Ακυρώστε ένα επαναλαμβανόμενο μήνυμα και αφαιρέστε το από το φάκελο “Πρόχειρα” όταν ληφθεί μια απάντηση.",
     "description": ""
   },
-  "sendlater3header.label": {
-    "message": "Send Later",
-    "description": ""
-  },
   "prefwindow.title": {
     "message": "Επιλογές του Send Later",
     "description": ""
@@ -591,10 +583,6 @@
     "message": "λ",
     "description": ""
   },
-  "close.cmdkey": {
-    "message": "w",
-    "description": ""
-  },
   "sendaround": {
     "message": "Αποστολή αργότερα",
     "description": ""
@@ -781,10 +769,6 @@
   },
   "everymonthly_day6": {
     "message": "Σάββατο",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
