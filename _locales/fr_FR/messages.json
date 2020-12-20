@@ -31,10 +31,6 @@
     "message": "Vérifier toutes les",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "minutes",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "Réinitialiser les valeurs par défaut",
     "description": ""
@@ -79,10 +75,6 @@
     "message": "Informations",
     "description": ""
   },
-  "logLevelTrace": {
-    "message": "Trace",
-    "description": ""
-  },
   "logLevelWarn": {
     "message": "Avertissement",
     "description": ""
@@ -101,10 +93,6 @@
   },
   "quickOptionsLabel3Label": {
     "message": "3e délai",
-    "description": ""
-  },
-  "quickOptionsValueLabel": {
-    "message": "Minutes",
     "description": ""
   },
   "recurAnnuallyLabel": {
@@ -161,10 +149,6 @@
   },
   "sendDelayPrefLabel1": {
     "message": "“Envoyer” retarde l'envoi du message de",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "minutes",
     "description": ""
   },
   "sendSundayLabel": {
@@ -511,10 +495,6 @@
     "message": "Exécuter la fonction",
     "description": ""
   },
-  "run.accesskey": {
-    "message": "x",
-    "description": ""
-  },
   "inputtime": {
     "message": "Date et heure",
     "description": ""
@@ -547,10 +527,6 @@
     "message": "Importer…",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Importer une fonction dynamique préalablement exportée depuis l'éditeur (fichier *.slj)",
     "description": ""
@@ -571,10 +547,6 @@
     "message": "Ne pas modifier",
     "description": ""
   },
-  "reset.accesskey": {
-    "message": "a",
-    "description": ""
-  },
   "save.label": {
     "message": "Enregistrer",
     "description": ""
@@ -589,10 +561,6 @@
   },
   "close.accesskey": {
     "message": "F",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -781,10 +749,6 @@
   },
   "everymonthly_day6": {
     "message": "Samedi",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
