@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Send Later",
-    "description": "The name of the add-on, displayed in various places."
-  },
   "extensionDescription": {
     "message": "“Send Later” - планировщик времени отправки сообщений электронной почты.",
     "description": "A short description of the add-on."
@@ -139,10 +135,6 @@
     "message": "еженедельно",
     "description": ""
   },
-  "resetPrefsButton": {
-    "message": "Reset Preferences",
-    "description": ""
-  },
   "saveDefaultsLabel": {
     "message": "Сохранить эти значения по умолчанию",
     "description": ""
@@ -227,14 +219,6 @@
     "message": "Руководство Пользователя",
     "description": ""
   },
-  "errorDateInPast": {
-    "message": "Selected date is in the past",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.label": {
     "message": "Поместить в «Исходящие»",
     "description": ""
@@ -291,10 +275,6 @@
     "message": "Вычислить",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Send Later",
-    "description": ""
-  },
   "sendlater.toolbar.sendlater.button.tooltip": {
     "message": "Активируйте Send Later, чтобы запланировать сообщение после ввода желаемого времени отправки в текстовое поле. Эта кнопка ничего не делает сама по себе; вам также нужно добавить текстовое поле или поле выбора даты/времени (поддерживается не во всех версиях Thunderbird) на панель инструментов, чтобы эта кнопка была полезной.",
     "description": ""
@@ -325,10 +305,6 @@
   },
   "sendlater.prompt.cancelonreply.tooltip": {
     "message": "Отслеживать ответы, для отмены отправки копий рекурсивных сообщений. Отменяет повторяющиеся сообщения и удаляет их из «Черновиков», после получения ответа.",
-    "description": ""
-  },
-  "sendlater3header.label": {
-    "message": "Send Later",
     "description": ""
   },
   "prefwindow.title": {
@@ -393,10 +369,6 @@
   },
   "donatelink.value": {
     "message": "Пожертвовать",
-    "description": ""
-  },
-  "advancededitor.title": {
-    "message": "Advanced configuration editor",
     "description": ""
   },
   "editorlink.value": {
@@ -607,10 +579,6 @@
     "message": "О",
     "description": ""
   },
-  "close.cmdkey": {
-    "message": "w",
-    "description": ""
-  },
   "sendaround": {
     "message": "Отправить примерно",
     "description": ""
@@ -799,10 +767,6 @@
     "message": "Суббота",
     "description": ""
   },
-  "everymonthly_short": {
-    "message": "$1 $2",
-    "description": ""
-  },
   "everymonthly_short_day0": {
     "message": "Воскресенье",
     "description": ""
@@ -979,10 +943,6 @@
     "message": "Отправить сообщение немедленно, если сейчас рабочее время, или в начале следующего рабочего дня. Вы можете изменить определения рабочих дней (по умолчанию: Пн - Пт), передав в массив рабочих дней числа, как первый аргумент, где 0 это Воскресенье и 6 это Суббота. Вы можете изменить начало и конец рабочего времени (по умолчанию: 8:30 - 17:30), введя в массив [H, M], как второй и третий аргументы. Укажите “null” для первых элементов, если вы их не меняете. Для примера, “null, [9, 0], [17, 0]” изменяет рабочие часы без изменения рабочих дней.",
     "description": ""
   },
-  "DaysInARowCode": {
-    "message": "// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
-    "description": ""
-  },
   "DaysInARowHelp": {
     "message": "Отправить сообщение сейчас, и последующие сообщения раз в день в то же время, до тех пор, пока оно не будет отправлено три раза. Укажите число в качестве аргумента для изменения общего количества отправлений.",
     "description": ""
@@ -1037,10 +997,6 @@
   },
   "ImportTitle": {
     "message": "Выберете файл для импорта",
-    "description": ""
-  },
-  "SLJFilterLabel": {
-    "message": "Send Later JSON Files",
     "description": ""
   },
   "ImportError": {
