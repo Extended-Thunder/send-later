@@ -476,7 +476,7 @@
     "description": ""
   },
   "delete.accesskey": {
-    "message": "s",
+    "message": "A",
     "description": ""
   },
   "functionnametip": {
@@ -572,7 +572,7 @@
     "description": ""
   },
   "reset.accesskey": {
-    "message": "e",
+    "message": "M",
     "description": ""
   },
   "save.label": {
@@ -580,7 +580,7 @@
     "description": ""
   },
   "save.accesskey": {
-    "message": "M",
+    "message": "l",
     "description": ""
   },
   "close.label": {
@@ -588,7 +588,7 @@
     "description": ""
   },
   "close.accesskey": {
-    "message": "B",
+    "message": "M",
     "description": ""
   },
   "close.cmdkey": {
@@ -708,7 +708,7 @@
     "description": ""
   },
   "plural_minutely": {
-    "message": "percenként",
+    "message": "perc",
     "description": ""
   },
   "plural_daily": {
@@ -756,35 +756,31 @@
     "description": ""
   },
   "everymonthly_day0": {
-    "message": "vasárnapja",
+    "message": "vasárnap",
     "description": ""
   },
   "everymonthly_day1": {
-    "message": "hétfője",
+    "message": "hétfő",
     "description": ""
   },
   "everymonthly_day2": {
-    "message": "keddje",
+    "message": "kedd",
     "description": ""
   },
   "everymonthly_day3": {
-    "message": "szerdája",
+    "message": "szerda",
     "description": ""
   },
   "everymonthly_day4": {
-    "message": "csütörtöke",
+    "message": "csütörtök",
     "description": ""
   },
   "everymonthly_day5": {
-    "message": "pénteke",
+    "message": "péntek",
     "description": ""
   },
   "everymonthly_day6": {
-    "message": "szombata",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
+    "message": "szombat",
     "description": ""
   },
   "everymonthly_short_day0": {
@@ -824,31 +820,31 @@
     "description": ""
   },
   "only_on_day0": {
-    "message": "vasárnapon",
+    "message": "vasárnap",
     "description": ""
   },
   "only_on_day1": {
-    "message": "hétfőn",
+    "message": "hétfő",
     "description": ""
   },
   "only_on_day2": {
-    "message": "kedden",
+    "message": "kedd",
     "description": ""
   },
   "only_on_day3": {
-    "message": "szerdán",
+    "message": "szerda",
     "description": ""
   },
   "only_on_day4": {
-    "message": "csütörtökön",
+    "message": "csütörtök",
     "description": ""
   },
   "only_on_day5": {
-    "message": "pénteken",
+    "message": "péntek",
     "description": ""
   },
   "only_on_day6": {
-    "message": "szombaton",
+    "message": "szombat",
     "description": ""
   },
   "ord1": {
