@@ -243,12 +243,52 @@
     "message": "eller",
     "description": ""
   },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Gem besked i Kladdemappe til automatisk levering på det tidspunkt, der er angivet ovenfor.",
+    "description": ""
+  },
+  "sendlater.prompt.calculate.label": {
+    "message": "Beregn",
+    "description": ""
+  },
   "sendlater.toolbar.sendlater.button.label": {
     "message": "Sende Senere",
     "description": ""
   },
+  "sendlater.toolbar.sendlater.button.tooltip": {
+    "message": "Aktivér Send senere for at planlægge afsendelsen af en besked efter indtastning af den ønskede sendetid i tekstfeltet. Denne knap gør ikke noget af sig selv. Du skal også tilføje tekstfeltet eller dato/tid vælgere (ikke understøttet i alle Thunderbird versioner) til værktøjslinjen, for at denne knap kan være nyttig.",
+    "description": ""
+  },
+  "sendlater.prompt.every.label": {
+    "message": "Hver",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "15 minutter senere",
+    "description": ""
+  },
   "sendlater3header.label": {
     "message": "Sende Senere",
+    "description": ""
+  },
+  "releasenotes.value": {
+    "message": "Udgivelsesnoter",
+    "description": ""
+  },
+  "donatelink.value": {
+    "message": "Donér",
+    "description": ""
+  },
+  "advancededitor.title": {
+    "message": "Avanceret konfigurationseditor",
+    "description": ""
+  },
+  "editorlink.value": {
+    "message": "Redigér Dynamiske Funktioner",
+    "description": ""
+  },
+  "loglevel.config": {
+    "message": "Konfiguration",
     "description": ""
   },
   "sendlater.ask.title.label": {
