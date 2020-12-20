@@ -535,10 +535,6 @@
     "message": "а",
     "description": ""
   },
-  "close.cmdkey": {
-    "message": "w",
-    "description": ""
-  },
   "sendaround": {
     "message": "Изпращане около",
     "description": ""
@@ -725,10 +721,6 @@
   },
   "everymonthly_day6": {
     "message": "Събота",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
