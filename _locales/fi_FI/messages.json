@@ -139,6 +139,10 @@
     "message": "viikoittain",
     "description": ""
   },
+  "resetPrefsButton": {
+    "message": "Reset Preferences",
+    "description": ""
+  },
   "saveDefaultsLabel": {
     "message": "Tallenna oletusarvoiksi",
     "description": ""
@@ -164,7 +168,7 @@
     "description": ""
   },
   "sendDelayPrefLabel2": {
-    "message": "minuutilla",
+    "message": "minuutti",
     "description": ""
   },
   "sendSundayLabel": {
@@ -221,6 +225,14 @@
   },
   "userGuideLabel": {
     "message": "Käyttäjän opas",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "Selected date is in the past",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Simply delay message by some number of minutes. First argument is taken as the delay time.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -383,6 +395,10 @@
     "message": "Lahjoita",
     "description": ""
   },
+  "advancededitor.title": {
+    "message": "Advanced configuration editor",
+    "description": ""
+  },
   "editorlink.value": {
     "message": "Dynaaminen toimintomuokkain",
     "description": ""
@@ -476,7 +492,7 @@
     "description": ""
   },
   "delete.accesskey": {
-    "message": "P",
+    "message": "L",
     "description": ""
   },
   "functionnametip": {
@@ -572,7 +588,7 @@
     "description": ""
   },
   "reset.accesskey": {
-    "message": "H",
+    "message": "O",
     "description": ""
   },
   "save.label": {
@@ -580,7 +596,7 @@
     "description": ""
   },
   "save.accesskey": {
-    "message": "e",
+    "message": "Ä",
     "description": ""
   },
   "close.label": {
@@ -588,7 +604,7 @@
     "description": ""
   },
   "close.accesskey": {
-    "message": "S",
+    "message": "P",
     "description": ""
   },
   "close.cmdkey": {
@@ -708,7 +724,7 @@
     "description": ""
   },
   "plural_minutely": {
-    "message": "minuutteitain",
+    "message": "minuutti",
     "description": ""
   },
   "plural_daily": {
@@ -756,31 +772,31 @@
     "description": ""
   },
   "everymonthly_day0": {
-    "message": "Sunnuntai",
+    "message": "sunnuntai",
     "description": ""
   },
   "everymonthly_day1": {
-    "message": "Maanantai",
+    "message": "maanantai",
     "description": ""
   },
   "everymonthly_day2": {
-    "message": "Tiistai",
+    "message": "tiistai",
     "description": ""
   },
   "everymonthly_day3": {
-    "message": "Keskiviikko",
+    "message": "keskiviikko",
     "description": ""
   },
   "everymonthly_day4": {
-    "message": "Torstai",
+    "message": "torstai",
     "description": ""
   },
   "everymonthly_day5": {
-    "message": "Perjantai",
+    "message": "perjantai",
     "description": ""
   },
   "everymonthly_day6": {
-    "message": "Lauantai",
+    "message": "lauantai",
     "description": ""
   },
   "everymonthly_short": {
@@ -788,31 +804,31 @@
     "description": ""
   },
   "everymonthly_short_day0": {
-    "message": "Sunnuntai",
+    "message": "sunnuntai",
     "description": ""
   },
   "everymonthly_short_day1": {
-    "message": "Maanantai",
+    "message": "maanantai",
     "description": ""
   },
   "everymonthly_short_day2": {
-    "message": "Tiistai",
+    "message": "tiistai",
     "description": ""
   },
   "everymonthly_short_day3": {
-    "message": "Keskiviikko",
+    "message": "keskiviikko",
     "description": ""
   },
   "everymonthly_short_day4": {
-    "message": "Torstai",
+    "message": "torstai",
     "description": ""
   },
   "everymonthly_short_day5": {
-    "message": "Perjantai",
+    "message": "perjantai",
     "description": ""
   },
   "everymonthly_short_day6": {
-    "message": "Lauantai",
+    "message": "lauantai",
     "description": ""
   },
   "betw_times": {
@@ -824,31 +840,31 @@
     "description": ""
   },
   "only_on_day0": {
-    "message": "Sunnuntai",
+    "message": "sunnuntai",
     "description": ""
   },
   "only_on_day1": {
-    "message": "Maanantai",
+    "message": "maanantai",
     "description": ""
   },
   "only_on_day2": {
-    "message": "Tiistai",
+    "message": "tiistai",
     "description": ""
   },
   "only_on_day3": {
-    "message": "Keskiviikko",
+    "message": "keskiviikko",
     "description": ""
   },
   "only_on_day4": {
-    "message": "Torstai",
+    "message": "torstai",
     "description": ""
   },
   "only_on_day5": {
-    "message": "Perjantai",
+    "message": "perjantai",
     "description": ""
   },
   "only_on_day6": {
-    "message": "Lauantai",
+    "message": "lauantai",
     "description": ""
   },
   "ord1": {
