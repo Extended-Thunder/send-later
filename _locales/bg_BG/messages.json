@@ -139,6 +139,10 @@
     "message": "ежеседмично",
     "description": ""
   },
+  "resetPrefsButton": {
+    "message": "Нулиране на предпочитанията",
+    "description": ""
+  },
   "saveDefaultsLabel": {
     "message": "Записване на тези стойности по подразбиране",
     "description": ""
@@ -157,6 +161,10 @@
   },
   "sendButtonPrefLabel": {
     "message": "“Изпращане сега” прави същото, като “Изпращане по-късно”",
+    "description": ""
+  },
+  "sendDelayPrefLabel1": {
+    "message": "„Изпращане“ забавя съобщенията от",
     "description": ""
   },
   "sendDelayPrefLabel2": {
@@ -219,6 +227,14 @@
     "message": "Ръководство на потребителя",
     "description": ""
   },
+  "errorDateInPast": {
+    "message": "Избраната дата е в миналото",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Просто забавете съобщението с определен брой минути. Първият аргумент се приема като времето на забавяне.",
+    "description": ""
+  },
   "sendlater.prompt.sendlater.label": {
     "message": "Поставяне в Изходящи",
     "description": ""
@@ -277,6 +293,10 @@
   },
   "sendlater.toolbar.sendlater.button.label": {
     "message": "Изпращане по-късно",
+    "description": ""
+  },
+  "sendlater.toolbar.sendlater.button.tooltip": {
+    "message": "Активирайте Изпращане по-късно, за да планирате съобщение след въвеждане на желаното време за изпращане в текстовото поле. Този бутон не прави нищо сам; трябва също да добавите текстовото поле или инструментите за избор на дата / час (не се поддържат във всички версии на Thunderbird) към лентата с инструменти, за да бъде полезен този бутон.",
     "description": ""
   },
   "sendlater.toolbar.textbox.emptytext": {
@@ -347,6 +367,18 @@
     "message": "С тази настройка е активирана командата “Изпращане” (натиснете бутона или въведете Ctrl-Enter) действа, също като “Изпращане по-късно”.",
     "description": ""
   },
+  "senddelay.tooltip": {
+    "message": "Когато тази опция е активирана, всички съобщения, изпратени с командата „Изпращане“ (или бутона, или въвеждането на Ctrl-Enter), се забавят с посочения брой минути, като ги планирате с Изпращане по-късно.",
+    "description": ""
+  },
+  "composewindowhotkeys.tooltip": {
+    "message": "Докато съставяте съобщение, можете да въведете Ctrl-Alt-1, -2 или -3, за да активирате първия, втория или третия предварително зададен бутон, освен ако не премахнете отметката от това предпочитание, като в този случай тези връзки на клавиши са деактивирани.",
+    "description": ""
+  },
+  "composewindowhotkeys.caption": {
+    "message": "Активирайте свързването на клавишите на прозореца за композиране за предварително зададени настройки",
+    "description": ""
+  },
   "contactauthor.tooltip": {
     "message": "Изпращане на съобщение до автора на Изпращане по-късно.",
     "description": ""
@@ -361,6 +393,10 @@
   },
   "donatelink.value": {
     "message": "Напревете дарение",
+    "description": ""
+  },
+  "advancededitor.title": {
+    "message": "Редактор за разширена конфигурация",
     "description": ""
   },
   "editorlink.value": {
