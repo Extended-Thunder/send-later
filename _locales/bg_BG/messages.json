@@ -59,6 +59,34 @@
     "message": "Дъмп ниво на дневника",
     "description": ""
   },
+  "logLevelAll": {
+    "message": "Всичи",
+    "description": ""
+  },
+  "logLevelDebug": {
+    "message": "Отстраняване на грешки",
+    "description": ""
+  },
+  "logLevelError": {
+    "message": "Грешка",
+    "description": ""
+  },
+  "logLevelFatal": {
+    "message": "Фатално",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "Информация",
+    "description": ""
+  },
+  "logLevelTrace": {
+    "message": "Проследяване",
+    "description": ""
+  },
+  "logLevelWarn": {
+    "message": "Предупреждение",
+    "description": ""
+  },
   "markReadPrefLabel": {
     "message": "Маркиране на планираните чернови като прочетени",
     "description": ""
@@ -353,6 +381,10 @@
   },
   "editortip": {
     "message": "Отворете прозореца за създаване и редактиране на JavaScript функции, които изпълняват сложна логика за планиране.",
+    "description": ""
+  },
+  "loglevel.config": {
+    "message": "Конфигуриране",
     "description": ""
   },
   "sendlater.ask.title.label": {
@@ -1021,6 +1053,10 @@
   },
   "DisabledMessage": {
     "message": "ИЗКЛЮЧЕН",
+    "description": ""
+  },
+  "CheckingMessage": {
+    "message": "ПРОВЕРКА",
     "description": ""
   }
 }
