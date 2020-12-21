@@ -8,7 +8,7 @@ I know that for many of my translators, English is not your first language, so I
 
 ## How much work is this going to be, really?
 
-Things are changing pretty rapidly in Send Later recently, but I've tried to reuse locale strings as much as possible. The Send Later UI is generally pretty stable, and has been for quite a while. I intend to keep it that way unless there are pressing needs to update the text. So while you may need to put in several hours of effort to do a new translation from scratch, after that the work will be rather intermittent and not particularly time-consuming. Crowdin offers suggested string translations which can save you a lot of time.
+I try to avoid changing locale strings if at all possible, and when I do it's not more than one or two at a time. The Send Later UI is generally pretty stable, and has been for quite a while. I intend to keep it that way unless there are pressing needs to update the text. So while you may need to put in several hours of effort to do a new translation from scratch, after that the work will be rather intermittent and not particularly time-consuming. Crowdin offers suggested translations which can save you a lot of time.
 
 ## Signing up
 
@@ -26,7 +26,7 @@ There's no really great way to determine the context of a particular string your
 
 ### Substitution variables in strings
 
-Whenever you see "$1" or "$2" or "$N" (where "N" is actually a number), that indicates a slot where a value is inserted dynamically by the add-on. _You must preserve these sequences in your translated strings_ -- Even if you need to switch their order. It is okay to write strings with "$2" before "$1" if for example an adjective and noun need to change order. I don't think there is anywhere in the code that requires this, but it's worth pointing out as an implementation detail nnonetheless.
+Whenever you see "$1" or "$2" or "$N" (where "N" is a number), that indicates a slot where a value is inserted dynamically by the add-on. _You must preserve these sequences in your translated strings_ -- Even if you need to switch their order. It is okay to write strings with "$2" before "$1" if for example an adjective and noun need to change order. I don't think there is anywhere in the code that requires this, but it's worth pointing out as an implementation detail nonetheless.
 
 ### "accesskey" strings
 
@@ -39,23 +39,21 @@ There are some rules you need to follow when translating accesskey strings:
 
 ### Template functions for dynamic function editor
 
-You will see three long strings that are blocks of source code, labeled as EditorReadMeCode, _BusinessHoursCode, and DaysInARowCode. These three blocks of text are used to create the three sample functions that get created automatically the first time the user opens the dynamic function editor. **You should translate the comments in these strings but not the variable names.**
+You will see three long strings that are blocks of source code, labeled as `EditorReadMeCode`, `_BusinessHoursCode`, and `DaysInARowCode`. These blocks of text are used to create the bundled sample functions that show up in the dynamic function editor. **You should translate the comments in these strings but not the variable names.**
 
 Oh, and contrary to what is written below, for these three specific strings you should use dumb, ugly, ASCII quotes, not pretty Unicode quotes!
 
 ### Quotation marks
 
-Please try to use the "pretty" quotation marks that are appropriate for your language whenever possible, rather than plaintext " or ' characters. For example, &ldquo;this&rdquo; looks nice in English. If you aren't working on Mac OS so your keyboard isn't kind enough to type these for you automatically, then you can cut and paste them from elsewhere or launch a smart text editor like Microsoft Office or LibreOffice that has its own smart quotes implementation, type the phrase you want so that the editor substitutes the smart quotes, and then paste it into Crowdin.
+Please try to use the "pretty" quotation marks that are appropriate for your language whenever possible, rather than plaintext \" or \' characters. For example, &ldquo;this&rdquo; looks nice in English. If you aren't working on Mac OS so your keyboard isn't kind enough to type these for you automatically, then you can cut and paste them from elsewhere or launch a smart text editor like Microsoft Office or LibreOffice that has its own smart quotes implementation, type the phrase you want so that the editor substitutes the smart quotes, and then paste it into Crowdin.
 
-Rumor has it (I have not verified this) that on Mac OS you can type Opt+] to get a left single quote, Opt+Shift+] to get a right single quote (which is also a pretty apostrophe), Opt+\[ to get a left double quote, and Opt+Shift+[ to get a right double quote.
+Rumor has it (I have not verified this) that on Mac OS you can type Opt+] to get a left single quote, Opt+Shift+] to get a right single quote (which is also a pretty apostrophe), Opt+\[ to get a left double quote, and Opt+Shift+\[ to get a right double quote.
 
 Similarly, rumor has it that you can type Alt+0145, Alt+0146, Alt+0147, and Alt+0148 to get these same four characters on Windows.
 
 Finally, on GNOME, you can type Ctrl-Shift-u 2018 Enter to get a left single quote, or replace the 2018 with 2019, 201C, or 201D for the other three.
 
 ## Final notes
-
-Once you are done translating all of the missing strings for a particular translation, let me know that it's awaiting my approval. I assume that there's a way to do that through the Crowdin user interface, but I don't know what it is, since I don't do translations and I've just started using Crowdin. If you figure it out, please let me know. If you can't find any way to mark a translation pending approval on the Crowdin web site, just [email us](send-later-support@extended-thunder.org).
 
 If you would like to be credited for your translation, please let me know how you would like to be credited -- name, company, email address, BabelZilla nickname, etc.
 
