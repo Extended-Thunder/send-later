@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "Send Later",
+    "message": "Enviar més tard",
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
@@ -139,6 +139,10 @@
     "message": "setmanal",
     "description": ""
   },
+  "resetPrefsButton": {
+    "message": "Restableix preferències",
+    "description": ""
+  },
   "saveDefaultsLabel": {
     "message": "Guardar aquests valors com a valors per omissió",
     "description": ""
@@ -221,6 +225,14 @@
   },
   "userGuideLabel": {
     "message": "Guia d'usuari",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "La data seleccionada és al passat",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Ajorna el missatge per un nombre de minuts. El primer argument correspon al temps d'ajornament.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -381,6 +393,10 @@
   },
   "donatelink.value": {
     "message": "Fer una donació",
+    "description": ""
+  },
+  "advancededitor.title": {
+    "message": "Editor de configuració avançada",
     "description": ""
   },
   "editorlink.value": {
