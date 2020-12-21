@@ -139,6 +139,10 @@
     "message": "wöchentlich",
     "description": ""
   },
+  "resetPrefsButton": {
+    "message": "Einstellungen zurücksetzen",
+    "description": ""
+  },
   "saveDefaultsLabel": {
     "message": "Diese Werte als Defaultwerte speichern",
     "description": ""
@@ -221,6 +225,14 @@
   },
   "userGuideLabel": {
     "message": "Benutzerhandbuch",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "Das ausgewählte Datum ist in der Vergangenheit",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Verzögern Sie die Nachricht einfach um einige Minuten. Das erste Argument bestimmt die Dauer der Verzögerung.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -381,6 +393,10 @@
   },
   "donatelink.value": {
     "message": "Spenden",
+    "description": ""
+  },
+  "advancededitor.title": {
+    "message": "Erweiterter Konfigurations-Editor",
     "description": ""
   },
   "editorlink.value": {
