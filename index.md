@@ -667,6 +667,7 @@ all of them. Here's the most reliable way to do that:
     folder of the last account into which you saved it.
 -->
 
+<a name="outbox-copy-failure"></a>
 #### "Error sending unsent messages"
 
 If you're reading this section, it's probably because you got a pop-up
