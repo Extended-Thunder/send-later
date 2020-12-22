@@ -158,6 +158,12 @@ const SLOptions = {
           SLOptions.applyValue(id, preferences[id]);
         }
 
+        document.getElementById("checkEveryUnits").textContent =
+          preferences.checkTimePref_isMilliseconds ?
+            Sugar.Date.getLocale().units[8]
+            :
+            Sugar.Date.getLocale().units[10];
+
         try {
           // Attempt to setup UI alternative units for specifying
           // grace period time.
