@@ -1115,6 +1115,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           if (verifyId === newMessageId) {
             // Save the message to drafts
             try {
+              cw.gCloseWindowAfterSave = true;
               cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
               // cw.goDoCommand("cmd_saveAsDraft");
             } catch (err) {
