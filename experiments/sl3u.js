@@ -1115,8 +1115,8 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           if (verifyId === newMessageId) {
             // Save the message to drafts
             try {
-              // cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
-              cw.goDoCommand("cmd_saveAsDraft");
+              cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
+              // cw.goDoCommand("cmd_saveAsDraft");
             } catch (err) {
               SendLaterFunctions.error("SL3U.saveAsDraft","Unable to save message to drafts", err);
               return false;
