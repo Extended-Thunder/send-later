@@ -331,8 +331,8 @@ const SLOptions = {
     // checks the user input before executing the real callback function.
     return (evt => {
       const confDiv = document.createElement("div");
-      confDiv.style.margin = "0 2em";
-      confDiv.style.display = "inline";
+      confDiv.style.margin = "0.25em 2em";
+      confDiv.style.display = "block";
 
       const confirmPrompt = document.createElement("span");
       confirmPrompt.textContent = "Are you sure?"; // browser.i18n.getMessage("confirmPrompt")
@@ -497,9 +497,8 @@ const SLOptions = {
             advEditorDiv.style.display = "block";
             visIndicator.textContent = "-";
             setTimeout(() =>
-              document.getElementById("advancedEditSave").scrollIntoView(
-                false,
-                { behavior: "smooth" }),
+              document.getElementById("advanced-section").scrollIntoView(
+                true, /* align to top */),
               100);
           }).catch(SLStatic.error);
         } else {
@@ -515,27 +514,41 @@ const SLOptions = {
         }).catch(SLStatic.error);
       }));
 
-    document.getElementById("advancedEditSave").addEventListener("click",
-      (evt => {
-        const prefContent = document.getElementById("advancedConfigText").value;
-        try {
-          const prefs = JSON.parse(prefContent);
-          if (prefs) {
-            browser.storage.local.set({ preferences: prefs }).then(() => {
-              SLOptions.applyPrefsToUI();
-            });
-            SLOptions.showCheckMark(evt.target, "green");
-          }
-        } catch (err) {
-          SLStatic.warn(`JSON parsing failed with error`,err);
-          SLOptions.showXMark(evt.target, "red");
-          browser.runtime.sendMessage({
-            action: "alert",
-            title: "Warning",
-            text: `Preferences were not saved. JSON parsing failed with message:\n\n${err}`
+
+
+    const saveAdvancedConfig = () => {
+      const saveBtn = document.getElementById("advancedEditSave");
+      const prefContent = document.getElementById("advancedConfigText").value;
+      try {
+        const prefs = JSON.parse(prefContent);
+        if (prefs) {
+          browser.storage.local.set({ preferences: prefs }).then(() => {
+            SLOptions.applyPrefsToUI();
           });
+          SLOptions.showCheckMark(saveBtn, "green");
         }
-      }));
+      } catch (err) {
+        SLStatic.warn(`JSON parsing failed with error`,err);
+        SLOptions.showXMark(saveBtn, "red");
+        browser.runtime.sendMessage({
+          action: "alert",
+          title: "Warning",
+          text: `Preferences were not saved. JSON parsing failed with message:\n\n${err}`
+        });
+      }
+    };
+
+    document.getElementById(
+      "advancedEditSave"
+    ).addEventListener("click", saveAdvancedConfig);
+
+    document.addEventListener("keydown", (event) => {
+      if (event.target === document.getElementById("advancedConfigText")) {
+        if (event.ctrlKey && event.code === "KeyS") {
+          saveAdvancedConfig();
+        }
+      }
+    });
 
     // Verify with user before deleting a scheduling function
     const doubleCheckDeleteListener = SLOptions.doubleCheckButtonClick(
@@ -616,17 +629,22 @@ const SLOptions = {
 
     // And attach a listener to the "Reset Preferences" button
     const clearPrefsListener = SLOptions.doubleCheckButtonClick(
-      (() => {
-        const defPrefs = "/utils/defaultPrefs.json";
-        fetch(defPrefs).then(ptxt => ptxt.json()).then(defaults => {
-            const prefs = Object.keys(defaults).reduce( (result,key) => {
-                result[key]=defaults[key][1];
-                return result;
-            }, {});
-            browser.storage.local.set({ preferences: prefs }).then(() => {
-              SLOptions.applyPrefsToUI();
-            });
-        });
+      (async () => {
+        const { preferences } =
+          await browser.storage.local.get({ preferences: {} });
+        const defaults = await fetch(
+          "/utils/defaultPrefs.json"
+        ).then(ptxt => ptxt.json());
+
+        for (let key of Object.keys(defaults)) {
+          if (key !== "instanceUUID") {
+            preferences[key] = defaults[key][1];
+          }
+        }
+
+        await browser.storage.local.set({ preferences });
+
+        SLOptions.applyPrefsToUI();
       }));
     const clearPrefsBtn = document.getElementById("clearPrefs");
     clearPrefsBtn.addEventListener("click", clearPrefsListener);
