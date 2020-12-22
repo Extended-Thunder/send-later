@@ -135,9 +135,7 @@ const SendLater = {
       }
 
       const success = await browser.SL3U.saveAsDraft(newMessageId);
-      if (success) {
-        browser.tabs.remove(tabId);
-      } else {
+      if (!success) {
         SLStatic.error("Something went wrong while scheduling this message.");
       }
 
