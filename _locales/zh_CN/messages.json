@@ -139,6 +139,10 @@
     "message": "每周",
     "description": ""
   },
+  "resetPrefsButton": {
+    "message": "重置偏好",
+    "description": ""
+  },
   "saveDefaultsLabel": {
     "message": "将这些数值保存为默认",
     "description": ""
@@ -221,6 +225,14 @@
   },
   "userGuideLabel": {
     "message": "用户指南",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "日期已过",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "仅仅延迟数分钟发信。第一参数為延迟的时间。",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -381,6 +393,10 @@
   },
   "donatelink.value": {
     "message": "捐赠",
+    "description": ""
+  },
+  "advancededitor.title": {
+    "message": "高级配置编辑器",
     "description": ""
   },
   "editorlink.value": {
