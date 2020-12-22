@@ -332,7 +332,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="advanced-section">
       <div class="title option-label localized __MSG_advancedOptionsTitle__">Advanced</div>
 
       <div id="advancedEditorTitle" class="subtitle option-label" style="cursor:pointer;">
@@ -345,13 +345,16 @@
       <div id="advancedConfigEditor" style="display:none;">
         <textarea id="advancedConfigText" type="textbox"
             class="pre"
-            style="width:80%;height:60em;margin: 0.25em 0px 0.25em 1em;"></textarea>
+            style="width:80%;height:50em;margin: 0.25em 0px 0.25em 1em;"></textarea>
         <div style="padding-left: 4em;">
-          <input id="advancedEditSave" type="button" style="margin-right:0.5em;"
+          <input id="advancedEditSave" type="button" style="margin:0.25em;"
             value="Save" class="localized __MSG_save.label__">
-          <input id="advancedEditReset" type="button" style="margin-right:0.5em;"
+          <input id="advancedEditReset" type="button" style="margin:0.25em;"
             value="Discard changes" class="localized __MSG_reset.label__">
+          <input id="clearPrefs" type="button" style="margin:0.25em;"
+            value="Reset Preferences" class="localized __MSG_resetPrefsButton__">
         </div>
+        <hr/>
       </div>
 
       <label for="logDumpLevel" style="display:none;">
@@ -396,11 +399,6 @@
     </section>
 
     <hr/>
-
-    <div style="width:100%;padding:0 auto;">
-      <button type="button" id="clearPrefs" style="display:compact;"
-          class="localized __MSG_resetPrefsButton__">Reset Preferences</button>
-    </div>
 
     <div class="footer">
       <a href="mailto:send-later-support@extended-thunder.org?subject=Send%20Later"
