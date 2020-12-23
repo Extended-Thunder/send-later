@@ -476,23 +476,23 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "«Ուղարկել ավելի ուշ». Սխալ՝ չուղարկված նամակները ուղարկելիս: Հնարավոր է Ելքայինը վնասված է և պլանավորված նամակները չեն կարող ուղարկվել: Մանրամասները՝ https://blog.kamens.us/send-later/#outbox",
+    "message": "«Ուղարկել ավելի ուշ». Սխալ՝ չուղարկված նամակները ուղարկելիս: Հնարավոր է Ելքայինը վնասված է և պլանավորված նամակները չեն կարող ուղարկվել: Մանրամասները՝ https://extended-thunder.github.io/send-later/#corrupt-outbox",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Ուղարկել ավելի ուշ. Սխալ՝ պլանավորված նամակը առաքման համար Ելքայինում պատճենելիս (կոդը՝ $1): Ուղարկել ավելի ուշ-ը անջատվել է: Մանրամասները՝ https://blog.kamens.us/send-later/#outbox-copy-failure",
+    "message": "Ուղարկել ավելի ուշ. Սխալ՝ պլանավորված նամակը առաքման համար Ելքայինում պատճենելիս (կոդը՝ $1): Ուղարկել ավելի ուշ-ը անջատվել է: Մանրամասները՝ https://extended-thunder.github.io/send-later/#outbox-copy-failure",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Ուղարկել ավելի ուշ. Սխալ՝ վերադարձված նամակը Սևագիր թղթապանակում պատճենելիս (կոդը՝ $1): Ուղարկել ավելի ուշ-ը անջատվել է: Մանրամասները՝ https://blog.kamens.us/send-later/#drafts-copy-failure",
+    "message": "Ուղարկել ավելի ուշ. Սխալ՝ վերադարձված նամակը Սևագիր թղթապանակում պատճենելիս (կոդը՝ $1): Ուղարկել ավելի ուշ-ը անջատվել է: Մանրամասները՝ https://extended-thunder.github.io/send-later/#drafts-copy-failure",
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "«Ուղարկել ավելի ուշ». $1 թղթապանակը հնարավոր է վնասված է: Բացեք նրա հատկություները և վերականգնեք: Մանրամասնեը՝ https://blog.kamens.us/send-later/#corrupt-drafts-error",
+    "message": "«Ուղարկել ավելի ուշ». $1 թղթապանակը հնարավոր է վնասված է: Բացեք նրա հատկություները և վերականգնեք: Մանրամասնեը՝ https://extended-thunder.github.io/send-later/#corrupt-drafts-error",
     "description": ""
   },
   "MessageResendError": {
-    "message": "Ուղարկել ավելի ուշ. Ուղարկել հետո. Կրկի՞ն ուղարկել արդեն ուղարկված նամակները: Ձեր $1 Ելքային կամ Սևագրեր թղթապանակը հնարավոր է վնասված է: Ուղղեք այն ինչպես նկարագրված է https://blog.kamens.us/send-later/#corrupt-outbox-ում",
+    "message": "Ուղարկել ավելի ուշ. Ուղարկել հետո. Կրկի՞ն ուղարկել արդեն ուղարկված նամակները: Ձեր $1 Ելքային կամ Սևագրեր թղթապանակը հնարավոր է վնասված է: Ուղղեք այն ինչպես նկարագրված է https://extended-thunder.github.io/send-later/#corrupt-outbox-ում",
     "description": ""
   },
   "minutely": {
