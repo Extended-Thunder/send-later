@@ -668,23 +668,23 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Envoyer Plus Tard : Erreur lors de l'envoi des messages différés. Votre dossier « Messages en attente » est peut-être corrompu et vos messages planifiés peuvent ne pas avoir été expédiés. Lire https://blog.kamens.us/send-later/#outbox.",
+    "message": "Envoyer Plus Tard : Erreur lors de l'envoi des messages différés. Votre dossier « Messages en attente » est peut-être corrompu et vos messages planifiés peuvent ne pas avoir été expédiés. Lire https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Envoyer Plus Tard : Erreur lors de la copie du message vers « Messages en attente » pour expédition (code $1). Envoyer Plus Tard a été désactivé ! Lire https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "message": "Envoyer Plus Tard : Erreur lors de la copie du message vers « Messages en attente » pour expédition (code $1). Envoyer Plus Tard a été désactivé ! Lire https://extended-thunder.github.io/send-later/#outbox-copy-failure.",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Envoyer Plus Tard : Erreur lors de la copie du message récurrent vers le dossier « Brouillons » (code $1). Envoyer Plus Tard a été désactivé ! Lire https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "message": "Envoyer Plus Tard : Erreur lors de la copie du message récurrent vers le dossier « Brouillons » (code $1). Envoyer Plus Tard a été désactivé ! Lire https://extended-thunder.github.io/send-later/#drafts-copy-failure.",
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "Envoyer Plus Tard : Le dossier $1 est peut être endommagé. Veuillez afficher ses propriétés et cliquez sur « Réparer le dossier ». Lire https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "message": "Envoyer Plus Tard : Le dossier $1 est peut être endommagé. Veuillez afficher ses propriétés et cliquez sur « Réparer le dossier ». Lire https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
   "MessageResendError": {
-    "message": "Envoyer Plus Tard : Tenter de renvoyer un message déjà envoyer ?! Vos dossiers « Messages en attente » ou « Brouillons » $1 sont peut-être corrompus. Veuillez procéder à leur réparation comme décrit sur https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "message": "Envoyer Plus Tard : Tenter de renvoyer un message déjà envoyer ?! Vos dossiers « Messages en attente » ou « Brouillons » $1 sont peut-être corrompus. Veuillez procéder à leur réparation comme décrit sur https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "minutely": {
@@ -948,7 +948,7 @@
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// Bienvenue sur l’éditeur de fonction Envoyer Plus Tard !\n// \n// L’éditeur permet de créer des fonctions JavaScript d’application\n// complexe message logique de planification qui peut être associée à\n// des boutons de raccourci ou sélectionné dans la boîte de dialogue\n// Envoyer Plus Tard.\n// \n// Comme vous pouvez le voir ci-dessus, lorsqu’une fonction de\n// planification est appelée, elle sera donnée trois arguments :\n// \n// * « specname » est nécessaire si vous souhaitez que cette fonction\n//   se reproduire (voir ci-dessous)\n// \n// * « prev » est la précédente à la demande envoyer à temps, si il\n//   s’agit d’un abonnement appel\n// \n// * « args » est les arguments supplémentaires retournées par l’appel\n//   précédent si ce est une invocation récurrente\n// \n// votre code a besoin définir les variables « next » ,\n// « nextspec », et « nextargs » comme suit :\n//\n// * « next » est le nombre de minutes dans le futur ou un objet\n//   Date qui indique quand le message doit être envoyé.\n// \n// * « nextspec » est une spécification de récurrence si cela est\n//   destiné à être un récurrents message (Voir\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). Si vous\n//   ne définissez pas cela, alors que le message ne sera envoyée une\n//   fois. Remarque : Si vous souhaitez que votre fonction à appeler à\n//   nouveau pour la récurrence, do :\n// \n//   nextspec = \"function \" + specname;\n// \n// * « nextargs » est un tableau d’arguments à être passés dans\n//   l’autre appel de la fonction comme « args ».\n// \n// Pendant que vous travaillez sur votre fonction, vous pouvez le\n// tester en remplissant les valeurs pour « prev » et « args » dans\n// les zones de texte ci-dessous et puis en cliquant sur « Exécuter »\n// à exécuter la fonction et voir les résultats.\n// \n// Il y a deux exemples préconfigurée de fonctions, « BusinessHours »\n// et « DaysInARow », que vous pouvez regarder et jouer avec pour en\n// savoir plus.  Cette fonction « ReadMeFirst » pose simplement le\n// message à envoyer maintenant, autour de via la ligne suivante.\n\nnext = new Date();",
+    "message": "// Bienvenue sur l’éditeur de fonction Envoyer Plus Tard !\n// \n// L’éditeur permet de créer des fonctions JavaScript d’application\n// complexe message logique de planification qui peut être associée à\n// des boutons de raccourci ou sélectionné dans la boîte de dialogue\n// Envoyer Plus Tard.\n// \n// Comme vous pouvez le voir ci-dessus, lorsqu’une fonction de\n// planification est appelée, elle sera donnée trois arguments :\n// \n// * « specname » est nécessaire si vous souhaitez que cette fonction\n//   se reproduire (voir ci-dessous)\n// \n// * « prev » est la précédente à la demande envoyer à temps, si il\n//   s’agit d’un abonnement appel\n// \n// * « args » est les arguments supplémentaires retournées par l’appel\n//   précédent si ce est une invocation récurrente\n// \n// votre code a besoin définir les variables « next » ,\n// « nextspec », et « nextargs » comme suit :\n//\n// * « next » est le nombre de minutes dans le futur ou un objet\n//   Date qui indique quand le message doit être envoyé.\n// \n// * « nextspec » est une spécification de récurrence si cela est\n//   destiné à être un récurrents message (Voir\n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence). Si vous\n//   ne définissez pas cela, alors que le message ne sera envoyée une\n//   fois. Remarque : Si vous souhaitez que votre fonction à appeler à\n//   nouveau pour la récurrence, do :\n// \n//   nextspec = \"function \" + specname;\n// \n// * « nextargs » est un tableau d’arguments à être passés dans\n//   l’autre appel de la fonction comme « args ».\n// \n// Pendant que vous travaillez sur votre fonction, vous pouvez le\n// tester en remplissant les valeurs pour « prev » et « args » dans\n// les zones de texte ci-dessous et puis en cliquant sur « Exécuter »\n// à exécuter la fonction et voir les résultats.\n// \n// Il y a deux exemples préconfigurée de fonctions, « BusinessHours »\n// et « DaysInARow », que vous pouvez regarder et jouer avec pour en\n// savoir plus.  Cette fonction « ReadMeFirst » pose simplement le\n// message à envoyer maintenant, autour de via la ligne suivante.\n\nnext = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {

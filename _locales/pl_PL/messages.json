@@ -668,23 +668,23 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Send Later: Błąd podczas wysyłania wiadomości. Twoja skrzynka nadawcza może być uszkodzona, a zaplanowane wiadomości nie mogły zostać wysłane. Zobacz: https://blog.kamens.us/send-later/#outbox.",
+    "message": "Send Later: Błąd podczas wysyłania wiadomości. Twoja skrzynka nadawcza może być uszkodzona, a zaplanowane wiadomości nie mogły zostać wysłane. Zobacz: https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Send Later: Błąd podczas kopiowania wiadomości do folderu Wysłane (code $1). Send Later został wyłączony! Zobacz: https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "message": "Send Later: Błąd podczas kopiowania wiadomości do folderu Wysłane (code $1). Send Later został wyłączony! Zobacz: https://extended-thunder.github.io/send-later/#outbox-copy-failure.",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Send Later: Błąd podczas kopiowania wiadomości do folderu Szkice (code $1). Send Later został wyłączony! Zobacz: https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "message": "Send Later: Błąd podczas kopiowania wiadomości do folderu Szkice (code $1). Send Later został wyłączony! Zobacz: https://extended-thunder.github.io/send-later/#drafts-copy-failure.",
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "Send Later: Folder $1 może być uszkodzony. Otwórz Właściwości i napraw go. Zobacz: https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "message": "Send Later: Folder $1 może być uszkodzony. Otwórz Właściwości i napraw go. Zobacz: https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
   "MessageResendError": {
-    "message": "Send Later: Nastąpiła próba ponownego wysłania wcześniej wysłanej wiadomości!? Twój folder Wysłane albo Szkice $1 jest prawdopodobnie uszkodzony. Spróbuj naprawić zgodnie z opisem https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "message": "Send Later: Nastąpiła próba ponownego wysłania wcześniej wysłanej wiadomości!? Twój folder Wysłane albo Szkice $1 jest prawdopodobnie uszkodzony. Spróbuj naprawić zgodnie z opisem https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "minutely": {
@@ -948,7 +948,7 @@
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// Witaj w Edytirze funkcji specjalnych Send Later!\n//\n// Ten edytor umożliwi Ci pisanie funkcjji w JavaScript realizujących\n// zaawansowaną logikę planowania wysyłki wiadomości, które mogą być dowiązane\n// do przycisku skrótu lub wybrane w oknie planowania wysyłki Send Later.\n//\n// Jak widać poniżej, gdy funkcja planowania jest wywoływana, otrzyma ona\n// trzy argumenty:\n// * \"specname\" jest potrzebny jeśli chcesz aby funkcja mogła realizować\n//   powtórzenia (patrz dalej)\n// * \"prev\" jest to poprzedni czas zaplanowanej wysyłki (jeśli realizuje\n//   powtórzenia)\n// * \"args\" jest listą argumentów zwróconą przez poprzednie uruchomienie (jeśli\n//   realizuje powtórzenia)\n//\n// W kodzie funkcji musisz ustawić wartości zmiennych \"next\", \"nextspec\",\n// \"nextargs\" następująco: \n//\n// * \"next\" jest liczbą minut opóźnienia lub datą (Date object) określającą\n//   kiedy wiadomość ma zostać wysłana.\n// * \"nextspec\" jest specyfikacją powtórzenia jeśli funkcja ma realizować\n//   potarzanie (zobacz https://blog.kamens.us/send-later/#dynamic-recurrence).\n//   Jeśli nie ustawisz jej wartości, wiadomość zostanie wysłana jednokrotnie.\n//   Uwaga: jeśli chcesz wykonać Twoją funkcję ponownie w powtórzeniu\n//   (rekurencyjnie), użyj:\n// \n//     nextspec = \"function \" + specname;\n// \n// * \"nextargs\" jest tablicą argumentów do przekazania dla następnego wywołania\n//   funkcji jako zmienna \"args\".\n//\n// Gdy pracujesz nad kodem swoich funkcji, możesz je testować wypełniając\n// wartości dla zmiennych \"prev\" oraz \"args\" w polach tekstowych poniżej i\n// klikając \"Wykonaj funkcję\" aby wykonać kod funkcji i zobaczyć wynik.\n//\n// Znajdziesz tu dwie przykładowe funkcje, \"BusinessHours\" oraz \"DaysInARow\", w\n// których możesz zobaczyć co i jak, i próbować więcej.\n//\n// Funkcja \"ReadMeFirst\" realizuje wysłanie wiadomości natychmiast, poprzez\n// jedną linię kodu.\n\nnext = new Date();",
+    "message": "// Witaj w Edytirze funkcji specjalnych Send Later!\n//\n// Ten edytor umożliwi Ci pisanie funkcjji w JavaScript realizujących\n// zaawansowaną logikę planowania wysyłki wiadomości, które mogą być dowiązane\n// do przycisku skrótu lub wybrane w oknie planowania wysyłki Send Later.\n//\n// Jak widać poniżej, gdy funkcja planowania jest wywoływana, otrzyma ona\n// trzy argumenty:\n// * \"specname\" jest potrzebny jeśli chcesz aby funkcja mogła realizować\n//   powtórzenia (patrz dalej)\n// * \"prev\" jest to poprzedni czas zaplanowanej wysyłki (jeśli realizuje\n//   powtórzenia)\n// * \"args\" jest listą argumentów zwróconą przez poprzednie uruchomienie (jeśli\n//   realizuje powtórzenia)\n//\n// W kodzie funkcji musisz ustawić wartości zmiennych \"next\", \"nextspec\",\n// \"nextargs\" następująco: \n//\n// * \"next\" jest liczbą minut opóźnienia lub datą (Date object) określającą\n//   kiedy wiadomość ma zostać wysłana.\n// * \"nextspec\" jest specyfikacją powtórzenia jeśli funkcja ma realizować\n//   potarzanie (zobacz https://extended-thunder.github.io/send-later/#dynamic-recurrence).\n//   Jeśli nie ustawisz jej wartości, wiadomość zostanie wysłana jednokrotnie.\n//   Uwaga: jeśli chcesz wykonać Twoją funkcję ponownie w powtórzeniu\n//   (rekurencyjnie), użyj:\n// \n//     nextspec = \"function \" + specname;\n// \n// * \"nextargs\" jest tablicą argumentów do przekazania dla następnego wywołania\n//   funkcji jako zmienna \"args\".\n//\n// Gdy pracujesz nad kodem swoich funkcji, możesz je testować wypełniając\n// wartości dla zmiennych \"prev\" oraz \"args\" w polach tekstowych poniżej i\n// klikając \"Wykonaj funkcję\" aby wykonać kod funkcji i zobaczyć wynik.\n//\n// Znajdziesz tu dwie przykładowe funkcje, \"BusinessHours\" oraz \"DaysInARow\", w\n// których możesz zobaczyć co i jak, i próbować więcej.\n//\n// Funkcja \"ReadMeFirst\" realizuje wysłanie wiadomości natychmiast, poprzez\n// jedną linię kodu.\n\nnext = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {

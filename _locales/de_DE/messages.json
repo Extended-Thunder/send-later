@@ -684,23 +684,23 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Später Senden: Fehler beim Senden ungesendeter Nachrichten. Der Postausgangs-Ordner ist möglicherweise beschädigt und die geplanten Nachrichten konnten womöglich nicht gesendet werden. Details unter https://blog.kamens.us/send-later/#outbox (Englisch).",
+    "message": "Später Senden: Fehler beim Senden ungesendeter Nachrichten. Der Postausgangs-Ordner ist möglicherweise beschädigt und die geplanten Nachrichten konnten womöglich nicht gesendet werden. Details unter https://extended-thunder.github.io/send-later/#corrupt-outbox (Englisch).",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Später Senden: Fehler beim Kopieren der geplanten Nachricht in den Postausgangs-Ordner (Code $1). „Später Senden” wurde deaktiviert! Details unter https://blog.kamens.us/send-later/#outbox-copy-failure (Englisch).",
+    "message": "Später Senden: Fehler beim Kopieren der geplanten Nachricht in den Postausgangs-Ordner (Code $1). „Später Senden” wurde deaktiviert! Details unter https://extended-thunder.github.io/send-later/#outbox-copy-failure (Englisch).",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Später Senden: Fehler beim Kopieren der wiederkehrenden Nachricht in den Entwürfe-Ordner (Code $1). „Später Senden” wurde deaktiviert! Details unter https://blog.kamens.us/send-later/#drafts-copy-failure (Englisch).",
+    "message": "Später Senden: Fehler beim Kopieren der wiederkehrenden Nachricht in den Entwürfe-Ordner (Code $1). „Später Senden” wurde deaktiviert! Details unter https://extended-thunder.github.io/send-later/#drafts-copy-failure (Englisch).",
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "Später Senden: Der Ordner „$1” ist möglicherweise beschädigt. Öffnen Sie bitte die Ordner-Eigenschaften und reparieren sie ihn. Details unter https://blog.kamens.us/send-later/#corrupt-drafts-error (Englisch).",
+    "message": "Später Senden: Der Ordner „$1” ist möglicherweise beschädigt. Öffnen Sie bitte die Ordner-Eigenschaften und reparieren sie ihn. Details unter https://extended-thunder.github.io/send-later/#corrupt-drafts-error (Englisch).",
     "description": ""
   },
   "MessageResendError": {
-    "message": "Später Senden: Bereits versandte Nachrichten erneut versenden?! Der Postausgangs- oder Entwürfe-Ordner „$1” ist möglicherweise beschädigt. Bitte nehmen sie Reparaturmaßnahmen vor, wie im folgenden Blog beschrieben: https://blog.kamens.us/send-later/#corrupt-outbox (Englisch).",
+    "message": "Später Senden: Bereits versandte Nachrichten erneut versenden?! Der Postausgangs- oder Entwürfe-Ordner „$1” ist möglicherweise beschädigt. Bitte nehmen sie Reparaturmaßnahmen vor, wie im folgenden Blog beschrieben: https://extended-thunder.github.io/send-later/#corrupt-outbox (Englisch).",
     "description": ""
   },
   "minutely": {
@@ -964,7 +964,7 @@
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// Herzlich Willkommen Sie auf der Später Senden-Funktion-Editor!\n// \n// Der Editor können Sie JavaScript-Funktionen implementieren komplexe\n// erstellen message Disposition Logik die Shortcut-Tasten zugeordnet\n// werden kann oder ausgewählte im Dialogfeld \"Später Senden\".\n// \n// Wie Sie oben sehen können wenn eine scheduling-Funktion aufgerufen\n// wird, erhält es drei Argumente:\n// \n// * \"specname\" wird benötigt, wenn Sie diese Funktion wieder\n//   auftreten (siehe unten) soll\n// \n// * \"prev\" ist die vorherige geplant Sendezeit, ist dies ein sich\n//   wiederholendes Aufruf\n// \n// * \"args\" ist die zusätzlichen Argumente von der vorherigen Aufruf\n//   zurückgegeben, wenn diese ist eine wiederkehrende Invocation\n// \n// der Code muss die Variablen \"next\", \"xextspec\", und \"nextargs\"\n// wie folgt:\n//\n// * \"next\" ist entweder die Anzahl der Minuten in der Zukunft oder\n//   ein Date-Objekt angibt, wann die Nachricht gesendet werden soll.\n// \n// * \"nextspec\" ist eine Wiederholung-Spezifikation, wenn dies\n//   beabsichtigt ist, ein wiederkehrende Nachricht (siehe\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). Wenn Sie\n//   nicht dies, dann die Nachricht wird nur einmal gesendet\n//   werden. Hinweis: Wenn Sie wollen Ihre Funktion aufgerufen werden\n//   für Wiederholung, wiederholen:\n//   \n//   nextspec = \"function \" + specname;\n//   \n// * \"nextargs\" ist ein Array von Argumenten, die an die nächste\n//   übergeben werden soll Aufruf der Funktion als \"Args\".\n//   \n// Während Sie auf Ihre Funktion arbeiten, können Sie es testen, indem\n// Werte ausfüllen für \"Prev\" und \"Args\" in den Textfeldern unten und\n// klicken Sie dann auf \"Ausführen\" die Funktion ausführen und die\n// Ergebnisse zu sehen.\n// \n// Gibt es zwei vorkonfigurierte Beispielfunktionen, \"BusinessHours\"\n// und \"DaysInARow\", die Sie betrachten und spielen Sie mit um mehr zu\n// erfahren.  Diese Funktion \"ReadMeFirst\" verursacht nur die\n// Nachricht jetzt, um gesendet werden über die folgende Zeile.\n\nnext = new Date();",
+    "message": "// Herzlich Willkommen Sie auf der Später Senden-Funktion-Editor!\n// \n// Der Editor können Sie JavaScript-Funktionen implementieren komplexe\n// erstellen message Disposition Logik die Shortcut-Tasten zugeordnet\n// werden kann oder ausgewählte im Dialogfeld \"Später Senden\".\n// \n// Wie Sie oben sehen können wenn eine scheduling-Funktion aufgerufen\n// wird, erhält es drei Argumente:\n// \n// * \"specname\" wird benötigt, wenn Sie diese Funktion wieder\n//   auftreten (siehe unten) soll\n// \n// * \"prev\" ist die vorherige geplant Sendezeit, ist dies ein sich\n//   wiederholendes Aufruf\n// \n// * \"args\" ist die zusätzlichen Argumente von der vorherigen Aufruf\n//   zurückgegeben, wenn diese ist eine wiederkehrende Invocation\n// \n// der Code muss die Variablen \"next\", \"xextspec\", und \"nextargs\"\n// wie folgt:\n//\n// * \"next\" ist entweder die Anzahl der Minuten in der Zukunft oder\n//   ein Date-Objekt angibt, wann die Nachricht gesendet werden soll.\n// \n// * \"nextspec\" ist eine Wiederholung-Spezifikation, wenn dies\n//   beabsichtigt ist, ein wiederkehrende Nachricht (siehe\n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence). Wenn Sie\n//   nicht dies, dann die Nachricht wird nur einmal gesendet\n//   werden. Hinweis: Wenn Sie wollen Ihre Funktion aufgerufen werden\n//   für Wiederholung, wiederholen:\n//   \n//   nextspec = \"function \" + specname;\n//   \n// * \"nextargs\" ist ein Array von Argumenten, die an die nächste\n//   übergeben werden soll Aufruf der Funktion als \"Args\".\n//   \n// Während Sie auf Ihre Funktion arbeiten, können Sie es testen, indem\n// Werte ausfüllen für \"Prev\" und \"Args\" in den Textfeldern unten und\n// klicken Sie dann auf \"Ausführen\" die Funktion ausführen und die\n// Ergebnisse zu sehen.\n// \n// Gibt es zwei vorkonfigurierte Beispielfunktionen, \"BusinessHours\"\n// und \"DaysInARow\", die Sie betrachten und spielen Sie mit um mehr zu\n// erfahren.  Diese Funktion \"ReadMeFirst\" verursacht nur die\n// Nachricht jetzt, um gesendet werden über die folgende Zeile.\n\nnext = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {

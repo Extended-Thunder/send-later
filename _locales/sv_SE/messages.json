@@ -668,23 +668,23 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Skicka Senare: Fel vid sändning av ej skickade meddelanden. Din utkorg kan vara skadad och dina schemalagda meddelanden kanske inte har skickats. Läs mer på https://blog.kamens.us/send-later/#outbox.",
+    "message": "Skicka Senare: Fel vid sändning av ej skickade meddelanden. Din utkorg kan vara skadad och dina schemalagda meddelanden kanske inte har skickats. Läs mer på https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Skicka Senare: Fel vid kopiering av schemalagt meddelande till Utkorgen för sändning (kod $1). Skicka Senare har inaktiverats! Läs mer på https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "message": "Skicka Senare: Fel vid kopiering av schemalagt meddelande till Utkorgen för sändning (kod $1). Skicka Senare har inaktiverats! Läs mer på https://extended-thunder.github.io/send-later/#outbox-copy-failure.",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Skicka Senare: Fel vid kopiering av återkommande meddelande till Utkast-mappen (kod $1). Skicka Senare har inaktiverats! Läs mer på https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "message": "Skicka Senare: Fel vid kopiering av återkommande meddelande till Utkast-mappen (kod $1). Skicka Senare har inaktiverats! Läs mer på https://extended-thunder.github.io/send-later/#drafts-copy-failure.",
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "Skicka Senare: Mappen $1 kan vara skadad. Var vänlig öppna dess egenskaper och reparera den. Läs mer på https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "message": "Skicka Senare: Mappen $1 kan vara skadad. Var vänlig öppna dess egenskaper och reparera den. Läs mer på https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
   "MessageResendError": {
-    "message": "Skicka Senare: Försöker du skicka ett meddelande som redan har skickats?! Din Utkorg- eller Utkast-mapp $1 är antagligen skadad. Reparera dem genom att följa instruktionerna på https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "message": "Skicka Senare: Försöker du skicka ett meddelande som redan har skickats?! Din Utkorg- eller Utkast-mapp $1 är antagligen skadad. Reparera dem genom att följa instruktionerna på https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "minutely": {

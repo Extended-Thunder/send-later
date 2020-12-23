@@ -668,23 +668,23 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Send Later: fout bij het verzenden van niet-verzonden berichten. Het Postvak UIT is mogelijk beschadigd en het geplande bericht is mogelijk niet verzonden. Zie https://blog.kamens.us/send-later/#outbox.",
+    "message": "Send Later: fout bij het verzenden van niet-verzonden berichten. Het Postvak UIT is mogelijk beschadigd en het geplande bericht is mogelijk niet verzonden. Zie https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Send Later: fout bij kopiëren van gepland bericht naar Postvak UIT voor aflevering (code $1). Send Later is uitgeschakeld! Zie https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "message": "Send Later: fout bij kopiëren van gepland bericht naar Postvak UIT voor aflevering (code $1). Send Later is uitgeschakeld! Zie https://extended-thunder.github.io/send-later/#outbox-copy-failure.",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Send Later: fout bij kopiëren van herhalend bericht naar map Concepten (code $1). Send Later is uitgeschakeld! Zie https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "message": "Send Later: fout bij kopiëren van herhalend bericht naar map Concepten (code $1). Send Later is uitgeschakeld! Zie https://extended-thunder.github.io/send-later/#drafts-copy-failure.",
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "Send Later: de map $1 is mogelijk beschadigd. Open de eigenschappen ervan en repareer de map. Zie https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "message": "Send Later: de map $1 is mogelijk beschadigd. Open de eigenschappen ervan en repareer de map. Zie https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
   "MessageResendError": {
-    "message": "Send Later: al verzonden bericht proberen opnieuw te verzenden?! Uw Postvak UIT of map Concepten $1 is waarschijnlijk beschadigd. Repareer deze zoals beschreven op https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "message": "Send Later: al verzonden bericht proberen opnieuw te verzenden?! Uw Postvak UIT of map Concepten $1 is waarschijnlijk beschadigd. Repareer deze zoals beschreven op https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "minutely": {
@@ -948,7 +948,7 @@
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// Welkom bij de functie-editor van Send Later!\n//\n// Met de editor kunt u JavaScript-functies maken die complexe logica voor\n// berichtplanning implementeren en met sneltoetsen kunnen worden gekoppeld\n// of in het dialoogvenster van Send Later kunnen worden geselecteerd.\n//\n// Zoals u hierboven kunt zien, worden bij het aanroepen van een\n// planningsfunctie drie argumenten meegegeven:\n// * ‘specname’ is nodig als u deze functie wilt laten herhalen (zie hieronder)\n// * ‘prev’ is de vorige geplande verzendtijd, als dit een herhalende\n//   aanroep is\n// * ‘args’ zijn de extra argumenten die door de vorige aanroep worden\n//   teruggegeven als dit een herhalende aanroep is\n//\n// Uw code dient de variabelen ‘next’, ‘nextspec’ en ‘nextargs’\n// als volgt in te stellen:\n//\n// * ‘next’ is ofwel het aantal minuten in de toekomst, of een Datum-object\n//   dat aangeeft wanneer het bericht dient te worden verzonden.\n// * ‘nextspec’ is een herhalingsspecificatie als dit is bedoeld als een\n//   herhalend bericht (zie\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). Als u dit niet\n//   instelt, wordt het bericht maar één keer verzonden. Noot: als u uw\n//   functie nogmaals wilt laten aanroepen voor herhaling, gebruik dan:\n//     nextspec = \"function \" + specname;\n// * ‘nextargs’ is een array van argumenten die u in de volgende aanroep\n//   van de functie wilt ingeven als ‘args’.\n//\n// Terwijl u aan uw functie werkt, kunt u deze testen door waarden voor\n// ‘prev’ en ‘args’ in de onderstaande tekstvelden in te vullen en daarna op\n// ‘Uitvoeren’ te klikken om de functie uit te voeren en de resultaten te zien.\n//\n// Er zijn twee vooraf geconfigureerde voorbeeldfuncties, ‘BusinessHours’ en\n// ‘DaysInARow’, die u kunt bekijken en waarmee u kunt spelen om meer te leren.\n//\n// Deze ‘ReadMeFirst’-functie zorgt er alleen voor dat het bericht ongeveer\n// nu wordt verzonden, via de volgende regel.\nnext = new Date();",
+    "message": "// Welkom bij de functie-editor van Send Later!\n//\n// Met de editor kunt u JavaScript-functies maken die complexe logica voor\n// berichtplanning implementeren en met sneltoetsen kunnen worden gekoppeld\n// of in het dialoogvenster van Send Later kunnen worden geselecteerd.\n//\n// Zoals u hierboven kunt zien, worden bij het aanroepen van een\n// planningsfunctie drie argumenten meegegeven:\n// * ‘specname’ is nodig als u deze functie wilt laten herhalen (zie hieronder)\n// * ‘prev’ is de vorige geplande verzendtijd, als dit een herhalende\n//   aanroep is\n// * ‘args’ zijn de extra argumenten die door de vorige aanroep worden\n//   teruggegeven als dit een herhalende aanroep is\n//\n// Uw code dient de variabelen ‘next’, ‘nextspec’ en ‘nextargs’\n// als volgt in te stellen:\n//\n// * ‘next’ is ofwel het aantal minuten in de toekomst, of een Datum-object\n//   dat aangeeft wanneer het bericht dient te worden verzonden.\n// * ‘nextspec’ is een herhalingsspecificatie als dit is bedoeld als een\n//   herhalend bericht (zie\n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence). Als u dit niet\n//   instelt, wordt het bericht maar één keer verzonden. Noot: als u uw\n//   functie nogmaals wilt laten aanroepen voor herhaling, gebruik dan:\n//     nextspec = \"function \" + specname;\n// * ‘nextargs’ is een array van argumenten die u in de volgende aanroep\n//   van de functie wilt ingeven als ‘args’.\n//\n// Terwijl u aan uw functie werkt, kunt u deze testen door waarden voor\n// ‘prev’ en ‘args’ in de onderstaande tekstvelden in te vullen en daarna op\n// ‘Uitvoeren’ te klikken om de functie uit te voeren en de resultaten te zien.\n//\n// Er zijn twee vooraf geconfigureerde voorbeeldfuncties, ‘BusinessHours’ en\n// ‘DaysInARow’, die u kunt bekijken en waarmee u kunt spelen om meer te leren.\n//\n// Deze ‘ReadMeFirst’-functie zorgt er alleen voor dat het bericht ongeveer\n// nu wordt verzonden, via de volgende regel.\nnext = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {

@@ -668,23 +668,23 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Send Later: Erro ao tentar enviar mensagens ainda não enviadas. A sua caixa de saída pode estar corrompida, e as suas mensagens programadas podem não ter sido enviadas. Veja https://blog.kamens.us/send-later/#outbox.",
+    "message": "Send Later: Erro ao tentar enviar mensagens ainda não enviadas. A sua caixa de saída pode estar corrompida, e as suas mensagens programadas podem não ter sido enviadas. Veja https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Send Later: Erro ao copiar a mensagem agendada para a caixa de saída a fim de ser entregue (code $1). O Send Later foi desactivado! Veja https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "message": "Send Later: Erro ao copiar a mensagem agendada para a caixa de saída a fim de ser entregue (code $1). O Send Later foi desactivado! Veja https://extended-thunder.github.io/send-later/#outbox-copy-failure.",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Send Later: Erro ao copiar mensagem recorrente para a pasta de Rascunhos (code $1). Send Later foi desactivado! Veja https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "message": "Send Later: Erro ao copiar mensagem recorrente para a pasta de Rascunhos (code $1). Send Later foi desactivado! Veja https://extended-thunder.github.io/send-later/#drafts-copy-failure.",
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "Send Later: A pasta $1 pode estar corrompida. Por favor abra as suas propriedades e repare-a. Veja https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "message": "Send Later: A pasta $1 pode estar corrompida. Por favor abra as suas propriedades e repare-a. Veja https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
   "MessageResendError": {
-    "message": "Send Later: Tentativa de re-enviar mensagem já enviada?! Provavelmente a sua Caixa de Saída ou a pasta de Rascunhos $1 está corrompida. Por favor repare-as tal como descrito em https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "message": "Send Later: Tentativa de re-enviar mensagem já enviada?! Provavelmente a sua Caixa de Saída ou a pasta de Rascunhos $1 está corrompida. Por favor repare-as tal como descrito em https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "minutely": {
@@ -948,7 +948,7 @@
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// Bemvindo ao editor da função Send Later!\n//\n// O editor deixa-o criar funções javaScript implementando agendamento complexo de mensagens que podem ser associadas a botões de atalho ou selecionadas no diálogo Send Later.\n//\n// Como pode ver em cima, quando uma função de agendamento é chamada, vão ser dados três argumentos:\n// * \"specname\" é necessário se quiser recorrências (ver em baixo)\n// * \"prev\" é a hora de agendamento anterior, caso seja uma chamada recorrente\n// * \"args\" é um argumento extra que é retornado pela chamada anterior se esta for a chamada recorrente\n//\n// O código precisa das variáveis \"next\", \"nextspec\", and\n// \"nextargs\" como descrito:\n// * \"next\" é o número de minutos no futuro ou uma data indicando \n// quando é que a mensagem deve ser enviada.\n// * \"nextspec\" é a especificação da recorrência se for esta a intenção \n// (ver https://blog.kamens.us/send-later/#dynamic-recurrence). \n// Se não for definida, então a mensagem só será enviada uma vez. \n// Nota: Se quiser que a função seja chamada outra vez para uma recorrência, \n// fazer o seguinte:\n//     nextspec = \"function \" + specname;\n// * \"nextargs\" é um série de argumentos que serão passados para a \n// próxima chamada da função como \"args\".\n//\n// Enquanto estiver a trabalhar na sua função, pode testá-la preenchendo os valores para \"prev\"\n// e \"args\" na caixa de texto que está a seguir e clicando \"Execute\" para executar a função \n// e ver os resultados.\n//\n// Há duas funções de exemplo pré-configuradas, \"BusinessHours\" e \"DaysInARow\",\n// que pode ver e brincar com ela para aprender melhor.\n//\n// Esta função \"ReadMeFirst\" apenas envia a mensagem, agora.\nnext = new Date();",
+    "message": "// Bemvindo ao editor da função Send Later!\n//\n// O editor deixa-o criar funções javaScript implementando agendamento complexo de mensagens que podem ser associadas a botões de atalho ou selecionadas no diálogo Send Later.\n//\n// Como pode ver em cima, quando uma função de agendamento é chamada, vão ser dados três argumentos:\n// * \"specname\" é necessário se quiser recorrências (ver em baixo)\n// * \"prev\" é a hora de agendamento anterior, caso seja uma chamada recorrente\n// * \"args\" é um argumento extra que é retornado pela chamada anterior se esta for a chamada recorrente\n//\n// O código precisa das variáveis \"next\", \"nextspec\", and\n// \"nextargs\" como descrito:\n// * \"next\" é o número de minutos no futuro ou uma data indicando \n// quando é que a mensagem deve ser enviada.\n// * \"nextspec\" é a especificação da recorrência se for esta a intenção \n// (ver https://extended-thunder.github.io/send-later/#dynamic-recurrence). \n// Se não for definida, então a mensagem só será enviada uma vez. \n// Nota: Se quiser que a função seja chamada outra vez para uma recorrência, \n// fazer o seguinte:\n//     nextspec = \"function \" + specname;\n// * \"nextargs\" é um série de argumentos que serão passados para a \n// próxima chamada da função como \"args\".\n//\n// Enquanto estiver a trabalhar na sua função, pode testá-la preenchendo os valores para \"prev\"\n// e \"args\" na caixa de texto que está a seguir e clicando \"Execute\" para executar a função \n// e ver os resultados.\n//\n// Há duas funções de exemplo pré-configuradas, \"BusinessHours\" e \"DaysInARow\",\n// que pode ver e brincar com ela para aprender melhor.\n//\n// Esta função \"ReadMeFirst\" apenas envia a mensagem, agora.\nnext = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {
