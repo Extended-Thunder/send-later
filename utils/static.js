@@ -1136,14 +1136,14 @@ if (typeof browser === "undefined" && typeof require !== "undefined") {
     // Make this file node.js-aware for browserless unit testing
     const fs = require('fs'),
           path = require('path'),
-          filePath = path.join(__dirname, '..', '_locales','en','messages.json');;
+          filePath = path.join(__dirname, '..', '_locales','en_US','messages.json');;
     const contents = fs.readFileSync(filePath, {encoding: 'utf-8'});
     global.localeMessages = JSON.parse(contents);
     global.SLStatic = SLStatic;
     global.browser = browser;
   } else {
     // We're in a non-addon browser environment (functional tests)
-    fetch("/_locales/en/messages.json").then(
+    fetch("/_locales/en_US/messages.json").then(
       response => response.json()
     ).then(locale => {
       window.localeMessages = locale;
