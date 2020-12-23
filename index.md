@@ -59,7 +59,7 @@ When you want to schedule a message for later delivery, either select the
 `Ctrl-Shift-Enter`, or click on the "Send Later" button in the composition
 window's toolbar. This will pop up the following dialog:
 
-![Send Later prompt window](assets/dialog.png)
+![Send Later prompt window](assets/v8-dialog.png)
 
 Here is what you can do from this dialog:
 
@@ -182,7 +182,7 @@ You can get to the add-on's preferences page in two ways:
 Here is the main preferences screen, followed by explanations of the
 various settings:
 
-![](/assets/2019-09-23_11-43.png)
+![](assets/v8-options.png)
 
 ### Check every <u>&nbsp;#&nbsp;</u> minutes
 
@@ -303,7 +303,7 @@ The shortcuts can be accessed from within a message composition window using the
 keyboard commands `Ctrl+Alt+1`, `Ctrl+Alt+2`, and`Ctrl+Alt+3`, or from within
 the scheduler popup dialog using `Ctrl+1`, `Ctrl+2`, and `Ctrl+3`.
 
-![Send Later shortcut preferences](/assets/prefs3.png)
+![Send Later shortcut preferences](assets/v8-shortcut-options.png)
 
 -   **Button label** specifies the string that is displayed in the
     button.
@@ -708,6 +708,7 @@ You should:
 6.  If the problem persists after that, [let us know](#help).
 
 <!--
+<a name="drafts-copy-failure"></a>
 #### "Error copying recurring message"
 
 If you're reading this section, it's probably because you got a pop-up
@@ -739,6 +740,7 @@ to be save. You should:
     and we'll try to help you figure out what's wrong and how to fix it.
  -->
 
+<a name="corrupt-drafts-error"></a>
 #### Corrupt drafts folder
 
 If you're reading this section, it's probably because you got a pop-up
@@ -782,39 +784,38 @@ Advanced usage
 ### Hot keys
 
 You can hit `Ctrl-1`, `Ctrl-2`, or `Ctrl-3` in the scheduler pop-up to activate
-the first, second or third preset key, respectively. You can hit the `Esc`
-key in the pop-up to cancel and go back to editing the message. You can
-hit `Ctrl-Enter` (or just `Enter`) from anywhere in the pop-up to send the
-message at the specified time, i.e., hitting Enter is equivalent to clicking the
-"Send Later at \[specified time\]" button. You can hit `Alt-Shift-N` in the pop-up
-(or the equivalent in other languages) to send the message right now, (i.e., it
-is equivalent to clicking the "Send Now" button), or `Alt+Shift+O` to place the
-message in the outbox.
+the first, second or third preset key, respectively. Pressing the `Esc` key in
+the pop-up to cancels scheduling and returns to editing the message. You can hit
+`Enter` from anywhere in the pop-up to send the message at the specified time,
+i.e., hitting Enter is equivalent to clicking the "Send Later at \[specified
+time\]" button. You can hit `Alt-Shift-N` in the pop-up (or the equivalent in
+other languages) to send the message right now, (i.e., it is equivalent to
+clicking the "Send Now" button), or `Alt+Shift+O` to place the message in the
+outbox.
 
-In the composition window itself (i.e., not in the Send Later pop-up),
+In the composition window itself (i.e., not in the Send Later pop-up dialog),
 you can hit `Ctrl-Alt-1`, `Ctrl-Alt-2`, or `Ctrl-Alt-3` to activate the
-corresponding shortcut key.
+corresponding shortcut action.
 
 <a name="recurring"></a>
 ### Recurring messages
 
 You can schedule a message to be sent repeatedly by selecting
-"minutely", "daily", "weekly", "monthly" or "yearly" in the Send Later
+"minutely", "daily", "weekly", "monthly" or "yearly" in the scheduling
 pop-up. Immediately after Send Later delivers the message, it calculates
-a new delivery time for it based on the frequency you specified and
-saves a new draft back into your Drafts folder with the new delivery
-time. This will continue for as long as you leave the message in your
-Drafts folder with recurrence enabled. To stop the message from being
-delivered anymore, remove it from your Drafts folder, or edit the draft
-and save it without scheduling.
+a new delivery time based on the frequency you specified and saves a new draft
+back into your Drafts folder with the new delivery time. This will continue for
+as long as you leave the message in your Drafts folder with recurrence enabled.
+To stop the message from being delivered anymore, remove it from your Drafts
+folder, or edit the draft and save it without scheduling.
 
 When you select one of the recurrence options, the Send Later dialog
-changes slightly to look like this:
+changes slightly to look something like this:
 
-![](assets/Send-this-email-later_007.png)
+![](assets/v8-extended-dialog.png)
 
-The new controls that appear in the dialog, shown circled in red above,
-are as follows:
+New controls appear in the dialog. Exactly what new options appear depends on
+which recurrence type you have selected.
 
 -   Check the "Every" checkbox to specify a multiplier other than 1, the
     default, to indicate how many time periods should be skipped between
@@ -840,6 +841,10 @@ Here are some things to keep in mind about recurring messages:
 -   You can't use the preset buttons to schedule recurring messages,
     i.e., you have to explicitly specify the first delivery time for the
     message in the controls at the top of the pop-up window.
+    **Note** that the shortcut buttons link to user defined scheduling
+    functions, which *can* initiate a recurrence. But the recurrence settings
+    that you make in the scheduler dialog will not influence the behavior of
+    those shortcuts.
 -   If you schedule a monthly message for the 29th, 30th or 31st of the
     month, then there will be months in which it will actually be sent
     on the 1st, 2nd or 3rd of the *next* month. For example, if you
@@ -1828,7 +1833,7 @@ the suggested donation.
 -   Ondra Zlamal
 -   Angelo V. -- SanGio.de -- Thank you for the excellent add-on!
 -   Patrick Bell
--   ![](https://blog.kamens.us/wp-content/uploads/2018/10/igmcpibggnclpian.ico)
+-   ![](assets/igmcpibggnclpian.ico)
     Brian S. Wilson: Great plugin and something Thunderbird has needed for a
     long time.
 -   Tomas Flaska

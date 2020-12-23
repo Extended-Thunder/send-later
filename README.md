@@ -5,8 +5,8 @@ SendLater Thunderbird extension
 
 AMO home page: [https://addons.thunderbird.net/thunderbird/addon/send-later-3/](https://addons.thunderbird.net/thunderbird/addon/send-later-3/)
 
-User guide: [https://blog.kamens.us/send-later/](
-https://blog.kamens.us/send-later/)
+User guide: [https://extended-thunder.github.io/send-later/](
+https://extended-thunder.github.io/send-later/)
 
 Maintainer: Jonathan Perry-Houts
 <[jph@extended-thunder.org](mailto:jph@extended-thunder.org)>  
