@@ -538,7 +538,7 @@ var SLStatic = {
 
   prepNewMessageHeaders(content) {
     content = SLStatic.replaceHeader(content, "Date", SLStatic.parseableDateTimeFormat(), false);
-    content = SLStatic.replaceHeader(content, "X-Send-Later-[a-zA-Z0-9\-]*", null, true);
+    content = SLStatic.replaceHeader(content, "X-Send-Later-[a-zA-Z0-9-]*", null, true);
     content = SLStatic.replaceHeader(content, "X-Enigmail-Draft-Status", null, false);
     content = SLStatic.replaceHeader(content, "Openpgp", null, false);
     return content;
