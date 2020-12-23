@@ -684,23 +684,23 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Send Later: Error a l'enviar els missatges pendents. La seva Safata de Sortida potser està corrompuda, i els seus missatges programats potser no s'han enviat. Vegi https://blog.kamens.us/send-later/#outbox.",
+    "message": "Send Later: Error a l'enviar els missatges pendents. La seva Safata de Sortida potser està corrompuda, i els seus missatges programats potser no s'han enviat. Vegi https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Send Later: Error al copiar el missatge programat a la Safata de Sortida per lliurar (codi $1). Send Later s'ha deshabilitat! Vegi https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "message": "Send Later: Error al copiar el missatge programat a la Safata de Sortida per lliurar (codi $1). Send Later s'ha deshabilitat! Vegi https://extended-thunder.github.io/send-later/#outbox-copy-failure.",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Send Later: Error al copiar un missatge recurrent a la Carpeta d'Esborranys (codi $1). Send Later s'ha deshabilitat! Vegi https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "message": "Send Later: Error al copiar un missatge recurrent a la Carpeta d'Esborranys (codi $1). Send Later s'ha deshabilitat! Vegi https://extended-thunder.github.io/send-later/#drafts-copy-failure.",
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "Send Later: La carpeta $1 potser està corrompuda. Si us plau, obriu les seves propietats i repareu-la. Vegi https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "message": "Send Later: La carpeta $1 potser està corrompuda. Si us plau, obriu les seves propietats i repareu-la. Vegi https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
   "MessageResendError": {
-    "message": "Send Later: Intenteu reenviar un missatge ja enviat?! La vostre Safata de Sortida o la Carpeta d'Esborranys $1 probablement està corrompuda. Si us plau, repareu-la tal com s'especifica a https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "message": "Send Later: Intenteu reenviar un missatge ja enviat?! La vostre Safata de Sortida o la Carpeta d'Esborranys $1 probablement està corrompuda. Si us plau, repareu-la tal com s'especifica a https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "minutely": {
@@ -964,7 +964,7 @@
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// Benvinguts a l'editor Send Later funció!\n// \n// L'editor permet crear complexes funcions JavaScript implementació\n// missatge programació lògica que es poden associar amb els botons de\n// drecera o seleccionat al diàleg Send Later.\n// \n// Com es pot veure més amunt, quan s'anomena una planificació funció,\n// se li donarà tres arguments:\n// \n// * \"specname\" que es necessita si vol que aquesta funció es\n//   repeteixi (veure més avall)\n// * \"prev\" és l'anterior previst enviar temps, si això és una\n//   recurrent invocació\n// * \"args\" està els arguments addicionals retornats per la invocació\n//   anterior si aquesta és una invocació recurrent\n// \n// el vostre codi necessita configurar les variables \"next\",\n// \"nextspec\", i \"nextargs\" com segueix:\n//\n// * \"next\" és el nombre de minuts en el futur o un objecte de data\n//   indicant quan el missatge s'enviaran.\n//\n// * \"nextspec\" és una especificació de periodicitat si aquesta és la\n//   intenció de ser un recurrent missatge (veure\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). Si no es\n//   configura això, llavors el missatge només s'enviarà una\n//   vegada. Nota: si voleu que el seu funció que es diu una altra\n//   vegada per recurrència, fer:\n//   \n//   nextspec = \"function \" + specname;\n// \n// * \"nextargs\" és una sèrie d'arguments que vol passar al següent\n//   invocació de la funció com \"args\".\n//   \n// Mentre que vostè està treballant en la seva funció, pot provar això\n// omplint els valors per a \"anterior\" i \"args\" en els quadres de Text\n// sota i fent clic a \"Executar\" a executa la funció i veure els\n// resultats.\n// \n// Pre-configurat Mostra dues funcions, \"BusinessHours\" i\n// \"DaysInARow\", que pot mirar i jugar amb per aprendre més. Aquest\n// \"ReadMeFirst\" funció només provoca el missatge enviat al voltant\n// ara, mitjançant la línia següent.\n\nnext = new Date();",
+    "message": "// Benvinguts a l'editor Send Later funció!\n// \n// L'editor permet crear complexes funcions JavaScript implementació\n// missatge programació lògica que es poden associar amb els botons de\n// drecera o seleccionat al diàleg Send Later.\n// \n// Com es pot veure més amunt, quan s'anomena una planificació funció,\n// se li donarà tres arguments:\n// \n// * \"specname\" que es necessita si vol que aquesta funció es\n//   repeteixi (veure més avall)\n// * \"prev\" és l'anterior previst enviar temps, si això és una\n//   recurrent invocació\n// * \"args\" està els arguments addicionals retornats per la invocació\n//   anterior si aquesta és una invocació recurrent\n// \n// el vostre codi necessita configurar les variables \"next\",\n// \"nextspec\", i \"nextargs\" com segueix:\n//\n// * \"next\" és el nombre de minuts en el futur o un objecte de data\n//   indicant quan el missatge s'enviaran.\n//\n// * \"nextspec\" és una especificació de periodicitat si aquesta és la\n//   intenció de ser un recurrent missatge (veure\n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence). Si no es\n//   configura això, llavors el missatge només s'enviarà una\n//   vegada. Nota: si voleu que el seu funció que es diu una altra\n//   vegada per recurrència, fer:\n//   \n//   nextspec = \"function \" + specname;\n// \n// * \"nextargs\" és una sèrie d'arguments que vol passar al següent\n//   invocació de la funció com \"args\".\n//   \n// Mentre que vostè està treballant en la seva funció, pot provar això\n// omplint els valors per a \"anterior\" i \"args\" en els quadres de Text\n// sota i fent clic a \"Executar\" a executa la funció i veure els\n// resultats.\n// \n// Pre-configurat Mostra dues funcions, \"BusinessHours\" i\n// \"DaysInARow\", que pot mirar i jugar amb per aprendre més. Aquest\n// \"ReadMeFirst\" funció només provoca el missatge enviat al voltant\n// ara, mitjançant la línia següent.\n\nnext = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {
