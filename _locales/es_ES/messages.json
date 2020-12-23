@@ -684,23 +684,23 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Send Later: Error al remitir mensajes no enviados. Su Bandeja de Salida puede estar dañada, y sus mensajes programados quizá no hayan sido enviados. Vea https://blog.kamens.us/send-later/#outbox.",
+    "message": "Send Later: Error al remitir mensajes no enviados. Su Bandeja de Salida puede estar dañada, y sus mensajes programados quizá no hayan sido enviados. Vea https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Send Later: Error al copiar mensaje programado a la Bandeja de Salida para su envío (código $1). ¡Send Later ha sido desactivado! Vea https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "message": "Send Later: Error al copiar mensaje programado a la Bandeja de Salida para su envío (código $1). ¡Send Later ha sido desactivado! Vea https://extended-thunder.github.io/send-later/#outbox-copy-failure.",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Send Later: Error al copiar mensajes recurrentes a la carpeta Borradores (código $1). ¡Send Later ha sido desactivado! Vea https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "message": "Send Later: Error al copiar mensajes recurrentes a la carpeta Borradores (código $1). ¡Send Later ha sido desactivado! Vea https://extended-thunder.github.io/send-later/#drafts-copy-failure.",
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "Send Later: La carpeta $1 puede estar dañada. Por favor, abra sus propiedades y repárela. Vea https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "message": "Send Later: La carpeta $1 puede estar dañada. Por favor, abra sus propiedades y repárela. Vea https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
   "MessageResendError": {
-    "message": "Send Later: ¡¿Intenta volver a remitir un mensaje ya enviado?! Su Bandeja de Salida o su carpeta de Borradores $1 probablemente está dañada. Por favor, repárelas como se describe en https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "message": "Send Later: ¡¿Intenta volver a remitir un mensaje ya enviado?! Su Bandeja de Salida o su carpeta de Borradores $1 probablemente está dañada. Por favor, repárelas como se describe en https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "minutely": {
@@ -964,7 +964,7 @@
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// ¡Bienvenido al editor de funciones de Send Later!\n// \n// El editor le permite crear funciones JavaScript que implementan\n// lógicas complejas de programación de envío de mensajes que se\n// pueden asociar con botones de atajo o seleccionarse en el cuadro de\n// diálogo de Send Later.\n// \n// Como puede ver arriba, cuando se llama una función de programación\n// de envío, se le proporcionan tres argumentos:\n// \n// * \"specname\" (nombre de la especificación) se necesita si quiere\n//   que esta función sea recurrente (vea debajo)\n// * \"prev\" es la anterior hora de envío programada, si esta es una\n//   invocación recurrente\n// * \"args\" son los argumentos extra devueltos por la anterior\n//   invocación de la función, si esta es una invocación recurrente\n// \n// Su código precisa establecer las variables \"next\" (siguiente\n// envío), \"nextspec\"(siguiente especificación), y \"nextargs\"\n// (siguientes argumentos) como sigue:\n//\n// * \"next\" es o bien el número de minutos a futuro o un objeto Date\n//   (fecha) indicando cuándo se debe enviar el mensaje.\n// \n// * \"nextspec\" es una especificación de recurrencia, si se pretende\n//   que sea un mensaje recurrente. Si no establece esto, entonces el\n//   mensaje sólo se enviará una vez (vea\n//   https://blog.kamens.us/send-later/#dynamic-recurrence).  Nota: Si\n//   quiere que su función sea llamada de nuevo por recurrencia, haga\n//   \n//   nextspec = \"function \" + specname;\n//   \n// * \"nextargs\" es una matriz de argumentos que quiere que sea pasada\n//   en la próxima invocación de la función como \"args\".\n// \n// Mientras está trabajando en su función, puede probarla rellenando\n// los valores para \"prev\" y \"args\" en los recuadros de texto de\n// debajo, y luego haciendo clic en \"Ejecutar\" para ejecutar la\n// función y ver los resultados.\n// \n// Hay dos funciones de ejemplo pre-configuradas, \"BusinessHours\"\n// (horario comercial) y \"DaysInARow\" (días seguidos), que puede\n// revisar y con las que puede jugar para aprender más.\n// \n// Esta función \"ReadMeFirst\" (léame primero) sólo hace que el mensaje\n// sea enviado aproximadamente ahora, mediante la siguiente línea:\n\nnext = new Date();",
+    "message": "// ¡Bienvenido al editor de funciones de Send Later!\n// \n// El editor le permite crear funciones JavaScript que implementan\n// lógicas complejas de programación de envío de mensajes que se\n// pueden asociar con botones de atajo o seleccionarse en el cuadro de\n// diálogo de Send Later.\n// \n// Como puede ver arriba, cuando se llama una función de programación\n// de envío, se le proporcionan tres argumentos:\n// \n// * \"specname\" (nombre de la especificación) se necesita si quiere\n//   que esta función sea recurrente (vea debajo)\n// * \"prev\" es la anterior hora de envío programada, si esta es una\n//   invocación recurrente\n// * \"args\" son los argumentos extra devueltos por la anterior\n//   invocación de la función, si esta es una invocación recurrente\n// \n// Su código precisa establecer las variables \"next\" (siguiente\n// envío), \"nextspec\"(siguiente especificación), y \"nextargs\"\n// (siguientes argumentos) como sigue:\n//\n// * \"next\" es o bien el número de minutos a futuro o un objeto Date\n//   (fecha) indicando cuándo se debe enviar el mensaje.\n// \n// * \"nextspec\" es una especificación de recurrencia, si se pretende\n//   que sea un mensaje recurrente. Si no establece esto, entonces el\n//   mensaje sólo se enviará una vez (vea\n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence).  Nota: Si\n//   quiere que su función sea llamada de nuevo por recurrencia, haga\n//   \n//   nextspec = \"function \" + specname;\n//   \n// * \"nextargs\" es una matriz de argumentos que quiere que sea pasada\n//   en la próxima invocación de la función como \"args\".\n// \n// Mientras está trabajando en su función, puede probarla rellenando\n// los valores para \"prev\" y \"args\" en los recuadros de texto de\n// debajo, y luego haciendo clic en \"Ejecutar\" para ejecutar la\n// función y ver los resultados.\n// \n// Hay dos funciones de ejemplo pre-configuradas, \"BusinessHours\"\n// (horario comercial) y \"DaysInARow\" (días seguidos), que puede\n// revisar y con las que puede jugar para aprender más.\n// \n// Esta función \"ReadMeFirst\" (léame primero) sólo hace que el mensaje\n// sea enviado aproximadamente ahora, mediante la siguiente línea:\n\nnext = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {
