@@ -668,23 +668,23 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Invia Dopo: Errore nell'invio dei messaggi. La cartella “Posta in Uscita” potrebbe essere danneggiata, e i messaggi pianificati potrebbero non essere stati inviati. Vedi https://blog.kamens.us/send-later/#outbox.",
+    "message": "Invia Dopo: Errore nell'invio dei messaggi. La cartella “Posta in Uscita” potrebbe essere danneggiata, e i messaggi pianificati potrebbero non essere stati inviati. Vedi https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Invia Dopo: Errore nella copia dei messaggi pianificati nella cartella “Posta in Uscita” per l'invio (codice $1). Invia Dopo è stato disattivato! Vedi https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "message": "Invia Dopo: Errore nella copia dei messaggi pianificati nella cartella “Posta in Uscita” per l'invio (codice $1). Invia Dopo è stato disattivato! Vedi https://extended-thunder.github.io/send-later/#outbox-copy-failure.",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Invia Dopo: Errore nella copia del messaggio periodico nella cartella “Bozze” (codice $1). Invia Dopo è stato disattivato! Vedi https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "message": "Invia Dopo: Errore nella copia del messaggio periodico nella cartella “Bozze” (codice $1). Invia Dopo è stato disattivato! Vedi https://extended-thunder.github.io/send-later/#drafts-copy-failure.",
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "Invia Dopo: La cartella $1 potrebbe essere danneggiata. Per cortesia apri le sue proprietà e seleziona la voce Ripara. Vedi https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "message": "Invia Dopo: La cartella $1 potrebbe essere danneggiata. Per cortesia apri le sue proprietà e seleziona la voce Ripara. Vedi https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
   "MessageResendError": {
-    "message": "Invia Dopo: Tentativo di inviare nuovamente un massaggio già inviato?! La tua cartella Posta in uscita o Bozze $1 è probabilmente danneggiata. Per cortesia riparale come descritto in https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "message": "Invia Dopo: Tentativo di inviare nuovamente un massaggio già inviato?! La tua cartella Posta in uscita o Bozze $1 è probabilmente danneggiata. Per cortesia riparale come descritto in https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "minutely": {
@@ -948,7 +948,7 @@
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// Benvenuti in editor funzione Invia Dopo!\n// \n// L'editor consente di creare complesse funzioni JavaScript\n// attuazione messaggio logica di pianificazione che può essere\n// associato con pulsanti di scelta rapida o selezionato nella\n// finestra di dialogo Invia Dopo.\n//   \n// Come si può vedere sopra, quando viene chiamata una funzione di\n// programmazione, sarà dato tre argomenti:\n//   \n// * \"specname\" è necessario se si desidera questa funzione si\n//   ripetono (Vedi sotto)\n// \n// * \"prev\" è il precedente programma invia ora, se questa è una\n//   ricorrente chiamata\n// \n// * \"args\" è gli argomenti aggiuntivi restituiti dalla chiamata\n//   precedente se questo è un'invocazione ricorrente\n//\n// necessario che il codice impostare le variabili \"next\",\n// \"nextspec\", e \"nextargs\" come segue:\n//\n// * \"next\" è il numero di minuti in futuro o un oggetto data che\n//   indica quando deve essere inviato il messaggio.\n// \n// * \"nextspec\" è una specifica ricorrenza, se questo è destinato a\n//   essere un ricorrenti messaggio (vedere\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). Se non si\n//   imposta questo, allora il messaggio verrà inviato solo una\n//   volta. Nota: se si desidera che il vostro funzione per essere\n//   chiamato nuovamente per la ricorrenza, do:\n//   \n//   nextspec = \"function \" + specname;\n//   \n// * \"nextargs\" è una matrice di argomenti che si desidera essere\n//   passati nel successivo chiamata della funzione come \"args\".\n//   \n// Mentre si lavora sulla tua funzione, è possibile testarla\n// compilando i valori per \"prev\" e \"args\" in caselle di testo qui\n// sotto e quindi facendo clic su \"Esegui\" per eseguire la funzione e\n// vedere i risultati.\n//   \n// Non ci sono due funzioni di esempio pre-configurati,\n// \"BusinessHours\" e \"DaysInARow\", che può guardare e giocare con per\n// saperne di più.  Questa funzione di \"ReadMeFirst\" appena fa sì che\n// il messaggio venga inviato intorno ora, via la riga seguente.\n\n next = new Date();",
+    "message": "// Benvenuti in editor funzione Invia Dopo!\n// \n// L'editor consente di creare complesse funzioni JavaScript\n// attuazione messaggio logica di pianificazione che può essere\n// associato con pulsanti di scelta rapida o selezionato nella\n// finestra di dialogo Invia Dopo.\n//   \n// Come si può vedere sopra, quando viene chiamata una funzione di\n// programmazione, sarà dato tre argomenti:\n//   \n// * \"specname\" è necessario se si desidera questa funzione si\n//   ripetono (Vedi sotto)\n// \n// * \"prev\" è il precedente programma invia ora, se questa è una\n//   ricorrente chiamata\n// \n// * \"args\" è gli argomenti aggiuntivi restituiti dalla chiamata\n//   precedente se questo è un'invocazione ricorrente\n//\n// necessario che il codice impostare le variabili \"next\",\n// \"nextspec\", e \"nextargs\" come segue:\n//\n// * \"next\" è il numero di minuti in futuro o un oggetto data che\n//   indica quando deve essere inviato il messaggio.\n// \n// * \"nextspec\" è una specifica ricorrenza, se questo è destinato a\n//   essere un ricorrenti messaggio (vedere\n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence). Se non si\n//   imposta questo, allora il messaggio verrà inviato solo una\n//   volta. Nota: se si desidera che il vostro funzione per essere\n//   chiamato nuovamente per la ricorrenza, do:\n//   \n//   nextspec = \"function \" + specname;\n//   \n// * \"nextargs\" è una matrice di argomenti che si desidera essere\n//   passati nel successivo chiamata della funzione come \"args\".\n//   \n// Mentre si lavora sulla tua funzione, è possibile testarla\n// compilando i valori per \"prev\" e \"args\" in caselle di testo qui\n// sotto e quindi facendo clic su \"Esegui\" per eseguire la funzione e\n// vedere i risultati.\n//   \n// Non ci sono due funzioni di esempio pre-configurati,\n// \"BusinessHours\" e \"DaysInARow\", che può guardare e giocare con per\n// saperne di più.  Questa funzione di \"ReadMeFirst\" appena fa sì che\n// il messaggio venga inviato intorno ora, via la riga seguente.\n\n next = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {
