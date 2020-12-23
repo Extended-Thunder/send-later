@@ -668,23 +668,23 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Send senere: Feil ved sending av usendte meldinger. Utboksen din kan være skadet, og dine planlagte meldinger har kanskje ikke blitt sendt. Se https://blog.kamens.us/send-later/#outbox.",
+    "message": "Send senere: Feil ved sending av usendte meldinger. Utboksen din kan være skadet, og dine planlagte meldinger har kanskje ikke blitt sendt. Se https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Send senere: Feil under kopiering av planlagt melding til utboksen for levering (kode $1). Send senere er deaktivert! Se https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "message": "Send senere: Feil under kopiering av planlagt melding til utboksen for levering (kode $1). Send senere er deaktivert! Se https://extended-thunder.github.io/send-later/#outbox-copy-failure.",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Send senere: Feil under kopiering av gjentakende melding til utboksen for levering (kode $1). Send senere er deaktivert! Se https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "message": "Send senere: Feil under kopiering av gjentakende melding til utboksen for levering (kode $1). Send senere er deaktivert! Se https://extended-thunder.github.io/send-later/#drafts-copy-failure.",
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "Send senere: Mappen $1 kan være skadet. Åpne egenskapene dens og reparer den. Se https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "message": "Send senere: Mappen $1 kan være skadet. Åpne egenskapene dens og reparer den. Se https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
   "MessageResendError": {
-    "message": "Send senere: Forsøker du å sende en allerede sendt melding?! Utboks- eller Kladden-mappen din $1 er sannsynligvis skadet. Vennligst reparer dem som beskrevet i https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "message": "Send senere: Forsøker du å sende en allerede sendt melding?! Utboks- eller Kladden-mappen din $1 er sannsynligvis skadet. Vennligst reparer dem som beskrevet i https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "minutely": {
@@ -948,7 +948,7 @@
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "Velkommen til funksjon redigeringsprogrammet Send senere!\n/ /\n/ / Editor lar deg lage JavaScript-funksjoner implementere komplekse\n/ / melding planlegging logikk som kan knyttes til snarveien tastene eller\n/ / valgt i dialogboksen Send senere.\n/ /\n/ / Som du kan se ovenfor, når en planlegging funksjonen kalles det får\n/ / tre argumenter:\n/ / * \"specname\" kreves hvis du vil at denne funksjonen skal gjentas (se nedenfor)\n/ / * \"forrige\" er den forrige Planlagt sendetidspunkt, hvis dette er en gjentakende\n/ / aktivering\n/ / * \"argumenter\" er ekstra argumentene returneres av tidligere anrop Hvis denne\n/ / er en regelmessig anrop\n/ /\n/ / Koden må angi variablene \"neste\", \" nextspec\", og\n/ /\"nextargs\"som følger:\n/ /\n/ / *\"neste\"er antall minutter i fremtiden eller en dato objekt\n/ / som angir når meldingen skal sendes.\n/ / * \"nextspec\" er en gjentakelse spesifikasjon Hvis dette er ment å være\n/ / regelmessig melding (se\n/ / https://blog.kamens.us/send-later/#dynamic-recurrence). Hvis du ikke angir\n/ / dette, så meldingen sendes bare én gang. Merk: Hvis du ønsker din\n/ / funksjonen kalles igjen for regelmessighet gjør:\n/ / nextspec = \"funksjon\" + specname;\n/ / * \"nextargs\" er en matrise av argumentene som skal sendes til de neste\n/ / aktivering av funksjonen som \"argumenter\".\n/ /\n/ / Mens du arbeider med funksjonen, kan du teste den ved å fylle ut verdiene\n/ / for \"forrige\" og \"argumenter\" i tekstboksene nedenfor og deretter klikke \" Kjøre\"\n/ / utfører funksjonen og se resultatene.\n/ /\n/ / Er det to pre-konfigurerte utvalgsfunksjoner, \"BusinessHours\" og\n/ / \"DaysInARow\", som du kan se på og spille med å lære mer.\n/ /\n/ / Denne \"ReadMeFirst\"-funksjonen bare forårsaker meldingen sendes rundt nå,\n/ / via følgende linje.\n= neste nye Date();",
+    "message": "Velkommen til funksjon redigeringsprogrammet Send senere!\n/ /\n/ / Editor lar deg lage JavaScript-funksjoner implementere komplekse\n/ / melding planlegging logikk som kan knyttes til snarveien tastene eller\n/ / valgt i dialogboksen Send senere.\n/ /\n/ / Som du kan se ovenfor, når en planlegging funksjonen kalles det får\n/ / tre argumenter:\n/ / * \"specname\" kreves hvis du vil at denne funksjonen skal gjentas (se nedenfor)\n/ / * \"forrige\" er den forrige Planlagt sendetidspunkt, hvis dette er en gjentakende\n/ / aktivering\n/ / * \"argumenter\" er ekstra argumentene returneres av tidligere anrop Hvis denne\n/ / er en regelmessig anrop\n/ /\n/ / Koden må angi variablene \"neste\", \" nextspec\", og\n/ /\"nextargs\"som følger:\n/ /\n/ / *\"neste\"er antall minutter i fremtiden eller en dato objekt\n/ / som angir når meldingen skal sendes.\n/ / * \"nextspec\" er en gjentakelse spesifikasjon Hvis dette er ment å være\n/ / regelmessig melding (se\n/ / https://extended-thunder.github.io/send-later/#dynamic-recurrence). Hvis du ikke angir\n/ / dette, så meldingen sendes bare én gang. Merk: Hvis du ønsker din\n/ / funksjonen kalles igjen for regelmessighet gjør:\n/ / nextspec = \"funksjon\" + specname;\n/ / * \"nextargs\" er en matrise av argumentene som skal sendes til de neste\n/ / aktivering av funksjonen som \"argumenter\".\n/ /\n/ / Mens du arbeider med funksjonen, kan du teste den ved å fylle ut verdiene\n/ / for \"forrige\" og \"argumenter\" i tekstboksene nedenfor og deretter klikke \" Kjøre\"\n/ / utfører funksjonen og se resultatene.\n/ /\n/ / Er det to pre-konfigurerte utvalgsfunksjoner, \"BusinessHours\" og\n/ / \"DaysInARow\", som du kan se på og spille med å lære mer.\n/ /\n/ / Denne \"ReadMeFirst\"-funksjonen bare forårsaker meldingen sendes rundt nå,\n/ / via følgende linje.\n= neste nye Date();",
     "description": ""
   },
   "EditorReadMeHelp": {
