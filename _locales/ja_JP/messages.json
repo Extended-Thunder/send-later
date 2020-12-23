@@ -668,23 +668,23 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Send Later: 未送信のメッセージを送信する際にエラーが発生しました。[送信トレイ] が破損しているため、予定していたメッセージを送信できなかった可能性があります。https://blog.kamens.us/send-later/#outbox を参照してください。",
+    "message": "Send Later: 未送信のメッセージを送信する際にエラーが発生しました。[送信トレイ] が破損しているため、予定していたメッセージを送信できなかった可能性があります。https://extended-thunder.github.io/send-later/#corrupt-outbox を参照してください。",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Send Later: 送信予定のメッセージを [送信トレイ] へコピーする際に、エラーが発生しました (コード $1)。Send Later は機能を停止しています！https://blog.kamens.us/send-later/#outbox-copy-failure を参照してください。",
+    "message": "Send Later: 送信予定のメッセージを [送信トレイ] へコピーする際に、エラーが発生しました (コード $1)。Send Later は機能を停止しています！https://extended-thunder.github.io/send-later/#outbox-copy-failure を参照してください。",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Send Later: 定期的なメッセージを [下書き] フォルダへコピーする際に、エラーが発生しました (コード $1)。Send Later は機能を停止しています！https://blog.kamens.us/send-later/#drafts-copy-failure を参照してください。",
+    "message": "Send Later: 定期的なメッセージを [下書き] フォルダへコピーする際に、エラーが発生しました (コード $1)。Send Later は機能を停止しています！https://extended-thunder.github.io/send-later/#drafts-copy-failure を参照してください。",
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "Send Later: フォルダ $1 は壊れている可能性があります。プロパティを開き、修復してください。https://blog.kamens.us/send-later/#corrupt-drafts-error を参照してください。",
+    "message": "Send Later: フォルダ $1 は壊れている可能性があります。プロパティを開き、修復してください。https://extended-thunder.github.io/send-later/#corrupt-drafts-error を参照してください。",
     "description": ""
   },
   "MessageResendError": {
-    "message": "Send Later: すでに送信済みのメッセージを再送信しようとしていませんか？！ [送信トレイ] か [下書き] フォルダ $1 が壊れている可能性があります。修復するには https://blog.kamens.us/send-later/#corrupt-outbox を参照してください。",
+    "message": "Send Later: すでに送信済みのメッセージを再送信しようとしていませんか？！ [送信トレイ] か [下書き] フォルダ $1 が壊れている可能性があります。修復するには https://extended-thunder.github.io/send-later/#corrupt-outbox を参照してください。",
     "description": ""
   },
   "minutely": {

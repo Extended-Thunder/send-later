@@ -668,23 +668,23 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Odeslat Později: Chyba při odesílání zprávy k odeslání. Složka „Pošta k odeslání“ může být poškozena a zprávy naplánované pro odeslání nemusely být odeslány. Více na https://blog.kamens.us/send-later/#outbox.",
+    "message": "Odeslat Později: Chyba při odesílání zprávy k odeslání. Složka „Pošta k odeslání“ může být poškozena a zprávy naplánované pro odeslání nemusely být odeslány. Více na https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Odeslat Později: Chyba při kopírování naplánované zprávy do složky Pošta k odeslání pro odeslání (kód $1). Odeslat Později bylo zakázáno! Viz https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "message": "Odeslat Později: Chyba při kopírování naplánované zprávy do složky Pošta k odeslání pro odeslání (kód $1). Odeslat Později bylo zakázáno! Viz https://extended-thunder.github.io/send-later/#outbox-copy-failure.",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Odeslat Později: Chyba při kopírování opakované zprávy do složky Koncepty (kód $1). Odeslat Později bylo zakázáno! Viz https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "message": "Odeslat Později: Chyba při kopírování opakované zprávy do složky Koncepty (kód $1). Odeslat Později bylo zakázáno! Viz https://extended-thunder.github.io/send-later/#outbox-copy-failure.",
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "Odeslat Později: složka $1 může být poškozena. Otevřete její vlastnosti a opravte ji. Viz https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "message": "Odeslat Později: složka $1 může být poškozena. Otevřete její vlastnosti a opravte ji. Viz https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
   "MessageResendError": {
-    "message": "Odeslat Později: Pokus o opakované odeslání již odeslané zprávy? Vaše složka „$1“ v „Poště k odeslání“ nebo „Konceptech“ je pravděpodobně poškozená. Opravte, prosím, složku, jak je popsáno zde - https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "message": "Odeslat Později: Pokus o opakované odeslání již odeslané zprávy? Vaše složka „$1“ v „Poště k odeslání“ nebo „Konceptech“ je pravděpodobně poškozená. Opravte, prosím, složku, jak je popsáno zde - https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "minutely": {
@@ -948,7 +948,7 @@
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// Vítejte v editoru funkcí pro „Odeslat Později“! //\n//\n// Pomocí tohoto editoru můžete vytvářet JavaSkriptové funkce obsahující\n// komplexní logiku plánování zpráv, které můžou být připojené k tlačítkovým\n// předvolbám, nebo vybrané v „Odeslat Později“ dialogu.\n//\n// Jak můžete vidět výše, když je plánovací funkce vyvolána, bude mít tři \n// argumenty:\n// * \"specname\" se používá, pokud chcete, aby funkce vytvořila opakování\n// (více níže)\n// * \"prev\"  je předchozí naplánovaný čas odeslání, pokud se jedná o \n// opakující se vyvolání\n// * \"args\" je extra argument vrácený předchozím vyvoláním, pokud se jedná\n// o opakující se vyvolání\n//\n// Ve vašem kódu musí být proměnné \"next\", \"nextspec\", a\n// \"nextargs\" určené následovně:\n//\n// * \"next\" je buď počet minut v budoucnosti, nebo objekt Date indikující,\n// kdy by měla být zpráva odeslána\n// * \"nextspec\" je specifikace opakování, pokud se má jednat o opakující \n// se zprávu (podívejte se na\n// https://blog.kamens.us/send-later/#dynamic-recurrence). Pokud toto\n// nenastavíte, bude zpráva odeslaná pouze jednou. Pozn.: Pokud chcete,\n// aby byla vaše funkce vyvolaná znovu pro opakování zadejte tohle:\n// nextspec = \"funkce \" + specname;\n// * \"nextargs\" je pole argumentů, které chcete předat do dalšího\n// vyvolání funkce jako \"args\".\n//\n// Během práce na vaší funkci ji můžete otestovat vyplněním hodnot\n// pro  \"prev\" a \"args\" v textových polích níže a pak kliknutím na „Spustit“\n// pro spuštění funkce a zobrazení výsledků.\n//\n// Nahoře najdete dvě předdefinované ukázkové funkce\n// „BusinessHours“ (Úřední hodiny) a „DaysInARow“ (Dny po sobě), na které\n// se můžete podívat a vyzkoušet si je, abyste se o nich dozvěděli víc.\n//\n// Tato funkce „ReadMeFirst“ umí jenom odeslat zprávu nyní,\n// jak je nadefinováno na následujícím řádku:\nnext = new Date();",
+    "message": "// Vítejte v editoru funkcí pro „Odeslat Později“! //\n//\n// Pomocí tohoto editoru můžete vytvářet JavaSkriptové funkce obsahující\n// komplexní logiku plánování zpráv, které můžou být připojené k tlačítkovým\n// předvolbám, nebo vybrané v „Odeslat Později“ dialogu.\n//\n// Jak můžete vidět výše, když je plánovací funkce vyvolána, bude mít tři \n// argumenty:\n// * \"specname\" se používá, pokud chcete, aby funkce vytvořila opakování\n// (více níže)\n// * \"prev\"  je předchozí naplánovaný čas odeslání, pokud se jedná o \n// opakující se vyvolání\n// * \"args\" je extra argument vrácený předchozím vyvoláním, pokud se jedná\n// o opakující se vyvolání\n//\n// Ve vašem kódu musí být proměnné \"next\", \"nextspec\", a\n// \"nextargs\" určené následovně:\n//\n// * \"next\" je buď počet minut v budoucnosti, nebo objekt Date indikující,\n// kdy by měla být zpráva odeslána\n// * \"nextspec\" je specifikace opakování, pokud se má jednat o opakující \n// se zprávu (podívejte se na\n// https://extended-thunder.github.io/send-later/#dynamic-recurrence). Pokud toto\n// nenastavíte, bude zpráva odeslaná pouze jednou. Pozn.: Pokud chcete,\n// aby byla vaše funkce vyvolaná znovu pro opakování zadejte tohle:\n// nextspec = \"funkce \" + specname;\n// * \"nextargs\" je pole argumentů, které chcete předat do dalšího\n// vyvolání funkce jako \"args\".\n//\n// Během práce na vaší funkci ji můžete otestovat vyplněním hodnot\n// pro  \"prev\" a \"args\" v textových polích níže a pak kliknutím na „Spustit“\n// pro spuštění funkce a zobrazení výsledků.\n//\n// Nahoře najdete dvě předdefinované ukázkové funkce\n// „BusinessHours“ (Úřední hodiny) a „DaysInARow“ (Dny po sobě), na které\n// se můžete podívat a vyzkoušet si je, abyste se o nich dozvěděli víc.\n//\n// Tato funkce „ReadMeFirst“ umí jenom odeslat zprávu nyní,\n// jak je nadefinováno na následujícím řádku:\nnext = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {

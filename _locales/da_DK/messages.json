@@ -540,23 +540,23 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Sende senere: Fejl ved afsendelse af usendte beskeder. Din udbakke kan være korrumperet, og dine planlagte beskeder er muligvis ikke blevet sendt. Se https://blog.kamens.us/send-later/#outbox.",
+    "message": "Sende senere: Fejl ved afsendelse af usendte beskeder. Din udbakke kan være korrumperet, og dine planlagte beskeder er muligvis ikke blevet sendt. Se https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Sende senere: Fejl ved kopiering af planlagt besked til udbakke for levering (kode $1). Sende senere er blevet deaktiveret! Se https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "message": "Sende senere: Fejl ved kopiering af planlagt besked til udbakke for levering (kode $1). Sende senere er blevet deaktiveret! Se https://extended-thunder.github.io/send-later/#outbox-copy-failure.",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Sende senere: Fejl ved kopiering af tilbagevendende besked til Kladdemappe (kode $1). Sende senere er blevet deaktiveret! Se https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "message": "Sende senere: Fejl ved kopiering af tilbagevendende besked til Kladdemappe (kode $1). Sende senere er blevet deaktiveret! Se https://extended-thunder.github.io/send-later/#drafts-copy-failure.",
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "Sende senere: Mappe $1 kan være korrupt. Åbn venligst dens egenskaber og reparer den. Se https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "message": "Sende senere: Mappe $1 kan være korrupt. Åbn venligst dens egenskaber og reparer den. Se https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
   "MessageResendError": {
-    "message": "Sende senere: Forsøg på at gensende allerede sendt besked?! Din udbakke eller kladdemappe $1 er sandsynligvis korrupt. Reparér dem som beskrevet på https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "message": "Sende senere: Forsøg på at gensende allerede sendt besked?! Din udbakke eller kladdemappe $1 er sandsynligvis korrupt. Reparér dem som beskrevet på https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "minutely": {

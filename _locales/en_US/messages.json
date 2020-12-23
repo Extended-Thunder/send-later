@@ -684,23 +684,23 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Send Later: Error sending unsent messages. Your Outbox may be corrupt, and your scheduled messages may not have been sent. See https://blog.kamens.us/send-later/#outbox.",
+    "message": "Send Later: Error sending unsent messages. Your Outbox may be corrupt, and your scheduled messages may not have been sent. See https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Send Later: Error copying scheduled message to Outbox for delivery (code $1). Send Later has been disabled! See https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "message": "Send Later: Error copying scheduled message to Outbox for delivery (code $1). Send Later has been disabled! See https://extended-thunder.github.io/send-later/#outbox-copy-failure.",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Send Later: Error copying recurring message into Drafts folder (code $1). Send Later has been disabled! See https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "message": "Send Later: Error copying recurring message into Drafts folder (code $1). Send Later has been disabled! See https://extended-thunder.github.io/send-later/#drafts-copy-failure.",
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "Send Later: Folder $1 may be corrupt. Please open its properties and repair it. See https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "message": "Send Later: Folder $1 may be corrupt. Please open its properties and repair it. See https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
   "MessageResendError": {
-    "message": "Send Later: Attempt to resend already sent message?! Your Outbox or Drafts folder $1 is probably corrupt. Please repair them as described at https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "message": "Send Later: Attempt to resend already sent message?! Your Outbox or Drafts folder $1 is probably corrupt. Please repair them as described at https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "minutely": {
@@ -964,7 +964,7 @@
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// Welcome to the Send Later function editor!\n//\n// The editor allows you to create JavaScript functions implementing complex\n// message scheduling logic which can be associated with shortcut buttons or\n// selected in the Send Later dialog.\n//\n// As you can see above, when a scheduling function is called, it will be given\n// three arguments:\n// * \"specname\" is needed if you want this function to recur (see below)\n// * \"prev\" is the previous scheduled send time, if this is a recurring\n//   invocation\n// * \"args\" is the extra arguments returned by the previous invocation if this\n//   is a recurring invocation\n//\n// Your code needs to set the variables \"next\", \"nextspec\", and\n// \"nextargs\" as follows:\n//\n// * \"next\" is either the number of minutes in the future or a Date object\n//   indicating when the message should be sent.\n// * \"nextspec\" is a recurrence specification if this is intended to be a\n//   recurring message (see\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). If you don't set\n//   this, then the message will only be sent once. Note: if you want your\n//   function to be called again for recurrence, do:\n//     nextspec = \"function \" + specname;\n// * \"nextargs\" is an array of arguments you want to be passed into the next\n//   invocation of the function as \"args\".\n//\n// While you are working on your function, you can test it by filling in values\n// for \"prev\" and \"args\" in the Text boxes below and then clicking \"Execute\" to\n// execute the function and see the results.\n//\n// There are two pre-configured sample functions, \"BusinessHours\" and\n// \"DaysInARow\", which you can look at and play with to learn more.\n//\n// This \"ReadMeFirst\" function just causes the message to be sent around now,\n// via the following line.\nnext = new Date();",
+    "message": "// Welcome to the Send Later function editor!\n//\n// The editor allows you to create JavaScript functions implementing complex\n// message scheduling logic which can be associated with shortcut buttons or\n// selected in the Send Later dialog.\n//\n// As you can see above, when a scheduling function is called, it will be given\n// three arguments:\n// * \"specname\" is needed if you want this function to recur (see below)\n// * \"prev\" is the previous scheduled send time, if this is a recurring\n//   invocation\n// * \"args\" is the extra arguments returned by the previous invocation if this\n//   is a recurring invocation\n//\n// Your code needs to set the variables \"next\", \"nextspec\", and\n// \"nextargs\" as follows:\n//\n// * \"next\" is either the number of minutes in the future or a Date object\n//   indicating when the message should be sent.\n// * \"nextspec\" is a recurrence specification if this is intended to be a\n//   recurring message (see\n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence). If you don't set\n//   this, then the message will only be sent once. Note: if you want your\n//   function to be called again for recurrence, do:\n//     nextspec = \"function \" + specname;\n// * \"nextargs\" is an array of arguments you want to be passed into the next\n//   invocation of the function as \"args\".\n//\n// While you are working on your function, you can test it by filling in values\n// for \"prev\" and \"args\" in the Text boxes below and then clicking \"Execute\" to\n// execute the function and see the results.\n//\n// There are two pre-configured sample functions, \"BusinessHours\" and\n// \"DaysInARow\", which you can look at and play with to learn more.\n//\n// This \"ReadMeFirst\" function just causes the message to be sent around now,\n// via the following line.\nnext = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {

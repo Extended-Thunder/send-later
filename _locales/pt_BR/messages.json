@@ -668,23 +668,23 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Enviar mais tarde: Erro ao enviar mensagens não enviadas. Caixa de saída pode estar corrompida e suas mensagens agendadas não podem ser enviadas. Veja https://blog.kamens.us/send-later/#outbox.",
+    "message": "Enviar mais tarde: Erro ao enviar mensagens não enviadas. Caixa de saída pode estar corrompida e suas mensagens agendadas não podem ser enviadas. Veja https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Enviar mais tarde: Erro ao copiar mensagem programada da Caixa de saída para o envio (código $1). Enviar mais tarde foi desativado! Veja https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "message": "Enviar mais tarde: Erro ao copiar mensagem programada da Caixa de saída para o envio (código $1). Enviar mais tarde foi desativado! Veja https://extended-thunder.github.io/send-later/#outbox-copy-failure.",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Enviar mais tarde: Erro ao copiar mensagem recorrente da pasta Rascunhos (código $1). Enviar mais tarde foi desativado! Veja https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "message": "Enviar mais tarde: Erro ao copiar mensagem recorrente da pasta Rascunhos (código $1). Enviar mais tarde foi desativado! Veja https://extended-thunder.github.io/send-later/#drafts-copy-failure.",
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "Enviar mais tarde: A pasta $1 pode está corrompida. Por favor, abra suas propriedades e corrija. Veja https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "message": "Enviar mais tarde: A pasta $1 pode está corrompida. Por favor, abra suas propriedades e corrija. Veja https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
   "MessageResendError": {
-    "message": "Enviar mais tarde: Tentativa de reenvio de mensagem já enviada?! Sua caixa de saída ou rascunhos $1 está provavelmente corrompida. Por favor, corrija como descrito em https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "message": "Enviar mais tarde: Tentativa de reenvio de mensagem já enviada?! Sua caixa de saída ou rascunhos $1 está provavelmente corrompida. Por favor, corrija como descrito em https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "minutely": {
@@ -948,7 +948,7 @@
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// Benvindo(a) ao editor de função do Enviar mais tarde!\n// \n// O editor permite que você crie funções JavaScript para\n// implementação de complexas mensagens de lógica de agendamento, as\n// quais podem ser associadas a teclas de atalho ou selecionadas na\n// caixa de diálogo Enviar mais tarde.\n// \n// Como você pode ver acima, quando uma função de agendamento é\n// chamada, serão dados três argumentos:\n// \n// * \"specname\" é necessário se você quiser uma função recorrente\n//   (veja abaixo)\n//   \n// * \"prev\" é a data agendada de envio anterior, caso esta seja uma\n//   chamada recorrente\n// \n// * \"args\" são os argumentos extras devolvidos pela chamada prévia se\n//    esta for uma chamada recorrente\n// \n// Seu código precisa definir as variáveis \"next\", \"nextspec\", e\n// \"nextargs\" da seguinte forma:\n// \n// * \"next\" pode ser tanto o número de minutos no futuro como um\n//   objeto Date indicando quando a mensagem deverá ser enviada.\n// \n// * \"nextspec\" é uma especificação de recorrência caso se deseje que\n//   esta mensagem seja recorrente (veja\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). Se você\n//   não configurar isto, então a mensagem será enviada apenas uma\n//   vez. Nota: caso queira que sua função seja chamada de novo por\n//   recorrência, faça:\n// \n//   nextspec = \"function \" + specname;\n// \n// * \"nextargs\" é um conjunto de argumentos que se deseja passar na\n//   próxima chamada da função como \"args\".\n// \n// Enquanto você estiver trabalhando na sua função, você pode testá-la\n// preenchendo valores para \"prev\" e \"args\" nas caixas de texto abaixo\n// e então clicar \"Execute\" para executar a função e ver os\n// resultados.\n// \n// Existem duas funções de amostra pré-configuradas, \"BusinessHours\" e\n// \"DaysInARow\", as quais você pode olhar e experimentar para aprender\n// mais.\n// \n// Esta função \"ReadMeFirst\" apenas faz a mensagem ser enviada\n// imediatamente, por meio da seguinte linha.\n\nnext = new Date();",
+    "message": "// Benvindo(a) ao editor de função do Enviar mais tarde!\n// \n// O editor permite que você crie funções JavaScript para\n// implementação de complexas mensagens de lógica de agendamento, as\n// quais podem ser associadas a teclas de atalho ou selecionadas na\n// caixa de diálogo Enviar mais tarde.\n// \n// Como você pode ver acima, quando uma função de agendamento é\n// chamada, serão dados três argumentos:\n// \n// * \"specname\" é necessário se você quiser uma função recorrente\n//   (veja abaixo)\n//   \n// * \"prev\" é a data agendada de envio anterior, caso esta seja uma\n//   chamada recorrente\n// \n// * \"args\" são os argumentos extras devolvidos pela chamada prévia se\n//    esta for uma chamada recorrente\n// \n// Seu código precisa definir as variáveis \"next\", \"nextspec\", e\n// \"nextargs\" da seguinte forma:\n// \n// * \"next\" pode ser tanto o número de minutos no futuro como um\n//   objeto Date indicando quando a mensagem deverá ser enviada.\n// \n// * \"nextspec\" é uma especificação de recorrência caso se deseje que\n//   esta mensagem seja recorrente (veja\n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence). Se você\n//   não configurar isto, então a mensagem será enviada apenas uma\n//   vez. Nota: caso queira que sua função seja chamada de novo por\n//   recorrência, faça:\n// \n//   nextspec = \"function \" + specname;\n// \n// * \"nextargs\" é um conjunto de argumentos que se deseja passar na\n//   próxima chamada da função como \"args\".\n// \n// Enquanto você estiver trabalhando na sua função, você pode testá-la\n// preenchendo valores para \"prev\" e \"args\" nas caixas de texto abaixo\n// e então clicar \"Execute\" para executar a função e ver os\n// resultados.\n// \n// Existem duas funções de amostra pré-configuradas, \"BusinessHours\" e\n// \"DaysInARow\", as quais você pode olhar e experimentar para aprender\n// mais.\n// \n// Esta função \"ReadMeFirst\" apenas faz a mensagem ser enviada\n// imediatamente, por meio da seguinte linha.\n\nnext = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {
