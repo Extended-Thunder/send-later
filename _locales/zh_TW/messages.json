@@ -684,23 +684,23 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "延期發信: 發送未發送郵件時出錯。您的寄件匣可能已損壞，預定要發送的郵件可能未被送出。參看 https://blog.kamens.us/send-later/#outbox",
+    "message": "延期發信: 發送未發送郵件時出錯。您的寄件匣可能已損壞，預定要發送的郵件可能未被送出。參看 https://extended-thunder.github.io/send-later/#corrupt-outbox",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "延期發信: 複製未發送消息到寄件匣時出錯（錯誤代碼 $1）。延期發信已被停用！參看 https://blog.kamens.us/send-later/#outbox-copy-failure",
+    "message": "延期發信: 複製未發送消息到寄件匣時出錯（錯誤代碼 $1）。延期發信已被停用！參看 https://extended-thunder.github.io/send-later/#outbox-copy-failure",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "延期發信: 複製週期性消息到草稿箱時出錯（錯誤代碼 $1）。延期發信已被停用！參看 https://blog.kamens.us/send-later/#drafts-copy-failure",
+    "message": "延期發信: 複製週期性消息到草稿箱時出錯（錯誤代碼 $1）。延期發信已被停用！參看 https://extended-thunder.github.io/send-later/#drafts-copy-failure",
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "延期發信: 資料夾 $1 可能已損壞。請打開其屬性並修復它。參看 https://blog.kamens.us/send-later/#corrupt-drafts-error",
+    "message": "延期發信: 資料夾 $1 可能已損壞。請打開其屬性並修復它。參看 https://extended-thunder.github.io/send-later/#corrupt-drafts-error",
     "description": ""
   },
   "MessageResendError": {
-    "message": "延期發信: 嘗試重新發送已經發出的信件？！發件箱或草稿文件夾$1可能已損壞。請根據https://blog.kamens.us/send-later/#corrupt-outbox 的說明來修復。",
+    "message": "延期發信: 嘗試重新發送已經發出的信件？！發件箱或草稿文件夾$1可能已損壞。請根據https://extended-thunder.github.io/send-later/#corrupt-outbox 的說明來修復。",
     "description": ""
   },
   "minutely": {
@@ -964,7 +964,7 @@
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "/歡迎使用延期發信功能編輯器！\n//\n//這個編輯器讓您使用JavaScript函數，利用快捷按鈕\n//，以及延期發信對話框中的選擇，\n//建立複雜的郵件排程邏輯。\n//\n//如上所述，當調用調度函數時，它將被給予\n//三個參數：\n//如果您希望此函數重覆執行　（見下文），需要提供“*”specname“\n// *如果需要重覆執行，您需要提供“prev”，即之前的預定發送時間\n// *“args”是上一次調用返回的額外參數，如果這是一個排程調用\n//\n//你的編程需要如下般設置“next”，“nextspec”和\n//“nextargs”變數(variables)：\n//\n// *“next”是將來的分鐘數或Date對象(object)\n//，指示消息何時發送。\n// *“nextspec”是一個重複執行的規格(recurring specification)，用作執行\n//排程郵件（見\n// https://blog.kamens.us/send-later/#dynamic-recurrence）。如果你沒有提供\n//這個變數，那麼訊息只會被發送一次。注意：如果你想要\n//函數重複排程執行，請執行以下操作：\n// nextspec =“function”+ specname;\n// *“nextargs”是一組數組的參數，會被傳遞為下一個\n//排程函數調用的“args”參數。\n//\n//在編寫您的函數時，可以透過填寫以下的“prev”和“args”文本框\n//進行測試，單擊“Execute”\n//執行該函數並查看結果。\n//\n//這裡有兩個預先配置的示例函數“BusinessHours”和\n//“DaysInArow”，你可以參考及試用，以了解更多。\n//\n//這個“ReadMeFirst”函數只是通過以下編程，\n//令訊息即發送。\nnext = new Date（）;",
+    "message": "/歡迎使用延期發信功能編輯器！\n//\n//這個編輯器讓您使用JavaScript函數，利用快捷按鈕\n//，以及延期發信對話框中的選擇，\n//建立複雜的郵件排程邏輯。\n//\n//如上所述，當調用調度函數時，它將被給予\n//三個參數：\n//如果您希望此函數重覆執行　（見下文），需要提供“*”specname“\n// *如果需要重覆執行，您需要提供“prev”，即之前的預定發送時間\n// *“args”是上一次調用返回的額外參數，如果這是一個排程調用\n//\n//你的編程需要如下般設置“next”，“nextspec”和\n//“nextargs”變數(variables)：\n//\n// *“next”是將來的分鐘數或Date對象(object)\n//，指示消息何時發送。\n// *“nextspec”是一個重複執行的規格(recurring specification)，用作執行\n//排程郵件（見\n// https://extended-thunder.github.io/send-later/#dynamic-recurrence）。如果你沒有提供\n//這個變數，那麼訊息只會被發送一次。注意：如果你想要\n//函數重複排程執行，請執行以下操作：\n// nextspec =“function”+ specname;\n// *“nextargs”是一組數組的參數，會被傳遞為下一個\n//排程函數調用的“args”參數。\n//\n//在編寫您的函數時，可以透過填寫以下的“prev”和“args”文本框\n//進行測試，單擊“Execute”\n//執行該函數並查看結果。\n//\n//這裡有兩個預先配置的示例函數“BusinessHours”和\n//“DaysInArow”，你可以參考及試用，以了解更多。\n//\n//這個“ReadMeFirst”函數只是通過以下編程，\n//令訊息即發送。\nnext = new Date（）;",
     "description": ""
   },
   "EditorReadMeHelp": {

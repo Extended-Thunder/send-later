@@ -668,23 +668,23 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Küldés később: Hiba a nem küldött üzenetek küldése során. Előfordulhat, hogy a Kimenő üzenet sérült, és előfordulhat, hogy az ütemezett üzeneteket nem küldték el. Lásd: https://blog.kamens.us/send-later/#outbox.",
+    "message": "Küldés később: Hiba a nem küldött üzenetek küldése során. Előfordulhat, hogy a Kimenő üzenet sérült, és előfordulhat, hogy az ütemezett üzeneteket nem küldték el. Lásd: https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Küldés később: Hiba történt az ütemezett üzenet másolásakor a Kimenő mappába a szállításhoz (kód: $1). Küldés később le van tiltva! Lásd: https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "message": "Küldés később: Hiba történt az ütemezett üzenet másolásakor a Kimenő mappába a szállításhoz (kód: $1). Küldés később le van tiltva! Lásd: https://extended-thunder.github.io/send-later/#outbox-copy-failure.",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Küldés később: Hiba történt az ismétlődő üzenet másolásakor a Piszkozatok mappába (kód: $1). Küldés később le van tiltva! Lásd: https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "message": "Küldés később: Hiba történt az ismétlődő üzenet másolásakor a Piszkozatok mappába (kód: $1). Küldés később le van tiltva! Lásd: https://extended-thunder.github.io/send-later/#drafts-copy-failure.",
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "Küldés később: A(z) $1 mappa sérült lehet. Kérjük, nyissa meg a tulajdonságait és javítsa ki. Lásd: https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "message": "Küldés később: A(z) $1 mappa sérült lehet. Kérjük, nyissa meg a tulajdonságait és javítsa ki. Lásd: https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
   "MessageResendError": {
-    "message": "Küldés később: Megpróbál újra elküldeni a már elküldött üzenetet! A(z) $1 Kimenő vagy Piszkozatok mappa valószínűleg sérült. Kérjük, javítsa meg azokat a https://blog.kamens.us/send-later/#corrupt-outbox címen leírtak szerint.",
+    "message": "Küldés később: Megpróbál újra elküldeni a már elküldött üzenetet! A(z) $1 Kimenő vagy Piszkozatok mappa valószínűleg sérült. Kérjük, javítsa meg azokat a https://extended-thunder.github.io/send-later/#corrupt-outbox címen leírtak szerint.",
     "description": ""
   },
   "minutely": {
@@ -948,7 +948,7 @@
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// Üdvözöljük a Küldés később-függvényszerkesztőben!\n//\n// A szerkesztő lehetővé teszi, hogy olyan JavaScript függvényeket hozzon létre,\n// amelyek összetett üzenetütemezési folyamatokat valósítanak meg, amelyek a\n// parancsikonokkal társíthatók vagy a Küldés később párbeszédablakban választhatók ki.\n//\n// Amint a fentiekben látható, az ütemezési függvény hívásakor három érvet kap:\n// * \"specname\" szükséges ha ezt a függvényt szeretné megismételni (lásd alább)\n// * \"prev\" az előző ütemezett küldési idő, ha ez ismétlődő hívás\n// * \"args\" az előző meghívás által visszaadott további érvek, ha ez \n//   ismétlődő hívás\n//\n// A kódnak meg kell adnia a \"next\", \"nextspec\" és \"nextargs\" változókat a\n// következőképpen:\n//\n// * \"next\" a percek száma a jövőben, vagy a Dátum objektum, amely jelzi, \n//   hogy az üzenetet kell elküldeni.\n// * \"nextspec\" visszatérési részletes leírás, ha ez ismétlődő üzenet (lásd\n//   https://blog.kamens.us/send-later/#dynamic-recurrence). \n//   Ha ezt nem állítja be, akkor az üzenet csak egyszer kerül elküldésre.\n//   Megjegyzés: ha azt szeretné, hogy ismételten hívhassa a függvényt, tegye:\n//     nextspec = \"function \" + specname;\n// * \"nextargs\" olyan érvek tömbje, amelyeket az \"args\" függvény következő\n//   meghívására kíván átadni.\n//\n// Miközben dolgozik a függvényiekkel, vizsgálható azt az \"prev\" és az \"args\"\n// értékek kitöltésével az alábbi szövegdobozokban, majd a Végrehajtás gombra\n// kattintva a függvény végrehajtásához és az eredmények megtekintéséhez.\n//\n// Két előre beállított mintafüggvény van: \"BusinessHours\" és \"DaysInARow\",\n// amelyekkel meg lehet változtatni, hogy többet fedezzen fel.\n//\n// Ez a \"ReadMeFirst\" (olvass el először) függvény csak az üzenet továbbítását\n// teszi lehetővé most, a következő soron keresztül.\nnext = new Date();",
+    "message": "// Üdvözöljük a Küldés később-függvényszerkesztőben!\n//\n// A szerkesztő lehetővé teszi, hogy olyan JavaScript függvényeket hozzon létre,\n// amelyek összetett üzenetütemezési folyamatokat valósítanak meg, amelyek a\n// parancsikonokkal társíthatók vagy a Küldés később párbeszédablakban választhatók ki.\n//\n// Amint a fentiekben látható, az ütemezési függvény hívásakor három érvet kap:\n// * \"specname\" szükséges ha ezt a függvényt szeretné megismételni (lásd alább)\n// * \"prev\" az előző ütemezett küldési idő, ha ez ismétlődő hívás\n// * \"args\" az előző meghívás által visszaadott további érvek, ha ez \n//   ismétlődő hívás\n//\n// A kódnak meg kell adnia a \"next\", \"nextspec\" és \"nextargs\" változókat a\n// következőképpen:\n//\n// * \"next\" a percek száma a jövőben, vagy a Dátum objektum, amely jelzi, \n//   hogy az üzenetet kell elküldeni.\n// * \"nextspec\" visszatérési részletes leírás, ha ez ismétlődő üzenet (lásd\n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence). \n//   Ha ezt nem állítja be, akkor az üzenet csak egyszer kerül elküldésre.\n//   Megjegyzés: ha azt szeretné, hogy ismételten hívhassa a függvényt, tegye:\n//     nextspec = \"function \" + specname;\n// * \"nextargs\" olyan érvek tömbje, amelyeket az \"args\" függvény következő\n//   meghívására kíván átadni.\n//\n// Miközben dolgozik a függvényiekkel, vizsgálható azt az \"prev\" és az \"args\"\n// értékek kitöltésével az alábbi szövegdobozokban, majd a Végrehajtás gombra\n// kattintva a függvény végrehajtásához és az eredmények megtekintéséhez.\n//\n// Két előre beállított mintafüggvény van: \"BusinessHours\" és \"DaysInARow\",\n// amelyekkel meg lehet változtatni, hogy többet fedezzen fel.\n//\n// Ez a \"ReadMeFirst\" (olvass el először) függvény csak az üzenet továbbítását\n// teszi lehetővé most, a következő soron keresztül.\nnext = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {
