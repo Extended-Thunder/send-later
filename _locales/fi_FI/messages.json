@@ -668,23 +668,23 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Lähetä myöhemmin: Virhe lähettäessä lähettämättömiä viestejä. Lähtevät-kansiosi saattaa olla viallinen ja ajastamiasi viestejä ei välttämättä ole lähetetty. Katso https://blog.kamens.us/send-later/#outbox.",
+    "message": "Lähetä myöhemmin: Virhe lähettäessä lähettämättömiä viestejä. Lähtevät-kansiosi saattaa olla viallinen ja ajastamiasi viestejä ei välttämättä ole lähetetty. Katso https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Lähetä myöhemmin: Virhe kopioidessa ajastettua viestiä Lähtevät-kansioon lähetettäväksi (code $1). Lähetä myöhemmin -laajennus on poistettu käytöstä! Katso https://blog.kamens.us/send-later/#outbox-copy-failure.",
+    "message": "Lähetä myöhemmin: Virhe kopioidessa ajastettua viestiä Lähtevät-kansioon lähetettäväksi (code $1). Lähetä myöhemmin -laajennus on poistettu käytöstä! Katso https://extended-thunder.github.io/send-later/#outbox-copy-failure.",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Lähetä myöhemmin: Virhe kopioidessa toistuvaa viestiä Luonnokset-kansioon (code $1). Lähetä myöhemmin -laajennus on poistettu käytöstä! Katso https://blog.kamens.us/send-later/#drafts-copy-failure.",
+    "message": "Lähetä myöhemmin: Virhe kopioidessa toistuvaa viestiä Luonnokset-kansioon (code $1). Lähetä myöhemmin -laajennus on poistettu käytöstä! Katso https://extended-thunder.github.io/send-later/#drafts-copy-failure.",
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "Lähetä myöhemmin: Kansio $1 saattaa olla viallinen. Avaa kansion \"Ominaisuudet\" -välilehti ja käynnistä ”Korjaa kansio” -toiminto. Katso https://blog.kamens.us/send-later/#corrupt-drafts-error.",
+    "message": "Lähetä myöhemmin: Kansio $1 saattaa olla viallinen. Avaa kansion \"Ominaisuudet\" -välilehti ja käynnistä ”Korjaa kansio” -toiminto. Katso https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
   "MessageResendError": {
-    "message": "Lähetä myöhemmin: Yritätkö lähettää uudelleen jo kerran lähetetyn viestin?! \"Lähtevät\" tai \"Luonnokset\" $1 -kansiosi on luultavasti vialllinen. Korjaa vika linkissä kuvatulla tavalla: https://blog.kamens.us/send-later/#corrupt-outbox.",
+    "message": "Lähetä myöhemmin: Yritätkö lähettää uudelleen jo kerran lähetetyn viestin?! \"Lähtevät\" tai \"Luonnokset\" $1 -kansiosi on luultavasti vialllinen. Korjaa vika linkissä kuvatulla tavalla: https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "minutely": {
@@ -948,7 +948,7 @@
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// Tervetuloa Lähetä myöhemmin -funktioeditoriin!\n// \n// Editorin avulla voit luoda JavaScript-funktioita, joilla voi toteuttaa\n// mutkikasta sanomien ajastuslogiikkaa, joka voidaan liittää pikanäppäimiin tai\n// valita Lähetä myöhemmin -dialogista.\n// \n// Kuten voit nähdä yllä, kun ajastusfunktiota kutsutaan, se saa kolme\n// parametriä:\n// * \"specname\" on tarpeellinen jos haluat rekursiivisen funktio (katso alla)\n// * \"prev\" on edellinen ajastattu lähetysaika, mikäli on kyse rekursiivi-\n// toteutuksesta\n// * \"args\" ovat lisäparametrit, jotka aiempi kutsu palauttaa, mikäli\n//  tämä on rekursiivinen toteutus\n//\n// Aseta variaabelit \"next\", \"nextspec\" ja \"nextargs\" \n// ohjelmakoodissa seuraavasti:\n// \n// * \"next\" on joko minuuttien lukumäärä tulevaisuudessa tai päiväysobjekti\n// joka ilmaisee viestin halutun lähetyshetken.\n// \n// * \"nextspec\" on rekursiomääritys siltä varalta, että halutaan toistuva\n// sanoma (katso\n// http://blog.kamens.us/send-later/#dynamic-recurrence). Mikäli et aseta\n// tätä, sanoma lähetetään vain kerran. Huomaa, että jos haluat funktiotasi\n// kutsuttavan rekursiivisesti uudelleen, aseta:\n// nextspec = \"function \" + specname\n// * \"nextargs\" on parametrimatriisi, jonka haluat funktion argumementeiksi\n// \"args\" sitä seuraavan kerran kutsuttaessa.\n// \n// Kun työstät funktiotasi, voit testata sitä täyttämällä arvot \"prev\" ja \"args\"\n// alla oleviin tekstilaatikoihin ja napsauttamalla \"Aja\" \n// ajaaksesi funktion ja nähdäksesi tulokset.\n// \n// Tarjolla on kaksi valmista esimerkkifunktiota, \"BusinessHours\" ja\n// \"DaysInARow\", joihin voit tutustua ja testata oppiaksesi lisää.\n// \n// Tämä \"ReadMeFirst\" funktio ei tee muuta kuin lähettää sanoman näihin aikoihin\n// seuraavan rivin avulla.\nnext = new Date();",
+    "message": "// Tervetuloa Lähetä myöhemmin -funktioeditoriin!\n// \n// Editorin avulla voit luoda JavaScript-funktioita, joilla voi toteuttaa\n// mutkikasta sanomien ajastuslogiikkaa, joka voidaan liittää pikanäppäimiin tai\n// valita Lähetä myöhemmin -dialogista.\n// \n// Kuten voit nähdä yllä, kun ajastusfunktiota kutsutaan, se saa kolme\n// parametriä:\n// * \"specname\" on tarpeellinen jos haluat rekursiivisen funktio (katso alla)\n// * \"prev\" on edellinen ajastattu lähetysaika, mikäli on kyse rekursiivi-\n// toteutuksesta\n// * \"args\" ovat lisäparametrit, jotka aiempi kutsu palauttaa, mikäli\n//  tämä on rekursiivinen toteutus\n//\n// Aseta variaabelit \"next\", \"nextspec\" ja \"nextargs\" \n// ohjelmakoodissa seuraavasti:\n// \n// * \"next\" on joko minuuttien lukumäärä tulevaisuudessa tai päiväysobjekti\n// joka ilmaisee viestin halutun lähetyshetken.\n// \n// * \"nextspec\" on rekursiomääritys siltä varalta, että halutaan toistuva\n// sanoma (katso\n// https://extended-thunder.github.io/send-later/#dynamic-recurrence). Mikäli et aseta\n// tätä, sanoma lähetetään vain kerran. Huomaa, että jos haluat funktiotasi\n// kutsuttavan rekursiivisesti uudelleen, aseta:\n// nextspec = \"function \" + specname\n// * \"nextargs\" on parametrimatriisi, jonka haluat funktion argumementeiksi\n// \"args\" sitä seuraavan kerran kutsuttaessa.\n// \n// Kun työstät funktiotasi, voit testata sitä täyttämällä arvot \"prev\" ja \"args\"\n// alla oleviin tekstilaatikoihin ja napsauttamalla \"Aja\" \n// ajaaksesi funktion ja nähdäksesi tulokset.\n// \n// Tarjolla on kaksi valmista esimerkkifunktiota, \"BusinessHours\" ja\n// \"DaysInARow\", joihin voit tutustua ja testata oppiaksesi lisää.\n// \n// Tämä \"ReadMeFirst\" funktio ei tee muuta kuin lähettää sanoman näihin aikoihin\n// seuraavan rivin avulla.\nnext = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {
