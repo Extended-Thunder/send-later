@@ -139,6 +139,10 @@
     "message": "wekelijks",
     "description": ""
   },
+  "resetPrefsButton": {
+    "message": "Voorkeuren herinitialiseren",
+    "description": ""
+  },
   "saveDefaultsLabel": {
     "message": "Deze waarden als de standaardwaarden opslaan",
     "description": ""
@@ -221,6 +225,14 @@
   },
   "userGuideLabel": {
     "message": "Handleiding",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "Geselecteerde datum ligt in het verleden",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Bericht eenvoudig een aantal minuten uitstellen. Het eerste argument wordt als de vertragingstijd genomen.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -381,6 +393,10 @@
   },
   "donatelink.value": {
     "message": "Doneren",
+    "description": ""
+  },
+  "advancededitor.title": {
+    "message": "Geavanceerde configuratie-editor",
     "description": ""
   },
   "editorlink.value": {
