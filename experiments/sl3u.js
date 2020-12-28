@@ -109,7 +109,7 @@ const SendLaterObservers = {
       if (this.observerTopics.includes(topic)) {
         SendLaterFunctions.debug("SL3U.notifyStorageLocal",`Observer (${topic})`);
         Services.obs.removeObserver(this, topic);
-        Services.obs.notifyObservers(null, this.notificationTopic, dataStr);
+        Services.obs.notifyObservers(null, this.notificationTopic, data);
       }
     },
   }
