@@ -1455,9 +1455,7 @@ function mainLoop() {
         SendLater.setStatusBarIndicator.call(SendLater, false);
 
         SLStatic.previousLoop = new Date();
-        SLStatic.debug(`Next main loop iteration in ${interval} ` +
-                       `minute${interval === 1 ? "" : "s"}.`);
-        SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000*interval);
+        SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000);
       });
     } else {
       const extName = browser.i18n.getMessage("extensionName");
