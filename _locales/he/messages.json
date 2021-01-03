@@ -139,6 +139,10 @@
     "message": "‫שבועי‬",
     "description": ""
   },
+  "resetPrefsButton": {
+    "message": "אתחל העדפות מחדש",
+    "description": ""
+  },
   "saveDefaultsLabel": {
     "message": "שמור את הערכים הללו כברירת מחדל",
     "description": ""
@@ -221,6 +225,14 @@
   },
   "userGuideLabel": {
     "message": "‫מדריך למשתמש‬",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "התאריך שנבחר עבר כבר",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "פשוט דחה את משלוח ההודעה במספר דקות. הנתון הראשון מגדיר את זמן דחיית המשלוח",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -381,6 +393,10 @@
   },
   "donatelink.value": {
     "message": "‫תרום‬",
+    "description": ""
+  },
+  "advancededitor.title": {
+    "message": "עורך התצורה המתקדם",
     "description": ""
   },
   "editorlink.value": {
