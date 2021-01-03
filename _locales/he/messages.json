@@ -139,6 +139,10 @@
     "message": "‫שבועי‬",
     "description": ""
   },
+  "resetPrefsButton": {
+    "message": "אתחל העדפות מחדש",
+    "description": ""
+  },
   "saveDefaultsLabel": {
     "message": "שמור את הערכים הללו כברירת מחדל",
     "description": ""
@@ -221,6 +225,10 @@
   },
   "userGuideLabel": {
     "message": "‫מדריך למשתמש‬",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "התאריך שנבחר עבר כבר",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
