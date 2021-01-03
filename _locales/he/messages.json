@@ -231,6 +231,10 @@
     "message": "התאריך שנבחר עבר כבר",
     "description": ""
   },
+  "DelayFunctionHelp": {
+    "message": "פשוט דחה את משלוח ההודעה במספר דקות. הנתון הראשון מגדיר את זמן דחיית המשלוח",
+    "description": ""
+  },
   "sendlater.prompt.sendlater.label": {
     "message": "‫העבר לתיבת דואר יוצא‬",
     "description": ""
@@ -389,6 +393,10 @@
   },
   "donatelink.value": {
     "message": "‫תרום‬",
+    "description": ""
+  },
+  "advancededitor.title": {
+    "message": "עורך התצורה המתקדם",
     "description": ""
   },
   "editorlink.value": {
