@@ -1323,18 +1323,18 @@ browser.commands.onCommand.addListener((cmd) => {
   }
 });
 
-browser.runtime.onUpdateAvailable.addListener((details) => {
-  const extensionName = browser.i18n.getMessage("extensionName");
-  const thisVersion = browser.runtime.getManifest().version;
-  const nextVersion = details.version||"";
-
-  browser.notifications.create(null, {
-    "type": "basic",
-    "title": `${extensionName} ${thisVersion}`,
-    "message": `${extensionName} ${nextVersion} is available and ` +
-               `will be upgraded next time you restart Thunderbird.`
-  });
-});
+// browser.runtime.onUpdateAvailable.addListener((details) => {
+//   const extensionName = browser.i18n.getMessage("extensionName");
+//   const thisVersion = browser.runtime.getManifest().version;
+//   const nextVersion = details.version||"";
+//
+//   browser.notifications.create(null, {
+//     "type": "basic",
+//     "title": `${extensionName} ${thisVersion}`,
+//     "message": `${extensionName} ${nextVersion} is available and ` +
+//                `will be upgraded next time you restart Thunderbird.`
+//   });
+// });
 
 async function getDraftFoldersHelper(folder) {
   // Recursive helper function to look through an account for draft folders
