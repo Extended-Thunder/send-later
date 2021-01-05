@@ -919,6 +919,12 @@
     "message": "Send Later kan alleen berichten verzenden als $1 actief is. Denk eraan dat het weer moet worden gestart voordat uw berichten voor verzending worden ingepland!",
     "description": ""
   },
+  "EncryptionIncompatTitle": {
+    "message": "Compatibiliteitsprobleem met encryptie"
+  },
+  "EncryptionIncompatText": {
+    "message": "Dit bericht is versleuteld met uw eigen PGP-sleutel, en kan daarom niet bij de ontvangers worden afgeleverd. Zie deze discussie voor meer informatie over waarom u deze boodschap ziet: https://github.com/Extended-Thunder/send-later/discussions/200"
+  },
   "EnigmailIncompatTitle": {
     "message": "Compatibiliteitsprobleem met Send Later / Enigmail",
     "description": ""
