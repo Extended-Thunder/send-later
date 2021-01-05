@@ -253,6 +253,53 @@ var SLStatic = {
     }
   },
 
+  formatRelative(dateTime, relativeTo) {
+    if (!relativeTo) {
+      relativeTo = new Date(Date.now()-10);
+    }
+    const dt = (dateTime.getTime() - relativeTo.getTime())/1000;
+    const DT = Math.abs(dt);
+    const l = Sugar.Date.getLocale('en');
+
+    const prettyRound = (n) => {
+      if (n%1 < 0.3 || n%1 > 0.7) {
+        return Math.round(n).toFixed(0);
+      } else {
+        return n.toFixed(1);
+      }
+    };
+
+    let num, u;
+    if (DT < 60) {
+      num = Math.floor(DT);
+      u=l.unitMap.seconds;
+    } else if (DT < 60*55) {
+      num = Math.floor(DT/(60));
+      u=l.unitMap.minutes;
+    } else if (DT < 60*60*23.7) {
+      num = prettyRound(DT/(60*60));
+      u=l.unitMap.hours;
+    } else if (DT < 60*60*24*365*0.7) {
+      num = prettyRound(DT/(60*60*24));
+      u=l.unitMap.days;
+    } else {
+      num = prettyRound(DT/(60*60*24*365));
+      u=l.unitMap.years;
+    }
+
+    const plural = !l.plural || num === "1" ? 0 : 1;
+    const unit = plural ? l.units[8 + u] : l.units[u];
+    const sign = l[dt > -1 ? 'fromNow' : 'ago'];
+    const format = l[dt > -1 ? 'future' : 'past'];
+    return format.replace(/\{(.*?)\}/g, function(full, match) {
+      switch(match) {
+        case 'num': return num;
+        case 'unit': return unit;
+        case 'sign': return sign;
+      }
+    });
+  },
+
   // Splits a single label string into spans, where the first occurrence
   // of the access key is in its own element, with an underline.
   underlineAccessKey(label, modifier) {
@@ -467,7 +514,8 @@ var SLStatic = {
       if (fromNow < 0 && fromNow > -90) {
         scheduleText += ` (${(new Sugar.Date(Date.now()+100)).relative()})`;
       } else {
-        scheduleText += ` (${(new Sugar.Date(sendAt)).relative()})`;
+        scheduleText += ` (${SLStatic.formatRelative(sendAt)})`;
+        //scheduleText += ` (${(new Sugar.Date(sendAt)).relative()})`;
       }
     }
 
@@ -1136,14 +1184,14 @@ if (typeof browser === "undefined" && typeof require !== "undefined") {
     // Make this file node.js-aware for browserless unit testing
     const fs = require('fs'),
           path = require('path'),
-          filePath = path.join(__dirname, '..', '_locales','en_US','messages.json');;
+          filePath = path.join(__dirname, '..', '_locales','en','messages.json');;
     const contents = fs.readFileSync(filePath, {encoding: 'utf-8'});
     global.localeMessages = JSON.parse(contents);
     global.SLStatic = SLStatic;
     global.browser = browser;
   } else {
     // We're in a non-addon browser environment (functional tests)
-    fetch("/_locales/en_US/messages.json").then(
+    fetch("/_locales/en/messages.json").then(
       response => response.json()
     ).then(locale => {
       window.localeMessages = locale;
