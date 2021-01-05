@@ -1088,7 +1088,7 @@ browser.runtime.onMessage.addListener(async (message) => {
           response.err = "Message is scheduled by a different Thunderbird instance";
           break;
         } else if (msgContentType && (/encrypted/i).test(msgContentType)) {
-          response.err = browser.i18n.getMessage("EnigmailIncompatText");
+          response.err = browser.i18n.getMessage("EncryptionIncompatText");
           break;
         }
 
