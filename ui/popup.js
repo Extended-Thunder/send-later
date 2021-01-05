@@ -341,7 +341,7 @@ const SLPopup = {
         //   document.getElementById("sendAtTimeDateDiv"));
         sendScheduleButton.disabled = false;
 
-        // Update the button text between 1 and 60 seconds in the
+        // Update the button text between 0.5 and 30 seconds in the
         // future, depending on how far out the schedule time is.
         const fromNow = (schedule.sendAt.getTime() - Date.now());
         SLPopup.buttonUpdater = setTimeout(() => {
@@ -349,7 +349,7 @@ const SLPopup = {
           const newInputs = SLPopup.objectifyFormValues();
           const newSchedule = SLPopup.parseInputs(newInputs);
           SLPopup.setScheduleButton(newSchedule);
-        }, Math.min(Math.max(1000, fromNow/60), 60000));
+        }, Math.min(Math.max(500, fromNow/60), 30000));
         return true;
       } else {
         SLStatic.debug('scheduleText',scheduleText);

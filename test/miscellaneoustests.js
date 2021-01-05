@@ -173,4 +173,29 @@ exports.init = function() {
     return SLStatic.compareDateTimes(result, "==", expected, 100) ||
             `Expected "${expected}", got "${result}"`;
   }, [new Date(), new Date()]);
+
+  function compareRelativeTime(dateTime, relativeTo, expected) {
+    const result = SLStatic.formatRelative(dateTime, relativeTo);
+    return result === expected || `Expected "${expected}", got "${result}"`;
+  }
+
+  SLTests.AddTest("Test relativeDateFormat '1 hour ago'", compareRelativeTime, [
+    new Date(Date.now()-3600*1000), null, "1 hour ago"
+  ]);
+
+  SLTests.AddTest("Test relativeDateFormat '1 hour from now'", compareRelativeTime, [
+    new Date(Date.now()+3600*1000), null, "1 hour from now"
+  ]);
+
+  SLTests.AddTest("Test relativeDateFormat '1 day ago'", compareRelativeTime, [
+    new Date(Date.now()-3600*24*1000), null, "1 day ago"
+  ]);
+
+  SLTests.AddTest("Test relativeDateFormat '7.5 hours from now'", compareRelativeTime, [
+    new Date(Date.now()+3600*7.5*1000), null, "7.5 hours from now"
+  ]);
+
+  SLTests.AddTest("Test relativeDateFormat '0 seconds from now'", compareRelativeTime, [
+    new Date(Date.now()), null, "0 seconds from now"
+  ]);
 }
