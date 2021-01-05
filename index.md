@@ -1597,21 +1597,31 @@ Most support questions can be handled through Send Later's
 Be sure to check whether your question has been asked/answered already, and
 post a new discussion topic if not.
 
+### Reporting bugs
+
+All known bugs in Send Later are tracked through the project's
+[issue tracker](https://github.com/Extended-Thunder/send-later/issues).
+Please check whether your bug has already been reported, and if not then please
+either report it yourself, or
+[contact us](mailto:send-later-support@extended-thunder.org?subject=Send%20Later)
+and we will do our best to get it sorted out.
+
 ### Contacting the maintainers
 
-If your question or comment cannot be addressed through the discussion forum
-for whatever reason, then please
+**If and only if your question or comment cannot be addressed through the discussion forum**, then
 [e-mail us directly](mailto:send-later-support@extended-thunder.org?subject=Send%20Later)
-and we will respond as soon as we can. Please note that we may direct you to the
-[discussion forum](https://github.com/Extended-Thunder/send-later/discussions)
-if your question would be more appropriate there.
+and we will respond as soon as we can.
+**Please check the discussion forum and issue tracker first, to see whether your question has already been addressed.**
 
 ### Other resources
 
 The kind folks at [TCH-Support](http://www.tch-support.com/) have published a
 [video tutorial](https://www.youtube.com/watch?v=XaWLWWFy9r8) in German of how
 to use Send Later. They've also produced an
-[English version](https://www.youtube.com/watch?v=5bhLO9GQIsA). Enjoy!
+[English version](https://www.youtube.com/watch?v=5bhLO9GQIsA).
+
+**Note:** There may be minor differences, since these videos were produced for
+a previous version of Send Later, but most of it should still apply.
 
 <a name="donate"></a>
 
