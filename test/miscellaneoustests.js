@@ -198,4 +198,16 @@ exports.init = function() {
   SLTests.AddTest("Test relativeDateFormat '0 seconds from now'", compareRelativeTime, [
     new Date(Date.now()), null, "0 seconds from now"
   ]);
+
+  SLTests.AddTest("Test relativeDateFormat '364 days from now'", compareRelativeTime, [
+    new Date(Date.now()+364*24*3600*1000), null, "364 days from now"
+  ]);
+
+  SLTests.AddTest("Test relativeDateFormat (364.5 days) -> '1 year from now'", compareRelativeTime, [
+    new Date(Date.now()+364.5*24*3600*1000), null, "1 year from now"
+  ]);
+
+  SLTests.AddTest("Test relativeDateFormat (90 seconds) -> '1 minute from now'", compareRelativeTime, [
+    new Date(Date.now()+90*1000), null, "1 minute from now"
+  ]);
 }

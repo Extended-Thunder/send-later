@@ -271,15 +271,15 @@ var SLStatic = {
 
     let num, u;
     if (DT < 60) {
-      num = Math.floor(DT);
+      num = `${Math.floor(DT)}`;
       u=l.unitMap.seconds;
     } else if (DT < 60*55) {
-      num = Math.floor(DT/(60));
+      num = `${Math.floor(DT/(60))}`;
       u=l.unitMap.minutes;
     } else if (DT < 60*60*23.7) {
       num = prettyRound(DT/(60*60));
       u=l.unitMap.hours;
-    } else if (DT < 60*60*24*365*0.7) {
+    } else if (DT <= 60*60*24*364.3) {
       num = prettyRound(DT/(60*60*24));
       u=l.unitMap.days;
     } else {
@@ -287,8 +287,8 @@ var SLStatic = {
       u=l.unitMap.years;
     }
 
-    const plural = !l.plural || num === "1" ? 0 : 1;
-    const unit = plural ? l.units[8 + u] : l.units[u];
+    const singular = !l.plural || num === "1";
+    const unit = singular ? l.units[u] : l.units[8 + u];
     const sign = l[dt > -1 ? 'fromNow' : 'ago'];
     const format = l[dt > -1 ? 'future' : 'past'];
     return format.replace(/\{(.*?)\}/g, function(full, match) {
