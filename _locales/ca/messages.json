@@ -919,6 +919,12 @@
     "message": "Send Later només pot enviar missatges si $1 s'està executant. Si us plau, recordi reiniciar-lo abans de programar els missatges per a ser enviats!",
     "description": ""
   },
+  "EncryptionIncompatTitle": {
+    "message": "Problema de compatibilitat d’encriptació"
+  },
+  "EncryptionIncompatText": {
+    "message": "Aquest missatge està encriptat amb la teva clau PGP i, per tant, no es pot lliurar als destinataris. Llegeix aquesta discussió per a més detalls sobre per què estàs veient aquesta notificació: https://github.com/Extended-Thunder/send-later/discussions/200"
+  },
   "EnigmailIncompatTitle": {
     "message": "Problema de compatibilitat Send Later / Enigmail",
     "description": ""
