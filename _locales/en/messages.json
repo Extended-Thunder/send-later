@@ -919,6 +919,12 @@
     "message": "Send Later can only send messages when $1 is running. Please remember to restart it before your messages are scheduled to be sent!",
     "description": ""
   },
+  "EncryptionIncompatTitle": {
+    "message": "Encryption compatibility issue"
+  },
+  "EncryptionIncompatText": {
+    "message": "This message is encrypted with your own PGP key, and therefore cannot be delivered to its recipients. See this discussion for more details on why you're seeing this message: https://github.com/Extended-Thunder/send-later/discussions/200"
+  },
   "EnigmailIncompatTitle": {
     "message": "Send Later / Enigmail compatibility issue",
     "description": ""
