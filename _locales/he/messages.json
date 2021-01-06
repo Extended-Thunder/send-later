@@ -919,6 +919,9 @@
     "message": "\"‫שלח מאוחר יותר‬\" תשלח הודעות רק כאשר $1 פועלת. אנא זכרו להפעילה מחדש לפני המועד המתוכנן למשלוח ההודעות!‬",
     "description": ""
   },
+  "EncryptionIncompatTitle": {
+    "message": "סוגיית תאימות בהצפנה"
+  },
   "EnigmailIncompatTitle": {
     "message": "בעיות התאמה בין '‫שלח מאוחר יותר‬' לבין Engimail.",
     "description": ""
