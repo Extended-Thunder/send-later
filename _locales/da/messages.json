@@ -555,6 +555,9 @@
     "message": "Sende senere: Mappe $1 kan være korrupt. Åbn venligst dens egenskaber og reparer den. Se https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
+  "CorruptFolderErrorDetails": {
+    "message": "Specifikt ser det ud til, at beskeden “$1” $2 er blevet sendt før, men stadig findes i mappen Kladder. Dette kunne være et tegn på et mere alvorligt problem. Prøve eventuelt at slette (eller re-planlægge) den pågældende besked.\n\nSend Senere vil springe denne besked over, men fortsætte med at behandle dine andre planlagte brevudkast, når du lukker denne advarsel."
+  },
   "MessageResendError": {
     "message": "Sende senere: Forsøg på at gensende allerede sendt besked?! Din udbakke eller kladdemappe $1 er sandsynligvis korrupt. Reparér dem som beskrevet på https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
@@ -714,6 +717,12 @@
   "only_on_day6": {
     "message": "Lørdag",
     "description": ""
+  },
+  "CompactionFailureWithError": {
+    "message": "Komprimering af udbakke og/eller kladdemapper mislykkedes med fejl:"
+  },
+  "CompactionFailureNoError": {
+    "message": "Komprimering af $1 mislykkedes uden fejlmeddelelse."
   },
   "EncryptionIncompatTitle": {
     "message": "Problem med kompatibiliteten af krypteringen"
