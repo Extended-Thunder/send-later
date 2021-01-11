@@ -154,15 +154,20 @@ const SLOptions = {
       browser.storage.local.get({ preferences: {} }).then(({ preferences }) => {
         SLStatic.logConsoleLevel = (preferences.logConsoleLevel||"all").toLowerCase();
         for (let id of SLStatic.prefInputIds) {
-          SLStatic.debug(`Setting ${id}: ${preferences[id]}`);
-          SLOptions.applyValue(id, preferences[id]);
+          let prefVal = preferences[id];
+          if (id === "checkTimePref" && preferences.checkTimePref_isMilliseconds) {
+            prefVal /= 60000;
+          }
+          SLStatic.debug(`Setting ${id}: ${prefVal}`);
+          SLOptions.applyValue(id, prefVal);
         }
 
-        document.getElementById("checkEveryUnits").textContent =
-          preferences.checkTimePref_isMilliseconds ?
-            Sugar.Date.getLocale().units[8]
-            :
-            Sugar.Date.getLocale().units[10];
+        const checkTimePrefElement = document.getElementById("checkTimePref");
+        if (preferences.checkTimePref_isMilliseconds) {
+          checkTimePrefElement.step = 0.1;
+        } else {
+          checkTimePrefElement.step = 1.0;
+        }
 
         try {
           // Attempt to setup UI alternative units for specifying
@@ -283,6 +288,8 @@ const SLOptions = {
           id = "lateGracePeriod";
           value = gracePeriodValue * multiplier[gracePeriodUnits.value];
         }
+      } else if (id === "checkTimePref") {
+        value *= (preferences.checkTimePref_isMilliseconds) ? 60000 : 1;
       } else if (id === "logConsoleLevel") {
         SLStatic.logConsoleLevel = value;
       }
