@@ -699,6 +699,9 @@
     "message": "Send Later: de map $1 is mogelijk beschadigd. Open de eigenschappen ervan en repareer de map. Zie https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
+  "CorruptFolderErrorDetails": {
+    "message": "Het lijkt er met name op dat het bericht ‘$1’ $2 eerder is verzonden, maar nog bestaat in de map Concepten. Dit kan al dan niet een indicatie zijn voor een ernstiger probleem. U kunt eenvoudig proberen het bericht in kwestie te verwijderen (of opnieuw in te plannen).\n\nSend Later slaat dit bericht over, maar blijft proberen uw andere geplande conceptberichten te verwerken zodra u deze melding sluit."
+  },
   "MessageResendError": {
     "message": "Send Later: al verzonden bericht proberen opnieuw te verzenden?! Uw Postvak UIT of map Concepten $1 is waarschijnlijk beschadigd. Repareer deze zoals beschreven op https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
@@ -910,6 +913,24 @@
   "ScheduledMessagesWarningTitle": {
     "message": "Waarschuwing voor geplande berichten",
     "description": ""
+  },
+  "CompactionFailureWithError": {
+    "message": "Comprimeren van mappen Postvak UIT en/of Concepten is mislukt met deze fout:"
+  },
+  "CompactionFailureNoError": {
+    "message": "Comprimeren van $1 is mislukt zonder foutmelding."
+  },
+  "SanityCheckOutbox": {
+    "message": "U hebt $1 niet-verzonden bericht(en) dat of die de volgende keer dat een gepland bericht vervalt wordt of worden geactiveerd voor verzending."
+  },
+  "SanityCheckDrafts": {
+    "message": "U hebt $1 bericht(en) gepland voor aflevering door Send Later.\nHet volgende staat gepland voor $2."
+  },
+  "SanityCheckCorruptFolderWarning": {
+    "message": "Als deze getallen volgens u niet kloppen, hebt u mogelijk een beschadigde map Postvak UIT en/of Concepten. In dat geval wordt u geadviseerd deze mappen te comprimeren en opnieuw op te bouwen voordat u Send Later activeert. Zie <https://blog.kamens.us/send-later/#corrupt-outbox> en <https://blog.kamens.us/send-later/#corrupt-drafts-error> voor meer details."
+  },
+  "SanityCheckConfirmOptionMessage": {
+    "message": "Selecteer een van deze opties:\n  ‘OK’: doorgaan zoals gebruikelijk. De vraag verschijnt hierna niet meer.\n\n  ‘Annuleren’: Send Later wordt uitgeschakeld via de eigen voorkeuren.\n                    Om Send Later weer in te schakelen, gaat u naar de optiespagina ervan\n                    en stelt u de voorkeur ‘Elke ___ minuten controleren’ in op een andere waarde dan nul.\n                    U ziet deze vraag weer als u Thunderbird de volgende keer opnieuw\n                    start."
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Er zijn berichten ingepland voor verzending. Send Later kan alleen berichten verzenden als $1 actief is. Weet u zeker dat u wilt afsluiten?",
