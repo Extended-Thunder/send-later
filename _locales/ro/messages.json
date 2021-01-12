@@ -160,7 +160,7 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "“Trimite” face “Trimite mai târziu”",
+    "message": "„Trimite” face „Trimite mai târziu”",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -472,7 +472,7 @@
     "description": ""
   },
   "windowtitle": {
-    "message": "Send Later Editor dinamic de funcții",
+    "message": "Send Later - Editor dinamic de funcții",
     "description": ""
   },
   "selectfunction": {
@@ -536,7 +536,7 @@
     "description": ""
   },
   "inputtimetip": {
-    "message": "Aici se pot intreoduce data si timpul in orice format inteles de Send Later.",
+    "message": "Aici se pot introduce data și timpul în orice format înțeles de Send Later.",
     "description": ""
   },
   "inputtimeplaceholder": {
@@ -903,7 +903,7 @@
     "description": ""
   },
   "SendNowConfirmMessage": {
-    "message": "\"Trimite acum\" trimite emailul imediat. NU programează mesajul să fie trimis la un anumit moment. Pentru a programa trimiterea selectează \"Trimite în jurul\" din caseta verde după introducerea unul moment de trimitere valid. Ești sigur că vrei sa trimiți mesajul acum?",
+    "message": "„Trimite acum” trimite emailul imediat. NU programează mesajul să fie trimis la un anumit moment. Pentru a programa trimiterea selectează „Trimite în jurul” din caseta verde după introducerea unui moment de trimitere valid. Ești sigur că vrei să trimiți mesajul acum?",
     "description": ""
   },
   "ConfirmAgain": {
@@ -1003,7 +1003,7 @@
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "Trimite mesajul acum dacă e în timpul orelor de lucru, sau la începutul următoarei zi lucrătoare. Definiția zilelor lucrătoare se poate schimba (implicit: Lun - Vin) când primul argument este un „array” cu numerele zilelor lucrătoare, unde 0 este duminică și 6 este sâmbătă. Pentru a schimba orele de lucru (implicit: 8:30 - 17:30) se pot transmite argumentele 2 sau 3 cu „array”-uri de forma [H, M]. Folosește „null” pentru argumentele din față care dorești să rămână neschimbate. De exemplu, “null, [9, 0], [17, 0]” schimba orele de lucru fără a schimba zilele lucrătoare.",
+    "message": "Trimite mesajul acum dacă e în timpul orelor de lucru sau la începutul următoarei zi lucrătoare. Definiția zilelor lucrătoare se poate schimba (implicit: Lun - Vin) când primul argument este un array cu numerele zilelor lucrătoare, unde 0 este duminică și 6 este sâmbătă. Pentru a schimba orele de lucru (implicit: 8:30 - 17:30) se pot transmite argumentele 2 sau 3 cu array-uri de forma [H, M]. Folosește \"null\" pentru argumentele din față care dorești să rămână neschimbate. De exemplu, \"null, [9, 0], [17, 0]\" schimba orele de lucru fără a schimba zilele lucrătoare.",
     "description": ""
   },
   "DaysInARowCode": {
@@ -1027,7 +1027,7 @@
     "description": ""
   },
   "UntestedSaveBody": {
-    "message": "Funcția nu a fost testată (cu butonul \"Execută\") de când a fost modificată. Ești sigur ca vrei să o salvezi sau exporți?",
+    "message": "Funcția nu a fost testată (cu butonul „Execută”) de când a fost modificată. Ești sigur că vrei să o salvezi sau exporți?",
     "description": ""
   },
   "BadSaveTitle": {
@@ -1059,7 +1059,7 @@
     "description": ""
   },
   "FunctionDeleteConfirmBody": {
-    "message": "Sigur ștergi această funcție? Dacă este asociată unor butoane de comenzi rapide acestea nu vor mai funcționa și dacă sunt mesaje recurente care o folosesc acestea nu vor mai fi reprogramate după următoarea trimitere.",
+    "message": "Sigur vrei să ștergi această funcție? Dacă este asociată unor butoane de comenzi rapide acestea nu vor mai funcționa și dacă sunt mesaje recurente care o folosesc acestea nu vor mai fi reprogramate după următoarea trimitere.",
     "description": ""
   },
   "ImportTitle": {
@@ -1067,7 +1067,7 @@
     "description": ""
   },
   "SLJFilterLabel": {
-    "message": "Send Later Fișiere JSON",
+    "message": "Send Later - Fișiere JSON",
     "description": ""
   },
   "ImportError": {
