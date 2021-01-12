@@ -232,7 +232,7 @@
     "description": ""
   },
   "DelayFunctionHelp": {
-    "message": "Pur și simplu amână mesajul cu un număr de minute. Primul argument este luat ca timp de întârziere.",
+    "message": "Doar amână mesajul cu un număr de minute. Primul argument este luat ca timp de întârziere.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -700,7 +700,7 @@
     "description": ""
   },
   "CorruptFolderErrorDetails": {
-    "message": "Mai exact, se pare că mesajul „$1” $2 a fost trimis deja, dar apare încă în dosarul Ciorne. Acest lucru poate sau nu să indice o problemă mai gravă. Puteți încerca pur și simplu să ștergeți (sau să re-programați) mesajul în cauză.\n\nSend Later va ignora acest mesaj, dar va continua procesarea altor mesaje ciornă programate atunci când închideți această alertă."
+    "message": "Mai exact, se pare că mesajul „$1” $2 a fost trimis deja, dar apare încă în dosarul „Mesaje nefinalizate”. Acest lucru poate sau nu să indice o problemă mai gravă. Poți încerca să ștergi (sau să re-programezi) mesajul în cauză.\n\nSend Later va ignora acest mesaj, dar va continua procesarea altor mesaje nefinalizate programate atunci când închizi această alertă."
   },
   "MessageResendError": {
     "message": "Send Later: Încercare de a retrimite un mesaj deja trimis?! Dosarul „De trimis” sau „Mesaje nefinalizate” $1 este probabil corupt. Repară-le cum e descris la https://extended-thunder.github.io/send-later/#corrupt-outbox.",
@@ -915,22 +915,22 @@
     "description": ""
   },
   "CompactionFailureWithError": {
-    "message": "Compactarea „Outbox” și/sau „Dosare ciorne” a eșuat cu eroarea:"
+    "message": "Compactarea „De trimis” și/sau „Mesaje nefinalizate” a eșuat cu eroarea:"
   },
   "CompactionFailureNoError": {
     "message": "Compactarea $1 a eșuat fără mesaj de eroare."
   },
   "SanityCheckOutbox": {
-    "message": "Aveți $1 (de) mesaj(e) netrimis(e) a căror trimitere va fi declanșată data viitoare când un mesaj programat devine exigibil."
+    "message": "Ai $1 (de) mesaj(e) netrimis(e) a căror trimitere va fi declanșată data viitoare când un mesaj programat devine exigibil."
   },
   "SanityCheckDrafts": {
-    "message": "Aveți $1 (de) mesaj(e) programate să fie livrate de Send Later.\nUrmătorul este programat pentru $2."
+    "message": "Ai $1 (de) mesaj(e) programate să fie livrate de Send Later.\nUrmătorul este programat pentru $2."
   },
   "SanityCheckCorruptFolderWarning": {
-    "message": "Dacă aceste valori par incorecte, este posibil să ai un dosar „Outbox” și/sau „Drafts” corupt(e). În acest caz, se recomandă să compactați și să reconstruiți aceste dosare înainte de a activa Send Later. Vezi <https://blog.kamens.us/send-later/#corrupt-outbox> și <https://blog.kamens.us/send-later/#corrupt-drafts-error> pentru mai multe detalii."
+    "message": "Dacă aceste valori par incorecte, este posibil să ai un dosar „De trimis” și/sau „Mesaje nefinalizate” corupt(e). În acest caz, se recomandă să compactezi și să reconstruiești aceste dosare înainte de a activa Send Later. Vezi <https://blog.kamens.us/send-later/#corrupt-outbox> și <https://blog.kamens.us/send-later/#corrupt-drafts-error> pentru mai multe detalii."
   },
   "SanityCheckConfirmOptionMessage": {
-    "message": "Selectați una dintre opțiuni:\n  “OK”: Continuați ca de obicei. Opțiunea se salvează.\n\n  “Cancel”: Send Later va fi dezactivat prin intermediul preferințelor sale.\n                    Pentru a reactiva Send Later, mergi la pagina de opțiuni și setează\n                    preferința “Verifică fiecare ___ minute” la o valoare non-zero.\n                    Vei primi această solicitare din nou data viitoare când repornești\n                    Thunderbird"
+    "message": "Selectează una dintre opțiuni:\n  “OK”: Continuă ca de obicei. Opțiunea se salvează.\n\n  “Cancel”: Send Later va fi dezactivat prin intermediul preferințelor sale.\n                    Pentru a reactiva Send Later, mergi la pagina de opțiuni și setează\n                    pentru preferința “Verifică la fiecare ___ minute” o valoare non-zero.\n                    Vei primi această solicitare din nou data viitoare când repornești\n                    Thunderbird"
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Sunt mesaje cu trimitere programată. Send Later poate să trimită mesaje doar când $1 rulează. Ești sigur ca vrei sa închizi?",
@@ -1123,7 +1123,7 @@
     "description": ""
   },
   "LongDescription": {
-    "message": "Acest supliment schimbă comanda „Trimite mai târziu” (Ctrl+Shift+Return) în fereastra compoziției mesajului, astfel încât în loc să se copieze pur și simplu mesajul în „De trimis” astfel încât acesta să fie trimis data viitoare când te conectezi online sau execuți comanda „Trimite mesaje netrimise”, un dialog îți permite să specifici când va fi trimis mesajul.\n\nPoți specifica un anumit timp și o anumită dată, sau clic pe „15 minute mai târziu”, „30 minute mai târziu” sau „2 ore mai târziu”, sau definește comenzi rapide personalizate. De asemenea, poți programa un mesaj pentru trimitere în mod repetat folosind reguli simple (N ore, zile, etc.) sau funcții personalizabile.\n\nSend Later se bazează pe modulul de analizare a datei furnizat de Andrew Plummer's <a href=\"https://sugarjs.com/\">Sugar. biblioteca s</a>.\n\nFeedback-ul și rapoartele de erori sunt foarte binevenite și pot fi trimise prin intermediul <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">pagina GitHub</a>.",
+    "message": "Acest supliment schimbă comanda „Trimite mai târziu” (Ctrl+Shift+Return) în fereastra compoziției mesajului, astfel încât în loc să se copieze pur și simplu mesajul în „De trimis” pentru a fi trimis data viitoare când te conectezi online sau execuți comanda „Trimite mesaje netrimise”, un dialog îți permite să specifici când va fi trimis mesajul.\n\nPoți specifica un anumit timp și o anumită dată, sau clic pe „15 minute mai târziu”, „30 minute mai târziu” sau „2 ore mai târziu”, sau definește comenzi rapide personalizate. De asemenea, poți programa un mesaj pentru trimitere în mod repetat folosind reguli simple (N ore, zile, etc.) sau funcții personalizabile.\n\nSend Later se bazează pe modulul de analizare a datei furnizat de Andrew Plummer's <a href=\"https://sugarjs.com/\">Sugar. biblioteca s</a>.\n\nFeedback-ul și rapoartele de erori sunt foarte binevenite și pot fi trimise prin intermediul <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">pagina GitHub</a>.",
     "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   }
 }
