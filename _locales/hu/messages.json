@@ -139,6 +139,10 @@
     "message": "hetente",
     "description": ""
   },
+  "resetPrefsButton": {
+    "message": "Beállítások visszaállítása",
+    "description": ""
+  },
   "saveDefaultsLabel": {
     "message": "Mentse ezeket az értékeket alapértelmezettként",
     "description": ""
@@ -221,6 +225,14 @@
   },
   "userGuideLabel": {
     "message": "Felhasználói útmutató",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "A kiválasztott dátum a múltban van",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Egyszerűen késleltesse az üzenetet néhány perccel. Az első érv a késleltetési idő.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -381,6 +393,10 @@
   },
   "donatelink.value": {
     "message": "Adományozás",
+    "description": ""
+  },
+  "advancededitor.title": {
+    "message": "Haladó beállításszerkesztő",
     "description": ""
   },
   "editorlink.value": {
@@ -895,6 +911,9 @@
     "message": "Ütemezett üzenetek figyelmeztetése",
     "description": ""
   },
+  "CompactionFailureNoError": {
+    "message": "A(z) $1 tömörítése hibaüzenet nélkül nem sikerült."
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Vannak üzenetek, amelyeket el kell küldeni. Küldés később csak akkor küldhet üzeneteket, amikor a(z) $1 fut. Biztosan kilép?",
     "description": ""
@@ -902,6 +921,9 @@
   "ScheduledMessagesWarningQuit": {
     "message": "Küldés később csak akkor küldhet üzeneteket, amikor a(z) $1 fut. Kérjük, ne felejtse el újraindítani, mielőtt üzeneteit elküldeni szeretné!",
     "description": ""
+  },
+  "EncryptionIncompatTitle": {
+    "message": "Titkosítás kompatibilitási probléma"
   },
   "EnigmailIncompatTitle": {
     "message": "Küldés később / Enigmail-kiegészítő összeegyeztethetői hiba",
