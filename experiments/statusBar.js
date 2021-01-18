@@ -92,13 +92,13 @@ var SendLaterStatusbar = {
           oncommand="ShowSendLaterOptionsPage();"/>
         <menuitem label="${SLStatic.i18n.getMessage("userGuideLabel")}"
           value="${SLStatic.i18n.getMessage("userGuideLabel")}"
-          oncommand="Components.classes['@mozilla.org/uriloader/external-protocol-service;1'].getService(Components.interfaces.nsIExternalProtocolService).loadURI(Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService).newURI('https://blog.kamens.us/send-later/', null, null));"/>
+          oncommand="Components.classes['@mozilla.org/uriloader/external-protocol-service;1'].getService(Components.interfaces.nsIExternalProtocolService).loadURI(Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService).newURI('https://extended-thunder.github.io/send-later/', null, null));"/>
         <menuitem label="${SLStatic.i18n.getMessage("releasenotes.value")}"
           value="${SLStatic.i18n.getMessage("releasenotes.value")}"
           oncommand="Components.classes['@mozilla.org/uriloader/external-protocol-service;1'].getService(Components.interfaces.nsIExternalProtocolService).loadURI(Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService).newURI('https://github.com/Extended-Thunder/send-later/releases', null, null));"/>
         <menuitem label="${SLStatic.i18n.getMessage("contactAuthorLabel")}"
           value="${SLStatic.i18n.getMessage("contactAuthorLabel")}"
-          oncommand="Components.classes['@mozilla.org/messengercompose;1'].getService(Components.interfaces.nsIMsgComposeService).OpenComposeWindowWithURI(null, Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService).newURI('mailto:send-later-support@extended-thunder.org?subject=Send%20Later', null, null));"/>
+          oncommand="Components.classes['@mozilla.org/messengercompose;1'].getService(Components.interfaces.nsIMsgComposeService).OpenComposeWindowWithURI(null, Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService).newURI('https://github.com/Extended-Thunder/send-later/discussions/278', null, null));"/>
         <menuitem label="${SLStatic.i18n.getMessage("donatelink.value")}"
           value="${SLStatic.i18n.getMessage("donatelink.value")}"
           oncommand="Components.classes['@mozilla.org/uriloader/external-protocol-service;1'].getService(Components.interfaces.nsIExternalProtocolService).loadURI(Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService).newURI('https://addons.thunderbird.net/thunderbird/addon/send-later-3/contribute/roadblock/?src=contextmenu', null, null));"/>
