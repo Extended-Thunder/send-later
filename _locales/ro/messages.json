@@ -139,6 +139,10 @@
     "message": "săptămânal",
     "description": ""
   },
+  "resetPrefsButton": {
+    "message": "Resetare preferințe",
+    "description": ""
+  },
   "saveDefaultsLabel": {
     "message": "Salvează ca valori implicite",
     "description": ""
@@ -156,7 +160,7 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "“Trimite” face “Trimite mai târziu”",
+    "message": "„Trimite” face „Trimite mai târziu”",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -221,6 +225,14 @@
   },
   "userGuideLabel": {
     "message": "Ghidul utilizatorului",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "Data selectată este în trecut",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Doar amână mesajul cu un număr de minute. Primul argument este luat ca timp de întârziere.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -383,6 +395,10 @@
     "message": "Donează",
     "description": ""
   },
+  "advancededitor.title": {
+    "message": "Editor de configurare avansat",
+    "description": ""
+  },
   "editorlink.value": {
     "message": "Editor dinamic de funcții",
     "description": ""
@@ -456,7 +472,7 @@
     "description": ""
   },
   "windowtitle": {
-    "message": "Send Later Editor dinamic de funcții",
+    "message": "Send Later - Editor dinamic de funcții",
     "description": ""
   },
   "selectfunction": {
@@ -520,7 +536,7 @@
     "description": ""
   },
   "inputtimetip": {
-    "message": "Aici se pot intreoduce data si timpul in orice format inteles de Send Later.",
+    "message": "Aici se pot introduce data și timpul în orice format înțeles de Send Later.",
     "description": ""
   },
   "inputtimeplaceholder": {
@@ -682,6 +698,9 @@
   "CorruptFolderError": {
     "message": "Send Later: Dosarul $1 ar putea fi corupt. Deschide proprietățile dosarului și repară-l. Vezi https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
+  },
+  "CorruptFolderErrorDetails": {
+    "message": "Mai exact, se pare că mesajul „$1” $2 a fost trimis deja, dar apare încă în dosarul „Mesaje nefinalizate”. Acest lucru poate sau nu să indice o problemă mai gravă. Poți încerca să ștergi (sau să re-programezi) mesajul în cauză.\n\nSend Later va ignora acest mesaj, dar va continua procesarea altor mesaje nefinalizate programate atunci când închizi această alertă."
   },
   "MessageResendError": {
     "message": "Send Later: Încercare de a retrimite un mesaj deja trimis?! Dosarul „De trimis” sau „Mesaje nefinalizate” $1 este probabil corupt. Repară-le cum e descris la https://extended-thunder.github.io/send-later/#corrupt-outbox.",
@@ -884,7 +903,7 @@
     "description": ""
   },
   "SendNowConfirmMessage": {
-    "message": "\"Trimite acum\" trimite emailul imediat. NU programează mesajul să fie trimis la un anumit moment. Pentru a programa trimiterea selectează \"Trimite în jurul\" din caseta verde după introducerea unul moment de trimitere valid. Ești sigur că vrei sa trimiți mesajul acum?",
+    "message": "„Trimite acum” trimite emailul imediat. NU programează mesajul să fie trimis la un anumit moment. Pentru a programa trimiterea selectează „Trimite în jurul” din caseta verde după introducerea unui moment de trimitere valid. Ești sigur că vrei să trimiți mesajul acum?",
     "description": ""
   },
   "ConfirmAgain": {
@@ -895,6 +914,24 @@
     "message": "Avertisment mesaje programate",
     "description": ""
   },
+  "CompactionFailureWithError": {
+    "message": "Compactarea „De trimis” și/sau „Mesaje nefinalizate” a eșuat cu eroarea:"
+  },
+  "CompactionFailureNoError": {
+    "message": "Compactarea $1 a eșuat fără mesaj de eroare."
+  },
+  "SanityCheckOutbox": {
+    "message": "Ai $1 (de) mesaj(e) netrimis(e) a căror trimitere va fi declanșată data viitoare când un mesaj programat devine exigibil."
+  },
+  "SanityCheckDrafts": {
+    "message": "Ai $1 (de) mesaj(e) programate să fie livrate de Send Later.\nUrmătorul este programat pentru $2."
+  },
+  "SanityCheckCorruptFolderWarning": {
+    "message": "Dacă aceste valori par incorecte, este posibil să ai un dosar „De trimis” și/sau „Mesaje nefinalizate” corupt(e). În acest caz, se recomandă să compactezi și să reconstruiești aceste dosare înainte de a activa Send Later. Vezi <https://blog.kamens.us/send-later/#corrupt-outbox> și <https://blog.kamens.us/send-later/#corrupt-drafts-error> pentru mai multe detalii."
+  },
+  "SanityCheckConfirmOptionMessage": {
+    "message": "Selectează una dintre opțiuni:\n  “OK”: Continuă ca de obicei. Opțiunea se salvează.\n\n  “Cancel”: Send Later va fi dezactivat prin intermediul preferințelor sale.\n                    Pentru a reactiva Send Later, mergi la pagina de opțiuni și setează\n                    pentru preferința “Verifică la fiecare ___ minute” o valoare non-zero.\n                    Vei primi această solicitare din nou data viitoare când repornești\n                    Thunderbird"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Sunt mesaje cu trimitere programată. Send Later poate să trimită mesaje doar când $1 rulează. Ești sigur ca vrei sa închizi?",
     "description": ""
@@ -902,6 +939,12 @@
   "ScheduledMessagesWarningQuit": {
     "message": "Send Later poate trimite mesaje doar când $1 rulează. Nu uita sa repornești aplicația înainte de trimiterea programată!",
     "description": ""
+  },
+  "EncryptionIncompatTitle": {
+    "message": "Problemă de compatibilitate criptare"
+  },
+  "EncryptionIncompatText": {
+    "message": "Acest mesaj este criptat cu propria ta cheie PGP și, prin urmare, nu poate fi livrat destinatarilor. Vezi această discuție pentru mai multe detalii despre motivul pentru care apare acest mesaj: https://github.com/Extended-Thunder/send-later/discussions/200"
   },
   "EnigmailIncompatTitle": {
     "message": "Problemă de compatibilitate Send Later / Enigmail",
@@ -928,7 +971,7 @@
     "description": ""
   },
   "missingDaysWarningTitle": {
-    "message": "Restricție de zi invalidă",
+    "message": "Restricție de zile invalidă",
     "description": ""
   },
   "missingDaysWarningBody": {
@@ -948,7 +991,7 @@
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// Welcome to the Send Later function editor!\n//\n// The editor allows you to create JavaScript functions implementing complex\n// message scheduling logic which can be associated with shortcut buttons or\n// selected in the Send Later dialog.\n//\n// As you can see above, when a scheduling function is called, it will be given\n// three arguments:\n// * \"specname\" is needed if you want this function to recur (see below)\n// * \"prev\" is the previous scheduled send time, if this is a recurring\n//   invocation\n// * \"args\" is the extra arguments returned by the previous invocation if this\n//   is a recurring invocation\n//\n// Your code needs to set the variables \"next\", \"nextspec\", and\n// \"nextargs\" as follows:\n//\n// * \"next\" is either the number of minutes in the future or a Date object\n//   indicating when the message should be sent.\n// * \"nextspec\" is a recurrence specification if this is intended to be a\n//   recurring message (see\n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence). If you don't set\n//   this, then the message will only be sent once. Note: if you want your\n//   function to be called again for recurrence, do:\n//     nextspec = \"function \" + specname;\n// * \"nextargs\" is an array of arguments you want to be passed into the next\n//   invocation of the function as \"args\".\n//\n// While you are working on your function, you can test it by filling in values\n// for \"prev\" and \"args\" in the Text boxes below and then clicking \"Execute\" to\n// execute the function and see the results.\n//\n// There are two pre-configured sample functions, \"BusinessHours\" and\n// \"DaysInARow\", which you can look at and play with to learn more.\n//\n// This \"ReadMeFirst\" function just causes the message to be sent around now,\n// via the following line.\nnext = new Date();",
+    "message": "// Bun venit la editorul de funcții Send Later!\n//\n// Editorul îți permite să creezi funcții JavaScript implementând logica complexă \n// de planificare a mesajelor care poate fi asociată cu butoane rapide sau\n// selectate în dialogul Trimitere mai târziu.\n//\n// După cum poți vedea mai sus, atunci când este apelată o funcție de programare, \n// sunt folosite trei argumente:\n// * \"specname\" este necesar dacă dorești ca această funcție să reapară (a se vedea mai jos)\n// * \"prev\" este ora de trimitere programată anterior, dacă aceasta este o invocare recurentă\n// * \"args\" sunt argumentele suplimentare returnate de invocarea anterioară, dacă aceasta este\n// este o invocare recurentă\n//\n// Codul trebuie să seteze variabilele \"next\", \"nextspec\" și \"nextargs\" \n// după cum urmează:\n// * \"next\" este fie numărul de minute în viitor, fie un obiect dată\n// indicând când trebuie trimis mesajul.\n// * \"nextspec\" este o specificație de recurență dacă se intenționează ca acesta să fie \n// un mesaj recurent (vezi https://extended-thunder. iyet. .io/send-later/#dynamic-recurrence).\n// Dacă acesta nu este setat, atunci mesajul va fi trimis o singură dată. \n// Notă: dacă vrei ca funcția ta să fie apelată din nou pentru recurență, folosește:\n// nextspec = \"function \" + specname;\n// * \"nextargs\" este o serie de argumente folosite în invocarea funcției ca \"args\".\n//\n// În timp ce lucrezi la funcție, o poți testa completând valorile\n// pentru \"pre\" și \"args\" în casetele de text de mai jos și apăsând \"Execută\" pentru \n// a executa funcția și a vedea rezultatele.\n//\n// Există două funcții-eșantion preconfigurate, \"BusinessHours\" și\n// \"DaysInARow\", la care te poți uita și pe care le poți modifica pentru a afla mai multe.\n//\n// Această funcție \"ReadMeFirst\" are ca efect trimiterea mesajului acum\n// prin linia următoare.\nnext = new Date();",
     "description": ""
   },
   "EditorReadMeHelp": {
@@ -960,7 +1003,7 @@
     "description": ""
   },
   "BusinessHoursHelp": {
-    "message": "Trimite mesajul acum dacă e în timpul orelor de lucru, sau la începutul următoarei zi lucrătoare. Definiția zilelor lucrătoare se poate schimba (implicit: Lun - Vin) când primul argument este un „array” cu numerele zilelor lucrătoare, unde 0 este duminică și 6 este sâmbătă. Pentru a schimba orele de lucru (implicit: 8:30 - 17:30) se pot transmite argumentele 2 sau 3 cu „array”-uri de forma [H, M]. Folosește „null” pentru argumentele din față care dorești să rămână neschimbate. De exemplu, “null, [9, 0], [17, 0]” schimba orele de lucru fără a schimba zilele lucrătoare.",
+    "message": "Trimite mesajul acum dacă e în timpul orelor de lucru sau la începutul următoarei zi lucrătoare. Definiția zilelor lucrătoare se poate schimba (implicit: Lun - Vin) când primul argument este un array cu numerele zilelor lucrătoare, unde 0 este duminică și 6 este sâmbătă. Pentru a schimba orele de lucru (implicit: 8:30 - 17:30) se pot transmite argumentele 2 sau 3 cu array-uri de forma [H, M]. Folosește \"null\" pentru argumentele din față care dorești să rămână neschimbate. De exemplu, \"null, [9, 0], [17, 0]\" schimba orele de lucru fără a schimba zilele lucrătoare.",
     "description": ""
   },
   "DaysInARowCode": {
@@ -984,7 +1027,7 @@
     "description": ""
   },
   "UntestedSaveBody": {
-    "message": "Funcția nu a fost testată (cu butonul \"Execută\") de când a fost modificată. Ești sigur ca vrei să o salvezi sau exporți?",
+    "message": "Funcția nu a fost testată (cu butonul „Execută”) de când a fost modificată. Ești sigur că vrei să o salvezi sau exporți?",
     "description": ""
   },
   "BadSaveTitle": {
@@ -1016,7 +1059,7 @@
     "description": ""
   },
   "FunctionDeleteConfirmBody": {
-    "message": "Sigur ștergi această funcție? Dacă este asociată unor butoane de comenzi rapide acestea nu vor mai funcționa și dacă sunt mesaje recurente care o folosesc acestea nu vor mai fi reprogramate după următoarea trimitere.",
+    "message": "Sigur vrei să ștergi această funcție? Dacă este asociată unor butoane de comenzi rapide acestea nu vor mai funcționa și dacă sunt mesaje recurente care o folosesc acestea nu vor mai fi reprogramate după următoarea trimitere.",
     "description": ""
   },
   "ImportTitle": {
@@ -1024,7 +1067,7 @@
     "description": ""
   },
   "SLJFilterLabel": {
-    "message": "Send Later Fișiere JSON",
+    "message": "Send Later - Fișiere JSON",
     "description": ""
   },
   "ImportError": {
@@ -1078,5 +1121,9 @@
   "CheckingMessage": {
     "message": "VERIFICARE MESAJE",
     "description": ""
+  },
+  "LongDescription": {
+    "message": "Acest supliment schimbă comanda „Trimite mai târziu” (Ctrl+Shift+Return) în fereastra compoziției mesajului, astfel încât în loc să se copieze pur și simplu mesajul în „De trimis” pentru a fi trimis data viitoare când te conectezi online sau execuți comanda „Trimite mesaje netrimise”, un dialog îți permite să specifici când va fi trimis mesajul.\n\nPoți specifica un anumit timp și o anumită dată, sau clic pe „15 minute mai târziu”, „30 minute mai târziu” sau „2 ore mai târziu”, sau definește comenzi rapide personalizate. De asemenea, poți programa un mesaj pentru trimitere în mod repetat folosind reguli simple (N ore, zile, etc.) sau funcții personalizabile.\n\nSend Later se bazează pe modulul de analizare a datei furnizat de Andrew Plummer's <a href=\"https://sugarjs.com/\">Sugar. biblioteca s</a>.\n\nFeedback-ul și rapoartele de erori sunt foarte binevenite și pot fi trimise prin intermediul <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">pagina GitHub</a>.",
+    "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   }
 }

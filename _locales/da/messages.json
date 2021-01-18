@@ -555,6 +555,9 @@
     "message": "Sende senere: Mappe $1 kan være korrupt. Åbn venligst dens egenskaber og reparer den. Se https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
+  "CorruptFolderErrorDetails": {
+    "message": "Specifikt ser det ud til, at beskeden “$1” $2 er blevet sendt før, men stadig findes i mappen Kladder. Dette kunne være et tegn på et mere alvorligt problem. Prøve eventuelt at slette (eller re-planlægge) den pågældende besked.\n\nSend Senere vil springe denne besked over, men fortsætte med at behandle dine andre planlagte brevudkast, når du lukker denne advarsel."
+  },
   "MessageResendError": {
     "message": "Sende senere: Forsøg på at gensende allerede sendt besked?! Din udbakke eller kladdemappe $1 er sandsynligvis korrupt. Reparér dem som beskrevet på https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
@@ -715,6 +718,24 @@
     "message": "Lørdag",
     "description": ""
   },
+  "CompactionFailureWithError": {
+    "message": "Optimering af udbakke og/eller kladdemapper mislykkedes med fejl:"
+  },
+  "CompactionFailureNoError": {
+    "message": "Optimering af $1 mislykkedes uden fejlmeddelelse."
+  },
+  "SanityCheckOutbox": {
+    "message": "Du har $1 ikke-sendte beskeder, som vil blive sendt næste gang en planlagt besked udløses."
+  },
+  "SanityCheckDrafts": {
+    "message": "Du har $1 besked(er) planlagt til at blive leveret af Send senere.\nDen næste er planlagt til $2."
+  },
+  "SanityCheckCorruptFolderWarning": {
+    "message": "Hvis disse tal ikke ser rigtige  ud, kan årsagen være at du har en beskadiget Udbakke og/eller Kladder mappe(r). I så fald anbefales det, at du optimerer og genopbygger disse mapper, før du aktiverer Send senere. Se <https://blog.kamens.us/send-later/#corrupt-outbox> og <https://blog.kamens.us/send-later/#corrupt-drafts-error> for flere detaljer."
+  },
+  "SanityCheckConfirmOptionMessage": {
+    "message": "Vælg en af mulighederne:\n  “OK”: Fortsæt som sædvanlig. Du vil ikke blive spurgt igen.\n\n  “Annullér”: Send senere vil blive deaktiveret via egne præferencer.\n                    For at genaktivere Send senere, gå til siden med valgmuligheder og sæt\n                    “Tjek hver ___ minutter” præferencen til en ikke-nul værdi.\n                    Du vil se denne forespørgsel igen, næste gang du genstarter\n                    Thunderbird"
+  },
   "EncryptionIncompatTitle": {
     "message": "Problem med kompatibiliteten af krypteringen"
   },
@@ -724,5 +745,9 @@
   "EditorReadMeCode": {
     "message": "// Velkommen til Send Senere funktion editor!\n//\n// Editoren giver dig mulighed for at oprette JavaScript-funktioner, der implementerer kompleks\n// besked planlægnings logik som kan knyttes til genvejsknapper eller\n// vælges i Send Senere dialogen.\n//\n// Som du kan se ovenfor, når en planlægningsfunktion kaldes, vil den blive givet\n// tre argumenter:\n// * \"specname\" er nødvendig hvis du ønsker at denne funktion skal gentages (se nedenfor)\n// * \"prev\" er den forrige planlagte sendetid hvis dette er et kald der skal \n// gentages \n// * \"args\" er de ekstra argumenter returneret af det foregående kald, hvis dette\n// er et gentaget kald\n//\n// Din kode skal angive variablerne \"next\" \"nextspec\" og\n// \"nextargs\" som følger:\n//\n// * \"next\" er enten antallet af minutter i fremtiden eller et Datoobjekt\n// som angiver, hvornår meddelelsen skal sendes.\n// * \"nextspec\" er en gentagelse specifikation, hvis dette er beregnet til at være en\n// gentaget meddelelse (se\n// https://extended-thunder.github.io/send-later/#dynamic-recurrence). Hvis du ikke sætter\n// dette, vil meddelelsen kun blive sendt én gang. Bemærk: Hvis du ønsker at din\n// funktion skal kaldes igen ved gentagelse, gør sådan:\n// nextspec = \"function \" + specname;\n// * \"nextargs\" er et array af argumenter, du ønsker at blive overført til det næste\n// kald af funktionen som \"args\".\n//\n// Mens du arbejder på din funktion, kan du teste det ved at udfylde værdierne\n// for \"prev\" og \"args\" i tekstfelterne nedenfor og derefter klikke på \"Kør\" for\n// at udføre funktionen og se resultaterne.\n//\n// Der er to prækonfigurerede eksempel funktioner, \"BusinessHours\" og\n// \"DaysInARow\", som du kan se på og lege med for at lære mere.\n//\n// Denne \"ReadMeFirst\" funktion gør kun, at meddelelsen sendes rundt nu,\n// via den følgende linje.\nnext = ny dato();",
     "description": ""
+  },
+  "LongDescription": {
+    "message": "Denne tilføjelse ændrer kommandoen “Send senere” (Ctrl+Shift+Return) i brevkompositionsvinduet, så i stedet for blot at kopiere beskeden ind i din udbakke, så den bliver sendt næste gang du går online eller trykker “Send ikke sendte beskeder”, dukker en dialog  op, som lader dig angive hvornår meddelelsen vil blive sendt.\n\nDu kan angive et bestemt tidspunkt og dato, eller klik på “15 minutter senere”, “30 minutter senere” eller “2 timer senere”, eller definér en brugerdefineret genvej. Du kan også planlægge en besked til at blive sendt gentagne gange ved hjælp af enkle regler (hver N timer, dage, osv.) eller tilpassede funktioner.\n\nSend senere er afhængig af et pålideligt dato input check der bliver leveret af Andrew Plummer's <a href=\"https://sugarjs.com/\">Sugar. s library</a>.\n\nFeedback og fejlrapporter er meget velkomne og kan indsendes via projektets <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">GitHub side</a>.",
+    "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   }
 }

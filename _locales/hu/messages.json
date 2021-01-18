@@ -139,6 +139,10 @@
     "message": "hetente",
     "description": ""
   },
+  "resetPrefsButton": {
+    "message": "Beállítások visszaállítása",
+    "description": ""
+  },
   "saveDefaultsLabel": {
     "message": "Mentse ezeket az értékeket alapértelmezettként",
     "description": ""
@@ -221,6 +225,14 @@
   },
   "userGuideLabel": {
     "message": "Felhasználói útmutató",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "A kiválasztott dátum a múltban van",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Egyszerűen késleltesse az üzenetet néhány perccel. Az első érv a késleltetési idő.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -381,6 +393,10 @@
   },
   "donatelink.value": {
     "message": "Adományozás",
+    "description": ""
+  },
+  "advancededitor.title": {
+    "message": "Haladó beállításszerkesztő",
     "description": ""
   },
   "editorlink.value": {
@@ -683,6 +699,9 @@
     "message": "Küldés később: A(z) $1 mappa sérült lehet. Kérjük, nyissa meg a tulajdonságait és javítsa ki. Lásd: https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
+  "CorruptFolderErrorDetails": {
+    "message": "Pontosabban úgy tűnik, hogy a(z) „$1” $2 üzenetet már korábban elküldtük, de még mindig létezik a Piszkozatok mappában. Ez lehet, hogy nem utal egy komolyabb problémára. Lehet, hogy egyszerűen megpróbálja törölni (vagy átütemezni) a kérdéses üzenetet.\n\nA Küldés később elhagyja ezt az üzenetet, de a figyelmeztetés bezárásakor folytatja a többi ütemezett üzenetvázlat feldolgozását."
+  },
   "MessageResendError": {
     "message": "Küldés később: Megpróbál újra elküldeni a már elküldött üzenetet! A(z) $1 Kimenő vagy Piszkozatok mappa valószínűleg sérült. Kérjük, javítsa meg azokat a https://extended-thunder.github.io/send-later/#corrupt-outbox címen leírtak szerint.",
     "description": ""
@@ -895,6 +914,24 @@
     "message": "Ütemezett üzenetek figyelmeztetése",
     "description": ""
   },
+  "CompactionFailureWithError": {
+    "message": "A Kimenő és/vagy Piszkozatok mappák tömörítése hibával sikertelen:"
+  },
+  "CompactionFailureNoError": {
+    "message": "A(z) $1 tömörítése hibaüzenet nélkül nem sikerült."
+  },
+  "SanityCheckOutbox": {
+    "message": "$1 el nem küldött üzenete van, amelyeket legközelebb elküldünk, amikor egy ütemezett üzenet esedékessé válik."
+  },
+  "SanityCheckDrafts": {
+    "message": "$1 üzeneted van ütemezve, amelyeket a Küldés később elküld.\nA következő ütemezése: $2"
+  },
+  "SanityCheckCorruptFolderWarning": {
+    "message": "Ha ezek a számok nem tűnnek megfelelőnek, akkor lehet, hogy sérült a Kimenő és/vagy a Piszkozatok mappák. Ebben az esetben ajánlatos tömöríteni és újjáépíteni ezeket a mappákat, mielőtt aktiválná a Küldés később funkciót. További részletekért lásd: <https://blog.kamens.us/send-later/#corrupt-outbox> és <https://blog.kamens.us/send-later/#corrupt-drafts-error>."
+  },
+  "SanityCheckConfirmOptionMessage": {
+    "message": "Válasszon egyet a lehetőségek közül:\n\n„Rendben”: Folytassa a szokásos módon. Nem kéri újra.\n\n„Mégse”: A Küldés később funkciót a saját beállításai alapján tiltja le.\nA Küldés később engedélyezéséhez lépjen a beállítások oldalára, és állítsa az „Ellenőrzés ___ percenként” beállítást nem nulla értékre.\nA Thunderbird következő újraindításakor újra megkapja ezt a figyelmeztetést"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Vannak üzenetek, amelyeket el kell küldeni. Küldés később csak akkor küldhet üzeneteket, amikor a(z) $1 fut. Biztosan kilép?",
     "description": ""
@@ -902,6 +939,12 @@
   "ScheduledMessagesWarningQuit": {
     "message": "Küldés később csak akkor küldhet üzeneteket, amikor a(z) $1 fut. Kérjük, ne felejtse el újraindítani, mielőtt üzeneteit elküldeni szeretné!",
     "description": ""
+  },
+  "EncryptionIncompatTitle": {
+    "message": "Titkosítás kompatibilitási probléma"
+  },
+  "EncryptionIncompatText": {
+    "message": "Ez az üzenet a saját PGP-kulcsával van titkosítva, ezért nem küldhető el a címzetteknek. Nézze meg ezt a vitát, ha további részleteket szeretne tudni arról, miért látja ezt az üzenetet: https://github.com/Extended-Thunder/send-later/discussions/200"
   },
   "EnigmailIncompatTitle": {
     "message": "Küldés később / Enigmail-kiegészítő összeegyeztethetői hiba",
@@ -1078,5 +1121,9 @@
   "CheckingMessage": {
     "message": "Üzenet küldésének ellenőrzése…",
     "description": ""
+  },
+  "LongDescription": {
+    "message": "Az üzenet-összetétel ablakban megváltoztatja a „Küldés később” parancsot (Ctrl+Shift+Enter), hogy ahelyett, hogy csak az üzeneteket másolná a Kimenő mappába, hogy elküldje a következő alkalommal, amikor online megy, vagy „Postázandó üzenetek elküldése”, megjelenik egy párbeszédablak, amely lehetővé teszi, hogy megadja, mikor küld az üzenet.\n\nMegadhat egy adott időpontot és dátumot, vagy rákattinthat a „15 perccel később”, „30 perccel később” vagy „2 órával később” gombra, vagy meghatározhat egyéni parancsikonokat. Üzenetek ütemezését is többször elküldhetjük egyszerű szabályok (N óránként, naponta stb.) vagy testreszabható függvények használatával.\n\nA Küldés később elemzés az Andrew Plummer <a href=\"https://sugarjs.com/\">Sugar.js könyvtárának</a> hatékony dátumbeviteli elemzésére támaszkodik.\n\nA visszajelzéseket és a hibajelentéseket nagyon várjuk, és a projekt <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">GitHub oldal</a>án keresztül lehet beküldeni.",
+    "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   }
 }
