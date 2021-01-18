@@ -139,10 +139,6 @@
     "message": "semanalmente",
     "description": ""
   },
-  "resetPrefsButton": {
-    "message": "Redefinir preferências",
-    "description": ""
-  },
   "saveDefaultsLabel": {
     "message": "Guardar estes valores como predefinidos",
     "description": ""
@@ -225,14 +221,6 @@
   },
   "userGuideLabel": {
     "message": "Guia do utilizador",
-    "description": ""
-  },
-  "errorDateInPast": {
-    "message": "A data selecionada está no passado",
-    "description": ""
-  },
-  "DelayFunctionHelp": {
-    "message": "Basta adiar a mensagem por alguns minutos. O primeiro argumento é considerado como o tempo de atraso.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -393,10 +381,6 @@
   },
   "donatelink.value": {
     "message": "Doar",
-    "description": ""
-  },
-  "advancededitor.title": {
-    "message": "Editor de configurações avançadas",
     "description": ""
   },
   "editorlink.value": {
@@ -918,12 +902,6 @@
   "ScheduledMessagesWarningQuit": {
     "message": "O Send Later apenas pode enviar mensagens quando $1 está a correr. Por favor lembre-se de o reiniciar antes da data agendada para as mensagens serem enviadas.",
     "description": ""
-  },
-  "EncryptionIncompatTitle": {
-    "message": "Problema de compatibilidade de criptografia"
-  },
-  "EncryptionIncompatText": {
-    "message": "Esta mensagem é criptografada com sua própria chave PGP e, portanto, não pode ser entregue aos seus destinatários. Veja esta discussão para mais detalhes sobre por que você está vendo esta mensagem: https://github.com/Extended-Thunder/send-later/discussions/200"
   },
   "EnigmailIncompatTitle": {
     "message": "Problema de compatibilidade do Send Later / Enigmail",
