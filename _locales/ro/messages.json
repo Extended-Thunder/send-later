@@ -924,10 +924,8 @@
     "message": "Ai $1 (de) mesaj(e) netrimis(e) a căror trimitere va fi declanșată data viitoare când un mesaj programat devine exigibil."
   },
   "SanityCheckDrafts": {
-    "message": "Ai $1 (de) mesaj(e) programate să fie livrate de Send Later.\nUrmătorul este programat pentru $2."
-  },
-  "SanityCheckCorruptFolderWarning": {
-    "message": "Dacă aceste valori par incorecte, este posibil să ai un dosar „De trimis” și/sau „Mesaje nefinalizate” corupt(e). În acest caz, se recomandă să compactezi și să reconstruiești aceste dosare înainte de a activa Send Later. Vezi <https://blog.kamens.us/send-later/#corrupt-outbox> și <https://blog.kamens.us/send-later/#corrupt-drafts-error> pentru mai multe detalii."
+    "message": "Ai $1 (de) mesaj(e) programate să fie livrate de Send Later.\nUrmătorul este programat pentru $2.",
+    "description": "$1 is replaced with a number, and $2 is replaced with the date/time of the next scheduled message."
   },
   "SanityCheckConfirmOptionMessage": {
     "message": "Selectează una dintre opțiuni:\n  “OK”: Continuă ca de obicei. Opțiunea se salvează.\n\n  “Cancel”: Send Later va fi dezactivat prin intermediul preferințelor sale.\n                    Pentru a reactiva Send Later, mergi la pagina de opțiuni și setează\n                    pentru preferința “Verifică la fiecare ___ minute” o valoare non-zero.\n                    Vei primi această solicitare din nou data viitoare când repornești\n                    Thunderbird"
