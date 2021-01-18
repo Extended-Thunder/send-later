@@ -699,6 +699,9 @@
     "message": "Send Later: La carpeta $1 potser està corrompuda. Si us plau, obriu les seves propietats i repareu-la. Vegi https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
+  "CorruptFolderErrorDetails": {
+    "message": "Especificament, sembla que el missatge \"$1\" $2 s'ha enviat abans, però encara existeix a la carpeta d'Esborranys. Pot ser o no ser indicatiu d'un problema seriós. Prova a esborrar-lo.\n\nSend Later no l'enviarà, però continuarà processant la cua d'esborranys."
+  },
   "MessageResendError": {
     "message": "Send Later: Intenteu reenviar un missatge ja enviat?! La vostre Safata de Sortida o la Carpeta d'Esborranys $1 probablement està corrompuda. Si us plau, repareu-la tal com s'especifica a https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
@@ -910,6 +913,24 @@
   "ScheduledMessagesWarningTitle": {
     "message": "Avís de missatges programats",
     "description": ""
+  },
+  "CompactionFailureWithError": {
+    "message": "Compactant la Safata de Sortida i/o la carpeta d'Esborranys amb l'error:"
+  },
+  "CompactionFailureNoError": {
+    "message": "Compactant $1 ha fallat sense error."
+  },
+  "SanityCheckOutbox": {
+    "message": "Tens $1 missatges sense enviar que seran enviats durant la següent iteració."
+  },
+  "SanityCheckDrafts": {
+    "message": "Tens $1 missatges agendats per enviar-se per Send Later.\nEl següent està previst per $1."
+  },
+  "SanityCheckCorruptFolderWarning": {
+    "message": "Si aquests números no et semblen correctes, potser s'han corromput la Safata de Sortida i/o la carpeta d'Esborranys. En aquest cas, prova a compactar-les i reconstruir-les abans d'activar Send Later novament. Mira  <https://blog.kamens.us/send-later/#corrupt-outbox> i <https://blog.kamens.us/send-later/#corrupt-drafts-error> per a més detalls."
+  },
+  "SanityCheckConfirmOptionMessage": {
+    "message": "Selecciona una de les següents opcions:\n  “D'acord\": Continua normalment. No se't preguntarà novament.\n\n  “Cancel·lar”: Es desactivarà Send Later mitjançant les seves Preferències.\n                    Per a reactivar Send Later, ves a la seva pàgina d'Opcions i fixa\n                    el paràmetre “Comprova cada ___ minuts” a un valor diferent de zero.\n                    Rebràs aquesta alerta el proper cop que iniciïs\n                    Thunderbird"
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Hi ha missatges programats per a ser enviats. Send Later només pot enviar missatges si $1 s'està executant. Està segur de voler sortir?",
