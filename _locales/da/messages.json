@@ -227,24 +227,60 @@
     "message": "Den valgte dato er tidligere",
     "description": ""
   },
+  "DelayFunctionHelp": {
+    "message": "Bare forsinke beskeden med et vist antal minutter. Første argument bruges som forsinkelsestid.",
+    "description": ""
+  },
   "sendlater.prompt.sendlater.label": {
     "message": "Læg i udbakke",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.accesskey": {
+    "message": "O",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "I stedet for at planlægge afsendelse til en bestemt tid, flyt beskeden til Udbakke mappen, så bliver den sendt næste gang ikke-sendte besked sendes.",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.accesskey": {
+    "message": "N",
     "description": ""
   },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "Send beskeden med det samme, undlad “Send senere”.",
     "description": ""
   },
+  "sendlater.prompt.close.accesskey": {
+    "message": "C",
+    "description": ""
+  },
   "sendlater.prompt.close.tooltip": {
     "message": "Gå tilbage til redigering af beskeden.",
+    "description": ""
+  },
+  "sendlater.prompt.title.label": {
+    "message": "Send denne e-mail senere",
     "description": ""
   },
   "sendlater.prompt.or.label": {
     "message": "eller",
     "description": ""
   },
+  "sendlater.prompt.textbox.emptytext": {
+    "message": "eks: »3:00 torsdag«, »31/12/2012 15:27«",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.label": {
+    "message": "Send på et senere tidspunkte(r) som angivet ovenfor",
+    "description": ""
+  },
   "sendlater.prompt.sendat.tooltip": {
     "message": "Gem besked i Kladdemappe til automatisk levering på det tidspunkt, der er angivet ovenfor.",
+    "description": ""
+  },
+  "sendlater.prompt.functionargs.label": {
+    "message": "Funktions argumenter",
     "description": ""
   },
   "sendlater.prompt.calculate.label": {
@@ -259,6 +295,10 @@
     "message": "Aktivér Send senere for at planlægge afsendelsen af en besked efter indtastning af den ønskede sendetid i tekstfeltet. Denne knap gør ikke noget af sig selv. Du skal også tilføje tekstfeltet eller dato/tid vælgere (ikke understøttet i alle Thunderbird versioner) til værktøjslinjen, for at denne knap kan være nyttig.",
     "description": ""
   },
+  "sendlater.toolbar.textbox.emptytext": {
+    "message": "sende tid",
+    "description": ""
+  },
   "sendlater.prompt.every.label": {
     "message": "Hver",
     "description": ""
@@ -267,8 +307,36 @@
     "message": "15 minutter senere",
     "description": ""
   },
+  "sendlater.button2.label": {
+    "message": "30 minutter senere",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "2 timer senere",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.label": {
+    "message": "Annuller gentagelse ved svar",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Hold øje med svar på tidligere sendte kopier af tilbagevendende beskeder. Annullér en tilbagevendende besked og fjern det fra Kladder-mappen, når et svar modtages.",
+    "description": ""
+  },
   "sendlater3header.label": {
     "message": "Sende Senere",
+    "description": ""
+  },
+  "prefwindow.title": {
+    "message": "Send senere præferencer",
+    "description": ""
+  },
+  "pane1.title": {
+    "message": "Send senere præferencer",
+    "description": ""
+  },
+  "checktimepref.tooltip": {
+    "message": "Interval, i minutter, mellem kontrol af kladder, hvis leveringstid er nået. Forøg denne værdi, hvis dine kladder sommetider ikke sendes til tiden, eller hvis ventende beskedantal i din statuslinje indimelem ikke afspejler alle planlagte kladder.",
     "description": ""
   },
   "releasenotes.value": {
