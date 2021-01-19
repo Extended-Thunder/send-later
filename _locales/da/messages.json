@@ -55,6 +55,10 @@
     "message": "Konsol logniveau",
     "description": ""
   },
+  "logDumpLevelLabel": {
+    "message": "Dump log niveauet",
+    "description": ""
+  },
   "logLevelAll": {
     "message": "Alle",
     "description": ""
@@ -894,6 +898,22 @@
     "message": "Er du sikker?",
     "description": ""
   },
+  "OutboxConfirmMessage": {
+    "message": "Hvis du klikker på “Læg i udbakke” lægges meddelelsen i din udbakke med det samme. Det planlægger IKKE beskeden til at blive sendt på et bestemt tidspunkt. For at det skal ske, skal du klikke på “Send kl (tidspunkt)” knappen i den grønne boks efter indtastning af en gyldig sendetid. Er du sikker på, at du vil lægge beskeden i din udbakke nu?",
+    "description": ""
+  },
+  "SendNowConfirmMessage": {
+    "message": "Klik på “Send nu” sender beskeden med det samme. Det planlægger IKKE beskeden til at blive sendt på et bestemt tidspunkt. For at det sker, skal du klikke på “Send kl. (tidspunkt)” knappen i den grønne boks efter indtastning af et gyldig tidspunkt. Er du sikker på, at du vil sende beskeden nu?",
+    "description": ""
+  },
+  "ConfirmAgain": {
+    "message": "Vis denne advarsel næste gang",
+    "description": ""
+  },
+  "ScheduledMessagesWarningTitle": {
+    "message": "Advarsel om planlagte beskeder",
+    "description": ""
+  },
   "CompactionFailureWithError": {
     "message": "Optimering af udbakke og/eller kladdemapper mislykkedes med fejl:"
   },
@@ -922,11 +942,55 @@
   "SanityCheckConfirmOptionMessage": {
     "message": "Vælg en af mulighederne:\n  “OK”: Fortsæt som sædvanlig. Du vil ikke blive spurgt igen.\n\n  “Annullér”: Send senere vil blive deaktiveret via egne præferencer.\n                    For at genaktivere Send senere, gå til siden med valgmuligheder og sæt\n                    “Tjek hver ___ minutter” præferencen til en ikke-nul værdi.\n                    Du vil se denne forespørgsel igen, næste gang du genstarter\n                    Thunderbird"
   },
+  "ScheduledMessagesWarningQuitRequested": {
+    "message": "Der er beskeder planlagt til at blive sendt. Send senere kan kun sende beskeder når $1 kører. Er du sikker på du vil afslutte?",
+    "description": ""
+  },
+  "ScheduledMessagesWarningQuit": {
+    "message": "Send senere kan kun sende beskeder, når $1 kører. Husk at genstarte den, før dine beskeder er planlagt til at blive sendt!",
+    "description": ""
+  },
   "EncryptionIncompatTitle": {
     "message": "Problem med kompatibiliteten af krypteringen"
   },
   "EncryptionIncompatText": {
     "message": "Denne besked er krypteret med din egen PGP-nøgle, og kan derfor ikke leveres til modtagerne. Se denne diskussion for flere detaljer om, hvorfor du ser denne besked: https://github.com/Extended-Thunder/send-later/discussions/200"
+  },
+  "EnigmailIncompatTitle": {
+    "message": "Send senere / Enigmail kompatibilitetsproblem",
+    "description": ""
+  },
+  "EnigmailIncompatText": {
+    "message": "Den installerede version af Enigmail er inkompatibel med Send senere, så planlægningen af beskeder med Send senere er blevet deaktiveret. Kontakt supporten af Send senere (send-later-support@extended-thunder.org) for assistance.",
+    "description": ""
+  },
+  "TimeMismatchConfirmTitle": {
+    "message": "Send tid / restriktion inkonsistens",
+    "description": ""
+  },
+  "TimeMismatchConfirmBody": {
+    "message": "Sendetiden $1 falder ikke inden for de angivne tidsbegrænsninger. Klik på Annuller for at redigere din sendetid eller begrænsninger, eller OK for at justere den automatisk til $2.",
+    "description": ""
+  },
+  "endTimeWarningTitle": {
+    "message": "Ugyldig tidsbegrænsning for besked",
+    "description": ""
+  },
+  "endTimeWarningBody": {
+    "message": "Når du angiver en tidsbegrænsning for beskeden, kan sluttidspunktet ikke være tidligere end starttidspunktet. Justér venligst din tidsbegrænsning eller deaktiver den.",
+    "description": ""
+  },
+  "missingDaysWarningTitle": {
+    "message": "Ugyldig dag restriktion",
+    "description": ""
+  },
+  "InvalidArgsTitle": {
+    "message": "Ugyldige funktionsargumenter",
+    "description": ""
+  },
+  "InvalidArgsBody": {
+    "message": "Funktionsargumenterne er ikke gyldige. Angiv en JavaScript- liste uden  omsluttende firkantede klammer.",
+    "description": ""
   },
   "EditorReadMeCode": {
     "message": "// Velkommen til Send Senere funktion editor!\n//\n// Editoren giver dig mulighed for at oprette JavaScript-funktioner, der implementerer kompleks\n// besked planlægnings logik som kan knyttes til genvejsknapper eller\n// vælges i Send Senere dialogen.\n//\n// Som du kan se ovenfor, når en planlægningsfunktion kaldes, vil den blive givet\n// tre argumenter:\n// * \"specname\" er nødvendig hvis du ønsker at denne funktion skal gentages (se nedenfor)\n// * \"prev\" er den forrige planlagte sendetid hvis dette er et kald der skal \n// gentages \n// * \"args\" er de ekstra argumenter returneret af det foregående kald, hvis dette\n// er et gentaget kald\n//\n// Din kode skal angive variablerne \"next\" \"nextspec\" og\n// \"nextargs\" som følger:\n//\n// * \"next\" er enten antallet af minutter i fremtiden eller et Datoobjekt\n// som angiver, hvornår meddelelsen skal sendes.\n// * \"nextspec\" er en gentagelse specifikation, hvis dette er beregnet til at være en\n// gentaget meddelelse (se\n// https://extended-thunder.github.io/send-later/#dynamic-recurrence). Hvis du ikke sætter\n// dette, vil meddelelsen kun blive sendt én gang. Bemærk: Hvis du ønsker at din\n// funktion skal kaldes igen ved gentagelse, gør sådan:\n// nextspec = \"function \" + specname;\n// * \"nextargs\" er et array af argumenter, du ønsker at blive overført til det næste\n// kald af funktionen som \"args\".\n//\n// Mens du arbejder på din funktion, kan du teste det ved at udfylde værdierne\n// for \"prev\" og \"args\" i tekstfelterne nedenfor og derefter klikke på \"Kør\" for\n// at udføre funktionen og se resultaterne.\n//\n// Der er to prækonfigurerede eksempel funktioner, \"BusinessHours\" og\n// \"DaysInARow\", som du kan se på og lege med for at lære mere.\n//\n// Denne \"ReadMeFirst\" funktion gør kun, at meddelelsen sendes rundt nu,\n// via den følgende linje.\nnext = ny dato();",
