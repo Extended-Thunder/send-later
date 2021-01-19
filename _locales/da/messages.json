@@ -339,6 +339,50 @@
     "message": "Interval, i minutter, mellem kontrol af kladder, hvis leveringstid er nået. Forøg denne værdi, hvis dine kladder sommetider ikke sendes til tiden, eller hvis ventende beskedantal i din statuslinje indimelem ikke afspejler alle planlagte kladder.",
     "description": ""
   },
+  "quickoptionname.label": {
+    "message": "Knappens navn",
+    "description": ""
+  },
+  "showsendlatercolumn.tooltip": {
+    "message": "Om “Send senere” kolonnen skal vises i kladder mappe vinduet",
+    "description": ""
+  },
+  "showsendlaterheader.tooltip": {
+    "message": "Skal overskriften “X-Send-senere-Kl” vises, altså det tidspunkt hvor en kladde er planlagt til at blive sendt, i overskriften når du ser på en besked.",
+    "description": ""
+  },
+  "showsendlaterprogress.caption": {
+    "message": "Vis Baggrundsfremskridt i Statuslinjen",
+    "description": ""
+  },
+  "showsendlaterunsentmessages.tooltip": {
+    "message": "Hvis du deaktiverer denne indstilling, så vil Send senere ikke fuldt ud levere beskeder, men vil i stedet bare lægge dem i din udbakke når de er planlagt til levering. Fjern denne indstilling, eksempelvis, hvis du bruger en anden udvidelse, f.eks., BlunderDelay, til periodisk at sende beskeder fra din udbakke. Bemærk, at når denne indstilling er aktiveret, så vil ALLE beskeder der ligger i din udbakke blive sendt næste gang Send Senere sender en besked.",
+    "description": ""
+  },
+  "sendlatersendbutton.tooltip": {
+    "message": "Med denne indstilling aktiveret, virker kommandoen “Send” (enten knappen eller ved at skrive Ctrl-Enter) på samme måde som “Send senere”.",
+    "description": ""
+  },
+  "senddelay.tooltip": {
+    "message": "Med denne indstilling aktiveret, vil alle beskeder som er  sendt med kommandoen “Send” (enten knappen eller ved at skrive Ctrl-Enter) blive forsinket med det angivne antal minutter, som planlægges i Send senere.",
+    "description": ""
+  },
+  "composewindowhotkeys.tooltip": {
+    "message": "Mens du skriver en besked, kan du skrive Ctrl-Alt-1, -2 eller -3 for at aktivere den første, anden eller tredie forudindstillede knap. Hvis du  fjerner markeringen af denne præference vil disse tastebindinger være deaktiveret.",
+    "description": ""
+  },
+  "composewindowhotkeys.caption": {
+    "message": "Aktivér kompositionsvinduet tastebindinger for at lave forudindstillinger",
+    "description": ""
+  },
+  "contactauthor.tooltip": {
+    "message": "Send en besked til udvikleren af Send senere.",
+    "description": ""
+  },
+  "helplink.tooltip": {
+    "message": "Se Send senere dokumentationen.",
+    "description": ""
+  },
   "releasenotes.value": {
     "message": "Udgivelsesnoter",
     "description": ""
@@ -353,6 +397,22 @@
   },
   "editorlink.value": {
     "message": "Redigér Dynamiske Funktioner",
+    "description": ""
+  },
+  "enforcerestrictions.tooltip": {
+    "message": "Hvis en meddelelse, der skal sendes, er uden for dens tids- eller dags restriktioner, f.eks. fordi Thunderbird ikke kørte på beskedens planlagte leveringstidspunkt, vil leveringen først finde sted når tids- og dags restriktioner er opfyldt.",
+    "description": ""
+  },
+  "blocklatemessages.tooltip": {
+    "message": "Levér ikke planlagte meddelelser, der er blevet forsinket udover deres planlagte tid, fx fordi Thunderbird ikke kørte på det tidspunkt.",
+    "description": ""
+  },
+  "editorbutton": {
+    "message": "Åbn dynamisk funktionseditor…",
+    "description": ""
+  },
+  "editortip": {
+    "message": "Åbn et vindue til at oprette og redigere JavaScript-funktioner der implementerer kompleks planlægning logik.",
     "description": ""
   },
   "loglevel.config": {
@@ -559,6 +619,10 @@
     "message": "Send i henhold til funktion \"$1\"",
     "description": ""
   },
+  "sendspecifyfunction": {
+    "message": "Vælg en funktion fra menuen ovenfor",
+    "description": ""
+  },
   "January": {
     "message": "Januar",
     "description": ""
@@ -605,6 +669,14 @@
   },
   "December": {
     "message": "December",
+    "description": ""
+  },
+  "OptionShortcutAlertTitle": {
+    "message": "Ugyldig genvejsværdi",
+    "description": ""
+  },
+  "OptionShortcutAlertText": {
+    "message": "Genvej $1 har ugyldig værdi “$2”",
     "description": ""
   },
   "SendingUnsentError": {
@@ -758,6 +830,14 @@
     "message": "Lørdag",
     "description": ""
   },
+  "betw_times": {
+    "message": "mell. $1 og $2",
+    "description": ""
+  },
+  "only_on_days": {
+    "message": "på $1",
+    "description": ""
+  },
   "only_on_day0": {
     "message": "Søndag",
     "description": ""
@@ -784,6 +864,34 @@
   },
   "only_on_day6": {
     "message": "Lørdag",
+    "description": ""
+  },
+  "ord1": {
+    "message": "1ste",
+    "description": ""
+  },
+  "ord2": {
+    "message": "2.",
+    "description": ""
+  },
+  "ord3": {
+    "message": "3.",
+    "description": ""
+  },
+  "ord4": {
+    "message": "4.",
+    "description": ""
+  },
+  "ord5": {
+    "message": "5.",
+    "description": ""
+  },
+  "draftSaveWarning": {
+    "message": "ADVARSEL: For at forhindre beskeden i at blive leveret af Send senere, mens du redigerer den, er den planlagte sendetid blevet annulleret. Genplanlæg venligst beskeden når du er færdig med at redigere den.",
+    "description": ""
+  },
+  "AreYouSure": {
+    "message": "Er du sikker?",
     "description": ""
   },
   "CompactionFailureWithError": {
