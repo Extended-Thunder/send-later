@@ -259,6 +259,7 @@ var SLStatic = {
     }
     const dt = (dateTime.getTime() - relativeTo.getTime())/1000;
     const DT = Math.abs(dt);
+    const L = Sugar.Date.getLocale('en');
     const l = Sugar.Date.getLocale();
 
     const prettyRound = (n) => {
@@ -272,19 +273,19 @@ var SLStatic = {
     let num, u;
     if (DT < 60) {
       num = `${Math.floor(DT)}`;
-      u=l.unitMap.seconds;
+      u=L.unitMap.seconds;
     } else if (DT < 60*55) {
       num = `${Math.floor(DT/(60))}`;
-      u=l.unitMap.minutes;
+      u=L.unitMap.minutes;
     } else if (DT < 60*60*23.7) {
       num = prettyRound(DT/(60*60));
-      u=l.unitMap.hours;
+      u=L.unitMap.hours;
     } else if (DT <= 60*60*24*364.3) {
       num = prettyRound(DT/(60*60*24));
-      u=l.unitMap.days;
+      u=L.unitMap.days;
     } else {
       num = prettyRound(DT/(60*60*24*365));
-      u=l.unitMap.years;
+      u=L.unitMap.years;
     }
 
     const singular = !l.plural || num === "1";
