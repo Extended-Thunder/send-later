@@ -924,10 +924,20 @@
     "message": "U hebt $1 niet-verzonden bericht(en) dat of die de volgende keer dat een gepland bericht vervalt wordt of worden geactiveerd voor verzending."
   },
   "SanityCheckDrafts": {
-    "message": "U hebt $1 bericht(en) gepland voor aflevering door Send Later.\nHet volgende staat gepland voor $2."
+    "message": "U hebt $1 bericht(en) gepland voor aflevering door Send Later.\nHet volgende staat gepland voor $2.",
+    "description": "$1 is replaced with a number, and $2 is replaced with the date/time of the next scheduled message."
   },
   "SanityCheckCorruptFolderWarning": {
-    "message": "Als deze getallen volgens u niet kloppen, hebt u mogelijk een beschadigde map Postvak UIT en/of Concepten. In dat geval wordt u geadviseerd deze mappen te comprimeren en opnieuw op te bouwen voordat u Send Later activeert. Zie <https://blog.kamens.us/send-later/#corrupt-outbox> en <https://blog.kamens.us/send-later/#corrupt-drafts-error> voor meer details."
+    "message": "Als deze getallen volgens u niet kloppen, hebt u mogelijk een beschadigde map Postvak UIT en/of Concepten. In dat geval wordt u geadviseerd deze mappen te comprimeren en opnieuw op te bouwen voordat u Send Later activeert. Zie <$CORRUPTOUTBOXDOCS$> en <$CORRUPTDRAFTDOCS$> voor meer details.",
+    "description": "Part of \"sanity check\" prompt potentially displayed during version migration. If there are scheduled messages in the user's Drafts and/or Outbox folders, then the user will be prompted to confirm that the message counts are accurate. This message is preceeded by one or both of the translation strings: \"SanityCheckDrafts\" and/or \"SanityCheckOutbox\".",
+    "placeholders": {
+      "CorruptOutboxDocs": {
+        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Outbox_folder"
+      },
+      "CorruptDraftDocs": {
+        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Drafts_folders"
+      }
+    }
   },
   "SanityCheckConfirmOptionMessage": {
     "message": "Selecteer een van deze opties:\n  ‘OK’: doorgaan zoals gebruikelijk. De vraag verschijnt hierna niet meer.\n\n  ‘Annuleren’: Send Later wordt uitgeschakeld via de eigen voorkeuren.\n                    Om Send Later weer in te schakelen, gaat u naar de optiespagina ervan\n                    en stelt u de voorkeur ‘Elke ___ minuten controleren’ in op een andere waarde dan nul.\n                    U ziet deze vraag weer als u Thunderbird de volgende keer opnieuw\n                    start."

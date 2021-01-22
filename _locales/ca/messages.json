@@ -924,10 +924,20 @@
     "message": "Tens $1 missatges sense enviar que seran enviats durant la següent iteració."
   },
   "SanityCheckDrafts": {
-    "message": "Tens $1 missatges agendats per enviar-se per Send Later.\nEl següent està previst per $1."
+    "message": "Tens $1 missatges agendats per enviar-se per Send Later.\nEl següent està previst per $1.",
+    "description": "$1 is replaced with a number, and $2 is replaced with the date/time of the next scheduled message."
   },
   "SanityCheckCorruptFolderWarning": {
-    "message": "Si aquests números no et semblen correctes, potser s'han corromput la Safata de Sortida i/o la carpeta d'Esborranys. En aquest cas, prova a compactar-les i reconstruir-les abans d'activar Send Later novament. Mira  <https://blog.kamens.us/send-later/#corrupt-outbox> i <https://blog.kamens.us/send-later/#corrupt-drafts-error> per a més detalls."
+    "message": "Si aquests números no et semblen correctes, potser s'han corromput la Safata de Sortida i/o la carpeta d'Esborranys. En aquest cas, prova a compactar-les i reconstruir-les abans d'activar Send Later novament. Mira  <$CORRUPTOUTBOXDOCS$> i <$CORRUPTDRAFTDOCS$> per a més detalls.",
+    "description": "Part of \"sanity check\" prompt potentially displayed during version migration. If there are scheduled messages in the user's Drafts and/or Outbox folders, then the user will be prompted to confirm that the message counts are accurate. This message is preceeded by one or both of the translation strings: \"SanityCheckDrafts\" and/or \"SanityCheckOutbox\".",
+    "placeholders": {
+      "CorruptOutboxDocs": {
+        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Outbox_folder"
+      },
+      "CorruptDraftDocs": {
+        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Drafts_folders"
+      }
+    }
   },
   "SanityCheckConfirmOptionMessage": {
     "message": "Selecciona una de les següents opcions:\n  “D'acord\": Continua normalment. No se't preguntarà novament.\n\n  “Cancel·lar”: Es desactivarà Send Later mitjançant les seves Preferències.\n                    Per a reactivar Send Later, ves a la seva pàgina d'Opcions i fixa\n                    el paràmetre “Comprova cada ___ minuts” a un valor diferent de zero.\n                    Rebràs aquesta alerta el proper cop que iniciïs\n                    Thunderbird"

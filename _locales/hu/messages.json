@@ -924,10 +924,8 @@
     "message": "$1 el nem küldött üzenete van, amelyeket legközelebb elküldünk, amikor egy ütemezett üzenet esedékessé válik."
   },
   "SanityCheckDrafts": {
-    "message": "$1 üzeneted van ütemezve, amelyeket a Küldés később elküld.\nA következő ütemezése: $2"
-  },
-  "SanityCheckCorruptFolderWarning": {
-    "message": "Ha ezek a számok nem tűnnek megfelelőnek, akkor lehet, hogy sérült a Kimenő és/vagy a Piszkozatok mappák. Ebben az esetben ajánlatos tömöríteni és újjáépíteni ezeket a mappákat, mielőtt aktiválná a Küldés később funkciót. További részletekért lásd: <https://blog.kamens.us/send-later/#corrupt-outbox> és <https://blog.kamens.us/send-later/#corrupt-drafts-error>."
+    "message": "$1 üzeneted van ütemezve, amelyeket a Küldés később elküld.\nA következő ütemezése: $2",
+    "description": "$1 is replaced with a number, and $2 is replaced with the date/time of the next scheduled message."
   },
   "SanityCheckConfirmOptionMessage": {
     "message": "Válasszon egyet a lehetőségek közül:\n\n„Rendben”: Folytassa a szokásos módon. Nem kéri újra.\n\n„Mégse”: A Küldés később funkciót a saját beállításai alapján tiltja le.\nA Küldés később engedélyezéséhez lépjen a beállítások oldalára, és állítsa az „Ellenőrzés ___ percenként” beállítást nem nulla értékre.\nA Thunderbird következő újraindításakor újra megkapja ezt a figyelmeztetést"

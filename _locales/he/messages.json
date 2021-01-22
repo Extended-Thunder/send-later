@@ -924,10 +924,20 @@
     "message": "יש לך $1 הודעות שטרם נשלחו. הן הוגדרו למשלוח במועד הקרוב הבא שנקבע לשליחת הודעות."
   },
   "SanityCheckDrafts": {
-    "message": "יש לך $1 הודעות המתוכננות להישלח ע\"י 'שלח מאורח יותר'.\nהמועד הבא, מתוכנן ל $2"
+    "message": "יש לך $1 הודעות המתוכננות להישלח ע\"י 'שלח מאורח יותר'.\nהמועד הבא, מתוכנן ל $2",
+    "description": "$1 is replaced with a number, and $2 is replaced with the date/time of the next scheduled message."
   },
   "SanityCheckCorruptFolderWarning": {
-    "message": "אם מספרים אילו נראים לך לא תקנים, יתכן ותיבות הדואר היוצא ו/או הטיוטה הושחתו. במקרה זה מומלץ לשקול לדחוס ולבנות מחדש ספריות אילו לפני הפעלת 'שלח מאוחר יותר'. ראה פרטים נוספים בקישורים להלן:\n<https://blog.kamens.us/send-later/#corrupt-outbox> \n <https://blog.kamens.us/send-later/#corrupt-drafts-error>."
+    "message": "אם מספרים אילו נראים לך לא תקנים, יתכן ותיבות הדואר היוצא ו/או הטיוטה הושחתו. במקרה זה מומלץ לשקול לדחוס ולבנות מחדש ספריות אילו לפני הפעלת 'שלח מאוחר יותר'. ראה פרטים נוספים בקישורים להלן:\n<$CORRUPTOUTBOXDOCS$>\nוגם:\n<$CORRUPTDRAFTDOCS$>",
+    "description": "Part of \"sanity check\" prompt potentially displayed during version migration. If there are scheduled messages in the user's Drafts and/or Outbox folders, then the user will be prompted to confirm that the message counts are accurate. This message is preceeded by one or both of the translation strings: \"SanityCheckDrafts\" and/or \"SanityCheckOutbox\".",
+    "placeholders": {
+      "CorruptOutboxDocs": {
+        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Outbox_folder"
+      },
+      "CorruptDraftDocs": {
+        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Drafts_folders"
+      }
+    }
   },
   "SanityCheckConfirmOptionMessage": {
     "message": "בחרו אחת מהאפשרויות להלן:\n\"אישור\". המשך כרגיל . לא תתבקש להגיב יותר.\n\"ביטול\". 'שלח מאוחר יותר' תנוטרל באמצעות תכונותיה הפנימיות.\nכדי להפעיל את 'שלח מאוחר יותר' שוב, יש לגשת לעמוד האפשרויות ולסמן\nהתכונה \"בדוק כל ___מספר דקות\" לערך השונה מאפס.\nהודעה זו תופיע שוב, בפעם הבאה בה תפעיל את 'ציפור הרעם' מחדש."

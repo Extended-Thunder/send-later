@@ -924,10 +924,20 @@
     "message": "Tiene $1 mensaje(s) sin enviar, que se activará(n) para enviar la próxima vez que se realice un envío programado de mensajes."
   },
   "SanityCheckDrafts": {
-    "message": "Tienes $1 mensaje(s) programado(s) para ser entregado(s) por Send Later.\nEl siguiente envío está programado para $2."
+    "message": "Tienes $1 mensaje(s) programado(s) para ser entregado(s) por Send Later.\nEl siguiente envío está programado para $2.",
+    "description": "$1 is replaced with a number, and $2 is replaced with the date/time of the next scheduled message."
   },
   "SanityCheckCorruptFolderWarning": {
-    "message": "Si estos números no le parecen correctos, es posible que tenga una corrupción en la bandeja de salida y/o de borradores. En ese caso se aconseja compactar y reconstruir esas carpetas antes de activar Send Later. Consulta <https://blog.kamens.us/send-later/#corrupt-outbox> y <https://blog.kamens.us/send-later/#corrupt-drafts-error> para más detalles."
+    "message": "Si estos números no le parecen correctos, es posible que tenga una corrupción en la bandeja de salida y/o de borradores. En ese caso se aconseja compactar y reconstruir esas carpetas antes de activar Send Later. Consulta <$CORRUPTOUTBOXDOCS$> y <$CORRUPTDRAFTDOCS$> para más detalles.",
+    "description": "Part of \"sanity check\" prompt potentially displayed during version migration. If there are scheduled messages in the user's Drafts and/or Outbox folders, then the user will be prompted to confirm that the message counts are accurate. This message is preceeded by one or both of the translation strings: \"SanityCheckDrafts\" and/or \"SanityCheckOutbox\".",
+    "placeholders": {
+      "CorruptOutboxDocs": {
+        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Outbox_folder"
+      },
+      "CorruptDraftDocs": {
+        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Drafts_folders"
+      }
+    }
   },
   "SanityCheckConfirmOptionMessage": {
     "message": "Seleccione una de las opciones:\n  “OK”: Proceda como de costumbre. No se le pedirá de nuevo.\n\n  “Cancelar”: Send Later se deshabilitará por sus propias preferencias.\n                    Para volver a habilitar Send Later, vaya a su página de opciones y establezca\n                    la preferencia \"Comprobar cada ___ minutos\" a un valor distinto de cero.\n                    Volverá a recibir este mensaje la próxima vez que reinicie\n                    Thunderbird"
