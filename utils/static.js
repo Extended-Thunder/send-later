@@ -259,7 +259,7 @@ var SLStatic = {
     }
     const dt = (dateTime.getTime() - relativeTo.getTime())/1000;
     const DT = Math.abs(dt);
-    const l = Sugar.Date.getLocale('en');
+    const l = Sugar.Date.getLocale();
 
     const prettyRound = (n) => {
       if (n%1 < 0.3 || n%1 > 0.7) {
