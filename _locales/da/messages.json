@@ -984,6 +984,10 @@
     "message": "Ugyldig dag restriktion",
     "description": ""
   },
+  "missingDaysWarningBody": {
+    "message": "Du har aktiveret en begrænsning af daglige besked(er) uden at angive nogen dage. Venligst deaktivér begrænsningen eller angiv mindst én leveringsdag.",
+    "description": ""
+  },
   "InvalidArgsTitle": {
     "message": "Ugyldige funktionsargumenter",
     "description": ""
