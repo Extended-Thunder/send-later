@@ -232,7 +232,7 @@
     "description": ""
   },
   "DelayFunctionHelp": {
-    "message": "Bare forsinke beskeden med et vist antal minutter. Første argument bruges som forsinkelsestid.",
+    "message": "Blot forsinke beskeden med et vist antal minutter. Første argument bruges som forsinkelsestid.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -984,6 +984,10 @@
     "message": "Ugyldig dag restriktion",
     "description": ""
   },
+  "missingDaysWarningBody": {
+    "message": "Du har aktiveret en begrænsning af daglige besked(er) uden at angive nogen dage. Venligst deaktivér begrænsningen eller angiv mindst én leveringsdag.",
+    "description": ""
+  },
   "InvalidArgsTitle": {
     "message": "Ugyldige funktionsargumenter",
     "description": ""
@@ -992,8 +996,140 @@
     "message": "Funktionsargumenterne er ikke gyldige. Angiv en JavaScript- liste uden  omsluttende firkantede klammer.",
     "description": ""
   },
+  "BlockedLateMessage": {
+    "message": "Beskeden med emne “$1” i Kladdemappe $2 var planlagt til at blive leveret for mere end $3 minutter siden, så levering er blevet blokeret. Du bør redigere kladden og enten sende den manuelt eller genplanlægge den. Du kan også deaktivere “Må ikke levere beskeder mere end # minutter for sent” præferencen, for at stoppe blokeringen af levering af for sene beskeder.",
+    "description": ""
+  },
   "EditorReadMeCode": {
     "message": "// Velkommen til Send Senere funktion editor!\n//\n// Editoren giver dig mulighed for at oprette JavaScript-funktioner, der implementerer kompleks\n// besked planlægnings logik som kan knyttes til genvejsknapper eller\n// vælges i Send Senere dialogen.\n//\n// Som du kan se ovenfor, når en planlægningsfunktion kaldes, vil den blive givet\n// tre argumenter:\n// * \"specname\" er nødvendig hvis du ønsker at denne funktion skal gentages (se nedenfor)\n// * \"prev\" er den forrige planlagte sendetid hvis dette er et kald der skal \n// gentages \n// * \"args\" er de ekstra argumenter returneret af det foregående kald, hvis dette\n// er et gentaget kald\n//\n// Din kode skal angive variablerne \"next\" \"nextspec\" og\n// \"nextargs\" som følger:\n//\n// * \"next\" er enten antallet af minutter i fremtiden eller et Datoobjekt\n// som angiver, hvornår meddelelsen skal sendes.\n// * \"nextspec\" er en gentagelse specifikation, hvis dette er beregnet til at være en\n// gentaget meddelelse (se\n// https://extended-thunder.github.io/send-later/#dynamic-recurrence). Hvis du ikke sætter\n// dette, vil meddelelsen kun blive sendt én gang. Bemærk: Hvis du ønsker at din\n// funktion skal kaldes igen ved gentagelse, gør sådan:\n// nextspec = \"function \" + specname;\n// * \"nextargs\" er et array af argumenter, du ønsker at blive overført til det næste\n// kald af funktionen som \"args\".\n//\n// Mens du arbejder på din funktion, kan du teste det ved at udfylde værdierne\n// for \"prev\" og \"args\" i tekstfelterne nedenfor og derefter klikke på \"Kør\" for\n// at udføre funktionen og se resultaterne.\n//\n// Der er to prækonfigurerede eksempel funktioner, \"BusinessHours\" og\n// \"DaysInARow\", som du kan se på og lege med for at lære mere.\n//\n// Denne \"ReadMeFirst\" funktion gør kun, at meddelelsen sendes rundt nu,\n// via den følgende linje.\nnext = ny dato();",
+    "description": ""
+  },
+  "EditorReadMeHelp": {
+    "message": "Enhver tekst du lægger her vil blive vist som et værktøjsvink når du svæver over navnet på funktionen i menuen. Du kan bruge dette til at dokumentere hvad funktionen gør, og hvilke argumenter den accepterer.",
+    "description": ""
+  },
+  "_BusinessHoursCode": {
+    "message": "// Standard\nvar workDays = [1, 2, 3, 4, 5]; // Man - Fri; Søn == 0, lør == 6\nvar workStart = [8, 30]; // Start på arbejdsdagen som [T, M]\nvar workEnd = [17, 30]; // Slutningen af arbejdsdagen som [T, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Ikke forventet ved normal brug, men brugt som nuværende tidspunkt til test .\n    next = new date(prev);\nelse\n    next = new date();\n// Hvis vi er forbi sluttidspunktet af arbejdsdagen eller ej på en arbejdsdag gå videre til\n// arbejdstidsstartspunkt den følgende dag.\nwhile (next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes () > workEnd[1]) ||\n       (workdays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// Hvis vi er før begyndelsen af arbejdsdagen, gå til arbejdsdagens starttid.\nif (next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
+    "description": ""
+  },
+  "BusinessHoursHelp": {
+    "message": "Send beskeden nu, hvis det er i løbet af arbejdstiden, eller i begyndelsen af den næste arbejdsdag. Du kan ændre definitionen på arbejdsdage (standard: Man - Fre) ved at sende et  antal arbejdsdagstal som det første argument, hvor 0 er søndag og 6 er lørdag. Du kan ændre arbejdsstarttidspunkt eller sluttidspunkt (standard: 8:30 - 17:30) ved at sende  række af [T, M] som andet eller tredje argument. Angiv “null” for tidligere definitioner du ikke vil ændre. For eksempel, “null, [9, 0], [17, 0]” ændrer arbejdstiden uden at ændre arbejdsdage.",
+    "description": ""
+  },
+  "DaysInARowCode": {
+    "message": "/ / Send den første besked nu, efterfølgende beskeder en gang om dagen.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // kopiér dato argument så vi ikke ændre det.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Forsøg ikke at sende i fortiden, ifald Thunderbird ikke kørte på\n    // den planlagte sendetid.\n}\nif (! args) // Send beskeder tre gange som standard.\n    args = [3];\nnextargs = [args[0] - 1];\n// Gør det igen  hvis vi ikke har sendt det hele endnu.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
+    "description": ""
+  },
+  "DaysInARowHelp": {
+    "message": "Send beskeden nu, og derefter en gang om dagen på samme tid, indtil den er blevet sendt tre gange. Angiv et tal som et argument for at ændre det samlede antal sendinger.",
+    "description": ""
+  },
+  "DiscardConfirmTitle": {
+    "message": "Kassér ændringer?",
+    "description": ""
+  },
+  "DiscardConfirmBody": {
+    "message": "Der er ikke-gemte ændringer. Vil du gemme eller kassere dem?",
+    "description": ""
+  },
+  "UntestedSaveTitle": {
+    "message": "Gem ikke-testet funktion?",
+    "description": ""
+  },
+  "UntestedSaveBody": {
+    "message": "Funktionen er ikke blevet testet (med “Udfør”-knappen), siden den sidst blev ændret. Er du sikker på, at du vil gemme eller eksportere den?",
+    "description": ""
+  },
+  "BadSaveTitle": {
+    "message": "Ugyldigt funktionsnavn eller kode",
+    "description": ""
+  },
+  "BadSaveBody": {
+    "message": "Venligst sørg for funktionsnavn og koden er gyldige, før du gemmer eller eksporterer.",
+    "description": ""
+  },
+  "ReplacingFunctionTitle": {
+    "message": "Overskriv eksisterende funktion?",
+    "description": ""
+  },
+  "ReplacingFunctionBody": {
+    "message": "En funktion med det angivne navn findes allerede. Er du sikker på, at du vil erstatte den?",
+    "description": ""
+  },
+  "NoNextValueError": {
+    "message": "Funktionen har ikke angivet en “next” værdi.",
+    "description": ""
+  },
+  "BadNextValueError": {
+    "message": "“next” værdi “$1” er ikke et tal eller en dato",
+    "description": ""
+  },
+  "BadNextArgsError": {
+    "message": "“nextargs” værdi “$1” er ikke et Array",
+    "description": ""
+  },
+  "FunctionDeleteConfirmBody": {
+    "message": "Er du sikker på, at du vil slette denne funktion? Hvis det er forbundet med genvejsknapper, vil de holde op med at virke, og hvis der er nogen tilbagevendende beskeder der benytter den, vil disse ikke kunne gensendes som planlagt efter næste gang de sendes.",
+    "description": ""
+  },
+  "ImportTitle": {
+    "message": "Vælg fil at importere",
+    "description": ""
+  },
+  "SLJFilterLabel": {
+    "message": "Send Senere JSON Filer",
+    "description": ""
+  },
+  "ImportError": {
+    "message": "Fejl i importen",
+    "description": ""
+  },
+  "ExportTitle": {
+    "message": "Vælg eksportdestination",
+    "description": ""
+  },
+  "RenameFunctionTitle": {
+    "message": "Omdøb eksisterende funktion?",
+    "description": ""
+  },
+  "RenameFunctionBody": {
+    "message": "Du har ændret navnet på en eksisterende funktion, “$1”. Vil du omdøbe den eksisterende funktion eller gemme en separat funktion med det nye navn?",
+    "description": ""
+  },
+  "RenameFunctionRenameButton": {
+    "message": "Omdøb",
+    "description": ""
+  },
+  "RenameFunctionNewButton": {
+    "message": "Ny",
+    "description": ""
+  },
+  "FunctionErrorTitle": {
+    "message": "Fejl under start af dynamisk funktion",
+    "description": ""
+  },
+  "FunctionErrorBody": {
+    "message": "Fejl under start af dynamisk planlægningsfunktion: “$1”",
+    "description": ""
+  },
+  "cancel_on_reply": {
+    "message": "annullér ved svar",
+    "description": ""
+  },
+  "PendingMessage": {
+    "message": "PEND $1",
+    "description": ""
+  },
+  "IdleMessage": {
+    "message": "Inaktiv",
+    "description": ""
+  },
+  "DisabledMessage": {
+    "message": "DEAKTIVERET",
+    "description": ""
+  },
+  "CheckingMessage": {
+    "message": "KONTROL",
     "description": ""
   },
   "LongDescription": {
