@@ -515,8 +515,12 @@ var SLStatic = {
       if (fromNow < 0 && fromNow > -90) {
         scheduleText += ` (${(new Sugar.Date(Date.now()+100)).relative()})`;
       } else {
-        scheduleText += ` (${SLStatic.formatRelative(sendAt)})`;
-        //scheduleText += ` (${(new Sugar.Date(sendAt)).relative()})`;
+        try {
+          scheduleText += ` (${SLStatic.formatRelative(sendAt)})`;
+          //scheduleText += ` (${(new Sugar.Date(sendAt)).relative()})`;
+        } catch (ex) {
+          SLStatic.warn(ex);
+        }
       }
     }
 
