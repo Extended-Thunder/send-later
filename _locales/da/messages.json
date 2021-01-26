@@ -232,7 +232,7 @@
     "description": ""
   },
   "DelayFunctionHelp": {
-    "message": "Bare forsinke beskeden med et vist antal minutter. Første argument bruges som forsinkelsestid.",
+    "message": "Blot forsinke beskeden med et vist antal minutter. Første argument bruges som forsinkelsestid.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
