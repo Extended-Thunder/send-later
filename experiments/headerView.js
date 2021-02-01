@@ -341,8 +341,12 @@ SendLaterHeaderView = {
           msghdr = null;
         }
         if (msghdr != null) {
+          const status = SendLaterHeaderView.checkValidSchedule(msghdr);
           let schedule = SendLaterHeaderView.getSchedule(msghdr);
-          if (schedule !== null) {
+          if ((schedule !== null)
+              &&
+              (status.valid === true || status.detail === "Missing ContentType"))
+            {
             try {
               let hdrText = SLStatic.formatScheduleForUIColumn(schedule);
               const headerBoxElement = document.getElementById("sendlater-expanded-Box");

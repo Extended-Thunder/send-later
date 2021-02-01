@@ -646,7 +646,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           function doAlertCheck(resolve, reject) {
             try {
               let checkbox = { value: state };
-              Services.prompt.clertCheck(
+              Services.prompt.alertCheck(
                 null, title, message, checkMessage, checkbox
               );
               resolve({ check: checkbox.value });
@@ -981,9 +981,10 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             (Services.prefs.getBoolPref(
               "mail.compose.attachment_reminder_aggressive"
             ) &&
-              cw.gNotification.notificationbox.getNotificationWithValue(
-                "attachmentReminder"
-              ))
+              ( // gComposeNotification replaces gNotification.notificationbox
+                // in Thunderbird 86.
+                cw.gComposeNotification || cw.gNotification.notificationbox
+              ).getNotificationWithValue("attachmentReminder"))
           ) {
             let flags =
               Services.prompt.BUTTON_POS_0 * Services.prompt.BUTTON_TITLE_IS_STRING +
@@ -1410,11 +1411,17 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           try {
             SendLaterFunctions.debug(`Deleting message (${draftUri})`);
             if (folder.getFlag(Ci.nsMsgFolderFlags.Drafts)) {
-              let msgs = Cc["@mozilla.org/array;1"].createInstance(
-                Ci.nsIMutableArray
-              );
-              msgs.appendElement(folder.GetMessageHeader(msgKey));
-              folder.deleteMessages(msgs, null, true, false, null, false);
+              try {
+                let msgHdr = folder.GetMessageHeader(msgKey);
+                folder.deleteMessages([msgHdr], null, true, false, null, false);
+              } catch (ex0) {
+                // TB versions < 86
+                let msgs = Cc["@mozilla.org/array;1"].createInstance(
+                  Ci.nsIMutableArray
+                );
+                msgs.appendElement(folder.GetMessageHeader(msgKey));
+                folder.deleteMessages(msgs, null, true, false, null, false);
+              }
             }
           } catch (ex) {
             // couldn't find header - perhaps an imap folder.
