@@ -244,7 +244,7 @@
     "description": ""
   },
   "sendlater.prompt.sendlater.tooltip": {
-    "message": "I stedet for at planlægge afsendelse til en bestemt tid, flyt beskeden til Udbakke mappen, så bliver den sendt næste gang ikke-sendte besked sendes.",
+    "message": "I stedet for at planlægge afsendelse til en bestemt tid, flyt beskeden til Udbakke mappen, så bliver den sendt næste gang ikke-sendte beskeder sendes.",
     "description": ""
   },
   "sendlater.prompt.sendnow.accesskey": {
@@ -340,7 +340,7 @@
     "description": ""
   },
   "checktimepref.tooltip": {
-    "message": "Interval, i minutter, mellem kontrol af kladder, hvis leveringstid er nået. Forøg denne værdi, hvis dine kladder sommetider ikke sendes til tiden, eller hvis ventende beskedantal i din statuslinje indimelem ikke afspejler alle planlagte kladder.",
+    "message": "Interval, i minutter, mellem kontrol af kladder, hvis leveringstid er nået. Forøg denne værdi, hvis dine kladder sommetider ikke sendes til tiden, eller hvis ventende beskedantal i din statuslinje indimellem ikke afspejler alle planlagte kladder.",
     "description": ""
   },
   "quickoptionname.label": {
