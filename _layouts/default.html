@@ -10,6 +10,69 @@
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
+
+    <style>
+      .donate-button {
+        user-select: none;
+        -webkit-user-drag: none;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 0.2s ease-in-out, padding 0.2s;
+        border-radius: 6px;
+        display: inline-block;
+        height: 40px;
+        padding: 8px 15px 12px 15px;
+        padding: 9px 15px 11px 15px;
+        position: relative;
+
+
+        border: none;
+        box-sizing: border-box;
+        clear: none;
+        clip: auto;
+        float: none;
+        max-height: none;
+        min-height: none;
+        opacity: 1;
+        text-shadow: none;
+        vertical-align: baseline;
+        visibility: visible;
+        width: auto;
+        margin: 0 0.5em;
+
+        font-family: system-ui, system, sans-serif;
+        font-weight: bold;
+      }
+      .donate-button:after {
+        border-radius: 6px;
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        opacity: 1;
+        top: 0;
+        left: 0;
+      }
+      .donate-button:hover {
+        padding: 10px 15px 10px 15px !important;
+      }
+      .paypal {
+        background: #ffdb12 linear-gradient(#ffdb12, #e0c426);
+        color: black;
+      }
+      .paypal:hover {
+        background: #ffdb12;
+      }
+      .crypto {
+        background: #1652f0 linear-gradient(#1652f0, #0655ab);
+        color: white;
+      }
+      .crypto:hover {
+        background: #1652f0;
+      }
+    </style>
   </head>
   <body>
     <div class="wrapper">
@@ -27,6 +90,18 @@
           <li><a href="{{ site.github.repository_url }}" style="line-height:1.1;"><strong>GitHub</strong> Repository</a></li>
           <li><a href="{{ site.github.latest_release.assets[0].browser_download_url }}" style="line-height:1.1;"><strong>Beta .XPI</strong> Download</a></li>
         </ul>
+
+        <div style="display:inline-flex; clear:both;">
+          <a class="donate-button paypal"
+              href="https://www.paypal.com/donate?hosted_button_id=U5PJYWYVRJMDW">
+            Donate with PayPal
+          </a>
+
+          <a class="donate-button crypto"
+              href="https://commerce.coinbase.com/checkout/3b0012cc-680a-4808-a956-bef9e6174be3">
+            Donate with Crypto
+          </a>
+        </div>
       </header>
       <section>
 

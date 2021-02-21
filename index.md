@@ -1633,21 +1633,10 @@ believe in free software, and the add-on will be completely free for as long as
 I continue to maintain it, which will be, I hope, for a good long time. Having
 said that, I am extremely grateful for the donations made by users like you,and
 the amount of time I devote to improving Send Later is strongly influenced by
-them. Please
-[click here](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=jik%40kamens%2eus&lc=US&item_name=Send%20Later%20add%2don%20%28%245%2e00%20recommended%20donation%2c%20but%20give%20what%20you%27d%20like%21%29&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donat)
-to donate via Paypal; if that link doesn't work, try
-[this one](https://paypal.me/JonathanKamens).
+them. Please use one of the buttons to the left to send a donation. You can also [click here to donate with PayPal](https://www.paypal.com/donate?hosted_button_id=U5PJYWYVRJMDW) or [click here to donate with crypto](https://commerce.coinbase.com/checkout/3b0012cc-680a-4808-a956-bef9e6174be3).
 
 A donation of \$10 or more makes you eligible for listing, including a link,
-banner or button if you'd like, on the [supporters list](#supporters)! If you
-don't like Paypal or can't use it for some reason, there are other ways you can
-make a monetary contribution to support Send Later:
-
--   You can Venmo me at "Jonathan-Kamens".
--   You can send Bitcoin to 16kWgAVVUSCz1j1oevBFhCGmZQsvi92fmy (if you do this,
-    please email
-    [send-later-support@extended-thunder.org](mailto:send-later-support@extended-thunder.org?subject=Send%20Later)
-    if possible and let me know, since I don't check my Bitcoin wallet that often).
+banner, or button if you'd like, on the [supporters list](#supporters)!
 
 A non-monetary way you can help is by
 [writing a review](https://addons.thunderbird.net/thunderbird/addon/send-later-3/reviews/add "Review Send Later").
@@ -1661,7 +1650,7 @@ and we can discuss it. Of course, you should feel free to send us feature
 requests at any time, even ones you do not wish to fund; We'll put them into our
 queue and get to them as soon as we can.
 
-Check out my other add-ons
+Other recommended extensions
 -------------------------------------------------
 
 Jonathan Kamens (long time developer and maintainer of Send Later) has also
