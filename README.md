@@ -1,4 +1,4 @@
-Send Later Thunderbird extension
+Send Later Thunderbird extension  
 ============================
 
 ### Schedule email messages to be sent later
@@ -12,7 +12,7 @@ Maintainer: Jonathan Perry-Houts
 Original author: Jonathan Kamens
 <[jik@extended-thunder.org](mailto:jik@extended-thunder.org)>
 
-Copyright (c) 2010-2015 Jonathan Kamens, 2020 Jonathan Perry-Houts.
+Copyright (c) 2010-2020 Jonathan Kamens, 2020-2021 Jonathan Perry-Houts.
 
 Released under the terms of the Mozilla Public License, v. 2.0. Full text of the
 MPL can be found in the file [LICENSE](LICENSE).
