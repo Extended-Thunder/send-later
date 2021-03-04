@@ -101,7 +101,7 @@ var SendLaterStatusbar = {
           oncommand="Components.classes['@mozilla.org/messengercompose;1'].getService(Components.interfaces.nsIMsgComposeService).OpenComposeWindowWithURI(null, Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService).newURI('https://github.com/Extended-Thunder/send-later/discussions/278', null, null));"/>
         <menuitem label="${SLStatic.i18n.getMessage("donatelink.value")}"
           value="${SLStatic.i18n.getMessage("donatelink.value")}"
-          oncommand="Components.classes['@mozilla.org/uriloader/external-protocol-service;1'].getService(Components.interfaces.nsIExternalProtocolService).loadURI(Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService).newURI('https://addons.thunderbird.net/thunderbird/addon/send-later-3/contribute/roadblock/?src=contextmenu', null, null));"/>
+          oncommand="Components.classes['@mozilla.org/uriloader/external-protocol-service;1'].getService(Components.interfaces.nsIExternalProtocolService).loadURI(Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService).newURI('https://extended-thunder.github.io/send-later/#support-send-later', null, null));"/>
       </menupopup>`);
     const statusBar = document.getElementById("status-bar");
     statusBar.insertBefore(menuXUL, statusBar.firstChild.nextSibling);
