@@ -19,7 +19,7 @@
     "gecko": {
       "id": "sendlater3@kamens.us",
       "strict_min_version": "78.2.0",
-      "strict_max_version": "86.0"
+      "strict_max_version": "87.0"
     }
   },
 
