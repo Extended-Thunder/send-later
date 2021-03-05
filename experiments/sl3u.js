@@ -1459,7 +1459,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                                          `Trying as LocalMailFolder (${folder.URI})`);
                 lmf = thisfolder.QueryInterface(Ci.nsIMsgLocalMailFolder);
               } catch (ex) {
-                SendLaterFunctions.warn("Unable to get folder as nsIMsgLocalMailFolder");
+                SendLaterFunctions.log("Unable to get folder as nsIMsgLocalMailFolder");
               }
 
               if (// NS_MSG_ERROR_FOLDER_SUMMARY_OUT_OF_DATE
@@ -1482,7 +1482,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                   SendLaterFunctions.warn("Unable to get EnumerateMessages on DB as fallback");
                 }
                 if (messageenumerator) {
-                  SendLaterFunctions.warn(".messages failed on " + folderUri +
+                  SendLaterFunctions.log(".messages failed on " + folderUri +
                                           ", using .EnumerateMessages on DB instead");
                 } else {
                   const window = Services.wm.getMostRecentWindow(null);
