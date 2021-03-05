@@ -964,6 +964,10 @@
     "message": "The installed version of Enigmail is incompatible with Send Later, so scheduling messages with Send Later has been disabled. Please contact the maintainer of Send Later (send-later-support@extended-thunder.org) for assistance.",
     "description": ""
   },
+  "incorrectUUID": {
+    "message": "Scheduled by another client",
+    "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."
+  },
   "TimeMismatchConfirmTitle": {
     "message": "Send time / restriction mismatch",
     "description": ""
