@@ -964,6 +964,10 @@
     "message": "Den installerede version af Enigmail er inkompatibel med Send senere, så planlægningen af beskeder med Send senere er blevet deaktiveret. Kontakt supporten af Send senere (send-later-support@extended-thunder.org) for assistance.",
     "description": ""
   },
+  "incorrectUUID": {
+    "message": "Planlagt af en anden klient",
+    "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."
+  },
   "TimeMismatchConfirmTitle": {
     "message": "Send tid / restriktion inkonsistens",
     "description": ""
