@@ -132,7 +132,7 @@ SendLaterHeaderView = {
     } else if (/encrypted/i.test(msgContentType)) {
       return { valid: false, detail: "Encrypted", msg: SLStatic.i18n.getMessage("EncryptionIncompatTitle") };
     } else if (msgUuid !== instanceUUID) {
-      return { valid: false, detail: "Wrong UUID", msg: `${msgUuid} != ${instanceUUID}` };
+      return { valid: false, detail: `${msgUuid} != ${instanceUUID}`, msg: SLStatic.i18n.getMessage("incorrectUUID") };
     }
     return { valid: true };
   },
