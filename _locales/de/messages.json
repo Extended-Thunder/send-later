@@ -699,6 +699,9 @@
     "message": "Später Senden: Der Ordner „$1” ist möglicherweise beschädigt. Öffnen Sie bitte die Ordner-Eigenschaften und reparieren sie ihn. Details unter https://extended-thunder.github.io/send-later/#corrupt-drafts-error (Englisch).",
     "description": ""
   },
+  "CorruptFolderErrorDetails": {
+    "message": "Konkret sieht es so aus, als ob die Nachricht „$1“ (ID $2) bereits verschickt wurde, aber immer noch im Ordner „Entwürfe“ existiert. Dies ist vielleicht ein Indiz für ein ernsteres Problem. Sie können einfach versuchen, die betreffende Nachricht zu löschen (oder neu zu planen).\n\nSpäter Senden wird diese Nachricht überspringen, aber die Bearbeitung Ihrer anderen geplanten Entwurfsnachrichten fortsetzen, wenn Sie diese Benachrichtigung schließen."
+  },
   "MessageResendError": {
     "message": "Später Senden: Bereits versandte Nachrichten erneut versenden?! Der Postausgangs- oder Entwürfe-Ordner „$1” ist möglicherweise beschädigt. Bitte nehmen sie Reparaturmaßnahmen vor, wie im folgenden Blog beschrieben: https://extended-thunder.github.io/send-later/#corrupt-outbox (Englisch).",
     "description": ""
@@ -911,6 +914,9 @@
     "message": "Warnung: Geplante Nachrichten",
     "description": ""
   },
+  "CompactionFailureWithError": {
+    "message": "Komprimieren des Postausgangs und/oder Entwürfe-Ordners fehlgeschlagen mit Fehler:"
+  },
   "SanityCheckCorruptFolderWarning": {
     "message": "Wenn Ihnen diese Zahlen nicht plausibel erscheinen, ist möglicherweise Ihr Postausgang und/oder der Entwürfe-Ordner beschädigt. In diesem Fall empfiehlt es sich, diese zu komprimieren und neu aufzubauen, bevor Sie Send Later aktivieren. Siehe <$CORRUPTOUTBOXDOCS$> und <$CORRUPTDRAFTDOCS$> für weitere Details.",
     "description": "Part of \"sanity check\" prompt potentially displayed during version migration. If there are scheduled messages in the user's Drafts and/or Outbox folders, then the user will be prompted to confirm that the message counts are accurate. This message is preceeded by one or both of the translation strings: \"SanityCheckDrafts\" and/or \"SanityCheckOutbox\".",
@@ -944,6 +950,10 @@
   "EnigmailIncompatText": {
     "message": "Die installierte Version von Enigmail ist mit „Später Senden” nicht kompatibel, das Planen von Nachrichten mit „Später Senden” ist also deaktiviert. Kontaktieren Sie bitte den Später Senden-Entwickler (send-later-support@extended-thunder.org), um Hilfe zu erhalten.",
     "description": ""
+  },
+  "incorrectUUID": {
+    "message": "Von einem anderen Client geplant",
+    "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."
   },
   "TimeMismatchConfirmTitle": {
     "message": "Sendezeit entspricht nicht den Sendezeitbeschränkungen",
