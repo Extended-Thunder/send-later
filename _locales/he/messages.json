@@ -964,6 +964,10 @@
     "message": "הגרסה המותקנת של התוסף Engimail אינה תואמת ל'‫שלח מאוחר יותר‬', לכן תכונת משלוח הודעות עתידי עם '‫שלח מאוחר יותר‬' הושבתה. אנא צרו קשר עם המפתח של '‫שלח מאוחר יותר‬' לסיוע במייל (send-later-support@extended-thunder.org).",
     "description": ""
   },
+  "incorrectUUID": {
+    "message": "התזמון נקבע על ידי למשתמש אחר",
+    "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."
+  },
   "TimeMismatchConfirmTitle": {
     "message": "זמן המשלוח אינו תואם למגבלות שנקבעו",
     "description": ""
