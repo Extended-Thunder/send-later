@@ -1295,19 +1295,22 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                   status
                 );
 
-                const localStorage = context.apiCan.findAPIPath("storage.local");
-                localStorage.callMethodInParentProcess(
-                  "get", [{ "preferences": {} }]
-                ).then(({ preferences }) => {
-                  preferences.checkEvery = 0;
-                  localStorage.callMethodInParentProcess(
-                    "set", { preferences }
-                  );
-                }).catch((err) =>
-                  SendLaterFunctions.error(`Unable to disable extension`,err)
-                );
+                //// Maybe disable Send Later if copy operation failed?
+                // const localStorage = context.apiCan.findAPIPath("storage.local");
+                // localStorage.callMethodInParentProcess(
+                //   "get", [{ "preferences": {} }]
+                // ).then(({ preferences }) => {
+                //   preferences.checkEvery = 0;
+                //   localStorage.callMethodInParentProcess(
+                //     "set", { preferences }
+                //   );
+                // }).catch((err) =>
+                //   SendLaterFunctions.error(`Unable to disable extension`,err)
+                // );
+
+                const hexStatus = `0x${status.toString(16)}`;
                 const CopyUnsentError =
-                  SendLaterFunctions.getMessage(context, "CopyUnsentError", [status]);
+                  SendLaterFunctions.getMessage(context, "CopyUnsentError", [hexStatus]);
                 Services.prompt.alert(null, null, CopyUnsentError);
               }
             },
@@ -1349,7 +1352,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               if (Components.isSuccessCode(status)) {
                 SendLaterFunctions.debug("SL3U.saveMessage: Saved updated message");
               } else {
-                SendLaterFunctions.error("SL3U.saveMessage:",status);
+                SendLaterFunctions.error("SL3U.saveMessage:", `0x${status.toString(16)}`);
               }
             },
             SetMessageKey: function(key) {
