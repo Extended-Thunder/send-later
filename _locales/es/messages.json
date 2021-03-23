@@ -950,6 +950,12 @@
     "message": "Send Later sólo puede enviar mensajes cuando $1 está en funcionamiento. Por favor, ¡recuerde volver a iniciarlo antes del momento programado de envío de sus mensajes!",
     "description": ""
   },
+  "EncryptionIncompatTitle": {
+    "message": "Problema de compatibilidad del encriptado"
+  },
+  "EncryptionIncompatText": {
+    "message": "Este mensaje está encriptado con tu clave PGP y no puede entregarse a sus destinatarios. Lee la discusión para más detalles de por qué estás viendo este mensaje: https://github.com/Extended-Thunder/send-later/discussions/200"
+  },
   "EnigmailIncompatTitle": {
     "message": "Problema de compatibilidad Send Later / Enigmail",
     "description": ""
@@ -957,6 +963,10 @@
   "EnigmailIncompatText": {
     "message": "La versión instalada de Enigmail es incompatible con Send Later, así que el programado de envío de mensajes de Send Later ha sido deshabilitado. Por favor, contacte con el mantenedor de Send Later (send-later-support@extended-thunder.org) para asistencia.",
     "description": ""
+  },
+  "incorrectUUID": {
+    "message": "Programado por otro cliente",
+    "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."
   },
   "TimeMismatchConfirmTitle": {
     "message": "Hora de envío / restricción, no coincidentes",
@@ -1125,5 +1135,9 @@
   "CheckingMessage": {
     "message": "COMPROBANDO",
     "description": ""
+  },
+  "LongDescription": {
+    "message": "Este complemento cambia el comando “Enviar más tarde” (Ctrl+Shift+Intro) en la ventana de composición de mensajes, para que en lugar de simplemente copiar el mensaje a su Bandeja de Salida para que sea enviado la próxima vez que se conecte o haga \"Enviar mensajes no enviados\", un diálogo emergente le permita especificar cuándo se enviará el mensaje.\n\nPuede especificar una hora y fecha concretas, hacer clic en \"15 minutos más tarde\", \"30 minutos más tarde\" o \"2 horas más tarde\" o definir atajos personalizados. También puede programar un mensaje para enviar repetidamente usando reglas simples (cada N horas, días, etc.) o funciones personalizables.\n\nSend Later se basa en el potente análisis de entrada de fecha proporcionado por la librería <a href=\"https://sugarjs.com/\">Sugar.js de Andrew Plummer.</a>.\n\nLos informes de comentarios y errores son muy bienvenidos y se pueden enviar a través de la página del proyecto en <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">GitHub</a>.",
+    "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   }
 }

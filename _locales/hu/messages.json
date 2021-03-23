@@ -927,6 +927,18 @@
     "message": "$1 üzeneted van ütemezve, amelyeket a Küldés később elküld.\nA következő ütemezése: $2",
     "description": "$1 is replaced with a number, and $2 is replaced with the date/time of the next scheduled message."
   },
+  "SanityCheckCorruptFolderWarning": {
+    "message": "Ha ezek a számok nem tűnnek megfelelőnek, akkor lehet, hogy sérült a Kimenő és/vagy a Piszkozatok mappa. Ebben az esetben ajánlatos tömöríteni és újjáépíteni ezeket a mappákat, mielőtt aktiválná a Küldés később funkciót. További részletek: <$CORRUPTOUTBOXDOCS$? és <$CORRUPTDRAFTDOCS$>.",
+    "description": "Part of \"sanity check\" prompt potentially displayed during version migration. If there are scheduled messages in the user's Drafts and/or Outbox folders, then the user will be prompted to confirm that the message counts are accurate. This message is preceeded by one or both of the translation strings: \"SanityCheckDrafts\" and/or \"SanityCheckOutbox\".",
+    "placeholders": {
+      "CorruptOutboxDocs": {
+        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Outbox_folder"
+      },
+      "CorruptDraftDocs": {
+        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Drafts_folders"
+      }
+    }
+  },
   "SanityCheckConfirmOptionMessage": {
     "message": "Válasszon egyet a lehetőségek közül:\n\n„Rendben”: Folytassa a szokásos módon. Nem kéri újra.\n\n„Mégse”: A Küldés később funkciót a saját beállításai alapján tiltja le.\nA Küldés később engedélyezéséhez lépjen a beállítások oldalára, és állítsa az „Ellenőrzés ___ percenként” beállítást nem nulla értékre.\nA Thunderbird következő újraindításakor újra megkapja ezt a figyelmeztetést"
   },
@@ -951,6 +963,10 @@
   "EnigmailIncompatText": {
     "message": "Az Enigmail telepített verziója összeegyeztethetetlen a Küldés később-kiegészítővel, így a(z) Küldés később üzenetek ütemezése le van tiltva. Kérjük, forduljon a Küldés később (send-later-support@extended-thunder.org) karbantartójához segítségért.",
     "description": ""
+  },
+  "incorrectUUID": {
+    "message": "Egy másik ügyfél ütemezte",
+    "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."
   },
   "TimeMismatchConfirmTitle": {
     "message": "Küldési idő / küldési korlátozás nem megfelelő",

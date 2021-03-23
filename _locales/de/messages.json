@@ -699,6 +699,9 @@
     "message": "Später Senden: Der Ordner „$1” ist möglicherweise beschädigt. Öffnen Sie bitte die Ordner-Eigenschaften und reparieren sie ihn. Details unter https://extended-thunder.github.io/send-later/#corrupt-drafts-error (Englisch).",
     "description": ""
   },
+  "CorruptFolderErrorDetails": {
+    "message": "Konkret sieht es so aus, als ob die Nachricht „$1“ (ID $2) bereits verschickt wurde, aber immer noch im Ordner „Entwürfe“ existiert. Dies ist vielleicht ein Indiz für ein ernsteres Problem. Sie können einfach versuchen, die betreffende Nachricht zu löschen (oder neu zu planen).\n\nSend Later wird diese Nachricht überspringen, aber die Bearbeitung Ihrer anderen geplanten Entwurfsnachrichten fortsetzen, wenn Sie diese Benachrichtigung schließen."
+  },
   "MessageResendError": {
     "message": "Später Senden: Bereits versandte Nachrichten erneut versenden?! Der Postausgangs- oder Entwürfe-Ordner „$1” ist möglicherweise beschädigt. Bitte nehmen sie Reparaturmaßnahmen vor, wie im folgenden Blog beschrieben: https://extended-thunder.github.io/send-later/#corrupt-outbox (Englisch).",
     "description": ""
@@ -911,8 +914,21 @@
     "message": "Warnung: Geplante Nachrichten",
     "description": ""
   },
+  "CompactionFailureWithError": {
+    "message": "Komprimieren des Postausgangs und/oder Entwürfe-Ordners fehlgeschlagen mit Fehler:"
+  },
+  "CompactionFailureNoError": {
+    "message": "Komprimieren von $1 ist ohne Fehlermeldung fehlgeschlagen."
+  },
+  "SanityCheckOutbox": {
+    "message": "Sie haben $1 ungesendete Nachricht(en) die mit ausgelöst werden, wenn das nächste Mal eine geplante Nachricht gesendet wird."
+  },
+  "SanityCheckDrafts": {
+    "message": "Sie haben $1 geplante Nachricht(en) für den Versand durch Später Senden.\nDer Versand der nächsten Nachricht ist für $2 geplant.",
+    "description": "$1 is replaced with a number, and $2 is replaced with the date/time of the next scheduled message."
+  },
   "SanityCheckCorruptFolderWarning": {
-    "message": "Wenn Ihnen diese Zahlen nicht plausibel erscheinen, ist möglicherweise Ihr Postausgang und/oder der Entwürfe-Ordner beschädigt. In diesem Fall empfiehlt es sich, diese zu komprimieren und neu aufzubauen, bevor Sie Send Later aktivieren. Siehe <$CORRUPTOUTBOXDOCS$> und <$CORRUPTDRAFTDOCS$> für weitere Details.",
+    "message": "Wenn Ihnen diese Zahlen nicht plausibel erscheinen, ist möglicherweise Ihr Postausgang und/oder der Entwürfe-Ordner beschädigt. In diesem Fall empfiehlt es sich, diese zu komprimieren und neu aufzubauen, bevor Sie Später Senden aktivieren. Siehe <$CORRUPTOUTBOXDOCS$> und <$CORRUPTDRAFTDOCS$> für weitere Details.",
     "description": "Part of \"sanity check\" prompt potentially displayed during version migration. If there are scheduled messages in the user's Drafts and/or Outbox folders, then the user will be prompted to confirm that the message counts are accurate. This message is preceeded by one or both of the translation strings: \"SanityCheckDrafts\" and/or \"SanityCheckOutbox\".",
     "placeholders": {
       "CorruptOutboxDocs": {
@@ -922,6 +938,9 @@
         "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Drafts_folders"
       }
     }
+  },
+  "SanityCheckConfirmOptionMessage": {
+    "message": "Wählen Sie eine der Optionen:\n  „OK“: Fortfahren wie üblich. Sie werden nicht erneut gefragt.\n\n  „Abbrechen“: Später Senden wird über eigene Einstellungen deaktiviert.\n                    Um später erneut zu senden, gehen Sie auf die Optionsseite und setzen Sie\n                    die Einstellung „Alle ___ Minuten prüfen“ auf einen Wert ungleich 0.\n                    Sie erhalten diese Eingabeaufforderung erneut beim nächsten Neustart von\n                    Thunderbird"
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Es gibt noch Nachrichten, deren Senden geplant ist. „Später Senden” kann Nachrichten nur versenden, wenn $1 geöffnet ist. Möchten Sie das Programm dennoch schließen?",
@@ -944,6 +963,10 @@
   "EnigmailIncompatText": {
     "message": "Die installierte Version von Enigmail ist mit „Später Senden” nicht kompatibel, das Planen von Nachrichten mit „Später Senden” ist also deaktiviert. Kontaktieren Sie bitte den Später Senden-Entwickler (send-later-support@extended-thunder.org), um Hilfe zu erhalten.",
     "description": ""
+  },
+  "incorrectUUID": {
+    "message": "Von einem anderen Client geplant",
+    "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."
   },
   "TimeMismatchConfirmTitle": {
     "message": "Sendezeit entspricht nicht den Sendezeitbeschränkungen",
@@ -1112,5 +1135,9 @@
   "CheckingMessage": {
     "message": "PRÜFE AUF NACHRICHTEN ZUM VERSAND",
     "description": ""
+  },
+  "LongDescription": {
+    "message": "Dieses Add-on ändert den Befehl „Später senden“ (Strg+Umschalt+Return) im Fenster zum Verfassen einer Nachricht, so dass Sie die Nachricht nicht nur in Ihren Postausgang kopieren, sondern das nächste Mal verschicken, wenn Sie online gehen oder den Befehl \"Ungesendete Nachrichten senden\" aufrufen. Es erscheint ein Dialog, in dem Sie festlegen können, wann die Nachricht gesendet wird.\n\nSie können eine Zeit und ein Datum angeben, oder auf „15 Minuten später“, „30 Minuten später“ oder „2 Stunden später“ klicken, und benutzerdefinierte Tastenkürzel definieren. Sie können auch eine Nachricht planen, die Sie wiederholt mit einfachen Regeln (alle N Stunden, Tage, etc.) oder anhand anpassbarer Funktionen versenden können.\n\nSpäter Senden basiert auf der leistungsfähigen Datumseingabe-Bibliothek von Andrew Plummer <a href=\"https://sugarjs.com/\">Sugar. s Library</a>.\n\nFeedback und Fehlerberichte sind sehr willkommen und können auf der Projektseite <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">GitHub-Seite</a> eingereicht werden.",
+    "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   }
 }
