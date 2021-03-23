@@ -244,7 +244,7 @@
     "description": ""
   },
   "sendlater.prompt.sendlater.tooltip": {
-    "message": "I stedet for at planlægge afsendelse til en bestemt tid, flyt beskeden til Udbakke mappen, så bliver den sendt næste gang ikke-sendte besked sendes.",
+    "message": "I stedet for at planlægge afsendelse til en bestemt tid, flyt beskeden til Udbakke mappen, så bliver den sendt næste gang ikke-sendte beskeder sendes.",
     "description": ""
   },
   "sendlater.prompt.sendnow.accesskey": {
@@ -340,7 +340,7 @@
     "description": ""
   },
   "checktimepref.tooltip": {
-    "message": "Interval, i minutter, mellem kontrol af kladder, hvis leveringstid er nået. Forøg denne værdi, hvis dine kladder sommetider ikke sendes til tiden, eller hvis ventende beskedantal i din statuslinje indimelem ikke afspejler alle planlagte kladder.",
+    "message": "Interval, i minutter, mellem kontrol af kladder, hvis leveringstid er nået. Forøg denne værdi, hvis dine kladder sommetider ikke sendes til tiden, eller hvis ventende beskedantal i din statuslinje indimellem ikke afspejler alle planlagte kladder.",
     "description": ""
   },
   "quickoptionname.label": {
@@ -964,6 +964,10 @@
     "message": "Den installerede version af Enigmail er inkompatibel med Send senere, så planlægningen af beskeder med Send senere er blevet deaktiveret. Kontakt supporten af Send senere (send-later-support@extended-thunder.org) for assistance.",
     "description": ""
   },
+  "incorrectUUID": {
+    "message": "Planlagt af en anden klient",
+    "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."
+  },
   "TimeMismatchConfirmTitle": {
     "message": "Send tid / restriktion inkonsistens",
     "description": ""
@@ -1133,7 +1137,7 @@
     "description": ""
   },
   "LongDescription": {
-    "message": "Denne tilføjelse ændrer kommandoen “Send senere” (Ctrl+Shift+Return) i brevkompositionsvinduet, så i stedet for blot at kopiere beskeden ind i din udbakke, så den bliver sendt næste gang du går online eller trykker “Send ikke sendte beskeder”, dukker en dialog  op, som lader dig angive hvornår meddelelsen vil blive sendt.\n\nDu kan angive et bestemt tidspunkt og dato, eller klik på “15 minutter senere”, “30 minutter senere” eller “2 timer senere”, eller definér en brugerdefineret genvej. Du kan også planlægge en besked til at blive sendt gentagne gange ved hjælp af enkle regler (hver N timer, dage, osv.) eller tilpassede funktioner.\n\nSend senere er afhængig af et pålideligt dato input check der bliver leveret af Andrew Plummer's <a href=\"https://sugarjs.com/\">Sugar. s library</a>.\n\nFeedback og fejlrapporter er meget velkomne og kan indsendes via projektets <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">GitHub side</a>.",
+    "message": "Denne tilføjelse ændrer kommandoen “Send senere” (Ctrl+Skift+Enter) i brevkompositionsvinduet, så i stedet for blot at kopiere beskeden ind i din udbakke, så den bliver sendt næste gang du går online eller trykker “Send meddelelser fra udbakke”, dukker en dialog  op, som lader dig angive hvornår meddelelsen vil blive sendt.\n\nDu kan angive et bestemt tidspunkt og dato, eller klik på “15 minutter senere”, “30 minutter senere” eller “2 timer senere”, eller lave brugerdefinerede genveje. Du kan også planlægge en besked til at blive sendt gentagne gange ved hjælp af enkle regler (hver N timer, dage, osv.) eller tilpassede funktioner.\n\nSend senere er afhængig af et pålideligt dato input check som bliver leveret af Andrew Plummer's <a href=\"https://sugarjs.com/\">Sugar.js library</a>.\n\nFeedback og fejlrapporter er meget velkomne og kan indsendes via projektets <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">GitHub side</a>.",
     "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   }
 }
