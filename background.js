@@ -169,7 +169,7 @@ const SendLater = {
       const nextSend = new Date(msgSendAt);
 
       if ((/encrypted/i).test(contentType)) {
-        SLStatic.warn(`Message ${originalMsgId} is encrypted, and will not be processed by Send Later.`);
+        SLStatic.debug(`Message ${originalMsgId} is encrypted, and will not be processed by Send Later.`);
         return;
       }
 
