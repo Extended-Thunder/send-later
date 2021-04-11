@@ -760,7 +760,7 @@ const SendLater = {
       });
 
       if (preferences.showStatus) {
-        let statusMsg;
+        let statusMsg = '...';
         if (isActive) {
           statusMsg = browser.i18n.getMessage("CheckingMessage");
         } else {
