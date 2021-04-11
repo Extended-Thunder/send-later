@@ -572,7 +572,7 @@ const SendLater = {
       const allSchedulePromises = await browser.accounts.list().then(async accounts => {
         let folderSchedules = [];
         for (let acct of accounts) {
-          let draftFolders = await getDraftFolders(acct);
+          let draftFolders = await getDraftFolders(acct).catch(SLStatic.error);
           if (draftFolders && draftFolders.length > 0) {
             for (let draftFolder of draftFolders) {
               if (draftFolder) {
@@ -752,23 +752,34 @@ const SendLater = {
     },
 
     async setStatusBarIndicator(isActive) {
-      let statusMsg;
-      if (isActive) {
-        statusMsg = browser.i18n.getMessage("CheckingMessage");
-      } else {
-        const { preferences } = await browser.storage.local.get({ preferences: {} });
-        const activeSchedules = await this.getActiveSchedules(preferences.instanceUUID);
-        const nActive = activeSchedules.length;
-        browser.SL3U.setSendLaterVar("messages_pending", nActive);
-        if (nActive > 0) {
-          statusMsg = browser.i18n.getMessage("PendingMessage", [nActive]);
-        } else {
-          statusMsg = browser.i18n.getMessage("IdleMessage");
-        }
-      }
+      const { preferences } = await browser.storage.local.get({ preferences: {} });
 
-      const extName = browser.i18n.getMessage("extensionName");
-      return await browser.SL3U.showStatus(`${extName} [${statusMsg}]`);
+      messenger.WindowListener.notifyExperiment({
+        command: "showHideStatusbar",
+        value: preferences.showStatus,
+      });
+
+      if (preferences.showStatus) {
+        let statusMsg;
+        if (isActive) {
+          statusMsg = browser.i18n.getMessage("CheckingMessage");
+        } else {
+          const activeSchedules = await this.getActiveSchedules(preferences.instanceUUID);
+          const nActive = activeSchedules.length;
+          browser.SL3U.setSendLaterVar("messages_pending", nActive);
+          if (nActive > 0) {
+            statusMsg = browser.i18n.getMessage("PendingMessage", [nActive]);
+          } else {
+            statusMsg = browser.i18n.getMessage("IdleMessage");
+          }
+        }
+
+        const extName = browser.i18n.getMessage("extensionName");
+        messenger.WindowListener.notifyExperiment({
+          command: "setStatusMessage",
+          value: `${extName} [${statusMsg}]`,
+        });
+      }
     },
 
     async init() {
@@ -800,6 +811,11 @@ const SendLater = {
         await browser.storage.local.get({ preferences: {} });
       this.prefCache = preferences;
 
+      messenger.WindowListener.notifyExperiment({
+        command: "showHideStatusbar",
+        value: preferences.showStatus,
+      });
+
       // This listener should be added *after* all of the storage-related
       // setup is complete. It makes sure that subsequent changes to storage
       // are propagated to their respective
@@ -812,20 +828,27 @@ const SendLater = {
           SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
           const prefString = JSON.stringify(preferences);
           await browser.SL3U.notifyStorageLocal(prefString, false);
+
+          messenger.SL3U.setSendLaterVar("logConsoleLevel", SLStatic.logConsoleLevel);
+          messenger.SL3U.setSendLaterVar("ask_quit", preferences.askQuit);
+
+          messenger.WindowListener.notifyExperiment({
+            command: "showHideStatusbar",
+            value: preferences.showStatus,
+          });
         }
       });
 
       await browser.SL3U.injectScripts([
         "utils/sugar-custom.js",
         "utils/static.js",
-        "experiments/headerView.js",
-        "experiments/statusBar.js"
+        "experiments/headerView.js"
       ]);
 
-
       setTimeout(() => {
-        const prefString = JSON.stringify(preferences);
-        browser.SL3U.notifyStorageLocal(prefString, true);
+        browser.storage.local.get({ preferences: {} }).then(({ preferences }) => {
+          browser.SL3U.notifyStorageLocal(JSON.stringify(preferences), true);
+        });
       }, 1000);
 
       SLStatic.debug("Registering window listeners");
@@ -1388,7 +1411,7 @@ function mainLoop() {
           resolve when that message has been processed.
         */];
         for (let acct of accounts) {
-          let draftFolders = await getDraftFolders(acct);
+          let draftFolders = await getDraftFolders(acct).catch(SLStatic.error);
           if (draftFolders && draftFolders.length > 0) {
             for (let draftFolder of draftFolders) {
               if (draftFolder) {
@@ -1460,7 +1483,10 @@ function mainLoop() {
     } else {
       const extName = browser.i18n.getMessage("extensionName");
       const disabledMsg = browser.i18n.getMessage("DisabledMessage");
-      browser.SL3U.showStatus(`${extName} [${disabledMsg}]`);
+      messenger.WindowListener.notifyExperiment({
+        command: "setStatusMessage",
+        value: `${extName} [${disabledMsg}]`,
+      });
       SLStatic.previousLoop = new Date();
       SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000);
     }
@@ -1469,6 +1495,17 @@ function mainLoop() {
     SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000);
   });
 }
+
+messenger.WindowListener.onNotifyBackground.addListener(async (data) => {
+  if (data.command === "refreshStatus")
+    SendLater.setStatusBarIndicator.call(SendLater, false);
+});
+
+messenger.WindowListener.registerWindow(
+  "chrome://messenger/content/messenger.xhtml",
+  "experiments/MessengerOverlays.js");
+
+messenger.WindowListener.startListening();
 
 SendLater.init().then(
   mainLoop.bind(SendLater)

@@ -99,6 +99,14 @@
         "paths": [["SL3U"]],
         "script": "experiments/sl3u.js"
       }
+    },
+    "WindowListener": {
+      "schema": "experiments/WindowListenerSchema.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "paths": [["WindowListener"]],
+        "script": "experiments/WindowListener.js"
+      }
     }
   }
 }
