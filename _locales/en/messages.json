@@ -1139,5 +1139,21 @@
   "LongDescription": {
     "message": "This add-on changes the “Send Later” command (Ctrl+Shift+Return) in the message composition window, so that instead of merely copying the message into your Outbox so that it is sent the next time you go online or do “Send Unsent Messages”, a dialog pops up which allows you to specify when the message will be sent.\n\nYou can specify a specific time and date, or click “15 mins later”, “30 mins later” or “2 hours later”, or define custom shortcuts. You can also schedule a message to send repeatedly using simple rules (every N hours, days, etc.) or customizable functions.\n\nSend Later relies on powerful date input parsing provided by Andrew Plummer's <a href=\"https://sugarjs.com/\">Sugar.js library</a>.\n\nFeedback and bug reports are very welcome, and can be submitted via the project's <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">GitHub page</a>.",
     "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
+  },
+  "accelKeyLabel": {
+    "message": "Accelerator key",
+    "description": "Label for options window to identify accelerator shortcuts"
+  },
+  "accelCtrlLabel": {
+    "message": "Ctrl+Click",
+    "description": "Indicates key combination to access the ctrl+click accelerator function"
+  },
+  "accelCtrlLabel.MacOS": {
+    "message": "Cmd+Click",
+    "description": "Indicates key combination to access the ctrl+click accelerator function. On mac the Ctrl key is replaced with the 'Command' key"
+  },
+  "accelShiftLabel": {
+    "message": "Shift+Click",
+    "description": "Indicates key combination to access the shift+click accelerator function"
   }
 }
