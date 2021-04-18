@@ -89,6 +89,60 @@ const SendLater = {
       await browser.compose.setComposeDetails(tabId, details);
     },
 
+    async doSendNow() {
+      const { preferences } = await browser.storage.local.get({ preferences: {} });
+      if (preferences.showSendNowAlert) {
+        const result = await browser.SL3U.confirmCheck(
+          browser.i18n.getMessage("AreYouSure"),
+          browser.i18n.getMessage("SendNowConfirmMessage"),
+          browser.i18n.getMessage("ConfirmAgain"),
+          true
+        ).catch((err) => {
+          SLStatic.trace(err);
+        });
+        if (result.check === false) {
+          preferences.showSendNowAlert = false;
+          browser.storage.local.set({ preferences });
+        }
+        if (!result.ok) {
+          SLStatic.debug(`User cancelled send now.`);
+          return;
+        }
+        browser.SL3U.goDoCommand("cmd_sendNow").catch((ex) => {
+          SLStatic.error("Error during cmd_sendNow operation", ex);
+        });
+      } else {
+        browser.SL3U.goDoCommand("cmd_sendWithCheck").catch((ex) => {
+          SLStatic.error("Error during cmd_sendWithCheck operation", ex);
+        });
+      }
+    },
+
+    async doPlaceInOutbox() {
+      const { preferences } = await browser.storage.local.get({ preferences: {} });
+      if (preferences.showOutboxAlert) {
+        const result = await browser.SL3U.confirmCheck(
+          browser.i18n.getMessage("AreYouSure"),
+          browser.i18n.getMessage("OutboxConfirmMessage"),
+          browser.i18n.getMessage("ConfirmAgain"),
+          true
+        ).catch((err) => {
+          SLStatic.trace(err);
+        });
+        if (result.check === false) {
+          preferences.showOutboxAlert = false;
+          browser.storage.local.set({ preferences });
+        }
+        if (!result.ok) {
+          SLStatic.debug(`User cancelled send later.`);
+          return;
+        }
+      }
+      browser.SL3U.builtInSendLater().catch((ex) => {
+        SLStatic.error("Error during builtin send later operation",ex);
+      });
+    },
+
     async scheduleSendLater(tabId, options) {
       SLStatic.info(`Scheduling send later: ${tabId} with options`,options);
       const { preferences } = await browser.storage.local.get({ preferences: {} });
@@ -1008,58 +1062,12 @@ browser.runtime.onMessage.addListener(async (message) => {
     }
     case "doSendNow": {
       SLStatic.debug("User requested send immediately.");
-      const { preferences } = await browser.storage.local.get({ preferences: {} });
-      if (preferences.showSendNowAlert) {
-        const result = await browser.SL3U.confirmCheck(
-          browser.i18n.getMessage("AreYouSure"),
-          browser.i18n.getMessage("SendNowConfirmMessage"),
-          browser.i18n.getMessage("ConfirmAgain"),
-          true
-        ).catch((err) => {
-          SLStatic.trace(err);
-        });
-        if (result.check === false) {
-          preferences.showSendNowAlert = false;
-          browser.storage.local.set({ preferences });
-        }
-        if (!result.ok) {
-          SLStatic.debug(`User cancelled send now.`);
-          break;
-        }
-        browser.SL3U.goDoCommand("cmd_sendNow").catch((ex) => {
-          SLStatic.error("Error during cmd_sendNow operation", ex);
-        });
-      } else {
-        browser.SL3U.goDoCommand("cmd_sendWithCheck").catch((ex) => {
-          SLStatic.error("Error during cmd_sendWithCheck operation", ex);
-        });
-      }
+      SendLater.doSendNow();
       break;
     }
     case "doPlaceInOutbox": {
       SLStatic.debug("User requested system send later.");
-      const { preferences } = await browser.storage.local.get({ preferences: {} });
-      if (preferences.showOutboxAlert) {
-        const result = await browser.SL3U.confirmCheck(
-          browser.i18n.getMessage("AreYouSure"),
-          browser.i18n.getMessage("OutboxConfirmMessage"),
-          browser.i18n.getMessage("ConfirmAgain"),
-          true
-        ).catch((err) => {
-          SLStatic.trace(err);
-        });
-        if (result.check === false) {
-          preferences.showOutboxAlert = false;
-          browser.storage.local.set({ preferences });
-        }
-        if (!result.ok) {
-          SLStatic.debug(`User cancelled send later.`);
-          break;
-        }
-      }
-      browser.SL3U.builtInSendLater().catch((ex) => {
-        SLStatic.error("Error during builtin send later operation",ex);
-      });
+      SendLater.doPlaceInOutbox();
       break;
     }
     case "doSendLater": {
@@ -1495,6 +1503,21 @@ function mainLoop() {
     SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000);
   });
 }
+
+messenger.composeAction.onClicked.addListener(async (tab, info) => {
+  let mods = info.modifiers;
+  if (mods.length === 1 && mods[0] === "Ctrl") {
+    SLStatic.debug("User requested send immediately (via ctrl+click composeAction)");
+    SendLater.doSendNow();
+  } else if (mods.length === 1 && mods[0] === "Shift") {
+    SLStatic.debug("User requested system send later (via shift+click composeAction)");
+    SendLater.doPlaceInOutbox();
+  } else {
+    messenger.composeAction.setPopup({"popup": "ui/popup.html"});
+		messenger.composeAction.openPopup();
+		messenger.composeAction.setPopup({"popup": null});
+  }
+});
 
 messenger.WindowListener.onNotifyBackground.addListener(async (data) => {
   if (data.command === "refreshStatus")

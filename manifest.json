@@ -64,7 +64,6 @@
     "browser_style": true,
     "default_area": "maintoolbar",
     "default_icon": "ui/icons/icon.png",
-    "default_popup": "ui/popup.html",
     "default_title": "__MSG_extensionName__"
   },
 
