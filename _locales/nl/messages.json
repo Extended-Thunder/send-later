@@ -1151,5 +1151,9 @@
   "accelCtrlLabel.MacOS": {
     "message": "Cmd-Klik",
     "description": "Indicates key combination to access the ctrl+click accelerator function. On mac the Ctrl key is replaced with the 'Command' key"
+  },
+  "accelShiftLabel": {
+    "message": "Shift+Klik",
+    "description": "Indicates key combination to access the shift+click accelerator function"
   }
 }
