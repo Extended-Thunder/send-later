@@ -38,13 +38,37 @@ const SendLater = {
       return await browser.SL3U.editingMessage(msgId);
     },
 
+    async getDraftFolders(acct) {
+      async function getDraftFoldersHelper(folder) {
+        // Recursive helper function to look through an account for draft folders
+        const accountId = folder.accountId, path = folder.path;
+        if (await browser.SL3U.isDraftsFolder(accountId, path)) {
+          return folder;
+        } else {
+          const drafts = [];
+          for (let subFolder of folder.subFolders) {
+            drafts.push(await getDraftFoldersHelper(subFolder));
+          }
+          return drafts;
+        }
+      }
+
+      const draftSubFolders = [];
+      for (let folder of acct.folders) {
+        draftSubFolders.push(await getDraftFoldersHelper(folder));
+      }
+      const allDraftFolders = SLStatic.flatten(draftSubFolders);
+      SLStatic.debug(`Found Draft folder(s) for account ${acct.name}`,allDraftFolders);
+      return allDraftFolders;
+    },
+
     async forAllDraftFolders(callback) {
       const that = this;
       try {
         let results = [];
         let accounts = await browser.accounts.list();
         for (let acct of accounts) {
-          let draftFolders = await getDraftFolders(acct);
+          let draftFolders = await SendLater.getDraftFolders(acct);
           for (let folder of draftFolders) {
             results.push(callback(folder));
           }
@@ -61,7 +85,7 @@ const SendLater = {
         let results = [];
         let accounts = await browser.accounts.list();
         for (let acct of accounts) {
-          let draftFolders = await getDraftFolders(acct);
+          let draftFolders = await SendLater.getDraftFolders(acct);
           for (let folder of draftFolders) {
             let page = await browser.messages.list(folder);
             do {
@@ -672,7 +696,7 @@ const SendLater = {
       const allSchedulePromises = await browser.accounts.list().then(async accounts => {
         let folderSchedules = [];
         for (let acct of accounts) {
-          let draftFolders = await getDraftFolders(acct).catch(SLStatic.error);
+          let draftFolders = await SendLater.getDraftFolders(acct).catch(SLStatic.error);
           if (draftFolders && draftFolders.length > 0) {
             for (let draftFolder of draftFolders) {
               if (draftFolder) {
@@ -1247,7 +1271,7 @@ browser.messages.onNewMailReceived.addListener((folder, messagelist) => {
           // 'references' headers.
           browser.accounts.list().then(async accounts => {
             for (let acct of accounts) {
-              let draftFolders = await getDraftFolders(acct);
+              let draftFolders = await SendLater.getDraftFolders(acct);
               if (draftFolders && draftFolders.length > 0) {
                 for (let draftFolder of draftFolders) {
                   if (draftFolder) {
@@ -1348,29 +1372,16 @@ messenger.composeAction.onClicked.addListener(async (tab, info) => {
   }
 });
 
-async function getDraftFoldersHelper(folder) {
-  // Recursive helper function to look through an account for draft folders
-  const accountId = folder.accountId, path = folder.path;
-  if (await browser.SL3U.isDraftsFolder(accountId, path)) {
-    return folder;
-  } else {
-    const drafts = [];
-    for (let subFolder of folder.subFolders) {
-      drafts.push(await getDraftFoldersHelper(subFolder));
-    }
-    return drafts;
-  }
-}
+messenger.WindowListener.onNotifyBackground.addListener(async (data) => {
+  if (data.command === "refreshStatus")
+    SendLater.setStatusBarIndicator.call(SendLater, false);
+});
 
-async function getDraftFolders(acct) {
-  const draftSubFolders = [];
-  for (let folder of acct.folders) {
-    draftSubFolders.push(await getDraftFoldersHelper(folder));
-  }
-  const allDraftFolders = SLStatic.flatten(draftSubFolders);
-  SLStatic.debug(`Found Draft folder(s) for account ${acct.name}`,allDraftFolders);
-  return allDraftFolders;
-}
+messenger.WindowListener.registerWindow(
+  "chrome://messenger/content/messenger.xhtml",
+  "experiments/MessengerOverlays.js");
+
+messenger.WindowListener.startListening();
 
 function mainLoop() {
   SLStatic.debug("Entering main loop.");
@@ -1400,7 +1411,7 @@ function mainLoop() {
           resolve when that message has been processed.
         */];
         for (let acct of accounts) {
-          let draftFolders = await getDraftFolders(acct).catch(SLStatic.error);
+          let draftFolders = await SendLater.getDraftFolders(acct).catch(SLStatic.error);
           if (draftFolders && draftFolders.length > 0) {
             for (let draftFolder of draftFolders) {
               if (draftFolder) {
@@ -1484,16 +1495,5 @@ function mainLoop() {
     SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000);
   });
 }
-
-messenger.WindowListener.onNotifyBackground.addListener(async (data) => {
-  if (data.command === "refreshStatus")
-    SendLater.setStatusBarIndicator.call(SendLater, false);
-});
-
-messenger.WindowListener.registerWindow(
-  "chrome://messenger/content/messenger.xhtml",
-  "experiments/MessengerOverlays.js");
-
-messenger.WindowListener.startListening();
 
 SendLater.init().then(mainLoop);
