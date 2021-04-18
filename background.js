@@ -198,6 +198,47 @@ const SendLater = {
       }, 1000);
     },
 
+    // Sends composed message according to user function (specified
+    // by name), and arguments (specified as an "unparsed" string).
+    async quickSendWithUfunc(funcName, funcArgs, tabId) {
+      if (tabId === undefined) {
+        // If no tabId is specified, then default to the currently
+        // active tab.
+        tabId = await messenger.windows.getAll({
+          populate: true, windowTypes: ["messageCompose"]
+        }).then((allWindows) => {
+          const ccWins = allWindows.filter((cWindow) => (cWindow.focused === true));
+          if (ccWins.length === 1) {
+            const ccTabs = ccWins[0].tabs.filter(tab => (tab.active === true));
+            if (ccTabs.length !== 1) // No tabs?
+              throw new Error(`Unexpected situation: no tabs found in current window`);
+            return ccTabs[0].id;
+          } else if (ccWins.length === 0) { // No compose window is opened
+            SLStatic.warn(`The currently active window is not a messageCompose window`);
+          } else { // Whaaaat!?!?
+            throw new Error(`Unexpected situation: multiple active windows found?`);
+          }
+        }).catch(ex => SLStatic.error(ex));
+      }
+
+      if (tabId !== undefined) {
+        let { ufuncs } = await messenger.storage.local.get({ ufuncs: {} });
+        let funcBody = ufuncs[funcName].body;
+        let schedule = SLStatic.parseUfuncToSchedule(funcName, funcBody, null, funcArgs);
+        SendLater.preSendCheck.call(SendLater).then(dosend => {
+          if (dosend) {
+            let options = { sendAt: schedule.sendAt,
+                            recurSpec: SLStatic.unparseRecurSpec(schedule.recur),
+                            args: schedule.recur.args,
+                            cancelOnReply: false };
+            SendLater.scheduleSendLater.call(SendLater, tabId, options);
+          } else {
+            SLStatic.info("User cancelled send via presendcheck.");
+          }
+        });
+      }
+    },
+
     async possiblySendMessage(msgHdr, rawContent) {
       // Determines whether or not a particular draft message is due to be sent
       SLStatic.debug(`Checking message ${msgHdr.uri}.`);
@@ -498,6 +539,11 @@ const SendLater = {
         });
       const currentMigrationNumber = preferences.migratedLegacy|0;
 
+      if (currentMigrationNumber === SLStatic.CURRENT_LEGACY_MIGRATION) {
+        SLStatic.logConsoleLevel = (preferences.logConsoleLevel||"info").toLowerCase();
+        return currentMigrationNumber;
+      }
+
       // Load the default user functions.
       const isComplete = (v) => v && v.body && v.help;
       if (
@@ -586,7 +632,7 @@ const SendLater = {
       for (let prefName of Object.getOwnPropertyNames(prefDefaults)) {
         if (preferences[prefName] === undefined) {
           const prefValue = prefDefaults[prefName][1];
-          SLStatic.debug(`Added new preference ${prefName}: ${prefValue}`);
+          SLStatic.info(`Added new preference ${prefName}: ${prefValue}`);
           preferences[prefName] = prefValue;
         }
       }
@@ -1272,100 +1318,35 @@ browser.messageDisplay.onMessageDisplayed.addListener(async (tab, hdr) => {
   }
 });
 
-browser.commands.onCommand.addListener((cmd) => {
+browser.commands.onCommand.addListener(async (cmd) => {
   const cmdId = (/send-later-shortcut-([123])/.exec(cmd))[1];
 
   if (["1","2","3"].includes(cmdId)) {
-    browser.windows.getAll({
-      populate: true,
-      windowTypes: ["messageCompose"]
-    }).then((allWindows) => {
-      // Current compose windows
-      const ccWins = allWindows.filter((cWindow) => (cWindow.focused === true));
-      if (ccWins.length === 1) {
-        const ccTabs = ccWins[0].tabs.filter(tab => (tab.active === true));
-        if (ccTabs.length !== 1) { // No tabs?
-          throw new Error(`Unexpected situation: no tabs found in current window`);
-        }
-        const tabId = ccTabs[0].id;
-
-        browser.storage.local.get({
-          preferences: {},
-          ufuncs: {}
-        }).then(({ preferences, ufuncs }) => {
-          function evaluateUfunc(funcName, prev, argStr) {
-            let args = null;
-            if (argStr) {
-              try {
-                argStr = SLStatic.unparseArgs(SLStatic.parseArgs(argStr));
-                args = SLStatic.parseArgs(argStr);
-              } catch (ex) {
-                SLStatic.warn(ex);
-                return { err: (browser.i18n.getMessage("InvalidArgsTitle") + ": " +
-                                browser.i18n.getMessage("InvalidArgsBody")) };
-              }
-            }
-
-            const { sendAt, nextspec, nextargs, error } =
-              SLStatic.evaluateUfunc(funcName, funcBody, prev, args);
-            SLStatic.debug("User function returned:",
-                            {sendAt, nextspec, nextargs, error});
-
-            if (error) {
-              throw new Error(error);
-            } else {
-              let recur = SLStatic.parseRecurSpec(nextspec || "none") || { type: "none" };
-              if (recur.type !== "none") {
-                recur.args = nextargs || "";
-              }
-              const schedule = { sendAt, recur };
-              SLStatic.debug("commands.onCommand received ufunc response: ",schedule);
-              return schedule;
-            }
-          }
-
-          const funcName = preferences[`quickOptions${cmdId}funcselect`];
-          const funcArgs = preferences[`quickOptions${cmdId}Args`];
-          SLStatic.info(`Executing shortcut ${cmdId}: ${funcName}(${funcArgs})`);
-          const funcBody = ufuncs[funcName].body;
-
-          const schedule = evaluateUfunc(funcName, null, funcArgs);
-
-          SendLater.preSendCheck.call(SendLater).then(dosend => {
-            if (dosend) {
-              const options = { sendAt: schedule.sendAt,
-                                recurSpec: SLStatic.unparseRecurSpec(schedule.recur),
-                                args: schedule.recur.args,
-                                cancelOnReply: schedule.recur.cancelOnReply };
-              SendLater.scheduleSendLater.call(SendLater, tabId, options);
-            } else {
-              SLStatic.info("User cancelled send via presendcheck.");
-            }
-          });
-        });
-      } else if (ccWins.length === 0) {
-        // No compose window is opened
-        SLStatic.warn(`The currently active window is not a messageCompose window`);
-      } else {
-        // Whaaaat!?!?
-        throw new Error(`Unexpected situation: multiple active windows found?`);
-      }
-    }).catch(SLStatic.error);
+    const { preferences } = await browser.storage.local.get({ preferences: {} });
+    const funcName = preferences[`quickOptions${cmdId}funcselect`];
+    const funcArgs = preferences[`quickOptions${cmdId}Args`];
+    SLStatic.info(`Executing shortcut ${cmdId}: ${funcName}(${funcArgs})`);
+    SendLater.quickSendWithUfunc(funcName, funcArgs);
   }
 });
 
-// browser.runtime.onUpdateAvailable.addListener((details) => {
-//   const extensionName = browser.i18n.getMessage("extensionName");
-//   const thisVersion = browser.runtime.getManifest().version;
-//   const nextVersion = details.version||"";
-//
-//   browser.notifications.create(null, {
-//     "type": "basic",
-//     "title": `${extensionName} ${thisVersion}`,
-//     "message": `${extensionName} ${nextVersion} is available and ` +
-//                `will be upgraded next time you restart Thunderbird.`
-//   });
-// });
+messenger.composeAction.onClicked.addListener(async (tab, info) => {
+  let mod = (info.modifiers.length === 1) ? info.modifiers[0] : undefined;
+  if (mod === "Command") // MacOS compatibility
+    mod = "Ctrl";
+
+  if (["Ctrl", "Shift"].includes(mod)) {
+    const { preferences } = await browser.storage.local.get({ preferences: {} });
+    const funcName = preferences[`accel${mod}funcselect`];
+    const funcArgs = preferences[`accel${mod}Args`];
+    SLStatic.info(`Executing composeAction accelerator ${mod}: ${funcName}(${funcArgs})`);
+    SendLater.quickSendWithUfunc(funcName, funcArgs, tab.id);
+  } else {
+    messenger.composeAction.setPopup({"popup": "ui/popup.html"});
+		messenger.composeAction.openPopup();
+		messenger.composeAction.setPopup({"popup": null});
+  }
+});
 
 async function getDraftFoldersHelper(folder) {
   // Recursive helper function to look through an account for draft folders
@@ -1504,21 +1485,6 @@ function mainLoop() {
   });
 }
 
-messenger.composeAction.onClicked.addListener(async (tab, info) => {
-  let mods = info.modifiers;
-  if (mods.length === 1 && mods[0] === "Ctrl") {
-    SLStatic.debug("User requested send immediately (via ctrl+click composeAction)");
-    SendLater.doSendNow();
-  } else if (mods.length === 1 && mods[0] === "Shift") {
-    SLStatic.debug("User requested system send later (via shift+click composeAction)");
-    SendLater.doPlaceInOutbox();
-  } else {
-    messenger.composeAction.setPopup({"popup": "ui/popup.html"});
-		messenger.composeAction.openPopup();
-		messenger.composeAction.setPopup({"popup": null});
-  }
-});
-
 messenger.WindowListener.onNotifyBackground.addListener(async (data) => {
   if (data.command === "refreshStatus")
     SendLater.setStatusBarIndicator.call(SendLater, false);
@@ -1530,6 +1496,4 @@ messenger.WindowListener.registerWindow(
 
 messenger.WindowListener.startListening();
 
-SendLater.init().then(
-  mainLoop.bind(SendLater)
-).catch(SLStatic.error);
+SendLater.init().then(mainLoop);

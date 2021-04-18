@@ -214,16 +214,19 @@ const SLOptions = {
       }
     }
     if (funcName !== "ReadMeFirst") {
-      for (let i=1; i<4; i++) {
-        if (!document.getElementById(`ufunc-shortcut-${i}-${funcName}`)) {
-          const newOpt = document.createElement('option');
-          newOpt.id = `ufunc-shortcut-${i}-${funcName}`;
-          newOpt.value = funcName;
-          newOpt.textContent = funcName;
+      let funcSelectors = {};
+      funcSelectors[`ufunc-accel-ctrl-${funcName}`] = 'accelCtrlfuncselect';
+      funcSelectors[`ufunc-accel-shift-${funcName}`] = 'accelShiftfuncselect';
+      for (let i=1; i<4; i++)
+        funcSelectors[`ufunc-shortcut-${i}-${funcName}`] = `quickOptions${i}funcselect`;
 
-          const funcSelect = document.getElementById(`quickOptions${i}funcselect`);
-          funcSelect.appendChild(newOpt);
-        }
+      for (let key of Object.keys(funcSelectors)) {
+        let newOpt = document.createElement('option');
+        newOpt.id = key;
+        newOpt.value = funcName;
+        newOpt.textContent = funcName;
+        let funcSelect = document.getElementById(funcSelectors[key]);
+        funcSelect.appendChild(newOpt);
       }
     }
   },
@@ -570,10 +573,17 @@ const SLOptions = {
         const funcName = funcNameSelect.value;
         funcNameSelect.value = "ReadMeFirst";
         resetFunctionInput();
-        document.getElementById(`ufunc-${funcName}`).remove();
-        for (let i=1; i<4; i++) {
-          document.getElementById(`ufunc-shortcut-${i}-${funcName}`).remove();
+
+        try {
+          document.getElementById(`ufunc-${funcName}`).remove();
+          document.getElementById(`ufunc-accel-ctrl-${funcName}`).remove();
+          document.getElementById(`ufunc-accel-shift-${funcName}`).remove();
+          for (let i=1; i<4; i++)
+            document.getElementById(`ufunc-shortcut-${i}-${funcName}`).remove();
+        } catch (ex) {
+          SLStatic.error("Unable to remove function selector element",ex);
         }
+
         browser.storage.local.get({ ufuncs: {} }).then(({ ufuncs }) => {
           delete ufuncs[funcName];
           browser.storage.local.set({ ufuncs });
@@ -664,6 +674,10 @@ const SLOptions = {
   },
 
   onLoad() {
+    if (navigator.userAgent.indexOf("Mac") != -1)
+      document.getElementById("accelCtrlLabel").textContent =
+        browser.i18n.getMessage("accelCtrlLabel.MacOS");
+
     const funcTestDate = document.getElementById("functionTestDate");
     const funcTestTime = document.getElementById("functionTestTime");
     const fmtDate = new Intl.DateTimeFormat('en-CA',

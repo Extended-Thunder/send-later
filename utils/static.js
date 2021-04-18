@@ -6,8 +6,13 @@ var SLStatic = {
 
   previousLoop: new Date(),
 
-  // Indicator to initiate a preference migration.
-  CURRENT_LEGACY_MIGRATION: 4,
+  // Indicator to signify a preference migration
+  // Migration 1: import options from legacy prefbranch
+  // Migration 2: update format for defaultPrefs.json
+  // Migration 3: indicate that "sanity check" has been performed
+  // Migration 4: add instanceUUID
+  // Migration 5: add accelerator shortcut options
+  CURRENT_LEGACY_MIGRATION: 5,
 
   // HTML element IDs correspond to preference keys, localization strings, and
   // keys of preference values in local storage.
@@ -19,7 +24,9 @@ var SLStatic = {
                  "quickOptions1funcselect", "quickOptions1Args",
                  "quickOptions2Label", "quickOptions2funcselect",
                  "quickOptions2Args", "quickOptions3Label",
-                 "quickOptions3funcselect", "quickOptions3Args"],
+                 "quickOptions3funcselect", "quickOptions3Args",
+                 "accelCtrlfuncselect", "accelCtrlArgs",
+                 "accelShiftfuncselect", "accelShiftArgs"],
 
   logConsoleLevel: null,
 
@@ -327,10 +334,11 @@ var SLStatic = {
   },
 
   evaluateUfunc(name, body, prev, args) {
-    const funcStr =
-      `let next, nextspec, nextargs;\n` +
-      `${body};\n` +
-      "return([next, nextspec, nextargs]);";
+    const funcStr = `
+      let next, nextspec, nextargs;
+      ${body};
+      return([next, nextspec, nextargs]);
+    `;
 
     let response;
     try {
@@ -393,6 +401,42 @@ var SLStatic = {
           nextargs: response[2],
           error: undefined
         };
+    }
+  },
+
+  /* Given a user function and an "unparsed" argument string,
+   * this function returns a common schedule object, including
+   * `sendAt` and `recur` members.
+   */
+  parseUfuncToSchedule (name, body, prev, argStr) {
+    let args = null;
+    if (argStr) {
+      try {
+        argStr = this.unparseArgs(this.parseArgs(argStr));
+        args = this.parseArgs(argStr);
+      } catch (ex) {
+        this.warn(ex);
+        let errTitle = this.i18n.getMessage("InvalidArgsTitle");
+        let errBody = this.i18n.getMessage("InvalidArgsBody");
+        return { err: `${errTitle}: ${errBody}` };
+      }
+    }
+
+    const { sendAt, nextspec, nextargs, error } =
+      this.evaluateUfunc(name, body, prev, args);
+    this.debug("User function returned:",
+              {sendAt, nextspec, nextargs, error});
+
+    if (error) {
+      throw new Error(error);
+    } else {
+      let recur = this.parseRecurSpec(nextspec || "none") || { type: "none" };
+      if (recur.type !== "none")
+        recur.args = nextargs || "";
+
+      const schedule = { sendAt, recur };
+      this.debug("commands.onCommand received ufunc response:", schedule);
+      return schedule;
     }
   },
 
