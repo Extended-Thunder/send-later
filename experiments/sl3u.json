@@ -362,24 +362,6 @@
         ]
       },
       {
-        "name": "notifyStorageLocal",
-        "type": "function",
-        "description": "Make local indexedDB storage available to an overlay extension implementing an observer for 'extension:storage-local'.",
-        "async": true,
-        "parameters": [
-          {
-            "name": "dataStr",
-            "type": "string",
-            "description": "The storage.local object for this extension."
-          },
-          {
-            "name": "startup",
-            "type": "boolean",
-            "description": "If true, we are in startup, wait for ready notification; otherwise send data."
-          }
-        ]
-      },
-      {
         "name": "setCustomDBHeaders",
         "type": "function",
         "async": true,
@@ -399,19 +381,6 @@
         "async": true,
         "description": "",
         "parameters": []
-      },
-      {
-        "name":"injectScripts",
-        "type":"function",
-        "description":"Inject scripts into a global document.",
-        "async":true,
-        "parameters": [
-          {
-            "name":"filenames",
-            "type":"any",
-            "description":"Array of paths to script files."
-          }
-        ]
       },
       {
         "name":"bindKeyCodes",

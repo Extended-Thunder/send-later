@@ -100,18 +100,6 @@ const SendLaterObservers = {
           break;
       }
     },
-  },
-
-  StorageObserver: {
-    observerTopics: [],
-    notificationTopic: '',
-    observe(subject, topic, data) {
-      if (this.observerTopics.includes(topic)) {
-        SendLaterFunctions.debug("SL3U.notifyStorageLocal",`Observer (${topic})`);
-        Services.obs.removeObserver(this, topic);
-        Services.obs.notifyObservers(null, this.notificationTopic, data);
-      }
-    },
   }
 }
 
@@ -1283,19 +1271,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                   status
                 );
 
-                //// Maybe disable Send Later if copy operation failed?
-                // const localStorage = context.apiCan.findAPIPath("storage.local");
-                // localStorage.callMethodInParentProcess(
-                //   "get", [{ "preferences": {} }]
-                // ).then(({ preferences }) => {
-                //   preferences.checkEvery = 0;
-                //   localStorage.callMethodInParentProcess(
-                //     "set", { preferences }
-                //   );
-                // }).catch((err) =>
-                //   SendLaterFunctions.error(`Unable to disable extension`,err)
-                // );
-
                 const hexStatus = `0x${status.toString(16)}`;
                 const CopyUnsentError =
                   SendLaterFunctions.getMessage(context, "CopyUnsentError", [hexStatus]);
@@ -1365,7 +1340,8 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               ).toLowerCase().split(/\s+/).filter(v=>(v!==""));
           } catch(e) {}
           let wantedHeaders = ["x-send-later-at", "x-send-later-recur",
-            "x-send-later-args", "x-send-later-cancel-on-reply", "x-send-later-uuid"];
+                    "x-send-later-args", "x-send-later-cancel-on-reply",
+                    "x-send-later-uuid", "content-type"];
 
           const allDefined = wantedHeaders.every(hdr => originals.includes(hdr));
           if (!allDefined) {
@@ -1616,72 +1592,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return false;
         },
 
-        /*
-         * Notify observer with local storage key-value object. The object is
-         * obtained from our local storage via browser.storage.local.get() in
-         * background.js, as |browser| is not available (maybe) here.
-         * The observer will notfiy us when ready to accept the data, on
-         * startup. Otherwise send the data.
-         *
-         * @param {Object} storageLocalData - The key-value object.
-         * @param {Boolean} startup         - If true, wait for notification
-         *                                    from chrome code before sending
-         *                                    data; otherwise do it now.
-         * @implements {nsIObserver}
-         */
-        async notifyStorageLocal(dataStr, startup) {
-          let notificationTopic = `extension:${extension.id}:storage-local`;
-          let observationTopic = `extension:${extension.id}:ready`;
-          SendLaterObservers.StorageObserver.observerTopics[0] = observationTopic;
-          SendLaterObservers.StorageObserver.notificationTopic = notificationTopic;
-          SendLaterFunctions.debug("SL3U.notifyStorageLocal",` START - ${notificationTopic}`);
-          if (startup) {
-            Services.obs.addObserver(SendLaterObservers.StorageObserver, observationTopic);
-          } else {
-            Services.obs.notifyObservers(null, notificationTopic, dataStr);
-            try {
-              const data = JSON.parse(dataStr);
-              SendLaterVars.logConsoleLevel = (data.logConsoleLevel||"all").toLowerCase();
-              SendLaterVars.ask_quit = data.askQuit;
-            } catch (ex) {
-              SendLaterFunctions.warn(
-                `SL3U.notifyStorageLocal Unable to set SendLaterVars.logConsoleLevel`
-              );
-            }
-          }
-        },
-
-        async injectScripts(filenames) {
-          let listenerName = "injector";
-          for (let filename of filenames) {
-            listenerName += (/([^\/\.]+)\.[^\/]+$/.exec(filename)[1]);
-          }
-          listenerName += "Listener";
-          SendLaterVars.scriptListeners.add(listenerName);
-
-          ExtensionSupport.registerWindowListener(listenerName, {
-            chromeURLs: [
-              "chrome://messenger/content/messenger.xhtml",
-              "chrome://messenger/content/messenger.xul",
-            ],
-            onLoadWindow(window) {
-              (async () => {
-                for (let filename of filenames) {
-                  let windowContext = window.document.defaultView;
-                  try {
-                    let scriptURI = extension.rootURI.resolve(filename);
-                    let script = await ChromeUtils.compileScript(scriptURI);
-                    script.executeInGlobal(windowContext);
-                    SendLaterFunctions.info(`onLoadWindow, inject script ${scriptURI}`);
-                  } catch (ex) {
-                    SendLaterFunctions.error("SL3U.injectScript","Unable to inject script.",ex);
-                  }
-                }
-              })();
-            }
-          });
-        },
-
         async setSendLaterVar(key, value) {
           SendLaterVars[key] = value;
         },
@@ -1690,8 +1600,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           try {
             const loadPrefs = async () => {
               try {
-                // const ext = window.ExtensionParent.GlobalManager.extensionMap.get("sendlater3@kamens.us");
-                // const localStorage = [...ext.views][0].apiCan.findAPIPath("storage.local");
                 const localStorage = context.apiCan.findAPIPath("storage.local");
                 const { preferences } =
                   await localStorage.callMethodInParentProcess(

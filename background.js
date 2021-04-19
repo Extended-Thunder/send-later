@@ -878,10 +878,7 @@ const SendLater = {
     async setStatusBarIndicator(isActive) {
       const { preferences } = await browser.storage.local.get({ preferences: {} });
 
-      messenger.WindowListener.notifyExperiment({
-        command: "showHideStatusbar",
-        value: preferences.showStatus,
-      });
+      messenger.statusBar.setVisible('send_later_status_menu', preferences.showStatus);
 
       if (preferences.showStatus) {
         let statusMsg = '...';
@@ -899,10 +896,9 @@ const SendLater = {
         }
 
         const extName = browser.i18n.getMessage("extensionName");
-        messenger.WindowListener.notifyExperiment({
-          command: "setStatusMessage",
-          value: `${extName} [${statusMsg}]`,
-        });
+        messenger.statusBar.setStatusMessage(
+          'send_later_status_menu',
+          `${extName} [${statusMsg}]`);
       }
     },
 
@@ -935,10 +931,7 @@ const SendLater = {
         await browser.storage.local.get({ preferences: {} });
       this.prefCache = preferences;
 
-      messenger.WindowListener.notifyExperiment({
-        command: "showHideStatusbar",
-        value: preferences.showStatus,
-      });
+      messenger.statusBar.setVisible('send_later_status_menu', preferences.showStatus);
 
       // This listener should be added *after* all of the storage-related
       // setup is complete. It makes sure that subsequent changes to storage
@@ -950,30 +943,13 @@ const SendLater = {
             await browser.storage.local.get({ preferences: {} });
           this.prefCache = preferences;
           SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
-          const prefString = JSON.stringify(preferences);
-          await browser.SL3U.notifyStorageLocal(prefString, false);
 
           messenger.SL3U.setSendLaterVar("logConsoleLevel", SLStatic.logConsoleLevel);
           messenger.SL3U.setSendLaterVar("ask_quit", preferences.askQuit);
 
-          messenger.WindowListener.notifyExperiment({
-            command: "showHideStatusbar",
-            value: preferences.showStatus,
-          });
+          messenger.statusBar.setVisible('send_later_status_menu', preferences.showStatus);
         }
       });
-
-      await browser.SL3U.injectScripts([
-        "utils/sugar-custom.js",
-        "utils/static.js",
-        "experiments/headerView.js"
-      ]);
-
-      setTimeout(() => {
-        browser.storage.local.get({ preferences: {} }).then(({ preferences }) => {
-          browser.SL3U.notifyStorageLocal(JSON.stringify(preferences), true);
-        });
-      }, 1000);
 
       SLStatic.debug("Registering window listeners");
       await browser.SL3U.startObservers();
@@ -1372,16 +1348,95 @@ messenger.composeAction.onClicked.addListener(async (tab, info) => {
   }
 });
 
-messenger.WindowListener.onNotifyBackground.addListener(async (data) => {
-  if (data.command === "refreshStatus")
-    SendLater.setStatusBarIndicator.call(SendLater, false);
+async function customHdrToScheduleInfo(hdr) {
+  const { preferences } = await browser.storage.local.get({ preferences: {} });
+
+  const msgContentType = hdr.customHeaders["content-type"];
+  const msgSendAt = hdr.customHeaders["x-send-later-at"];
+  const msgUuid = hdr.customHeaders["x-send-later-uuid"];
+  const msgRecur = hdr.customHeaders["x-send-later-recur"];
+  const msgArgs = hdr.customHeaders["x-send-later-args"];
+  const msgCancelOnReply = hdr.customHeaders["x-send-later-cancel-on-reply"];
+
+  let cellText = "";
+  let sortValue = (Math.pow(2,31)-5)|0;
+
+  if (!msgContentType) {
+    SLStatic.warn("Didn't receive complete headers.");
+  } else if (!msgSendAt) {
+    // Do nothing. Leave cell properties as default
+  } else if (msgUuid !== preferences.instanceUUID) {
+    cellText = browser.i18n.getMessage("incorrectUUID");
+    sortValue = (Math.pow(2,31)-2)|0;
+  } else if (msgContentType && (/encrypted/i).test(msgContentType)) {
+    cellText = browser.i18n.getMessage("EncryptionIncompatText");
+    sortValue = (Math.pow(2,31)-1)|0;
+  } else {
+    const sendAt = new Date(msgSendAt);
+    const recurSpec = (msgRecur || "none");
+    const recur = SLStatic.parseRecurSpec(recurSpec);
+    recur.cancelOnReply = ["true", "yes"].includes(msgCancelOnReply);
+    recur.args = msgArgs;
+    cellText = SLStatic.formatScheduleForUIColumn({ sendAt, recur });
+    // Numbers will be truncated. Be sure this fits in 32 bits
+    sortValue = (sendAt.getTime()/1000)|0;
+  }
+  return { cellText, sortValue };
+}
+
+// Send Later column
+(async (colName) => {
+  await messenger.columnHandler.addCustomColumn({ name: colName, tooltip: "" });
+
+  messenger.columnHandler.onCustomColumnFill.addListener(async (hdr) => {
+    const { cellText, sortValue } = await customHdrToScheduleInfo(hdr);
+    return { cellText, sortValue };
+  }, colName);
+
+  messenger.mailTabs.onDisplayedFolderChanged.addListener(async (tab, folder) => {
+    const accountId = folder.accountId, path = folder.path;
+    const isDrafts = await browser.SL3U.isDraftsFolder(accountId, path);
+    browser.columnHandler.setColumnVisible(colName, isDrafts, tab.id);
+  });
+})(messenger.i18n.getMessage("sendlater3header.label"));
+
+// Header row
+(async (rowName) => {
+  await messenger.headerView.addCustomHdrRow({ name: rowName });
+  messenger.headerView.onHeaderRowUpdate.addListener(async (hdr) => {
+    const { cellText } = await customHdrToScheduleInfo(hdr);
+    return { text: cellText, visible: (cellText !== "") };
+  }, rowName);
+})(messenger.i18n.getMessage("sendlater3header.label"));
+
+// Status bar indicator
+messenger.statusBar.addStatusMenu(
+  'send_later_status_menu',
+  browser.i18n.getMessage("extensionName"),
+  false,
+  [
+    { id: 'show-preferences',
+      label: browser.i18n.getMessage("prefwindow.title") },
+    { id: 'user-guide-link',
+      label: browser.i18n.getMessage("userGuideLabel"),
+      uri: "https://extended-thunder.github.io/send-later/" },
+    { id: 'release-notes-link',
+      label: browser.i18n.getMessage("releasenotes.value"),
+      uri: "https://github.com/Extended-Thunder/send-later/releases" },
+    { id: 'contact-author-link',
+      label: browser.i18n.getMessage("contactAuthorLabel"),
+      uri: "https://github.com/Extended-Thunder/send-later/discussions/278" },
+    { id: 'donate-link',
+      label: browser.i18n.getMessage("donatelink.value"),
+      uri: "https://extended-thunder.github.io/send-later/#support-send-later" }
+  ]
+);
+
+// Status bar menu listener
+messenger.statusBar.statusMenuCallback.addListener(id => {
+  if (id === "show-preferences")
+    messenger.runtime.openOptionsPage();
 });
-
-messenger.WindowListener.registerWindow(
-  "chrome://messenger/content/messenger.xhtml",
-  "experiments/MessengerOverlays.js");
-
-messenger.WindowListener.startListening();
 
 function mainLoop() {
   SLStatic.debug("Entering main loop.");
@@ -1483,10 +1538,9 @@ function mainLoop() {
     } else {
       const extName = browser.i18n.getMessage("extensionName");
       const disabledMsg = browser.i18n.getMessage("DisabledMessage");
-      messenger.WindowListener.notifyExperiment({
-        command: "setStatusMessage",
-        value: `${extName} [${disabledMsg}]`,
-      });
+      messenger.statusBar.setStatusMessage(
+        'send_later_status_menu',
+        `${extName} [${disabledMsg}]`);
       SLStatic.previousLoop = new Date();
       SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000);
     }
