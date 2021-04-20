@@ -1806,7 +1806,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
   close() {
     SendLaterFunctions.debug("SL3U.close","Beginning close function");
 
-    SendLaterFunctions.debug("Removing all msgcompose overlay elements");
     for (let cw of Services.wm.getEnumerator("msgcompose")) {
       const { document } = cw;
       const keyElement = document.getElementById("key-alt-shift-enter");

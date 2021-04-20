@@ -968,35 +968,93 @@ const SendLater = {
         await this.claimDrafts();
       }
 
-      const { preferences } =
-        await browser.storage.local.get({ preferences: {} });
+      const { preferences } = await browser.storage.local.get({ preferences: {} });
       this.prefCache = preferences;
+
+      // Drafts folder column
+        const columnName = messenger.i18n.getMessage("sendlater3header.label");
+
+        await messenger.columnHandler.addCustomColumn({ name: columnName, tooltip: "" });
+
+        messenger.columnHandler.onCustomColumnFill.addListener(async (hdr) => {
+          const { cellText, sortValue } = await SendLater.customHdrToScheduleInfo(hdr);
+          return { cellText, sortValue };
+        }, columnName);
+
+        messenger.mailTabs.onDisplayedFolderChanged.addListener(async (tab, folder) => {
+          const { preferences } = await browser.storage.local.get({ preferences: {} });
+          let visible = (preferences.showColumn === true);
+          if (visible) {
+            const accountId = folder.accountId, path = folder.path;
+            const isDrafts = await messenger.SL3U.isDraftsFolder(accountId, path);
+            visible = isDrafts;
+          }
+          messenger.columnHandler.setColumnVisible(columnName, visible, 0);
+        });
+
+      // Header row
+        const rowLabel = browser.i18n.getMessage("sendlater3header.label");
+        await messenger.headerView.addCustomHdrRow({ name: rowLabel });
+        messenger.headerView.onHeaderRowUpdate.addListener(async (hdr) => {
+          const { preferences } = await browser.storage.local.get({ preferences: {} });
+          const { cellText } = await SendLater.customHdrToScheduleInfo(hdr);
+          const visible = (preferences.showHeader === true) && (cellText !== "");
+          return { text: cellText, visible };
+        }, rowLabel);
+
+      // Status bar indicator
+        messenger.statusBar.addStatusMenu(
+          'send_later_status_menu',
+          browser.i18n.getMessage("extensionName"),
+          (preferences.showStatus === true),
+          [
+            { id: 'show-preferences',
+              label: browser.i18n.getMessage("prefwindow.title") },
+            { id: 'user-guide-link',
+              label: browser.i18n.getMessage("userGuideLabel"),
+              uri: "https://extended-thunder.github.io/send-later/" },
+            { id: 'release-notes-link',
+              label: browser.i18n.getMessage("releasenotes.value"),
+              uri: "https://github.com/Extended-Thunder/send-later/releases" },
+            { id: 'contact-author-link',
+              label: browser.i18n.getMessage("contactAuthorLabel"),
+              uri: "https://github.com/Extended-Thunder/send-later/discussions/278" },
+            { id: 'donate-link',
+              label: browser.i18n.getMessage("donatelink.value"),
+              uri: "https://extended-thunder.github.io/send-later/#support-send-later" }
+          ]
+        );
+
+      // Status bar menu listener
+        messenger.statusBar.statusMenuCallback.addListener(id => {
+          if (id === "show-preferences")
+            messenger.runtime.openOptionsPage();
+        });
 
       // This listener should be added *after* all of the storage-related
       // setup is complete. It makes sure that subsequent changes to storage
       // are propagated to their respective
-      browser.storage.onChanged.addListener(async (changes, areaName) => {
-        if (areaName === "local") {
-          SLStatic.debug("Propagating changes from local storage");
-          const { preferences } =
-            await browser.storage.local.get({ preferences: {} });
-          this.prefCache = preferences;
-          SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
+        browser.storage.onChanged.addListener(async (changes, areaName) => {
+          if (areaName === "local") {
+            SLStatic.debug("Propagating changes from local storage");
+            const { preferences } =
+              await browser.storage.local.get({ preferences: {} });
+            this.prefCache = preferences;
+            SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
 
-          messenger.SL3U.setSendLaterVar("logConsoleLevel", SLStatic.logConsoleLevel);
-          messenger.SL3U.setSendLaterVar("ask_quit", preferences.askQuit);
+            messenger.SL3U.setSendLaterVar("logConsoleLevel", SLStatic.logConsoleLevel);
+            messenger.SL3U.setSendLaterVar("ask_quit", preferences.askQuit);
 
-          messenger.statusBar.setVisible('send_later_status_menu', preferences.showStatus);
+            messenger.statusBar.setVisible('send_later_status_menu', (preferences.showStatus === true));
 
-
-          if (!preferences.showColumn) {
-            // Passing -1 for the tabId tells this function to apply the
-            // column visibility to all windows.
-            const columnName = messenger.i18n.getMessage("sendlater3header.label");
-            messenger.columnHandler.setColumnVisible(columnName, false, -1);
+            if (!preferences.showColumn) {
+              // Passing -1 for the tabId tells this function to apply the
+              // column visibility to all windows.
+              const columnName = messenger.i18n.getMessage("sendlater3header.label");
+              messenger.columnHandler.setColumnVisible(columnName, false, -1);
+            }
           }
-        }
-      });
+        });
 
       SLStatic.debug("Registering window listeners");
       await messenger.SL3U.startObservers();
@@ -1406,73 +1464,6 @@ messenger.composeAction.onClicked.addListener(async (tab, info) => {
 		messenger.composeAction.setPopup({"popup": null});
   }
 });
-
-// Drafts folder column
-(async () => {
-  const columnName = messenger.i18n.getMessage("sendlater3header.label");
-
-  await messenger.columnHandler.addCustomColumn({ name: colName, tooltip: "" });
-
-  messenger.columnHandler.onCustomColumnFill.addListener(async (hdr) => {
-    const { cellText, sortValue } = await SendLater.customHdrToScheduleInfo(hdr);
-    return { cellText, sortValue };
-  }, columnName);
-
-  messenger.mailTabs.onDisplayedFolderChanged.addListener(async (tab, folder) => {
-    const { preferences } = await browser.storage.local.get({ preferences: {} });
-    let visible = preferences.showColumn;
-    if (visible) {
-      const accountId = folder.accountId, path = folder.path;
-      const isDrafts = await messenger.SL3U.isDraftsFolder(accountId, path);
-      visible &= isDrafts;
-    }
-    messenger.columnHandler.setColumnVisible(columnName, visible, tab.id);
-  });
-})();
-
-// Header row
-(async () => {
-  const rowLabel = browser.i18n.getMessage("sendlater3header.label");
-  await messenger.headerView.addCustomHdrRow({ name: rowLabel });
-  messenger.headerView.onHeaderRowUpdate.addListener(async (hdr) => {
-    const { preferences } = await browser.storage.local.get({ preferences: {} });
-    const { cellText } = await SendLater.customHdrToScheduleInfo(hdr);
-    const visible = preferences.showHeader && (cellText !== "");
-    return { text: cellText, visible };
-  }, rowLabel);
-})();
-
-// Status bar indicator
-(async () => {
-  const { preferences } = await browser.storage.local.get({ preferences: {} });
-  messenger.statusBar.addStatusMenu(
-    'send_later_status_menu',
-    browser.i18n.getMessage("extensionName"),
-    preferences.showStatus,
-    [
-      { id: 'show-preferences',
-        label: browser.i18n.getMessage("prefwindow.title") },
-      { id: 'user-guide-link',
-        label: browser.i18n.getMessage("userGuideLabel"),
-        uri: "https://extended-thunder.github.io/send-later/" },
-      { id: 'release-notes-link',
-        label: browser.i18n.getMessage("releasenotes.value"),
-        uri: "https://github.com/Extended-Thunder/send-later/releases" },
-      { id: 'contact-author-link',
-        label: browser.i18n.getMessage("contactAuthorLabel"),
-        uri: "https://github.com/Extended-Thunder/send-later/discussions/278" },
-      { id: 'donate-link',
-        label: browser.i18n.getMessage("donatelink.value"),
-        uri: "https://extended-thunder.github.io/send-later/#support-send-later" }
-    ]
-  );
-
-  // Status bar menu listener
-  messenger.statusBar.statusMenuCallback.addListener(id => {
-    if (id === "show-preferences")
-      messenger.runtime.openOptionsPage();
-  });
-})();
 
 function mainLoop() {
   SLStatic.debug("Entering main loop.");
