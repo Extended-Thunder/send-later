@@ -1146,12 +1146,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           cw.goDoCommand(command);
         },
 
-        async sendNow() {
-          // Sends the message from the current composition window
-          const cw = Services.wm.getMostRecentWindow("msgcompose");
-          cw.SendMessageWithCheck();
-        },
-
         async builtInSendLater() {
           // Sends the message from the current composition window
           // using thunderbird's default send later mechanism.

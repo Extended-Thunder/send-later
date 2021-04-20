@@ -137,13 +137,6 @@
         ]
       },
       {
-        "name": "sendNow",
-        "type": "function",
-        "async": true,
-        "description": "Initiate send from current composition window",
-        "parameters": []
-      },
-      {
         "name": "builtInSendLater",
         "type": "function",
         "async": true,
