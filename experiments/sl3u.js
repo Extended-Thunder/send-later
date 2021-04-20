@@ -16,7 +16,6 @@ const SendLaterVars = {
   sendingUnsentMessages: false,
   needToSendUnsentMessages: false,
   wantToCompactOutbox: false,
-  scriptListeners: new Set(),
   logConsoleLevel: "info",
   context: null
 }
@@ -1607,7 +1606,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return hdrs;
         },
 
-        async attachMsgComposeKeyBindings(windowId) {
+        async hijackComposeWindowKeyBindings(windowId) {
           let windows;
           if (windowId === -1) {
             windows = Services.wm.getEnumerator("msgcompose");
@@ -1643,22 +1642,23 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                                       "Unable to add keycode listener for Alt+Shift+Enter");
             }
 
-            window.sendLaterReplacedElements = {};
+            window.sendLaterReplacedAttributes = {};
 
             [ "key_sendLater", "cmd_sendLater", "key_send",
               "cmd_sendWithCheck", "cmd_sendButton", "cmd_sendNow"
             ].forEach((itemId) => {
               const element = window.document.getElementById(itemId);
               if (element) {
-                window.sendLaterReplacedElements[itemId] = element;
-                const keyClone = element.cloneNode(true);
-                keyClone.setAttribute("oncommand", "//");
-                keyClone.setAttribute("observes", "");
-                keyClone.addEventListener('command', event => {
+                const listener = ((event) => {
                   event.preventDefault();
                   SendLaterFunctions.keyCodeEventTracker.emit(itemId);
                 });
-                element.parentNode.replaceChild(keyClone, element);
+                window.sendLaterReplacedAttributes[itemId] = {
+                  oncommand: element.getAttribute("oncommand"),
+                  listener
+                };
+                element.setAttribute('oncommand', "//");
+                element.addEventListener('command', listener);
               } else {
                 SendLaterFunctions.error("SL3U.bindKeyCodes.messengercompose.onLoadWindow",
                                         `Could not find ${itemId} element.`);
@@ -1692,34 +1692,30 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
   close() {
     SendLaterFunctions.debug("SL3U.close","Beginning close function");
 
+    // Restore key bindings for any currently active msgcompose windows
     for (let cw of Services.wm.getEnumerator("msgcompose")) {
-      const { document } = cw;
-      const keyElement = document.getElementById("key-alt-shift-enter");
-      if (keyElement) {
+      const keyElement = cw.document.getElementById("key-alt-shift-enter");
+      if (keyElement)
         keyElement.remove();
-      }
-      if (cw.sendLaterReplacedElements) {
-        for (let elementId of Object.getOwnPropertyNames(cw.sendLaterReplacedElements)) {
+
+      const attrs = cw.sendLaterReplacedAttributes;
+      if (attrs) {
+        for (let elementId of Object.getOwnPropertyNames(attrs)) {
           try {
-            SendLaterFunctions.debug(`Replacing imposter element ${elementId}`);
-            const imposter = document.getElementById(elementId);
-            const original = cw.sendLaterReplacedElements[elementId];
-            if (imposter && original) {
-              imposter.parentNode.replaceChild(original, imposter);
-            } else {
-              SendLaterFunctions.debug(
-                "Unable to swap out imposter key_sendLater element.",
-                imposter, original);
-            }
+            SendLaterFunctions.debug(`Restoring element attributes: ${elementId}`);
+            const element = cw.document.getElementById(elementId);
+            element.setAttribute("oncommand", attrs[elementId].oncommand);
+            element.removeEventListener("command", attrs[elementId].listener);
           } catch (ex) {
             SendLaterFunctions.warn(ex);
           }
         }
       } else {
-        SendLaterFunctions.debug(`No imposter elements to restore`);
+        SendLaterFunctions.debug(`No elements to restore`);
       }
     }
 
+    // Remove application quit observer
     for (let obsName of Object.getOwnPropertyNames(SendLaterObservers)) {
       let observer = SendLaterObservers[obsName];
       for (let topic of observer.observerTopics) {
@@ -1735,6 +1731,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
       }
     }
 
+    // Remove msgSendLater listener
     try {
       SendLaterFunctions.debug("Removing msgSendLaterlistener");
       const msgSendLater = Cc[
@@ -1743,34 +1740,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
       msgSendLater.removeListener(SendLaterFunctions.sendUnsentMessagesListener);
     } catch (ex) {
       SendLaterFunctions.error("Unable to remove msgSendLater listener.")
-    }
-
-    SendLaterFunctions.debug("Removing all mail:3pane overlay elements");
-    for (let cw of Services.wm.getEnumerator("mail:3pane")) {
-      const overlayElements = cw.document.querySelectorAll(".sendlater-overlay");
-      overlayElements.forEach(async e => {
-        try {
-          e.remove();
-          SendLaterFunctions.debug("Removed element", e.id);
-        } catch (err) {
-          SendLaterFunctions.error("Unable to remove element",e, err);
-        }
-      });
-    }
-
-    // Stop listening for new message compose windows.
-    try {
-      ExtensionSupport.unregisterWindowListener("composeListener");
-    } catch (err) {
-      SendLaterFunctions.warn(`Could not deregister listener <composeListener>`,err);
-    }
-    for (let listener of SendLaterVars.scriptListeners) {
-      try {
-        ExtensionSupport.unregisterWindowListener(listener);
-        SendLaterVars.scriptListeners.delete(listener);
-      } catch (err) {
-        SendLaterFunctions.warn(`Could not deregister listener <${listener}>`,err);
-      }
     }
 
     // Invalidate the cache to ensure we start clean if extension is reloaded.

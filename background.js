@@ -1082,13 +1082,13 @@ messenger.windows.onCreated.addListener(async (window) => {
 
     // Bind listeners to overlay components like File>Send,
     // Send Later, and keycodes like Ctrl+enter, etc.
-    messenger.SL3U.attachMsgComposeKeyBindings().catch(ex => {
-      SLStatic.error("SL3U.attachMsgComposeKeyBindings",ex);
+    messenger.SL3U.hijackComposeWindowKeyBindings().catch(ex => {
+      SLStatic.error("SL3U.hijackComposeWindowKeyBindings",ex);
     });
 
     // Now, check if this message was already an existing
     // scheduled draft.
-    const originalHdrs = await messenger.Sl3U.getDraftHeaders([
+    const originalHdrs = await messenger.SL3U.getDraftHeaders([
       "x-send-later-at", "x-send-later-recur",
       "x-send-later-args", "x-send-later-cancel-on-reply"
     ]);
@@ -1120,8 +1120,8 @@ messenger.windows.onCreated.addListener(async (window) => {
   messenger.SL3U.forceToolbarVisible(-1).catch(ex => {
     SLStatic.error("SL3U.forceToolbarVisible", ex);
   });
-  messenger.SL3U.attachMsgComposeKeyBindings(-1).catch(ex => {
-    SLStatic.error("SL3U.attachMsgComposeKeyBindings",ex);
+  messenger.SL3U.hijackComposeWindowKeyBindings(-1).catch(ex => {
+    SLStatic.error("SL3U.hijackComposeWindowKeyBindings",ex);
   });
 })();
 

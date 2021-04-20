@@ -401,7 +401,7 @@
         ]
       },
       {
-        "name":"attachMsgComposeKeyBindings",
+        "name":"hijackComposeWindowKeyBindings",
         "type":"function",
         "async":true,
         "description":"Handle  when a new compose window is opened.",
