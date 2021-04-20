@@ -1331,7 +1331,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return true;
         },
 
-        async setCustomDBHeaders() {
+        async setCustomDBHeaders(requestedHdrs) {
           // mailnews.customDBHeaders
           let originals = [];
           try {
@@ -1339,13 +1339,10 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                 "mailnews.customDBHeaders", ""
               ).toLowerCase().split(/\s+/).filter(v=>(v!==""));
           } catch(e) {}
-          let wantedHeaders = ["x-send-later-at", "x-send-later-recur",
-                    "x-send-later-args", "x-send-later-cancel-on-reply",
-                    "x-send-later-uuid", "content-type"];
 
-          const allDefined = wantedHeaders.every(hdr => originals.includes(hdr));
+          const allDefined = requestedHdrs.every(hdr => originals.includes(hdr));
           if (!allDefined) {
-            let chNames = originals.concat(wantedHeaders);
+            let chNames = originals.concat(requestedHdrs);
             let uniqueHdrs = chNames.filter((v, i, s) => (s.indexOf(v) === i));
             const customHdrString = uniqueHdrs.join(" ");
             SendLaterFunctions.info(`SL3U.setCustomDBHeaders`,

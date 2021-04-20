@@ -366,7 +366,12 @@
         "type": "function",
         "async": true,
         "description": "",
-        "parameters": []
+        "parameters": [
+          {
+            "name": "requestedHdrs",
+            "type": "any"
+          }
+        ]
       },
       {
         "name": "countUnsentMessages",

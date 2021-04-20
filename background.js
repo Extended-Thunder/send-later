@@ -906,7 +906,10 @@ const SendLater = {
       await this.printVersionInfo();
 
       // Set custom DB headers preference, if not already set.
-      await browser.SL3U.setCustomDBHeaders();
+      await messenger.SL3U.setCustomDBHeaders([
+        "x-send-later-at", "x-send-later-recur", "x-send-later-args",
+        "x-send-later-cancel-on-reply", "x-send-later-uuid", "content-type"
+      ]);
 
       // Before preferences are available, let's set logging
       // to the default level.
