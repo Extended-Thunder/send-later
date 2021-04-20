@@ -199,14 +199,22 @@ class MessageViewsCustomColumn {
   }
 
   setVisible(visible, tabId) {
-    const window = Services.wm.getMostRecentWindow(null);
+
     try {
-      for (let id of [this.columnId, `${this.columnId}-splitter`]) {
-        let e = window.document.getElementById(id);
-        if (e && visible)
-          e.removeAttribute("hidden");
-        else if (e && !visible)
-          e.setAttribute("hidden", "true");
+      let windows;
+      if (tabId === -1) {
+        windows = Services.wm.getEnumerator("mail:3pane")
+      } else {
+        windows = [Services.wm.getMostRecentWindow(null)];
+      }
+      for (let window of windows) {
+        for (let id of [this.columnId, `${this.columnId}-splitter`]) {
+          let e = window.document.getElementById(id);
+          if (e && visible)
+            e.removeAttribute("hidden");
+          else if (e && !visible)
+            e.setAttribute("hidden", "true");
+        }
       }
     } catch (ex) {
       console.error("Unable to set column visible",ex);
