@@ -199,14 +199,13 @@ class MessageViewsCustomColumn {
   }
 
   setVisible(visible, tabId) {
-
     try {
       let windows;
-      if (tabId === -1) {
+      if (tabId === -1)
         windows = Services.wm.getEnumerator("mail:3pane")
-      } else {
+      else
         windows = [Services.wm.getMostRecentWindow(null)];
-      }
+
       for (let window of windows) {
         for (let id of [this.columnId, `${this.columnId}-splitter`]) {
           let e = window.document.getElementById(id);
@@ -385,6 +384,12 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
             throw new ExtensionError("Cannot remove non-existent column");
           column.destroy();
           columns.delete(name);
+        },
+
+        async invalidateRow(messageId) {
+          if (CustomColumnUtils.msgTrackers.has(messageId)) {
+            CustomColumnUtils.msgTrackers.delete(messageId);
+          }
         },
 
         async setColumnVisible(name, visible, tabId) {

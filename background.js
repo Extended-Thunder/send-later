@@ -1062,6 +1062,11 @@ const SendLater = {
 
           messenger.statusBar.setVisible(preferences.showStatus);
 
+          // Note: It's possible to immediately obey a preference change if the
+          // user has decided to disable the send later column, but when the column
+          // is being enabled there isn't a simple way to tell whether we're in a
+          // drafts folder, so the user will have to navigate away and back to the
+          // folder before their preferences can fully take effect.
           if (!preferences.showColumn) {
             // Passing -1 for the tabId tells this function to apply the
             // column visibility to all windows.
@@ -1096,19 +1101,21 @@ messenger.windows.onCreated.addListener(async (window) => {
     // Now, check if this message was already an existing
     // scheduled draft.
     const originalHdrs = await messenger.SL3U.getDraftHeaders([
-      "x-send-later-at", "x-send-later-recur",
-      "x-send-later-args", "x-send-later-cancel-on-reply"
-    ]);
+      "x-send-later-at", "x-send-later-recur", "x-send-later-args",
+      "x-send-later-cancel-on-reply", "message-id" ]);
 
     if (originalHdrs['x-send-later-at']) {
       // Re-save the msg (delete existing schedule headers)
       await messenger.SL3U.goDoCommand("cmd_saveAsDraft");
+
+      messenger.columnHandler.invalidateRow(originalHdrs["message-id"]);
 
       // Alert the user about what just happened
       let { preferences } = await browser.storage.local.get({ preferences: {} });
       if (preferences.showEditAlert) {
         // TODO: handle this with a composeAction popup instead?
         const result = await messenger.SL3U.alertCheck(
+          "",
           browser.i18n.getMessage("draftSaveWarning"),
           browser.i18n.getMessage("confirmAgain"),
           true);

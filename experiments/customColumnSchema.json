@@ -60,6 +60,18 @@
           "parameters": []
         },
         {
+          "name": "invalidateRow",
+          "type": "function",
+          "description": "",
+          "async": true,
+          "parameters": [
+            {
+              "name": "messageId",
+              "type": "string"
+            }
+          ]
+        },
+        {
           "name": "setColumnVisible",
           "type": "function",
           "description": "",
