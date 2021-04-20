@@ -252,7 +252,7 @@ const SendLater = {
       }
 
       setTimeout(() => {
-        this.setStatusBarIndicator.call(this, false);
+        SendLater.updateStatusBarIndicator(false);
       }, 1000);
     },
 
@@ -909,10 +909,10 @@ const SendLater = {
       SLStatic.info(`Claimed ${claimed.length} scheduled messages.`);
     },
 
-    async setStatusBarIndicator(isActive) {
+    async updateStatusBarIndicator(isActive) {
       const { preferences } = await browser.storage.local.get({ preferences: {} });
 
-      messenger.statusBar.setVisible('send_later_status_menu', preferences.showStatus);
+      messenger.statusBar.setVisible(preferences.showStatus);
 
       if (preferences.showStatus) {
         let statusMsg = '...';
@@ -921,7 +921,9 @@ const SendLater = {
         } else {
           const activeSchedules = await this.getActiveSchedules(preferences.instanceUUID);
           const nActive = activeSchedules.length;
-          messenger.SL3U.setSendLaterVar("messages_pending", nActive);
+          messenger.SL3U.setSendLaterVars({
+            messages_pending: nActive
+          }).catch(SLStatic.error);
           if (nActive > 0) {
             statusMsg = browser.i18n.getMessage("PendingMessage", [nActive]);
           } else {
@@ -930,24 +932,19 @@ const SendLater = {
         }
 
         const extName = browser.i18n.getMessage("extensionName");
-        messenger.statusBar.setStatusMessage(
-          'send_later_status_menu',
-          `${extName} [${statusMsg}]`);
+        messenger.statusBar.setStatusMessage(`${extName} [${statusMsg}]`);
       }
     },
 
-    async initCustomOverlays() {
-      const { preferences } = await browser.storage.local.get({ preferences: {} });
-
+    initCustomOverlays() {
       // Drafts folder column
       const columnName = messenger.i18n.getMessage("sendlater3header.label");
-
-      await messenger.columnHandler.addCustomColumn({ name: columnName, tooltip: "" });
-
-      messenger.columnHandler.onCustomColumnFill.addListener(async (hdr) => {
-        const { cellText, sortValue } = await SendLater.customHdrToScheduleInfo(hdr);
-        return { cellText, sortValue };
-      }, columnName);
+      messenger.columnHandler.addCustomColumn({ name: columnName, tooltip: "" }).then(() => {
+        messenger.columnHandler.onCustomColumnFill.addListener(async (hdr) => {
+          const { cellText, sortValue } = await SendLater.customHdrToScheduleInfo(hdr);
+          return { cellText, sortValue };
+        }, columnName);
+      });
 
       messenger.mailTabs.onDisplayedFolderChanged.addListener(async (tab, folder) => {
         const { preferences } = await browser.storage.local.get({ preferences: {} });
@@ -962,20 +959,20 @@ const SendLater = {
 
       // Header row
       const rowLabel = browser.i18n.getMessage("sendlater3header.label");
-      await messenger.headerView.addCustomHdrRow({ name: rowLabel });
-      messenger.headerView.onHeaderRowUpdate.addListener(async (hdr) => {
-        const { preferences } = await browser.storage.local.get({ preferences: {} });
-        const { cellText } = await SendLater.customHdrToScheduleInfo(hdr);
-        const visible = (preferences.showHeader === true) && (cellText !== "");
-        return { text: cellText, visible };
-      }, rowLabel);
+      messenger.headerView.addCustomHdrRow({ name: rowLabel }).then(() => {
+        messenger.headerView.onHeaderRowUpdate.addListener(async (hdr) => {
+          const { preferences } = await browser.storage.local.get({ preferences: {} });
+          const { cellText } = await SendLater.customHdrToScheduleInfo(hdr);
+          const visible = (preferences.showHeader === true) && (cellText !== "");
+          return { text: cellText, visible };
+        }, rowLabel);
+      });
 
-      // Status bar indicator
-      await messenger.statusBar.addStatusMenu(
-        'send_later_status_menu',
-        browser.i18n.getMessage("extensionName"),
-        (preferences.showStatus === true),
-        [
+      // Status bar menu
+      messenger.statusBar.addStatusMenu(
+        browser.i18n.getMessage("extensionName"), // Default label
+        false, // Initial visibility
+        [ // Menu items:
           { id: 'show-preferences',
             label: browser.i18n.getMessage("prefwindow.title") },
           { id: 'user-guide-link',
@@ -991,15 +988,15 @@ const SendLater = {
             label: browser.i18n.getMessage("donatelink.value"),
             uri: "https://extended-thunder.github.io/send-later/#support-send-later" }
         ]
-      );
+      ).then(() => {
+        SendLater.updateStatusBarIndicator(false);
+      });
 
       // Status bar menu listener
       messenger.statusBar.statusMenuCallback.addListener(id => {
         if (id === "show-preferences")
           messenger.runtime.openOptionsPage();
       });
-
-      await this.setStatusBarIndicator(false);
     },
 
     async init() {
@@ -1034,32 +1031,36 @@ const SendLater = {
         await this.claimDrafts();
       }
 
-      const { preferences } = await browser.storage.local.get({ preferences: {} });
-      this.prefCache = preferences;
-
-      SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
-      await messenger.SL3U.setSendLaterVar("logConsoleLevel", SLStatic.logConsoleLevel);
-      await messenger.SL3U.setSendLaterVar("ask_quit", preferences.askQuit);
+      browser.storage.local.get({ preferences: {} }).then(
+        ({ preferences }) => {
+          SendLater.prefCache = preferences;
+          SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
+          messenger.SL3U.setSendLaterVars({
+            logConsoleLevel: SLStatic.logConsoleLevel,
+            ask_quit: preferences.askQuit
+          });
+        }).catch(ex => SLStatic.error(ex));
 
       // Initialize the draft folder column, expanded
       // header view, and status bar menu
-      await this.initCustomOverlays();
+      this.initCustomOverlays();
 
       // This listener should be added *after* all of the storage-related
       // setup is complete. It makes sure that subsequent changes to storage
-      // are propagated to their respective
+      // take effect immediately.
       browser.storage.onChanged.addListener(async (changes, areaName) => {
         if (areaName === "local") {
           SLStatic.debug("Propagating changes from local storage");
-          const { preferences } =
-            await browser.storage.local.get({ preferences: {} });
-          this.prefCache = preferences;
+          const { preferences } = await browser.storage.local.get({ preferences: {} });
+          SendLater.prefCache = preferences;
           SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
 
-          messenger.SL3U.setSendLaterVar("logConsoleLevel", SLStatic.logConsoleLevel);
-          messenger.SL3U.setSendLaterVar("ask_quit", preferences.askQuit);
+          messenger.SL3U.setSendLaterVars({
+            logConsoleLevel: SLStatic.logConsoleLevel,
+            ask_quit: preferences.askQuit
+          });
 
-          messenger.statusBar.setVisible('send_later_status_menu', (preferences.showStatus === true));
+          messenger.statusBar.setVisible(preferences.showStatus);
 
           if (!preferences.showColumn) {
             // Passing -1 for the tabId tells this function to apply the
@@ -1072,6 +1073,12 @@ const SendLater = {
     }
 }; // End SendLater object
 
+// When user opens a new messagecompose window, we need to
+// do several things to ensure that it behaves as they expect.
+// namely, we need to override the window's send and sendlater
+// menu items, we need to ensure the toolbar is visible, and
+// we need to check whether they're editing a previously
+// scheduled draft.
 messenger.windows.onCreated.addListener(async (window) => {
   if (window.type === "messageCompose") {
     // Ensure that the composeAction button is visible,
@@ -1538,7 +1545,9 @@ function mainLoop() {
   // leaving TB open, but it may not get set back to false if
   // some other quit-requested-observer aborts the quit. So just
   // just in case, we'll periodically set it back to "false".
-  messenger.SL3U.setSendLaterVar("quit_confirmed", false).catch(SLStatic.error);
+  messenger.SL3U.setSendLaterVars({
+    quit_confirmed: false
+  }).catch(SLStatic.error);
 
   browser.storage.local.get({ preferences: {} }).then((storage) => {
     let interval = +storage.preferences.checkTimePref || 0;
@@ -1547,7 +1556,7 @@ function mainLoop() {
     const throttleDelay = storage.preferences.throttleDelay;
 
     if (storage.preferences.sendDrafts && interval > 0) {
-      SendLater.setStatusBarIndicator.call(SendLater, true);
+      SendLater.updateStatusBarIndicator(true);
 
       messenger.accounts.list().then(async (accounts) => {
         let folderProcessPromises = [/*
@@ -1612,7 +1621,7 @@ function mainLoop() {
         return true;
       }).then(() => {
         SLStatic.previousLoop = new Date();
-        SendLater.setStatusBarIndicator.call(SendLater, false);
+        SendLater.updateStatusBarIndicator(false);
 
         SLStatic.previousLoop = new Date();
         SLStatic.debug(`Next main loop iteration in ${interval} ` +
@@ -1620,7 +1629,7 @@ function mainLoop() {
         SendLater.loopTimeout = setTimeout(mainLoop, 60000*interval);
       }).catch((err) => {
         SLStatic.error(err);
-        SendLater.setStatusBarIndicator.call(SendLater, false);
+        SendLater.updateStatusBarIndicator(false);
 
         SLStatic.previousLoop = new Date();
         SendLater.loopTimeout = setTimeout(mainLoop, 60000);
@@ -1628,9 +1637,7 @@ function mainLoop() {
     } else {
       const extName = browser.i18n.getMessage("extensionName");
       const disabledMsg = browser.i18n.getMessage("DisabledMessage");
-      messenger.statusBar.setStatusMessage(
-        'send_later_status_menu',
-        `${extName} [${disabledMsg}]`);
+      messenger.statusBar.setStatusMessage(`${extName} [${disabledMsg}]`);
       SLStatic.previousLoop = new Date();
       SendLater.loopTimeout = setTimeout(mainLoop, 60000);
     }

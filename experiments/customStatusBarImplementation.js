@@ -32,8 +32,8 @@ var StatusMenuItemCallbacks = {
 }
 
 class StatusMenu {
-  constructor(context, menuId, statusText, visible) {
-    this.id = `${context.extension.id}-${menuId}-status`;
+  constructor(id, statusText, visible) {
+    this.id = id;
     this.buttonId = ExtensionCommon.makeWidgetId(this.id + '-button');
     this.menuId = ExtensionCommon.makeWidgetId(this.id + '-menu');
     this.statusText = statusText;
@@ -166,6 +166,7 @@ var statusBar = class extends ExtensionCommon.ExtensionAPI {
     let customMenus = new Map();
     this.customMenus = customMenus;
     this.menuCallbacks = new Set();
+    this.menuId = `${context.extension.id}-status-menu`
 
     ExtensionSupport.registerWindowListener("customStatusMenuWL", {
       chromeURLs: ["chrome://messenger/content/messenger.xhtml"],
@@ -178,33 +179,31 @@ var statusBar = class extends ExtensionCommon.ExtensionAPI {
     return {
       statusBar: {
 
-        async addStatusMenu(menuId, label, visible, menuItems) {
-          if (customMenus.has(menuId))
-            throw new ExtensionError("Cannot add menus with the same id");
-          let menu = new StatusMenu(context, menuId, label, visible);
+        async addStatusMenu(label, visible, menuItems) {
+          let menu = new StatusMenu(this.menuId, label, visible);
           for (let item of menuItems)
             menu.addItem(item);
           await menu.addToCurrentWindows();
-          customMenus.set(menuId, menu);
+          customMenus.set(this.menuId, menu);
         },
 
-        async removeStatusMenu(menuId) {
-          let menu = customMenus.get(menuId);
+        async removeStatusMenu() {
+          let menu = customMenus.get(this.menuId);
           if (!menu)
             throw new ExtensionError("Cannot remove non-existent menu");
           menu.destroy();
-          customMenus.delete(menuId);
+          customMenus.delete(this.menuId);
         },
 
-        async setStatusMessage(menuId, text) {
-          let menu = customMenus.get(menuId);
+        async setStatusMessage(text) {
+          let menu = customMenus.get(this.menuId);
           if (!menu)
             throw new ExtensionError("Cannot set status of non-existent menu");
           menu.setStatusMessage(text);
         },
 
-        async setVisible(menuId, visible) {
-          let menu = customMenus.get(menuId);
+        async setVisible(visible) {
+          let menu = customMenus.get(this.menuId);
           if (!menu)
             throw new ExtensionError("Cannot set visibility of non-existent menu");
           menu.setVisible(visible);

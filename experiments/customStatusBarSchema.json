@@ -10,10 +10,6 @@
           "async": true,
           "parameters": [
             {
-              "name": "menuId",
-              "type": "string"
-            },
-            {
               "name": "label",
               "type": "string",
               "description": "Default text."
@@ -33,22 +29,13 @@
           "type": "function",
           "description": "",
           "async": true,
-          "parameters": [
-            {
-              "name": "menuId",
-              "type": "string"
-            }
-          ]
+          "parameters": []
         },
         {
           "name": "setStatusMessage",
           "type": "function",
           "async": true,
           "parameters": [
-            {
-              "name": "menuId",
-              "type": "string"
-            },
             {
               "name": "status",
               "type": "string"
@@ -60,10 +47,6 @@
           "type": "function",
           "async": true,
           "parameters": [
-            {
-              "name": "menuId",
-              "type": "string"
-            },
             {
               "name": "visible",
               "type": "boolean"

@@ -79,17 +79,14 @@
         ]
       },
       {
-        "name":"setSendLaterVar",
+        "name":"setSendLaterVars",
         "type":"function",
         "async":true,
         "parameters":[
           {
-            "name":"key",
-            "type":"string"
-          },
-          {
-            "name":"value",
-            "type":"any"
+            "name":"values",
+            "type":"any",
+            "description": "Object of key/value pairs for SendLaterVars"
           }
         ]
       },

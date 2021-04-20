@@ -1519,8 +1519,10 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return false;
         },
 
-        async setSendLaterVar(key, value) {
-          SendLaterVars[key] = value;
+        async setSendLaterVar(values) {
+          for (let [key, value] of Object.entries(values)) {
+            SendLaterVars[key] = value;
+          }
         },
 
         async forceToolbarVisible(windowId) {
