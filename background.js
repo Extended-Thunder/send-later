@@ -971,7 +971,7 @@ const SendLater = {
       }, rowLabel);
 
       // Status bar indicator
-      messenger.statusBar.addStatusMenu(
+      await messenger.statusBar.addStatusMenu(
         'send_later_status_menu',
         browser.i18n.getMessage("extensionName"),
         (preferences.showStatus === true),
@@ -998,6 +998,8 @@ const SendLater = {
         if (id === "show-preferences")
           messenger.runtime.openOptionsPage();
       });
+
+      await this.setStatusBarIndicator(false);
     },
 
     async init() {
@@ -1035,6 +1037,10 @@ const SendLater = {
       const { preferences } = await browser.storage.local.get({ preferences: {} });
       this.prefCache = preferences;
 
+      SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
+      await messenger.SL3U.setSendLaterVar("logConsoleLevel", SLStatic.logConsoleLevel);
+      await messenger.SL3U.setSendLaterVar("ask_quit", preferences.askQuit);
+
       // Initialize the draft folder column, expanded
       // header view, and status bar menu
       await this.initCustomOverlays();
@@ -1063,14 +1069,61 @@ const SendLater = {
           }
         }
       });
-
-      SLStatic.debug("Registering window listeners");
-      await messenger.SL3U.startObservers();
-      await messenger.SL3U.bindKeyCodes();
-
-      await this.setStatusBarIndicator(false);
     }
 }; // End SendLater object
+
+messenger.windows.onCreated.addListener(async (window) => {
+  if (window.type === "messageCompose") {
+    // Ensure that the composeAction button is visible,
+    // otherwise the popup action will silently fail.
+    messenger.SL3U.forceToolbarVisible().catch(ex => {
+      SLStatic.error("SL3U.forceToolbarVisible", ex);
+    });
+
+    // Bind listeners to overlay components like File>Send,
+    // Send Later, and keycodes like Ctrl+enter, etc.
+    messenger.SL3U.attachMsgComposeKeyBindings().catch(ex => {
+      SLStatic.error("SL3U.attachMsgComposeKeyBindings",ex);
+    });
+
+    // Now, check if this message was already an existing
+    // scheduled draft.
+    const originalHdrs = await messenger.Sl3U.getDraftHeaders([
+      "x-send-later-at", "x-send-later-recur",
+      "x-send-later-args", "x-send-later-cancel-on-reply"
+    ]);
+
+    if (originalHdrs['x-send-later-at']) {
+      // Re-save the msg (delete existing schedule headers)
+      await messenger.SL3U.goDoCommand("cmd_saveAsDraft");
+
+      // Alert the user about what just happened
+      let { preferences } = await browser.storage.local.get({ preferences: {} });
+      if (preferences.showEditAlert) {
+        // TODO: handle this with a composeAction popup instead?
+        const result = await messenger.SL3U.alertCheck(
+          browser.i18n.getMessage("draftSaveWarning"),
+          browser.i18n.getMessage("confirmAgain"),
+          true);
+        preferences.showEditAlert = (result.check === true);
+        await browser.storage.local.set({ preferences });
+      }
+
+      // Set popup scheduler defaults based on original schedule.
+      // TODO
+    }
+  }
+});
+
+// Also attach bindings to all existing msgcompose windows
+(() => {
+  messenger.SL3U.forceToolbarVisible(-1).catch(ex => {
+    SLStatic.error("SL3U.forceToolbarVisible", ex);
+  });
+  messenger.SL3U.attachMsgComposeKeyBindings(-1).catch(ex => {
+    SLStatic.error("SL3U.attachMsgComposeKeyBindings",ex);
+  });
+})();
 
 // Custom events that are attached to user actions within
 // composition windows. These events occur when the user activates

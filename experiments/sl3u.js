@@ -331,9 +331,7 @@ const SendLaterFunctions = {
       .classes["@mozilla.org/messenger/account-manager;1"]
       .getService(Ci.nsIMsgAccountManager);
     let fdrlocal = accountManager.localFoldersServer.rootFolder;
-    var msgWindow = Cc[
-      "@mozilla.org/messenger/msgwindow;1"
-    ].createInstance();
+    let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"].createInstance();
     msgWindow = msgWindow.QueryInterface(Ci.nsIMsgWindow);
     let folderstocheck = new Object();
     let foldersdone = new Object();
@@ -459,7 +457,72 @@ const SendLaterFunctions = {
         }
       }
     }
+  },
 
+  // If you add a message to the Outbox and call nsIMsgSendLater when it's
+  // already in the middle of sending unsent messages, then it's possible
+  // that the message you just added won't get sent. Therefore, when we add a
+  // new message to the Outbox, we need to be aware of whether we're already
+  // in the middle of sending unsent messages, and if so, then trigger
+  // another send after it's finished.
+  sendUnsentMessagesListener: {
+    _copyProcess: { status: null },
+    QueryInterface: ChromeUtils.generateQI(["nsIMsgSendLaterListener"]),
+    onStartSending: function(aTotalMessageCount) {
+      SendLaterFunctions.debug("Entering function: SendLaterFunctions.sendUnsentMessagesListener.onStartSending");
+      SendLaterVars.wantToCompactOutbox =
+          SendLaterFunctions.getUnsentMessagesFolder().getTotalMessages(false) > 0;
+      SendLaterVars.sendingUnsentMessages = true;
+      SendLaterVars.needToSendUnsentMessages = false;
+      SendLaterFunctions.debug("Leaving function: SendLaterFunctions.sendUnsentMessagesListener.onStartSending");
+    },
+    onMessageStartSending: function(aCurrentMessage, aTotalMessageCount,
+        aMessageHeader, aIdentity) {},
+    onProgress: function(aCurrentMessage, aTotalMessage) {},
+    onMessageSendError: function(aCurrentMessage, aMessageHeader, aSstatus,
+        aMsg) {},
+    onMessageSendProgress: function(aCurrentMessage, aTotalMessageCount,
+        aMessageSendPercent,
+        aMessageCopyPercent) {},
+    onStatus: function(aMsg) {},
+    onStopSending: function(aStatus, aMsg, aTotalTried, aSuccessful) {
+      SendLaterFunctions.debug("Entering function: SendLaterFunctions.sendUnsentMessagesListener.onStopSending");
+      SendLaterVars.sendingUnsentMessages = false;
+      if (SendLaterVars.needToSendUnsentMessages) {
+          if (Utils.isOffline) {
+            SendLaterFunctions.warn("Deferring sendUnsentMessages while offline");
+          } else {
+            try {
+              const msgSendLater = Components.classes[
+                  "@mozilla.org/messengercompose/sendlater;1"
+                ].getService(Components.interfaces.nsIMsgSendLater);
+              msgSendLater.sendUnsentMessages(null);
+            } catch (ex) {
+              SendLaterFunctions.warn(
+                "SendLaterFunctions.sendUnsentMessagesListener.OnStopSending",
+                ex
+              );
+            }
+          }
+      } else if (SendLaterVars.wantToCompactOutbox &&
+        SendLaterFunctions.getUnsentMessagesFolder().getTotalMessages(false) == 0) {
+          try {
+            let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"].createInstance();
+            msgWindow = msgWindow.QueryInterface(Ci.nsIMsgWindow);
+            let fdrunsent = SendLaterFunctions.getUnsentMessagesFolder();
+            fdrunsent.compact(null, msgWindow);
+            SendLaterVars.wantToCompactOutbox = false;
+            SendLaterFunctions.debug("Compacted Outbox");
+          } catch (ex) {
+            SendLaterFunctions.warn(
+              "SendLaterFunctions.sendUnsentMessagesListener.OnStopSending",
+              "Compacting Outbox failed: ",
+              ex
+            );
+          }
+      }
+      SendLaterFunctions.debug("Leaving function: SendLaterFunctions.sendUnsentMessagesListener.onStopSending");
+    }
   },
 
   keyCodeEventTracker: {
@@ -481,147 +544,23 @@ const SendLaterFunctions = {
   }
 };
 
-const SendLaterBackgrounding = function() {
-  var sl3log = {
-    Entering(functionName) {
-      SendLaterFunctions.debug("Entering function:",functionName);
-    },
-    Leaving(functionName) {
-      SendLaterFunctions.debug("Leaving function:",functionName);
-    }
-  };
-
-  var msgWindow = Cc[
-      "@mozilla.org/messenger/msgwindow;1"
-    ].createInstance();
-  msgWindow = msgWindow.QueryInterface(Components.interfaces.nsIMsgWindow);
-
-  // If you add a message to the Outbox and call nsIMsgSendLater when it's
-  // already in the middle of sending unsent messages, then it's possible
-  // that the message you just added won't get sent. Therefore, when we add a
-  // new message to the Outbox, we need to be aware of whether we're already
-  // in the middle of sending unsent messages, and if so, then trigger
-  // another send after it's finished.
-  var sendUnsentMessagesListener = {
-    _copyProcess: { status: null },
-      QueryInterface: ChromeUtils.generateQI(["nsIMsgSendLaterListener"]),
-      onStartSending: function(aTotalMessageCount) {
-          sl3log.Entering("Sendlater3Backgrounding.sendUnsentMessagesListener.onStartSending");
-          SendLaterVars.wantToCompactOutbox =
-              SendLaterFunctions.getUnsentMessagesFolder().getTotalMessages(false) > 0;
-          SendLaterVars.sendingUnsentMessages = true;
-          SendLaterVars.needToSendUnsentMessages = false;
-          sl3log.Leaving("Sendlater3Backgrounding.sendUnsentMessagesListener.onStartSending");
-      },
-      onMessageStartSending: function(aCurrentMessage, aTotalMessageCount,
-          aMessageHeader, aIdentity) {},
-      onProgress: function(aCurrentMessage, aTotalMessage) {},
-      onMessageSendError: function(aCurrentMessage, aMessageHeader, aSstatus,
-          aMsg) {},
-      onMessageSendProgress: function(aCurrentMessage, aTotalMessageCount,
-          aMessageSendPercent,
-          aMessageCopyPercent) {},
-      onStatus: function(aMsg) {},
-      onStopSending: function(aStatus, aMsg, aTotalTried, aSuccessful) {
-          sl3log.Entering("Sendlater3Backgrounding.sendUnsentMessagesListener.onStopSending");
-          SendLaterVars.sendingUnsentMessages = false;
-          if (SendLaterVars.needToSendUnsentMessages) {
-              if (Utils.isOffline) {
-                SendLaterFunctions.warn("Deferring sendUnsentMessages while offline");
-              } else {
-                  try {
-                      const msgSendLater = Components.classes[
-                          "@mozilla.org/messengercompose/sendlater;1"
-                        ].getService(Components.interfaces.nsIMsgSendLater);
-                      msgSendLater.sendUnsentMessages(null);
-                  } catch (ex) {
-                    SendLaterFunctions.warn(
-                      "SendLaterFunctions.sendUnsentMessagesListener.OnStopSending",
-                      ex
-                    );
-                  }
-              }
-          } else if (SendLaterVars.wantToCompactOutbox &&
-            SendLaterFunctions.getUnsentMessagesFolder().getTotalMessages(false) == 0) {
-              try {
-                  let fdrunsent = SendLaterFunctions.getUnsentMessagesFolder();
-                  fdrunsent.compact(null, msgWindow);
-                  SendLaterVars.wantToCompactOutbox = false;
-                  SendLaterFunctions.debug("Compacted Outbox");
-              } catch (ex) {
-                SendLaterFunctions.warn(
-                  "SendLaterFunctions.sendUnsentMessagesListener.OnStopSending",
-                  "Compacting Outbox failed: ",
-                  ex
-                );
-              }
-          }
-          sl3log.Leaving("Sendlater3Backgrounding.sendUnsentMessagesListener.onStopSending");
-      }
-  }
-
-  function addMsgSendLaterListener() {
-      sl3log.Entering("Sendlater3Backgrounding.addMsgSendLaterListener");
-      const msgSendLater = Cc[
-          "@mozilla.org/messengercompose/sendlater;1"
-        ].getService(Ci.nsIMsgSendLater);
-      msgSendLater.addListener(sendUnsentMessagesListener);
-      sl3log.Leaving("Sendlater3Backgrounding.addMsgSendLaterListener");
-  }
-
-  function removeMsgSendLaterListener() {
-      sl3log.Entering("Sendlater3Backgrounding.removeMsgSendLaterListener");
-      const msgSendLater = Cc[
-          "@mozilla.org/messengercompose/sendlater;1"
-        ].getService(Ci.nsIMsgSendLater);
-      msgSendLater.removeListener(sendUnsentMessagesListener);
-      sl3log.Leaving("Sendlater3Backgrounding.removeMsgSendLaterListener");
-  }
-
-  const AddonListener = {
-    resetSession(addon, who) {
-      if (addon.id != "sendlater3@kamens.us") {
-        return;
-      }
-      SendLaterFunctions.debug("AddonListener.resetSession: who - " + who);
-      try {
-        AddonManager.removeAddonListener(this);
-      } catch (ex) {
-        SendLaterFunctions.warn(
-          "AddonListener.resetSession: Unable to remove addon listener",
-          ex
-        );
-      }
-      removeMsgSendLaterListener();
-    },
-    onUninstalling(addon) {
-      this.resetSession(addon, "onUninstalling");
-    },
-    onInstalling(addon) {
-      this.resetSession(addon, "onInstalling");
-    },
-    onDisabling(addon) {
-      this.resetSession(addon, "onDisabling");
-    },
-    // The listener is removed so these aren't run; they aren't needed as the
-    // addon is installed by the addon system and runs our backgound.js loader.
-    onEnabling(addon) {},
-    onOperationCancelled(addon) {},
-  };
-
-  const window = Services.wm.getMostRecentWindow(null); // "mail:3pane"
-  window.addEventListener("unload", removeMsgSendLaterListener, false);
-  AddonManager.addAddonListener(AddonListener);
-
-  addMsgSendLaterListener();
-};
-
-
 var SL3U = class extends ExtensionCommon.ExtensionAPI {
   getAPI(context) {
     let { extension } = context;
     SendLaterVars.context = context;
     context.callOnClose(this);
+
+    // Setup application quit observer
+    for (let topic of SendLaterObservers.QuitObserver.observerTopics) {
+      Services.obs.addObserver(SendLaterObservers.QuitObserver, topic);
+      console.debug(`[SL3U]: Added observer to topic ${topic}`);
+    }
+
+    // Watch the outbox to avoid messages getting stuck there
+    const msgSendLater = Cc[
+        "@mozilla.org/messengercompose/sendlater;1"
+      ].getService(Ci.nsIMsgSendLater);
+    msgSendLater.addListener(SendLaterFunctions.sendUnsentMessagesListener);
 
     return {
       SL3U: {
@@ -1570,9 +1509,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             folder = MailServices.folderLookup.getFolderForURL(uri);
           }
           if (folder !== undefined) {
-            let msgWindow = Cc[
-              "@mozilla.org/messenger/msgwindow;1"
-            ].createInstance();
+            let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"].createInstance();
             msgWindow = msgWindow.QueryInterface(Ci.nsIMsgWindow);
             folder.compact(null, msgWindow);
             SendLaterFunctions.debug("SL3U.compactFolder",`Compacted folder: ${path}`);
@@ -1587,198 +1524,147 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           SendLaterVars[key] = value;
         },
 
-        async startObservers() {
-          try {
-            const loadPrefs = async () => {
-              try {
-                const localStorage = context.apiCan.findAPIPath("storage.local");
-                const { preferences } =
-                  await localStorage.callMethodInParentProcess(
-                    "get",
-                    [{ "preferences": {} }]
-                  );
-                SendLaterVars.logConsoleLevel =
-                  (preferences.logConsoleLevel||"all").toLowerCase();
-                SendLaterVars.ask_quit = preferences.askQuit;
-                return true;
-              } catch (err) {
-                // SendLaterFunctions.warn("Could not fetch preferences", err);
-              }
-              return false;
-            };
-
-            if (!await loadPrefs()) {
-              const window = Services.wm.getMostRecentWindow(null);
-              window.setTimeout(loadPrefs, 1000);
-            }
-          } catch {}
-
-          for (let topic of SendLaterObservers.QuitObserver.observerTopics) {
-            Services.obs.addObserver(SendLaterObservers.QuitObserver, topic);
-            console.debug(`[SL3U]: Added observer to topic ${topic}`);
+        async forceToolbarVisible(windowId) {
+          let windows;
+          if (windowId === -1) {
+            windows = Services.wm.getEnumerator("msgcompose");
+          } else {
+            windows = [Services.wm.getMostRecentWindow("msgcompose")];
           }
 
-          // Setup various observers.
-          SendLaterBackgrounding();
+          for (let window of windows) {
+            let windowReadyPromise = new Promise((resolve) => {
+              if (window.document.readyState == "complete") resolve();
+              else window.addEventListener("load", resolve, { once: true });
+            });
+            await windowReadyPromise;
+
+            if (!window.gMsgCompose)
+              throw new Error("Attempted forceToolbarVisible on non-compose window");
+
+            const toolbarId = "composeToolbar2";
+            const toolbar = window.document.getElementById(toolbarId);
+
+            const widgetId = ExtensionCommon.makeWidgetId(extension.id);
+            const toolbarButtonId = `${widgetId}-composeAction-toolbarbutton`;
+            const windowURL =
+              "chrome://messenger/content/messengercompose/messengercompose.xhtml";
+            let currentSet = Services.xulStore.getValue(
+              windowURL, toolbarId, "currentset");
+            if (!currentSet) {
+              SendLaterFunctions.error("SL3U.bindKeyCodes.messengercompose.onLoadWindow",
+                                        "Unable to find compose window toolbar area");
+            } else if (currentSet.includes(toolbarButtonId)) {
+              SendLaterFunctions.debug("Toolbar includes Send Later compose action button.");
+            } else {
+              SendLaterFunctions.debug("Adding Send Later toolbar button");
+              currentSet = currentSet.split(",");
+              currentSet.push(toolbarButtonId);
+              toolbar.currentSet = currentSet.join(",");
+              toolbar.setAttribute("currentset",toolbar.currentSet);
+              SendLaterFunctions.debug("Current toolbar action buttons:", currentSet);
+              Services.xulStore.setValue(
+                windowURL, toolbarId, "currentset", currentSet.join(","));
+              // Services.xulStore.persist(toolbar, "currentset");
+            }
+
+            Services.xulStore.setValue(windowURL, toolbarId, "collapsed", "false");
+            toolbar.collapsed = false;
+            toolbar.hidden = false;
+
+            SendLaterFunctions.debug("Compose window has send later button now.");
+          }
         },
 
-        async bindKeyCodes() {
-          // Add an overlay to messenger compose windows to listen for key commands
-          ExtensionSupport.registerWindowListener("composeListener", {
-            chromeURLs: [
-              "chrome://messenger/content/messengercompose/messengercompose.xhtml",
-              "chrome://messenger/content/messengercompose/messengercompose.xul"
-            ],
-            onLoadWindow(window) {
-              SendLaterFunctions.debug("Binding to send later events like a barnicle.");
-              window.sendLaterReplacedElements = {};
+        // If the current composition window was an existing draft message,
+        // then get headers from that original message.
+        async getDraftHeaders(keys) {
+          const window = Services.wm.getMostRecentWindow("msgcompose");
 
-              window.setTimeout(() => {
-                try {
-                  const { document } = window;
-                  const toolbarId = "composeToolbar2";
-                  const toolbar = document.getElementById(toolbarId);
+          let windowReadyPromise = new Promise((resolve) => {
+            if (window.document.readyState == "complete") resolve();
+            else window.addEventListener("load", resolve, { once: true });
+          });
+          await windowReadyPromise;
 
-                  const widgetId = ExtensionCommon.makeWidgetId(extension.id);
-                  const toolbarButtonId = `${widgetId}-composeAction-toolbarbutton`;
-                  const windowURL =
-                    "chrome://messenger/content/messengercompose/messengercompose.xhtml";
-                  let currentSet = Services.xulStore.getValue(
-                    windowURL,
-                    toolbarId,
-                    "currentset"
-                  );
-                  if (!currentSet) {
-                    SendLaterFunctions.error("SL3U.bindKeyCodes.messengercompose.onLoadWindow",
-                                             "Unable to find compose window toolbar area");
-                  } else if (currentSet.includes(toolbarButtonId)) {
-                    SendLaterFunctions.debug("Toolbar includes Send Later compose action button.");
-                  } else {
-                    SendLaterFunctions.debug("Adding Send Later toolbar button");
-                    currentSet = currentSet.split(",");
-                    currentSet.push(toolbarButtonId);
-                    toolbar.currentSet = currentSet.join(",");
-                    toolbar.setAttribute("currentset",toolbar.currentSet);
-                    SendLaterFunctions.debug("Current toolbar action buttons:", currentSet);
-                    Services.xulStore.setValue(
-                      windowURL,
-                      toolbarId,
-                      "currentset",
-                      currentSet.join(",")
-                    );
-                    // Services.xulStore.persist(toolbar, "currentset");
-                  }
+          if (!window.gMsgCompose)
+            throw new Error("Attempted getDraftHeaders on non-compose window");
 
-                  Services.xulStore.setValue(
-                    windowURL,
-                    toolbarId,
-                    "collapsed",
-                    "false"
-                  );
-                  toolbar.collapsed = false;
-                  toolbar.hidden = false;
+          let hdrs = {};
 
-                  SendLaterFunctions.debug("Compose window has send later button now.");
-                } catch (err) {
-                  SendLaterFunctions.error("SL3U.bindKeyCodes.messengercompose.onLoadWindow",
-                                           "Error enabling toolbar button", err);
-                }
+          const msgCompFields = window.gMsgCompose.compFields;
+          if (msgCompFields && msgCompFields.draftId!="") {
+            const messageURI = msgCompFields.draftId.replace(/\?.*/, "");
+            const messenger = Cc["@mozilla.org/messenger;1"].getService(Ci.nsIMessenger);
+            const msgHdr = messenger.msgHdrFromURI(messageURI);
+            for (let key of keys) {
+              hdrs[key] = msgHdr.getStringProperty(key);
+            }
+          } else {
+            SendLaterFunctions.debug("Window is not an existing draft.");
+          }
 
-                try {
-                  // Check for x-send-later headers
-                  if (window.gMsgCompose !== null) {
-                    const msgCompFields = window.gMsgCompose.compFields;
-                    if (msgCompFields && msgCompFields.draftId!="") {
-                      const messageURI = msgCompFields.draftId.replace(/\?.*/, "");
-                      SendLaterFunctions.debug(`Checking ${messageURI} for x-send-later-* headers`);
-                      const messenger = Cc[
-                        "@mozilla.org/messenger;1"
-                      ].getService(Ci.nsIMessenger);
-                      const messageHDR = messenger.msgHdrFromURI(messageURI);
-                      const sendLaterAtHdr = messageHDR.getStringProperty("x-send-later-at");
-                      if (sendLaterAtHdr) {
-                        SendLaterFunctions.info(
-                          `Message ${messageURI} has x-send-later headers. Overwriting saved draft.`
-                        );
-                        window.goDoCommand("cmd_saveAsDraft");
+          return hdrs;
+        },
 
-                        const localStorage = context.apiCan.findAPIPath("storage.local");
-                        localStorage.callMethodInParentProcess(
-                          "get", [{ "preferences": {} }]
-                        ).then(({ preferences }) => {
-                          if (preferences.showEditAlert) {
-                            const draftSaveWarning =
-                              SendLaterFunctions.getMessage(context, "draftSaveWarning");
-                            const confirmAgain =
-                              SendLaterFunctions.getMessage(context, "confirmAgain");
+        async attachMsgComposeKeyBindings(windowId) {
+          let windows;
+          if (windowId === -1) {
+            windows = Services.wm.getEnumerator("msgcompose");
+          } else {
+            windows = [Services.wm.getMostRecentWindow("msgcompose")];
+          }
 
-                            let check = { value: true };
-                            Services.prompt.alertCheck(
-                              null, null, draftSaveWarning,
-                              confirmAgain, check
-                            );
+          for (let window of windows) {
+            let windowReadyPromise = new Promise((resolve) => {
+              if (window.document.readyState == "complete") resolve();
+              else window.addEventListener("load", resolve, { once: true });
+            });
+            await windowReadyPromise;
 
-                            if (!check.value) {
-                              preferences.showEditAlert = false;
-                              localStorage.callMethodInParentProcess(
-                                "set", [{ preferences }]
-                              ).then(() => {
-                                  console.log("Successfully set preferences.showEditAlert = false");
-                              });
-                            }
-                          }
-                        }).catch((err) => SendLaterFunctions.error(err));
-                      }
-                    }
-                  }
-                } catch (ex) {
-                  SendLaterFunctions.error(`Error checking headers in compose window`,ex);
-                }
-              }, 1000);
+            if (!window.gMsgCompose)
+              throw new Error("Attempted attachMsgComposeKeyBindings on non-compose window");
 
-              const tasksKeys = window.document.getElementById("tasksKeys");
-              if (tasksKeys) {
-                const keyElement = window.document.createXULElement("key");
-                keyElement.id = "key-alt-shift-enter";
-                keyElement.setAttribute("keycode", "VK_RETURN");
-                keyElement.setAttribute("modifiers", "alt, shift");
-                keyElement.setAttribute("oncommand", "//");
-                keyElement.addEventListener("command", event => {
+            // Add keycode listener for "Alt+Shift+Enter"
+            const tasksKeys = window.document.getElementById("tasksKeys");
+            if (tasksKeys) {
+              const keyElement = window.document.createXULElement("key");
+              keyElement.id = "key-alt-shift-enter";
+              keyElement.setAttribute("keycode", "VK_RETURN");
+              keyElement.setAttribute("modifiers", "alt, shift");
+              keyElement.setAttribute("oncommand", "//");
+              keyElement.addEventListener("command", event => {
+                event.preventDefault();
+                SendLaterFunctions.keyCodeEventTracker.emit("key_altShiftEnter");
+              });
+              tasksKeys.appendChild(keyElement);
+            } else {
+              SendLaterFunctions.error("SL3U.bindKeyCodes.messengercompose.onLoadWindow",
+                                      "Unable to add keycode listener for Alt+Shift+Enter");
+            }
+
+            window.sendLaterReplacedElements = {};
+
+            [ "key_sendLater", "cmd_sendLater", "key_send",
+              "cmd_sendWithCheck", "cmd_sendButton", "cmd_sendNow"
+            ].forEach((itemId) => {
+              const element = window.document.getElementById(itemId);
+              if (element) {
+                window.sendLaterReplacedElements[itemId] = element;
+                const keyClone = element.cloneNode(true);
+                keyClone.setAttribute("oncommand", "//");
+                keyClone.setAttribute("observes", "");
+                keyClone.addEventListener('command', event => {
                   event.preventDefault();
-                  SendLaterFunctions.keyCodeEventTracker.emit("key_altShiftEnter");
+                  SendLaterFunctions.keyCodeEventTracker.emit(itemId);
                 });
-                tasksKeys.appendChild(keyElement);
+                element.parentNode.replaceChild(keyClone, element);
               } else {
                 SendLaterFunctions.error("SL3U.bindKeyCodes.messengercompose.onLoadWindow",
-                                         "Unable to add keycode listener for Alt+Shift+Enter");
+                                        `Could not find ${itemId} element.`);
               }
-
-              [
-                "key_sendLater",
-                "cmd_sendLater",
-                "key_send",
-                "cmd_sendWithCheck",
-                "cmd_sendButton",
-                "cmd_sendNow"
-              ].forEach((itemId) => {
-                const element = window.document.getElementById(itemId);
-                if (element) {
-                  window.sendLaterReplacedElements[itemId] = element;
-                  const keyClone = element.cloneNode(true);
-                  keyClone.setAttribute("oncommand", "//");
-                  keyClone.setAttribute("observes", "");
-                  keyClone.addEventListener('command', event => {
-                    event.preventDefault();
-                    SendLaterFunctions.keyCodeEventTracker.emit(itemId);
-                  });
-                  element.parentNode.replaceChild(keyClone, element);
-                } else {
-                  SendLaterFunctions.error("SL3U.bindKeyCodes.messengercompose.onLoadWindow",
-                                           `Could not find ${itemId} element.`);
-                }
-              });
-            }
-          });
+            });
+          }
         },
 
         // This eventmanager needs the 'inputHandling' property, or else
@@ -1847,6 +1733,16 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           );
         }
       }
+    }
+
+    try {
+      SendLaterFunctions.debug("Removing msgSendLaterlistener");
+      const msgSendLater = Cc[
+          "@mozilla.org/messengercompose/sendlater;1"
+        ].getService(Ci.nsIMsgSendLater);
+      msgSendLater.removeListener(SendLaterFunctions.sendUnsentMessagesListener);
+    } catch (ex) {
+      SendLaterFunctions.error("Unable to remove msgSendLater listener.")
     }
 
     SendLaterFunctions.debug("Removing all mail:3pane overlay elements");

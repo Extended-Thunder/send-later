@@ -374,18 +374,45 @@
         "parameters": []
       },
       {
-        "name": "startObservers",
-        "type": "function",
-        "async": true,
-        "description": "",
-        "parameters": []
-      },
-      {
-        "name":"bindKeyCodes",
+        "name":"getDraftHeaders",
         "type":"function",
         "async":true,
-        "description":"Bind Alt+Shift+Enter shortcut in composition windows",
-        "parameters":[]
+        "description":"Get headers from the current compose message IF IT IS AN EXISTING DRAFT",
+        "parameters": [
+          {
+            "name":"keys",
+            "type":"any",
+            "description":"Array of header fields to get."
+          }
+        ]
+      },
+      {
+        "name":"forceToolbarVisible",
+        "type":"function",
+        "async":true,
+        "description":"Handle  when a new compose window is opened.",
+        "parameters":[
+          {
+            "name": "windowId",
+            "type": "integer",
+            "optional": true,
+            "description": "If set to -1, the function will run on all available windows. Otherwise just the most recent msgcompose window."
+          }
+        ]
+      },
+      {
+        "name":"attachMsgComposeKeyBindings",
+        "type":"function",
+        "async":true,
+        "description":"Handle  when a new compose window is opened.",
+        "parameters":[
+          {
+            "name": "windowId",
+            "type": "integer",
+            "optional": true,
+            "description": "If set to -1, the function will run on all available windows. Otherwise just the most recent msgcompose window."
+          }
+        ]
       }
     ],
     "events": [
