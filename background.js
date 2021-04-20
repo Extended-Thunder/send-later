@@ -1476,15 +1476,17 @@ messenger.composeAction.onClicked.addListener(async (tab, info) => {
 
 function mainLoop() {
   SLStatic.debug("Entering main loop.");
-  if (SendLater.loopTimeout) {
-    clearTimeout(SendLater.loopTimeout);
-  }
+  try {
+    if (SendLater.loopTimeout) {
+      clearTimeout(SendLater.loopTimeout);
+    }
+  } catch (ex) { SLStatic.error(ex); }
 
   // This variable gets set to "true" when a user is warned about
   // leaving TB open, but it may not get set back to false if
   // some other quit-requested-observer aborts the quit. So just
   // just in case, we'll periodically set it back to "false".
-  messenger.SL3U.setSendLaterVar("quit_confirmed", false);
+  messenger.SL3U.setSendLaterVar("quit_confirmed", false).catch(SLStatic.error);
 
   browser.storage.local.get({ preferences: {} }).then((storage) => {
     let interval = +storage.preferences.checkTimePref || 0;
@@ -1563,13 +1565,13 @@ function mainLoop() {
         SLStatic.previousLoop = new Date();
         SLStatic.debug(`Next main loop iteration in ${interval} ` +
                        `minute${interval === 1 ? "" : "s"}.`);
-        SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000*interval);
+        SendLater.loopTimeout = setTimeout(mainLoop, 60000*interval);
       }).catch((err) => {
         SLStatic.error(err);
         SendLater.setStatusBarIndicator.call(SendLater, false);
 
         SLStatic.previousLoop = new Date();
-        SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000);
+        SendLater.loopTimeout = setTimeout(mainLoop, 60000);
       });
     } else {
       const extName = browser.i18n.getMessage("extensionName");
@@ -1578,11 +1580,11 @@ function mainLoop() {
         'send_later_status_menu',
         `${extName} [${disabledMsg}]`);
       SLStatic.previousLoop = new Date();
-      SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000);
+      SendLater.loopTimeout = setTimeout(mainLoop, 60000);
     }
   }).catch(ex => {
     SLStatic.error(ex);
-    SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000);
+    SendLater.loopTimeout = setTimeout(mainLoop, 60000);
   });
 }
 
