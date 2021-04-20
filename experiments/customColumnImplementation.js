@@ -16,10 +16,12 @@ XPCOMUtils.defineLazyPreferenceGetter(
   90
 );
 
-let contentTypeHeaders = new Map();
-let msgTrackers = new Map();
-
 var CustomColumnUtils = {
+
+  msgTrackers: new Map(),
+
+  contentTypeHeaders: new Map(),
+
   folderURIToPath(uri) {
     let path = Services.io.newURI(uri).filePath;
     return path.split("/").map(decodeURIComponent).join("/");
@@ -127,13 +129,13 @@ var CustomColumnUtils = {
     };
 
     let contentType;
-    if (contentTypeHeaders.has(msgHdr.messageId))
-      contentType = contentTypeHeaders.get(msgHdr.messageId);
+    if (CustomColumnUtils.contentTypeHeaders.has(msgHdr.messageId))
+      contentType = CustomColumnUtils.contentTypeHeaders.get(msgHdr.messageId);
     else if (msgHdr.getStringProperty("content-type"))
       contentType = msgHdr.getStringProperty("content-type");
     else
       contentType = getHeader((await CustomColumnUtils.getRawMessage(msgHdr)), "content-type");
-    contentTypeHeaders.set(msgHdr.messageId, contentType);
+    CustomColumnUtils.contentTypeHeaders.set(msgHdr.messageId, contentType);
     return contentType;
   },
 
@@ -280,13 +282,13 @@ class MessageViewsCustomColumn {
     this.handlers.add(fire);
 
     let getValue = (msgHdr, field, row) => {
-      if (msgTrackers.has(msgHdr.messageId))
-        return msgTrackers.get(msgHdr.messageId)[field];
+      if (CustomColumnUtils.msgTrackers.has(msgHdr.messageId))
+        return CustomColumnUtils.msgTrackers.get(msgHdr.messageId)[field];
 
       CustomColumnUtils.convertMessage(msgHdr).then(msg =>
         fire.async(msg)
       ).then(result => {
-        msgTrackers.set(msgHdr.messageId, result);
+        CustomColumnUtils.msgTrackers.set(msgHdr.messageId, result);
         if (row !== undefined)
           window.gDBView.NoteChange(row, 1, 2);
       }).catch(console.error);

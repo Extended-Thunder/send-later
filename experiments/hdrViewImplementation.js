@@ -10,6 +10,8 @@ var { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
 var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 
 var HdrRowUtils = {
+  contentTypeHeaders: new Map(),
+
  folderURIToPath(uri) {
     let path = Services.io.newURI(uri).filePath;
     return path.split("/").map(decodeURIComponent).join("/");
@@ -117,13 +119,13 @@ var HdrRowUtils = {
     };
   
     let contentType;
-    if (contentTypeHeaders.has(msgHdr.messageId))
-      contentType = contentTypeHeaders.get(msgHdr.messageId);
+    if (HdrRowUtils.contentTypeHeaders.has(msgHdr.messageId))
+      contentType = HdrRowUtils.contentTypeHeaders.get(msgHdr.messageId);
     else if (msgHdr.getStringProperty("content-type"))
       contentType = msgHdr.getStringProperty("content-type");
     else
       contentType = getHeader((await HdrRowUtils.getRawMessage(msgHdr)), "content-type");
-    contentTypeHeaders.set(msgHdr.messageId, contentType);
+    HdrRowUtils.contentTypeHeaders.set(msgHdr.messageId, contentType);
     return contentType;
   },
 
@@ -142,7 +144,6 @@ var HdrRowUtils = {
     let junkScore = parseInt(msgHdr.getProperty("junkscore"), 10) || 0;
   
     let messageObject = {
-      // id: messageTracker.getId(msgHdr),
       date: new Date(msgHdr.dateInSeconds * 1000),
       author: msgHdr.mime2DecodedAuthor,
       recipients: composeFields.splitRecipients(

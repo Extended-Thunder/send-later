@@ -13,7 +13,7 @@ var { Services } = ChromeUtils.import(
   "resource://gre/modules/Services.jsm"
 );
 
-var StatusBarMenuItemCallbacks = {
+var StatusMenuItemCallbacks = {
   listeners: new Set(),
 
   add(listener) {
@@ -141,7 +141,7 @@ class StatusMenu {
       if (e) {
         e.addEventListener("command", evt => {
           let id = evt.target.getAttribute("id");
-          StatusBarMenuItemCallbacks.emit(id);
+          StatusMenuItemCallbacks.emit(id);
         });
       }
     }
@@ -216,9 +216,9 @@ var statusBar = class extends ExtensionCommon.ExtensionAPI {
           inputHandling: true,
           register: fire => {
             const callback = (evt => fire.async(evt));
-            StatusBarMenuItemCallbacks.add(callback);
+            StatusMenuItemCallbacks.add(callback);
             return function() {
-              StatusBarMenuItemCallbacks.remove(callback);
+              StatusMenuItemCallbacks.remove(callback);
             };
           }
         }).api()
