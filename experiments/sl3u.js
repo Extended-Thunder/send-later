@@ -1519,19 +1519,17 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return false;
         },
 
-        async setSendLaterVar(values) {
-          for (let [key, value] of Object.entries(values)) {
+        async setSendLaterVars(values) {
+          for (let [key, value] of Object.entries(values))
             SendLaterVars[key] = value;
-          }
         },
 
         async forceToolbarVisible(windowId) {
           let windows;
-          if (windowId === -1) {
+          if (windowId === -1)
             windows = Services.wm.getEnumerator("msgcompose");
-          } else {
+          else
             windows = [Services.wm.getMostRecentWindow("msgcompose")];
-          }
 
           for (let window of windows) {
             let windowReadyPromise = new Promise((resolve) => {
@@ -1610,11 +1608,10 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
         async hijackComposeWindowKeyBindings(windowId) {
           let windows;
-          if (windowId === -1) {
+          if (windowId === -1)
             windows = Services.wm.getEnumerator("msgcompose");
-          } else {
+          else
             windows = [Services.wm.getMostRecentWindow("msgcompose")];
-          }
 
           for (let window of windows) {
             let windowReadyPromise = new Promise((resolve) => {
