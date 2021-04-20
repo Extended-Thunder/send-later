@@ -1139,5 +1139,21 @@
   "LongDescription": {
     "message": "תוסף זה משנה את פקודת \"שלח מאוחר יותר\" (Ctrl+Shift+Return) בחלון כתיבת ההודעות, באופן כזה שההודעות ישלחו בפעם הבאה בה מתחברים או בוחרים ב\"שלח הודעות שלא נשלחו\" ותופיע הודעה שתאפשר לך לקבל החלטה על מועד המשלוח העתידי, במקום להעביר את ההודעה לתיבת הדואר היוצא. \nיש באפשרותך להגדיר שעה ותאריך למשלוח או לבחור \"עוד 15 דקות\". \"עוד 30 דקות\", או \"עוד שעתיים\", או לקבוע מועד ייחודי  קבוע בהתאמה אישית. יש באפשרותך גם לקבוע מועדים חוזרים למשלוח הודעות ע\"י קביעת חוקיות פשוטה(כל N שעות, ימים וכו') או הגדרת חוקים בהתאמה אישית.\n'שלח מאוחר יותר' מתבססת על ניתוח נתוני קלט עוצמתיים שהתקבלו באדיבות ספרית Sugar.js <a href=\"https://sugarjs.com/\">  בבעלות אנדרו פלמר.\nמשוב ודיווח על באגים יתקבלו בברכה, ניתן לדווח עליהם בדף הפרוייקט בכתובת   <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">.",
     "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
+  },
+  "accelKeyLabel": {
+    "message": "מפתח ההאצה",
+    "description": "Label for options window to identify accelerator shortcuts"
+  },
+  "accelCtrlLabel": {
+    "message": "Ctrl+מקש",
+    "description": "Indicates key combination to access the ctrl+click accelerator function"
+  },
+  "accelCtrlLabel.MacOS": {
+    "message": "Cmd+מקש",
+    "description": "Indicates key combination to access the ctrl+click accelerator function. On mac the Ctrl key is replaced with the 'Command' key"
+  },
+  "accelShiftLabel": {
+    "message": "Shift+מקש",
+    "description": "Indicates key combination to access the shift+click accelerator function"
   }
 }
