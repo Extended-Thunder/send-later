@@ -1155,5 +1155,9 @@
   "accelShiftLabel": {
     "message": "Skift+Klik",
     "description": "Indicates key combination to access the shift+click accelerator function"
+  },
+  "cancel": {
+    "message": "Afbryd",
+    "description": "Cancel an action (presented in popup dialogs)"
   }
 }
