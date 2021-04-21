@@ -1155,5 +1155,9 @@
   "accelShiftLabel": {
     "message": "Shift+klikken",
     "description": "Indicates key combination to access the shift+click accelerator function"
+  },
+  "cancel": {
+    "message": "Annuleren",
+    "description": "Cancel an action (presented in popup dialogs)"
   }
 }
