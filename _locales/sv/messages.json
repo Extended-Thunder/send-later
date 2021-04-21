@@ -1082,5 +1082,9 @@
   "accelKeyLabel": {
     "message": "snabbtangent",
     "description": "Label for options window to identify accelerator shortcuts"
+  },
+  "cancel": {
+    "message": "Avbryt",
+    "description": "Cancel an action (presented in popup dialogs)"
   }
 }
