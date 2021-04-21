@@ -1155,5 +1155,9 @@
   "accelShiftLabel": {
     "message": "Majús+clic",
     "description": "Indicates key combination to access the shift+click accelerator function"
+  },
+  "cancel": {
+    "message": "Cancelar",
+    "description": "Cancel an action (presented in popup dialogs)"
   }
 }
