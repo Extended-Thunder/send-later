@@ -1078,5 +1078,9 @@
   "CheckingMessage": {
     "message": "TARKISTAA",
     "description": ""
+  },
+  "cancel": {
+    "message": "Peruuta",
+    "description": "Cancel an action (presented in popup dialogs)"
   }
 }
