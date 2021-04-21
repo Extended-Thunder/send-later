@@ -270,14 +270,18 @@ class CustomHdrRow {
     };
     msgListener.onBeforeShowHeaderPane = () => {
       window.document.getElementById(this.rowId).hidden = true;
-      let msgHdr = window.gDBView.hdrForFirstSelectedMessage;
-      if (msgHdr) {
-        HdrRowUtils.convertMessage(msgHdr).then(hdr =>
-          handler.async(hdr)
-        ).then(result => {
-            window.document.getElementById(this.rowId).hidden = !result.visible;
-            window.document.getElementById(`${this.rowId}-content`).headerValue = result.text;
-        }).catch(console.error);
+      if (window.gDBView) {
+        try {
+          let msgHdr = window.gDBView.hdrForFirstSelectedMessage;
+          if (msgHdr) {
+            HdrRowUtils.convertMessage(msgHdr).then(hdr =>
+              handler.async(hdr)
+            ).then(result => {
+                window.document.getElementById(this.rowId).hidden = !result.visible;
+                window.document.getElementById(`${this.rowId}-content`).headerValue = result.text;
+            }).catch(console.error);
+          }
+        } catch (ex) {}
       }
     };
     window.gMessageListeners.push(msgListener);

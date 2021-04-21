@@ -295,6 +295,7 @@ class MessageViewsCustomColumn {
       CustomColumnUtils.convertMessage(msgHdr).then(msg =>
         fire.async(msg)
       ).then(result => {
+        result.rowid = row;
         CustomColumnUtils.msgTrackers.set(msgHdr.messageId, result);
         if (row !== undefined)
           window.gDBView.NoteChange(row, 1, 2);
@@ -388,7 +389,13 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
 
         async invalidateRow(messageId) {
           if (CustomColumnUtils.msgTrackers.has(messageId)) {
+            let treerow = CustomColumnUtils.msgTrackers.get(messageId);
             CustomColumnUtils.msgTrackers.delete(messageId);
+
+            for (let window of Services.wm.getEnumerator("mail:3pane")) {
+              if (window.gDBView)
+                window.gDBView.NoteChange(treerow.rowid, 1, 2);
+            }
           }
         },
 

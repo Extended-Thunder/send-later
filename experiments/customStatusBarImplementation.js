@@ -105,7 +105,7 @@ class StatusMenu {
     }
   }
 
-  async addItem(properties) {
+  addItem(properties) {
     let item = StatusMenu.propertiesToAttributes(properties);
     this.menuItems.add(item);
   }

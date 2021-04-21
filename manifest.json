@@ -48,10 +48,7 @@
   "web_accessible_resources": [
     "utils/sugar-custom.js",
     "utils/static.js",
-    "utils/defaultPrefs.json",
-    "experiments/sl3u.js",
-    "experiments/headerView.js",
-    "experiments/statusBar.js"
+    "utils/defaultPrefs.json"
   ],
 
   "options_ui": {

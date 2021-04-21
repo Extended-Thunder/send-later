@@ -937,16 +937,19 @@ const SendLater = {
     },
 
     initCustomOverlays() {
+      let promises = [];
+
       // Drafts folder column
       const columnName = messenger.i18n.getMessage("sendlater3header.label");
-      messenger.columnHandler.addCustomColumn({ name: columnName, tooltip: "" }).then(() => {
+      let p_a = messenger.columnHandler.addCustomColumn({ name: columnName, tooltip: "" }).then(() => {
         messenger.columnHandler.onCustomColumnFill.addListener(async (hdr) => {
           const { cellText, sortValue } = await SendLater.customHdrToScheduleInfo(hdr);
           return { cellText, sortValue };
         }, columnName);
       });
+      promises.push(p_a);
 
-      messenger.mailTabs.onDisplayedFolderChanged.addListener(async (tab, folder) => {
+      let p_b = messenger.mailTabs.onDisplayedFolderChanged.addListener(async (tab, folder) => {
         const { preferences } = await browser.storage.local.get({ preferences: {} });
         let visible = (preferences.showColumn === true);
         if (visible) {
@@ -954,12 +957,13 @@ const SendLater = {
           const isDrafts = await messenger.SL3U.isDraftsFolder(accountId, path);
           visible = isDrafts;
         }
-        messenger.columnHandler.setColumnVisible(columnName, visible, 0);
+        await messenger.columnHandler.setColumnVisible(columnName, visible, 0);
       });
+      promises.push(p_b);
 
       // Header row
       const rowLabel = browser.i18n.getMessage("sendlater3header.label");
-      messenger.headerView.addCustomHdrRow({ name: rowLabel }).then(() => {
+      let p_c = messenger.headerView.addCustomHdrRow({ name: rowLabel }).then(() => {
         messenger.headerView.onHeaderRowUpdate.addListener(async (hdr) => {
           const { preferences } = await browser.storage.local.get({ preferences: {} });
           const { cellText } = await SendLater.customHdrToScheduleInfo(hdr);
@@ -967,9 +971,10 @@ const SendLater = {
           return { text: cellText, visible };
         }, rowLabel);
       });
+      promises.push(p_c);
 
       // Status bar menu
-      messenger.statusBar.addStatusMenu(
+      let p_d = messenger.statusBar.addStatusMenu(
         browser.i18n.getMessage("extensionName"), // Default label
         false, // Initial visibility
         [ // Menu items:
@@ -991,12 +996,16 @@ const SendLater = {
       ).then(() => {
         SendLater.updateStatusBarIndicator(false);
       });
+      promises.push(p_d);
 
       // Status bar menu listener
-      messenger.statusBar.statusMenuCallback.addListener(id => {
+      let p_e = messenger.statusBar.statusMenuCallback.addListener(id => {
         if (id === "show-preferences")
           messenger.runtime.openOptionsPage();
       });
+      promises.push(p_e);
+
+      return Promise.all(promises);
     },
 
     async init() {
@@ -1043,7 +1052,7 @@ const SendLater = {
 
       // Initialize the draft folder column, expanded
       // header view, and status bar menu
-      this.initCustomOverlays();
+      await this.initCustomOverlays();
 
       // This listener should be added *after* all of the storage-related
       // setup is complete. It makes sure that subsequent changes to storage
@@ -1088,13 +1097,13 @@ messenger.windows.onCreated.addListener(async (window) => {
   if (window.type === "messageCompose") {
     // Ensure that the composeAction button is visible,
     // otherwise the popup action will silently fail.
-    messenger.SL3U.forceToolbarVisible().catch(ex => {
+    await messenger.SL3U.forceToolbarVisible().catch(ex => {
       SLStatic.error("SL3U.forceToolbarVisible", ex);
     });
 
     // Bind listeners to overlay components like File>Send,
     // Send Later, and keycodes like Ctrl+enter, etc.
-    messenger.SL3U.hijackComposeWindowKeyBindings().catch(ex => {
+    await messenger.SL3U.hijackComposeWindowKeyBindings().catch(ex => {
       SLStatic.error("SL3U.hijackComposeWindowKeyBindings",ex);
     });
 
@@ -1106,25 +1115,24 @@ messenger.windows.onCreated.addListener(async (window) => {
 
     if (originalHdrs['x-send-later-at']) {
       // Re-save the msg (delete existing schedule headers)
-      await messenger.SL3U.goDoCommand("cmd_saveAsDraft");
+      messenger.SL3U.goDoCommand("cmd_saveAsDraft").then(() => {
+        setTimeout(async () => {
+          // Alert the user about what just happened
+          let { preferences } = await browser.storage.local.get({ preferences: {} });
+          if (preferences.showEditAlert) {
+            messenger.windows.create({
+              url: "ui/draftSaveWarning.html",
+              type: "popup",
+              titlePreface: browser.i18n.getMessage("extensionName"),
+              height: 250,
+              width: 750
+            });
+          }
+          messenger.columnHandler.invalidateRow(originalHdrs["message-id"]);
+        }, 1000);
+      });
 
-      messenger.columnHandler.invalidateRow(originalHdrs["message-id"]);
-
-      // Alert the user about what just happened
-      let { preferences } = await browser.storage.local.get({ preferences: {} });
-      if (preferences.showEditAlert) {
-        // TODO: handle this with a composeAction popup instead?
-        const result = await messenger.SL3U.alertCheck(
-          "",
-          browser.i18n.getMessage("draftSaveWarning"),
-          browser.i18n.getMessage("confirmAgain"),
-          true);
-        preferences.showEditAlert = (result.check === true);
-        await browser.storage.local.set({ preferences });
-      }
-
-      // Set popup scheduler defaults based on original schedule.
-      // TODO
+      // TODO: Set popup scheduler defaults based on original schedule.
     }
   }
 });
