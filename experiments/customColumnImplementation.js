@@ -267,7 +267,7 @@ class MessageViewsCustomColumn {
     let column = {
       id: this.columnId,
       flex: 4,
-      persist: "width hidden ordinal",
+      persist: "width hidden ordinal sortDirection",
       label: this.name,
       tooltiptext: this.tooltip,
     };
@@ -320,8 +320,21 @@ class MessageViewsCustomColumn {
         return null;
       },
       getSortLongForRow(msgHdr) {
+        // Note: "firm"-coding this for now
+        // (i.e. hard coding backup values to fill
+        //  before the cache has been populated).
+        let sendAt = msgHdr.getStringProperty("x-send-later-at");
+        let contentType = msgHdr.getStringProperty("content-type");
         let sorter = getValue(msgHdr, "sortValue");
-        return sorter|0;
+        if (sorter !== "") {
+          return sorter|0;
+        } else if ((/encrypted/i).test(contentType)) {
+          return (Math.pow(2,31)-1)|0;
+        } else if (sendAt) {
+          return ((new Date(sendAt)).getTime()/1000)|0;
+        } else {
+          return (Math.pow(2,31)-5)|0;
+        }
       },
     };
     let columnId = this.columnId;
