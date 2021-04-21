@@ -163,9 +163,13 @@ var statusBar = class extends ExtensionCommon.ExtensionAPI {
   getAPI(context) {
     context.callOnClose(this);
 
+    // Note: This was originally written to handle multiple
+    // menus, but was later changed to hard code the 'menuId'
+    // variable below, which limits it to a single menu.
+    // Much of the previous implementation is still present, however,
+    // including this customMenus map object.
     let customMenus = new Map();
     this.customMenus = customMenus;
-    this.menuCallbacks = new Set();
 
     const menuId = `${context.extension.id}-status-menu`;
 
@@ -181,6 +185,8 @@ var statusBar = class extends ExtensionCommon.ExtensionAPI {
       statusBar: {
 
         async addStatusMenu(label, visible, menuItems) {
+          if (customMenus.has(menuId))
+            throw new ExtensionError("You can only add one menu to the status bar.");
           let menu = new StatusMenu(menuId, label, visible);
           for (let item of menuItems)
             menu.addItem(item);
