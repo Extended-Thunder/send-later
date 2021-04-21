@@ -1155,5 +1155,9 @@
   "accelShiftLabel": {
     "message": "Shift+מקש",
     "description": "Indicates key combination to access the shift+click accelerator function"
+  },
+  "cancel": {
+    "message": "‫בטל‬",
+    "description": "Cancel an action (presented in popup dialogs)"
   }
 }
