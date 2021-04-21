@@ -1156,8 +1156,16 @@
     "message": "Shift+מקש",
     "description": "Indicates key combination to access the shift+click accelerator function"
   },
+  "okay": {
+    "message": "מאשר",
+    "description": "Confirm an action (presented in popup dialogs)"
+  },
   "cancel": {
-    "message": "‫בטל‬",
+    "message": "‫ביטול",
     "description": "Cancel an action (presented in popup dialogs)"
+  },
+  "no": {
+    "message": "לא מאשר",
+    "description": "Reject an action (presented in popup dialogs)"
   }
 }
