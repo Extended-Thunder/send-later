@@ -1,0 +1,66 @@
+[
+    {
+      "namespace": "statusBar",
+      "description": "",
+      "functions": [
+        {
+          "name": "addStatusMenu",
+          "type": "function",
+          "description": "",
+          "async": true,
+          "parameters": [
+            {
+              "name": "label",
+              "type": "string",
+              "description": "Default text."
+            },
+            {
+              "name": "visible",
+              "type": "boolean"
+            },
+            {
+              "name": "menuLinks",
+              "type": "any"
+            }
+          ]
+        },
+        {
+          "name": "removeStatusMenu",
+          "type": "function",
+          "description": "",
+          "async": true,
+          "parameters": []
+        },
+        {
+          "name": "setStatusMessage",
+          "type": "function",
+          "async": true,
+          "parameters": [
+            {
+              "name": "status",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "setVisible",
+          "type": "function",
+          "async": true,
+          "parameters": [
+            {
+              "name": "visible",
+              "type": "boolean"
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "name": "statusMenuCallback",
+          "type": "function",
+          "description": "",
+          "parameters": []
+        }
+      ]
+    }
+  ]
