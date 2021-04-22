@@ -1156,8 +1156,16 @@
     "message": "Skift+Klik",
     "description": "Indicates key combination to access the shift+click accelerator function"
   },
+  "okay": {
+    "message": "OK",
+    "description": "Confirm an action (presented in popup dialogs)"
+  },
   "cancel": {
     "message": "Afbryd",
     "description": "Cancel an action (presented in popup dialogs)"
+  },
+  "no": {
+    "message": "Nej",
+    "description": "Reject an action (presented in popup dialogs)"
   }
 }
