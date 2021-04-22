@@ -1157,7 +1157,7 @@
     "description": "Indicates key combination to access the shift+click accelerator function"
   },
   "okay": {
-    "message": "Ok",
+    "message": "OK",
     "description": "Confirm an action (presented in popup dialogs)"
   },
   "cancel": {
