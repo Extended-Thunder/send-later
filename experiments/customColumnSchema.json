@@ -60,14 +60,14 @@
           "parameters": []
         },
         {
-          "name": "invalidateRow",
+          "name": "invalidateMessage",
           "type": "function",
           "description": "",
           "async": true,
           "parameters": [
             {
-              "name": "messageId",
-              "type": "string"
+              "name": "id",
+              "type": "integer"
             }
           ]
         },
@@ -86,8 +86,8 @@
               "type": "boolean"
             },
             {
-              "name": "tabId",
-              "type": "integer",
+              "name": "applyGlobal",
+              "type": "boolean",
               "optional": true
             }
           ]

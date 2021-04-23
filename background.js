@@ -29,33 +29,32 @@ const SendLater = {
         `[${platformInfo.os} ${platformInfo.arch}]`);
     },
 
-    async customHdrToScheduleInfo(hdr) {
+    customHdrToScheduleInfo(customHeaders, instanceUUID) {
       let cellText = "";
       let sortValue = (Math.pow(2,31)-5)|0;
 
-      if (!hdr.customHeaders["content-type"]) {
+      if (!customHeaders["content-type"]) {
         SLStatic.warn("Didn't receive complete headers.");
         return { cellText, sortValue };
-      } else if (!hdr.customHeaders["x-send-later-at"]) {
+      } else if (!customHeaders["x-send-later-at"]) {
         // Do nothing. Leave cell properties as default
         return { cellText, sortValue };
       }
 
-      const { preferences } = await browser.storage.local.get({ preferences: {} });
-      if (hdr.customHeaders["x-send-later-uuid"] !== preferences.instanceUUID) {
+      if (customHeaders["x-send-later-uuid"] !== instanceUUID) {
         cellText = browser.i18n.getMessage("incorrectUUID");
         sortValue = (Math.pow(2,31)-2)|0;
-      } else if ((/encrypted/i).test(hdr.customHeaders["content-type"])) {
+      } else if ((/encrypted/i).test(customHeaders["content-type"])) {
         cellText = browser.i18n.getMessage("EncryptionIncompatText");
         sortValue = (Math.pow(2,31)-1)|0;
       } else {
-        const sendAt = new Date(hdr.customHeaders["x-send-later-at"]);
-        const recurSpec = (hdr.customHeaders["x-send-later-recur"] || "none");
+        const sendAt = new Date(customHeaders["x-send-later-at"]);
+        const recurSpec = (customHeaders["x-send-later-recur"] || "none");
         let recur = SLStatic.parseRecurSpec(recurSpec);
         recur.cancelOnReply = ["true", "yes"].includes(
-          hdr.customHeaders["x-send-later-cancel-on-reply"]
+          customHeaders["x-send-later-cancel-on-reply"]
         );
-        recur.args = hdr.customHeaders["x-send-later-args"];
+        recur.args = customHeaders["x-send-later-args"];
         cellText = SLStatic.formatScheduleForUIColumn({ sendAt, recur });
         // Numbers will be truncated. Be sure this fits in 32 bits
         sortValue = (sendAt.getTime()/1000)|0;
@@ -936,6 +935,14 @@ const SendLater = {
       }
     },
 
+    async extractCustomHeaders(hdr, wantedHdrs) {
+      const rawContent = await messenger.messages.getRaw(hdr.id);
+      let customHeaders = {};
+      for (let key of wantedHdrs)
+        customHeaders[key] = SLStatic.getHeader(rawContent, key);
+      return customHeaders;
+    },
+
     initCustomOverlays() {
       let promises = [];
 
@@ -943,7 +950,13 @@ const SendLater = {
       const columnName = messenger.i18n.getMessage("sendlater3header.label");
       let p_a = messenger.columnHandler.addCustomColumn({ name: columnName, tooltip: "" }).then(() => {
         messenger.columnHandler.onCustomColumnFill.addListener(async (hdr) => {
-          const { cellText, sortValue } = await SendLater.customHdrToScheduleInfo(hdr);
+          const { preferences } = await browser.storage.local.get({ preferences: {} });
+          const customHeaders = await SendLater.extractCustomHeaders(hdr, [
+            "x-send-later-at", "x-send-later-recur", "x-send-later-args",
+            "x-send-later-cancel-on-reply", "x-send-later-uuid", "content-type"
+          ]);
+          const { cellText, sortValue } =
+            SendLater.customHdrToScheduleInfo(customHeaders, preferences.instanceUUID);
           return { cellText, sortValue };
         }, columnName);
       });
@@ -957,7 +970,7 @@ const SendLater = {
           const isDrafts = await messenger.SL3U.isDraftsFolder(accountId, path);
           visible = isDrafts;
         }
-        await messenger.columnHandler.setColumnVisible(columnName, visible, 0);
+        await messenger.columnHandler.setColumnVisible(columnName, visible, false);
       });
       promises.push(p_b);
 
@@ -966,7 +979,11 @@ const SendLater = {
       let p_c = messenger.headerView.addCustomHdrRow({ name: rowLabel }).then(() => {
         messenger.headerView.onHeaderRowUpdate.addListener(async (hdr) => {
           const { preferences } = await browser.storage.local.get({ preferences: {} });
-          const { cellText } = await SendLater.customHdrToScheduleInfo(hdr);
+          const customHeaders = await SendLater.extractCustomHeaders(hdr, [
+            "x-send-later-at", "x-send-later-recur", "x-send-later-args",
+            "x-send-later-cancel-on-reply", "x-send-later-uuid", "content-type"
+          ]);
+          const { cellText } = SendLater.customHdrToScheduleInfo(customHeaders, preferences.instanceUUID);
           const visible = (preferences.showHeader === true) && (cellText !== "");
           return { text: cellText, visible };
         }, rowLabel);
@@ -1077,10 +1094,8 @@ const SendLater = {
           // drafts folder, so the user will have to navigate away and back to the
           // folder before their preferences can fully take effect.
           if (!preferences.showColumn) {
-            // Passing -1 for the tabId tells this function to apply the
-            // column visibility to all windows.
             const columnName = messenger.i18n.getMessage("sendlater3header.label");
-            messenger.columnHandler.setColumnVisible(columnName, false, -1);
+            messenger.columnHandler.setColumnVisible(columnName, false, true);
           }
         }
       });
@@ -1107,33 +1122,33 @@ messenger.windows.onCreated.addListener(async (window) => {
       SLStatic.error("SL3U.hijackComposeWindowKeyBindings",ex);
     });
 
-    // Now, check if this message was already an existing
-    // scheduled draft.
-    const originalHdrs = await messenger.SL3U.getDraftHeaders([
-      "x-send-later-at", "x-send-later-recur", "x-send-later-args",
-      "x-send-later-cancel-on-reply", "message-id" ]);
+    // Now, check if this message was an existing scheduled draft.
+    const originalMsg = await messenger.SL3U.findCurrentDraft();
+    if (originalMsg) {
+      let headers = await SendLater.extractCustomHeaders(originalMsg, ["x-send-later-at"]);
+      if (headers['x-send-later-at']) {
+        // Re-save the msg (delete existing schedule headers)
+        messenger.SL3U.goDoCommand("cmd_saveAsDraft").then(() => {
+          setTimeout(async () => {
+            // Alert the user about what just happened
+            let { preferences } = await browser.storage.local.get({ preferences: {} });
+            if (preferences.showEditAlert) {
+              messenger.windows.create({
+                url: "ui/draftSaveWarning.html",
+                type: "popup",
+                titlePreface: browser.i18n.getMessage("extensionName"),
+                height: 250,
+                width: 750
+              });
+            }
+            messenger.columnHandler.invalidateMessage(originalMsg.id);
+          }, 1000);
+        });
+  
+        // TODO: Set popup scheduler defaults based on original schedule.
 
-    if (originalHdrs['x-send-later-at']) {
-      // Re-save the msg (delete existing schedule headers)
-      messenger.SL3U.goDoCommand("cmd_saveAsDraft").then(() => {
-        setTimeout(async () => {
-          // Alert the user about what just happened
-          let { preferences } = await browser.storage.local.get({ preferences: {} });
-          if (preferences.showEditAlert) {
-            messenger.windows.create({
-              url: "ui/draftSaveWarning.html",
-              type: "popup",
-              titlePreface: browser.i18n.getMessage("extensionName"),
-              height: 250,
-              width: 750
-            });
-          }
-          messenger.columnHandler.invalidateRow(originalHdrs["message-id"]);
-        }, 1000);
-      });
-
-      // TODO: Set popup scheduler defaults based on original schedule.
-    }
+      } // else: not queued by send later.
+    } // else: Not editing a saved message.
   }
 });
 

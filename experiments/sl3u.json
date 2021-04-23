@@ -371,17 +371,11 @@
         "parameters": []
       },
       {
-        "name":"getDraftHeaders",
+        "name":"findCurrentDraft",
         "type":"function",
         "async":true,
-        "description":"Get headers from the current compose message IF IT IS AN EXISTING DRAFT",
-        "parameters": [
-          {
-            "name":"keys",
-            "type":"any",
-            "description":"Array of header fields to get."
-          }
-        ]
+        "description":"Find whether the current composition window is editing an existing draft.",
+        "parameters": []
       },
       {
         "name":"forceToolbarVisible",

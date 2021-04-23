@@ -1575,9 +1575,8 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
         },
 
-        // If the current composition window was an existing draft message,
-        // then get headers from that original message.
-        async getDraftHeaders(keys) {
+        // Find whether the current composition window is editing an existing draft
+        async findCurrentDraft() {
           const window = Services.wm.getMostRecentWindow("msgcompose");
 
           let windowReadyPromise = new Promise((resolve) => {
@@ -1589,21 +1588,15 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           if (!window.gMsgCompose)
             throw new Error("Attempted getDraftHeaders on non-compose window");
 
-          let hdrs = {};
-
           const msgCompFields = window.gMsgCompose.compFields;
           if (msgCompFields && msgCompFields.draftId!="") {
             const messageURI = msgCompFields.draftId.replace(/\?.*/, "");
             const messenger = Cc["@mozilla.org/messenger;1"].getService(Ci.nsIMessenger);
             const msgHdr = messenger.msgHdrFromURI(messageURI);
-            for (let key of keys) {
-              hdrs[key] = msgHdr.getStringProperty(key);
-            }
+            return context.extension.messageManager.convert(msgHdr);
           } else {
             SendLaterFunctions.debug("Window is not an existing draft.");
           }
-
-          return hdrs;
         },
 
         async hijackComposeWindowKeyBindings(windowId) {
