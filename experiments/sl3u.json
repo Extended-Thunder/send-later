@@ -186,6 +186,12 @@
             "name": "command",
             "type": "string",
             "description": "Command to execute in current compose window."
+          },
+          {
+            "name": "windowId",
+            "type": "integer",
+            "optional": true,
+            "description": "In which window to execute this command."
           }
         ]
       },

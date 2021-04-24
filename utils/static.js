@@ -441,7 +441,7 @@ var SLStatic = {
   },
 
   formatRecurForUI(recur) {
-    if (!recur) {
+    if (!recur || recur.type === "none") {
       return "";
     }
     let recurText = "";
@@ -705,6 +705,9 @@ var SLStatic = {
   unparseRecurSpec(recur) {
     let spec = recur.type;
 
+    if (spec === "none")
+      return spec;
+
     if (recur.type === "monthly") {
       spec += " ";
       if (recur.monthly_day) {
@@ -722,9 +725,6 @@ var SLStatic = {
     }
 
     if (recur.multiplier) {
-      if (recur.type === "none") {
-        throw new Error("Cannot use multiplier with one-off schedule.");
-      }
       spec += " / " + recur.multiplier;
     }
 
@@ -801,7 +801,6 @@ var SLStatic = {
         break;
       case "function":
         recur.function = params.shift();
-        const finishedIndex = params.indexOf("finished");
         recur.finished = (params[0] === "finished");
 
         if (!recur.function) {
@@ -1062,6 +1061,91 @@ var SLStatic = {
       }
     }
     return sendAt;
+  },
+
+  parseHeadersForPopupUICache(headers) {
+    // input elements:
+    //   - send-datetime (string)
+    //   - recur (radio: once, minutely, daily, ...)
+    //   - recur-multiplier (number)
+    //   - recur-monthly-byweek (checkbox)
+    //   - recur-function-args (text)
+    //   - recur-cancelonreply (checkbox)
+    //   - sendbetween (checkbox)
+    //   - sendbetween-start (time)
+    //   - sendbetween-end (time)
+    //   - sendon (checkbox)
+    //   - sendon-{saturday|sunday|...} (checkboxes)
+    // select elements:
+    //   - recurFuncSelect
+    //   - recur-monthly-byweek-week
+    //   - recur-monthly-byweek-day
+
+    let sendAt = new Date(headers['x-send-later-at']);
+    let recurSpec = (headers["x-send-later-recur"] || "none");
+    let recur = SLStatic.parseRecurSpec(recurSpec);
+    recur.cancelOnReply = ["true", "yes"].includes(
+      headers["x-send-later-cancel-on-reply"]
+    );
+    recur.args = headers["x-send-later-args"];
+
+    let dom = {
+      'send-datetime': SLStatic.shortHumanDateTimeFormat(sendAt)
+    };
+
+    for (let recurType of [
+      'once', 'minutely', 'daily', 'weekly', 'monthly', 'yearly', 'function'
+    ]) {
+      dom[recurType] = (recur.type === recurType);
+    }
+
+    if (recur.type === "none") {
+      dom['once'] = true;
+      return dom;
+    }
+
+    dom['recur-cancelonreply'] = recur.cancelOnReply;
+    if (recur.multiplier)
+      dom['recur-multiplier'] = recur.multiplier;
+
+    dom['recur-function-args'] = recur.args||"";
+    if (recur.type === 'function' && recur.finished) {
+      dom['recur'] = 'none';
+    } else if (recur.function) {
+      dom['recurFuncSelect'] = recur.function;
+    }
+
+    if (recur.type === 'monthly') {
+      if (recur.monthly_day) {
+        dom['recur-monthly-byweek'] = true;
+        dom['recur-monthly-byweek-day'] = recur.monthly_day.day;
+        dom['recur-monthly-byweek-week'] = recur.monthly_day.week;
+      } else {
+        dom['recur-monthly-byweek'] = false;
+      }
+    }
+
+    if (recur.between) {
+      dom['sendbetween'] = true;
+      let start = SLStatic.parseDateTime(null, recur.between.start);
+      let end = SLStatic.parseDateTime(null, recur.between.end);
+      dom['sendbetween-start'] = SLStatic.formatTime(start,true,true);
+      dom['sendbetween-end'] = SLStatic.formatTime(end,true,true);
+    } else {
+      dom['sendbetween'] = false;
+    }
+
+    if (recur.days) {
+      dom['sendon'] = true;
+      const dayNames = ["sunday","monday","tuesday",
+        "wednesday","thursday","friday","saturday"];
+      for (let i=0; i<7; i++) {
+        dom[`sendon-${dayNames[i]}`] = recur.days.includes(i);
+      }
+    } else {
+      dom['sendon'] = false;
+    }
+    return dom;
   }
 }
 

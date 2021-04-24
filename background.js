@@ -1125,28 +1125,43 @@ messenger.windows.onCreated.addListener(async (window) => {
     // Now, check if this message was an existing scheduled draft.
     const originalMsg = await messenger.SL3U.findCurrentDraft();
     if (originalMsg) {
-      let headers = await SendLater.extractCustomHeaders(originalMsg, ["x-send-later-at"]);
+      const headers = await SendLater.extractCustomHeaders(originalMsg, [
+        "x-send-later-at", "x-send-later-recur", "x-send-later-args",
+        "x-send-later-cancel-on-reply", "message-id"
+      ]);
       if (headers['x-send-later-at']) {
         // Re-save the msg (delete existing schedule headers)
-        messenger.SL3U.goDoCommand("cmd_saveAsDraft").then(() => {
-          setTimeout(async () => {
-            // Alert the user about what just happened
-            let { preferences } = await browser.storage.local.get({ preferences: {} });
-            if (preferences.showEditAlert) {
-              messenger.windows.create({
-                url: "ui/draftSaveWarning.html",
-                type: "popup",
-                titlePreface: browser.i18n.getMessage("extensionName"),
-                height: 250,
-                width: 750
-              });
-            }
-            messenger.columnHandler.invalidateMessage(originalMsg.id);
-          }, 1000);
-        });
-  
-        // TODO: Set popup scheduler defaults based on original schedule.
+        messenger.SL3U.goDoCommand("cmd_saveAsDraft", window.id).then(async () => {
+          // Alert the user about what just happened
+          let { preferences } = await browser.storage.local.get({ preferences: {} });
+          if (preferences.showEditAlert) {
+            messenger.windows.create({
+              url: "ui/draftSaveWarning.html",
+              type: "popup",
+              titlePreface: browser.i18n.getMessage("extensionName"),
+              height: 250,
+              width: 750
+            });
+          }
 
+          // Once the draft save operation is definitely complete,
+          // then invalidate that row with the columnHandler.
+          setTimeout(() => {
+            messenger.columnHandler.invalidateRowByMessageId(
+              headers["message-id"]
+            ).catch(SLStatic.error);
+          }, 2000);
+        });
+
+        // Set popup scheduler defaults based on original message
+
+        browser.storage.local.get({ scheduleCache: {} }).then(
+          ({ scheduleCache }) => {
+            scheduleCache[window.id] =
+              SLStatic.parseHeadersForPopupUICache(headers);
+            console.log(scheduleCache);
+            browser.storage.local.set({ scheduleCache });
+          }).catch(SLStatic.error);
       } // else: not queued by send later.
     } // else: Not editing a saved message.
   }

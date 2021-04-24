@@ -1079,9 +1079,16 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return false;
         },
 
-        async goDoCommand(command) {
-          const cw = Services.wm.getMostRecentWindow("msgcompose");
-          cw.goDoCommand(command);
+        async goDoCommand(command, windowId) {
+          let window;
+          if (windowId) {
+            let wm = context.extension.windowManager.get(windowId, context);
+            window = wm.window;
+          } else {
+            window = Services.wm.getMostRecentWindow("msgcompose");
+          }
+          console.log(window);
+          window.goDoCommand(command);
         },
 
         async builtInSendLater() {

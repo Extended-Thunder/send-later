@@ -61,12 +61,15 @@ class MessageViewsCustomColumn {
 
   async invalidateMessage(messageId) {
     if (this.msgTracker.has(messageId)) {
+      console.log(`Invalidating message: ${messageId}`);
       let treerow = this.msgTracker.get(messageId);
       this.msgTracker.delete(messageId);
       for (let window of Services.wm.getEnumerator("mail:3pane")) {
         if (window.gDBView)
           window.gDBView.NoteChange(treerow.rowid, 1, 2);
       }
+    } else {
+      console.warn(`Tree row cannot be invalidated for message: ${messageId}`);
     }
   }
 
@@ -230,10 +233,10 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
           columns.delete(name);
         },
 
-        async invalidateMessage(id) {
-          let msgHdr = context.extension.messageManager.get(id);
+        async invalidateRowByMessageId(msgIdHeader) {
+          let id = msgIdHeader.replace('<','').replace('>','');
           for (let column of columns.values()) {
-            column.invalidateMessage(msgHdr.messageId);
+            column.invalidateMessage(id);
           }
         },
 

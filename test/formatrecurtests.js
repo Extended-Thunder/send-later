@@ -11,9 +11,9 @@ exports.init = function() {
 
   const tests = [
     ["none", ""],
-    ["none between 730 1930", "betw. 7:30 and 19:30"],
-    ["none on 1 3 5", "Only on Monday, Wednesday, and Friday"],
-    ["none between 100 600 on 1 3 6", "betw. 1:00 and 6:00 Only on Monday, Wednesday, and Saturday"],
+    ["none between 730 1930", ""],
+    ["none on 1 3 5", ""],
+    ["none between 100 600 on 1 3 6", ""],
     ["minutely", "Recur minutely"],
     ["daily", "Recur daily"],
     ["weekly", "Recur weekly"],

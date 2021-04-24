@@ -60,14 +60,14 @@
           "parameters": []
         },
         {
-          "name": "invalidateMessage",
+          "name": "invalidateRowByMessageId",
           "type": "function",
           "description": "",
           "async": true,
           "parameters": [
             {
-              "name": "id",
-              "type": "integer"
+              "name": "msgIdHeader",
+              "type": "string"
             }
           ]
         },
