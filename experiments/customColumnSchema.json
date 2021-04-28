@@ -72,6 +72,13 @@
           ]
         },
         {
+          "name": "invalidateAll",
+          "type": "function",
+          "description": "",
+          "async": true,
+          "parameters": []
+        },
+        {
           "name": "setColumnVisible",
           "type": "function",
           "description": "",

@@ -695,7 +695,7 @@ const SLPopup = {
       active:true, currentWindow:true
     }).then(tabs => tabs[0].id);
 
-    await SLStatic.fetchLogConsoleLevel();
+    await SLStatic.cachePrefs();
 
     const { ufuncs } = await browser.storage.local.get({ ufuncs: {} });
     SLPopup.ufuncs = ufuncs;

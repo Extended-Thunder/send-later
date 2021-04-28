@@ -73,6 +73,14 @@ class MessageViewsCustomColumn {
     }
   }
 
+  async invalidateAll() {
+    this.msgTracker.clear();
+    for (let window of Services.wm.getEnumerator("mail:3pane")) {
+      if (window.gDBView)
+        window.gDBView.NoteChange(null, null, 4);
+    }
+  }
+
   setVisible(visible, applyGlobal) {
     try {
       let windows;
@@ -237,6 +245,12 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
           let id = msgIdHeader.replace('<','').replace('>','');
           for (let column of columns.values()) {
             column.invalidateMessage(id);
+          }
+        },
+
+        async invalidateAll() {
+          for (let column of columns.values()) {
+            column.invalidateAll();
           }
         },
 

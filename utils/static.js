@@ -12,7 +12,8 @@ var SLStatic = {
   // Migration 3: indicate that "sanity check" has been performed
   // Migration 4: add instanceUUID
   // Migration 5: add accelerator shortcut options
-  CURRENT_LEGACY_MIGRATION: 5,
+  // Migration 6: Add longDateTimeFormat/shortDateTimeFormat
+  CURRENT_LEGACY_MIGRATION: 6,
 
   // HTML element IDs correspond to preference keys, localization strings, and
   // keys of preference values in local storage.
@@ -26,14 +27,21 @@ var SLStatic = {
                  "quickOptions2Args", "quickOptions3Label",
                  "quickOptions3funcselect", "quickOptions3Args",
                  "accelCtrlfuncselect", "accelCtrlArgs",
-                 "accelShiftfuncselect", "accelShiftArgs"],
+                 "accelShiftfuncselect", "accelShiftArgs", "customizeDateTime",
+                 "shortDateTimeFormat", "longDateTimeFormat"],
 
+  customizeDateTime: null,
+  longDateTimeFormat: null,
+  shortDateTimeFormat: null,
   logConsoleLevel: null,
 
-  async fetchLogConsoleLevel() {
+  async cachePrefs() {
     try {
       const { preferences } = await browser.storage.local.get({"preferences": {}});
       this.logConsoleLevel = (preferences.logConsoleLevel || "all").toLowerCase();
+      this.customizeDateTime = (preferences.customizeDateTime === true);
+      this.longDateTimeFormat = preferences.longDateTimeFormat;
+      this.shortDateTimeFormat = preferences.shortDateTimeFormat;
     } catch {}
   },
 
@@ -42,7 +50,7 @@ var SLStatic = {
     if (typeof this.logConsoleLevel === "string") {
       logConsoleLevel = this.logConsoleLevel;
     } else {
-      this.fetchLogConsoleLevel();
+      this.cachePrefs();
     }
 
     const levels = ["all","trace","debug","info","warn","error","fatal"];
@@ -149,8 +157,7 @@ var SLStatic = {
     return Sugar.Date.format(date||(new Date()), DATE_RFC2822, "en");
   },
 
-  humanDateTimeFormat(date) {
-    date = SLStatic.convertDate(date);
+  defaultHumanDateTimeFormat(date) {
     const options = {
       hour: "numeric", minute: "numeric", weekday: "short",
       month: "short", day: "numeric", year: "numeric"
@@ -158,13 +165,42 @@ var SLStatic = {
     return new Intl.DateTimeFormat([], options).format(date||(new Date()));
   },
 
-  shortHumanDateTimeFormat(date) {
+  defaultShortHumanDateTimeFormat(date) {
     date = SLStatic.convertDate(date);
     const options = {
       hour: "numeric", minute: "numeric",
       month: "numeric", day: "numeric", year: "numeric"
     }
     return new Intl.DateTimeFormat([], options).format(date||(new Date()));
+  },
+
+  customHumanDateTimeFormat(date, fmt) {
+    date = SLStatic.convertDate(date);
+    return Sugar.Date.format(date||(new Date()), fmt);
+  },
+
+  humanDateTimeFormat(date) {
+    if (this.customizeDateTime === null) {
+      this.cachePrefs();
+    } else if (this.customizeDateTime === true &&
+               this.longDateTimeFormat !== "") {
+      try {
+        return this.customHumanDateTimeFormat(date, this.longDateTimeFormat);
+      } catch (ex) {this.warn(ex);}
+    }
+    return this.defaultHumanDateTimeFormat(date);
+  },
+
+  shortHumanDateTimeFormat(date) {
+    if (this.customizeDateTime === null) {
+      this.cachePrefs();
+    } else if (this.customizeDateTime === true &&
+               this.shortDateTimeFormat !== "") {
+      try {
+        return this.customHumanDateTimeFormat(date, this.shortDateTimeFormat);
+      } catch (ex) {this.warn(ex);}
+    }
+    return this.defaultShortHumanDateTimeFormat(date);
   },
 
   compare(a, comparison, b, tolerance) {

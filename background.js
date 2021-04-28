@@ -684,6 +684,9 @@ const SendLater = {
       }
 
       SLStatic.logConsoleLevel = (preferences.logConsoleLevel||"info").toLowerCase();
+      SLStatic.customizeDateTime = (preferences.customizeDateTime === true);
+      SLStatic.longDateTimeFormat = preferences.longDateTimeFormat;
+      SLStatic.shortDateTimeFormat = preferences.shortDateTimeFormat;
 
       // Pick up any new properties from defaults
       for (let prefName of Object.getOwnPropertyNames(prefDefaults)) {
@@ -1061,6 +1064,9 @@ const SendLater = {
         ({ preferences }) => {
           SendLater.prefCache = preferences;
           SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
+          SLStatic.customizeDateTime = (preferences.customizeDateTime === true);
+          SLStatic.longDateTimeFormat = preferences.longDateTimeFormat;
+          SLStatic.shortDateTimeFormat = preferences.shortDateTimeFormat;
           messenger.SL3U.setSendLaterVars({
             logConsoleLevel: SLStatic.logConsoleLevel,
             ask_quit: preferences.askQuit
@@ -1074,12 +1080,20 @@ const SendLater = {
       // This listener should be added *after* all of the storage-related
       // setup is complete. It makes sure that subsequent changes to storage
       // take effect immediately.
-      browser.storage.onChanged.addListener(async (changes, areaName) => {
-        if (areaName === "local") {
+      browser.storage.onChanged.addListener((changes, areaName) => {
+        if (areaName === "local" && changes.preferences) {
           SLStatic.debug("Propagating changes from local storage");
-          const { preferences } = await browser.storage.local.get({ preferences: {} });
+          const preferences = changes.preferences.newValue;
           SendLater.prefCache = preferences;
           SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
+
+          ["customizeDateTime", "longDateTimeFormat", "shortDateTimeFormat"].forEach(
+            pref => {
+              if (changes.preferences.oldValue[pref] !== preferences[pref]) {
+                SLStatic[pref] = preferences[pref];
+                messenger.columnHandler.invalidateAll();
+              }
+            });
 
           messenger.SL3U.setSendLaterVars({
             logConsoleLevel: SLStatic.logConsoleLevel,

@@ -177,6 +177,10 @@ const SLOptions = {
         } catch (ex) {
           SLStatic.debug("Unable to set time unit label",ex);
         }
+
+        let customDT = document.getElementById("customizeDateTime");
+        let customDTDiv = document.getElementById("customDateTimeFormatsDiv");
+        customDTDiv.style.display = customDT.checked ? "block" : "none";
       });
     return await Promise.all([ufuncPromise, prefPromise]);
   },
@@ -649,6 +653,31 @@ const SLOptions = {
           outputCell.appendChild(mkBlock(mkSpan("nextargs:",true), mkSpan(nextargs || "")));
         }
       }));
+
+    document.getElementById("customizeDateTime").addEventListener("change", (evt) => {
+      let fmtDiv = document.getElementById("customDateTimeFormatsDiv");
+      fmtDiv.style.display = evt.target.checked ? "block" : "none";
+    });
+
+    setInterval(() => {
+      let now = new Date();
+      try {
+        let fmt = document.getElementById("shortDateTimeFormat");
+        let sample = document.getElementById("sampleShortDateTime");
+        if (fmt.value === "")
+          sample.textContent = SLStatic.defaultShortHumanDateTimeFormat(now);
+        else
+          sample.textContent = SLStatic.customHumanDateTimeFormat(now, fmt.value);
+      } catch (ex) {}
+      try {
+        let fmt = document.getElementById("longDateTimeFormat");
+        let sample = document.getElementById("sampleLongDateTime");
+        if (fmt.value === "")
+          sample.textContent = SLStatic.defaultHumanDateTimeFormat(now);
+        else
+          sample.textContent = SLStatic.customHumanDateTimeFormat(now, fmt.value);
+      } catch (ex) {}
+    }, 1000);
 
     // And attach a listener to the "Reset Preferences" button
     const clearPrefsListener = SLOptions.doubleCheckButtonClick(

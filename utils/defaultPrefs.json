@@ -47,5 +47,8 @@
   "markDraftsRead": ["bool", true, "mark_drafts_read"],
   "composeWindowHotkeys": ["bool", true, "compose_window_hot_keys"],
   "instanceUUID": ["string", "", "instance.uuid"],
-  "throttleDelay": ["int", 0, null]
+  "throttleDelay": ["int", 0, null],
+  "customizeDateTime": ["boolean", false, null],
+  "shortDateTimeFormat": ["string", "", null],
+  "longDateTimeFormat": ["string", "", null]
 }
