@@ -784,6 +784,45 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return false;
         },
 
+        async onBeforeSend() {
+          const cw = Services.wm.getMostRecentWindow("msgcompose");
+
+          if (cw.pendingSendLaterPromise) {
+            // If this function was already called but the 'beforesend'
+            // event was blocked by another extension then there will be
+            // a pending promise hanging around. Resolve it now before
+            // creating a new one.
+            cw.CompleteGenericSendMessage("nullify");
+          } else {
+            // Stash the real 'CompleteGenericSend function
+            cw.HiddenGenericSendMessage = cw.CompleteGenericSendMessage;
+          }
+          cw.pendingSendLaterPromise = true;
+
+          console.log("Waiting on new promise", cw);
+          let status = await new Promise((resolve) => {
+            cw.CompleteGenericSendMessage = (detail) => {
+              resolve(detail);
+              if (typeof detail === "number") {
+                cw.CompleteGenericSendMessage = cw.HiddenGenericSendMessage;
+                cw.pendingSendLaterPromise = false;
+                cw.CompleteGenericSendMessage(detail);
+              }
+            };
+            let beforeSendEvent = new cw.CustomEvent("beforesend", {
+              cancelable: true,
+              detail: "success"
+            });
+            cw.dispatchEvent(beforeSendEvent);
+            if (!beforeSendEvent.defaultPrevented) {
+              resolve("success");
+            }
+          });
+          console.log("onBeforeSend finished with status:", status);
+
+          return (status === "success");
+        },
+
         // Mostly borrowed from MsgComposeCommands.js
         async preSendCheck() {
           const cw = Services.wm.getMostRecentWindow("msgcompose");
@@ -1031,8 +1070,14 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             // Save the message to drafts
             try {
               cw.gCloseWindowAfterSave = true;
-              cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
-              // cw.goDoCommand("cmd_saveAsDraft");
+              //// The full GenericSendMessage function does a bunch of pre-send checks
+              //// and then calls CompleteGenericSendMessage. We're handling those pre-send
+              //// checks manually (separate function in this experiment), so we can
+              //// just call the CompleteGenericSendMessage function directly.
+
+              //// Note: CompleteGenericSendMessage is renamed to HiddenGenericSendMessage
+              //// by the onBeforeSend function above.
+              cw.HiddenGenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
             } catch (err) {
               SendLaterFunctions.error("SL3U.saveAsDraft","Unable to save message to drafts", err);
               return false;
@@ -1087,8 +1132,18 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           } else {
             window = Services.wm.getMostRecentWindow("msgcompose");
           }
-          console.log(window);
           window.goDoCommand(command);
+
+          await new Promise(resolve => {
+            let checkLock = () => {
+              if (!window.gWindowLocked) {
+                resolve();
+              } else {
+                window.setTimeout(checkLock, 100);
+              }
+            }
+            window.setTimeout(checkLock, 100);
+          });
         },
 
         async builtInSendLater() {

@@ -63,7 +63,21 @@ const SendLater = {
     },
 
     async preSendCheck() {
-      return await messenger.SL3U.preSendCheck();
+      let check = await messenger.SL3U.preSendCheck();
+      if (!check) {
+        SLStatic.warn("Canceled via preSendCheck");
+        return false;
+      }
+
+      // If this returns, then the beforeSend listeners all passed.
+      let beforeSend = await messenger.SL3U.onBeforeSend();
+      if (!beforeSend) {
+        SLStatic.warn("canceled via OnBeforeSend");
+        return false;
+      }
+
+      SLStatic.warn("Pre-send checks passed.");
+      return true;
     },
 
     async isEditing(msgId) {
@@ -162,7 +176,7 @@ const SendLater = {
           browser.storage.local.set({ preferences });
         }
         if (!result.ok) {
-          SLStatic.debug(`User cancelled send now.`);
+          SLStatic.debug(`User canceled send now.`);
           return;
         }
         messenger.SL3U.goDoCommand("cmd_sendNow").catch((ex) => {
@@ -191,7 +205,7 @@ const SendLater = {
           browser.storage.local.set({ preferences });
         }
         if (!result.ok) {
-          SLStatic.debug(`User cancelled send later.`);
+          SLStatic.debug(`User canceled send later.`);
           return;
         }
       }
@@ -289,8 +303,6 @@ const SendLater = {
                             args: schedule.recur.args,
                             cancelOnReply: false };
             SendLater.scheduleSendLater.call(SendLater, tabId, options);
-          } else {
-            SLStatic.info("User cancelled send via presendcheck.");
           }
         });
       }
@@ -1124,6 +1136,9 @@ const SendLater = {
 // scheduled draft.
 messenger.windows.onCreated.addListener(async (window) => {
   if (window.type === "messageCompose") {
+    // Wait for window to fully load
+    await messenger.windows.getCurrent();
+
     // Ensure that the composeAction button is visible,
     // otherwise the popup action will silently fail.
     await messenger.SL3U.forceToolbarVisible().catch(ex => {
@@ -1144,41 +1159,41 @@ messenger.windows.onCreated.addListener(async (window) => {
         "x-send-later-cancel-on-reply", "message-id"
       ]);
       if (headers['x-send-later-at']) {
-        // Re-save the msg (delete existing schedule headers)
-        messenger.SL3U.goDoCommand("cmd_saveAsDraft", window.id).then(async () => {
-          // Alert the user about what just happened
-          let { preferences } = await browser.storage.local.get({ preferences: {} });
-          if (preferences.showEditAlert) {
-            messenger.windows.create({
-              url: "ui/draftSaveWarning.html",
-              type: "popup",
-              titlePreface: browser.i18n.getMessage("extensionName"),
-              height: 250,
-              width: 750
-            });
-          }
+        let { preferences, scheduleCache } = await browser.storage.local.get(
+          { preferences: {}, scheduleCache: {} }
+        );
 
-          // Once the draft save operation is definitely complete,
-          // then invalidate that row with the columnHandler.
-          setTimeout(() => {
-            messenger.columnHandler.invalidateRowByMessageId(
-              headers["message-id"]
-            ).catch(SLStatic.error);
-          }, 2000);
-        });
+        // Re-save the msg (delete existing schedule headers)
+        await messenger.SL3U.goDoCommand("cmd_saveAsDraft", window.id);
+
+        // Alert the user about what just happened
+        if (preferences.showEditAlert) {
+          messenger.windows.create({
+            url: "ui/draftSaveWarning.html",
+            type: "popup",
+            titlePreface: browser.i18n.getMessage("extensionName"),
+            height: 250,
+            width: 750
+          });
+        }
 
         // Set popup scheduler defaults based on original message
+        scheduleCache[window.id] =
+          SLStatic.parseHeadersForPopupUICache(headers);
+        SLStatic.debug(`Schedule cache item added for window ${window.id}:`,
+          scheduleCache[window.id]);
+        browser.storage.local.set({ scheduleCache });
 
-        browser.storage.local.get({ scheduleCache: {} }).then(
-          ({ scheduleCache }) => {
-            scheduleCache[window.id] =
-              SLStatic.parseHeadersForPopupUICache(headers);
-            console.log(scheduleCache);
-            browser.storage.local.set({ scheduleCache });
-          }).catch(SLStatic.error);
-      } // else: not queued by send later.
-    } // else: Not editing a saved message.
-  }
+        // Once the draft save operation is definitely complete,
+        // then invalidate that row with the columnHandler.
+        setTimeout(() => {
+          messenger.columnHandler.invalidateRowByMessageId(
+            headers["message-id"]
+          ).catch(SLStatic.error);
+        }, 1000);
+      } // else: This message is not queued by send later.
+    } // else: Not editing a saved draft message.
+  } // else: This isn't a msgcompose window.
 });
 
 // Also attach bindings to all existing msgcompose windows
@@ -1255,8 +1270,6 @@ messenger.SL3U.onKeyCode.addListener(keyid => {
               SendLater.preSendCheck.call(SendLater).then(dosend => {
                 if (dosend) {
                   SendLater.scheduleSendLater.call(SendLater, tabId, { delay: sendDelay });
-                } else {
-                  SLStatic.info("User cancelled send via pre-send check.");
                 }
               });
             } else if (ccWins.length === 0) {
@@ -1365,8 +1378,6 @@ messenger.runtime.onMessage.addListener(async (message) => {
                             args: message.args,
                             cancelOnReply: message.cancelOnReply };
           SendLater.scheduleSendLater.call(SendLater, message.tabId, options);
-        } else {
-          SLStatic.info("User cancelled send via presendcheck.");
         }
       });
       break;

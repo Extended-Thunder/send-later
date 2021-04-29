@@ -122,6 +122,13 @@
         "parameters": []
       },
       {
+        "name": "onBeforeSend",
+        "type": "function",
+        "async": true,
+        "description": "Alert other extensions that we're about to send this message.",
+        "parameters": []
+      },
+      {
         "name": "expandRecipients",
         "type": "function",
         "async": true,
