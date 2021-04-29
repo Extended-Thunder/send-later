@@ -103,36 +103,17 @@
         ]
       },
       {
-        "name": "saveAsDraft",
+        "name": "performPseudoSend",
         "type": "function",
         "async": true,
-        "description": "",
-        "parameters": [
-          {
-            "name": "newMessageId",
-            "type": "string"
-          }
-        ]
-      },
-      {
-        "name": "preSendCheck",
-        "type": "function",
-        "async": true,
-        "description": "Check empty subject etc",
-        "parameters": []
-      },
-      {
-        "name": "onBeforeSend",
-        "type": "function",
-        "async": true,
-        "description": "Alert other extensions that we're about to send this message.",
+        "description": "Perform put current composed message in Drafts and close the window. If the message is a reply or forward, then mark the original message accordingly.",
         "parameters": []
       },
       {
         "name": "expandRecipients",
         "type": "function",
         "async": true,
-        "description": "Expand recipient lists.",
+        "description": "Expand mailing lists into individual recipients.",
         "parameters": [
           {
             "name": "field",
@@ -141,10 +122,10 @@
         ]
       },
       {
-        "name": "builtInSendLater",
+        "name": "GenericPreSendCheck",
         "type": "function",
         "async": true,
-        "description": "Initiate send from current composition window using thunderbirds builtin send later funcion.",
+        "description": "Check if message is ready to be sent, and alert other extensions.",
         "parameters": []
       },
       {

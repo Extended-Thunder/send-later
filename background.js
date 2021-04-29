@@ -62,24 +62,6 @@ const SendLater = {
       return { cellText, sortValue };
     },
 
-    async preSendCheck() {
-      let check = await messenger.SL3U.preSendCheck();
-      if (!check) {
-        SLStatic.warn("Canceled via preSendCheck");
-        return false;
-      }
-
-      // If this returns, then the beforeSend listeners all passed.
-      let beforeSend = await messenger.SL3U.onBeforeSend();
-      if (!beforeSend) {
-        SLStatic.warn("canceled via OnBeforeSend");
-        return false;
-      }
-
-      SLStatic.warn("Pre-send checks passed.");
-      return true;
-    },
-
     async isEditing(msgId) {
       // Look through each of the compose windows, check for this message UUID.
       return await messenger.SL3U.editingMessage(msgId);
@@ -209,17 +191,29 @@ const SendLater = {
           return;
         }
       }
-      messenger.SL3U.builtInSendLater().catch((ex) => {
-        SLStatic.error("Error during builtin send later operation",ex);
-      });
+      messenger.SL3U.goDoCommand("cmd_sendLater");
     },
 
     async scheduleSendLater(tabId, options) {
+      let now = new Date();
+      SLStatic.debug(`Pre-send check initiated at ${now}`);
+      let check = await messenger.SL3U.GenericPreSendCheck();
+      if (!check) {
+        SLStatic.warn(`Canceled via pre-send checks (check initiated at ${now})`);
+        return;
+      }
+
       SLStatic.info(`Scheduling send later: ${tabId} with options`,options);
       const { preferences } = await browser.storage.local.get({ preferences: {} });
+      const composeDetails = await messenger.compose.getComposeDetails(tabId);
+      const newMessageId = await messenger.SL3U.generateMsgId(composeDetails.identityId);
+
+      // We want to fully expand the recipients list
+      await SendLater.expandRecipients(tabId);
 
       const customHeaders = {
-        "x-send-later-uuid": preferences.instanceUUID
+        "x-send-later-uuid": preferences.instanceUUID,
+        'message-id': newMessageId
       };
 
       // Determine time at which this message should be sent
@@ -245,24 +239,16 @@ const SendLater = {
         customHeaders['x-send-later-args'] = options.args;
       }
 
-      const inserted = Object.keys(customHeaders).map(name =>
-        messenger.SL3U.setHeader(name, (""+customHeaders[name]))
-      );
-      await this.expandRecipients(tabId);
-      await Promise.all(inserted);
+      for (let key of Object.keys(customHeaders)) {
+        await messenger.SL3U.setHeader(key, customHeaders[key]);
+      }
       SLStatic.debug('headers',customHeaders);
 
-      const composeDetails = await messenger.compose.getComposeDetails(tabId);
-      const newMessageId = await messenger.SL3U.generateMsgId(composeDetails.identityId);
-
       if (preferences.markDraftsRead) {
-        this.watchAndMarkRead.add(newMessageId);
+        SendLater.watchAndMarkRead.add(newMessageId);
       }
 
-      const success = await messenger.SL3U.saveAsDraft(newMessageId);
-      if (!success) {
-        SLStatic.error("Something went wrong while scheduling this message.");
-      }
+      await messenger.SL3U.performPseudoSend().catch(SLStatic.error);
 
       setTimeout(() => {
         SendLater.updateStatusBarIndicator(false);
@@ -296,15 +282,11 @@ const SendLater = {
         let { ufuncs } = await messenger.storage.local.get({ ufuncs: {} });
         let funcBody = ufuncs[funcName].body;
         let schedule = SLStatic.parseUfuncToSchedule(funcName, funcBody, null, funcArgs);
-        SendLater.preSendCheck.call(SendLater).then(dosend => {
-          if (dosend) {
-            let options = { sendAt: schedule.sendAt,
-                            recurSpec: SLStatic.unparseRecurSpec(schedule.recur),
-                            args: schedule.recur.args,
-                            cancelOnReply: false };
-            SendLater.scheduleSendLater.call(SendLater, tabId, options);
-          }
-        });
+        let options = { sendAt: schedule.sendAt,
+                        recurSpec: SLStatic.unparseRecurSpec(schedule.recur),
+                        args: schedule.recur.args,
+                        cancelOnReply: false };
+        SendLater.scheduleSendLater(tabId, options);
       }
     },
 
@@ -1215,6 +1197,7 @@ messenger.SL3U.onKeyCode.addListener(keyid => {
   switch (keyid) {
     case "key_altShiftEnter": {
       if (SendLater.prefCache.altBinding) {
+        SLStatic.info("Opening popup");
         messenger.composeAction.openPopup();
       } else {
         SLStatic.info("Ignoring Alt+Shift+Enter on account of user preferences");
@@ -1227,9 +1210,7 @@ messenger.SL3U.onKeyCode.addListener(keyid => {
         if (SendLater.prefCache.altBinding) {
           SLStatic.info("Passing Ctrl+Shift+Enter along to builtin send later " +
                         "because user bound alt+shift+enter instead.");
-          messenger.SL3U.builtInSendLater().catch((ex) => {
-            SLStatic.error("Error during builtin send later",ex);
-          });
+          messenger.SL3U.goDoCommand("cmd_sendLater");
         } else {
           SLStatic.info("Opening popup");
           messenger.composeAction.openPopup();
@@ -1266,12 +1247,7 @@ messenger.SL3U.onKeyCode.addListener(keyid => {
                 throw new Error(`Unexpected situation: no tabs found in current window`);
               }
               const tabId = ccTabs[0].id;
-
-              SendLater.preSendCheck.call(SendLater).then(dosend => {
-                if (dosend) {
-                  SendLater.scheduleSendLater.call(SendLater, tabId, { delay: sendDelay });
-                }
-              });
+              SendLater.scheduleSendLater(tabId, { delay: sendDelay });
             } else if (ccWins.length === 0) {
               // No compose window is opened
               SLStatic.warn(`The currently active window is not a messageCompose window`);
@@ -1371,15 +1347,11 @@ messenger.runtime.onMessage.addListener(async (message) => {
     }
     case "doSendLater": {
       SLStatic.debug("User requested send later.");
-      SendLater.preSendCheck.call(SendLater).then(dosend => {
-        if (dosend) {
-          const options = { sendAt: message.sendAt,
-                            recurSpec: message.recurSpec,
-                            args: message.args,
-                            cancelOnReply: message.cancelOnReply };
-          SendLater.scheduleSendLater.call(SendLater, message.tabId, options);
-        }
-      });
+      const options = { sendAt: message.sendAt,
+                        recurSpec: message.recurSpec,
+                        args: message.args,
+                        cancelOnReply: message.cancelOnReply };
+      SendLater.scheduleSendLater(message.tabId, options);
       break;
     }
     case "getMainLoopStatus": {
