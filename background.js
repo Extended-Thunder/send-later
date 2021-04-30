@@ -29,6 +29,21 @@ const SendLater = {
         `[${platformInfo.os} ${platformInfo.arch}]`);
     },
 
+    registerQuitNotifications(enabled) {
+      SLStatic.debug(`Setting quit notifications: ${enabled ? "on" : "off"}`);
+      if (enabled) {
+        let appName = browser.i18n.getMessage("extensionName");
+        let title = browser.i18n.getMessage("scheduledMessagesWarningTitle") + " - " + appName;
+        let requestWarning = browser.i18n.getMessage("scheduledMessagesWarningQuitRequested", appName);
+        let grantedWarning = browser.i18n.getMessage("ScheduledMessagesWarningQuit", appName);
+        messenger.quitter.setQuitRequestedAlert(title, requestWarning);
+        messenger.quitter.setQuitGrantedAlert(title, grantedWarning);
+      } else {
+        messenger.quitter.removeQuitRequestedObserver();
+        messenger.quitter.removeQuitGrantedObserver();
+      }
+    },
+
     customHdrToScheduleInfo(customHeaders, instanceUUID) {
       let cellText = "";
       let sortValue = (Math.pow(2,31)-5)|0;
@@ -1062,9 +1077,10 @@ const SendLater = {
           SLStatic.longDateTimeFormat = preferences.longDateTimeFormat;
           SLStatic.shortDateTimeFormat = preferences.shortDateTimeFormat;
           messenger.SL3U.setSendLaterVars({
-            logConsoleLevel: SLStatic.logConsoleLevel,
-            ask_quit: preferences.askQuit
+            logConsoleLevel: SLStatic.logConsoleLevel
           });
+
+          SendLater.registerQuitNotifications(preferences.askQuit);
         }).catch(ex => SLStatic.error(ex));
 
       // Initialize the draft folder column, expanded
@@ -1090,9 +1106,10 @@ const SendLater = {
             });
 
           messenger.SL3U.setSendLaterVars({
-            logConsoleLevel: SLStatic.logConsoleLevel,
-            ask_quit: preferences.askQuit
+            logConsoleLevel: SLStatic.logConsoleLevel
           });
+
+          SendLater.registerQuitNotifications(preferences.askQuit);
 
           messenger.statusBar.setVisible(preferences.showStatus);
 
@@ -1582,14 +1599,6 @@ function mainLoop() {
       clearTimeout(SendLater.loopTimeout);
     }
   } catch (ex) { SLStatic.error(ex); }
-
-  // This variable gets set to "true" when a user is warned about
-  // leaving TB open, but it may not get set back to false if
-  // some other quit-requested-observer aborts the quit. So just
-  // just in case, we'll periodically set it back to "false".
-  messenger.SL3U.setSendLaterVars({
-    quit_confirmed: false
-  }).catch(SLStatic.error);
 
   browser.storage.local.get({ preferences: {} }).then((storage) => {
     let interval = +storage.preferences.checkTimePref || 0;

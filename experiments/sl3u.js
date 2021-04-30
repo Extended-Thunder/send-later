@@ -20,88 +20,6 @@ const SendLaterVars = {
   context: null
 }
 
-const SendLaterObservers = {
-  QuitObserver: {
-    observerTopics: [
-      "quit-application-requested",
-      "quit-application-granted"
-    ],
-    observe(subject, topic, data) {
-      const appName = Services.appinfo.name;
-      const scheduledMessagesWarningTitle =
-        SendLaterFunctions.getMessage(SendLaterVars.context, "scheduledMessagesWarningTitle");
-      const scheduledMessagesWarningQuitRequested =
-        SendLaterFunctions.getMessage(SendLaterVars.context, "scheduledMessagesWarningQuitRequested", [appName]);
-      const scheduledMessagesWarningQuit =
-        SendLaterFunctions.getMessage(SendLaterVars.context, "ScheduledMessagesWarningQuit", [appName]);
-      const confirmAgain =
-        SendLaterFunctions.getMessage(SendLaterVars.context, "confirmAgain");
-
-      const localStorage = SendLaterVars.context.apiCan.findAPIPath("storage.local");
-      let check, result;
-      switch (topic) {
-        case "quit-application-requested":
-          if (!SendLaterVars.messages_pending ||
-              !SendLaterVars.ask_quit) {
-            return;
-          }
-
-          SendLaterVars.quit_confirmed = true;
-          check = { value: true };
-          result = Services.prompt.confirmCheck(
-            null, scheduledMessagesWarningTitle,
-            scheduledMessagesWarningQuitRequested,
-            confirmAgain, check
-          );
-          if (!check.value) {
-            localStorage.callMethodInParentProcess(
-              "get", [{ "preferences": {} }]
-            ).then(({ preferences }) => {
-              preferences.askQuit = false;
-              localStorage.callMethodInParentProcess(
-                "set", [{ preferences }]
-              ).then(
-                () => { console.log("Successfully set preferences.askQuit = false"); }
-              );
-            }).catch(SendLaterFunctions.error);
-          }
-          if (!result) {
-            subject.QueryInterface(Ci.nsISupportsPRBool);
-            subject.data = true;
-          }
-          break;
-        case "quit-application-granted":
-          if (SendLaterVars.quit_confirmed ||
-              !SendLaterVars.messages_pending ||
-              !SendLaterVars.ask_quit) {
-            return;
-          }
-          check = { value: true };
-          result = Services.prompt.alertCheck(
-            null, scheduledMessagesWarningTitle,
-            scheduledMessagesWarningQuit,
-            confirmAgain, check
-          );
-          if (!check.value) {
-            localStorage.callMethodInParentProcess(
-              "get", [{ "preferences": {} }]
-            ).then(({ preferences }) => {
-              preferences.askQuit = false;
-              localStorage.callMethodInParentProcess(
-                "set", [{ preferences }]
-              ).then(
-                () => { console.log("Successfully set preferences.askQuit = false"); }
-              );
-            }).catch(SendLaterFunctions.error);
-          }
-          break;
-        default:
-          break;
-      }
-    },
-  }
-}
-
 const SendLaterFunctions = {
   logger(msg, level, stream) {
     const levels = ["all","trace","debug","info","warn","error","fatal"];
@@ -396,12 +314,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
     let { extension } = context;
     SendLaterVars.context = context;
     context.callOnClose(this);
-
-    // Setup application quit observer
-    for (let topic of SendLaterObservers.QuitObserver.observerTopics) {
-      Services.obs.addObserver(SendLaterObservers.QuitObserver, topic);
-      console.debug(`[SL3U]: Added observer to topic ${topic}`);
-    }
 
     // Watch the outbox to avoid messages getting stuck there
     const msgSendLater = Cc[
@@ -1397,22 +1309,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           cw.ResolvePendingPreSendCheck(false);
         } catch (ex) {
           SendLaterFunctions.error("Unable to resolve pre-send check promise", ex);
-        }
-      }
-    }
-
-    // Remove application quit observer
-    for (let obsName of Object.getOwnPropertyNames(SendLaterObservers)) {
-      let observer = SendLaterObservers[obsName];
-      for (let topic of observer.observerTopics) {
-        try {
-          Services.obs.removeObserver(observer, topic);
-          SendLaterFunctions.debug(`Removed observer from topic ${topic}`);
-        } catch (ex) {
-          SendLaterFunctions.error(
-            `Unable to remove observer from topic ${topic}`,
-            observer, ex
-          );
         }
       }
     }

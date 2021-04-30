@@ -1,0 +1,49 @@
+[
+  {
+    "namespace": "quitter",
+    "functions": [
+      {
+        "name":"setQuitRequestedAlert",
+        "type":"function",
+        "async":true,
+        "parameters":[
+          {
+            "name":"title",
+            "type":"string"
+          },
+          {
+            "name":"message",
+            "type":"string"
+          }
+        ]
+      },
+      {
+        "name":"setQuitGrantedAlert",
+        "type":"function",
+        "async":true,
+        "parameters":[
+          {
+            "name":"title",
+            "type":"string"
+          },
+          {
+            "name":"message",
+            "type":"string"
+          }
+        ]
+      },
+      {
+        "name":"removeQuitRequestedObserver",
+        "type":"function",
+        "async":true,
+        "parameters":[]
+      },
+      {
+        "name":"removeQuitGrantedObserver",
+        "type":"function",
+        "async":true,
+        "parameters":[]
+      }
+    ]
+  }
+]

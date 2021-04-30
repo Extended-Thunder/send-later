@@ -118,6 +118,14 @@
         "paths": [["statusBar"]],
         "script": "experiments/customStatusBarImplementation.js"
       }
+    },
+    "quitter": {
+      "schema": "experiments/quitter.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "paths": [["quitter"]],
+        "script": "experiments/quitterImplementation.js"
+      }
     }
   }
 }
