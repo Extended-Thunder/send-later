@@ -19,7 +19,7 @@
               "type": "boolean"
             },
             {
-              "name": "menuLinks",
+              "name": "menuItems",
               "type": "any"
             }
           ]

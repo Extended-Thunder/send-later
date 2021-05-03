@@ -61,25 +61,6 @@ class StatusMenu {
     });
   }
 
-  static propertiesToAttributes(properties) {
-    let attr = {
-      id: `${properties.id}`,
-      label: properties.label
-    };
-    if (properties.uri !== undefined) {
-      attr.oncommand = `Cc[
-          '@mozilla.org/uriloader/external-protocol-service;1'
-        ].getService(
-          Ci.nsIExternalProtocolService
-        ).loadURI(
-          Cc[
-            '@mozilla.org/network/io-service;1'
-          ].getService(Ci.nsIIOService).newURI('${properties.uri}', null, null)
-        )`;
-    }
-    return attr;
-  }
-
   async setStatusMessage(text) {
     this.statusText = text;
     for (let window of Services.wm.getEnumerator("mail:3pane")) {
@@ -106,8 +87,10 @@ class StatusMenu {
   }
 
   addItem(properties) {
-    let item = StatusMenu.propertiesToAttributes(properties);
-    this.menuItems.add(item);
+    this.menuItems.add({
+      id: `${properties.id}`,
+      label: properties.label
+    });
   }
 
   addToWindow(window) {

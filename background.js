@@ -1010,17 +1010,13 @@ const SendLater = {
           { id: 'show-preferences',
             label: browser.i18n.getMessage("prefwindow.title") },
           { id: 'user-guide-link',
-            label: browser.i18n.getMessage("userGuideLabel"),
-            uri: "https://extended-thunder.github.io/send-later/" },
+            label: browser.i18n.getMessage("userGuideLabel") },
           { id: 'release-notes-link',
-            label: browser.i18n.getMessage("releasenotes.value"),
-            uri: "https://github.com/Extended-Thunder/send-later/releases" },
+            label: browser.i18n.getMessage("releasenotes.value") },
           { id: 'contact-author-link',
-            label: browser.i18n.getMessage("contactAuthorLabel"),
-            uri: "https://github.com/Extended-Thunder/send-later/discussions/278" },
+            label: browser.i18n.getMessage("contactAuthorLabel") },
           { id: 'donate-link',
-            label: browser.i18n.getMessage("donatelink.value"),
-            uri: "https://extended-thunder.github.io/send-later/#support-send-later" }
+            label: browser.i18n.getMessage("donatelink.value") }
         ]
       ).then(() => {
         SendLater.updateStatusBarIndicator(false);
@@ -1029,8 +1025,23 @@ const SendLater = {
 
       // Status bar menu listener
       let p_e = messenger.statusBar.statusMenuCallback.addListener(id => {
-        if (id === "show-preferences")
-          messenger.runtime.openOptionsPage();
+        switch (id) {
+          case "show-preferences":
+            messenger.runtime.openOptionsPage();
+            break;
+          case "user-guide-link":
+            messenger.windows.openDefaultBrowser("https://extended-thunder.github.io/send-later/");
+            break;
+          case "release-notes-link":
+            messenger.windows.openDefaultBrowser("https://github.com/Extended-Thunder/send-later/releases");
+            break;
+          case "contact-author-link":
+            messenger.windows.openDefaultBrowser("https://github.com/Extended-Thunder/send-later/discussions/278");
+            break;
+          case "donate-link":
+            messenger.windows.openDefaultBrowser("https://extended-thunder.github.io/send-later/#support-send-later");
+            break;
+        };
       });
       promises.push(p_e);
 
