@@ -323,54 +323,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
     return {
       SL3U: {
-        async alert(title, text) {
-          const window = Services.wm.getMostRecentWindow(null);
-          return Services.prompt.alert(window, (title || ""), (text || ""));
-        },
-
-        async alertCheck(title, message, checkMessage, state) {
-          function doAlertCheck(resolve, reject) {
-            try {
-              let checkbox = { value: state };
-              Services.prompt.alertCheck(
-                null, title, message, checkMessage, checkbox
-              );
-              resolve({ check: checkbox.value });
-            } catch (err) {
-              reject(`An error occurred in SL3U.doConfirmCheck: ${err}`);
-            }
-          }
-          return new Promise(doAlertCheck.bind(this));
-        },
-
-        async confirm(title, message) {
-          function doConfirm(resolve, reject) {
-            try {
-              const result = Services.prompt.confirm(null, title, message);
-              SendLaterFunctions.debug("SL3U.confirm",
-                                       `User input ${result ? "OK" : "Cancel"}`);
-              resolve(result);
-            } catch (err) {
-              reject(`An error occurred in SL3U.confirmAction: ${err}`);
-            }
-          }
-          return new Promise(doConfirm.bind(this));
-        },
-
-        async confirmCheck(title, message, checkMessage, state) {
-          function doConfirmCheck(resolve, reject) {
-            try {
-              let checkbox = { value: state };
-              let okToProceed = Services.prompt.confirmCheck(
-                null, title, message, checkMessage, checkbox
-              );
-              resolve({ ok: okToProceed, check: checkbox.value });
-            } catch (err) {
-              reject(`An error occurred in SL3U.doConfirmCheck: ${err}`);
-            }
-          }
-          return new Promise(doConfirmCheck.bind(this));
-        },
 
         async setLegacyPref(name, dtype, value) {
           const prefName = `extensions.sendlater3.${name}`;

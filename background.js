@@ -10,13 +10,46 @@ const SendLater = {
 
     loopTimeout: null,
 
-    notify(title, text) {
-      SLStatic.warn(`Alert: ${title}- ${text}`);
-      messenger.notifications.create(null, {
-        "type": "basic",
-        "title": title,
-        "message": text
+    popupCallbacks: new Map(),
+
+    notificationPopup(type, title, message, checkLabel, checked) {
+      title = title || browser.i18n.getMessage("extensionName");
+      checkLabel = checkLabel || browser.i18n.getMessage("confirmAgain");
+
+      let url = `ui/notification.html?`
+              + `&type=${type}`
+              + `&message=${encodeURIComponent(message)}`
+              + `&checkLabel=${encodeURIComponent(checkLabel)}`
+              + `&checked=${checked ? "true" : "false"}`;
+
+      return new Promise(resolve => {
+        messenger.windows.create({
+          url: url,
+          type: "popup",
+          titlePreface: title,
+          height: 250,
+          width: 750
+        }).then(window => {
+          const tab = window.tabs[0];
+          SendLater.popupCallbacks.set(tab.id, resolve);
+        });
       });
+    },
+
+    alert(title, message) {
+      return SendLater.notificationPopup("alert", title, message);
+    },
+
+    confirm(title, message) {
+      return SendLater.notificationPopup("confirm", title, message);
+    },
+
+    alertCheck(title, message, checkLabel, checked) {
+      return SendLater.notificationPopup("alertCheck", title, message, checkLabel, checked);
+    },
+
+    confirmCheck(title, message, checkLabel, checked) {
+      return SendLater.notificationPopup("confirmCheck", title, message, checkLabel, checked);
     },
 
     async printVersionInfo() {
@@ -160,7 +193,7 @@ const SendLater = {
     async doSendNow() {
       const { preferences } = await browser.storage.local.get({ preferences: {} });
       if (preferences.showSendNowAlert) {
-        const result = await messenger.SL3U.confirmCheck(
+        const result = await SendLater.confirmCheck(
           browser.i18n.getMessage("AreYouSure"),
           browser.i18n.getMessage("SendNowConfirmMessage"),
           browser.i18n.getMessage("ConfirmAgain"),
@@ -189,7 +222,7 @@ const SendLater = {
     async doPlaceInOutbox() {
       const { preferences } = await browser.storage.local.get({ preferences: {} });
       if (preferences.showOutboxAlert) {
-        const result = await messenger.SL3U.confirmCheck(
+        const result = await SendLater.confirmCheck(
           browser.i18n.getMessage("AreYouSure"),
           browser.i18n.getMessage("OutboxConfirmMessage"),
           browser.i18n.getMessage("ConfirmAgain"),
@@ -359,11 +392,11 @@ const SendLater = {
           SLStatic.debug(`Encountered previously sent message "${msgSubject}" ${originalMsgId}.`);
         } else {
           SLStatic.error(`Attempted to resend message "${msgSubject}" ${originalMsgId}.`);
-          const result = await messenger.SL3U.alertCheck(
-            "",
+          const result = await SendLater.alertCheck(
+            null,
             browser.i18n.getMessage("CorruptFolderError", [msgHdr.folder.path]) + "\n\n" +
               browser.i18n.getMessage("CorruptFolderErrorDetails", [msgSubject, originalMsgId]),
-            browser.i18n.getMessage("ConfirmAgain"),
+            null,
             true
           );
           preferences.optOutResendWarning = (result.check === false);
@@ -398,7 +431,7 @@ const SendLater = {
             );
             const warningTitle = browser.i18n.getMessage("ScheduledMessagesWarningTitle");
             this.warnedAboutLateMessageBlocked.add(originalMsgId);
-            messenger.SL3U.alert(warningTitle, warningMsg)
+            SendLater.alert(warningTitle, warningMsg)
           }
           return;
         }
@@ -831,11 +864,10 @@ const SendLater = {
       }
 
       if (message !== "") {
-        const title = browser.i18n.getMessage("extensionName");
         message += "\n\n" + browser.i18n.getMessage("SanityCheckCorruptFolderWarning");
         message += `\n\n` + browser.i18n.getMessage("SanityCheckConfirmOptionMessage");
-        const okay = await messenger.SL3U.confirm(title, message.trim());
-        if (!okay) {
+        const result = await SendLater.confirm(null, message.trim());
+        if (!result.ok) {
           SLStatic.info("Disabling Send Later per user selection.");
           preferences.checkTimePref = 0;
           // We dont need to do the whole migration again next time, but
@@ -1178,12 +1210,13 @@ messenger.windows.onCreated.addListener(async (window) => {
 
         // Alert the user about what just happened
         if (preferences.showEditAlert) {
-          messenger.windows.create({
-            url: "ui/draftSaveWarning.html",
-            type: "popup",
-            titlePreface: browser.i18n.getMessage("extensionName"),
-            height: 250,
-            width: 750
+          let draftSaveWarning = browser.i18n.getMessage("draftSaveWarning")
+          SendLater.alertCheck(
+            null, draftSaveWarning, null, true
+          ).then(async (result) => {
+            let { preferences } = await browser.storage.local.get({preferences: {}});
+            preferences.showEditAlert = result.check;
+            browser.storage.local.set({ preferences });
           });
         }
 
@@ -1353,14 +1386,31 @@ messenger.runtime.onMessageExternal.addListener(
     }
   });
 
+messenger.tabs.onRemoved.addListener(tabId => {
+  if (SendLater.popupCallbacks.has(tabId)) {
+    let callback = SendLater.popupCallbacks.get(tabId);
+    callback({ ok: false, check: null });
+    SendLater.popupCallbacks.delete(tabId);
+  }
+});
+
 // Various extension components communicate with
 // the background script via these runtime messages.
 // e.g. the options page and the scheduler dialog.
-messenger.runtime.onMessage.addListener(async (message) => {
+messenger.runtime.onMessage.addListener(async (message, sender) => {
+
+  let tabId = sender.tab.id;
+  if (SendLater.popupCallbacks.has(tabId)) {
+    let callback = SendLater.popupCallbacks.get(tabId);
+    callback(message);
+    SendLater.popupCallbacks.delete(tabId);
+    return;
+  }
+
   const response = {};
   switch (message.action) {
     case "alert": {
-      SendLater.notify(message.title, message.text);
+      SendLater.alert(message.title, message.text);
       break;
     }
     case "doSendNow": {
