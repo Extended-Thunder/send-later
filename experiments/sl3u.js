@@ -20,88 +20,6 @@ const SendLaterVars = {
   context: null
 }
 
-const SendLaterObservers = {
-  QuitObserver: {
-    observerTopics: [
-      "quit-application-requested",
-      "quit-application-granted"
-    ],
-    observe(subject, topic, data) {
-      const appName = Services.appinfo.name;
-      const scheduledMessagesWarningTitle =
-        SendLaterFunctions.getMessage(SendLaterVars.context, "scheduledMessagesWarningTitle");
-      const scheduledMessagesWarningQuitRequested =
-        SendLaterFunctions.getMessage(SendLaterVars.context, "scheduledMessagesWarningQuitRequested", [appName]);
-      const scheduledMessagesWarningQuit =
-        SendLaterFunctions.getMessage(SendLaterVars.context, "ScheduledMessagesWarningQuit", [appName]);
-      const confirmAgain =
-        SendLaterFunctions.getMessage(SendLaterVars.context, "confirmAgain");
-
-      const localStorage = SendLaterVars.context.apiCan.findAPIPath("storage.local");
-      let check, result;
-      switch (topic) {
-        case "quit-application-requested":
-          if (!SendLaterVars.messages_pending ||
-              !SendLaterVars.ask_quit) {
-            return;
-          }
-
-          SendLaterVars.quit_confirmed = true;
-          check = { value: true };
-          result = Services.prompt.confirmCheck(
-            null, scheduledMessagesWarningTitle,
-            scheduledMessagesWarningQuitRequested,
-            confirmAgain, check
-          );
-          if (!check.value) {
-            localStorage.callMethodInParentProcess(
-              "get", [{ "preferences": {} }]
-            ).then(({ preferences }) => {
-              preferences.askQuit = false;
-              localStorage.callMethodInParentProcess(
-                "set", [{ preferences }]
-              ).then(
-                () => { console.log("Successfully set preferences.askQuit = false"); }
-              );
-            }).catch(SendLaterFunctions.error);
-          }
-          if (!result) {
-            subject.QueryInterface(Ci.nsISupportsPRBool);
-            subject.data = true;
-          }
-          break;
-        case "quit-application-granted":
-          if (SendLaterVars.quit_confirmed ||
-              !SendLaterVars.messages_pending ||
-              !SendLaterVars.ask_quit) {
-            return;
-          }
-          check = { value: true };
-          result = Services.prompt.alertCheck(
-            null, scheduledMessagesWarningTitle,
-            scheduledMessagesWarningQuit,
-            confirmAgain, check
-          );
-          if (!check.value) {
-            localStorage.callMethodInParentProcess(
-              "get", [{ "preferences": {} }]
-            ).then(({ preferences }) => {
-              preferences.askQuit = false;
-              localStorage.callMethodInParentProcess(
-                "set", [{ preferences }]
-              ).then(
-                () => { console.log("Successfully set preferences.askQuit = false"); }
-              );
-            }).catch(SendLaterFunctions.error);
-          }
-          break;
-        default:
-          break;
-      }
-    },
-  }
-}
-
 const SendLaterFunctions = {
   logger(msg, level, stream) {
     const levels = ["all","trace","debug","info","warn","error","fatal"];
@@ -196,25 +114,6 @@ const SendLaterFunctions = {
       }
     };
     timer.initWithCallback(callback, 100, Ci.nsITimer.TYPE_REPEATING_SLACK);
-  },
-
-  generateMsgId(idkey) {
-    const accounts = Cc["@mozilla.org/messenger/account-manager;1"]
-      .getService(Ci.nsIMsgAccountManager);
-    const identity = accounts.getIdentity(idkey);
-    if (identity) {
-      const compUtils = Cc["@mozilla.org/messengercompose/computils;1"]
-        .createInstance(Ci.nsIMsgCompUtils);
-      const newMessageId = compUtils.msgGenerateMessageId(identity);
-      if (newMessageId) {
-        return newMessageId;
-      } else {
-        throw (`compUtils.msgGenerateMessageId(${identity}) failed`);
-      }
-    } else {
-      throw (`MSGID: accounts.getIdentity(${idkey}) failed`);
-    }
-    return null;
   },
 
   /** From ext-mail.js
@@ -325,139 +224,6 @@ const SendLaterFunctions = {
                                               listener, msgWindow);
   },
 
-  rebuildDraftsFolders() {
-    let accountManager = Components
-      .classes["@mozilla.org/messenger/account-manager;1"]
-      .getService(Ci.nsIMsgAccountManager);
-    let fdrlocal = accountManager.localFoldersServer.rootFolder;
-    let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"].createInstance();
-    msgWindow = msgWindow.QueryInterface(Ci.nsIMsgWindow);
-    let folderstocheck = new Object();
-    let foldersdone = new Object();
-    let CheckFolder = function(folder) {
-      let uri = folder.URI;
-      if (folderstocheck[uri] || foldersdone[uri]) {
-          SendLaterFunctions.debug("rebuildDraftsFolder.CheckFolder: Already done - " + uri);
-          return;
-      }
-      foldersdone[uri] = 1;
-      SendLaterFunctions.debug("SendLaterFunctions.rebuildDraftsFolder.CheckFolder","Compacting folder",folder);
-      //folder.compact(null, msgWindow);
-      //const msgDb = folder.msgDatabase.QueryInterface(Ci.nsIMsgDatabase);
-      const msgStore = folder.msgStore.QueryInterface(Ci.nsIMsgPluggableStore);
-      function CustomListener() {};
-      CustomListener.prototype = {
-        QueryInterface: ChromeUtils.generateQI(["nsIUrlListener"]),
-        OnStopRunningUrl(url, exitCode) {
-          SendLaterFunctions.debug(
-            "SendLaterFunctions.rebuildDraftsFolder.CustomListener.OnStopRunningUrl",
-            url, exitCode);
-          let nssErrorsService = Cc["@mozilla.org/nss_errors_service;1"].getService(
-            Ci.nsINSSErrorsService
-          );
-          try {
-            let errorClass = nssErrorsService.getErrorClass(exitCode);
-            if (errorClass == Ci.nsINSSErrorsService.ERROR_CLASS_BAD_CERT) {
-              let mailNewsUrl = url.QueryInterface(Ci.nsIMsgMailNewsUrl);
-              let secInfo = mailNewsUrl.failedSecInfo;
-              InformUserOfCertError(secInfo, url.asciiHostPort);
-            }
-          } catch (e) {
-            SendLaterFunctions.warn(
-              "SendLaterFunctions.rebuildDraftsFolder.CustomListener.OnStopRunningUrl",
-              e
-            );
-          }
-        },
-        OnStartCopy() {},
-        OnStopCopy(aExitCode) {
-          SendLaterFunctions.debug(
-            "SendLaterFunctions.rebuildDraftsFolder.CustomListener.OnStopCopy",
-            aExitCode
-          );
-        },
-        SetMessageKey(dstKey) {
-          SendLaterFunctions.debug(
-            "SendLaterFunctions.rebuildDraftsFolder.CustomListener.SetMessageKey",
-            dstKey
-          );
-        }
-      }
-      const listener = (new CustomListener());
-      try {
-        /*
-         * From comm/mailnews/base/public/nsIMsgPluggableStore.idl:
-         * void rebuildIndex(in nsIMsgFolder aFolder, in nsIMsgDatabase aMsgDB,
-         *                   in nsIMsgWindow aMsgWindow, in nsIUrlListener aListener);
-         */
-        msgStore.rebuildIndex(folder, folder.msgDatabase, msgWindow, listener);
-      } catch (e) {
-        SendLaterFunctions.error(
-          "SendLaterFunctions.rebuildDraftsFolder.CheckFolder",
-          e
-        );
-      }
-    }
-    let folder = fdrlocal.findSubFolder("Drafts");
-    if (folder)
-        CheckFolder(folder);
-    else
-      SendLaterFunctions.warn("rebuildDraftsFolder","FindSubFolder(fdrlocal, \"Drafts\") " +
-            "returned nothing");
-
-    let draft_folder_pref = 'mail.identity.default.draft_folder';
-    let local_draft_pref = Services.prefs.getStringPref(draft_folder_pref);
-    SendLaterFunctions.debug("mail.identity.default.draft_folder=" + local_draft_pref);
-    if (local_draft_pref) {
-      try {
-        folder = MailServices.folderLookup.getFolderForURL(local_draft_pref);
-        //folder = MailUtils.getExistingFolder(local_draft_pref);
-        if (folder) {
-          CheckFolder(folder);
-        }
-      } catch (e) {
-        SendLaterFunctions.debug("default Drafts folder " + local_draft_pref +
-                        " does not exist?");
-      }
-    }
-    let allaccounts = accountManager.accounts;
-    let acindex, numAccounts;
-    numAccounts = allaccounts.length;
-    SendLaterFunctions.debug("rebuildDraftsFolder", numAccounts, allaccounts);
-    for (acindex = 0; acindex<numAccounts; acindex++) {
-      let thisaccount = allaccounts[acindex].QueryInterface(Ci.nsIMsgAccount);
-      if (thisaccount) {
-        let numIdentities = thisaccount.identities.length;
-        SendLaterFunctions.debug(
-          thisaccount.incomingServer.type +
-            " - Identities [" +
-            numIdentities +
-            "]"
-        );
-        switch (thisaccount.incomingServer.type) {
-          case "pop3":
-          case "imap":
-          case "owl":
-            let identityNum;
-            for (identityNum = 0; identityNum < numIdentities; identityNum++) {
-              try {
-                SendLaterFunctions.debug("rebuildDraftsFolder",thisaccount.identities);
-                let identity = thisaccount.identities[identityNum].QueryInterface(Ci.nsIMsgIdentity);
-                let thisfolder = MailServices.folderLookup.getFolderForURL(identity.draftFolder);
-                CheckFolder(thisfolder);
-              } catch (e) {
-                SendLaterFunctions.warn("rebuildDraftsFolder","Error getting identity:",e);
-              }
-            }
-            break;
-          default:
-            SendLaterFunctions.debug("rebuildDraftsFolder: skipping this server type - " + thisaccount);
-            break;
-        }
-      }
-    }
-  },
-
   // If you add a message to the Outbox and call nsIMsgSendLater when it's
   // already in the middle of sending unsent messages, then it's possible
   // that the message you just added won't get sent. Therefore, when we add a
@@ -549,12 +315,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
     SendLaterVars.context = context;
     context.callOnClose(this);
 
-    // Setup application quit observer
-    for (let topic of SendLaterObservers.QuitObserver.observerTopics) {
-      Services.obs.addObserver(SendLaterObservers.QuitObserver, topic);
-      console.debug(`[SL3U]: Added observer to topic ${topic}`);
-    }
-
     // Watch the outbox to avoid messages getting stuck there
     const msgSendLater = Cc[
         "@mozilla.org/messengercompose/sendlater;1"
@@ -563,54 +323,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
     return {
       SL3U: {
-        async alert(title, text) {
-          const window = Services.wm.getMostRecentWindow(null);
-          return Services.prompt.alert(window, (title || ""), (text || ""));
-        },
-
-        async alertCheck(title, message, checkMessage, state) {
-          function doAlertCheck(resolve, reject) {
-            try {
-              let checkbox = { value: state };
-              Services.prompt.alertCheck(
-                null, title, message, checkMessage, checkbox
-              );
-              resolve({ check: checkbox.value });
-            } catch (err) {
-              reject(`An error occurred in SL3U.doConfirmCheck: ${err}`);
-            }
-          }
-          return new Promise(doAlertCheck.bind(this));
-        },
-
-        async confirm(title, message) {
-          function doConfirm(resolve, reject) {
-            try {
-              const result = Services.prompt.confirm(null, title, message);
-              SendLaterFunctions.debug("SL3U.confirm",
-                                       `User input ${result ? "OK" : "Cancel"}`);
-              resolve(result);
-            } catch (err) {
-              reject(`An error occurred in SL3U.confirmAction: ${err}`);
-            }
-          }
-          return new Promise(doConfirm.bind(this));
-        },
-
-        async confirmCheck(title, message, checkMessage, state) {
-          function doConfirmCheck(resolve, reject) {
-            try {
-              let checkbox = { value: state };
-              let okToProceed = Services.prompt.confirmCheck(
-                null, title, message, checkMessage, checkbox
-              );
-              resolve({ ok: okToProceed, check: checkbox.value });
-            } catch (err) {
-              reject(`An error occurred in SL3U.doConfirmCheck: ${err}`);
-            }
-          }
-          return new Promise(doConfirmCheck.bind(this));
-        },
 
         async setLegacyPref(name, dtype, value) {
           const prefName = `extensions.sendlater3.${name}`;
@@ -784,347 +496,169 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return false;
         },
 
-        // Mostly borrowed from MsgComposeCommands.js
-        async preSendCheck() {
+        /*
+         * Pre-send checks are tricky. They happen in the compose window's
+         * GenericSendMessage() function, but only when a message is actually
+         * being sent (i.e. not when it's saving as a draft, which is what we
+         * will ultimately be doing here). That function will evaluate all of
+         * the relevant checks (spelling, attachments, etc) and emit a 'beforesend'
+         * event to allow other extensions a chance to modify the message or
+         * cancel sending.
+         *
+         * If all of those checks pass, then GenericSendMessage
+         * will pass along to a function called CompleteGenericSendMessage, which
+         * actually does the sending. GenericSendMessage does not return anything,
+         * so we have no way of knowing what the result of its checks are. Instead,
+         * we will temporarily redefine the 'CompleteGenericSendMessage' function,
+         * and listen for the eventual callback.
+         *
+         * If the send was canceled during these checks, this promise will hang around
+         * waiting. It can resolve in two ways:
+         *     1. The pre-send checks all pass, and the dummy CompleteGenericSendMessage
+         *        function is executed (resolve to `true`).
+         *     2. The checks fail and this promise hangs around until GenericSendMessage
+         *        is eventually called again. That can happen either by Send Later, or
+         *        through some other channel like 'AutoSaveAsDraft' which means the
+         *        window is no longer locked and we can assume the checks failed
+         *        (pass through to original GenericSendMessage and resolve `false`).
+         * In either case, the promise will resolve and restore the window's original
+         * .*GenericSendMessage functions. In case 2, this promise may hang for quite
+         * some time, so don't `await` this function unless the subsequent code is
+         * conditional on a `true` response anyway.
+         */
+        GenericPreSendCheck() {
           const cw = Services.wm.getMostRecentWindow("msgcompose");
 
-          let msgCompFields = cw.GetComposeDetails();
-          let subject = msgCompFields.subject;
-          // Calling getComposeDetails collapses mailing lists. Expand them again.
-          cw.expandRecipients();
-          // Check if e-mail addresses are complete, in case user turned off
-          // autocomplete to local domain.
-          if (!cw.CheckValidEmailAddress(msgCompFields)) {
-            return false;
+          if (cw.ResolvePendingPreSendCheck) {
+            // Resolve any hanging promises. This happens if the user canceled
+            // sending via one of the pre-send checks, and is now running the
+            // scheduler again. The GenericSendMessage function does not notify
+            // CompleteGenericSendMessage about what happened.
+            cw.ResolvePendingPreSendCheck(false);
           }
 
-          const SetMsgBodyFrameFocus = function() {
-            // window.content.focus() fails to blur the currently focused element
-            cw.document.commandDispatcher.advanceFocusIntoSubtree(
-              cw.document.getElementById("appcontent")
-            );
+          if (!cw.OriginalCompleteGenericSendMessage) {
+            // Stash references to the true '*GenericSendMessage' functions.
+            // We will restore them soon.
+            cw.OriginalCompleteGenericSendMessage = cw.CompleteGenericSendMessage;
+            cw.OriginalGenericSendMessage = cw.GenericSendMessage;
           }
 
-          // i18n globals
-          let _gComposeBundle;
-          const getComposeBundle = function() {
-            // That one has to be lazy. Getting a reference to an element with a XBL
-            // binding attached will cause the XBL constructors to fire if they haven't
-            // already. If we get a reference to the compose bundle at script load-time,
-            // this will cause the XBL constructor that's responsible for the personas to
-            // fire up, thus executing the personas code while the DOM is not fully built.
-            // Since this <script> comes before the <statusbar>, the Personas code will
-            // fail.
-            if (!_gComposeBundle) {
-              _gComposeBundle = cw.document.getElementById("bundle_composeMsgs");
+          return new Promise((resolve, reject) => {
+            const DummyGenericSendMessage = (msgType) => {
+              // This function could get called if the user cancels the original
+              // send operation via one of the pre-send checks and later goes to
+              // send the message directly (via 'send now' or so). In that case
+              // we should restore the original window state, pass the function
+              // call along to the real 'GenericSendMessage' function, and resolve
+              // this dangling promise.
+              SendLaterFunctions.log("Received call to dummy GenericSendMessage", msgType);
+              cw.CompleteGenericSendMessage = cw.OriginalCompleteGenericSendMessage;
+              cw.GenericSendMessage = cw.OriginalGenericSendMessage;
+              cw.ResolvePendingPreSendCheck = undefined;
+              cw.GenericSendMessage(msgType);
+              resolve(false);
             }
-            return _gComposeBundle;
-          }
-
-          // Do we need to check the spelling?
-          if (Services.prefs.getBoolPref("mail.SpellCheckBeforeSend")) {
-            // We disable spellcheck for the following -subject line, attachment
-            // pane, identity and addressing widget therefore we need to explicitly
-            // focus on the mail body when we have to do a spellcheck.
-            function doConfirm(resolve, reject) {
-              try {
-                SetMsgBodyFrameFocus();
-                cw.cancelSendMessage = false;
-                cw.openDialog(
-                  "chrome://messenger/content/messengercompose/EdSpellCheck.xhtml",
-                  "_blank",
-                  "dialog,close,titlebar,modal,resizable",
-                  true,
-                  true,
-                  false
-                );
-                resolve(cw.cancelSendMessage);
-              } catch (err) {
-                reject(`An error occurred in SL3U.preSendCheck.SpellCheckBeforeSend:`, err);
-              }
-            }
-
-            const cancelSendMessage = await (new Promise(doConfirm.bind(this)));
-
-            if (cancelSendMessage) {
-              return false;
-            }
-          }
-
-          // Strip trailing spaces and long consecutive WSP sequences from the
-          // subject line to prevent getting only WSP chars on a folded line.
-          let fixedSubject = subject.replace(/\s{74,}/g, "    ").trimRight();
-          if (fixedSubject != subject) {
-            subject = fixedSubject;
-            msgCompFields.subject = fixedSubject;
-            cw.document.getElementById("msgSubject").value = fixedSubject;
-          }
-
-          // Remind the person if there isn't a subject
-          if (subject === "") {
-            if (
-              Services.prompt.confirmEx(
-                cw,
-                getComposeBundle().getString("subjectEmptyTitle"),
-                getComposeBundle().getString("subjectEmptyMessage"),
-                Services.prompt.BUTTON_TITLE_IS_STRING *
-                  Services.prompt.BUTTON_POS_0 +
-                  Services.prompt.BUTTON_TITLE_IS_STRING *
-                    Services.prompt.BUTTON_POS_1,
-                getComposeBundle().getString("sendWithEmptySubjectButton"),
-                getComposeBundle().getString("cancelSendingButton"),
-                null,
-                null,
-                { value: 0 }
-              ) === 1
-            ) {
-              cw.document.getElementById("msgSubject").focus();
-              return false;
-            }
-          }
-
-          // Attachment Reminder: Alert the user if
-          //  - the user requested "Remind me later" from either the notification bar or the menu
-          //    (alert regardless of the number of files already attached: we can't guess for how many
-          //    or which files users want the reminder, and guessing wrong will annoy them a lot), OR
-          //  - the aggressive pref is set and the latest notification is still showing (implying
-          //    that the message has no attachment(s) yet, message still contains some attachment
-          //    keywords, and notification was not dismissed).
-          if (
-            cw.gManualAttachmentReminder ||
-            (Services.prefs.getBoolPref(
-              "mail.compose.attachment_reminder_aggressive"
-            ) &&
-              ( // gComposeNotification replaces gNotification.notificationbox
-                // in Thunderbird 86.
-                cw.gComposeNotification || cw.gNotification.notificationbox
-              ).getNotificationWithValue("attachmentReminder"))
-          ) {
-            let flags =
-              Services.prompt.BUTTON_POS_0 * Services.prompt.BUTTON_TITLE_IS_STRING +
-              Services.prompt.BUTTON_POS_1 * Services.prompt.BUTTON_TITLE_IS_STRING;
-            let hadForgotten = Services.prompt.confirmEx(
-              cw,
-              getComposeBundle().getString("attachmentReminderTitle"),
-              getComposeBundle().getString("attachmentReminderMsg"),
-              flags,
-              getComposeBundle().getString("attachmentReminderFalseAlarm"),
-              getComposeBundle().getString("attachmentReminderYesIForgot"),
-              null,
-              null,
-              { value: 0 }
-            );
-            // Deactivate manual attachment reminder after showing the alert to avoid alert loop.
-            // We also deactivate reminder when user ignores alert with [x] or [ESC].
-            if (cw.gManualAttachmentReminder) {
-              cw.toggleAttachmentReminder(false);
-            }
-
-            if (hadForgotten) {
-              return false;
-            }
-          }
-
-          // Check if the user tries to send a message to a newsgroup through a mail
-          // account.
-          let identityList = cw.document.getElementById("msgIdentity");
-          let currentAccountKey = identityList.getAttribute("accountkey");
-          let account = MailServices.accounts.getAccount(currentAccountKey);
-          if (!account) {
-            throw new Error(
-              "currentAccountKey '" + currentAccountKey + "' has no matching account!"
-            );
-          }
-          if (
-            account.incomingServer.type != "nntp" &&
-            msgCompFields.newsgroups != ""
-          ) {
-            const kDontAskAgainPref = "mail.compose.dontWarnMail2Newsgroup";
-            // default to ask user if the pref is not set
-            let dontAskAgain = Services.prefs.getBoolPref(kDontAskAgainPref);
-            if (!dontAskAgain) {
-              let checkbox = { value: false };
-              let okToProceed = Services.prompt.confirmCheck(
-                cw,
-                getComposeBundle().getString("noNewsgroupSupportTitle"),
-                getComposeBundle().getString("recipientDlogMessage"),
-                getComposeBundle().getString("CheckMsg"),
-                checkbox
-              );
-              if (!okToProceed) {
-                return false;
-              }
-              if (checkbox.value) {
-                Services.prefs.setBoolPref(kDontAskAgainPref, true);
-              }
-            }
-            // remove newsgroups to prevent news_p to be set
-            // in nsMsgComposeAndSend::DeliverMessage()
-            msgCompFields.newsgroups = "";
-          }
-
-          // Before sending the message, check what to do with HTML message,
-          // eventually abort.
-          let convert = cw.DetermineConvertibility();
-          let action = cw.DetermineHTMLAction(convert);
-
-          if (action == Ci.nsIMsgCompSendFormat.AskUser) {
-            let recommAction =
-              convert == Ci.nsIMsgCompConvertible.No
-                ? Ci.nsIMsgCompSendFormat.AskUser
-                : Ci.nsIMsgCompSendFormat.PlainText;
-            let result2 = {
-              action: recommAction,
-              convertible: convert,
-              abort: false,
+            const DummyCompleteGenericSendMessage = (detail) => {
+              // If we made it here it's either because the pre-send checks have all
+              // passed, and the original GenericSendMessage has passed the ball back to us.
+              // We should restore the window and resolve this promise as true.
+              SendLaterFunctions.log("Received call to dummy CompleteGenericSendMessage", detail);
+              cw.CompleteGenericSendMessage = cw.OriginalCompleteGenericSendMessage;
+              cw.GenericSendMessage = cw.OriginalGenericSendMessage;
+              cw.ResolvePendingPreSendCheck = undefined;
+              if (detail === Ci.nsIMsgCompDeliverMode.Later)
+                resolve(true);
+              else
+                reject("Something strange happened while performing pre-send checks.");
             };
-            cw.openDialog(
-              "chrome://messenger/content/messengercompose/askSendFormat.xhtml",
-              "askSendFormatDialog",
-              "chrome,modal,titlebar,centerscreen",
-              result2
-            );
-            if (result2.abort) {
-              return false;
-            }
-            action = result2.action;
-          }
 
-          // We will remember the users "send format" decision in the address
-          // collector code (see nsAbAddressCollector::CollectAddress())
-          // by using msgCompFields.forcePlainText and msgCompFields.useMultipartAlternative
-          // to determine the nsIAbPreferMailFormat (unknown, plaintext, or html).
-          // If the user sends both, we remember html.
-          switch (action) {
-            case Ci.nsIMsgCompSendFormat.PlainText:
-              msgCompFields.forcePlainText = true;
-              msgCompFields.useMultipartAlternative = false;
+            const ResolvePendingPreSendCheck = (status) => {
+              SendLaterFunctions.log("Received call to ResolvePendingPreSendCheck", status);
+              cw.CompleteGenericSendMessage = cw.OriginalCompleteGenericSendMessage;
+              cw.GenericSendMessage = cw.OriginalGenericSendMessage;
+              cw.ResolvePendingPreSendCheck = undefined;
+              resolve(status);
+            };
+
+            cw.ResolvePendingPreSendCheck = ResolvePendingPreSendCheck;
+            cw.CompleteGenericSendMessage = DummyCompleteGenericSendMessage;
+            cw.GenericSendMessage = DummyGenericSendMessage;
+            cw.OriginalGenericSendMessage(Ci.nsIMsgCompDeliverMode.Later);
+          });
+        },
+
+        /*
+         * Perform all actions as if the current compose message is being
+         * sent, but just save it in Drafts rather than performing an actual
+         * send. Close the compose window when save is complete.
+         */
+        async performPseudoSend() {
+          const cw = Services.wm.getMostRecentWindow("msgcompose");
+          const type = cw.gMsgCompose.type;
+          const originalURI = cw.gMsgCompose.originalMsgURI;
+
+          // The full GenericSendMessage function does a bunch of pre-send checks
+          // and then calls CompleteGenericSendMessage. We're handling those pre-send
+          // checks manually (see above), so we can just call the
+          // CompleteGenericSendMessage function directly.
+          cw.gCloseWindowAfterSave = true;
+          cw.CompleteGenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
+
+          // Set reply forward message flags
+          let isReply = false, isForward = false;
+          switch (type) {
+            case Ci.nsIMsgCompType.Reply:
+            case Ci.nsIMsgCompType.ReplyAll:
+            case Ci.nsIMsgCompType.ReplyToSender:
+            case Ci.nsIMsgCompType.ReplyToGroup:
+            case Ci.nsIMsgCompType.ReplyToSenderAndGroup:
+            case Ci.nsIMsgCompType.ReplyWithTemplate:
+            case Ci.nsIMsgCompType.ReplyToList: {
+              isReply = true;
               break;
-            case Ci.nsIMsgCompSendFormat.HTML:
-              msgCompFields.forcePlainText = false;
-              msgCompFields.useMultipartAlternative = false;
+            }
+            case Ci.nsIMsgCompType.ForwardAsAttachment:
+            case Ci.nsIMsgCompType.ForwardInline: {
+              isForward = true;
               break;
-            case Ci.nsIMsgCompSendFormat.Both:
-              msgCompFields.forcePlainText = false;
-              msgCompFields.useMultipartAlternative = true;
-              break;
-            default:
-              throw new Error(
-                "Invalid nsIMsgCompSendFormat action; action=" + action
-              );
+            }
+          }
+          if (isReply || isForward) {
+            SendLaterFunctions.debug("Setting message reply/forward flags", type, originalURI);
+            const messenger = Cc["@mozilla.org/messenger;1"].getService(Ci.nsIMessenger);
+            let hdr = messenger.msgHdrFromURI(originalURI);
+            if (isReply) {
+              hdr.folder.addMessageDispositionState(hdr, hdr.folder.nsMsgDispositionState_Replied);
+            } else if (isForward) {
+              hdr.folder.addMessageDispositionState(hdr, hdr.folder.nsMsgDispositionState_Forwarded);
+            }
           }
 
           return true;
         },
 
-        async saveAsDraft(newMessageId) {
-          // Saves the current compose window message as a draft.
-          // (Window remains open)
-          const cw = Services.wm.getMostRecentWindow("msgcompose");
-
-          cw.gMsgCompose.compFields.setHeader("message-id",newMessageId);
-          const verifyId = cw.gMsgCompose.compFields.getHeader("message-id");
-          const type = cw.gMsgCompose.type;
-          const originalURI = cw.gMsgCompose.originalMsgURI;
-
-          if (verifyId === newMessageId) {
-            // Save the message to drafts
-            try {
-              cw.gCloseWindowAfterSave = true;
-              cw.GenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
-              // cw.goDoCommand("cmd_saveAsDraft");
-            } catch (err) {
-              SendLaterFunctions.error("SL3U.saveAsDraft","Unable to save message to drafts", err);
-              return false;
-            }
-
-            // Set reply forward message flags
-            try {
-              SendLaterFunctions.debug("Setting message reply/forward flags", type, originalURI);
-
-              if ( originalURI ) {
-                const messenger = Cc["@mozilla.org/messenger;1"].getService(Ci.nsIMessenger);
-                var hdr = messenger.msgHdrFromURI(originalURI);
-                switch (type) {
-                  case Ci.nsIMsgCompType.Reply:
-                  case Ci.nsIMsgCompType.ReplyAll:
-                  case Ci.nsIMsgCompType.ReplyToSender:
-                  case Ci.nsIMsgCompType.ReplyToGroup:
-                  case Ci.nsIMsgCompType.ReplyToSenderAndGroup:
-                  case Ci.nsIMsgCompType.ReplyWithTemplate:
-                  case Ci.nsIMsgCompType.ReplyToList:
-                    hdr.folder.addMessageDispositionState(
-                      hdr, hdr.folder.nsMsgDispositionState_Replied);
-                    break;
-                  case Ci.nsIMsgCompType.ForwardAsAttachment:
-                  case Ci.nsIMsgCompType.ForwardInline:
-                    hdr.folder.addMessageDispositionState(
-                      hdr, hdr.folder.nsMsgDispositionState_Forwarded);
-                    break;
-                }
-              } else {
-                SendLaterFunctions.debug("SL3U.saveAsDraft","Unable to set reply / forward flags " +
-                             "for message. Cannot find original message URI");
-              }
-            } catch (err) {
-              SendLaterFunctions.debug("SL3U.saveAsDraft","Failed to set flag for reply / forward", err);
-            }
-            return true;
+        goDoCommand(command, windowId) {
+          let window;
+          if (windowId) {
+            let wm = context.extension.windowManager.get(windowId, context);
+            window = wm.window;
           } else {
-            SendLaterFunctions.error(
-              "SL3U.saveAsDraft",
-              `SendLater: Message ID not set correctly, ${verifyId} != ${newMessageId}`
-            );
+            window = Services.wm.getMostRecentWindow("msgcompose");
           }
-          return false;
-        },
+          window.goDoCommand(command);
 
-        async goDoCommand(command) {
-          const cw = Services.wm.getMostRecentWindow("msgcompose");
-          cw.goDoCommand(command);
-        },
-
-        async builtInSendLater() {
-          // Sends the message from the current composition window
-          // using thunderbird's default send later mechanism.
-          const cw = Services.wm.getMostRecentWindow("msgcompose");
-          const type = cw.gMsgCompose.type;
-          const originalURI = cw.gMsgCompose.originalMsgURI;
-
-          //cw.SendMessageLater();
-          cw.goDoCommand("cmd_sendLater");
-
-          // Set reply forward message flags
-          try {
-            SendLaterFunctions.debug("Setting message reply/forward flags", type, originalURI);
-
-            if ( originalURI ) {
-              const messenger = Cc["@mozilla.org/messenger;1"].getService(Ci.nsIMessenger);
-              var hdr = messenger.msgHdrFromURI(originalURI);
-              switch (type) {
-                case Ci.nsIMsgCompType.Reply:
-                case Ci.nsIMsgCompType.ReplyAll:
-                case Ci.nsIMsgCompType.ReplyToSender:
-                case Ci.nsIMsgCompType.ReplyToGroup:
-                case Ci.nsIMsgCompType.ReplyToSenderAndGroup:
-                case Ci.nsIMsgCompType.ReplyWithTemplate:
-                case Ci.nsIMsgCompType.ReplyToList:
-                  hdr.folder.addMessageDispositionState(
-                    hdr, hdr.folder.nsMsgDispositionState_Replied);
-                  break;
-                case Ci.nsIMsgCompType.ForwardAsAttachment:
-                case Ci.nsIMsgCompType.ForwardInline:
-                  hdr.folder.addMessageDispositionState(
-                    hdr, hdr.folder.nsMsgDispositionState_Forwarded);
-                  break;
+          return new Promise(resolve => {
+            let checkLock = () => {
+              if (!window.gWindowLocked) {
+                SendLaterFunctions.log(`goDoCommand(${command}) completed.`);
+                resolve();
+              } else {
+                window.setTimeout(checkLock, 100);
               }
-            } else {
-              SendLaterFunctions.debug("SL3U.saveAsDraft","Unable to set reply / forward flags " +
-                          "for message. Cannot find original message URI");
             }
-          } catch (err) {
-            SendLaterFunctions.debug("SL3U.saveAsDraft","Failed to set flag for reply / forward", err);
-          }
+            window.setTimeout(checkLock, 100);
+          });
         },
 
         async setHeader(name, value) {
@@ -1144,7 +678,23 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
         async generateMsgId(idkey) {
           // const idkey = ((/\nX-Identity-Key:\s*(\S+)/i).exec('\n'+content))[1];
-          return SendLaterFunctions.generateMsgId(idkey);
+          const accounts = Cc[
+            "@mozilla.org/messenger/account-manager;1"
+          ].getService(Ci.nsIMsgAccountManager);
+          const identity = accounts.getIdentity(idkey);
+          if (identity) {
+            const compUtils = Cc[
+              "@mozilla.org/messengercompose/computils;1"
+            ].createInstance(Ci.nsIMsgCompUtils);
+            const newMessageId = compUtils.msgGenerateMessageId(identity);
+            if (newMessageId) {
+              return newMessageId;
+            } else {
+              throw (`compUtils.msgGenerateMessageId(${identity}) failed`);
+            }
+          } else {
+            throw (`MSGID: accounts.getIdentity(${idkey}) failed`);
+          }
         },
 
         async sendRaw(content, sendUnsentMsgs) {
@@ -1282,9 +832,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               `Previously: ${originals.join(" ")}`);
             Services.prefs.setCharPref("mailnews.customDBHeaders",
                                         customHdrString);
-            // TODO: Forcing rebuild of Drafts folders doesn't
-            // work yet.
-            // SendLaterFunctions.rebuildDraftsFolders();
           }
         },
 
@@ -1575,9 +1122,8 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
         },
 
-        // If the current composition window was an existing draft message,
-        // then get headers from that original message.
-        async getDraftHeaders(keys) {
+        // Find whether the current composition window is editing an existing draft
+        async findCurrentDraft() {
           const window = Services.wm.getMostRecentWindow("msgcompose");
 
           let windowReadyPromise = new Promise((resolve) => {
@@ -1589,21 +1135,15 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           if (!window.gMsgCompose)
             throw new Error("Attempted getDraftHeaders on non-compose window");
 
-          let hdrs = {};
-
           const msgCompFields = window.gMsgCompose.compFields;
           if (msgCompFields && msgCompFields.draftId!="") {
             const messageURI = msgCompFields.draftId.replace(/\?.*/, "");
             const messenger = Cc["@mozilla.org/messenger;1"].getService(Ci.nsIMessenger);
             const msgHdr = messenger.msgHdrFromURI(messageURI);
-            for (let key of keys) {
-              hdrs[key] = msgHdr.getStringProperty(key);
-            }
+            return context.extension.messageManager.convert(msgHdr);
           } else {
             SendLaterFunctions.debug("Window is not an existing draft.");
           }
-
-          return hdrs;
         },
 
         async hijackComposeWindowKeyBindings(windowId) {
@@ -1714,18 +1254,13 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
       }
     }
 
-    // Remove application quit observer
-    for (let obsName of Object.getOwnPropertyNames(SendLaterObservers)) {
-      let observer = SendLaterObservers[obsName];
-      for (let topic of observer.observerTopics) {
+    // Resolve any pending pre-send check promises
+    for (let cw of Services.wm.getEnumerator("msgcompose")) {
+      if (cw.ResolvePendingPreSendCheck) {
         try {
-          Services.obs.removeObserver(observer, topic);
-          SendLaterFunctions.debug(`Removed observer from topic ${topic}`);
+          cw.ResolvePendingPreSendCheck(false);
         } catch (ex) {
-          SendLaterFunctions.error(
-            `Unable to remove observer from topic ${topic}`,
-            observer, ex
-          );
+          SendLaterFunctions.error("Unable to resolve pre-send check promise", ex);
         }
       }
     }

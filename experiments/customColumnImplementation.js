@@ -1,199 +1,8 @@
-var { utils: Cu, classes: Cc, interfaces: Ci } = Components;
-var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
+var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 var { ExtensionSupport } = ChromeUtils.import("resource:///modules/ExtensionSupport.jsm");
 var { ExtensionCommon } = ChromeUtils.import("resource://gre/modules/ExtensionCommon.jsm");
 var { ExtensionUtils } = ChromeUtils.import("resource://gre/modules/ExtensionUtils.jsm");
 var { ExtensionError } = ExtensionUtils;
-var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-var { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
-
-var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
-
-XPCOMUtils.defineLazyPreferenceGetter(
-  this,
-  "gJunkThreshold",
-  "mail.adaptivefilters.junk_threshold",
-  90
-);
-
-var CustomColumnUtils = {
-  contentTypeHeaders: new Map(),
-
-  folderURIToPath(accountId, uri) {
-    let server = MailServices.accounts.getAccount(accountId).incomingServer;
-    let rootURI = server.rootFolder.URI;
-    if (rootURI == uri) {
-      return "/";
-    }
-    // The .URI property of an IMAP folder doesn't have %-encoded characters, but
-    // may include literal % chars. Services.io.newURI(uri) applies encodeURI to
-    // the returned filePath, but will not encode any literal % chars, which will
-    // cause decodeURIComponent to fail (bug 1707408).
-    if (server.type == "imap") {
-      return uri.substring(rootURI.length);
-    }
-    let path = Services.io.newURI(uri).filePath;
-    return path.split("/").map(decodeURIComponent).join("/");
-  },
-
-  convertFolder(folder, accountId) {
-    if (!folder) {
-      return null;
-    }
-    if (!accountId) {
-      let server = folder.server;
-      let account = MailServices.accounts.FindAccountForServer(server);
-      accountId = account.key;
-    }
-
-    let folderObject = {
-      accountId,
-      name: folder.prettyName,
-      path: CustomColumnUtils.folderURIToPath(accountId, folder.URI),
-    };
-
-    const folderTypeMap = new Map([
-      [Ci.nsMsgFolderFlags.Inbox, "inbox"],
-      [Ci.nsMsgFolderFlags.Drafts, "drafts"],
-      [Ci.nsMsgFolderFlags.SentMail, "sent"],
-      [Ci.nsMsgFolderFlags.Trash, "trash"],
-      [Ci.nsMsgFolderFlags.Templates, "templates"],
-      [Ci.nsMsgFolderFlags.Archive, "archives"],
-      [Ci.nsMsgFolderFlags.Junk, "junk"],
-      [Ci.nsMsgFolderFlags.Queue, "outbox"],
-    ]);
-
-    for (let [flag, typeName] of folderTypeMap.entries()) {
-      if (folder.flags & flag) {
-        folderObject.type = typeName;
-      }
-    }
-
-    return folderObject;
-  },
-
-  async getRawMessage(hdr) {
-    let folder = hdr.folder.QueryInterface(Ci.nsIMsgFolder);
-    let messageUri = folder.generateMessageURI(hdr.messageKey);
-    const messenger = Cc[
-      "@mozilla.org/messenger;1"
-    ].createInstance(Ci.nsIMessenger);
-
-    const streamListener = Cc[
-      "@mozilla.org/network/sync-stream-listener;1"
-    ].createInstance(Ci.nsISyncStreamListener);
-  
-    const service = messenger.messageServiceFromURI(messageUri);
-
-    await new Promise((resolve, reject) => {
-      service.streamMessage(
-        messageUri,
-        streamListener,
-        null,
-        {
-          OnStartRunningUrl() {},
-          OnStopRunningUrl(url, exitCode) {
-            if (exitCode === 0) {
-              resolve();
-            } else {
-              console.debug(
-                `SendLaterHeaderView.getRawMessage.streamListener.OnStopRunning ` +
-                `received ${streamListener.inputStream.available()} bytes ` +
-                `(exitCode: ${exitCode})`
-              );
-              Cu.reportError(exitCode);
-              reject();
-            }
-          },
-        },
-        false,
-        ""
-      );
-    }).catch((ex) => {
-      console.error(`Error reading message ${messageUri}`,ex);
-    });
-
-    const available = streamListener.inputStream.available();
-    if (available > 0) {
-      const rawMessage = NetUtil.readInputStreamToString(
-        streamListener.inputStream,
-        available
-      );
-      return rawMessage;
-    } else {
-      return null;
-    }
-  },
-
-  async getContentType(msgHdr) {
-    // from SLStatic
-    const getHeader = (content, header) => {
-      // Get header's value (e.g. "subject: foo bar    baz" returns "foo bar    baz")
-      const regex = new RegExp(`^${header}:([^\r\n]*)\r\n(\\s[^\r\n]*\r\n)*`,'im');
-      const hdrContent = content.split(/\r\n\r\n/m)[0]+'\r\n';
-      if (regex.test(hdrContent))
-        return (hdrContent.match(regex)[0]).replace(/[^:]*:/m,"").trim();
-      else
-        return undefined;
-    };
-
-    let contentType;
-    if (CustomColumnUtils.contentTypeHeaders.has(msgHdr.messageId))
-      contentType = CustomColumnUtils.contentTypeHeaders.get(msgHdr.messageId);
-    else if (msgHdr.getStringProperty("content-type"))
-      contentType = msgHdr.getStringProperty("content-type");
-    else
-      contentType = getHeader((await CustomColumnUtils.getRawMessage(msgHdr)), "content-type");
-    CustomColumnUtils.contentTypeHeaders.set(msgHdr.messageId, contentType);
-    return contentType;
-  },
-
-  /** From ext-mail.js
-  * Converts an nsIMsgHdr to a simle object for use in messages.
-  * This function WILL change as the API develops.
-  * @return {Object}
-  */
-  async convertMessage(msgHdr) {
-    if (!msgHdr)
-      return null;
-
-    let composeFields = Cc[
-      "@mozilla.org/messengercompose/composefields;1"
-    ].createInstance(Ci.nsIMsgCompFields);
-    let junkScore = parseInt(msgHdr.getProperty("junkscore"), 10) || 0;
-
-    let messageObject = {
-      // id: messageTracker.getId(msgHdr),
-      date: new Date(msgHdr.dateInSeconds * 1000),
-      author: msgHdr.mime2DecodedAuthor,
-      recipients: composeFields.splitRecipients(
-        msgHdr.mime2DecodedRecipients,
-        false
-      ),
-      ccList: composeFields.splitRecipients(msgHdr.ccList, false),
-      bccList: composeFields.splitRecipients(msgHdr.bccList, false),
-      subject: msgHdr.mime2DecodedSubject,
-      read: msgHdr.isRead,
-      flagged: msgHdr.isFlagged,
-      junk: junkScore >= gJunkThreshold,
-      junkScore,
-      headerMessageId: msgHdr.messageId,
-      customHeaders: {
-        "x-send-later-at": msgHdr.getStringProperty("x-send-later-at"),
-        "x-send-later-recur": msgHdr.getStringProperty("x-send-later-recur"),
-        "x-send-later-args": msgHdr.getStringProperty("x-send-later-args"),
-        "x-send-later-cancel-on-reply": msgHdr.getStringProperty("x-send-later-cancel-on-reply"),
-        "x-send-later-uuid": msgHdr.getStringProperty("x-send-later-uuid"),
-        "content-type": await CustomColumnUtils.getContentType(msgHdr)
-      }
-    };
-    messageObject.folder = CustomColumnUtils.convertFolder(msgHdr.folder);
-    let tags = msgHdr.getProperty("keywords");
-    tags = tags ? tags.split(" ") : [];
-    messageObject.tags = tags.filter(MailServices.tags.isValidKey);
-    return messageObject;
-  }
-};
 
 class MessageViewsCustomColumn {
   constructor(context, name, tooltip) {
@@ -206,28 +15,6 @@ class MessageViewsCustomColumn {
     this.visibility = new Map();
     this.handlers = new Set();
     this.msgTracker = new Map();
-  }
-
-  setVisible(visible, applyGlobal) {
-    try {
-      let windows;
-      if (applyGlobal)
-        windows = Services.wm.getEnumerator("mail:3pane")
-      else
-        windows = [Services.wm.getMostRecentWindow(null)];
-
-      for (let window of windows) {
-        for (let id of [this.columnId, `${this.columnId}-splitter`]) {
-          let e = window.document.getElementById(id);
-          if (e && visible)
-            e.removeAttribute("hidden");
-          else if (e && !visible)
-            e.setAttribute("hidden", "true");
-        }
-      }
-    } catch (ex) {
-      console.error("Unable to set column visible",ex);
-    }
   }
 
   destroy() {
@@ -286,6 +73,36 @@ class MessageViewsCustomColumn {
     }
   }
 
+  async invalidateAll() {
+    this.msgTracker.clear();
+    for (let window of Services.wm.getEnumerator("mail:3pane")) {
+      if (window.gDBView)
+        window.gDBView.NoteChange(null, null, 4);
+    }
+  }
+
+  setVisible(visible, applyGlobal) {
+    try {
+      let windows;
+      if (applyGlobal)
+        windows = Services.wm.getEnumerator("mail:3pane")
+      else
+        windows = [Services.wm.getMostRecentWindow(null)];
+
+      for (let window of windows) {
+        for (let id of [this.columnId, `${this.columnId}-splitter`]) {
+          let e = window.document.getElementById(id);
+          if (e && visible)
+            e.removeAttribute("hidden");
+          else if (e && !visible)
+            e.setAttribute("hidden", "true");
+        }
+      }
+    } catch (ex) {
+      console.error("Unable to set column visible",ex);
+    }
+  }
+
   addToWindow(window) {
     let treecol = window.document.createXULElement("treecol");
     let column = {
@@ -309,49 +126,28 @@ class MessageViewsCustomColumn {
       this.addHandlerToWindow(window, handler);
   }
 
-  addHandlerToWindow(window, fire) {
-    this.handlers.add(fire);
+  addHandlerToWindow(window, handler) {
+    this.handlers.add(handler);
 
     let getValue = (msgHdr, field, row) => {
       if (this.msgTracker.has(msgHdr.messageId))
         return this.msgTracker.get(msgHdr.messageId)[field];
 
-      CustomColumnUtils.convertMessage(msgHdr).then(msg =>
-        fire.async(msg)
-      ).then(result => {
+      let hdr = this.context.extension.messageManager.convert(msgHdr);
+      handler.async(hdr).then(result => {
         result.rowid = row;
         this.msgTracker.set(msgHdr.messageId, result);
         if (row !== undefined)
           window.gDBView.NoteChange(row, 1, 2);
       }).catch(console.error);
 
-      // Message is not cached, but it will be soon (hopefully)
-      // In the mean time, fall back to just displaying the
-      // x-send-later-at header value
-      if (field === "cellText") {
-        let sendAt = msgHdr.getStringProperty("x-send-later-at");
-        if (sendAt) {
-          const options = {
-            hour: "numeric", minute: "numeric",
-            month: "numeric", day: "numeric", year: "numeric"
-          }
-          sendAt = new Date(sendAt);
-          // Display * at end of string for debugging purposes.
-          // If asterisk shows up in column cells (more than just momentarily)
-          // then something is wrong with the callback.
-          return (new Intl.DateTimeFormat([], options).format(sendAt)) + "*";
-        } else {
-          return "";
-        }
-      } else {
-        return null;
-      }
+      return null;
     };
 
     let columnHandler = {
       getCellText(row, col) {
         let msgHdr = window.gDBView.getMsgHdrAt(row);
-        return getValue(msgHdr, "cellText", row);
+        return getValue(msgHdr, "cellText", row)||"";
       },
       getSortStringForRow(msgHdr) {
         return null;
@@ -400,19 +196,21 @@ class MessageViewsCustomColumn {
 
 var columnHandler = class extends ExtensionCommon.ExtensionAPI {
   close() {
-    for (let column of this.columns.values()) {
+    for (let column of this.columns.values())
       try {
         column.destroy();
       } catch (ex) {
         console.error("Unable to destroy column:",ex);
       }
-    }
 
     ExtensionSupport.unregisterWindowListener("customColumnWL");
   }
 
   getAPI(context) {
     context.callOnClose(this);
+
+    let columns = new Map();
+    this.columns = columns;
 
     ExtensionSupport.registerWindowListener("customColumnWL",
       {
@@ -423,9 +221,6 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
             column.addToWindow(window);
         }
       });
-
-    let columns = new Map();
-    this.columns = columns;
 
     return {
       columnHandler: {
@@ -446,10 +241,16 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
           columns.delete(name);
         },
 
-        async invalidateRow(msgIdHeader) {
+        async invalidateRowByMessageId(msgIdHeader) {
           let id = msgIdHeader.replace('<','').replace('>','');
           for (let column of columns.values()) {
             column.invalidateMessage(id);
+          }
+        },
+
+        async invalidateAll() {
+          for (let column of columns.values()) {
+            column.invalidateAll();
           }
         },
 

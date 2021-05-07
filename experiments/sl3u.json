@@ -3,82 +3,6 @@
     "namespace": "SL3U",
     "functions": [
       {
-        "name":"alert",
-        "type":"function",
-        "async":true,
-        "parameters":[
-          {
-            "name":"title",
-            "type":"string"
-          },
-          {
-            "name":"text",
-            "type":"string"
-          }
-        ]
-      },
-      {
-        "name":"alertCheck",
-        "type":"function",
-        "async":true,
-        "parameters":[
-          {
-            "name":"title",
-            "type":"string"
-          },
-          {
-            "name":"message",
-            "type":"string"
-          },
-          {
-            "name": "checkMessage",
-            "type": "string"
-          },
-          {
-            "name": "state",
-            "type": "boolean"
-          }
-        ]
-      },
-      {
-        "name":"confirm",
-        "type":"function",
-        "async":true,
-        "parameters":[
-          {
-            "name":"title",
-            "type":"string"
-          },
-          {
-            "name":"message",
-            "type":"string"
-          }
-        ]
-      },
-      {
-        "name":"confirmCheck",
-        "type":"function",
-        "async":true,
-        "parameters":[
-          {
-            "name":"title",
-            "type":"string"
-          },
-          {
-            "name":"message",
-            "type":"string"
-          },
-          {
-            "name": "checkMessage",
-            "type": "string"
-          },
-          {
-            "name": "state",
-            "type": "boolean"
-          }
-        ]
-      },
-      {
         "name":"setSendLaterVars",
         "type":"function",
         "async":true,
@@ -103,29 +27,17 @@
         ]
       },
       {
-        "name": "saveAsDraft",
+        "name": "performPseudoSend",
         "type": "function",
         "async": true,
-        "description": "",
-        "parameters": [
-          {
-            "name": "newMessageId",
-            "type": "string"
-          }
-        ]
-      },
-      {
-        "name": "preSendCheck",
-        "type": "function",
-        "async": true,
-        "description": "Check empty subject etc",
+        "description": "Perform put current composed message in Drafts and close the window. If the message is a reply or forward, then mark the original message accordingly.",
         "parameters": []
       },
       {
         "name": "expandRecipients",
         "type": "function",
         "async": true,
-        "description": "Expand recipient lists.",
+        "description": "Expand mailing lists into individual recipients.",
         "parameters": [
           {
             "name": "field",
@@ -134,10 +46,10 @@
         ]
       },
       {
-        "name": "builtInSendLater",
+        "name": "GenericPreSendCheck",
         "type": "function",
         "async": true,
-        "description": "Initiate send from current composition window using thunderbirds builtin send later funcion.",
+        "description": "Check if message is ready to be sent, and alert other extensions.",
         "parameters": []
       },
       {
@@ -186,6 +98,12 @@
             "name": "command",
             "type": "string",
             "description": "Command to execute in current compose window."
+          },
+          {
+            "name": "windowId",
+            "type": "integer",
+            "optional": true,
+            "description": "In which window to execute this command."
           }
         ]
       },
@@ -371,17 +289,11 @@
         "parameters": []
       },
       {
-        "name":"getDraftHeaders",
+        "name":"findCurrentDraft",
         "type":"function",
         "async":true,
-        "description":"Get headers from the current compose message IF IT IS AN EXISTING DRAFT",
-        "parameters": [
-          {
-            "name":"keys",
-            "type":"any",
-            "description":"Array of header fields to get."
-          }
-        ]
+        "description":"Find whether the current composition window is editing an existing draft.",
+        "parameters": []
       },
       {
         "name":"forceToolbarVisible",

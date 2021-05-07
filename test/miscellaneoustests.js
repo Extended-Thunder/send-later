@@ -46,6 +46,14 @@ exports.init = function() {
           `Expected "${expected}", got "${result}"`;
   }, [ "Sun Feb 01 1998 15:03:00 GMT+2", "2/1/1998, 5:03 AM" ]);
 
+  SLTests.AddTest("Test customHumanDateTimeFormat", (input, expected) => {
+    const result = SLStatic.customHumanDateTimeFormat(new Date(input[0]), input[1]);
+    return result == expected ||
+          `Expected "${expected}", got "${result}"`;
+  }, [
+    ["Sun Feb 01 1998 15:03:00 GMT+2", "%Y-%m-%d %H:%M"],
+    "1998-02-01 05:03" ]);
+
   SLTests.AddTest("Test getWkdayName Sunday", (input, expected) => {
     const result = SLStatic.getWkdayName(input[0], input[1]);
     return result == expected ||

@@ -1,4 +1,4 @@
-Send Later Thunderbird extension  
+Send Later Thunderbird extension
 ============================
 
 ### Schedule email messages to be sent later

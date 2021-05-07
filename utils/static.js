@@ -12,7 +12,8 @@ var SLStatic = {
   // Migration 3: indicate that "sanity check" has been performed
   // Migration 4: add instanceUUID
   // Migration 5: add accelerator shortcut options
-  CURRENT_LEGACY_MIGRATION: 5,
+  // Migration 6: Add longDateTimeFormat/shortDateTimeFormat
+  CURRENT_LEGACY_MIGRATION: 6,
 
   // HTML element IDs correspond to preference keys, localization strings, and
   // keys of preference values in local storage.
@@ -26,14 +27,21 @@ var SLStatic = {
                  "quickOptions2Args", "quickOptions3Label",
                  "quickOptions3funcselect", "quickOptions3Args",
                  "accelCtrlfuncselect", "accelCtrlArgs",
-                 "accelShiftfuncselect", "accelShiftArgs"],
+                 "accelShiftfuncselect", "accelShiftArgs", "customizeDateTime",
+                 "shortDateTimeFormat", "longDateTimeFormat"],
 
+  customizeDateTime: null,
+  longDateTimeFormat: null,
+  shortDateTimeFormat: null,
   logConsoleLevel: null,
 
-  async fetchLogConsoleLevel() {
+  async cachePrefs() {
     try {
       const { preferences } = await browser.storage.local.get({"preferences": {}});
       this.logConsoleLevel = (preferences.logConsoleLevel || "all").toLowerCase();
+      this.customizeDateTime = (preferences.customizeDateTime === true);
+      this.longDateTimeFormat = preferences.longDateTimeFormat;
+      this.shortDateTimeFormat = preferences.shortDateTimeFormat;
     } catch {}
   },
 
@@ -42,7 +50,7 @@ var SLStatic = {
     if (typeof this.logConsoleLevel === "string") {
       logConsoleLevel = this.logConsoleLevel;
     } else {
-      this.fetchLogConsoleLevel();
+      this.cachePrefs();
     }
 
     const levels = ["all","trace","debug","info","warn","error","fatal"];
@@ -149,8 +157,7 @@ var SLStatic = {
     return Sugar.Date.format(date||(new Date()), DATE_RFC2822, "en");
   },
 
-  humanDateTimeFormat(date) {
-    date = SLStatic.convertDate(date);
+  defaultHumanDateTimeFormat(date) {
     const options = {
       hour: "numeric", minute: "numeric", weekday: "short",
       month: "short", day: "numeric", year: "numeric"
@@ -158,13 +165,42 @@ var SLStatic = {
     return new Intl.DateTimeFormat([], options).format(date||(new Date()));
   },
 
-  shortHumanDateTimeFormat(date) {
+  defaultShortHumanDateTimeFormat(date) {
     date = SLStatic.convertDate(date);
     const options = {
       hour: "numeric", minute: "numeric",
       month: "numeric", day: "numeric", year: "numeric"
     }
     return new Intl.DateTimeFormat([], options).format(date||(new Date()));
+  },
+
+  customHumanDateTimeFormat(date, fmt) {
+    date = SLStatic.convertDate(date);
+    return Sugar.Date.format(date||(new Date()), fmt);
+  },
+
+  humanDateTimeFormat(date) {
+    if (this.customizeDateTime === null) {
+      this.cachePrefs();
+    } else if (this.customizeDateTime === true &&
+               this.longDateTimeFormat !== "") {
+      try {
+        return this.customHumanDateTimeFormat(date, this.longDateTimeFormat);
+      } catch (ex) {this.warn(ex);}
+    }
+    return this.defaultHumanDateTimeFormat(date);
+  },
+
+  shortHumanDateTimeFormat(date) {
+    if (this.customizeDateTime === null) {
+      this.cachePrefs();
+    } else if (this.customizeDateTime === true &&
+               this.shortDateTimeFormat !== "") {
+      try {
+        return this.customHumanDateTimeFormat(date, this.shortDateTimeFormat);
+      } catch (ex) {this.warn(ex);}
+    }
+    return this.defaultShortHumanDateTimeFormat(date);
   },
 
   compare(a, comparison, b, tolerance) {
@@ -441,7 +477,7 @@ var SLStatic = {
   },
 
   formatRecurForUI(recur) {
-    if (!recur) {
+    if (!recur || recur.type === "none") {
       return "";
     }
     let recurText = "";
@@ -705,6 +741,9 @@ var SLStatic = {
   unparseRecurSpec(recur) {
     let spec = recur.type;
 
+    if (spec === "none")
+      return spec;
+
     if (recur.type === "monthly") {
       spec += " ";
       if (recur.monthly_day) {
@@ -722,9 +761,6 @@ var SLStatic = {
     }
 
     if (recur.multiplier) {
-      if (recur.type === "none") {
-        throw new Error("Cannot use multiplier with one-off schedule.");
-      }
       spec += " / " + recur.multiplier;
     }
 
@@ -801,7 +837,6 @@ var SLStatic = {
         break;
       case "function":
         recur.function = params.shift();
-        const finishedIndex = params.indexOf("finished");
         recur.finished = (params[0] === "finished");
 
         if (!recur.function) {
@@ -1062,6 +1097,91 @@ var SLStatic = {
       }
     }
     return sendAt;
+  },
+
+  parseHeadersForPopupUICache(headers) {
+    // input elements:
+    //   - send-datetime (string)
+    //   - recur (radio: once, minutely, daily, ...)
+    //   - recur-multiplier (number)
+    //   - recur-monthly-byweek (checkbox)
+    //   - recur-function-args (text)
+    //   - recur-cancelonreply (checkbox)
+    //   - sendbetween (checkbox)
+    //   - sendbetween-start (time)
+    //   - sendbetween-end (time)
+    //   - sendon (checkbox)
+    //   - sendon-{saturday|sunday|...} (checkboxes)
+    // select elements:
+    //   - recurFuncSelect
+    //   - recur-monthly-byweek-week
+    //   - recur-monthly-byweek-day
+
+    let sendAt = new Date(headers['x-send-later-at']);
+    let recurSpec = (headers["x-send-later-recur"] || "none");
+    let recur = SLStatic.parseRecurSpec(recurSpec);
+    recur.cancelOnReply = ["true", "yes"].includes(
+      headers["x-send-later-cancel-on-reply"]
+    );
+    recur.args = headers["x-send-later-args"];
+
+    let dom = {
+      'send-datetime': SLStatic.shortHumanDateTimeFormat(sendAt)
+    };
+
+    for (let recurType of [
+      'once', 'minutely', 'daily', 'weekly', 'monthly', 'yearly', 'function'
+    ]) {
+      dom[recurType] = (recur.type === recurType);
+    }
+
+    if (recur.type === "none") {
+      dom['once'] = true;
+      return dom;
+    }
+
+    dom['recur-cancelonreply'] = recur.cancelOnReply;
+    if (recur.multiplier)
+      dom['recur-multiplier'] = recur.multiplier;
+
+    dom['recur-function-args'] = recur.args||"";
+    if (recur.type === 'function' && recur.finished) {
+      dom['recur'] = 'none';
+    } else if (recur.function) {
+      dom['recurFuncSelect'] = recur.function;
+    }
+
+    if (recur.type === 'monthly') {
+      if (recur.monthly_day) {
+        dom['recur-monthly-byweek'] = true;
+        dom['recur-monthly-byweek-day'] = recur.monthly_day.day;
+        dom['recur-monthly-byweek-week'] = recur.monthly_day.week;
+      } else {
+        dom['recur-monthly-byweek'] = false;
+      }
+    }
+
+    if (recur.between) {
+      dom['sendbetween'] = true;
+      let start = SLStatic.parseDateTime(null, recur.between.start);
+      let end = SLStatic.parseDateTime(null, recur.between.end);
+      dom['sendbetween-start'] = SLStatic.formatTime(start,true,true);
+      dom['sendbetween-end'] = SLStatic.formatTime(end,true,true);
+    } else {
+      dom['sendbetween'] = false;
+    }
+
+    if (recur.days) {
+      dom['sendon'] = true;
+      const dayNames = ["sunday","monday","tuesday",
+        "wednesday","thursday","friday","saturday"];
+      for (let i=0; i<7; i++) {
+        dom[`sendon-${dayNames[i]}`] = recur.days.includes(i);
+      }
+    } else {
+      dom['sendon'] = false;
+    }
+    return dom;
   }
 }
 

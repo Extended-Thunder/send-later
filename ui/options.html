@@ -168,6 +168,29 @@
         <span class="option-label localized __MSG_sendUnsentMessagesPrefLabel__">
           Trigger unsent message delivery from Outbox</span>
       </label>
+
+      <label>
+        <input type="checkbox" id="customizeDateTime" class="preferences"/>
+        <span class="option-label localized __MSG_customizeDateTimeFormatsPrefLabel__">
+          Customize date/time formats
+        </span>
+      </label>
+      <div id="customDateTimeFormatsDiv" style="display:none;padding-left:1em;">
+        <label>
+          <span class="option-label localized __MSG_shortDateTimeFormatsPrefLabel__">
+            Short date/time format:
+          </span>
+          <input type="text" id="shortDateTimeFormat" class="preferences"/><br/>
+          (<span id="sampleShortDateTime" style="white-space:nowrap;"></span>)
+        </label>
+        <label>
+          <span class="option-label localized __MSG_longDateTimeFormatsPrefLabel__">
+            Long date/time format:
+          </span>
+          <input type="text" id="longDateTimeFormat" class="preferences"/><br/>
+          (<span id="sampleLongDateTime" style="white-space:nowrap;"></span>)
+        </label>
+      </div>
     </section>
 
     <section>

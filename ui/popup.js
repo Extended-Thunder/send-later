@@ -474,7 +474,7 @@ const SLPopup = {
           let evt = document.createEvent("HTMLEvents");
           evt.initEvent("change", false, true);
           element.dispatchEvent(evt);
-        } catch (err) { console.log(err); }
+        } catch (err) { SLStatic.log(err); }
       }
     } else {
       const soon = new Sugar.Date(Date.now() + (5*60*1000));
@@ -483,7 +483,7 @@ const SLPopup = {
         let evt = document.createEvent("HTMLEvents");
         evt.initEvent("change", false, true);
         dom["send-datetime"].dispatchEvent(evt);
-      } catch (err) { console.log(err); }
+      } catch (err) { SLStatic.log(err); }
     }
 
     SLStatic.stateSetter(dom["sendon"].checked)(dom["onlyOnDiv"]);
@@ -695,7 +695,7 @@ const SLPopup = {
       active:true, currentWindow:true
     }).then(tabs => tabs[0].id);
 
-    await SLStatic.fetchLogConsoleLevel();
+    await SLStatic.cachePrefs();
 
     const { ufuncs } = await browser.storage.local.get({ ufuncs: {} });
     SLPopup.ufuncs = ufuncs;
