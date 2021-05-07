@@ -42,7 +42,7 @@ var HdrRowUtils = {
     let folderObject = {
       accountId,
       name: folder.prettyName,
-      path: CustomColumnUtils.folderURIToPath(accountId, folder.URI),
+      path: HdrRowUtils.folderURIToPath(accountId, folder.URI),
     };
 
     const folderTypeMap = new Map([
