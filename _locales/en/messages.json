@@ -942,6 +942,9 @@
   "SanityCheckConfirmOptionMessage": {
     "message": "Select one of the options:\n  “OK”: Proceed as usual. You will not be prompted again.\n\n  “Cancel”: Send Later will be disabled via its own preferences.\n                    To re-enable Send Later, go to its options page and set\n                    the “Check every ___ minutes” preference to a non-zero value.\n                    You will receive this prompt again next time you restart\n                    Thunderbird"
   },
+  "ShowQuitNotificationPreference": {
+    "message": "Show warning before quit if there are pending messages"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "There are messages scheduled to be sent. Send Later can only send messages when $1 is running. Are you sure you want to exit?",
     "description": ""
