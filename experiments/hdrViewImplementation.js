@@ -12,7 +12,7 @@ var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm")
 var HdrRowUtils = {
   contentTypeHeaders: new Map(),
 
- folderURIToPath(accountId, uri) {
+  folderURIToPath(accountId, uri) {
     let server = MailServices.accounts.getAccount(accountId).incomingServer;
     let rootURI = server.rootFolder.URI;
     if (rootURI == uri) {
@@ -38,13 +38,13 @@ var HdrRowUtils = {
       let account = MailServices.accounts.FindAccountForServer(server);
       accountId = account.key;
     }
-  
+
     let folderObject = {
       accountId,
       name: folder.prettyName,
       path: HdrRowUtils.folderURIToPath(accountId, folder.URI),
     };
-  
+
     const folderTypeMap = new Map([
       [Ci.nsMsgFolderFlags.Inbox, "inbox"],
       [Ci.nsMsgFolderFlags.Drafts, "drafts"],
@@ -55,13 +55,13 @@ var HdrRowUtils = {
       [Ci.nsMsgFolderFlags.Junk, "junk"],
       [Ci.nsMsgFolderFlags.Queue, "outbox"],
     ]);
-  
+
     for (let [flag, typeName] of folderTypeMap.entries()) {
       if (folder.flags & flag) {
         folderObject.type = typeName;
       }
     }
-  
+
     return folderObject;
   },
 

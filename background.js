@@ -957,7 +957,7 @@ const SendLater = {
           const isDrafts = await messenger.SL3U.isDraftsFolder(accountId, path);
           visible = isDrafts;
         }
-        await messenger.columnHandler.setColumnVisible(columnName, visible, 0);
+        await messenger.columnHandler.setColumnVisible(columnName, visible, false);
       });
       promises.push(p_b);
 
@@ -1077,10 +1077,8 @@ const SendLater = {
           // drafts folder, so the user will have to navigate away and back to the
           // folder before their preferences can fully take effect.
           if (!preferences.showColumn) {
-            // Passing -1 for the tabId tells this function to apply the
-            // column visibility to all windows.
             const columnName = messenger.i18n.getMessage("sendlater3header.label");
-            messenger.columnHandler.setColumnVisible(columnName, false, -1);
+            messenger.columnHandler.setColumnVisible(columnName, false, true);
           }
         }
       });

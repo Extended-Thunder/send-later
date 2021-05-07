@@ -17,9 +17,6 @@ XPCOMUtils.defineLazyPreferenceGetter(
 );
 
 var CustomColumnUtils = {
-
-  msgTrackers: new Map(),
-
   contentTypeHeaders: new Map(),
 
   folderURIToPath(accountId, uri) {
@@ -208,12 +205,13 @@ class MessageViewsCustomColumn {
     );
     this.visibility = new Map();
     this.handlers = new Set();
+    this.msgTracker = new Map();
   }
 
-  setVisible(visible, tabId) {
+  setVisible(visible, applyGlobal) {
     try {
       let windows;
-      if (tabId === -1)
+      if (applyGlobal)
         windows = Services.wm.getEnumerator("mail:3pane")
       else
         windows = [Services.wm.getMostRecentWindow(null)];
@@ -274,6 +272,20 @@ class MessageViewsCustomColumn {
     });
   }
 
+  async invalidateMessage(messageId) {
+    if (this.msgTracker.has(messageId)) {
+      console.log(`Invalidating message: ${messageId}`);
+      let treerow = this.msgTracker.get(messageId);
+      this.msgTracker.delete(messageId);
+      for (let window of Services.wm.getEnumerator("mail:3pane")) {
+        if (window.gDBView)
+          window.gDBView.NoteChange(treerow.rowid, 1, 2);
+      }
+    } else {
+      console.warn(`Tree row cannot be invalidated for message: ${messageId}`);
+    }
+  }
+
   addToWindow(window) {
     let treecol = window.document.createXULElement("treecol");
     let column = {
@@ -301,18 +313,39 @@ class MessageViewsCustomColumn {
     this.handlers.add(fire);
 
     let getValue = (msgHdr, field, row) => {
-      if (CustomColumnUtils.msgTrackers.has(msgHdr.messageId))
-        return CustomColumnUtils.msgTrackers.get(msgHdr.messageId)[field];
+      if (this.msgTracker.has(msgHdr.messageId))
+        return this.msgTracker.get(msgHdr.messageId)[field];
 
       CustomColumnUtils.convertMessage(msgHdr).then(msg =>
         fire.async(msg)
       ).then(result => {
         result.rowid = row;
-        CustomColumnUtils.msgTrackers.set(msgHdr.messageId, result);
+        this.msgTracker.set(msgHdr.messageId, result);
         if (row !== undefined)
           window.gDBView.NoteChange(row, 1, 2);
       }).catch(console.error);
-      return "";
+
+      // Message is not cached, but it will be soon (hopefully)
+      // In the mean time, fall back to just displaying the
+      // x-send-later-at header value
+      if (field === "cellText") {
+        let sendAt = msgHdr.getStringProperty("x-send-later-at");
+        if (sendAt) {
+          const options = {
+            hour: "numeric", minute: "numeric",
+            month: "numeric", day: "numeric", year: "numeric"
+          }
+          sendAt = new Date(sendAt);
+          // Display * at end of string for debugging purposes.
+          // If asterisk shows up in column cells (more than just momentarily)
+          // then something is wrong with the callback.
+          return (new Intl.DateTimeFormat([], options).format(sendAt)) + "*";
+        } else {
+          return "";
+        }
+      } else {
+        return null;
+      }
     };
 
     let columnHandler = {
@@ -338,7 +371,7 @@ class MessageViewsCustomColumn {
         let sendAt = msgHdr.getStringProperty("x-send-later-at");
         let contentType = msgHdr.getStringProperty("content-type");
         let sorter = getValue(msgHdr, "sortValue");
-        if (sorter !== "") {
+        if (sorter !== null) {
           return sorter|0;
         } else if ((/encrypted/i).test(contentType)) {
           return (Math.pow(2,31)-1)|0;
@@ -367,12 +400,13 @@ class MessageViewsCustomColumn {
 
 var columnHandler = class extends ExtensionCommon.ExtensionAPI {
   close() {
-    for (let column of this.columns.values())
+    for (let column of this.columns.values()) {
       try {
         column.destroy();
       } catch (ex) {
         console.error("Unable to destroy column:",ex);
       }
+    }
 
     ExtensionSupport.unregisterWindowListener("customColumnWL");
   }
@@ -412,23 +446,18 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
           columns.delete(name);
         },
 
-        async invalidateRow(messageId) {
-          if (CustomColumnUtils.msgTrackers.has(messageId)) {
-            let treerow = CustomColumnUtils.msgTrackers.get(messageId);
-            CustomColumnUtils.msgTrackers.delete(messageId);
-
-            for (let window of Services.wm.getEnumerator("mail:3pane")) {
-              if (window.gDBView)
-                window.gDBView.NoteChange(treerow.rowid, 1, 2);
-            }
+        async invalidateRow(msgIdHeader) {
+          let id = msgIdHeader.replace('<','').replace('>','');
+          for (let column of columns.values()) {
+            column.invalidateMessage(id);
           }
         },
 
-        async setColumnVisible(name, visible, tabId) {
+        async setColumnVisible(name, visible, applyGlobal) {
           let column = columns.get(name);
           if (!column)
             throw new ExtensionError("Cannot update non-existent column");
-          column.setVisible(visible, tabId);
+          column.setVisible(visible, applyGlobal);
         },
 
         onCustomColumnFill: new ExtensionCommon.EventManager({
