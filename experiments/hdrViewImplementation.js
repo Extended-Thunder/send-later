@@ -12,19 +12,7 @@ var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm")
 var HdrRowUtils = {
   contentTypeHeaders: new Map(),
 
-  folderURIToPath(accountId, uri) {
-    let server = MailServices.accounts.getAccount(accountId).incomingServer;
-    let rootURI = server.rootFolder.URI;
-    if (rootURI == uri) {
-      return "/";
-    }
-    // The .URI property of an IMAP folder doesn't have %-encoded characters, but
-    // may include literal % chars. Services.io.newURI(uri) applies encodeURI to
-    // the returned filePath, but will not encode any literal % chars, which will
-    // cause decodeURIComponent to fail (bug 1707408).
-    if (server.type == "imap") {
-      return uri.substring(rootURI.length);
-    }
+ folderURIToPath(uri) {
     let path = Services.io.newURI(uri).filePath;
     return path.split("/").map(decodeURIComponent).join("/");
   },
@@ -38,13 +26,13 @@ var HdrRowUtils = {
       let account = MailServices.accounts.FindAccountForServer(server);
       accountId = account.key;
     }
-
+  
     let folderObject = {
       accountId,
       name: folder.prettyName,
-      path: HdrRowUtils.folderURIToPath(accountId, folder.URI),
+      path: HdrRowUtils.folderURIToPath(folder.URI),
     };
-
+  
     const folderTypeMap = new Map([
       [Ci.nsMsgFolderFlags.Inbox, "inbox"],
       [Ci.nsMsgFolderFlags.Drafts, "drafts"],
@@ -55,13 +43,13 @@ var HdrRowUtils = {
       [Ci.nsMsgFolderFlags.Junk, "junk"],
       [Ci.nsMsgFolderFlags.Queue, "outbox"],
     ]);
-
+  
     for (let [flag, typeName] of folderTypeMap.entries()) {
       if (folder.flags & flag) {
         folderObject.type = typeName;
       }
     }
-
+  
     return folderObject;
   },
 

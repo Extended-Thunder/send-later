@@ -17,21 +17,12 @@ XPCOMUtils.defineLazyPreferenceGetter(
 );
 
 var CustomColumnUtils = {
+
+  msgTrackers: new Map(),
+
   contentTypeHeaders: new Map(),
 
-  folderURIToPath(accountId, uri) {
-    let server = MailServices.accounts.getAccount(accountId).incomingServer;
-    let rootURI = server.rootFolder.URI;
-    if (rootURI == uri) {
-      return "/";
-    }
-    // The .URI property of an IMAP folder doesn't have %-encoded characters, but
-    // may include literal % chars. Services.io.newURI(uri) applies encodeURI to
-    // the returned filePath, but will not encode any literal % chars, which will
-    // cause decodeURIComponent to fail (bug 1707408).
-    if (server.type == "imap") {
-      return uri.substring(rootURI.length);
-    }
+  folderURIToPath(uri) {
     let path = Services.io.newURI(uri).filePath;
     return path.split("/").map(decodeURIComponent).join("/");
   },
@@ -49,7 +40,7 @@ var CustomColumnUtils = {
     let folderObject = {
       accountId,
       name: folder.prettyName,
-      path: CustomColumnUtils.folderURIToPath(accountId, folder.URI),
+      path: CustomColumnUtils.folderURIToPath(folder.URI),
     };
 
     const folderTypeMap = new Map([
@@ -205,13 +196,12 @@ class MessageViewsCustomColumn {
     );
     this.visibility = new Map();
     this.handlers = new Set();
-    this.msgTracker = new Map();
   }
 
-  setVisible(visible, applyGlobal) {
+  setVisible(visible, tabId) {
     try {
       let windows;
-      if (applyGlobal)
+      if (tabId === -1)
         windows = Services.wm.getEnumerator("mail:3pane")
       else
         windows = [Services.wm.getMostRecentWindow(null)];
@@ -272,20 +262,6 @@ class MessageViewsCustomColumn {
     });
   }
 
-  async invalidateMessage(messageId) {
-    if (this.msgTracker.has(messageId)) {
-      console.log(`Invalidating message: ${messageId}`);
-      let treerow = this.msgTracker.get(messageId);
-      this.msgTracker.delete(messageId);
-      for (let window of Services.wm.getEnumerator("mail:3pane")) {
-        if (window.gDBView)
-          window.gDBView.NoteChange(treerow.rowid, 1, 2);
-      }
-    } else {
-      console.warn(`Tree row cannot be invalidated for message: ${messageId}`);
-    }
-  }
-
   addToWindow(window) {
     let treecol = window.document.createXULElement("treecol");
     let column = {
@@ -313,39 +289,18 @@ class MessageViewsCustomColumn {
     this.handlers.add(fire);
 
     let getValue = (msgHdr, field, row) => {
-      if (this.msgTracker.has(msgHdr.messageId))
-        return this.msgTracker.get(msgHdr.messageId)[field];
+      if (CustomColumnUtils.msgTrackers.has(msgHdr.messageId))
+        return CustomColumnUtils.msgTrackers.get(msgHdr.messageId)[field];
 
       CustomColumnUtils.convertMessage(msgHdr).then(msg =>
         fire.async(msg)
       ).then(result => {
         result.rowid = row;
-        this.msgTracker.set(msgHdr.messageId, result);
+        CustomColumnUtils.msgTrackers.set(msgHdr.messageId, result);
         if (row !== undefined)
           window.gDBView.NoteChange(row, 1, 2);
       }).catch(console.error);
-
-      // Message is not cached, but it will be soon (hopefully)
-      // In the mean time, fall back to just displaying the
-      // x-send-later-at header value
-      if (field === "cellText") {
-        let sendAt = msgHdr.getStringProperty("x-send-later-at");
-        if (sendAt) {
-          const options = {
-            hour: "numeric", minute: "numeric",
-            month: "numeric", day: "numeric", year: "numeric"
-          }
-          sendAt = new Date(sendAt);
-          // Display * at end of string for debugging purposes.
-          // If asterisk shows up in column cells (more than just momentarily)
-          // then something is wrong with the callback.
-          return (new Intl.DateTimeFormat([], options).format(sendAt)) + "*";
-        } else {
-          return "";
-        }
-      } else {
-        return null;
-      }
+      return "";
     };
 
     let columnHandler = {
@@ -371,7 +326,7 @@ class MessageViewsCustomColumn {
         let sendAt = msgHdr.getStringProperty("x-send-later-at");
         let contentType = msgHdr.getStringProperty("content-type");
         let sorter = getValue(msgHdr, "sortValue");
-        if (sorter !== null) {
+        if (sorter !== "") {
           return sorter|0;
         } else if ((/encrypted/i).test(contentType)) {
           return (Math.pow(2,31)-1)|0;
@@ -400,13 +355,12 @@ class MessageViewsCustomColumn {
 
 var columnHandler = class extends ExtensionCommon.ExtensionAPI {
   close() {
-    for (let column of this.columns.values()) {
+    for (let column of this.columns.values())
       try {
         column.destroy();
       } catch (ex) {
         console.error("Unable to destroy column:",ex);
       }
-    }
 
     ExtensionSupport.unregisterWindowListener("customColumnWL");
   }
@@ -446,18 +400,23 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
           columns.delete(name);
         },
 
-        async invalidateRow(msgIdHeader) {
-          let id = msgIdHeader.replace('<','').replace('>','');
-          for (let column of columns.values()) {
-            column.invalidateMessage(id);
+        async invalidateRow(messageId) {
+          if (CustomColumnUtils.msgTrackers.has(messageId)) {
+            let treerow = CustomColumnUtils.msgTrackers.get(messageId);
+            CustomColumnUtils.msgTrackers.delete(messageId);
+
+            for (let window of Services.wm.getEnumerator("mail:3pane")) {
+              if (window.gDBView)
+                window.gDBView.NoteChange(treerow.rowid, 1, 2);
+            }
           }
         },
 
-        async setColumnVisible(name, visible, applyGlobal) {
+        async setColumnVisible(name, visible, tabId) {
           let column = columns.get(name);
           if (!column)
             throw new ExtensionError("Cannot update non-existent column");
-          column.setVisible(visible, applyGlobal);
+          column.setVisible(visible, tabId);
         },
 
         onCustomColumnFill: new ExtensionCommon.EventManager({
