@@ -86,8 +86,8 @@
               "type": "boolean"
             },
             {
-              "name": "tabId",
-              "type": "integer",
+              "name": "applyGlobal",
+              "type": "boolean",
               "optional": true
             }
           ]
