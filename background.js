@@ -62,19 +62,22 @@ const SendLater = {
         `[${platformInfo.os} ${platformInfo.arch}]`);
     },
 
-    registerQuitNotifications(enabled) {
+    async setQuitNotificationsEnabled(enabled, instanceUUID) {
       SLStatic.debug(`Setting quit notifications: ${enabled ? "on" : "off"}`);
       if (enabled) {
-        let appName = browser.i18n.getMessage("extensionName");
-        let title = browser.i18n.getMessage("scheduledMessagesWarningTitle") + " - " + appName;
-        let requestWarning = browser.i18n.getMessage("scheduledMessagesWarningQuitRequested", appName);
-        let grantedWarning = browser.i18n.getMessage("ScheduledMessagesWarningQuit", appName);
-        messenger.quitter.setQuitRequestedAlert(title, requestWarning);
-        messenger.quitter.setQuitGrantedAlert(title, grantedWarning);
-      } else {
-        messenger.quitter.removeQuitRequestedObserver();
-        messenger.quitter.removeQuitGrantedObserver();
+        let schedules = await this.getActiveSchedules(instanceUUID);
+        if (schedules.length > 0) {
+          let appName = browser.i18n.getMessage("extensionName");
+          let title = browser.i18n.getMessage("scheduledMessagesWarningTitle") + " - " + appName;
+          let requestWarning = browser.i18n.getMessage("scheduledMessagesWarningQuitRequested", appName);
+          let grantedWarning = browser.i18n.getMessage("ScheduledMessagesWarningQuit", appName);
+          messenger.quitter.setQuitRequestedAlert(title, requestWarning);
+          messenger.quitter.setQuitGrantedAlert(title, grantedWarning);
+          return;
+        }
       }
+      messenger.quitter.removeQuitRequestedObserver();
+      messenger.quitter.removeQuitGrantedObserver();
     },
 
     customHdrToScheduleInfo(customHeaders, instanceUUID) {
@@ -1123,7 +1126,7 @@ const SendLater = {
             logConsoleLevel: SLStatic.logConsoleLevel
           });
 
-          SendLater.registerQuitNotifications(preferences.askQuit);
+          SendLater.setQuitNotificationsEnabled(preferences.askQuit, preferences.instanceUUID);
         }).catch(ex => SLStatic.error(ex));
 
       // Initialize the draft folder column, expanded
@@ -1152,7 +1155,7 @@ const SendLater = {
             logConsoleLevel: SLStatic.logConsoleLevel
           });
 
-          SendLater.registerQuitNotifications(preferences.askQuit);
+          SendLater.setQuitNotificationsEnabled(preferences.askQuit, preferences.instanceUUID);
 
           messenger.statusBar.setVisible(preferences.showStatus);
 
@@ -1661,13 +1664,13 @@ function mainLoop() {
     }
   } catch (ex) { SLStatic.error(ex); }
 
-  browser.storage.local.get({ preferences: {} }).then((storage) => {
-    let interval = +storage.preferences.checkTimePref || 0;
-    if (storage.preferences.checkTimePref_isMilliseconds)
+  browser.storage.local.get({ preferences: {} }).then(({ preferences }) => {
+    let interval = +preferences.checkTimePref || 0;
+    if (preferences.checkTimePref_isMilliseconds)
       interval /= 60000;
-    const throttleDelay = storage.preferences.throttleDelay;
+    const throttleDelay = preferences.throttleDelay;
 
-    if (storage.preferences.sendDrafts && interval > 0) {
+    if (preferences.sendDrafts && interval > 0) {
       SendLater.updateStatusBarIndicator(true);
 
       messenger.accounts.list().then(async (accounts) => {
@@ -1735,6 +1738,8 @@ function mainLoop() {
         SLStatic.previousLoop = new Date();
         SendLater.updateStatusBarIndicator(false);
 
+        SendLater.setQuitNotificationsEnabled(preferences.askQuit, preferences.instanceUUID);
+
         SLStatic.previousLoop = new Date();
         SLStatic.debug(`Next main loop iteration in ${interval} ` +
                        `minute${interval === 1 ? "" : "s"}.`);
@@ -1747,6 +1752,7 @@ function mainLoop() {
         SendLater.loopTimeout = setTimeout(mainLoop, 60000);
       });
     } else {
+      SendLater.setQuitNotificationsEnabled(false);
       const extName = browser.i18n.getMessage("extensionName");
       const disabledMsg = browser.i18n.getMessage("DisabledMessage");
       messenger.statusBar.setStatusMessage(`${extName} [${disabledMsg}]`);

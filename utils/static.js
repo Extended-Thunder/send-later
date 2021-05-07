@@ -15,11 +15,11 @@ var SLStatic = {
   // Migration 6: Add longDateTimeFormat/shortDateTimeFormat
   CURRENT_LEGACY_MIGRATION: 6,
 
-  // HTML element IDs correspond to preference keys, localization strings, and
-  // keys of preference values in local storage.
+  // HTML element IDs in options.html correspond to preference keys
+  // in local storage.
   prefInputIds: ["checkTimePref", "sendDoesDelay", "sendDelay", "sendDoesSL",
                  "altBinding", "markDraftsRead", "showColumn", "showHeader",
-                 "showStatus", "blockLateMessages", "lateGracePeriod",
+                 "showStatus", "blockLateMessages", "lateGracePeriod", "askQuit",
                  "sendUnsentMsgs", "enforceTimeRestrictions", "logDumpLevel",
                  "logConsoleLevel", "quickOptions1Label",
                  "quickOptions1funcselect", "quickOptions1Args",
