@@ -1,5 +1,6 @@
 var SendLaterStatusBar = {
   setVisible(visible) {
+    console.debug(`[SendLater] Statusbar menu: ${visible ? 'visible' : 'hidden'}`);
     let statusbutton = document.getElementById("sendlater3-panel");
     if (statusbutton) {
       if (visible)
