@@ -943,7 +943,7 @@
     "message": "Selecteer een van deze opties:\n  ‘OK’: doorgaan zoals gebruikelijk. De vraag verschijnt hierna niet meer.\n\n  ‘Annuleren’: Send Later wordt uitgeschakeld via de eigen voorkeuren.\n                    Om Send Later weer in te schakelen, gaat u naar de optiespagina ervan\n                    en stelt u de voorkeur ‘Elke ___ minuten controleren’ in op een andere waarde dan nul.\n                    U ziet deze vraag weer als u Thunderbird de volgende keer opnieuw\n                    start."
   },
   "ShowQuitNotificationPreference": {
-    "message": "Waarschuwing tonen voordat u stopt als er berichten in behandeling zijn"
+    "message": "Waarschuwing tonen voor het afsluiten als er berichten in behandeling zijn"
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Er zijn berichten ingepland voor verzending. Send Later kan alleen berichten verzenden als $1 actief is. Weet u zeker dat u wilt afsluiten?",
