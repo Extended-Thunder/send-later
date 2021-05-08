@@ -1,14 +1,14 @@
 // Get various parts of the WebExtension framework that we need.
-var { utils: Cu, classes: Cc, interfaces: Ci } = Components;
-var { ExtensionCommon } = ChromeUtils.import("resource://gre/modules/ExtensionCommon.jsm");
-var { ExtensionSupport } = ChromeUtils.import("resource:///modules/ExtensionSupport.jsm");
-var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-var { Utils } = ChromeUtils.import("resource://services-settings/Utils.jsm");
-// var { AppConstants } = ChromeUtils.import("resource://gre/modules/AppConstants.jsm");
-var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
+const { utils: Cu, classes: Cc, interfaces: Ci } = Components;
+const { ExtensionCommon } = ChromeUtils.import("resource://gre/modules/ExtensionCommon.jsm");
+const { ExtensionSupport } = ChromeUtils.import("resource:///modules/ExtensionSupport.jsm");
+const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
+const { Utils } = ChromeUtils.import("resource://services-settings/Utils.jsm");
+// const { AppConstants } = ChromeUtils.import("resource://gre/modules/AppConstants.jsm");
+const { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 var { AddonManager } = ChromeUtils.import("resource://gre/modules/AddonManager.jsm");
 
-var { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
 
 const SendLaterVars = {
   fileNumber: 0,
@@ -684,6 +684,18 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             }
           }
           return new Promise(doConfirmCheck.bind(this));
+        },
+
+        async showStatus(message) {
+          for (let window of Services.wm.getEnumerator("mail:3pane")) {
+            const { document } = window;
+            const statusMenu = document.getElementById("sendlater3-panel");
+            if (statusMenu) {
+              statusMenu.setAttribute("label", message);
+            } else {
+              SendLaterFunctions.debug("Unable to find status-bar menu element");
+            }
+          }
         },
 
         async setLegacyPref(name, dtype, value) {

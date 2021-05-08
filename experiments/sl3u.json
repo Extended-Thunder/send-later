@@ -79,6 +79,17 @@
         ]
       },
       {
+        "name":"showStatus",
+        "type":"function",
+        "async":true,
+        "parameters":[
+          {
+            "name":"message",
+            "type":"string"
+          }
+        ]
+      },
+      {
         "name":"setSendLaterVar",
         "type":"function",
         "async":true,
