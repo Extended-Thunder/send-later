@@ -942,6 +942,9 @@
   "SanityCheckConfirmOptionMessage": {
     "message": "Vælg en af mulighederne:\n  “OK”: Fortsæt som sædvanlig. Du vil ikke blive spurgt igen.\n\n  “Annullér”: Send senere vil blive deaktiveret via egne præferencer.\n                    For at genaktivere Send senere, gå til siden med valgmuligheder og sæt\n                    “Tjek hver ___ minutter” præferencen til en ikke-nul værdi.\n                    Du vil se denne forespørgsel igen, næste gang du genstarter\n                    Thunderbird"
   },
+  "ShowQuitNotificationPreference": {
+    "message": "Vis advarsel før afslutning hvis der er ventende beskeder"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Der er beskeder planlagt til at blive sendt. Send senere kan kun sende beskeder når $1 kører. Er du sikker på du vil afslutte?",
     "description": ""
