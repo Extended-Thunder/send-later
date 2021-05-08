@@ -1139,33 +1139,5 @@
   "LongDescription": {
     "message": "Aquest complement canvia la comanda \"Enviar més tard\" (Ctrl+Shift+Intro) a la següent finestra de composició. En comptes de copiar el missatge a la Safata de Sortida per a ésser enviat el proper cop que estiguis en línia o cliquis \"Enviar missatges no enviats\", apareixerà una finestra que et permetrà especificar quan s'enviarà el missatge.\n\nPots introduir una data específica, clicar \"15 minuts més tard\", \"30 minuts més tard\", \"2 hores més tard\" o definir una drecera. També pots programar l'enviament reiterat d'un missatge utilitzant normes senzilles (cada N hores, dies, etc.) o funcions personalitzades.\n\nSend Later es basa en un processament de la data d'entrada, proporcionat per la biblioteca d'Andrew Plummer <a href=\"https://sugarjs.com/\">Sugar.js</a>.",
     "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
-  },
-  "accelKeyLabel": {
-    "message": "Drecera de tecla",
-    "description": "Label for options window to identify accelerator shortcuts"
-  },
-  "accelCtrlLabel": {
-    "message": "Ctrl+clic",
-    "description": "Indicates key combination to access the ctrl+click accelerator function"
-  },
-  "accelCtrlLabel.MacOS": {
-    "message": "Cmd+clic",
-    "description": "Indicates key combination to access the ctrl+click accelerator function. On mac the Ctrl key is replaced with the 'Command' key"
-  },
-  "accelShiftLabel": {
-    "message": "Majús.+clic",
-    "description": "Indicates key combination to access the shift+click accelerator function"
-  },
-  "okay": {
-    "message": "D'acord",
-    "description": "Confirm an action (presented in popup dialogs)"
-  },
-  "cancel": {
-    "message": "Cancel·lar",
-    "description": "Cancel an action (presented in popup dialogs)"
-  },
-  "no": {
-    "message": "No",
-    "description": "Reject an action (presented in popup dialogs)"
   }
 }

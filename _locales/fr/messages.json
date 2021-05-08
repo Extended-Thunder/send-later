@@ -1078,9 +1078,5 @@
   "CheckingMessage": {
     "message": "VÉRIFICATION",
     "description": ""
-  },
-  "cancel": {
-    "message": "Annuler",
-    "description": "Cancel an action (presented in popup dialogs)"
   }
 }

@@ -919,12 +919,6 @@
     "message": "“Send Later”只能在 $1 运行的时候发送消息。请记得在您的预定发送时间之前重新运行程序！",
     "description": ""
   },
-  "EncryptionIncompatTitle": {
-    "message": "加密兼容性問題"
-  },
-  "EncryptionIncompatText": {
-    "message": "此郵件因已被您自己的PGP密鑰加密，故無法傳遞給收件人。有關此消息的更多詳細信息，請參見此討論：https://github.com/Extended-Thunder/send-later/discussions/200"
-  },
   "EnigmailIncompatTitle": {
     "message": "Send Later以及Enigmail兼容性问题",
     "description": ""
@@ -1100,9 +1094,5 @@
   "CheckingMessage": {
     "message": "正在检查",
     "description": ""
-  },
-  "cancel": {
-    "message": "取消",
-    "description": "Cancel an action (presented in popup dialogs)"
   }
 }

@@ -1094,9 +1094,5 @@
   "CheckingMessage": {
     "message": "ПРОВЕРКА",
     "description": ""
-  },
-  "cancel": {
-    "message": "Отказ",
-    "description": "Cancel an action (presented in popup dialogs)"
   }
 }

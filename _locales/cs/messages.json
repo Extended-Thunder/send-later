@@ -1078,9 +1078,5 @@
   "CheckingMessage": {
     "message": "Probíhá kontrola",
     "description": ""
-  },
-  "cancel": {
-    "message": "Zrušit",
-    "description": "Cancel an action (presented in popup dialogs)"
   }
 }

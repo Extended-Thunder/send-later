@@ -1074,9 +1074,5 @@
   "CheckingMessage": {
     "message": "検証中です",
     "description": ""
-  },
-  "cancel": {
-    "message": "キャンセル",
-    "description": "Cancel an action (presented in popup dialogs)"
   }
 }

@@ -12,7 +12,7 @@ const SendLater = {
 
     notify(title, text) {
       SLStatic.warn(`Alert: ${title}- ${text}`);
-      messenger.notifications.create(null, {
+      browser.notifications.create(null, {
         "type": "basic",
         "title": title,
         "message": text
@@ -29,80 +29,22 @@ const SendLater = {
         `[${platformInfo.os} ${platformInfo.arch}]`);
     },
 
-    async customHdrToScheduleInfo(hdr) {
-      let cellText = "";
-      let sortValue = (Math.pow(2,31)-5)|0;
-
-      if (!hdr.customHeaders["content-type"]) {
-        SLStatic.warn("Didn't receive complete headers.");
-        return { cellText, sortValue };
-      } else if (!hdr.customHeaders["x-send-later-at"]) {
-        // Do nothing. Leave cell properties as default
-        return { cellText, sortValue };
-      }
-
-      const { preferences } = await browser.storage.local.get({ preferences: {} });
-      if (hdr.customHeaders["x-send-later-uuid"] !== preferences.instanceUUID) {
-        cellText = browser.i18n.getMessage("incorrectUUID");
-        sortValue = (Math.pow(2,31)-2)|0;
-      } else if ((/encrypted/i).test(hdr.customHeaders["content-type"])) {
-        cellText = browser.i18n.getMessage("EncryptionIncompatText");
-        sortValue = (Math.pow(2,31)-1)|0;
-      } else {
-        const sendAt = new Date(hdr.customHeaders["x-send-later-at"]);
-        const recurSpec = (hdr.customHeaders["x-send-later-recur"] || "none");
-        let recur = SLStatic.parseRecurSpec(recurSpec);
-        recur.cancelOnReply = ["true", "yes"].includes(
-          hdr.customHeaders["x-send-later-cancel-on-reply"]
-        );
-        recur.args = hdr.customHeaders["x-send-later-args"];
-        cellText = SLStatic.formatScheduleForUIColumn({ sendAt, recur });
-        // Numbers will be truncated. Be sure this fits in 32 bits
-        sortValue = (sendAt.getTime()/1000)|0;
-      }
-      return { cellText, sortValue };
-    },
-
     async preSendCheck() {
-      return await messenger.SL3U.preSendCheck();
+      return await browser.SL3U.preSendCheck();
     },
 
     async isEditing(msgId) {
       // Look through each of the compose windows, check for this message UUID.
-      return await messenger.SL3U.editingMessage(msgId);
-    },
-
-    async getDraftFolders(acct) {
-      async function getDraftFoldersHelper(folder) {
-        // Recursive helper function to look through an account for draft folders
-        const accountId = folder.accountId, path = folder.path;
-        if (await messenger.SL3U.isDraftsFolder(accountId, path)) {
-          return folder;
-        } else {
-          const drafts = [];
-          for (let subFolder of folder.subFolders) {
-            drafts.push(await getDraftFoldersHelper(subFolder));
-          }
-          return drafts;
-        }
-      }
-
-      const draftSubFolders = [];
-      for (let folder of acct.folders) {
-        draftSubFolders.push(await getDraftFoldersHelper(folder));
-      }
-      const allDraftFolders = SLStatic.flatten(draftSubFolders);
-      SLStatic.debug(`Found Draft folder(s) for account ${acct.name}`,allDraftFolders);
-      return allDraftFolders;
+      return await browser.SL3U.editingMessage(msgId);
     },
 
     async forAllDraftFolders(callback) {
       const that = this;
       try {
         let results = [];
-        let accounts = await messenger.accounts.list();
+        let accounts = await browser.accounts.list();
         for (let acct of accounts) {
-          let draftFolders = await SendLater.getDraftFolders(acct);
+          let draftFolders = await getDraftFolders(acct);
           for (let folder of draftFolders) {
             results.push(callback(folder));
           }
@@ -117,18 +59,18 @@ const SendLater = {
       const that = this;
       try {
         let results = [];
-        let accounts = await messenger.accounts.list();
+        let accounts = await browser.accounts.list();
         for (let acct of accounts) {
-          let draftFolders = await SendLater.getDraftFolders(acct);
+          let draftFolders = await getDraftFolders(acct);
           for (let folder of draftFolders) {
-            let page = await messenger.messages.list(folder);
+            let page = await browser.messages.list(folder);
             do {
               let pageResults = page.messages.map(
                 message => callback.call(that, message)
               );
               results = results.concat(pageResults);
               if (page.id) {
-                page = await messenger.messages.continueList(page.id);
+                page = await browser.messages.continueList(page.id);
               }
             } while (page.id);
           }
@@ -142,15 +84,15 @@ const SendLater = {
     async expandRecipients(tabId) {
       let details = {};
       for (let type of ["to", "cc", "bcc"]) {
-        details[type] = await messenger.SL3U.expandRecipients(type);
+        details[type] = await browser.SL3U.expandRecipients(type);
       }
-      await messenger.compose.setComposeDetails(tabId, details);
+      await browser.compose.setComposeDetails(tabId, details);
     },
 
     async doSendNow() {
       const { preferences } = await browser.storage.local.get({ preferences: {} });
       if (preferences.showSendNowAlert) {
-        const result = await messenger.SL3U.confirmCheck(
+        const result = await browser.SL3U.confirmCheck(
           browser.i18n.getMessage("AreYouSure"),
           browser.i18n.getMessage("SendNowConfirmMessage"),
           browser.i18n.getMessage("ConfirmAgain"),
@@ -166,11 +108,11 @@ const SendLater = {
           SLStatic.debug(`User cancelled send now.`);
           return;
         }
-        messenger.SL3U.goDoCommand("cmd_sendNow").catch((ex) => {
+        browser.SL3U.goDoCommand("cmd_sendNow").catch((ex) => {
           SLStatic.error("Error during cmd_sendNow operation", ex);
         });
       } else {
-        messenger.SL3U.goDoCommand("cmd_sendWithCheck").catch((ex) => {
+        browser.SL3U.goDoCommand("cmd_sendWithCheck").catch((ex) => {
           SLStatic.error("Error during cmd_sendWithCheck operation", ex);
         });
       }
@@ -179,7 +121,7 @@ const SendLater = {
     async doPlaceInOutbox() {
       const { preferences } = await browser.storage.local.get({ preferences: {} });
       if (preferences.showOutboxAlert) {
-        const result = await messenger.SL3U.confirmCheck(
+        const result = await browser.SL3U.confirmCheck(
           browser.i18n.getMessage("AreYouSure"),
           browser.i18n.getMessage("OutboxConfirmMessage"),
           browser.i18n.getMessage("ConfirmAgain"),
@@ -196,7 +138,7 @@ const SendLater = {
           return;
         }
       }
-      messenger.SL3U.builtInSendLater().catch((ex) => {
+      browser.SL3U.builtInSendLater().catch((ex) => {
         SLStatic.error("Error during builtin send later operation",ex);
       });
     },
@@ -233,26 +175,26 @@ const SendLater = {
       }
 
       const inserted = Object.keys(customHeaders).map(name =>
-        messenger.SL3U.setHeader(name, (""+customHeaders[name]))
+        browser.SL3U.setHeader(name, (""+customHeaders[name]))
       );
       await this.expandRecipients(tabId);
       await Promise.all(inserted);
       SLStatic.debug('headers',customHeaders);
 
-      const composeDetails = await messenger.compose.getComposeDetails(tabId);
-      const newMessageId = await messenger.SL3U.generateMsgId(composeDetails.identityId);
+      const composeDetails = await browser.compose.getComposeDetails(tabId);
+      const newMessageId = await browser.SL3U.generateMsgId(composeDetails.identityId);
 
       if (preferences.markDraftsRead) {
         this.watchAndMarkRead.add(newMessageId);
       }
 
-      const success = await messenger.SL3U.saveAsDraft(newMessageId);
+      const success = await browser.SL3U.saveAsDraft(newMessageId);
       if (!success) {
         SLStatic.error("Something went wrong while scheduling this message.");
       }
 
       setTimeout(() => {
-        SendLater.updateStatusBarIndicator(false);
+        this.setStatusBarIndicator.call(this, false);
       }, 1000);
     },
 
@@ -301,7 +243,7 @@ const SendLater = {
       // Determines whether or not a particular draft message is due to be sent
       SLStatic.debug(`Checking message ${msgHdr.uri}.`);
 
-      // const rawContent = await messenger.messages.getRaw(msgHdr.id).catch(err => {
+      // const rawContent = await browser.messages.getRaw(msgHdr.id).catch(err => {
       //   SLStatic.warn(`Unable to fetch message ${msgHdr.id}.`, err);
       // });
       if (!rawContent) {
@@ -351,7 +293,7 @@ const SendLater = {
           SLStatic.debug(`Encountered previously sent message "${msgSubject}" ${originalMsgId}.`);
         } else {
           SLStatic.error(`Attempted to resend message "${msgSubject}" ${originalMsgId}.`);
-          const result = await messenger.SL3U.alertCheck(
+          const result = await browser.SL3U.alertCheck(
             "",
             browser.i18n.getMessage("CorruptFolderError", [msgHdr.folder.path]) + "\n\n" +
               browser.i18n.getMessage("CorruptFolderErrorDetails", [msgSubject, originalMsgId]),
@@ -390,7 +332,7 @@ const SendLater = {
             );
             const warningTitle = browser.i18n.getMessage("ScheduledMessagesWarningTitle");
             this.warnedAboutLateMessageBlocked.add(originalMsgId);
-            messenger.SL3U.alert(warningTitle, warningMsg)
+            browser.SL3U.alert(warningTitle, warningMsg)
           }
           return;
         }
@@ -434,7 +376,7 @@ const SendLater = {
             );
 
             const idkey = SLStatic.getHeader(rawContent, "X-Identity-Key");
-            const newMessageId = await messenger.SL3U.generateMsgId(idkey);
+            const newMessageId = await browser.SL3U.generateMsgId(idkey);
             newMsgContent = SLStatic.replaceHeader(
               newMsgContent,
               "Message-ID",
@@ -446,7 +388,7 @@ const SendLater = {
               this.watchAndMarkRead.add(newMessageId);
             }
 
-            const success = await messenger.SL3U.saveMessage(
+            const success = await browser.SL3U.saveMessage(
               msgHdr.folder.accountId,
               msgHdr.folder.path,
               newMsgContent
@@ -466,7 +408,7 @@ const SendLater = {
       // Initiate send from draft message
       SLStatic.info(`Sending message ${originalMsgId}.`);
 
-      const success = await messenger.SL3U.sendRaw(
+      const success = await browser.SL3U.sendRaw(
         SLStatic.prepNewMessageHeaders(rawContent),
         preferences.sendUnsentMsgs
       ).catch((ex) => {
@@ -556,7 +498,7 @@ const SendLater = {
         );
 
         const idkey = SLStatic.getHeader(rawContent, "X-Identity-Key");
-        const newMessageId = await messenger.SL3U.generateMsgId(idkey);
+        const newMessageId = await browser.SL3U.generateMsgId(idkey);
         newMsgContent = SLStatic.replaceHeader(
           newMsgContent,
           "Message-ID",
@@ -568,7 +510,7 @@ const SendLater = {
           this.watchAndMarkRead.add(newMessageId);
         }
 
-        const success = await messenger.SL3U.saveMessage(
+        const success = await browser.SL3U.saveMessage(
           msgHdr.folder.accountId,
           msgHdr.folder.path,
           newMsgContent
@@ -577,14 +519,14 @@ const SendLater = {
         if (success) {
           SLStatic.info(`Scheduled next occurrence of message ` +
             `<${originalMsgId}>. Deleting original.`);
-          // messenger.messages.delete([msgHdr.id], true);
+          // browser.messages.delete([msgHdr.id], true);
           return "delete_original";
         } else {
           SLStatic.error("Unable to schedule next recuurrence.");
         }
       } else {
         SLStatic.info(`No recurrences for message ${originalMsgId} (${msgHdr.id}). Deleting original.`);
-        //messenger.messages.delete([msgHdr.id], true);
+        //browser.messages.delete([msgHdr.id], true);
         return "delete_original";
       }
     },
@@ -656,7 +598,7 @@ const SendLater = {
           } else if (legacyKey === null) {
             pp = new Promise((resolve, reject) => resolve(defVal));
           } else {
-            pp = messenger.SL3U.getLegacyPref(
+            pp = browser.SL3U.getLegacyPref(
               legacyKey,
               dtype,
               defVal.toString()
@@ -699,7 +641,7 @@ const SendLater = {
       if (preferences.instanceUUID) {
         SLStatic.info(`This instance's UUID: ${preferences.instanceUUID}`);
       } else {
-        let instance_uuid = await messenger.SL3U.getLegacyPref(
+        let instance_uuid = await browser.SL3U.getLegacyPref(
           "instance.uuid", "string", "");
         if (instance_uuid) {
           SLStatic.info(`Using migrated UUID: ${instance_uuid}`);
@@ -708,7 +650,7 @@ const SendLater = {
           SLStatic.info(`Generated new UUID: ${instance_uuid}`);
         }
         preferences.instanceUUID = instance_uuid;
-        messenger.SL3U.setLegacyPref("instance.uuid", "string", instance_uuid);
+        browser.SL3U.setLegacyPref("instance.uuid", "string", instance_uuid);
       }
 
       if (currentMigrationNumber < SLStatic.CURRENT_LEGACY_MIGRATION) {
@@ -727,17 +669,17 @@ const SendLater = {
     },
 
     async getActiveSchedules(matchUUID) {
-      const allSchedulePromises = await messenger.accounts.list().then(async accounts => {
+      const allSchedulePromises = await browser.accounts.list().then(async accounts => {
         let folderSchedules = [];
         for (let acct of accounts) {
-          let draftFolders = await SendLater.getDraftFolders(acct).catch(SLStatic.error);
+          let draftFolders = await getDraftFolders(acct).catch(SLStatic.error);
           if (draftFolders && draftFolders.length > 0) {
             for (let draftFolder of draftFolders) {
               if (draftFolder) {
                 try {
                   SLStatic.debug(`Checking for messages in folder ${draftFolder.path}`);
                   const accountId = draftFolder.accountId, path = draftFolder.path;
-                  const thisFoldersSchedulePromise = messenger.SL3U.getAllScheduledMessages(
+                  const thisFoldersSchedulePromise = browser.SL3U.getAllScheduledMessages(
                     accountId, path, false, true
                   ).then(messages => {
                     let schedules = [];
@@ -783,9 +725,9 @@ const SendLater = {
           async folder => {
             const accountId = folder.accountId, path = folder.path;
             SLStatic.log(`Compacting folder <${path}> in account ${accountId}`);
-            return messenger.SL3U.compactFolder(accountId, path);
+            return browser.SL3U.compactFolder(accountId, path);
           });
-        const compactedOutbox = await messenger.SL3U.compactFolder("", "outbox");
+        const compactedOutbox = await browser.SL3U.compactFolder("", "outbox");
 
         if (compactedDrafts.every(v => v === true)) {
           SLStatic.debug("Successfully compacted Drafts.");
@@ -814,7 +756,7 @@ const SendLater = {
         message += "\n\n" + browser.i18n.getMessage("SanityCheckDrafts", [nActive, nextActiveText]);
       }
 
-      const nUnsentMessages = await messenger.SL3U.countUnsentMessages();
+      const nUnsentMessages = await browser.SL3U.countUnsentMessages();
       if (nUnsentMessages > 0 && preferences.sendUnsentMsgs) {
         message += "\n\n" + browser.i18n.getMessage("SanityCheckOutbox", [nUnsentMessages]);
       }
@@ -823,7 +765,7 @@ const SendLater = {
         const title = browser.i18n.getMessage("extensionName");
         message += "\n\n" + browser.i18n.getMessage("SanityCheckCorruptFolderWarning");
         message += `\n\n` + browser.i18n.getMessage("SanityCheckConfirmOptionMessage");
-        const okay = await messenger.SL3U.confirm(title, message.trim());
+        const okay = await browser.SL3U.confirm(title, message.trim());
         if (!okay) {
           SLStatic.info("Disabling Send Later per user selection.");
           preferences.checkTimePref = 0;
@@ -854,7 +796,7 @@ const SendLater = {
        * have been following the beta releases.
        */
       let claimed = await this.forAllDrafts(async (msg) => {
-        const rawContent = await messenger.messages.getRaw(msg.id).catch(err => {
+        const rawContent = await browser.messages.getRaw(msg.id).catch(err => {
           SLStatic.warn(`Unable to fetch message ${msg.id}.`, err);
         });
         if (!rawContent) {
@@ -874,7 +816,7 @@ const SendLater = {
             await browser.storage.local.get({ preferences: {} });
 
           const idkey = SLStatic.getHeader(rawContent, "X-Identity-Key");
-          const newMessageId = await messenger.SL3U.generateMsgId(idkey);
+          const newMessageId = await browser.SL3U.generateMsgId(idkey);
 
           let newMsgContent = rawContent;
           newMsgContent = SLStatic.replaceHeader(
@@ -889,7 +831,7 @@ const SendLater = {
             this.watchAndMarkRead.add(newMessageId);
           }
 
-          const success = await messenger.SL3U.saveMessage(
+          const success = await browser.SL3U.saveMessage(
             msg.folder.accountId,
             msg.folder.path,
             newMsgContent
@@ -898,7 +840,7 @@ const SendLater = {
           if (success) {
             SLStatic.log(`Saved new message id: ${newMessageId}. ` +
               `Deleting original.`);
-            messenger.messages.delete([msg.id], true);
+            browser.messages.delete([msg.id], true);
             return newMessageId;
           } else {
             SLStatic.error("Unable to claim message");
@@ -909,10 +851,13 @@ const SendLater = {
       SLStatic.info(`Claimed ${claimed.length} scheduled messages.`);
     },
 
-    async updateStatusBarIndicator(isActive) {
+    async setStatusBarIndicator(isActive) {
       const { preferences } = await browser.storage.local.get({ preferences: {} });
 
-      messenger.statusBar.setVisible(preferences.showStatus);
+      messenger.WindowListener.notifyExperiment({
+        command: "showHideStatusbar",
+        value: preferences.showStatus,
+      });
 
       if (preferences.showStatus) {
         let statusMsg = '...';
@@ -921,9 +866,7 @@ const SendLater = {
         } else {
           const activeSchedules = await this.getActiveSchedules(preferences.instanceUUID);
           const nActive = activeSchedules.length;
-          messenger.SL3U.setSendLaterVars({
-            messages_pending: nActive
-          }).catch(SLStatic.error);
+          browser.SL3U.setSendLaterVar("messages_pending", nActive);
           if (nActive > 0) {
             statusMsg = browser.i18n.getMessage("PendingMessage", [nActive]);
           } else {
@@ -932,90 +875,18 @@ const SendLater = {
         }
 
         const extName = browser.i18n.getMessage("extensionName");
-        messenger.statusBar.setStatusMessage(`${extName} [${statusMsg}]`);
+        messenger.WindowListener.notifyExperiment({
+          command: "setStatusMessage",
+          value: `${extName} [${statusMsg}]`,
+        });
       }
-    },
-
-    initCustomOverlays() {
-      let promises = [];
-
-      // Drafts folder column
-      const columnName = messenger.i18n.getMessage("sendlater3header.label");
-      let p_a = messenger.columnHandler.addCustomColumn({ name: columnName, tooltip: "" }).then(() => {
-        messenger.columnHandler.onCustomColumnFill.addListener(async (hdr) => {
-          const { cellText, sortValue } = await SendLater.customHdrToScheduleInfo(hdr);
-          return { cellText, sortValue };
-        }, columnName);
-      });
-      promises.push(p_a);
-
-      let p_b = messenger.mailTabs.onDisplayedFolderChanged.addListener(async (tab, folder) => {
-        const { preferences } = await browser.storage.local.get({ preferences: {} });
-        let visible = (preferences.showColumn === true);
-        if (visible) {
-          const accountId = folder.accountId, path = folder.path;
-          const isDrafts = await messenger.SL3U.isDraftsFolder(accountId, path);
-          visible = isDrafts;
-        }
-        await messenger.columnHandler.setColumnVisible(columnName, visible, false);
-      });
-      promises.push(p_b);
-
-      // Header row
-      const rowLabel = browser.i18n.getMessage("sendlater3header.label");
-      let p_c = messenger.headerView.addCustomHdrRow({ name: rowLabel }).then(() => {
-        messenger.headerView.onHeaderRowUpdate.addListener(async (hdr) => {
-          const { preferences } = await browser.storage.local.get({ preferences: {} });
-          const { cellText } = await SendLater.customHdrToScheduleInfo(hdr);
-          const visible = (preferences.showHeader === true) && (cellText !== "");
-          return { text: cellText, visible };
-        }, rowLabel);
-      });
-      promises.push(p_c);
-
-      // Status bar menu
-      let p_d = messenger.statusBar.addStatusMenu(
-        browser.i18n.getMessage("extensionName"), // Default label
-        false, // Initial visibility
-        [ // Menu items:
-          { id: 'show-preferences',
-            label: browser.i18n.getMessage("prefwindow.title") },
-          { id: 'user-guide-link',
-            label: browser.i18n.getMessage("userGuideLabel"),
-            uri: "https://extended-thunder.github.io/send-later/" },
-          { id: 'release-notes-link',
-            label: browser.i18n.getMessage("releasenotes.value"),
-            uri: "https://github.com/Extended-Thunder/send-later/releases" },
-          { id: 'contact-author-link',
-            label: browser.i18n.getMessage("contactAuthorLabel"),
-            uri: "https://github.com/Extended-Thunder/send-later/discussions/278" },
-          { id: 'donate-link',
-            label: browser.i18n.getMessage("donatelink.value"),
-            uri: "https://extended-thunder.github.io/send-later/#support-send-later" }
-        ]
-      ).then(() => {
-        SendLater.updateStatusBarIndicator(false);
-      });
-      promises.push(p_d);
-
-      // Status bar menu listener
-      let p_e = messenger.statusBar.statusMenuCallback.addListener(id => {
-        if (id === "show-preferences")
-          messenger.runtime.openOptionsPage();
-      });
-      promises.push(p_e);
-
-      return Promise.all(promises);
     },
 
     async init() {
       await this.printVersionInfo();
 
       // Set custom DB headers preference, if not already set.
-      await messenger.SL3U.setCustomDBHeaders([
-        "x-send-later-at", "x-send-later-recur", "x-send-later-args",
-        "x-send-later-cancel-on-reply", "x-send-later-uuid", "content-type"
-      ]);
+      await browser.SL3U.setCustomDBHeaders();
 
       // Before preferences are available, let's set logging
       // to the default level.
@@ -1032,129 +903,68 @@ const SendLater = {
         await this.doSanityCheck();
       }
 
-      // Very early iterations of the webextension version
-      // of send later did not set the x-send-later-uuid
-      // header. This function will "claim" any messages that
-      // were originally saved that way.
       if (previousMigration > 0 && previousMigration < 4) {
         await this.claimDrafts();
       }
 
-      browser.storage.local.get({ preferences: {} }).then(
-        ({ preferences }) => {
-          SendLater.prefCache = preferences;
-          SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
-          messenger.SL3U.setSendLaterVars({
-            logConsoleLevel: SLStatic.logConsoleLevel,
-            ask_quit: preferences.askQuit
-          });
-        }).catch(ex => SLStatic.error(ex));
+      const { preferences } =
+        await browser.storage.local.get({ preferences: {} });
+      this.prefCache = preferences;
 
-      // Initialize the draft folder column, expanded
-      // header view, and status bar menu
-      await this.initCustomOverlays();
+      messenger.WindowListener.notifyExperiment({
+        command: "showHideStatusbar",
+        value: preferences.showStatus,
+      });
 
       // This listener should be added *after* all of the storage-related
       // setup is complete. It makes sure that subsequent changes to storage
-      // take effect immediately.
+      // are propagated to their respective
       browser.storage.onChanged.addListener(async (changes, areaName) => {
         if (areaName === "local") {
           SLStatic.debug("Propagating changes from local storage");
-          const { preferences } = await browser.storage.local.get({ preferences: {} });
-          SendLater.prefCache = preferences;
+          const { preferences } =
+            await browser.storage.local.get({ preferences: {} });
+          this.prefCache = preferences;
           SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
+          const prefString = JSON.stringify(preferences);
+          await browser.SL3U.notifyStorageLocal(prefString, false);
 
-          messenger.SL3U.setSendLaterVars({
-            logConsoleLevel: SLStatic.logConsoleLevel,
-            ask_quit: preferences.askQuit
+          messenger.SL3U.setSendLaterVar("logConsoleLevel", SLStatic.logConsoleLevel);
+          messenger.SL3U.setSendLaterVar("ask_quit", preferences.askQuit);
+
+          messenger.WindowListener.notifyExperiment({
+            command: "showHideStatusbar",
+            value: preferences.showStatus,
           });
-
-          messenger.statusBar.setVisible(preferences.showStatus);
-
-          // Note: It's possible to immediately obey a preference change if the
-          // user has decided to disable the send later column, but when the column
-          // is being enabled there isn't a simple way to tell whether we're in a
-          // drafts folder, so the user will have to navigate away and back to the
-          // folder before their preferences can fully take effect.
-          if (!preferences.showColumn) {
-            const columnName = messenger.i18n.getMessage("sendlater3header.label");
-            messenger.columnHandler.setColumnVisible(columnName, false, true);
-          }
         }
       });
+
+      await browser.SL3U.injectScripts([
+        "utils/sugar-custom.js",
+        "utils/static.js",
+        "experiments/headerView.js"
+      ]);
+
+      setTimeout(() => {
+        browser.storage.local.get({ preferences: {} }).then(({ preferences }) => {
+          browser.SL3U.notifyStorageLocal(JSON.stringify(preferences), true);
+        });
+      }, 1000);
+
+      SLStatic.debug("Registering window listeners");
+      await browser.SL3U.startObservers();
+      await browser.SL3U.bindKeyCodes();
+
+      await this.setStatusBarIndicator(false);
     }
-}; // End SendLater object
+}; // SendLater
 
-// When user opens a new messagecompose window, we need to
-// do several things to ensure that it behaves as they expect.
-// namely, we need to override the window's send and sendlater
-// menu items, we need to ensure the toolbar is visible, and
-// we need to check whether they're editing a previously
-// scheduled draft.
-messenger.windows.onCreated.addListener(async (window) => {
-  if (window.type === "messageCompose") {
-    // Ensure that the composeAction button is visible,
-    // otherwise the popup action will silently fail.
-    await messenger.SL3U.forceToolbarVisible().catch(ex => {
-      SLStatic.error("SL3U.forceToolbarVisible", ex);
-    });
-
-    // Bind listeners to overlay components like File>Send,
-    // Send Later, and keycodes like Ctrl+enter, etc.
-    await messenger.SL3U.hijackComposeWindowKeyBindings().catch(ex => {
-      SLStatic.error("SL3U.hijackComposeWindowKeyBindings",ex);
-    });
-
-    // Now, check if this message was already an existing
-    // scheduled draft.
-    const originalHdrs = await messenger.SL3U.getDraftHeaders([
-      "x-send-later-at", "x-send-later-recur", "x-send-later-args",
-      "x-send-later-cancel-on-reply", "message-id" ]);
-
-    if (originalHdrs['x-send-later-at']) {
-      // Re-save the msg (delete existing schedule headers)
-      messenger.SL3U.goDoCommand("cmd_saveAsDraft").then(() => {
-        setTimeout(async () => {
-          // Alert the user about what just happened
-          let { preferences } = await browser.storage.local.get({ preferences: {} });
-          if (preferences.showEditAlert) {
-            messenger.windows.create({
-              url: "ui/draftSaveWarning.html",
-              type: "popup",
-              titlePreface: browser.i18n.getMessage("extensionName"),
-              height: 250,
-              width: 750
-            });
-          }
-          messenger.columnHandler.invalidateRow(originalHdrs["message-id"]);
-        }, 1000);
-      });
-
-      // TODO: Set popup scheduler defaults based on original schedule.
-    }
-  }
-});
-
-// Also attach bindings to all existing msgcompose windows
-(() => {
-  messenger.SL3U.forceToolbarVisible(-1).catch(ex => {
-    SLStatic.error("SL3U.forceToolbarVisible", ex);
-  });
-  messenger.SL3U.hijackComposeWindowKeyBindings(-1).catch(ex => {
-    SLStatic.error("SL3U.hijackComposeWindowKeyBindings",ex);
-  });
-})();
-
-// Custom events that are attached to user actions within
-// composition windows. These events occur when the user activates
-// the built-in send or send later using either key combinations
-// (e.g. ctrl+shift+enter), or click the file menu buttons.
-messenger.SL3U.onKeyCode.addListener(keyid => {
+browser.SL3U.onKeyCode.addListener(keyid => {
   SLStatic.info(`Received keycode ${keyid}`);
   switch (keyid) {
     case "key_altShiftEnter": {
       if (SendLater.prefCache.altBinding) {
-        messenger.composeAction.openPopup();
+        browser.composeAction.openPopup();
       } else {
         SLStatic.info("Ignoring Alt+Shift+Enter on account of user preferences");
       }
@@ -1166,19 +976,19 @@ messenger.SL3U.onKeyCode.addListener(keyid => {
         if (SendLater.prefCache.altBinding) {
           SLStatic.info("Passing Ctrl+Shift+Enter along to builtin send later " +
                         "because user bound alt+shift+enter instead.");
-          messenger.SL3U.builtInSendLater().catch((ex) => {
+          browser.SL3U.builtInSendLater().catch((ex) => {
             SLStatic.error("Error during builtin send later",ex);
           });
         } else {
           SLStatic.info("Opening popup");
-          messenger.composeAction.openPopup();
+          browser.composeAction.openPopup();
         }
         break;
       }
     case "cmd_sendLater":
       { // User clicked the "Send Later" menu item, which should always
         // open the Send Later popup.
-        messenger.composeAction.openPopup();
+        browser.composeAction.openPopup();
         break;
       }
     case "cmd_sendNow":
@@ -1187,13 +997,13 @@ messenger.SL3U.onKeyCode.addListener(keyid => {
       {
         if (SendLater.prefCache.sendDoesSL) {
           SLStatic.debug("Opening scheduler dialog.");
-          messenger.composeAction.openPopup();
+          browser.composeAction.openPopup();
         } else if (SendLater.prefCache.sendDoesDelay) {
           //Schedule with delay
           const sendDelay = SendLater.prefCache.sendDelay;
           SLStatic.info(`Scheduling Send Later ${sendDelay} minutes from now.`);
 
-          messenger.windows.getAll({
+          browser.windows.getAll({
             populate: true,
             windowTypes: ["messageCompose"]
           }).then((allWindows) => {
@@ -1226,7 +1036,7 @@ messenger.SL3U.onKeyCode.addListener(keyid => {
           let command = keyid;
           if (command === "key_send")
             command = "cmd_sendWithCheck";
-          messenger.SL3U.goDoCommand(command).catch((ex) => {
+          browser.SL3U.goDoCommand(command).catch((ex) => {
             SLStatic.error("Error during builtin send operation",ex);
           });
         }
@@ -1238,8 +1048,7 @@ messenger.SL3U.onKeyCode.addListener(keyid => {
   }
 });
 
-// Allow other extensions to access local preferences
-messenger.runtime.onMessageExternal.addListener(
+browser.runtime.onMessageExternal.addListener(
   (message, sender, sendResponse) => {
     if (message["action"] === "getPreferences") {
       browser.storage.local.get({"preferences":{}}).then(storage => {
@@ -1290,10 +1099,7 @@ messenger.runtime.onMessageExternal.addListener(
     }
   });
 
-// Various extension components communicate with
-// the background script via these runtime messages.
-// e.g. the options page and the scheduler dialog.
-messenger.runtime.onMessage.addListener(async (message) => {
+browser.runtime.onMessage.addListener(async (message) => {
   const response = {};
   switch (message.action) {
     case "alert": {
@@ -1332,9 +1138,9 @@ messenger.runtime.onMessage.addListener(async (message) => {
     case "getScheduleText": {
       try {
         const dispMsgHdr =
-          await messenger.messageDisplay.getDisplayedMessage(message.tabId);
+          await browser.messageDisplay.getDisplayedMessage(message.tabId);
         const rawDispMsg =
-          await messenger.messages.getRaw(dispMsgHdr.id).catch(err => {
+          await browser.messages.getRaw(dispMsgHdr.id).catch(err => {
             SLStatic.warn(`Unable to fetch message ${dispMsgHdr.id}.`, err);
           });
 
@@ -1384,7 +1190,7 @@ messenger.runtime.onMessage.addListener(async (message) => {
 
 // Listen for incoming messages, and check if they are in reponse to a scheduled
 // message with a 'cancel-on-reply' header.
-messenger.messages.onNewMailReceived.addListener((folder, messagelist) => {
+browser.messages.onNewMailReceived.addListener((folder, messagelist) => {
   // First, we want to skip onNewMailReceived events triggered locally during
   // regular send, move, and copy operations. We never touch archives folders anyway,
   // so we can immediately ignore this if it's an operation on an archives folder.
@@ -1396,16 +1202,16 @@ messenger.messages.onNewMailReceived.addListener((folder, messagelist) => {
   }
 
   // We can't do this processing right away, because the message might not be
-  // accessible via messenger.messages, so we'll schedule it for a few seconds from now.
+  // accessible via browser.messages, so we'll schedule it for a few seconds from now.
   setTimeout(async () => {
-    const myself = SLStatic.flatten(await messenger.accounts.list().then(accts =>
+    const myself = SLStatic.flatten(await browser.accounts.list().then(accts =>
       accts.map(acct => acct.identities.map(identity => identity.email))));
 
     for (let hdr of messagelist.messages) {
       SLStatic.debug(`Received new message: ${hdr.subject}`);
 
       const rawRecvdMsg =
-        await messenger.messages.getRaw(hdr.id).catch(err => {
+        await browser.messages.getRaw(hdr.id).catch(err => {
           SLStatic.warn(`Unable to fetch message ${hdr.id}.`, err);
         });
       if (!rawRecvdMsg) {
@@ -1418,7 +1224,7 @@ messenger.messages.onNewMailReceived.addListener((folder, messagelist) => {
         if (SendLater.watchAndMarkRead.has(recvdMsgId)) {
           SLStatic.debug(`Marking draft message read ${recvdMsgId}`);
           SendLater.watchAndMarkRead.delete(recvdMsgId);
-          messenger.messages.update(hdr.id, { read: true });
+          browser.messages.update(hdr.id, { read: true });
           return;
         }
 
@@ -1439,16 +1245,16 @@ messenger.messages.onNewMailReceived.addListener((folder, messagelist) => {
           // Loop over all draft messages, and check for overlap between this
           // incoming message's 'in-reply-to' header, and any of the draft's
           // 'references' headers.
-          messenger.accounts.list().then(async accounts => {
+          browser.accounts.list().then(async accounts => {
             for (let acct of accounts) {
-              let draftFolders = await SendLater.getDraftFolders(acct);
+              let draftFolders = await getDraftFolders(acct);
               if (draftFolders && draftFolders.length > 0) {
                 for (let draftFolder of draftFolders) {
                   if (draftFolder) {
                     try {
                       SLStatic.debug(`Checking for messages in folder ${draftFolder.path}`);
                       const accountId = draftFolder.accountId, path = draftFolder.path;
-                      messenger.SL3U.getAllScheduledMessages(accountId, path, false, true).then(messages => {
+                      browser.SL3U.getAllScheduledMessages(accountId, path, false, true).then(messages => {
                         for (let message of messages) {
                           const draftId = message["message-id"];
                           const draftCancelOnReply = message["x-send-later-cancel-on-reply"];
@@ -1461,7 +1267,7 @@ messenger.messages.onNewMailReceived.addListener((folder, messagelist) => {
                             const isReferenced = draftMsgRefs.some(item => recvdMsgReplyTo.includes(item));
                             if (isReferenced) {
                               SLStatic.info(`Received response to message ${draftId}. Deleting scheduled draft.`);
-                              messenger.SL3U.deleteDraftByUri(accountId, path, message.uri);
+                              browser.SL3U.deleteDraftByUri(accountId, path, message.uri);
                             }
                           }
                         }
@@ -1482,13 +1288,11 @@ messenger.messages.onNewMailReceived.addListener((folder, messagelist) => {
   }, 5000);
 });
 
-// When a new message is displayed, check whether it is scheduled and
-// choose whether to show the messageDisplayAction button.
-messenger.messageDisplay.onMessageDisplayed.addListener(async (tab, hdr) => {
-  await messenger.messageDisplayAction.disable(tab.id);
+browser.messageDisplay.onMessageDisplayed.addListener(async (tab, hdr) => {
+  await browser.messageDisplayAction.disable(tab.id);
   const accountId = hdr.folder.accountId, path = hdr.folder.path;
-  if (await messenger.SL3U.isDraftsFolder(accountId, path)) {
-    let rawMessage = await messenger.messages.getRaw(hdr.id).catch(err => {
+  if (await browser.SL3U.isDraftsFolder(accountId, path)) {
+    let rawMessage = await browser.messages.getRaw(hdr.id).catch(err => {
         SLStatic.warn(`Unable to fetch message ${hdr.id}.`, err);
       });
     const { preferences } = await browser.storage.local.get({ preferences: {} });
@@ -1502,7 +1306,7 @@ messenger.messageDisplay.onMessageDisplayed.addListener(async (tab, hdr) => {
       if (msgSendAt) {
         if (msgUuid === instanceUUID) {
           SLStatic.debug("Displayed message has send later headers.");
-          messenger.messageDisplayAction.enable(tab.id);
+          browser.messageDisplayAction.enable(tab.id);
         } else {
           SLStatic.debug(`Displayed message is scheduled by a different ` +
               `Thunderbird instance: ${msgUuid}`);
@@ -1514,8 +1318,7 @@ messenger.messageDisplay.onMessageDisplayed.addListener(async (tab, hdr) => {
   }
 });
 
-// Global key shortcuts (defined in manifest)
-messenger.commands.onCommand.addListener(async (cmd) => {
+browser.commands.onCommand.addListener(async (cmd) => {
   const cmdId = (/send-later-shortcut-([123])/.exec(cmd))[1];
 
   if (["1","2","3"].includes(cmdId)) {
@@ -1527,7 +1330,6 @@ messenger.commands.onCommand.addListener(async (cmd) => {
   }
 });
 
-// Compose action button (emulate accelerator keys)
 messenger.composeAction.onClicked.addListener(async (tab, info) => {
   let mod = (info.modifiers.length === 1) ? info.modifiers[0] : undefined;
   if (mod === "Command") // MacOS compatibility
@@ -1546,21 +1348,41 @@ messenger.composeAction.onClicked.addListener(async (tab, info) => {
   }
 });
 
+async function getDraftFoldersHelper(folder) {
+  // Recursive helper function to look through an account for draft folders
+  const accountId = folder.accountId, path = folder.path;
+  if (await browser.SL3U.isDraftsFolder(accountId, path)) {
+    return folder;
+  } else {
+    const drafts = [];
+    for (let subFolder of folder.subFolders) {
+      drafts.push(await getDraftFoldersHelper(subFolder));
+    }
+    return drafts;
+  }
+}
+
+async function getDraftFolders(acct) {
+  const draftSubFolders = [];
+  for (let folder of acct.folders) {
+    draftSubFolders.push(await getDraftFoldersHelper(folder));
+  }
+  const allDraftFolders = SLStatic.flatten(draftSubFolders);
+  SLStatic.debug(`Found Draft folder(s) for account ${acct.name}`,allDraftFolders);
+  return allDraftFolders;
+}
+
 function mainLoop() {
   SLStatic.debug("Entering main loop.");
-  try {
-    if (SendLater.loopTimeout) {
-      clearTimeout(SendLater.loopTimeout);
-    }
-  } catch (ex) { SLStatic.error(ex); }
+  if (SendLater.loopTimeout) {
+    clearTimeout(SendLater.loopTimeout);
+  }
 
   // This variable gets set to "true" when a user is warned about
   // leaving TB open, but it may not get set back to false if
   // some other quit-requested-observer aborts the quit. So just
   // just in case, we'll periodically set it back to "false".
-  messenger.SL3U.setSendLaterVars({
-    quit_confirmed: false
-  }).catch(SLStatic.error);
+  browser.SL3U.setSendLaterVar("quit_confirmed", false);
 
   browser.storage.local.get({ preferences: {} }).then((storage) => {
     let interval = +storage.preferences.checkTimePref || 0;
@@ -1569,23 +1391,23 @@ function mainLoop() {
     const throttleDelay = storage.preferences.throttleDelay;
 
     if (storage.preferences.sendDrafts && interval > 0) {
-      SendLater.updateStatusBarIndicator(true);
+      SendLater.setStatusBarIndicator.call(SendLater, true);
 
-      messenger.accounts.list().then(async (accounts) => {
+      browser.accounts.list().then(async (accounts) => {
         let folderProcessPromises = [/*
           Will be filled with promises (one for each drafts folder), each resolves
           to an array of promises (one per message in that folder), which in turn
           resolve when that message has been processed.
         */];
         for (let acct of accounts) {
-          let draftFolders = await SendLater.getDraftFolders(acct).catch(SLStatic.error);
+          let draftFolders = await getDraftFolders(acct).catch(SLStatic.error);
           if (draftFolders && draftFolders.length > 0) {
             for (let draftFolder of draftFolders) {
               if (draftFolder) {
                 try {
                   SLStatic.debug(`Checking for messages in folder ${draftFolder.path}`);
                   const accountId = draftFolder.accountId, path = draftFolder.path;
-                  let messageProcessPromises = messenger.SL3U.getAllScheduledMessages(
+                  let messageProcessPromises = browser.SL3U.getAllScheduledMessages(
                     accountId, path, true, false
                   ).then(async (messages) => {
                     let sendPromises = [/*
@@ -1597,7 +1419,7 @@ function mainLoop() {
                       let callback = SendLater.possiblySendMessage.bind(SendLater);
                       let possiblySendPromise = callback(message, message.raw).then((result) => {
                         if (result === "delete_original") {
-                          return messenger.SL3U.deleteDraftByUri(accountId, path, message.uri).catch((ex) => {
+                          return browser.SL3U.deleteDraftByUri(accountId, path, message.uri).catch((ex) => {
                             SLStatic.error(`mainLoop.deleteDraftByUri error:`, ex);
                           });
                         } else {
@@ -1634,30 +1456,44 @@ function mainLoop() {
         return true;
       }).then(() => {
         SLStatic.previousLoop = new Date();
-        SendLater.updateStatusBarIndicator(false);
+        SendLater.setStatusBarIndicator.call(SendLater, false);
 
         SLStatic.previousLoop = new Date();
         SLStatic.debug(`Next main loop iteration in ${interval} ` +
                        `minute${interval === 1 ? "" : "s"}.`);
-        SendLater.loopTimeout = setTimeout(mainLoop, 60000*interval);
+        SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000*interval);
       }).catch((err) => {
         SLStatic.error(err);
-        SendLater.updateStatusBarIndicator(false);
+        SendLater.setStatusBarIndicator.call(SendLater, false);
 
         SLStatic.previousLoop = new Date();
-        SendLater.loopTimeout = setTimeout(mainLoop, 60000);
+        SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000);
       });
     } else {
       const extName = browser.i18n.getMessage("extensionName");
       const disabledMsg = browser.i18n.getMessage("DisabledMessage");
-      messenger.statusBar.setStatusMessage(`${extName} [${disabledMsg}]`);
+      messenger.WindowListener.notifyExperiment({
+        command: "setStatusMessage",
+        value: `${extName} [${disabledMsg}]`,
+      });
       SLStatic.previousLoop = new Date();
-      SendLater.loopTimeout = setTimeout(mainLoop, 60000);
+      SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000);
     }
   }).catch(ex => {
     SLStatic.error(ex);
-    SendLater.loopTimeout = setTimeout(mainLoop, 60000);
+    SendLater.loopTimeout = setTimeout(mainLoop.bind(SendLater), 60000);
   });
 }
+
+messenger.WindowListener.onNotifyBackground.addListener(async (data) => {
+  if (data.command === "refreshStatus")
+    SendLater.setStatusBarIndicator.call(SendLater, false);
+});
+
+messenger.WindowListener.registerWindow(
+  "chrome://messenger/content/messenger.xhtml",
+  "experiments/MessengerOverlays.js");
+
+messenger.WindowListener.startListening();
 
 SendLater.init().then(mainLoop);

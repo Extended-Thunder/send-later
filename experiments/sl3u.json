@@ -79,14 +79,17 @@
         ]
       },
       {
-        "name":"setSendLaterVars",
+        "name":"setSendLaterVar",
         "type":"function",
         "async":true,
         "parameters":[
           {
-            "name":"values",
-            "type":"any",
-            "description": "Object of key/value pairs for SendLaterVars"
+            "name":"key",
+            "type":"string"
+          },
+          {
+            "name":"value",
+            "type":"any"
           }
         ]
       },
@@ -132,6 +135,13 @@
             "type": "string"
           }
         ]
+      },
+      {
+        "name": "sendNow",
+        "type": "function",
+        "async": true,
+        "description": "Initiate send from current composition window",
+        "parameters": []
       },
       {
         "name": "builtInSendLater",
@@ -352,16 +362,29 @@
         ]
       },
       {
+        "name": "notifyStorageLocal",
+        "type": "function",
+        "description": "Make local indexedDB storage available to an overlay extension implementing an observer for 'extension:storage-local'.",
+        "async": true,
+        "parameters": [
+          {
+            "name": "dataStr",
+            "type": "string",
+            "description": "The storage.local object for this extension."
+          },
+          {
+            "name": "startup",
+            "type": "boolean",
+            "description": "If true, we are in startup, wait for ready notification; otherwise send data."
+          }
+        ]
+      },
+      {
         "name": "setCustomDBHeaders",
         "type": "function",
         "async": true,
         "description": "",
-        "parameters": [
-          {
-            "name": "requestedHdrs",
-            "type": "any"
-          }
-        ]
+        "parameters": []
       },
       {
         "name": "countUnsentMessages",
@@ -371,45 +394,31 @@
         "parameters": []
       },
       {
-        "name":"getDraftHeaders",
+        "name": "startObservers",
+        "type": "function",
+        "async": true,
+        "description": "",
+        "parameters": []
+      },
+      {
+        "name":"injectScripts",
         "type":"function",
+        "description":"Inject scripts into a global document.",
         "async":true,
-        "description":"Get headers from the current compose message IF IT IS AN EXISTING DRAFT",
         "parameters": [
           {
-            "name":"keys",
+            "name":"filenames",
             "type":"any",
-            "description":"Array of header fields to get."
+            "description":"Array of paths to script files."
           }
         ]
       },
       {
-        "name":"forceToolbarVisible",
+        "name":"bindKeyCodes",
         "type":"function",
         "async":true,
-        "description":"Handle  when a new compose window is opened.",
-        "parameters":[
-          {
-            "name": "windowId",
-            "type": "integer",
-            "optional": true,
-            "description": "If set to -1, the function will run on all available windows. Otherwise just the most recent msgcompose window."
-          }
-        ]
-      },
-      {
-        "name":"hijackComposeWindowKeyBindings",
-        "type":"function",
-        "async":true,
-        "description":"Handle  when a new compose window is opened.",
-        "parameters":[
-          {
-            "name": "windowId",
-            "type": "integer",
-            "optional": true,
-            "description": "If set to -1, the function will run on all available windows. Otherwise just the most recent msgcompose window."
-          }
-        ]
+        "description":"Bind Alt+Shift+Enter shortcut in composition windows",
+        "parameters":[]
       }
     ],
     "events": [

@@ -742,9 +742,5 @@
   "DisabledMessage": {
     "message": "ԱՆՋԱՏՎԱԾ",
     "description": ""
-  },
-  "cancel": {
-    "message": "Չեղարկել",
-    "description": "Cancel an action (presented in popup dialogs)"
   }
 }

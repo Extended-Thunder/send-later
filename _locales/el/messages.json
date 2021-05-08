@@ -1103,9 +1103,5 @@
   "CheckingMessage": {
     "message": "Έλεγχος",
     "description": ""
-  },
-  "cancel": {
-    "message": "Ακύρωση",
-    "description": "Cancel an action (presented in popup dialogs)"
   }
 }
