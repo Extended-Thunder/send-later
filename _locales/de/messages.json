@@ -942,6 +942,9 @@
   "SanityCheckConfirmOptionMessage": {
     "message": "Wählen Sie eine der Optionen:\n  „OK“: Fortfahren wie üblich. Sie werden nicht erneut gefragt.\n\n  „Abbrechen“: Später Senden wird über eigene Einstellungen deaktiviert.\n                    Um später erneut zu senden, gehen Sie auf die Optionsseite und setzen Sie\n                    die Einstellung „Alle ___ Minuten prüfen“ auf einen Wert ungleich 0.\n                    Sie erhalten diese Eingabeaufforderung erneut beim nächsten Neustart von\n                    Thunderbird"
   },
+  "ShowQuitNotificationPreference": {
+    "message": "Vor dem Beenden eine Warnung anzeigen, wenn noch ungesendete Nachrichten vorhanden sind"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Es gibt noch Nachrichten, deren Senden geplant ist. „Später Senden” kann Nachrichten nur versenden, wenn $1 geöffnet ist. Möchten Sie das Programm dennoch schließen?",
     "description": ""
@@ -1151,5 +1154,17 @@
   "no": {
     "message": "Nein",
     "description": "Reject an action (presented in popup dialogs)"
+  },
+  "customizeDateTimeFormatsPrefLabel": {
+    "message": "Datums-/Zeit-Format anpassen",
+    "description": "Option to enable customizing date/time formats"
+  },
+  "shortDateTimeFormatsPrefLabel": {
+    "message": "Kurzes Datums-/Zeit-Format:",
+    "description": "Preference input for short datetime format (e.g. 2021/04/28 11:45)"
+  },
+  "longDateTimeFormatsPrefLabel": {
+    "message": "Langes Datums-/Zeit-Format:",
+    "description": "Preference input for extended datetime format (e.g. Wed, Apr 28 2021 11:45)"
   }
 }
