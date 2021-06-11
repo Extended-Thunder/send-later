@@ -700,7 +700,7 @@
     "description": ""
   },
   "CorruptFolderErrorDetails": {
-    "message": "Plus précisément, il semble que le message « $1 » $2 ait déjà été envoyé, mais il existe toujours dans le dossier Brouillons. Cela peut être révélateur ou non d'un problème plus grave. Vous pouvez simplement essayer de supprimer (ou de reprogrammer) le message en question.\n\nEnvoyer plus tard sautera ce message, mais continuera à traiter vos autres brouillons programmés lorsque vous fermerez cette alerte."
+    "message": "Plus précisément, il semble que le message « $1 » (identifiant : $2) ait déjà été envoyé, mais il existe toujours dans le dossier Brouillons. Cela peut être révélateur ou non d'un problème plus grave. Vous pouvez simplement essayer de supprimer (ou de reprogrammer) le message en question.\n\nEnvoyer plus tard sautera ce message, mais continuera à traiter vos autres brouillons programmés lorsque vous fermerez cette alerte."
   },
   "MessageResendError": {
     "message": "Envoyer Plus Tard : Tenter de renvoyer un message déjà envoyer ?! Vos dossiers « Messages en attente » ou « Brouillons » $1 sont peut-être corrompus. Veuillez procéder à leur réparation comme décrit sur https://extended-thunder.github.io/send-later/#corrupt-outbox.",
@@ -914,6 +914,37 @@
     "message": "Avertissement relatif aux envois programmés",
     "description": ""
   },
+  "CompactionFailureWithError": {
+    "message": "La compression des dossiers d'envoi et/ou de brouillons a échoué avec l'erreur:"
+  },
+  "CompactionFailureNoError": {
+    "message": "La compression de $1 a échoué sans message d'erreur."
+  },
+  "SanityCheckOutbox": {
+    "message": "Il existe $1 message(s) non envoyé(s) dont l'envoi sera déclenché la prochaine fois qu'un message programmé soit l'être."
+  },
+  "SanityCheckDrafts": {
+    "message": "Il existe $1 message(s) dont l'envoi par Envoyer plus tard est planifié.\nLe prochain message est programmé pour $2.",
+    "description": "$1 is replaced with a number, and $2 is replaced with the date/time of the next scheduled message."
+  },
+  "SanityCheckCorruptFolderWarning": {
+    "message": "Si ces valeurs vous semblent incorrectes, il est probable que la boîte d'envoi et/ou le dossier des brouillons soient corrompus. Dans ce cas, il est conseillé de compacter et de reconstruire ces dossiers avant d'activer Envoyer plus tard. Voir <$CORRUPTOUTBOXDOCS$> et <$CORRUPTDRAFTDOCS$> pour plus de détails.",
+    "description": "Part of \"sanity check\" prompt potentially displayed during version migration. If there are scheduled messages in the user's Drafts and/or Outbox folders, then the user will be prompted to confirm that the message counts are accurate. This message is preceeded by one or both of the translation strings: \"SanityCheckDrafts\" and/or \"SanityCheckOutbox\".",
+    "placeholders": {
+      "CorruptOutboxDocs": {
+        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Outbox_folder"
+      },
+      "CorruptDraftDocs": {
+        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Drafts_folders"
+      }
+    }
+  },
+  "SanityCheckConfirmOptionMessage": {
+    "message": "Choisir l'une des options :\n  « OK » : continuer comme d'habitude. L'avertissement n'apparaîtra plus.\n\n  « Annuler » : Envoyer plus tard sera désactivé via ses propres préférences.\n                    Pour réactiver Envoyer plus tard, allez sur sa page d'options et définissez\n                    la préférence \"Vérifier toutes les ___ minutes\" à une valeur non nulle.\n                    Vous recevrez à nouveau cet avertissement la prochaine fois que vous redémarrez\n                    Thunderbird"
+  },
+  "ShowQuitNotificationPreference": {
+    "message": "Afficher un avertissement avant de quitter s'il y a des messages en attente"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Il y a des envois porgrammés. Envoyer Plus Tard ne peut envoyer de message que lorsque $1 est ouvert. Etes-vous sûr de vouloir quitter?",
     "description": ""
@@ -922,6 +953,12 @@
     "message": "Envoyer Plus Tard ne peut envoyer de message que lorsque $1 est ouvert. Pensez à le lancer pour que vos envois programmés soient expédiés!",
     "description": ""
   },
+  "EncryptionIncompatTitle": {
+    "message": "Problème de compatibilité de chiffrement"
+  },
+  "EncryptionIncompatText": {
+    "message": "Ce message est chiffré avec votre propre clé PGP ce qui empêche l'envoi programmé. Des informations complémentaires sont disponibles ici : https://github.com/Extended-Thunder/send-later/discussions/200"
+  },
   "EnigmailIncompatTitle": {
     "message": "Problèmes de comptabilité entre Envoyer Plus Tard et Enigmail",
     "description": ""
@@ -929,6 +966,10 @@
   "EnigmailIncompatText": {
     "message": "La version installée d'Enigmail est incompatible avec Envoyer Plus Tard. Par conséquent, la programmation des envois de messages par Envoyer Plus Tard a été désactivée. Merci de contacter l'administrateur de Envoyer Plus Tard (send-later-support@extended-thunder.org) pour toute demande d'assistance.",
     "description": ""
+  },
+  "incorrectUUID": {
+    "message": "Planifié par un autre client",
+    "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."
   },
   "TimeMismatchConfirmTitle": {
     "message": "Date d'envoi/restriction temporelle incompatibles.",
@@ -1098,8 +1139,48 @@
     "message": "VÉRIFICATION",
     "description": ""
   },
+  "LongDescription": {
+    "message": "Ce module modifie la commande « Envoyer plus tard» (Ctrl+Maj+Retour) dans la fenêtre de composition du message, de sorte qu'au lieu de simplement copier le message dans votre boîte d'envoi pour qu'il soit envoyé la prochaine fois que vous allez en ligne ou que vous faites « Envoyer des messages non envoyés », une boîte de dialogue apparaît qui vous permet d'indiquer quand le message sera envoyé.\n\nVous pouvez indiquer une heure et une date spécifiques, ou cliquer sur \"15 minutes plus tard\", \"30 minutes plus tard\" ou \"2 heures plus tard\", ou définir des raccourcis personnalisés. Vous pouvez également programmer un message à envoyer à plusieurs reprises en utilisant des règles simples (toutes les N heures, jours, etc.) ou des fonctions personnalisables.\n\nSend Later s'appuie sur une analyse de date puissante fournie par Andrew Plummer <a href=\"https://sugarjs.com/\">Sugar. s library</a>.\n\nLes commentaires et les rapports de bogues sont les bienvenus et peuvent être proposés via la <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">page GitHub</a> du projet.",
+    "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
+  },
+  "accelKeyLabel": {
+    "message": "Raccourci clavier",
+    "description": "Label for options window to identify accelerator shortcuts"
+  },
+  "accelCtrlLabel": {
+    "message": "Ctrl+Clic",
+    "description": "Indicates key combination to access the ctrl+click accelerator function"
+  },
+  "accelCtrlLabel.MacOS": {
+    "message": "Cmd+Clic",
+    "description": "Indicates key combination to access the ctrl+click accelerator function. On mac the Ctrl key is replaced with the 'Command' key"
+  },
+  "accelShiftLabel": {
+    "message": "Maj+Clic",
+    "description": "Indicates key combination to access the shift+click accelerator function"
+  },
+  "okay": {
+    "message": "OK",
+    "description": "Confirm an action (presented in popup dialogs)"
+  },
   "cancel": {
     "message": "Annuler",
     "description": "Cancel an action (presented in popup dialogs)"
+  },
+  "no": {
+    "message": "Non",
+    "description": "Reject an action (presented in popup dialogs)"
+  },
+  "customizeDateTimeFormatsPrefLabel": {
+    "message": "Personnaliser les formats de date et d'heure",
+    "description": "Option to enable customizing date/time formats"
+  },
+  "shortDateTimeFormatsPrefLabel": {
+    "message": "Format court de date/heure :",
+    "description": "Preference input for short datetime format (e.g. 2021/04/28 11:45)"
+  },
+  "longDateTimeFormatsPrefLabel": {
+    "message": "Format long de date/heure :",
+    "description": "Preference input for extended datetime format (e.g. Wed, Apr 28 2021 11:45)"
   }
 }
