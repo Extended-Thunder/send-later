@@ -139,6 +139,10 @@
     "message": "hebdomadaire",
     "description": ""
   },
+  "resetPrefsButton": {
+    "message": "Réinitialiser les préférences",
+    "description": ""
+  },
   "saveDefaultsLabel": {
     "message": "Enregistrer ces valeurs comme « valeurs par défaut »",
     "description": ""
@@ -221,6 +225,14 @@
   },
   "userGuideLabel": {
     "message": "Guide de l'utilisateur",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "La date choisie est dans le passé",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Différer l'envoi d'un nombre donné de minutes. Le premier paramètre est la durée de délai.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -381,6 +393,10 @@
   },
   "donatelink.value": {
     "message": "Faire un don",
+    "description": ""
+  },
+  "advancededitor.title": {
+    "message": "Éditeur de configuration avancé",
     "description": ""
   },
   "editorlink.value": {
@@ -682,6 +698,9 @@
   "CorruptFolderError": {
     "message": "Envoyer Plus Tard : Le dossier $1 est peut être endommagé. Veuillez afficher ses propriétés et cliquez sur « Réparer le dossier ». Lire https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
+  },
+  "CorruptFolderErrorDetails": {
+    "message": "Plus précisément, il semble que le message « $1 » $2 ait déjà été envoyé, mais il existe toujours dans le dossier Brouillons. Cela peut être révélateur ou non d'un problème plus grave. Vous pouvez simplement essayer de supprimer (ou de reprogrammer) le message en question.\n\nEnvoyer plus tard sautera ce message, mais continuera à traiter vos autres brouillons programmés lorsque vous fermerez cette alerte."
   },
   "MessageResendError": {
     "message": "Envoyer Plus Tard : Tenter de renvoyer un message déjà envoyer ?! Vos dossiers « Messages en attente » ou « Brouillons » $1 sont peut-être corrompus. Veuillez procéder à leur réparation comme décrit sur https://extended-thunder.github.io/send-later/#corrupt-outbox.",
