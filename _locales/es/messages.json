@@ -942,6 +942,9 @@
   "SanityCheckConfirmOptionMessage": {
     "message": "Seleccione una de las opciones:\n  “OK”: Proceda como de costumbre. No se le pedirá de nuevo.\n\n  “Cancelar”: Send Later se deshabilitará por sus propias preferencias.\n                    Para volver a habilitar Send Later, vaya a su página de opciones y establezca\n                    la preferencia \"Comprobar cada ___ minutos\" a un valor distinto de cero.\n                    Volverá a recibir este mensaje la próxima vez que reinicie\n                    Thunderbird"
   },
+  "ShowQuitNotificationPreference": {
+    "message": "Mostrar advertencia antes de salir si hay mensajes pendientes"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Hay mensajes programados para ser enviados. Send Later sólo puede enviar mensajes cuando $1 está en funcionamiento. ¿Está seguro de que quiere salir?",
     "description": ""
@@ -1167,5 +1170,17 @@
   "no": {
     "message": "No",
     "description": "Reject an action (presented in popup dialogs)"
+  },
+  "customizeDateTimeFormatsPrefLabel": {
+    "message": "Personalizar formatos de fecha/tiempo",
+    "description": "Option to enable customizing date/time formats"
+  },
+  "shortDateTimeFormatsPrefLabel": {
+    "message": "Formato corto de fecha/tiempo",
+    "description": "Preference input for short datetime format (e.g. 2021/04/28 11:45)"
+  },
+  "longDateTimeFormatsPrefLabel": {
+    "message": "Formato largo se fecha/tiempo",
+    "description": "Preference input for extended datetime format (e.g. Wed, Apr 28 2021 11:45)"
   }
 }

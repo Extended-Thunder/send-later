@@ -942,6 +942,9 @@
   "SanityCheckConfirmOptionMessage": {
     "message": "Válasszon egyet a lehetőségek közül:\n\n„Rendben”: Folytassa a szokásos módon. Nem kéri újra.\n\n„Mégse”: A Küldés később funkciót a saját beállításai alapján tiltja le.\nA Küldés később engedélyezéséhez lépjen a beállítások oldalára, és állítsa az „Ellenőrzés ___ percenként” beállítást nem nulla értékre.\nA Thunderbird következő újraindításakor újra megkapja ezt a figyelmeztetést"
   },
+  "ShowQuitNotificationPreference": {
+    "message": "Figyelmeztetés megjelenítése kilépés előtt, ha függőben lévő üzenetek vannak"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Vannak üzenetek, amelyeket el kell küldeni. Küldés később csak akkor küldhet üzeneteket, amikor a(z) $1 fut. Biztosan kilép?",
     "description": ""
@@ -1167,5 +1170,17 @@
   "no": {
     "message": "Nem",
     "description": "Reject an action (presented in popup dialogs)"
+  },
+  "customizeDateTimeFormatsPrefLabel": {
+    "message": "Dátum- és időformátum testreszabása",
+    "description": "Option to enable customizing date/time formats"
+  },
+  "shortDateTimeFormatsPrefLabel": {
+    "message": "Rövid dátum- és időformátum:",
+    "description": "Preference input for short datetime format (e.g. 2021/04/28 11:45)"
+  },
+  "longDateTimeFormatsPrefLabel": {
+    "message": "Hosszú dátum- és időformátum:",
+    "description": "Preference input for extended datetime format (e.g. Wed, Apr 28 2021 11:45)"
   }
 }
