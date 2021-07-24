@@ -12,7 +12,6 @@ const { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
 
 const SendLaterVars = {
   fileNumber: 0,
-  copyService: null,
   sendingUnsentMessages: false,
   needToSendUnsentMessages: false,
   wantToCompactOutbox: false,
@@ -327,15 +326,13 @@ const SendLaterFunctions = {
     const sfile1 = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
     sfile1.initWithPath(filePath);
     listener.localFile = sfile1;
-    if (!SendLaterVars.copyService) {
-      SendLaterVars.copyService = Cc[
-          "@mozilla.org/messenger/messagecopyservice;1"
-        ].getService(Ci.nsIMsgCopyService);
-    }
     let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"].createInstance();
     msgWindow = msgWindow.QueryInterface(Ci.nsIMsgWindow);
-    SendLaterVars.copyService.CopyFileMessage(sfile1, folder, null, false, 0, "",
-                                              listener, msgWindow);
+
+    // TB91 changed CopyFileMessage -> copyFileMessage
+    let copyFileMessage = MailServices.copy.copyFileMessage
+                          || MailServices.copy.CopyFileMessage;
+    copyFileMessage(sfile1, folder, null, false, 0, "", listener, msgWindow);
   },
 
   rebuildDraftsFolders() {
