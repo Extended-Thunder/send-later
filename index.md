@@ -1404,8 +1404,10 @@ one of the following is wrong:
 -   corrupt Outbox folder --- see [below](#corrupt-outbox) for how to
     repair it;
 -   full Windows temporary directory --- see [below](#wintemp) for how to repair it;
--   your hard disk is full; or
--   something is broken in your Thunderbird profile --- unfortunately
+-   your hard disk is full;
+-   Your default mail account preference might be invalid. See
+    [below](#invalid-defaultaccount) for how to repair it; or
+-   Something else is broken in your Thunderbird profile --- unfortunately
     the only way I've been able to find to resolve this is to
     [migrate to a new Thunderbird profile](https://support.mozilla.org/en-US/kb/using-multiple-profiles)
     and get rid of the old one.
@@ -1516,6 +1518,28 @@ delivery, but once they're there, Thunderbird fails to deliver them, and
 command doesn't work, or is greyed out and can't even be selected. If you this
 you may be running into this problem, you should run the Windows Disk Cleanup
 utility and tell it to clean up temporary files.
+
+<a name="invalid-defaultaccount"></a>
+#### Invalid `defaultaccount` preference
+
+If messages make it into your outbox ("unsent") folder, but they are not being
+delivered, you might have an invalid value assigned as your default account.
+If you are not already comfortable modifying preferences in Thunderbird's
+"Config editor", you might want to just rebuild your profile from scratch to avoid
+unintended side effects. If you are comfortable with the configuration editor, then
+proceed with the following:
+
+1.  Open the config editor (Preferences dialog > General tab > Config Editor button)
+2.  Search for `mail.accountmanager.defaultaccount` in the search bar.
+    - Note the value assigned-- it should be something like "account1".
+3.  Search for `mail.account.account` in the search bar, and verify that preferences
+    exist corresponding to the account name you noted before.
+4.  If not, you will need to set the `mail.accountmanager.defaultaccount` preference
+    to one that matches an existing account (determining which one you should choose
+    is beyond the scope of this documentation).
+5.  Restart Thunderbird, and work through the troubleshooting checks above to verify
+    that your configuration is correct.
+
 
 #### Send errors with Gmail when Thunderbird is configured to save copies
 
