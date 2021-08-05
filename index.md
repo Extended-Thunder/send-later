@@ -1563,6 +1563,7 @@ experiencing errors with Send Later through a Gmail account, check your
 account settings to see if you have "Place a copy in" checked in the
 "Copies & Folders" settings, and if so, turn it off.
 
+<a name="debug-log"></a>
 ### Debug logging
 
 If you ask us for help with a problem you are having with the add-on
