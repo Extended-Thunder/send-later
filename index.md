@@ -711,8 +711,7 @@ You should:
     message looks complete, run run File \> Send Unsent Messages to send
     it. If the message looks incomplete, delete it.
 2.  If there was no message in your Outbox, or if it was incomplete and
-    you deleted it, then you're probably fine. Restart Thunderbird to
-    turn Send Later back on.
+    you deleted it, then you're probably fine. Skip to step 4.
 3.  Otherwise, check your Drafts folder to see if there's another copy
     there of the message that you just sent from your Outbox, and if so,
     delete it from Drafts (unless it's a recurring message, in which
