@@ -344,12 +344,28 @@ scheduling functions.
 <a name="config-editor"></a>
 ### Advanced configuration editor
 
+> Note, this applies to Send Later's internal settings. For global Thunderbird
+  settings, see the section [below](#thunderbird-config-editor)
+
 There are some preferences which do not have corresponding UI elements in the
 options dialog. Also, there are occasions where you just need fine-grained
 control over your preferences. The advanced configuration editor allows you
 to modify all of Send Later's preferences manually, using JSON-formatted input.
 Hopefully the interface is pretty self explanatory, but I highly recommend
 avoiding this feature unless you know what you're doing.
+
+<a name="thunderbird-config-editor"></a>
+### Thunderbird's Config Editor
+
+> Note, this applies to global Thunderbird settings. For Send Later's internal
+  settings, see the section [above](#config-editor).
+
+Options which are internal to Thunderbird itself can be modified directly using
+Thunderbird's Config Editor. To open the editor, first open Thunderbird's main
+menu (three horizontal bars in the upper right of the main window), then choose
+`Preferences`. In the `General` section of the preferences tab, scroll to the
+bottom and choose `Config Editor...`. Click the "I'll be careful, I promise!"
+button, if it asks you to.
 
 ### Console log level
 
@@ -517,7 +533,8 @@ message you send, so that you don't have to do it manually each time you
 schedule a message to be sent later, do the following (thanks to
 [MozillaZine](http://kb.mozillazine.org/Custom_headers)):
 
-1.  Open the advanced configuration editor as described [above](#config-editor).
+1.  Open Thunderbird's configuration editor
+    (described [above](#thunderbird-config-editor)).
 2.  Enter "useremail" in the filter box and scan through the matches to
     find the email address of the account which you want to generate
     return receipts. Remember the "id*\#*" for that account, where
@@ -1479,8 +1496,8 @@ Here's how to do that:
 6.  Delete Outbox and Outbox.msf in the Local Folders directory if they
     exist. Also delete "Unsent Messages" and "Unsent Messages.msf" if
     they exist. If neither of them exists, then you'll have to use the
-    advanced configuration editor (described [above](#config-editor)) in
-    Thunderbird and look at the setting `mail.default_sendlater_uri` to
+    advanced configuration editor (described [above](#thunderbird-config-editor))
+    in Thunderbird and look at the setting `mail.default_sendlater_uri` to
     find out the name of your Outbox folder on disk and then delete it
     (after exiting again from Thunderbird).
 7.  Try scheduling a message with Send Later again and see if the
