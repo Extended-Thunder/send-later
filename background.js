@@ -1402,12 +1402,14 @@ messenger.tabs.onRemoved.addListener(tabId => {
 // e.g. the options page and the scheduler dialog.
 messenger.runtime.onMessage.addListener(async (message, sender) => {
 
-  let tabId = sender.tab.id;
-  if (SendLater.popupCallbacks.has(tabId)) {
-    let callback = SendLater.popupCallbacks.get(tabId);
-    callback(message);
-    SendLater.popupCallbacks.delete(tabId);
-    return;
+  if (sender.tab) {
+    let tabId = sender.tab.id;
+    if (SendLater.popupCallbacks.has(tabId)) {
+      let callback = SendLater.popupCallbacks.get(tabId);
+      callback(message);
+      SendLater.popupCallbacks.delete(tabId);
+      return;
+    }
   }
 
   const response = {};

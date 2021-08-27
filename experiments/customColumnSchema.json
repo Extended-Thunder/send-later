@@ -27,7 +27,7 @@
               "description": "The text to display in the cell, may be empty."
             },
             "sortValue": {
-              "type": ["string", "integer"],
+              "type": "integer",
               "description": "The value to use for the sorting algorithm."
             },
             "image": {
