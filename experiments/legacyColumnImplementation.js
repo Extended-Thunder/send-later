@@ -137,7 +137,6 @@ class MessageViewsCustomColumn {
       `${context.extension.id}${name}-custom-column`
     );
     this.visibility = new Map();
-    this.handlers = new Set();
     this.msgTracker = new Map();
   }
 
@@ -217,13 +216,10 @@ class MessageViewsCustomColumn {
     splitter.classList.add("tree-splitter");
     parent.appendChild(splitter);
 
-    for (let handler of this.handlers)
-      this.addHandlerToWindow(window, handler);
+    this.addHandlerToWindow(window);
   }
 
-  addHandlerToWindow(window, handler) {
-    this.handlers.add(handler);
-
+  addHandlerToWindow(window) {
     let columnHandler = {
       getCellText(row, col) {
         const hdr = window.gDBView.getMsgHdrAt(row);
