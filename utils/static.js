@@ -4,6 +4,11 @@ var SLStatic = {
 
   timeRegex: /^(2[0-3]|[01]?\d):?([0-5]\d)$/,
 
+  // Non-static (yes, I know...) variable, tracks the last
+  // time Send Later checked for outgoing messages. This helps
+  // resolve sub-minute accuracy for very short scheduled times
+  // (e.g. "Send in 38 seconds" ...). This only affects UI
+  // elements in which a relative time is displayed.
   previousLoop: new Date(),
 
   // Indicator to signify a preference migration
@@ -30,6 +35,9 @@ var SLStatic = {
                  "accelShiftfuncselect", "accelShiftArgs", "customizeDateTime",
                  "shortDateTimeFormat", "longDateTimeFormat"],
 
+  // Non-static preferences (I know...), which affect the behavior of
+  // various functions. Specifically, the log output level, and customized
+  // date/time formats.
   customizeDateTime: null,
   longDateTimeFormat: null,
   shortDateTimeFormat: null,
@@ -1201,7 +1209,17 @@ if (SLStatic.i18n === null) {
   } else if (typeof require === "undefined") {
     // We're in an overlay context.
     try {
-      const ext = window.ExtensionParent.GlobalManager.extensionMap.get("sendlater3@kamens.us");
+      let EP;
+      if (typeof ExtensionParent !== undefined) {
+        EP = ExtensionParent;
+      } else if (typeof window !== undefined && typeof window.ExtensionParent !== undefined) {
+        EP = window.ExtensionParent;
+      } else {
+        var { ExtensionParent } = ChromeUtils.import("resource://gre/modules/ExtensionParent.jsm");
+        EP = ExtensionParent;
+      }
+      const ext = EP.GlobalManager.getExtension("sendlater3@kamens.us");
+
       SLStatic.i18n = {
         getUILanguage() {
           return ext.localeData.selectedLocale;

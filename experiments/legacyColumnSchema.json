@@ -17,29 +17,26 @@
               "optional": true
             }
           }
-        },
-        {
-          "id": "CellFillProperties",
-          "type": "object",
-          "properties": {
-            "text": {
-              "type": "string",
-              "description": "The text to display in the cell, may be empty."
-            },
-            "sortValue": {
-              "type": "integer",
-              "description": "The value to use for the sorting algorithm."
-            },
-            "image": {
-              "type": "string",
-              "format": "url",
-              "description": "The image url to use in the cell.",
-              "optional": true
-            }
-          }
         }
       ],
       "functions": [
+        {
+          "name":"setPreference",
+          "type":"function",
+          "async":true,
+          "parameters":[
+            {
+              "name":"key",
+              "type":"string",
+              "description": "Name of preference to set"
+            },
+            {
+              "name":"value",
+              "type":"any",
+              "description": "Value to assign to this preference"
+            }
+          ]
+        },
         {
           "name": "addCustomColumn",
           "type": "function",
@@ -54,25 +51,6 @@
         },
         {
           "name": "removeCustomColumn",
-          "type": "function",
-          "description": "",
-          "async": true,
-          "parameters": []
-        },
-        {
-          "name": "invalidateRowByMessageId",
-          "type": "function",
-          "description": "",
-          "async": true,
-          "parameters": [
-            {
-              "name": "msgIdHeader",
-              "type": "string"
-            }
-          ]
-        },
-        {
-          "name": "invalidateAll",
           "type": "function",
           "description": "",
           "async": true,
@@ -98,24 +76,6 @@
               "optional": true
             }
           ]
-        }
-      ],
-      "events": [
-        {
-          "name": "onCustomColumnFill",
-          "type": "function",
-          "description": "",
-          "parameters": [],
-          "extraParameters": [
-            {
-              "name": "name",
-              "type": "string",
-              "description": "The name of the column to add."
-            }
-          ],
-          "returns": {
-            "$ref": "CellFillProperties"
-          }
         }
       ]
     }

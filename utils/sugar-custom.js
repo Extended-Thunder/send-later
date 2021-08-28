@@ -6366,3 +6366,12 @@
 
 
 }).call(this);
+
+// When this script is loaded by the legacy column experiment,
+// it should put the main "Sugar" function into the "LegacyColumn"
+// object. However, the method that vanilla Sugar.js uses to
+// initialize somehow places itself outside of the object's scope.
+// So, we need to manually put it back in.
+if (typeof LegacyColumn !== 'undefined') {
+  LegacyColumn.Sugar = Sugar;
+}

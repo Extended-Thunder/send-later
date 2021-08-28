@@ -96,11 +96,11 @@
       }
     },
     "columnHandler": {
-      "schema": "experiments/customColumnSchema.json",
+      "schema": "experiments/legacyColumnSchema.json",
       "parent": {
         "scopes": ["addon_parent"],
         "paths": [["columnHandler"]],
-        "script": "experiments/customColumnImplementation.js"
+        "script": "experiments/legacyColumnImplementation.js"
       }
     },
     "headerView": {

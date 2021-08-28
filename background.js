@@ -995,18 +995,19 @@ const SendLater = {
 
       // Drafts folder column
       const columnName = messenger.i18n.getMessage("sendlater3header.label");
-      let p_a = messenger.columnHandler.addCustomColumn({ name: columnName, tooltip: "" }).then(() => {
-        messenger.columnHandler.onCustomColumnFill.addListener(async (hdr) => {
-          const { preferences } = await browser.storage.local.get({ preferences: {} });
-          const customHeaders = await SendLater.extractCustomHeaders(hdr, [
-            "x-send-later-at", "x-send-later-recur", "x-send-later-args",
-            "x-send-later-cancel-on-reply", "x-send-later-uuid", "content-type"
-          ]);
-          const { cellText, sortValue } =
-            SendLater.customHdrToScheduleInfo(customHeaders, preferences.instanceUUID);
-          return { cellText, sortValue };
-        }, columnName);
-      });
+      let p_a = messenger.columnHandler.addCustomColumn({ name: columnName, tooltip: "" });
+        // .then(() => {
+        // messenger.columnHandler.onCustomColumnFill.addListener(async (hdr) => {
+        //   const { preferences } = await browser.storage.local.get({ preferences: {} });
+        //   const customHeaders = await SendLater.extractCustomHeaders(hdr, [
+        //     "x-send-later-at", "x-send-later-recur", "x-send-later-args",
+        //     "x-send-later-cancel-on-reply", "x-send-later-uuid", "content-type"
+        //   ]);
+        //   const { cellText, sortValue } =
+        //     SendLater.customHdrToScheduleInfo(customHeaders, preferences.instanceUUID);
+        //   return { cellText, sortValue };
+        // }, columnName);
+        // });
       promises.push(p_a);
 
       let p_b = messenger.mailTabs.onDisplayedFolderChanged.addListener(async (tab, folder) => {
@@ -1126,6 +1127,9 @@ const SendLater = {
             logConsoleLevel: SLStatic.logConsoleLevel
           });
 
+          for (let pref of ["customizeDateTime", "longDateTimeFormat", "shortDateTimeFormat"])
+            messenger.columnHandler.setPreference(pref, preferences[pref]);
+
           SendLater.setQuitNotificationsEnabled(preferences.askQuit, preferences.instanceUUID);
         }).catch(ex => SLStatic.error(ex));
 
@@ -1143,13 +1147,13 @@ const SendLater = {
           SendLater.prefCache = preferences;
           SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
 
-          ["customizeDateTime", "longDateTimeFormat", "shortDateTimeFormat"].forEach(
-            pref => {
-              if (changes.preferences.oldValue[pref] !== preferences[pref]) {
-                SLStatic[pref] = preferences[pref];
-                messenger.columnHandler.invalidateAll();
-              }
-            });
+          for (let pref of ["customizeDateTime", "longDateTimeFormat", "shortDateTimeFormat"]) {
+            if (changes.preferences.oldValue[pref] !== preferences[pref]) {
+              SLStatic[pref] = preferences[pref];
+              messenger.columnHandler.setPreference(pref, preferences[pref]);
+              // messenger.columnHandler.invalidateAll();
+            }
+          }
 
           messenger.SL3U.setSendLaterVars({
             logConsoleLevel: SLStatic.logConsoleLevel
@@ -1232,11 +1236,11 @@ messenger.windows.onCreated.addListener(async (window) => {
 
         // Once the draft save operation is definitely complete,
         // then invalidate that row with the columnHandler.
-        setTimeout(() => {
-          messenger.columnHandler.invalidateRowByMessageId(
-            headers["message-id"]
-          ).catch(SLStatic.error);
-        }, 1000);
+        // setTimeout(() => {
+        //   messenger.columnHandler.invalidateRowByMessageId(
+        //     headers["message-id"]
+        //   ).catch(SLStatic.error);
+        // }, 1000);
       } // else: This message is not queued by send later.
     } // else: Not editing a saved draft message.
   } // else: This isn't a msgcompose window.
