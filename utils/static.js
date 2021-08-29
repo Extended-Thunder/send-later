@@ -4,13 +4,6 @@ var SLStatic = {
 
   timeRegex: /^(2[0-3]|[01]?\d):?([0-5]\d)$/,
 
-  // Non-static (yes, I know...) variable, tracks the last
-  // time Send Later checked for outgoing messages. This helps
-  // resolve sub-minute accuracy for very short scheduled times
-  // (e.g. "Send in 38 seconds" ...). This only affects UI
-  // elements in which a relative time is displayed.
-  previousLoop: new Date(),
-
   // Indicator to signify a preference migration
   // Migration 1: import options from legacy prefbranch
   // Migration 2: update format for defaultPrefs.json
@@ -111,7 +104,7 @@ var SLStatic = {
     }
   },
 
-  convertDate(date, compareToLoop) {
+  convertDate(date) {
     if (!date) {
       return null;
     } else if (date.raw) {
@@ -120,21 +113,6 @@ var SLStatic = {
 
     if (typeof date === "string") {
       let relativeTo = new Date();
-      if (compareToLoop) {
-        // Because Send Later does not necessarily start its main loop on the minute,
-        // it's a little tricky to process relative times, and present them to the user
-        // in a logical way. For example, if right now is 10:25:53, and the main loop
-        // will execute at 14 seconds past the minute, then should input like
-        // "5 minutes from now" be rounded to 10:30 or 10:31?
-        //
-        // It seems most logical to round up in these cases, so that's what we'll do.
-        const rSec = relativeTo.getSeconds(),
-              pSec = SLStatic.previousLoop.getSeconds();
-        if (rSec > pSec) {
-          const tdiff = rSec-pSec;
-          relativeTo = new Date(relativeTo.getTime() + 60000 - tdiff*1000);
-        }
-      }
       const localeCode = SLStatic.i18n.getUILanguage();
       let sugarDate = Sugar.Date.get(
         relativeTo, date, {locale: localeCode, future: true}
@@ -157,6 +135,33 @@ var SLStatic = {
       return new Date(date.getTime());
     }
     throw new Error(`Send Later error: unable to parse date format`, date);
+  },
+
+  estimateSendTime(scheduledDate, previousLoop, loopMinutes) {
+    scheduledDate = SLStatic.convertDate(scheduledDate);
+    scheduledDate.setSeconds(0);
+
+    let estimate = new Date(previousLoop);
+    while (estimate.getTime() < scheduledDate.estimate()) {
+      estimate = new Date(estimate.getTime() + 60000*loopMinutes);
+    }
+
+    return estimate;
+  },
+
+  ceilDateTime(dt) {
+    dt = SLStatic.convertDate(dt);
+    return new Date(Math.ceil(dt.getTime()/60000)*60000);
+  },
+
+  floorDateTime(dt) {
+    dt = SLStatic.convertDate(dt);
+    return new Date(Math.floor(dt.getTime()/60000)*60000);
+  },
+
+  roundDateTime(dt) {
+    dt = SLStatic.convertDate(dt);
+    return new Date(Math.round(dt.getTime()/60000)*60000);
   },
 
   parseableDateTimeFormat(date) {
@@ -587,16 +592,18 @@ var SLStatic = {
       return scheduleText;
   },
 
-  formatScheduleForUI(schedule) {
-    const sendAt = schedule.sendAt;
-    sendAt.setSeconds(this.previousLoop.getSeconds());
-    const recur = schedule.recur;
-
+  formatScheduleForUI(schedule, previousLoop, loopMinutes) {
     let scheduleText;
-    if (!sendAt && (recur.type === "function")) {
+    if (!schedule.sendAt && (schedule.recur.type === "function")) {
       scheduleText = this.i18n.getMessage("sendwithfunction",
-                                              [recur.function]);
+      [schedule.recur.function]);
     } else {
+      let sendAt = SLStatic.estimateSendTime(
+        schedule.sendAt,
+        (previousLoop || new Date(Math.floor(Date.now()/60000)*60000)),
+        (loopMinutes || 1)
+      );
+
       scheduleText = this.i18n.getMessage("sendAtLabel");
       scheduleText += " " + SLStatic.humanDateTimeFormat(sendAt);
       const fromNow = (sendAt.getTime()-Date.now())/1000;
@@ -605,14 +612,13 @@ var SLStatic = {
       } else {
         try {
           scheduleText += ` (${SLStatic.formatRelative(sendAt)})`;
-          //scheduleText += ` (${(new Sugar.Date(sendAt)).relative()})`;
         } catch (ex) {
           SLStatic.warn(ex);
         }
       }
     }
 
-    scheduleText += "\n" + SLStatic.formatRecurForUI(recur);
+    scheduleText += "\n" + SLStatic.formatRecurForUI(schedule.recur);
 
     return scheduleText.trim();
   },

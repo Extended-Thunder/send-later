@@ -2,16 +2,34 @@
 const SendLater = {
     prefCache: {},
 
+    // When we schedule a message by saving it as a new draft, we
+    // might also want to mark it as 'read'. We need to wait on the
+    // message showing up in the Drafts folder, so we'll maintain
+    // a set of message ID's which we intend to mark, and check
+    // new messages against this set.
     watchAndMarkRead: new Set(),
 
     // The user should be alerted about messages which are
     // beyond their late grace period once per session.
     warnedAboutLateMessageBlocked: new Set(),
 
+    // Track the status of Send Later's main loop. This helps
+    // resolve sub-minute accuracy for very short scheduled times
+    // (e.g. "Send in 38 seconds" ...). Only affects UI
+    // elements in which a relative time is displayed.
+    previousLoop: new Date(Math.floor(Date.now()/60000)*60000),
+    loopMinutes: 1,
+
+    // Holds a reference to the main loop interval timeout
+    // (created via setTimeout(...))
     loopTimeout: null,
 
+    // To receive feedback from user interactions in notification popups,
+    // we need to track which popups we are waiting on, and resolve promises
+    // when they communicate back to the background script.
     popupCallbacks: new Map(),
 
+    // Helper function to create simple HTML-based popup messages.
     notificationPopup(type, title, message, checkLabel, checked) {
       title = title || browser.i18n.getMessage("extensionName");
       checkLabel = checkLabel || browser.i18n.getMessage("confirmAgain");
@@ -36,18 +54,28 @@ const SendLater = {
       });
     },
 
+    // Create a popup with just an 'OK' button
     alert(title, message) {
       return SendLater.notificationPopup("alert", title, message);
     },
 
+    // Create a popup with 'YES' and 'NO' buttons. Returns a promise
+    // that resolves to an object with boolean member variable 'ok',
+    // indicating the user's response.
     confirm(title, message) {
       return SendLater.notificationPopup("confirm", title, message);
     },
 
+    // Create a popup with a message and an 'OK' button.
+    // Returns a promise that resolves to an object with boolean member
+    // 'checked', indicating the user's response.
     alertCheck(title, message, checkLabel, checked) {
       return SendLater.notificationPopup("alertCheck", title, message, checkLabel, checked);
     },
 
+    // Create a popup with a message, 'YES' and 'NO' buttons, and a checkbox.
+    // Returns a promise that resolves to an object with boolean members
+    // 'ok' and 'checked', indicating the user's response.
     confirmCheck(title, message, checkLabel, checked) {
       return SendLater.notificationPopup("confirmCheck", title, message, checkLabel, checked);
     },
@@ -1380,7 +1408,7 @@ messenger.runtime.onMessageExternal.addListener(
     }
     else if (message["action"] === "parseDate") {
       try {
-        const date = SLStatic.convertDate(message["value"], true);
+        const date = SLStatic.convertDate(message["value"]);
         if (date) {
           const dateStr = SLStatic.parseableDateTimeFormat(date.getTime());
           sendResponse(dateStr);
@@ -1442,7 +1470,8 @@ messenger.runtime.onMessage.addListener(async (message, sender) => {
       break;
     }
     case "getMainLoopStatus": {
-      response.previousLoop = SLStatic.previousLoop.getTime();
+      response.previousLoop = SendLater.previousLoop.getTime();
+      response.loopMinutes = SendLater.loopMinutes;
       break;
     }
     case "getScheduleText": {
@@ -1484,7 +1513,9 @@ messenger.runtime.onMessage.addListener(async (message, sender) => {
         const recur = SLStatic.parseRecurSpec(recurSpec);
         recur.cancelOnReply = ["true", "yes"].includes(msgCancelOnReply);
         recur.args = msgArgs;
-        response.scheduleTxt = SLStatic.formatScheduleForUI({ sendAt, recur });
+        response.scheduleTxt = SLStatic.formatScheduleForUI(
+          { sendAt, recur }, SendLater.previousLoop, SendLater.loopMinutes
+        );
       } catch (ex) {
         response.err = ex.message;
       }
@@ -1674,6 +1705,8 @@ function mainLoop() {
     let interval = +preferences.checkTimePref || 0;
     if (preferences.checkTimePref_isMilliseconds)
       interval /= 60000;
+
+    SendLater.loopMinutes = interval;
     const throttleDelay = preferences.throttleDelay;
 
     if (preferences.sendDrafts && interval > 0) {
@@ -1741,12 +1774,10 @@ function mainLoop() {
         }
         return true;
       }).then(() => {
-        SLStatic.previousLoop = new Date();
         SendLater.updateStatusBarIndicator(false);
-
         SendLater.setQuitNotificationsEnabled(preferences.askQuit, preferences.instanceUUID);
 
-        SLStatic.previousLoop = new Date();
+        SendLater.previousLoop = new Date();
         SLStatic.debug(`Next main loop iteration in ${interval} ` +
                        `minute${interval === 1 ? "" : "s"}.`);
         SendLater.loopTimeout = setTimeout(mainLoop, 60000*interval);
@@ -1754,7 +1785,7 @@ function mainLoop() {
         SLStatic.error(err);
         SendLater.updateStatusBarIndicator(false);
 
-        SLStatic.previousLoop = new Date();
+        SendLater.previousLoop = new Date();
         SendLater.loopTimeout = setTimeout(mainLoop, 60000);
       });
     } else {
@@ -1762,11 +1793,14 @@ function mainLoop() {
       const extName = browser.i18n.getMessage("extensionName");
       const disabledMsg = browser.i18n.getMessage("DisabledMessage");
       messenger.statusBar.setStatusMessage(`${extName} [${disabledMsg}]`);
-      SLStatic.previousLoop = new Date();
+
+      SendLater.previousLoop = new Date();
       SendLater.loopTimeout = setTimeout(mainLoop, 60000);
     }
   }).catch(ex => {
     SLStatic.error(ex);
+
+    SendLater.previousLoop = new Date();
     SendLater.loopTimeout = setTimeout(mainLoop, 60000);
   });
 }

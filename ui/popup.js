@@ -2,6 +2,9 @@
 const SLPopup = {
   buttonUpdater: null,
 
+  previousLoop: new Date(),
+  loopMinutes: 1,
+
   debugSchedule() {
     const inputs = SLPopup.objectifyFormValues();
     const schedule = SLPopup.parseInputs(inputs);
@@ -325,7 +328,9 @@ const SLPopup = {
     }
 
     try {
-      const scheduleText = SLStatic.formatScheduleForUI(schedule);
+      const scheduleText = SLStatic.formatScheduleForUI(
+        schedule, SLPopup.previousLoop, SLPopup.loopMinutes
+      );
       if (scheduleText) {
         sendScheduleButton.textContent = "";
         scheduleText.split("\n").forEach(segment => {
@@ -515,7 +520,30 @@ const SLPopup = {
   parseSugarDate() {
     const dom = SLPopup.objectifyDOMElements();
     try {
-      const sendAt = SLStatic.convertDate(dom["send-datetime"].value, true);
+      let sendAtString = dom["send-datetime"].value;
+      let sendAt = SLStatic.convertDate(sendAtString);
+
+      if (!SLStatic.timeRegex.test(sendAtString)) {
+        // The time was specified indirectly, and the user is assuming we
+        // make a reasonable interpretation of their input.
+        // For instance, if they request 1 minute from now, but it is
+        // currently 58 seconds past the minute, we don't want to set
+        // the schedule for the following minute. We should check that
+        // their message will actually be sent at (or very close to)
+        // the intended scheduled time. If the actual send would be more
+        // than a few seconds sooner than intended, we'll round up to the
+        // next minute.
+
+        let intendedSendAt = sendAt;
+        let actualSendAt = SLStatic.estimateSendTime(intendedSendAt,
+                                                    SLPopup.previousLoop,
+                                                    SLPopup.loopMinutes);
+
+        if (actualSendAt.getTime() < intendedSendAt.getTime()-5000) {
+          sendAt = new Date(intendedSendAt.getTime() + 60000);
+        }
+      }
+
       if (sendAt) {
         const sugarSendAt = new Sugar.Date(sendAt);
         dom["send-date"].value = sugarSendAt.format('%Y-%m-%d');
@@ -704,10 +732,11 @@ const SLPopup = {
         action: "getMainLoopStatus"
       }).catch(SLStatic.warn);
 
-    if (mainLoop && mainLoop.previousLoop) {
-      SLStatic.previousLoop = new Date(mainLoop.previousLoop);
-    } else {
-      SLStatic.previousLoop.setSeconds(0);
+    if (mainLoop) {
+      if (mainLoop.previousLoop)
+        SLPopup.previousLoop = new Date(mainLoop.previousLoop);
+      if (mainLoop.loopMinutes)
+        SLPopup.loopMinutes = mainLoop.loopMinutes;
     }
 
     SLPopup.attachListeners();
