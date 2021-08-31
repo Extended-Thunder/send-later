@@ -142,7 +142,7 @@ var SLStatic = {
     scheduledDate.setSeconds(0);
 
     let estimate = new Date(previousLoop);
-    while (estimate.getTime() < scheduledDate.estimate()) {
+    while (estimate.getTime() < scheduledDate.getTime()) {
       estimate = new Date(estimate.getTime() + 60000*loopMinutes);
     }
 
