@@ -245,7 +245,7 @@ class MessageViewsCustomColumn {
           return status.msg||"";
         }
       },
-      getSortStringForRow(msgHdr) {
+      getSortStringForRow(hdr) {
         return null;
       },
       isString() {
@@ -256,7 +256,7 @@ class MessageViewsCustomColumn {
       getImageSrc(row, col) {
         return null;
       },
-      getSortLongForRow(msgHdr) {
+      getSortLongForRow(hdr) {
         const status = LegacyColumn.checkValidSchedule(hdr);
         if (status.valid === true) {
           const sendAtStr = hdr.getStringProperty("x-send-later-at");
