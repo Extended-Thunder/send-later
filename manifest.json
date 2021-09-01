@@ -18,7 +18,8 @@
   "applications": {
     "gecko": {
       "id": "sendlater3@kamens.us",
-      "strict_min_version": "88.0a1"
+      "strict_min_version": "88.0a1",
+      "strict_max_version": "102.0"
     }
   },
 
