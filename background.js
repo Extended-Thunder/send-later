@@ -1559,8 +1559,8 @@ messenger.messages.onNewMailReceived.addListener((folder, messagelist) => {
         SLStatic.warn("onNewMailReceived.scanMessage failed. Unable to get raw message contents.",hdr);
         return;
       } else {
-        // Saving a message is processed as an incoming message. If we wanted to save it
-        // to drafts, we should do that now.
+        // Saving a draft message is handled the same as a new incoming
+        // message. If we wanted to mark it as read, we should do that now.
         const recvdMsgId = SLStatic.getHeader(rawRecvdMsg, "message-id");
         if (SendLater.watchAndMarkRead.has(recvdMsgId)) {
           SLStatic.debug(`Marking draft message read ${recvdMsgId}`);
