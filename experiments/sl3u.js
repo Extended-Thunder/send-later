@@ -439,12 +439,9 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             return true;
           }
 
-          let accountManager = Cc[
-            "@mozilla.org/messenger/account-manager;1"
-          ].getService(Ci.nsIMsgAccountManager);
-          let fdrlocal = accountManager.localFoldersServer.rootFolder;
+          let localFolder = MailServices.accounts.localFoldersServer.rootFolder;
 
-          if (fdrlocal.findSubFolder("Drafts").URI === msgFolder.URI) {
+          if (localFolder.findSubFolder("Drafts").URI === msgFolder.URI) {
             // SendLaterFunctions.debug("Returning from function","SL3U.isDraftsFolder", "true (local)");
             return true;
           }
@@ -456,21 +453,17 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
             return true;
           }
 
-          let allaccounts = accountManager.accounts;
-          let acindex, numAccounts;
-          numAccounts = allaccounts.length;
-          for (acindex = 0; acindex < numAccounts; acindex++) {
-            let thisaccount = allaccounts[acindex].QueryInterface(Ci.nsIMsgAccount);
-            if (thisaccount) {
-              let numIdentities = thisaccount.identities.length;
-              switch (thisaccount.incomingServer.type) {
+          for (let acct of MailServices.accounts.accounts) {
+            if (acct) {
+              let numIdentities = acct.identities.length;
+              switch (acct.incomingServer.type) {
                 case "pop3":
                 case "imap":
                 case "owl":
                   let identityNum;
                   for (identityNum = 0; identityNum < numIdentities; identityNum++) {
                     try {
-                      let identity = thisaccount.identities[identityNum].QueryInterface(
+                      let identity = acct.identities[identityNum].QueryInterface(
                         Ci.nsIMsgIdentity
                       );
                       if (identity.draftFolder === msgFolder.URI) {
@@ -483,7 +476,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                   }
                   break;
                 default:
-                  // SendLaterFunctions.debug("skipping this server type - " + thisaccount);
+                  // SendLaterFunctions.debug("skipping this server type - " + acct);
                   break;
               }
             }
@@ -586,9 +579,9 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
         },
 
         /*
-         * Perform all actions as if the current compose message is being
-         * sent, but just save it in Drafts rather than performing an actual
-         * send. Close the compose window when save is complete.
+         * Save message to drafts, and add reply/forward flags to existing
+         * messages, as necessary. Close the composition window when the
+         * save operation is complete.
          */
         async performPseudoSend() {
           const cw = Services.wm.getMostRecentWindow("msgcompose");
@@ -597,8 +590,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
           // The full GenericSendMessage function does a bunch of pre-send checks
           // and then calls CompleteGenericSendMessage. We're handling those pre-send
-          // checks manually (see above), so we can just call the
-          // CompleteGenericSendMessage function directly.
+          // checks manually, so we can just call CompleteGenericSendMessage directly.
           cw.gCloseWindowAfterSave = true;
           cw.CompleteGenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
 
