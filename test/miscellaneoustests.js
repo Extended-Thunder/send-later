@@ -14,11 +14,36 @@ exports.init = function() {
   }, [ [[2,3,4,1],[1,5,2],[1],[44,4],[7]],
        [2,3,4,1,1,5,2,1,44,4,7] ]);
 
-  SLTests.AddTest("Test parseableDateTimeFormat (plain)", (input, expected) => {
-    const result = SLStatic.parseableDateTimeFormat(new Date(input));
-    return result == expected ||
-          `Expected "${expected}", got "${result}"`;
-  }, [ "Sun Feb 01 1998 15:03:00 GMT+2", "Sun, 01 Feb 1998 05:03:00 -0800" ]);
+  function testParseableDateTimeFormat(name, input, output) {
+    SLTests.AddTest(name, () => {
+      const result = SLStatic.parseableDateTimeFormat(new Date(input));
+      return result == output || `Expected "${output}", got "${result}"`;
+    }, []);
+  }
+  testParseableDateTimeFormat("Test parseableDateTimeFormat (raw) 1",
+    "Jan 1 1998 04:03", "Thu, 1 Jan 1998 04:03:00 -0800");
+  testParseableDateTimeFormat("Test parseableDateTimeFormat (raw) 2",
+    "Sun Feb 29 2000 15:03:00 GMT+2", "Tue, 29 Feb 2000 05:03:00 -0800");
+  testParseableDateTimeFormat("Test parseableDateTimeFormat (raw) 3",
+    "Sun Mar 01 1998 15:03:00 GMT+2", "Sun, 1 Mar 1998 05:03:00 -0800");
+  testParseableDateTimeFormat("Test parseableDateTimeFormat (raw) 4",
+    "Wed Apr 01 1998 15:03:00 GMT+2", "Wed, 1 Apr 1998 05:03:00 -0800");
+  testParseableDateTimeFormat("Test parseableDateTimeFormat (raw) 5",
+    "May 1 1998 04:03", "Fri, 1 May 1998 04:03:00 -0700");
+  testParseableDateTimeFormat("Test parseableDateTimeFormat (raw) 6",
+    "June 1 1998 04:03", "Mon, 1 Jun 1998 04:03:00 -0700");
+  testParseableDateTimeFormat("Test parseableDateTimeFormat (raw) 7",
+    "July 1 1998 04:03", "Wed, 1 Jul 1998 04:03:00 -0700");
+  testParseableDateTimeFormat("Test parseableDateTimeFormat (raw) 8",
+    "August 1 1998 04:03", "Sat, 1 Aug 1998 04:03:00 -0700");
+  testParseableDateTimeFormat("Test parseableDateTimeFormat (raw) 9",
+    "September 1 1998 04:03", "Tue, 1 Sep 1998 04:03:00 -0700");
+  testParseableDateTimeFormat("Test parseableDateTimeFormat (raw) 10",
+    "Oct 1 1998 04:03", "Thu, 1 Oct 1998 04:03:00 -0700");
+  testParseableDateTimeFormat("Test parseableDateTimeFormat (raw) 11",
+    "Nov 1 1998 04:03", "Sun, 1 Nov 1998 04:03:00 -0800");
+  testParseableDateTimeFormat("Test parseableDateTimeFormat (raw) 12",
+    "Dec 1 2098 04:03", "Mon, 1 Dec 2098 04:03:00 -0800");
 
   SLTests.AddTest("Test parseableDateTimeFormat (current time fallback)", () => {
     const result = SLStatic.parseableDateTimeFormat();
