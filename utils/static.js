@@ -142,7 +142,8 @@ var SLStatic = {
     scheduledDate.setSeconds(0);
 
     let estimate = new Date(previousLoop);
-    while (estimate.getTime() < scheduledDate.getTime()) {
+    while (estimate.getTime() < scheduledDate.getTime()
+            || estimate.getTime() < Date.now()+1000) {
       estimate = new Date(estimate.getTime() + 60000*loopMinutes);
     }
 
@@ -319,7 +320,7 @@ var SLStatic = {
     const l = Sugar.Date.getLocale();
 
     const prettyRound = (n) => {
-      if (n%1 < 0.3 || n%1 > 0.7) {
+      if (n%1 <= 0.3 || n%1 > 0.7) {
         return Math.round(n).toFixed(0);
       } else {
         return n.toFixed(1);
@@ -330,6 +331,12 @@ var SLStatic = {
     if (DT < 60) {
       num = `${Math.floor(DT)}`;
       u=L.unitMap.seconds;
+    } else if (DT < 60*2) {
+      num = `${Math.round(DT/60*10)/10}`;
+      u=L.unitMap.minutes;
+    } else if (DT < 60*10) {
+      num = ((DT/60)%1 > 0.9) ? `${Math.ceil(DT/60)}` : `${Math.floor(DT/60)}`;
+      u=L.unitMap.minutes;
     } else if (DT < 60*55) {
       num = `${Math.floor(DT/(60))}`;
       u=L.unitMap.minutes;
