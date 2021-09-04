@@ -171,46 +171,37 @@ const SendLater = {
     },
 
     async forAllDraftFolders(callback) {
-      const that = this;
-      try {
-        let results = [];
-        let accounts = await messenger.accounts.list();
-        for (let acct of accounts) {
-          let draftFolders = await SendLater.getDraftFolders(acct);
-          for (let folder of draftFolders) {
-            results.push(callback(folder));
-          }
+      let results = [];
+      let accounts = await messenger.accounts.list();
+      for (let acct of accounts) {
+        let draftFolders = await SendLater.getDraftFolders(acct);
+        for (let folder of draftFolders) {
+          results.push(callback(folder));
         }
-        return await Promise.all(results);
-      } catch (ex) {
-        SLStatic.error(ex);
       }
+      return await Promise.all(results);
     },
 
     async forAllDrafts(callback) {
       const that = this;
-      try {
-        let results = [];
-        let accounts = await messenger.accounts.list();
-        for (let acct of accounts) {
-          let draftFolders = await SendLater.getDraftFolders(acct);
-          for (let folder of draftFolders) {
-            let page = await messenger.messages.list(folder);
-            do {
-              let pageResults = page.messages.map(
-                message => callback.call(that, message)
-              );
-              results = results.concat(pageResults);
-              if (page.id) {
-                page = await messenger.messages.continueList(page.id);
-              }
-            } while (page.id);
-          }
+      let results = [];
+      let accounts = await messenger.accounts.list();
+      for (let acct of accounts) {
+        let draftFolders = await SendLater.getDraftFolders(acct);
+        for (let folder of draftFolders) {
+          let page = await messenger.messages.list(folder);
+          do {
+            let pageResults = page.messages.map(
+              message => callback.call(that, message).catch(SLStatic.error)
+            );
+            results = results.concat(pageResults);
+            if (page.id) {
+              page = await messenger.messages.continueList(page.id);
+            }
+          } while (page.id);
         }
-        return await Promise.all(results);
-      } catch (ex) {
-        SLStatic.error(ex);
       }
+      return await Promise.all(results);
     },
 
     async expandRecipients(tabId) {
@@ -859,15 +850,28 @@ const SendLater = {
             const accountId = folder.accountId, path = folder.path;
             SLStatic.log(`Compacting folder <${path}> in account ${accountId}`);
             return messenger.SL3U.compactFolder(accountId, path);
+          }).catch( ex => {
+            SLStatic.error(ex);
+            return ex.message;
           });
         const compactedOutbox = await messenger.SL3U.compactFolder("", "outbox");
 
-        if (compactedDrafts.every(v => v === true)) {
-          SLStatic.debug("Successfully compacted Drafts.");
-        } else {
-          let errMsg = browser.i18n.getMessage("CompactionFailureNoError", ["Drafts"]);
-          message += "\n\n"+errMsg;
+        switch(typeof compactedDrafts) {
+          case 'object':
+            if (compactedDrafts.every(v => v === true)) {
+              SLStatic.debug("Successfully compacted Drafts.");
+            } else {
+              let errMsg = browser.i18n.getMessage("CompactionFailureNoError", ["Drafts"]);
+              message += "\n\n"+errMsg;
+            }
+            break;
+          case 'string':
+            message += `\n\n${compactedDrafts}`;
+            break;
+          default:
+            throw Error("Unable to compact draft folders");
         }
+
         if (compactedOutbox) {
           SLStatic.debug("Successfully compacted Outbox.");
         } else {
@@ -1141,7 +1145,7 @@ const SendLater = {
       // header. This function will "claim" any messages that
       // were originally saved that way.
       if (previousMigration > 0 && previousMigration < 4) {
-        await this.claimDrafts();
+        await this.claimDrafts().catch(SLStatic.error);
       }
 
       browser.storage.local.get({ preferences: {} }).then(
