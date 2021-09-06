@@ -93,9 +93,11 @@ var SLStatic = {
     },
 
     tz(d) {
-      let tzSign = d.getTimezoneOffset() > 0 ? '-' : '+'; // yes, counterintuitive
-      let tzOffset = Math.abs(d.getTimezoneOffset()/60*100).toFixed(0);
-      return tzSign + tzOffset.padStart(4,'0');
+      let offset = d.getTimezoneOffset()|0;
+      let sign = offset > 0 ? '-' : '+'; // yes, counterintuitive
+      let hrs = Math.floor(Math.abs(offset/60)).toFixed(0);
+      let mins = Math.abs(offset%60).toFixed(0);
+      return sign + hrs.padStart(2,'0') + mins.padStart(2,'0');
     },
 
     format(d) {
