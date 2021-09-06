@@ -45,6 +45,22 @@ exports.init = function() {
   testParseableDateTimeFormat("Test parseableDateTimeFormat (raw) 12",
     "Dec 1 2098 04:03", "Mon, 1 Dec 2098 04:03:00 -0800");
 
+  SLTests.AddTest("Test parseableDateTimeFormat (half-hour tz 1)", () => {
+    let d = new Date('"Mon, 6 Sep 2021 07:28:10 -0700"');
+    d.getTimezoneOffset = () => -570;
+    let expected = "Mon, 6 Sep 2021 07:28:10 +0930";
+    let result = SLStatic.RFC5322.format(d);
+    return result == expected || `Expected "${expected}", got "${result}"`;
+  }, []);
+
+  SLTests.AddTest("Test parseableDateTimeFormat (half-hour tz 2)", () => {
+    let d = new Date('"Mon, 6 Sep 2021 07:28:10 -0700"');
+    d.getTimezoneOffset = () => 555;
+    let expected = "Mon, 6 Sep 2021 07:28:10 -0915";
+    let result = SLStatic.RFC5322.format(d);
+    return result == expected || `Expected "${expected}", got "${result}"`;
+  }, []);
+
   SLTests.AddTest("Test parseableDateTimeFormat (current time fallback)", () => {
     const result = SLStatic.parseableDateTimeFormat();
     const expected = SLStatic.parseableDateTimeFormat(Date.now());
