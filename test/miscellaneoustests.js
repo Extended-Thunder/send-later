@@ -46,7 +46,7 @@ exports.init = function() {
   testParseableDateTimeFormat("Test parseableDateTimeFormat (raw) 12",
     "Dec 1 2098 04:03", "Mon, 1 Dec 2098 04:03:00 -0800");
 
-  SLTests.AddTest("Test parseableDateTimeFormat (half-hour tz 1)", () => {
+  SLTests.AddTest("Test parseableDateTimeFormat (half-hour tz)", () => {
     let d = new Date('"Mon, 6 Sep 2021 07:28:10 -0700"');
     d.getTimezoneOffset = () => -570;
     let expected = "Mon, 6 Sep 2021 07:28:10 +0930";
@@ -54,12 +54,55 @@ exports.init = function() {
     return result == expected || `Expected "${expected}", got "${result}"`;
   }, []);
 
-  SLTests.AddTest("Test parseableDateTimeFormat (half-hour tz 2)", () => {
+  SLTests.AddTest("Test parseableDateTimeFormat (quarter-hour tz)", () => {
     let d = new Date('"Mon, 6 Sep 2021 07:28:10 -0700"');
     d.getTimezoneOffset = () => 555;
     let expected = "Mon, 6 Sep 2021 07:28:10 -0915";
     let result = SLStatic.RFC5322.format(d);
     return result == expected || `Expected "${expected}", got "${result}"`;
+  }, []);
+
+  SLTests.AddTest("Timezone offset UTC +0000", () => {
+    let d = new Date();
+    d.getTimezoneOffset = () => 0;
+    let result = SLStatic.RFC5322.tz(d);
+    return result == '+0000' || `Expected "+0000", got "${result}"`;
+  }, []);
+
+  SLTests.AddTest("Local timezone offset comparison", () => {
+    let d = new Date();
+    let rfc = SLStatic.RFC5322.tz(d);
+    let match = d.toString().match(/[+-]\d\d\d\d/);
+    if (!match)
+      return `Unable to parse date string: ${d.toString()}`;
+    else
+      return rfc === match[0] || `Timezone offset does not match: "${rfc}" != "${match[0]}"`;
+  }, []);
+
+  SLTests.AddTest("Timezone offset positive/negative", () => {
+    for (let m=1; m<12*60; m+=1) {
+      let d = new Date();
+
+      d.getTimezoneOffset = () => m;
+      let tz = SLStatic.RFC5322.tz(d);
+      let sign = tz.substr(0,1);
+      let hr = tz.substr(1,2)|0;
+      let min = tz.substr(3,2)|0;
+      if (sign != '-')
+        return `Incorrect sign: ${tz}`;
+      if (hr < 0 || hr > 12)
+        return `Invalid hour: ${tz}`;
+      if (min < 0 || min > 59)
+        return `Invalid minute: ${tz}`;
+      if (m != hr*60 + min)
+        return `Invalid timezone offset: ${tz} (${m} minutes)`;
+
+      d.getTimezoneOffset = () => -m;
+      let tz2 = SLStatic.RFC5322.tz(d);
+      if (tz2 != '+'+tz.substr(1))
+        return `Invalid tz comparison: ${tz} vs ${tz2}`;
+    }
+    return true;
   }, []);
 
   SLTests.AddTest("Test parseableDateTimeFormat (current time fallback)", () => {
