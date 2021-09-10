@@ -127,6 +127,7 @@ const testPaths = [
   "./parserecurtests.js",
   "./mimetests.js",
   "./headers_to_dom_element_tests.js",
+  "./datetime_handling_tests.js",
   "./miscellaneoustests.js"
 ];
 
