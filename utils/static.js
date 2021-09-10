@@ -688,22 +688,29 @@ var SLStatic = {
       });
   },
 
+  // Get header's value from raw MIME message content.
+  // e.g. "subject: foo bar    baz" returns "foo bar    baz"
   getHeader(content, header) {
-    // Get header's value (e.g. "subject: foo bar    baz" returns "foo bar    baz")
     const regex = new RegExp(`^${header}:([^\r\n]*)\r\n(\\s[^\r\n]*\r\n)*`,'im');
-    const hdrContent = content.split(/\r\n\r\n/m)[0]+'\r\n';
+    let hdrContent = content.split(/\r\n\r\n/m)[0]+'\r\n';
     if (regex.test(hdrContent)) {
-      const hdrLine = hdrContent.match(regex)[0];
-      return hdrLine.replace(/[^:]*:/m,"").trim();
+      let hdrLine = hdrContent.match(regex)[0];
+      // Strip off the header key (everything before the first colon)
+      hdrLine = hdrLine.replace(/[^:]*:/m,"");
+      // We can assume all CRLF sequences are followed by whitespace,
+      // since they matched the regex above. This complies with RFC822:
+      // https://datatracker.ietf.org/doc/html/rfc822#section-3.1.1
+      hdrLine = hdrLine.replace(/\r\n/mg, "");
+      return hdrLine.trim();
     } else {
       return undefined;
     }
   },
 
+  // Replaces the header content with a new value.
+  //    replaceAll: operate on all instances of the header (can be regex)
+  //    addIfMissing: If the header does not exist
   replaceHeader(content, header, value, replaceAll, addIfMissing) {
-    // Replaces the header content with a new value.
-    //    replaceAll: operate on all instances of the header (can be regex)
-    //    addIfMissing: If the header does not exist
     const regexStr = `^${header}:.*(?:\r\n|\n)([ \t].*(?:\r\n|\n))*`;
     const replacement = (value) ? `${header}: ${value}\r\n` : '';
     const regex = new RegExp(regexStr, (replaceAll ? 'img' : 'im'));

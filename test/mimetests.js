@@ -32,20 +32,48 @@ exports.init = function() {
     ["Subject", "new subject"]
   );
 
+  function getHeaderTest(data, hdrstring, expected) {
+    const original = fs.readFileSync(data, {encoding: 'utf-8'});
+    result = SLStatic.getHeader(original, hdrstring);
+    return result === expected || `Expected "${expected}", got "${result}".`;
+  }
+
   SLTests.AddTest(
-    "MimeTests getHeader 01-plaintext.eml",
-    (hdrstring, expected) => {
-      const original = fs.readFileSync("test/data/01-plaintext.eml", {encoding: 'utf-8'});
+    "MimeTests getHeader 01-plaintext.eml", getHeaderTest,
+    ["test/data/01-plaintext.eml", "Subject", "1 plaintext"]
+  );
 
-      result = SLStatic.getHeader(original, hdrstring);
+  SLTests.AddTest(
+    "MimeTests getHeader 01-plaintext.eml (multi-line)", getHeaderTest,
+    ["test/data/01-plaintext.eml", "User-Agent",
+      "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Thunderbird/59.0a1"]
+  );
 
-      if (result === expected) {
-        return true;
-      } else {
-        return `Expected "${expected}", got "${result}".`;
-      }
-    },
-    ["Subject", "1 plaintext"]
+  SLTests.AddTest(
+    "MimeTests getHeader 01-plaintext.eml (first line)", getHeaderTest,
+    ["test/data/01-plaintext.eml", "To", "test@example.com"]
+  );
+
+  SLTests.AddTest(
+    "MimeTests getHeader 01-plaintext.eml (last header line)", getHeaderTest,
+    ["test/data/01-plaintext.eml", "Content-Language", "en-GB"]
+  );
+
+  SLTests.AddTest(
+    "MimeTests getHeader (multipart repeated header)", getHeaderTest,
+    ["test/data/05-HTML+embedded-image.eml", "Content-Type",
+      'multipart/related; boundary="------------B2BBD36A919AB2B2F84E2469"']
+  );
+
+  SLTests.AddTest(
+    "MimeTests getHeader (multipart missing header)", getHeaderTest,
+    ["test/data/05-HTML+embedded-image.eml", "Content-Transfer-Encoding",
+      undefined]
+  );
+
+  SLTests.AddTest(
+    "MimeTests getHeader (multipart invalid header)", getHeaderTest,
+    ["test/data/21-plaintext.eml", "X-fake-header", undefined]
   );
 
   SLTests.AddTest(

@@ -13,4 +13,4 @@ Content-Language: en-GB
 Search for h=C3=B6h=C3=B6
 Test that we ignore a soft=
 break correctly.
-
+X-fake-header: foobar

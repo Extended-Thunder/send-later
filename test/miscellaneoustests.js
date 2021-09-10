@@ -1,5 +1,3 @@
-const Sugar = require("../utils/sugar-custom");
-
 exports.init = function() {
   // // Example
   // SLTests.AddTest("Test name", (input, expected) => {
