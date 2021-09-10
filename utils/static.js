@@ -95,9 +95,8 @@ var SLStatic = {
     tz(d) {
       let offset = d.getTimezoneOffset()|0;
       let sign = offset > 0 ? '-' : '+'; // yes, counterintuitive
-      let hrs = Math.floor(Math.abs(offset/60)).toFixed(0);
-      let mins = Math.abs(offset%60).toFixed(0);
-      return sign + hrs.padStart(2,'0') + mins.padStart(2,'0');
+      let absPad = (n) => Math.trunc(Math.abs(n)).toString().padStart(2, '0');
+      return sign + absPad(offset/60) + absPad(offset%60);
     },
 
     format(d) {
@@ -191,16 +190,19 @@ var SLStatic = {
     return estimate;
   },
 
+  // Round datetime up to the next nearest full minute
   ceilDateTime(dt) {
     dt = SLStatic.convertDate(dt);
     return new Date(Math.ceil(dt.getTime()/60000)*60000);
   },
 
+  // Round datetime down to the next nearest full minute
   floorDateTime(dt) {
     dt = SLStatic.convertDate(dt);
     return new Date(Math.floor(dt.getTime()/60000)*60000);
   },
 
+  // Round datetime to the nearest full minute
   roundDateTime(dt) {
     dt = SLStatic.convertDate(dt);
     return new Date(Math.round(dt.getTime()/60000)*60000);
