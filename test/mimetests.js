@@ -39,24 +39,29 @@ exports.init = function() {
   }
 
   SLTests.AddTest(
-    "MimeTests getHeader 01-plaintext.eml", getHeaderTest,
+    "MimeTests getHeader (simple)", getHeaderTest,
     ["test/data/01-plaintext.eml", "Subject", "1 plaintext"]
   );
 
   SLTests.AddTest(
-    "MimeTests getHeader 01-plaintext.eml (multi-line)", getHeaderTest,
+    "MimeTests getHeader (multi-line)", getHeaderTest,
     ["test/data/01-plaintext.eml", "User-Agent",
       "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Thunderbird/59.0a1"]
   );
 
   SLTests.AddTest(
-    "MimeTests getHeader 01-plaintext.eml (first line)", getHeaderTest,
+    "MimeTests getHeader (first line)", getHeaderTest,
     ["test/data/01-plaintext.eml", "To", "test@example.com"]
   );
 
   SLTests.AddTest(
-    "MimeTests getHeader 01-plaintext.eml (last header line)", getHeaderTest,
+    "MimeTests getHeader (last header line)", getHeaderTest,
     ["test/data/01-plaintext.eml", "Content-Language", "en-GB"]
+  );
+
+  SLTests.AddTest(
+    "MimeTests getHeader (case sensitivity)", getHeaderTest,
+    ["test/data/01-plaintext.eml", "cONtEnt-lAngUage", "en-GB"]
   );
 
   SLTests.AddTest(
