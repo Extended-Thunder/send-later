@@ -159,6 +159,10 @@
     "message": "Entre",
     "description": ""
   },
+  "sendUntilLabel": {
+    "message": "Fins",
+    "description": ""
+  },
   "sendButtonPrefLabel": {
     "message": "“Enviar” actua com “Enviar més endavant”",
     "description": ""
@@ -842,6 +846,10 @@
     "message": "a les $1",
     "description": ""
   },
+  "until_datetime": {
+    "message": "fins $1",
+    "description": "Describes when a recurrence should terminate. Used in the scheduler dialog."
+  },
   "only_on_day0": {
     "message": "diumenge",
     "description": ""
@@ -993,6 +1001,18 @@
   },
   "missingDaysWarningBody": {
     "message": "Heu habilitat una restricció diària per a un missatge sense especificar cap dia. Si us plau, deshabiliti les restriccions diàries o especifiqui, almenys, un dia de lliurament.",
+    "description": ""
+  },
+  "invalidUntilWarningTitle": {
+    "message": "Restricció “fins” incorrecta",
+    "description": ""
+  },
+  "invalidUntilWarning_inPast": {
+    "message": "El límit de temps de recurrència és al passat. ",
+    "description": ""
+  },
+  "invalidUntilWarning_tooSoon": {
+    "message": "El límit de temps de recurrència és abans del primer enviament programat. ",
     "description": ""
   },
   "InvalidArgsTitle": {
