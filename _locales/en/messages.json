@@ -159,6 +159,10 @@
     "message": "Between",
     "description": ""
   },
+  "sendUntilLabel": {
+    "message": "Until",
+    "description": ""
+  },
   "sendButtonPrefLabel": {
     "message": "“Send” does “Send Later”",
     "description": ""
@@ -842,6 +846,10 @@
     "message": "on $1",
     "description": ""
   },
+  "until_datetime": {
+    "message": "until $1",
+    "description": "Describes when a recurrence should terminate. Used in the scheduler dialog."
+  },
   "only_on_day0": {
     "message": "Sunday",
     "description": ""
@@ -993,6 +1001,18 @@
   },
   "missingDaysWarningBody": {
     "message": "You have enabled a message day restriction without specifying any days. Please disable the day restriction or specify at least one delivery day.",
+    "description": ""
+  },
+  "invalidUntilWarningTitle": {
+    "message": "Invalid “until” restriction",
+    "description": ""
+  },
+  "invalidUntilWarning_inPast": {
+    "message": "The recurrence time limit is in the past.",
+    "description": ""
+  },
+  "invalidUntilWarning_tooSoon": {
+    "message": "The recurrence time limit is before the first scheduled send.",
     "description": ""
   },
   "InvalidArgsTitle": {

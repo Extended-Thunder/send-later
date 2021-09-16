@@ -460,6 +460,14 @@ const SendLater = {
       }
 
       if (preferences.enforceTimeRestrictions) {
+        // Respect "until" preference
+        if (recur.until) {
+          if (SLStatic.compareTimes(Date.now(), '>', recur.until)) {
+            SLStatic.debug(`Message ${msgHdr.id} ${originalMsgId} past "until" restriction. Skipping.`);
+            return;
+          }
+        }
+
         // Respect "send between" preference
         if (recur.between) {
           if (SLStatic.compareTimes(Date.now(), '<', recur.between.start) ||

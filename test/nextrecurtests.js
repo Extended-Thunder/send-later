@@ -144,6 +144,18 @@ exports.init = function() {
                    'else { return [7, "monthly 5", "freeble"]; }',
                    {sendAt: d2, nextspec: "monthly 5", nextargs:"freeble",
                     error:undefined}]);
+SLTests.AddTest("nextRecurDate function returning array with args and until time restriction",
+                  NextRecurFunctionTest,
+                  ["2012-10-04T11:31:00.000Z", // most recent sendAt
+                  "function Test9 until 2012-10-05T11:31:00.000Z", // recurspec
+                  "2012-10-04T11:31:00.000Z", // current date-time
+                  null, // args
+                  "Test9", // func name
+                  'return [new Date("2012-10-07T11:31:00.000Z"), "function Test9 until 2012-10-05T11:31:00.000Z"];',
+                  null]);
+
+                  // async function NextRecurFunctionTest(sendat, recur, now, args, func_name,
+                  //   func, expected) {
 
   SLTests.AddTest("nextRecurDate between before", NextRecurNormalTest,
                    ["3/1/2016 17:00", "minutely / 600 between 0900 1700",

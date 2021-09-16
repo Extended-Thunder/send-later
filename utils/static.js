@@ -213,6 +213,11 @@ var SLStatic = {
     return SLStatic.RFC5322.format(date);
   },
 
+  isoDateTimeFormat(date) {
+    date = SLStatic.convertDate(date)||(new Date());
+    return date.toISOString();
+  },
+
   defaultHumanDateTimeFormat(date) {
     const options = {
       hour: "numeric", minute: "numeric", weekday: "short",
@@ -237,7 +242,8 @@ var SLStatic = {
 
   humanDateTimeFormat(date) {
     if (this.customizeDateTime === null) {
-      this.cachePrefs();
+      let that = this;
+      that.cachePrefs().then(() => that.humanDateTimeFormat(date));
     } else if (this.customizeDateTime === true &&
                this.longDateTimeFormat !== "") {
       try {
@@ -249,7 +255,8 @@ var SLStatic = {
 
   shortHumanDateTimeFormat(date) {
     if (this.customizeDateTime === null) {
-      this.cachePrefs();
+      let that = this;
+      that.cachePrefs().then(() => that.shortHumanDateTimeFormat(date));
     } else if (this.customizeDateTime === true &&
                this.shortDateTimeFormat !== "") {
       try {
@@ -549,10 +556,9 @@ var SLStatic = {
       recurText = this.i18n.getMessage("sendwithfunction",
                                   [recur.function]).replace(/^\S*/,
                                     this.i18n.getMessage("recurLabel"));
-      recurText += "\n";
       if (recur.args) {
-        recurText += this.i18n.getMessage("sendlater.prompt.functionargs.label") +
-          `: [${recur.args}]`;
+        let funcArgsLabel = this.i18n.getMessage("sendlater.prompt.functionargs.label");
+        recurText += `\n${funcArgsLabel}: [${recur.args}]`;
       }
     } else if (recur.type === "monthly") {
       recurText = this.i18n.getMessage("recurLabel") + " ";
@@ -608,6 +614,11 @@ var SLStatic = {
         onDays = days.join(", ");
       }
       recurText += `\n${this.i18n.getMessage("sendOnlyOnLabel")} ${onDays}`;
+    }
+
+    if (recur.until) {
+      let formattedUntil = this.shortHumanDateTimeFormat(recur.until);
+      recurText += '\n' + this.i18n.getMessage("until_datetime", formattedUntil);
     }
 
     if (recur.cancelOnReply) {
@@ -803,8 +814,11 @@ var SLStatic = {
   specification so that it'll be set properly in the dialog if the user
   edits the scheduled message.
 
-  The other fields can be followed by " between HH:MM HH:MM" to indicate a
-  time restriction or " on # ..." to indicate a day restriction.
+  Sending can be restricted with any combination of the following:
+
+    - "between HH:MM HH:MM" to indicate a time of day restriction
+    - "on # ..." to indicate day of week restrictions
+    - "until [date-time]" to indicate when the recurrence terminates
   */
 
   // recur (object) -> recurSpec (string)
@@ -842,6 +856,10 @@ var SLStatic = {
 
     if (recur.days) {
       spec += " on " + recur.days.join(' ');
+    }
+
+    if (recur.until) {
+      spec += ` until ${SLStatic.isoDateTimeFormat(recur.until)}`;
     }
 
     return spec;
@@ -961,6 +979,12 @@ var SLStatic = {
         throw new Error("Day restriction with no days in spec "+recurSpec);
       }
     }
+    let untilIndex = params.indexOf("until");
+    if (untilIndex > -1) {
+      let untilDTstring = params[untilIndex+1];
+      recur.until = new Date(untilDTstring);
+      params.splice(untilIndex, 2);
+    }
     if (params.length) {
       throw new Error("Extra arguments in " + recurSpec);
     }
@@ -1002,6 +1026,9 @@ var SLStatic = {
       if (recur.days) {
         functionSpec.days = recur.days;
       }
+      if (recur.until) {
+        functionSpec.until = recur.until;
+      }
       nextRecur.nextspec = SLStatic.unparseRecurSpec(functionSpec);
     }
 
@@ -1027,6 +1054,10 @@ var SLStatic = {
           nextRecur.sendAt, recur.between && recur.between.start,
           recur.between && recur.between.end, recur.days
         );
+      }
+      if (recur.until && recur.until.getTime() < nextRecur.sendAt.getTime()) {
+        SLStatic.debug(`Recurrence ending because of "until" restriction: ${recur.until} < ${nextRecur.sendAt}`);
+        return null;
       }
       return nextRecur;
     }
@@ -1115,6 +1146,11 @@ var SLStatic = {
                       (recur.between && recur.between.end), recur.days);
     }
 
+    if (recur.until && recur.until.getTime() < next.getTime()) {
+      SLStatic.debug(`Recurrence ending because of "until" restriction: ${recur.until} < ${next}`);
+      return null;
+    }
+
     return next;
   },
 
@@ -1180,6 +1216,9 @@ var SLStatic = {
     //   - sendbetween (checkbox)
     //   - sendbetween-start (time)
     //   - sendbetween-end (time)
+    //   - senduntil (checkbox)
+    //   - senduntil-date (date)
+    //   - senduntil-time (time)
     //   - sendon (checkbox)
     //   - sendon-{saturday|sunday|...} (checkboxes)
     // select elements:
@@ -1251,6 +1290,16 @@ var SLStatic = {
     } else {
       dom['sendon'] = false;
     }
+
+    if (recur.until) {
+      dom['senduntil'] = true;
+      let isoSendUntil = SLStatic.convertDate(recur.until).toISOString();
+      dom["senduntil-date"] = isoSendUntil.substr(0,10); // YYYY-mm-dd
+      dom["senduntil-time"] = isoSendUntil.substr(11,5); // HH:MM
+    } else {
+      dom['senduntil'] = false;
+    }
+
     return dom;
   }
 }

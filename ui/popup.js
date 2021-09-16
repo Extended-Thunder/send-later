@@ -259,6 +259,24 @@ const SLPopup = {
         use_soonest_valid
       );
 
+    if (inputs["senduntil"]) {
+      const untilDate = inputs["senduntil-date"];
+      const untilTime = inputs["senduntil-time"];
+      if ((/^\d\d\d\d.\d\d.\d\d$/).test(untilDate) &&
+          (/^\d\d.\d\d$/).test(untilTime)) {
+        sendUntil = SLStatic.parseDateTime(untilDate, untilTime);
+        if (sendUntil.getTime() <= Date.now()) {
+          return { err: browser.i18n.getMessage("invalidUntilWarningTitle") + ": " +
+                        browser.i18n.getMessage("invalidUntilWarning_inPast") };
+        } else if (sendUntil.getTime() < schedule.sendAt) {
+          return { err: browser.i18n.getMessage("invalidUntilWarningTitle") + ": " +
+                        browser.i18n.getMessage("invalidUntilWarning_tooSoon") };
+        } else {
+          schedule.recur.until = sendUntil;
+        }
+      }
+    }
+
     return schedule;
   },
 
@@ -493,6 +511,7 @@ const SLPopup = {
 
     SLStatic.stateSetter(dom["sendon"].checked)(dom["onlyOnDiv"]);
     SLStatic.stateSetter(dom["sendbetween"].checked)(dom["betweenDiv"]);
+    SLStatic.stateSetter(dom["senduntil"].checked)(dom["untilDiv"]);
 
     SLPopup.loadFunctionHelpText();
 
@@ -581,6 +600,7 @@ const SLPopup = {
 
       SLStatic.stateSetter(dom["sendon"].checked)(dom["onlyOnDiv"]);
       SLStatic.stateSetter(dom["sendbetween"].checked)(dom["betweenDiv"]);
+      SLStatic.stateSetter(dom["senduntil"].checked)(dom["untilDiv"]);
 
       SLStatic.stateSetter(dom['recurFuncSelect'].length > 0)(dom['function-recur-radio']);
       SLStatic.stateSetter(dom["function"].checked)(dom['recurFuncSelect']);
