@@ -159,6 +159,10 @@
     "message": "Mellem",
     "description": ""
   },
+  "sendUntilLabel": {
+    "message": "Indtil",
+    "description": ""
+  },
   "sendButtonPrefLabel": {
     "message": "\"Send\" betyder \"send senere\"",
     "description": ""
@@ -841,6 +845,10 @@
   "only_on_days": {
     "message": "på $1",
     "description": ""
+  },
+  "until_datetime": {
+    "message": "indtil $1",
+    "description": "Describes when a recurrence should terminate. Used in the scheduler dialog."
   },
   "only_on_day0": {
     "message": "Søndag",
