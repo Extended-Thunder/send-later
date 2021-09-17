@@ -847,7 +847,7 @@
     "description": ""
   },
   "until_datetime": {
-    "message": "Could be \"tot maximaal $1\" depending on the context",
+    "message": "tot $1",
     "description": "Describes when a recurrence should terminate. Used in the scheduler dialog."
   },
   "only_on_day0": {
@@ -1004,15 +1004,15 @@
     "description": ""
   },
   "invalidUntilWarningTitle": {
-    "message": "Ongeldige \"tot\"-beperking",
+    "message": "Ongeldige ‘tot’-restrictie",
     "description": ""
   },
   "invalidUntilWarning_inPast": {
-    "message": "De herhalingstijdlimiet ligt in het verleden",
+    "message": "De herhalingstijdslimiet ligt in het verleden.",
     "description": ""
   },
   "invalidUntilWarning_tooSoon": {
-    "message": "De herhalingstijdslimiet gaat de eerste geplande verzending vooraf.",
+    "message": "De herhalingstijdslimiet ligt voor de eerste geplande verzending.",
     "description": ""
   },
   "InvalidArgsTitle": {
