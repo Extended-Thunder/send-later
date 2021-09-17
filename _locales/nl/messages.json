@@ -995,6 +995,14 @@
     "message": "U hebt een dagrestrictie voor berichten ingeschakeld zonder dagen op te geven. Schakel de dagrestrictie uit of geef minstens één afleverdag op.",
     "description": ""
   },
+  "invalidUntilWarning_inPast": {
+    "message": "De herhalingstijdlimiet ligt in het verleden",
+    "description": ""
+  },
+  "invalidUntilWarning_tooSoon": {
+    "message": "De herhalingstijdslimiet gaat de eerste geplande verzending vooraf.",
+    "description": ""
+  },
   "InvalidArgsTitle": {
     "message": "Ongeldige functieargumenten",
     "description": ""
