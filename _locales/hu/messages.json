@@ -159,6 +159,10 @@
     "message": "Között",
     "description": ""
   },
+  "sendUntilLabel": {
+    "message": "Eddig:",
+    "description": ""
+  },
   "sendButtonPrefLabel": {
     "message": "„Küldés” úgy működik, mint „Küldés később”",
     "description": ""
@@ -842,6 +846,10 @@
     "message": "$1",
     "description": ""
   },
+  "until_datetime": {
+    "message": "eddig: $1",
+    "description": "Describes when a recurrence should terminate. Used in the scheduler dialog."
+  },
   "only_on_day0": {
     "message": "vasárnapon",
     "description": ""
@@ -993,6 +1001,18 @@
   },
   "missingDaysWarningBody": {
     "message": "A napok korlátozása nélkül engedélyezte az üzenetnapi korlátozást. Kérjük, tiltsa le a napi korlátozást, vagy adjon meg legalább egy elküldési napot.",
+    "description": ""
+  },
+  "invalidUntilWarningTitle": {
+    "message": "Érvénytelen „eddig” korlátozás",
+    "description": ""
+  },
+  "invalidUntilWarning_inPast": {
+    "message": "Az ismétlődési időkorlát a múltban van.",
+    "description": ""
+  },
+  "invalidUntilWarning_tooSoon": {
+    "message": "Az ismétlődési időkorlát az első ütemezett küldés előtt van.",
     "description": ""
   },
   "InvalidArgsTitle": {
