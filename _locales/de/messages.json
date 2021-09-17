@@ -159,6 +159,10 @@
     "message": "Zwischen",
     "description": ""
   },
+  "sendUntilLabel": {
+    "message": "Bis",
+    "description": ""
+  },
   "sendButtonPrefLabel": {
     "message": "„Senden” durch „Später senden” ersetzen",
     "description": ""
@@ -841,6 +845,10 @@
   "only_on_days": {
     "message": "am $1",
     "description": ""
+  },
+  "until_datetime": {
+    "message": "bis $1",
+    "description": "Describes when a recurrence should terminate. Used in the scheduler dialog."
   },
   "only_on_day0": {
     "message": "Sonntag",
