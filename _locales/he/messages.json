@@ -160,7 +160,7 @@
     "description": ""
   },
   "sendUntilLabel": {
-    "message": "עד",
+    "message": "עד ל",
     "description": ""
   },
   "sendButtonPrefLabel": {
@@ -847,7 +847,7 @@
     "description": ""
   },
   "until_datetime": {
-    "message": "עד $1",
+    "message": "עד ל $1",
     "description": "Describes when a recurrence should terminate. Used in the scheduler dialog."
   },
   "only_on_day0": {
@@ -950,6 +950,9 @@
   "SanityCheckConfirmOptionMessage": {
     "message": "בחרו אחת מהאפשרויות להלן:\n\"אישור\". המשך כרגיל . לא תתבקש להגיב יותר.\n\"ביטול\". 'שלח מאוחר יותר' תנוטרל באמצעות תכונותיה הפנימיות.\nכדי להפעיל את 'שלח מאוחר יותר' שוב, יש לגשת לעמוד האפשרויות ולסמן\nהתכונה \"בדוק כל ___מספר דקות\" לערך השונה מאפס.\nהודעה זו תופיע שוב, בפעם הבאה בה תפעיל את 'ציפור הרעם' מחדש."
   },
+  "ShowQuitNotificationPreference": {
+    "message": "הצג הודעה אם קיימות הודעות ממתינות לפני היציאה"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "קיימות הודעות הממתינות למשלוח. \"‫שלח מאוחר יותר‬\" תשלח הודעות רק כאשר $1 פועלת. האם אתם רוצים לצאת עכשיו?",
     "description": ""
@@ -998,6 +1001,14 @@
   },
   "missingDaysWarningBody": {
     "message": "תכונת מגבלת המשלוח לפי ימים, מאופשרת, אך לא נקבעו ימים למגבלה זו, אנא ציין יום אחד, לפחות, למגבלה זו או בטל אותה.",
+    "description": ""
+  },
+  "invalidUntilWarningTitle": {
+    "message": "מגבלת \"עד ל\" לא תקפה",
+    "description": ""
+  },
+  "invalidUntilWarning_inPast": {
+    "message": "מגבלת זמן החזרה שהוגדרה,  נמצאת בעבר",
     "description": ""
   },
   "InvalidArgsTitle": {
