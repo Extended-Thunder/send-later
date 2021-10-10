@@ -9,13 +9,7 @@ var LegacyColumn = {
 
   ExtensionParent,
 
-  get storageLocalMap() {
-    return this._storageLocalMap || new Map();
-  },
-
-  set storageLocalMap(val) {
-    this._storageLocalMap = val;
-  },
+  storageLocalMap: new Map(),
 
   getStorageLocal(key) {
     return this.storageLocalMap.get(key);
@@ -103,12 +97,12 @@ var LegacyColumn = {
     let SLStatic = this.SLStatic;
     if (!sendAtStr) {
       return { valid: false, detail: "Not scheduled" };
+    } else if (msgUuid !== instanceUUID) {
+      return { valid: false, detail: `${msgUuid} != ${instanceUUID}`, msg: SLStatic.i18n.getMessage("incorrectUUID") };
     } else if (!msgContentType) {
       return { valid: false, detail: "Missing ContentType" };
     } else if (/encrypted/i.test(msgContentType)) {
       return { valid: false, detail: "Encrypted", msg: SLStatic.i18n.getMessage("EncryptionIncompatTitle") };
-    } else if (msgUuid !== instanceUUID) {
-      return { valid: false, detail: `${msgUuid} != ${instanceUUID}`, msg: SLStatic.i18n.getMessage("incorrectUUID") };
     }
     return { valid: true };
   },
@@ -344,6 +338,7 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
 
         async setPreference(key, value) {
           LegacyColumn.SLStatic[key] = value;
+          LegacyColumn.setStorageLocal(key, value);
         },
 
         async setColumnVisible(name, visible, applyGlobal) {

@@ -1167,7 +1167,7 @@ const SendLater = {
             logConsoleLevel: SLStatic.logConsoleLevel
           });
 
-          for (let pref of ["customizeDateTime", "longDateTimeFormat", "shortDateTimeFormat"])
+          for (let pref of ["customizeDateTime", "longDateTimeFormat", "shortDateTimeFormat", "instanceUUID"])
             messenger.columnHandler.setPreference(pref, preferences[pref]);
 
           SendLater.setQuitNotificationsEnabled(preferences.askQuit, preferences.instanceUUID);
@@ -1187,7 +1187,7 @@ const SendLater = {
           SendLater.prefCache = preferences;
           SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
 
-          for (let pref of ["customizeDateTime", "longDateTimeFormat", "shortDateTimeFormat"]) {
+          for (let pref of ["customizeDateTime", "longDateTimeFormat", "shortDateTimeFormat", "instanceUUID"]) {
             if (changes.preferences.oldValue[pref] !== preferences[pref]) {
               SLStatic[pref] = preferences[pref];
               messenger.columnHandler.setPreference(pref, preferences[pref]);
@@ -1513,7 +1513,7 @@ messenger.runtime.onMessage.addListener(async (message, sender) => {
           response.err = "Message is not scheduled by Send Later.";
           break;
         } else if (msgUuid !== preferences.instanceUUID) {
-          response.err = "Message is scheduled by a different Thunderbird instance";
+          response.err = browser.i18n.getMessage("incorrectUUID");
           break;
         } else if (msgContentType && (/encrypted/i).test(msgContentType)) {
           response.err = browser.i18n.getMessage("EncryptionIncompatText");
