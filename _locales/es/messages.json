@@ -1003,6 +1003,18 @@
     "message": "Ha activado una restricción del día de envío de mensaje sin especificar día alguno. Por favor, desactive la restricción del día o especifique al menos un día de envío.",
     "description": ""
   },
+  "invalidUntilWarningTitle": {
+    "message": "Restricción \"hasta\" no válida",
+    "description": ""
+  },
+  "invalidUntilWarning_inPast": {
+    "message": "El límite de tiempo de recurrencia está vencido.",
+    "description": ""
+  },
+  "invalidUntilWarning_tooSoon": {
+    "message": "El límite de tiempo de recurrencia es anterior al primer envío programado.",
+    "description": ""
+  },
   "InvalidArgsTitle": {
     "message": "Argumentos de función no válidos",
     "description": ""
