@@ -628,6 +628,8 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
         },
 
         goDoCommand(command, windowId) {
+          SendLaterFunctions.info(`goDoCommand(${command})`);
+
           let window;
           if (windowId) {
             let wm = context.extension.windowManager.get(windowId, context);

@@ -85,7 +85,7 @@ var quitter = class extends ExtensionCommon.ExtensionAPI {
   }
 
   close() {
-    console.debug("Removing ouit observers");
+    console.debug("Removing quit observers");
     Services.obs.removeObserver(QuitObservers.requested, "quit-application-requested");
     Services.obs.removeObserver(QuitObservers.granted, "quit-application-granted");
   }
