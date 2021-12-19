@@ -159,6 +159,10 @@
     "message": "Mellem",
     "description": ""
   },
+  "sendUntilLabel": {
+    "message": "Indtil",
+    "description": ""
+  },
   "sendButtonPrefLabel": {
     "message": "\"Send\" betyder \"send senere\"",
     "description": ""
@@ -842,6 +846,10 @@
     "message": "på $1",
     "description": ""
   },
+  "until_datetime": {
+    "message": "indtil $1",
+    "description": "Describes when a recurrence should terminate. Used in the scheduler dialog."
+  },
   "only_on_day0": {
     "message": "Søndag",
     "description": ""
@@ -993,6 +1001,18 @@
   },
   "missingDaysWarningBody": {
     "message": "Du har aktiveret en begrænsning af daglige besked(er) uden at angive nogen dage. Venligst deaktivér begrænsningen eller angiv mindst én leveringsdag.",
+    "description": ""
+  },
+  "invalidUntilWarningTitle": {
+    "message": "Ugyldig “indtil” begrænsning",
+    "description": ""
+  },
+  "invalidUntilWarning_inPast": {
+    "message": "Tidsfristen for gentagelse er udløbet.",
+    "description": ""
+  },
+  "invalidUntilWarning_tooSoon": {
+    "message": "Tidsfristen for gentagelse ligger før den første planlagte afsendelse.",
     "description": ""
   },
   "InvalidArgsTitle": {

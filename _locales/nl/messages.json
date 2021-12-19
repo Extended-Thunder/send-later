@@ -159,6 +159,10 @@
     "message": "Tussen",
     "description": ""
   },
+  "sendUntilLabel": {
+    "message": "Tot",
+    "description": ""
+  },
   "sendButtonPrefLabel": {
     "message": "‘Verzenden’ werkt als ‘Later verzenden’",
     "description": ""
@@ -842,6 +846,10 @@
     "message": "op $1",
     "description": ""
   },
+  "until_datetime": {
+    "message": "tot $1",
+    "description": "Describes when a recurrence should terminate. Used in the scheduler dialog."
+  },
   "only_on_day0": {
     "message": "zondag",
     "description": ""
@@ -993,6 +1001,18 @@
   },
   "missingDaysWarningBody": {
     "message": "U hebt een dagrestrictie voor berichten ingeschakeld zonder dagen op te geven. Schakel de dagrestrictie uit of geef minstens één afleverdag op.",
+    "description": ""
+  },
+  "invalidUntilWarningTitle": {
+    "message": "Ongeldige ‘tot’-restrictie",
+    "description": ""
+  },
+  "invalidUntilWarning_inPast": {
+    "message": "De herhalingstijdslimiet ligt in het verleden.",
+    "description": ""
+  },
+  "invalidUntilWarning_tooSoon": {
+    "message": "De herhalingstijdslimiet ligt voor de eerste geplande verzending.",
     "description": ""
   },
   "InvalidArgsTitle": {

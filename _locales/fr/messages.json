@@ -159,6 +159,10 @@
     "message": "Entre",
     "description": ""
   },
+  "sendUntilLabel": {
+    "message": "Jusqu'à",
+    "description": ""
+  },
   "sendButtonPrefLabel": {
     "message": "« Envoyer » exécute « Envoyer Plus Tard »",
     "description": ""
@@ -842,6 +846,10 @@
     "message": "seulement les $1",
     "description": ""
   },
+  "until_datetime": {
+    "message": "jusqu'à $1",
+    "description": "Describes when a recurrence should terminate. Used in the scheduler dialog."
+  },
   "only_on_day0": {
     "message": "Dimanche",
     "description": ""
@@ -993,6 +1001,18 @@
   },
   "missingDaysWarningBody": {
     "message": "Vous avez activé un jour de restriction, sans choisir aucun jour. Merci de désactiver les restrictions  or préciser au moins un jour de distribution.",
+    "description": ""
+  },
+  "invalidUntilWarningTitle": {
+    "message": "Restriction « jusqu'à » non valable",
+    "description": ""
+  },
+  "invalidUntilWarning_inPast": {
+    "message": "La limite de temps de récurrence est dans le passé.",
+    "description": ""
+  },
+  "invalidUntilWarning_tooSoon": {
+    "message": "La limite de temps de récurrence est avant le premier envoi planifié.",
     "description": ""
   },
   "InvalidArgsTitle": {

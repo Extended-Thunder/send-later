@@ -159,6 +159,10 @@
     "message": "Zwischen",
     "description": ""
   },
+  "sendUntilLabel": {
+    "message": "Bis",
+    "description": ""
+  },
   "sendButtonPrefLabel": {
     "message": "„Senden” durch „Später senden” ersetzen",
     "description": ""
@@ -842,6 +846,10 @@
     "message": "am $1",
     "description": ""
   },
+  "until_datetime": {
+    "message": "bis $1",
+    "description": "Describes when a recurrence should terminate. Used in the scheduler dialog."
+  },
   "only_on_day0": {
     "message": "Sonntag",
     "description": ""
@@ -993,6 +1001,18 @@
   },
   "missingDaysWarningBody": {
     "message": "Sie haben die Tagesbeschränkung aktiviert, aber keinen Tag ausgewählt. Bitte deaktivieren Sie die Tagesbeschränkung oder wählen Sie mindestens einen Tag aus.",
+    "description": ""
+  },
+  "invalidUntilWarningTitle": {
+    "message": "Ungültig \"bis\" Einschränkung",
+    "description": ""
+  },
+  "invalidUntilWarning_inPast": {
+    "message": "Das Wiederholungszeitlimit liegt in der Vergangenheit",
+    "description": ""
+  },
+  "invalidUntilWarning_tooSoon": {
+    "message": "Das Wiederholungszeitlimit liegt vor dem ersten geplanten Versandzeitpunkt",
     "description": ""
   },
   "InvalidArgsTitle": {
