@@ -31,53 +31,89 @@ var SLStatic = {
   // Non-static preferences (I know...), which affect the behavior of
   // various functions. Specifically, the log output level, and customized
   // date/time formats.
-  customizeDateTime: null,
-  longDateTimeFormat: null,
-  shortDateTimeFormat: null,
-  logConsoleLevel: null,
+  _logConsoleLevel: null,
+  _longDateTimeFormat: null,
+  _shortDateTimeFormat: null,
+  _customizeDateTime: null,
+
+  error: console.error,
+  warn:  console.warn,
+  info:  console.info,
+  log:   console.log,
+  debug: console.debug,
+  trace: console.trace,
+
+  get logConsoleLevel() {
+    if (this._logConsoleLevel === null) {
+      this.cachePrefs().catch(console.error);
+      return "all";
+    } else {
+      return this._logConsoleLevel;
+    }
+  },
+
+  set logConsoleLevel(level) {
+    level = (level || "all").toLowerCase();
+    this._logConsoleLevel = level;
+    function logThreshold(l) {
+      const levels = ["all","trace","debug","info","warn","error","fatal"];
+      return levels.indexOf(l) >= levels.indexOf(level);
+    }
+    this.error = logThreshold("error") ? console.error : ()=>{};
+    this.warn  = logThreshold("warn")  ? console.warn  : ()=>{};
+    this.info  = logThreshold("info")  ? console.info  : ()=>{};
+    this.log   = logThreshold("log")   ? console.log   : ()=>{};
+    this.debug = logThreshold("debug") ? console.debug : ()=>{};
+    this.trace = logThreshold("trace") ? console.trace : ()=>{};
+  },
+
+  get customizeDateTime() {
+    if (this._customizeDateTime === null) {
+      this.cachePrefs().catch(console.error);
+      return false;
+    } else {
+      return (this._customizeDateTime === true);
+    }
+  },
+
+  set customizeDateTime(val) {
+    this._customizeDateTime = val;
+  },
+
+  get longDateTimeFormat() {
+    return this._longDateTimeFormat;
+  },
+
+  set longDateTimeFormat(fmt) {
+    this._longDateTimeFormat = fmt;
+  },
+
+  get shortDateTimeFormat() {
+    return this._shortDateTimeFormat;
+  },
+
+  set shortDateTimeFormat(fmt) {
+    this._shortDateTimeFormat = fmt;
+  },
 
   async cachePrefs() {
-    try {
-      const { preferences } = await browser.storage.local.get({"preferences": {}});
-      this.logConsoleLevel = (preferences.logConsoleLevel || "all").toLowerCase();
-      this.customizeDateTime = (preferences.customizeDateTime === true);
-      this.longDateTimeFormat = preferences.longDateTimeFormat;
-      this.shortDateTimeFormat = preferences.shortDateTimeFormat;
-    } catch {}
+    let { preferences } = await browser.storage.local.get({"preferences": {}});
+    this._logConsoleLevel     = preferences.logConsoleLevel;
+    this._customizeDateTime   = preferences.customizeDateTime;
+    this._longDateTimeFormat  = preferences.longDateTimeFormat;
+    this._shortDateTimeFormat = preferences.shortDateTimeFormat;
   },
-
-  logger(msg, level, stream) {
-    let logConsoleLevel = "all";
-    if (typeof this.logConsoleLevel === "string") {
-      logConsoleLevel = this.logConsoleLevel;
-    } else {
-      this.cachePrefs();
-    }
-
-    const levels = ["all","trace","debug","info","warn","error","fatal"];
-    if (levels.indexOf(level) >= levels.indexOf(logConsoleLevel)) {
-      const output = stream || console.log;
-      output(`${level.toUpperCase()} [SendLater]:`, ...msg);
-    }
-  },
-
-  error(...msg)  { SLStatic.logger(msg, "error", console.error) },
-  warn(...msg)   { SLStatic.logger(msg, "warn",  console.warn) },
-  info(...msg)   { SLStatic.logger(msg, "info",  console.info) },
-  log(...msg)    { SLStatic.logger(msg, "info",  console.log) },
-  debug(...msg)  { SLStatic.logger(msg, "debug", console.debug) },
-  trace(...msg)  { SLStatic.logger(msg, "trace", console.trace) },
 
   RFC5322: {
     // RFC2822 / RFC5322 formatter
     dayOfWeek: (d) => ["Sun", "Mon", "Tue", "Wed",
-                      "Thu", "Fri", "Sat"][d.getDay()],
+                       "Thu", "Fri", "Sat"][d.getDay()],
 
     day: (d) => d.getDate(),
 
     month: (d) => ["Jan", "Feb", "Mar", "Apr",
-                  "May", "Jun", "Jul", "Aug",
-                  "Sep", "Oct", "Nov", "Dec"][d.getMonth()],
+                   "May", "Jun", "Jul", "Aug",
+                   "Sep", "Oct", "Nov", "Dec"][d.getMonth()],
 
     year: (d) => d.getFullYear().toFixed(0),
 
@@ -241,27 +277,21 @@ var SLStatic = {
   },
 
   humanDateTimeFormat(date) {
-    if (this.customizeDateTime === null) {
-      let that = this;
-      that.cachePrefs().then(() => that.humanDateTimeFormat(date));
-    } else if (this.customizeDateTime === true &&
-               this.longDateTimeFormat !== "") {
+    if (this.customizeDateTime &&
+        this.longDateTimeFormat !== "") {
       try {
         return this.customHumanDateTimeFormat(date, this.longDateTimeFormat);
-      } catch (ex) {this.warn(ex);}
+      } catch (ex) { this.warn(ex); }
     }
     return this.defaultHumanDateTimeFormat(date);
   },
 
   shortHumanDateTimeFormat(date) {
-    if (this.customizeDateTime === null) {
-      let that = this;
-      that.cachePrefs().then(() => that.shortHumanDateTimeFormat(date));
-    } else if (this.customizeDateTime === true &&
-               this.shortDateTimeFormat !== "") {
+    if (this.customizeDateTime &&
+        this.shortDateTimeFormat !== "") {
       try {
         return this.customHumanDateTimeFormat(date, this.shortDateTimeFormat);
-      } catch (ex) {this.warn(ex);}
+      } catch (ex) { this.warn(ex); }
     }
     return this.defaultShortHumanDateTimeFormat(date);
   },

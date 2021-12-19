@@ -152,7 +152,7 @@ const SLOptions = {
 
     const prefPromise =
       browser.storage.local.get({ preferences: {} }).then(({ preferences }) => {
-        SLStatic.logConsoleLevel = (preferences.logConsoleLevel||"all").toLowerCase();
+        SLStatic.logConsoleLevel = preferences.logConsoleLevel;
         for (let id of SLStatic.prefInputIds) {
           let prefVal = preferences[id];
           if (id === "checkTimePref" && preferences.checkTimePref_isMilliseconds) {
