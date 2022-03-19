@@ -11,7 +11,8 @@ var SLStatic = {
   // Migration 4: add instanceUUID
   // Migration 5: add accelerator shortcut options
   // Migration 6: Add longDateTimeFormat/shortDateTimeFormat
-  CURRENT_LEGACY_MIGRATION: 6,
+  // Migration 7: Fix bug in BusinessHours function
+  CURRENT_LEGACY_MIGRATION: 7,
 
   // HTML element IDs in options.html correspond to preference keys
   // in local storage.
@@ -485,8 +486,9 @@ var SLStatic = {
     }
 
     if (response === undefined) {
-      throw new Error(`Send Later: Recurrence function '${name}' did not` +
-                      " return a value.");
+      let error = `Send Later: Recurrence function '${name}' did not return a value`;
+      SLStatic.warn(error);
+      return { error };
     }
 
     let recvdType;
@@ -497,7 +499,9 @@ var SLStatic = {
     } else if (response.splice) {
       recvdType = "array";
     } else {
-      throw `Recurrence function "${name}" did not return number, Date, or array`;
+      let error = `Recurrence function "${name}" did not return number, Date, or array`;
+      SLStatic.warn(error);
+      return { error };
     }
 
     const prevOrNow = prev ? (new Date(prev)).getTime() : Date.now();
@@ -515,7 +519,9 @@ var SLStatic = {
         return { sendAt: response };
       case "array":
         if (response.length < 2) {
-          throw new Error(`Array returned by recurrence function "${name}" is too short`);
+          let error = `Array returned by recurrence function "${name}" is too short`;
+          SLStatic.warn(error);
+          return { error };
         }
         let sendAt;
         if (typeof response[0] === "number") {
@@ -527,8 +533,10 @@ var SLStatic = {
         } else if (response[0].getTime) {
           sendAt = response[0];
         } else {
-          throw new Error(`Send Later: Array ${response} returned by recurrence function ` +
-                `"${name}" did not start with a number or Date`);
+          let error = (`Send Later: Array ${response} returned by recurrence function `
+                       + `"${name}" did not start with a number or Date`);
+          SLStatic.warn(error);
+          return { error };
         }
         return {
           sendAt,
@@ -1528,7 +1536,7 @@ if (typeof browser === "undefined" && typeof require !== "undefined") {
 
   SLStatic.mockStorage.ufuncs = {
     ReadMeFirst: {help: "Any text you put here will be displayed as a tooltip when you hover over the name of the function in the menu. You can use this to document what the function does and what arguments it accepts.", body: "// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;"},
-    BusinessHours: {help:"Send the message now if it is during business hours, or at the beginning of the next work day. You can change the definition of work days (default: Mon - Fri) by passing in an array of work-day numbers as the first argument, where 0 is Sunday and 6 is Saturday. You can change the work start or end time (default: 8:30 - 17:30) by passing in an array of [H, M] as the second or third argument. Specify “null” for earlier arguments you don't change. For example, “null, [9, 0], [17, 0]” changes the work hours without changing the work days.",body:"// Defaults\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Start of the work day as [H, M]\nvar workEnd = [17, 30]; // End of the work day as [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Not expected in normal usage, but used as the current time for testing.\n    next = new Date(prev);\nelse\n    next = new Date();\n// If we're past the end of the workday or not on a workday, move to the work\n// start time on the next day.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// If we're before the beginning of the workday, move to its start time.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}"},
+    BusinessHours: {help:"Send the message now if it is during business hours, or at the beginning of the next work day. You can change the definition of work days (default: Mon - Fri) by passing in an array of work-day numbers as the first argument, where 0 is Sunday and 6 is Saturday. You can change the work start or end time (default: 8:30 - 17:30) by passing in an array of [H, M] as the second or third argument. Specify “null” for earlier arguments you don't change. For example, “null, [9, 0], [17, 0]” changes the work hours without changing the work days.",body:"// Defaults\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Start of the work day as [H, M]\nvar workEnd = [17, 30]; // End of the work day as [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Not expected in normal usage, but used as the current time for testing.\n    next = new Date(prev);\nelse\n    next = new Date();\n\nif (workDays.length == 0 || !workDays.every(d => (d >= 0) && (d <= 6))) { return undefined; }\n\n// If we're past the end of the workday or not on a workday, move to the work\n// start time on the next day.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// If we're before the beginning of the workday, move to its start time.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}"},
     DaysInARow: {help:"Send the message now, and subsequently once per day at the same time, until it has been sent three times. Specify a number as an argument to change the total number of sends.",body:"// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;"},
     Delay: {help:"Simply delay message by some number of minutes. First argument is taken as the delay time.", body:"next = new Date(Date.now() + args[0]*60000);"}
   };

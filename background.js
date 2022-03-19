@@ -673,31 +673,23 @@ const SendLater = {
         return currentMigrationNumber;
       }
 
-      // Load the default user functions.
-      const isComplete = (v) => v && v.body && v.help;
-      if (
-        !isComplete(ufuncs.ReadMeFirst) ||
-        !isComplete(ufuncs.BusinessHours) ||
-        !isComplete(ufuncs.DaysInARow) ||
-        !isComplete(ufuncs.Delay)
-      ) {
-        ufuncs.ReadMeFirst = {
-          help: browser.i18n.getMessage("EditorReadMeHelp"),
-          body: browser.i18n.getMessage("EditorReadMeCode"),
-        };
-        ufuncs.BusinessHours = {
-          help: browser.i18n.getMessage("BusinessHoursHelp"),
-          body: browser.i18n.getMessage("_BusinessHoursCode"),
-        };
-        ufuncs.DaysInARow = {
-          help: browser.i18n.getMessage("DaysInARowHelp"),
-          body: browser.i18n.getMessage("DaysInARowCode"),
-        };
-        ufuncs.Delay = {
-          help: browser.i18n.getMessage("DelayFunctionHelp"),
-          body: "next = new Date(Date.now() + args[0]*60000);",
-        };
-      }
+      // (Re-)load the built-in user functions
+      ufuncs.ReadMeFirst = {
+        help: browser.i18n.getMessage("EditorReadMeHelp"),
+        body: browser.i18n.getMessage("EditorReadMeCode"),
+      };
+      ufuncs.BusinessHours = {
+        help: browser.i18n.getMessage("BusinessHoursHelp"),
+        body: browser.i18n.getMessage("_BusinessHoursCode"),
+      };
+      ufuncs.DaysInARow = {
+        help: browser.i18n.getMessage("DaysInARowHelp"),
+        body: browser.i18n.getMessage("DaysInARowCode"),
+      };
+      ufuncs.Delay = {
+        help: browser.i18n.getMessage("DelayFunctionHelp"),
+        body: "next = new Date(Date.now() + args[0]*60000);",
+      };
 
       const prefDefaults = await fetch(
         "/utils/defaultPrefs.json"
