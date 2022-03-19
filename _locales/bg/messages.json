@@ -971,10 +971,6 @@
     "message": "Всеки текст, който поставяте тук, ще се покаже като подсказка, когато задържите курсора на мишката върху името на функцията в менюто. Можете да използвате това, за да документирате какво прави функцията и какви аргументи приема.",
     "description": ""
   },
-  "_BusinessHoursCode": {
-    "message": "// По подразбиране\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Start of the work day as [H, M]\nvar workEnd = [17, 30]; // End of the work day as [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Не се очаква при нормална употреба, но се използва като текущо време за тестване.\n    next = new Date(prev);\nelse\n    next = new Date();\n// Ако преминем края на работния ден или не в работния ден, преминете към работата\n// с начално време на следващия ден.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// Ако сме преди началото на работния ден, преминете към началния час.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
-    "description": ""
-  },
   "BusinessHoursHelp": {
     "message": "Изпращане на съобщението сега, ако е в работно време или в началото на следващия работен ден. Можете да промените дефиницията на работните дни (по подразбиране: Mon - Fri), като преминете в масив от работни дни като първи аргумент, където 0 е неделя и 6 е събота. Можете да промените началния или крайния час на работа (по подразбиране: 8:30 - 17:30), като въведете масив от [H, M] като втори или трети аргумент. Посочете \"null\" за по-ранни аргументи, които не променяте. Например \"null, [9, 0], [17, 0]\" променя работното време, без да променя работните дни.",
     "description": ""
