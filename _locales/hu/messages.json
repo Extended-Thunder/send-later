@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "Teljes küldemény „Küldés később” az e-mail küldésének ütemezéséhez.",
+    "message": "Valódi \"Küldés később\" funkció az e-mail küldés időpontjának ütemezéséhez.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -28,7 +28,7 @@
     "description": ""
   },
   "checkTimePrefLabel1": {
-    "message": "Ellenőrizze minden",
+    "message": "Ellenőrzés gyakorisága:",
     "description": ""
   },
   "checkTimePrefLabel2": {
@@ -168,7 +168,7 @@
     "description": ""
   },
   "sendDelayPrefLabel1": {
-    "message": "A „küldés” késlelteti az üzeneteket",
+    "message": "A „küldés” ennyivel késleltet:",
     "description": ""
   },
   "sendDelayPrefLabel2": {
