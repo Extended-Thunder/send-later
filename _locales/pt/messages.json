@@ -140,7 +140,7 @@
     "description": ""
   },
   "resetPrefsButton": {
-    "message": "Repor as preferências",
+    "message": "Redefinir preferências",
     "description": ""
   },
   "saveDefaultsLabel": {
@@ -228,11 +228,11 @@
     "description": ""
   },
   "errorDateInPast": {
-    "message": "A data selecionada é anterior à data atual",
+    "message": "A data selecionada está no passado",
     "description": ""
   },
   "DelayFunctionHelp": {
-    "message": "Adiar a mensagem por alguns minutos. O primeiro argumento será o tempo a adiar.",
+    "message": "Basta adiar a mensagem por alguns minutos. O primeiro argumento é considerado como o tempo de atraso.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -396,7 +396,7 @@
     "description": ""
   },
   "advancededitor.title": {
-    "message": "Editor avançado de configurações",
+    "message": "Editor de configurações avançadas",
     "description": ""
   },
   "editorlink.value": {
@@ -699,9 +699,6 @@
     "message": "Send Later: A pasta $1 pode estar corrompida. Por favor abra as suas propriedades e repare-a. Veja https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
-  "CorruptFolderErrorDetails": {
-    "message": "Aparentemente, parece que a mensagem “$1” $2 já foi enviada, mas ainda existe na pasta Rascunhos. Pode ser sintoma de um problema mais grave. Pode simplesmente tentar apagar (ou reagendar) a mensagem em questão.\n\nSend Later irá ignorar esta mensagem, mas continuará a processar as outras mensagens programadas quando fechar este alerta."
-  },
   "MessageResendError": {
     "message": "Send Later: Tentativa de re-enviar mensagem já enviada?! Provavelmente a sua Caixa de Saída ou a pasta de Rascunhos $1 está corrompida. Por favor repare-as tal como descrito em https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
@@ -914,34 +911,6 @@
     "message": "Aviso de mensagens agendadas",
     "description": ""
   },
-  "CompactionFailureWithError": {
-    "message": "A compressão das pastas de Saída e/ou Rascunhos falharam com erro:"
-  },
-  "CompactionFailureNoError": {
-    "message": "A compressão de $1 falhou sem mensagem de erro."
-  },
-  "SanityCheckOutbox": {
-    "message": "Existem $1 mensagem(ns) não enviada(s) que será(ão) enviadas da próxima vez que ocorrer um agendamento."
-  },
-  "SanityCheckDrafts": {
-    "message": "Existem $1 mensagem(ns) agendadas para serem enviadas pelo Send Later.\nA próxima está agendada para $2.",
-    "description": "$1 is replaced with a number, and $2 is replaced with the date/time of the next scheduled message."
-  },
-  "SanityCheckCorruptFolderWarning": {
-    "message": "Se estes valores não parecem corretos, pode ter uma caixa de saída e/ou rascunhos corrompida. Nesse caso, é recomendado que compacte e recrie essas pastas antes de ativar Send Later. Veja <$CORRUPTOUTBOXDOCS$> e <$CORRUPTDRAFTDOCS$> para mais detalhes.",
-    "description": "Part of \"sanity check\" prompt potentially displayed during version migration. If there are scheduled messages in the user's Drafts and/or Outbox folders, then the user will be prompted to confirm that the message counts are accurate. This message is preceeded by one or both of the translation strings: \"SanityCheckDrafts\" and/or \"SanityCheckOutbox\".",
-    "placeholders": {
-      "CorruptOutboxDocs": {
-        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Outbox_folder"
-      },
-      "CorruptDraftDocs": {
-        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Drafts_folders"
-      }
-    }
-  },
-  "SanityCheckConfirmOptionMessage": {
-    "message": "Selecione uma das opções:\n  \"OK\": prossiga como de costume. Você não será solicitada confirmação novamente.\n\n  \"Cancelar\": Send Later será desativado nas suas preferências.\n                    Para reativar o Send Later, vá para sua página de opções e defina\n                    a opção \"Verifique a cada ___ minutos\" para um valor que não seja zero.\n                    Receberá este aviso novamente na próxima vez que reiniciar o\n                    Thunderbird"
-  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Há mensagens agendadas para serem enviadas. O Send Later apenas pode enviar mensagens quando $1 está a correr. Tem a certeza de que pretende sair?",
     "description": ""
@@ -954,7 +923,7 @@
     "message": "Problema de compatibilidade de criptografia"
   },
   "EncryptionIncompatText": {
-    "message": "Esta mensagem é criptografada com a sua própria chave PGP e, portanto, não pode ser entregue aos destinatários. Veja esta discussão para mais detalhes sobre porque está vendo esta mensagem: https://github.com/Extended-Thunder/send-later/discussions/200"
+    "message": "Esta mensagem é criptografada com sua própria chave PGP e, portanto, não pode ser entregue aos seus destinatários. Veja esta discussão para mais detalhes sobre por que você está vendo esta mensagem: https://github.com/Extended-Thunder/send-later/discussions/200"
   },
   "EnigmailIncompatTitle": {
     "message": "Problema de compatibilidade do Send Later / Enigmail",
@@ -1006,10 +975,6 @@
   },
   "EditorReadMeHelp": {
     "message": "Qualquer texto que coloque aqui será mostrado como uma legenda quando passar o rato sobre o nome da função no menu. Pode usar esta opção para documentar o que a função faz e quais os argumentos que esta aceita.",
-    "description": ""
-  },
-  "_BusinessHoursCode": {
-    "message": "// Padrão\nvar workDays = [1, 2, 3, 4, 5]; // Seg - Sex; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Inicio do dia util em [H, M]\nvar workEnd = [17, 30]; // Fim do dia util em [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Not expected in normal usage, but used as the current time for testing.\n    next = new Date(prev);\nelse\n    next = new Date();\n\nif (workDays.length == 0 || !workDays.every(d => (d >= 0) && (d <= 6))) { return undefined; }\n\n// Se esta apos o fim do dia util ou num dia não útil, \n// avançar para a primeira hora útil do dia seguinte.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// If we're before the beginning of the workday, move to its start time.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
     "description": ""
   },
   "BusinessHoursHelp": {
@@ -1131,10 +1096,6 @@
   "CheckingMessage": {
     "message": "A VERIFICAR MENSAGENS",
     "description": ""
-  },
-  "LongDescription": {
-    "message": "Este complemento altera o comando “Send Later” (Ctrl+Shift+Return) na janela de composição de mensagens, para que, em vez de apenas copiar a mensagem para a caixa de saída para que seja enviada da próxima vez que ficar online ou fazer \"Enviar mensagens não enviadas\", um diálogo aparece que lhe permite especificar quando a mensagem será enviada.\n\nPode especificar uma hora e uma data específica, ou clicar em \"15 minutos mais tarde\", \"30 minutos mais tarde\" ou \"2 horas mais tarde\", ou definir atalhos personalizados. Também pode agendar uma mensagem para ser enviada repetidamente usando regras simples (a cada N horas, dias, etc.) ou funções personalizáveis.\n\nSend Later depende da poderosa biblioteca de análise de datas fornecida por Andrew Plummer <a href=\"https://sugarjs.com/\">Sugar.js library</a>.\n\nFeedback e relatórios de erros são muito bem-vindos e podem ser enviados através da <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">Página do projeto</a>.",
-    "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   },
   "cancel": {
     "message": "Cancelar",
