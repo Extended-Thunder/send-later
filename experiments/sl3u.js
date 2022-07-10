@@ -1,14 +1,13 @@
 // Get various parts of the WebExtension framework that we need.
-var { utils: Cu, classes: Cc, interfaces: Ci } = Components;
-var { ExtensionCommon } = ChromeUtils.import("resource://gre/modules/ExtensionCommon.jsm");
-var { ExtensionSupport } = ChromeUtils.import("resource:///modules/ExtensionSupport.jsm");
-var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-var { Utils } = ChromeUtils.import("resource://services-settings/Utils.jsm");
-// var { AppConstants } = ChromeUtils.import("resource://gre/modules/AppConstants.jsm");
-var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
-var { AddonManager } = ChromeUtils.import("resource://gre/modules/AddonManager.jsm");
-
-var { NetUtil } = ChromeUtils.import("resource://gre/modules/NetUtil.jsm");
+var Utils = ChromeUtils.import(
+  "resource://services-settings/Utils.jsm"
+).Utils;
+var MailServices = globalThis.MailServices || ChromeUtils.import(
+  "resource:///modules/MailServices.jsm"
+).MailServices;
+var NetUtil = globalThis.NetUtil || ChromeUtils.import(
+  "resource://gre/modules/NetUtil.jsm"
+).NetUtil;
 
 const SendLaterVars = {
   fileNumber: 0,

@@ -1,13 +1,14 @@
-var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-var { ExtensionSupport } = ChromeUtils.import("resource:///modules/ExtensionSupport.jsm");
-var { ExtensionCommon } = ChromeUtils.import("resource://gre/modules/ExtensionCommon.jsm");
-var { ExtensionUtils } = ChromeUtils.import("resource://gre/modules/ExtensionUtils.jsm");
-var { ExtensionParent } = ChromeUtils.import("resource://gre/modules/ExtensionParent.jsm");
-var { ExtensionError } = ExtensionUtils;
+
+var ExtensionSupport = globalThis.ExtensionSupport || ChromeUtils.import(
+  "resource:///modules/ExtensionSupport.jsm"
+).ExtensionSupport;
+// var ExtensionParent = globalThis.ExtensionParent || ChromeUtils.import(
+//   "resource://gre/modules/ExtensionParent.jsm"
+// ).ExtensionParent;
 
 var LegacyColumn = {
 
-  ExtensionParent,
+  // ExtensionParent,
 
   storageLocalMap: new Map(),
 
@@ -322,7 +323,7 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
 
         async addCustomColumn({ name, tooltip }) {
           if (columns.has(name))
-            throw new ExtensionError("Cannot add columns with the same name");
+            throw new ExtensionUtils.ExtensionError("Cannot add columns with the same name");
           let column = new MessageViewsCustomColumn(context, name, tooltip);
           await column.addToCurrentWindows();
           columns.set(name, column);
@@ -331,7 +332,7 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
         async removeCustomColumn(name) {
           let column = columns.get(name);
           if (!column)
-            throw new ExtensionError("Cannot remove non-existent column");
+            throw new ExtensionUtils.ExtensionError("Cannot remove non-existent column");
           column.destroy();
           columns.delete(name);
         },
@@ -344,7 +345,7 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
         async setColumnVisible(name, visible, applyGlobal) {
           let column = columns.get(name);
           if (!column)
-            throw new ExtensionError("Cannot update non-existent column");
+            throw new ExtensionUtils.ExtensionError("Cannot update non-existent column");
           column.setVisible(visible, applyGlobal);
         },
       }

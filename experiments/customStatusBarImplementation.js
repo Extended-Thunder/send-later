@@ -1,17 +1,7 @@
-var { utils: Cu, classes: Cc, interfaces: Ci } = Components;
-var { ExtensionSupport } = ChromeUtils.import(
+
+var ExtensionSupport = globalThis.ExtensionSupport || ChromeUtils.import(
   "resource:///modules/ExtensionSupport.jsm"
-);
-var { ExtensionCommon } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionCommon.jsm"
-);
-var { ExtensionUtils } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionUtils.jsm"
-);
-var { ExtensionError } = ExtensionUtils;
-var { Services } = ChromeUtils.import(
-  "resource://gre/modules/Services.jsm"
-);
+).ExtensionSupport;
 
 var StatusMenuItemCallbacks = {
   listeners: new Set(),
@@ -169,7 +159,7 @@ var statusBar = class extends ExtensionCommon.ExtensionAPI {
 
         async addStatusMenu(label, visible, menuItems) {
           if (customMenus.has(menuId))
-            throw new ExtensionError("You can only add one menu to the status bar.");
+            throw new ExtensionUtils.ExtensionError("You can only add one menu to the status bar.");
           let menu = new StatusMenu(menuId, label, visible);
           for (let item of menuItems)
             menu.addItem(item);
@@ -180,7 +170,7 @@ var statusBar = class extends ExtensionCommon.ExtensionAPI {
         async removeStatusMenu() {
           let menu = customMenus.get(menuId);
           if (!menu)
-            throw new ExtensionError("Cannot remove non-existent menu");
+            throw new ExtensionUtils.ExtensionError("Cannot remove non-existent menu");
           menu.destroy();
           customMenus.delete(menuId);
         },
@@ -188,14 +178,14 @@ var statusBar = class extends ExtensionCommon.ExtensionAPI {
         async setStatusMessage(text) {
           let menu = customMenus.get(menuId);
           if (!menu)
-            throw new ExtensionError("Cannot set status of non-existent menu");
+            throw new ExtensionUtils.ExtensionError("Cannot set status of non-existent menu");
           menu.setStatusMessage(text);
         },
 
         async setVisible(visible) {
           let menu = customMenus.get(menuId);
           if (!menu)
-            throw new ExtensionError("Cannot set visibility of non-existent menu");
+            throw new ExtensionUtils.ExtensionError("Cannot set visibility of non-existent menu");
           menu.setVisible(visible);
         },
 
