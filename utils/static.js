@@ -1359,9 +1359,9 @@ if (SLStatic.i18n === null) {
     // We're in an overlay context.
     try {
       let EP;
-      if (typeof ExtensionParent !== undefined) {
+      if (typeof ExtensionParent !== "undefined") {
         EP = ExtensionParent;
-      } else if (typeof window !== undefined && typeof window.ExtensionParent !== undefined) {
+      } else if (typeof window !== "undefined" && typeof window.ExtensionParent !== "undefined") {
         EP = window.ExtensionParent;
       } else {
         var { ExtensionParent } = ChromeUtils.import("resource://gre/modules/ExtensionParent.jsm");
