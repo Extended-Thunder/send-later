@@ -1,8 +1,7 @@
-var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
-var { ExtensionSupport } = ChromeUtils.import("resource:///modules/ExtensionSupport.jsm");
-var { ExtensionCommon } = ChromeUtils.import("resource://gre/modules/ExtensionCommon.jsm");
-var { ExtensionUtils } = ChromeUtils.import("resource://gre/modules/ExtensionUtils.jsm");
-var { ExtensionError } = ExtensionUtils;
+
+var ExtensionSupport = globalThis.ExtensionSupport || ChromeUtils.import(
+  "resource:///modules/ExtensionSupport.jsm"
+).ExtensionSupport;
 
 class CustomHdrRow {
   constructor(context, name, tooltip) {
@@ -189,7 +188,7 @@ var headerView = class extends ExtensionCommon.ExtensionAPI {
 
           async addCustomHdrRow({ name, tooltip }) {
             if (hdrRows.has(name))
-              throw new ExtensionError("Cannot add hdrRows with the same name");
+              throw new ExtensionUtils.ExtensionError("Cannot add hdrRows with the same name");
             let hdrRow = new CustomHdrRow(context, name, tooltip);
             await hdrRow.addToCurrentWindows();
             hdrRows.set(name, hdrRow);
@@ -198,7 +197,7 @@ var headerView = class extends ExtensionCommon.ExtensionAPI {
           async removeCustomHdrRow(name) {
             let hdrRow = hdrRows.get(name);
             if (!hdrRow)
-              throw new ExtensionError("Cannot remove non-existent hdrRow");
+              throw new ExtensionUtils.ExtensionError("Cannot remove non-existent hdrRow");
               hdrRow.destroy();
             hdrRows.delete(name);
           },
@@ -209,7 +208,7 @@ var headerView = class extends ExtensionCommon.ExtensionAPI {
             register: (fire, name) => {
               let hdrRow = hdrRows.get(name);
               if (!hdrRow) {
-                throw new ExtensionError(
+                throw new ExtensionUtils.ExtensionError(
                   "Cannot add a hdrRow fill handler for a hdrRow that has not been defined"
                 );
               }
