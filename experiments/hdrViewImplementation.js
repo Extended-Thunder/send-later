@@ -53,67 +53,42 @@ class CustomHdrRow {
   }
 
   addToWindow(window) {
+    // Note this changed in TB96 and TB102, but the current strict
+    // min version should prevent this version of the extension from
+    // running prior to that, so we don't implement any fall-backs.
+
     let document = window.document;
 
-    try {
-      // If a row already exists, do not create another one
-      let newRowNode = document.getElementById(this.rowId);
-      if (!newRowNode) {
-        // Create new collapsed row
-        newRowNode = document.createElementNS(
-          "http://www.w3.org/1999/xhtml",
-          "div"
-        );
-        newRowNode.setAttribute("id", this.rowId);
-        newRowNode.classList.add("message-header-row");
+    // If a row already exists, do not create another one
+    let newRowNode = document.getElementById(this.rowId);
+    if (!newRowNode) {
+      // Create new collapsed row
+      newRowNode = document.createElementNS(
+        "http://www.w3.org/1999/xhtml",
+        "div"
+      );
+      newRowNode.setAttribute("id", this.rowId);
+      newRowNode.classList.add("message-header-row");
 
-        let newLabelNode = document.createXULElement("label");
-        newLabelNode.setAttribute("id", `${this.rowId}-label`);
-        newLabelNode.setAttribute("value", this.name);
-        newLabelNode.setAttribute("class", "message-header-label");
-        newLabelNode.setAttribute("control", "sendlater-expanded-Box");
+      let newLabelNode = document.createXULElement("label");
+      newLabelNode.setAttribute("id", `${this.rowId}-label`);
+      newLabelNode.setAttribute("value", this.name);
+      newLabelNode.setAttribute("class", "message-header-label");
 
-        newRowNode.appendChild(newLabelNode);
+      newRowNode.appendChild(newLabelNode);
 
-        // Create and append the new header value.
-        let newHeaderNode = document.createXULElement("mail-headerfield");
-        newHeaderNode.setAttribute("id", `${this.rowId}-content`);
-        newHeaderNode.setAttribute("flex", "1");
-        newRowNode.appendChild(newHeaderNode);
+      // Create and append the new header value.
+      let newHeaderNode = document.createElement("div", {
+        is: "simple-header-row",
+      });
+      newHeaderNode.setAttribute("id", `${this.rowId}-content`);
+      newHeaderNode.dataset.prettyHeaderName = this.name;
+      newHeaderNode.dataset.headerName = this.rowId;
+      newRowNode.appendChild(newHeaderNode);
 
-        // Add the new row to the extra headers container.
-        let topViewNode = document.getElementById("extraHeadersArea")
-        topViewNode.appendChild(newRowNode);
-      }
-    } catch (ex) { // For versions of Thunderbird prior to 96
-      console.debug("[hdrViewImplementation]: Using legacy header row implementation");
-      // If a row already exists, do not create another one
-      let newRowNode = document.getElementById(this.rowId);
-      if (!newRowNode) {
-        newRowNode = document.createElementNS("http://www.w3.org/1999/xhtml", "tr");
-        newRowNode.setAttribute("id", this.rowId);
-        let newLabelNode = document.createXULElement("label");
-        newLabelNode.setAttribute("id", `${this.rowId}-label`);
-        newLabelNode.setAttribute("value", this.name);
-        newLabelNode.setAttribute("class", "headerName");
-        newLabelNode.setAttribute("control", "sendlater-expanded-Box");
-        let newTHNode = document.createElementNS("http://www.w3.org/1999/xhtml", "th");
-        newTHNode.appendChild(newLabelNode);
-        newRowNode.appendChild(newTHNode);
-
-        // Create and append the new header value.
-        let newHeaderNode = document.createXULElement("mail-headerfield");
-        newHeaderNode.setAttribute("id", `${this.rowId}-content`);
-        newHeaderNode.setAttribute("flex", "1");
-        let newTDNode = document.createElementNS("http://www.w3.org/1999/xhtml", "td");
-        newTDNode.appendChild(newHeaderNode);
-
-        newRowNode.appendChild(newTDNode);
-
-        // This new element needs to be inserted into the view...
-        let topViewNode = document.getElementById("expandedHeaders2");
-        topViewNode.appendChild(newRowNode);
-      }
+      // Add the new row to the extra headers container.
+      let topViewNode = document.getElementById("extraHeadersArea")
+      topViewNode.appendChild(newRowNode);
     }
 
     for (let handler of this.handlers)
