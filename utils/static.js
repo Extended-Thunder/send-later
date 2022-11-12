@@ -145,6 +145,13 @@ var SLStatic = {
     }
   },
 
+  padNum(num, len) {
+    let isNegative = num < 0;
+    let padLen = len - (isNegative ? 1 : 0);
+    let padded = String(Math.abs(num)).padStart(padLen, "0");
+    return (isNegative ? "-" : "") + padded;
+  },
+
   flatten(arr) {
     // Flattens an N-dimensional array.
     return arr.reduce((res, item) => res.concat(

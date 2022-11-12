@@ -21,8 +21,6 @@ var LegacyColumn = {
   },
 
   async getRawMessage(hdr) {
-    let SLStatic = this.SLStatic;
-
     let folder = hdr.folder.QueryInterface(Ci.nsIMsgFolder);
     let messageUri = folder.generateMessageURI(hdr.messageKey);
     const messenger = Cc[
@@ -43,7 +41,7 @@ var LegacyColumn = {
         {
           OnStartRunningUrl() {},
           OnStopRunningUrl(url, exitCode) {
-            SLStatic.debug(
+            console.debug(
               `LegacyColumn.getRawMessage.streamListener.OnStopRunning ` +
               `received ${streamListener.inputStream.available()} bytes ` +
               `(exitCode: ${exitCode})`
@@ -60,7 +58,7 @@ var LegacyColumn = {
         ""
       );
     }).catch((ex) => {
-      SLStatic.error(`Error reading message ${messageUri}`,ex);
+      console.error(`Error reading message ${messageUri}`,ex);
     });
 
     const available = streamListener.inputStream.available();
@@ -71,7 +69,7 @@ var LegacyColumn = {
       );
       return rawMessage;
     } else {
-      SLStatic.debug(`No data available for message ${messageUri}`);
+      console.debug(`No data available for message ${messageUri}`);
       return null;
     }
   },
@@ -196,7 +194,7 @@ class MessageViewsCustomColumn {
     let treecol = window.document.createXULElement("treecol");
     let column = {
       id: this.columnId,
-      flex: 4,
+      flex: "1",
       persist: "width hidden ordinal sortDirection",
       label: this.name,
       tooltiptext: this.tooltip,
@@ -241,10 +239,11 @@ class MessageViewsCustomColumn {
         }
       },
       getSortStringForRow(hdr) {
-        return null;
+        // This should be ignored because isString returns false. Setting it anyway.
+        return LegacyColumn.SLStatic.padNum(this.getSortLongForRow(hdr), 12);
       },
       isString() {
-        false;
+        return false;
       },
       getCellProperties(row, col, props) {},
       getRowProperties(row, props) {},
@@ -304,9 +303,8 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
 
     for (let urlBase of ["utils/sugar-custom.js", "utils/static.js"]) {
       let url = context.extension.rootURI.resolve(urlBase);
-      Services.scriptloader.loadSubScript(url, LegacyColumn, "UTF-8");
+      Services.scriptloader.loadSubScript(url, LegacyColumn);
     }
-    LegacyColumn.SLStatic.logConsoleLevel = 'info';
 
     ExtensionSupport.registerWindowListener("customColumnWL",
       {
