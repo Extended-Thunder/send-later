@@ -49,21 +49,16 @@ exports.init = function() {
     }
   }
 
-  async function NextRecurFunctionExceptionTest(sendat, recur, now, func_name,
+  async function NextRecurFunctionErrorTest(sendat, recur, now, func_name,
                                                 func, expected) {
     SLStatic.mockStorage.ufuncs[func_name] = (func === undefined) ? undefined : {body:func};
-    try {
-      let result;
-      result = await SLStatic.nextRecurDate(new Date(sendat), recur, new Date(now));
-      delete SLStatic.mockStorage.ufuncs[func_name];
-      return "Expected exception, got " + result;
-    } catch (ex) {
-      delete SLStatic.mockStorage.ufuncs[func_name];
-      if ((ex+"").indexOf(expected) !== -1) {
-        return true;
-      } else {
-        return `Expected exception matching ${expected}, got ${ex.message}`;
-      }
+    let result;
+    result = await SLStatic.nextRecurDate(new Date(sendat), recur, new Date(now));
+    delete SLStatic.mockStorage.ufuncs[func_name];
+    if ((result.error+"").indexOf(expected) != -1) {
+      return true;
+    } else {
+      return `Expected error matching ${expected}, got ${result.error}`;
     }
   }
 
@@ -101,19 +96,19 @@ exports.init = function() {
                    undefined, "is not defined"]);
 
   SLTests.AddTest("nextRecurDate function doesn't return a value",
-                   NextRecurFunctionExceptionTest,
+                   NextRecurFunctionErrorTest,
                    ["10/3/2012", "function Test1", "10/3/2012", "Test1",
                     'return undefined', "did not return a value"]);
   SLTests.AddTest("nextRecurDate function doesn't return number or array",
-                   NextRecurFunctionExceptionTest,
+                   NextRecurFunctionErrorTest,
                    ["10/3/2012", "function Test2", "10/3/2012", "Test2",
                    'return "foo"', "did not return number, Date, or array" ]);
   SLTests.AddTest("nextRecurDate function returns too-short array",
-                   NextRecurFunctionExceptionTest,
+                   NextRecurFunctionErrorTest,
                    ["10/3/2012", "function Test3", "10/3/2012", "Test3",
                    'return new Array()', "is too short"]);
   SLTests.AddTest("nextRecurDate function did not start with a number",
-                   NextRecurFunctionExceptionTest,
+                   NextRecurFunctionErrorTest,
                    ["10/3/2012", "function Test4", "10/3/2012", "Test4",
                    'return new Array("monthly", "extra");',
                    "did not start with a number"]);

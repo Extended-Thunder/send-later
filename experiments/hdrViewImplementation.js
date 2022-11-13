@@ -176,7 +176,7 @@ var headerView = class extends ExtensionCommon.ExtensionAPI {
               hdrRow.destroy();
             hdrRows.delete(name);
           },
-  
+
           onHeaderRowUpdate: new ExtensionCommon.EventManager({
             context,
             name: "headerView.onHeaderRowUpdate",

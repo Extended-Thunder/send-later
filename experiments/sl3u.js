@@ -413,76 +413,23 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
         },
 
-        async expandRecipients(field) {
-          const cw = Services.wm.getMostRecentWindow("msgcompose");
-          let msgCompFields = cw.GetComposeDetails();
-          cw.expandRecipients();
-          return msgCompFields[field];
-        },
-
-        async isDraftsFolder(accountId, path) {
-          const msgFolderUri = SendLaterFunctions.folderPathToURI(accountId, path);
-          let msgFolder = MailServices.folderLookup.getFolderForURL(msgFolderUri);
-
-          // SendLaterFunctions.debug("Entering function","SL3U.isDraftsFolder", msgFolder.URI);
-          if (msgFolder === null) {
-            // SendLaterFunctions.debug("Returning from function","SL3U.isDraftsFolder",
-            //                          "false (msgFolder == null)");
-            return false;
-          }
-
-          let flag = Ci.nsMsgFolderFlags.Drafts;
-
-          if (msgFolder.isSpecialFolder(flag, false)) {
-            // SendLaterFunctions.debug("Returning from function","SL3U.isDraftsFolder", "true (special)");
-            return true;
-          }
-
-          let localFolder = MailServices.accounts.localFoldersServer.rootFolder;
-
-          if (localFolder.findSubFolder("Drafts").URI === msgFolder.URI) {
-            // SendLaterFunctions.debug("Returning from function","SL3U.isDraftsFolder", "true (local)");
-            return true;
-          }
-          if (
-            Services.prefs.getCharPref("mail.identity.default.draft_folder") ===
-            msgFolder.URI
-          ) {
-            // SendLaterFunctions.debug("Returning from function","SL3U.isDraftsFolder", "true (default)");
-            return true;
-          }
-
-          for (let acct of MailServices.accounts.accounts) {
-            if (acct) {
-              let numIdentities = acct.identities.length;
-              switch (acct.incomingServer.type) {
-                case "pop3":
-                case "imap":
-                case "owl":
-                  let identityNum;
-                  for (identityNum = 0; identityNum < numIdentities; identityNum++) {
-                    try {
-                      let identity = acct.identities[identityNum].QueryInterface(
-                        Ci.nsIMsgIdentity
-                      );
-                      if (identity.draftFolder === msgFolder.URI) {
-                        // SendLaterFunctions.debug("Returning from function","SL3U.isDraftsFolder","true (identity)");
-                        return true;
-                      }
-                    } catch (e) {
-                      // SendLaterFunctions.warn("Error getting identity:", e);
-                    }
-                  }
-                  break;
-                default:
-                  // SendLaterFunctions.debug("skipping this server type - " + acct);
-                  break;
+        async expandRecipients(tabId) {
+          function composeWindowIsReady(composeWindow) {
+            return new Promise(resolve => {
+              if (composeWindow.composeEditorReady) {
+                resolve();
+                return;
               }
-            }
+              composeWindow.addEventListener("compose-editor-ready", resolve, {
+                once: true,
+              });
+            });
           }
 
-          // SendLaterFunctions.debug("Returning from function","SL3U.isDraftsFolder", "false (not found)");
-          return false;
+          let tab = context.extension.tabManager.get(tabId);
+          let cw = tab.nativeTab;
+          await composeWindowIsReady(cw);
+          cw.gMsgCompose.expandMailingLists();
         },
 
         /*
@@ -577,113 +524,18 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           });
         },
 
-        /*
-         * Save message to drafts, and add reply/forward flags to existing
-         * messages, as necessary. Close the composition window when the
-         * save operation is complete.
-         */
-        async performPseudoSend() {
-          const cw = Services.wm.getMostRecentWindow("msgcompose");
-          const type = cw.gMsgCompose.type;
-          const originalURI = cw.gMsgCompose.originalMsgURI;
-
-          // The full GenericSendMessage function does a bunch of pre-send checks
-          // and then calls CompleteGenericSendMessage. We're handling those pre-send
-          // checks manually, so we can just call CompleteGenericSendMessage directly.
-          cw.gCloseWindowAfterSave = true;
-          cw.CompleteGenericSendMessage(Ci.nsIMsgCompDeliverMode.SaveAsDraft);
-
-          // Set reply forward message flags
-          let isReply = false, isForward = false;
-          switch (type) {
-            case Ci.nsIMsgCompType.Reply:
-            case Ci.nsIMsgCompType.ReplyAll:
-            case Ci.nsIMsgCompType.ReplyToSender:
-            case Ci.nsIMsgCompType.ReplyToGroup:
-            case Ci.nsIMsgCompType.ReplyToSenderAndGroup:
-            case Ci.nsIMsgCompType.ReplyWithTemplate:
-            case Ci.nsIMsgCompType.ReplyToList: {
-              isReply = true;
-              break;
-            }
-            case Ci.nsIMsgCompType.ForwardAsAttachment:
-            case Ci.nsIMsgCompType.ForwardInline: {
-              isForward = true;
-              break;
-            }
-          }
-          if (isReply || isForward) {
-            SendLaterFunctions.debug("Setting message reply/forward flags", type, originalURI);
-            const messenger = Cc["@mozilla.org/messenger;1"].getService(Ci.nsIMessenger);
-            let hdr = messenger.msgHdrFromURI(originalURI);
-            if (isReply) {
-              hdr.folder.addMessageDispositionState(hdr, hdr.folder.nsMsgDispositionState_Replied);
-            } else if (isForward) {
-              hdr.folder.addMessageDispositionState(hdr, hdr.folder.nsMsgDispositionState_Forwarded);
-            }
-          }
-
-          return true;
-        },
-
-        goDoCommand(command, windowId) {
-          SendLaterFunctions.info(`goDoCommand(${command})`);
-
-          let window;
-          if (windowId) {
-            let wm = context.extension.windowManager.get(windowId, context);
-            window = wm.window;
+        async setDispositionState(messageId, disposition) {
+          let msgHdr = context.extension.messageManager.get(messageId)
+          if (disposition == "replied") {
+            msgHdr.folder.addMessageDispositionState(
+              msgHdr, msgHdr.folder.nsMsgDispositionState_Replied
+            );
+          } else if (disposition == "forwarded") {
+            msgHdr.folder.addMessageDispositionState(
+              msgHdr, msgHdr.folder.nsMsgDispositionState_Forwarded
+            );
           } else {
-            window = Services.wm.getMostRecentWindow("msgcompose");
-          }
-          window.goDoCommand(command);
-
-          return new Promise(resolve => {
-            let checkLock = () => {
-              if (!window.gWindowLocked) {
-                SendLaterFunctions.log(`goDoCommand(${command}) completed.`);
-                resolve();
-              } else {
-                window.setTimeout(checkLock, 100);
-              }
-            }
-            window.setTimeout(checkLock, 100);
-          });
-        },
-
-        async setHeader(name, value) {
-          const cw = Services.wm.getMostRecentWindow("msgcompose");
-          cw.gMsgCompose.compFields.setHeader(name,value);
-        },
-
-        async editingMessage(msgId) {
-          for (let cw of Services.wm.getEnumerator("msgcompose")) {
-            const thisID = cw.gMsgCompose.compFields.getHeader("message-id");
-            if (thisID === msgId) {
-              return true;
-            }
-          }
-          return false;
-        },
-
-        async generateMsgId(idkey) {
-          // const idkey = ((/\nX-Identity-Key:\s*(\S+)/i).exec('\n'+content))[1];
-          const accounts = Cc[
-            "@mozilla.org/messenger/account-manager;1"
-          ].getService(Ci.nsIMsgAccountManager);
-          const identity = accounts.getIdentity(idkey);
-          if (identity) {
-            const compUtils = Cc[
-              "@mozilla.org/messengercompose/computils;1"
-            ].createInstance(Ci.nsIMsgCompUtils);
-            const newMessageId = compUtils.msgGenerateMessageId(identity);
-            if (newMessageId) {
-              return newMessageId;
-            } else {
-              throw (`compUtils.msgGenerateMessageId(${identity}) failed`);
-            }
-          } else {
-            throw (`MSGID: accounts.getIdentity(${idkey}) failed`);
+            throw new Error(`Unrecognized message disposition state: "${disposition}"`);
           }
         },
 
@@ -825,248 +677,18 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
         },
 
-        async countUnsentMessages() {
-          return SendLaterFunctions.getUnsentMessagesFolder().getTotalMessages(false);
-        },
-
-        async deleteDraftByUri(accountId, path, draftUri) {
-          const folderUri = SendLaterFunctions.folderPathToURI(accountId, path);
-          const folder = MailServices.folderLookup.getFolderForURL(folderUri);
-          if (draftUri.indexOf("#") === -1) {
-            SendLaterFunctions.error("SL3U.deleteDraftByUri Unexpected message URI format");
-            return;
-          }
-          const msgKey = draftUri.substr(draftUri.indexOf("#") + 1);
-          if (!folder) {
-            SendLaterFunctions.error("SL3U.deleteDraftByUri Cannot find folder");
-            return;
-          }
-          try {
-            SendLaterFunctions.debug(`Deleting message (${draftUri})`);
-            if (folder.getFlag(Ci.nsMsgFolderFlags.Drafts)) {
-              try {
-                let msgHdr = folder.GetMessageHeader(msgKey);
-                folder.deleteMessages([msgHdr], null, true, false, null, false);
-              } catch (ex0) {
-                // TB versions < 86
-                let msgs = Cc["@mozilla.org/array;1"].createInstance(
-                  Ci.nsIMutableArray
-                );
-                msgs.appendElement(folder.GetMessageHeader(msgKey));
-                folder.deleteMessages(msgs, null, true, false, null, false);
-              }
-            }
-          } catch (ex) {
-            // couldn't find header - perhaps an imap folder.
-            SendLaterFunctions.debug(`SL3U.deleteDraftByUri couldn't find header - perhaps an imap folder.`,ex);
-            let imapFolder = folder.QueryInterface(Ci.nsIMsgImapMailFolder);
-            if (imapFolder) {
-              imapFolder.storeImapFlags(
-                Ci.nsMsgFolderFlags.Expunged,
-                true,
-                [msgKey],
-                null
-              );
-            }
-          }
-        },
-
-        async getAllScheduledMessages(accountId, path, onlyDueForSend, onlyHeaders) {
-          const folderUri = SendLaterFunctions.folderPathToURI(accountId, path);
-          const folder = MailServices.folderLookup.getFolderForURL(folderUri);
-
-          SendLaterFunctions.debug(`Entering getAllScheduledMessages folder URI: ${folderUri}`);
-
-          let allMessages = [];
-
-          let N_MESSAGES = 0;
-          if (folder) {
-            let thisfolder = folder.QueryInterface(Ci.nsIMsgFolder);
-            let messageenumerator;
-            try {
-              messageenumerator = thisfolder.messages;
-            } catch (e) {
-              let lmf;
-              try {
-                SendLaterFunctions.debug(`Unable to get message enumerator. ` +
-                                         `Trying as LocalMailFolder (${folder.URI})`);
-                lmf = thisfolder.QueryInterface(Ci.nsIMsgLocalMailFolder);
-              } catch (ex) {
-                SendLaterFunctions.log("Unable to get folder as nsIMsgLocalMailFolder");
-              }
-
-              if (// NS_MSG_ERROR_FOLDER_SUMMARY_OUT_OF_DATE
-                  (e.result == 0x80550005 ||
-                  // NS_MSG_ERROR_FOLDER_SUMMARY_MISSING
-                    e.result == 0x80550006) && lmf) {
-                try {
-                  SendLaterFunctions.warn("Rebuilding summary: " + folder.URI);
-                  lmf.getDatabaseWithReparse(null, null);
-                } catch (ex) {
-                  SendLaterFunctions.error("Unable to rebuild summary.")
-                }
-              } else {
-                // Owl for Exchange, maybe others as well
-                try {
-                  let o = {};
-                  let f = thisfolder.getDBFolderInfoAndDB(o);
-                  messageenumerator = f.EnumerateMessages();
-                } catch (ex) {
-                  SendLaterFunctions.warn("Unable to get EnumerateMessages on DB as fallback");
-                }
-                if (messageenumerator) {
-                  SendLaterFunctions.log(".messages failed on " + folderUri +
-                                          ", using .EnumerateMessages on DB instead");
-                } else {
-                  const window = Services.wm.getMostRecentWindow(null);
-                  Services.prompt.alert(window, null, "Encountered a corrupt folder "+folderUri);
-                  throw e;
-                }
-              }
-            }
-
-            if (!messageenumerator) {
-              SendLaterFunctions.error(`Unable to get message enumerator for folder ${folderURI}`);
-              return null;
-            }
-
-            while (messageenumerator.hasMoreElements()) {
-              let next = messageenumerator.getNext();
-              if (next) {
-                N_MESSAGES++;
-                let msgHdr = next.QueryInterface(Ci.nsIMsgDBHdr);
-                const messageIdHeader = msgHdr.getStringProperty('message-id');
-                SendLaterFunctions.debug(`Loading message header for ${msgHdr.messageKey} <${messageIdHeader}>`);
-
-                let skipFlags = Ci.nsMsgMessageFlags.IMAPDeleted |
-                                Ci.nsMsgMessageFlags.Expunged;
-                if (msgHdr.flags & skipFlags) {
-                  continue;
-                }
-
-                const sendAtHeader = msgHdr.getStringProperty('x-send-later-at');
-                if (!sendAtHeader) {
-                  SendLaterFunctions.debug(`No x-send-later headers in message ${msgHdr.messageKey}`);
-                  continue;
-                }
-
-                const sendAtDate = new Date(sendAtHeader);
-                if (onlyDueForSend && sendAtDate.getTime() > Date.now()) {
-                  SendLaterFunctions.debug(`Message ${msgHdr.messageKey} not due for send until ${sendAtHeader}`);
-                  continue;
-                }
-
-                let messageUri = folder.generateMessageURI(msgHdr.messageKey);
-
-                const hdr = {
-                  id: msgHdr.messageKey,
-                  uri: messageUri
-                }
-                const allHdrKeys = [
-                  "x-send-later-at", "x-send-later-recur", "x-send-later-args",
-                  "x-send-later-cancel-on-reply", "x-send-later-uuid",
-                  "message-id", "references"
-                ];
-                for (let key of allHdrKeys) {
-                  hdr[key] = msgHdr.getStringProperty(key);
-                }
-
-                if (onlyHeaders) {
-                  SendLaterFunctions.debug(`Returning headers for message ${hdr["message-id"]}`);
-                  allMessages.push(hdr);
-                  continue;
-                }
-
-                const messenger = Cc[
-                  "@mozilla.org/messenger;1"
-                ].createInstance(Ci.nsIMessenger);
-
-                const streamListener = Cc[
-                  "@mozilla.org/network/sync-stream-listener;1"
-                ].createInstance(Ci.nsISyncStreamListener);
-
-                const service = messenger.messageServiceFromURI(messageUri);
-
-                await new Promise((resolve, reject) => {
-                  service.streamMessage(
-                    messageUri,
-                    streamListener,
-                    null,
-                    {
-                      OnStartRunningUrl() {},
-                      OnStopRunningUrl(url, exitCode) {
-                        SendLaterFunctions.debug(
-                          `getRawMessage.streamListener.OnStopRunning ` +
-                          `received ${streamListener.inputStream.available()} bytes ` +
-                          `(exitCode: ${exitCode})`
-                        );
-                        if (exitCode === 0) {
-                          resolve();
-                        } else {
-                          Cu.reportError(exitCode);
-                          reject();
-                        }
-                      },
-                    },
-                    false,
-                    ""
-                  );
-                }).catch((ex) => {
-                  SendLaterFunctions.error(`Error reading message ${messageUri}`,ex);
-                });
-
-                const available = streamListener.inputStream.available();
-                if (available > 0) {
-                  hdr.raw = NetUtil.readInputStreamToString(
-                    streamListener.inputStream,
-                    available
-                  );
-                  allMessages.push(hdr);
-                } else {
-                  SendLaterFunctions.debug(`No data available for message ${messageUri}`);
-                }
-              } else {
-                SendLaterFunctions.warn("Was promised more messages, but did not find them.");
-              }
-            }
-          } else {
-            SendLaterFunctions.error(`Unable to find folder ${accountId}:${path}`);
-          }
-          SendLaterFunctions.debug(`Processed ${N_MESSAGES} messages in folder ${folderUri}`);
-          return allMessages;
-        },
-
-        async compactFolder(accountId, path) {
-          let folder;
-          if (path.toLowerCase() === "outbox") {
-            folder = SendLaterFunctions.getUnsentMessagesFolder();
-          } else {
-            const uri = SendLaterFunctions.folderPathToURI(accountId, path);
-            folder = MailServices.folderLookup.getFolderForURL(uri);
-          }
-          if (folder !== undefined) {
-            let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"].createInstance();
-            msgWindow = msgWindow.QueryInterface(Ci.nsIMsgWindow);
-            folder.compact(null, msgWindow);
-            SendLaterFunctions.debug("SL3U.compactFolder",`Compacted folder: ${path}`);
-            return true;
-          } else {
-            SendLaterFunctions.debug("SL3U.compactFolder",`Could not get folder ${path} for compacting.`);
-          }
-          return false;
-        },
-
-        async setSendLaterVars(values) {
-          for (let [key, value] of Object.entries(values))
-            SendLaterVars[key] = value;
+        async setLogConsoleLevel(level) {
+          SendLaterVars.logConsoleLevel = level;
         },
 
         async forceToolbarVisible(windowId) {
           let windows;
-          if (windowId === -1)
+          if (windowId) {
+            let wm = context.extension.windowManager.get(windowId, context);
+            windows = [wm.window];
+          } else {
             windows = Services.wm.getEnumerator("msgcompose");
-          else
-            windows = [Services.wm.getMostRecentWindow("msgcompose")];
+          }
 
           for (let window of windows) {
             let windowReadyPromise = new Promise((resolve) => {
@@ -1113,14 +735,14 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
         },
 
         // Find whether the current composition window is editing an existing draft
-        async findCurrentDraft() {
-          const window = Services.wm.getMostRecentWindow("msgcompose");
-
-          let windowReadyPromise = new Promise((resolve) => {
-            if (window.document.readyState == "complete") resolve();
-            else window.addEventListener("load", resolve, { once: true });
-          });
-          await windowReadyPromise;
+        async findAssociatedDraft(windowId) {
+          let window;
+          if (windowId) {
+            let wm = context.extension.windowManager.get(windowId, context);
+            window = wm.window;
+          } else {
+            window = Services.wm.getMostRecentWindow("msgcompose");
+          }
 
           if (!window.gMsgCompose)
             throw new Error("Attempted getDraftHeaders on non-compose window");
@@ -1138,10 +760,12 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
         async hijackComposeWindowKeyBindings(windowId) {
           let windows;
-          if (windowId === -1)
+          if (windowId) {
+            let wm = context.extension.windowManager.get(windowId, context);
+            windows = [wm.window];
+          } else {
             windows = Services.wm.getEnumerator("msgcompose");
-          else
-            windows = [Services.wm.getMostRecentWindow("msgcompose")];
+          }
 
           for (let window of windows) {
             let windowReadyPromise = new Promise((resolve) => {

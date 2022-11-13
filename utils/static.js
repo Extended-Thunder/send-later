@@ -29,6 +29,8 @@ var SLStatic = {
                  "accelShiftfuncselect", "accelShiftArgs", "customizeDateTime",
                  "shortDateTimeFormat", "longDateTimeFormat"],
 
+  TOOLBAR_ID: "send_later",
+
   // Non-static preferences (I know...), which affect the behavior of
   // various functions. Specifically, the log output level, and customized
   // date/time formats.
@@ -552,6 +554,39 @@ var SLStatic = {
           error: undefined
         };
     }
+  },
+
+  customHdrToScheduleInfo(customHeaders, instanceUUID) {
+    let cellText = "";
+    let sortValue = (Math.pow(2,31)-5)|0;
+
+    if (!customHeaders["content-type"]) {
+      SLStatic.warn("Didn't receive complete headers.");
+      return { cellText, sortValue };
+    } else if (!customHeaders["x-send-later-at"]) {
+      // Do nothing. Leave cell properties as default
+      return { cellText, sortValue };
+    }
+
+    if (customHeaders["x-send-later-uuid"] !== instanceUUID) {
+      cellText = this.i18n.getMessage("incorrectUUID");
+      sortValue = (Math.pow(2,31)-2)|0;
+    } else if ((/encrypted/i).test(customHeaders["content-type"])) {
+      cellText = this.i18n.getMessage("EncryptionIncompatText");
+      sortValue = (Math.pow(2,31)-1)|0;
+    } else {
+      const sendAt = new Date(customHeaders["x-send-later-at"]);
+      const recurSpec = (customHeaders["x-send-later-recur"] || "none");
+      let recur = SLStatic.parseRecurSpec(recurSpec);
+      recur.cancelOnReply = ["true", "yes"].includes(
+        customHeaders["x-send-later-cancel-on-reply"]
+      );
+      recur.args = customHeaders["x-send-later-args"];
+      cellText = SLStatic.formatScheduleForUIColumn({ sendAt, recur });
+      // Numbers will be truncated. Be sure this fits in 32 bits
+      sortValue = (sendAt.getTime()/1000)|0;
+    }
+    return { cellText, sortValue };
   },
 
   /* Given a user function and an "unparsed" argument string,
@@ -1271,6 +1306,14 @@ var SLStatic = {
     //   - recur-monthly-byweek-week
     //   - recur-monthly-byweek-day
 
+    for (let hdrName in headers) {
+      if (hdrName.toLowerCase().startsWith("x-send-later")) {
+        let hdrVal = headers[hdrName];
+        headers[hdrName.toLowerCase()] = (
+          Array.isArray(hdrVal) ? hdrVal[0] : hdrVal
+        );
+      }
+    }
     let sendAt = new Date(headers['x-send-later-at']);
     let recurSpec = (headers["x-send-later-recur"] || "none");
     let recur = SLStatic.parseRecurSpec(recurSpec);
@@ -1515,10 +1558,6 @@ if (typeof browser === "undefined" && typeof require !== "undefined") {
       }
     },
     SL3U: {
-      saveAsDraft(){},
-      sendNow(batch){},
-      setHeader (key,value){},
-      getHeader(key){return key;},
       getLegacyPref(name, dtype, def){return null;}
     }
   }
