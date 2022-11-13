@@ -408,11 +408,11 @@
     "description": ""
   },
   "enforcerestrictions.tooltip": {
-    "message": "Hvis en meddelelse, der skal sendes, er uden for dens tids- eller dags restriktioner, f.eks. fordi Thunderbird ikke kørte på beskedens planlagte leveringstidspunkt, vil leveringen først finde sted når tids- og dags restriktioner er opfyldt.",
+    "message": "Hvis en meddelelse, der skal sendes, er uden for dens tids- eller dags restriktioner, f.eks. fordi Thunderbird ikke kørte på beskedens planlagte leveringstidspunkt, så udskyd leveringen indtil tids- og dags restriktioner er opfyldt.",
     "description": ""
   },
   "blocklatemessages.tooltip": {
-    "message": "Levér ikke planlagte meddelelser, der er blevet forsinket udover deres planlagte tid, fx fordi Thunderbird ikke kørte på det tidspunkt.",
+    "message": "Levér ikke planlagte meddelelser, der er blevet forsinket udover deres planlagte tid, f.eks. fordi Thunderbird ikke kørte på det tidspunkt.",
     "description": ""
   },
   "editorbutton": {
@@ -420,7 +420,7 @@
     "description": ""
   },
   "editortip": {
-    "message": "Åbn et vindue til at oprette og redigere JavaScript-funktioner der implementerer kompleks planlægning logik.",
+    "message": "Åbn et vindue til at oprette og redigere JavaScript funktioner for at implementerer kompleks planlægning logik.",
     "description": ""
   },
   "loglevel.config": {
@@ -684,7 +684,7 @@
     "description": ""
   },
   "OptionShortcutAlertText": {
-    "message": "Genvej $1 har ugyldig værdi “$2”",
+    "message": "Genvej \"$1\" har ugyldig værdi “$2”",
     "description": ""
   },
   "SendingUnsentError": {
@@ -1000,7 +1000,7 @@
     "description": ""
   },
   "missingDaysWarningBody": {
-    "message": "Du har aktiveret en begrænsning af daglige besked(er) uden at angive nogen dage. Venligst deaktivér begrænsningen eller angiv mindst én leveringsdag.",
+    "message": "Du har aktiveret en begrænsning af daglige besked(er) uden at angive nogen dage. Venligst deaktiver begrænsningen eller angiv mindst én leveringsdag.",
     "description": ""
   },
   "invalidUntilWarningTitle": {
@@ -1020,7 +1020,7 @@
     "description": ""
   },
   "InvalidArgsBody": {
-    "message": "Funktionsargumenterne er ikke gyldige. Angiv en JavaScript- liste uden  omsluttende firkantede klammer.",
+    "message": "Funktionsargumenterne er ikke gyldige. Angiv en Javascript liste uden  omsluttende firkantede klammer.",
     "description": ""
   },
   "BlockedLateMessage": {
@@ -1096,7 +1096,7 @@
     "description": ""
   },
   "FunctionDeleteConfirmBody": {
-    "message": "Er du sikker på, at du vil slette denne funktion? Hvis det er forbundet med genvejsknapper, vil de holde op med at virke, og hvis der er nogen tilbagevendende beskeder der benytter den, vil disse ikke kunne gensendes som planlagt efter næste gang de sendes.",
+    "message": "Er du sikker på, at du vil slette denne funktion? Hvis den er forbundet med genvejsknapper, vil de holde op med at virke, og hvis der er nogen tilbagevendende beskeder der benytter den, vil disse ikke  gensendes som planlagt efter næste gang de sendes.",
     "description": ""
   },
   "ImportTitle": {

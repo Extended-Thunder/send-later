@@ -962,7 +962,7 @@
     "description": ""
   },
   "EncryptionIncompatTitle": {
-    "message": "Compatibiliteitsprobleem met encryptie"
+    "message": "Compatibiliteitsprobleem met versleuteling"
   },
   "EncryptionIncompatText": {
     "message": "Dit bericht is versleuteld met uw eigen PGP-sleutel, en kan daarom niet bij de ontvangers worden afgeleverd. Zie deze discussie voor meer informatie over waarom u deze boodschap ziet: https://github.com/Extended-Thunder/send-later/discussions/200"
