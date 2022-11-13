@@ -31,7 +31,7 @@ release: release/send_later-${version}-tb.xpi
 
 ## Requires the Node 'addons-linter' package is installed
 ## npm install -g addons-linter
-## Note: this will produce a lot of "UNSUPPORTED_API" and "MANIFEST_PERMISSIONS"
+## Note: this will produce a lot of "MANIFEST_PERMISSIONS"
 ## warnings because the addons-linter assumes vanilla firefox target.
 lint:
 	addons-linter .

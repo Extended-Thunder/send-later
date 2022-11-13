@@ -3,35 +3,16 @@
     "namespace": "SL3U",
     "functions": [
       {
-        "name":"setSendLaterVars",
+        "name":"setLogConsoleLevel",
         "type":"function",
         "async":true,
         "parameters":[
           {
-            "name":"values",
-            "type":"any",
-            "description": "Object of key/value pairs for SendLaterVars"
+            "name":"level",
+            "type":"string",
+            "description": "Logging level"
           }
         ]
-      },
-      {
-        "name": "generateMsgId",
-        "type": "function",
-        "async": true,
-        "description": "",
-        "parameters": [
-          {
-            "name": "idkey",
-            "type": "string"
-          }
-        ]
-      },
-      {
-        "name": "performPseudoSend",
-        "type": "function",
-        "async": true,
-        "description": "Perform put current composed message in Drafts and close the window. If the message is a reply or forward, then mark the original message accordingly.",
-        "parameters": []
       },
       {
         "name": "expandRecipients",
@@ -40,8 +21,8 @@
         "description": "Expand mailing lists into individual recipients.",
         "parameters": [
           {
-            "name": "field",
-            "type": "string"
+            "name": "tabId",
+            "type": "integer"
           }
         ]
       },
@@ -51,6 +32,24 @@
         "async": true,
         "description": "Check if message is ready to be sent, and alert other extensions.",
         "parameters": []
+      },
+      {
+        "name": "setDispositionState",
+        "type": "function",
+        "async": true,
+        "description": "Set message disposition",
+        "parameters": [
+          {
+            "name": "messageId",
+            "type": "integer",
+            "description": "ID of message to modify."
+          },
+          {
+            "name": "disposition",
+            "type": "string",
+            "description": "Disposition to set ('replied' or 'forwarded')"
+          }
+        ]
       },
       {
         "name": "sendRaw",
@@ -67,43 +66,6 @@
             "name": "sendUnsentMsgs",
             "type": "boolean",
             "description": "Whether to trigger send operation on outbox messages."
-          }
-        ]
-      },
-      {
-        "name": "isDraftsFolder",
-        "type": "function",
-        "async": true,
-        "description": "Check whether folder is a Drafts folder",
-        "parameters": [
-          {
-            "name": "accountId",
-            "type": "string",
-            "description": "New message contents"
-          },
-          {
-            "name": "path",
-            "type": "string",
-            "description": "New message contents"
-          }
-        ]
-      },
-      {
-        "name": "goDoCommand",
-        "type": "function",
-        "async": true,
-        "description": "Compact a folder.",
-        "parameters": [
-          {
-            "name": "command",
-            "type": "string",
-            "description": "Command to execute in current compose window."
-          },
-          {
-            "name": "windowId",
-            "type": "integer",
-            "optional": true,
-            "description": "In which window to execute this command."
           }
         ]
       },
@@ -127,99 +89,6 @@
             "name": "content",
             "type": "string",
             "description": "New message contents"
-          }
-        ]
-      },
-      {
-        "name": "getAllScheduledMessages",
-        "type": "function",
-        "async": true,
-        "description": "Get a raw message.",
-        "parameters": [
-          {
-            "name": "accountId",
-            "type": "string"
-          },
-          {
-            "name": "path",
-            "type": "string"
-          },
-          {
-            "name": "onlyDueForSend",
-            "type": "boolean"
-          },
-          {
-            "name": "onlyHeaders",
-            "type": "boolean"
-          }
-        ]
-      },
-      {
-        "name": "deleteDraftByUri",
-        "type": "function",
-        "async": true,
-        "description": "Delete a draft message",
-        "parameters": [
-          {
-            "name": "accountId",
-            "type": "string"
-          },
-          {
-            "name": "path",
-            "type": "string"
-          },
-          {
-            "name": "draftUri",
-            "type": "string"
-          }
-        ]
-      },
-      {
-        "name": "compactFolder",
-        "type": "function",
-        "async": true,
-        "description": "Compact a folder.",
-        "parameters": [
-          {
-            "name": "accountId",
-            "type": "string",
-            "description": "Account ID associated with folder (ignored for 'outbox' path)"
-          },
-          {
-            "name": "path",
-            "type": "string",
-            "description": "Path of folder to compact, or 'outbox' for unsent messages folder"
-          }
-        ]
-      },
-      {
-        "name":"setHeader",
-        "type":"function",
-        "async":true,
-        "description":"Add a custom header to the current compose message",
-        "parameters": [
-          {
-            "name":"name",
-            "type":"string",
-            "description":"Name of the header to set"
-          },
-          {
-            "name":"value",
-            "type":"string",
-            "description":"Value of custom header"
-          }
-        ]
-      },
-      {
-        "name":"editingMessage",
-        "type":"function",
-        "async":true,
-        "description":"Fetch value of message header from window with id",
-        "parameters": [
-          {
-            "name":"msgId",
-            "type":"string",
-            "description":"message-id to find"
           }
         ]
       },
@@ -282,18 +151,18 @@
         ]
       },
       {
-        "name": "countUnsentMessages",
-        "type": "function",
-        "async": true,
-        "description": "",
-        "parameters": []
-      },
-      {
-        "name":"findCurrentDraft",
+        "name":"findAssociatedDraft",
         "type":"function",
         "async":true,
-        "description":"Find whether the current composition window is editing an existing draft.",
-        "parameters": []
+        "description":"Find whether a composition window is editing an existing draft.",
+        "parameters": [
+          {
+            "name": "windowId",
+            "type": "integer",
+            "optional": true,
+            "description": ""
+          }
+        ]
       },
       {
         "name":"forceToolbarVisible",
@@ -305,7 +174,7 @@
             "name": "windowId",
             "type": "integer",
             "optional": true,
-            "description": "If set to -1, the function will run on all available windows. Otherwise just the most recent msgcompose window."
+            "description": "If unset, the function will run on all available windows. Otherwise just the most recent msgcompose window."
           }
         ]
       },
@@ -313,13 +182,13 @@
         "name":"hijackComposeWindowKeyBindings",
         "type":"function",
         "async":true,
-        "description":"Handle  when a new compose window is opened.",
+        "description":"Attach key bindings to compose windows.",
         "parameters":[
           {
             "name": "windowId",
             "type": "integer",
             "optional": true,
-            "description": "If set to -1, the function will run on all available windows. Otherwise just the most recent msgcompose window."
+            "description": "If unset, the function will run on all available windows. Otherwise just the most recent msgcompose window."
           }
         ]
       }

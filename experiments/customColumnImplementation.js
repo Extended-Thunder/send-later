@@ -148,7 +148,7 @@ class MessageViewsCustomColumn {
         return null;
       },
       isString() {
-        false;
+        return false;
       },
       getCellProperties(row, col, props) {},
       getRowProperties(row, props) {},

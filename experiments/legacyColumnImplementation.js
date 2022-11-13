@@ -21,8 +21,6 @@ var LegacyColumn = {
   },
 
   async getRawMessage(hdr) {
-    let SLStatic = this.SLStatic;
-
     let folder = hdr.folder.QueryInterface(Ci.nsIMsgFolder);
     let messageUri = folder.generateMessageURI(hdr.messageKey);
     const messenger = Cc[
@@ -144,7 +142,7 @@ class MessageViewsCustomColumn {
         window.document.getElementById(this.columnId + "-splitter").remove();
         window.document.getElementById(this.columnId).remove();
       } catch (ex) {
-        console.error(ex);
+        SLStatic.error(ex);
       }
     }
 
@@ -170,13 +168,17 @@ class MessageViewsCustomColumn {
     });
   }
 
-  setVisible(visible, applyGlobal) {
+  setVisible(visible, windowId) {
     try {
       let windows;
-      if (applyGlobal)
-        windows = Services.wm.getEnumerator("mail:3pane")
-      else
-        windows = [Services.wm.getMostRecentWindow(null)];
+      if (windowId) {
+        let wm = this.context.extension.windowManager.get(
+          windowId, this.context
+        );
+        windows = [wm.window];
+      } else {
+        windows = Services.wm.getEnumerator("mail:3pane");
+      }
 
       for (let window of windows) {
         for (let id of [this.columnId, `${this.columnId}-splitter`]) {
@@ -188,18 +190,23 @@ class MessageViewsCustomColumn {
         }
       }
     } catch (ex) {
-      console.error("Unable to set column visible",ex);
+      SLStatic.error("Unable to set column visible",ex);
     }
   }
 
   addToWindow(window) {
+    if (window.document.getElementById(this.columnId)) {
+      SLStatic.warn("Attempted to add duplicate column", this.columnId);
+      return;
+    }
     let treecol = window.document.createXULElement("treecol");
     let column = {
       id: this.columnId,
-      flex: 4,
+      flex: "1",
       persist: "width hidden ordinal sortDirection",
       label: this.name,
       tooltiptext: this.tooltip,
+      hidden: "true",
     };
     for (let [key, value] of Object.entries(column)) {
       treecol.setAttribute(key, value);
@@ -241,10 +248,11 @@ class MessageViewsCustomColumn {
         }
       },
       getSortStringForRow(hdr) {
-        return null;
+        // This should be ignored because isString returns false. Setting it anyway.
+        return LegacyColumn.SLStatic.padNum(this.getSortLongForRow(hdr), 12);
       },
       isString() {
-        false;
+        return false;
       },
       getCellProperties(row, col, props) {},
       getRowProperties(row, props) {},
@@ -289,7 +297,7 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
       try {
         column.destroy();
       } catch (ex) {
-        console.error("Unable to destroy column:",ex);
+        SLStatic.error("Unable to destroy column:",ex);
       }
 
     LegacyColumn = undefined;
@@ -304,9 +312,8 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
 
     for (let urlBase of ["utils/sugar-custom.js", "utils/static.js"]) {
       let url = context.extension.rootURI.resolve(urlBase);
-      Services.scriptloader.loadSubScript(url, LegacyColumn, "UTF-8");
+      Services.scriptloader.loadSubScript(url, LegacyColumn);
     }
-    LegacyColumn.SLStatic.logConsoleLevel = 'info';
 
     ExtensionSupport.registerWindowListener("customColumnWL",
       {
@@ -342,11 +349,13 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
           LegacyColumn.setStorageLocal(key, value);
         },
 
-        async setColumnVisible(name, visible, applyGlobal) {
+        async setColumnVisible(name, visible, windowId) {
           let column = columns.get(name);
-          if (!column)
-            throw new ExtensionUtils.ExtensionError("Cannot update non-existent column");
-          column.setVisible(visible, applyGlobal);
+          if (column) {
+            column.setVisible(visible, windowId);
+          } else {
+            SLStatic.error("Attempted to update visibility of non-existent column");
+          }
         },
       }
     }

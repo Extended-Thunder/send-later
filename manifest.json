@@ -5,7 +5,7 @@
 
   "description": "__MSG_extensionDescription__",
 
-  "version": "9.1.1",
+  "version": "9.2.0",
 
   "homepage_url": "https://github.com/Extended-Thunder/send-later/",
 
@@ -18,8 +18,8 @@
   "applications": {
     "gecko": {
       "id": "sendlater3@kamens.us",
-      "strict_min_version": "88.0a1",
-      "strict_max_version": "104.0"
+      "strict_min_version": "102.0",
+      "strict_max_version": "108.0"
     }
   },
 
@@ -32,9 +32,14 @@
     "menus",
     "menus.overrideContext",
     "activeTab",
+    "tabs",
+    "tabHide",
     "messagesMove",
     "messagesRead",
+    "messagesDelete",
     "compose",
+    "compose.save",
+    "compose.send",
     "notifications"
   ],
 
@@ -42,6 +47,7 @@
     "scripts": [
       "utils/sugar-custom.js",
       "utils/static.js",
+      "utils/tools.js",
       "background.js"
     ]
   },
@@ -55,11 +61,11 @@
   "options_ui": {
     "page": "ui/options.html",
     "open_in_tab": false,
-    "browser_style": false
+    "browser_style": true
   },
 
   "compose_action": {
-    "browser_style": true,
+    "browser_style": false,
     "default_area": "maintoolbar",
     "default_icon": "ui/icons/icon.png",
     "default_title": "__MSG_extensionName__"
@@ -110,14 +116,6 @@
         "scopes": ["addon_parent"],
         "paths": [["headerView"]],
         "script": "experiments/hdrViewImplementation.js"
-      }
-    },
-    "statusBar": {
-      "schema": "experiments/customStatusBarSchema.json",
-      "parent": {
-        "scopes": ["addon_parent"],
-        "paths": [["statusBar"]],
-        "script": "experiments/customStatusBarImplementation.js"
       }
     },
     "quitter": {

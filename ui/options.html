@@ -2,6 +2,8 @@
 
 <html>
   <head>
+    <!-- Title will be replaced with localized name by options.js -->
+    <title>Send Later</title>
     <meta charset="utf-8">
     <style>
       html {
@@ -124,9 +126,7 @@
           Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter</span>
       </label>
 
-      <!-- Until issue #365 gets a fix from the Thunderbird devs, this option
-          won't work. Hiding the preference for now, to avoid confusion. -->
-      <label style="display:none;">
+      <label>
         <input type="checkbox" id="markDraftsRead" class="preference"/>
         <span class="option-label localized __MSG_markReadPrefLabel__">
           Mark scheduled drafts as read</span>

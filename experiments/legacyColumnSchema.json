@@ -71,8 +71,8 @@
               "type": "boolean"
             },
             {
-              "name": "applyGlobal",
-              "type": "boolean",
+              "name": "windowId",
+              "type": "integer",
               "optional": true
             }
           ]
