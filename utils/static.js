@@ -1558,7 +1558,8 @@ if (typeof browser === "undefined" && typeof require !== "undefined") {
       }
     },
     SL3U: {
-      getLegacyPref(name, dtype, def){return null;}
+      async getLegacyPref(name, dtype, def){return null;},
+      async setHeader(tabId, name, value){return null},
     }
   }
 
