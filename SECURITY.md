@@ -4,7 +4,8 @@
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 8.x.x   | :white_check_mark: |
+| 9.x.x   | :white_check_mark: |
+| 8.x.x   | Partial            |
 | 7.x.x   | Partial            |
 | <= 6.x  | :x:                |
 
