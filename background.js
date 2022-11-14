@@ -138,18 +138,25 @@ const SendLater = {
         );
       }
 
-      // Merge the new custom headers into the original headers
-      // Note: this shouldn't be necessary, but it appears that
-      // `setComposeDetails` does not preserve existing headers.
-      let composeDetails = await messenger.compose.getComposeDetails(tabId);
-      for (let hdr of composeDetails.customHeaders) {
-        if (!hdr.name.toLowerCase().startsWith("x-send-later")) {
-          customHeaders.push(hdr);
-        }
+      // // // Merge the new custom headers into the original headers
+      // // // Note: this shouldn't be necessary, but it appears that
+      // // // `setComposeDetails` does not preserve existing headers.
+      // // let composeDetails = await messenger.compose.getComposeDetails(tabId);
+      // // for (let hdr of composeDetails.customHeaders) {
+      // //   if (!hdr.name.toLowerCase().startsWith("x-send-later")) {
+      // //     customHeaders.push(hdr);
+      // //   }
+      // // }
+      // // composeDetails.customHeaders = customHeaders;
+      // // SLStatic.info("Saving message with details:", composeDetails);
+      // // await messenger.compose.setComposeDetails(tabId, composeDetails);
+      //
+      // The setComposeDetails method seems to drop all unsupported headers
+      // (which is most of the headers). This breaks things like replies
+      // which need to retain the "in-reply-to" header (for example).
+      for (let hdr of customHeaders) {
+        await messenger.SL3U.setHeader(tabId, hdr.name, hdr.value);
       }
-      composeDetails.customHeaders = customHeaders;
-      SLStatic.info("Saving message with details:", composeDetails);
-      await messenger.compose.setComposeDetails(tabId, composeDetails);
 
       // Save the message as a draft
       let saveProperties = await messenger.compose.saveMessage(

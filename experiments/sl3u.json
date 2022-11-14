@@ -139,6 +139,29 @@
         ]
       },
       {
+        "name":"setHeader",
+        "type":"function",
+        "async":true,
+        "description":"Add a custom header to a compose message",
+        "parameters": [
+          {
+            "name":"tabId",
+            "type":"integer",
+            "description":"Compose window to modify"
+          },
+          {
+            "name":"name",
+            "type":"string",
+            "description":"Name of the header to set"
+          },
+          {
+            "name":"value",
+            "type":"string",
+            "description":"Value of custom header"
+          }
+        ]
+      },
+      {
         "name": "setCustomDBHeaders",
         "type": "function",
         "async": true,

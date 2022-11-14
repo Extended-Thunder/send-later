@@ -655,6 +655,12 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return true;
         },
 
+        async setHeader(tabId, name, value) {
+          let tab = context.extension.tabManager.get(tabId);
+          let window = tab.nativeTab;
+          window.gMsgCompose.compFields.setHeader(name, value);
+        },
+
         async setCustomDBHeaders(requestedHdrs) {
           // mailnews.customDBHeaders
           let originals = [];
