@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      body {
+        font-family: sans-serif;
+        vertical-align: middle;
+        padding: 1em 0.5em;
+      }
+
+      .clickable {
+        background: none!important;
+        border: none;
+        padding: 0!important;
+        color: #069;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      button, input[type=button] {
+        text-align:center;
+        padding:0.2em;
+      }
+
+      section {
+        padding: 0.5em 0.25em 0.5em 0em;
+      }
+
+      label {
+        white-space: nowrap;
+      }
+
+      .div-table {
+        display: table;
+        width: auto;
+      }
+
+      .div-table-row {
+        display: table-row;
+        width: auto;
+        clear: both;
+      }
+
+      .div-table-cell {
+        display: table-cell;
+        padding: 0 0.2em;
+        white-space: nowrap;
+      }
+
+      #scheduleTable {
+        min-height: 5em;
+      }
+    </style>
+  </head>
+
+  <body style="padding: 1em;">
+    <div class="div-table" id="scheduleTable">
+      <!-- Dynamically populated with active message schedules. -->
+    </div>
+
+    <hr style="margin: 0 auto; width: 70%; color: grey;"/>
+
+    <section style="width: 100%;">
+      <div class="div-table" style="margin: 0 auto;">
+        <div class="div-table-row">
+          <div class="div-table-cell" style="text-align: center; padding: 0 0.5em;">
+            <input type="button"
+              id="showPrefsButton"
+              class="clickable localized __MSG_prefwindow.title__"
+            ></input>
+          </div>
+          <div class="div-table-cell" style="text-align: center; padding: 0 0.5em;">
+            <input type="button"
+              id="showGuideButton"
+              class="clickable localized __MSG_userGuideLabel__"
+            ></input>
+          </div>
+          <div class="div-table-cell" style="text-align: center; padding: 0 0.5em;">
+            <input type="button"
+              id="showNotesButton"
+              class="clickable localized __MSG_releasenotes.value__"
+            ></input>
+          </div>
+          <div class="div-table-cell" style="text-align: center; padding: 0 0.5em;">
+            <input type="button"
+              id="contactAuthorButton"
+              class="clickable localized __MSG_contactAuthorLabel__"
+            ></input>
+          </div>
+          <div class="div-table-cell" style="text-align: center; padding: 0 0.5em;">
+            <input type="button"
+              id="donateButton"
+              class="clickable localized __MSG_donatelink.value__"
+            ></input>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="/utils/sugar-custom.js"></script>
+    <script type="text/javascript" src="/utils/static.js"></script>
+    <script type="text/javascript" src="/ui/localize.js"></script>
+    <script type="text/javascript" src="/ui/browserActionPopup.js"></script>
+  </body>
+</html>
