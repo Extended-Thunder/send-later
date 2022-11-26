@@ -41,7 +41,7 @@ var LegacyColumn = {
         {
           OnStartRunningUrl() {},
           OnStopRunningUrl(url, exitCode) {
-            SLStatic.debug(
+            console.debug(
               `LegacyColumn.getRawMessage.streamListener.OnStopRunning ` +
               `received ${streamListener.inputStream.available()} bytes ` +
               `(exitCode: ${exitCode})`
@@ -58,7 +58,7 @@ var LegacyColumn = {
         ""
       );
     }).catch((ex) => {
-      SLStatic.error(`Error reading message ${messageUri}`,ex);
+      console.error(`Error reading message ${messageUri}`,ex);
     });
 
     const available = streamListener.inputStream.available();
@@ -69,7 +69,7 @@ var LegacyColumn = {
       );
       return rawMessage;
     } else {
-      SLStatic.debug(`No data available for message ${messageUri}`);
+      console.debug(`No data available for message ${messageUri}`);
       return null;
     }
   },
@@ -93,15 +93,16 @@ var LegacyColumn = {
     const msgContentType = this.getStorageLocal(CTPropertyName);
     const sendAtStr = hdr.getStringProperty("x-send-later-at");
     const msgUuid = hdr.getStringProperty("x-send-later-uuid");
-    let SLStatic = this.SLStatic;
+    const incorrectUUIDMsg = this.SLStatic.i18n.getMessage("incorrectUUID");
+    const encryptionIncompatMsg = this.SLStatic.i18n.getMessage("EncryptionIncompatTitle")
     if (!sendAtStr) {
       return { valid: false, detail: "Not scheduled" };
     } else if (msgUuid !== instanceUUID) {
-      return { valid: false, detail: `${msgUuid} != ${instanceUUID}`, msg: SLStatic.i18n.getMessage("incorrectUUID") };
+      return { valid: false, detail: `${msgUuid} != ${instanceUUID}`, msg: incorrectUUIDMsg };
     } else if (!msgContentType) {
       return { valid: false, detail: "Missing ContentType" };
     } else if (/encrypted/i.test(msgContentType)) {
-      return { valid: false, detail: "Encrypted", msg: SLStatic.i18n.getMessage("EncryptionIncompatTitle") };
+      return { valid: false, detail: "Encrypted", msg: encryptionIncompatMsg };
     }
     return { valid: true };
   },
@@ -142,7 +143,7 @@ class MessageViewsCustomColumn {
         window.document.getElementById(this.columnId + "-splitter").remove();
         window.document.getElementById(this.columnId).remove();
       } catch (ex) {
-        SLStatic.error(ex);
+        console.error(ex);
       }
     }
 
@@ -190,13 +191,13 @@ class MessageViewsCustomColumn {
         }
       }
     } catch (ex) {
-      SLStatic.error("Unable to set column visible",ex);
+      console.error("Unable to set column visible",ex);
     }
   }
 
   addToWindow(window) {
     if (window.document.getElementById(this.columnId)) {
-      SLStatic.warn("Attempted to add duplicate column", this.columnId);
+      console.warn("Attempted to add duplicate column", this.columnId);
       return;
     }
     let treecol = window.document.createXULElement("treecol");
@@ -297,7 +298,7 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
       try {
         column.destroy();
       } catch (ex) {
-        SLStatic.error("Unable to destroy column:",ex);
+        console.error("Unable to destroy column:",ex);
       }
 
     LegacyColumn = undefined;
@@ -354,7 +355,7 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
           if (column) {
             column.setVisible(visible, windowId);
           } else {
-            SLStatic.error("Attempted to update visibility of non-existent column");
+            console.error("Attempted to update visibility of non-existent column");
           }
         },
       }

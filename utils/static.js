@@ -29,8 +29,6 @@ var SLStatic = {
                  "accelShiftfuncselect", "accelShiftArgs", "customizeDateTime",
                  "shortDateTimeFormat", "longDateTimeFormat"],
 
-  TOOLBAR_ID: "send_later",
-
   // Non-static preferences (I know...), which affect the behavior of
   // various functions. Specifically, the log output level, and customized
   // date/time formats.

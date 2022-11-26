@@ -33,8 +33,10 @@ const SLPopup = {
         cancelOnReply: schedule.recur.cancelOnReply
       };
       SLStatic.debug(message);
-      browser.runtime.sendMessage(message).catch(SLStatic.error);
-      setTimeout((() => window.close()), 150);
+      browser.runtime.sendMessage(message).then(
+        () => window.close()
+      ).catch(SLStatic.error);
+      // setTimeout((() => window.close()), 150);
     }
   },
 

@@ -138,10 +138,10 @@ const SendLater = {
         );
       }
 
+      let composeDetails = await messenger.compose.getComposeDetails(tabId);
       // // // Merge the new custom headers into the original headers
       // // // Note: this shouldn't be necessary, but it appears that
       // // // `setComposeDetails` does not preserve existing headers.
-      // // let composeDetails = await messenger.compose.getComposeDetails(tabId);
       // // for (let hdr of composeDetails.customHeaders) {
       // //   if (!hdr.name.toLowerCase().startsWith("x-send-later")) {
       // //     customHeaders.push(hdr);
@@ -635,21 +635,15 @@ const SendLater = {
       let extName = messenger.i18n.getMessage("extensionName");
       let nActive = await SLTools.countActiveScheduledMessages();
       if (nActive) {
-        messenger.spacesToolbar.updateButton(
-          SLStatic.TOOLBAR_ID,
-          {
-            title: `${extName} [${messenger.i18n.getMessage("PendingMessage", [nActive])}]`,
-            badgeText: String(nActive),
-          }
-        );
+        messenger.browserAction.setTitle({title: (
+          `${extName} [${messenger.i18n.getMessage("PendingMessage", [nActive])}]`
+        )});
+        messenger.browserAction.setBadgeText({text: String(nActive)});
       } else {
-        messenger.spacesToolbar.updateButton(
-          SLStatic.TOOLBAR_ID,
-          {
-            title: `${extName} [${messenger.i18n.getMessage("IdleMessage")}]`,
-            badgeText: "",
-          }
-        );
+        messenger.browserAction.setTitle({title: (
+          `${extName} [${messenger.i18n.getMessage("IdleMessage")}]`
+        )});
+        messenger.browserAction.setBadgeText({text: null});
       }
     },
 
@@ -698,10 +692,17 @@ const SendLater = {
         SLStatic.shortDateTimeFormat = preferences.shortDateTimeFormat;
         messenger.SL3U.setLogConsoleLevel(SLStatic.logConsoleLevel);
 
-        for (let pref of ["customizeDateTime", "longDateTimeFormat", "shortDateTimeFormat", "instanceUUID"])
+        for (let pref of [
+          "customizeDateTime", "longDateTimeFormat", "shortDateTimeFormat", "instanceUUID"
+        ]) {
           messenger.columnHandler.setPreference(pref, preferences[pref]);
+        }
 
         SendLater.setQuitNotificationsEnabled(preferences.askQuit);
+
+        messenger.browserAction.setLabel({label: (
+          preferences.showStatus ? messenger.i18n.getMessage("sendlater3header.label") : ""
+        )});
       }).catch(ex => SLStatic.error(ex));
 
       // Initialize drafts folder column
@@ -714,14 +715,6 @@ const SendLater = {
       await messenger.headerView.addCustomHdrRow({
         name: messenger.i18n.getMessage("sendlater3header.label"),
       });
-
-      // Add spacesToolbar button
-      await messenger.spacesToolbar.addButton(
-        SLStatic.TOOLBAR_ID, {
-          title: messenger.i18n.getMessage("extensionName"),
-          url: messenger.runtime.getURL("ui/options.html"),
-        }
-      );
 
       // Attach to all existing msgcompose windows
       messenger.SL3U.hijackComposeWindowKeyBindings().catch(ex => {
@@ -777,6 +770,10 @@ const SendLater = {
           messenger.SL3U.setLogConsoleLevel(SLStatic.logConsoleLevel);
 
           SendLater.setQuitNotificationsEnabled(preferences.askQuit);
+
+          messenger.browserAction.setLabel({label: (
+            preferences.showStatus ? messenger.i18n.getMessage("sendlater3header.label") : ""
+          )});
 
           // Note: It's possible to immediately obey a preference change if the
           // user has decided to disable the send later column, but when the column
@@ -1089,6 +1086,53 @@ messenger.runtime.onMessage.addListener(async (message, sender) => {
 
       break;
     }
+    case "getAllSchedules": {
+      response.schedules = await SLTools.forAllDrafts(
+        async (draftHdr) => {
+          return await messenger.messages.getFull(draftHdr.id).then(
+            async (draftMsg) => {
+              function getHeader(name) {
+                return (draftMsg.headers[name]||[])[0];
+              }
+              if (getHeader("x-send-later-at")) {
+                return {
+                  sendAt: getHeader("x-send-later-at"),
+                  recur: getHeader("x-send-later-recur"),
+                  args: getHeader("x-send-later-args"),
+                  cancel: getHeader("x-send-later-cancel-on-reply"),
+                  subject: draftHdr.subject,
+                  recipients: draftHdr.recipients,
+                }
+              } else {
+                return null;
+              }
+            }
+          );
+        },
+        false // non-sequential
+      ).then((r) => r.filter(x => x != null));
+      break;
+    }
+    case "showPreferences": {
+      messenger.runtime.openOptionsPage();
+      break;
+    }
+    case "showUserGuide": {
+      messenger.windows.openDefaultBrowser('https://extended-thunder.github.io/send-later/');
+      break;
+    }
+    case "showReleaseNotes": {
+      messenger.windows.openDefaultBrowser("https://github.com/Extended-Thunder/send-later/releases");
+      break;
+    }
+    case "contactAuthor": {
+      messenger.windows.openDefaultBrowser("https://github.com/Extended-Thunder/send-later/discussions/278");
+      break;
+    }
+    case "donateLink": {
+      messenger.windows.openDefaultBrowser("https://extended-thunder.github.io/send-later/#support-send-later");
+      break;
+    }
     default: {
       SLStatic.warn(`Unrecognized operation <${message.action}>.`);
     }
@@ -1203,9 +1247,8 @@ function mainLoop() {
       // or (⌛ \u231B) (e.g. badgeText = "\u27F3")
       let extName = messenger.i18n.getMessage("extensionName");
       let isActiveMessage = messenger.i18n.getMessage("CheckingMessage");
-      messenger.spacesToolbar.updateButton(
-        SLStatic.TOOLBAR_ID, {title: `${extName} [${isActiveMessage}]`}
-      );
+      messenger.browserAction.enable();
+      messenger.browserAction.setTitle({title: `${extName} [${isActiveMessage}]`});
 
       let doSequential = preferences.throttleDelay > 0;
       SLTools.forAllDrafts(SendLater.possiblySendMessage, doSequential).then(() => {
@@ -1227,10 +1270,9 @@ function mainLoop() {
       SendLater.setQuitNotificationsEnabled(false);
       let extName = messenger.i18n.getMessage("extensionName");
       let disabledMsg = messenger.i18n.getMessage("DisabledMessage");
-      messenger.spacesToolbar.updateButton(
-        SLStatic.TOOLBAR_ID,
-        {title: `${extName} [${disabledMsg}]`, badgeText: "X"}
-      );
+      messenger.browserAction.disable();
+      messenger.browserAction.setTitle({title: `${extName} [${disabledMsg}]`});
+      messenger.browserAction.setBadgeText({text: null});
 
       SendLater.previousLoop = new Date();
       SendLater.loopTimeout = setTimeout(mainLoop, 60000);

@@ -5,7 +5,7 @@
 
   "description": "__MSG_extensionDescription__",
 
-  "version": "9.2.2",
+  "version": "9.2.3",
 
   "homepage_url": "https://github.com/Extended-Thunder/send-later/",
 
@@ -91,6 +91,15 @@
     "default_icon": "ui/icons/icon.png",
     "default_popup": "ui/msgDisplayPopup.html",
     "default_title": "__MSG_extensionName__"
+  },
+
+  "browser_action": {
+    "browser_style": true,
+    "default_icon": "ui/icons/icon.png",
+    "default_area": "maintoolbar",
+    "default_label": "__MSG_extensionName__",
+    "default_title": "__MSG_extensionName__",
+    "default_popup": "ui/browserActionPopup.html"
   },
 
   "experiment_apis": {
