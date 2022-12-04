@@ -282,14 +282,14 @@ const SendLater = {
         const lateness = (Date.now() - nextSend.getTime()) / 60000;
         if (lateness > preferences.lateGracePeriod) {
           SLStatic.warn(`Grace period exceeded for message ${msgHdr.id}`);
-          if (!this.warnedAboutLateMessageBlocked.has(originalMsgId)) {
+          if (!SendLater.warnedAboutLateMessageBlocked.has(originalMsgId)) {
             const msgSubject = msgHdr.subject;
             const warningMsg = messenger.i18n.getMessage(
               "BlockedLateMessage",
               [msgSubject, msgHdr.folder.path, preferences.lateGracePeriod]
             );
             const warningTitle = messenger.i18n.getMessage("ScheduledMessagesWarningTitle");
-            this.warnedAboutLateMessageBlocked.add(originalMsgId);
+            SendLater.warnedAboutLateMessageBlocked.add(originalMsgId);
             SLTools.alert(warningTitle, warningMsg)
           }
           return;
