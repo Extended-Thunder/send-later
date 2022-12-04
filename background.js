@@ -184,14 +184,16 @@ const SendLater = {
 
       // If message was a reply or forward, update the original message
       // to show that it has been replied to or forwarded.
-      if (composeDetails.relatedMsgId) {
+      if (composeDetails.relatedMessageId) {
         if (composeDetails.type == "reply") {
+          console.debug("This is a reply message. Setting original 'replied'");
           messenger.SL3U.setDispositionState(
-            composeDetails.relatedMsgId, "replied"
+            composeDetails.relatedMessageId, "replied"
           );
         } else if (composeDetails.type == "forward") {
+          console.debug("This is a fwd message. Setting original 'forwarded'");
           messenger.SL3U.setDispositionState(
-            composeDetails.relatedMsgId, "forwarded"
+            composeDetails.relatedMessageId, "forwarded"
           );
         }
       }
