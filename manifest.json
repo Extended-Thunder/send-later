@@ -96,7 +96,6 @@
   "browser_action": {
     "browser_style": true,
     "default_icon": "ui/icons/icon.png",
-    "default_area": "maintoolbar",
     "default_label": "__MSG_extensionName__",
     "default_title": "__MSG_extensionName__",
     "default_popup": "ui/browserActionPopup.html"
