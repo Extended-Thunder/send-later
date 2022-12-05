@@ -184,14 +184,16 @@ const SendLater = {
 
       // If message was a reply or forward, update the original message
       // to show that it has been replied to or forwarded.
-      if (composeDetails.relatedMsgId) {
+      if (composeDetails.relatedMessageId) {
         if (composeDetails.type == "reply") {
+          console.debug("This is a reply message. Setting original 'replied'");
           messenger.SL3U.setDispositionState(
-            composeDetails.relatedMsgId, "replied"
+            composeDetails.relatedMessageId, "replied"
           );
         } else if (composeDetails.type == "forward") {
+          console.debug("This is a fwd message. Setting original 'forwarded'");
           messenger.SL3U.setDispositionState(
-            composeDetails.relatedMsgId, "forwarded"
+            composeDetails.relatedMessageId, "forwarded"
           );
         }
       }
@@ -282,14 +284,14 @@ const SendLater = {
         const lateness = (Date.now() - nextSend.getTime()) / 60000;
         if (lateness > preferences.lateGracePeriod) {
           SLStatic.warn(`Grace period exceeded for message ${msgHdr.id}`);
-          if (!this.warnedAboutLateMessageBlocked.has(originalMsgId)) {
+          if (!SendLater.warnedAboutLateMessageBlocked.has(originalMsgId)) {
             const msgSubject = msgHdr.subject;
             const warningMsg = messenger.i18n.getMessage(
               "BlockedLateMessage",
               [msgSubject, msgHdr.folder.path, preferences.lateGracePeriod]
             );
             const warningTitle = messenger.i18n.getMessage("ScheduledMessagesWarningTitle");
-            this.warnedAboutLateMessageBlocked.add(originalMsgId);
+            SendLater.warnedAboutLateMessageBlocked.add(originalMsgId);
             SLTools.alert(warningTitle, warningMsg)
           }
           return;
