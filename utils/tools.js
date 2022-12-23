@@ -111,6 +111,14 @@ var SLTools = {
     return allDraftFolders;
   },
 
+  async expandRecipients(tabId) {
+    let details = {};
+    for (let type of ["to", "cc", "bcc"]) {
+      details[type] = await messenger.SL3U.expandRecipients(tabId, type);
+    }
+    await messenger.compose.setComposeDetails(tabId, details);
+  },
+
   // Do something with each message in all draft folders. callback
   // should be an async function that takes a single MessageHeader
   // argument. If `sequential` is true, then the function will

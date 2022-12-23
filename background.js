@@ -99,7 +99,7 @@ const SendLater = {
       SLStatic.info(`Scheduling send later: ${tabId} with options`, options);
 
       // Expand mailing lists into individual recipients
-      await messenger.SL3U.expandRecipients(tabId);
+      await SLTools.expandRecipients(tabId);
 
       let customHeaders = [
         {name: "X-Send-Later-Uuid", value: preferences.instanceUUID}

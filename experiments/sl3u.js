@@ -413,7 +413,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
         },
 
-        async expandRecipients(tabId) {
+        async expandRecipients(tabId, field) {
           function composeWindowIsReady(composeWindow) {
             return new Promise(resolve => {
               if (composeWindow.composeEditorReady) {
@@ -429,7 +429,9 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           let tab = context.extension.tabManager.get(tabId);
           let cw = tab.nativeTab;
           await composeWindowIsReady(cw);
-          cw.gMsgCompose.expandMailingLists();
+          let msgCompFields = cw.GetComposeDetails();
+          cw.expandRecipients();
+          return msgCompFields[field];
         },
 
         /*
