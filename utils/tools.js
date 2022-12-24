@@ -185,7 +185,6 @@ var SLTools = {
 
   // Count draft messages containing the correct `x-send-later-uuid` header.
   async countActiveScheduledMessages() {
-    let start = performance.now();
     const preferences = await SLTools.getPrefs();
     let isScheduled = await SLTools.forAllDrafts(
       async (msgHdr) => {
@@ -207,8 +206,6 @@ var SLTools = {
       },
       true // Running this sequentially seems to give slightly better performance.
     )
-    let nActive = isScheduled.filter(x => x).length;
-    console.debug(`countActiveScheduledMessages: ${performance.now()-start} ms`);
-    return nActive;
+    return isScheduled.filter(x => x).length;
   },
 };
