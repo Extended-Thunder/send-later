@@ -99,7 +99,7 @@ const SendLater = {
       SLStatic.info(`Scheduling send later: ${tabId} with options`, options);
 
       // Expand mailing lists into individual recipients
-      await messenger.SL3U.expandRecipients(tabId);
+      await SLTools.expandRecipients(tabId);
 
       let customHeaders = [
         {name: "X-Send-Later-Uuid", value: preferences.instanceUUID}
@@ -175,10 +175,17 @@ const SendLater = {
       // Close the composition tab
       await messenger.tabs.remove(tabId);
 
-      // Optionally mark the saved message as "read"
-      if (preferences.markDraftsRead) {
-        for (let msg of saveProperties.messages) {
-          messenger.messages.update(msg.id, { read: true })
+      for (let msg of saveProperties.messages) {
+        SLTools.scheduledMsgCache.add(msg.id);
+        if (SLTools.unscheduledMsgCache.has(msg.id)) {
+          // This would be unexpected. AFAIK saving a message as a draft gives
+          // it a new ID. However, just to be safe, we'll double check that it's
+          // not previously classified as "unscheduled".
+          console.warn("Message was in the unscheduled message cache!", msg);
+          SLTools.unscheduledMsgCache.delete(msg.id);
+        }
+        if (preferences.markDraftsRead) {
+          messenger.messages.update(msg.id, { read: true });
         }
       }
 
@@ -211,6 +218,10 @@ const SendLater = {
     // ridiculously long.
     async possiblySendMessage(msgHdr) {
       // Determines whether or not a particular draft message is due to be sent
+      if (SLTools.unscheduledMsgCache.has(msgHdr.id)) {
+        return;
+      }
+
       SLStatic.debug(`Checking message ${msgHdr.id}.`);
       const fullMsg = await messenger.messages.getFull(msgHdr.id);
 
@@ -633,9 +644,10 @@ const SendLater = {
       return currentMigrationNumber;
     },
 
-    async updateStatusIndicator() {
+    async updateStatusIndicator(nActive) {
       let extName = messenger.i18n.getMessage("extensionName");
-      let nActive = await SLTools.countActiveScheduledMessages();
+      if (nActive == undefined)
+        nActive = await SLTools.countActiveScheduledMessages();
       if (nActive) {
         messenger.browserAction.setTitle({title: (
           `${extName} [${messenger.i18n.getMessage("PendingMessage", [nActive])}]`
@@ -649,10 +661,11 @@ const SendLater = {
       }
     },
 
-    async setQuitNotificationsEnabled(enabled) {
+    async setQuitNotificationsEnabled(enabled, nActive) {
       SLStatic.debug(`Setting quit notifications: ${enabled ? "on" : "off"}`);
       if (enabled) {
-        let nActive = await SLTools.countActiveScheduledMessages();
+        if (nActive == undefined)
+          nActive = await SLTools.countActiveScheduledMessages();
         if (nActive > 0) {
           let appName = messenger.i18n.getMessage("extensionName");
           let title = messenger.i18n.getMessage("scheduledMessagesWarningTitle") + " - " + appName;
@@ -700,7 +713,10 @@ const SendLater = {
           messenger.columnHandler.setPreference(pref, preferences[pref]);
         }
 
-        SendLater.setQuitNotificationsEnabled(preferences.askQuit);
+        SLTools.countActiveScheduledMessages().then(nActive => {
+          SendLater.updateStatusIndicator(nActive);
+          SendLater.setQuitNotificationsEnabled(preferences.askQuit, nActive);
+        });
 
         messenger.browserAction.setLabel({label: (
           preferences.showStatus ? messenger.i18n.getMessage("sendlater3header.label") : ""
@@ -1091,6 +1107,9 @@ messenger.runtime.onMessage.addListener(async (message, sender) => {
     case "getAllSchedules": {
       response.schedules = await SLTools.forAllDrafts(
         async (draftHdr) => {
+          if (SLTools.unscheduledMsgCache.has(draftHdr.id)) {
+            return null;
+          }
           return await messenger.messages.getFull(draftHdr.id).then(
             async (draftMsg) => {
               function getHeader(name) {
@@ -1254,15 +1273,20 @@ function mainLoop() {
 
       let doSequential = preferences.throttleDelay > 0;
       SLTools.forAllDrafts(SendLater.possiblySendMessage, doSequential).then(() => {
-        SendLater.updateStatusIndicator();
-        SendLater.setQuitNotificationsEnabled(preferences.askQuit);
+        SLTools.countActiveScheduledMessages().then(nActive => {
+          SendLater.updateStatusIndicator(nActive);
+          SendLater.setQuitNotificationsEnabled(preferences.askQuit, nActive);
+        });
 
         SendLater.previousLoop = new Date();
         SendLater.loopTimeout = setTimeout(mainLoop, 60000*interval);
         SLStatic.debug(`Next main loop iteration in ${60*interval} seconds.`);
       }).catch((err) => {
         SLStatic.error(err);
-        SendLater.updateStatusIndicator();
+        SLTools.countActiveScheduledMessages().then(nActive => {
+          SendLater.updateStatusIndicator(nActive);
+          SendLater.setQuitNotificationsEnabled(preferences.askQuit, nActive);
+        });
 
         SendLater.previousLoop = new Date();
         SendLater.loopTimeout = setTimeout(mainLoop, 60000);

@@ -23,6 +23,10 @@
           {
             "name": "tabId",
             "type": "integer"
+          },
+          {
+            "name": "field",
+            "type": "string"
           }
         ]
       },

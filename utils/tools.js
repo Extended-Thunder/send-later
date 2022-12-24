@@ -111,6 +111,14 @@ var SLTools = {
     return allDraftFolders;
   },
 
+  async expandRecipients(tabId) {
+    let details = {};
+    for (let type of ["to", "cc", "bcc"]) {
+      details[type] = await messenger.SL3U.expandRecipients(tabId, type);
+    }
+    await messenger.compose.setComposeDetails(tabId, details);
+  },
+
   // Do something with each message in all draft folders. callback
   // should be an async function that takes a single MessageHeader
   // argument. If `sequential` is true, then the function will
@@ -172,15 +180,31 @@ var SLTools = {
     });
   },
 
+  scheduledMsgCache: new Set(),
+  unscheduledMsgCache: new Set(),
+
   // Count draft messages containing the correct `x-send-later-uuid` header.
   async countActiveScheduledMessages() {
     const preferences = await SLTools.getPrefs();
     let isScheduled = await SLTools.forAllDrafts(
       async (msgHdr) => {
-        let fullMsg = await messenger.messages.getFull(msgHdr.id);
-        let uuid = (fullMsg.headers["x-send-later-uuid"]||[])[0];
-        return uuid == preferences.instanceUUID;
-      }
+        if (SLTools.scheduledMsgCache.has(msgHdr.id)) {
+          return true;
+        } else if (SLTools.unscheduledMsgCache.has(msgHdr.id)) {
+          return false;
+        } else {
+          let fullMsg = await messenger.messages.getFull(msgHdr.id);
+          let uuid = (fullMsg.headers["x-send-later-uuid"]||[])[0];
+          if (uuid == preferences.instanceUUID) {
+            SLTools.scheduledMsgCache.add(msgHdr.id);
+            return true;
+          } else {
+            SLTools.unscheduledMsgCache.add(msgHdr.id);
+            return false;
+          }
+        }
+      },
+      true // Running this sequentially seems to give slightly better performance.
     )
     return isScheduled.filter(x => x).length;
   },
