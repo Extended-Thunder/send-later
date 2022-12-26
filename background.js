@@ -369,7 +369,8 @@ const SendLater = {
             const success = await messenger.SL3U.saveMessage(
               msgHdr.folder.accountId,
               msgHdr.folder.path,
-              newMsgContent
+              newMsgContent,
+              preferences.markDraftsRead
             );
 
             if (success) {
@@ -497,7 +498,8 @@ const SendLater = {
         const success = await messenger.SL3U.saveMessage(
           msgHdr.folder.accountId,
           msgHdr.folder.path,
-          newMsgContent
+          newMsgContent,
+          preferences.markDraftsRead
         );
 
         if (success) {

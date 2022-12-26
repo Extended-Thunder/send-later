@@ -93,6 +93,11 @@
             "name": "content",
             "type": "string",
             "description": "New message contents"
+          },
+          {
+            "name": "markRead",
+            "type": "boolean",
+            "description": "whether the message will be marked read"
           }
         ]
       },

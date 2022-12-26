@@ -187,7 +187,7 @@ const SendLaterFunctions = {
     }
   },
 
-  copyStringMessageToFolder(content, folder, listener) {
+  copyStringMessageToFolder(content, folder, listener, markRead) {
     const dirService =
       Cc["@mozilla.org/file/directory_service;1"].getService(Ci.nsIProperties);
     const tempDir = dirService.get("TmpD", Ci.nsIFile);
@@ -214,10 +214,17 @@ const SendLaterFunctions = {
     let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"].createInstance();
     msgWindow = msgWindow.QueryInterface(Ci.nsIMsgWindow);
 
+    let flags = 0;
+    try {
+      flags |= markRead ? Ci.nsMsgMessageFlags.Read : 0;
+    } catch (ex) {
+      SendLaterFunctions.error(ex);
+    }
+
     // TB91 changed CopyFileMessage -> copyFileMessage
     let copyFileMessage = MailServices.copy.copyFileMessage
                           || MailServices.copy.CopyFileMessage;
-    copyFileMessage(sfile1, folder, null, false, 0, "", listener, msgWindow);
+    copyFileMessage(sfile1, folder, null, false, flags, "", listener, msgWindow);
   },
 
   // If you add a message to the Outbox and call nsIMsgSendLater when it's
@@ -607,13 +614,13 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
           const fdrunsent = SendLaterFunctions.getUnsentMessagesFolder();
           const listener = new CopyUnsentListener(sendUnsentMsgs);
-          SendLaterFunctions.copyStringMessageToFolder(content, fdrunsent, listener);
+          SendLaterFunctions.copyStringMessageToFolder(content, fdrunsent, listener, false);
 
           return true;
         },
 
         // Saves raw message content in specified folder.
-        async saveMessage(accountId, path, content) {
+        async saveMessage(accountId, path, content, markRead) {
           function CopyRecurListener(folder) {
             this._folder = folder;
           }
@@ -652,7 +659,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           const uri = SendLaterFunctions.folderPathToURI(accountId, path);
           const folder = MailServices.folderLookup.getFolderForURL(uri);
           const listener = new CopyRecurListener(folder);
-          SendLaterFunctions.copyStringMessageToFolder(content, folder, listener);
+          SendLaterFunctions.copyStringMessageToFolder(content, folder, listener, markRead);
 
           return true;
         },
