@@ -419,14 +419,17 @@ const SLPopup = {
     return inputs;
   },
 
-  async cacheSchedule() {
-    SLStatic.debug(`Caching current input values`);
-    const { scheduleCache } = await browser.storage.local.get({ scheduleCache: {} });
-    const cwin = await browser.windows.getCurrent();
-    scheduleCache[cwin.id] = SLPopup.serializeInputs();
-    browser.storage.local.set({ scheduleCache }).catch((err) => {
-      SLStatic.error(err);
-    });
+  cacheSchedule() {
+    SLStatic.debug("Caching current input values");
+    browser.storage.local.get({ scheduleCache: {} }).then(
+      ({ scheduleCache }) => {
+        browser.windows.getCurrent().then(
+          (cwin) => {
+            scheduleCache[cwin.id] = SLPopup.serializeInputs();
+            browser.storage.local.set({ scheduleCache });
+          });
+      }
+    ).catch(SLStatic.error);
   },
 
   saveDefaults() {
