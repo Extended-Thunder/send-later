@@ -163,8 +163,6 @@ const SendLater = {
         tabId, { mode: "draft" }
       );
       if (saveProperties.messages.length != 1) {
-        // Depending on FCC header, the saveMessage method may
-        // save more than one copy of the message.
         // TODO: Look into whether this could be a problem for
         // SendLater (possibility for duplicates?)
         SLStatic.error(
@@ -172,21 +170,28 @@ const SendLater = {
         )
       }
 
-      // Close the composition tab
-      await messenger.tabs.remove(tabId);
+      // // // If the message was already saved as a draft (and made it into the
+      // // // unscheduledMsgCache while being composed), then it will be ignored
+      // // // when checking for scheduled messages. We should be able to remove
+      // // // it from the unscheduledMsgCache here, but there seems to be a bug
+      // // // in Thunderbird where the message ID reported to us is not the
+      // // // actual saved message. Best option right now seems to be invalidating
+      // // // and regenerating the entire unscheduledMsgCache.
+      // // SLTools.unscheduledMsgCache.clear();
+      // Different workaround:
+      let windowId = await messenger.tabs.get(tabId).then(tab => tab.windowId);
+      let draftMsg = await messenger.SL3U.findAssociatedDraft(windowId);
 
-      for (let msg of saveProperties.messages) {
-        SLTools.scheduledMsgCache.add(msg.id);
-        if (SLTools.unscheduledMsgCache.has(msg.id)) {
-          // This would be unexpected. AFAIK saving a message as a draft gives
-          // it a new ID. However, just to be safe, we'll double check that it's
-          // not previously classified as "unscheduled".
-          console.warn("Message was in the unscheduled message cache!", msg);
-          SLTools.unscheduledMsgCache.delete(msg.id);
-        }
-        if (preferences.markDraftsRead) {
-          messenger.messages.update(msg.id, { read: true });
-        }
+      // Close the composition tab
+      messenger.tabs.remove(tabId);
+
+      SLTools.unscheduledMsgCache.delete(draftMsg.id);
+      SLTools.scheduledMsgCache.add(draftMsg.id);
+
+      if (preferences.markDraftsRead) {
+        messenger.messages.update(draftMsg.id, { read: true });
+        // for (let draftMsg of saveProperties.messages)
+        //   messenger.messages.update(draftMsg.id, { read: true });
       }
 
       // If message was a reply or forward, update the original message
@@ -226,6 +231,7 @@ const SendLater = {
       const fullMsg = await messenger.messages.getFull(msgHdr.id);
 
       if (!fullMsg.headers.hasOwnProperty("x-send-later-at")) {
+        SLTools.unscheduledMsgCache.add(msgHdr.id);
         return;
       }
 
@@ -370,6 +376,8 @@ const SendLater = {
               SLStatic.debug(`Rescheduled message ${originalMsgId}. Deleting original.`);
               messenger.messages.delete([msgHdr.id], true).then(() => {
                 SLStatic.info("Deleted message", msgHdr.id);
+                SLTools.scheduledMsgCache.delete(msgHdr.id);
+                SLTools.unscheduledMsgCache.delete(msgHdr.id);
               }).catch(SLStatic.error);;
               return;
             } else {
@@ -497,6 +505,8 @@ const SendLater = {
             `<${originalMsgId}>. Deleting original.`);
           messenger.messages.delete([msgHdr.id], true).then(() => {
             SLStatic.info("Deleted message", msgHdr.id);
+            SLTools.scheduledMsgCache.delete(msgHdr.id);
+            SLTools.unscheduledMsgCache.delete(msgHdr.id);
           }).catch(SLStatic.error);;
           return;
         } else {
@@ -508,6 +518,8 @@ const SendLater = {
         );
         messenger.messages.delete([msgHdr.id], true).then(() => {
           SLStatic.info("Deleted message", msgHdr.id);
+          SLTools.scheduledMsgCache.delete(msgHdr.id);
+          SLTools.unscheduledMsgCache.delete(msgHdr.id);
         }).catch(SLStatic.error);
         return;
       }
@@ -1015,10 +1027,6 @@ messenger.runtime.onMessageExternal.addListener(
     sendResponse(null);
   });
 
-messenger.tabs.onRemoved.addListener(tabId => {
-  SLTools.handlePopupCallback(tabId, { ok: false, check: null });
-});
-
 // Various extension components communicate with
 // the background script via these runtime messages.
 // e.g. the options page and the scheduler dialog.
@@ -1108,6 +1116,7 @@ messenger.runtime.onMessage.addListener(async (message, sender) => {
       response.schedules = await SLTools.forAllDrafts(
         async (draftHdr) => {
           if (SLTools.unscheduledMsgCache.has(draftHdr.id)) {
+            console.debug("Ignoring unscheduled message", draftHdr.id, draftHdr);
             return null;
           }
           return await messenger.messages.getFull(draftHdr.id).then(
@@ -1191,6 +1200,8 @@ messenger.messages.onNewMailReceived.addListener((folder, messagelist) => {
               );
               messenger.messages.delete([draftHdr.id]).then(() => {
                 SLStatic.info("Deleted message", draftHdr.id);
+                SLTools.scheduledMsgCache.delete(draftHdr.id);
+                SLTools.unscheduledMsgCache.delete(draftHdr.id);
               }).catch(SLStatic.error);
             }
           }
