@@ -4,6 +4,10 @@
 var _popupCallbacks = new Map();
 
 var SLTools = {
+  // Set of message ID's which are scheduled
+  scheduledMsgCache: new Set(),
+  // Set of message ID's which are not scheduled
+  unscheduledMsgCache: new Set(),
 
   // Convenience function for getting preferences.
   async getPrefs() {
@@ -180,9 +184,6 @@ var SLTools = {
     });
   },
 
-  scheduledMsgCache: new Set(),
-  unscheduledMsgCache: new Set(),
-
   // Count draft messages containing the correct `x-send-later-uuid` header.
   async countActiveScheduledMessages() {
     const preferences = await SLTools.getPrefs();
@@ -209,3 +210,7 @@ var SLTools = {
     return isScheduled.filter(x => x).length;
   },
 };
+
+messenger.tabs.onRemoved.addListener(tabId => {
+  SLTools.handlePopupCallback(tabId, { ok: false, check: null });
+});
