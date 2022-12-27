@@ -93,6 +93,8 @@ const SendLater = {
         SLStatic.warn(`Canceled via pre-send checks (check initiated at ${now})`);
         return;
       }
+      // let windowId = await messenger.tabs.get(tabId).then(tab => tab.windowId);
+      // let originalDraftMsg = await messenger.SL3U.findAssociatedDraft(windowId);
 
       const preferences = await SLTools.getPrefs();
 
@@ -170,28 +172,14 @@ const SendLater = {
         )
       }
 
-      // // // If the message was already saved as a draft (and made it into the
-      // // // unscheduledMsgCache while being composed), then it will be ignored
-      // // // when checking for scheduled messages. We should be able to remove
-      // // // it from the unscheduledMsgCache here, but there seems to be a bug
-      // // // in Thunderbird where the message ID reported to us is not the
-      // // // actual saved message. Best option right now seems to be invalidating
-      // // // and regenerating the entire unscheduledMsgCache.
-      // // SLTools.unscheduledMsgCache.clear();
-      // Different workaround:
-      let windowId = await messenger.tabs.get(tabId).then(tab => tab.windowId);
-      let draftMsg = await messenger.SL3U.findAssociatedDraft(windowId);
-
       // Close the composition tab
-      messenger.tabs.remove(tabId);
+      await messenger.tabs.remove(tabId);
 
-      SLTools.unscheduledMsgCache.delete(draftMsg.id);
-      SLTools.scheduledMsgCache.add(draftMsg.id);
-
+      // Optionally mark the saved message as "read"
       if (preferences.markDraftsRead) {
-        messenger.messages.update(draftMsg.id, { read: true });
-        // for (let draftMsg of saveProperties.messages)
-        //   messenger.messages.update(draftMsg.id, { read: true });
+        for (let msg of saveProperties.messages) {
+          messenger.messages.update(msg.id, { read: true })
+        }
       }
 
       // If message was a reply or forward, update the original message
@@ -210,7 +198,32 @@ const SendLater = {
         }
       }
 
-      SendLater.updateStatusIndicator();
+      // // // If the message was already saved as a draft (and made it into the
+      // // // unscheduledMsgCache while being composed), then it will be ignored
+      // // // when checking for scheduled messages. We should be able to remove
+      // // // it from the unscheduledMsgCache here, but there seems to be a bug
+      // // // in Thunderbird where the message ID reported to us is not the
+      // // // actual saved message. Best option right now seems to be invalidating
+      // // // and regenerating the entire unscheduledMsgCache.
+      SLTools.unscheduledMsgCache.clear();
+      // // Different workaround:
+      // function touchDraftMsg(draftId) {
+      //   SLTools.unscheduledMsgCache.delete(draftId);
+      //   SLTools.scheduledMsgCache.add(draftId);
+      //   if (preferences.markDraftsRead)
+      //     messenger.messages.update(draftId, { read: true });
+      // }
+      // if (originalDraftMsg)
+      //   touchDraftMsg(originalDraftMsg.id);
+      // if (composeDetails.type == "draft" && composeDetails.relatedMessageId)
+      //   touchDraftMsg(composeDetails.relatedMessageId);
+      // await messenger.SL3U.findAssociatedDraft(windowId).then(
+      //   newDraftMsg => touchDraftMsg(newDraftMsg.id)
+      // );
+
+      // It seems that a delay is required for messages.getFull to successfully
+      // access the recently saved message.
+      setTimeout(SendLater.updateStatusIndicator, 1000);
     },
 
     // Given a MessageHeader object, identify whether the message is
@@ -247,6 +260,7 @@ const SendLater = {
 
       if ((/encrypted/i).test(contentType)) {
         SLStatic.debug(`Message ${originalMsgId} is encrypted, and will not be processed by Send Later.`);
+        SLTools.unscheduledMsgCache.add(msgHdr.id);
         return;
       }
 
@@ -261,11 +275,13 @@ const SendLater = {
 
       if (!msgUUID) {
         SLStatic.debug(`Message <${originalMsgId}> has no uuid header.`);
+        SLTools.unscheduledMsgCache.add(msgHdr.id);
         return;
       }
 
       if (msgUUID !== preferences.instanceUUID) {
         SLStatic.debug(`Message <${originalMsgId}> is scheduled by a different Thunderbird isntance.`);
+        SLTools.unscheduledMsgCache.add(msgHdr.id);
         return;
       }
 
@@ -369,7 +385,8 @@ const SendLater = {
             const success = await messenger.SL3U.saveMessage(
               msgHdr.folder.accountId,
               msgHdr.folder.path,
-              newMsgContent
+              newMsgContent,
+              preferences.markDraftsRead
             );
 
             if (success) {
@@ -497,7 +514,8 @@ const SendLater = {
         const success = await messenger.SL3U.saveMessage(
           msgHdr.folder.accountId,
           msgHdr.folder.path,
-          newMsgContent
+          newMsgContent,
+          preferences.markDraftsRead
         );
 
         if (success) {
@@ -860,39 +878,49 @@ messenger.windows.onCreated.addListener(async (window) => {
   let originalMsg = await messenger.SL3U.findAssociatedDraft(window.id).then(
     m => m ? messenger.messages.getFull(m.id) : null
   );
-  SLStatic.debug("Original message", originalMsg);
+  if (originalMsg) {
+    SLTools.scheduledMsgCache.delete(originalMsg.id);
+    SLTools.unscheduledMsgCache.add(originalMsg.id);
 
-  // Check if original message has x-send-later headers
-  if (originalMsg && originalMsg.headers.hasOwnProperty("x-send-later-at")) {
-    let { preferences, scheduleCache } = await messenger.storage.local.get(
-      { preferences: {}, scheduleCache: {} }
-    );
+    // Check if original message has x-send-later headers
+    if (originalMsg.headers.hasOwnProperty("x-send-later-at")) {
+      let { preferences, scheduleCache } = await messenger.storage.local.get(
+        { preferences: {}, scheduleCache: {} }
+      );
 
-    // Re-save message (drops x-send-later headers by default
-    // because they are not loaded when editing as draft).
-    messenger.compose.saveMessage(tab.id, {mode: "draft"});
+      // Re-save message (drops x-send-later headers by default
+      // because they are not loaded when editing as draft).
+      messenger.compose.saveMessage(tab.id, {mode: "draft"}).then(
+        () => {
+          SLTools.scheduledMsgCache.delete(originalMsg.id);
+          SLTools.unscheduledMsgCache.add(originalMsg.id);
+          SendLater.updateStatusIndicator();
+        }
+      );
 
-    // Set popup scheduler defaults based on original message
-    scheduleCache[window.id] =
-    SLStatic.parseHeadersForPopupUICache(originalMsg.headers);
-    SLStatic.debug(
-      `Schedule cache item added for window ${window.id}:`,
-      scheduleCache[window.id]
-    );
-    messenger.storage.local.set({ scheduleCache });
+      // Set popup scheduler defaults based on original message
+      scheduleCache[window.id] =
+      SLStatic.parseHeadersForPopupUICache(originalMsg.headers);
+      SLStatic.debug(
+        `Schedule cache item added for window ${window.id}:`,
+        scheduleCache[window.id]
+      );
+      messenger.storage.local.set({ scheduleCache });
 
-    // Alert the user about what just happened
-    if (preferences.showEditAlert) {
-      let draftSaveWarning = messenger.i18n.getMessage("draftSaveWarning")
-      SLTools.alertCheck(
-        null, draftSaveWarning, null, true
-      ).then(async (result) => {
-        const preferences = await SLTools.getPrefs();
-        preferences.showEditAlert = result.check;
-        messenger.storage.local.set({ preferences });
-      });
+      // Alert the user about what just happened
+      if (preferences.showEditAlert) {
+        let draftSaveWarning = messenger.i18n.getMessage("draftSaveWarning")
+        SLTools.alertCheck(
+          null, draftSaveWarning, null, true
+        ).then(async (result) => {
+          const preferences = await SLTools.getPrefs();
+          preferences.showEditAlert = result.check;
+          messenger.storage.local.set({ preferences });
+        });
+      }
     }
   }
+
 });
 
 // Custom events that are attached to user actions within
@@ -1120,11 +1148,12 @@ messenger.runtime.onMessage.addListener(async (message, sender) => {
             return null;
           }
           return await messenger.messages.getFull(draftHdr.id).then(
-            async (draftMsg) => {
+            draftMsg => {
               function getHeader(name) {
                 return (draftMsg.headers[name]||[])[0];
               }
               if (getHeader("x-send-later-at")) {
+                SLTools.scheduledMsgCache.add(draftHdr.id);
                 return {
                   sendAt: getHeader("x-send-later-at"),
                   recur: getHeader("x-send-later-recur"),
@@ -1134,6 +1163,8 @@ messenger.runtime.onMessage.addListener(async (message, sender) => {
                   recipients: draftHdr.recipients,
                 }
               } else {
+                SLTools.unscheduledMsgCache.add(draftHdr.id);
+                SLTools.scheduledMsgCache.delete(draftHdr.id);
                 return null;
               }
             }
@@ -1185,24 +1216,26 @@ messenger.messages.onNewMailReceived.addListener((folder, messagelist) => {
       let inReplyTo = (rcvdMsg.headers["in-reply-to"]||[])[0];
       if (inReplyTo) {
         SLTools.forAllDrafts(async (draftHdr) => {
-          SLStatic.debug(
-            "Comparing", rcvdHdr, "to", draftHdr,
-            inReplyTo, "?=", `<${draftHdr.headerMessageId}>`
-          );
-          if (inReplyTo == `<${draftHdr.headerMessageId}>`) {
-            let cancelOnReply = await messenger.messages.getFull(draftHdr.id).then(
-              draftMsg => (draftMsg.headers["x-send-later-cancel-on-reply"]||[])[0]
+          if (!SLTools.unscheduledMsgCache.has(draftHdr.id)) {
+            SLStatic.debug(
+              "Comparing", rcvdHdr, "to", draftHdr,
+              inReplyTo, "?=", `<${draftHdr.headerMessageId}>`
             );
-            if (["true", "yes"].includes(cancelOnReply)) {
-              SLStatic.info(
-                `Received response to message ${inReplyTo}.`,
-                `Deleting scheduled draft ${draftHdr.id}`
+            if (inReplyTo == `<${draftHdr.headerMessageId}>`) {
+              let cancelOnReply = await messenger.messages.getFull(draftHdr.id).then(
+                draftMsg => (draftMsg.headers["x-send-later-cancel-on-reply"]||[])[0]
               );
-              messenger.messages.delete([draftHdr.id]).then(() => {
-                SLStatic.info("Deleted message", draftHdr.id);
-                SLTools.scheduledMsgCache.delete(draftHdr.id);
-                SLTools.unscheduledMsgCache.delete(draftHdr.id);
-              }).catch(SLStatic.error);
+              if (["true", "yes"].includes(cancelOnReply)) {
+                SLStatic.info(
+                  `Received response to message ${inReplyTo}.`,
+                  `Deleting scheduled draft ${draftHdr.id}`
+                );
+                messenger.messages.delete([draftHdr.id]).then(() => {
+                  SLStatic.info("Deleted message", draftHdr.id);
+                  SLTools.scheduledMsgCache.delete(draftHdr.id);
+                  SLTools.unscheduledMsgCache.delete(draftHdr.id);
+                }).catch(SLStatic.error);
+              }
             }
           }
         });
