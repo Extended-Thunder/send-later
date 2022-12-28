@@ -88,12 +88,12 @@ function init() {
   messenger.runtime.sendMessage({action: "getAllSchedules"}).then((res) => {
     res.schedules.sort(
       (a, b) => (new Date(a.sendAt)).getTime() - (new Date(b.sendAt)).getTime()
-    ).forEach((schedule) => {
+    ).forEach((msgData) => {
       document.getElementById("scheduleTable").appendChild(
         makeRow(
-          formatSchedule(schedule),
-          formatRecipientList(schedule.recipients, 15),
-          truncateString(schedule.subject, 40),
+          truncateString(formatSchedule(msgData), 40),
+          formatRecipientList(msgData.recipients, 15),
+          truncateString(msgData.subject, 40),
         )
       );
     });
