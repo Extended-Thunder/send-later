@@ -63,7 +63,7 @@ const SendLater = {
           return;
         }
       }
-      messenger.compose.sendMessage(tabId, {mode: "sendLater"});
+      await messenger.compose.sendMessage(tabId, {mode: "sendLater"});
     },
 
     // Sends composed message according to user function (specified
@@ -79,7 +79,7 @@ const SendLater = {
                         recurSpec: SLStatic.unparseRecurSpec(schedule.recur),
                         args: schedule.recur.args,
                         cancelOnReply: false };
-        SendLater.scheduleSendLater(tabId, options);
+        return SendLater.scheduleSendLater(tabId, options);
       }
     },
 
@@ -691,6 +691,10 @@ const SendLater = {
       }
     },
 
+    // This function sets the quit notifications to enabled or disabled. If enabled, it checks to see
+    // if there are any active scheduled messages. If there are, it sets the quit requested and quit
+    // granted alerts. If there are no active scheduled messages, it removes the quit requested and
+    // quit granted observers.
     async setQuitNotificationsEnabled(enabled, nActive) {
       SLStatic.debug(`Setting quit notifications: ${enabled ? "on" : "off"}`);
       if (enabled) {
@@ -713,23 +717,39 @@ const SendLater = {
     async init() {
       SLTools.printVersionInfo();
 
+      // Add listeners to the various events we care about
+      messenger.windows.onCreated.addListener(SendLater.onWindowCreatedListener);
+      messenger.SL3U.onKeyCode.addListener(SendLater.onUserCommandKeyListener);
+      messenger.runtime.onMessageExternal.addListener(SendLater.onMessageExternalListener);
+      messenger.runtime.onMessage.addListener(SendLater.onRuntimeMessageListenerasync);
+      messenger.messageDisplay.onMessageDisplayed.addListener(SendLater.onMessageDisplayedListener);
+      messenger.commands.onCommand.addListener(SendLater.onCommandListener);
+      messenger.composeAction.onClicked.addListener(SendLater.clickComposeListener);
+      messenger.mailTabs.onDisplayedFolderChanged.addListener(SendLater.displayedFolderChangedListener);
+      messenger.headerView.onHeaderRowUpdate.addListener(
+        SendLater.headerRowUpdateListener, messenger.i18n.getMessage("sendlater3header.label")
+      );
+      messenger.messages.onNewMailReceived.addListener(SendLater.onNewMailReceivedListener);
+
       // Set custom DB headers preference, if not already set.
       await messenger.SL3U.setCustomDBHeaders([
         "x-send-later-at", "x-send-later-recur", "x-send-later-args",
         "x-send-later-cancel-on-reply", "x-send-later-uuid", "content-type"
-      ]);
+      ]).catch(ex => {
+        SLStatic.error("SL3U.setCustomDBHeaders", ex);
+      });
 
       // Before preferences are available, let's set logging
       // to the default level.
       SLStatic.logConsoleLevel = "info";
 
       // Clear the current message settings cache
-      messenger.storage.local.set({ scheduleCache: {} });
+      await messenger.storage.local.set({ scheduleCache: {} });
 
       // Perform any pending preference migrations.
       await this.migratePreferences();
 
-      SLTools.getPrefs().then((preferences) => {
+      await SLTools.getPrefs().then(async (preferences) => {
         SendLater.prefCache = preferences;
         SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
         SLStatic.customizeDateTime = (preferences.customizeDateTime === true);
@@ -743,12 +763,11 @@ const SendLater = {
           messenger.columnHandler.setPreference(pref, preferences[pref]);
         }
 
-        SLTools.countActiveScheduledMessages().then(nActive => {
-          SendLater.updateStatusIndicator(nActive);
-          SendLater.setQuitNotificationsEnabled(preferences.askQuit, nActive);
-        });
+        let nActive = await SLTools.countActiveScheduledMessages();
+        await SendLater.updateStatusIndicator(nActive);
+        await SendLater.setQuitNotificationsEnabled(preferences.askQuit, nActive);
 
-        messenger.browserAction.setLabel({label: (
+        await messenger.browserAction.setLabel({label: (
           preferences.showStatus ? messenger.i18n.getMessage("sendlater3header.label") : ""
         )});
       }).catch(ex => SLStatic.error(ex));
@@ -757,11 +776,15 @@ const SendLater = {
       await messenger.columnHandler.addCustomColumn({
         name: messenger.i18n.getMessage("sendlater3header.label"),
         tooltip: "",
+      }).catch(ex => {
+        SLStatic.error("columnHandler.addCustomColumn",ex);
       });
 
       // Initialize expanded header row
       await messenger.headerView.addCustomHdrRow({
         name: messenger.i18n.getMessage("sendlater3header.label"),
+      }).catch(ex => {
+        SLStatic.error("headerView.addCustomHdrRow",ex);
       });
 
       // Attach to all existing msgcompose windows
@@ -773,524 +796,555 @@ const SendLater = {
         SLStatic.error("SL3U.forceToolbarVisible", ex);
       });
 
-      messenger.mailTabs.onDisplayedFolderChanged.addListener(async (tab, folder) => {
-        const preferences = await SLTools.getPrefs();
-        let visible = (folder.type == "drafts") && (preferences.showColumn === true);
-        let columnName = messenger.i18n.getMessage("sendlater3header.label");
-        await messenger.columnHandler.setColumnVisible(columnName, visible, tab.windowId);
-      });
-
-      let rowLabel = messenger.i18n.getMessage("sendlater3header.label");
-      messenger.headerView.onHeaderRowUpdate.addListener(async (hdr) => {
-        const preferences = await SLTools.getPrefs();
-        let msgParts = await messenger.messages.getFull(hdr.id);
-        let hdrs = {
-          "content-type": msgParts.contentType
-        };
-        for (let hdrName in msgParts.headers) {
-          hdrs[hdrName] = msgParts.headers[hdrName][0];
-        }
-        const { cellText } = SLStatic.customHdrToScheduleInfo(
-          hdrs, preferences.instanceUUID
-        );
-        const visible = (preferences.showHeader === true) && (cellText !== "");
-        return { text: cellText, visible };
-      }, rowLabel);
-
       // This listener should be added *after* all of the storage-related
-      // setup is complete. It ensures that subsequent changes to storage
+      // initialization is complete. It ensures that subsequent changes to storage
       // take effect immediately.
-      messenger.storage.onChanged.addListener((changes, areaName) => {
-        if (areaName === "local" && changes.preferences) {
-          SLStatic.debug("Propagating changes from local storage");
-          const preferences = changes.preferences.newValue;
-          SendLater.prefCache = preferences;
-          SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
+      messenger.storage.onChanged.addListener(SendLater.storageChangedListener);
+    },
 
-          for (let pref of ["customizeDateTime", "longDateTimeFormat", "shortDateTimeFormat", "instanceUUID"]) {
-            if (changes.preferences.oldValue[pref] !== preferences[pref]) {
-              SLStatic[pref] = preferences[pref];
-              messenger.columnHandler.setPreference(pref, preferences[pref]);
-              // messenger.columnHandler.invalidateAll();
-            }
-          }
+    storageChangedListener(changes, areaName) {
+      if (areaName === "local" && changes.preferences) {
+        SLStatic.debug("Propagating changes from local storage");
+        const preferences = changes.preferences.newValue;
+        SendLater.prefCache = preferences;
+        SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
 
-          messenger.SL3U.setLogConsoleLevel(SLStatic.logConsoleLevel);
-
-          SendLater.setQuitNotificationsEnabled(preferences.askQuit);
-
-          messenger.browserAction.setLabel({label: (
-            preferences.showStatus ? messenger.i18n.getMessage("sendlater3header.label") : ""
-          )});
-
-          // Note: It's possible to immediately obey a preference change if the
-          // user has decided to disable the send later column, but when the column
-          // is being enabled there isn't a simple way to tell whether we're in a
-          // drafts folder, so the user may need to navigate away and back to the
-          // folder before their preferences can fully take effect.
-          if (!preferences.showColumn) {
-            const columnName = messenger.i18n.getMessage("sendlater3header.label");
-            messenger.columnHandler.setColumnVisible(columnName, false);
+        for (let pref of ["customizeDateTime", "longDateTimeFormat", "shortDateTimeFormat", "instanceUUID"]) {
+          if (changes.preferences.oldValue[pref] !== preferences[pref]) {
+            SLStatic[pref] = preferences[pref];
+            messenger.columnHandler.setPreference(pref, preferences[pref]);
+            // messenger.columnHandler.invalidateAll();
           }
         }
-      });
-    }
-}; // End SendLater object
 
-// When user opens a new messagecompose window, we need to
-// do several things to ensure that it behaves as they expect.
-// namely, we need to override the window's send and sendlater
-// menu items, we need to ensure the toolbar is visible, and
-// we need to check whether they're editing a previously
-// scheduled draft.
-messenger.windows.onCreated.addListener(async (window) => {
-  if (window.type != "messageCompose") {
-    SLStatic.debug("Not a messageCompose window");
-    return;
-  }
+        messenger.SL3U.setLogConsoleLevel(SLStatic.logConsoleLevel);
 
-  // Wait for window to fully load
-  window = await messenger.windows.get(window.id, {populate: true});
-  SLStatic.info("Opened new window", window);
+        SendLater.setQuitNotificationsEnabled(preferences.askQuit);
 
-  // Ensure that the composeAction button is visible,
-  // otherwise the popup action will silently fail.
-  messenger.SL3U.forceToolbarVisible(window.id).catch(ex => {
-    SLStatic.error("SL3U.forceToolbarVisible", ex);
-  });
+        messenger.browserAction.setLabel({label: (
+          preferences.showStatus ? messenger.i18n.getMessage("sendlater3header.label") : ""
+        )});
 
-  // Bind listeners to overlay components like File>Send,
-  // Send Later, and keycodes like Ctrl+enter, etc.
-  messenger.SL3U.hijackComposeWindowKeyBindings(window.id).catch(ex => {
-    SLStatic.error("SL3U.hijackComposeWindowKeyBindings",ex);
-  });
+        // Note: It's possible to immediately obey a preference change if the
+        // user has decided to disable the send later column, but when the column
+        // is being enabled there isn't a simple way to tell whether we're in a
+        // drafts folder, so the user may need to navigate away and back to the
+        // folder before their preferences can fully take effect.
+        if (!preferences.showColumn) {
+          const columnName = messenger.i18n.getMessage("sendlater3header.label");
+          messenger.columnHandler.setColumnVisible(columnName, false, true);
+        }
+      }
+    },
 
-  let tab = window.tabs[0];
-  let cd = await messenger.compose.getComposeDetails(tab.id);
-  SLStatic.debug("Opened window with composeDetails", cd);
-
-  // Check if we're editing an existing draft message
-  if (cd.type != "draft") {
-    SLStatic.debug("Not editing an existing draft");
-    return;
-  }
-
-  let originalMsg = await messenger.SL3U.findAssociatedDraft(window.id).then(
-    m => m ? messenger.messages.getFull(m.id) : null
-  );
-  if (originalMsg) {
-    SLTools.scheduledMsgCache.delete(originalMsg.id);
-    SLTools.unscheduledMsgCache.add(originalMsg.id);
-
-    // Check if original message has x-send-later headers
-    if (originalMsg.headers.hasOwnProperty("x-send-later-at")) {
-      let { preferences, scheduleCache } = await messenger.storage.local.get(
-        { preferences: {}, scheduleCache: {} }
+    async headerRowUpdateListener(hdr) {
+      const preferences = await SLTools.getPrefs();
+      let msgParts = await messenger.messages.getFull(hdr.id);
+      let hdrs = {
+        "content-type": msgParts.contentType
+      };
+      for (let hdrName in msgParts.headers) {
+        hdrs[hdrName] = msgParts.headers[hdrName][0];
+      }
+      const { cellText } = SLStatic.customHdrToScheduleInfo(
+        hdrs, preferences.instanceUUID
       );
+      const visible = (preferences.showHeader === true) && (cellText !== "");
+      return { text: cellText, visible };
+    },
 
-      // Re-save message (drops x-send-later headers by default
-      // because they are not loaded when editing as draft).
-      messenger.compose.saveMessage(tab.id, {mode: "draft"}).then(
-        () => {
-          SLTools.scheduledMsgCache.delete(originalMsg.id);
-          SLTools.unscheduledMsgCache.add(originalMsg.id);
-          SendLater.updateStatusIndicator();
-        }
-      );
+    async displayedFolderChangedListener(tab, folder) {
+      const preferences = await SLTools.getPrefs();
+      let visible = (folder.type == "drafts") && (preferences.showColumn === true);
+      let columnName = messenger.i18n.getMessage("sendlater3header.label");
+      await messenger.columnHandler.setColumnVisible(columnName, visible, false);
+    },
 
-      // Set popup scheduler defaults based on original message
-      scheduleCache[window.id] =
-      SLStatic.parseHeadersForPopupUICache(originalMsg.headers);
-      SLStatic.debug(
-        `Schedule cache item added for window ${window.id}:`,
-        scheduleCache[window.id]
-      );
-      messenger.storage.local.set({ scheduleCache });
-
-      // Alert the user about what just happened
-      if (preferences.showEditAlert) {
-        let draftSaveWarning = messenger.i18n.getMessage("draftSaveWarning")
-        SLTools.alertCheck(
-          null, draftSaveWarning, null, true
-        ).then(async (result) => {
-          const preferences = await SLTools.getPrefs();
-          preferences.showEditAlert = result.check;
-          messenger.storage.local.set({ preferences });
-        });
-      }
-    }
-  }
-
-});
-
-// Custom events that are attached to user actions within
-// composition windows. These events occur when the user activates
-// the built-in send or send later using either key combinations
-// (e.g. ctrl+shift+enter), or click the file menu buttons.
-messenger.SL3U.onKeyCode.addListener(keyid => {
-  SLStatic.info(`Received keycode ${keyid}`);
-  switch (keyid) {
-    case "key_altShiftEnter": {
-      if (SendLater.prefCache.altBinding) {
-        SLStatic.info("Opening popup");
-        messenger.composeAction.openPopup();
-      } else {
-        SLStatic.info("Ignoring Alt+Shift+Enter on account of user preferences");
-      }
-      break;
-    }
-    case "key_sendLater":
-      { // User pressed ctrl+shift+enter
-        SLStatic.debug("Received Ctrl+Shift+Enter.");
-        if (SendLater.prefCache.altBinding) {
-          SLStatic.info("Passing Ctrl+Shift+Enter along to builtin send later " +
-                        "because user bound alt+shift+enter instead.");
-          SLTools.getActiveComposeTab().then(curTab => {
-            if (curTab)
-              messenger.compose.sendMessage(curTab.id, {mode: "sendLater"});
-          });
-        } else {
-          SLStatic.info("Opening popup");
-          messenger.composeAction.openPopup();
-        }
-        break;
-      }
-    case "cmd_sendLater":
-      { // User clicked the "Send Later" menu item, which should always
-        // open the Send Later popup.
-        messenger.composeAction.openPopup();
-        break;
-      }
-    case "cmd_sendNow":
-    case "cmd_sendButton":
-    case "key_send":
-      {
-        if (SendLater.prefCache.sendDoesSL) {
-          SLStatic.debug("Opening scheduler dialog.");
-          messenger.composeAction.openPopup();
-        } else if (SendLater.prefCache.sendDoesDelay) {
-          //Schedule with delay
-          const sendDelay = SendLater.prefCache.sendDelay;
-          SLStatic.info(`Scheduling Send Later ${sendDelay} minutes from now.`);
-          SLTools.getActiveComposeTab().then(curTab => {
-            if (curTab)
-              SendLater.scheduleSendLater(curTab.id, {delay: sendDelay});
-          });
-        } else {
-          SLTools.getActiveComposeTab().then(curTab => {
-            if (curTab)
-              messenger.compose.sendMessage(curTab.id, {mode: "sendNow"});
-          });
-        }
-        break;
-      }
-    default: {
-      SLStatic.error(`Unrecognized keycode ${keyid}`);
-    }
-  }
-});
-
-// Allow other extensions to access local preferences
-messenger.runtime.onMessageExternal.addListener(
-  (message, sender, sendResponse) => {
-    switch (message.action) {
-      case "getUUID": {
-        SLTools.getPrefs().then((preferences) => {
-            sendResponse(preferences.instanceUUID);
-        }).catch(ex => SLStatic.error(ex));
-        return true;
-      }
-      case "getPreferences": {
-        SLTools.getPrefs().then((preferences) => {
-          for (const prop in preferences) {
-            if (!SLStatic.prefInputIds.includes(prop)) {
-              delete preferences[prop];
-            }
-          }
-          sendResponse(preferences);
-        });
-        return true;
-      }
-      case "setPreferences": {
-        new_prefs = message.preferences;
-        SLTools.getPrefs().then((preferences) => {
-          old_prefs = preferences;
-          for (const prop in new_prefs) {
-            if (!SLStatic.prefInputIds.includes(prop)) {
-              throw `Property ${prop} is not a valid Send Later preference.`;
-            }
-            if (prop in old_prefs && typeof(old_prefs[prop]) != "undefined" &&
-                typeof(new_prefs[prop]) != "undefined" &&
-                typeof(old_prefs[prop]) != typeof(new_prefs[prop])) {
-              throw `Type of ${prop} is invalid: new ` +
-                `${typeof(new_prefs[prop])} vs. current ` +
-                `${typeof(old_prefs[prop])}.`;
-            }
-            old_prefs[prop] = new_prefs[prop];
-          }
-          messenger.storage.local.set({preferences}).then((result) => {
-            sendResponse(old_prefs)
-          });
-        });
-        return true;
-      }
-      case "parseDate": {
-        try {
-          const date = SLStatic.convertDate(message["value"]);
-          if (date) {
-            const dateStr = SLStatic.parseableDateTimeFormat(date.getTime());
-            sendResponse(dateStr);
-            return;
-          }
-        } catch (ex) {
-          SLStatic.debug("Unable to parse date/time",ex);
-        }
-        sendResponse(null);
+    // When user opens a new messagecompose window, we need to
+    // do several things to ensure that it behaves as they expect.
+    // namely, we need to override the window's send and sendlater
+    // menu items, we need to ensure the toolbar is visible, and
+    // we need to check whether they're editing a previously
+    // scheduled draft.
+    async onWindowCreatedListener(window) {
+      if (window.type != "messageCompose") {
+        SLStatic.debug("Not a messageCompose window");
         return;
       }
-      default: {
-        SLStatic.warn(`Unrecognized operation <${message.action}>.`);
-      }
-    }
-    sendResponse(null);
-  });
 
-// Various extension components communicate with
-// the background script via these runtime messages.
-// e.g. the options page and the scheduler dialog.
-messenger.runtime.onMessage.addListener(async (message, sender) => {
+      // Wait for window to fully load
+      window = await messenger.windows.get(window.id, {populate: true});
+      SLStatic.info("Opened new window", window);
 
-  if (sender.tab) {
-    // If this tab was associated with a popup, then process
-    // its callback and return early. If it was not associated
-    // with a popup, then the handlePopupCallback method will
-    // return false.
-    if (SLTools.handlePopupCallback(sender.tab.id, message)) {
-      return;
-    }
-  }
+      // Ensure that the composeAction button is visible,
+      // otherwise the popup action will silently fail.
+      messenger.SL3U.forceToolbarVisible(window.id).catch(ex => {
+        SLStatic.error("SL3U.forceToolbarVisible", ex);
+      });
 
-  const response = {};
-  switch (message.action) {
-    case "alert": {
-      SLTools.alert(message.title, message.text);
-      break;
-    }
-    case "doSendNow": {
-      SLStatic.debug("User requested send immediately.");
-      SendLater.doSendNow(message.tabId);
-      break;
-    }
-    case "doPlaceInOutbox": {
-      SLStatic.debug("User requested system send later.");
-      SendLater.doPlaceInOutbox(message.tabId);
-      break;
-    }
-    case "doSendLater": {
-      SLStatic.debug("User requested send later.");
-      const options = { sendAt: message.sendAt,
-                        recurSpec: message.recurSpec,
-                        args: message.args,
-                        cancelOnReply: message.cancelOnReply };
-      SendLater.scheduleSendLater(message.tabId, options);
-      break;
-    }
-    case "getMainLoopStatus": {
-      response.previousLoop = SendLater.previousLoop.getTime();
-      response.loopMinutes = SendLater.loopMinutes;
-      break;
-    }
-    case "getScheduleText": {
-      try {
-        const dispMsgHdr =
-          await messenger.messageDisplay.getDisplayedMessage(message.tabId);
-        const fullMsg = await messenger.messages.getFull(dispMsgHdr.id);
+      // Bind listeners to overlay components like File>Send,
+      // Send Later, and keycodes like Ctrl+enter, etc.
+      messenger.SL3U.hijackComposeWindowKeyBindings(window.id).catch(ex => {
+        SLStatic.error("SL3U.hijackComposeWindowKeyBindings",ex);
+      });
 
-        const preferences = await SLTools.getPrefs();
+      let tab = window.tabs[0];
+      let cd = await messenger.compose.getComposeDetails(tab.id);
+      SLStatic.debug("Opened window with composeDetails", cd);
 
-        const msgContentType = fullMsg.contentType;
-        const msgSendAt = (fullMsg.headers["x-send-later-at"]||[])[0];
-        const msgUuid = (fullMsg.headers["x-send-later-uuid"]||[])[0];
-        const msgRecur = (fullMsg.headers["x-send-later-recur"]||[])[0];
-        const msgArgs = (fullMsg.headers["x-send-later-args"]||[])[0];
-        const msgCancelOnReply = (fullMsg.headers["x-send-later-cancel-on-reply"]||[])[0];
-
-        if (!msgSendAt) {
-          response.err = "Message is not scheduled by Send Later.";
-          break;
-        } else if (msgUuid !== preferences.instanceUUID) {
-          response.err = messenger.i18n.getMessage("incorrectUUID");
-          break;
-        } else if (msgContentType && (/encrypted/i).test(msgContentType)) {
-          response.err = messenger.i18n.getMessage("EncryptionIncompatText");
-          break;
-        }
-
-        const sendAt = new Date(msgSendAt);
-        const recurSpec = (msgRecur || "none");
-        const recur = SLStatic.parseRecurSpec(recurSpec);
-        recur.cancelOnReply = ["true", "yes"].includes(msgCancelOnReply);
-        recur.args = msgArgs;
-        response.scheduleTxt = SLStatic.formatScheduleForUI(
-          { sendAt, recur }, SendLater.previousLoop, SendLater.loopMinutes
-        );
-      } catch (ex) {
-        response.err = ex.message;
+      // Check if we're editing an existing draft message
+      if (cd.type != "draft") {
+        SLStatic.debug("Not editing an existing draft");
+        return;
       }
 
-      break;
-    }
-    case "getAllSchedules": {
-      response.schedules = await SLTools.forAllDrafts(
-        async (draftHdr) => {
-          if (SLTools.unscheduledMsgCache.has(draftHdr.id)) {
-            console.debug("Ignoring unscheduled message", draftHdr.id, draftHdr);
-            return null;
-          }
-          return await messenger.messages.getFull(draftHdr.id).then(
-            draftMsg => {
-              function getHeader(name) {
-                return (draftMsg.headers[name]||[])[0];
-              }
-              if (getHeader("x-send-later-at")) {
-                SLTools.scheduledMsgCache.add(draftHdr.id);
-                return {
-                  sendAt: getHeader("x-send-later-at"),
-                  recur: getHeader("x-send-later-recur"),
-                  args: getHeader("x-send-later-args"),
-                  cancel: getHeader("x-send-later-cancel-on-reply"),
-                  subject: draftHdr.subject,
-                  recipients: draftHdr.recipients,
-                }
-              } else {
-                SLTools.unscheduledMsgCache.add(draftHdr.id);
-                SLTools.scheduledMsgCache.delete(draftHdr.id);
-                return null;
-              }
+      let originalMsg = await messenger.SL3U.findAssociatedDraft(window.id).then(
+        m => m ? messenger.messages.getFull(m.id) : null
+      );
+      if (originalMsg) {
+        SLTools.scheduledMsgCache.delete(originalMsg.id);
+        SLTools.unscheduledMsgCache.add(originalMsg.id);
+
+        // Check if original message has x-send-later headers
+        if (originalMsg.headers.hasOwnProperty("x-send-later-at")) {
+          let { preferences, scheduleCache } = await messenger.storage.local.get(
+            { preferences: {}, scheduleCache: {} }
+          );
+
+          // Re-save message (drops x-send-later headers by default
+          // because they are not loaded when editing as draft).
+          messenger.compose.saveMessage(tab.id, {mode: "draft"}).then(
+            () => {
+              SLTools.scheduledMsgCache.delete(originalMsg.id);
+              SLTools.unscheduledMsgCache.add(originalMsg.id);
+              SendLater.updateStatusIndicator();
             }
           );
-        },
-        false // non-sequential
-      ).then((r) => r.filter(x => x != null));
-      break;
-    }
-    case "showPreferences": {
-      messenger.runtime.openOptionsPage();
-      break;
-    }
-    case "showUserGuide": {
-      messenger.windows.openDefaultBrowser('https://extended-thunder.github.io/send-later/');
-      break;
-    }
-    case "showReleaseNotes": {
-      messenger.windows.openDefaultBrowser("https://github.com/Extended-Thunder/send-later/releases");
-      break;
-    }
-    case "contactAuthor": {
-      messenger.windows.openDefaultBrowser("https://github.com/Extended-Thunder/send-later/discussions/278");
-      break;
-    }
-    case "donateLink": {
-      messenger.windows.openDefaultBrowser("https://extended-thunder.github.io/send-later/#support-send-later");
-      break;
-    }
-    default: {
-      SLStatic.warn(`Unrecognized operation <${message.action}>.`);
-    }
-  }
-  return response;
-});
 
-// Listen for incoming messages, and check if they are in reponse to a scheduled
-// message with a 'cancel-on-reply' header.
-messenger.messages.onNewMailReceived.addListener((folder, messagelist) => {
-  if (["sent", "trash", "templates", "archives", "junk", "outbox"].includes(folder.type)) {
-    SLStatic.debug(`Skipping onNewMailReceived for folder type ${folder.type}`);
-    return;
-  }
-  SLStatic.debug("Received messags in folder", folder, ":", messagelist);
+          // Set popup scheduler defaults based on original message
+          scheduleCache[window.id] =
+          SLStatic.parseHeadersForPopupUICache(originalMsg.headers);
+          SLStatic.debug(
+            `Schedule cache item added for window ${window.id}:`,
+            scheduleCache[window.id]
+          );
+          messenger.storage.local.set({ scheduleCache });
 
-  for (let rcvdHdr of messagelist.messages) {
-    messenger.messages.getFull(rcvdHdr.id).then((rcvdMsg) => {
-      SLStatic.debug("Got message", rcvdHdr, rcvdMsg);
-      let inReplyTo = (rcvdMsg.headers["in-reply-to"]||[])[0];
-      if (inReplyTo) {
-        SLTools.forAllDrafts(async (draftHdr) => {
-          if (!SLTools.unscheduledMsgCache.has(draftHdr.id)) {
-            SLStatic.debug(
-              "Comparing", rcvdHdr, "to", draftHdr,
-              inReplyTo, "?=", `<${draftHdr.headerMessageId}>`
-            );
-            if (inReplyTo == `<${draftHdr.headerMessageId}>`) {
-              let cancelOnReply = await messenger.messages.getFull(draftHdr.id).then(
-                draftMsg => (draftMsg.headers["x-send-later-cancel-on-reply"]||[])[0]
-              );
-              if (["true", "yes"].includes(cancelOnReply)) {
-                SLStatic.info(
-                  `Received response to message ${inReplyTo}.`,
-                  `Deleting scheduled draft ${draftHdr.id}`
-                );
-                messenger.messages.delete([draftHdr.id]).then(() => {
-                  SLStatic.info("Deleted message", draftHdr.id);
-                  SLTools.scheduledMsgCache.delete(draftHdr.id);
-                  SLTools.unscheduledMsgCache.delete(draftHdr.id);
-                }).catch(SLStatic.error);
+          // Alert the user about what just happened
+          if (preferences.showEditAlert) {
+            let draftSaveWarning = messenger.i18n.getMessage("draftSaveWarning")
+            SLTools.alertCheck(
+              null, draftSaveWarning, null, true
+            ).then(async (result) => {
+              const preferences = await SLTools.getPrefs();
+              preferences.showEditAlert = result.check;
+              messenger.storage.local.set({ preferences });
+            });
+          }
+        }
+      }
+    },
+
+    // Custom events that are attached to user actions within
+    // composition windows. These events occur when the user activates
+    // the built-in send or send later using either key combinations
+    // (e.g. ctrl+shift+enter), or click the file menu buttons.
+    onUserCommandKeyListener(keyid) {
+      SLStatic.info(`Received keycode ${keyid}`);
+      switch (keyid) {
+        case "key_altShiftEnter": {
+          if (SendLater.prefCache.altBinding) {
+            SLStatic.info("Opening popup");
+            messenger.composeAction.openPopup();
+          } else {
+            SLStatic.info("Ignoring Alt+Shift+Enter on account of user preferences");
+          }
+          break;
+        }
+        case "key_sendLater":
+          { // User pressed ctrl+shift+enter
+            SLStatic.debug("Received Ctrl+Shift+Enter.");
+            if (SendLater.prefCache.altBinding) {
+              SLStatic.info("Passing Ctrl+Shift+Enter along to builtin send later " +
+                            "because user bound alt+shift+enter instead.");
+              SLTools.getActiveComposeTab().then(curTab => {
+                if (curTab)
+                  messenger.compose.sendMessage(curTab.id, {mode: "sendLater"});
+              });
+            } else {
+              SLStatic.info("Opening popup");
+              messenger.composeAction.openPopup();
+            }
+            break;
+          }
+        case "cmd_sendLater":
+          { // User clicked the "Send Later" menu item, which should always
+            // open the Send Later popup.
+            messenger.composeAction.openPopup();
+            break;
+          }
+        case "cmd_sendNow":
+        case "cmd_sendButton":
+        case "key_send":
+          {
+            if (SendLater.prefCache.sendDoesSL) {
+              SLStatic.debug("Opening scheduler dialog.");
+              messenger.composeAction.openPopup();
+            } else if (SendLater.prefCache.sendDoesDelay) {
+              //Schedule with delay
+              const sendDelay = SendLater.prefCache.sendDelay;
+              SLStatic.info(`Scheduling Send Later ${sendDelay} minutes from now.`);
+              SLTools.getActiveComposeTab().then(curTab => {
+                if (curTab)
+                  SendLater.scheduleSendLater(curTab.id, {delay: sendDelay});
+              });
+            } else {
+              SLTools.getActiveComposeTab().then(curTab => {
+                if (curTab)
+                  messenger.compose.sendMessage(curTab.id, {mode: "sendNow"});
+              });
+            }
+            break;
+          }
+        default: {
+          SLStatic.error(`Unrecognized keycode ${keyid}`);
+        }
+      }
+    },
+
+    // Allow other extensions to access local preferences
+    onMessageExternalListener(message, sender, sendResponse) {
+      switch (message.action) {
+        case "getUUID": {
+          SLTools.getPrefs().then((preferences) => {
+              sendResponse(preferences.instanceUUID);
+          }).catch(ex => SLStatic.error(ex));
+          return true;
+        }
+        case "getPreferences": {
+          SLTools.getPrefs().then((preferences) => {
+            for (const prop in preferences) {
+              if (!SLStatic.prefInputIds.includes(prop)) {
+                delete preferences[prop];
               }
             }
+            sendResponse(preferences);
+          });
+          return true;
+        }
+        case "setPreferences": {
+          new_prefs = message.preferences;
+          SLTools.getPrefs().then((preferences) => {
+            old_prefs = preferences;
+            for (const prop in new_prefs) {
+              if (!SLStatic.prefInputIds.includes(prop)) {
+                throw `Property ${prop} is not a valid Send Later preference.`;
+              }
+              if (prop in old_prefs && typeof(old_prefs[prop]) != "undefined" &&
+                  typeof(new_prefs[prop]) != "undefined" &&
+                  typeof(old_prefs[prop]) != typeof(new_prefs[prop])) {
+                throw `Type of ${prop} is invalid: new ` +
+                  `${typeof(new_prefs[prop])} vs. current ` +
+                  `${typeof(old_prefs[prop])}.`;
+              }
+              old_prefs[prop] = new_prefs[prop];
+            }
+            messenger.storage.local.set({preferences}).then((result) => {
+              sendResponse(old_prefs)
+            });
+          });
+          return true;
+        }
+        case "parseDate": {
+          try {
+            const date = SLStatic.convertDate(message["value"]);
+            if (date) {
+              const dateStr = SLStatic.parseableDateTimeFormat(date.getTime());
+              sendResponse(dateStr);
+              return;
+            }
+          } catch (ex) {
+            SLStatic.debug("Unable to parse date/time",ex);
+          }
+          sendResponse(null);
+          return;
+        }
+        default: {
+          SLStatic.warn(`Unrecognized operation <${message.action}>.`);
+        }
+      }
+      sendResponse(null);
+    },
+
+    // Various extension components communicate with
+    // the background script via these runtime messages.
+    // e.g. the options page and the scheduler dialog.
+    async onRuntimeMessageListenerasync(message, sender) {
+
+      if (sender.tab) {
+        // If this tab was associated with a popup, then process
+        // its callback and return early. If it was not associated
+        // with a popup, then the handlePopupCallback method will
+        // return false.
+        if (SLTools.handlePopupCallback(sender.tab.id, message)) {
+          return;
+        }
+      }
+
+      const response = {};
+      switch (message.action) {
+        case "alert": {
+          SLTools.alert(message.title, message.text);
+          break;
+        }
+        case "doSendNow": {
+          SLStatic.debug("User requested send immediately.");
+          SendLater.doSendNow(message.tabId);
+          break;
+        }
+        case "doPlaceInOutbox": {
+          SLStatic.debug("User requested system send later.");
+          SendLater.doPlaceInOutbox(message.tabId);
+          break;
+        }
+        case "doSendLater": {
+          SLStatic.debug("User requested send later.");
+          const options = { sendAt: message.sendAt,
+                            recurSpec: message.recurSpec,
+                            args: message.args,
+                            cancelOnReply: message.cancelOnReply };
+          SendLater.scheduleSendLater(message.tabId, options);
+          break;
+        }
+        case "getMainLoopStatus": {
+          response.previousLoop = SendLater.previousLoop.getTime();
+          response.loopMinutes = SendLater.loopMinutes;
+          break;
+        }
+        case "getScheduleText": {
+          try {
+            const dispMsgHdr =
+              await messenger.messageDisplay.getDisplayedMessage(message.tabId);
+            const fullMsg = await messenger.messages.getFull(dispMsgHdr.id);
+
+            const preferences = await SLTools.getPrefs();
+
+            const msgContentType = fullMsg.contentType;
+            const msgSendAt = (fullMsg.headers["x-send-later-at"]||[])[0];
+            const msgUuid = (fullMsg.headers["x-send-later-uuid"]||[])[0];
+            const msgRecur = (fullMsg.headers["x-send-later-recur"]||[])[0];
+            const msgArgs = (fullMsg.headers["x-send-later-args"]||[])[0];
+            const msgCancelOnReply = (fullMsg.headers["x-send-later-cancel-on-reply"]||[])[0];
+
+            if (!msgSendAt) {
+              response.err = "Message is not scheduled by Send Later.";
+              break;
+            } else if (msgUuid !== preferences.instanceUUID) {
+              response.err = messenger.i18n.getMessage("incorrectUUID");
+              break;
+            } else if (msgContentType && (/encrypted/i).test(msgContentType)) {
+              response.err = messenger.i18n.getMessage("EncryptionIncompatText");
+              break;
+            }
+
+            const sendAt = new Date(msgSendAt);
+            const recurSpec = (msgRecur || "none");
+            const recur = SLStatic.parseRecurSpec(recurSpec);
+            recur.cancelOnReply = ["true", "yes"].includes(msgCancelOnReply);
+            recur.args = msgArgs;
+            response.scheduleTxt = SLStatic.formatScheduleForUI(
+              { sendAt, recur }, SendLater.previousLoop, SendLater.loopMinutes
+            );
+          } catch (ex) {
+            response.err = ex.message;
+          }
+
+          break;
+        }
+        case "getAllSchedules": {
+          response.schedules = await SLTools.forAllDrafts(
+            async (draftHdr) => {
+              if (SLTools.unscheduledMsgCache.has(draftHdr.id)) {
+                console.debug("Ignoring unscheduled message", draftHdr.id, draftHdr);
+                return null;
+              }
+              return await messenger.messages.getFull(draftHdr.id).then(
+                draftMsg => {
+                  function getHeader(name) {
+                    return (draftMsg.headers[name]||[])[0];
+                  }
+                  if (getHeader("x-send-later-at")) {
+                    SLTools.scheduledMsgCache.add(draftHdr.id);
+                    return {
+                      sendAt: getHeader("x-send-later-at"),
+                      recur: getHeader("x-send-later-recur"),
+                      args: getHeader("x-send-later-args"),
+                      cancel: getHeader("x-send-later-cancel-on-reply"),
+                      subject: draftHdr.subject,
+                      recipients: draftHdr.recipients,
+                    }
+                  } else {
+                    SLTools.unscheduledMsgCache.add(draftHdr.id);
+                    SLTools.scheduledMsgCache.delete(draftHdr.id);
+                    return null;
+                  }
+                }
+              );
+            },
+            false // non-sequential
+          ).then((r) => r.filter(x => x != null));
+          break;
+        }
+        case "showPreferences": {
+          messenger.runtime.openOptionsPage();
+          break;
+        }
+        case "showUserGuide": {
+          messenger.windows.openDefaultBrowser('https://extended-thunder.github.io/send-later/');
+          break;
+        }
+        case "showReleaseNotes": {
+          messenger.windows.openDefaultBrowser("https://github.com/Extended-Thunder/send-later/releases");
+          break;
+        }
+        case "contactAuthor": {
+          messenger.windows.openDefaultBrowser("https://github.com/Extended-Thunder/send-later/discussions/278");
+          break;
+        }
+        case "donateLink": {
+          messenger.windows.openDefaultBrowser("https://extended-thunder.github.io/send-later/#support-send-later");
+          break;
+        }
+        default: {
+          SLStatic.warn(`Unrecognized operation <${message.action}>.`);
+        }
+      }
+      return response;
+    },
+
+    // Listen for incoming messages, and check if they are in reponse to a scheduled
+    // message with a 'cancel-on-reply' header.
+    onNewMailReceivedListener(folder, messagelist) {
+      if (["sent", "trash", "templates", "archives", "junk", "outbox"].includes(folder.type)) {
+        SLStatic.debug(`Skipping onNewMailReceived for folder type ${folder.type}`);
+        return;
+      }
+      SLStatic.debug("Received messags in folder", folder, ":", messagelist);
+
+      for (let rcvdHdr of messagelist.messages) {
+        messenger.messages.getFull(rcvdHdr.id).then((rcvdMsg) => {
+          SLStatic.debug("Got message", rcvdHdr, rcvdMsg);
+          let inReplyTo = (rcvdMsg.headers["in-reply-to"]||[])[0];
+          if (inReplyTo) {
+            SLTools.forAllDrafts(async (draftHdr) => {
+              if (!SLTools.unscheduledMsgCache.has(draftHdr.id)) {
+                SLStatic.debug(
+                  "Comparing", rcvdHdr, "to", draftHdr,
+                  inReplyTo, "?=", `<${draftHdr.headerMessageId}>`
+                );
+                if (inReplyTo == `<${draftHdr.headerMessageId}>`) {
+                  let cancelOnReply = await messenger.messages.getFull(draftHdr.id).then(
+                    draftMsg => (draftMsg.headers["x-send-later-cancel-on-reply"]||[])[0]
+                  );
+                  if (["true", "yes"].includes(cancelOnReply)) {
+                    SLStatic.info(
+                      `Received response to message ${inReplyTo}.`,
+                      `Deleting scheduled draft ${draftHdr.id}`
+                    );
+                    messenger.messages.delete([draftHdr.id]).then(() => {
+                      SLStatic.info("Deleted message", draftHdr.id);
+                      SLTools.scheduledMsgCache.delete(draftHdr.id);
+                      SLTools.unscheduledMsgCache.delete(draftHdr.id);
+                    }).catch(SLStatic.error);
+                  }
+                }
+              }
+            });
           }
         });
       }
-    });
-  }
-});
+    },
 
-// When a new message is displayed, check whether it is scheduled and
-// choose whether to show the messageDisplayAction button.
-messenger.messageDisplay.onMessageDisplayed.addListener(async (tab, hdr) => {
-  await messenger.messageDisplayAction.disable(tab.id);
-  if (hdr.folder.type == "drafts") {
-    const preferences = await SLTools.getPrefs();
-    const instanceUUID = preferences.instanceUUID;
-    let msg = await messenger.messages.getFull(hdr.id);
-    if (msg.headers["x-send-later-uuid"] == instanceUUID) {
-      messenger.messageDisplayAction.enable(tab.id);
+    // When a new message is displayed, check whether it is scheduled and
+    // choose whether to show the messageDisplayAction button.
+    async onMessageDisplayedListener(tab, hdr) {
+      await messenger.messageDisplayAction.disable(tab.id);
+      if (hdr.folder.type == "drafts") {
+        const preferences = await SLTools.getPrefs();
+        const instanceUUID = preferences.instanceUUID;
+        let msg = await messenger.messages.getFull(hdr.id);
+        if (msg.headers["x-send-later-uuid"] == instanceUUID) {
+          messenger.messageDisplayAction.enable(tab.id);
+        }
+      } else {
+        SLStatic.debug("This is not a Drafts folder, so Send Later will not scan it.");
+      }
+    },
+
+    // Global key shortcuts (defined in manifest) are handled here.
+    async onCommandListener(cmd) {
+      const cmdId = (/send-later-shortcut-([123])/.exec(cmd))[1];
+
+      if (["1","2","3"].includes(cmdId)) {
+        const preferences = await SLTools.getPrefs();
+        const funcName = preferences[`quickOptions${cmdId}funcselect`];
+        const funcArgs = preferences[`quickOptions${cmdId}Args`];
+        SLStatic.info(`Executing shortcut ${cmdId}: ${funcName}(${funcArgs})`);
+        SendLater.quickSendWithUfunc(funcName, funcArgs);
+      }
+    },
+
+    // Compose action button (emulate accelerator keys)
+    async clickComposeListener(tab, info) {
+      let mod = (info.modifiers.length === 1) ? info.modifiers[0] : undefined;
+      if (mod === "Command") // MacOS compatibility
+        mod = "Ctrl";
+
+      if (["Ctrl", "Shift"].includes(mod)) {
+        const preferences = await SLTools.getPrefs();
+        const funcName = preferences[`accel${mod}funcselect`];
+        const funcArgs = preferences[`accel${mod}Args`];
+        SLStatic.info(`Executing accelerator Click+${mod}: ${funcName}(${funcArgs})`);
+        SendLater.quickSendWithUfunc(funcName, funcArgs, tab.id);
+      } else {
+        messenger.composeAction.setPopup({"popup": "ui/popup.html"});
+        messenger.composeAction.openPopup();
+        messenger.composeAction.setPopup({"popup": null});
+      }
+    },
+
+    // Fully disable the extension without actually removing it. The UI elements will still be
+    // visible, but they will be disabled and show a message indicating that the extension is
+    // disabled. This is important for cases where the extension failed to fully intialize, so
+    // that the user doesn't get a false impression that the extension is working.
+    disable() {
+      SLStatic.warn("Disabling Send Later.");
+      SLStatic.nofail(clearTimeout, SendLater.loopTimeout);
+      SLStatic.nofail(SendLater.setQuitNotificationsEnabled, false);
+      SLStatic.nofail(messenger.browserAction.disable);
+      SLStatic.nofail(messenger.browserAction.setTitle, {
+        title: `${messenger.i18n.getMessage("extensionName")} [${messenger.i18n.getMessage("DisabledMessage")}]`
+      });
+      SLStatic.nofail(messenger.browserAction.setBadgeText, {text: null});
+      SLStatic.nofail(messenger.composeAction.disable);
+      SLStatic.nofail(messenger.composeAction.setPopup, {"popup": null});
+      SLStatic.nofail(messenger.messageDisplayAction.disable);
+      SLStatic.nofail(messenger.messageDisplayAction.setPopup, {"popup": null});
+      SLStatic.nofail(messenger.windows.onCreated.removeListener, SendLater.onWindowCreatedListener);
+      SLStatic.nofail(messenger.SL3U.onKeyCode.removeListener, SendLater.onUserCommandKeyListener);
+      SLStatic.nofail(messenger.runtime.onMessageExternal.removeListener, SendLater.onMessageExternalListener);
+      SLStatic.nofail(messenger.runtime.onMessage.removeListener, SendLater.onRuntimeMessageListenerasync);
+      SLStatic.nofail(messenger.messages.onNewMailReceived.removeListener, SendLater.onNewMailReceivedListener);
+      SLStatic.nofail(messenger.messageDisplay.onMessageDisplayed.removeListener, SendLater.onMessageDisplayedListener);
+      SLStatic.nofail(messenger.commands.onCommand.removeListener, SendLater.onCommandListener);
+      SLStatic.nofail(messenger.composeAction.onClicked.removeListener, SendLater.clickComposeListener);
+      SLStatic.nofail(messenger.mailTabs.onDisplayedFolderChanged.removeListener, SendLater.displayedFolderChangedListener);
+      SLStatic.nofail(messenger.headerView.onHeaderRowUpdate.removeListener, SendLater.headerRowUpdateListener);
+      SLStatic.nofail(messenger.storage.onChanged.removeListener, SendLater.storageChangedListener);
+      SLStatic.warn("Disabled.");
     }
-  } else {
-    SLStatic.debug("This is not a Drafts folder, so Send Later will not scan it.");
-  }
-});
 
-// Global key shortcuts (defined in manifest)
-messenger.commands.onCommand.addListener(async (cmd) => {
-  const cmdId = (/send-later-shortcut-([123])/.exec(cmd))[1];
-
-  if (["1","2","3"].includes(cmdId)) {
-    const preferences = await SLTools.getPrefs();
-    const funcName = preferences[`quickOptions${cmdId}funcselect`];
-    const funcArgs = preferences[`quickOptions${cmdId}Args`];
-    SLStatic.info(`Executing shortcut ${cmdId}: ${funcName}(${funcArgs})`);
-    SendLater.quickSendWithUfunc(funcName, funcArgs);
-  }
-});
-
-// Compose action button (emulate accelerator keys)
-messenger.composeAction.onClicked.addListener(async (tab, info) => {
-  let mod = (info.modifiers.length === 1) ? info.modifiers[0] : undefined;
-  if (mod === "Command") // MacOS compatibility
-    mod = "Ctrl";
-
-  if (["Ctrl", "Shift"].includes(mod)) {
-    const preferences = await SLTools.getPrefs();
-    const funcName = preferences[`accel${mod}funcselect`];
-    const funcArgs = preferences[`accel${mod}Args`];
-    SLStatic.info(`Executing accelerator Click+${mod}: ${funcName}(${funcArgs})`);
-    SendLater.quickSendWithUfunc(funcName, funcArgs, tab.id);
-  } else {
-    messenger.composeAction.setPopup({"popup": "ui/popup.html"});
-		messenger.composeAction.openPopup();
-		messenger.composeAction.setPopup({"popup": null});
-  }
-});
+}; // End SendLater object
 
 function mainLoop() {
   SLStatic.debug("Entering main loop.");
@@ -1357,4 +1411,9 @@ function mainLoop() {
   });
 }
 
-SendLater.init().then(mainLoop);
+SendLater.init().then(mainLoop).catch(
+  err => {
+    console.error("Error initializing Send Later", err);
+    SendLater.disable();
+  }
+);
