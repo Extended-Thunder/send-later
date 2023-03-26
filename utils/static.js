@@ -68,6 +68,16 @@ var SLStatic = {
     this.trace = logThreshold("trace") ? console.trace : ()=>{};
   },
 
+  // Run a function and report any errors to the console, but don't let the error
+  // propagate to the caller.
+  nofail(func, ...args) {
+    if (func[Symbol.toStringTag] === "AsyncFunction") {
+      func(...args).catch(console.error);
+    } else {
+      try { func(...args) } catch (e) { console.error(e) }
+    }
+  },
+
   get customizeDateTime() {
     if (this._customizeDateTime === null) {
       this.cachePrefs().catch(console.error);
