@@ -1669,6 +1669,7 @@ a previous version of Send Later, but most of it should still apply.
 Support Send Later!
 ------------------------------------
 
+<!--
 I have dedicated countless hours to developing and supporting Send Later. I
 believe in free software, and the add-on will be completely free for as long as
 I continue to maintain it, which will be, I hope, for a good long time. Having
@@ -1678,6 +1679,7 @@ them. Please use one of the buttons to the left to send a donation. You can also
 
 A donation of \$10 or more makes you eligible for listing, including a link,
 banner, or button if you'd like, on the [supporters list](#supporters)!
+-->
 
 A non-monetary way you can help is by
 [writing a review](https://addons.thunderbird.net/thunderbird/addon/send-later-3/reviews/add "Review Send Later").
