@@ -391,7 +391,7 @@ const SendLater = {
 
             if (success) {
               SLStatic.debug(`Rescheduled message ${originalMsgId}. Deleting original.`);
-              messenger.messages.delete([msgHdr.id], true).then(() => {
+              await messenger.messages.delete([msgHdr.id], true).then(() => {
                 SLStatic.info("Deleted message", msgHdr.id);
                 SLTools.scheduledMsgCache.delete(msgHdr.id);
                 SLTools.unscheduledMsgCache.delete(msgHdr.id);
@@ -420,7 +420,7 @@ const SendLater = {
 
       if (success) {
         lock[msgLockId] = true;
-        messenger.storage.local.set({ lock }).then(() => {
+        await messenger.storage.local.set({ lock }).then(() => {
           SLStatic.debug(`Locked message <${msgLockId}> from re-sending.`);
         });
         if (preferences.throttleDelay) {
@@ -521,7 +521,7 @@ const SendLater = {
         if (success) {
           SLStatic.info(`Scheduled next occurrence of message ` +
             `<${originalMsgId}>. Deleting original.`);
-          messenger.messages.delete([msgHdr.id], true).then(() => {
+          await messenger.messages.delete([msgHdr.id], true).then(() => {
             SLStatic.info("Deleted message", msgHdr.id);
             SLTools.scheduledMsgCache.delete(msgHdr.id);
             SLTools.unscheduledMsgCache.delete(msgHdr.id);
@@ -534,7 +534,7 @@ const SendLater = {
         SLStatic.info(
           `No recurrences for message <${originalMsgId}>. Deleting original.`
         );
-        messenger.messages.delete([msgHdr.id], true).then(() => {
+        await messenger.messages.delete([msgHdr.id], true).then(() => {
           SLStatic.info("Deleted message", msgHdr.id);
           SLTools.scheduledMsgCache.delete(msgHdr.id);
           SLTools.unscheduledMsgCache.delete(msgHdr.id);
@@ -913,14 +913,12 @@ const SendLater = {
 
           // Re-save message (drops x-send-later headers by default
           // because they are not loaded when editing as draft).
-          messenger.compose.saveMessage(tab.id, {mode: "draft"}).then(
-            () => {
-              SLTools.scheduledMsgCache.delete(originalMsg.id);
-              SLTools.unscheduledMsgCache.add(originalMsg.id);
-              SendLater.updateStatusIndicator();
-            }
-          );
-
+          // TODO: Not using the return value of saveMessage() ???
+          await messenger.compose.saveMessage(tab.id, {mode: "draft"});
+          SLTools.scheduledMsgCache.delete(originalMsg.id);
+          SLTools.unscheduledMsgCache.add(originalMsg.id);
+          SendLater.updateStatusIndicator();
+    
           // Set popup scheduler defaults based on original message
           scheduleCache[window.id] =
           SLStatic.parseHeadersForPopupUICache(originalMsg.headers);
@@ -932,14 +930,11 @@ const SendLater = {
 
           // Alert the user about what just happened
           if (preferences.showEditAlert) {
-            let draftSaveWarning = messenger.i18n.getMessage("draftSaveWarning")
-            SLTools.alertCheck(
-              null, draftSaveWarning, null, true
-            ).then(async (result) => {
-              const preferences = await SLTools.getPrefs();
-              preferences.showEditAlert = result.check;
-              messenger.storage.local.set({ preferences });
-            });
+            let draftSaveWarning = messenger.i18n.getMessage("draftSaveWarning");
+            let result = await SLTools.alertCheck(null, draftSaveWarning, null, true);
+            let preferences = await SLTools.getPrefs();
+            preferences.showEditAlert = result.check;
+            await messenger.storage.local.set({ preferences });
           }
         }
       }
@@ -967,6 +962,10 @@ const SendLater = {
             if (SendLater.prefCache.altBinding) {
               SLStatic.info("Passing Ctrl+Shift+Enter along to builtin send later " +
                             "because user bound alt+shift+enter instead.");
+              // TODO: Undesired use of a not-awaited .then() callback in an event
+              // handler. It is true that there is no code executed after this so
+              // technically it does not need to be awaited, but consistently using
+              // async/await helps to improve maintainability.
               SLTools.getActiveComposeTab().then(curTab => {
                 if (curTab)
                   messenger.compose.sendMessage(curTab.id, {mode: "sendLater"});
@@ -991,14 +990,22 @@ const SendLater = {
               SLStatic.debug("Opening scheduler dialog.");
               messenger.composeAction.openPopup();
             } else if (SendLater.prefCache.sendDoesDelay) {
-              //Schedule with delay
+              // Schedule with delay.
               const sendDelay = SendLater.prefCache.sendDelay;
               SLStatic.info(`Scheduling Send Later ${sendDelay} minutes from now.`);
+              // TODO: Undesired use of a not-awaited .then() callback in an event
+              // handler. It is true that there is no code executed after this so
+              // technically it does not need to be awaited, but consistently using
+              // async/await helps to improve maintainability.
               SLTools.getActiveComposeTab().then(curTab => {
                 if (curTab)
                   SendLater.scheduleSendLater(curTab.id, {delay: sendDelay});
               });
             } else {
+              // TODO: Undesired use of a not-awaited .then() callback in an event
+              // handler. It is true that there is no code executed after this so
+              // technically it does not need to be awaited, but consistently using
+              // async/await helps to improve maintainability.
               SLTools.getActiveComposeTab().then(curTab => {
                 if (curTab)
                   messenger.compose.sendMessage(curTab.id, {mode: "sendNow"});
@@ -1016,12 +1023,16 @@ const SendLater = {
     onMessageExternalListener(message, sender, sendResponse) {
       switch (message.action) {
         case "getUUID": {
+          // It might improve readability to return the Promise instead of tweaking
+          // sendResponse() - which is intended for sync responses - to be async.
           SLTools.getPrefs().then((preferences) => {
               sendResponse(preferences.instanceUUID);
           }).catch(ex => SLStatic.error(ex));
           return true;
         }
         case "getPreferences": {
+          // It might improve readability to return the Promise instead of tweaking
+          // sendResponse() - which is intended for sync responses - to be async.
           SLTools.getPrefs().then((preferences) => {
             for (const prop in preferences) {
               if (!SLStatic.prefInputIds.includes(prop)) {
@@ -1034,6 +1045,8 @@ const SendLater = {
         }
         case "setPreferences": {
           new_prefs = message.preferences;
+          // It might improve readability to return the Promise instead of tweaking
+          // sendResponse() - which is intended for sync responses - to be async.
           SLTools.getPrefs().then((preferences) => {
             old_prefs = preferences;
             for (const prop in new_prefs) {
@@ -1056,6 +1069,8 @@ const SendLater = {
           return true;
         }
         case "parseDate": {
+          // It might improve readability to return the Promise instead of tweaking
+          // sendResponse() - which is intended for sync responses - to be async.
           try {
             const date = SLStatic.convertDate(message["value"]);
             if (date) {
@@ -1224,7 +1239,7 @@ const SendLater = {
 
     // Listen for incoming messages, and check if they are in reponse to a scheduled
     // message with a 'cancel-on-reply' header.
-    onNewMailReceivedListener(folder, messagelist) {
+    async onNewMailReceivedListener(folder, messagelist) {
       if (["sent", "trash", "templates", "archives", "junk", "outbox"].includes(folder.type)) {
         SLStatic.debug(`Skipping onNewMailReceived for folder type ${folder.type}`);
         return;
@@ -1232,36 +1247,37 @@ const SendLater = {
       SLStatic.debug("Received messags in folder", folder, ":", messagelist);
 
       for (let rcvdHdr of messagelist.messages) {
-        messenger.messages.getFull(rcvdHdr.id).then((rcvdMsg) => {
-          SLStatic.debug("Got message", rcvdHdr, rcvdMsg);
-          let inReplyTo = (rcvdMsg.headers["in-reply-to"]||[])[0];
-          if (inReplyTo) {
-            SLTools.forAllDrafts(async (draftHdr) => {
-              if (!SLTools.unscheduledMsgCache.has(draftHdr.id)) {
-                SLStatic.debug(
-                  "Comparing", rcvdHdr, "to", draftHdr,
-                  inReplyTo, "?=", `<${draftHdr.headerMessageId}>`
+        let rcvdMsg = await messenger.messages.getFull(rcvdHdr.id);
+        SLStatic.debug("Got message", rcvdHdr, rcvdMsg);
+        let inReplyTo = (rcvdMsg.headers["in-reply-to"]||[])[0];
+        if (inReplyTo) {
+          // This does not stack handling of messages, but jumps back and forth
+          // and switches between them and handles them "in parallel".
+          SLTools.forAllDrafts(async (draftHdr) => {
+            if (!SLTools.unscheduledMsgCache.has(draftHdr.id)) {
+              SLStatic.debug(
+                "Comparing", rcvdHdr, "to", draftHdr,
+                inReplyTo, "?=", `<${draftHdr.headerMessageId}>`
+              );
+              if (inReplyTo == `<${draftHdr.headerMessageId}>`) {
+                let cancelOnReply = await messenger.messages.getFull(draftHdr.id).then(
+                  draftMsg => (draftMsg.headers["x-send-later-cancel-on-reply"]||[])[0]
                 );
-                if (inReplyTo == `<${draftHdr.headerMessageId}>`) {
-                  let cancelOnReply = await messenger.messages.getFull(draftHdr.id).then(
-                    draftMsg => (draftMsg.headers["x-send-later-cancel-on-reply"]||[])[0]
+                if (["true", "yes"].includes(cancelOnReply)) {
+                  SLStatic.info(
+                    `Received response to message ${inReplyTo}.`,
+                    `Deleting scheduled draft ${draftHdr.id}`
                   );
-                  if (["true", "yes"].includes(cancelOnReply)) {
-                    SLStatic.info(
-                      `Received response to message ${inReplyTo}.`,
-                      `Deleting scheduled draft ${draftHdr.id}`
-                    );
-                    messenger.messages.delete([draftHdr.id]).then(() => {
-                      SLStatic.info("Deleted message", draftHdr.id);
-                      SLTools.scheduledMsgCache.delete(draftHdr.id);
-                      SLTools.unscheduledMsgCache.delete(draftHdr.id);
-                    }).catch(SLStatic.error);
-                  }
+                  await messenger.messages.delete([draftHdr.id]).then(() => {
+                    SLStatic.info("Deleted message", draftHdr.id);
+                    SLTools.scheduledMsgCache.delete(draftHdr.id);
+                    SLTools.unscheduledMsgCache.delete(draftHdr.id);
+                  }).catch(SLStatic.error);
                 }
               }
-            });
-          }
-        });
+            }
+          });
+        }
       }
     },
 
@@ -1346,7 +1362,7 @@ const SendLater = {
 
 }; // End SendLater object
 
-function mainLoop() {
+async function mainLoop() {
   SLStatic.debug("Entering main loop.");
   try {
     if (SendLater.loopTimeout) {
@@ -1354,10 +1370,12 @@ function mainLoop() {
     }
   } catch (ex) { SLStatic.error(ex); }
 
-  SLTools.getPrefs().then((preferences) => {
+  try {
+    let preferences = await SLTools.getPrefs()
     let interval = +preferences.checkTimePref || 0;
-    if (preferences.checkTimePref_isMilliseconds)
-      interval /= 60000;
+    if (preferences.checkTimePref_isMilliseconds) {
+        interval /= 60000;
+    }
 
     SendLater.loopMinutes = interval;
 
@@ -1370,26 +1388,25 @@ function mainLoop() {
       messenger.browserAction.setTitle({title: `${extName} [${isActiveMessage}]`});
 
       let doSequential = preferences.throttleDelay > 0;
-      SLTools.forAllDrafts(SendLater.possiblySendMessage, doSequential).then(() => {
-        SLTools.countActiveScheduledMessages().then(nActive => {
-          SendLater.updateStatusIndicator(nActive);
-          SendLater.setQuitNotificationsEnabled(preferences.askQuit, nActive);
-        });
+      try {
+        await SLTools.forAllDrafts(SendLater.possiblySendMessage, doSequential)
+        let nActive = await SLTools.countActiveScheduledMessages();
+        SendLater.updateStatusIndicator(nActive);
+        SendLater.setQuitNotificationsEnabled(preferences.askQuit, nActive);
 
         SendLater.previousLoop = new Date();
         SendLater.loopTimeout = setTimeout(mainLoop, 60000*interval);
         SLStatic.debug(`Next main loop iteration in ${60*interval} seconds.`);
-      }).catch((err) => {
+      } catch(err) {
         SLStatic.error(err);
-        SLTools.countActiveScheduledMessages().then(nActive => {
-          SendLater.updateStatusIndicator(nActive);
-          SendLater.setQuitNotificationsEnabled(preferences.askQuit, nActive);
-        });
-
+        let nActive = await SLTools.countActiveScheduledMessages();
+        SendLater.updateStatusIndicator(nActive);
+        SendLater.setQuitNotificationsEnabled(preferences.askQuit, nActive);
+        
         SendLater.previousLoop = new Date();
         SendLater.loopTimeout = setTimeout(mainLoop, 60000);
         SLStatic.debug(`Next main loop iteration in 1 minute.`);
-      });
+      };
     } else {
       SendLater.setQuitNotificationsEnabled(false);
       let extName = messenger.i18n.getMessage("extensionName");
@@ -1402,13 +1419,13 @@ function mainLoop() {
       SendLater.loopTimeout = setTimeout(mainLoop, 60000);
       SLStatic.debug(`Next main loop iteration in 1 minute.`);
     }
-  }).catch(ex => {
+  } catch(ex) {
     SLStatic.error(ex);
 
     SendLater.previousLoop = new Date();
     SendLater.loopTimeout = setTimeout(mainLoop, 60000);
     SLStatic.debug(`Next main loop iteration in 1 minute.`);
-  });
+  };
 }
 
 SendLater.init().then(mainLoop).catch(
