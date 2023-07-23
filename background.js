@@ -898,30 +898,32 @@ const SendLater = {
         return;
       }
 
-      let originalMsg = await messenger.SL3U.findAssociatedDraft(window.id).then(
-        m => m ? messenger.messages.getFull(m.id) : null
-      );
+      let originalMsg = await messenger.SL3U.findAssociatedDraft(window.id);
       if (originalMsg) {
+        let originalMsgPart = await messenger.messages.getFull(originalMsg.id);
         SLTools.scheduledMsgCache.delete(originalMsg.id);
         SLTools.unscheduledMsgCache.add(originalMsg.id);
 
         // Check if original message has x-send-later headers
-        if (originalMsg.headers.hasOwnProperty("x-send-later-at")) {
+        if (originalMsgPart.headers.hasOwnProperty("x-send-later-at")) {
           let { preferences, scheduleCache } = await messenger.storage.local.get(
             { preferences: {}, scheduleCache: {} }
           );
 
           // Re-save message (drops x-send-later headers by default
           // because they are not loaded when editing as draft).
-          // TODO: Not using the return value of saveMessage() ???
-          await messenger.compose.saveMessage(tab.id, {mode: "draft"});
-          SLTools.scheduledMsgCache.delete(originalMsg.id);
-          SLTools.unscheduledMsgCache.add(originalMsg.id);
+          let { messages } = await messenger.compose.saveMessage(tab.id, {mode: "draft"});
+          // Pick the message stored in the same folder as the original draft was stored in.
+          // let newMsg = messages.find(m => m.folder == originalMsg.folder);
+          // The saved message has a different message id then the original one.
+          // The new message is not used.
+          // console.debug({originalMsg, newMsg});
+
           SendLater.updateStatusIndicator();
     
           // Set popup scheduler defaults based on original message
           scheduleCache[window.id] =
-          SLStatic.parseHeadersForPopupUICache(originalMsg.headers);
+          SLStatic.parseHeadersForPopupUICache(originalMsgPart.headers);
           SLStatic.debug(
             `Schedule cache item added for window ${window.id}:`,
             scheduleCache[window.id]
