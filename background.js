@@ -1023,72 +1023,57 @@ const SendLater = {
     onMessageExternalListener(message, sender, sendResponse) {
       switch (message.action) {
         case "getUUID": {
-          // It might improve readability to return the Promise instead of tweaking
-          // sendResponse() - which is intended for sync responses - to be async.
-          SLTools.getPrefs().then((preferences) => {
-              sendResponse(preferences.instanceUUID);
-          }).catch(ex => SLStatic.error(ex));
-          return true;
+          return SLTools.getPrefs()
+            .then(preferences => preferences.instanceUUID)
+            .catch(ex => SLStatic.error(ex));
         }
         case "getPreferences": {
-          // It might improve readability to return the Promise instead of tweaking
-          // sendResponse() - which is intended for sync responses - to be async.
-          SLTools.getPrefs().then((preferences) => {
-            for (const prop in preferences) {
-              if (!SLStatic.prefInputIds.includes(prop)) {
-                delete preferences[prop];
-              }
-            }
-            sendResponse(preferences);
-          });
-          return true;
+          return SLTools.getPrefs()
+            .then(preferences => preferences.filter(prop => SLStatic.prefInputIds.includes(prop)))
+            .catch(ex => SLStatic.error(ex));
         }
         case "setPreferences": {
-          new_prefs = message.preferences;
-          // It might improve readability to return the Promise instead of tweaking
-          // sendResponse() - which is intended for sync responses - to be async.
-          SLTools.getPrefs().then((preferences) => {
-            old_prefs = preferences;
+          const setAndReturnPrefs = async (old_prefs, new_prefs) => {
             for (const prop in new_prefs) {
               if (!SLStatic.prefInputIds.includes(prop)) {
-                throw `Property ${prop} is not a valid Send Later preference.`;
+                throw new Error (`Property ${prop} is not a valid Send Later preference.`);
               }
-              if (prop in old_prefs && typeof(old_prefs[prop]) != "undefined" &&
-                  typeof(new_prefs[prop]) != "undefined" &&
-                  typeof(old_prefs[prop]) != typeof(new_prefs[prop])) {
-                throw `Type of ${prop} is invalid: new ` +
+              if (
+                prop in old_prefs && 
+                typeof(old_prefs[prop]) != "undefined" &&
+                typeof(new_prefs[prop]) != "undefined" &&
+                typeof(old_prefs[prop]) != typeof(new_prefs[prop])
+              ) {
+                throw new Error(`Type of ${prop} is invalid: new ` +
                   `${typeof(new_prefs[prop])} vs. current ` +
-                  `${typeof(old_prefs[prop])}.`;
+                  `${typeof(old_prefs[prop])}.`);
               }
               old_prefs[prop] = new_prefs[prop];
             }
-            messenger.storage.local.set({preferences}).then((result) => {
-              sendResponse(old_prefs)
-            });
-          });
-          return true;
+            await messenger.storage.local.set({preferences: old_prefs});
+            return old_prefs;
+          }
+          return SLTools.getPrefs()
+            .then(old_prefs => setAndReturnPrefs(old_prefs, message.preferences))
+            .catch(ex => SLStatic.error(ex));
         }
         case "parseDate": {
-          // It might improve readability to return the Promise instead of tweaking
-          // sendResponse() - which is intended for sync responses - to be async.
           try {
             const date = SLStatic.convertDate(message["value"]);
             if (date) {
               const dateStr = SLStatic.parseableDateTimeFormat(date.getTime());
-              sendResponse(dateStr);
-              return;
+              return Promise.resolve(dateStr);
             }
           } catch (ex) {
             SLStatic.debug("Unable to parse date/time",ex);
           }
-          sendResponse(null);
-          return;
+          break;
         }
         default: {
           SLStatic.warn(`Unrecognized operation <${message.action}>.`);
         }
       }
-      sendResponse(null);
+      return false;
     },
 
     // Various extension components communicate with
