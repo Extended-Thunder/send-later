@@ -398,7 +398,7 @@ const SendLater = {
               }).catch(SLStatic.error);;
               return;
             } else {
-              SLStatic.error("Unable to schedule next recuurrence.");
+              SLStatic.error("Unable to schedule next recurrence.");
               return;
             }
           }
@@ -1222,7 +1222,7 @@ const SendLater = {
       return response;
     },
 
-    // Listen for incoming messages, and check if they are in reponse to a scheduled
+    // Listen for incoming messages, and check if they are in response to a scheduled
     // message with a 'cancel-on-reply' header.
     async onNewMailReceivedListener(folder, messagelist) {
       if (["sent", "trash", "templates", "archives", "junk", "outbox"].includes(folder.type)) {
@@ -1236,9 +1236,7 @@ const SendLater = {
         SLStatic.debug("Got message", rcvdHdr, rcvdMsg);
         let inReplyTo = (rcvdMsg.headers["in-reply-to"]||[])[0];
         if (inReplyTo) {
-          // This does not stack handling of messages, but jumps back and forth
-          // and switches between them and handles them "in parallel".
-          SLTools.forAllDrafts(async (draftHdr) => {
+          await SLTools.forAllDrafts(async (draftHdr) => {
             if (!SLTools.unscheduledMsgCache.has(draftHdr.id)) {
               SLStatic.debug(
                 "Comparing", rcvdHdr, "to", draftHdr,
@@ -1373,6 +1371,8 @@ async function mainLoop() {
       messenger.browserAction.setTitle({title: `${extName} [${isActiveMessage}]`});
 
       let doSequential = preferences.throttleDelay > 0;
+      console.debug({doSequential, throttleDelay: preferences.throttleDelay});
+
       try {
         await SLTools.forAllDrafts(SendLater.possiblySendMessage, doSequential)
         let nActive = await SLTools.countActiveScheduledMessages();
