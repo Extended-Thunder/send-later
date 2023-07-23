@@ -1023,11 +1023,13 @@ const SendLater = {
     onMessageExternalListener(message, sender, sendResponse) {
       switch (message.action) {
         case "getUUID": {
+          // Return Promise for the instanceUUID.
           return SLTools.getPrefs()
             .then(preferences => preferences.instanceUUID)
             .catch(ex => SLStatic.error(ex));
         }
         case "getPreferences": {
+          // Return Promise for the allowed preferences.
           return SLTools.getPrefs()
             .then(preferences => preferences.filter(prop => SLStatic.prefInputIds.includes(prop)))
             .catch(ex => SLStatic.error(ex));
@@ -1053,11 +1055,15 @@ const SendLater = {
             await messenger.storage.local.set({preferences: old_prefs});
             return old_prefs;
           }
+          // Return Promise for updating the allowed preferences.
           return SLTools.getPrefs()
             .then(old_prefs => setAndReturnPrefs(old_prefs, message.preferences))
             .catch(ex => SLStatic.error(ex));
         }
         case "parseDate": {
+          // Return Promise for the Date. Since this is a sync operation, the
+          // Promise is already fulfilled. But it still has to be a Promise, or
+          // sendResponse() has to be used instead. Promise syntax is preferred.
           try {
             const date = SLStatic.convertDate(message["value"]);
             if (date) {
