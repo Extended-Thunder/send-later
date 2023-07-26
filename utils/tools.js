@@ -135,7 +135,7 @@ var SLTools = {
       let draftFolders = SLTools.getDraftFolders(acct);
       for (let folder of draftFolders) {
         let page = await messenger.messages.list(folder);
-        do {
+        while (true) {
           if (sequential) {
             for (let message of page.messages) {
               results.push(await callback(message).catch(SLStatic.error));
@@ -146,10 +146,11 @@ var SLTools = {
             );
             results = results.concat(pageResults);
           }
-          if (page.id) {
-            page = await messenger.messages.continueList(page.id);
+          if (!page.id) {
+            break;
           }
-        } while (page.id);
+          page = await messenger.messages.continueList(page.id);
+        }
       }
     }
     if (sequential) {
