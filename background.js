@@ -1271,7 +1271,7 @@ const SendLater = {
         const instanceUUID = preferences.instanceUUID;
         let msg = await messenger.messages.getFull(hdr.id);
         if (msg.headers["x-send-later-uuid"] == instanceUUID) {
-          messenger.messageDisplayAction.enable(tab.id);
+          await messenger.messageDisplayAction.enable(tab.id);
         }
       } else {
         SLStatic.debug("This is not a Drafts folder, so Send Later will not scan it.");
