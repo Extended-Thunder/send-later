@@ -1022,9 +1022,13 @@ const SendLater = {
         }
         case "getPreferences": {
           // Return Promise for the allowed preferences.
-          return SLTools.getPrefs()
-            .then(preferences => preferences.filter(prop => SLStatic.prefInputIds.includes(prop)))
-            .catch(ex => SLStatic.error(ex));
+          return SLTools.getPrefs().then((prefs) => {
+            prefs = Object.entries(prefs);
+            prefs = prefs.filter(([key, value]) =>
+              SLStatic.prefInputIds.includes(key));
+            prefs = Object.fromEntries(prefs);
+            return prefs;
+          }).catch(ex => SLStatic.error(ex));
         }
         case "setPreferences": {
           const setAndReturnPrefs = async (old_prefs, new_prefs) => {
