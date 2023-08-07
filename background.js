@@ -186,12 +186,12 @@ const SendLater = {
       // to show that it has been replied to or forwarded.
       if (composeDetails.relatedMessageId) {
         if (composeDetails.type == "reply") {
-          console.debug("This is a reply message. Setting original 'replied'");
+          SLStatic.debug("This is a reply message. Setting original 'replied'");
           await messenger.SL3U.setDispositionState(
             composeDetails.relatedMessageId, "replied"
           );
         } else if (composeDetails.type == "forward") {
-          console.debug("This is a fwd message. Setting original 'forwarded'");
+          SLStatic.debug("This is a fwd message. Setting original 'forwarded'");
           await messenger.SL3U.setDispositionState(
             composeDetails.relatedMessageId, "forwarded"
           );
@@ -1199,7 +1199,8 @@ const SendLater = {
           response.schedules = await SLTools.forAllDrafts(
             async (draftHdr) => {
               if (SLTools.unscheduledMsgCache.has(draftHdr.id)) {
-                console.debug("Ignoring unscheduled message", draftHdr.id, draftHdr);
+                SLStatic.debug(
+                  "Ignoring unscheduled message", draftHdr.id, draftHdr);
                 return null;
               }
               return await messenger.messages.getFull(draftHdr.id).then(
@@ -1402,7 +1403,6 @@ async function mainLoop() {
       await messenger.browserAction.setTitle({title: `${extName} [${isActiveMessage}]`});
 
       let doSequential = preferences.throttleDelay > 0;
-      console.debug({doSequential, throttleDelay: preferences.throttleDelay});
 
       try {
         await SLTools.forAllDrafts(SendLater.possiblySendMessage, doSequential)
