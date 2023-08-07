@@ -739,9 +739,16 @@ const SendLater = {
       // We won't get events for tabs that are already loaded.
       SendLater.configureAllTabs();
 
+      // Initialize expanded header row
+      await messenger.headerView.addCustomHdrRow({
+        name: messenger.i18n.getMessage("sendlater3header.label"),
+      }).catch(ex => {
+        SLStatic.error("headerView.addCustomHdrRow",ex);
+      });
       messenger.headerView.onHeaderRowUpdate.addListener(
         SendLater.headerRowUpdateListener, messenger.i18n.getMessage("sendlater3header.label")
       );
+
       messenger.messages.onNewMailReceived.addListener(SendLater.onNewMailReceivedListener);
 
       // Set custom DB headers preference, if not already set.
@@ -787,13 +794,6 @@ const SendLater = {
       } catch (ex) {
         SLStatic.error(ex);
       }
-
-      // Initialize expanded header row
-      await messenger.headerView.addCustomHdrRow({
-        name: messenger.i18n.getMessage("sendlater3header.label"),
-      }).catch(ex => {
-        SLStatic.error("headerView.addCustomHdrRow",ex);
-      });
 
       // Attach to all existing msgcompose windows
       messenger.SL3U.hijackComposeWindowKeyBindings().catch(ex => {
