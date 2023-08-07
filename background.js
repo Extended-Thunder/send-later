@@ -801,7 +801,7 @@ const SendLater = {
       messenger.storage.onChanged.addListener(SendLater.storageChangedListener);
     },
 
-    storageChangedListener(changes, areaName) {
+    async storageChangedListener(changes, areaName) {
       if (areaName === "local" && changes.preferences) {
         SLStatic.debug("Propagating changes from local storage");
         const preferences = changes.preferences.newValue;
@@ -818,7 +818,7 @@ const SendLater = {
 
         messenger.SL3U.setLogConsoleLevel(SLStatic.logConsoleLevel);
 
-        SendLater.setQuitNotificationsEnabled(preferences.askQuit);
+        await SendLater.setQuitNotificationsEnabled(preferences.askQuit);
 
         await messenger.browserAction.setLabel({label: (
           preferences.showStatus ? messenger.i18n.getMessage("sendlater3header.label") : ""
@@ -918,7 +918,7 @@ const SendLater = {
           // The new message is not used.
           // console.debug({originalMsg, newMsg});
 
-          SendLater.updateStatusIndicator();
+          await SendLater.updateStatusIndicator();
     
           // Set popup scheduler defaults based on original message
           scheduleCache[window.id] =
@@ -1374,8 +1374,9 @@ async function mainLoop() {
       try {
         await SLTools.forAllDrafts(SendLater.possiblySendMessage, doSequential)
         let nActive = await SLTools.countActiveScheduledMessages();
-        SendLater.updateStatusIndicator(nActive);
-        SendLater.setQuitNotificationsEnabled(preferences.askQuit, nActive);
+        await SendLater.updateStatusIndicator(nActive);
+        await SendLater.setQuitNotificationsEnabled(
+          preferences.askQuit, nActive);
 
         SendLater.previousLoop = new Date();
         SendLater.loopTimeout = setTimeout(mainLoop, 60000*interval);
@@ -1383,15 +1384,16 @@ async function mainLoop() {
       } catch(err) {
         SLStatic.error(err);
         let nActive = await SLTools.countActiveScheduledMessages();
-        SendLater.updateStatusIndicator(nActive);
-        SendLater.setQuitNotificationsEnabled(preferences.askQuit, nActive);
+        await SendLater.updateStatusIndicator(nActive);
+        await SendLater.setQuitNotificationsEnabled(
+          preferences.askQuit, nActive);
         
         SendLater.previousLoop = new Date();
         SendLater.loopTimeout = setTimeout(mainLoop, 60000);
         SLStatic.debug(`Next main loop iteration in 1 minute.`);
       };
     } else {
-      SendLater.setQuitNotificationsEnabled(false);
+      await SendLater.setQuitNotificationsEnabled(false);
       let extName = messenger.i18n.getMessage("extensionName");
       let disabledMsg = messenger.i18n.getMessage("DisabledMessage");
       await messenger.browserAction.disable();
