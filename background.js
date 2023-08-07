@@ -951,7 +951,7 @@ const SendLater = {
         case "key_altShiftEnter": {
           if (SendLater.prefCache.altBinding) {
             SLStatic.info("Opening popup");
-            messenger.composeAction.openPopup();
+            await messenger.composeAction.openPopup();
           } else {
             SLStatic.info("Ignoring Alt+Shift+Enter on account of user preferences");
           }
@@ -970,14 +970,14 @@ const SendLater = {
               }
             } else {
               SLStatic.info("Opening popup");
-              messenger.composeAction.openPopup();
+              await messenger.composeAction.openPopup();
             }
             break;
           }
         case "cmd_sendLater":
           { // User clicked the "Send Later" menu item, which should always
             // open the Send Later popup.
-            messenger.composeAction.openPopup();
+            await messenger.composeAction.openPopup();
             break;
           }
         case "cmd_sendNow":
@@ -986,7 +986,7 @@ const SendLater = {
           {
             if (SendLater.prefCache.sendDoesSL) {
               SLStatic.debug("Opening scheduler dialog.");
-              messenger.composeAction.openPopup();
+              await messenger.composeAction.openPopup();
             } else if (SendLater.prefCache.sendDoesDelay) {
               // Schedule with delay.
               const sendDelay = SendLater.prefCache.sendDelay;
@@ -1304,9 +1304,9 @@ const SendLater = {
         SLStatic.info(`Executing accelerator Click+${mod}: ${funcName}(${funcArgs})`);
         SendLater.quickSendWithUfunc(funcName, funcArgs, tab.id);
       } else {
-        messenger.composeAction.setPopup({"popup": "ui/popup.html"});
-        messenger.composeAction.openPopup();
-        messenger.composeAction.setPopup({"popup": null});
+        await messenger.composeAction.setPopup({"popup": "ui/popup.html"});
+        await messenger.composeAction.openPopup();
+        await messenger.composeAction.setPopup({"popup": null});
       }
     },
 
