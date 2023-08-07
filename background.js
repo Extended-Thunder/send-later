@@ -723,6 +723,7 @@ const SendLater = {
       messenger.runtime.onMessage.addListener(SendLater.onRuntimeMessageListenerasync);
       messenger.messageDisplay.onMessageDisplayed.addListener(SendLater.onMessageDisplayedListener);
       messenger.commands.onCommand.addListener(SendLater.onCommandListener);
+      messenger.composeAction.setPopup({"popup": "ui/popup.html"});
       messenger.composeAction.onClicked.addListener(SendLater.clickComposeListener);
       messenger.mailTabs.onDisplayedFolderChanged.addListener(SendLater.displayedFolderChangedListener);
       messenger.headerView.onHeaderRowUpdate.addListener(
@@ -1308,9 +1309,7 @@ const SendLater = {
         SLStatic.info(`Executing accelerator Click+${mod}: ${funcName}(${funcArgs})`);
         SendLater.quickSendWithUfunc(funcName, funcArgs, tab.id);
       } else {
-        await messenger.composeAction.setPopup({"popup": "ui/popup.html"});
         await messenger.composeAction.openPopup();
-        await messenger.composeAction.setPopup({"popup": null});
       }
     },
 
@@ -1328,7 +1327,6 @@ const SendLater = {
       });
       await SLStatic.nofail(messenger.browserAction.setBadgeText, {text: null});
       await SLStatic.nofail(messenger.composeAction.disable);
-      await SLStatic.nofail(messenger.composeAction.setPopup, {"popup": null});
       await SLStatic.nofail(messenger.messageDisplayAction.disable);
       await SLStatic.nofail(messenger.messageDisplayAction.setPopup, {"popup": null});
       await SLStatic.nofail(messenger.windows.onCreated.removeListener, SendLater.onWindowCreatedListener);
