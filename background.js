@@ -39,7 +39,7 @@ const SendLater = {
           return;
         }
       }
-      messenger.compose.sendMessage(tabId, {mode: "sendNow"});
+      await messenger.compose.sendMessage(tabId, {mode: "sendNow"});
     },
 
     // Use built-in send later function (after some pre-send checks)
@@ -945,7 +945,7 @@ const SendLater = {
     // composition windows. These events occur when the user activates
     // the built-in send or send later using either key combinations
     // (e.g. ctrl+shift+enter), or click the file menu buttons.
-    onUserCommandKeyListener(keyid) {
+    async onUserCommandKeyListener(keyid) {
       SLStatic.info(`Received keycode ${keyid}`);
       switch (keyid) {
         case "key_altShiftEnter": {
@@ -963,14 +963,11 @@ const SendLater = {
             if (SendLater.prefCache.altBinding) {
               SLStatic.info("Passing Ctrl+Shift+Enter along to builtin send later " +
                             "because user bound alt+shift+enter instead.");
-              // TODO: Undesired use of a not-awaited .then() callback in an event
-              // handler. It is true that there is no code executed after this so
-              // technically it does not need to be awaited, but consistently using
-              // async/await helps to improve maintainability.
-              SLTools.getActiveComposeTab().then(curTab => {
-                if (curTab)
-                  messenger.compose.sendMessage(curTab.id, {mode: "sendLater"});
-              });
+              let curTab = await SLTools.getActiveComposeTab();
+              if (curTab) {
+                await messenger.compose.sendMessage(
+                  curTab.id, {mode: "sendLater"});
+              }
             } else {
               SLStatic.info("Opening popup");
               messenger.composeAction.openPopup();
@@ -994,23 +991,17 @@ const SendLater = {
               // Schedule with delay.
               const sendDelay = SendLater.prefCache.sendDelay;
               SLStatic.info(`Scheduling Send Later ${sendDelay} minutes from now.`);
-              // TODO: Undesired use of a not-awaited .then() callback in an event
-              // handler. It is true that there is no code executed after this so
-              // technically it does not need to be awaited, but consistently using
-              // async/await helps to improve maintainability.
-              SLTools.getActiveComposeTab().then(curTab => {
-                if (curTab)
-                  SendLater.scheduleSendLater(curTab.id, {delay: sendDelay});
-              });
+              let curTab = await SLTools.getActiveComposeTab();
+              if (curTab) {
+                await SendLater.scheduleSendLater(
+                  curTab.id, {delay: sendDelay});
+              }
             } else {
-              // TODO: Undesired use of a not-awaited .then() callback in an event
-              // handler. It is true that there is no code executed after this so
-              // technically it does not need to be awaited, but consistently using
-              // async/await helps to improve maintainability.
-              SLTools.getActiveComposeTab().then(curTab => {
-                if (curTab)
-                  messenger.compose.sendMessage(curTab.id, {mode: "sendNow"});
-              });
+              let curTab = await SLTools.getActiveComposeTab();
+              if (curTab) {
+                await messenger.compose.sendMessage(
+                  curTab.id, {mode: "sendNow"});
+              }
             }
             break;
           }
