@@ -178,7 +178,7 @@ const SendLater = {
       // Optionally mark the saved message as "read"
       if (preferences.markDraftsRead) {
         for (let msg of saveProperties.messages) {
-          messenger.messages.update(msg.id, { read: true })
+          await messenger.messages.update(msg.id, { read: true })
         }
       }
 
@@ -187,12 +187,12 @@ const SendLater = {
       if (composeDetails.relatedMessageId) {
         if (composeDetails.type == "reply") {
           console.debug("This is a reply message. Setting original 'replied'");
-          messenger.SL3U.setDispositionState(
+          await messenger.SL3U.setDispositionState(
             composeDetails.relatedMessageId, "replied"
           );
         } else if (composeDetails.type == "forward") {
           console.debug("This is a fwd message. Setting original 'forwarded'");
-          messenger.SL3U.setDispositionState(
+          await messenger.SL3U.setDispositionState(
             composeDetails.relatedMessageId, "forwarded"
           );
         }
@@ -211,7 +211,7 @@ const SendLater = {
       //   SLTools.unscheduledMsgCache.delete(draftId);
       //   SLTools.scheduledMsgCache.add(draftId);
       //   if (preferences.markDraftsRead)
-      //     messenger.messages.update(draftId, { read: true });
+      //     await messenger.messages.update(draftId, { read: true });
       // }
       // if (originalDraftMsg)
       //   touchDraftMsg(originalDraftMsg.id);
@@ -655,7 +655,8 @@ const SendLater = {
           SLStatic.info(`Generated new UUID: ${instance_uuid}`);
         }
         preferences.instanceUUID = instance_uuid;
-        messenger.SL3U.setLegacyPref("instance.uuid", "string", instance_uuid);
+        await messenger.SL3U.setLegacyPref(
+          "instance.uuid", "string", instance_uuid);
       }
 
       if (currentMigrationNumber < SLStatic.CURRENT_LEGACY_MIGRATION) {
@@ -704,13 +705,13 @@ const SendLater = {
           let title = messenger.i18n.getMessage("scheduledMessagesWarningTitle") + " - " + appName;
           let requestWarning = messenger.i18n.getMessage("scheduledMessagesWarningQuitRequested", appName);
           let grantedWarning = messenger.i18n.getMessage("ScheduledMessagesWarningQuit", appName);
-          messenger.quitter.setQuitRequestedAlert(title, requestWarning);
-          messenger.quitter.setQuitGrantedAlert(title, grantedWarning);
+          await messenger.quitter.setQuitRequestedAlert(title, requestWarning);
+          await messenger.quitter.setQuitGrantedAlert(title, grantedWarning);
           return;
         }
       }
-      messenger.quitter.removeQuitRequestedObserver();
-      messenger.quitter.removeQuitGrantedObserver();
+      await messenger.quitter.removeQuitRequestedObserver();
+      await messenger.quitter.removeQuitGrantedObserver();
     },
 
     async init() {
@@ -761,28 +762,31 @@ const SendLater = {
       // Perform any pending preference migrations.
       await this.migratePreferences();
 
-      await SLTools.getPrefs().then(async (preferences) => {
+      try {
+        let preferences = await SLTools.getPrefs();
         SendLater.prefCache = preferences;
         SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
         SLStatic.customizeDateTime = (preferences.customizeDateTime === true);
         SLStatic.longDateTimeFormat = preferences.longDateTimeFormat;
         SLStatic.shortDateTimeFormat = preferences.shortDateTimeFormat;
-        messenger.SL3U.setLogConsoleLevel(SLStatic.logConsoleLevel);
+        await messenger.SL3U.setLogConsoleLevel(SLStatic.logConsoleLevel);
 
-        for (let pref of [
-          "customizeDateTime", "longDateTimeFormat", "shortDateTimeFormat", "instanceUUID"
-        ]) {
-          messenger.columnHandler.setPreference(pref, preferences[pref]);
+        for (let pref of ["customizeDateTime", "longDateTimeFormat",
+                          "shortDateTimeFormat", "instanceUUID"]) {
+          await messenger.columnHandler.setPreference(pref, preferences[pref]);
         }
 
         let nActive = await SLTools.countActiveScheduledMessages();
         await SendLater.updateStatusIndicator(nActive);
-        await SendLater.setQuitNotificationsEnabled(preferences.askQuit, nActive);
+        await SendLater.setQuitNotificationsEnabled(
+          preferences.askQuit, nActive);
 
-        await messenger.browserAction.setLabel({label: (
-          preferences.showStatus ? messenger.i18n.getMessage("sendlater3header.label") : ""
-        )});
-      }).catch(ex => SLStatic.error(ex));
+        await messenger.browserAction.setLabel(
+          {label: preferences.showStatus ?
+           messenger.i18n.getMessage("sendlater3header.label") : ""});
+      } catch (ex) {
+        SLStatic.error(ex);
+      }
 
       // Initialize expanded header row
       await messenger.headerView.addCustomHdrRow({
@@ -821,7 +825,7 @@ const SendLater = {
           }
         }
 
-        messenger.SL3U.setLogConsoleLevel(SLStatic.logConsoleLevel);
+        await messenger.SL3U.setLogConsoleLevel(SLStatic.logConsoleLevel);
 
         await SendLater.setQuitNotificationsEnabled(preferences.askQuit);
 
