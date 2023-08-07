@@ -32,7 +32,7 @@ const SendLater = {
         });
         if (result.check === false) {
           preferences.showSendNowAlert = false;
-          messenger.storage.local.set({ preferences });
+          await messenger.storage.local.set({ preferences });
         }
         if (!result.ok) {
           SLStatic.debug(`User canceled send now.`);
@@ -56,7 +56,7 @@ const SendLater = {
         });
         if (result.check === false) {
           preferences.showOutboxAlert = false;
-          messenger.storage.local.set({ preferences });
+          await messenger.storage.local.set({ preferences });
         }
         if (!result.ok) {
           SLStatic.debug(`User canceled send later.`);
@@ -420,9 +420,8 @@ const SendLater = {
 
       if (success) {
         lock[msgLockId] = true;
-        await messenger.storage.local.set({ lock }).then(() => {
-          SLStatic.debug(`Locked message <${msgLockId}> from re-sending.`);
-        });
+        await messenger.storage.local.set({ lock });
+        SLStatic.debug(`Locked message <${msgLockId}> from re-sending.`);
         if (preferences.throttleDelay) {
           SLStatic.debug(`Throttling send rate: ${preferences.throttleDelay/1000}s`);
           await new Promise(resolve =>
@@ -928,7 +927,7 @@ const SendLater = {
             `Schedule cache item added for window ${window.id}:`,
             scheduleCache[window.id]
           );
-          messenger.storage.local.set({ scheduleCache });
+          await messenger.storage.local.set({ scheduleCache });
 
           // Alert the user about what just happened
           if (preferences.showEditAlert) {
