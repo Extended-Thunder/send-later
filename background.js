@@ -1314,30 +1314,30 @@ const SendLater = {
     // visible, but they will be disabled and show a message indicating that the extension is
     // disabled. This is important for cases where the extension failed to fully intialize, so
     // that the user doesn't get a false impression that the extension is working.
-    disable() {
+    async disable() {
       SLStatic.warn("Disabling Send Later.");
-      SLStatic.nofail(clearTimeout, SendLater.loopTimeout);
-      SLStatic.nofail(SendLater.setQuitNotificationsEnabled, false);
-      SLStatic.nofail(messenger.browserAction.disable);
-      SLStatic.nofail(messenger.browserAction.setTitle, {
+      await SLStatic.nofail(clearTimeout, SendLater.loopTimeout);
+      await SLStatic.nofail(SendLater.setQuitNotificationsEnabled, false);
+      await SLStatic.nofail(messenger.browserAction.disable);
+      await SLStatic.nofail(messenger.browserAction.setTitle, {
         title: `${messenger.i18n.getMessage("extensionName")} [${messenger.i18n.getMessage("DisabledMessage")}]`
       });
-      SLStatic.nofail(messenger.browserAction.setBadgeText, {text: null});
-      SLStatic.nofail(messenger.composeAction.disable);
-      SLStatic.nofail(messenger.composeAction.setPopup, {"popup": null});
-      SLStatic.nofail(messenger.messageDisplayAction.disable);
-      SLStatic.nofail(messenger.messageDisplayAction.setPopup, {"popup": null});
-      SLStatic.nofail(messenger.windows.onCreated.removeListener, SendLater.onWindowCreatedListener);
-      SLStatic.nofail(messenger.SL3U.onKeyCode.removeListener, SendLater.onUserCommandKeyListener);
-      SLStatic.nofail(messenger.runtime.onMessageExternal.removeListener, SendLater.onMessageExternalListener);
-      SLStatic.nofail(messenger.runtime.onMessage.removeListener, SendLater.onRuntimeMessageListenerasync);
-      SLStatic.nofail(messenger.messages.onNewMailReceived.removeListener, SendLater.onNewMailReceivedListener);
-      SLStatic.nofail(messenger.messageDisplay.onMessageDisplayed.removeListener, SendLater.onMessageDisplayedListener);
-      SLStatic.nofail(messenger.commands.onCommand.removeListener, SendLater.onCommandListener);
-      SLStatic.nofail(messenger.composeAction.onClicked.removeListener, SendLater.clickComposeListener);
-      SLStatic.nofail(messenger.mailTabs.onDisplayedFolderChanged.removeListener, SendLater.displayedFolderChangedListener);
-      SLStatic.nofail(messenger.headerView.onHeaderRowUpdate.removeListener, SendLater.headerRowUpdateListener);
-      SLStatic.nofail(messenger.storage.onChanged.removeListener, SendLater.storageChangedListener);
+      await SLStatic.nofail(messenger.browserAction.setBadgeText, {text: null});
+      await SLStatic.nofail(messenger.composeAction.disable);
+      await SLStatic.nofail(messenger.composeAction.setPopup, {"popup": null});
+      await SLStatic.nofail(messenger.messageDisplayAction.disable);
+      await SLStatic.nofail(messenger.messageDisplayAction.setPopup, {"popup": null});
+      await SLStatic.nofail(messenger.windows.onCreated.removeListener, SendLater.onWindowCreatedListener);
+      await SLStatic.nofail(messenger.SL3U.onKeyCode.removeListener, SendLater.onUserCommandKeyListener);
+      await SLStatic.nofail(messenger.runtime.onMessageExternal.removeListener, SendLater.onMessageExternalListener);
+      await SLStatic.nofail(messenger.runtime.onMessage.removeListener, SendLater.onRuntimeMessageListenerasync);
+      await SLStatic.nofail(messenger.messages.onNewMailReceived.removeListener, SendLater.onNewMailReceivedListener);
+      await SLStatic.nofail(messenger.messageDisplay.onMessageDisplayed.removeListener, SendLater.onMessageDisplayedListener);
+      await SLStatic.nofail(messenger.commands.onCommand.removeListener, SendLater.onCommandListener);
+      await SLStatic.nofail(messenger.composeAction.onClicked.removeListener, SendLater.clickComposeListener);
+      await SLStatic.nofail(messenger.mailTabs.onDisplayedFolderChanged.removeListener, SendLater.displayedFolderChangedListener);
+      await SLStatic.nofail(messenger.headerView.onHeaderRowUpdate.removeListener, SendLater.headerRowUpdateListener);
+      await SLStatic.nofail(messenger.storage.onChanged.removeListener, SendLater.storageChangedListener);
       SLStatic.warn("Disabled.");
     }
 

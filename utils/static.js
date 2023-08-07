@@ -70,11 +70,12 @@ var SLStatic = {
 
   // Run a function and report any errors to the console, but don't let the error
   // propagate to the caller.
-  nofail(func, ...args) {
-    if (func[Symbol.toStringTag] === "AsyncFunction") {
-      func(...args).catch(console.error);
-    } else {
-      try { func(...args) } catch (e) { console.error(e) }
+  async nofail(func, ...args) {
+    try {
+      await func(...args);
+    }
+    catch (e) {
+      console.error(e);
     }
   },
 
