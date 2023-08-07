@@ -871,7 +871,7 @@ const SendLater = {
         }
       });
     },
-      
+
     async tabUpdatedListener(tabId, changeInfo, tab) {
       SLStatic.debug(`SLTABS: tabUpdatedListener tab.status=${tab.status} tab.mailTab=${tab.mailTab}`);
       if (tab.status != "complete" || ! tab.mailTab) return;
@@ -951,7 +951,7 @@ const SendLater = {
           // console.debug({originalMsg, newMsg});
 
           await SendLater.updateStatusIndicator();
-    
+
           // Set popup scheduler defaults based on original message
           scheduleCache[window.id] =
           SLStatic.parseHeadersForPopupUICache(originalMsgPart.headers);
@@ -1069,7 +1069,7 @@ const SendLater = {
                 throw new Error (`Property ${prop} is not a valid Send Later preference.`);
               }
               if (
-                prop in old_prefs && 
+                prop in old_prefs &&
                 typeof(old_prefs[prop]) != "undefined" &&
                 typeof(new_prefs[prop]) != "undefined" &&
                 typeof(old_prefs[prop]) != typeof(new_prefs[prop])
@@ -1420,7 +1420,7 @@ async function mainLoop() {
         await SendLater.updateStatusIndicator(nActive);
         await SendLater.setQuitNotificationsEnabled(
           preferences.askQuit, nActive);
-        
+
         SendLater.previousLoop = new Date();
         SendLater.loopTimeout = setTimeout(mainLoop, 60000);
         SLStatic.debug(`Next main loop iteration in 1 minute.`);
