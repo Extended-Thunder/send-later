@@ -725,7 +725,19 @@ const SendLater = {
       messenger.commands.onCommand.addListener(SendLater.onCommandListener);
       messenger.composeAction.setPopup({"popup": "ui/popup.html"});
       messenger.composeAction.onClicked.addListener(SendLater.clickComposeListener);
+
+      // Initialize drafts folder column
+      await messenger.columnHandler.addCustomColumn({
+        name: messenger.i18n.getMessage("sendlater3header.label"),
+        tooltip: "",
+      }).catch(ex => {
+        SLStatic.error("columnHandler.addCustomColumn",ex);
+      });
       messenger.mailTabs.onDisplayedFolderChanged.addListener(SendLater.displayedFolderChangedListener);
+      messenger.tabs.onUpdated.addListener(SendLater.tabUpdatedListener);
+      // We won't get events for tabs that are already loaded.
+      SendLater.configureAllTabs();
+
       messenger.headerView.onHeaderRowUpdate.addListener(
         SendLater.headerRowUpdateListener, messenger.i18n.getMessage("sendlater3header.label")
       );
@@ -771,14 +783,6 @@ const SendLater = {
           preferences.showStatus ? messenger.i18n.getMessage("sendlater3header.label") : ""
         )});
       }).catch(ex => SLStatic.error(ex));
-
-      // Initialize drafts folder column
-      await messenger.columnHandler.addCustomColumn({
-        name: messenger.i18n.getMessage("sendlater3header.label"),
-        tooltip: "",
-      }).catch(ex => {
-        SLStatic.error("columnHandler.addCustomColumn",ex);
-      });
 
       // Initialize expanded header row
       await messenger.headerView.addCustomHdrRow({
@@ -832,7 +836,7 @@ const SendLater = {
         // folder before their preferences can fully take effect.
         if (!preferences.showColumn) {
           const columnName = messenger.i18n.getMessage("sendlater3header.label");
-          messenger.columnHandler.setColumnVisible(columnName, false, true);
+          messenger.columnHandler.setColumnVisible(columnName, false);
         }
       }
     },
@@ -853,11 +857,34 @@ const SendLater = {
       return { text: cellText, visible };
     },
 
+    async configureAllTabs() {
+      SLStatic.debug("SLTABS: configureAllTabs");
+      messenger.tabs.query({mailTab: true, active: true}).then(tabs => {
+        for (let tab of tabs) {
+          SLStatic.debug(
+            "SLTABS: Calling tabUpdatedListener from configureAllTabs");
+          SendLater.tabUpdatedListener(tab.id, {}, tab);
+        }
+      });
+    },
+      
+    async tabUpdatedListener(tabId, changeInfo, tab) {
+      SLStatic.debug(`SLTABS: tabUpdatedListener tab.status=${tab.status} tab.mailTab=${tab.mailTab}`);
+      if (tab.status != "complete" || ! tab.mailTab) return;
+      let tabProperties = await messenger.mailTabs.get(tabId);
+      SLStatic.debug(`SLTABS: tabProperties.displayedFolder=${tabProperties.displayedFolder}`);
+      if (! tabProperties.displayedFolder) return;
+      await SendLater.displayedFolderChangedListener(
+        tab, tabProperties.displayedFolder);
+    },
+
     async displayedFolderChangedListener(tab, folder) {
+      SLStatic.debug("SLTABS: displayedFolderChangedListener");
       const preferences = await SLTools.getPrefs();
       let visible = (folder.type == "drafts") && (preferences.showColumn === true);
       let columnName = messenger.i18n.getMessage("sendlater3header.label");
-      await messenger.columnHandler.setColumnVisible(columnName, visible, false);
+      await messenger.columnHandler.setColumnVisible(
+        columnName, visible, tab.windowId);
     },
 
     // When user opens a new messagecompose window, we need to
