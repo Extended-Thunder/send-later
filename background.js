@@ -678,15 +678,15 @@ const SendLater = {
       if (nActive == undefined)
         nActive = await SLTools.countActiveScheduledMessages();
       if (nActive) {
-        messenger.browserAction.setTitle({title: (
+        await messenger.browserAction.setTitle({title: (
           `${extName} [${messenger.i18n.getMessage("PendingMessage", [nActive])}]`
         )});
-        messenger.browserAction.setBadgeText({text: String(nActive)});
+        await messenger.browserAction.setBadgeText({text: String(nActive)});
       } else {
-        messenger.browserAction.setTitle({title: (
+        await messenger.browserAction.setTitle({title: (
           `${extName} [${messenger.i18n.getMessage("IdleMessage")}]`
         )});
-        messenger.browserAction.setBadgeText({text: null});
+        await messenger.browserAction.setBadgeText({text: null});
       }
     },
 
@@ -820,7 +820,7 @@ const SendLater = {
 
         SendLater.setQuitNotificationsEnabled(preferences.askQuit);
 
-        messenger.browserAction.setLabel({label: (
+        await messenger.browserAction.setLabel({label: (
           preferences.showStatus ? messenger.i18n.getMessage("sendlater3header.label") : ""
         )});
 
@@ -1365,8 +1365,8 @@ async function mainLoop() {
       // or (⌛ \u231B) (e.g. badgeText = "\u27F3")
       let extName = messenger.i18n.getMessage("extensionName");
       let isActiveMessage = messenger.i18n.getMessage("CheckingMessage");
-      messenger.browserAction.enable();
-      messenger.browserAction.setTitle({title: `${extName} [${isActiveMessage}]`});
+      await messenger.browserAction.enable();
+      await messenger.browserAction.setTitle({title: `${extName} [${isActiveMessage}]`});
 
       let doSequential = preferences.throttleDelay > 0;
       console.debug({doSequential, throttleDelay: preferences.throttleDelay});
@@ -1394,9 +1394,10 @@ async function mainLoop() {
       SendLater.setQuitNotificationsEnabled(false);
       let extName = messenger.i18n.getMessage("extensionName");
       let disabledMsg = messenger.i18n.getMessage("DisabledMessage");
-      messenger.browserAction.disable();
-      messenger.browserAction.setTitle({title: `${extName} [${disabledMsg}]`});
-      messenger.browserAction.setBadgeText({text: null});
+      await messenger.browserAction.disable();
+      await messenger.browserAction.setTitle(
+        {title: `${extName} [${disabledMsg}]`});
+      await messenger.browserAction.setBadgeText({text: null});
 
       SendLater.previousLoop = new Date();
       SendLater.loopTimeout = setTimeout(mainLoop, 60000);
