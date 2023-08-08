@@ -26,6 +26,38 @@ slightly different for older versions.*
 Installation
 ------------------------------
 
+### Why Send Later asks for "full, unrestricted" access to your computer
+
+TLDR it's impossible for Send Later to do its job otherwise, and Send Later's
+code has been reviewed by moderators who have confirmed that it doesn't do
+anything malicious or access anything it shouldn't.
+
+Details:
+
+In modern versions of Thunderbird, add-ons are implemented as "MailExtensions"
+which run inside a restricted sandbox with limited access. Before Thunderbird 78, there were no such restrictions, and every add-on had pretty much full access.
+
+The new security model is great; however, the Thunderbird team unfortunately
+hasn't yet implemented all of the MailExtension APIs necessary for add-ons like
+Send Later to work. They're working on it, but in the meantime, they've
+provided add-ons with the ability for part of their code, referred to as
+"experiments," to run in the old, pre-MailExtension environment, so that they
+can do their jobs until the necessary restricted APIs are created.
+
+Send Later falls into this category: it is not yet possible to do what Send
+Later does without going outside of the MailExtension environment. Since any
+extension which goes outside of the MailExtension environment has access to
+"the whole computer," Thunderbird warns about that when you install the add-on.
+We will update Send Later not to use any experiments as soon as it is possible
+to do so, at which point the install warning about full, unrestricted access
+will go away.
+
+Note that all add-ons published on addons.thunderbird.net are reviewed by the
+moderator the site before they are released to the public, to confirm that
+there is no malicious or inappropriate functionality in them. You can therefore
+be confident that Send Later is safe to use, despite the somewhat alarming
+warning when you install it.
+
 ### Method 1
 
 1.  In Thunderbird, open the extension manager with the `Tools > Add-ons`
