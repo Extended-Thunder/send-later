@@ -727,16 +727,6 @@ const SendLater = {
       messenger.composeAction.setPopup({"popup": "ui/popup.html"});
       messenger.composeAction.onClicked.addListener(SendLater.clickComposeListener);
 
-      // Initialize expanded header row
-      await messenger.headerView.addCustomHdrRow({
-        name: messenger.i18n.getMessage("sendlater3header.label"),
-      }).catch(ex => {
-        SLStatic.error("headerView.addCustomHdrRow",ex);
-      });
-      messenger.headerView.onHeaderRowUpdate.addListener(
-        SendLater.headerRowUpdateListener, messenger.i18n.getMessage("sendlater3header.label")
-      );
-
       messenger.messages.onNewMailReceived.addListener(SendLater.onNewMailReceivedListener);
 
       // Set custom DB headers preference, if not already set.
@@ -807,22 +797,7 @@ const SendLater = {
         await messenger.browserAction.setLabel({label: (
           preferences.showStatus ? messenger.i18n.getMessage("sendlater3header.label") : ""
         )});
-    async headerRowUpdateListener(hdr) {
-      const preferences = await SLTools.getPrefs();
-      let msgParts = await messenger.messages.getFull(hdr.id);
-      let hdrs = {
-        "content-type": msgParts.contentType
-      };
-      for (let hdrName in msgParts.headers) {
-        hdrs[hdrName] = msgParts.headers[hdrName][0];
       }
-      const { cellText } = SLStatic.customHdrToScheduleInfo(
-        hdrs, preferences.instanceUUID
-      );
-      const visible = (preferences.showHeader === true) && (cellText !== "");
-      return { text: cellText, visible };
-    },
-
     },
 
     // When user opens a new messagecompose window, we need to
@@ -1234,18 +1209,42 @@ const SendLater = {
     },
 
     // When a new message is displayed, check whether it is scheduled and
-    // choose whether to show the messageDisplayAction button.
+    // choose whether to show the messageDisplayAction button and the header.
     async onMessageDisplayedListener(tab, hdr) {
+      // TODO currently only display the Send Later header on messages in the
+      // 3pane window. It would be nice to also display it when a draft is
+      // opened in a separate tab or window.
+      let headerName = messenger.i18n.getMessage("sendlater3header.label");
       await messenger.messageDisplayAction.disable(tab.id);
       if (hdr.folder.type == "drafts") {
+        // Add header row
         const preferences = await SLTools.getPrefs();
         const instanceUUID = preferences.instanceUUID;
+        let msgParts = await messenger.messages.getFull(hdr.id);
+        let hdrs = {
+          "content-type": msgParts.contentType
+        };
+        for (let hdrName in msgParts.headers) {
+          hdrs[hdrName] = msgParts.headers[hdrName][0];
+        }
+        const {cellText} = SLStatic.customHdrToScheduleInfo(hdrs, instanceUUID);
+        if (preferences.showHeader === true && cellText !== "") {
+          await messenger.headerView.addCustomHdrRow({
+            name: headerName, value: cellText,
+          }).catch(ex => {
+            SLStatic.error("headerView.addCustomHdrRow",ex);
+          });
+        }
+        else {
+          await messenger.headerView.removeCustomHdrRow(headerName);
+        }
+
         let msg = await messenger.messages.getFull(hdr.id);
         if (msg.headers["x-send-later-uuid"] == instanceUUID) {
           await messenger.messageDisplayAction.enable(tab.id);
         }
       } else {
-        SLStatic.debug("This is not a Drafts folder, so Send Later will not scan it.");
+        await messenger.headerView.removeCustomHdrRow(headerName);
       }
     },
 
