@@ -11,10 +11,9 @@
               "type": "string",
               "description": "The name of the header row to add."
             },
-            "tooltip": {
+            "value": {
               "type": "string",
-              "description": "The tooltip that will be displayed when the user hovers over the header row.",
-              "optional": true
+              "description": "The value of the header row to add."
             }
           }
         },
@@ -51,25 +50,12 @@
           "type": "function",
           "description": "",
           "async": true,
-          "parameters": []
-        }
-      ],
-      "events": [
-        {
-          "name": "onHeaderRowUpdate",
-          "type": "function",
-          "description": "",
-          "parameters": [],
-          "extraParameters": [
+          "parameters": [
             {
               "name": "name",
-              "type": "string",
-              "description": "The name of the header row."
+              "type": "string"
             }
-          ],
-          "returns": {
-            "$ref": "HeaderRowFillProperties"
-          }
+            ]
         }
       ]
     }
