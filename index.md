@@ -1725,12 +1725,17 @@ which you may find useful:
 Credits
 -------------------------
 
-A number of people deserve credit for helping to make this add-on what
-it is today. A huge thank you to Karthik Sivaram, the author and
-maintainer of the add-on prior to Thunderbird 3, and Jonathan Kamens who
-developed and maintained Send Later until Thunderbird 68.
-I would never have been able to create and maintain the current version if not
-for its predecessors.
+Thanks to:
+
+* Jonathan Kamens, the current maintainer of the add-on since
+  Thunderbird 102, with the financial support of Extended Thunder,
+  Inc., and who also maintained the add-on between Thunderbird 3
+  and 68;
+* Jonathan Perry-Houts, who maintained the add-on between Thunderbird
+  68 and 102, also with the financial support of Extended Thunder,
+  Inc.; and
+* Karthik Sivaram, who created the add-on and maintained it prior to
+  Thunderbird 3.
 
 Thanks, also, to the people who have translated the add-on into non-English
 languages (at present, Dutch, Finnish, French, German, Italian, Japanese,
