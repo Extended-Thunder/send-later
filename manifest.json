@@ -110,14 +110,6 @@
         "script": "experiments/sl3u.js"
       }
     },
-    "columnHandler": {
-      "schema": "experiments/legacyColumnSchema.json",
-      "parent": {
-        "scopes": ["addon_parent"],
-        "paths": [["columnHandler"]],
-        "script": "experiments/legacyColumnImplementation.js"
-      }
-    },
     "headerView": {
       "schema": "experiments/hdrViewSchema.json",
       "parent": {
