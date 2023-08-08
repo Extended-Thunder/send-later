@@ -1706,31 +1706,11 @@ which you may find useful:
     dropping messages and you hover your mouse over the title bar at the
     top of the folder tree, so that you can drop the messages into a
     folder that isn't displayed in your current view.
--   "[Reply to Multiple Messages](https://addons.thunderbird.net/thunderbird/addon/reply-to-multiple-messages/)"
-    lets you select multiple messages in the message list and compose a
-    single reply to the senders of all of the selected messages.
 -   "[Enhanced Priority Display](https://addons.thunderbird.net/thunderbird/addon/enhanced-priority-display/)"
     makes message priorities display better by replacing the words in
     the "Priority" column with icons, highlighting the rows in the
     message list for high-priority messages, and fading the rows in the
     message list for low-priority messages.
--   "[IMAP Received Date](https://addons.thunderbird.net/thunderbird/addon/imap-received-date/)"
-    makes the "Received" column in IMAP folders show when messages were
-    actually received.
--   "[Undigestify](https://addons.thunderbird.net/thunderbird/addon/undigestify/)"
-    unpacks RFC 1153, ListStar, and Yahoo digest messages into separate
-    messages.
--   "[Show All Body Parts](https://addons.thunderbird.net/thunderbird/addon/show-all-body-parts/)"
-    enables the View \| Message Body As \| All Body Parts message
-    display mode, so that you can access all of the parts of a message,
-    including for example both the text and HTML version of the message
-    and all its inline images, as attachments.
--   "[ToggleReplied](https://addons.thunderbird.net/thunderbird/addon/togglereplied-2/)"
-    lets you to toggle on and off the "Forwarded", "Replied", and
-    "Redirected" flags on existing email messages. This add-on was
-    originally written by Christian Eyrich. He is no longer maintaining
-    it, so I've released an updated version of it which is compatible
-    with the newest Thunderbird versions.
 -   "[Remote Content By Folder](https://addons.thunderbird.net/thunderbird/addon/remote-content-by-folder/)"
     lets you decide which messages to show images in automatically based
     on what folder they are in (e.g., you might want to automatically
