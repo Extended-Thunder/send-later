@@ -5,7 +5,7 @@
 
   "description": "__MSG_extensionDescription__",
 
-  "version": "9.2.9",
+  "version": "10.0.0",
 
   "homepage_url": "https://github.com/Extended-Thunder/send-later/",
 
@@ -18,7 +18,7 @@
   "applications": {
     "gecko": {
       "id": "sendlater3@kamens.us",
-      "strict_min_version": "102.0",
+      "strict_min_version": "115.0",
       "strict_max_version": "*"
     }
   },
