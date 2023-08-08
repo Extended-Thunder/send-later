@@ -1669,14 +1669,12 @@ a previous version of Send Later, but most of it should still apply.
 Support Send Later!
 ------------------------------------
 
-<!--
-I have dedicated countless hours to developing and supporting Send Later. I
-believe in free software, and the add-on will be completely free for as long as
-I continue to maintain it, which will be, I hope, for a good long time. Having
-said that, I am extremely grateful for the donations made by users like you,and
-the amount of time I devote to improving Send Later is strongly influenced by
-them. Please use one of the buttons to the left to send a donation. You can also [click here to donate with PayPal](https://www.paypal.com/donate?hosted_button_id=U5PJYWYVRJMDW) or [click here to donate with crypto](https://commerce.coinbase.com/checkout/3b0012cc-680a-4808-a956-bef9e6174be3).
--->
+The development and maintenance of Send Later is financially supported
+by Extended Thunder Inc., a non-profit organization in the United
+States dedicated supporting the development and maintenance of free,
+open-source Thunderbird add-ons. You can support Extended Thunder [on Liberapay](https://liberapay.com/ExtendedThunder).
+
+If you'd prefer to make a one-time donation, you can do so [on PayPal](https://paypal.me/ExtendedThunder).
 
 A non-monetary way you can help is by
 [writing a review](https://addons.thunderbird.net/thunderbird/addon/send-later-3/reviews/add "Review Send Later").
