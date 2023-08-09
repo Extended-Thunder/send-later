@@ -11,9 +11,9 @@ var SLTools = {
 
   // Convenience function for getting preferences.
   async getPrefs() {
-    let { preferences } = await messenger.storage.local.get(
-      { preferences: {} }
-    );
+    let { preferences } = await messenger.storage.local.get({
+      preferences: {},
+    });
     return preferences;
   },
 
@@ -23,10 +23,12 @@ var SLTools = {
     const slVersion = messenger.runtime.getManifest().version;
     const browserInfo = await messenger.runtime.getBrowserInfo();
     const platformInfo = await messenger.runtime.getPlatformInfo();
-    console.info(`${extensionName} version ${slVersion} on ` +
-                 `${browserInfo.name} ${browserInfo.version} ` +
-                 `(${browserInfo.buildID}) ` +
-                 `[${platformInfo.os} ${platformInfo.arch}]`);
+    console.info(
+      `${extensionName} version ${slVersion} on ` +
+        `${browserInfo.name} ${browserInfo.version} ` +
+        `(${browserInfo.buildID}) ` +
+        `[${platformInfo.os} ${platformInfo.arch}]`,
+    );
   },
 
   handlePopupCallback(tabId, message) {
@@ -46,23 +48,26 @@ var SLTools = {
     title = title || messenger.i18n.getMessage("extensionName");
     checkLabel = checkLabel || messenger.i18n.getMessage("confirmAgain");
 
-    let url = `ui/notification.html?`
-        + `&type=${type}`
-        + `&message=${encodeURIComponent(message)}`
-        + `&checkLabel=${encodeURIComponent(checkLabel)}`
-        + `&checked=${checked ? "true" : "false"}`;
+    let url =
+      `ui/notification.html?` +
+      `&type=${type}` +
+      `&message=${encodeURIComponent(message)}` +
+      `&checkLabel=${encodeURIComponent(checkLabel)}` +
+      `&checked=${checked ? "true" : "false"}`;
 
-    return new Promise(resolve => {
-      messenger.windows.create({
-        url: url,
-        type: "popup",
-        titlePreface: title,
-        height: 250,
-        width: 750
-      }).then(window => {
-        const tab = window.tabs[0];
-        _popupCallbacks.set(tab.id, resolve);
-      });
+    return new Promise((resolve) => {
+      messenger.windows
+        .create({
+          url: url,
+          type: "popup",
+          titlePreface: title,
+          height: 250,
+          width: 750,
+        })
+        .then((window) => {
+          const tab = window.tabs[0];
+          _popupCallbacks.set(tab.id, resolve);
+        });
     });
   },
 
@@ -83,7 +88,12 @@ var SLTools = {
   // 'checked', indicating the user's response.
   alertCheck(title, message, checkLabel, checked) {
     return this.notificationPopup(
-      "alertCheck", title, message, checkLabel, checked);
+      "alertCheck",
+      title,
+      message,
+      checkLabel,
+      checked,
+    );
   },
 
   // Create a popup with a message, 'YES' and 'NO' buttons, and a checkbox.
@@ -91,7 +101,12 @@ var SLTools = {
   // 'ok' and 'checked', indicating the user's response.
   confirmCheck(title, message, checkLabel, checked) {
     return this.notificationPopup(
-      "confirmCheck", title, message, checkLabel, checked);
+      "confirmCheck",
+      title,
+      message,
+      checkLabel,
+      checked,
+    );
   },
 
   // Get all draft folders. Returns an array of Folder objects.
@@ -114,8 +129,10 @@ var SLTools = {
       draftSubFolders.push(getDraftFoldersHelper(folder));
     }
     const allDraftFolders = SLStatic.flatten(draftSubFolders);
-    SLStatic.debug(`Found Draft folder(s) for account ${acct.name}`,
-                   allDraftFolders);
+    SLStatic.debug(
+      `Found Draft folder(s) for account ${acct.name}`,
+      allDraftFolders,
+    );
     return allDraftFolders;
   },
 
@@ -145,8 +162,8 @@ var SLTools = {
               results.push(await callback(message).catch(SLStatic.error));
             }
           } else {
-            let pageResults = page.messages.map(
-              message => callback(message).catch(SLStatic.error)
+            let pageResults = page.messages.map((message) =>
+              callback(message).catch(SLStatic.error),
             );
             results = results.concat(pageResults);
           }
@@ -166,29 +183,36 @@ var SLTools = {
 
   // Get the active tab (only if it is in a messageCompose window)
   async getActiveComposeTab() {
-    return await messenger.windows.getAll({
-      populate: true,
-      windowTypes: ["messageCompose"]
-    }).then((allWindows) => {
-      // Current compose windows
-      const ccWins = allWindows.filter((cWindow) => (cWindow.focused === true));
-      if (ccWins.length === 1) {
-        const ccTabs = ccWins[0].tabs.filter(tab => (tab.active === true));
-        if (ccTabs.length !== 1) { // No tabs?
+    return await messenger.windows
+      .getAll({
+        populate: true,
+        windowTypes: ["messageCompose"],
+      })
+      .then((allWindows) => {
+        // Current compose windows
+        const ccWins = allWindows.filter((cWindow) => cWindow.focused === true);
+        if (ccWins.length === 1) {
+          const ccTabs = ccWins[0].tabs.filter((tab) => tab.active === true);
+          if (ccTabs.length !== 1) {
+            // No tabs?
+            throw new Error(
+              `Unexpected situation: no tabs found in current window`,
+            );
+          }
+          return ccTabs[0];
+        } else if (ccWins.length === 0) {
+          // No compose window is opened
+          SLStatic.warn(
+            `The currently active window is not a messageCompose window`,
+          );
+          return undefined;
+        } else {
+          // Whaaaat!?!?
           throw new Error(
-            `Unexpected situation: no tabs found in current window`);
+            `Unexpected situation: multiple active windows found?`,
+          );
         }
-        return ccTabs[0];
-      } else if (ccWins.length === 0) {
-        // No compose window is opened
-        SLStatic.warn(
-          `The currently active window is not a messageCompose window`);
-        return undefined;
-      } else {
-        // Whaaaat!?!?
-        throw new Error(`Unexpected situation: multiple active windows found?`);
-      }
-    });
+      });
   },
 
   // Count draft messages containing the correct `x-send-later-uuid` header.
@@ -202,7 +226,7 @@ var SLTools = {
           return false;
         } else {
           let fullMsg = await messenger.messages.getFull(msgHdr.id);
-          let uuid = (fullMsg.headers["x-send-later-uuid"]||[])[0];
+          let uuid = (fullMsg.headers["x-send-later-uuid"] || [])[0];
           if (uuid == preferences.instanceUUID) {
             SLTools.scheduledMsgCache.add(msgHdr.id);
             return true;
@@ -212,12 +236,12 @@ var SLTools = {
           }
         }
       },
-      true // Running sequentially seems to give slightly better performance.
-    )
-    return isScheduled.filter(x => x).length;
+      true, // Running sequentially seems to give slightly better performance.
+    );
+    return isScheduled.filter((x) => x).length;
   },
 };
 
-messenger.tabs.onRemoved.addListener(tabId => {
+messenger.tabs.onRemoved.addListener((tabId) => {
   SLTools.handlePopupCallback(tabId, { ok: false, check: null });
 });

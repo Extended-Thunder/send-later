@@ -1,6 +1,7 @@
-var ExtensionSupport = globalThis.ExtensionSupport || ChromeUtils.import(
-  "resource:///modules/ExtensionSupport.jsm"
-).ExtensionSupport;
+var ExtensionSupport =
+  globalThis.ExtensionSupport ||
+  ChromeUtils.import("resource:///modules/ExtensionSupport.jsm")
+    .ExtensionSupport;
 
 class CustomHdrRow {
   constructor(context, name, value) {
@@ -8,13 +9,14 @@ class CustomHdrRow {
     this.name = name;
     this.value = value;
     this.rowId = ExtensionCommon.makeWidgetId(
-      `${context.extension.id}-${name}-custom-hdr`
+      `${context.extension.id}-${name}-custom-hdr`,
     );
   }
 
   getDocument(window) {
-    return window.gTabmail.currentAbout3Pane.document.
-      getElementById("messageBrowser").contentDocument;
+    return window.gTabmail.currentAbout3Pane.document.getElementById(
+      "messageBrowser",
+    ).contentDocument;
   }
 
   destroy() {
@@ -33,11 +35,9 @@ class CustomHdrRow {
   }
 
   static waitForWindow(win) {
-    return new Promise(resolve => {
-      if (win.document.readyState == "complete")
-        resolve();
-      else
-        win.addEventListener( "load", resolve, { once: true } );
+    return new Promise((resolve) => {
+      if (win.document.readyState == "complete") resolve();
+      else win.addEventListener("load", resolve, { once: true });
     });
   }
 
@@ -69,7 +69,7 @@ class CustomHdrRow {
 
       let headingNode = document.createElement("html:span");
       boxNode.appendChild(headingNode);
-      
+
       headingNode.id = `${this.rowId}Heading`;
       headingNode.classList.add("row-heading");
       headingNode.textContent = this.name;
@@ -86,10 +86,9 @@ class CustomHdrRow {
       boxNode.appendChild(valueNode);
 
       // Add the new row to the extra headers container.
-      let topViewNode = document.getElementById("messageHeader")
+      let topViewNode = document.getElementById("messageHeader");
       topViewNode.appendChild(newRowNode);
-    }
-    else {
+    } else {
       let valueNode = document.getElementById(`${this.rowId}Value`);
       valueNode.textContent = this.value;
     }
@@ -102,7 +101,7 @@ var headerView = class extends ExtensionCommon.ExtensionAPI {
       try {
         hdrRow.destroy();
       } catch (ex) {
-        console.error("Unable to destroy hdrRow:",ex);
+        console.error("Unable to destroy hdrRow:", ex);
       }
     }
   }
@@ -114,13 +113,11 @@ var headerView = class extends ExtensionCommon.ExtensionAPI {
 
     return {
       headerView: {
-
         async addCustomHdrRow({ name, value }) {
           let hdrRow = hdrRows.get(name);
           if (hdrRow) {
             hdrRow.value = value;
-          }
-          else {
+          } else {
             hdrRow = new CustomHdrRow(context, name, value);
           }
           await hdrRow.addToCurrentWindows();
@@ -131,11 +128,12 @@ var headerView = class extends ExtensionCommon.ExtensionAPI {
           let hdrRow = hdrRows.get(name);
           if (!hdrRow)
             throw new ExtensionUtils.ExtensionError(
-              "Cannot remove non-existent hdrRow");
+              "Cannot remove non-existent hdrRow",
+            );
           hdrRow.destroy();
           hdrRows.delete(name);
-        }
-      }
-    }
+        },
+      },
+    };
   }
-}
+};
