@@ -24,7 +24,8 @@ if (typeof browser === "undefined" || typeof browserMocking === "boolean") {
   // For testing purposes, because the browser mock script needs to
   // asynchronously load translations.
   function waitAndTranslate() {
-    if (browser.i18n.getMessage("advancedOptionsTitle") === "advancedOptionsTitle") {
+    if (browser.i18n.getMessage("advancedOptionsTitle") ===
+        "advancedOptionsTitle") {
       setTimeout(waitAndTranslate, 10);
     } else {
       translateDocument();

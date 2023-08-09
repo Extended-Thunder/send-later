@@ -1,62 +1,62 @@
 [
-    {
-      "namespace": "headerView",
-      "description": "",
-      "types": [
-        {
-          "id": "HeaderRowProperties",
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string",
-              "description": "The name of the header row to add."
-            },
-            "value": {
-              "type": "string",
-              "description": "The value of the header row to add."
-            }
-          }
-        },
-        {
-          "id": "HeaderRowFillProperties",
-          "type": "object",
-          "properties": {
-            "text": {
-              "type": "string",
-              "description": "The text to display in the cell, may be empty."
-            },
-            "visible": {
-              "type": "boolean",
-              "description": "Whether the header row should be visible."
-            }
+  {
+    "namespace": "headerView",
+    "description": "",
+    "types": [
+      {
+        "id": "HeaderRowProperties",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the header row to add."
+          },
+          "value": {
+            "type": "string",
+            "description": "The value of the header row to add."
           }
         }
-      ],
-      "functions": [
-        {
-          "name": "addCustomHdrRow",
-          "type": "function",
-          "description": "",
-          "async": true,
-          "parameters": [
-            {
-              "name": "properties",
-              "$ref": "HeaderRowProperties"
-            }
-          ]
-        },
-        {
-          "name": "removeCustomHdrRow",
-          "type": "function",
-          "description": "",
-          "async": true,
-          "parameters": [
-            {
-              "name": "name",
-              "type": "string"
-            }
-            ]
+      },
+      {
+        "id": "HeaderRowFillProperties",
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "The text to display in the cell, may be empty."
+          },
+          "visible": {
+            "type": "boolean",
+            "description": "Whether the header row should be visible."
+          }
         }
-      ]
-    }
-  ]
+      }
+    ],
+    "functions": [
+      {
+        "name": "addCustomHdrRow",
+        "type": "function",
+        "description": "",
+        "async": true,
+        "parameters": [
+          {
+            "name": "properties",
+            "$ref": "HeaderRowProperties"
+          }
+        ]
+      },
+      {
+        "name": "removeCustomHdrRow",
+        "type": "function",
+        "description": "",
+        "async": true,
+        "parameters": [
+          {
+            "name": "name",
+            "type": "string"
+          }
+        ]
+      }
+    ]
+  }
+]

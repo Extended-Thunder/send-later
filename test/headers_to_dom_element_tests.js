@@ -1,11 +1,14 @@
 exports.init = function() {
-    function popupDOMTest(headers, expected) {
-      const result = SLStatic.parseHeadersForPopupUICache(headers);
-      return (DeepCompare(result, expected) ||
-              `expected ${ObjToStr(expected)}", got "${ObjToStr(result)}"`);
-    }
+  function popupDOMTest(headers, expected) {
+    const result = SLStatic.parseHeadersForPopupUICache(headers);
+    return (DeepCompare(result, expected) ||
+            `expected ${ObjToStr(expected)}", got "${ObjToStr(result)}"`);
+  }
 
-    SLTests.AddTest("popupCacheTest simple-norecur", popupDOMTest, [
+  SLTests.AddTest(
+    "popupCacheTest simple-norecur",
+    popupDOMTest,
+    [
       {
         'x-send-later-at': '2021-01-22T15:31',
         'x-send-later-recur': 'none'
@@ -22,7 +25,10 @@ exports.init = function() {
       }
     ]);
 
-    SLTests.AddTest("popupDOMTest recur every 3 days", popupDOMTest, [
+  SLTests.AddTest(
+    "popupDOMTest recur every 3 days",
+    popupDOMTest,
+    [
       {
         'x-send-later-at': 'Fri, 22 Jan 2021 15:31:00 -0800',
         'x-send-later-recur': 'daily / 3'
@@ -45,7 +51,10 @@ exports.init = function() {
       }
     ]);
 
-    SLTests.AddTest("popupDOMTest recur every other month on the second Friday", popupDOMTest, [
+  SLTests.AddTest(
+    "popupDOMTest recur every other month on the second Friday",
+    popupDOMTest,
+    [
       {
         'x-send-later-at': 'Fri, 22 Jan 2021 15:31:00 -0800',
         'x-send-later-recur': 'monthly 6 2 / 2'
@@ -71,7 +80,10 @@ exports.init = function() {
       }
     ]);
 
-    SLTests.AddTest("popupDOMTest recur every 3 days with time limit", popupDOMTest, [
+  SLTests.AddTest(
+    "popupDOMTest recur every 3 days with time limit",
+    popupDOMTest,
+    [
       {
         'x-send-later-at': 'Fri, 22 Jan 2021 15:31:00 -0800',
         'x-send-later-recur': 'daily / 3 until 2021-09-16T16:16:24.397Z'
@@ -96,7 +108,10 @@ exports.init = function() {
       }
     ]);
 
-    SLTests.AddTest("popupDOMTest recur every other month on the second Friday with time limit", popupDOMTest, [
+  SLTests.AddTest(
+    "popupDOMTest recur every other month on the second Friday with time limit",
+    popupDOMTest,
+    [
       {
         'x-send-later-at': 'Fri, 22 Jan 2021 15:31:00 -0800',
         'x-send-later-recur': 'monthly 6 2 / 2 until 2021-05-01T23:16:24.397Z'
@@ -123,4 +138,5 @@ exports.init = function() {
         'senduntil-time': '23:16'
       }
     ]);
-  }
+}
+

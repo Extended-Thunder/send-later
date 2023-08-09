@@ -18,7 +18,8 @@ var SLStatic = {
   // in local storage.
   prefInputIds: ["checkTimePref", "sendDoesDelay", "sendDelay", "sendDoesSL",
                  "altBinding", "markDraftsRead", "showColumn", "showHeader",
-                 "showStatus", "blockLateMessages", "lateGracePeriod", "askQuit",
+                 "showStatus", "blockLateMessages", "lateGracePeriod",
+                 "askQuit",
                  "sendUnsentMsgs", "enforceTimeRestrictions", "logDumpLevel",
                  "logConsoleLevel", "quickOptions1Label",
                  "quickOptions1funcselect", "quickOptions1Args",
@@ -68,8 +69,8 @@ var SLStatic = {
     this.trace = logThreshold("trace") ? console.trace : ()=>{};
   },
 
-  // Run a function and report any errors to the console, but don't let the error
-  // propagate to the caller.
+  // Run a function and report any errors to the console, but don't let the
+  // error propagate to the caller.
   async nofail(func, ...args) {
     try {
       await func(...args);
@@ -166,17 +167,18 @@ var SLStatic = {
   flatten(arr) {
     // Flattens an N-dimensional array.
     return arr.reduce((res, item) => res.concat(
-                        Array.isArray(item) ? SLStatic.flatten(item) : item
-                      ), []);
+      Array.isArray(item) ? SLStatic.flatten(item) : item
+    ), []);
   },
 
   generateUUID() {
     // Thanks to stackexchange for this one
     //    https://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid
-    // Note: This will eventually be replaced with a standard uuid javascript module
-    // as part of the ecmascript standard.
+    // Note: This will eventually be replaced with a standard uuid javascript
+    // module as part of the ecmascript standard.
     const uuid = ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).
+        toString(16)
     );
     return `{${uuid}}`;
   },
@@ -238,7 +240,7 @@ var SLStatic = {
 
     let estimate = new Date(previousLoop);
     while (estimate.getTime() < scheduledDate.getTime()
-            || estimate.getTime() < Date.now()+1000) {
+           || estimate.getTime() < Date.now()+1000) {
       estimate = new Date(estimate.getTime() + 60000*loopMinutes);
     }
 
@@ -320,23 +322,23 @@ var SLStatic = {
       tolerance = 0;
     }
     switch (comparison) {
-      case "<":
-        return (a-b) < tolerance;
-      case ">":
-        return (a-b) > tolerance;
-      case "<=":
-        return (a-b) <= tolerance;
-      case ">=":
-        return (a-b) >= tolerance;
-      case "==":
-      case "===":
-        return Math.abs(a-b) <= tolerance;
-      case "!=":
-      case "!==":
-        return Math.abs(a-b) > tolerance;
-      default:
-        throw new Error("Unknown comparison: "+comparison);
-        break;
+    case "<":
+      return (a-b) < tolerance;
+    case ">":
+      return (a-b) > tolerance;
+    case "<=":
+      return (a-b) <= tolerance;
+    case ">=":
+      return (a-b) >= tolerance;
+    case "==":
+    case "===":
+      return Math.abs(a-b) <= tolerance;
+    case "!=":
+    case "!==":
+      return Math.abs(a-b) > tolerance;
+    default:
+      throw new Error("Unknown comparison: "+comparison);
+      break;
     }
   },
 
@@ -350,9 +352,9 @@ var SLStatic = {
   compareTimes(a,comparison, b, ignoreSec, tolerance) {
     a = SLStatic.convertTime(a); b = SLStatic.convertTime(b);
     const A = new Date(2000, 0, 01, a.getHours(), a.getMinutes(),
-                        (ignoreSec ? 0 : a.getSeconds()));
+                       (ignoreSec ? 0 : a.getSeconds()));
     const B = new Date(2000, 0, 01, b.getHours(), b.getMinutes(),
-                        (ignoreSec ? 0 : b.getSeconds()));
+                       (ignoreSec ? 0 : b.getSeconds()));
     return SLStatic.compare(A.getTime(), comparison, B.getTime(), tolerance);
   },
 
@@ -383,7 +385,7 @@ var SLStatic = {
     // Inputs: dstr (formatted YYYY/MM/DD), tstr (formatted HH:MM)
     const dpts = dstr ? dstr.split(/\D/) : [0,1,0];
     const tpts = SLStatic.timeRegex.test(tstr) ?
-                    SLStatic.timeRegex.exec(tstr) : [null, 0, 0];
+          SLStatic.timeRegex.exec(tstr) : [null, 0, 0];
     return new Date(+dpts[0], --dpts[1], +dpts[2], +tpts[1], +tpts[2]);
   },
 
@@ -455,9 +457,9 @@ var SLStatic = {
     const format = l[dt > -1 ? 'future' : 'past'];
     return format.replace(/\{(.*?)\}/g, function(full, match) {
       switch(match) {
-        case 'num': return num;
-        case 'unit': return unit;
-        case 'sign': return sign;
+      case 'num': return num;
+      case 'unit': return unit;
+      case 'sign': return sign;
       }
     });
   },
@@ -499,12 +501,14 @@ var SLStatic = {
       const FUNC = Function.apply(null, ["specname", "prev", "args", funcStr]);
       response = FUNC(name, prev, args);
     } catch (ex) {
-      SLStatic.debug(`User function ${name} (prev: ${prev}, args: ${args}) returned error.`,ex);
+      SLStatic.debug(`User function ${name} (prev: ${prev}, args: ${args}) ` +
+                     `returned error.`,ex);
       return { error: ex.message };
     }
 
     if (response === undefined) {
-      let error = `Send Later: Recurrence function '${name}' did not return a value`;
+      let error =
+          `Send Later: Recurrence function '${name}' did not return a value`;
       SLStatic.warn(error);
       return { error };
     }
@@ -517,7 +521,8 @@ var SLStatic = {
     } else if (response.splice) {
       recvdType = "array";
     } else {
-      let error = `Recurrence function "${name}" did not return number, Date, or array`;
+      let error =
+          `Recurrence function "${name}" did not return number, Date, or array`;
       SLStatic.warn(error);
       return { error };
     }
@@ -525,43 +530,44 @@ var SLStatic = {
     const prevOrNow = prev ? (new Date(prev)).getTime() : Date.now();
 
     switch (recvdType) {
-      case "number":
-        if (response < 0) {
+    case "number":
+      if (response < 0) {
+        return { sendAt: null };
+      } else {
+        return {
+          sendAt: new Date(prevOrNow + response * 60 * 1000)
+        };
+      }
+    case "date":
+      return { sendAt: response };
+    case "array":
+      if (response.length < 2) {
+        let error =
+            `Array returned by recurrence function "${name}" is too short`;
+        SLStatic.warn(error);
+        return { error };
+      }
+      let sendAt;
+      if (typeof response[0] === "number") {
+        if (response[0] < 0) {
           return { sendAt: null };
         } else {
-          return {
-            sendAt: new Date(prevOrNow + response * 60 * 1000)
-          };
+          sendAt = new Date(prevOrNow + response[0] * 60 * 1000);
         }
-      case "date":
-        return { sendAt: response };
-      case "array":
-        if (response.length < 2) {
-          let error = `Array returned by recurrence function "${name}" is too short`;
-          SLStatic.warn(error);
-          return { error };
-        }
-        let sendAt;
-        if (typeof response[0] === "number") {
-          if (response[0] < 0) {
-            return { sendAt: null };
-          } else {
-            sendAt = new Date(prevOrNow + response[0] * 60 * 1000);
-          }
-        } else if (response[0].getTime) {
-          sendAt = response[0];
-        } else {
-          let error = (`Send Later: Array ${response} returned by recurrence function `
-                       + `"${name}" did not start with a number or Date`);
-          SLStatic.warn(error);
-          return { error };
-        }
-        return {
-          sendAt,
-          nextspec: response[1],
-          nextargs: response[2],
-          error: undefined
-        };
+      } else if (response[0].getTime) {
+        sendAt = response[0];
+      } else {
+        let error = `Send Later: Array ${response} returned by recurrence ` +
+            `function ${name}" did not start with a number or Date`;
+        SLStatic.warn(error);
+        return { error };
+      }
+      return {
+        sendAt,
+        nextspec: response[1],
+        nextargs: response[2],
+        error: undefined
+      };
     }
   },
 
@@ -617,9 +623,9 @@ var SLStatic = {
     }
 
     const { sendAt, nextspec, nextargs, error } =
-      this.evaluateUfunc(name, body, prev, args);
+          this.evaluateUfunc(name, body, prev, args);
     this.debug("User function returned:",
-              {sendAt, nextspec, nextargs, error});
+               {sendAt, nextspec, nextargs, error});
 
     if (error) {
       throw new Error(error);
@@ -642,11 +648,12 @@ var SLStatic = {
     if (recur.type === "function") {
       // Almost certainly doesn't work for all languages. Need a new translation
       // for "recur according to function $1"
-      recurText = this.i18n.getMessage("sendwithfunction",
-                                  [recur.function]).replace(/^\S*/,
-                                    this.i18n.getMessage("recurLabel"));
+      recurText = this.i18n.getMessage(
+        "sendwithfunction",
+        [recur.function]).replace(/^\S*/, this.i18n.getMessage("recurLabel"));
       if (recur.args) {
-        let funcArgsLabel = this.i18n.getMessage("sendlater.prompt.functionargs.label");
+        let funcArgsLabel = this.i18n.getMessage(
+          "sendlater.prompt.functionargs.label");
         recurText += `\n${funcArgsLabel}: [${recur.args}]`;
       }
     } else if (recur.type === "monthly") {
@@ -661,11 +668,13 @@ var SLStatic = {
       if (recur.monthly_day) {
         const ordDay = this.i18n.getMessage("ord" + recur.monthly_day.week);
         const dayName = SLStatic.getWkdayName(recur.monthly_day.day, "long");
-        monthlyRecurParts.push(`${this.i18n.getMessage("everymonthly", [ordDay, dayName])}`);
+        monthlyRecurParts.push(
+          `${this.i18n.getMessage("everymonthly", [ordDay, dayName])}`);
       }
 
       if (recur.multiplier) {
-        monthlyRecurParts.push(this.i18n.getMessage("every_"+recur.type, recur.multiplier));
+        monthlyRecurParts.push(this.i18n.getMessage("every_" + recur.type,
+                                                    recur.multiplier));
       }
 
       recurText += monthlyRecurParts.join(", ");
@@ -707,7 +716,8 @@ var SLStatic = {
 
     if (recur.until) {
       let formattedUntil = this.shortHumanDateTimeFormat(recur.until);
-      recurText += '\n' + this.i18n.getMessage("until_datetime", formattedUntil);
+      recurText += '\n' + this.i18n.getMessage(
+        "until_datetime", formattedUntil);
     }
 
     if (recur.cancelOnReply) {
@@ -718,34 +728,35 @@ var SLStatic = {
   },
 
   formatScheduleForUIColumn(schedule) {
-      if ((/encrypted/i).test(schedule.contentType)) {
-        return "Warning: Message is encrypted and will not be processed by Send Later";
-      }
+    if ((/encrypted/i).test(schedule.contentType)) {
+      return "Warning: Message is encrypted and will not be processed by " +
+        "Send Later";
+    }
 
-      let sendAt = schedule.sendAt;
-      let recur = schedule.recur;
+    let sendAt = schedule.sendAt;
+    let recur = schedule.recur;
 
-      let scheduleText;
-      if (recur !== undefined && !sendAt && (recur.type === "function")) {
-        scheduleText = this.i18n.getMessage("sendwithfunction",
-                                                [recur.function]);
-      } else {
-        scheduleText = SLStatic.shortHumanDateTimeFormat(sendAt);
-      }
+    let scheduleText;
+    if (recur !== undefined && !sendAt && (recur.type === "function")) {
+      scheduleText = this.i18n.getMessage("sendwithfunction",
+                                          [recur.function]);
+    } else {
+      scheduleText = SLStatic.shortHumanDateTimeFormat(sendAt);
+    }
 
-      const rTxt = SLStatic.formatRecurForUI(recur).replace(/\n/gm,". ");
-      if (rTxt) {
-        scheduleText += ` (${rTxt})`;
-      }
+    const rTxt = SLStatic.formatRecurForUI(recur).replace(/\n/gm,". ");
+    if (rTxt) {
+      scheduleText += ` (${rTxt})`;
+    }
 
-      return scheduleText;
+    return scheduleText;
   },
 
   formatScheduleForUI(schedule, previousLoop, loopMinutes) {
     let scheduleText;
     if (!schedule.sendAt && (schedule.recur.type === "function")) {
       scheduleText = this.i18n.getMessage("sendwithfunction",
-      [schedule.recur.function]);
+                                          [schedule.recur.function]);
     } else {
       let sendAt = SLStatic.estimateSendTime(
         schedule.sendAt,
@@ -775,23 +786,24 @@ var SLStatic = {
   stateSetter(enabled) {
     // closure for enabling/disabling UI components
     return (async element => {
-        try{
-          if (["SPAN","DIV","LABEL"].includes(element.tagName)) {
-            element.style.color = enabled ? "black" : "#888888";
-          }
-          element.disabled = !enabled;
-        } catch (ex) {
-          SLStatic.error(ex);
+      try{
+        if (["SPAN","DIV","LABEL"].includes(element.tagName)) {
+          element.style.color = enabled ? "black" : "#888888";
         }
-        const enabler = SLStatic.stateSetter(enabled);
-        [...element.childNodes].forEach(enabler);
-      });
+        element.disabled = !enabled;
+      } catch (ex) {
+        SLStatic.error(ex);
+      }
+      const enabler = SLStatic.stateSetter(enabled);
+      [...element.childNodes].forEach(enabler);
+    });
   },
 
   // Get header's value from raw MIME message content.
   // e.g. "subject: foo bar    baz" returns "foo bar    baz"
   getHeader(content, header) {
-    const regex = new RegExp(`^${header}:([^\r\n]*)\r\n(\\s[^\r\n]*\r\n)*`,'im');
+    const regex = new RegExp(
+      `^${header}:([^\r\n]*)\r\n(\\s[^\r\n]*\r\n)*`,'im');
     let hdrContent = content.split(/\r\n\r\n/m)[0]+'\r\n';
     if (regex.test(hdrContent)) {
       let hdrLine = hdrContent.match(regex)[0];
@@ -825,14 +837,16 @@ var SLStatic = {
   },
 
   appendHeader(content, header, value) {
-    const regex = new RegExp(`^${header}:([^\r\n]*)\r\n(\\s[^\r\n]*\r\n)*`,'im');
+    const regex = new RegExp(
+      `^${header}:([^\r\n]*)\r\n(\\s[^\r\n]*\r\n)*`,'im');
     const hdrContent = content.split(/\r\n\r\n/m)[0]+'\r\n';
     const msgContent = content.split(/\r\n\r\n/m).slice(1).join('\r\n\r\n');
     if (regex.test(hdrContent)) {
       const values = hdrContent.match(regex)[0].trim().slice(
         header.length+1).trim().split(/\r\n/).map(s=>s.trim());
       values.push(value);
-      const newHdrs = hdrContent.replace(regex, `${header}: ${values.join("\r\n ")}\r\n`);
+      const newHdrs = hdrContent.replace(
+        regex, `${header}: ${values.join("\r\n ")}\r\n`);
       return `${newHdrs.trim()}\r\n\r\n${msgContent}`;
     } else {
       return `${hdrContent.trim()}\r\n${header}: ${value}\r\n\r\n${msgContent}`;
@@ -840,9 +854,12 @@ var SLStatic = {
   },
 
   prepNewMessageHeaders(content) {
-    content = SLStatic.replaceHeader(content, "Date", SLStatic.parseableDateTimeFormat(), false);
-    content = SLStatic.replaceHeader(content, "X-Send-Later-[a-zA-Z0-9-]*", null, true);
-    content = SLStatic.replaceHeader(content, "X-Enigmail-Draft-Status", null, false);
+    content = SLStatic.replaceHeader(
+      content, "Date", SLStatic.parseableDateTimeFormat(), false);
+    content = SLStatic.replaceHeader(
+      content, "X-Send-Later-[a-zA-Z0-9-]*", null, true);
+    content = SLStatic.replaceHeader(
+      content, "X-Enigmail-Draft-Status", null, false);
     content = SLStatic.replaceHeader(content, "Openpgp", null, false);
     return content;
   },
@@ -855,59 +872,59 @@ var SLStatic = {
     // Convert a list into its string representation, WITHOUT the square
     // braces around the entire list.
     let arglist = JSON.stringify(args||[], null, ' ');
-    arglist = arglist.replace(/\r?\n\s*/g,' '); // Remove newlines from stringify
+    arglist = arglist.replace(/\r?\n\s*/g,' '); // Remove newlines
     arglist = arglist.replace(/\[\s*/g,'[').replace(/\s*\]/g,']'); // Cleanup
     arglist = arglist.replace(/^\[|\]$/g, ''); // Strip outer brackets
     return arglist;
   },
 
   /* Format:
-  First field is none/minutely/daily/weekly/monthly/yearly/function
+     First field is none/minutely/daily/weekly/monthly/yearly/function
 
-  If first field is monthly, then it is followed by either one or
-  two numbers. If one, then it's a single number for the day of
-  the month; otherwise, it's the day of the week followed by its
-  place within the month, e.g., "1 3" means the third Monday of
-  each month.
+     If first field is monthly, then it is followed by either one or
+     two numbers. If one, then it's a single number for the day of
+     the month; otherwise, it's the day of the week followed by its
+     place within the month, e.g., "1 3" means the third Monday of
+     each month.
 
-  If the first field is yearly, then the second and third fields
-  are the month (0-11) and date numbers for the yearly occurrence.
+     If the first field is yearly, then the second and third fields
+     are the month (0-11) and date numbers for the yearly occurrence.
 
-  After all of the above except function, "/ #" indicates a skip
-  value, e.g., "/ 2" means every 2, "/ 3" means every 3, etc. For
-  example, "daily / 3" means every 3 days, while "monthly 2 2 /
-  2" means every other month on the second Tuesday of the month.
+     After all of the above except function, "/ #" indicates a skip
+     value, e.g., "/ 2" means every 2, "/ 3" means every 3, etc. For
+     example, "daily / 3" means every 3 days, while "monthly 2 2 /
+     2" means every other month on the second Tuesday of the month.
 
-  If the first field is function, then the second field is the
-  name of a global function which will be called with one
-  argument, the previous scheduled send time (as a Date
-  object), and an array of arguments returned by the previous
-  invocation. It has three legal return values:
+     If the first field is function, then the second field is the
+     name of a global function which will be called with one
+     argument, the previous scheduled send time (as a Date
+     object), and an array of arguments returned by the previous
+     invocation. It has three legal return values:
 
-    -1 - stop recurring, i.e., don't schedule any later instances
-      of this message
+     -1 - stop recurring, i.e., don't schedule any later instances
+     of this message
 
-    integer 0 or greater - schedule this message the specified
-      number of minutes into the future, then stop recurring
+     integer 0 or greater - schedule this message the specified
+     number of minutes into the future, then stop recurring
 
-    array [integer 0 or greater, recur-spec, ...] - schedule this
-      message the specified number of minutes into the future,
-      with the specified recurrence specification for instances
-      after this one, and pass the remaining items in the array into the
-      next invocation of the function as an arguments array
+     array [integer 0 or greater, recur-spec, ...] - schedule this
+     message the specified number of minutes into the future,
+     with the specified recurrence specification for instances
+     after this one, and pass the remaining items in the array into the
+     next invocation of the function as an arguments array
 
-  If the word "finished" appears in the spec anywhere after the function
-  name, then it indicates that the specified function should _not_ be
-  called again; rather, we're finished scheduling future sends of this
-  message, but the function is being preserved in the recurrence
-  specification so that it'll be set properly in the dialog if the user
-  edits the scheduled message.
+     If the word "finished" appears in the spec anywhere after the function
+     name, then it indicates that the specified function should _not_ be
+     called again; rather, we're finished scheduling future sends of this
+     message, but the function is being preserved in the recurrence
+     specification so that it'll be set properly in the dialog if the user
+     edits the scheduled message.
 
-  Sending can be restricted with any combination of the following:
+     Sending can be restricted with any combination of the following:
 
-    - "between HH:MM HH:MM" to indicate a time of day restriction
-    - "on # ..." to indicate day of week restrictions
-    - "until [date-time]" to indicate when the recurrence terminates
+     - "between HH:MM HH:MM" to indicate a time of day restriction
+     - "on # ..." to indicate day of week restrictions
+     - "until [date-time]" to indicate when the recurrence terminates
   */
 
   // recur (object) -> recurSpec (string)
@@ -964,75 +981,75 @@ var SLStatic = {
     const recur = {};
     recur.type = params.shift();
     if (!['none','minutely','daily','weekly','monthly','yearly',
-        'function'].includes(recur.type)) {
+          'function'].includes(recur.type)) {
       throw new Error("Invalid recurrence type in " + recurSpec);
     }
     switch (recur.type) {
-      case "none":
-        /* pass */
-        break;
-      case "monthly":
-        if (!/^\d+$/.test(params[0])) {
-          throw new Error("Invalid first monthly argument in " + recurSpec);
-        }
-        if (/^[1-9]\d*$/.test(params[1])) {
-          recur.monthly_day = {
-            day: params.shift(),
-            week: params.shift()
-          };
-          if (recur.monthly_day.day < 0 || recur.monthly_day.day > 6) {
-            throw new Error("Invalid monthly day argument in " + recurSpec);
-          }
-          if (recur.monthly_day.week < 1 || recur.monthly_day.week > 5) {
-            throw new Error("Invalid monthly week argument in " + recurSpec);
-          }
-        } else {
-          recur.monthly = params.shift();
-          if (recur.monthly > 31)
-            throw new Error("Invalid monthly date argument in " + recurSpec);
-        }
-        break;
-      case "yearly":
-        if (!/^\d+$/.test(params[0])) {
-          throw "Invalid first yearly argument in " + recurSpec;
-        }
-        if (!/^[1-9]\d*$/.test(params[1])) {
-          throw "Invalid second yearly argument in " + recurSpec;
-        }
-        recur.yearly = {
-          month: +params.shift(),
-          date: +params.shift()
+    case "none":
+      /* pass */
+      break;
+    case "monthly":
+      if (!/^\d+$/.test(params[0])) {
+        throw new Error("Invalid first monthly argument in " + recurSpec);
+      }
+      if (/^[1-9]\d*$/.test(params[1])) {
+        recur.monthly_day = {
+          day: params.shift(),
+          week: params.shift()
         };
-
-        // Check that this month/date combination is possible at all.
-        // Use a leap year for this test.
-        const test = new Date(2000, recur.yearly.month, recur.yearly.date);
-        if ((test.getMonth() !== recur.yearly.month) ||
-            (test.getDate() !== recur.yearly.date)) {
-          throw new Error("Invalid yearly date in " + recurSpec);
+        if (recur.monthly_day.day < 0 || recur.monthly_day.day > 6) {
+          throw new Error("Invalid monthly day argument in " + recurSpec);
         }
-        break;
-      case "function":
-        recur.function = params.shift();
-        recur.finished = (params[0] === "finished");
-
-        if (!recur.function) {
-          throw new Error("Invalid function recurrence spec");
+        if (recur.monthly_day.week < 1 || recur.monthly_day.week > 5) {
+          throw new Error("Invalid monthly week argument in " + recurSpec);
         }
-        break;
-      default:
-        break;
+      } else {
+        recur.monthly = params.shift();
+        if (recur.monthly > 31)
+          throw new Error("Invalid monthly date argument in " + recurSpec);
+      }
+      break;
+    case "yearly":
+      if (!/^\d+$/.test(params[0])) {
+        throw "Invalid first yearly argument in " + recurSpec;
+      }
+      if (!/^[1-9]\d*$/.test(params[1])) {
+        throw "Invalid second yearly argument in " + recurSpec;
+      }
+      recur.yearly = {
+        month: +params.shift(),
+        date: +params.shift()
+      };
+
+      // Check that this month/date combination is possible at all.
+      // Use a leap year for this test.
+      const test = new Date(2000, recur.yearly.month, recur.yearly.date);
+      if ((test.getMonth() !== recur.yearly.month) ||
+          (test.getDate() !== recur.yearly.date)) {
+        throw new Error("Invalid yearly date in " + recurSpec);
+      }
+      break;
+    case "function":
+      recur.function = params.shift();
+      recur.finished = (params[0] === "finished");
+
+      if (!recur.function) {
+        throw new Error("Invalid function recurrence spec");
+      }
+      break;
+    default:
+      break;
     }
 
     if (recur.type !== "function") {
       const slashIndex = params.indexOf("/");
       if (slashIndex > -1) {
-          const multiplier = params[slashIndex + 1];
-          if (!/^[1-9]\d*$/.test(multiplier)){
-            throw new Error("Invalid multiplier argument in " + recurSpec);
-          }
-          recur.multiplier = +multiplier;
-          params.splice(slashIndex, 2);
+        const multiplier = params[slashIndex + 1];
+        if (!/^[1-9]\d*$/.test(multiplier)){
+          throw new Error("Invalid multiplier argument in " + recurSpec);
+        }
+        recur.multiplier = +multiplier;
+        params.splice(slashIndex, 2);
       }
     }
 
@@ -1096,7 +1113,8 @@ var SLStatic = {
                       `${funcName} is not defined.`);
     }
 
-    let nextRecur = SLStatic.evaluateUfunc(funcName, ufuncs[funcName].body, prev, args);
+    let nextRecur = SLStatic.evaluateUfunc(
+      funcName, ufuncs[funcName].body, prev, args);
 
     if (!nextRecur) {
       return null;
@@ -1137,7 +1155,8 @@ var SLStatic = {
       if (recur.finished) {
         return null;
       }
-      const nextRecur = await SLStatic.nextRecurFunction(next, recurSpec, recur, args);
+      const nextRecur = await SLStatic.nextRecurFunction(
+        next, recurSpec, recur, args);
       if (nextRecur && nextRecur.sendAt && (recur.between || recur.days)) {
         nextRecur.sendAt = SLStatic.adjustDateForRestrictions(
           nextRecur.sendAt, recur.between && recur.between.start,
@@ -1145,7 +1164,8 @@ var SLStatic = {
         );
       }
       if (recur.until && recur.until.getTime() < nextRecur.sendAt.getTime()) {
-        SLStatic.debug(`Recurrence ending because of "until" restriction: ${recur.until} < ${nextRecur.sendAt}`);
+        SLStatic.debug(`Recurrence ending because of "until" restriction: ` +
+                       `${recur.until} < ${nextRecur.sendAt}`);
         return null;
       }
       return nextRecur;
@@ -1163,80 +1183,83 @@ var SLStatic = {
     while ((next <= now) || (recur.multiplier > 0) || redo) {
       redo = false;
       switch (recur.type) {
-        case "minutely":
-          next.setMinutes(next.getMinutes() + 1)
-          break;
-        case "daily":
-          next.setDate(next.getDate() + 1);
-          break;
-        case "weekly":
-          next.setDate(next.getDate() + 7);
-          break;
-        case "monthly":
-          // Two different algorithms are in play here, depending on
-          // whether we're supposed to schedule on a day of the month or
-          // a weekday of a week of the month.
-          //
-          // If the former, then either the current day of the month is
-          // the same as the one we want, in which case we just move to
-          // the next month, or it's not, in which case the "correct"
-          // month didn't have that day (i.e., it's 29, 30, or 31 on a
-          // month without that many days), so we ended up rolling
-          // over. In that case, we set the day of the month of the
-          // _current_ month, because we're already in the right month.
-          //
-          // If the latter, then first check if we're at the correct
-          // weekday and week of the month. If so, then go to the first
-          // day of the next month. After that, move forward to the
-          // correct week of the month and weekday.  If that pushes us
-          // past the end of the month, that means the month in question
-          // doesn't have, e.g., a "5th Tuesday", so we need to set the
-          // redo flag indicating that we need to go through the loop
-          // again because we didn't successfully find a date.
+      case "minutely":
+        next.setMinutes(next.getMinutes() + 1)
+        break;
+      case "daily":
+        next.setDate(next.getDate() + 1);
+        break;
+      case "weekly":
+        next.setDate(next.getDate() + 7);
+        break;
+      case "monthly":
+        // Two different algorithms are in play here, depending on
+        // whether we're supposed to schedule on a day of the month or
+        // a weekday of a week of the month.
+        //
+        // If the former, then either the current day of the month is
+        // the same as the one we want, in which case we just move to
+        // the next month, or it's not, in which case the "correct"
+        // month didn't have that day (i.e., it's 29, 30, or 31 on a
+        // month without that many days), so we ended up rolling
+        // over. In that case, we set the day of the month of the
+        // _current_ month, because we're already in the right month.
+        //
+        // If the latter, then first check if we're at the correct
+        // weekday and week of the month. If so, then go to the first
+        // day of the next month. After that, move forward to the
+        // correct week of the month and weekday.  If that pushes us
+        // past the end of the month, that means the month in question
+        // doesn't have, e.g., a "5th Tuesday", so we need to set the
+        // redo flag indicating that we need to go through the loop
+        // again because we didn't successfully find a date.
 
-          if (recur.monthly) {
-            if (next.getDate() === +recur.monthly) {
-              next.setMonth(next.getMonth() + 1);
-            } else {
-              next.setDate(recur.monthly);
-            }
+        if (recur.monthly) {
+          if (next.getDate() === +recur.monthly) {
+            next.setMonth(next.getMonth() + 1);
           } else {
-            if ((next.getDay() === +recur.monthly_day.day) &&
-                (Math.ceil(next.getDate() / 7) === +recur.monthly_day.week)) {
-              next.setDate(1);
-              next.setMonth(next.getMonth() + 1);
-            } else {}
-            next.setDate((recur.monthly_day.week - 1) * 7 + 1);
-            while (next.getDay() !== +recur.monthly_day.day) {
-              next.setDate(next.getDate() + 1);
-            }
-            if (Math.ceil(next.getDate() / 7) !== +recur.monthly_day.week) {
-              redo = true;
-            }
+            next.setDate(recur.monthly);
           }
-          break;
-        case "yearly":
-          next.setFullYear(next.getFullYear() + 1);
-          next.setMonth(recur.yearly.month);
-          next.setDate(recur.yearly.date);
-          break;
-        default:
-          throw new Error("Send Later error: unrecognized recurrence type: " +
-                 recur.type);
-          break;
+        } else {
+          if ((next.getDay() === +recur.monthly_day.day) &&
+              (Math.ceil(next.getDate() / 7) === +recur.monthly_day.week)) {
+            next.setDate(1);
+            next.setMonth(next.getMonth() + 1);
+          } else {}
+          next.setDate((recur.monthly_day.week - 1) * 7 + 1);
+          while (next.getDay() !== +recur.monthly_day.day) {
+            next.setDate(next.getDate() + 1);
+          }
+          if (Math.ceil(next.getDate() / 7) !== +recur.monthly_day.week) {
+            redo = true;
+          }
+        }
+        break;
+      case "yearly":
+        next.setFullYear(next.getFullYear() + 1);
+        next.setMonth(recur.yearly.month);
+        next.setDate(recur.yearly.date);
+        break;
+      default:
+        throw new Error("Send Later error: unrecognized recurrence type: " +
+                        recur.type);
+        break;
       }
 
       recur.multiplier--;
     }
 
     if (recur.between || recur.days) {
-      next = SLStatic.adjustDateForRestrictions(next,
-                      (recur.between && recur.between.start),
-                      (recur.between && recur.between.end), recur.days);
+      next = SLStatic.adjustDateForRestrictions(
+        next,
+        (recur.between && recur.between.start),
+        (recur.between && recur.between.end),
+        recur.days);
     }
 
     if (recur.until && recur.until.getTime() < next.getTime()) {
-      SLStatic.debug(`Recurrence ending because of "until" restriction: ${recur.until} < ${next}`);
+      SLStatic.debug(`Recurrence ending because of "until" restriction: ` +
+                     `${recur.until} < ${next}`);
       return null;
     }
 
@@ -1260,7 +1283,8 @@ var SLStatic = {
   //    than the scheduled day, or if there is none, then the smallest day in
   //    the restriction overall.
   // 4) If this is a one-off schedule and the assigned day is not valid, then we
-  //    want to go to the beginning of the allowed time range on the next valid day.
+  //    want to go to the beginning of the allowed time range on the next valid
+  //    day.
   adjustDateForRestrictions(sendAt, start_time, end_time, days, soonest_valid) {
     // Copy argument variable to avoid modifying the original
     // (Is this really necessary?)
@@ -1268,12 +1292,14 @@ var SLStatic = {
     start_time = SLStatic.convertTime(start_time);
     end_time = SLStatic.convertTime(end_time);
 
-    if (start_time && SLStatic.compareTimes(sendAt, '<', start_time, true, 1000)) {
+    if (start_time &&
+        SLStatic.compareTimes(sendAt, '<', start_time, true, 1000)) {
       // 1) If there is a time restriction and the scheduled time is before it,
       // reschedule to the beginning of the time restriction.
       sendAt.setHours(start_time.getHours());
       sendAt.setMinutes(start_time.getMinutes());
-    } else if (end_time && SLStatic.compareTimes(sendAt, '>', end_time, true, 1000)) {
+    } else if (end_time &&
+               SLStatic.compareTimes(sendAt, '>', end_time, true, 1000)) {
       // 2) If there is a time restriction and the scheduled time is after it,
       // reschedule to the beginning of the time restriction the next day.
       sendAt.setDate(sendAt.getDate() + 1); // works on end of month, too.
@@ -1380,7 +1406,7 @@ var SLStatic = {
     if (recur.days) {
       dom['sendon'] = true;
       const dayNames = ["sunday","monday","tuesday",
-        "wednesday","thursday","friday","saturday"];
+                        "wednesday","thursday","friday","saturday"];
       for (let i=0; i<7; i++) {
         dom[`sendon-${dayNames[i]}`] = recur.days.includes(i);
       }
@@ -1402,9 +1428,9 @@ var SLStatic = {
 }
 
 /*
-We need to mock certain functions depending on the execution context. We made it
-to this point either through the extension itself, or through an experiment context,
-or via a Node-based unit test.
+  We need to mock certain functions depending on the execution context. We made
+  it to this point either through the extension itself, or through an
+  experiment context, or via a Node-based unit test.
 */
 
 // First, we need access to the i18n localization strings. This is trivial if
@@ -1420,10 +1446,12 @@ if (SLStatic.i18n === null) {
       let EP;
       if (typeof ExtensionParent !== "undefined") {
         EP = ExtensionParent;
-      } else if (typeof window !== "undefined" && typeof window.ExtensionParent !== "undefined") {
+      } else if (typeof window !== "undefined" &&
+                 typeof window.ExtensionParent !== "undefined") {
         EP = window.ExtensionParent;
       } else {
-        var { ExtensionParent } = ChromeUtils.import("resource://gre/modules/ExtensionParent.jsm");
+        var { ExtensionParent } = ChromeUtils.import(
+          "resource://gre/modules/ExtensionParent.jsm");
         EP = ExtensionParent;
       }
       const ext = EP.GlobalManager.getExtension("sendlater3@kamens.us");
@@ -1447,7 +1475,8 @@ if (SLStatic.i18n === null) {
             }
 
             if (str === undefined) {
-              SLStatic.warn(`Unable to find message ${messageName} in locale ${selectedLocale}`);
+              SLStatic.warn(`Unable to find message ${messageName} in ` +
+                            `locale ${selectedLocale}`);
               for (let locale of ext.localeData.availableLocales) {
                 if (ext.localeData.messages.has(locale)) {
                   messages = ext.localeData.messages.get(locale);
@@ -1473,9 +1502,9 @@ if (SLStatic.i18n === null) {
 
             let replacer = (matched, index, dollarSigns) => {
               if (index) {
-                // This is not quite Chrome-compatible. Chrome consumes any number
-                // of digits following the $, but only accepts 9 substitutions. We
-                // accept any number of substitutions.
+                // This is not quite Chrome-compatible. Chrome consumes any
+                // number of digits following the $, but only accepts 9
+                // substitutions. We accept any number of substitutions.
                 index = parseInt(index, 10) - 1;
                 return index in substitutions ? substitutions[index] : "";
               }
@@ -1524,9 +1553,9 @@ if (SLStatic.i18n === null) {
 }
 
 /*
-Unit and functional tests require other mocked browser objects. Since we don't
-need to worry about polluting the global namespace in a unit test, we'll just
-create a mock global browser object here.
+  Unit and functional tests require other mocked browser objects. Since we don't
+  need to worry about polluting the global namespace in a unit test, we'll just
+  create a mock global browser object here.
 */
 if (typeof browser === "undefined" && typeof require !== "undefined") {
   var browserMocking = true;
@@ -1576,7 +1605,8 @@ if (typeof browser === "undefined" && typeof require !== "undefined") {
     // Make this file node.js-aware for browserless unit testing
     const fs = require('fs'),
           path = require('path'),
-          filePath = path.join(__dirname, '..', '_locales','en','messages.json');;
+          filePath = path.join(
+            __dirname, '..', '_locales', 'en', 'messages.json');;
     const contents = fs.readFileSync(filePath, {encoding: 'utf-8'});
     global.localeMessages = JSON.parse(contents);
     global.SLStatic = SLStatic;
@@ -1591,10 +1621,107 @@ if (typeof browser === "undefined" && typeof require !== "undefined") {
   }
 
   SLStatic.mockStorage.ufuncs = {
-    ReadMeFirst: {help: "Any text you put here will be displayed as a tooltip when you hover over the name of the function in the menu. You can use this to document what the function does and what arguments it accepts.", body: "// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;"},
-    BusinessHours: {help:"Send the message now if it is during business hours, or at the beginning of the next work day. You can change the definition of work days (default: Mon - Fri) by passing in an array of work-day numbers as the first argument, where 0 is Sunday and 6 is Saturday. You can change the work start or end time (default: 8:30 - 17:30) by passing in an array of [H, M] as the second or third argument. Specify “null” for earlier arguments you don't change. For example, “null, [9, 0], [17, 0]” changes the work hours without changing the work days.",body:"// Defaults\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Start of the work day as [H, M]\nvar workEnd = [17, 30]; // End of the work day as [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Not expected in normal usage, but used as the current time for testing.\n    next = new Date(prev);\nelse\n    next = new Date();\n\nif (workDays.length == 0 || !workDays.every(d => (d >= 0) && (d <= 6))) { return undefined; }\n\n// If we're past the end of the workday or not on a workday, move to the work\n// start time on the next day.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// If we're before the beginning of the workday, move to its start time.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}"},
-    DaysInARow: {help:"Send the message now, and subsequently once per day at the same time, until it has been sent three times. Specify a number as an argument to change the total number of sends.",body:"// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;"},
-    Delay: {help:"Simply delay message by some number of minutes. First argument is taken as the delay time.", body:"next = new Date(Date.now() + args[0]*60000);"}
+    ReadMeFirst: {
+      help: `Any text you put here will be displayed as a tooltip when you \
+hover over the name of the function in the menu. You can use this to document \
+what the function does and what arguments it accepts.`,
+      body: `\
+// Send the first message now, subsequent messages once per day.
+if (! prev)
+  next = new Date();
+else {
+  var now = new Date();
+  next = new Date(prev); // Copy date argument so we don't modify it.
+  do {
+    next.setDate(next.getDate() + 1);
+  } while (next < now);
+  // ^^^ Don't try to send in the past, in case Thunderbird was asleep at
+  // the scheduled send time.
+}
+if (! args) // Send messages three times by default.
+  args = [3];
+nextargs = [args[0] - 1];
+// Recur if we haven't done enough sends yet.
+if (nextargs[0] > 0)
+  nextspec = \"function \" + specname;";
+`
+    },
+    BusinessHours: {
+      help: `Send the message now if it is during business hours, or at the \
+beginning of the next work day. You can change the definition of work days \
+(default: Mon - Fri) by passing in an array of work-day numbers as the first \
+argument, where 0 is Sunday and 6 is Saturday. You can change the work start \
+or end time (default: 8:30 - 17:30) by passing in an array of [H, M] as the \
+second or third argument. Specify “null” for earlier arguments you don't \
+change. For example, “null, [9, 0], [17, 0]” changes the work hours without \
+changing the work days.`,
+      body: `\
+// Defaults
+var workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6
+var workStart = [8, 30]; // Start of the work day as [H, M]
+var workEnd = [17, 30]; // End of the work day as [H, M]
+if (args && args[0])
+  workDays = args[0];
+if (args && args[1])
+  workStart = args[1];
+if (args && args[2])
+  workEnd = args[2];
+if (prev)
+  // Not expected in normal usage, but used as the current time for testing.
+  next = new Date(prev);
+else
+  next = new Date();
+
+if (workDays.length == 0 || !workDays.every(d => (d >= 0) && (d <= 6)))
+  return undefined;
+
+// If we're past the end of the workday or not on a workday, move to the work
+// start time on the next day.
+while ((next.getHours() > workEnd[0]) ||
+       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||
+       (workDays.indexOf(next.getDay()) == -1)) {
+  next.setDate(next.getDate() + 1);
+  next.setHours(workStart[0]);
+  next.setMinutes(workStart[1]);
+}
+// If we're before the beginning of the workday, move to its start time.
+if ((next.getHours() < workStart[0]) ||
+    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {
+  next.setHours(workStart[0]);
+  next.setMinutes(workStart[1]);
+}
+`
+    },
+    DaysInARow: {
+      help: `Send the message now, and subsequently once per day at the same \
+time, until it has been sent three times. Specify a number as an argument to \
+change the total number of sends.`,
+      body: `\
+// Send the first message now, subsequent messages once per day.
+if (! prev)
+  next = new Date();
+else {
+  var now = new Date();
+  next = new Date(prev); // Copy date argument so we don't modify it.
+  do {
+    next.setDate(next.getDate() + 1);
+  } while (next < now);
+  // ^^^ Don't try to send in the past, in case Thunderbird was asleep at
+  // the scheduled send time.
+}
+if (! args) // Send messages three times by default.
+  args = [3];
+nextargs = [args[0] - 1];
+// Recur if we haven't done enough sends yet.
+if (nextargs[0] > 0)
+  nextspec = \"function \" + specname;
+`
+    },
+    Delay: {
+      help: `Simply delay message by some number of minutes. First argument \
+is taken as the delay time.`,
+      body: "next = new Date(Date.now() + args[0]*60000);"
+    }
   };
 }
 

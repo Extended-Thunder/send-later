@@ -11,31 +11,34 @@ const SLOptions = {
       SLStatic.error(id, element, value);
     } else {
       if (element.tagName === "INPUT") {
-          switch (element.type) {
-              case "checkbox":
-                element.checked = (value !== undefined) && value;
-                break;
-              case "text":
-              case "number":
-                element.value = (value !== undefined) ? value : "";
-                break;
-              case "radio":
-                element.checked = (value !== undefined) && (element.value === value);
-                break;
-              default:
-                SLStatic.error("SendLater: Unable to populate input element of type "+element.type);
-          }
+        switch (element.type) {
+        case "checkbox":
+          element.checked = (value !== undefined) && value;
+          break;
+        case "text":
+        case "number":
+          element.value = (value !== undefined) ? value : "";
+          break;
+        case "radio":
+          element.checked = (value !== undefined) && (element.value === value);
+          break;
+        default:
+          SLStatic.error("SendLater: Unable to populate input element of type "+
+                         element.type);
+        }
       } else if (element.tagName === "SELECT") {
         SLStatic.debug(`Applying stored default ${element.id}: ${value}`);
         const matchingChildren = [...element.childNodes].filter(opt =>
-            opt.tagName === "OPTION" && opt.value.toLowerCase() === value.toLowerCase()
-          );
+          opt.tagName === "OPTION" &&
+            opt.value.toLowerCase() === value.toLowerCase()
+        );
         if (matchingChildren.length === 1) {
           element.value = matchingChildren[0].value;
         } else if (matchingChildren.length > 1) {
           SLStatic.log("[SendLater]: Multiple options match",value,element);
         } else {
-          SLStatic.log("[SendLater]: Could not find value in element ",value,element);
+          SLStatic.log("[SendLater]: Could not find value in element ",
+                       value, element);
         }
       }
     }
@@ -131,7 +134,7 @@ const SLOptions = {
         gracePeriodUnits.value = "gracePeriodDays";
         gracePeriodTime.value = gracePeriodTimeValue/(60*24);
       } else if (gracePeriodTimeValue > 60 &&
-                  gracePeriodTimeValue%60 === 0) {
+                 gracePeriodTimeValue%60 === 0) {
         gracePeriodUnits.value = "gracePeriodHours";
         gracePeriodTime.value = gracePeriodTimeValue/60;
       } else {
@@ -143,45 +146,49 @@ const SLOptions = {
   async applyPrefsToUI() {
     // Sets all UI element states from stored preferences
     const ufuncPromise =
-      browser.storage.local.get({ufuncs:{}}).then(({ ufuncs }) => {
-        Object.keys(ufuncs).forEach(funcName => {
-          SLStatic.debug(`Adding function element ${funcName}`);
-          SLOptions.addFuncOption(funcName, false);
-        })
-      });
+          browser.storage.local.get({ufuncs:{}}).then(({ ufuncs }) => {
+            Object.keys(ufuncs).forEach(funcName => {
+              SLStatic.debug(`Adding function element ${funcName}`);
+              SLOptions.addFuncOption(funcName, false);
+            })
+          });
 
     const prefPromise =
-      browser.storage.local.get({ preferences: {} }).then(({ preferences }) => {
-        SLStatic.logConsoleLevel = preferences.logConsoleLevel;
-        for (let id of SLStatic.prefInputIds) {
-          let prefVal = preferences[id];
-          if (id === "checkTimePref" && preferences.checkTimePref_isMilliseconds) {
-            prefVal /= 60000;
-          }
-          SLStatic.debug(`Setting ${id}: ${prefVal}`);
-          SLOptions.applyValue(id, prefVal);
-        }
+          browser.storage.local.get({ preferences: {} }).then(
+            ({ preferences }) => {
+              SLStatic.logConsoleLevel = preferences.logConsoleLevel;
+              for (let id of SLStatic.prefInputIds) {
+                let prefVal = preferences[id];
+                if (id === "checkTimePref" &&
+                    preferences.checkTimePref_isMilliseconds) {
+                  prefVal /= 60000;
+                }
+                SLStatic.debug(`Setting ${id}: ${prefVal}`);
+                SLOptions.applyValue(id, prefVal);
+              }
 
-        const checkTimePrefElement = document.getElementById("checkTimePref");
-        if (preferences.checkTimePref_isMilliseconds) {
-          checkTimePrefElement.step = 0.1;
-        } else {
-          checkTimePrefElement.step = 1.0;
-        }
+              const checkTimePrefElement =
+                    document.getElementById("checkTimePref");
+              if (preferences.checkTimePref_isMilliseconds) {
+                checkTimePrefElement.step = 0.1;
+              } else {
+                checkTimePrefElement.step = 1.0;
+              }
 
-        try {
-          // Attempt to setup UI alternative units for specifying
-          // grace period time.
-          SLOptions.replaceGracePeriodUnitSelect();
-          SLOptions.autoConvertGracePeriodUnits();
-        } catch (ex) {
-          SLStatic.debug("Unable to set time unit label",ex);
-        }
+              try {
+                // Attempt to setup UI alternative units for specifying
+                // grace period time.
+                SLOptions.replaceGracePeriodUnitSelect();
+                SLOptions.autoConvertGracePeriodUnits();
+              } catch (ex) {
+                SLStatic.debug("Unable to set time unit label",ex);
+              }
 
-        let customDT = document.getElementById("customizeDateTime");
-        let customDTDiv = document.getElementById("customDateTimeFormatsDiv");
-        customDTDiv.style.display = customDT.checked ? "block" : "none";
-      });
+              let customDT = document.getElementById("customizeDateTime");
+              let customDTDiv = document.getElementById(
+                "customDateTimeFormatsDiv");
+              customDTDiv.style.display = customDT.checked ? "block" : "none";
+            });
     return await Promise.all([ufuncPromise, prefPromise]);
   },
 
@@ -222,7 +229,8 @@ const SLOptions = {
       funcSelectors[`ufunc-accel-ctrl-${funcName}`] = 'accelCtrlfuncselect';
       funcSelectors[`ufunc-accel-shift-${funcName}`] = 'accelShiftfuncselect';
       for (let i=1; i<4; i++)
-        funcSelectors[`ufunc-shortcut-${i}-${funcName}`] = `quickOptions${i}funcselect`;
+        funcSelectors[`ufunc-shortcut-${i}-${funcName}`] =
+        `quickOptions${i}funcselect`;
 
       for (let key of Object.keys(funcSelectors)) {
         let newOpt = document.createElement('option');
@@ -248,9 +256,9 @@ const SLOptions = {
 
     const p = element.parentNode;
     if (p.lastChild.className === 'success_icon') {
-        p.replaceChild(checkmark, p.lastChild);
+      p.replaceChild(checkmark, p.lastChild);
     } else {
-        p.appendChild(checkmark);
+      p.appendChild(checkmark);
     }
     setTimeout(() => checkmark.remove(), 1500);
   },
@@ -268,9 +276,9 @@ const SLOptions = {
 
     const p = element.parentNode;
     if (p.lastChild.className === 'success_icon') {
-        p.replaceChild(marker, p.lastChild);
+      p.replaceChild(marker, p.lastChild);
     } else {
-        p.appendChild(marker);
+      p.appendChild(marker);
     }
     setTimeout(() => marker.remove(), 1500);
   },
@@ -285,7 +293,8 @@ const SLOptions = {
       let value = element.value;
       if (["lateGracePeriod", "gracePeriodUnits"].includes(id)) {
         const gracePeriodUnits = document.getElementById("gracePeriodUnits");
-        const gracePeriodValue = document.getElementById("lateGracePeriod").value;
+        const gracePeriodValue =
+              document.getElementById("lateGracePeriod").value;
         if (gracePeriodUnits) {
           const multiplier = {
             "gracePeriodMinutes": 1,
@@ -301,7 +310,8 @@ const SLOptions = {
         SLStatic.logConsoleLevel = value;
       }
 
-      SLStatic.info(`Set option (${element.type}) ${id}: ${preferences[id]} -> ${value}`);
+      SLStatic.info(`Set option (${element.type}) ${id}: ` +
+                    `${preferences[id]} -> ${value}`);
       preferences[id] = value;
       SLOptions.showCheckMark(element, "green");
     };
@@ -309,28 +319,28 @@ const SLOptions = {
     try {
       if (element.tagName === "INPUT") {
         switch(element.type) {
-          case "checkbox":
-          case "radio":
-            preferences[element.id] = element.checked;
-            SLOptions.showCheckMark(element, "green");
-            SLStatic.info(`Set option (radio) ${element.id}: ${element.checked}`);
-            if (element.checked && SLOptions.checkboxGroups[element.id])
-              for (const id2 of SLOptions.checkboxGroups[element.id]) {
-                const element2 = document.getElementById(id2);
-                if (element2.checked) {
-                  element2.checked = false;
-                  preferences[id2] = false;
-                  SLStatic.info(`Set option (radio) ${id2}: false`);
-                  SLOptions.showCheckMark(element2, "green");
-                }
+        case "checkbox":
+        case "radio":
+          preferences[element.id] = element.checked;
+          SLOptions.showCheckMark(element, "green");
+          SLStatic.info(`Set option (radio) ${element.id}: ${element.checked}`);
+          if (element.checked && SLOptions.checkboxGroups[element.id])
+            for (const id2 of SLOptions.checkboxGroups[element.id]) {
+              const element2 = document.getElementById(id2);
+              if (element2.checked) {
+                element2.checked = false;
+                preferences[id2] = false;
+                SLStatic.info(`Set option (radio) ${id2}: false`);
+                SLOptions.showCheckMark(element2, "green");
               }
-            break;
-          case "text":
-          case "number":
-            setRegularPref(element);
-            break;
-          default:
-            throw new Error("Unexpected element type: "+element.type);
+            }
+          break;
+        case "text":
+        case "number":
+          setRegularPref(element);
+          break;
+        default:
+          throw new Error("Unexpected element type: "+element.type);
         }
       } else if (element.tagName === "SELECT") {
         setRegularPref(element);
@@ -355,7 +365,8 @@ const SLOptions = {
       confDiv.style.display = "block";
 
       const confirmPrompt = document.createElement("span");
-      confirmPrompt.textContent = "Are you sure?"; // browser.i18n.getMessage("confirmPrompt")
+      // browser.i18n.getMessage("confirmPrompt") ?
+      confirmPrompt.textContent = "Are you sure?";
       confirmPrompt.style.fontWeight = "bold";
       confirmPrompt.style.color = "red";
       confirmPrompt.style.display = "inline";
@@ -364,7 +375,7 @@ const SLOptions = {
 
       const confirmBtn = document.createElement("button");
       confirmBtn.type = "button";
-      confirmBtn.textContent = "Yes"; // browser.i18n.getMessage("answerYes")
+      confirmBtn.textContent = "Yes"; // browser.i18n.getMessage("answerYes") ?
       confirmBtn.style.fontWeight = "bold";
       confirmBtn.style.display = "inline";
       confirmBtn.style.margin = "0 0.5em";
@@ -372,21 +383,21 @@ const SLOptions = {
 
       const cancelBtn = document.createElement("button");
       cancelBtn.type = "button";
-      cancelBtn.textContent = "No"; // browser.i18n.getMessage("answerNo")
+      cancelBtn.textContent = "No"; // browser.i18n.getMessage("answerNo") ?
       cancelBtn.style.fontWeight = "bold";
       cancelBtn.style.display = "inline";
       cancelBtn.style.margin = "0 0.5em";
       confDiv.appendChild(cancelBtn);
 
       confirmBtn.addEventListener("click", confClickEvent => {
-          confDiv.remove();
-          evt.target.disabled = false;
-          callback(confClickEvent);
+        confDiv.remove();
+        evt.target.disabled = false;
+        callback(confClickEvent);
       });
 
       cancelBtn.addEventListener("click", cancelClickEvent => {
-          confDiv.remove();
-          evt.target.disabled = false;
+        confDiv.remove();
+        evt.target.disabled = false;
       });
 
       evt.target.parentNode.appendChild(confDiv);
@@ -415,10 +426,12 @@ const SLOptions = {
 
     SLOptions.exclusiveCheckboxSet(["sendDoesSL","sendDoesDelay"]);
 
-    document.getElementById("functionEditorTitle").addEventListener("mousedown",
+    document.getElementById("functionEditorTitle").addEventListener(
+      "mousedown",
       (evt) => {
         const funcEditorDiv = document.getElementById("FunctionEditorDiv");
-        const visIndicator = document.getElementById("functionEditorVisibleIndicator");
+        const visIndicator = document.getElementById(
+          "functionEditorVisibleIndicator");
         if (funcEditorDiv.style.display === "none") {
           funcEditorDiv.style.display = "block";
           visIndicator.textContent = "-";
@@ -457,7 +470,8 @@ const SLOptions = {
         funcNameElmt.disabled = false;
         saveBtn.disabled = false;
         if (funcName === "newFunctionName") {
-          funcNameElmt.value = browser.i18n.getMessage("functionnameplaceholder");
+          funcNameElmt.value = browser.i18n.getMessage(
+            "functionnameplaceholder");
           funcContentElmt.value = browser.i18n.getMessage("codeplaceholder");
           funcHelpElmt.value = browser.i18n.getMessage("helptextplaceholder");
           deleteBtn.disabled = true;
@@ -478,24 +492,26 @@ const SLOptions = {
       }
     });
 
-    document.getElementById("functionNames").addEventListener("change",
-        resetFunctionInput);
-    document.getElementById("funcEditReset").addEventListener("click",
-        resetFunctionInput);
+    document.getElementById("functionNames").addEventListener(
+      "change", resetFunctionInput);
+    document.getElementById("funcEditReset").addEventListener(
+      "click", resetFunctionInput);
 
     document.getElementById("funcEditSave").addEventListener("click", evt => {
       const funcName = document.getElementById("functionName").value;
-      const funcContent = document.getElementById("functionEditorContent").value;
+      const funcContent =
+            document.getElementById("functionEditorContent").value;
       const funcHelp = document.getElementById("functionHelpText").value;
-      SLOptions.saveUserFunction(funcName, funcContent, funcHelp).then(success => {
-        if (success) {
-          SLOptions.addFuncOption(funcName, true);
-          SLOptions.showCheckMark(evt.target, "green");
-        } else {
-          document.getElementById("functionName").select();
-          SLOptions.showXMark(evt.target, "red");
-        }
-      });
+      SLOptions.saveUserFunction(funcName, funcContent, funcHelp).then(
+        success => {
+          if (success) {
+            SLOptions.addFuncOption(funcName, true);
+            SLOptions.showCheckMark(evt.target, "green");
+          } else {
+            document.getElementById("functionName").select();
+            SLOptions.showXMark(evt.target, "red");
+          }
+        });
     });
 
     const resetAdvConfigEditor = (async () => {
@@ -503,15 +519,17 @@ const SLOptions = {
       const prefsNode = document.getElementById("advancedConfigText");
       prefsNode.disabled = true;
       prefsNode.value = "";
-      const { preferences } = await browser.storage.local.get({"preferences":{}});
+      const { preferences } =
+            await browser.storage.local.get({"preferences":{}});
       prefsNode.value = JSON.stringify(preferences, null, 2);
       prefsNode.disabled = false;
     });
 
-    document.getElementById("advancedEditorTitle").addEventListener("mousedown",
-      (() => {
+    document.getElementById("advancedEditorTitle").addEventListener(
+      "mousedown", (() => {
         const advEditorDiv = document.getElementById("advancedConfigEditor");
-        const visIndicator = document.getElementById("advancedEditorVisibleIndicator");
+        const visIndicator = document.getElementById(
+          "advancedEditorVisibleIndicator");
         if (advEditorDiv.style.display === "none") {
           resetAdvConfigEditor().then(() => {
             advEditorDiv.style.display = "block";
@@ -527,14 +545,12 @@ const SLOptions = {
         }
       }));
 
-    document.getElementById("advancedEditReset").addEventListener("click",
-      (evt => {
+    document.getElementById("advancedEditReset").addEventListener(
+      "click", (evt => {
         resetAdvConfigEditor().then(() => {
           SLOptions.showCheckMark(evt.target, "green");
         }).catch(SLStatic.error);
       }));
-
-
 
     const saveAdvancedConfig = () => {
       const saveBtn = document.getElementById("advancedEditSave");
@@ -553,7 +569,8 @@ const SLOptions = {
         browser.runtime.sendMessage({
           action: "alert",
           title: "Warning",
-          text: `Preferences were not saved. JSON parsing failed with message:\n\n${err}`
+          text: `Preferences were not saved. ` +
+            `JSON parsing failed with message:\n\n${err}`
         });
       }
     };
@@ -593,8 +610,8 @@ const SLOptions = {
           browser.storage.local.set({ ufuncs });
         }).catch(SLStatic.error);
       }));
-    document.getElementById("funcEditDelete").addEventListener("click",
-      (evt => {
+    document.getElementById("funcEditDelete").addEventListener(
+      "click", (evt => {
         const funcNameSelect = document.getElementById("functionNames");
         const funcName = funcNameSelect.value;
         if ([...SLOptions.builtinFuncs, "newFunctionName"].includes(funcName)) {
@@ -605,8 +622,8 @@ const SLOptions = {
         }
       }));
 
-    document.getElementById("funcTestRun").addEventListener("click",
-      (() => {
+    document.getElementById("funcTestRun").addEventListener(
+      "click", (() => {
         const funcName = document.getElementById("functionName").value;
         const funcBody = document.getElementById("functionEditorContent").value;
         const funcTestDate = document.getElementById("functionTestDate").value;
@@ -619,13 +636,14 @@ const SLOptions = {
         const funcTestArgs = document.getElementById("functionTestArgs").value;
 
         const { sendAt, nextspec, nextargs, error } =
-          SLStatic.evaluateUfunc(
-            funcName,
-            funcBody,
-            testDateTime,
-            funcTestArgs ? SLStatic.parseArgs(funcTestArgs) : null
-          );
-        SLStatic.debug("User function returned:", {sendAt, nextspec, nextargs, error});
+              SLStatic.evaluateUfunc(
+                funcName,
+                funcBody,
+                testDateTime,
+                funcTestArgs ? SLStatic.parseArgs(funcTestArgs) : null
+              );
+        SLStatic.debug("User function returned:",
+                       {sendAt, nextspec, nextargs, error});
         const outputCell = document.getElementById("functionTestOutput");
         const mkSpan = function(text, bold) {
           const e = document.createElement("SPAN");
@@ -648,16 +666,20 @@ const SLOptions = {
           outputCell.appendChild(mkSpan(error));
         } else {
           const nextStr = SLStatic.parseableDateTimeFormat(sendAt);
-          outputCell.appendChild(mkBlock(mkSpan("next:",true), mkSpan(nextStr)));
-          outputCell.appendChild(mkBlock(mkSpan("nextspec:",true), mkSpan(nextspec || "none")));
-          outputCell.appendChild(mkBlock(mkSpan("nextargs:",true), mkSpan(nextargs || "")));
+          outputCell.appendChild(
+            mkBlock(mkSpan("next:",true), mkSpan(nextStr)));
+          outputCell.appendChild(
+            mkBlock(mkSpan("nextspec:",true), mkSpan(nextspec || "none")));
+          outputCell.appendChild(
+            mkBlock(mkSpan("nextargs:",true), mkSpan(nextargs || "")));
         }
       }));
 
-    document.getElementById("customizeDateTime").addEventListener("change", (evt) => {
-      let fmtDiv = document.getElementById("customDateTimeFormatsDiv");
-      fmtDiv.style.display = evt.target.checked ? "block" : "none";
-    });
+    document.getElementById("customizeDateTime").addEventListener(
+      "change", (evt) => {
+        let fmtDiv = document.getElementById("customDateTimeFormatsDiv");
+        fmtDiv.style.display = evt.target.checked ? "block" : "none";
+      });
 
     setInterval(() => {
       let now = new Date();
@@ -667,7 +689,8 @@ const SLOptions = {
         if (fmt.value === "")
           sample.textContent = SLStatic.defaultShortHumanDateTimeFormat(now);
         else
-          sample.textContent = SLStatic.customHumanDateTimeFormat(now, fmt.value);
+          sample.textContent = SLStatic.customHumanDateTimeFormat(
+            now, fmt.value);
       } catch (ex) {}
       try {
         let fmt = document.getElementById("longDateTimeFormat");
@@ -675,7 +698,8 @@ const SLOptions = {
         if (fmt.value === "")
           sample.textContent = SLStatic.defaultHumanDateTimeFormat(now);
         else
-          sample.textContent = SLStatic.customHumanDateTimeFormat(now, fmt.value);
+          sample.textContent = SLStatic.customHumanDateTimeFormat(
+            now, fmt.value);
       } catch (ex) {}
     }, 1000);
 
@@ -683,7 +707,7 @@ const SLOptions = {
     const clearPrefsListener = SLOptions.doubleCheckButtonClick(
       (async () => {
         const { preferences } =
-          await browser.storage.local.get({ preferences: {} });
+              await browser.storage.local.get({ preferences: {} });
         const defaults = await fetch(
           "/utils/defaultPrefs.json"
         ).then(ptxt => ptxt.json());
@@ -708,14 +732,14 @@ const SLOptions = {
 
     if (navigator.userAgent.indexOf("Mac") != -1)
       document.getElementById("accelCtrlLabel").textContent =
-        browser.i18n.getMessage("accelCtrlLabel.MacOS");
+      browser.i18n.getMessage("accelCtrlLabel.MacOS");
 
     const funcTestDate = document.getElementById("functionTestDate");
     const funcTestTime = document.getElementById("functionTestTime");
-    const fmtDate = new Intl.DateTimeFormat('en-CA',
-      { year: "numeric", month: "2-digit", day: "2-digit" });
-    const fmtTime = new Intl.DateTimeFormat('default',
-      { hour: "2-digit", minute: "2-digit", hour12: false });
+    const fmtDate = new Intl.DateTimeFormat(
+      'en-CA', { year: "numeric", month: "2-digit", day: "2-digit" });
+    const fmtTime = new Intl.DateTimeFormat(
+      'default', { hour: "2-digit", minute: "2-digit", hour12: false });
 
     const soon = new Date(Date.now() + 60 * 1000);
     funcTestDate.value = fmtDate.format(soon);

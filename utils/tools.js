@@ -24,19 +24,20 @@ var SLTools = {
     const browserInfo = await messenger.runtime.getBrowserInfo();
     const platformInfo = await messenger.runtime.getPlatformInfo();
     console.info(`${extensionName} version ${slVersion} on ` +
-      `${browserInfo.name} ${browserInfo.version} (${browserInfo.buildID}) ` +
-      `[${platformInfo.os} ${platformInfo.arch}]`);
+                 `${browserInfo.name} ${browserInfo.version} ` +
+                 `(${browserInfo.buildID}) ` +
+                 `[${platformInfo.os} ${platformInfo.arch}]`);
   },
 
   handlePopupCallback(tabId, message) {
     if (_popupCallbacks.has(tabId)) {
-        let callback = _popupCallbacks.get(tabId);
-        callback(message);
-        _popupCallbacks.delete(tabId);
-        return true;
+      let callback = _popupCallbacks.get(tabId);
+      callback(message);
+      _popupCallbacks.delete(tabId);
+      return true;
     } else {
-        // Tab not associated with a popup window
-        return false;
+      // Tab not associated with a popup window
+      return false;
     }
   },
 
@@ -46,10 +47,10 @@ var SLTools = {
     checkLabel = checkLabel || messenger.i18n.getMessage("confirmAgain");
 
     let url = `ui/notification.html?`
-            + `&type=${type}`
-            + `&message=${encodeURIComponent(message)}`
-            + `&checkLabel=${encodeURIComponent(checkLabel)}`
-            + `&checked=${checked ? "true" : "false"}`;
+        + `&type=${type}`
+        + `&message=${encodeURIComponent(message)}`
+        + `&checkLabel=${encodeURIComponent(checkLabel)}`
+        + `&checked=${checked ? "true" : "false"}`;
 
     return new Promise(resolve => {
       messenger.windows.create({
@@ -81,14 +82,16 @@ var SLTools = {
   // Returns a promise that resolves to an object with boolean member
   // 'checked', indicating the user's response.
   alertCheck(title, message, checkLabel, checked) {
-    return this.notificationPopup("alertCheck", title, message, checkLabel, checked);
+    return this.notificationPopup(
+      "alertCheck", title, message, checkLabel, checked);
   },
 
   // Create a popup with a message, 'YES' and 'NO' buttons, and a checkbox.
   // Returns a promise that resolves to an object with boolean members
   // 'ok' and 'checked', indicating the user's response.
   confirmCheck(title, message, checkLabel, checked) {
-    return this.notificationPopup("confirmCheck", title, message, checkLabel, checked);
+    return this.notificationPopup(
+      "confirmCheck", title, message, checkLabel, checked);
   },
 
   // Get all draft folders. Returns an array of Folder objects.
@@ -111,7 +114,8 @@ var SLTools = {
       draftSubFolders.push(getDraftFoldersHelper(folder));
     }
     const allDraftFolders = SLStatic.flatten(draftSubFolders);
-    SLStatic.debug(`Found Draft folder(s) for account ${acct.name}`,allDraftFolders);
+    SLStatic.debug(`Found Draft folder(s) for account ${acct.name}`,
+                   allDraftFolders);
     return allDraftFolders;
   },
 
@@ -171,12 +175,14 @@ var SLTools = {
       if (ccWins.length === 1) {
         const ccTabs = ccWins[0].tabs.filter(tab => (tab.active === true));
         if (ccTabs.length !== 1) { // No tabs?
-          throw new Error(`Unexpected situation: no tabs found in current window`);
+          throw new Error(
+            `Unexpected situation: no tabs found in current window`);
         }
         return ccTabs[0];
       } else if (ccWins.length === 0) {
         // No compose window is opened
-        SLStatic.warn(`The currently active window is not a messageCompose window`);
+        SLStatic.warn(
+          `The currently active window is not a messageCompose window`);
         return undefined;
       } else {
         // Whaaaat!?!?
@@ -206,7 +212,7 @@ var SLTools = {
           }
         }
       },
-      true // Running this sequentially seems to give slightly better performance.
+      true // Running sequentially seems to give slightly better performance.
     )
     return isScheduled.filter(x => x).length;
   },

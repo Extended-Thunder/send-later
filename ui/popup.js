@@ -13,11 +13,12 @@ const SLPopup = {
     } else if (schedule.err) {
       return [ schedule.err ];
     } else {
+      let cancelOnReply = schedule.recur.cancelOnReply ? "yes" : "no";
       return [
         `x-send-later-at: ${SLStatic.parseableDateTimeFormat(schedule.sendAt)}`,
         `x-send-later-recur: ${SLStatic.unparseRecurSpec(schedule.recur)}`,
         `x-send-later-args: ${schedule.recur.args}`,
-        `x-send-later-cancel-on-reply: ${schedule.recur.cancelOnReply ? "yes" : "no"}`
+        `x-send-later-cancel-on-reply: ${cancelOnReply}`
       ];
     }
   },
@@ -77,15 +78,15 @@ const SLPopup = {
   objectifyFormValues() {
     const domArray = SLPopup.domElementsAsArray();
     const inputs = domArray.reduce((obj,item) => {
-        if (item.tagName === "INPUT" || item.tagName === "SELECT") {
-          if (item.type === "checkbox" || item.type === "radio") {
-            obj[item.id] = item.checked;
-          } else {
-            obj[item.id] = item.value;
-          }
+      if (item.tagName === "INPUT" || item.tagName === "SELECT") {
+        if (item.type === "checkbox" || item.type === "radio") {
+          obj[item.id] = item.checked;
+        } else {
+          obj[item.id] = item.value;
         }
-        return obj;
-      }, {});
+      }
+      return obj;
+    }, {});
     inputs.radio = {};
     inputs.groups = {};
     domArray.forEach(el => {
@@ -115,21 +116,22 @@ const SLPopup = {
       } catch (ex) {
         SLStatic.warn(ex);
         return { err: (browser.i18n.getMessage("InvalidArgsTitle") + ": " +
-                        browser.i18n.getMessage("InvalidArgsBody")) };
+                       browser.i18n.getMessage("InvalidArgsBody")) };
       }
     }
 
     const body = SLPopup.ufuncs[funcName].body;
 
     const { sendAt, nextspec, nextargs, error } =
-      SLStatic.evaluateUfunc(funcName, body, prev, args);
+          SLStatic.evaluateUfunc(funcName, body, prev, args);
     SLStatic.debug("User function returned:",
-                    {sendAt, nextspec, nextargs, error});
+                   {sendAt, nextspec, nextargs, error});
 
     if (error) {
       throw new Error(error);
     } else {
-      let recur = SLStatic.parseRecurSpec(nextspec || "none") || { type: "none" };
+      let recur = SLStatic.parseRecurSpec(nextspec || "none") ||
+          { type: "none" };
       if (recur.type !== "none") {
         recur.args = nextargs || "";
       }
@@ -187,35 +189,35 @@ const SLPopup = {
     }
     schedule.recur.type = schedule.recur.type || "none";
     switch (schedule.recur.type) {
-      case "none":
-        break;
-      case "minutely":
-        break;
-      case "daily":
-        break;
-      case "weekly":
-        break;
-      case "monthly":
-        if (inputs["recur-monthly-byweek"]) {
-          schedule.recur.monthly_day = {
-            day: +inputs["recur-monthly-byweek-day"],
-            week: +inputs["recur-monthly-byweek-week"]
-          };
-        } else {
-          schedule.recur.monthly = schedule.sendAt.getDate();
-        }
-        break;
-      case "yearly":
-        schedule.recur.yearly = {
-          month: schedule.sendAt.getMonth(),
-          date: schedule.sendAt.getDate()
+    case "none":
+      break;
+    case "minutely":
+      break;
+    case "daily":
+      break;
+    case "weekly":
+      break;
+    case "monthly":
+      if (inputs["recur-monthly-byweek"]) {
+        schedule.recur.monthly_day = {
+          day: +inputs["recur-monthly-byweek-day"],
+          week: +inputs["recur-monthly-byweek-week"]
         };
-        break;
-      case "function":
-        break;
-      default:
-        SLStatic.error(`unrecognized recurrence type <${schedule.recur.type}>`);
-        break;
+      } else {
+        schedule.recur.monthly = schedule.sendAt.getDate();
+      }
+      break;
+    case "yearly":
+      schedule.recur.yearly = {
+        month: schedule.sendAt.getMonth(),
+        date: schedule.sendAt.getDate()
+      };
+      break;
+    case "function":
+      break;
+    default:
+      SLStatic.error(`unrecognized recurrence type <${schedule.recur.type}>`);
+      break;
     }
 
     if (inputs["sendbetween"]) {
@@ -228,7 +230,7 @@ const SLPopup = {
         };
         if (SLStatic.compareTimes(between.start,'>=',between.end)) {
           return { err: (browser.i18n.getMessage("endTimeWarningTitle") + ": " +
-                          browser.i18n.getMessage("endTimeWarningBody")) };
+                         browser.i18n.getMessage("endTimeWarningBody")) };
         } else {
           schedule.recur.between = between;
         }
@@ -244,8 +246,10 @@ const SLPopup = {
         return obj;
       }, []);
       if (schedule.recur.days.length === 0) {
-        return { err: (browser.i18n.getMessage("missingDaysWarningTitle") + ": " +
-                       browser.i18n.getMessage("missingDaysWarningBody")) };
+        return {
+          err: (browser.i18n.getMessage("missingDaysWarningTitle") + ": " +
+                browser.i18n.getMessage("missingDaysWarningBody"))
+        };
       }
     }
 
@@ -268,11 +272,15 @@ const SLPopup = {
           (/^\d\d.\d\d$/).test(untilTime)) {
         sendUntil = SLStatic.parseDateTime(untilDate, untilTime);
         if (sendUntil.getTime() <= Date.now()) {
-          return { err: browser.i18n.getMessage("invalidUntilWarningTitle") + ": " +
-                        browser.i18n.getMessage("invalidUntilWarning_inPast") };
+          return {
+            err: browser.i18n.getMessage("invalidUntilWarningTitle") + ": " +
+              browser.i18n.getMessage("invalidUntilWarning_inPast")
+          };
         } else if (sendUntil.getTime() < schedule.sendAt) {
-          return { err: browser.i18n.getMessage("invalidUntilWarningTitle") + ": " +
-                        browser.i18n.getMessage("invalidUntilWarning_tooSoon") };
+          return {
+            err: browser.i18n.getMessage("invalidUntilWarningTitle") + ": " +
+              browser.i18n.getMessage("invalidUntilWarning_tooSoon")
+          };
         } else {
           schedule.recur.until = sendUntil;
         }
@@ -298,7 +306,8 @@ const SLPopup = {
         let pluralTxt = browser.i18n.getMessage(`plural_${recurrence}`);
         if (recurrence === "yearly") {
           // ... , on [RECUR DATE]
-          const dateTxt = new Intl.DateTimeFormat([],
+          const dateTxt = new Intl.DateTimeFormat(
+            [],
             {month: "long", day: "numeric"}
           ).format(sendAt);
           pluralTxt += ", " + browser.i18n.getMessage("only_on_days", dateTxt);
@@ -315,7 +324,8 @@ const SLPopup = {
         if (recurrence !== "minutely") {
           // ... at [RECUR TIME]
           const timeMarker = Sugar.Date.getLocale().timeMarkers[0];
-          const timeStr = new Intl.DateTimeFormat([],
+          const timeStr = new Intl.DateTimeFormat(
+            [],
             { hour: "numeric", minute: "numeric" }
           ).format(sendAt);
           pluralTxt += ` ${timeMarker} ${timeStr}`;
@@ -404,15 +414,17 @@ const SLPopup = {
     Object.keys(dom).forEach(key => {
       const element = dom[key];
       if (element.tagName === "INPUT" || element.tagName === "SELECT") {
-        if (element.type === "button" || ["send-date", "send-time"].includes(element.id)) {
+        if (element.type === "button" ||
+            ["send-date", "send-time"].includes(element.id)) {
           // do nothing
         } else if (element.type === "radio" || element.type === "checkbox") {
           inputs[element.id] = element.checked;
         } else if (element.tagName === "SELECT" ||
-                  ["number","text","date","time"].includes(element.type)) {
-                    inputs[element.id] = element.value;
+                   ["number","text","date","time"].includes(element.type)) {
+          inputs[element.id] = element.value;
         } else {
-          throw (`Unrecognized element <${element.tagName} type=${element.type}...>`);
+          throw (`Unrecognized element <${element.tagName} ` +
+                 `type=${element.type}...>`);
         }
       }
     });
@@ -492,10 +504,11 @@ const SLPopup = {
           } else if (element.type === "radio" || element.type === "checkbox") {
             element.checked = (defaults[element.id]);
           } else if (element.tagName === "SELECT" ||
-                    ["number","text","date","time"].includes(element.type)) {
+                     ["number","text","date","time"].includes(element.type)) {
             element.value = (defaults[element.id]);
           } else {
-            SLStatic.warn(`Unrecognized element <${element.tagName} type=${element.type}...>`);
+            SLStatic.warn(`Unrecognized element <${element.tagName} ` +
+                          `type=${element.type}...>`);
           }
         }
         try {
@@ -560,8 +573,8 @@ const SLPopup = {
 
         let intendedSendAt = sendAt;
         let actualSendAt = SLStatic.estimateSendTime(intendedSendAt,
-                                                    SLPopup.previousLoop,
-                                                    SLPopup.loopMinutes);
+                                                     SLPopup.previousLoop,
+                                                     SLPopup.loopMinutes);
 
         if (actualSendAt.getTime() < intendedSendAt.getTime()-5000) {
           sendAt = new Date(intendedSendAt.getTime() + 60000);
@@ -586,18 +599,20 @@ const SLPopup = {
 
     const onInput = (evt) => {
       switch (evt.target.id) {
-        case "send-date":
-        case "send-time":
-          if (dom["send-date"].value && dom["send-time"].value) {
-            const sendAt = SLStatic.parseDateTime(dom["send-date"].value, dom["send-time"].value);
-            dom["send-datetime"].value = SLStatic.shortHumanDateTimeFormat(sendAt);
-          }
-          break;
-        case "send-datetime":
-          SLPopup.parseSugarDate();
-          break;
-        default:
-          break;
+      case "send-date":
+      case "send-time":
+        if (dom["send-date"].value && dom["send-time"].value) {
+          const sendAt = SLStatic.parseDateTime(dom["send-date"].value,
+                                                dom["send-time"].value);
+          dom["send-datetime"].value =
+            SLStatic.shortHumanDateTimeFormat(sendAt);
+        }
+        break;
+      case "send-datetime":
+        SLPopup.parseSugarDate();
+        break;
+      default:
+        break;
       }
 
       const inputs = SLPopup.objectifyFormValues();
@@ -607,10 +622,12 @@ const SLPopup = {
       SLStatic.stateSetter(dom["sendbetween"].checked)(dom["betweenDiv"]);
       SLStatic.stateSetter(dom["senduntil"].checked)(dom["untilDiv"]);
 
-      SLStatic.stateSetter(dom['recurFuncSelect'].length > 0)(dom['function-recur-radio']);
+      SLStatic.stateSetter(dom['recurFuncSelect'].length > 0)(
+        dom['function-recur-radio']);
       SLStatic.stateSetter(dom["function"].checked)(dom['recurFuncSelect']);
 
-      SLStatic.stateSetter(dom["recur-monthly-byweek"].checked)(dom["recur-monthly-byweek-options"])
+      SLStatic.stateSetter(dom["recur-monthly-byweek"].checked)(
+        dom["recur-monthly-byweek-options"])
 
       dom["cancel-on-reply-div"].style.display =
         (schedule.recur && schedule.recur.type !== "none") ? "" : "none";
@@ -664,7 +681,8 @@ const SLPopup = {
       SLPopup.doSendWithSchedule(schedule);
     });
 
-    dom['recurFuncSelect'].addEventListener("change", SLPopup.loadFunctionHelpText);
+    dom['recurFuncSelect'].addEventListener(
+      "change", SLPopup.loadFunctionHelpText);
 
     dom['showHideFunctionHelp'].addEventListener("click", () => {
       const currentState = (dom['funcHelpDiv'].style.display === "block");
@@ -719,7 +737,8 @@ const SLPopup = {
 
     (() => {
       const label = browser.i18n.getMessage("sendNowLabel");
-      const accessKey = browser.i18n.getMessage("sendlater.prompt.sendnow.accesskey");
+      const accessKey = browser.i18n.getMessage(
+        "sendlater.prompt.sendnow.accesskey");
       const contents = SLStatic.underlineAccessKey(label, accessKey);
 
       dom["sendNow"].accessKey = accessKey;
@@ -730,7 +749,8 @@ const SLPopup = {
     })();
     (() => {
       const label = browser.i18n.getMessage("sendlater.prompt.sendlater.label");
-      const accessKey = browser.i18n.getMessage("sendlater.prompt.sendlater.accesskey");
+      const accessKey = browser.i18n.getMessage(
+        "sendlater.prompt.sendlater.accesskey");
       const contents = SLStatic.underlineAccessKey(label, accessKey);
 
       dom["placeInOutbox"].accessKey = accessKey;
@@ -754,8 +774,8 @@ const SLPopup = {
     SLPopup.ufuncs = ufuncs;
 
     const mainLoop = await browser.runtime.sendMessage({
-        action: "getMainLoopStatus"
-      }).catch(SLStatic.warn);
+      action: "getMainLoopStatus"
+    }).catch(SLStatic.warn);
 
     if (mainLoop) {
       if (mainLoop.previousLoop)

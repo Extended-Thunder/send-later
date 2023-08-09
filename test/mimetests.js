@@ -16,8 +16,10 @@ exports.init = function() {
   SLTests.AddTest(
     "MimeTests 01-plaintext.eml",
     (hdrstring, newvalue) => {
-      const original = fs.readFileSync("test/data/01-plaintext.eml", {encoding: 'utf-8'});
-      const expected = fs.readFileSync("test/data/01-plaintext.eml.out", {encoding: 'utf-8'});
+      const original = fs.readFileSync("test/data/01-plaintext.eml",
+                                       {encoding: 'utf-8'});
+      const expected = fs.readFileSync("test/data/01-plaintext.eml.out",
+                                       {encoding: 'utf-8'});
       let result = original;
 
       result = SLStatic.replaceHeader(result, hdrstring, newvalue, false);
@@ -46,7 +48,8 @@ exports.init = function() {
   SLTests.AddTest(
     "MimeTests getHeader (multi-line)", getHeaderTest,
     ["test/data/01-plaintext.eml", "User-Agent",
-      "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Thunderbird/59.0a1"]
+     "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 " +
+     "Thunderbird/59.0a1"]
   );
 
   SLTests.AddTest(
@@ -67,13 +70,13 @@ exports.init = function() {
   SLTests.AddTest(
     "MimeTests getHeader (multipart repeated header)", getHeaderTest,
     ["test/data/05-HTML+embedded-image.eml", "Content-Type",
-      'multipart/related; boundary="------------B2BBD36A919AB2B2F84E2469"']
+     'multipart/related; boundary="------------B2BBD36A919AB2B2F84E2469"']
   );
 
   SLTests.AddTest(
     "MimeTests getHeader (multipart missing header)", getHeaderTest,
     ["test/data/05-HTML+embedded-image.eml", "Content-Transfer-Encoding",
-      undefined]
+     undefined]
   );
 
   SLTests.AddTest(
@@ -84,11 +87,14 @@ exports.init = function() {
   SLTests.AddTest(
     "MimeTests 21-plaintext.eml",
     () => {
-      const original = fs.readFileSync("test/data/21-plaintext.eml", {encoding: 'utf-8'});
-      const expected = fs.readFileSync("test/data/21-plaintext.eml.out", {encoding: 'utf-8'});
+      const original = fs.readFileSync("test/data/21-plaintext.eml",
+                                       {encoding: 'utf-8'});
+      const expected = fs.readFileSync("test/data/21-plaintext.eml.out",
+                                       {encoding: 'utf-8'});
       let result = original;
 
-      result = SLStatic.replaceHeader(result, "X-Send-Later-[a-zA-Z0-9\-]*", null, true);
+      result = SLStatic.replaceHeader(
+        result, "X-Send-Later-[a-zA-Z0-9\-]*", null, true);
 
       if (result === expected) {
         return true;
@@ -103,13 +109,18 @@ exports.init = function() {
   SLTests.AddTest(
     "MimeTests 05-HTML+embedded-image.eml",
     (hdrstring, newvalue) => {
-      const original = fs.readFileSync("test/data/05-HTML+embedded-image.eml", {encoding: 'utf-8'});
-      const expected = fs.readFileSync("test/data/05-HTML+embedded-image.eml.out", {encoding: 'utf-8'});
+      const original = fs.readFileSync("test/data/05-HTML+embedded-image.eml",
+                                       {encoding: 'utf-8'});
+      const expected = fs.readFileSync(
+        "test/data/05-HTML+embedded-image.eml.out", {encoding: 'utf-8'});
       let result = original;
 
-      result = SLStatic.appendHeader(result, hdrstring, "RANDOM INTERMEDIATE VALUE 1");
-      result = SLStatic.appendHeader(result, hdrstring, "RANDOM INTERMEDIATE VALUE 2");
-      result = SLStatic.appendHeader(result, hdrstring, "RANDOM INTERMEDIATE VALUE 3");
+      result = SLStatic.appendHeader(result, hdrstring,
+                                     "RANDOM INTERMEDIATE VALUE 1");
+      result = SLStatic.appendHeader(result, hdrstring,
+                                     "RANDOM INTERMEDIATE VALUE 2");
+      result = SLStatic.appendHeader(result, hdrstring,
+                                     "RANDOM INTERMEDIATE VALUE 3");
       result = SLStatic.replaceHeader(result, hdrstring, newvalue, true);
 
       if (result === expected) {

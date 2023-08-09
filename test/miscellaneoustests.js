@@ -2,13 +2,13 @@ exports.init = function() {
   // // Example
   // SLTests.AddTest("Test name", (input, expected) => {
   //   const result = input+"foobar";
-  //   return (result === expected) || `Expected "${expected}", got "${result}"`;
+  //   return (result === expected) ||`Expected "${expected}", got "${result}"`;
   // }, ['arg1','arg1foobar']);
 
   SLTests.AddTest("Test flattener", (input, expected) => {
     const result = SLStatic.flatten(input);
     return (JSON.stringify(result) === JSON.stringify(expected)) ||
-            `Expected "${expected}", got "${result}"`;
+      `Expected "${expected}", got "${result}"`;
   }, [ [[2,3,4,1],[1,5,2],[1],[44,4],[7]],
        [2,3,4,1,1,5,2,1,44,4,7] ]);
 
@@ -20,7 +20,8 @@ exports.init = function() {
   function testEstimatedSendTime(scheduledDate, previousLoop, loopMinutes) {
     scheduledDate = SLStatic.floorDateTime(scheduledDate);
 
-    let result = SLStatic.estimateSendTime(scheduledDate, previousLoop, loopMinutes);
+    let result = SLStatic.estimateSendTime(
+      scheduledDate, previousLoop, loopMinutes);
 
     if (result.getTime() < Date.now())
       return `Estimated send time is in the past: ${result}`;
@@ -30,20 +31,20 @@ exports.init = function() {
 
     if (result.getTime()-scheduledDate.getTime() > loopMinutes*60000
         && result.getTime()-Date.now() > loopMinutes*60000)
-      return `Estimated send time is more than ${loopMinutes} past scheduled time.`;
+      return `Estimated send time is > ${loopMinutes} past scheduled time.`;
 
     return true;
   }
 
   SLTests.AddTest("Test estimate send time", testEstimatedSendTime,
-    [new Date(), new Date(Date.now()), 1]);
+                  [new Date(), new Date(Date.now()), 1]);
 
   SLTests.AddTest("Test estimate send time 2", testEstimatedSendTime,
-    [new Date(), new Date(Date.now()-30e3), 1]);
+                  [new Date(), new Date(Date.now()-30e3), 1]);
 
   SLTests.AddTest("Test estimate send time 3", testEstimatedSendTime,
-    [new Date(), new Date(Date.now()-300e3), 1]);
+                  [new Date(), new Date(Date.now()-300e3), 1]);
 
   SLTests.AddTest("Test estimate send time 4", testEstimatedSendTime,
-    [new Date(), new Date(Date.now()-120e3), 5]);
+                  [new Date(), new Date(Date.now()-120e3), 5]);
 }

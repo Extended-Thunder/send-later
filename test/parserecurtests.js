@@ -1,26 +1,26 @@
 exports.init = function() {
   function CompareRecurs(a, b) {
-      if (!a && !b) return true;
-      if (!a || !b) return false;
-      if (a.type != b.type) return false;
-      if (!a.monthly_day != !b.monthly_day) return false;
-      if (a.monthly_day && (a.monthly_day.day != b.monthly_day.day ||
-          a.monthly_day.week != b.monthly_day.week))
-        return false;
-      if (a.monthly != b.monthly) return false;
-      if (!a.yearly != !b.yearly) return false;
-      if (a.yearly && (a.yearly.month != b.yearly.month ||
-          a.yearly.date != b.yearly.date))
-        return false;
-      if (a.function != b.function) return false;
-      if (a.multiplier != b.multiplier) return false;
-      if (!a.between != !b.between) return false;
-      if (a.between && (a.between.start != b.between.start ||
-          a.between.end != b.between.end))
-        return false;
-      if (!a.days != !b.days) return false;
-      if (String(a.days) != String(b.days)) return false;
-      return true;
+    if (!a && !b) return true;
+    if (!a || !b) return false;
+    if (a.type != b.type) return false;
+    if (!a.monthly_day != !b.monthly_day) return false;
+    if (a.monthly_day && (a.monthly_day.day != b.monthly_day.day ||
+                          a.monthly_day.week != b.monthly_day.week))
+      return false;
+    if (a.monthly != b.monthly) return false;
+    if (!a.yearly != !b.yearly) return false;
+    if (a.yearly && (a.yearly.month != b.yearly.month ||
+                     a.yearly.date != b.yearly.date))
+      return false;
+    if (a.function != b.function) return false;
+    if (a.multiplier != b.multiplier) return false;
+    if (!a.between != !b.between) return false;
+    if (a.between && (a.between.start != b.between.start ||
+                      a.between.end != b.between.end))
+      return false;
+    if (!a.days != !b.days) return false;
+    if (String(a.days) != String(b.days)) return false;
+    return true;
   }
 
   function ParseRecurGoodTest(spec, expected) {
@@ -44,11 +44,11 @@ exports.init = function() {
     ["function froodle", { type: "function", "function": "froodle" }],
     ["minutely / 5", { type: "minutely", multiplier: 5 }],
     ["minutely between 830 1730",
-      { type: "minutely",
-        between: {
-          start: "830",
-          end: "1730"
-        } }],
+     { type: "minutely",
+       between: {
+         start: "830",
+         end: "1730"
+       } }],
     ["minutely on 1 2 3 4 5", { type: "minutely", days: [1, 2, 3, 4, 5] }]
   ];
 
@@ -61,7 +61,7 @@ exports.init = function() {
       const parsed = SLStatic.parseRecurSpec(spec);
       const unparsed = SLStatic.unparseRecurSpec(parsed);
       return (spec === `${unparsed}`) ||
-              `Expected "${spec}", got "${unparsed}"`;
+        `Expected "${spec}", got "${unparsed}"`;
     }, test);
   }
 

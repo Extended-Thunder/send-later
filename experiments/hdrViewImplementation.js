@@ -1,4 +1,3 @@
-
 var ExtensionSupport = globalThis.ExtensionSupport || ChromeUtils.import(
   "resource:///modules/ExtensionSupport.jsm"
 ).ExtensionSupport;
@@ -98,44 +97,45 @@ class CustomHdrRow {
 }
 
 var headerView = class extends ExtensionCommon.ExtensionAPI {
-    close() {
-      for (let hdrRow of this.hdrRows.values()) {
-        try {
-          hdrRow.destroy();
-        } catch (ex) {
-          console.error("Unable to destroy hdrRow:",ex);
-        }
+  close() {
+    for (let hdrRow of this.hdrRows.values()) {
+      try {
+        hdrRow.destroy();
+      } catch (ex) {
+        console.error("Unable to destroy hdrRow:",ex);
       }
     }
+  }
 
-    getAPI(context) {
-      context.callOnClose(this);
-      let hdrRows = new Map();
-      this.hdrRows = hdrRows;
+  getAPI(context) {
+    context.callOnClose(this);
+    let hdrRows = new Map();
+    this.hdrRows = hdrRows;
 
-      return {
-        headerView: {
+    return {
+      headerView: {
 
-          async addCustomHdrRow({ name, value }) {
-            let hdrRow = hdrRows.get(name);
-            if (hdrRow) {
-              hdrRow.value = value;
-            }
-            else {
-              hdrRow = new CustomHdrRow(context, name, value);
-            }
-            await hdrRow.addToCurrentWindows();
-            hdrRows.set(name, hdrRow);
-          },
-
-          async removeCustomHdrRow(name) {
-            let hdrRow = hdrRows.get(name);
-            if (!hdrRow)
-              throw new ExtensionUtils.ExtensionError("Cannot remove non-existent hdrRow");
-            hdrRow.destroy();
-            hdrRows.delete(name);
+        async addCustomHdrRow({ name, value }) {
+          let hdrRow = hdrRows.get(name);
+          if (hdrRow) {
+            hdrRow.value = value;
           }
+          else {
+            hdrRow = new CustomHdrRow(context, name, value);
+          }
+          await hdrRow.addToCurrentWindows();
+          hdrRows.set(name, hdrRow);
+        },
+
+        async removeCustomHdrRow(name) {
+          let hdrRow = hdrRows.get(name);
+          if (!hdrRow)
+            throw new ExtensionUtils.ExtensionError(
+              "Cannot remove non-existent hdrRow");
+          hdrRow.destroy();
+          hdrRows.delete(name);
         }
       }
     }
+  }
 }

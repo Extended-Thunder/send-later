@@ -1,4 +1,3 @@
-
 function truncateString(s, limit) {
   if (s.length <= limit) {
     return String(s);
@@ -60,31 +59,31 @@ function makeRow(scheduleStr, recipientsStr, subjectStr) {
 }
 
 function init() {
-  document.getElementById("showPrefsButton").addEventListener("click",
-    () => {
-      messenger.runtime.sendMessage({action: "showPreferences"}).then(() => window.close());
-    }
-  );
-  document.getElementById("showGuideButton").addEventListener("click",
-    () => {
-      messenger.runtime.sendMessage({action: "showUserGuide"}).then(() => window.close());
-    }
-  );
-  document.getElementById("showNotesButton").addEventListener("click",
-    () => {
-      messenger.runtime.sendMessage({action: "showReleaseNotes"}).then(() => window.close());
-    }
-  );
-  document.getElementById("contactAuthorButton").addEventListener("click",
-    () => {
-      messenger.runtime.sendMessage({action: "contactAuthor"}).then(() => window.close());
-    }
-  );
-  document.getElementById("donateButton").addEventListener("click",
-    () => {
-      messenger.runtime.sendMessage({action: "donateLink"}).then(() => window.close());
-    }
-  );
+  document.getElementById("showPrefsButton").addEventListener(
+    "click", () => {
+      messenger.runtime.sendMessage({
+        action: "showPreferences"}).then(() => window.close());
+    });
+  document.getElementById("showGuideButton").addEventListener(
+    "click", () => {
+      messenger.runtime.sendMessage({
+        action: "showUserGuide"}).then(() => window.close());
+    });
+  document.getElementById("showNotesButton").addEventListener(
+    "click", () => {
+      messenger.runtime.sendMessage({
+        action: "showReleaseNotes"}).then(() => window.close());
+    });
+  document.getElementById("contactAuthorButton").addEventListener(
+    "click", () => {
+      messenger.runtime.sendMessage({
+        action: "contactAuthor"}).then(() => window.close());
+    });
+  document.getElementById("donateButton").addEventListener(
+    "click", () => {
+      messenger.runtime.sendMessage({
+        action: "donateLink"}).then(() => window.close());
+    });
   messenger.runtime.sendMessage({action: "getAllSchedules"}).then((res) => {
     res.schedules.sort(
       (a, b) => (new Date(a.sendAt)).getTime() - (new Date(b.sendAt)).getTime()
