@@ -1,17 +1,19 @@
 function buttonListener(evt) {
   let user_check = document.getElementById("userCheck");
   let button_ok = document.getElementById("button_ok");
-  messenger.runtime.sendMessage({
-    ok: (evt.target === button_ok),
-    check: user_check.checked
-  }).then(async () => {
-    let window = await messenger.windows.getCurrent();
-    messenger.windows.remove(window.id);
-  });
+  messenger.runtime
+    .sendMessage({
+      ok: evt.target === button_ok,
+      check: user_check.checked,
+    })
+    .then(async () => {
+      let window = await messenger.windows.getCurrent();
+      messenger.windows.remove(window.id);
+    });
 }
 
 function onLoad() {
-  let params = (new URL(window.document.location)).searchParams;
+  let params = new URL(window.document.location).searchParams;
 
   let message = document.getElementById("message");
   message.textContent = params.get("message");
@@ -25,7 +27,7 @@ function onLoad() {
     confirmDiv.style.display = "block";
     let userCheck = document.getElementById("userCheck");
     let checkboxLabel = document.getElementById("checkboxLabel");
-    userCheck.checked = (params.get("checked") === "true");
+    userCheck.checked = params.get("checked") === "true";
     checkboxLabel.textContent = `${params.get("checkLabel")}`;
   } else {
     confirmDiv.style.display = "none";

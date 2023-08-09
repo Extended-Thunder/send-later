@@ -1,14 +1,14 @@
 function translateDocument() {
   const elements = document.querySelectorAll(".localized");
-  elements.forEach(async e => {
+  elements.forEach(async (e) => {
     try {
       const key = e.className.match(/__MSG_(.+)__/)[1];
       const mockArgs = [];
       let msg;
       do {
-        msg = browser.i18n.getMessage(key,mockArgs);
+        msg = browser.i18n.getMessage(key, mockArgs);
         mockArgs.push("");
-      } while(msg.indexOf(/\$\d/) !== -1);
+      } while (msg.indexOf(/\$\d/) !== -1);
       if (e.tagName === "INPUT" || e.tagName === "TEXTAREA") {
         e.value = msg;
       } else {
@@ -24,8 +24,9 @@ if (typeof browser === "undefined" || typeof browserMocking === "boolean") {
   // For testing purposes, because the browser mock script needs to
   // asynchronously load translations.
   function waitAndTranslate() {
-    if (browser.i18n.getMessage("advancedOptionsTitle") ===
-        "advancedOptionsTitle") {
+    if (
+      browser.i18n.getMessage("advancedOptionsTitle") === "advancedOptionsTitle"
+    ) {
       setTimeout(waitAndTranslate, 10);
     } else {
       translateDocument();

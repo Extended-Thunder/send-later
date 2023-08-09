@@ -1,0 +1,10 @@
+*.html
+*.md
+*.yml
+_locales
+.github
+contrib
+package.json
+test/diff_match_patch.js
+utils/sugar-custom.js
+utils/varNameValidator.js
