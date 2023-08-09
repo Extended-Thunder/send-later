@@ -1,11 +1,10 @@
-
 class MessageViewsCustomColumn {
   constructor(context, name, tooltip) {
     this.context = context;
     this.name = name;
     this.tooltip = tooltip;
     this.columnId = ExtensionCommon.makeWidgetId(
-      `${context.extension.id}${name}-custom-column`
+      `${context.extension.id}${name}-custom-column`,
     );
     this.visibility = new Map();
     this.handlers = new Set();
@@ -46,11 +45,9 @@ class MessageViewsCustomColumn {
   }
 
   static waitForWindow(win) {
-    return new Promise(resolve => {
-      if (win.document.readyState == "complete")
-        resolve();
-      else
-        win.addEventListener( "load", resolve, { once: true } );
+    return new Promise((resolve) => {
+      if (win.document.readyState == "complete") resolve();
+      else win.addEventListener("load", resolve, { once: true });
     });
   }
 
@@ -60,8 +57,7 @@ class MessageViewsCustomColumn {
       let treerow = this.msgTracker.get(messageId);
       this.msgTracker.delete(messageId);
       for (let window of Services.wm.getEnumerator("mail:3pane")) {
-        if (window.gDBView)
-          window.gDBView.NoteChange(treerow.rowid, 1, 2);
+        if (window.gDBView) window.gDBView.NoteChange(treerow.rowid, 1, 2);
       }
     } else {
       console.warn(`Tree row cannot be invalidated for message: ${messageId}`);
@@ -71,30 +67,25 @@ class MessageViewsCustomColumn {
   async invalidateAll() {
     this.msgTracker.clear();
     for (let window of Services.wm.getEnumerator("mail:3pane")) {
-      if (window.gDBView)
-        window.gDBView.NoteChange(null, null, 4);
+      if (window.gDBView) window.gDBView.NoteChange(null, null, 4);
     }
   }
 
   setVisible(visible, applyGlobal) {
     try {
       let windows;
-      if (applyGlobal)
-        windows = Services.wm.getEnumerator("mail:3pane")
-      else
-        windows = [Services.wm.getMostRecentWindow(null)];
+      if (applyGlobal) windows = Services.wm.getEnumerator("mail:3pane");
+      else windows = [Services.wm.getMostRecentWindow(null)];
 
       for (let window of windows) {
         for (let id of [this.columnId, `${this.columnId}-splitter`]) {
           let e = window.document.getElementById(id);
-          if (e && visible)
-            e.removeAttribute("hidden");
-          else if (e && !visible)
-            e.setAttribute("hidden", "true");
+          if (e && visible) e.removeAttribute("hidden");
+          else if (e && !visible) e.setAttribute("hidden", "true");
         }
       }
     } catch (ex) {
-      console.error("Unable to set column visible",ex);
+      console.error("Unable to set column visible", ex);
     }
   }
 
@@ -117,8 +108,7 @@ class MessageViewsCustomColumn {
     splitter.classList.add("tree-splitter");
     parent.appendChild(splitter);
 
-    for (let handler of this.handlers)
-      this.addHandlerToWindow(window, handler);
+    for (let handler of this.handlers) this.addHandlerToWindow(window, handler);
   }
 
   addHandlerToWindow(window, handler) {
@@ -129,12 +119,14 @@ class MessageViewsCustomColumn {
         return this.msgTracker.get(msgHdr.messageId)[field];
 
       let hdr = this.context.extension.messageManager.convert(msgHdr);
-      handler.async(hdr).then(result => {
-        result.rowid = row;
-        this.msgTracker.set(msgHdr.messageId, result);
-        if (row !== undefined)
-          window.gDBView.NoteChange(row, 1, 2);
-      }).catch(console.error);
+      handler
+        .async(hdr)
+        .then((result) => {
+          result.rowid = row;
+          this.msgTracker.set(msgHdr.messageId, result);
+          if (row !== undefined) window.gDBView.NoteChange(row, 1, 2);
+        })
+        .catch(console.error);
 
       return null;
     };
@@ -142,7 +134,7 @@ class MessageViewsCustomColumn {
     let columnHandler = {
       getCellText(row, col) {
         let msgHdr = window.gDBView.getMsgHdrAt(row);
-        return getValue(msgHdr, "cellText", row)||"";
+        return getValue(msgHdr, "cellText", row) || "";
       },
       getSortStringForRow(msgHdr) {
         return null;
@@ -163,13 +155,13 @@ class MessageViewsCustomColumn {
         let contentType = msgHdr.getStringProperty("content-type");
         let sorter = getValue(msgHdr, "sortValue");
         if (sorter !== null) {
-          return sorter|0;
-        } else if ((/encrypted/i).test(contentType)) {
-          return (Math.pow(2,31)-1)|0;
+          return sorter | 0;
+        } else if (/encrypted/i.test(contentType)) {
+          return (Math.pow(2, 31) - 1) | 0;
         } else if (sendAt) {
-          return ((new Date(sendAt)).getTime()/1000)|0;
+          return (new Date(sendAt).getTime() / 1000) | 0;
         } else {
-          return (Math.pow(2,31)-5)|0;
+          return (Math.pow(2, 31) - 5) | 0;
         }
       },
     };
@@ -179,13 +171,12 @@ class MessageViewsCustomColumn {
       observe(aMsgFolder, aTopic, aData) {
         if (window.gDBView)
           window.gDBView.addColumnHandler(columnId, columnHandler);
-      }
+      },
     };
 
     Services.obs.addObserver(this.observer, "MsgCreateDBView", false);
 
-    if (window.gDBView)
-      this.observer.observe();
+    if (window.gDBView) this.observer.observe();
   }
 }
 
@@ -195,7 +186,7 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
       try {
         column.destroy();
       } catch (ex) {
-        console.error("Unable to destroy column:",ex);
+        console.error("Unable to destroy column:", ex);
       }
 
     ExtensionSupport.unregisterWindowListener("customColumnWL");
@@ -207,22 +198,21 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
     let columns = new Map();
     this.columns = columns;
 
-    ExtensionSupport.registerWindowListener("customColumnWL",
-      {
-        chromeURLs: ["chrome://messenger/content/messenger.xhtml"],
-        async onLoadWindow(window) {
-          await MessageViewsCustomColumn.waitForWindow(window);
-          for (let column of columns.values())
-            column.addToWindow(window);
-        }
-      });
+    ExtensionSupport.registerWindowListener("customColumnWL", {
+      chromeURLs: ["chrome://messenger/content/messenger.xhtml"],
+      async onLoadWindow(window) {
+        await MessageViewsCustomColumn.waitForWindow(window);
+        for (let column of columns.values()) column.addToWindow(window);
+      },
+    });
 
     return {
       columnHandler: {
-
         async addCustomColumn({ name, tooltip }) {
           if (columns.has(name))
-            throw new ExtensionUtils.ExtensionError("Cannot add columns with the same name");
+            throw new ExtensionUtils.ExtensionError(
+              "Cannot add columns with the same name",
+            );
           let column = new MessageViewsCustomColumn(context, name, tooltip);
           await column.addToCurrentWindows();
           columns.set(name, column);
@@ -231,13 +221,15 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
         async removeCustomColumn(name) {
           let column = columns.get(name);
           if (!column)
-            throw new ExtensionUtils.ExtensionError("Cannot remove non-existent column");
+            throw new ExtensionUtils.ExtensionError(
+              "Cannot remove non-existent column",
+            );
           column.destroy();
           columns.delete(name);
         },
 
         async invalidateRowByMessageId(msgIdHeader) {
-          let id = msgIdHeader.replace('<','').replace('>','');
+          let id = msgIdHeader.replace("<", "").replace(">", "");
           for (let column of columns.values()) {
             column.invalidateMessage(id);
           }
@@ -252,7 +244,9 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
         async setColumnVisible(name, visible, applyGlobal) {
           let column = columns.get(name);
           if (!column)
-            throw new ExtensionUtils.ExtensionError("Cannot update non-existent column");
+            throw new ExtensionUtils.ExtensionError(
+              "Cannot update non-existent column",
+            );
           column.setVisible(visible, applyGlobal);
         },
 
@@ -263,14 +257,14 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
             let column = columns.get(name);
             if (!column) {
               throw new ExtensionUtils.ExtensionError(
-                "Cannot add a column fill handler for a column that has not been defined"
+                "Cannot add a column fill handler for a column that has not been defined",
               );
             }
             column.addHandlerToCurrentWindows(fire).catch(console.error);
             return () => {};
           },
-        }).api()
-      }
-    }
+        }).api(),
+      },
+    };
   }
 };

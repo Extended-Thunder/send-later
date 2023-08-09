@@ -1,122 +1,122 @@
 [
-    {
-      "namespace": "columnHandler",
-      "description": "",
-      "types": [
-        {
-          "id": "ColumnProperties",
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string",
-              "description": "The name of the column to add."
-            },
-            "tooltip": {
-              "type": "string",
-              "description": "The tooltip that will be displayed when the user hovers over the column name.",
-              "optional": true
-            }
-          }
-        },
-        {
-          "id": "CellFillProperties",
-          "type": "object",
-          "properties": {
-            "text": {
-              "type": "string",
-              "description": "The text to display in the cell, may be empty."
-            },
-            "sortValue": {
-              "type": "integer",
-              "description": "The value to use for the sorting algorithm."
-            },
-            "image": {
-              "type": "string",
-              "format": "url",
-              "description": "The image url to use in the cell.",
-              "optional": true
-            }
+  {
+    "namespace": "columnHandler",
+    "description": "",
+    "types": [
+      {
+        "id": "ColumnProperties",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the column to add."
+          },
+          "tooltip": {
+            "type": "string",
+            "description": "The tooltip that will be displayed when the user hovers over the column name.",
+            "optional": true
           }
         }
-      ],
-      "functions": [
-        {
-          "name": "addCustomColumn",
-          "type": "function",
-          "description": "",
-          "async": true,
-          "parameters": [
-            {
-              "name": "properties",
-              "$ref": "ColumnProperties"
-            }
-          ]
-        },
-        {
-          "name": "removeCustomColumn",
-          "type": "function",
-          "description": "",
-          "async": true,
-          "parameters": []
-        },
-        {
-          "name": "invalidateRowByMessageId",
-          "type": "function",
-          "description": "",
-          "async": true,
-          "parameters": [
-            {
-              "name": "msgIdHeader",
-              "type": "string"
-            }
-          ]
-        },
-        {
-          "name": "invalidateAll",
-          "type": "function",
-          "description": "",
-          "async": true,
-          "parameters": []
-        },
-        {
-          "name": "setColumnVisible",
-          "type": "function",
-          "description": "",
-          "async": true,
-          "parameters": [
-            {
-              "name": "name",
-              "type": "string"
-            },
-            {
-              "name": "visible",
-              "type": "boolean"
-            },
-            {
-              "name": "applyGlobal",
-              "type": "boolean",
-              "optional": true
-            }
-          ]
-        }
-      ],
-      "events": [
-        {
-          "name": "onCustomColumnFill",
-          "type": "function",
-          "description": "",
-          "parameters": [],
-          "extraParameters": [
-            {
-              "name": "name",
-              "type": "string",
-              "description": "The name of the column to add."
-            }
-          ],
-          "returns": {
-            "$ref": "CellFillProperties"
+      },
+      {
+        "id": "CellFillProperties",
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "The text to display in the cell, may be empty."
+          },
+          "sortValue": {
+            "type": "integer",
+            "description": "The value to use for the sorting algorithm."
+          },
+          "image": {
+            "type": "string",
+            "format": "url",
+            "description": "The image url to use in the cell.",
+            "optional": true
           }
         }
-      ]
-    }
-  ]
+      }
+    ],
+    "functions": [
+      {
+        "name": "addCustomColumn",
+        "type": "function",
+        "description": "",
+        "async": true,
+        "parameters": [
+          {
+            "name": "properties",
+            "$ref": "ColumnProperties"
+          }
+        ]
+      },
+      {
+        "name": "removeCustomColumn",
+        "type": "function",
+        "description": "",
+        "async": true,
+        "parameters": []
+      },
+      {
+        "name": "invalidateRowByMessageId",
+        "type": "function",
+        "description": "",
+        "async": true,
+        "parameters": [
+          {
+            "name": "msgIdHeader",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "name": "invalidateAll",
+        "type": "function",
+        "description": "",
+        "async": true,
+        "parameters": []
+      },
+      {
+        "name": "setColumnVisible",
+        "type": "function",
+        "description": "",
+        "async": true,
+        "parameters": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "visible",
+            "type": "boolean"
+          },
+          {
+            "name": "applyGlobal",
+            "type": "boolean",
+            "optional": true
+          }
+        ]
+      }
+    ],
+    "events": [
+      {
+        "name": "onCustomColumnFill",
+        "type": "function",
+        "description": "",
+        "parameters": [],
+        "extraParameters": [
+          {
+            "name": "name",
+            "type": "string",
+            "description": "The name of the column to add."
+          }
+        ],
+        "returns": {
+          "$ref": "CellFillProperties"
+        }
+      }
+    ]
+  }
+]

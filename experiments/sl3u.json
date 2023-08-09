@@ -3,13 +3,13 @@
     "namespace": "SL3U",
     "functions": [
       {
-        "name":"setLogConsoleLevel",
-        "type":"function",
-        "async":true,
-        "parameters":[
+        "name": "setLogConsoleLevel",
+        "type": "function",
+        "async": true,
+        "parameters": [
           {
-            "name":"level",
-            "type":"string",
+            "name": "level",
+            "type": "string",
             "description": "Logging level"
           }
         ]
@@ -148,25 +148,25 @@
         ]
       },
       {
-        "name":"setHeader",
-        "type":"function",
-        "async":true,
-        "description":"Add a custom header to a compose message",
+        "name": "setHeader",
+        "type": "function",
+        "async": true,
+        "description": "Add a custom header to a compose message",
         "parameters": [
           {
-            "name":"tabId",
-            "type":"integer",
-            "description":"Compose window to modify"
+            "name": "tabId",
+            "type": "integer",
+            "description": "Compose window to modify"
           },
           {
-            "name":"name",
-            "type":"string",
-            "description":"Name of the header to set"
+            "name": "name",
+            "type": "string",
+            "description": "Name of the header to set"
           },
           {
-            "name":"value",
-            "type":"string",
-            "description":"Value of custom header"
+            "name": "value",
+            "type": "string",
+            "description": "Value of custom header"
           }
         ]
       },
@@ -183,10 +183,10 @@
         ]
       },
       {
-        "name":"findAssociatedDraft",
-        "type":"function",
-        "async":true,
-        "description":"Find whether a composition window is editing an existing draft.",
+        "name": "findAssociatedDraft",
+        "type": "function",
+        "async": true,
+        "description": "Find whether a composition window is editing an existing draft.",
         "parameters": [
           {
             "name": "windowId",
@@ -197,11 +197,11 @@
         ]
       },
       {
-        "name":"forceToolbarVisible",
-        "type":"function",
-        "async":true,
-        "description":"Handle  when a new compose window is opened.",
-        "parameters":[
+        "name": "forceToolbarVisible",
+        "type": "function",
+        "async": true,
+        "description": "Handle  when a new compose window is opened.",
+        "parameters": [
           {
             "name": "windowId",
             "type": "integer",
@@ -211,11 +211,11 @@
         ]
       },
       {
-        "name":"hijackComposeWindowKeyBindings",
-        "type":"function",
-        "async":true,
-        "description":"Attach key bindings to compose windows.",
-        "parameters":[
+        "name": "hijackComposeWindowKeyBindings",
+        "type": "function",
+        "async": true,
+        "description": "Attach key bindings to compose windows.",
+        "parameters": [
           {
             "name": "windowId",
             "type": "integer",

@@ -1,7 +1,7 @@
-
-var ExtensionSupport = globalThis.ExtensionSupport || ChromeUtils.import(
-  "resource:///modules/ExtensionSupport.jsm"
-).ExtensionSupport;
+var ExtensionSupport =
+  globalThis.ExtensionSupport ||
+  ChromeUtils.import("resource:///modules/ExtensionSupport.jsm")
+    .ExtensionSupport;
 
 class CustomHdrRow {
   constructor(context, name, tooltip) {
@@ -9,7 +9,7 @@ class CustomHdrRow {
     this.name = name;
     this.tooltip = tooltip;
     this.rowId = ExtensionCommon.makeWidgetId(
-      `${context.extension.id}-${name}-custom-hdr`
+      `${context.extension.id}-${name}-custom-hdr`,
     );
     this.handlers = new Set();
   }
@@ -25,7 +25,7 @@ class CustomHdrRow {
         for (let i = 0; i < window.gMessageListeners.length; i++) {
           if (window.gMessageListeners[i].id === this.name) {
             window.gMessageListeners.splice(i, 1);
-            console.log('Removed gMessageListener for header row:',this.name);
+            console.log("Removed gMessageListener for header row:", this.name);
           }
         }
       } catch (ex) {
@@ -37,11 +37,9 @@ class CustomHdrRow {
   }
 
   static waitForWindow(win) {
-    return new Promise(resolve => {
-      if (win.document.readyState == "complete")
-        resolve();
-      else
-        win.addEventListener( "load", resolve, { once: true } );
+    return new Promise((resolve) => {
+      if (win.document.readyState == "complete") resolve();
+      else win.addEventListener("load", resolve, { once: true });
     });
   }
 
@@ -65,7 +63,7 @@ class CustomHdrRow {
       // Create new collapsed row
       newRowNode = document.createElementNS(
         "http://www.w3.org/1999/xhtml",
-        "div"
+        "div",
       );
       newRowNode.setAttribute("id", this.rowId);
       newRowNode.classList.add("message-header-row");
@@ -87,7 +85,7 @@ class CustomHdrRow {
       newRowNode.appendChild(newHeaderNode);
 
       // Add the new row to the extra headers container.
-      let topViewNode = document.getElementById("extraHeadersArea")
+      let topViewNode = document.getElementById("extraHeadersArea");
       topViewNode.appendChild(newRowNode);
     }
 
@@ -108,7 +106,7 @@ class CustomHdrRow {
     let msgListener = {
       id: name,
       onStartHeaders() {},
-      onEndHeaders() {}
+      onEndHeaders() {},
     };
     msgListener.onBeforeShowHeaderPane = () => {
       window.document.getElementById(this.rowId).hidden = true;
@@ -117,10 +115,16 @@ class CustomHdrRow {
           let msgHdr = window.gDBView.hdrForFirstSelectedMessage;
           if (msgHdr) {
             let hdr = this.context.extension.messageManager.convert(msgHdr);
-            handler.async(hdr).then(result => {
-              window.document.getElementById(this.rowId).hidden = !result.visible;
-              window.document.getElementById(`${this.rowId}-content`).headerValue = result.text;
-            }).catch(console.error);
+            handler
+              .async(hdr)
+              .then((result) => {
+                window.document.getElementById(this.rowId).hidden =
+                  !result.visible;
+                window.document.getElementById(
+                  `${this.rowId}-content`,
+                ).headerValue = result.text;
+              })
+              .catch(console.error);
           }
         } catch (ex) {}
       }
@@ -130,68 +134,69 @@ class CustomHdrRow {
 }
 
 var headerView = class extends ExtensionCommon.ExtensionAPI {
-    close() {
-      for (let hdrRow of this.hdrRows.values()) {
-        try {
+  close() {
+    for (let hdrRow of this.hdrRows.values()) {
+      try {
+        hdrRow.destroy();
+      } catch (ex) {
+        console.error("Unable to destroy hdrRow:", ex);
+      }
+    }
+
+    ExtensionSupport.unregisterWindowListener("customHdrRowWL");
+  }
+
+  getAPI(context) {
+    context.callOnClose(this);
+
+    ExtensionSupport.registerWindowListener("customHdrRowWL", {
+      chromeURLs: ["chrome://messenger/content/messenger.xhtml"],
+      async onLoadWindow(window) {
+        await CustomHdrRow.waitForWindow(window);
+        for (let hdrRow of hdrRows.values()) hdrRow.addToWindow(window);
+      },
+    });
+
+    let hdrRows = new Map();
+    this.hdrRows = hdrRows;
+
+    return {
+      headerView: {
+        async addCustomHdrRow({ name, tooltip }) {
+          if (hdrRows.has(name))
+            throw new ExtensionUtils.ExtensionError(
+              "Cannot add hdrRows with the same name",
+            );
+          let hdrRow = new CustomHdrRow(context, name, tooltip);
+          await hdrRow.addToCurrentWindows();
+          hdrRows.set(name, hdrRow);
+        },
+
+        async removeCustomHdrRow(name) {
+          let hdrRow = hdrRows.get(name);
+          if (!hdrRow)
+            throw new ExtensionUtils.ExtensionError(
+              "Cannot remove non-existent hdrRow",
+            );
           hdrRow.destroy();
-        } catch (ex) {
-          console.error("Unable to destroy hdrRow:",ex);
-        }
-      }
+          hdrRows.delete(name);
+        },
 
-      ExtensionSupport.unregisterWindowListener("customHdrRowWL");
-    }
-
-    getAPI(context) {
-      context.callOnClose(this);
-
-      ExtensionSupport.registerWindowListener("customHdrRowWL",
-        {
-          chromeURLs: ["chrome://messenger/content/messenger.xhtml"],
-          async onLoadWindow(window) {
-            await CustomHdrRow.waitForWindow(window);
-            for (let hdrRow of hdrRows.values())
-              hdrRow.addToWindow(window);
-          }
-        });
-
-      let hdrRows = new Map();
-      this.hdrRows = hdrRows;
-
-      return {
-        headerView: {
-
-          async addCustomHdrRow({ name, tooltip }) {
-            if (hdrRows.has(name))
-              throw new ExtensionUtils.ExtensionError("Cannot add hdrRows with the same name");
-            let hdrRow = new CustomHdrRow(context, name, tooltip);
-            await hdrRow.addToCurrentWindows();
-            hdrRows.set(name, hdrRow);
-          },
-  
-          async removeCustomHdrRow(name) {
+        onHeaderRowUpdate: new ExtensionCommon.EventManager({
+          context,
+          name: "headerView.onHeaderRowUpdate",
+          register: (fire, name) => {
             let hdrRow = hdrRows.get(name);
-            if (!hdrRow)
-              throw new ExtensionUtils.ExtensionError("Cannot remove non-existent hdrRow");
-              hdrRow.destroy();
-            hdrRows.delete(name);
+            if (!hdrRow) {
+              throw new ExtensionUtils.ExtensionError(
+                "Cannot add a hdrRow fill handler for a hdrRow that has not been defined",
+              );
+            }
+            hdrRow.addMsgListenerToCurrentWindows(fire).catch(console.error);
+            return () => {};
           },
-
-          onHeaderRowUpdate: new ExtensionCommon.EventManager({
-            context,
-            name: "headerView.onHeaderRowUpdate",
-            register: (fire, name) => {
-              let hdrRow = hdrRows.get(name);
-              if (!hdrRow) {
-                throw new ExtensionUtils.ExtensionError(
-                  "Cannot add a hdrRow fill handler for a hdrRow that has not been defined"
-                );
-              }
-              hdrRow.addMsgListenerToCurrentWindows(fire).catch(console.error);
-              return () => {};
-            },
-          }).api()
-        }
-      }
-    }
-  };
+        }).api(),
+      },
+    };
+  }
+};

@@ -1,4 +1,3 @@
-
 const requestAlerts = new Map();
 const grantedAlerts = new Map();
 let quitConfirmed;
@@ -21,7 +20,11 @@ const QuitObservers = {
         for (let ext of requestAlerts.keys()) {
           quitConfirmed.add(ext);
           let alert = requestAlerts.get(ext);
-          let result = Services.prompt.confirm(aWindow, alert.title, alert.message);
+          let result = Services.prompt.confirm(
+            aWindow,
+            alert.title,
+            alert.message,
+          );
           if (!result) {
             subject.QueryInterface(Ci.nsISupportsPRBool);
             subject.data = true;
@@ -29,10 +32,10 @@ const QuitObservers = {
           }
         }
       }
-    }
+    },
   },
 
-  granted:{
+  granted: {
     observe() {
       if (grantedAlerts.size > 0) {
         const aWindow = Services.wm.getMostRecentWindow(null);
@@ -46,8 +49,8 @@ const QuitObservers = {
           }
         }
       }
-    }
-  }
+    },
+  },
 };
 
 var quitter = class extends ExtensionCommon.ExtensionAPI {
@@ -57,7 +60,10 @@ var quitter = class extends ExtensionCommon.ExtensionAPI {
     context.callOnClose(this);
 
     // Setup application quit observer
-    Services.obs.addObserver(QuitObservers.requested, "quit-application-requested");
+    Services.obs.addObserver(
+      QuitObservers.requested,
+      "quit-application-requested",
+    );
     Services.obs.addObserver(QuitObservers.granted, "quit-application-granted");
 
     return {
@@ -75,14 +81,20 @@ var quitter = class extends ExtensionCommon.ExtensionAPI {
         async removeQuitGrantedObserver() {
           if (grantedAlerts.has(extension.id))
             grantedAlerts.delete(extension.id);
-        }
-      }
-    }
+        },
+      },
+    };
   }
 
   close() {
     console.debug("Removing quit observers");
-    Services.obs.removeObserver(QuitObservers.requested, "quit-application-requested");
-    Services.obs.removeObserver(QuitObservers.granted, "quit-application-granted");
+    Services.obs.removeObserver(
+      QuitObservers.requested,
+      "quit-application-requested",
+    );
+    Services.obs.removeObserver(
+      QuitObservers.granted,
+      "quit-application-granted",
+    );
   }
-}
+};

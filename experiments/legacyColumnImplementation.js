@@ -1,13 +1,12 @@
-
-var ExtensionSupport = globalThis.ExtensionSupport || ChromeUtils.import(
-  "resource:///modules/ExtensionSupport.jsm"
-).ExtensionSupport;
+var ExtensionSupport =
+  globalThis.ExtensionSupport ||
+  ChromeUtils.import("resource:///modules/ExtensionSupport.jsm")
+    .ExtensionSupport;
 // var ExtensionParent = globalThis.ExtensionParent || ChromeUtils.import(
 //   "resource://gre/modules/ExtensionParent.jsm"
 // ).ExtensionParent;
 
 var LegacyColumn = {
-
   // ExtensionParent,
 
   storageLocalMap: new Map(),
@@ -23,12 +22,12 @@ var LegacyColumn = {
   async getRawMessage(hdr) {
     let folder = hdr.folder.QueryInterface(Ci.nsIMsgFolder);
     let messageUri = folder.generateMessageURI(hdr.messageKey);
-    const messenger = Cc[
-        "@mozilla.org/messenger;1"
-    ].createInstance(Ci.nsIMessenger);
+    const messenger = Cc["@mozilla.org/messenger;1"].createInstance(
+      Ci.nsIMessenger,
+    );
 
     const streamListener = Cc[
-        "@mozilla.org/network/sync-stream-listener;1"
+      "@mozilla.org/network/sync-stream-listener;1"
     ].createInstance(Ci.nsISyncStreamListener);
 
     const service = messenger.messageServiceFromURI(messageUri);
@@ -43,8 +42,8 @@ var LegacyColumn = {
           OnStopRunningUrl(url, exitCode) {
             console.debug(
               `LegacyColumn.getRawMessage.streamListener.OnStopRunning ` +
-              `received ${streamListener.inputStream.available()} bytes ` +
-              `(exitCode: ${exitCode})`
+                `received ${streamListener.inputStream.available()} bytes ` +
+                `(exitCode: ${exitCode})`,
             );
             if (exitCode === 0) {
               resolve();
@@ -55,17 +54,17 @@ var LegacyColumn = {
           },
         },
         false,
-        ""
+        "",
       );
     }).catch((ex) => {
-      console.error(`Error reading message ${messageUri}`,ex);
+      console.error(`Error reading message ${messageUri}`, ex);
     });
 
     const available = streamListener.inputStream.available();
     if (available > 0) {
       const rawMessage = NetUtil.readInputStreamToString(
         streamListener.inputStream,
-        available
+        available,
       );
       return rawMessage;
     } else {
@@ -76,11 +75,14 @@ var LegacyColumn = {
 
   getHeader(content, header) {
     // Get header's value (e.g. "subject: foo bar    baz" returns "foo bar    baz")
-    const regex = new RegExp(`^${header}:([^\r\n]*)\r\n(\\s[^\r\n]*\r\n)*`,'im');
-    const hdrContent = content.split(/\r\n\r\n/m)[0]+'\r\n';
+    const regex = new RegExp(
+      `^${header}:([^\r\n]*)\r\n(\\s[^\r\n]*\r\n)*`,
+      "im",
+    );
+    const hdrContent = content.split(/\r\n\r\n/m)[0] + "\r\n";
     if (regex.test(hdrContent)) {
       const hdrLine = hdrContent.match(regex)[0];
-      return hdrLine.replace(/[^:]*:/m,"").trim();
+      return hdrLine.replace(/[^:]*:/m, "").trim();
     } else {
       return undefined;
     }
@@ -88,17 +90,23 @@ var LegacyColumn = {
 
   checkValidSchedule(hdr) {
     const instanceUUID = this.getStorageLocal("instanceUUID");
-    const msgId = hdr.getStringProperty('message-id');
+    const msgId = hdr.getStringProperty("message-id");
     const CTPropertyName = `content-type-${msgId}`;
     const msgContentType = this.getStorageLocal(CTPropertyName);
     const sendAtStr = hdr.getStringProperty("x-send-later-at");
     const msgUuid = hdr.getStringProperty("x-send-later-uuid");
     const incorrectUUIDMsg = this.SLStatic.i18n.getMessage("incorrectUUID");
-    const encryptionIncompatMsg = this.SLStatic.i18n.getMessage("EncryptionIncompatTitle")
+    const encryptionIncompatMsg = this.SLStatic.i18n.getMessage(
+      "EncryptionIncompatTitle",
+    );
     if (!sendAtStr) {
       return { valid: false, detail: "Not scheduled" };
     } else if (msgUuid !== instanceUUID) {
-      return { valid: false, detail: `${msgUuid} != ${instanceUUID}`, msg: incorrectUUIDMsg };
+      return {
+        valid: false,
+        detail: `${msgUuid} != ${instanceUUID}`,
+        msg: incorrectUUIDMsg,
+      };
     } else if (!msgContentType) {
       return { valid: false, detail: "Missing ContentType" };
     } else if (/encrypted/i.test(msgContentType)) {
@@ -120,7 +128,7 @@ var LegacyColumn = {
 
     return schedule;
   },
-}
+};
 
 class MessageViewsCustomColumn {
   constructor(context, name, tooltip) {
@@ -128,7 +136,7 @@ class MessageViewsCustomColumn {
     this.name = name;
     this.tooltip = tooltip;
     this.columnId = ExtensionCommon.makeWidgetId(
-      `${context.extension.id}${name}-custom-column`
+      `${context.extension.id}${name}-custom-column`,
     );
     this.visibility = new Map();
     this.msgTracker = new Map();
@@ -161,11 +169,9 @@ class MessageViewsCustomColumn {
   }
 
   static waitForWindow(win) {
-    return new Promise(resolve => {
-      if (win.document.readyState == "complete")
-        resolve();
-      else
-        win.addEventListener( "load", resolve, { once: true } );
+    return new Promise((resolve) => {
+      if (win.document.readyState == "complete") resolve();
+      else win.addEventListener("load", resolve, { once: true });
     });
   }
 
@@ -174,7 +180,8 @@ class MessageViewsCustomColumn {
       let windows;
       if (windowId) {
         let wm = this.context.extension.windowManager.get(
-          windowId, this.context
+          windowId,
+          this.context,
         );
         windows = [wm.window];
       } else {
@@ -184,14 +191,12 @@ class MessageViewsCustomColumn {
       for (let window of windows) {
         for (let id of [this.columnId, `${this.columnId}-splitter`]) {
           let e = window.document.getElementById(id);
-          if (e && visible)
-            e.removeAttribute("hidden");
-          else if (e && !visible)
-            e.setAttribute("hidden", "true");
+          if (e && visible) e.removeAttribute("hidden");
+          else if (e && !visible) e.setAttribute("hidden", "true");
         }
       }
     } catch (ex) {
-      console.error("Unable to set column visible",ex);
+      console.error("Unable to set column visible", ex);
     }
   }
 
@@ -232,9 +237,12 @@ class MessageViewsCustomColumn {
           // The content-type header is not included in the MsgHdr object, so
           // we need to actually read the whole message, and find it manually.
           LegacyColumn.getRawMessage(hdr).then((rawMessage) => {
-            const msgId = hdr.getStringProperty('message-id');
+            const msgId = hdr.getStringProperty("message-id");
             const CTPropertyName = `content-type-${msgId}`;
-            const msgContentType = LegacyColumn.getHeader(rawMessage, "content-type");
+            const msgContentType = LegacyColumn.getHeader(
+              rawMessage,
+              "content-type",
+            );
             LegacyColumn.setStorageLocal(CTPropertyName, msgContentType);
             window.gDBView.NoteChange(row, 1, 2);
           });
@@ -242,10 +250,11 @@ class MessageViewsCustomColumn {
 
         if (status.valid === true || status.detail === "Missing ContentType") {
           const schedule = LegacyColumn.getSchedule(hdr);
-          const cellTxt = LegacyColumn.SLStatic.formatScheduleForUIColumn(schedule);
+          const cellTxt =
+            LegacyColumn.SLStatic.formatScheduleForUIColumn(schedule);
           return cellTxt;
         } else {
-          return status.msg||"";
+          return status.msg || "";
         }
       },
       getSortStringForRow(hdr) {
@@ -266,13 +275,14 @@ class MessageViewsCustomColumn {
           const sendAtStr = hdr.getStringProperty("x-send-later-at");
           const sendAt = new Date(sendAtStr);
           // Numbers will be truncated. Be sure this fits in 32 bits
-          return (sendAt.getTime()/1000)|0;
+          return (sendAt.getTime() / 1000) | 0;
         } else if (status.detail === "Missing ContentType") {
-          return (Math.pow(2,31)-3)|0;
+          return (Math.pow(2, 31) - 3) | 0;
         } else if (status.detail === "Encrypted") {
-          return (Math.pow(2,31)-2)|0;
-        } else { // Not scheduled or wrong UUID
-          return (Math.pow(2,31)-1)|0;
+          return (Math.pow(2, 31) - 2) | 0;
+        } else {
+          // Not scheduled or wrong UUID
+          return (Math.pow(2, 31) - 1) | 0;
         }
       },
     };
@@ -282,13 +292,12 @@ class MessageViewsCustomColumn {
       observe(aMsgFolder, aTopic, aData) {
         if (window.gDBView)
           window.gDBView.addColumnHandler(columnId, columnHandler);
-      }
+      },
     };
 
     Services.obs.addObserver(this.observer, "MsgCreateDBView", false);
 
-    if (window.gDBView)
-      this.observer.observe();
+    if (window.gDBView) this.observer.observe();
   }
 }
 
@@ -298,7 +307,7 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
       try {
         column.destroy();
       } catch (ex) {
-        console.error("Unable to destroy column:",ex);
+        console.error("Unable to destroy column:", ex);
       }
 
     LegacyColumn = undefined;
@@ -316,22 +325,21 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
       Services.scriptloader.loadSubScript(url, LegacyColumn);
     }
 
-    ExtensionSupport.registerWindowListener("customColumnWL",
-      {
-        chromeURLs: ["chrome://messenger/content/messenger.xhtml"],
-        async onLoadWindow(window) {
-          await MessageViewsCustomColumn.waitForWindow(window);
-          for (let column of columns.values())
-            column.addToWindow(window);
-        }
-      });
+    ExtensionSupport.registerWindowListener("customColumnWL", {
+      chromeURLs: ["chrome://messenger/content/messenger.xhtml"],
+      async onLoadWindow(window) {
+        await MessageViewsCustomColumn.waitForWindow(window);
+        for (let column of columns.values()) column.addToWindow(window);
+      },
+    });
 
     return {
       columnHandler: {
-
         async addCustomColumn({ name, tooltip }) {
           if (columns.has(name))
-            throw new ExtensionUtils.ExtensionError("Cannot add columns with the same name");
+            throw new ExtensionUtils.ExtensionError(
+              "Cannot add columns with the same name",
+            );
           let column = new MessageViewsCustomColumn(context, name, tooltip);
           await column.addToCurrentWindows();
           columns.set(name, column);
@@ -340,7 +348,9 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
         async removeCustomColumn(name) {
           let column = columns.get(name);
           if (!column)
-            throw new ExtensionUtils.ExtensionError("Cannot remove non-existent column");
+            throw new ExtensionUtils.ExtensionError(
+              "Cannot remove non-existent column",
+            );
           column.destroy();
           columns.delete(name);
         },
@@ -355,10 +365,12 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
           if (column) {
             column.setVisible(visible, windowId);
           } else {
-            console.error("Attempted to update visibility of non-existent column");
+            console.error(
+              "Attempted to update visibility of non-existent column",
+            );
           }
         },
-      }
-    }
+      },
+    };
   }
 };

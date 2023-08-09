@@ -1,6 +1,10 @@
 {
   "checkTimePref": ["int", 1, "checktimepref"],
-  "checkTimePref_isMilliseconds": ["bool", false, "checktimepref.is_milliseconds"],
+  "checkTimePref_isMilliseconds": [
+    "bool",
+    false,
+    "checktimepref.is_milliseconds"
+  ],
   "quickOptions1Label": ["string", "in 15 minutes", null],
   "quickOptions1funcselect": ["string", "Delay", null],
   "quickOptions1Args": ["string", "15", null],
