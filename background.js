@@ -79,7 +79,7 @@ const SendLater = {
                         recurSpec: SLStatic.unparseRecurSpec(schedule.recur),
                         args: schedule.recur.args,
                         cancelOnReply: false };
-        return SendLater.scheduleSendLater(tabId, options);
+        await SendLater.scheduleSendLater(tabId, options);
       }
     },
 
@@ -1133,12 +1133,12 @@ const SendLater = {
         }
         case "doSendNow": {
           SLStatic.debug("User requested send immediately.");
-          SendLater.doSendNow(message.tabId);
+          await SendLater.doSendNow(message.tabId);
           break;
         }
         case "doPlaceInOutbox": {
           SLStatic.debug("User requested system send later.");
-          SendLater.doPlaceInOutbox(message.tabId);
+          await SendLater.doPlaceInOutbox(message.tabId);
           break;
         }
         case "doSendLater": {
@@ -1147,7 +1147,7 @@ const SendLater = {
                             recurSpec: message.recurSpec,
                             args: message.args,
                             cancelOnReply: message.cancelOnReply };
-          SendLater.scheduleSendLater(message.tabId, options);
+          await SendLater.scheduleSendLater(message.tabId, options);
           break;
         }
         case "getMainLoopStatus": {
@@ -1324,7 +1324,7 @@ const SendLater = {
         const funcName = preferences[`quickOptions${cmdId}funcselect`];
         const funcArgs = preferences[`quickOptions${cmdId}Args`];
         SLStatic.info(`Executing shortcut ${cmdId}: ${funcName}(${funcArgs})`);
-        SendLater.quickSendWithUfunc(funcName, funcArgs);
+        await SendLater.quickSendWithUfunc(funcName, funcArgs);
       }
     },
 
@@ -1339,7 +1339,7 @@ const SendLater = {
         const funcName = preferences[`accel${mod}funcselect`];
         const funcArgs = preferences[`accel${mod}Args`];
         SLStatic.info(`Executing accelerator Click+${mod}: ${funcName}(${funcArgs})`);
-        SendLater.quickSendWithUfunc(funcName, funcArgs, tab.id);
+        await SendLater.quickSendWithUfunc(funcName, funcArgs, tab.id);
       } else {
         await messenger.composeAction.openPopup();
       }
