@@ -272,6 +272,12 @@ functionality, i.e. depositing the message into the Outbox.
 This preference controls whether a column showing the scheduled delivery
 times of messages that have them is displayed when viewing a Drafts folder.
 
+**NOTE:** This is currently non-functional in Thunderbird 115 and newer because
+it is not currently possible for add-ons to add custom columns to the message
+list. We hope to add the custom column back when Thunderbird supprts it; in the
+meantime, you can see a list of scheduled messages by clicking on the Send
+Later button in the main Thunderbird window.
+
 ### Show Send Later Header
 
 This preference controls whether the Send Later schedule should be displayed
@@ -476,6 +482,17 @@ Some things to keep in mind:
     [Owl for Exchange](https://addons.thunderbird.net/thunderbird/addon/owl-for-exchange/),
     the add-on which is intended to replace ExQuilla, when configured as
     described [below](#owl).
+
+<a name="missing-column"></a>
+### The Send Later column in the Drafts folder message list is missing
+
+Starting with Thunderbird 115 it is no longer possible for add-ons to add
+custom columns to the message list. As a result the extra column that you could
+previously add to the message list in your drafts folder to see the send times
+of scheduled messages is not available for Thunderbird 115 or newer. We hope to
+add back this functionality when Thunderbird once again supports it. In the
+meantime, you can see a list of scheduled messages by clicking the Send Later
+button in the main Thunderbird window.
 
 <a name="bad-mail-servers"></a>
 ### Send Later doesn't work with mail servers that discard its "X-Send-Later" headers
@@ -1492,13 +1509,19 @@ we'll try to help.
 ##### Test \#4
 
 1.  Start with a successful Test \#3, above.
-2.  Enable the "Send Later" column in the message list in your Drafts folder, if
-    it isn't already displayed.
-3.  Make sure that the Draft you scheduled shows the correct scheduled send time
-    in the Send Later column. If it doesn't, then you are probably running into
-    [this issue](#bad-mail-servers), and you need to use the workaround
-    documented there --- configure Thunderbird to save Drafts locally rather
-    than on the mail server --- to be able to use Send Later.
+2.  Enable the Message Pane if you don't already have it enabled (View ->
+    Layout -> Message Pane).
+3.  Click on the scheduled message in the message list in your Drafts folder
+    and make sure the scheduled send time shows up in the header of the draft
+    (it should be labeled with "Send Later", but the label might be missing
+    because of an intermittent bug we haven't been able to pin down, i.e., you
+    might just see the scheduled send time with no label next to it).
+
+If the scheduled send time doesn't show up in the header of the message in the
+message pane, then you are probably running into
+[this issue](#bad-mail-servers), and you need to use the workaround documented
+there --- configure Thunderbird to save Drafts locally rather than on the mail
+server --- to be able to use Send Later.
 
 ##### Test \#5
 
