@@ -74,13 +74,14 @@ class CustomHdrRow {
       headingNode.classList.add("row-heading");
       headingNode.textContent = this.name;
 
-      let sep = document.createElement("span");
+      let sep = document.createElement("html:span");
       headingNode.appendChild(sep);
 
       sep.classList.add("screen-reader-only");
       sep.setAttribute("data-l10n-name", "field-separator");
+      sep.textContent = ":";
 
-      let valueNode = document.createElement("span");
+      let valueNode = document.createElement("html:span");
       valueNode.id = `${this.rowId}Value`;
       valueNode.textContent = this.value;
       boxNode.appendChild(valueNode);
