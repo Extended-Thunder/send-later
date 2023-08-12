@@ -844,7 +844,6 @@ const SendLater = {
       SendLater.onMessageDisplayedListener,
     );
     messenger.commands.onCommand.addListener(SendLater.onCommandListener);
-    messenger.composeAction.setPopup({ popup: "ui/popup.html" });
     messenger.composeAction.onClicked.addListener(
       SendLater.clickComposeListener,
     );
@@ -1466,7 +1465,16 @@ const SendLater = {
       );
       await SendLater.quickSendWithUfunc(funcName, funcArgs, tab.id);
     } else {
-      await messenger.composeAction.openPopup();
+      // The onClicked event on the compose action button doesn't fire if a
+      // pop-up is configured, so we have to set and open the popup here and
+      // then immediately unset the popup so that we can catch the key binding
+      // if the user clicks again with a modifier.
+      messenger.composeAction.setPopup({ popup: "ui/popup.html" });
+      try {
+        await messenger.composeAction.openPopup();
+      } finally {
+        messenger.composeAction.setPopup({ popup: null });
+      }
     }
   },
 
