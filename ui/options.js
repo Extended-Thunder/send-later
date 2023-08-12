@@ -484,11 +484,17 @@ const SLOptions = {
         funcNameElmt.disabled = false;
         saveBtn.disabled = false;
         if (funcName === "newFunctionName") {
-          funcNameElmt.value = browser.i18n.getMessage(
+          funcNameElmt.placeholder = browser.i18n.getMessage(
             "functionnameplaceholder",
           );
-          funcContentElmt.value = browser.i18n.getMessage("codeplaceholder");
-          funcHelpElmt.value = browser.i18n.getMessage("helptextplaceholder");
+          funcNameElmt.value = "";
+          funcContentElmt.placeholder =
+            browser.i18n.getMessage("codeplaceholder");
+          funcContentElmt.value = "";
+          funcHelpElmt.placeholder = browser.i18n.getMessage(
+            "helptextplaceholder",
+          );
+          funcHelpElmt.value = "";
           deleteBtn.disabled = true;
           resetBtn.disabled = false;
         } else {
