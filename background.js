@@ -69,8 +69,12 @@ const SendLater = {
   // Sends composed message according to user function (specified
   // by name), and arguments (specified as an "unparsed" string).
   async quickSendWithUfunc(funcName, funcArgs, tabId) {
-    tabId = tabId || (await SLTools.getActiveComposeTab());
-
+    if (!tabId) {
+      let tab = await SLTools.getActiveComposeTab();
+      if (tab) {
+        tabId = tab.id;
+      }
+    }
     if (tabId) {
       let { ufuncs } = await messenger.storage.local.get({ ufuncs: {} });
       let funcBody = ufuncs[funcName].body;
