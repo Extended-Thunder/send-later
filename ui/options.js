@@ -243,6 +243,7 @@ const SLOptions = {
         ] = `quickOptions${i}funcselect`;
 
       for (let key of Object.keys(funcSelectors)) {
+        if (document.getElementById(key)) continue;
         let newOpt = document.createElement("option");
         newOpt.id = key;
         newOpt.value = funcName;
