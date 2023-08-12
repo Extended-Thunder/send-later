@@ -774,36 +774,42 @@ const SendLater = {
     }
   },
 
-  // This function sets the quit notifications to enabled or disabled. If enabled, it checks to see
-  // if there are any active scheduled messages. If there are, it sets the quit requested and quit
-  // granted alerts. If there are no active scheduled messages, it removes the quit requested and
-  // quit granted observers.
-  async setQuitNotificationsEnabled(enabled, nActive) {
-    SLStatic.debug(`Setting quit notifications: ${enabled ? "on" : "off"}`);
+  // This function sets the quit notifications to enabled or disabled. If
+  // enabled, it checks to see if there are any active scheduled messages. If
+  // there are, it sets the quit requested and quit granted alerts. If there
+  // are no active scheduled messages, it removes the quit requested and quit
+  // granted observers.
+  async setQuitNotificationsEnabled(enabled, prefs, nActive) {
+    if (enabled) {
+      if (!prefs) prefs = await SLTools.getPrefs();
+      enabled =
+        prefs.askQuit && prefs.sendDrafts && (+prefs.checkTimePref || 0) > 0;
+    }
     if (enabled) {
       if (nActive == undefined)
         nActive = await SLTools.countActiveScheduledMessages();
-      if (nActive > 0) {
-        let appName = messenger.i18n.getMessage("extensionName");
-        let title =
-          messenger.i18n.getMessage("scheduledMessagesWarningTitle") +
-          " - " +
-          appName;
-        let requestWarning = messenger.i18n.getMessage(
-          "scheduledMessagesWarningQuitRequested",
-          appName,
-        );
-        let grantedWarning = messenger.i18n.getMessage(
-          "ScheduledMessagesWarningQuit",
-          appName,
-        );
-        await messenger.quitter.setQuitRequestedAlert(title, requestWarning);
-        await messenger.quitter.setQuitGrantedAlert(title, grantedWarning);
-        return;
-      }
+      enabled = nActive > 0;
     }
-    await messenger.quitter.removeQuitRequestedObserver();
-    await messenger.quitter.removeQuitGrantedObserver();
+    if (!enabled) {
+      await messenger.quitter.removeQuitRequestedObserver();
+      await messenger.quitter.removeQuitGrantedObserver();
+      return;
+    }
+    let appName = messenger.i18n.getMessage("extensionName");
+    let title =
+      messenger.i18n.getMessage("scheduledMessagesWarningTitle") +
+      " - " +
+      appName;
+    let requestWarning = messenger.i18n.getMessage(
+      "scheduledMessagesWarningQuitRequested",
+      appName,
+    );
+    let grantedWarning = messenger.i18n.getMessage(
+      "ScheduledMessagesWarningQuit",
+      appName,
+    );
+    await messenger.quitter.setQuitRequestedAlert(title, requestWarning);
+    await messenger.quitter.setQuitGrantedAlert(title, grantedWarning);
   },
 
   async init() {
@@ -902,7 +908,7 @@ const SendLater = {
 
       let nActive = await SLTools.countActiveScheduledMessages();
       await SendLater.updateStatusIndicator(nActive);
-      await SendLater.setQuitNotificationsEnabled(preferences.askQuit, nActive);
+      await SendLater.setQuitNotificationsEnabled(true, preferences, nActive);
 
       await messenger.browserAction.setLabel({
         label: preferences.showStatus
@@ -950,7 +956,7 @@ const SendLater = {
 
       await messenger.SL3U.setLogConsoleLevel(SLStatic.logConsoleLevel);
 
-      await SendLater.setQuitNotificationsEnabled(preferences.askQuit);
+      await SendLater.setQuitNotificationsEnabled(true, preferences);
 
       await messenger.browserAction.setLabel({
         label: preferences.showStatus
@@ -1627,7 +1633,7 @@ async function mainLoop() {
 
     SendLater.loopMinutes = interval;
 
-    if (preferences.sendDrafts && interval > 0) {
+    if (interval > 0) {
       // Possible refresh icon options (↻ \u8635); or (⟳ \u27F3)
       // or (⌛ \u231B) (e.g. badgeText = "\u27F3")
       let extName = messenger.i18n.getMessage("extensionName");
@@ -1640,13 +1646,15 @@ async function mainLoop() {
       let doSequential = preferences.throttleDelay > 0;
 
       try {
-        await SLTools.forAllDrafts(SendLater.possiblySendMessage, doSequential);
+        if (preferences.sendDrafts) {
+          await SLTools.forAllDrafts(
+            SendLater.possiblySendMessage,
+            doSequential,
+          );
+        }
         let nActive = await SLTools.countActiveScheduledMessages();
         await SendLater.updateStatusIndicator(nActive);
-        await SendLater.setQuitNotificationsEnabled(
-          preferences.askQuit,
-          nActive,
-        );
+        await SendLater.setQuitNotificationsEnabled(true, preferences, nActive);
 
         SendLater.previousLoop = new Date();
         SendLater.loopTimeout = setTimeout(mainLoop, 60000 * interval);
@@ -1655,17 +1663,13 @@ async function mainLoop() {
         SLStatic.error(err);
         let nActive = await SLTools.countActiveScheduledMessages();
         await SendLater.updateStatusIndicator(nActive);
-        await SendLater.setQuitNotificationsEnabled(
-          preferences.askQuit,
-          nActive,
-        );
+        await SendLater.setQuitNotificationsEnabled(true, preferences, nActive);
 
         SendLater.previousLoop = new Date();
         SendLater.loopTimeout = setTimeout(mainLoop, 60000);
         SLStatic.debug(`Next main loop iteration in 1 minute.`);
       }
     } else {
-      await SendLater.setQuitNotificationsEnabled(false);
       let extName = messenger.i18n.getMessage("extensionName");
       let disabledMsg = messenger.i18n.getMessage("DisabledMessage");
       await messenger.browserAction.disable();
