@@ -1,0 +1,45 @@
+Function name: NextChol
+
+Author: Jonathan Kamens <jik@extended-thunder.org>
+
+Help text
+---------
+
+Schedules the message to send a short time after the end of the current Sabbath
+or Jewish holiday, or the next Sabbath or Jewish Holiday if it isn't currently
+one (e.g., if you use this function on a regular Thursday the message will be
+scheduled to be sent Saturday night). Useful if you use email at these times
+but don't want to offend your Jewish friends who don't.
+
+Note that this function calls out to a little HTTP API endpoint I wrote to
+calculate the end time of the Sabbath or holiday.
+
+You will probably want to edit the function after importing it to specify what
+city you're in, so the times will be correct for you. See the API endpoint's
+help page (https://jewish-holidays.kamens.us/next-chol?help) for a list of
+supported cities.
+
+Code
+----
+
+// See https://jewish-holidays.kamens.us/next-chol?help for supported cities.
+let city = 'Boston';
+let url = 'https://jewish-holidays.kamens.us/next-chol?force&city=' + city;
+let req = new XMLHttpRequest();
+req.open('GET', url, false);
+req.send();
+if (req.readyState != 4)
+  return;
+if (req.status != 200) {
+  msg = 'Error fetching from ' + url;
+  throw(msg);
+}
+let matches = req.responseText.match(/^\s*(\d+)/);
+if (matches.length < 1) {
+  msg = url + ' did not return a number';
+  throw(msg);
+}
+let unix_time = matches[1];
+next = new Date();
+next.setTime(unix_time * 1000);
+next.setMinutes(next.getMinutes() + Math.floor(Math.random() * 15));
