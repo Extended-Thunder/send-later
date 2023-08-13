@@ -1127,6 +1127,20 @@ const SendLater = {
     }
   },
 
+  async openPopup() {
+    SLStatic.info("Opening popup");
+    // The onClicked event on the compose action button doesn't fire if a
+    // pop-up is configured, so we have to set and open the popup here and
+    // then immediately unset the popup so that we can catch the key binding
+    // if the user clicks again with a modifier.
+    messenger.composeAction.setPopup({ popup: "ui/popup.html" });
+    try {
+      await messenger.composeAction.openPopup();
+    } finally {
+      messenger.composeAction.setPopup({ popup: null });
+    }
+  },
+
   // Custom events that are attached to user actions within
   // composition windows. These events occur when the user activates
   // the built-in send or send later using either key combinations
@@ -1136,8 +1150,7 @@ const SendLater = {
     switch (keyid) {
       case "key_altShiftEnter": {
         if (SendLater.prefCache.altBinding) {
-          SLStatic.info("Opening popup");
-          await messenger.composeAction.openPopup();
+          await SendLater.openPopup();
         } else {
           SLStatic.info(
             "Ignoring Alt+Shift+Enter on account of user preferences",
@@ -1160,23 +1173,21 @@ const SendLater = {
             });
           }
         } else {
-          SLStatic.info("Opening popup");
-          await messenger.composeAction.openPopup();
+          await SendLater.openPopup();
         }
         break;
       }
       case "cmd_sendLater": {
         // User clicked the "Send Later" menu item, which should always
         // open the Send Later popup.
-        await messenger.composeAction.openPopup();
+        await SendLater.openPopup();
         break;
       }
       case "cmd_sendNow":
       case "cmd_sendButton":
       case "key_send": {
         if (SendLater.prefCache.sendDoesSL) {
-          SLStatic.debug("Opening scheduler dialog.");
-          await messenger.composeAction.openPopup();
+          await SendLater.openPopup();
         } else if (SendLater.prefCache.sendDoesDelay) {
           // Schedule with delay.
           const sendDelay = SendLater.prefCache.sendDelay;
@@ -1549,12 +1560,7 @@ const SendLater = {
       // pop-up is configured, so we have to set and open the popup here and
       // then immediately unset the popup so that we can catch the key binding
       // if the user clicks again with a modifier.
-      messenger.composeAction.setPopup({ popup: "ui/popup.html" });
-      try {
-        await messenger.composeAction.openPopup();
-      } finally {
-        messenger.composeAction.setPopup({ popup: null });
-      }
+      await SendLater.openPopup();
     }
   },
 
