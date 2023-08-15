@@ -788,7 +788,7 @@ const SLPopup = {
           SLPopup.doSendWithSchedule(schedule);
         });
         document.addEventListener("keydown", (event) => {
-          if ((event.ctrlKey || event.metaKey) && event.code === `Digit${i}`) {
+          if ((event.ctrlKey || event.metaKey) && event.key === i.toString()) {
             // Note: also catches Ctrl+Alt+{i}
             event.preventDefault();
             SLStatic.debug(`Executing shortcut ${i}`);
@@ -800,7 +800,7 @@ const SLPopup = {
     });
 
     document.addEventListener("keydown", function (event) {
-      if (event.code === "Enter") {
+      if (event.key === "Enter") {
         event.preventDefault();
         const inputs = SLPopup.objectifyFormValues();
         const schedule = SLPopup.parseInputs(inputs);

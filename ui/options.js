@@ -620,7 +620,7 @@ const SLOptions = {
 
     document.addEventListener("keydown", (event) => {
       if (event.target === document.getElementById("advancedConfigText")) {
-        if (event.ctrlKey && event.code === "KeyS") {
+        if (event.ctrlKey && event.key.toLowerCase() === "s") {
           saveAdvancedConfig();
         }
       }
