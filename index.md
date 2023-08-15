@@ -495,14 +495,25 @@ meantime, you can see a list of scheduled messages by clicking the Send Later
 button in the main Thunderbird window.
 
 <a name="bad-mail-servers"></a>
-### Send Later doesn't work with mail servers that discard its "X-Send-Later" headers
+### Send Later doesn't work with mail servers that discard or don't return its "X-Send-Later" headers
 
 Some mail servers (most notably, but not exclusively, Microsoft Exchange used
-through its IMAP gateway) prevent Send Later from working by discarding the
-`X-Send-Later` headers that it uses to keep track of message scheduled delivery
-times. You can tell that this is happening if you schedule a message for
-delivery, but there are no `X-Send-Later-` headers when you view the message
-with `View > Message Source` (`Ctrl+U`).
+through its IMAP gateway, and Proton Mail used through Proton Mail Bridge)
+prevent Send Later from working by discarding the `X-Send-Later` headers that
+are used to keep track of message scheduled delivery times, or by not returning
+the headers when they're requested by Thunderbird.
+
+You can identify the first case (discarding the headers) by scheduling a
+message for delivery and then viewing the message source with `View > Message
+Source` (`Ctrl+U`) and checking if it has the `X-Send-Later-` headers.
+
+The second case (not returning the headers when they're requested) is a little
+harder to confirm. You need to enable IMAP logging as described
+[here](https://wiki.mozilla.org/MailNews:Logging#Gecko_Logging), schedule a
+message with logging enabled, quit from Thunderbird, look in the log file for
+the `FETCH` command that Thunderbird sends with `HEADER.FIELDS` specified
+immediately after you scheduled the message, and check if the data returned by
+the server in response to that command includes the `X-Send-Later-` headers.
 
 To work around this problem, you need to store your drafts for the affected
 account in some other Drafts folder, e.g., the one underneath Local Folders.
