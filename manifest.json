@@ -18,7 +18,7 @@
   "applications": {
     "gecko": {
       "id": "sendlater3@kamens.us",
-      "strict_min_version": "115.0",
+      "strict_min_version": "102.0",
       "strict_max_version": "*"
     }
   },
@@ -108,6 +108,14 @@
         "scopes": ["addon_parent"],
         "paths": [["SL3U"]],
         "script": "experiments/sl3u.js"
+      }
+    },
+    "columnHandler": {
+      "schema": "experiments/legacyColumnSchema.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "paths": [["columnHandler"]],
+        "script": "experiments/legacyColumnImplementation.js"
       }
     },
     "headerView": {

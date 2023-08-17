@@ -1,3 +1,29 @@
+var thunderbirdVersion;
+
+async function tb115(yes, no) {
+  if (!thunderbirdVersion) {
+    let browserInfo = await messenger.runtime.getBrowserInfo();
+    thunderbirdVersion = parseInt(browserInfo.version.split(".")[0]);
+  }
+  if (thunderbirdVersion >= 115) {
+    if (yes) {
+      if (typeof yes == "function") {
+        return yes();
+      } else {
+        return yes;
+      }
+    }
+  } else {
+    if (no) {
+      if (typeof no == "function") {
+        return no();
+      } else {
+        return no;
+      }
+    }
+  }
+}
+
 // Pseudo-namespace encapsulation for global-ish variables.
 const SendLater = {
   prefCache: {},
@@ -848,6 +874,24 @@ const SendLater = {
       SendLater.clickComposeListener,
     );
 
+    await tb115(false, async () => {
+      // Initialize drafts folder column
+      await messenger.columnHandler
+        .addCustomColumn({
+          name: messenger.i18n.getMessage("sendlater3header.label"),
+          tooltip: "",
+        })
+        .catch((ex) => {
+          SLStatic.error("columnHandler.addCustomColumn", ex);
+        });
+      messenger.mailTabs.onDisplayedFolderChanged.addListener(
+        SendLater.displayedFolderChangedListener,
+      );
+      messenger.tabs.onUpdated.addListener(SendLater.tabUpdatedListener);
+      // We won't get events for tabs that are already loaded.
+      SendLater.configureAllTabs();
+    });
+
     messenger.messages.onNewMailReceived.addListener(
       SendLater.onNewMailReceivedListener,
     );
@@ -882,6 +926,17 @@ const SendLater = {
       SLStatic.longDateTimeFormat = preferences.longDateTimeFormat;
       SLStatic.shortDateTimeFormat = preferences.shortDateTimeFormat;
       await messenger.SL3U.setLogConsoleLevel(SLStatic.logConsoleLevel);
+
+      await tb115(false, async () => {
+        for (let pref of [
+          "customizeDateTime",
+          "longDateTimeFormat",
+          "shortDateTimeFormat",
+          "instanceUUID",
+        ]) {
+          await messenger.columnHandler.setPreference(pref, preferences[pref]);
+        }
+      });
 
       let nActive = await SLTools.countActiveScheduledMessages();
       await SendLater.updateStatusIndicator(nActive);
@@ -919,16 +974,105 @@ const SendLater = {
       SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
 
       await messenger.SL3U.setLogConsoleLevel(SLStatic.logConsoleLevel);
-
       await SendLater.setQuitNotificationsEnabled(true, preferences);
-
       await messenger.browserAction.setLabel({
         label: preferences.showStatus
           ? messenger.i18n.getMessage("sendlater3header.label")
           : "",
       });
+
+      await tb115(false, async () => {
+        for (let pref of [
+          "customizeDateTime",
+          "longDateTimeFormat",
+          "shortDateTimeFormat",
+          "instanceUUID",
+        ]) {
+          if (changes.preferences.oldValue[pref] !== preferences[pref]) {
+            SLStatic[pref] = preferences[pref];
+            messenger.columnHandler.setPreference(pref, preferences[pref]);
+            // messenger.columnHandler.invalidateAll();
+          }
+        }
+
+        // Note: It's possible to immediately obey a preference change if the
+        // user has decided to disable the send later column, but when the
+        // column is being enabled there isn't a simple way to tell whether
+        // we're in a drafts folder, so the user may need to navigate away and
+        // back to the folder before their preferences can fully take effect.
+        if (!preferences.showColumn) {
+          const columnName = messenger.i18n.getMessage(
+            "sendlater3header.label",
+          );
+          messenger.columnHandler.setColumnVisible(columnName, false);
+        }
+      });
     }
   },
+
+  // The functions in this block are currently only used in tb102, although they
+  // may in some form start being used again later when TB once again supports
+  // add-ons adding custom columns. In the meantime I'm marking them with tb115(
+  // to make them easy to find later when I'm looking for code to remove when
+  // we're no longer supporting tb102.
+  // tb115(false, ...
+  async headerRowUpdateListener(hdr) {
+    const preferences = await SLTools.getPrefs();
+    let msgParts = await messenger.messages.getFull(hdr.id);
+    let hdrs = {
+      "content-type": msgParts.contentType,
+    };
+    for (let hdrName in msgParts.headers) {
+      hdrs[hdrName] = msgParts.headers[hdrName][0];
+    }
+    const { cellText } = SLStatic.customHdrToScheduleInfo(
+      hdrs,
+      preferences.instanceUUID,
+    );
+    const visible = preferences.showHeader === true && cellText !== "";
+    return { text: cellText, visible };
+  },
+
+  async configureAllTabs() {
+    SLStatic.debug("SLTABS: configureAllTabs");
+    messenger.tabs.query({ mailTab: true, active: true }).then((tabs) => {
+      for (let tab of tabs) {
+        SLStatic.debug(
+          "SLTABS: Calling tabUpdatedListener from configureAllTabs",
+        );
+        SendLater.tabUpdatedListener(tab.id, {}, tab);
+      }
+    });
+  },
+
+  async tabUpdatedListener(tabId, changeInfo, tab) {
+    SLStatic.debug(
+      `SLTABS: tabUpdatedListener tab.status=${tab.status} tab.mailTab=${tab.mailTab}`,
+    );
+    if (tab.status != "complete" || !tab.mailTab) return;
+    let tabProperties = await messenger.mailTabs.get(tabId);
+    SLStatic.debug(
+      `SLTABS: tabProperties.displayedFolder=${tabProperties.displayedFolder}`,
+    );
+    if (!tabProperties.displayedFolder) return;
+    await SendLater.displayedFolderChangedListener(
+      tab,
+      tabProperties.displayedFolder,
+    );
+  },
+
+  async displayedFolderChangedListener(tab, folder) {
+    SLStatic.debug("SLTABS: displayedFolderChangedListener");
+    const preferences = await SLTools.getPrefs();
+    let visible = folder.type == "drafts" && preferences.showColumn === true;
+    let columnName = messenger.i18n.getMessage("sendlater3header.label");
+    await messenger.columnHandler.setColumnVisible(
+      columnName,
+      visible,
+      tab.windowId,
+    );
+  },
+  // ...) // tb115() end
 
   // When user opens a new messagecompose window, we need to do several things
   // to ensure that it behaves as they expect. namely, we need to override the
@@ -1427,15 +1571,12 @@ const SendLater = {
       const { cellText } = SLStatic.customHdrToScheduleInfo(hdrs, instanceUUID);
       if (preferences.showHeader === true && cellText !== "") {
         await messenger.headerView
-          .addCustomHdrRow({
-            name: headerName,
-            value: cellText,
-          })
+          .addCustomHdrRow(tab.windowId, headerName, cellText)
           .catch((ex) => {
             SLStatic.error("headerView.addCustomHdrRow", ex);
           });
       } else {
-        await messenger.headerView.removeCustomHdrRow(headerName);
+        await messenger.headerView.removeCustomHdrRow(tab.windowId, headerName);
       }
 
       let msg = await messenger.messages.getFull(hdr.id);
@@ -1443,7 +1584,7 @@ const SendLater = {
         await messenger.messageDisplayAction.enable(tab.id);
       }
     } else {
-      await messenger.headerView.removeCustomHdrRow(headerName);
+      await messenger.headerView.removeCustomHdrRow(tab.windowId, headerName);
     }
   },
 
@@ -1540,10 +1681,6 @@ const SendLater = {
     await SLStatic.nofail(
       messenger.mailTabs.onDisplayedFolderChanged.removeListener,
       SendLater.displayedFolderChangedListener,
-    );
-    await SLStatic.nofail(
-      messenger.headerView.onHeaderRowUpdate.removeListener,
-      SendLater.headerRowUpdateListener,
     );
     await SLStatic.nofail(
       messenger.storage.onChanged.removeListener,

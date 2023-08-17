@@ -3,106 +3,158 @@ var ExtensionSupport =
   ChromeUtils.import("resource:///modules/ExtensionSupport.jsm")
     .ExtensionSupport;
 
+var thunderbirdVersion = parseInt(Services.appinfo.version.split(".")[0]);
+
+async function tb115(yes, no) {
+  if (thunderbirdVersion >= 115) {
+    if (yes) {
+      if (typeof yes == "function") {
+        return yes();
+      } else {
+        return yes;
+      }
+    }
+  } else {
+    if (no) {
+      if (typeof no == "function") {
+        return no();
+      } else {
+        return no;
+      }
+    }
+  }
+}
+
 class CustomHdrRow {
-  constructor(context, name, value) {
+  constructor(context, name) {
     this.context = context;
     this.name = name;
-    this.value = value;
     this.rowId = ExtensionCommon.makeWidgetId(
       `${context.extension.id}-${name}-custom-hdr`,
     );
   }
 
-  getDocument(window) {
-    return window.gTabmail.currentAbout3Pane.document.getElementById(
-      "messageBrowser",
-    ).contentDocument;
+  async getDocument(window) {
+    return await tb115(
+      () => {
+        return window.gTabmail.currentAbout3Pane.document.getElementById(
+          "messageBrowser",
+        ).contentDocument;
+      },
+      () => {
+        return window.document;
+      },
+    );
   }
 
-  destroy() {
-    if (this.destroyed)
-      throw new Error("Unable to destroy ExtensionScriptParent twice");
-
-    for (let window of Services.wm.getEnumerator("mail:3pane")) {
-      try {
-        this.getDocument(window).getElementById(this.rowId).remove();
-      } catch (ex) {
-        console.error(ex);
-      }
-    }
-
-    this.destroyed = true;
-  }
-
-  static waitForWindow(win) {
-    return new Promise((resolve) => {
-      if (win.document.readyState == "complete") resolve();
-      else win.addEventListener("load", resolve, { once: true });
-    });
-  }
-
-  async addToCurrentWindows() {
-    for (let window of Services.wm.getEnumerator("mail:3pane")) {
-      await CustomHdrRow.waitForWindow(window);
-      this.addToWindow(window);
+  async remove(window) {
+    try {
+      (await this.getDocument(window)).getElementById(this.rowId).remove();
+    } catch (ex) {
+      console.error(ex);
     }
   }
 
-  addToWindow(window) {
-    let document = this.getDocument(window);
+  async addToWindow(window, value) {
+    let document = await this.getDocument(window);
 
     // If a row already exists, do not create another one
     let newRowNode = document.getElementById(this.rowId);
     if (!newRowNode) {
-      // Create new row.
-      // I copied this structure from "expandedorganizationRow" in the DOM.
-      newRowNode = document.createElement("html:div");
-      newRowNode.id = this.rowId;
-      newRowNode.classList.add("message-header-row");
+      await tb115(
+        () => {
+          // Create new row.
 
-      let boxNode = document.createElement("html:div");
-      newRowNode.appendChild(boxNode);
+          // I copied this structure from "expandedorganizationRow" in the DOM.
+          newRowNode = document.createElement("html:div");
+          newRowNode.id = this.rowId;
+          newRowNode.classList.add("message-header-row");
 
-      boxNode.id = `${this.rowId}Box`;
-      boxNode.classList.add("header-row");
-      boxNode.tabIndex = 0;
+          let boxNode = document.createElement("html:div");
+          newRowNode.appendChild(boxNode);
 
-      let headingNode = document.createElement("html:span");
-      boxNode.appendChild(headingNode);
+          boxNode.id = `${this.rowId}Box`;
+          boxNode.classList.add("header-row");
+          boxNode.tabIndex = 0;
 
-      headingNode.id = `${this.rowId}Heading`;
-      headingNode.classList.add("row-heading");
-      headingNode.textContent = this.name;
+          let headingNode = document.createElement("html:span");
+          boxNode.appendChild(headingNode);
 
-      let sep = document.createElement("html:span");
-      headingNode.appendChild(sep);
+          headingNode.id = `${this.rowId}Heading`;
+          headingNode.classList.add("row-heading");
+          headingNode.textContent = this.name;
 
-      sep.classList.add("screen-reader-only");
-      sep.setAttribute("data-l10n-name", "field-separator");
-      sep.textContent = ":";
+          let sep = document.createElement("html:span");
+          headingNode.appendChild(sep);
 
-      let valueNode = document.createElement("html:span");
-      valueNode.id = `${this.rowId}Value`;
-      valueNode.textContent = this.value;
-      boxNode.appendChild(valueNode);
+          sep.classList.add("screen-reader-only");
+          sep.setAttribute("data-l10n-name", "field-separator");
+          sep.textContent = ":";
 
-      // Add the new row to the extra headers container.
-      let topViewNode = document.getElementById("messageHeader");
-      topViewNode.appendChild(newRowNode);
+          let valueNode = document.createElement("html:span");
+          valueNode.id = `${this.rowId}Value`;
+          valueNode.textContent = value;
+          boxNode.appendChild(valueNode);
+
+          // Add the new row to the extra headers container.
+          let topViewNode = document.getElementById("messageHeader");
+          topViewNode.appendChild(newRowNode);
+        },
+        () => {
+          newRowNode = document.createElementNS(
+            "http://www.w3.org/1999/xhtml",
+            "div",
+          );
+          newRowNode.setAttribute("id", this.rowId);
+          newRowNode.classList.add("message-header-row");
+
+          let newLabelNode = document.createXULElement("label");
+          newLabelNode.setAttribute("id", `${this.rowId}-label`);
+          newLabelNode.setAttribute("value", this.name);
+          newLabelNode.setAttribute("class", "message-header-label");
+
+          newRowNode.appendChild(newLabelNode);
+
+          // Create and append the new header value.
+          let newHeaderNode = document.createElement("div", {
+            is: "simple-header-row",
+          });
+          newHeaderNode.setAttribute("id", `${this.rowId}-content`);
+          newHeaderNode.dataset.prettyHeaderName = this.name;
+          newHeaderNode.dataset.headerName = this.rowId;
+          newRowNode.appendChild(newHeaderNode);
+
+          // Add the new row to the extra headers container.
+          let topViewNode = document.getElementById("extraHeadersArea");
+          topViewNode.appendChild(newRowNode);
+
+          // You can't do this until after you add the node to the DOM because
+          // adding it to the DOM causes a magic transformation.
+          newHeaderNode.headerValue = value;
+        },
+      );
     } else {
-      let valueNode = document.getElementById(`${this.rowId}Value`);
-      valueNode.textContent = this.value;
+      await tb115(
+        () => {
+          let valueNode = document.getElementById(`${this.rowId}Value`);
+          valueNode.textContent = value;
+        },
+        () => {
+          let valueNode = document.getElementById(`${this.rowId}-content`);
+          valueNode.headerValue = value;
+        },
+      );
     }
   }
 }
 
 var headerView = class extends ExtensionCommon.ExtensionAPI {
-  close() {
+  async close() {
     for (let hdrRow of this.hdrRows.values()) {
-      try {
-        hdrRow.destroy();
-      } catch (ex) {
-        console.error("Unable to destroy hdrRow:", ex);
+      for (let window of Services.wm.getEnumerator("mail:3pane")) {
+        try {
+          await hdrRow.remove(window);
+        } catch (ex) {}
       }
     }
   }
@@ -114,25 +166,23 @@ var headerView = class extends ExtensionCommon.ExtensionAPI {
 
     return {
       headerView: {
-        async addCustomHdrRow({ name, value }) {
+        async addCustomHdrRow(windowId, name, value) {
+          let window = context.extension.windowManager.get(windowId).window;
           let hdrRow = hdrRows.get(name);
-          if (hdrRow) {
-            hdrRow.value = value;
-          } else {
-            hdrRow = new CustomHdrRow(context, name, value);
+          if (!hdrRow) {
+            hdrRow = new CustomHdrRow(context, name);
+            hdrRows.set(name, hdrRow);
           }
-          await hdrRow.addToCurrentWindows();
-          hdrRows.set(name, hdrRow);
+          await hdrRow.addToWindow(window, value);
         },
 
-        async removeCustomHdrRow(name) {
+        async removeCustomHdrRow(windowId, name) {
+          let window = context.extension.windowManager.get(windowId).window;
           let hdrRow = hdrRows.get(name);
-          if (!hdrRow)
-            throw new ExtensionUtils.ExtensionError(
-              "Cannot remove non-existent hdrRow",
-            );
-          hdrRow.destroy();
-          hdrRows.delete(name);
+          if (!hdrRow) {
+            return;
+          }
+          await hdrRow.remove(window);
         },
       },
     };
