@@ -214,7 +214,7 @@ You can get to the add-on's preferences page in two ways:
 Here is the main preferences screen, followed by explanations of the
 various settings:
 
-![](assets/v8-options.png)
+![](assets/v10-options.png)
 
 ### Check every <u>&nbsp;#&nbsp;</u> minutes
 
@@ -341,7 +341,7 @@ The shortcuts can be accessed from within a message composition window using the
 keyboard commands `Ctrl+Alt+1`, `Ctrl+Alt+2`, and`Ctrl+Alt+3`, or from within
 the scheduler popup dialog using `Ctrl+1`, `Ctrl+2`, and `Ctrl+3`.
 
-![Send Later shortcut preferences](assets/v8-shortcut-options.png)
+![Send Later shortcut preferences](assets/v10-shortcut-options.png)
 
 -   **Button label** specifies the string that is displayed in the
     button.
@@ -356,6 +356,17 @@ the scheduler popup dialog using `Ctrl+1`, `Ctrl+2`, and `Ctrl+3`.
 -   **Input arguments** Arguments that will be passed to the dynamic function
     that may modify its behavior. See the section on
     [dynamic functions](#dynamic) for details on what these arguments can do.
+-   **Accelerator key: Ctrl+Click** allows you to specify what happens
+    when you click on the Send Later button in the compose window
+    while holding down the Ctrl key.
+-   **Accelerator key: Shift+Click** allows you to specify what happens
+    when you click on the Send Later button in the compose window
+    while holding down the Shift key.
+    
+(If you're curious about "NextChol", see the [library of contributed
+dynamic scheduling functions][contrib].)
+
+[contrib]: https://github.com/Extended-Thunder/send-later/tree/main/contrib/scheduling-functions
 
 ### Dynamic function editor
 
