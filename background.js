@@ -1552,6 +1552,12 @@ const SendLater = {
   // When a new message is displayed, check whether it is scheduled and
   // choose whether to show the messageDisplayAction button and the header.
   async onMessageDisplayedListener(tab, hdr) {
+    if (!hdr) {
+      // No, this shouldn't happen, but it does. It looks like this happens
+      // if Thunderbird is in the process of displaying a message when the
+      // user switches to a different folder.
+      return;
+    }
     // TODO currently only display the Send Later header on messages in the
     // 3pane window. It would be nice to also display it when a draft is
     // opened in a separate tab or window.
