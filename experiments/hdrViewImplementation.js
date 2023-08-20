@@ -49,7 +49,10 @@ class CustomHdrRow {
 
   async remove(window) {
     try {
-      (await this.getDocument(window)).getElementById(this.rowId).remove();
+      let elt = (await this.getDocument(window)).getElementById(this.rowId);
+      if (elt) {
+        elt.remove();
+      }
     } catch (ex) {
       console.error(ex);
     }
