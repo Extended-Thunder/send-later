@@ -373,6 +373,37 @@ var SLStatic = {
     return this.defaultShortHumanDateTimeFormat(date);
   },
 
+  // There are definitely some edge cases here, e.g., !undefined == !0, but
+  // they're not important for the intended use of this function.
+  objectsAreTheSame(a, b) {
+    if (typeof a == "object") {
+      if (typeof b != "object") {
+        return false;
+      }
+    } else if (typeof b == "object") {
+      return false;
+    } else {
+      return a == b;
+    }
+
+    for (let key of Object.keys(a)) {
+      if (!b.hasOwnProperty(key)) {
+        return false;
+      }
+      if (!this.objectsAreTheSame(a[key], b[key])) {
+        return false;
+      }
+    }
+
+    for (let key of Object.keys(b)) {
+      if (!a.hasOwnProperty(key)) {
+        return false;
+      }
+    }
+
+    return true;
+  },
+
   compare(a, comparison, b, tolerance) {
     if (!tolerance) {
       tolerance = 0;

@@ -666,6 +666,8 @@ const SLPopup = {
   attachListeners() {
     const dom = SLPopup.objectifyDOMElements();
 
+    let priorInputs = undefined;
+
     const onInput = (evt) => {
       SLStatic.debug("onInput: entering");
       switch (evt.target.id) {
@@ -688,6 +690,11 @@ const SLPopup = {
       }
 
       const inputs = SLPopup.objectifyFormValues();
+      if (SLStatic.objectsAreTheSame(inputs, priorInputs)) {
+        SLStatic.debug("onInput: redundant, returning");
+        return;
+      }
+      priorInputs = inputs;
       const schedule = SLPopup.parseInputs(inputs);
 
       SLStatic.stateSetter(dom["sendon"].checked)(dom["onlyOnDiv"]);
