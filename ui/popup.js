@@ -158,6 +158,7 @@ const SLPopup = {
   },
 
   parseInputs(inputs) {
+    SLStatic.debug("parseInputs:", inputs);
     // Construct a recur object { type: "...", multiplier: "...", ... }
     const recurType = inputs.radio.recur;
 
@@ -664,6 +665,7 @@ const SLPopup = {
     const dom = SLPopup.objectifyDOMElements();
 
     const onInput = (evt) => {
+      SLStatic.debug("onInput: entering");
       switch (evt.target.id) {
         case "send-date":
         case "send-time":
