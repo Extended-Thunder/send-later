@@ -767,16 +767,8 @@ const SendLater = {
       );
       if (instance_uuid) {
         SLStatic.info(`Using migrated UUID: ${instance_uuid}`);
-      } else {
-        instance_uuid = SLStatic.generateUUID();
-        SLStatic.info(`Generated new UUID: ${instance_uuid}`);
+        preferences.instanceUUID = instance_uuid;
       }
-      preferences.instanceUUID = instance_uuid;
-      await messenger.SL3U.setLegacyPref(
-        "instance.uuid",
-        "string",
-        instance_uuid,
-      );
     }
 
     if (currentMigrationNumber < SLStatic.CURRENT_LEGACY_MIGRATION) {
@@ -920,6 +912,14 @@ const SendLater = {
 
     try {
       let preferences = await SLTools.getPrefs();
+
+      if (!preferences.instanceUUID) {
+        let instance_uuid = SLStatic.generateUUID();
+        SLStatic.info(`Generated new UUID: ${instance_uuid}`);
+        preferences.instanceUUID = instance_uuid;
+        messenger.storage.local.set({ preferences });
+      }
+
       SendLater.prefCache = preferences;
       SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
       SLStatic.customizeDateTime = preferences.customizeDateTime === true;
