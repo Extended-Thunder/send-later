@@ -789,7 +789,10 @@ const SendLater = {
     return currentMigrationNumber;
   },
 
-  async updateStatusIndicator(nActive) {
+  async updateStatusIndicator(nActive, waitFor) {
+    if (waitFor) {
+      await waitFor;
+    }
     let extName = messenger.i18n.getMessage("extensionName");
     if (nActive == undefined)
       nActive = await SLTools.countActiveScheduledMessages();
@@ -850,6 +853,7 @@ const SendLater = {
     SLTools.printVersionInfo();
 
     // Add listeners to the various events we care about
+    messenger.alarms.onAlarm.addListener(alarmsListener);
     messenger.windows.onCreated.addListener(SendLater.onWindowCreatedListener);
     messenger.SL3U.onKeyCode.addListener(SendLater.onUserCommandKeyListener);
     messenger.runtime.onMessageExternal.addListener(
@@ -1638,7 +1642,7 @@ const SendLater = {
   // get a false impression that the extension is working.
   async disable() {
     SLStatic.warn("Disabling Send Later.");
-    await SLStatic.nofail(clearTimeout, SendLater.loopTimeout);
+    await SLStatic.nofail(clearDeferred, SendLater.loopTimeout);
     await SLStatic.nofail(SendLater.setQuitNotificationsEnabled, false);
     await SLStatic.nofail(messenger.browserAction.disable);
     await SLStatic.nofail(messenger.browserAction.setTitle, {
@@ -1652,6 +1656,10 @@ const SendLater = {
     await SLStatic.nofail(messenger.messageDisplayAction.setPopup, {
       popup: null,
     });
+    await SLStatic.nofail(
+      messenger.alarms.onAlarm.removeListener,
+      alarmsListener,
+    );
     await SLStatic.nofail(
       messenger.windows.onCreated.removeListener,
       SendLater.onWindowCreatedListener,
@@ -1700,7 +1708,7 @@ async function mainLoop() {
   SLStatic.debug("Entering main loop.");
   try {
     if (SendLater.loopTimeout) {
-      clearTimeout(SendLater.loopTimeout);
+      await clearDeferred(SendLater.loopTimeout);
     }
   } catch (ex) {
     SLStatic.error(ex);
@@ -1720,8 +1728,12 @@ async function mainLoop() {
       // or (⌛ \u231B) (e.g. badgeText = "\u27F3")
       let extName = messenger.i18n.getMessage("extensionName");
       let isActiveMessage = messenger.i18n.getMessage("CheckingMessage");
-      await messenger.browserAction.enable();
-      await messenger.browserAction.setTitle({
+      // We do not await for this here because it takes an indeterminatee
+      // amount of time to run when the Thunderbird window is minimized.
+      // [noawait]
+      let enablePromise = messenger.browserAction.enable();
+      // noawait (indeterminate, see above)
+      let titlePromise = messenger.browserAction.setTitle({
         title: `${extName} [${isActiveMessage}]`,
       });
 
@@ -1735,11 +1747,19 @@ async function mainLoop() {
           );
         }
         let nActive = await SLTools.countActiveScheduledMessages();
-        await SendLater.updateStatusIndicator(nActive);
+        // noawait (indeterminatee, see above)
+        SendLater.updateStatusIndicator(
+          nActive,
+          Promise.all([enablePromise, titlePromise]),
+        );
         await SendLater.setQuitNotificationsEnabled(true, preferences, nActive);
 
         SendLater.previousLoop = new Date();
-        SendLater.loopTimeout = setTimeout(mainLoop, 60000 * interval);
+        SendLater.loopTimeout = setDeferred(
+          "mainLoop",
+          60000 * interval,
+          mainLoop,
+        );
         SLStatic.debug(`Next main loop iteration in ${60 * interval} seconds.`);
       } catch (err) {
         SLStatic.error(err);
@@ -1748,7 +1768,7 @@ async function mainLoop() {
         await SendLater.setQuitNotificationsEnabled(true, preferences, nActive);
 
         SendLater.previousLoop = new Date();
-        SendLater.loopTimeout = setTimeout(mainLoop, 60000);
+        SendLater.loopTimeout = setDeferred("mainLoop", 60000, mainLoop);
         SLStatic.debug(`Next main loop iteration in 1 minute.`);
       }
     } else {
@@ -1761,16 +1781,56 @@ async function mainLoop() {
       await messenger.browserAction.setBadgeText({ text: null });
 
       SendLater.previousLoop = new Date();
-      SendLater.loopTimeout = setTimeout(mainLoop, 60000);
+      SendLater.loopTimeout = setDeferred("mainLoop", 60000, mainLoop);
       SLStatic.debug(`Next main loop iteration in 1 minute.`);
     }
   } catch (ex) {
     SLStatic.error(ex);
 
     SendLater.previousLoop = new Date();
-    SendLater.loopTimeout = setTimeout(mainLoop, 60000);
+    SendLater.loopTimeout = setDeferred("mainLoop", 60000, mainLoop);
     SLStatic.debug(`Next main loop iteration in 1 minute.`);
   }
+}
+
+function alarmsListener(alarm, checking) {
+  SLStatic.debug(`alarmsListener: alarm=${alarm.name}, checking=${checking}`);
+  let func;
+  switch (alarm.name) {
+    case "mainLoop":
+      func = mainLoop;
+      break;
+    default:
+      throw new Error(`Unknown alarm: ${alarm.name}`);
+  }
+  if (checking) {
+    return true;
+  }
+  return func();
+}
+
+function setDeferred(name, timeout, func) {
+  // Alarms' granularity is a minimum of one minute, but timeouts can run more
+  // frequently than that. We use a timeout to try to get the best granularity,
+  // and an alarm because timeouts don't run reliably when Thunderbird windows
+  // are minimized (ugh).
+  if (!alarmsListener({ name }, true)) {
+    throw new Error(`Unknown alarm: ${name}`);
+  }
+  let timeoutId;
+  if (timeout >= 60000) {
+    timeoutId = undefined;
+  } else {
+    // timeoutId = setTimeout(func, timeout);
+    timeoutId = undefined;
+  }
+  messenger.alarms.create(name, { delayInMinutes: timeout / 1000 / 60 });
+  return { timeoutId: timeoutId, name: name };
+}
+
+async function clearDeferred(deferredObj) {
+  clearTimeout(deferredObj.timeoutId);
+  await messenger.alarms.clear(deferredObj.name);
 }
 
 SendLater.init()

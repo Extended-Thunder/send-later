@@ -40,7 +40,8 @@
     "compose",
     "compose.save",
     "compose.send",
-    "notifications"
+    "notifications",
+    "alarms"
   ],
 
   "background": {
