@@ -859,7 +859,9 @@ var SLStatic = {
 
     let scheduleText;
     if (recur !== undefined && !sendAt && recur.type === "function") {
-      scheduleText = this.i18n.getMessage("sendwithfunction", [recur.function]);
+      scheduleText = this.i18n.getMessage("sendwithfunction", [
+        recur.function,
+      ]);
     } else {
       scheduleText = SLStatic.shortHumanDateTimeFormat(sendAt);
     }
@@ -1467,7 +1469,13 @@ var SLStatic = {
   // 4) If this is a one-off schedule and the assigned day is not valid, then we
   //    want to go to the beginning of the allowed time range on the next valid
   //    day.
-  adjustDateForRestrictions(sendAt, start_time, end_time, days, soonest_valid) {
+  adjustDateForRestrictions(
+    sendAt,
+    start_time,
+    end_time,
+    days,
+    soonest_valid,
+  ) {
     // Copy argument variable to avoid modifying the original
     // (Is this really necessary?)
     sendAt = new Date(sendAt.getTime());

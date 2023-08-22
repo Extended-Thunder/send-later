@@ -64,7 +64,10 @@ var quitter = class extends ExtensionCommon.ExtensionAPI {
       QuitObservers.requested,
       "quit-application-requested",
     );
-    Services.obs.addObserver(QuitObservers.granted, "quit-application-granted");
+    Services.obs.addObserver(
+      QuitObservers.granted,
+      "quit-application-granted",
+    );
 
     return {
       quitter: {

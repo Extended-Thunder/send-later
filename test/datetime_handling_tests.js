@@ -490,11 +490,11 @@ exports.init = function () {
     return result === expected || `Expected "${expected}", got "${result}"`;
   }
 
-  SLTests.AddTest("Test relativeDateFormat '1 hour ago'", compareRelativeTime, [
-    new Date(Date.now() - 3600 * 1000),
-    null,
-    "1 hour ago",
-  ]);
+  SLTests.AddTest(
+    "Test relativeDateFormat '1 hour ago'",
+    compareRelativeTime,
+    [new Date(Date.now() - 3600 * 1000), null, "1 hour ago"],
+  );
 
   SLTests.AddTest(
     "Test relativeDateFormat '1 hour from now'",

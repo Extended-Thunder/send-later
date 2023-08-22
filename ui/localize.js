@@ -25,7 +25,8 @@ if (typeof browser === "undefined" || typeof browserMocking === "boolean") {
   // asynchronously load translations.
   function waitAndTranslate() {
     if (
-      browser.i18n.getMessage("advancedOptionsTitle") === "advancedOptionsTitle"
+      browser.i18n.getMessage("advancedOptionsTitle") ===
+      "advancedOptionsTitle"
     ) {
       setTimeout(waitAndTranslate, 10);
     } else {

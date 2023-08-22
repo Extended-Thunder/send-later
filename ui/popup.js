@@ -15,7 +15,9 @@ const SLPopup = {
     } else {
       let cancelOnReply = schedule.recur.cancelOnReply ? "yes" : "no";
       return [
-        `x-send-later-at: ${SLStatic.parseableDateTimeFormat(schedule.sendAt)}`,
+        `x-send-later-at: ${SLStatic.parseableDateTimeFormat(
+          schedule.sendAt,
+        )}`,
         `x-send-later-recur: ${SLStatic.unparseRecurSpec(schedule.recur)}`,
         `x-send-later-args: ${schedule.recur.args}`,
         `x-send-later-cancel-on-reply: ${cancelOnReply}`,
@@ -88,10 +90,9 @@ const SLPopup = {
     inputs.groups = {};
     domArray.forEach((el) => {
       if (el.type === "radio" && el.name && !inputs.radio[el.name]) {
-        inputs.radio[el.name] = [...document.getElementsByName(el.name)].reduce(
-          (def, elem) => (elem.checked ? elem.value : def),
-          undefined,
-        );
+        inputs.radio[el.name] = [
+          ...document.getElementsByName(el.name),
+        ].reduce((def, elem) => (elem.checked ? elem.value : def), undefined);
       }
       if (el.type === "checkbox" && el.name && !inputs.groups[el.name]) {
         inputs.groups[el.name] = [
@@ -166,7 +167,10 @@ const SLPopup = {
     const sendAtTime = inputs["send-time"];
     let sendAt, schedule;
 
-    if (/\d\d\d\d.\d\d.\d\d/.test(sendAtDate) && /\d\d.\d\d/.test(sendAtTime)) {
+    if (
+      /\d\d\d\d.\d\d.\d\d/.test(sendAtDate) &&
+      /\d\d.\d\d/.test(sendAtTime)
+    ) {
       sendAt = SLStatic.parseDateTime(sendAtDate, sendAtTime);
     }
 
@@ -232,7 +236,9 @@ const SLPopup = {
       case "function":
         break;
       default:
-        SLStatic.error(`unrecognized recurrence type <${schedule.recur.type}>`);
+        SLStatic.error(
+          `unrecognized recurrence type <${schedule.recur.type}>`,
+        );
         break;
     }
 
@@ -446,7 +452,9 @@ const SLPopup = {
       const funcHelpDiv = document.getElementById("funcHelpDiv");
       funcHelpDiv.textContent = helpTxt;
     } else {
-      SLStatic.warn(`Cannot set help text. Unrecognized function: ${funcName}`);
+      SLStatic.warn(
+        `Cannot set help text. Unrecognized function: ${funcName}`,
+      );
     }
   },
 
@@ -833,7 +841,9 @@ const SLPopup = {
       }
     })();
     (() => {
-      const label = browser.i18n.getMessage("sendlater.prompt.sendlater.label");
+      const label = browser.i18n.getMessage(
+        "sendlater.prompt.sendlater.label",
+      );
       const accessKey = browser.i18n.getMessage(
         "sendlater.prompt.sendlater.accesskey",
       );

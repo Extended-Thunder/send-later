@@ -190,7 +190,9 @@ var SLTools = {
       })
       .then((allWindows) => {
         // Current compose windows
-        const ccWins = allWindows.filter((cWindow) => cWindow.focused === true);
+        const ccWins = allWindows.filter(
+          (cWindow) => cWindow.focused === true,
+        );
         if (ccWins.length === 1) {
           const ccTabs = ccWins[0].tabs.filter((tab) => tab.active === true);
           if (ccTabs.length !== 1) {

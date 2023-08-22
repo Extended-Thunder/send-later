@@ -317,7 +317,9 @@ const SendLaterFunctions = {
       SendLaterVars.sendingUnsentMessages = false;
       if (SendLaterVars.needToSendUnsentMessages) {
         if (Utils.isOffline) {
-          SendLaterFunctions.warn("Deferring sendUnsentMessages while offline");
+          SendLaterFunctions.warn(
+            "Deferring sendUnsentMessages while offline",
+          );
         } else {
           try {
             const msgSendLater = Components.classes[

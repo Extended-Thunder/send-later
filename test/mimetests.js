@@ -130,9 +130,12 @@ exports.init = function () {
   SLTests.AddTest(
     "MimeTests 05-HTML+embedded-image.eml",
     (hdrstring, newvalue) => {
-      const original = fs.readFileSync("test/data/05-HTML+embedded-image.eml", {
-        encoding: "utf-8",
-      });
+      const original = fs.readFileSync(
+        "test/data/05-HTML+embedded-image.eml",
+        {
+          encoding: "utf-8",
+        },
+      );
       const expected = fs.readFileSync(
         "test/data/05-HTML+embedded-image.eml.out",
         { encoding: "utf-8" },

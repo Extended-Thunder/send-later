@@ -140,7 +140,10 @@ const SLOptions = {
       ) {
         gracePeriodUnits.value = "gracePeriodDays";
         gracePeriodTime.value = gracePeriodTimeValue / (60 * 24);
-      } else if (gracePeriodTimeValue > 60 && gracePeriodTimeValue % 60 === 0) {
+      } else if (
+        gracePeriodTimeValue > 60 &&
+        gracePeriodTimeValue % 60 === 0
+      ) {
         gracePeriodUnits.value = "gracePeriodHours";
         gracePeriodTime.value = gracePeriodTimeValue / 60;
       } else {
@@ -522,24 +525,26 @@ const SLOptions = {
       .getElementById("funcEditReset")
       .addEventListener("click", resetFunctionInput);
 
-    document.getElementById("funcEditSave").addEventListener("click", (evt) => {
-      const funcName = document.getElementById("functionName").value;
-      const funcContent = document.getElementById(
-        "functionEditorContent",
-      ).value;
-      const funcHelp = document.getElementById("functionHelpText").value;
-      SLOptions.saveUserFunction(funcName, funcContent, funcHelp).then(
-        (success) => {
-          if (success) {
-            SLOptions.addFuncOption(funcName, true);
-            SLOptions.showCheckMark(evt.target, "green");
-          } else {
-            document.getElementById("functionName").select();
-            SLOptions.showXMark(evt.target, "red");
-          }
-        },
-      );
-    });
+    document
+      .getElementById("funcEditSave")
+      .addEventListener("click", (evt) => {
+        const funcName = document.getElementById("functionName").value;
+        const funcContent = document.getElementById(
+          "functionEditorContent",
+        ).value;
+        const funcHelp = document.getElementById("functionHelpText").value;
+        SLOptions.saveUserFunction(funcName, funcContent, funcHelp).then(
+          (success) => {
+            if (success) {
+              SLOptions.addFuncOption(funcName, true);
+              SLOptions.showCheckMark(evt.target, "green");
+            } else {
+              document.getElementById("functionName").select();
+              SLOptions.showXMark(evt.target, "red");
+            }
+          },
+        );
+      });
 
     const resetAdvConfigEditor = async () => {
       SLStatic.debug("Refreshing advanced config editor contents");
@@ -639,7 +644,9 @@ const SLOptions = {
           document.getElementById(`ufunc-accel-ctrl-${funcName}`).remove();
           document.getElementById(`ufunc-accel-shift-${funcName}`).remove();
           for (let i = 1; i < 4; i++)
-            document.getElementById(`ufunc-shortcut-${i}-${funcName}`).remove();
+            document
+              .getElementById(`ufunc-shortcut-${i}-${funcName}`)
+              .remove();
         } catch (ex) {
           SLStatic.error("Unable to remove function selector element", ex);
         }
@@ -658,7 +665,9 @@ const SLOptions = {
       .addEventListener("click", (evt) => {
         const funcNameSelect = document.getElementById("functionNames");
         const funcName = funcNameSelect.value;
-        if ([...SLOptions.builtinFuncs, "newFunctionName"].includes(funcName)) {
+        if (
+          [...SLOptions.builtinFuncs, "newFunctionName"].includes(funcName)
+        ) {
           SLStatic.error("Trying to delete builtin user func.");
           return;
         } else {
@@ -714,7 +723,9 @@ const SLOptions = {
         outputCell.appendChild(mkSpan(error));
       } else {
         const nextStr = SLStatic.parseableDateTimeFormat(sendAt);
-        outputCell.appendChild(mkBlock(mkSpan("next:", true), mkSpan(nextStr)));
+        outputCell.appendChild(
+          mkBlock(mkSpan("next:", true), mkSpan(nextStr)),
+        );
         outputCell.appendChild(
           mkBlock(mkSpan("nextspec:", true), mkSpan(nextspec || "none")),
         );

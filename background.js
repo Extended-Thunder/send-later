@@ -127,7 +127,9 @@ const SendLater = {
     SLStatic.debug(`Pre-send check initiated at ${now}`);
     let check = await messenger.SL3U.GenericPreSendCheck();
     if (!check) {
-      SLStatic.warn(`Canceled via pre-send checks (check initiated at ${now})`);
+      SLStatic.warn(
+        `Canceled via pre-send checks (check initiated at ${now})`,
+      );
       return;
     }
     // let windowId = await messenger.tabs.get(tabId).then(
@@ -1123,10 +1125,12 @@ const SendLater = {
 
       // Check if original message has x-send-later headers
       if (originalMsgPart.headers.hasOwnProperty("x-send-later-at")) {
-        let { preferences, scheduleCache } = await messenger.storage.local.get({
-          preferences: {},
-          scheduleCache: {},
-        });
+        let { preferences, scheduleCache } = await messenger.storage.local.get(
+          {
+            preferences: {},
+            scheduleCache: {},
+          },
+        );
 
         // Re-save message (drops x-send-later headers by default
         // because they are not loaded when editing as draft).
@@ -1233,7 +1237,9 @@ const SendLater = {
         } else if (SendLater.prefCache.sendDoesDelay) {
           // Schedule with delay.
           const sendDelay = SendLater.prefCache.sendDelay;
-          SLStatic.info(`Scheduling Send Later ${sendDelay} minutes from now.`);
+          SLStatic.info(
+            `Scheduling Send Later ${sendDelay} minutes from now.`,
+          );
           let curTab = await SLTools.getActiveComposeTab();
           if (curTab) {
             await SendLater.scheduleSendLater(curTab.id, { delay: sendDelay });
@@ -1241,7 +1247,9 @@ const SendLater = {
         } else {
           let curTab = await SLTools.getActiveComposeTab();
           if (curTab) {
-            await messenger.compose.sendMessage(curTab.id, { mode: "sendNow" });
+            await messenger.compose.sendMessage(curTab.id, {
+              mode: "sendNow",
+            });
           }
         }
         break;
@@ -1376,9 +1384,8 @@ const SendLater = {
       }
       case "getScheduleText": {
         try {
-          const dispMsgHdr = await messenger.messageDisplay.getDisplayedMessage(
-            message.tabId,
-          );
+          const dispMsgHdr =
+            await messenger.messageDisplay.getDisplayedMessage(message.tabId);
           const fullMsg = await messenger.messages.getFull(dispMsgHdr.id);
 
           const preferences = await SLTools.getPrefs();
@@ -1578,7 +1585,10 @@ const SendLater = {
       for (let hdrName in msgParts.headers) {
         hdrs[hdrName] = msgParts.headers[hdrName][0];
       }
-      const { cellText } = SLStatic.customHdrToScheduleInfo(hdrs, instanceUUID);
+      const { cellText } = SLStatic.customHdrToScheduleInfo(
+        hdrs,
+        instanceUUID,
+      );
       if (preferences.showHeader === true && cellText !== "") {
         await messenger.headerView
           .addCustomHdrRow(tab.windowId, headerName, cellText)
@@ -1586,7 +1596,10 @@ const SendLater = {
             SLStatic.error("headerView.addCustomHdrRow", ex);
           });
       } else {
-        await messenger.headerView.removeCustomHdrRow(tab.windowId, headerName);
+        await messenger.headerView.removeCustomHdrRow(
+          tab.windowId,
+          headerName,
+        );
       }
 
       let msg = await messenger.messages.getFull(hdr.id);
@@ -1650,7 +1663,9 @@ const SendLater = {
         `${messenger.i18n.getMessage("extensionName")} ` +
         `[${messenger.i18n.getMessage("DisabledMessage")}]`,
     });
-    await SLStatic.nofail(messenger.browserAction.setBadgeText, { text: null });
+    await SLStatic.nofail(messenger.browserAction.setBadgeText, {
+      text: null,
+    });
     await SLStatic.nofail(messenger.composeAction.disable);
     await SLStatic.nofail(messenger.messageDisplayAction.disable);
     await SLStatic.nofail(messenger.messageDisplayAction.setPopup, {
@@ -1752,7 +1767,11 @@ async function mainLoop() {
           nActive,
           Promise.all([enablePromise, titlePromise]),
         );
-        await SendLater.setQuitNotificationsEnabled(true, preferences, nActive);
+        await SendLater.setQuitNotificationsEnabled(
+          true,
+          preferences,
+          nActive,
+        );
 
         SendLater.previousLoop = new Date();
         SendLater.loopTimeout = setDeferred(
@@ -1760,12 +1779,18 @@ async function mainLoop() {
           60000 * interval,
           mainLoop,
         );
-        SLStatic.debug(`Next main loop iteration in ${60 * interval} seconds.`);
+        SLStatic.debug(
+          `Next main loop iteration in ${60 * interval} seconds.`,
+        );
       } catch (err) {
         SLStatic.error(err);
         let nActive = await SLTools.countActiveScheduledMessages();
         await SendLater.updateStatusIndicator(nActive);
-        await SendLater.setQuitNotificationsEnabled(true, preferences, nActive);
+        await SendLater.setQuitNotificationsEnabled(
+          true,
+          preferences,
+          nActive,
+        );
 
         SendLater.previousLoop = new Date();
         SendLater.loopTimeout = setDeferred("mainLoop", 60000, mainLoop);
