@@ -1516,7 +1516,7 @@ const SendLater = {
       );
       return;
     }
-    SLStatic.debug("Received messags in folder", folder, ":", messagelist);
+    SLStatic.debug("Received messages in folder", folder, ":", messagelist);
 
     for (let rcvdHdr of messagelist.messages) {
       let rcvdMsg = await messenger.messages.getFull(rcvdHdr.id);
