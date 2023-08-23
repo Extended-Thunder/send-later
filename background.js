@@ -269,33 +269,38 @@ const SendLater = {
     setTimeout(SendLater.updateStatusIndicator, 1000);
   },
 
-  async deleteMessage(id) {
-    // This is how we would like to do this:
-    // await messenger.messages
-    //   .delete([id], true)
-    //   .then(() => {
-    //     SLStatic.info("Deleted message", id);
-    //     SLTools.scheduledMsgCache.delete(id);
-    //     SLTools.unscheduledMsgCache.delete(id);
-    //   })
-    //   .catch((ex) => {
-    //     SLStatic.error(`Error deleting message ${id}`, ex);
-    //   });
-    // Unfortunately we can't, because when we're talking to an Owl Exchange
-    // account, the code simply... stops. Neither the code inside the `then`
-    // block nor the code inside the `catch` block is called. In fact, the code
-    // flow just stops and nothing after it gets executed. Basically, the
-    // extension is hung at that point. I have no idea what's going on here.
-    // Since it's likely to be a problem inside the Owl code, I've asked the
-    // author of Owl for assistance figuring it out. He may have no idea
-    // either :shrug:. In the meantime we just have to do delete
-    // asynchronously, and we can't log "Deleted message" because we don't know
-    // for certain that the message was in fact deleted.
-    messenger.messages.delete([id], true).catch((ex) => {
-      SLStatic.error(`Error deleting message ${id}`, ex);
-    });
-    SLTools.scheduledMsgCache.delete(id);
-    SLTools.unscheduledMsgCache.delete(id);
+  async deleteMessage(hdr) {
+    let account = await messenger.accounts.get(hdr.folder.accountId, false);
+    let accountType = account.type;
+    SLStatic.info(`accountType=${accountType}`);
+    if (!accountType.startsWith("owl")) {
+      await messenger.messages
+        .delete([hdr.id], true)
+        .then(() => {
+          SLStatic.info("Deleted message", hdr.id);
+          SLTools.scheduledMsgCache.delete(hdr.id);
+          SLTools.unscheduledMsgCache.delete(hdr.id);
+        })
+        .catch((ex) => {
+          SLStatic.error(`Error deleting message ${hdr.id}`, ex);
+        });
+    } else {
+      // When we're talking to an Owl Exchange account, the code simply
+      // above... stops. Neither the code inside the `then` block nor the code
+      // inside the `catch` block is called. In fact, the code flow just stops
+      // and nothing after it gets executed. Basically, the extension is hung
+      // at that point. I have no idea what's going on here. Since it's likely
+      // to be a problem inside the Owl code, I've asked the author of Owl for
+      // assistance figuring it out. He may have no idea either :shrug:. In the
+      // meantime we just have to do delete asynchronously, and we can't log
+      // "Deleted message" because we don't know for certain that the message
+      // was in fact deleted.
+      messenger.messages.delete([hdr.id], true).catch((ex) => {
+        SLStatic.error(`Error deleting message ${hdr.id}`, ex);
+      });
+      SLTools.scheduledMsgCache.delete(hdr.id);
+      SLTools.unscheduledMsgCache.delete(hdr.id);
+    }
   },
 
   // Given a MessageHeader object, identify whether the message is
@@ -504,7 +509,7 @@ const SendLater = {
             SLStatic.debug(
               `Rescheduled message ${originalMsgId}. Deleting original.`,
             );
-            await SendLater.deleteMessage(msgHdr.id);
+            await SendLater.deleteMessage(msgHdr);
             return;
           } else {
             SLStatic.error("Unable to schedule next recurrence.");
@@ -638,7 +643,7 @@ const SendLater = {
           `Scheduled next occurrence of message ` +
             `<${originalMsgId}>. Deleting original.`,
         );
-        await SendLater.deleteMessage(msgHdr.id);
+        await SendLater.deleteMessage(msgHdr);
         return;
       } else {
         SLStatic.error("Unable to schedule next recuurrence.");
@@ -647,7 +652,7 @@ const SendLater = {
       SLStatic.info(
         `No recurrences for message <${originalMsgId}>. Deleting original.`,
       );
-      await SendLater.deleteMessage(msgHdr.id);
+      await SendLater.deleteMessage(msgHdr);
       return;
     }
   },
@@ -1552,7 +1557,7 @@ const SendLater = {
                   `Received response to message ${inReplyTo}.`,
                   `Deleting scheduled draft ${draftHdr.id}`,
                 );
-                await SendLater.deleteMessage(draftHdr.id);
+                await SendLater.deleteMessage(draftHdr);
               }
             }
           }
