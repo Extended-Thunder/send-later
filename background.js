@@ -269,6 +269,35 @@ const SendLater = {
     setTimeout(SendLater.updateStatusIndicator, 1000);
   },
 
+  async deleteMessage(id) {
+    // This is how we would like to do this:
+    // await messenger.messages
+    //   .delete([id], true)
+    //   .then(() => {
+    //     SLStatic.info("Deleted message", id);
+    //     SLTools.scheduledMsgCache.delete(id);
+    //     SLTools.unscheduledMsgCache.delete(id);
+    //   })
+    //   .catch((ex) => {
+    //     SLStatic.error(`Error deleting message ${id}`, ex);
+    //   });
+    // Unfortunately we can't, because when we're talking to an Owl Exchange
+    // account, the code simply... stops. Neither the code inside the `then`
+    // block nor the code inside the `catch` block is called. In fact, the code
+    // flow just stops and nothing after it gets executed. Basically, the
+    // extension is hung at that point. I have no idea what's going on here.
+    // Since it's likely to be a problem inside the Owl code, I've asked the
+    // author of Owl for assistance figuring it out. He may have no idea
+    // either :shrug:. In the meantime we just have to do delete
+    // asynchronously, and we can't log "Deleted message" because we don't know
+    // for certain that the message was in fact deleted.
+    messenger.messages.delete([id], true).catch((ex) => {
+      SLStatic.error(`Error deleting message ${id}`, ex);
+    });
+    SLTools.scheduledMsgCache.delete(id);
+    SLTools.unscheduledMsgCache.delete(id);
+  },
+
   // Given a MessageHeader object, identify whether the message is
   // scheduled, and due to be sent. If so, make sure it qualifies for
   // sending (not encrypted, not sent previously, not past the late
@@ -475,14 +504,7 @@ const SendLater = {
             SLStatic.debug(
               `Rescheduled message ${originalMsgId}. Deleting original.`,
             );
-            await messenger.messages
-              .delete([msgHdr.id], true)
-              .then(() => {
-                SLStatic.info("Deleted message", msgHdr.id);
-                SLTools.scheduledMsgCache.delete(msgHdr.id);
-                SLTools.unscheduledMsgCache.delete(msgHdr.id);
-              })
-              .catch(SLStatic.error);
+            await SendLater.deleteMessage(msgHdr.id);
             return;
           } else {
             SLStatic.error("Unable to schedule next recurrence.");
@@ -616,14 +638,7 @@ const SendLater = {
           `Scheduled next occurrence of message ` +
             `<${originalMsgId}>. Deleting original.`,
         );
-        await messenger.messages
-          .delete([msgHdr.id], true)
-          .then(() => {
-            SLStatic.info("Deleted message", msgHdr.id);
-            SLTools.scheduledMsgCache.delete(msgHdr.id);
-            SLTools.unscheduledMsgCache.delete(msgHdr.id);
-          })
-          .catch(SLStatic.error);
+        await SendLater.deleteMessage(msgHdr.id);
         return;
       } else {
         SLStatic.error("Unable to schedule next recuurrence.");
@@ -632,14 +647,7 @@ const SendLater = {
       SLStatic.info(
         `No recurrences for message <${originalMsgId}>. Deleting original.`,
       );
-      await messenger.messages
-        .delete([msgHdr.id], true)
-        .then(() => {
-          SLStatic.info("Deleted message", msgHdr.id);
-          SLTools.scheduledMsgCache.delete(msgHdr.id);
-          SLTools.unscheduledMsgCache.delete(msgHdr.id);
-        })
-        .catch(SLStatic.error);
+      await SendLater.deleteMessage(msgHdr.id);
       return;
     }
   },
@@ -1544,14 +1552,7 @@ const SendLater = {
                   `Received response to message ${inReplyTo}.`,
                   `Deleting scheduled draft ${draftHdr.id}`,
                 );
-                await messenger.messages
-                  .delete([draftHdr.id])
-                  .then(() => {
-                    SLStatic.info("Deleted message", draftHdr.id);
-                    SLTools.scheduledMsgCache.delete(draftHdr.id);
-                    SLTools.unscheduledMsgCache.delete(draftHdr.id);
-                  })
-                  .catch(SLStatic.error);
+                await SendLater.deleteMessage(draftHdr.id);
               }
             }
           }
