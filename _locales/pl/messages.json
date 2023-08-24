@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Send Later",
-    "description": "The name of the add-on, displayed in various places."
-  },
   "extensionDescription": {
     "message": "Dodaje funkcję “wyślij później”, aby można było wysyłać wiadomości o zaplanowanym czasie.",
     "description": "A short description of the add-on."
@@ -73,10 +69,6 @@
   },
   "logLevelFatal": {
     "message": "Krytyczny",
-    "description": ""
-  },
-  "logLevelInfo": {
-    "message": "Info",
     "description": ""
   },
   "logLevelTrace": {
@@ -217,7 +209,7 @@
   },
   "showStatusPrefLabel": {
     "message": "Pokaż “Send Later” na pasku statusu",
-    "description": ""
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
     "message": "Podręcznik użytkownika",
@@ -315,10 +307,6 @@
     "message": "Oczekuj na odpowiedź do poprzednio ponowionych wiadomości. Zatrzymaj ponawianie i usuń je z folderu Szkice gdy nadejdzie odpowiedź.",
     "description": ""
   },
-  "sendlater3header.label": {
-    "message": "Send Later",
-    "description": ""
-  },
   "prefwindow.title": {
     "message": "Ustawienia “Send Later”",
     "description": ""
@@ -380,7 +368,7 @@
     "description": ""
   },
   "donatelink.value": {
-    "message": "Dotacja…",
+    "message": "Dotacja",
     "description": ""
   },
   "editorlink.value": {
@@ -421,14 +409,6 @@
   },
   "sendlater.ask.message3": {
     "message": "Dziękuję!",
-    "description": ""
-  },
-  "sendlater.ask.donate.accesskey": {
-    "message": "W",
-    "description": ""
-  },
-  "sendlater.ask.donate.label": {
-    "message": "Wesprzyj teraz",
     "description": ""
   },
   "sendlater.ask.remind.accesskey": {
@@ -473,10 +453,6 @@
   },
   "delete.label": {
     "message": "Usuń",
-    "description": ""
-  },
-  "delete.accesskey": {
-    "message": "U",
     "description": ""
   },
   "functionnametip": {
@@ -543,24 +519,12 @@
     "message": "Wynik",
     "description": ""
   },
-  "import.label": {
-    "message": "Import…",
-    "description": ""
-  },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Zaimportuj funkcję specjalną poprzednio wyeksportowaną z edytora.",
     "description": ""
   },
   "export.label": {
     "message": "Eksport…",
-    "description": ""
-  },
-  "export.accesskey": {
-    "message": "E",
     "description": ""
   },
   "exporttip": {
@@ -571,28 +535,12 @@
     "message": "Rezygnacja ze zmian",
     "description": ""
   },
-  "reset.accesskey": {
-    "message": "R",
-    "description": ""
-  },
   "save.label": {
     "message": "Zapisz",
     "description": ""
   },
-  "save.accesskey": {
-    "message": "Z",
-    "description": ""
-  },
   "close.label": {
     "message": "Zamknij",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "a",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -781,10 +729,6 @@
   },
   "everymonthly_day6": {
     "message": "Sobota",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {

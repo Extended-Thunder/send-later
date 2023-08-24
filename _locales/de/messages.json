@@ -225,7 +225,7 @@
   },
   "showStatusPrefLabel": {
     "message": "„Später Senden” in der Statusleiste anzeigen",
-    "description": ""
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
     "message": "Benutzerhandbuch",
@@ -443,14 +443,6 @@
     "message": "Besten Dank!",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "s",
-    "description": ""
-  },
-  "sendlater.ask.donate.label": {
-    "message": "Jetzt spenden",
-    "description": ""
-  },
   "sendlater.ask.remind.accesskey": {
     "message": "e",
     "description": ""
@@ -493,10 +485,6 @@
   },
   "delete.label": {
     "message": "Löschen",
-    "description": ""
-  },
-  "delete.accesskey": {
-    "message": "L",
     "description": ""
   },
   "functionnametip": {
@@ -567,20 +555,12 @@
     "message": "Importieren…",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Importieren Sie eine dynamische Funtkion, die zuvor aus dem Editor exportiert wurde.",
     "description": ""
   },
   "export.label": {
     "message": "Exportieren…",
-    "description": ""
-  },
-  "export.accesskey": {
-    "message": "e",
     "description": ""
   },
   "exporttip": {
@@ -591,28 +571,12 @@
     "message": "Änderungen verwerfen",
     "description": ""
   },
-  "reset.accesskey": {
-    "message": "A",
-    "description": ""
-  },
   "save.label": {
     "message": "Speichern",
     "description": ""
   },
-  "save.accesskey": {
-    "message": "S",
-    "description": ""
-  },
   "close.label": {
     "message": "Schließen",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "c",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -643,10 +607,6 @@
     "message": "März",
     "description": ""
   },
-  "April": {
-    "message": "April",
-    "description": ""
-  },
   "May": {
     "message": "Mai",
     "description": ""
@@ -659,20 +619,8 @@
     "message": "Juli",
     "description": ""
   },
-  "August": {
-    "message": "August",
-    "description": ""
-  },
-  "September": {
-    "message": "September",
-    "description": ""
-  },
   "October": {
     "message": "Oktober",
-    "description": ""
-  },
-  "November": {
-    "message": "November",
     "description": ""
   },
   "December": {
@@ -804,10 +752,6 @@
   },
   "everymonthly_day6": {
     "message": "Samstag",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
@@ -1158,10 +1102,6 @@
   "LongDescription": {
     "message": "Dieses Add-on ändert den Befehl „Später senden“ (Strg+Umschalt+Return) im Fenster zum Verfassen einer Nachricht, so dass Sie die Nachricht nicht nur in Ihren Postausgang kopieren, sondern das nächste Mal verschicken, wenn Sie online gehen oder den Befehl \"Ungesendete Nachrichten senden\" aufrufen. Es erscheint ein Dialog, in dem Sie festlegen können, wann die Nachricht gesendet wird.\n\nSie können eine Zeit und ein Datum angeben, oder auf „15 Minuten später“, „30 Minuten später“ oder „2 Stunden später“ klicken, und benutzerdefinierte Tastenkürzel definieren. Sie können auch eine Nachricht planen, die Sie wiederholt mit einfachen Regeln (alle N Stunden, Tage, etc.) oder anhand anpassbarer Funktionen versenden können.\n\nSpäter Senden basiert auf der leistungsfähigen Datumseingabe-Bibliothek von Andrew Plummer <a href=\"https://sugarjs.com/\">Sugar. s Library</a>.\n\nFeedback und Fehlerberichte sind sehr willkommen und können auf der Projektseite <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">GitHub-Seite</a> eingereicht werden.",
     "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
-  },
-  "okay": {
-    "message": "OK",
-    "description": "Confirm an action (presented in popup dialogs)"
   },
   "cancel": {
     "message": "Abbrechen",

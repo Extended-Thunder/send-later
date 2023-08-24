@@ -185,7 +185,7 @@
   },
   "showStatusPrefLabel": {
     "message": "Ցուցադրել «Ուղարկել ավելի ուշ»-ը Վիճակի տողում",
-    "description": ""
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
     "message": "Օգտվողի ուղեցույցը",
@@ -363,14 +363,6 @@
     "message": "Շնորհակալություն",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "Ն",
-    "description": ""
-  },
-  "sendlater.ask.donate.label": {
-    "message": "Նվիրատվություն",
-    "description": ""
-  },
   "sendlater.ask.remind.accesskey": {
     "message": "ի",
     "description": ""
@@ -393,22 +385,6 @@
   },
   "sendlater.ask.stop.label": {
     "message": "Չհարցնել",
-    "description": ""
-  },
-  "delete.accesskey": {
-    "message": "Ն",
-    "description": ""
-  },
-  "reset.accesskey": {
-    "message": "Ե",
-    "description": ""
-  },
-  "save.accesskey": {
-    "message": "Չ",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "Չ",
     "description": ""
   },
   "sendaround": {
@@ -589,10 +565,6 @@
   },
   "everymonthly_day6": {
     "message": "Շաբաթ",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {

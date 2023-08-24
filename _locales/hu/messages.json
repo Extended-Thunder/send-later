@@ -225,7 +225,7 @@
   },
   "showStatusPrefLabel": {
     "message": "Küldés később megjelenítése az állapotsorban",
-    "description": ""
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
     "message": "Felhasználói útmutató",
@@ -443,14 +443,6 @@
     "message": "Köszönjük!",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "A",
-    "description": ""
-  },
-  "sendlater.ask.donate.label": {
-    "message": "Adományozás most",
-    "description": ""
-  },
   "sendlater.ask.remind.accesskey": {
     "message": "F",
     "description": ""
@@ -493,10 +485,6 @@
   },
   "delete.label": {
     "message": "Törlése",
-    "description": ""
-  },
-  "delete.accesskey": {
-    "message": "s",
     "description": ""
   },
   "functionnametip": {
@@ -579,10 +567,6 @@
     "message": "Kivitel…",
     "description": ""
   },
-  "export.accesskey": {
-    "message": "K",
-    "description": ""
-  },
   "exporttip": {
     "message": "Exportálja a jelenleg megjelenített függvényt egy fájlba a mentéshez vagy megosztáshoz.",
     "description": ""
@@ -591,28 +575,12 @@
     "message": "Módosítások elvetése",
     "description": ""
   },
-  "reset.accesskey": {
-    "message": "e",
-    "description": ""
-  },
   "save.label": {
     "message": "Mentés",
     "description": ""
   },
-  "save.accesskey": {
-    "message": "M",
-    "description": ""
-  },
   "close.label": {
     "message": "Bezárás",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "B",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "W",
     "description": ""
   },
   "sendaround": {
@@ -804,10 +772,6 @@
   },
   "everymonthly_day6": {
     "message": "szombata",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {

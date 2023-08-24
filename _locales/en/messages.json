@@ -443,14 +443,6 @@
     "message": "Thank you!",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "D",
-    "description": ""
-  },
-  "sendlater.ask.donate.label": {
-    "message": "Donate now",
-    "description": ""
-  },
   "sendlater.ask.remind.accesskey": {
     "message": "R",
     "description": ""
@@ -493,10 +485,6 @@
   },
   "delete.label": {
     "message": "Delete",
-    "description": ""
-  },
-  "delete.accesskey": {
-    "message": "D",
     "description": ""
   },
   "functionnametip": {
@@ -579,10 +567,6 @@
     "message": "Export…",
     "description": ""
   },
-  "export.accesskey": {
-    "message": "E",
-    "description": ""
-  },
   "exporttip": {
     "message": "Export the currently displayed function into a file for backup or sharing.",
     "description": ""
@@ -591,28 +575,12 @@
     "message": "Discard changes",
     "description": ""
   },
-  "reset.accesskey": {
-    "message": "a",
-    "description": ""
-  },
   "save.label": {
     "message": "Save",
     "description": ""
   },
-  "save.accesskey": {
-    "message": "S",
-    "description": ""
-  },
   "close.label": {
     "message": "Close",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "C",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -804,10 +772,6 @@
   },
   "everymonthly_day6": {
     "message": "Saturday",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {

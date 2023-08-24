@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Send Later",
-    "description": "The name of the add-on, displayed in various places."
-  },
   "extensionDescription": {
     "message": "Funcionalidade do “Enviar mais tarde” para marcar a hora de envio",
     "description": "A short description of the add-on."
@@ -69,10 +65,6 @@
   },
   "logLevelError": {
     "message": "Erro",
-    "description": ""
-  },
-  "logLevelFatal": {
-    "message": "Fatal",
     "description": ""
   },
   "logLevelInfo": {
@@ -221,7 +213,7 @@
   },
   "showStatusPrefLabel": {
     "message": "Mostrar o Send Later na barra de estado",
-    "description": ""
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
     "message": "Guia do utilizador",
@@ -253,10 +245,6 @@
   },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "Envie a mensagem imediatamente, ignorando “Send Later”.",
-    "description": ""
-  },
-  "sendlater.prompt.close.accesskey": {
-    "message": "C",
     "description": ""
   },
   "sendlater.prompt.close.tooltip": {
@@ -325,10 +313,6 @@
   },
   "sendlater.prompt.cancelonreply.tooltip": {
     "message": "Verifique as respostas às cópias enviadas anteriormente de mensagens recorrentes. Cancele uma mensagem recorrente e apague-a da pasta Rascunhos quando uma resposta for recebida.",
-    "description": ""
-  },
-  "sendlater3header.label": {
-    "message": "Send Later",
     "description": ""
   },
   "prefwindow.title": {
@@ -439,14 +423,6 @@
     "message": "Obrigado!",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "D",
-    "description": ""
-  },
-  "sendlater.ask.donate.label": {
-    "message": "Doar agora",
-    "description": ""
-  },
   "sendlater.ask.remind.accesskey": {
     "message": "L",
     "description": ""
@@ -491,10 +467,6 @@
     "message": "Apagar",
     "description": ""
   },
-  "delete.accesskey": {
-    "message": "A",
-    "description": ""
-  },
   "functionnametip": {
     "message": "Introduza ou edite o nome de uma função alfanumérica. Se modificar o nome de uma função existente, será questionado sobre ao guardar sobre a possibilidade de mudar efetivamente o nome da função ou criar uma nova função com esse nome.",
     "description": ""
@@ -525,10 +497,6 @@
   },
   "run.label": {
     "message": "Executar função",
-    "description": ""
-  },
-  "run.accesskey": {
-    "message": "x",
     "description": ""
   },
   "inputtime": {
@@ -563,20 +531,12 @@
     "message": "Importar…",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Importar uma função dinâmica anteriormente exportada através do editor.",
     "description": ""
   },
   "export.label": {
     "message": "Exportar…",
-    "description": ""
-  },
-  "export.accesskey": {
-    "message": "E",
     "description": ""
   },
   "exporttip": {
@@ -587,28 +547,12 @@
     "message": "Descartar modificações",
     "description": ""
   },
-  "reset.accesskey": {
-    "message": "D",
-    "description": ""
-  },
   "save.label": {
     "message": "Guardar",
     "description": ""
   },
-  "save.accesskey": {
-    "message": "G",
-    "description": ""
-  },
   "close.label": {
     "message": "Fechar",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "F",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -800,10 +744,6 @@
   },
   "everymonthly_day6": {
     "message": "Sábado",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {

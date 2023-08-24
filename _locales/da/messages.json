@@ -71,10 +71,6 @@
     "message": "Fejl",
     "description": ""
   },
-  "logLevelFatal": {
-    "message": "Fatal",
-    "description": ""
-  },
   "logLevelInfo": {
     "message": "Informere",
     "description": ""
@@ -225,7 +221,7 @@
   },
   "showStatusPrefLabel": {
     "message": "Vis menuen Send senere i statuslinjen",
-    "description": ""
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
     "message": "Brugervejledning",
@@ -243,24 +239,12 @@
     "message": "Læg i udbakke",
     "description": ""
   },
-  "sendlater.prompt.sendlater.accesskey": {
-    "message": "O",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.tooltip": {
     "message": "I stedet for at planlægge afsendelse til en bestemt tid, flyt beskeden til Udbakke mappen, så bliver den sendt næste gang ikke-sendte beskeder sendes.",
     "description": ""
   },
-  "sendlater.prompt.sendnow.accesskey": {
-    "message": "N",
-    "description": ""
-  },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "Send beskeden med det samme, undlad “Send senere”.",
-    "description": ""
-  },
-  "sendlater.prompt.close.accesskey": {
-    "message": "C",
     "description": ""
   },
   "sendlater.prompt.close.tooltip": {
@@ -443,14 +427,6 @@
     "message": "Mange tak!",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "G",
-    "description": ""
-  },
-  "sendlater.ask.donate.label": {
-    "message": "Giv en donation",
-    "description": ""
-  },
   "sendlater.ask.remind.accesskey": {
     "message": "M",
     "description": ""
@@ -459,16 +435,8 @@
     "message": "Mind mig om det senere",
     "description": ""
   },
-  "sendlater.ask.already.accesskey": {
-    "message": "a",
-    "description": ""
-  },
   "sendlater.ask.already.label": {
     "message": "Jeg har allerede doneret",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "S",
     "description": ""
   },
   "sendlater.ask.stop.label": {
@@ -493,10 +461,6 @@
   },
   "delete.label": {
     "message": "Slet",
-    "description": ""
-  },
-  "delete.accesskey": {
-    "message": "S",
     "description": ""
   },
   "functionnametip": {
@@ -567,20 +531,12 @@
     "message": "Importér…",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Importer en dynamisk funktion, der tidligere er eksporteret fra editoren.",
     "description": ""
   },
   "export.label": {
     "message": "Eksporter…",
-    "description": ""
-  },
-  "export.accesskey": {
-    "message": "E",
     "description": ""
   },
   "exporttip": {
@@ -591,28 +547,12 @@
     "message": "Kasser ændringer",
     "description": ""
   },
-  "reset.accesskey": {
-    "message": "a",
-    "description": ""
-  },
   "save.label": {
     "message": "Gemme",
     "description": ""
   },
-  "save.accesskey": {
-    "message": "G",
-    "description": ""
-  },
   "close.label": {
     "message": "Luk",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "L",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -643,10 +583,6 @@
     "message": "Marts",
     "description": ""
   },
-  "April": {
-    "message": "April",
-    "description": ""
-  },
   "May": {
     "message": "Maj",
     "description": ""
@@ -659,24 +595,8 @@
     "message": "Juli",
     "description": ""
   },
-  "August": {
-    "message": "August",
-    "description": ""
-  },
-  "September": {
-    "message": "September",
-    "description": ""
-  },
   "October": {
     "message": "Oktober",
-    "description": ""
-  },
-  "November": {
-    "message": "November",
-    "description": ""
-  },
-  "December": {
-    "message": "December",
     "description": ""
   },
   "OptionShortcutAlertTitle": {
@@ -804,10 +724,6 @@
   },
   "everymonthly_day6": {
     "message": "Lørdag",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
@@ -1143,10 +1059,6 @@
     "message": "annullér ved svar",
     "description": ""
   },
-  "PendingMessage": {
-    "message": "PEND $1",
-    "description": ""
-  },
   "IdleMessage": {
     "message": "Inaktiv",
     "description": ""
@@ -1178,10 +1090,6 @@
   "accelShiftLabel": {
     "message": "Skift+Klik",
     "description": "Indicates key combination to access the shift+click accelerator function"
-  },
-  "okay": {
-    "message": "OK",
-    "description": "Confirm an action (presented in popup dialogs)"
   },
   "cancel": {
     "message": "Afbryd",

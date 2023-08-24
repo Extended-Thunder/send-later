@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Send Later",
-    "description": "The name of the add-on, displayed in various places."
-  },
   "extensionDescription": {
     "message": "Echte functionaliteit voor ‘Later verzenden’ om het verzendtijdstip van een e-mailbericht te plannen.",
     "description": "A short description of the add-on."
@@ -73,10 +69,6 @@
   },
   "logLevelFatal": {
     "message": "Onherstelbaar",
-    "description": ""
-  },
-  "logLevelInfo": {
-    "message": "Info",
     "description": ""
   },
   "logLevelTrace": {
@@ -225,7 +217,7 @@
   },
   "showStatusPrefLabel": {
     "message": "Send Later in statusbalk tonen",
-    "description": ""
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
     "message": "Handleiding",
@@ -249,10 +241,6 @@
   },
   "sendlater.prompt.sendlater.tooltip": {
     "message": "Niet een tijdstip voor verzending kiezen, maar in het Postvak UIT plaatsen voor verzending wanneer de nog niet verzonden berichten worden verzonden",
-    "description": ""
-  },
-  "sendlater.prompt.sendnow.accesskey": {
-    "message": "N",
     "description": ""
   },
   "sendlater.prompt.sendnow.tooltip": {
@@ -329,10 +317,6 @@
   },
   "sendlater.prompt.cancelonreply.tooltip": {
     "message": "Op eerder verzonden kopieën van herhalende berichten letten. Een herhalend bericht annuleren en het uit de map Concepten verwijderen als een antwoord is ontvangen.",
-    "description": ""
-  },
-  "sendlater3header.label": {
-    "message": "Send Later",
     "description": ""
   },
   "prefwindow.title": {
@@ -443,24 +427,12 @@
     "message": "Dank u!",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "d",
-    "description": ""
-  },
-  "sendlater.ask.donate.label": {
-    "message": "Nu doneren",
-    "description": ""
-  },
   "sendlater.ask.remind.accesskey": {
     "message": "h",
     "description": ""
   },
   "sendlater.ask.remind.label": {
     "message": "Mij later herinneren",
-    "description": ""
-  },
-  "sendlater.ask.already.accesskey": {
-    "message": "a",
     "description": ""
   },
   "sendlater.ask.already.label": {
@@ -493,10 +465,6 @@
   },
   "delete.label": {
     "message": "Verwijderen",
-    "description": ""
-  },
-  "delete.accesskey": {
-    "message": "V",
     "description": ""
   },
   "functionnametip": {
@@ -567,20 +535,12 @@
     "message": "Importeren…",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Een dynamische functie importeren die eerder uit de editor is geëxporteerd",
     "description": ""
   },
   "export.label": {
     "message": "Exporteren…",
-    "description": ""
-  },
-  "export.accesskey": {
-    "message": "E",
     "description": ""
   },
   "exporttip": {
@@ -591,28 +551,12 @@
     "message": "Wijzigingen verwerpen",
     "description": ""
   },
-  "reset.accesskey": {
-    "message": "W",
-    "description": ""
-  },
   "save.label": {
     "message": "Opslaan",
     "description": ""
   },
-  "save.accesskey": {
-    "message": "O",
-    "description": ""
-  },
   "close.label": {
     "message": "Sluiten",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "S",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -804,10 +748,6 @@
   },
   "everymonthly_day6": {
     "message": "zaterdag",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
@@ -1178,10 +1118,6 @@
   "accelShiftLabel": {
     "message": "Shift+klikken",
     "description": "Indicates key combination to access the shift+click accelerator function"
-  },
-  "okay": {
-    "message": "OK",
-    "description": "Confirm an action (presented in popup dialogs)"
   },
   "cancel": {
     "message": "Annuleren",

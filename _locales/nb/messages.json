@@ -71,14 +71,6 @@
     "message": "Feil",
     "description": ""
   },
-  "logLevelFatal": {
-    "message": "Fatal",
-    "description": ""
-  },
-  "logLevelInfo": {
-    "message": "Info",
-    "description": ""
-  },
   "logLevelTrace": {
     "message": "Spor",
     "description": ""
@@ -217,7 +209,7 @@
   },
   "showStatusPrefLabel": {
     "message": "Vis Send senere i statuslinjen",
-    "description": ""
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
     "message": "Bruksanvisning",
@@ -280,7 +272,7 @@
     "description": ""
   },
   "sendlater.toolbar.sendlater.button.label": {
-    "message": "Send Later",
+    "message": "Send senere",
     "description": ""
   },
   "sendlater.toolbar.sendlater.button.tooltip": {
@@ -423,14 +415,6 @@
     "message": "Takk!",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "G",
-    "description": ""
-  },
-  "sendlater.ask.donate.label": {
-    "message": "Gi en donasjon nå",
-    "description": ""
-  },
   "sendlater.ask.remind.accesskey": {
     "message": "M",
     "description": ""
@@ -473,10 +457,6 @@
   },
   "delete.label": {
     "message": "Slett",
-    "description": ""
-  },
-  "delete.accesskey": {
-    "message": "S",
     "description": ""
   },
   "functionnametip": {
@@ -547,20 +527,12 @@
     "message": "Importer…",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Importer en dynamisk funksjon som tidligere er eksportert fra redigereren.",
     "description": ""
   },
   "export.label": {
     "message": "Eksporter…",
-    "description": ""
-  },
-  "export.accesskey": {
-    "message": "E",
     "description": ""
   },
   "exporttip": {
@@ -571,28 +543,12 @@
     "message": "Forkast endringer",
     "description": ""
   },
-  "reset.accesskey": {
-    "message": "a",
-    "description": ""
-  },
   "save.label": {
     "message": "Lagre",
     "description": ""
   },
-  "save.accesskey": {
-    "message": "L",
-    "description": ""
-  },
   "close.label": {
     "message": "Lukk",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "u",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -623,10 +579,6 @@
     "message": "Mars",
     "description": ""
   },
-  "April": {
-    "message": "April",
-    "description": ""
-  },
   "May": {
     "message": "Mai",
     "description": ""
@@ -639,20 +591,8 @@
     "message": "Juli",
     "description": ""
   },
-  "August": {
-    "message": "August",
-    "description": ""
-  },
-  "September": {
-    "message": "September",
-    "description": ""
-  },
   "October": {
     "message": "Oktober",
-    "description": ""
-  },
-  "November": {
-    "message": "November",
     "description": ""
   },
   "December": {
@@ -781,10 +721,6 @@
   },
   "everymonthly_day6": {
     "message": "Lørdag",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1, $2",
     "description": ""
   },
   "everymonthly_short_day0": {
@@ -957,10 +893,6 @@
   },
   "BusinessHoursHelp": {
     "message": "Send meldingen nå hvis den er i driftstid eller i begynnelsen av neste arbeidsdag. Du kan endre definisjonen av arbeidsdager (standard: Man - Fre) ved å sende inn en rekke arbeidsdagnumre som det første argumentet, hvor 0 er søndag og 6 er lørdag. Du kan endre arbeidsstart eller sluttid (standard: 8:30 - 17:30) ved å sende inn en rekke [H, M] som det andre eller tredje argumentet. Angi \"null\" for tidligere argumenter du ikke endrer. For eksempel endrer \"null, [9, 0], [17, 0]\" arbeidstiden uten å endre arbeidsdager.",
-    "description": ""
-  },
-  "DaysInARowCode": {
-    "message": "// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
     "description": ""
   },
   "DaysInARowHelp": {

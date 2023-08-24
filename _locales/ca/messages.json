@@ -47,10 +47,6 @@
     "message": "Fer complir les restriccions de dia i hora en el moment de lliurar",
     "description": ""
   },
-  "generalOptionsTitle": {
-    "message": "General",
-    "description": ""
-  },
   "logConsoleLevelLabel": {
     "message": "Nivell de consola de registre",
     "description": ""
@@ -65,10 +61,6 @@
   },
   "logLevelDebug": {
     "message": "Depuració",
-    "description": ""
-  },
-  "logLevelError": {
-    "message": "Error",
     "description": ""
   },
   "logLevelFatal": {
@@ -225,7 +217,7 @@
   },
   "showStatusPrefLabel": {
     "message": "Mostrar Send Later en la Barra d'Estat",
-    "description": ""
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
     "message": "Guia d'usuari",
@@ -257,10 +249,6 @@
   },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "Enviar el missatge immediatament, ignorant “Send Later”.",
-    "description": ""
-  },
-  "sendlater.prompt.close.accesskey": {
-    "message": "C",
     "description": ""
   },
   "sendlater.prompt.close.tooltip": {
@@ -332,7 +320,7 @@
     "description": ""
   },
   "sendlater3header.label": {
-    "message": "Send Later",
+    "message": "Enviar més tard",
     "description": ""
   },
   "prefwindow.title": {
@@ -443,18 +431,6 @@
     "message": "Gràcies!",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "D",
-    "description": ""
-  },
-  "sendlater.ask.donate.label": {
-    "message": "Donar ara",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "R",
-    "description": ""
-  },
   "sendlater.ask.remind.label": {
     "message": "Recordeu-m'ho més tard",
     "description": ""
@@ -493,10 +469,6 @@
   },
   "delete.label": {
     "message": "Eliminar",
-    "description": ""
-  },
-  "delete.accesskey": {
-    "message": "m",
     "description": ""
   },
   "functionnametip": {
@@ -579,10 +551,6 @@
     "message": "Exportar…",
     "description": ""
   },
-  "export.accesskey": {
-    "message": "x",
-    "description": ""
-  },
   "exporttip": {
     "message": "Exportar la funció que es mostra actualment en un arxiu per compartir o com a còpia de seguretat.",
     "description": ""
@@ -591,28 +559,12 @@
     "message": "Descartar modificacions",
     "description": ""
   },
-  "reset.accesskey": {
-    "message": "a",
-    "description": ""
-  },
   "save.label": {
     "message": "Desar",
     "description": ""
   },
-  "save.accesskey": {
-    "message": "D",
-    "description": ""
-  },
   "close.label": {
     "message": "Tancar",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "T",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -804,10 +756,6 @@
   },
   "everymonthly_day6": {
     "message": "dissabte",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
@@ -1143,10 +1091,6 @@
     "message": "cancel·lar si respost",
     "description": ""
   },
-  "PendingMessage": {
-    "message": "PEND $1",
-    "description": ""
-  },
   "IdleMessage": {
     "message": "INACTIU",
     "description": ""
@@ -1186,10 +1130,6 @@
   "cancel": {
     "message": "Cancel·lar",
     "description": "Cancel an action (presented in popup dialogs)"
-  },
-  "no": {
-    "message": "No",
-    "description": "Reject an action (presented in popup dialogs)"
   },
   "customizeDateTimeFormatsPrefLabel": {
     "message": "Personalitzar formats de data/temps",

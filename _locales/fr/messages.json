@@ -31,10 +31,6 @@
     "message": "Vérifier toutes les",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "minutes",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "Réinitialiser les valeurs par défaut",
     "description": ""
@@ -79,10 +75,6 @@
     "message": "Informations",
     "description": ""
   },
-  "logLevelTrace": {
-    "message": "Trace",
-    "description": ""
-  },
   "logLevelWarn": {
     "message": "Avertissement",
     "description": ""
@@ -101,10 +93,6 @@
   },
   "quickOptionsLabel3Label": {
     "message": "3e délai",
-    "description": ""
-  },
-  "quickOptionsValueLabel": {
-    "message": "Minutes",
     "description": ""
   },
   "recurAnnuallyLabel": {
@@ -171,10 +159,6 @@
     "message": "“Envoyer” retarde l'envoi du message de",
     "description": ""
   },
-  "sendDelayPrefLabel2": {
-    "message": "minutes",
-    "description": ""
-  },
   "sendSundayLabel": {
     "message": "Dimanche",
     "description": ""
@@ -225,7 +209,7 @@
   },
   "showStatusPrefLabel": {
     "message": "Afficher « Envoyer Plus Tard » dans la barre d'état",
-    "description": ""
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
     "message": "Guide de l'utilisateur",
@@ -443,14 +427,6 @@
     "message": "Merci!",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "F",
-    "description": ""
-  },
-  "sendlater.ask.donate.label": {
-    "message": "Faire un don",
-    "description": ""
-  },
   "sendlater.ask.remind.accesskey": {
     "message": "r",
     "description": ""
@@ -495,10 +471,6 @@
     "message": "Supprimer",
     "description": ""
   },
-  "delete.accesskey": {
-    "message": "S",
-    "description": ""
-  },
   "functionnametip": {
     "message": "Écrivez ou modifier le nom alphanumérique de la fonction. Si vous modifiez le nom d'une fonction existante, il vous sera demandé à l'enregistrement si vous voulez renommer la fonction ou créer une nouvelle fonction avec ce nom modifié.",
     "description": ""
@@ -529,10 +501,6 @@
   },
   "run.label": {
     "message": "Exécuter la fonction",
-    "description": ""
-  },
-  "run.accesskey": {
-    "message": "x",
     "description": ""
   },
   "inputtime": {
@@ -567,20 +535,12 @@
     "message": "Importer…",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Importer une fonction dynamique préalablement exportée depuis l'éditeur (fichier *.slj)",
     "description": ""
   },
   "export.label": {
     "message": "Exporter…",
-    "description": ""
-  },
-  "export.accesskey": {
-    "message": "e",
     "description": ""
   },
   "exporttip": {
@@ -591,28 +551,12 @@
     "message": "Ne pas modifier",
     "description": ""
   },
-  "reset.accesskey": {
-    "message": "a",
-    "description": ""
-  },
   "save.label": {
     "message": "Enregistrer",
     "description": ""
   },
-  "save.accesskey": {
-    "message": "n",
-    "description": ""
-  },
   "close.label": {
     "message": "Fermer",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "F",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -804,10 +748,6 @@
   },
   "everymonthly_day6": {
     "message": "Samedi",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
@@ -1178,10 +1118,6 @@
   "accelShiftLabel": {
     "message": "Maj+Clic",
     "description": "Indicates key combination to access the shift+click accelerator function"
-  },
-  "okay": {
-    "message": "OK",
-    "description": "Confirm an action (presented in popup dialogs)"
   },
   "cancel": {
     "message": "Annuler",

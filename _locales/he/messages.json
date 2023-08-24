@@ -225,7 +225,7 @@
   },
   "showStatusPrefLabel": {
     "message": "‫הצג את '‫שלח מאוחר יותר‬' בשורת המצב‬",
-    "description": ""
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
     "message": "‫מדריך למשתמש‬",
@@ -443,14 +443,6 @@
     "message": "‫תודה רבה‬",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "ת",
-    "description": ""
-  },
-  "sendlater.ask.donate.label": {
-    "message": "‫תרום כעת‬",
-    "description": ""
-  },
   "sendlater.ask.remind.accesskey": {
     "message": "ז",
     "description": ""
@@ -493,10 +485,6 @@
   },
   "delete.label": {
     "message": "מחק",
-    "description": ""
-  },
-  "delete.accesskey": {
-    "message": "מ",
     "description": ""
   },
   "functionnametip": {
@@ -579,10 +567,6 @@
     "message": "ייצא…",
     "description": ""
   },
-  "export.accesskey": {
-    "message": "צ",
-    "description": ""
-  },
   "exporttip": {
     "message": "ייצא את הפונקציה המוצגת כעת לקובץ לצורך גיבוי או שיתוף.",
     "description": ""
@@ -591,28 +575,12 @@
     "message": "בטל שינויים",
     "description": ""
   },
-  "reset.accesskey": {
-    "message": "ט",
-    "description": ""
-  },
   "save.label": {
     "message": "שמור",
     "description": ""
   },
-  "save.accesskey": {
-    "message": "ש",
-    "description": ""
-  },
   "close.label": {
     "message": "סגור",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "ס",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -804,10 +772,6 @@
   },
   "everymonthly_day6": {
     "message": "‫יום שבת‬",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "‫$1 $2‬",
     "description": ""
   },
   "everymonthly_short_day0": {

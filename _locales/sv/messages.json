@@ -71,14 +71,6 @@
     "message": "Fel",
     "description": ""
   },
-  "logLevelFatal": {
-    "message": "Fatal",
-    "description": ""
-  },
-  "logLevelInfo": {
-    "message": "Info",
-    "description": ""
-  },
   "logLevelTrace": {
     "message": "Spår",
     "description": ""
@@ -217,7 +209,7 @@
   },
   "showStatusPrefLabel": {
     "message": "Visa Skicka Senare i statusfältet",
-    "description": ""
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
     "message": "Användarhandbok",
@@ -423,14 +415,6 @@
     "message": "Tack för ditt stöd!",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "D",
-    "description": ""
-  },
-  "sendlater.ask.donate.label": {
-    "message": "Donera nu",
-    "description": ""
-  },
   "sendlater.ask.remind.accesskey": {
     "message": "P",
     "description": ""
@@ -445,10 +429,6 @@
   },
   "sendlater.ask.already.label": {
     "message": "Jag har redan donerat",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "S",
     "description": ""
   },
   "sendlater.ask.stop.label": {
@@ -473,10 +453,6 @@
   },
   "delete.label": {
     "message": "Ta bort",
-    "description": ""
-  },
-  "delete.accesskey": {
-    "message": "T",
     "description": ""
   },
   "functionnametip": {
@@ -547,20 +523,12 @@
     "message": "Importera…",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Importera en dynamisk funktion som tidigare exporterats från editorn.",
     "description": ""
   },
   "export.label": {
     "message": "Exportera…",
-    "description": ""
-  },
-  "export.accesskey": {
-    "message": "E",
     "description": ""
   },
   "exporttip": {
@@ -571,28 +539,12 @@
     "message": "Ignorera ändringar",
     "description": ""
   },
-  "reset.accesskey": {
-    "message": "a",
-    "description": ""
-  },
   "save.label": {
     "message": "Spara",
     "description": ""
   },
-  "save.accesskey": {
-    "message": "S",
-    "description": ""
-  },
   "close.label": {
     "message": "Stäng",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "g",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -781,10 +733,6 @@
   },
   "everymonthly_day6": {
     "message": "lördag",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2en",
     "description": ""
   },
   "everymonthly_short_day0": {

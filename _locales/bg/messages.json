@@ -221,7 +221,7 @@
   },
   "showStatusPrefLabel": {
     "message": "Показване на Изпращане по-късно в лентата на състоянието",
-    "description": ""
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
     "message": "Ръководство на потребителя",
@@ -439,14 +439,6 @@
     "message": "Благодарим Ви!",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "д",
-    "description": ""
-  },
-  "sendlater.ask.donate.label": {
-    "message": "Направете дарение",
-    "description": ""
-  },
   "sendlater.ask.remind.accesskey": {
     "message": "Н",
     "description": ""
@@ -489,10 +481,6 @@
   },
   "delete.label": {
     "message": "Изтриване",
-    "description": ""
-  },
-  "delete.accesskey": {
-    "message": "И",
     "description": ""
   },
   "functionnametip": {
@@ -575,10 +563,6 @@
     "message": "Експортиране…",
     "description": ""
   },
-  "export.accesskey": {
-    "message": "к",
-    "description": ""
-  },
   "exporttip": {
     "message": "Експортиране на текущо показваната функцията във файл за архивиране или споделяне.",
     "description": ""
@@ -587,28 +571,12 @@
     "message": "Отхвърляне на промените",
     "description": ""
   },
-  "reset.accesskey": {
-    "message": "О",
-    "description": ""
-  },
   "save.label": {
     "message": "Записване",
     "description": ""
   },
-  "save.accesskey": {
-    "message": "З",
-    "description": ""
-  },
   "close.label": {
     "message": "Затваряне",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "а",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -797,10 +765,6 @@
   },
   "everymonthly_day6": {
     "message": "Събота",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {

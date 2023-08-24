@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Send Later",
-    "description": "The name of the add-on, displayed in various places."
-  },
   "extensionDescription": {
     "message": "Funcionalidad “Enviar más tarde” para programar la hora de envío.",
     "description": "A short description of the add-on."
@@ -65,18 +61,6 @@
   },
   "logLevelDebug": {
     "message": "Depurar",
-    "description": ""
-  },
-  "logLevelError": {
-    "message": "Error",
-    "description": ""
-  },
-  "logLevelFatal": {
-    "message": "Fatal",
-    "description": ""
-  },
-  "logLevelInfo": {
-    "message": "Info",
     "description": ""
   },
   "logLevelTrace": {
@@ -225,7 +209,7 @@
   },
   "showStatusPrefLabel": {
     "message": "Mostrar “Send Later” en la barra de estado",
-    "description": ""
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
     "message": "Guía de usuario",
@@ -257,10 +241,6 @@
   },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "Envía el mensaje inmediatamente, ignorando “Send Later”.",
-    "description": ""
-  },
-  "sendlater.prompt.close.accesskey": {
-    "message": "C",
     "description": ""
   },
   "sendlater.prompt.close.tooltip": {
@@ -423,10 +403,6 @@
     "message": "Abre una ventana para crear y editar funciones JavaScript que implementan una lógica de planificación compleja.",
     "description": ""
   },
-  "loglevel.config": {
-    "message": "Config",
-    "description": ""
-  },
   "sendlater.ask.title.label": {
     "message": "Apoyar a Send Later",
     "description": ""
@@ -441,18 +417,6 @@
   },
   "sendlater.ask.message3": {
     "message": "¡Gracias!",
-    "description": ""
-  },
-  "sendlater.ask.donate.accesskey": {
-    "message": "D",
-    "description": ""
-  },
-  "sendlater.ask.donate.label": {
-    "message": "Donar ahora",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "R",
     "description": ""
   },
   "sendlater.ask.remind.label": {
@@ -493,10 +457,6 @@
   },
   "delete.label": {
     "message": "Borrar",
-    "description": ""
-  },
-  "delete.accesskey": {
-    "message": "B",
     "description": ""
   },
   "functionnametip": {
@@ -567,20 +527,12 @@
     "message": "Importar…",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Importa una función dinámica previamente exportada desde el editor.",
     "description": ""
   },
   "export.label": {
     "message": "Exportar…",
-    "description": ""
-  },
-  "export.accesskey": {
-    "message": "x",
     "description": ""
   },
   "exporttip": {
@@ -591,28 +543,12 @@
     "message": "Descartar cambios",
     "description": ""
   },
-  "reset.accesskey": {
-    "message": "D",
-    "description": ""
-  },
   "save.label": {
     "message": "Guardar",
     "description": ""
   },
-  "save.accesskey": {
-    "message": "G",
-    "description": ""
-  },
   "close.label": {
     "message": "Cerrar",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "C",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -804,10 +740,6 @@
   },
   "everymonthly_day6": {
     "message": "Sábado",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
@@ -1186,10 +1118,6 @@
   "cancel": {
     "message": "Cancelar",
     "description": "Cancel an action (presented in popup dialogs)"
-  },
-  "no": {
-    "message": "No",
-    "description": "Reject an action (presented in popup dialogs)"
   },
   "customizeDateTimeFormatsPrefLabel": {
     "message": "Personalizar formatos de fecha/tiempo",

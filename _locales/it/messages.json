@@ -63,10 +63,6 @@
     "message": "Tutto",
     "description": ""
   },
-  "logLevelDebug": {
-    "message": "Debug",
-    "description": ""
-  },
   "logLevelError": {
     "message": "Errore",
     "description": ""
@@ -217,7 +213,7 @@
   },
   "showStatusPrefLabel": {
     "message": "Mostra Invia Dopo nella Barra di Stato",
-    "description": ""
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
     "message": "Manuale utente",
@@ -423,18 +419,6 @@
     "message": "Grazie!",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "D",
-    "description": ""
-  },
-  "sendlater.ask.donate.label": {
-    "message": "Dona ora",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "R",
-    "description": ""
-  },
   "sendlater.ask.remind.label": {
     "message": "Ricordamelo in seguito",
     "description": ""
@@ -473,10 +457,6 @@
   },
   "delete.label": {
     "message": "Elimina",
-    "description": ""
-  },
-  "delete.accesskey": {
-    "message": "E",
     "description": ""
   },
   "functionnametip": {
@@ -547,20 +527,12 @@
     "message": "Importa…",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Importa una funzione dinamica precedentemente esportata dall'editor.",
     "description": ""
   },
   "export.label": {
     "message": "Esporta…",
-    "description": ""
-  },
-  "export.accesskey": {
-    "message": "o",
     "description": ""
   },
   "exporttip": {
@@ -571,28 +543,12 @@
     "message": "Annulla modifiche",
     "description": ""
   },
-  "reset.accesskey": {
-    "message": "a",
-    "description": ""
-  },
   "save.label": {
     "message": "Salva",
     "description": ""
   },
-  "save.accesskey": {
-    "message": "S",
-    "description": ""
-  },
   "close.label": {
     "message": "Chiudi",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "C",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -781,10 +737,6 @@
   },
   "everymonthly_day6": {
     "message": "sabato",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {

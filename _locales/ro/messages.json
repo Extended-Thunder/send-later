@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Send Later",
-    "description": "The name of the add-on, displayed in various places."
-  },
   "extensionDescription": {
     "message": "Funcționalitate completă \"Trimite mai târziu\" pentru a programa trimiterea unui email.",
     "description": "A short description of the add-on."
@@ -47,10 +43,6 @@
     "message": "Impune restricțiile de oră și zi în momentul livrării",
     "description": ""
   },
-  "generalOptionsTitle": {
-    "message": "General",
-    "description": ""
-  },
   "logConsoleLevelLabel": {
     "message": "Nivel jurnal consolă",
     "description": ""
@@ -69,18 +61,6 @@
   },
   "logLevelError": {
     "message": "Eroare",
-    "description": ""
-  },
-  "logLevelFatal": {
-    "message": "Fatal",
-    "description": ""
-  },
-  "logLevelInfo": {
-    "message": "Info",
-    "description": ""
-  },
-  "logLevelTrace": {
-    "message": "Trace",
     "description": ""
   },
   "logLevelWarn": {
@@ -221,7 +201,7 @@
   },
   "showStatusPrefLabel": {
     "message": "Afișează Send Later în bara de stare",
-    "description": ""
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
     "message": "Ghidul utilizatorului",
@@ -325,10 +305,6 @@
   },
   "sendlater.prompt.cancelonreply.tooltip": {
     "message": "Monitorizează primirea de răspuns la trimiterile anterioare ale mesajelor repetitive. Anulează un mesaj repetitiv și șterge-l din dosarul „Mesaje netrimise” când se primește răspuns.",
-    "description": ""
-  },
-  "sendlater3header.label": {
-    "message": "Send Later",
     "description": ""
   },
   "prefwindow.title": {
@@ -439,24 +415,12 @@
     "message": "Mulțumesc!",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "D",
-    "description": ""
-  },
-  "sendlater.ask.donate.label": {
-    "message": "Donează acum",
-    "description": ""
-  },
   "sendlater.ask.remind.accesskey": {
     "message": "t",
     "description": ""
   },
   "sendlater.ask.remind.label": {
     "message": "Amintește-mi mai târziu",
-    "description": ""
-  },
-  "sendlater.ask.already.accesskey": {
-    "message": "a",
     "description": ""
   },
   "sendlater.ask.already.label": {
@@ -491,10 +455,6 @@
     "message": "Șterge",
     "description": ""
   },
-  "delete.accesskey": {
-    "message": "t",
-    "description": ""
-  },
   "functionnametip": {
     "message": "Introdu sau modifică un nume de funcție alfanumeric. Dacă se modifică numele unei funcții existente, vei fi întrebat la salvare dacă se redenumește funcția sau se creează o nouă funcție cu numele modificat.",
     "description": ""
@@ -525,10 +485,6 @@
   },
   "run.label": {
     "message": "Execută funcția",
-    "description": ""
-  },
-  "run.accesskey": {
-    "message": "x",
     "description": ""
   },
   "inputtime": {
@@ -563,20 +519,12 @@
     "message": "Importă …",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "Importă o funcție dinamică exportată anterior din editor.",
     "description": ""
   },
   "export.label": {
     "message": "Exportă …",
-    "description": ""
-  },
-  "export.accesskey": {
-    "message": "E",
     "description": ""
   },
   "exporttip": {
@@ -587,28 +535,12 @@
     "message": "Renunță la modificări",
     "description": ""
   },
-  "reset.accesskey": {
-    "message": "R",
-    "description": ""
-  },
   "save.label": {
     "message": "Salvează",
     "description": ""
   },
-  "save.accesskey": {
-    "message": "l",
-    "description": ""
-  },
   "close.label": {
     "message": "Închide",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "n",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "w",
     "description": ""
   },
   "sendaround": {
@@ -800,10 +732,6 @@
   },
   "everymonthly_day6": {
     "message": "sâmbătă",
-    "description": ""
-  },
-  "everymonthly_short": {
-    "message": "$1 $2",
     "description": ""
   },
   "everymonthly_short_day0": {
@@ -1016,10 +944,6 @@
     "message": "Trimite mesajul acum dacă e în timpul orelor de lucru sau la începutul următoarei zi lucrătoare. Definiția zilelor lucrătoare se poate schimba (implicit: Lun - Vin) când primul argument este un array cu numerele zilelor lucrătoare, unde 0 este duminică și 6 este sâmbătă. Pentru a schimba orele de lucru (implicit: 8:30 - 17:30) se pot transmite argumentele 2 sau 3 cu array-uri de forma [H, M]. Folosește \"null\" pentru argumentele din față care dorești să rămână neschimbate. De exemplu, \"null, [9, 0], [17, 0]\" schimba orele de lucru fără a schimba zilele lucrătoare.",
     "description": ""
   },
-  "DaysInARowCode": {
-    "message": "// Send the first message now, subsequent messages once per day.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Don't try to send in the past, in case Thunderbird was asleep at\n    // the scheduled send time.\n}\nif (! args) // Send messages three times by default.\n    args = [3];\nnextargs = [args[0] - 1];\n// Recur if we haven't done enough sends yet.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
-    "description": ""
-  },
   "DaysInARowHelp": {
     "message": "Trimite mesajul acum, și apoi o dată pe zi la aceeași ora, până a fost trimis de 3 ori. Numărul de trimiteri se poate modifica trimițând un număr ca argument al funcției.",
     "description": ""
@@ -1139,22 +1063,6 @@
   "accelKeyLabel": {
     "message": "Cheie accelerator",
     "description": "Label for options window to identify accelerator shortcuts"
-  },
-  "accelCtrlLabel": {
-    "message": "Ctrl+Click",
-    "description": "Indicates key combination to access the ctrl+click accelerator function"
-  },
-  "accelCtrlLabel.MacOS": {
-    "message": "Cmd+Click",
-    "description": "Indicates key combination to access the ctrl+click accelerator function. On mac the Ctrl key is replaced with the 'Command' key"
-  },
-  "accelShiftLabel": {
-    "message": "Shift+Click",
-    "description": "Indicates key combination to access the shift+click accelerator function"
-  },
-  "okay": {
-    "message": "OK",
-    "description": "Confirm an action (presented in popup dialogs)"
   },
   "cancel": {
     "message": "Anulează",

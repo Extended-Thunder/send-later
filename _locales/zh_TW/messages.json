@@ -221,7 +221,7 @@
   },
   "showStatusPrefLabel": {
     "message": "在狀態欄中顯示延期發信",
-    "description": ""
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
     "message": "使用說明",
@@ -239,24 +239,12 @@
     "message": "存至寄件匣",
     "description": ""
   },
-  "sendlater.prompt.sendlater.accesskey": {
-    "message": "O",
-    "description": ""
-  },
   "sendlater.prompt.sendlater.tooltip": {
     "message": "不指定發送時間，而是移動信件至寄件匣，等待下一次傳送信件。",
     "description": ""
   },
-  "sendlater.prompt.sendnow.accesskey": {
-    "message": "N",
-    "description": ""
-  },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "跳過延期發信, 馬上寄出訊息",
-    "description": ""
-  },
-  "sendlater.prompt.close.accesskey": {
-    "message": "C",
     "description": ""
   },
   "sendlater.prompt.close.tooltip": {
@@ -439,32 +427,12 @@
     "message": "謝謝！",
     "description": ""
   },
-  "sendlater.ask.donate.accesskey": {
-    "message": "D",
-    "description": ""
-  },
-  "sendlater.ask.donate.label": {
-    "message": "馬上贊助",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "R",
-    "description": ""
-  },
   "sendlater.ask.remind.label": {
     "message": "以後提醒我",
     "description": ""
   },
-  "sendlater.ask.already.accesskey": {
-    "message": "a",
-    "description": ""
-  },
   "sendlater.ask.already.label": {
     "message": "我已贊助",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "S",
     "description": ""
   },
   "sendlater.ask.stop.label": {
@@ -489,10 +457,6 @@
   },
   "delete.label": {
     "message": "刪除",
-    "description": ""
-  },
-  "delete.accesskey": {
-    "message": "D",
     "description": ""
   },
   "functionnametip": {
@@ -527,10 +491,6 @@
     "message": "執行函數：",
     "description": ""
   },
-  "run.accesskey": {
-    "message": "x",
-    "description": ""
-  },
   "inputtime": {
     "message": "輸入時間：",
     "description": ""
@@ -563,20 +523,12 @@
     "message": "匯入...",
     "description": ""
   },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
   "importtip": {
     "message": "將一個之前從編輯器匯出的動態函數匯入。",
     "description": ""
   },
   "export.label": {
     "message": "匯出...",
-    "description": ""
-  },
-  "export.accesskey": {
-    "message": "E",
     "description": ""
   },
   "exporttip": {
@@ -587,28 +539,12 @@
     "message": "放棄修改",
     "description": ""
   },
-  "reset.accesskey": {
-    "message": "a",
-    "description": ""
-  },
   "save.label": {
     "message": "存檔",
     "description": ""
   },
-  "save.accesskey": {
-    "message": "S",
-    "description": ""
-  },
   "close.label": {
     "message": "關閉",
-    "description": ""
-  },
-  "close.accesskey": {
-    "message": "C",
-    "description": ""
-  },
-  "close.cmdkey": {
-    "message": "W",
     "description": ""
   },
   "sendaround": {
@@ -799,10 +735,6 @@
     "message": "星期六",
     "description": ""
   },
-  "everymonthly_short": {
-    "message": "$1 $2",
-    "description": ""
-  },
   "everymonthly_short_day0": {
     "message": "星期日",
     "description": ""
@@ -971,10 +903,6 @@
     "message": "任何放置在此處的文字，均會在鼠標停在菜單功能名稱以提示方式顯示。你可以使用它來描述函數和接受的參數。",
     "description": ""
   },
-  "_BusinessHoursCode": {
-    "message": "// Defaults\nvar workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Start of the work day as [H, M]\nvar workEnd = [17, 30]; // End of the work day as [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Not expected in normal usage, but used as the current time for testing.\n    next = new Date(prev);\nelse\n    next = new Date();\n\nif (workDays.length == 0 || !workDays.every(d => (d >= 0) && (d <= 6))) { return undefined; }\n\n// If we're past the end of the workday or not on a workday, move to the work\n// start time on the next day.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// If we're before the beginning of the workday, move to its start time.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
-    "description": ""
-  },
   "BusinessHoursHelp": {
     "message": "在辦公時間內或在下一個工作日開始時立即發送消息。 您可以在第一個參數發出工作日數字數組(array)修改辦公時間（預設為週一至週五），其中0為星期日，6為星期六。您可在第二及第三個參數發出一個[H，M]數組，更改工作開始或結束時間（預設為8:30 - 17:30）。如不更改較早的參數，請指定“null”。 例如，“null，[9，0]，[17，0]”改變工作時間，而不改變工作日。",
     "description": ""
@@ -1094,5 +1022,9 @@
   "CheckingMessage": {
     "message": "正在檢查延遲發送訊息",
     "description": ""
+  },
+  "cancel": {
+    "message": "取消",
+    "description": "Cancel an action (presented in popup dialogs)"
   }
 }
