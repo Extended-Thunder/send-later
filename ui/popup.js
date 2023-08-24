@@ -628,6 +628,7 @@ const SLPopup = {
   },
 
   parseSugarDate() {
+    SLStatic.trace("parseSugarDate");
     const dom = SLPopup.objectifyDOMElements();
     let sendAtString = dom["send-datetime"].value;
     if (sendAtString) {

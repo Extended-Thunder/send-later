@@ -1328,6 +1328,7 @@ const SendLater = {
           .catch((ex) => SLStatic.error(ex));
       }
       case "parseDate": {
+        SLStatic.trace("onMessageExternalListener.parseDate");
         // Return Promise for the Date. Since this is a sync operation, the
         // Promise is already fulfilled. But it still has to be a Promise, or
         // sendResponse() has to be used instead. Promise syntax is preferred.

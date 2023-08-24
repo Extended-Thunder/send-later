@@ -245,6 +245,7 @@ var SLStatic = {
   },
 
   convertDate(date) {
+    SLStatic.trace(`convertDate(${date})`);
     if (!date) {
       return null;
     } else if (date.raw) {
@@ -280,6 +281,9 @@ var SLStatic = {
   },
 
   estimateSendTime(scheduledDate, previousLoop, loopMinutes) {
+    SLStatic.trace(
+      `estimateSendTime(${scheduledDate}, ${previousLoop}, ${loopMinutes})`,
+    );
     scheduledDate = SLStatic.convertDate(scheduledDate);
     scheduledDate.setSeconds(0);
 
@@ -296,28 +300,33 @@ var SLStatic = {
 
   // Round datetime up to the next nearest full minute
   ceilDateTime(dt) {
+    SLStatic.trace(`ceilDateTime(${dt})`);
     dt = SLStatic.convertDate(dt);
     return new Date(Math.ceil(dt.getTime() / 60000) * 60000);
   },
 
   // Round datetime down to the next nearest full minute
   floorDateTime(dt) {
+    SLStatic.trace(`floorDateTime(${dt})`);
     dt = SLStatic.convertDate(dt);
     return new Date(Math.floor(dt.getTime() / 60000) * 60000);
   },
 
   // Round datetime to the nearest full minute
   roundDateTime(dt) {
+    SLStatic.trace(`roundDateTime(${dt})`);
     dt = SLStatic.convertDate(dt);
     return new Date(Math.round(dt.getTime() / 60000) * 60000);
   },
 
   parseableDateTimeFormat(date) {
+    SLStatic.trace(`parseableDateTimeFormat(${date})`);
     date = SLStatic.convertDate(date) || new Date();
     return SLStatic.RFC5322.format(date);
   },
 
   isoDateTimeFormat(date) {
+    SLStatic.trace(`isoDateTimeFormat(${date})`);
     date = SLStatic.convertDate(date) || new Date();
     return date.toISOString();
   },
@@ -335,6 +344,7 @@ var SLStatic = {
   },
 
   defaultShortHumanDateTimeFormat(date) {
+    SLStatic.trace(`defaultShortHumanDateTimeFormat(${date})`);
     date = SLStatic.convertDate(date);
     const options = {
       hour: "numeric",
@@ -347,6 +357,7 @@ var SLStatic = {
   },
 
   customHumanDateTimeFormat(date, fmt) {
+    SLStatic.trace(`customHumanDateTimeFormat(${date}, ${fmt})`);
     date = SLStatic.convertDate(date);
     return Sugar.Date.format(date || new Date(), fmt);
   },
@@ -430,6 +441,7 @@ var SLStatic = {
   },
 
   compareDates(a, comparison, b) {
+    SLStatic.trace(`compareDates(${a}, ${comparison}, ${b}`);
     a = SLStatic.convertDate(a);
     b = SLStatic.convertDate(b);
     const A = new Date(a.getFullYear(), a.getMonth(), a.getDate());
@@ -460,6 +472,9 @@ var SLStatic = {
   },
 
   compareDateTimes(a, comparison, b, ignoreSec, tolerance) {
+    SLStatic.trace(
+      `compareDateTimes(${a}, ${comparison}, ${b}, ${ignoreSec}, ${tolerance})`,
+    );
     const A = SLStatic.convertDate(a);
     const B = SLStatic.convertDate(b);
     A.setMilliseconds(0);
@@ -1515,6 +1530,7 @@ var SLStatic = {
   },
 
   parseHeadersForPopupUICache(headers) {
+    SLStatic.trace(`parseHeadersForPopupUICache(${headers})`);
     // input elements:
     //   - send-datetime (string)
     //   - recur (radio: once, minutely, daily, ...)
