@@ -202,14 +202,20 @@ understand but doesn't,
 Preferences
 ---------------------------
 
-You can get to the add-on's preferences page in two ways:
+You can get to the add-on's preferences page in several ways:
 
-1.  Click on "Send Later" in the status bar at the bottom of your main
-    window and select "Send Later preferences" from the pop-up menu. The
-    preferences will open in a new tab.
-2.  Select "Add-ons" from the hamburger menu or the Tools menu. The extension
-    manager will open in a new tab. Click on "Send Later", and then on the
-    "Preferences" tab.
+1. Click the "Send Later" button in the top bar of the main Thunderbird window
+   and then on "Send later preferences" in the pop-up.
+2. Go to Tools > Add-ons and Themes and click the little wrench icon next to
+   Send Later.
+3. Go to Tools > Add-ons and Themes, click on Send Later, and click on the
+   Preferences tab.
+
+There's no "Save" button on this screen because the settings save automatically
+as you change them; you'll see a green checkmark flash briefly to tell you when
+a setting is saved. However, text boxes won't save until you move out of them,
+so if you're editing a setting in a text box, make sure to click somewhere else
+to get it to save before closing the preferences.
 
 Here is the main preferences screen, followed by explanations of the
 various settings:
@@ -290,15 +296,6 @@ This preference controls whether the add-on shows its current status in the
 Status Bar at the bottom of the Thunderbird window. The number of pending
 scheduled messages, or "IDLE" is displayed if there are none.
 
-### Trigger unsent message delivery from Outbox
-
-This preference controls whether the add-on actually sends messages when
-their delivery time arrives, or rather should just deposit them into
-your Outbox and leave them there until the next time you send unsent
-messages as described above. You might want to disable this setting if
-you use some other add-on to manage your message delivery. See the
-[Caveats section below](#caveats) for more information about this.
-
 ### Enforce time and day restrictions at delivery time
 
 As described [below](#recurring), Send Later supports restrictions on
@@ -326,6 +323,33 @@ is disabled, those messages will be sent immediately next time Send Later is
 able to do so. If this option is enabled, then Send Later will pop up a warning
 about any such messages and leave them for you to reschedule by editing the
 relevant draft message by hand.
+
+### Trigger unsent message delivery from Outbox
+
+This preference controls whether the add-on actually sends messages when
+their delivery time arrives, or rather should just deposit them into
+your Outbox and leave them there until the next time you send unsent
+messages as described above. You might want to disable this setting if
+you use some other add-on to manage your message delivery. See the
+[Caveats section below](#caveats) for more information about this.
+
+<a id="custom-dates"/>
+### Customize date/time formats
+
+If you enable this checkbox, two text boxes appear which allow you to customize
+how Send Later displays dates. The short date format is used to format dates in
+the text box in the scheduling pop-up; the long format is used elsewhere.
+
+Be careful when changing the short date format, because it needs to be a format
+that the date parsing library understands, as described
+[below](#date-format-problems).
+
+See the [SugarJS documentation](https://sugarjs.com/dates/#/Formatting) for an
+explanation of what the format strings look like.
+
+As you edit the date format strings, it will show you what the current
+date/time looks like when formatted as you specify. If your format string is
+invalid it will tell you that, and the setting won't be saved until you fix it.
 
 ### Shortcut buttons
 
@@ -734,7 +758,7 @@ If you encounter this issue and come up with a solution that works and
 is different from the solutions outlined above, please
 [let us know](#help)!
 
-### Errors you might encounter
+### Errors and problems you might encounter
 
 <!-- User alert needs to be implemented in Send Later 8 for this to be relevant.
 #### Missing drafts folder
@@ -864,6 +888,65 @@ problem, then do the following:
     [below](#drafts-cleanup).
 
 If this doesn't fix the problem for you, then [ask for help](#help).
+
+<a id="date-format-problems"/>
+#### Date format confusion in the scheduler pop-up
+
+If Thunderbird is confused about what language you're using (more on that in a
+minute), then date parsing in the scheduler pop-up might not work as intended.
+This could manifest in a number of different ways, including:
+
+- When you schedule a message and then later go to edit and reschedule it, the
+  default send time that Send Later inserts into the text box in the pop-up
+  fails to parse properly, so the date picker isn't set to match it and the
+  "Send at" button isn't activated.
+- You normally type dates in day/month/year order but the pop-up parses them as
+  if they're typed in month/day/year order, or vice versa.
+- The date picker is laid out in day/month/year order but Send Later expects
+  you to enter dates in the text box in month/day/year order, or vice versa.
+  
+To test if you're running into this issue, schedule a message to be delivered
+at some future date/time, then double-click on the scheduled draft to re-edit
+it, then opening the Send Later scheduling pop-up and see if the text box and
+the date picker below it both have the correct, matching date/time in them. If
+so, you're probably fine. If not, read on.
+
+Before we get into what causes these and how to fix them, we need to explain a
+little bit about how Thunderbird thinks about languages, or technically,
+"locales", which encapsulate not only a language but how things like dates are
+typically formatted in a particular geographical region. For example, in the
+American English locale, a.k.a. "en-US", dates are written MM/DD/YYYY, whereas
+in the British English locale, a.k.a., "en-GB", dates are written DD/MM/YYYY.
+
+Thunderbird knows about two different locales: the one configured into your
+operating system, and the one configured into Thunderbird in its settings.
+Problems arise when they don't match, so that's the first thing to check if
+you're running into this problem.
+
+- In Thunderbird, open Settings, click "General", and scroll down to "Language"
+  to see which locale Thunderbird is configured to use.
+- On Windows, go to Settings > Time & Language > Region (confirmed for Windows
+  10, might be different for other versions of Windows).
+- On macOS, go to System Settings > General > Language & Region (confirmed for
+  Ventura, might be different for other versions of macOS).
+- On Linux, it depends on your release version and what desktop you're using,
+  but, e.g., in GNOME 44 on Ubuntu Mantic, go to Settings > Region & Language.
+  
+Note that if you change your region or language settings in your OS you
+probably need to restart your computer to make sure the change completely takes
+effect.
+
+Even if the OS and Thunderbird locale match, the scheduling pop-up could still
+run into date-parsing issues. If, after making sure the OS and Thunderbird
+locale match, the test above still fails, then the solution is to configure a
+custom short date format in the Send Later preferences as described
+[above](#custom-dates). You can play around with different formats until you
+find one that the date parser in the pop-up window understands, but one of
+these is likely to work:
+
+- `%Y-%m-%d %H:%M`
+- `%d/%m/%Y %H:%M`
+- `%m/%d/%Y %H:%M`
 
 Advanced usage
 ---------------------------------
