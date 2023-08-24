@@ -57,6 +57,7 @@ var SLStatic = {
   _longDateTimeFormat: null,
   _shortDateTimeFormat: null,
   _customizeDateTime: null,
+  listeningForStorageChanges: false,
 
   error: console.error,
   warn: console.warn,
@@ -137,11 +138,15 @@ var SLStatic = {
   },
 
   async cachePrefs() {
+    if (!SLStatic.listeningForStorageChanges) {
+      browser.storage.local.onChanged.addListener(SLStatic.cachePrefs);
+      SLStatic.listeningForStorageChanges = true;
+    }
     let { preferences } = await browser.storage.local.get({ preferences: {} });
-    this._logConsoleLevel = preferences.logConsoleLevel;
-    this._customizeDateTime = preferences.customizeDateTime;
-    this._longDateTimeFormat = preferences.longDateTimeFormat;
-    this._shortDateTimeFormat = preferences.shortDateTimeFormat;
+    SLStatic._logConsoleLevel = preferences.logConsoleLevel;
+    SLStatic._customizeDateTime = preferences.customizeDateTime;
+    SLStatic._longDateTimeFormat = preferences.longDateTimeFormat;
+    SLStatic._shortDateTimeFormat = preferences.shortDateTimeFormat;
   },
 
   RFC5322: {
