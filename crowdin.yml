@@ -4,6 +4,29 @@
 "files": [
   {
     "source" : "/_locales/en/messages.json",
-    "translation" : "/_locales/%two_letters_code%/messages.json"
-  }
+    "translation" : "/_locales/%two_letters_code%/messages.json",
+    "ignore": [
+      "/_locales/pt/messages.json",
+      "/_locales/pt_BR/messages.json",
+      "/_locales/zh/messages.json"
+      "/_locales/zh_TW/messages.json"
+    ]
+  },
+  {
+    "source" : "/_locales/en/messages.json",
+    "translation" : "/_locales/pt/messages.json"
+  },
+  {
+    "source" : "/_locales/en/messages.json",
+    "translation" : "/_locales/pt_BR/messages.json"
+  },
+  {
+    "source" : "/_locales/en/messages.json",
+    "translation" : "/_locales/zh/messages.json"
+  },
+  {
+    "source" : "/_locales/en/messages.json",
+    "translation" : "/_locales/zh_TW/messages.json"
+  },
+  
 ]
