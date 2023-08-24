@@ -837,7 +837,7 @@ var SLStatic = {
     if (recur.days) {
       const days = recur.days.map((v) => SLStatic.getWkdayName(v));
       let onDays;
-      if (/en/i.test(SLStatic.i18n.getUILanguage())) {
+      if (/^en/i.test(SLStatic.i18n.getUILanguage())) {
         if (days.length === 1) {
           onDays = days;
         } else if (days.length === 2) {
