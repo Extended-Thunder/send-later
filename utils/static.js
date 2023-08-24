@@ -108,6 +108,14 @@ var SLStatic = {
     }
   },
 
+  getLocale() {
+    try {
+      return Intl.DateTimeFormat().resolvedOptions().locale;
+    } catch (ex) {
+      return SLStatic.i18n.getUILanguage();
+    }
+  },
+
   get customizeDateTime() {
     if (this._customizeDateTime === null) {
       this.cachePrefs().catch(console.error);
@@ -259,24 +267,19 @@ var SLStatic = {
 
     if (typeof date === "string") {
       let relativeTo = new Date();
-      const localeCode = SLStatic.i18n.getUILanguage();
-      let sugarDate = Sugar.Date.get(relativeTo, date, {
-        locale: localeCode,
-        future: true,
-      });
-      if (!sugarDate.getTime()) {
-        // If that didn't work, try 'en' locale.
+      const localeCode = SLStatic.getLocale();
+      let sugarDate;
+      for (let locale of [localeCode, localeCode.split("-")[0], "en"]) {
         sugarDate = Sugar.Date.get(relativeTo, date, {
-          locale: "en",
+          locale: locale,
           future: true,
         });
+        if (sugarDate.getTime()) {
+          return new Date(sugarDate.getTime());
+        }
       }
 
-      if (sugarDate.getTime()) {
-        return new Date(sugarDate.getTime());
-      } else {
-        return null;
-      }
+      return null;
     } else if (typeof date === "number") {
       return new Date(date);
     } else if (date.getTime) {
@@ -837,7 +840,7 @@ var SLStatic = {
     if (recur.days) {
       const days = recur.days.map((v) => SLStatic.getWkdayName(v));
       let onDays;
-      if (/^en/i.test(SLStatic.i18n.getUILanguage())) {
+      if (/^en/i.test(SLStatic.getLocale())) {
         if (days.length === 1) {
           onDays = days;
         } else if (days.length === 2) {
@@ -1963,8 +1966,12 @@ is taken as the delay time.`,
 }
 
 try {
-  const UILocale = SLStatic.i18n.getUILanguage();
-  Sugar.Date.setLocale(UILocale.split("-")[0]);
+  const locale = SLStatic.getLocale();
+  try {
+    Sugar.Date.setLocale(locale);
+  } catch (ex) {
+    Sugar.Date.setLocale(locale.split("-")[0]);
+  }
 } catch (ex) {
   console.warn("[SendLater]: Unable to set date Sugar.js locale", ex);
 }
