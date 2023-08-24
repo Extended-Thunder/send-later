@@ -1202,5 +1202,9 @@
   "longDateTimeFormatsPrefLabel": {
     "message": "Long date/time format:",
     "description": "Preference input for extended datetime format (e.g. Wed, Apr 28 2021 11:45)"
+  },
+  "invalidDateFormat": {
+    "message": "invalid or incomplete date format",
+    "description": "Message displayed when the user enters an invalid custom date format"
   }
 }

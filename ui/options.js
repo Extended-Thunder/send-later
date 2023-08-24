@@ -324,6 +324,11 @@ const SLOptions = {
         value *= preferences.checkTimePref_isMilliseconds ? 60000 : 1;
       } else if (id === "logConsoleLevel") {
         SLStatic.logConsoleLevel = value;
+      } else if (["shortDateTimeFormat", "longDateTimeFormat"].includes(id)) {
+        if (!SLOptions.checkDateFormat(element)) {
+          SLOptions.showXMark(element, "red");
+          return;
+        }
       }
 
       SLStatic.info(
@@ -742,32 +747,6 @@ const SLOptions = {
         fmtDiv.style.display = evt.target.checked ? "block" : "none";
       });
 
-    setInterval(() => {
-      let now = new Date();
-      try {
-        let fmt = document.getElementById("shortDateTimeFormat");
-        let sample = document.getElementById("sampleShortDateTime");
-        if (fmt.value === "")
-          sample.textContent = SLStatic.defaultShortHumanDateTimeFormat(now);
-        else
-          sample.textContent = SLStatic.customHumanDateTimeFormat(
-            now,
-            fmt.value,
-          );
-      } catch (ex) {}
-      try {
-        let fmt = document.getElementById("longDateTimeFormat");
-        let sample = document.getElementById("sampleLongDateTime");
-        if (fmt.value === "")
-          sample.textContent = SLStatic.defaultHumanDateTimeFormat(now);
-        else
-          sample.textContent = SLStatic.customHumanDateTimeFormat(
-            now,
-            fmt.value,
-          );
-      } catch (ex) {}
-    }, 1000);
-
     // And attach a listener to the "Reset Preferences" button
     const clearPrefsListener = SLOptions.doubleCheckButtonClick(async () => {
       const { preferences } = await browser.storage.local.get({
@@ -789,6 +768,44 @@ const SLOptions = {
     });
     const clearPrefsBtn = document.getElementById("clearPrefs");
     clearPrefsBtn.addEventListener("click", clearPrefsListener);
+
+    for (let id of ["shortDateTimeFormat", "longDateTimeFormat"]) {
+      let elt = document.getElementById(id);
+      elt.addEventListener("input", SLOptions.dateFormatChanged);
+      SLOptions.checkDateFormat(elt);
+    }
+  },
+
+  dateFormatChanged(evt) {
+    SLOptions.checkDateFormat(evt.target);
+  },
+
+  checkDateFormat(element) {
+    SLStatic.trace("checkDateFormat", element);
+    let id = element.id;
+    let sampleId, defaultFunction;
+    if (id == "shortDateTimeFormat") {
+      sampleId = "sampleShortDateTime";
+      defaultFunction = SLStatic.defaultShortHumanDateTimeFormat;
+    } else {
+      sampleId = "sampleLongDateTime";
+      defaultFunction = SLStatic.defaultHumanDateTimeFormat;
+    }
+    let now = new Date();
+    let fmt = element.value;
+    let sample = document.getElementById(sampleId);
+    let ret = true;
+    if (fmt) {
+      try {
+        sample.textContent = SLStatic.customHumanDateTimeFormat(now, fmt);
+      } catch (ex) {
+        sample.textContent = browser.i18n.getMessage("invalidDateFormat");
+        ret = false;
+      }
+    } else {
+      sample.textContent = defaultFunction(now);
+    }
+    return ret;
   },
 
   onLoad() {
