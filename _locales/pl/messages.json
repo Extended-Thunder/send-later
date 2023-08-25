@@ -1027,10 +1027,6 @@
     "message": "Anuluj",
     "description": "Cancel an action (presented in popup dialogs)"
   },
-  "no": {
-    "message": "Nie",
-    "description": "Reject an action (presented in popup dialogs)"
-  },
   "customizeDateTimeFormatsPrefLabel": {
     "message": "Dostosuj formaty daty/czasu",
     "description": "Option to enable customizing date/time formats"

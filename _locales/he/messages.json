@@ -1019,10 +1019,6 @@
     "message": "‫ביטול",
     "description": "Cancel an action (presented in popup dialogs)"
   },
-  "no": {
-    "message": "לא מאשר",
-    "description": "Reject an action (presented in popup dialogs)"
-  },
   "customizeDateTimeFormatsPrefLabel": {
     "message": "התאמה אישית לתצורת התאריך/השעה",
     "description": "Option to enable customizing date/time formats"

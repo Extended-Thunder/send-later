@@ -1003,10 +1003,6 @@
     "message": "Annuler",
     "description": "Cancel an action (presented in popup dialogs)"
   },
-  "no": {
-    "message": "Non",
-    "description": "Reject an action (presented in popup dialogs)"
-  },
   "customizeDateTimeFormatsPrefLabel": {
     "message": "Personnaliser les formats de date et d'heure",
     "description": "Option to enable customizing date/time formats"

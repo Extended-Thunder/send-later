@@ -38,6 +38,7 @@ obsolete_keys = (
     'ImportError',
     'importtip',
     'ImportTitle',
+    'no',
     'RenameFunctionBody',
     'RenameFunctionNewButton',
     'RenameFunctionRenameButton',

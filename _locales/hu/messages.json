@@ -1027,10 +1027,6 @@
     "message": "Mégse",
     "description": "Cancel an action (presented in popup dialogs)"
   },
-  "no": {
-    "message": "Nem",
-    "description": "Reject an action (presented in popup dialogs)"
-  },
   "customizeDateTimeFormatsPrefLabel": {
     "message": "Dátum- és időformátum testreszabása",
     "description": "Option to enable customizing date/time formats"

@@ -1019,10 +1019,6 @@
     "message": "Anulează",
     "description": "Cancel an action (presented in popup dialogs)"
   },
-  "no": {
-    "message": "Nu",
-    "description": "Reject an action (presented in popup dialogs)"
-  },
   "customizeDateTimeFormatsPrefLabel": {
     "message": "Personalizează formatele dată/oră",
     "description": "Option to enable customizing date/time formats"

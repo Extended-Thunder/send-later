@@ -999,10 +999,6 @@
     "message": "Afbryd",
     "description": "Cancel an action (presented in popup dialogs)"
   },
-  "no": {
-    "message": "Nej",
-    "description": "Reject an action (presented in popup dialogs)"
-  },
   "customizeDateTimeFormatsPrefLabel": {
     "message": "Tilpas dato/tidsformater",
     "description": "Option to enable customizing date/time formats"
