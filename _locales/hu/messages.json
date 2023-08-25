@@ -44,7 +44,7 @@
     "description": ""
   },
   "enforceRestrictionsPrefLabel": {
-    "message": "Üzenetküldéskor erőltetése, napi és időbeli korlátozásokat",
+    "message": "A kézbesítés időpontjában tartsa be az időre és a napra vonatkozó korlátozásokat",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -88,7 +88,7 @@
     "description": ""
   },
   "markReadPrefLabel": {
-    "message": "Megjelölés ütemezett tervezeteket olvasottként",
+    "message": "Ütemezett tervezetek megjelölése olvasottként",
     "description": ""
   },
   "quickOptionsLabel1Label": {
@@ -152,7 +152,7 @@
     "description": "Displayed in place of send at time before user makes selections"
   },
   "sendAtLabel": {
-    "message": "Küldés időben",
+    "message": "Küldés ekkor",
     "description": ""
   },
   "sendBtwnLabel": {
@@ -240,7 +240,7 @@
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
-    "message": "Postázandó üzenetek helyezés",
+    "message": "Postázandó üzenetek közé helyezés",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -253,7 +253,7 @@
   },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "d",
-    "description": ""
+    "description": "Accesskey corresponding to 'sendNowLabel'"
   },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "Az üzenetet azonnal küldje el, megkerülve a „Küldés később”-kiegészítőt.",
@@ -325,7 +325,7 @@
   },
   "sendlater3header.label": {
     "message": "Küldés később",
-    "description": ""
+    "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
   },
   "prefwindow.title": {
     "message": "Küldés később beállításai",
@@ -340,7 +340,7 @@
     "description": ""
   },
   "quickoptionname.label": {
-    "message": "Gombcímke",
+    "message": "Gombfelirat",
     "description": ""
   },
   "showsendlatercolumn.tooltip": {
@@ -424,7 +424,7 @@
     "description": ""
   },
   "selectfunction": {
-    "message": "Válassza ki a függvényt",
+    "message": "Funkció kiválasztása",
     "description": ""
   },
   "selectfunctiontip": {
@@ -444,7 +444,7 @@
     "description": ""
   },
   "functionnameplaceholder": {
-    "message": "függvény neve",
+    "message": "funkció neve",
     "description": ""
   },
   "codetip": {
@@ -488,7 +488,7 @@
     "description": ""
   },
   "inputargs": {
-    "message": "Bemeneti érvek",
+    "message": "Bemeneti argumentumok:",
     "description": ""
   },
   "inputargstip": {
@@ -536,7 +536,7 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Küldés később: Hiba a nem küldött üzenetek küldése során. Előfordulhat, hogy a Kimenő üzenet sérült, és előfordulhat, hogy az ütemezett üzeneteket nem küldték el. Lásd: https://extended-thunder.github.io/send-later/#corrupt-outbox.",
+    "message": "Küldés később: Hiba a nem küldött üzenetek küldése során. Előfordulhat, hogy a Postázandó üzenetek mappa sérült, és előfordulhat, hogy az ütemezett üzeneteket nem küldték el. Lásd: https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "CopyUnsentError": {
@@ -751,12 +751,12 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "A „Kimenő üzenetek behelyezése” gombra kattintva az üzenet azonnal megjelenik a Kimenő üzenetek mappában. NEM ütemezi az üzenetet egy adott időpontban. Ehhez kattintson az „Elküldés” gombra a zöld dobozban, miután megadta az érvényes küldési időt. Biztosan most szeretné az üzenetet a Kimenő üzenetek mappába tenni?",
-    "description": ""
+    "message": "A „Postázandó üzenetekbe” gombra kattintva az üzenet azonnal beteszi a Kimenő üzenetek mappába. NEM ütemezi az üzenetküldést egy adott időpontra. Ehhez kattintson az „Elküldés” gombra a zöld dobozban, miután megadta az érvényes küldési időt. Biztosan most szeretné az üzenetet a Kimenő üzenetek mappába tenni?",
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "SendNowConfirmMessage": {
     "message": "A „Küldés most” gombra kattintva azonnal elküldi az üzenetet. NEM ütemezi az üzenetet egy adott időpontban. Ehhez kattintson az „Elküldés” gombra a zöld dobozban, miután megadta az érvényes küldési időt. Biztosan most szeretné elküldeni az üzenetet?",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "ConfirmAgain": {
     "message": "A figyelmeztetés megjelenítése legközelebb",

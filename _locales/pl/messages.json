@@ -253,7 +253,7 @@
   },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "T",
-    "description": ""
+    "description": "Accesskey corresponding to 'sendNowLabel'"
   },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "Wyślij wiadomość TERAZ, pomijając funkcjonalność dodatku “Send Later”.",
@@ -325,7 +325,7 @@
   },
   "sendlater3header.label": {
     "message": "Wyślij później",
-    "description": ""
+    "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
   },
   "prefwindow.title": {
     "message": "Ustawienia “Send Later”",
@@ -752,11 +752,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "Kliknięcie “Umieść w skrzynce nadawczej” umieszcza wiadomość od razu w skrzynce nadawczej. Wiadomość NIE ZOSTANIE zaplanowana do późniejszej wysyłki. Aby wysłać wiadomość później, kliknij znajdujący się wewnątrz zielonego pola przycisk “Wyślij” po uprzednim podaniu czasu wysyłki. Czy jesteś pewien, że chcesz umieścić wiadomość w swojej skrzynce nadawczej?",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "SendNowConfirmMessage": {
     "message": "Kliknięcie “Wyślij Teraz” powoduje natychmiastową wysyłkę. Wiadomość NIE ZOSTANIE zaplanowana do późniejszej wysyłki. Aby wysłać wiadomość później, kliknij znajdujący się wewnątrz zielonego pola przycisk “Wyślij” po uprzednim podaniu czasu wysyłki. Czy jesteś pewien, że chcesz wysłać tę wiadomość TERAZ?",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "ConfirmAgain": {
     "message": "Wyświetlaj to ostrzeżenie następnym razem",

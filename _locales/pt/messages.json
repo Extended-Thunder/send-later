@@ -241,7 +241,7 @@
   },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "A",
-    "description": ""
+    "description": "Accesskey corresponding to 'sendNowLabel'"
   },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "Envie a mensagem imediatamente, ignorando “Send Later”.",
@@ -728,11 +728,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "Clicando em \"Colocar na caixa de saída\" coloca a mensagem na caixa de saída imediatamente. Isto não agenda a mensagem para ser enviada num momento específico. Para isso, clique no botão \"Enviar\" na caixa verde depois de introduzir um tempo de envio válido. Tem certeza que quer colocar a mensagem na caixa de saída agora?",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "SendNowConfirmMessage": {
     "message": "Clicando em \"Enviar agora\" envia a mensagem imediatamente. Isto não agenda a mensagem para ser enviada num momento específico. Para isso, clique no botão \"Enviar\" na caixa verde depois de introduzir um tempo de envio válido. Tem certeza de que deseja enviar a mensagem agora?",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "ConfirmAgain": {
     "message": "Mostre este aviso da próxima vez.",

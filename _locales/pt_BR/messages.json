@@ -245,7 +245,7 @@
   },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "E",
-    "description": ""
+    "description": "Accesskey corresponding to 'sendNowLabel'"
   },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "Enviar imediatamente, ignorando “Enviar mais tarde”.",
@@ -317,7 +317,7 @@
   },
   "sendlater3header.label": {
     "message": "Enviar mais tarde",
-    "description": ""
+    "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
   },
   "prefwindow.title": {
     "message": "Preferências de Enviar mais tarde",
@@ -736,11 +736,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "Clicando em “Coloque na Caixa de Saída” transfere imediatamente a mensagem para sua Caixa de Saída e NÃO IRÁ programar o envio da mensagem em horário específico. Para isso, clique em “Enviar por volta de…” na caixa verde após inserir horário válido. Está seguro que deseja colocar a mensagem na Caixa de Saída agora?",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "SendNowConfirmMessage": {
     "message": "Ao clicar “Enviar Agora” a msg é enviada imediatamente e NÃO SERÁ agendada para um horário específico. Caso deseje esta opção, clique em “Enviar por volta de…” na área verde após inserir um horário válido. Deseja enviar esta mensagem imediatamente?",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "ConfirmAgain": {
     "message": "Mostrar este aviso da próxima vez",

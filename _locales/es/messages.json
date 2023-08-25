@@ -237,7 +237,7 @@
   },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "h",
-    "description": ""
+    "description": "Accesskey corresponding to 'sendNowLabel'"
   },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "Envía el mensaje inmediatamente, ignorando “Send Later”.",
@@ -309,7 +309,7 @@
   },
   "sendlater3header.label": {
     "message": "Enviar Más Tarde",
-    "description": ""
+    "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
   },
   "prefwindow.title": {
     "message": "Preferencias de Send Later",
@@ -732,11 +732,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "Hacer clic en “Poner en la Bandeja de Salida” sitúa el mensaje en su Bandeja de Salida de inmediato. NO programa el mensaje para que sea enviado a una hora específica. Para eso, haga clic en el botón “Enviar en torno al” en el recuadro verde, tras introducir una hora de envío válida. ¿Está seguro de que quiere poner el mensaje en su Bandeja de Salida ahora?",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "SendNowConfirmMessage": {
     "message": "Hacer clic en “Enviar ahora” envía el mensaje inmediatamente. NO programa el mensaje para que sea enviado a una hora específica. Para eso, haga clic en el botón “Enviar en torno al” en el recuadro verde tras introducir una hora de envío válida. ¿Está seguro de que quiere enviar el mensaje ahora?",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "ConfirmAgain": {
     "message": "Mostrar esta advertencia la próxima vez",

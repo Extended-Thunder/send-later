@@ -245,7 +245,7 @@
   },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "E",
-    "description": ""
+    "description": "Accesskey corresponding to 'sendNowLabel'"
   },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "Enviar el missatge immediatament, ignorant “Send Later”.",
@@ -317,7 +317,7 @@
   },
   "sendlater3header.label": {
     "message": "Enviar més tard",
-    "description": ""
+    "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
   },
   "prefwindow.title": {
     "message": "Preferències per a Send Later",
@@ -744,11 +744,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "Clicant “Col·locar en la Safata de Sortida” posa el missatge en la Safata de Sortida immediatament. NO programa el missatge per a ser enviat en una hora específica. Per fer això, cliqueu el botó “Enviar al voltant de” de la caixa verda després d'introduir una hora vàlida. Està segur que vol posar el missatge a la Safata de Sortida ara?",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "SendNowConfirmMessage": {
     "message": "Clicant “Enviar ara” envia el missatge immediatament. NO programa el missatge per a ser enviat a una hora específica. Per fer això, cliqueu el botó “Enviar al voltant de” de la caixa verda després d'introduir una hora vàlida. Està segur que vol enviar el missatge ara?",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "ConfirmAgain": {
     "message": "Mostrar aquest avís el proper cop",

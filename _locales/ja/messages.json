@@ -705,11 +705,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "「[送信トレイ] に置く」をクリックすると、メッセージはすぐに [送信トレイ] に置かれます。これは特定の日時にメッセージを送信するものではありません。もし、そうしたい場合には、適切な送信日時を入力し、緑色のボックス内の「送信予定日時」をクリックしてください。本当に今すぐ [送信トレイ] にメッセージを置いてもよろしいですか？",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "SendNowConfirmMessage": {
     "message": "「今すぐ送信」をクリックし、すぐにメッセージを送信します。これは、メッセージが特定の時間に送信されるようにスケジュールを設定しません。もし、そうしたい場合には、適切な送信日時を入力し、緑色のボックス内の「送信予定日時」をクリックしてください。本当に今すぐメッセージを送信してもよろしいですか？",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "ConfirmAgain": {
     "message": "次回もこの警告を表示する",

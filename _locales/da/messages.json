@@ -248,7 +248,7 @@
     "description": ""
   },
   "sendlater.prompt.sendnow.tooltip": {
-    "message": "Send beskeden med det samme, undlad “Send senere”.",
+    "message": "Send beskeden med det samme, går udenom “Send senere”",
     "description": ""
   },
   "sendlater.prompt.title.label": {
@@ -317,7 +317,7 @@
   },
   "sendlater3header.label": {
     "message": "Sende Senere",
-    "description": ""
+    "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
   },
   "prefwindow.title": {
     "message": "Send senere præferencer",
@@ -352,11 +352,11 @@
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
-    "message": "Med denne indstilling aktiveret, virker kommandoen “Send” (enten knappen eller ved at skrive Ctrl-Enter) på samme måde som “Send senere”.",
+    "message": "Få kommandoen “Send” (enten knappen eller ved at trykke Ctrl-Enter) til at virke på samme måde som “Send senere”.",
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "Med denne indstilling aktiveret, vil alle beskeder som er  sendt med kommandoen “Send” (enten knappen eller ved at skrive Ctrl-Enter) blive forsinket med det angivne antal minutter, som planlægges i Send senere.",
+    "message": "Forsink alle meddelelser sendt med “Send” kommandoen (enten knappen eller ved at trykke Ctrl-Enter) med det angivne antal minutter ved at planlægge dem med Send senere",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {
@@ -368,7 +368,7 @@
     "description": ""
   },
   "contactauthor.tooltip": {
-    "message": "Send en besked til udvikleren af Send senere.",
+    "message": "Send en mail til ophavsmanden af Send senere",
     "description": ""
   },
   "helplink.tooltip": {
@@ -744,11 +744,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "Hvis du klikker på “Læg i udbakke” lægges meddelelsen i din udbakke med det samme. Det planlægger IKKE beskeden til at blive sendt på et bestemt tidspunkt. For at det skal ske, skal du klikke på “Send kl (tidspunkt)” knappen i den grønne boks efter indtastning af en gyldig sendetid. Er du sikker på, at du vil lægge beskeden i din udbakke nu?",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "SendNowConfirmMessage": {
     "message": "Klik på “Send nu” sender beskeden med det samme. Det planlægger IKKE beskeden til at blive sendt på et bestemt tidspunkt. For at det sker, skal du klikke på “Send kl. (tidspunkt)” knappen i den grønne boks efter indtastning af et gyldig tidspunkt. Er du sikker på, at du vil sende beskeden nu?",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "ConfirmAgain": {
     "message": "Vis denne advarsel næste gang",

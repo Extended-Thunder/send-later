@@ -237,7 +237,7 @@
   },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "h",
-    "description": ""
+    "description": "Accesskey corresponding to 'sendNowLabel'"
   },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "Lähettää viestin heti, ohittaen ”Lähetä myöhemmin” -toiminnon.",
@@ -309,7 +309,7 @@
   },
   "sendlater3header.label": {
     "message": "Lähetä myöhemmin",
-    "description": ""
+    "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
   },
   "prefwindow.title": {
     "message": "Lähetä myöhemmin - Asetukset",
@@ -725,11 +725,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "”Siirrä Lähteviin” -nappi siirtää viestin Lähtevät-kansioon, josta se lähetetään, kun viestejä lähetetään seuraavan kerran tai valitset valikosta ”Lähetä lähtevät viestit”. Viestiä EI siis ajasteta. Ajastukseen voit käyttää vihreäreunuksisen laatikon pitkää Lähetä-painiketta, joka näkyy kun olet määrittänyt ensin lähetysajan. Siirretäänkö viesti Lähteviin?",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "SendNowConfirmMessage": {
     "message": "”Lähetä heti” -napin painaminen lähettää viestin VÄLITTÖMÄSTI. Viestiä EI siis ajasteta. Ajastukseen voit käyttää vihreäreunuksisen laatikon pitkää Lähetä-painiketta, joka näkyy kun olet määrittänyt ensin lähetysajan. Haluatko varmasti lähettää viestin heti?",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "ConfirmAgain": {
     "message": "Näytä tämä varoitus myös ensi kerralla",

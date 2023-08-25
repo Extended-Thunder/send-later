@@ -253,7 +253,7 @@
   },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "כ",
-    "description": ""
+    "description": "Accesskey corresponding to 'sendNowLabel'"
   },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "שלח מייד את ההודעה, ועקוף את “‫שלח מאוחר יותר‬”.",
@@ -325,7 +325,7 @@
   },
   "sendlater3header.label": {
     "message": "‫‫שלח מאוחר יותר‬‬",
-    "description": ""
+    "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
   },
   "prefwindow.title": {
     "message": "‫העדפות ‫שלח מאוחר יותר‬‬",
@@ -752,11 +752,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "בחירה ב \"שלח\" מעבירה את ההודעה לתיבת הדואר היוצא באופן מיידי ולא מתבצע תיזמון משלוח של ההודעה למועד ספציפי. לשם קביעת מועד, יש לבחור בכפתור \"שלח בערך\" בתיבה  הירוקה לאחר שקבעת מועד מתאים למשלוח. האם את/ה בטוח שאת/ה מעוניין להעביר את ההודעה לתיבת הדואר היוצא כעט?",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "SendNowConfirmMessage": {
     "message": "לחיצה על \"שלח כעת\" תשלח את ההודעה מייד. פונקציה זו אינה מתזמנת את ההודעה לשליחה בזמן ספציפי. לשם כך, לחץ \"שלח בערך\" בתיבה הירוקה לארח הזנת זמן שליחה תקין. האם אתה בטוח שברצונך לשלוח את ההודעה כעת?",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "ConfirmAgain": {
     "message": "הצג אזהרה זו בפעם הבאה",

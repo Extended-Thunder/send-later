@@ -249,7 +249,7 @@
   },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "с",
-    "description": ""
+    "description": "Accesskey corresponding to 'sendNowLabel'"
   },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "Изпратете незабавно съобщението, като заобиколите “Изпращане по-късно”.",
@@ -321,7 +321,7 @@
   },
   "sendlater3header.label": {
     "message": "Изпращане по-късно",
-    "description": ""
+    "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
   },
   "prefwindow.title": {
     "message": "Изпращане по-късно настройки",
@@ -741,11 +741,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "Щракването върху \"Постави в изходяща кутия\" поставя съобщението в кутията Ви за Изходяща поща незабавно. Тя НЕ планира съобщението да бъде изпратено в определено време. За това кликнете върху бутона \"Изпращане около\" в зеленото поле след въвеждане на валидно време за изпращане. Наистина ли искате да поставите съобщението в кутията си за Изходяща поща сега?",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "SendNowConfirmMessage": {
     "message": "Щракването върху \"Изпращане сега\" изпраща съобщението незабавно. Това не планира съобщението да бъде изпратено в определено време. За това щракнете върху бутона \"Изпращане около\" в зеленото поле след въвеждане на валидно време за изпращане. Наистина ли искате да изпратите съобщението сега?",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "ConfirmAgain": {
     "message": "Показване на това предупреждение следващия път",

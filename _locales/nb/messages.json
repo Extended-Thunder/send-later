@@ -229,7 +229,7 @@
   },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "n",
-    "description": ""
+    "description": "Accesskey corresponding to 'sendNowLabel'"
   },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "Send meldingen umiddelbart ved å overstyre “Send senere”.",
@@ -301,7 +301,7 @@
   },
   "sendlater3header.label": {
     "message": "Send senere",
-    "description": ""
+    "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
   },
   "prefwindow.title": {
     "message": "Valg for Send senere",
@@ -717,11 +717,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "Å klikke på \"Plasser i utboksen\" legger meldingen i utboksen umiddelbart. Den VIL IKKE sette meldingen til å bli sendt på et bestemt tidspunkt. For det, velger du knappen \"Send rundt\" i den grønne boksen etter å ha skrevet inn et gyldig sendingstidspunkt. Er du sikker på at du vil plassere meldingen i utboksen nå?",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "SendNowConfirmMessage": {
     "message": "Å klikke på \"Send nå\" sender meldingen umiddelbart. Den VIL IKKE sette meldingen til å bli sendt på et bestemt tidspunkt. For det, velger du knappen \"Send rundt\" i den grønne boksen etter å ha skrevet inn et gyldig sendingstidspunkt. Er du sikker på at du vil sende meldingen nå?",
-    "description": ""
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "ConfirmAgain": {
     "message": "Vis denne advarselen neste gang",
