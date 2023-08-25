@@ -5,10 +5,6 @@ clean: ; -rm -f send_later.xpi
 
 version=$(shell grep -o '"version"\s*:\s*"\S*"' manifest.json | sed -e 's/.*"\([0-9].*\)".*/\1/')
 
-utils/moment.min.js:
-	curl -sL https://momentjs.com/downloads/moment-with-locales.min.js | \
-		sed -e 's/.*sourceMappingURL.*//' > "$@"
-
 send_later.xpi: dev/include-manifest $(shell find $(shell cat dev/include-manifest) -type f 2>/dev/null)
 	rm -f "$@" "$@".tmp
 	zip -q -r "$@".tmp . -i@dev/include-manifest
