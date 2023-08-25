@@ -523,26 +523,6 @@
     "message": "Вывод",
     "description": ""
   },
-  "import.label": {
-    "message": "Импорт…",
-    "description": ""
-  },
-  "import.accesskey": {
-    "message": "И",
-    "description": ""
-  },
-  "importtip": {
-    "message": "Импорт динамической функции, ранее экспортированной из редактора.",
-    "description": ""
-  },
-  "export.label": {
-    "message": "Экспорт…",
-    "description": ""
-  },
-  "exporttip": {
-    "message": "Экспорт текущей функции в файл для резервного копирования или совместного использования.",
-    "description": ""
-  },
   "reset.label": {
     "message": "Отменить изменения",
     "description": ""
@@ -917,34 +897,6 @@
   },
   "FunctionDeleteConfirmBody": {
     "message": "Вы уверены, что хотите удалить эту функцию? Если она связана с кнопками быстрого доступа, то они перестанут работать, и, если имеются повторяющиеся сообщения, использующие ее, то они не смогут перенести расписание после того, как будут отправлены.",
-    "description": ""
-  },
-  "ImportTitle": {
-    "message": "Выберете файл для импорта",
-    "description": ""
-  },
-  "ImportError": {
-    "message": "Ошибка импорта",
-    "description": ""
-  },
-  "ExportTitle": {
-    "message": "Выбрать папку",
-    "description": ""
-  },
-  "RenameFunctionTitle": {
-    "message": "Переименовать существующую функцию?",
-    "description": ""
-  },
-  "RenameFunctionBody": {
-    "message": "Вы изменили имя существующей функции “$1”. Вы хотите изменить имя существующей функции или сохранить ее под новым именем?",
-    "description": ""
-  },
-  "RenameFunctionRenameButton": {
-    "message": "Переименовать",
-    "description": ""
-  },
-  "RenameFunctionNewButton": {
-    "message": "Создать",
     "description": ""
   },
   "FunctionErrorTitle": {

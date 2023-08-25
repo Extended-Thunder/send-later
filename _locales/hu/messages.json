@@ -551,26 +551,6 @@
     "message": "Kimenet",
     "description": ""
   },
-  "import.label": {
-    "message": "Importál…",
-    "description": ""
-  },
-  "import.accesskey": {
-    "message": "I",
-    "description": ""
-  },
-  "importtip": {
-    "message": "Importáljon egy erőteljes függvényt, amelyet korábban a szerkesztőből exportált.",
-    "description": ""
-  },
-  "export.label": {
-    "message": "Kivitel…",
-    "description": ""
-  },
-  "exporttip": {
-    "message": "Exportálja a jelenleg megjelenített függvényt egy fájlba a mentéshez vagy megosztáshoz.",
-    "description": ""
-  },
   "reset.label": {
     "message": "Módosítások elvetése",
     "description": ""
@@ -987,36 +967,8 @@
     "message": "Biztosan törölni kívánja ezt a függvényt? Ha valamilyen gyorsbillentyűhöz kapcsolódik, akkor nem fog működni, és ha ismétlődő üzeneteket használnak, akkor a következő elküldésük után nem fognak átütemezni.",
     "description": ""
   },
-  "ImportTitle": {
-    "message": "Válassza ki az importálási fájlt",
-    "description": ""
-  },
   "SLJFilterLabel": {
     "message": "Küldés később JSON-fájlok",
-    "description": ""
-  },
-  "ImportError": {
-    "message": "Importálási hiba",
-    "description": ""
-  },
-  "ExportTitle": {
-    "message": "Kiviteli fájlválasztás",
-    "description": ""
-  },
-  "RenameFunctionTitle": {
-    "message": "Meglévő függvény átnevezése?",
-    "description": ""
-  },
-  "RenameFunctionBody": {
-    "message": "A(z) „$1” meglévő függvénynév megváltozott. Szeretné átnevezni a meglévő függvényt, vagy külön függvényt menteni az új névvel?",
-    "description": ""
-  },
-  "RenameFunctionRenameButton": {
-    "message": "Átnevezés",
-    "description": ""
-  },
-  "RenameFunctionNewButton": {
-    "message": "Új",
     "description": ""
   },
   "FunctionErrorTitle": {

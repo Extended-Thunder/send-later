@@ -511,22 +511,6 @@
     "message": "输出：",
     "description": ""
   },
-  "import.label": {
-    "message": "导入…",
-    "description": ""
-  },
-  "importtip": {
-    "message": "导入一个之前由编辑器导出的动态函数。",
-    "description": ""
-  },
-  "export.label": {
-    "message": "导出…",
-    "description": ""
-  },
-  "exporttip": {
-    "message": "导出当前显示的函数到文件中以备份或分享。",
-    "description": ""
-  },
   "reset.label": {
     "message": "放弃更改",
     "description": ""
@@ -895,36 +879,8 @@
     "message": "你确定要删除这个函数吗？如果它关联到快捷按钮，按钮将会失效。如果有任何重复发送的信使用这个功能，也将会导致到下一次发送后无法重新排期。",
     "description": ""
   },
-  "ImportTitle": {
-    "message": "选择导入文件",
-    "description": ""
-  },
   "SLJFilterLabel": {
     "message": "Send Later的JSON文件",
-    "description": ""
-  },
-  "ImportError": {
-    "message": "导入错误",
-    "description": ""
-  },
-  "ExportTitle": {
-    "message": "选择导入目标",
-    "description": ""
-  },
-  "RenameFunctionTitle": {
-    "message": "重命名现存函数？",
-    "description": ""
-  },
-  "RenameFunctionBody": {
-    "message": "你已修改现存函数名，“$1”。你希望重命名现存函数还是以这一新名称保存一个不同的函数？",
-    "description": ""
-  },
-  "RenameFunctionRenameButton": {
-    "message": "重命名",
-    "description": ""
-  },
-  "RenameFunctionNewButton": {
-    "message": "新建",
     "description": ""
   },
   "FunctionErrorTitle": {

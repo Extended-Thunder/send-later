@@ -523,22 +523,6 @@
     "message": "Produksjon",
     "description": ""
   },
-  "import.label": {
-    "message": "Importer…",
-    "description": ""
-  },
-  "importtip": {
-    "message": "Importer en dynamisk funksjon som tidligere er eksportert fra redigereren.",
-    "description": ""
-  },
-  "export.label": {
-    "message": "Eksporter…",
-    "description": ""
-  },
-  "exporttip": {
-    "message": "Eksporter den nåværende viste funksjonen til en fil for sikkerhetskopiering eller deling.",
-    "description": ""
-  },
   "reset.label": {
     "message": "Forkast endringer",
     "description": ""
@@ -915,36 +899,8 @@
     "message": "Er du sikker på at du vil slette denne funksjonen? Hvis det er knyttet til noen snarveisknapper, vil de slutte å virke, og hvis det er noen tilbakevendende meldinger som bruker den, vil de mislykkes i å omplanere etter neste gang de blir sendt.",
     "description": ""
   },
-  "ImportTitle": {
-    "message": "Velg fil som skal importeres",
-    "description": ""
-  },
   "SLJFilterLabel": {
     "message": "Send senere JSON Files",
-    "description": ""
-  },
-  "ImportError": {
-    "message": "Importer feil",
-    "description": ""
-  },
-  "ExportTitle": {
-    "message": "Velg eksport mål",
-    "description": ""
-  },
-  "RenameFunctionTitle": {
-    "message": "Gi nytt navn til eksisterende funksjon?",
-    "description": ""
-  },
-  "RenameFunctionBody": {
-    "message": "Du har endret navnet på en eksisterende funksjon, \"% 1 $ S\". Vil du omdøpe den eksisterende funksjonen eller lagre en egen funksjon med det nye navnet?",
-    "description": ""
-  },
-  "RenameFunctionRenameButton": {
-    "message": "Gi nytt navn",
-    "description": ""
-  },
-  "RenameFunctionNewButton": {
-    "message": "Ny",
     "description": ""
   },
   "FunctionErrorTitle": {

@@ -551,26 +551,6 @@
     "message": "Output",
     "description": ""
   },
-  "import.label": {
-    "message": "Import…",
-    "description": ""
-  },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
-  "importtip": {
-    "message": "Import a dynamic function previously exported from the editor.",
-    "description": ""
-  },
-  "export.label": {
-    "message": "Export…",
-    "description": ""
-  },
-  "exporttip": {
-    "message": "Export the currently displayed function into a file for backup or sharing.",
-    "description": ""
-  },
   "reset.label": {
     "message": "Discard changes",
     "description": ""
@@ -987,36 +967,8 @@
     "message": "Are you sure you want to delete this function? If it is associated with any shortcut buttons, they will stop working, and if there are any recurring messages using it, they will fail to reschedule after the next time they are sent.",
     "description": ""
   },
-  "ImportTitle": {
-    "message": "Choose file to import",
-    "description": ""
-  },
   "SLJFilterLabel": {
     "message": "Send Later JSON Files",
-    "description": ""
-  },
-  "ImportError": {
-    "message": "Import Error",
-    "description": ""
-  },
-  "ExportTitle": {
-    "message": "Choose export destination",
-    "description": ""
-  },
-  "RenameFunctionTitle": {
-    "message": "Rename existing function?",
-    "description": ""
-  },
-  "RenameFunctionBody": {
-    "message": "You have modified the name of an existing function, “$1”. Do you want to rename the existing function or save a separate function with the new name?",
-    "description": ""
-  },
-  "RenameFunctionRenameButton": {
-    "message": "Rename",
-    "description": ""
-  },
-  "RenameFunctionNewButton": {
-    "message": "New",
     "description": ""
   },
   "FunctionErrorTitle": {

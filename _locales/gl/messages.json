@@ -511,22 +511,6 @@
     "message": "Saída",
     "description": ""
   },
-  "import.label": {
-    "message": "Importar…",
-    "description": ""
-  },
-  "importtip": {
-    "message": "Importa unha función dinámica previamente exportada dende o editor.",
-    "description": ""
-  },
-  "export.label": {
-    "message": "Exportar…",
-    "description": ""
-  },
-  "exporttip": {
-    "message": "Exporta a un ficheiro a función amosada actualmente, para compartir ou coma copia de seguridade.",
-    "description": ""
-  },
   "reset.label": {
     "message": "Descartar modificacións",
     "description": ""
@@ -911,36 +895,8 @@
     "message": "Está seguro de que quere borrar esta función? Se está asociada con calquera botón de atallo, deixarán de funcionar; e se hai mensaxes recorrentes usándoa, trala próxima ocasión na que se envíen non se poderán voltar a programar os envíos.",
     "description": ""
   },
-  "ImportTitle": {
-    "message": "Escolla o ficheiro a importar",
-    "description": ""
-  },
   "SLJFilterLabel": {
     "message": "Ficheiros JSON de Send Later",
-    "description": ""
-  },
-  "ImportError": {
-    "message": "Erro ao importar",
-    "description": ""
-  },
-  "ExportTitle": {
-    "message": "Escolla un destino para a exportación",
-    "description": ""
-  },
-  "RenameFunctionTitle": {
-    "message": "Renomear a función existente?",
-    "description": ""
-  },
-  "RenameFunctionBody": {
-    "message": "Alterou o nome dunha función existente, “$1”. Pretende mudar o nome da función existente ou salvar unha nova función con outro nome?",
-    "description": ""
-  },
-  "RenameFunctionRenameButton": {
-    "message": "Renomear",
-    "description": ""
-  },
-  "RenameFunctionNewButton": {
-    "message": "Novo",
     "description": ""
   },
   "FunctionErrorTitle": {

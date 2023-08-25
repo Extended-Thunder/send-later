@@ -535,26 +535,6 @@
     "message": "Sortida",
     "description": ""
   },
-  "import.label": {
-    "message": "Importar…",
-    "description": ""
-  },
-  "import.accesskey": {
-    "message": "o",
-    "description": ""
-  },
-  "importtip": {
-    "message": "Importar una funció dinàmica prèviament exportada des de l'editor.",
-    "description": ""
-  },
-  "export.label": {
-    "message": "Exportar…",
-    "description": ""
-  },
-  "exporttip": {
-    "message": "Exportar la funció que es mostra actualment en un arxiu per compartir o com a còpia de seguretat.",
-    "description": ""
-  },
   "reset.label": {
     "message": "Descartar modificacions",
     "description": ""
@@ -971,36 +951,8 @@
     "message": "Està segur que vol eliminar aquesta funció? Si es troba associada amb algun botó, aquest deixarà de funcionar i, si hi ha algun missatge recurrent que l'utilitzi, fallarà la reprogramació la propera vegada que siguin enviats.",
     "description": ""
   },
-  "ImportTitle": {
-    "message": "Triï un arxiu per importar",
-    "description": ""
-  },
   "SLJFilterLabel": {
     "message": "Arxius JSON de Send Later",
-    "description": ""
-  },
-  "ImportError": {
-    "message": "Error d'importació",
-    "description": ""
-  },
-  "ExportTitle": {
-    "message": "Triï la destinació de l'exportació",
-    "description": ""
-  },
-  "RenameFunctionTitle": {
-    "message": "Canviar el nom de la funció existent?",
-    "description": ""
-  },
-  "RenameFunctionBody": {
-    "message": "Ha modificat el nom d'una funció ja existent, “$1”. Vol canviar el nom de la funció existent o desar una altra funció amb el nom nou?",
-    "description": ""
-  },
-  "RenameFunctionRenameButton": {
-    "message": "Canviar el nom",
-    "description": ""
-  },
-  "RenameFunctionNewButton": {
-    "message": "Nou",
     "description": ""
   },
   "FunctionErrorTitle": {

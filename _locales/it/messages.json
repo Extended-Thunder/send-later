@@ -523,22 +523,6 @@
     "message": "Risultato",
     "description": ""
   },
-  "import.label": {
-    "message": "Importa…",
-    "description": ""
-  },
-  "importtip": {
-    "message": "Importa una funzione dinamica precedentemente esportata dall'editor.",
-    "description": ""
-  },
-  "export.label": {
-    "message": "Esporta…",
-    "description": ""
-  },
-  "exporttip": {
-    "message": "Esporta la funzione attualmente visualizzata in un file come backup o per condivisione.",
-    "description": ""
-  },
   "reset.label": {
     "message": "Annulla modifiche",
     "description": ""
@@ -923,36 +907,8 @@
     "message": "Sei sicuro di voler eliminare questa funzione? Se la funzione è associata con una combinazione di tasti di scelta rapida questi non funzioneranno più, ed eventuali messaggi ricorrenti che usano la funzione non saranno ripianificati dopo il prossimo invio.",
     "description": ""
   },
-  "ImportTitle": {
-    "message": "Scegli il file da importare",
-    "description": ""
-  },
   "SLJFilterLabel": {
     "message": "File formato JSON per Invia Dopo",
-    "description": ""
-  },
-  "ImportError": {
-    "message": "Errore di importazione",
-    "description": ""
-  },
-  "ExportTitle": {
-    "message": "Scegli la destinazione di esportazione",
-    "description": ""
-  },
-  "RenameFunctionTitle": {
-    "message": "Rinominare la funzione esistente?",
-    "description": ""
-  },
-  "RenameFunctionBody": {
-    "message": "Hai modificato il nome di una funzione esistente, “$1”. Vuoi rinominare la funzione esistente o creare una nuova funzione col nuovo nome?",
-    "description": ""
-  },
-  "RenameFunctionRenameButton": {
-    "message": "Rinomina",
-    "description": ""
-  },
-  "RenameFunctionNewButton": {
-    "message": "Nuova",
     "description": ""
   },
   "FunctionErrorTitle": {

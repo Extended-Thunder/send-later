@@ -527,22 +527,6 @@
     "message": "Výstup",
     "description": ""
   },
-  "import.label": {
-    "message": "Importovat…",
-    "description": ""
-  },
-  "importtip": {
-    "message": "Importuje dynamickou funkci dříve exportovanou z editoru.",
-    "description": ""
-  },
-  "export.label": {
-    "message": "Exportovat…",
-    "description": ""
-  },
-  "exporttip": {
-    "message": "Exportujte aktuálně zobrazenou funkci do souboru pro zálohování nebo sdílení.",
-    "description": ""
-  },
   "reset.label": {
     "message": "Zahodit změny",
     "description": ""
@@ -927,36 +911,8 @@
     "message": "Opravdu se má smazat tato funkce? Všechna tlačítka, která ji používají, přestanou fungovat. Všechny zprávy s opakovaným odesláním, které ji využívají, nebudou po odeslání znovu naplánovány.",
     "description": ""
   },
-  "ImportTitle": {
-    "message": "Zvolte soubor pro nahrání",
-    "description": ""
-  },
   "SLJFilterLabel": {
     "message": "soubory Odeslat Později ve formátu JSON",
-    "description": ""
-  },
-  "ImportError": {
-    "message": "Chyba importu",
-    "description": ""
-  },
-  "ExportTitle": {
-    "message": "Zvolte cíl exportu",
-    "description": ""
-  },
-  "RenameFunctionTitle": {
-    "message": "Přejmenovat existující funkci?",
-    "description": ""
-  },
-  "RenameFunctionBody": {
-    "message": "Upravili jste jméno existující funkce “$1”. Chcete přejmenovat existující funkci nebo ji uložit jako novou se zadaným názvem?",
-    "description": ""
-  },
-  "RenameFunctionRenameButton": {
-    "message": "Přejmenovat",
-    "description": ""
-  },
-  "RenameFunctionNewButton": {
-    "message": "Nová",
     "description": ""
   },
   "FunctionErrorTitle": {

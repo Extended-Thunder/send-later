@@ -519,22 +519,6 @@
     "message": "輸出：",
     "description": ""
   },
-  "import.label": {
-    "message": "匯入...",
-    "description": ""
-  },
-  "importtip": {
-    "message": "將一個之前從編輯器匯出的動態函數匯入。",
-    "description": ""
-  },
-  "export.label": {
-    "message": "匯出...",
-    "description": ""
-  },
-  "exporttip": {
-    "message": "將當前顯示的函數匯出作備份或分享。",
-    "description": ""
-  },
   "reset.label": {
     "message": "放棄修改",
     "description": ""
@@ -915,36 +899,8 @@
     "message": "你確定要刪除這個函數嗎？如果它連結到快捷按鈕，按鈕將會失效。如果有任何重複發送的信使用這個功能，也將會導致到下一次寄送後無法重新排程。",
     "description": ""
   },
-  "ImportTitle": {
-    "message": "選擇匯入的檔案",
-    "description": ""
-  },
   "SLJFilterLabel": {
     "message": "延期發信 JSON檔案",
-    "description": ""
-  },
-  "ImportError": {
-    "message": "匯入錯誤",
-    "description": ""
-  },
-  "ExportTitle": {
-    "message": "選擇匯出處",
-    "description": ""
-  },
-  "RenameFunctionTitle": {
-    "message": "對現有的函數改名？",
-    "description": ""
-  },
-  "RenameFunctionBody": {
-    "message": "您已修改了現有功能的名稱，“$1”。你要重命名的現有函數或以新的名稱保存一個獨立的函數嗎？",
-    "description": ""
-  },
-  "RenameFunctionRenameButton": {
-    "message": "改名",
-    "description": ""
-  },
-  "RenameFunctionNewButton": {
-    "message": "新",
     "description": ""
   },
   "FunctionErrorTitle": {

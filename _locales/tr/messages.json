@@ -151,18 +151,6 @@
     "message": "Çıktı",
     "description": ""
   },
-  "import.label": {
-    "message": "İçe aktar…",
-    "description": ""
-  },
-  "import.accesskey": {
-    "message": "I",
-    "description": ""
-  },
-  "export.label": {
-    "message": "Dışa aktar...",
-    "description": ""
-  },
   "reset.label": {
     "message": "Değişiklikleri gözardı et",
     "description": ""

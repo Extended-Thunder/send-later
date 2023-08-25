@@ -551,26 +551,6 @@
     "message": "Wynik",
     "description": ""
   },
-  "import.label": {
-    "message": "Import…",
-    "description": ""
-  },
-  "import.accesskey": {
-    "message": "m",
-    "description": ""
-  },
-  "importtip": {
-    "message": "Zaimportuj funkcję specjalną poprzednio wyeksportowaną z edytora.",
-    "description": ""
-  },
-  "export.label": {
-    "message": "Eksport…",
-    "description": ""
-  },
-  "exporttip": {
-    "message": "Wyeksportuj bieżącą funkcję z edytora do pliku w celach rezerwowych lub współdzielenia zasobów.",
-    "description": ""
-  },
   "reset.label": {
     "message": "Rezygnacja ze zmian",
     "description": ""
@@ -987,36 +967,8 @@
     "message": "Czy na pewno usunąć tę funkcję? Jeśli została użyta jako funkcja definiowana dla przycisku, przycisk ni będzie działał poprawnie.Jeśli użyto jej do zaplanowania wysyłki to zaplanowane z jej użyciem wiadomości nie będą już mogły być obsłużone.",
     "description": ""
   },
-  "ImportTitle": {
-    "message": "Wybierz plik do importowania.",
-    "description": ""
-  },
   "SLJFilterLabel": {
     "message": "Pliki JSON dla “Send Later”",
-    "description": ""
-  },
-  "ImportError": {
-    "message": "Błąd importu",
-    "description": ""
-  },
-  "ExportTitle": {
-    "message": "Wybierz miejsce docelowe eksportu",
-    "description": ""
-  },
-  "RenameFunctionTitle": {
-    "message": "Zmienić nazwę istniejącej funkcji?",
-    "description": ""
-  },
-  "RenameFunctionBody": {
-    "message": "Zmieniasz nazwę istniejącej funkcji, “$1”. Chcesz zmienić nazwę czy może zapisać jako nowa funkcja pod nową nazwą?",
-    "description": ""
-  },
-  "RenameFunctionRenameButton": {
-    "message": "zmień nazwę",
-    "description": ""
-  },
-  "RenameFunctionNewButton": {
-    "message": "Nowa Funkcja",
     "description": ""
   },
   "FunctionErrorTitle": {

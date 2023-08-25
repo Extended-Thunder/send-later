@@ -531,26 +531,6 @@
     "message": "Tulos",
     "description": ""
   },
-  "import.label": {
-    "message": "Tuo…",
-    "description": ""
-  },
-  "import.accesskey": {
-    "message": "T",
-    "description": ""
-  },
-  "importtip": {
-    "message": "Tuo aiemmin editorista viety dynaaminen funktio.",
-    "description": ""
-  },
-  "export.label": {
-    "message": "Vie…",
-    "description": ""
-  },
-  "exporttip": {
-    "message": "Vie tämänhetkinen funktio tiedostoon varmuuskopiointia tai jakamista varten.",
-    "description": ""
-  },
   "reset.label": {
     "message": "Hylkää muutokset",
     "description": ""
@@ -935,36 +915,8 @@
     "message": "Haluatko varmasti poistaa tämän funktion? Jos se on liitetty johonkin pikanäppäimeen, pikanäppäin lakkaa toimimasta. Mikäli jokin toistuva viesti käyttää tätä funktiota, toistuvan viestin seuraavan lähetyksen jälkeen ei viestille saada enää uutta lähetysaikaa.",
     "description": ""
   },
-  "ImportTitle": {
-    "message": "Valitse tuotava tiedosto",
-    "description": ""
-  },
   "SLJFilterLabel": {
     "message": "Lähetä myöhemmin - JSON-tiedostot",
-    "description": ""
-  },
-  "ImportError": {
-    "message": "Tuontivirhe",
-    "description": ""
-  },
-  "ExportTitle": {
-    "message": "Valitse viennin tallennuskohde",
-    "description": ""
-  },
-  "RenameFunctionTitle": {
-    "message": "Haluatko muuttaa olemassa olevan funktion nimen?",
-    "description": ""
-  },
-  "RenameFunctionBody": {
-    "message": "Olet muuttanut olemassa olevan funktion ”$1” nimeä. Haluatko nimetä uudelleen olemassa olevan funktion vai tallentaa erillisen funktion uudella nimellä?",
-    "description": ""
-  },
-  "RenameFunctionRenameButton": {
-    "message": "Uudelleennimeä",
-    "description": ""
-  },
-  "RenameFunctionNewButton": {
-    "message": "Uusi",
     "description": ""
   },
   "FunctionErrorTitle": {

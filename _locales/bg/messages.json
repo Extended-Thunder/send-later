@@ -547,26 +547,6 @@
     "message": "Изходящ",
     "description": ""
   },
-  "import.label": {
-    "message": "Импортиране…",
-    "description": ""
-  },
-  "import.accesskey": {
-    "message": "м",
-    "description": ""
-  },
-  "importtip": {
-    "message": "Импортиране на динамична функция, експортирана преди това от редактора.",
-    "description": ""
-  },
-  "export.label": {
-    "message": "Експортиране…",
-    "description": ""
-  },
-  "exporttip": {
-    "message": "Експортиране на текущо показваната функцията във файл за архивиране или споделяне.",
-    "description": ""
-  },
   "reset.label": {
     "message": "Отхвърляне на промените",
     "description": ""
@@ -951,36 +931,8 @@
     "message": "Наистина ли искате да изтриете тази функция? Ако е асоциирана с командите за бърз достъп, те ще спрат да работят и ако има повтарящи се съобщения, които ще я използват, те няма да могат да се препланират след следващото им изпращане.",
     "description": ""
   },
-  "ImportTitle": {
-    "message": "Изберете файл за импортиране",
-    "description": ""
-  },
   "SLJFilterLabel": {
     "message": "Изпращане по-късно JSON Файлове",
-    "description": ""
-  },
-  "ImportError": {
-    "message": "Грешка при импортиране",
-    "description": ""
-  },
-  "ExportTitle": {
-    "message": "Изберете дестинация за експортиране",
-    "description": ""
-  },
-  "RenameFunctionTitle": {
-    "message": "Преименуване на съществуваща функция?",
-    "description": ""
-  },
-  "RenameFunctionBody": {
-    "message": "Модифицирали сте името на съществуваща функция, \"$1\". Искате ли да преименувате съществуващата функция или запишете, като отделна функция с новото име?",
-    "description": ""
-  },
-  "RenameFunctionRenameButton": {
-    "message": "Преименуване",
-    "description": ""
-  },
-  "RenameFunctionNewButton": {
-    "message": "Нов",
     "description": ""
   },
   "FunctionErrorTitle": {

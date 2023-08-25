@@ -551,22 +551,6 @@
     "message": "Ausgabe",
     "description": ""
   },
-  "import.label": {
-    "message": "Importieren…",
-    "description": ""
-  },
-  "importtip": {
-    "message": "Importieren Sie eine dynamische Funtkion, die zuvor aus dem Editor exportiert wurde.",
-    "description": ""
-  },
-  "export.label": {
-    "message": "Exportieren…",
-    "description": ""
-  },
-  "exporttip": {
-    "message": "Exportieren Sie die angezeigte Funktion in eine Datei für ein Backup oder um sie zu teilen.",
-    "description": ""
-  },
   "reset.label": {
     "message": "Änderungen verwerfen",
     "description": ""
@@ -979,36 +963,8 @@
     "message": "Sind Sie sicher, dass Sie diese Funktion löschen wollen? Sollte sie mit einem Shortcut verknüpft sein, wird dieser hinterher nicht mehr funktionieren - und falls",
     "description": ""
   },
-  "ImportTitle": {
-    "message": "Wählen Sie eine Datei zum Importieren",
-    "description": ""
-  },
   "SLJFilterLabel": {
     "message": "Später Senden JSON Dateien",
-    "description": ""
-  },
-  "ImportError": {
-    "message": "Import Fehler",
-    "description": ""
-  },
-  "ExportTitle": {
-    "message": "Wählen Sie einen Ort für den Export",
-    "description": ""
-  },
-  "RenameFunctionTitle": {
-    "message": "Neuen Namen für bestehende Funktion vergeben?",
-    "description": ""
-  },
-  "RenameFunctionBody": {
-    "message": "Sie haben den Namen einer bestehenden Funktion geändert, $1”. Wollen Sie der bestehenden Funktion einen neuen Namen geben oder eine neue Funktion unter dem neuen Namen speichern?",
-    "description": ""
-  },
-  "RenameFunctionRenameButton": {
-    "message": "Neuen Namen vergeben",
-    "description": ""
-  },
-  "RenameFunctionNewButton": {
-    "message": "Neu",
     "description": ""
   },
   "FunctionErrorTitle": {

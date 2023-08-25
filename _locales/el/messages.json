@@ -523,26 +523,6 @@
     "message": "Έξοδος",
     "description": ""
   },
-  "import.label": {
-    "message": "Εισαγωγή...",
-    "description": ""
-  },
-  "import.accesskey": {
-    "message": "ι",
-    "description": ""
-  },
-  "importtip": {
-    "message": "Εισαγάγετε μια δυναμική συνάρτηση που είχε προηγουμένως εξαχθεί από τον επεξεργαστή.",
-    "description": ""
-  },
-  "export.label": {
-    "message": "Εξαγωγή...",
-    "description": ""
-  },
-  "exporttip": {
-    "message": "Εξαγωγή συνάρτησης εμφανίζεται αυτή τη στιγμή σε αρχείο για τη δημιουργία αντιγράφων ασφαλείας (backup) ή την κοινή χρήση.",
-    "description": ""
-  },
   "reset.label": {
     "message": "Απόρριψη αλλαγών",
     "description": ""
@@ -939,36 +919,8 @@
     "message": "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτή τη λειτουργία; Εαν σχετίζεται με οποιαδήποτε πλήκτρα συντόμευσης, αυτά θα σταματήσουν να λειτουργούν, και εάν υπάρχουν τυχόν επαναλαμβανόμενα μηνύματα χρησιμοποιώντας τα, θα αποτύχουν να προγραμματιστούν εκ νέου μετά την επόμενη φορά που θα σταλούν.",
     "description": ""
   },
-  "ImportTitle": {
-    "message": "Επιλέξτε αρχείο για εισαγωγή",
-    "description": ""
-  },
   "SLJFilterLabel": {
     "message": "Send Later JSON αρχεία",
-    "description": ""
-  },
-  "ImportError": {
-    "message": "Σφάλμα εισαγωγής",
-    "description": ""
-  },
-  "ExportTitle": {
-    "message": "Επιλέξτε τον προορισμό των εξαγωγών",
-    "description": ""
-  },
-  "RenameFunctionTitle": {
-    "message": "Μετονομάστε την υπάρχουσα λειτουργία;",
-    "description": ""
-  },
-  "RenameFunctionBody": {
-    "message": "Έχετε τροποποιήσει το όνομα μιας υπάρχουσας συνάρτησης, “$1”. Θέλετε να μετονομάσετε την υπάρχουσα λειτουργία ή να αποθηκεύσετε μια ξεχωριστή λειτουργία με το νέο όνομα;",
-    "description": ""
-  },
-  "RenameFunctionRenameButton": {
-    "message": "Μετονομασία",
-    "description": ""
-  },
-  "RenameFunctionNewButton": {
-    "message": "Νέο",
     "description": ""
   },
   "FunctionErrorTitle": {

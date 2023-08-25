@@ -531,22 +531,6 @@
     "message": "Uitvoer",
     "description": ""
   },
-  "import.label": {
-    "message": "Importeren…",
-    "description": ""
-  },
-  "importtip": {
-    "message": "Een dynamische functie importeren die eerder uit de editor is geëxporteerd",
-    "description": ""
-  },
-  "export.label": {
-    "message": "Exporteren…",
-    "description": ""
-  },
-  "exporttip": {
-    "message": "De momenteel weergegeven functie exporteren naar een bestand voor een back-up of om te delen",
-    "description": ""
-  },
   "reset.label": {
     "message": "Wijzigingen verwerpen",
     "description": ""
@@ -963,36 +947,8 @@
     "message": "Weet u zeker dat u deze functie wilt verwijderen? Als de functie aan sneltoetsen wordt gekoppeld, zullen deze niet meer werken, en als er herhalende berichten zijn die de functie gebruiken, zullen deze na de volgende keer dat ze worden verzonden niet opnieuw kunnen worden ingepland.",
     "description": ""
   },
-  "ImportTitle": {
-    "message": "Bestand kiezen om te importeren",
-    "description": ""
-  },
   "SLJFilterLabel": {
     "message": "Send Later-JSON-bestanden",
-    "description": ""
-  },
-  "ImportError": {
-    "message": "Importfout",
-    "description": ""
-  },
-  "ExportTitle": {
-    "message": "Exportbestemming kiezen",
-    "description": ""
-  },
-  "RenameFunctionTitle": {
-    "message": "Bestaande functie hernoemen?",
-    "description": ""
-  },
-  "RenameFunctionBody": {
-    "message": "U hebt de naam van een bestaande functie aangepast, ‘$1’. Wilt u de bestaande functie opslaan of een aparte functie opslaan met de nieuwe naam?",
-    "description": ""
-  },
-  "RenameFunctionRenameButton": {
-    "message": "Hernoemen",
-    "description": ""
-  },
-  "RenameFunctionNewButton": {
-    "message": "Nieuw",
     "description": ""
   },
   "FunctionErrorTitle": {

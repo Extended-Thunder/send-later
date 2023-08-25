@@ -507,22 +507,6 @@
     "message": "出力",
     "description": ""
   },
-  "import.label": {
-    "message": "インポート…",
-    "description": ""
-  },
-  "importtip": {
-    "message": "エディタからエクスポートされた関数をインポートします。",
-    "description": ""
-  },
-  "export.label": {
-    "message": "エクスポート…",
-    "description": ""
-  },
-  "exporttip": {
-    "message": "バックアップや共有のためのファイルに現在表示されている関数をエクスポートします。",
-    "description": ""
-  },
   "reset.label": {
     "message": "変更を破棄",
     "description": ""
@@ -895,36 +879,8 @@
     "message": "この関数を削除してもよろしいですか？ショートカットボタンに関連付けられている場合、動かなくなります。定期的なメッセージがある場合、次回以降の再スケジュールに失敗します。",
     "description": ""
   },
-  "ImportTitle": {
-    "message": "インポートするファイルを選択してしてください",
-    "description": ""
-  },
   "SLJFilterLabel": {
     "message": "Send Later JSON ファイル",
-    "description": ""
-  },
-  "ImportError": {
-    "message": "インポートエラー",
-    "description": ""
-  },
-  "ExportTitle": {
-    "message": "エクスポート先を選択してください。",
-    "description": ""
-  },
-  "RenameFunctionTitle": {
-    "message": "存在するファンクションの名前を変更しますか？",
-    "description": ""
-  },
-  "RenameFunctionBody": {
-    "message": "既存の関数の名前 “$1” を修正しました。既存の関数の名前を変更するか、新しい名前で別の関数として保存しますか？",
-    "description": ""
-  },
-  "RenameFunctionRenameButton": {
-    "message": "名前変更",
-    "description": ""
-  },
-  "RenameFunctionNewButton": {
-    "message": "新規作成",
     "description": ""
   },
   "FunctionErrorTitle": {

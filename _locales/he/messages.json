@@ -551,26 +551,6 @@
     "message": "פלט",
     "description": ""
   },
-  "import.label": {
-    "message": "ייבא…",
-    "description": ""
-  },
-  "import.accesskey": {
-    "message": "ב",
-    "description": ""
-  },
-  "importtip": {
-    "message": "הזן פונקציה דינמית שיוצאה קודם לכן מהעורך.",
-    "description": ""
-  },
-  "export.label": {
-    "message": "ייצא…",
-    "description": ""
-  },
-  "exporttip": {
-    "message": "ייצא את הפונקציה המוצגת כעת לקובץ לצורך גיבוי או שיתוף.",
-    "description": ""
-  },
   "reset.label": {
     "message": "בטל שינויים",
     "description": ""
@@ -979,36 +959,8 @@
     "message": "האם אתה בטוח שברצונך למחוק את הפונקציה? במידה והיא משוייכת ללחצני קיצור, הם יפסיקו לפעול. כמו כן, אם ישנן הודעות חוזרות אשר משתמשות בו, הן לא יתוזמנות מחדש לאחר הפעם הבאה שהןם תישלחנה.",
     "description": ""
   },
-  "ImportTitle": {
-    "message": "בחר קובץ לייבוא",
-    "description": ""
-  },
   "SLJFilterLabel": {
     "message": "קובצי ‫שלח מאוחר יותר‬ JSON",
-    "description": ""
-  },
-  "ImportError": {
-    "message": "שגיאת ייבוא",
-    "description": ""
-  },
-  "ExportTitle": {
-    "message": "בחר ביעד הייצוא",
-    "description": ""
-  },
-  "RenameFunctionTitle": {
-    "message": "לשנות את שם הפונקציה הקיימת?",
-    "description": ""
-  },
-  "RenameFunctionBody": {
-    "message": "שינית שם של פונקציה קיימת, “$1”. האם תרצה לשנות את שם הפונקציה הקיימת או לשמור פונקציה נפרדת בשם החדש?",
-    "description": ""
-  },
-  "RenameFunctionRenameButton": {
-    "message": "שנה שם",
-    "description": ""
-  },
-  "RenameFunctionNewButton": {
-    "message": "חדש",
     "description": ""
   },
   "FunctionErrorTitle": {

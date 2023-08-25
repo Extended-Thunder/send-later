@@ -543,22 +543,6 @@
     "message": "Rezultat",
     "description": ""
   },
-  "import.label": {
-    "message": "Importă …",
-    "description": ""
-  },
-  "importtip": {
-    "message": "Importă o funcție dinamică exportată anterior din editor.",
-    "description": ""
-  },
-  "export.label": {
-    "message": "Exportă …",
-    "description": ""
-  },
-  "exporttip": {
-    "message": "Exporta funcția afișată într-un fișier pentru backup sau partajare.",
-    "description": ""
-  },
   "reset.label": {
     "message": "Renunță la modificări",
     "description": ""
@@ -975,36 +959,8 @@
     "message": "Sigur vrei să ștergi această funcție? Dacă este asociată unor butoane de comenzi rapide acestea nu vor mai funcționa și dacă sunt mesaje recurente care o folosesc acestea nu vor mai fi reprogramate după următoarea trimitere.",
     "description": ""
   },
-  "ImportTitle": {
-    "message": "Selectează fișierul pentru import",
-    "description": ""
-  },
   "SLJFilterLabel": {
     "message": "Send Later - Fișiere JSON",
-    "description": ""
-  },
-  "ImportError": {
-    "message": "Eroare de import",
-    "description": ""
-  },
-  "ExportTitle": {
-    "message": "Alege destinația de export",
-    "description": ""
-  },
-  "RenameFunctionTitle": {
-    "message": "Redenumește funcția existentă?",
-    "description": ""
-  },
-  "RenameFunctionBody": {
-    "message": "Ai modificat numele unei funcții existente, \"$1\". Dorești redenumirea funcției existente sau crearea unei noi funcții?",
-    "description": ""
-  },
-  "RenameFunctionRenameButton": {
-    "message": "Redenumire",
-    "description": ""
-  },
-  "RenameFunctionNewButton": {
-    "message": "Nou",
     "description": ""
   },
   "FunctionErrorTitle": {

@@ -519,22 +519,6 @@
     "message": "Resultat",
     "description": ""
   },
-  "import.label": {
-    "message": "Importera…",
-    "description": ""
-  },
-  "importtip": {
-    "message": "Importera en dynamisk funktion som tidigare exporterats från editorn.",
-    "description": ""
-  },
-  "export.label": {
-    "message": "Exportera…",
-    "description": ""
-  },
-  "exporttip": {
-    "message": "Exportera funktionen som visas till en fil för säkerhetskopiering eller delning.",
-    "description": ""
-  },
   "reset.label": {
     "message": "Ignorera ändringar",
     "description": ""
@@ -919,36 +903,8 @@
     "message": "Är du säker på att du vill ta bort denna funktion? Om den är kopplad till någon genvägsknapp kommer den sluta fungera. Om det finns några återkommande meddelanden som använder funktionen kommer dem inte att kunna omplaneras efter nästa gång de skickats.",
     "description": ""
   },
-  "ImportTitle": {
-    "message": "Välj fil att importera",
-    "description": ""
-  },
   "SLJFilterLabel": {
     "message": "Skicka Senare JSON-filer",
-    "description": ""
-  },
-  "ImportError": {
-    "message": "Fel vid import",
-    "description": ""
-  },
-  "ExportTitle": {
-    "message": "Välj destination för export",
-    "description": ""
-  },
-  "RenameFunctionTitle": {
-    "message": "Byta namn på befintlig funktion?",
-    "description": ""
-  },
-  "RenameFunctionBody": {
-    "message": "Du har ändrat namnet på en befintlig funktion, \"$1\". Vill du byta namn på den befintliga funktionen eller spara en separat funktion med det nya namnet?",
-    "description": ""
-  },
-  "RenameFunctionRenameButton": {
-    "message": "Ändra namn",
-    "description": ""
-  },
-  "RenameFunctionNewButton": {
-    "message": "Ny",
     "description": ""
   },
   "FunctionErrorTitle": {

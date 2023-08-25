@@ -531,22 +531,6 @@
     "message": "Résultat",
     "description": ""
   },
-  "import.label": {
-    "message": "Importer…",
-    "description": ""
-  },
-  "importtip": {
-    "message": "Importer une fonction dynamique préalablement exportée depuis l'éditeur (fichier *.slj)",
-    "description": ""
-  },
-  "export.label": {
-    "message": "Exporter…",
-    "description": ""
-  },
-  "exporttip": {
-    "message": "Exporte la fonction de cette page dans un fichier pour la sauvegarder ou la partager.",
-    "description": ""
-  },
   "reset.label": {
     "message": "Ne pas modifier",
     "description": ""
@@ -963,36 +947,8 @@
     "message": "Êtes-vous sûr(e) de vouloir supprimer cette fonction ? Si elle est associée à des raccourcis, ils ne fonctionneront plus, et si des messages récurrents l'utilise, ils ne seront pas re-planifiés après le prochain envoi.",
     "description": ""
   },
-  "ImportTitle": {
-    "message": "Choisir le fichier à importer",
-    "description": ""
-  },
   "SLJFilterLabel": {
     "message": "Fichiers JSON pour Envoyer Plus Tard",
-    "description": ""
-  },
-  "ImportError": {
-    "message": "Erreur d'importation",
-    "description": ""
-  },
-  "ExportTitle": {
-    "message": "Choisir un emplacement et un nom pour le fichier exporté.",
-    "description": ""
-  },
-  "RenameFunctionTitle": {
-    "message": "Renommer cette fonction ?",
-    "description": ""
-  },
-  "RenameFunctionBody": {
-    "message": "Vous avez modifié le nom d'une fonction existante,“$1”. Voulez-vous renommer cette fonction ou enregistrer une fonction différente avec ce nouveau nom ?",
-    "description": ""
-  },
-  "RenameFunctionRenameButton": {
-    "message": "Renommer",
-    "description": ""
-  },
-  "RenameFunctionNewButton": {
-    "message": "Créer",
     "description": ""
   },
   "FunctionErrorTitle": {

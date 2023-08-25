@@ -531,22 +531,6 @@
     "message": "Resultat",
     "description": ""
   },
-  "import.label": {
-    "message": "Importér…",
-    "description": ""
-  },
-  "importtip": {
-    "message": "Importer en dynamisk funktion, der tidligere er eksporteret fra editoren.",
-    "description": ""
-  },
-  "export.label": {
-    "message": "Eksporter…",
-    "description": ""
-  },
-  "exporttip": {
-    "message": "Eksporter den aktuelt viste funktion til en fil til sikkerhedskopiering eller deling.",
-    "description": ""
-  },
   "reset.label": {
     "message": "Kasser ændringer",
     "description": ""
@@ -963,36 +947,8 @@
     "message": "Er du sikker på, at du vil slette denne funktion? Hvis den er forbundet med genvejsknapper, vil de holde op med at virke, og hvis der er nogen tilbagevendende beskeder der benytter den, vil disse ikke  gensendes som planlagt efter næste gang de sendes.",
     "description": ""
   },
-  "ImportTitle": {
-    "message": "Vælg fil at importere",
-    "description": ""
-  },
   "SLJFilterLabel": {
     "message": "Send Senere JSON Filer",
-    "description": ""
-  },
-  "ImportError": {
-    "message": "Fejl i importen",
-    "description": ""
-  },
-  "ExportTitle": {
-    "message": "Vælg eksportdestination",
-    "description": ""
-  },
-  "RenameFunctionTitle": {
-    "message": "Omdøb eksisterende funktion?",
-    "description": ""
-  },
-  "RenameFunctionBody": {
-    "message": "Du har ændret navnet på en eksisterende funktion, “$1”. Vil du omdøbe den eksisterende funktion eller gemme en separat funktion med det nye navn?",
-    "description": ""
-  },
-  "RenameFunctionRenameButton": {
-    "message": "Omdøb",
-    "description": ""
-  },
-  "RenameFunctionNewButton": {
-    "message": "Ny",
     "description": ""
   },
   "FunctionErrorTitle": {
