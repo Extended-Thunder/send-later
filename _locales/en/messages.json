@@ -1169,6 +1169,6 @@
   },
   "invalidDateFormat": {
     "message": "invalid or incomplete date format",
-    "description": "Message displayed when the user enters an invalid custom date format"
+    "description": "Message displayed in the inser interface inside parentheses when the user enters an invalid custom date format"
   }
 }
