@@ -95,12 +95,12 @@
     "message": "2 saat sonra",
     "description": ""
   },
-  "sendlater.ask.message3": {
-    "message": "Teşekkürler!",
-    "description": ""
-  },
   "donatelink.value": {
     "message": "Bağış yapmak",
+    "description": ""
+  },
+  "sendlater.ask.message3": {
+    "message": "Teşekkürler!",
     "description": ""
   },
   "sendlater.ask.remind.accesskey": {

@@ -71,6 +71,10 @@
     "message": "Fejl",
     "description": ""
   },
+  "logLevelFatal": {
+    "message": "Alvorlig",
+    "description": ""
+  },
   "logLevelInfo": {
     "message": "Informere",
     "description": ""
@@ -581,6 +585,10 @@
   },
   "March": {
     "message": "Marts",
+    "description": ""
+  },
+  "April": {
+    "message": "april",
     "description": ""
   },
   "May": {
@@ -1110,5 +1118,9 @@
   "longDateTimeFormatsPrefLabel": {
     "message": "Lang dato/tidsformat:",
     "description": "Preference input for extended datetime format (e.g. Wed, Apr 28 2021 11:45)"
+  },
+  "invalidDateFormat": {
+    "message": "forkert eller ufuldstændigt datoformat",
+    "description": "Message displayed when the user enters an invalid custom date format"
   }
 }

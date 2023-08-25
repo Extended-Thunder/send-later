@@ -1,4 +1,8 @@
 {
+  "extensionName": {
+    "message": "Trimite mai târziu",
+    "description": "The name of the add-on, displayed in various places."
+  },
   "extensionDescription": {
     "message": "Funcționalitate completă \"Trimite mai târziu\" pentru a programa trimiterea unui email.",
     "description": "A short description of the add-on."
@@ -43,6 +47,10 @@
     "message": "Impune restricțiile de oră și zi în momentul livrării",
     "description": ""
   },
+  "generalOptionsTitle": {
+    "message": "General",
+    "description": ""
+  },
   "logConsoleLevelLabel": {
     "message": "Nivel jurnal consolă",
     "description": ""
@@ -61,6 +69,18 @@
   },
   "logLevelError": {
     "message": "Eroare",
+    "description": ""
+  },
+  "logLevelFatal": {
+    "message": "Fatal",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "Info",
+    "description": ""
+  },
+  "logLevelTrace": {
+    "message": "Urmă",
     "description": ""
   },
   "logLevelWarn": {
@@ -137,6 +157,10 @@
   },
   "sendBtwnLabel": {
     "message": "Între",
+    "description": ""
+  },
+  "sendUntilLabel": {
+    "message": "Până la",
     "description": ""
   },
   "sendButtonPrefLabel": {
@@ -305,6 +329,10 @@
   },
   "sendlater.prompt.cancelonreply.tooltip": {
     "message": "Monitorizează primirea de răspuns la trimiterile anterioare ale mesajelor repetitive. Anulează un mesaj repetitiv și șterge-l din dosarul „Mesaje netrimise” când se primește răspuns.",
+    "description": ""
+  },
+  "sendlater3header.label": {
+    "message": "Trimite mai târziu",
     "description": ""
   },
   "prefwindow.title": {
@@ -770,6 +798,10 @@
     "message": "$1",
     "description": ""
   },
+  "until_datetime": {
+    "message": "până la $1",
+    "description": "Describes when a recurrence should terminate. Used in the scheduler dialog."
+  },
   "only_on_day0": {
     "message": "duminică",
     "description": ""
@@ -870,6 +902,9 @@
   "SanityCheckConfirmOptionMessage": {
     "message": "Selectează una dintre opțiuni:\n  “OK”: Continuă ca de obicei. Opțiunea se salvează.\n\n  “Cancel”: Send Later va fi dezactivat prin intermediul preferințelor sale.\n                    Pentru a reactiva Send Later, mergi la pagina de opțiuni și setează\n                    pentru preferința “Verifică la fiecare ___ minute” o valoare non-zero.\n                    Vei primi această solicitare din nou data viitoare când repornești\n                    Thunderbird"
   },
+  "ShowQuitNotificationPreference": {
+    "message": "Arată avertisment înainte de a închide dacă există mesaje în așteptare"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Sunt mesaje cu trimitere programată. Send Later poate să trimită mesaje doar când $1 rulează. Ești sigur ca vrei sa închizi?",
     "description": ""
@@ -920,6 +955,18 @@
     "message": "Ai activat o restricție de zile fără a selecta nici o zi. Dezactivează restricția sau selectează cel puțin o zi.",
     "description": ""
   },
+  "invalidUntilWarningTitle": {
+    "message": "Restricție \"până la\" invalidă",
+    "description": ""
+  },
+  "invalidUntilWarning_inPast": {
+    "message": "Timpul limită pentru recurență este în trecut.",
+    "description": ""
+  },
+  "invalidUntilWarning_tooSoon": {
+    "message": "Timpul limită pentru recurență este înainte de prima trimitere programată.",
+    "description": ""
+  },
   "InvalidArgsTitle": {
     "message": "Argumente invalide",
     "description": ""
@@ -940,8 +987,16 @@
     "message": "Orice text pus aici va fi afișat când utilizatorul planează deasupra numelui funcției în meniu. Se poate utiliza pentru a explica ce face funcția și ce argumente acceptă.",
     "description": ""
   },
+  "_BusinessHoursCode": {
+    "message": "// Valori implicite\nvar workDays = [1, 2, 3, 4, 5]; // Lun - Vin; Sâm == 0, Dum == 6\nvar workStart = [8, 30]; // Început zi de lucru în format [H, M]  (H = oră, M = minut)\nvar workEnd = [17, 30]; // Sfârșit zi de lucru în format [H, M]  (H = oră, M = minut)\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Nu e folosit în mod normal, folosit momentan pentru teste.\n    next = new Date(prev);\nelse\n    next = new Date();\n\nif (workDays.length == 0 || !workDays.every(d => (d >= 0) && (d <= 6))) { return undefined; }\n\n// Dacă termenul este după sfârșitul zile de lucru, avansează la\n// începutul zilei următoare de lucru.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// If we're before the beginning of the workday, move to its start time.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
+    "description": ""
+  },
   "BusinessHoursHelp": {
     "message": "Trimite mesajul acum dacă e în timpul orelor de lucru sau la începutul următoarei zi lucrătoare. Definiția zilelor lucrătoare se poate schimba (implicit: Lun - Vin) când primul argument este un array cu numerele zilelor lucrătoare, unde 0 este duminică și 6 este sâmbătă. Pentru a schimba orele de lucru (implicit: 8:30 - 17:30) se pot transmite argumentele 2 sau 3 cu array-uri de forma [H, M]. Folosește \"null\" pentru argumentele din față care dorești să rămână neschimbate. De exemplu, \"null, [9, 0], [17, 0]\" schimba orele de lucru fără a schimba zilele lucrătoare.",
+    "description": ""
+  },
+  "DaysInARowCode": {
+    "message": "// Trimite primul mesaj acum, mesajele următoare o dată pe zi.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copiază variabila date ca să nu fie modificată.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Nu încerca să trimiți în trecut, în cazul in care Thunderbird era în modul \"Sleep\"\n    // la momentul de trimitere programat.\n}\nif (! args) // Implicit, trimite mesajele de 3 ori.\n    args = [3];\nnextargs = [args[0] - 1];\n// Reia dacă nu s-a trimis de suficiente ori.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
     "description": ""
   },
   "DaysInARowHelp": {
@@ -1064,6 +1119,22 @@
     "message": "Cheie accelerator",
     "description": "Label for options window to identify accelerator shortcuts"
   },
+  "accelCtrlLabel": {
+    "message": "Ctrl+Click",
+    "description": "Indicates key combination to access the ctrl+click accelerator function"
+  },
+  "accelCtrlLabel.MacOS": {
+    "message": "Cmd+Click",
+    "description": "Indicates key combination to access the ctrl+click accelerator function. On mac the Ctrl key is replaced with the 'Command' key"
+  },
+  "accelShiftLabel": {
+    "message": "Shift+Click",
+    "description": "Indicates key combination to access the shift+click accelerator function"
+  },
+  "okay": {
+    "message": "OK",
+    "description": "Confirm an action (presented in popup dialogs)"
+  },
   "cancel": {
     "message": "Anulează",
     "description": "Cancel an action (presented in popup dialogs)"
@@ -1071,5 +1142,21 @@
   "no": {
     "message": "Nu",
     "description": "Reject an action (presented in popup dialogs)"
+  },
+  "customizeDateTimeFormatsPrefLabel": {
+    "message": "Personalizează formatele dată/oră",
+    "description": "Option to enable customizing date/time formats"
+  },
+  "shortDateTimeFormatsPrefLabel": {
+    "message": "Format scurt dată/oră:",
+    "description": "Preference input for short datetime format (e.g. 2021/04/28 11:45)"
+  },
+  "longDateTimeFormatsPrefLabel": {
+    "message": "Format lung dată/oră:",
+    "description": "Preference input for extended datetime format (e.g. Wed, Apr 28 2021 11:45)"
+  },
+  "invalidDateFormat": {
+    "message": "format de dată incorect sau incomplet",
+    "description": "Message displayed when the user enters an invalid custom date format"
   }
 }

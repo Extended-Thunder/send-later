@@ -718,5 +718,9 @@
   "cancel": {
     "message": "Չեղարկել",
     "description": "Cancel an action (presented in popup dialogs)"
+  },
+  "invalidDateFormat": {
+    "message": "ամսաթվի անվավեր կամ ոչ լրիվ ձևաչափ",
+    "description": "Message displayed when the user enters an invalid custom date format"
   }
 }

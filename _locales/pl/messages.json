@@ -1,4 +1,8 @@
 {
+  "extensionName": {
+    "message": "Wyślij później",
+    "description": "The name of the add-on, displayed in various places."
+  },
   "extensionDescription": {
     "message": "Dodaje funkcję “wyślij później”, aby można było wysyłać wiadomości o zaplanowanym czasie.",
     "description": "A short description of the add-on."
@@ -71,6 +75,10 @@
     "message": "Krytyczny",
     "description": ""
   },
+  "logLevelInfo": {
+    "message": "Info",
+    "description": ""
+  },
   "logLevelTrace": {
     "message": "Śledzenie",
     "description": ""
@@ -131,6 +139,10 @@
     "message": "co tydzień",
     "description": ""
   },
+  "resetPrefsButton": {
+    "message": "Zresetuj ustawienia",
+    "description": ""
+  },
   "saveDefaultsLabel": {
     "message": "Zapisz te ustawienia jako domyślne",
     "description": ""
@@ -145,6 +157,10 @@
   },
   "sendBtwnLabel": {
     "message": "Pomiędzy",
+    "description": ""
+  },
+  "sendUntilLabel": {
+    "message": "Do",
     "description": ""
   },
   "sendButtonPrefLabel": {
@@ -213,6 +229,14 @@
   },
   "userGuideLabel": {
     "message": "Podręcznik użytkownika",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "Wybrana data jest w przeszłości",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Po prostu opóźnij wiadomość o kilka minut. Pierwszy argument jest traktowany jako czas opóźnienia.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -307,6 +331,10 @@
     "message": "Oczekuj na odpowiedź do poprzednio ponowionych wiadomości. Zatrzymaj ponawianie i usuń je z folderu Szkice gdy nadejdzie odpowiedź.",
     "description": ""
   },
+  "sendlater3header.label": {
+    "message": "Wyślij później",
+    "description": ""
+  },
   "prefwindow.title": {
     "message": "Ustawienia “Send Later”",
     "description": ""
@@ -369,6 +397,10 @@
   },
   "donatelink.value": {
     "message": "Dotacja",
+    "description": ""
+  },
+  "advancededitor.title": {
+    "message": "Zaawansowany edytor konfiguracji",
     "description": ""
   },
   "editorlink.value": {
@@ -519,6 +551,14 @@
     "message": "Wynik",
     "description": ""
   },
+  "import.label": {
+    "message": "Import…",
+    "description": ""
+  },
+  "import.accesskey": {
+    "message": "m",
+    "description": ""
+  },
   "importtip": {
     "message": "Zaimportuj funkcję specjalną poprzednio wyeksportowaną z edytora.",
     "description": ""
@@ -630,6 +670,9 @@
   "CorruptFolderError": {
     "message": "Send Later: Folder $1 może być uszkodzony. Otwórz Właściwości i napraw go. Zobacz: https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
+  },
+  "CorruptFolderErrorDetails": {
+    "message": "Wygląda na to, że wiadomość „$1” $2 została wysłana wcześniej, ale nadal istnieje w folderze Szkice. Może to wskazywać na poważniejszy problem. Możesz po prostu spróbować usunąć (lub ponownie zaplanować) tę wiadomość.\n\nWyślij później pominie tę wiadomość, ale kontynuuj przetwarzanie innych zaplanowanych wiadomości roboczych, gdy zamkniesz to powiadomienie."
   },
   "MessageResendError": {
     "message": "Send Later: Nastąpiła próba ponownego wysłania wcześniej wysłanej wiadomości!? Twój folder Wysłane albo Szkice $1 jest prawdopodobnie uszkodzony. Spróbuj naprawić zgodnie z opisem https://extended-thunder.github.io/send-later/#corrupt-outbox.",
@@ -767,6 +810,10 @@
     "message": "w $1",
     "description": ""
   },
+  "until_datetime": {
+    "message": "do $1",
+    "description": "Describes when a recurrence should terminate. Used in the scheduler dialog."
+  },
   "only_on_day0": {
     "message": "Niedziela",
     "description": ""
@@ -839,6 +886,37 @@
     "message": "Ostrzeżenie: problem z zaplanowaniem wysyłki",
     "description": ""
   },
+  "CompactionFailureWithError": {
+    "message": "Kompaktowanie folderów Outbox lub Szkice nie powiodło się z błędem:"
+  },
+  "CompactionFailureNoError": {
+    "message": "Kompaktowanie $1 nie powiodło się bez komunikatu o błędzie."
+  },
+  "SanityCheckOutbox": {
+    "message": "Masz $1 niewysłanych wiadomości, które zostaną wysłane wraz z następną zaplanowaną wiadomością."
+  },
+  "SanityCheckDrafts": {
+    "message": "Masz $1 wiadomości zaplanowanych do dostarczenia przez Send Later.\nNastępna wiadomość jest zaplanowana na $2.",
+    "description": "$1 is replaced with a number, and $2 is replaced with the date/time of the next scheduled message."
+  },
+  "SanityCheckCorruptFolderWarning": {
+    "message": "Jeśli te liczby nie wyglądają prawidłowo, możesz mieć uszkodzone foldery Outbox lub Szkice. W takim przypadku zaleca się kompaktowanie i przebudowanie tych folderów przed aktywacją Send Later. Zobacz <$CORRUPTOUTBOXDOCS$> i <$CORRUPTDRAFTDOCS$> aby uzyskać więcej informacji.",
+    "description": "Part of \"sanity check\" prompt potentially displayed during version migration. If there are scheduled messages in the user's Drafts and/or Outbox folders, then the user will be prompted to confirm that the message counts are accurate. This message is preceeded by one or both of the translation strings: \"SanityCheckDrafts\" and/or \"SanityCheckOutbox\".",
+    "placeholders": {
+      "CorruptOutboxDocs": {
+        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Outbox_folder"
+      },
+      "CorruptDraftDocs": {
+        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Drafts_folders"
+      }
+    }
+  },
+  "SanityCheckConfirmOptionMessage": {
+    "message": "Wybierz jedną z opcji:\n  \"OK\": Kontynuuj jak zwykle. Nie będziesz więcej o to pytany.\n\n  \"Anuluj\": Send Later będzie wyłączony we własnych preferencjach.\n                  Aby ponownie włączyć Send Later, przejdź do opcji i ustaw\n                  opcję \"Sprawdź co ___ minut\" na wartość różną od zera.\n                  To powiadomienie pojawi się ponownie przy restarcie\n                  Thunderbirda."
+  },
+  "ShowQuitNotificationPreference": {
+    "message": "Pokaż ostrzeżenie przed zamknięciem aplikacji jeśli są oczekujące wiadomości"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Istnieją wiadomości zaplanowane do wysłania! “Send Later” może je wysłać tylko gdy $1 jest włączony. Czy na pewno chcesz zakończyć?",
     "description": ""
@@ -847,6 +925,12 @@
     "message": "“Send Later” może wysłać zaplanowane na później wiadomości tylko gdy $1 jest włączony. Proszę pamiętać o ponownym uruchomieniu przed zaplanowanym czasem wysłania!",
     "description": ""
   },
+  "EncryptionIncompatTitle": {
+    "message": "Problem z kompatybilnością szyfrowania"
+  },
+  "EncryptionIncompatText": {
+    "message": "Ta wiadomość jest zaszyfrowana własnym kluczem PGP i dlatego nie może być dostarczona odbiorcom. Zobacz tę dyskusję, aby uzyskać więcej informacji na temat tego, dlaczego widzisz tę wiadomość: https://github.com/Extended-Thunder/send-later/discussions/200"
+  },
   "EnigmailIncompatTitle": {
     "message": "Niezgodność wersji “Send Later” i Enigmail",
     "description": ""
@@ -854,6 +938,10 @@
   "EnigmailIncompatText": {
     "message": "Zainstalowana wersja Enigmail jest jest niezgodna z “Send Later”, z tego względu “Send Later” został wyłączony. Skontaktuj się z twórcą “Send Later” celem konsultacji i asysty (send-later-support@extended-thunder.org).",
     "description": ""
+  },
+  "incorrectUUID": {
+    "message": "Zaplanowane przez innego klienta",
+    "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."
   },
   "TimeMismatchConfirmTitle": {
     "message": "Błąd ustawienia czasu wysłania",
@@ -877,6 +965,18 @@
   },
   "missingDaysWarningBody": {
     "message": "Jeśli włączono dostarczanie w określonym dniu tygodnia to trzeba wskazać choć jeden wybrany dzień, proszę wskaż go lub wyłącz to.",
+    "description": ""
+  },
+  "invalidUntilWarningTitle": {
+    "message": "Nieprawidłowe ograniczenie \"do\"",
+    "description": ""
+  },
+  "invalidUntilWarning_inPast": {
+    "message": "Limit czasu powtórzeń jest w przeszłości.",
+    "description": ""
+  },
+  "invalidUntilWarning_tooSoon": {
+    "message": "Limit czasu powtarzania jest przed pierwszym zaplanowanym wysłaniem.",
     "description": ""
   },
   "InvalidArgsTitle": {
@@ -1023,8 +1123,52 @@
     "message": "SPRAWDZANIE",
     "description": ""
   },
+  "LongDescription": {
+    "message": "Ten dodatek zmienia polecenie \"Send Later\" (Ctrl+Shift+Return) w oknie nowej wiadomości tak, aby zamiast przenieść wiadomość do skrzynki nadawczej, aby była wysyłana przy następnym kliknięciu online lub wykonaniu \"Wyślij niewysłane wiadomości\", wyskakuje okno dialogowe, które pozwala określić, kiedy wiadomość zostanie wysłana.\n\nMożesz określić dokładny czas wysyłki, kliknąć \"15 minut później\", \"30 minut później\" lub \"2 godziny później\", lub zdefiniować niestandardowe skróty. Możesz również zaplanować wiadomość do wielokrotnego wysyłania przy użyciu prostych reguł (co N godzin, dni itp.) lub konfigurowalnych funkcji.\n\nSend Later opiera się na potężnej analizie danych wejściowych dostarczonych przez Andrew Plummer's <a href=\"https://sugarjs.com/\">Biblioteka Sugar.js</a>.\n\nOpinie i raporty o błędach są bardzo mile widziane i można je przesłać za pośrednictwem<a href=\"https://github.com/Extended-Thunder/send-later/discussions\">strony GitHub</a>.",
+    "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
+  },
+  "accelKeyLabel": {
+    "message": "Przycisk przyspieszenia",
+    "description": "Label for options window to identify accelerator shortcuts"
+  },
+  "accelCtrlLabel": {
+    "message": "Ctrl+Kliknij",
+    "description": "Indicates key combination to access the ctrl+click accelerator function"
+  },
+  "accelCtrlLabel.MacOS": {
+    "message": "Cmd+Kliknij",
+    "description": "Indicates key combination to access the ctrl+click accelerator function. On mac the Ctrl key is replaced with the 'Command' key"
+  },
+  "accelShiftLabel": {
+    "message": "Shift+Kliknij",
+    "description": "Indicates key combination to access the shift+click accelerator function"
+  },
+  "okay": {
+    "message": "Ok",
+    "description": "Confirm an action (presented in popup dialogs)"
+  },
   "cancel": {
     "message": "Anuluj",
     "description": "Cancel an action (presented in popup dialogs)"
+  },
+  "no": {
+    "message": "Nie",
+    "description": "Reject an action (presented in popup dialogs)"
+  },
+  "customizeDateTimeFormatsPrefLabel": {
+    "message": "Dostosuj formaty daty/czasu",
+    "description": "Option to enable customizing date/time formats"
+  },
+  "shortDateTimeFormatsPrefLabel": {
+    "message": "Krótki format daty/czasu:",
+    "description": "Preference input for short datetime format (e.g. 2021/04/28 11:45)"
+  },
+  "longDateTimeFormatsPrefLabel": {
+    "message": "Długi format daty/czasu:",
+    "description": "Preference input for extended datetime format (e.g. Wed, Apr 28 2021 11:45)"
+  },
+  "invalidDateFormat": {
+    "message": "nieprawidłowy lub niekompletny format daty",
+    "description": "Message displayed when the user enters an invalid custom date format"
   }
 }

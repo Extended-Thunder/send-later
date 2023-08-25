@@ -564,7 +564,7 @@
     "description": ""
   },
   "entervalid": {
-    "message": "Saisir une date et un horaire valides",
+    "message": "Saisir une date et un horaire corrects",
     "description": ""
   },
   "sendwithfunction": {
@@ -624,11 +624,11 @@
     "description": ""
   },
   "OptionShortcutAlertTitle": {
-    "message": "Valeur de raccourci non valide",
+    "message": "Valeur de raccourci incorrecte",
     "description": ""
   },
   "OptionShortcutAlertText": {
-    "message": "Le raccourci $1 a une valeur non valide : « $2 »",
+    "message": "Le raccourci $1 a une valeur incorrecte : « $2 »",
     "description": ""
   },
   "SendingUnsentError": {
@@ -847,11 +847,11 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "« Placer en attente » mettra directement le message dans la boîte d'envoi. Le message NE SERA PAS programmé pour un envoi à un moment précis. À cette fin, cliquez sur « Programmer pour… » dans le cadre vert après avoir choisi une date d'envoi valide. Êtes-vous sûr de vouloir placer le message dans la boîte d'envoi maintenant ?",
+    "message": "« Placer en attente » mettra directement le message dans la boîte d'envoi. Le message NE SERA PAS programmé pour un envoi à un moment précis. À cette fin, cliquez sur « Programmer pour… » dans le cadre vert après avoir choisi une date d'envoi correcte. Êtes-vous sûr de vouloir placer le message dans la boîte d'envoi maintenant ?",
     "description": ""
   },
   "SendNowConfirmMessage": {
-    "message": "Cliquer sur “Envoyer maintenant” envoie le message immédiatement. Cela ne planifie PAS l'envoi du message à un moment ultérieur. Pour cela, il faut sélectionner",
+    "message": "Cliquer sur « Envoyer maintenant » envoie le message immédiatement. Cela ne planifie PAS l'envoi du message à un moment ultérieur. Pour cela, il faut utiliser le bouton « Programmer pour » dans le cadre vert après avoir indiqué une heure d'envoi correcte. Voulez-vous vraiment envoyer le message maintenant ?",
     "description": ""
   },
   "ConfirmAgain": {
@@ -936,7 +936,7 @@
     "description": ""
   },
   "missingDaysWarningTitle": {
-    "message": "Le choix des jour(s) de restriction est invalide.",
+    "message": "Le choix des jour(s) de restriction n'est pas correct.",
     "description": ""
   },
   "missingDaysWarningBody": {
@@ -944,7 +944,7 @@
     "description": ""
   },
   "invalidUntilWarningTitle": {
-    "message": "Restriction « jusqu'à » non valable",
+    "message": "Restriction « jusqu'à » incorrecte",
     "description": ""
   },
   "invalidUntilWarning_inPast": {
@@ -956,11 +956,11 @@
     "description": ""
   },
   "InvalidArgsTitle": {
-    "message": "Arguments de fonction invalides",
+    "message": "Arguments de fonction incorrects",
     "description": ""
   },
   "InvalidArgsBody": {
-    "message": "Les paramètres de la fonction ne sont pas valides. Spécifiez une liste JavaScript, sans les parenthèses carrées ([ et ]).",
+    "message": "Les paramètres de la fonction ne sont pas corrects. Spécifiez une liste JavaScript, sans les parenthèses carrées ([ et ]).",
     "description": ""
   },
   "BlockedLateMessage": {
@@ -1008,11 +1008,11 @@
     "description": ""
   },
   "BadSaveTitle": {
-    "message": "Nom ou code de fonction invalide",
+    "message": "Nom ou code de fonction incorrect",
     "description": ""
   },
   "BadSaveBody": {
-    "message": "Vérifiez que le nom et le codage de la fonction sont valides avant d'enregistrer ou exporter.",
+    "message": "Vérifiez que le nom et le codage de la fonction sont corrects avant d'enregistrer ou exporter.",
     "description": ""
   },
   "ReplacingFunctionTitle": {
@@ -1138,5 +1138,9 @@
   "longDateTimeFormatsPrefLabel": {
     "message": "Format long de date/heure :",
     "description": "Preference input for extended datetime format (e.g. Wed, Apr 28 2021 11:45)"
+  },
+  "invalidDateFormat": {
+    "message": "format de date incorrect ou incomplet",
+    "description": "Message displayed when the user enters an invalid custom date format"
   }
 }
