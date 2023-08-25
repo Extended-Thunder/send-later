@@ -808,7 +808,7 @@ const SLOptions = {
     return ret;
   },
 
-  onLoad() {
+  async onLoad() {
     // Set title
     document.title = browser.i18n.getMessage("extensionName");
 
@@ -844,6 +844,10 @@ const SLOptions = {
       const el = document.getElementById(id);
       el.disabled = true;
     }
+
+    await SLStatic.tb115(() => {
+      document.getElementById("showColumnRow").hidden = true;
+    });
 
     SLOptions.applyPrefsToUI()
       .then(SLOptions.attachListeners)

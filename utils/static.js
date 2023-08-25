@@ -50,6 +50,34 @@ var SLStatic = {
     "longDateTimeFormat",
   ],
 
+  thunderbirdVersion: null,
+
+  async tb115(yes, no) {
+    if (!SLStatic.thunderbirdVersion) {
+      let browserInfo = await messenger.runtime.getBrowserInfo();
+      SLStatic.thunderbirdVersion = parseInt(
+        browserInfo.version.split(".")[0],
+      );
+    }
+    if (SLStatic.thunderbirdVersion >= 115) {
+      if (yes) {
+        if (typeof yes == "function") {
+          return yes();
+        } else {
+          return yes;
+        }
+      }
+    } else {
+      if (no) {
+        if (typeof no == "function") {
+          return no();
+        } else {
+          return no;
+        }
+      }
+    }
+  },
+
   // Non-static preferences (I know...), which affect the behavior of
   // various functions. Specifically, the log output level, and customized
   // date/time formats.

@@ -1,29 +1,3 @@
-var thunderbirdVersion;
-
-async function tb115(yes, no) {
-  if (!thunderbirdVersion) {
-    let browserInfo = await messenger.runtime.getBrowserInfo();
-    thunderbirdVersion = parseInt(browserInfo.version.split(".")[0]);
-  }
-  if (thunderbirdVersion >= 115) {
-    if (yes) {
-      if (typeof yes == "function") {
-        return yes();
-      } else {
-        return yes;
-      }
-    }
-  } else {
-    if (no) {
-      if (typeof no == "function") {
-        return no();
-      } else {
-        return no;
-      }
-    }
-  }
-}
-
 // Pseudo-namespace encapsulation for global-ish variables.
 const SendLater = {
   prefCache: {},
@@ -885,7 +859,7 @@ const SendLater = {
       SendLater.clickComposeListener,
     );
 
-    await tb115(false, async () => {
+    await SLStatic.tb115(false, async () => {
       // Initialize drafts folder column
       await messenger.columnHandler
         .addCustomColumn({
@@ -946,7 +920,7 @@ const SendLater = {
       SLStatic.shortDateTimeFormat = preferences.shortDateTimeFormat;
       await messenger.SL3U.setLogConsoleLevel(SLStatic.logConsoleLevel);
 
-      await tb115(false, async () => {
+      await SLStatic.tb115(false, async () => {
         for (let pref of [
           "customizeDateTime",
           "longDateTimeFormat",
@@ -1000,7 +974,7 @@ const SendLater = {
           : "",
       });
 
-      await tb115(false, async () => {
+      await SLStatic.tb115(false, async () => {
         for (let pref of [
           "customizeDateTime",
           "longDateTimeFormat",
