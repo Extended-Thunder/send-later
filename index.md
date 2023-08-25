@@ -937,6 +937,14 @@ Note that if you change your region or language settings in your OS you
 probably need to restart your computer to make sure the change completely takes
 effect.
 
+Note, also, that if you configure a custom date format into your operating
+system, _and that format swaps the order of the month and day in dates so that
+they are different from the default for your region,_ it's likely that Send
+Later will parse dates that you enter by hand incorrectly. This is because Send
+Later can't see the custom date format, it can only see the region setting.
+Currently the only way to fix this is to change the configured region so that
+its default month/day order matches the order in your custom date format.
+
 Even if the OS and Thunderbird locale match, the scheduling pop-up could still
 run into date-parsing issues. If, after making sure the OS and Thunderbird
 locale match, the test above still fails, then the solution is to configure a
@@ -948,6 +956,11 @@ these is likely to work:
 - `%Y-%m-%d %H:%M`
 - `%d/%m/%Y %H:%M`
 - `%m/%d/%Y %H:%M`
+
+But remember, as noted just above, that although you can use custom date
+formats to control how Send Later formats dates for display, you can't
+currently use them to control how it _parses_ dates; that's controlled by the
+language and region setting in your operating system.
 
 Advanced usage
 ---------------------------------
