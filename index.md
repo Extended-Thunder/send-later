@@ -900,6 +900,7 @@ This could manifest in a number of different ways, including:
   default send time that Send Later inserts into the text box in the pop-up
   fails to parse properly, so the date picker isn't set to match it and the
   "Send at" button isn't activated.
+- The month and the day are swapped in the text box vs. in the date picker.
 - You normally type dates in day/month/year order but the pop-up parses them as
   if they're typed in month/day/year order, or vice versa.
 - The date picker is laid out in day/month/year order but Send Later expects
@@ -907,9 +908,9 @@ This could manifest in a number of different ways, including:
   
 To test if you're running into this issue, schedule a message to be delivered
 at some future date/time, then double-click on the scheduled draft to re-edit
-it, then opening the Send Later scheduling pop-up and see if the text box and
-the date picker below it both have the correct, matching date/time in them. If
-so, you're probably fine. If not, read on.
+it, then open the Send Later scheduling pop-up and see if the text box and the
+date picker below it both have the correct, matching date/time in them. If so,
+you're probably fine. If not, read on.
 
 Before we get into what causes these and how to fix them, we need to explain a
 little bit about how Thunderbird thinks about languages, or technically,
