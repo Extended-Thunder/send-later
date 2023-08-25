@@ -833,7 +833,7 @@
   },
   "EditorReadMeCode": {
     "message": "Velkommen til funksjon redigeringsprogrammet Send senere!\n/ /\n/ / Editor lar deg lage JavaScript-funksjoner implementere komplekse\n/ / melding planlegging logikk som kan knyttes til snarveien tastene eller\n/ / valgt i dialogboksen Send senere.\n/ /\n/ / Som du kan se ovenfor, når en planlegging funksjonen kalles det får\n/ / tre argumenter:\n/ / * \"specname\" kreves hvis du vil at denne funksjonen skal gjentas (se nedenfor)\n/ / * \"forrige\" er den forrige Planlagt sendetidspunkt, hvis dette er en gjentakende\n/ / aktivering\n/ / * \"argumenter\" er ekstra argumentene returneres av tidligere anrop Hvis denne\n/ / er en regelmessig anrop\n/ /\n/ / Koden må angi variablene \"neste\", \" nextspec\", og\n/ /\"nextargs\"som følger:\n/ /\n/ / *\"neste\"er antall minutter i fremtiden eller en dato objekt\n/ / som angir når meldingen skal sendes.\n/ / * \"nextspec\" er en gjentakelse spesifikasjon Hvis dette er ment å være\n/ / regelmessig melding (se\n/ / https://extended-thunder.github.io/send-later/#dynamic-recurrence). Hvis du ikke angir\n/ / dette, så meldingen sendes bare én gang. Merk: Hvis du ønsker din\n/ / funksjonen kalles igjen for regelmessighet gjør:\n/ / nextspec = \"funksjon\" + specname;\n/ / * \"nextargs\" er en matrise av argumentene som skal sendes til de neste\n/ / aktivering av funksjonen som \"argumenter\".\n/ /\n/ / Mens du arbeider med funksjonen, kan du teste den ved å fylle ut verdiene\n/ / for \"forrige\" og \"argumenter\" i tekstboksene nedenfor og deretter klikke \" Kjøre\"\n/ / utfører funksjonen og se resultatene.\n/ /\n/ / Er det to pre-konfigurerte utvalgsfunksjoner, \"BusinessHours\" og\n/ / \"DaysInARow\", som du kan se på og spille med å lære mer.\n/ /\n/ / Denne \"ReadMeFirst\"-funksjonen bare forårsaker meldingen sendes rundt nå,\n/ / via følgende linje.\n= neste nye Date();",
-    "description": ""
+    "description": "This is the \"README\" text that appears in the dynamic function editor. The English text in the comments should be translated, but the variable and function names should be left in English."
   },
   "EditorReadMeHelp": {
     "message": "Enhver tekst du legger inn her vil bli vist som et verktøytips når du svinger over navnet på funksjonen i menyen. Du kan bruke dette til å dokumentere hva funksjonen gjør og hvilke argumenter den aksepterer.",
@@ -841,11 +841,11 @@
   },
   "BusinessHoursHelp": {
     "message": "Send meldingen nå hvis den er i driftstid eller i begynnelsen av neste arbeidsdag. Du kan endre definisjonen av arbeidsdager (standard: Man - Fre) ved å sende inn en rekke arbeidsdagnumre som det første argumentet, hvor 0 er søndag og 6 er lørdag. Du kan endre arbeidsstart eller sluttid (standard: 8:30 - 17:30) ved å sende inn en rekke [H, M] som det andre eller tredje argumentet. Angi \"null\" for tidligere argumenter du ikke endrer. For eksempel endrer \"null, [9, 0], [17, 0]\" arbeidstiden uten å endre arbeidsdager.",
-    "description": ""
+    "description": "This is the help message for the \"BusinessHours\" dynamic scheduling function. The function name should not be translated."
   },
   "DaysInARowHelp": {
     "message": "Send meldingen nå, og deretter en gang per dag samtidig, til den er sendt tre ganger. Angi et tall som argument for å endre totalt antall sendinger.",
-    "description": ""
+    "description": "This is the help message for the \"DaysInARow\" dynamic scheduling function. The function name should not be translated."
   },
   "DiscardConfirmTitle": {
     "message": "Forkast endringer?",

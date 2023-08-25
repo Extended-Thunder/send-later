@@ -873,7 +873,7 @@
   },
   "EditorReadMeCode": {
     "message": "// Velkommen til Send Senere funktion editor!\n//\n// Editoren giver dig mulighed for at oprette JavaScript-funktioner, der implementerer kompleks\n// besked planlægnings logik som kan knyttes til genvejsknapper eller\n// vælges i Send Senere dialogen.\n//\n// Som du kan se ovenfor, når en planlægningsfunktion kaldes, vil den blive givet\n// tre argumenter:\n// * \"specname\" er nødvendig hvis du ønsker at denne funktion skal gentages (se nedenfor)\n// * \"prev\" er den forrige planlagte sendetid hvis dette er et kald der skal \n// gentages \n// * \"args\" er de ekstra argumenter returneret af det foregående kald, hvis dette\n// er et gentaget kald\n//\n// Din kode skal angive variablerne \"next\" \"nextspec\" og\n// \"nextargs\" som følger:\n//\n// * \"next\" er enten antallet af minutter i fremtiden eller et Datoobjekt\n// som angiver, hvornår meddelelsen skal sendes.\n// * \"nextspec\" er en gentagelse specifikation, hvis dette er beregnet til at være en\n// gentaget meddelelse (se\n// https://extended-thunder.github.io/send-later/#dynamic-recurrence). Hvis du ikke sætter\n// dette, vil meddelelsen kun blive sendt én gang. Bemærk: Hvis du ønsker at din\n// funktion skal kaldes igen ved gentagelse, gør sådan:\n// nextspec = \"function \" + specname;\n// * \"nextargs\" er et array af argumenter, du ønsker at blive overført til det næste\n// kald af funktionen som \"args\".\n//\n// Mens du arbejder på din funktion, kan du teste det ved at udfylde værdierne\n// for \"prev\" og \"args\" i tekstfelterne nedenfor og derefter klikke på \"Kør\" for\n// at udføre funktionen og se resultaterne.\n//\n// Der er to prækonfigurerede eksempel funktioner, \"BusinessHours\" og\n// \"DaysInARow\", som du kan se på og lege med for at lære mere.\n//\n// Denne \"ReadMeFirst\" funktion gør kun, at meddelelsen sendes rundt nu,\n// via den følgende linje.\nnext = ny dato();",
-    "description": ""
+    "description": "This is the \"README\" text that appears in the dynamic function editor. The English text in the comments should be translated, but the variable and function names should be left in English."
   },
   "EditorReadMeHelp": {
     "message": "Enhver tekst du lægger her vil blive vist som et værktøjsvink når du svæver over navnet på funktionen i menuen. Du kan bruge dette til at dokumentere hvad funktionen gør, og hvilke argumenter den accepterer.",
@@ -881,19 +881,19 @@
   },
   "_BusinessHoursCode": {
     "message": "// Standard\nvar workDays = [1, 2, 3, 4, 5]; // Man - Fre; Søn == 0, Lør == 6\nvar workStart = [8, 30]; // Start på arbejdsdagen som [T, M]\nvar workEnd = [17, 30]; // Slut på arbejdsdagen som [T, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Ikke forventet ved normal brug, men brugt som nuværende tidspunkt til test .\n    next = new date(prev);\nelse\n    next = new date();\n// Hvis vi er efter sluttidspunktet af arbejdsdagen eller det ikke er en arbejdsdag, så gå videre til\n// arbejdstids start den følgende dag.\nwhile (next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes () > workEnd[1]) ||\n       (workdays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// Hvis vi er før begyndelsen af arbejdsdagen, så gå til arbejdsdagens starttid.\nif (next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
-    "description": ""
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "BusinessHoursHelp": {
     "message": "Send beskeden nu, hvis det er i løbet af arbejdstiden, eller i begyndelsen af den næste arbejdsdag. Du kan ændre definitionen på arbejdsdage (standard: Man - Fre) ved at sende et  antal arbejdsdagstal som det første argument, hvor 0 er søndag og 6 er lørdag. Du kan ændre arbejdsstarttidspunkt eller sluttidspunkt (standard: 8:30 - 17:30) ved at sende  række af [T, M] som andet eller tredje argument. Angiv “null” for tidligere definitioner du ikke vil ændre. For eksempel, “null, [9, 0], [17, 0]” ændrer arbejdstiden uden at ændre arbejdsdage.",
-    "description": ""
+    "description": "This is the help message for the \"BusinessHours\" dynamic scheduling function. The function name should not be translated."
   },
   "DaysInARowCode": {
     "message": "/ / Send den første besked nu, efterfølgende beskeder en gang om dagen.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // kopiér dato argument så vi ikke ændre det.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Forsøg ikke at sende i fortiden, ifald Thunderbird ikke kørte på\n    // den planlagte sendetid.\n}\nif (! args) // Send beskeder tre gange som standard.\n    args = [3];\nnextargs = [args[0] - 1];\n// Gør det igen  hvis vi ikke har sendt det hele endnu.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
-    "description": ""
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "DaysInARowHelp": {
     "message": "Send beskeden nu, og derefter en gang om dagen på samme tid, indtil den er blevet sendt tre gange. Angiv et tal som et argument for at ændre det samlede antal sendinger.",
-    "description": ""
+    "description": "This is the help message for the \"DaysInARow\" dynamic scheduling function. The function name should not be translated."
   },
   "DiscardConfirmTitle": {
     "message": "Kassér ændringer?",
@@ -1009,6 +1009,10 @@
   },
   "invalidDateFormat": {
     "message": "forkert eller ufuldstændigt datoformat",
-    "description": "Message displayed when the user enters an invalid custom date format"
+    "description": "Message displayed in the user interface inside parentheses when the user enters an invalid custom date format"
+  },
+  "menuScheduleMsg": {
+    "message": "Planlæg besked(er)",
+    "description": "Command added to the message list menu for the user to use to schedule one or more selected messages with Send Later"
   }
 }

@@ -893,7 +893,7 @@
   },
   "EditorReadMeCode": {
     "message": "// Üdvözöljük a Küldés később-függvényszerkesztőben!\n//\n// A szerkesztő lehetővé teszi, hogy olyan JavaScript függvényeket hozzon létre,\n// amelyek összetett üzenetütemezési folyamatokat valósítanak meg, amelyek a\n// parancsikonokkal társíthatók vagy a Küldés később párbeszédablakban választhatók ki.\n//\n// Amint a fentiekben látható, az ütemezési függvény hívásakor három érvet kap:\n// * \"specname\" szükséges ha ezt a függvényt szeretné megismételni (lásd alább)\n// * \"prev\" az előző ütemezett küldési idő, ha ez ismétlődő hívás\n// * \"args\" az előző meghívás által visszaadott további érvek, ha ez \n//   ismétlődő hívás\n//\n// A kódnak meg kell adnia a \"next\", \"nextspec\" és \"nextargs\" változókat a\n// következőképpen:\n//\n// * \"next\" a percek száma a jövőben, vagy a Dátum objektum, amely jelzi, \n//   hogy az üzenetet kell elküldeni.\n// * \"nextspec\" visszatérési részletes leírás, ha ez ismétlődő üzenet (lásd\n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence). \n//   Ha ezt nem állítja be, akkor az üzenet csak egyszer kerül elküldésre.\n//   Megjegyzés: ha azt szeretné, hogy ismételten hívhassa a függvényt, tegye:\n//     nextspec = \"function \" + specname;\n// * \"nextargs\" olyan érvek tömbje, amelyeket az \"args\" függvény következő\n//   meghívására kíván átadni.\n//\n// Miközben dolgozik a függvényiekkel, vizsgálható azt az \"prev\" és az \"args\"\n// értékek kitöltésével az alábbi szövegdobozokban, majd a Végrehajtás gombra\n// kattintva a függvény végrehajtásához és az eredmények megtekintéséhez.\n//\n// Két előre beállított mintafüggvény van: \"BusinessHours\" és \"DaysInARow\",\n// amelyekkel meg lehet változtatni, hogy többet fedezzen fel.\n//\n// Ez a \"ReadMeFirst\" (olvass el először) függvény csak az üzenet továbbítását\n// teszi lehetővé most, a következő soron keresztül.\nnext = new Date();",
-    "description": ""
+    "description": "This is the \"README\" text that appears in the dynamic function editor. The English text in the comments should be translated, but the variable and function names should be left in English."
   },
   "EditorReadMeHelp": {
     "message": "Adja meg a szöveg, a buboréksúgóként jelenik meg, amikor a menüben a függvény neve fölé lép. Ezzel az okmány tudja, hogy mi a függvény és milyen érveket elfogadja.",
@@ -901,19 +901,19 @@
   },
   "_BusinessHoursCode": {
     "message": "// Alapértékek\nvar workDays = [1, 2, 3, 4, 5]; // hétfő - péntek; vasárnap == 0, szombat == 6\nvar workStart = [8, 30]; // munkanap kezdésének ideje [ó, p]\nvar workEnd = [17, 30]; // munkanap befejezésének ideje [ó, p]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Nem várható általános használatába.\n    // Jelenlegi idő használata a vizsgálatához.\n    next = new Date(prev);\nelse\n    next = new Date();\n\nif (workDays.length == 0 || !workDays.every(d => (d >= 0) && (d <= 6))) { return undefined; }\n\n// Ha az idő a munkanap befejezésének ideje után vagy a ma egy\n// munkaszüneti nap, lépjünk a következő napi munkanap kezdésének ideje.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// Ha az idő a munkanap kezdésének ideje előtt járunk, lépjünk a munkanap\n// kezdésének ideje időpontra.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
-    "description": ""
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "BusinessHoursHelp": {
     "message": "Küldje most el az üzenetet, ha ez munkaidőben vagy a következő munkanap kezdetén. Megváltoztathatja a munkanapok meghatározását (alapértelmezett: hétfőtől péntekig) az első érvként a munkanapok számának tömbjével, ahol 0 vasárnapot jelent és 6 szombatot jelent. Megváltoztathatja a munka kezdetének vagy befejezésének időpontját (alapértelmezett: 8:30-17:30) a [ó, p] tömbben a második vagy harmadik érvként. Adja meg a „null” értéket a korábbi érvek esetében, amelyeket nem módosít. Például a „null, [9, 0], [17, 0]” megváltoztatja a munkaidőt a munkanapok megváltoztatása nélkül.",
-    "description": ""
+    "description": "This is the help message for the \"BusinessHours\" dynamic scheduling function. The function name should not be translated."
   },
   "DaysInARowCode": {
     "message": "// Küldje el az első üzenetet, a következő üzeneteket naponta egyszer.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Dátum érv másolása, hogy ne módosítsuk.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Ne kíséreljen meg küldeni a múltban, abban az esetben, ha a\n    // Thunderbird elaludt az ütemezett küldési időben.\n}\nif (! args) // Alapértelmezés szerint háromszor küldjön üzeneteket.\n    args = [3];\nnextargs = [args[0] - 1];\n// Küldés ismétlés, ha nincs kész.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
-    "description": ""
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "DaysInARowHelp": {
     "message": "Küldje most el az üzenetet, majd egyszer naponta ugyanabban az időben, amíg háromszor nincs elküldve. Adjon meg hányszor szeretné elküldeni az üzenet az érvben.",
-    "description": ""
+    "description": "This is the help message for the \"DaysInARow\" dynamic scheduling function. The function name should not be translated."
   },
   "DiscardConfirmTitle": {
     "message": "Módosítások elvetése",
@@ -1037,6 +1037,10 @@
   },
   "invalidDateFormat": {
     "message": "érvénytelen vagy hiányos dátumformátum",
-    "description": "Message displayed when the user enters an invalid custom date format"
+    "description": "Message displayed in the user interface inside parentheses when the user enters an invalid custom date format"
+  },
+  "menuScheduleMsg": {
+    "message": "Üzenet(ek) ütemezése",
+    "description": "Command added to the message list menu for the user to use to schedule one or more selected messages with Send Later"
   }
 }

@@ -821,11 +821,11 @@
   },
   "BusinessHoursHelp": {
     "message": "営業時間内か、または次の営業日の営業時間内であればすぐにメッセージを送信します。 第一引数 (デフォルトは月～金) として、0 は日曜日、6 が土曜日で営業日の数字の配列で渡すことによって、営業日の定義を変更することができます。第二または第三引数として [H, M] の配列を渡すことで、営業開始時刻や営業終了時刻 (デフォルトは 8:30～17:30) を変更できます。 “null” を指定すると、引数の値は変更されません。例えば、“null, [9, 0], [17, 0]” は、営業日を変更せずに、営業時間を変更します。",
-    "description": ""
+    "description": "This is the help message for the \"BusinessHours\" dynamic scheduling function. The function name should not be translated."
   },
   "DaysInARowHelp": {
     "message": "今すぐメッセージを送信します。そのあとに、三回送信されるまで、毎日同じ時刻に送信します。送信の総数を変更するには、引数として数を指定します",
-    "description": ""
+    "description": "This is the help message for the \"DaysInARow\" dynamic scheduling function. The function name should not be translated."
   },
   "DiscardConfirmTitle": {
     "message": "変更を破棄しますか？",

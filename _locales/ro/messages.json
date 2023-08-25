@@ -885,7 +885,7 @@
   },
   "EditorReadMeCode": {
     "message": "// Bun venit la editorul de funcții Send Later!\n//\n// Editorul îți permite să creezi funcții JavaScript implementând logica complexă \n// de planificare a mesajelor care poate fi asociată cu butoane rapide sau\n// selectate în dialogul Trimitere mai târziu.\n//\n// După cum poți vedea mai sus, atunci când este apelată o funcție de programare, \n// sunt folosite trei argumente:\n// * \"specname\" este necesar dacă dorești ca această funcție să reapară (a se vedea mai jos)\n// * \"prev\" este ora de trimitere programată anterior, dacă aceasta este o invocare recurentă\n// * \"args\" sunt argumentele suplimentare returnate de invocarea anterioară, dacă aceasta este\n// este o invocare recurentă\n//\n// Codul trebuie să seteze variabilele \"next\", \"nextspec\" și \"nextargs\" \n// după cum urmează:\n// * \"next\" este fie numărul de minute în viitor, fie un obiect dată\n// indicând când trebuie trimis mesajul.\n// * \"nextspec\" este o specificație de recurență dacă se intenționează ca acesta să fie \n// un mesaj recurent (vezi https://extended-thunder. iyet. .io/send-later/#dynamic-recurrence).\n// Dacă acesta nu este setat, atunci mesajul va fi trimis o singură dată. \n// Notă: dacă vrei ca funcția ta să fie apelată din nou pentru recurență, folosește:\n// nextspec = \"function \" + specname;\n// * \"nextargs\" este o serie de argumente folosite în invocarea funcției ca \"args\".\n//\n// În timp ce lucrezi la funcție, o poți testa completând valorile\n// pentru \"pre\" și \"args\" în casetele de text de mai jos și apăsând \"Execută\" pentru \n// a executa funcția și a vedea rezultatele.\n//\n// Există două funcții-eșantion preconfigurate, \"BusinessHours\" și\n// \"DaysInARow\", la care te poți uita și pe care le poți modifica pentru a afla mai multe.\n//\n// Această funcție \"ReadMeFirst\" are ca efect trimiterea mesajului acum\n// prin linia următoare.\nnext = new Date();",
-    "description": ""
+    "description": "This is the \"README\" text that appears in the dynamic function editor. The English text in the comments should be translated, but the variable and function names should be left in English."
   },
   "EditorReadMeHelp": {
     "message": "Orice text pus aici va fi afișat când utilizatorul planează deasupra numelui funcției în meniu. Se poate utiliza pentru a explica ce face funcția și ce argumente acceptă.",
@@ -893,19 +893,19 @@
   },
   "_BusinessHoursCode": {
     "message": "// Valori implicite\nvar workDays = [1, 2, 3, 4, 5]; // Lun - Vin; Sâm == 0, Dum == 6\nvar workStart = [8, 30]; // Început zi de lucru în format [H, M]  (H = oră, M = minut)\nvar workEnd = [17, 30]; // Sfârșit zi de lucru în format [H, M]  (H = oră, M = minut)\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Nu e folosit în mod normal, folosit momentan pentru teste.\n    next = new Date(prev);\nelse\n    next = new Date();\n\nif (workDays.length == 0 || !workDays.every(d => (d >= 0) && (d <= 6))) { return undefined; }\n\n// Dacă termenul este după sfârșitul zile de lucru, avansează la\n// începutul zilei următoare de lucru.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// If we're before the beginning of the workday, move to its start time.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
-    "description": ""
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "BusinessHoursHelp": {
     "message": "Trimite mesajul acum dacă e în timpul orelor de lucru sau la începutul următoarei zi lucrătoare. Definiția zilelor lucrătoare se poate schimba (implicit: Lun - Vin) când primul argument este un array cu numerele zilelor lucrătoare, unde 0 este duminică și 6 este sâmbătă. Pentru a schimba orele de lucru (implicit: 8:30 - 17:30) se pot transmite argumentele 2 sau 3 cu array-uri de forma [H, M]. Folosește \"null\" pentru argumentele din față care dorești să rămână neschimbate. De exemplu, \"null, [9, 0], [17, 0]\" schimba orele de lucru fără a schimba zilele lucrătoare.",
-    "description": ""
+    "description": "This is the help message for the \"BusinessHours\" dynamic scheduling function. The function name should not be translated."
   },
   "DaysInARowCode": {
     "message": "// Trimite primul mesaj acum, mesajele următoare o dată pe zi.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copiază variabila date ca să nu fie modificată.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Nu încerca să trimiți în trecut, în cazul in care Thunderbird era în modul \"Sleep\"\n    // la momentul de trimitere programat.\n}\nif (! args) // Implicit, trimite mesajele de 3 ori.\n    args = [3];\nnextargs = [args[0] - 1];\n// Reia dacă nu s-a trimis de suficiente ori.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
-    "description": ""
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "DaysInARowHelp": {
     "message": "Trimite mesajul acum, și apoi o dată pe zi la aceeași ora, până a fost trimis de 3 ori. Numărul de trimiteri se poate modifica trimițând un număr ca argument al funcției.",
-    "description": ""
+    "description": "This is the help message for the \"DaysInARow\" dynamic scheduling function. The function name should not be translated."
   },
   "DiscardConfirmTitle": {
     "message": "Renunță la modificări?",
@@ -1029,6 +1029,6 @@
   },
   "invalidDateFormat": {
     "message": "format de dată incorect sau incomplet",
-    "description": "Message displayed when the user enters an invalid custom date format"
+    "description": "Message displayed in the user interface inside parentheses when the user enters an invalid custom date format"
   }
 }

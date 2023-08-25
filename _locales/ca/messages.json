@@ -877,7 +877,7 @@
   },
   "EditorReadMeCode": {
     "message": "// Benvinguts a l'editor Send Later funció!\n// \n// L'editor permet crear complexes funcions JavaScript implementació\n// missatge programació lògica que es poden associar amb els botons de\n// drecera o seleccionat al diàleg Send Later.\n// \n// Com es pot veure més amunt, quan s'anomena una planificació funció,\n// se li donarà tres arguments:\n// \n// * \"specname\" que es necessita si vol que aquesta funció es\n//   repeteixi (veure més avall)\n// * \"prev\" és l'anterior previst enviar temps, si això és una\n//   recurrent invocació\n// * \"args\" està els arguments addicionals retornats per la invocació\n//   anterior si aquesta és una invocació recurrent\n// \n// el vostre codi necessita configurar les variables \"next\",\n// \"nextspec\", i \"nextargs\" com segueix:\n//\n// * \"next\" és el nombre de minuts en el futur o un objecte de data\n//   indicant quan el missatge s'enviaran.\n//\n// * \"nextspec\" és una especificació de periodicitat si aquesta és la\n//   intenció de ser un recurrent missatge (veure\n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence). Si no es\n//   configura això, llavors el missatge només s'enviarà una\n//   vegada. Nota: si voleu que el seu funció que es diu una altra\n//   vegada per recurrència, fer:\n//   \n//   nextspec = \"function \" + specname;\n// \n// * \"nextargs\" és una sèrie d'arguments que vol passar al següent\n//   invocació de la funció com \"args\".\n//   \n// Mentre que vostè està treballant en la seva funció, pot provar això\n// omplint els valors per a \"anterior\" i \"args\" en els quadres de Text\n// sota i fent clic a \"Executar\" a executa la funció i veure els\n// resultats.\n// \n// Pre-configurat Mostra dues funcions, \"BusinessHours\" i\n// \"DaysInARow\", que pot mirar i jugar amb per aprendre més. Aquest\n// \"ReadMeFirst\" funció només provoca el missatge enviat al voltant\n// ara, mitjançant la línia següent.\n\nnext = new Date();",
-    "description": ""
+    "description": "This is the \"README\" text that appears in the dynamic function editor. The English text in the comments should be translated, but the variable and function names should be left in English."
   },
   "EditorReadMeHelp": {
     "message": "Qualsevol text que posi aquí es mostrarà com a ajuda quan emplaci el punter sobre el nom de la funció en el menú. Pot utilitzar-ho per documentar què fa la funció i quins arguments accepta.",
@@ -885,19 +885,19 @@
   },
   "_BusinessHoursCode": {
     "message": "// Valors per omissió\nvar workDays = [1, 2, 3, 4, 5]; // Dilluns a divendres; diumenge == 0, dissabte == 6\nvar workStart = [8, 30]; // Inici del dia laborable com a [H, M] (hores, minuts)\nvar workEnd = [17, 30]; // Finalització del dia laborable com a [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // No està pensat per utilitzar-se en un funcionament normal, sinó que\n    // es fa servir com a valor de data i hora actuals per fer proves.\n    next = new Date(prev);\nelse\n    next = new Date();\n\nif (workDays.length == 0 || !workDays.every(d => (d >= 0) && (d <= 6))) { return undefined; }\n\n// Si ja hem sobrepassat l'hora de finalització del dia laborable o no ens\n// trobem en un dia laborable, passar a l'inici del dia següent.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// Si ens trobem en una hora anterior a l'inici de la jornada laboral, anar\n// al temps definit com a inici de la jornada.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
-    "description": ""
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "BusinessHoursHelp": {
     "message": "Envia el missatge ara si ens trobem dins de l'horari laborable, o al principi del següent dia laborable. Pot canviar la definició dels dies laborables (per omissió: de dilluns a divendres) passant un vector de nombres associats als dies laborables com a primer argument, on el 0 és diumenge i el 6, dissabte. Pot canviar l'hora d'inici de la jornada o la de finalització (per omissió: 8:30 - 17:30) passant un vector de [H, M] (hores, minuts) com a segon o tercer argument. Especifiqui el valor “null” pels arguments anteriors que no vulgui canviar. Per exemple, “null, [9,0], [17, 0]” canvia les hores laborables sense modificar els dies laborables.",
-    "description": ""
+    "description": "This is the help message for the \"BusinessHours\" dynamic scheduling function. The function name should not be translated."
   },
   "DaysInARowCode": {
     "message": "// Enviar el primer missatge ara, i els missatges posteriors un cop al dia.\nif (! prev)\n next = new Date();\nelse {\n var now = new Date();\n next = new Date(prev); // Copiar l'argument de la data, de manera que no la modifiquem.\n do {\n next.setDate(next.getDate() + 1);\n } while (next < now);\n // ^^^ Que no s'intenti enviar si ja ha passat la programació, en cas que Thunderbird estés inactiu al\n// moment programat per enviar.\n}\nif (! args) // Enviar els missatges tres vegades per omissió.\n args = [3];\nnextargs = [args[0] - 1];\n// Tornar a executar si no s'ha enviat el nombre de vegades definit.\nif (nextargs[0] > 0)\n nextspec = \"function \" + specname;",
-    "description": ""
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "DaysInARowHelp": {
     "message": "Enviar el missatge ara, i posteriorment un cop al dia a la mateixa hora, fins que s'hagi enviat tres vegades. Especifiqui un número com a argument per canviar el nombre total de vegades que es vol enviar.",
-    "description": ""
+    "description": "This is the help message for the \"DaysInARow\" dynamic scheduling function. The function name should not be translated."
   },
   "DiscardConfirmTitle": {
     "message": "Descartar canvis?",

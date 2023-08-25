@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "‫'שלח מאוחר יותר' משמש לשליחת הודעות במועד עתידי‬",
+    "message": "‫השימוש האמיתי ב'שלח מאוחר יותר' הוא למשלוח הודעות מייל בתיזמון עתידי‬",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -596,11 +596,11 @@
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "‫‫שלח מאוחר יותר‬: יתכן והתיקייה $1 נפגמה. אנא פתח את התכונות שלה ותקן את התקלה. ראה: https://extended-thunder.github.io/send-later/#corrupt-drafts-error.‬",
+    "message": "‫‫שלח מאוחר יותר‬: יתכן והתיקייה $1 נפגמה. אנא פתח את ההגדרות שלה ותקן את התקלה. ראה: https://extended-thunder.github.io/send-later/#corrupt-drafts-error.‬",
     "description": ""
   },
   "CorruptFolderErrorDetails": {
-    "message": "נראה שההודעה “$1” $2 הספציפית הזו, נשלחה בעבר, אולם עדיין נמצאת בתיקיית הטיוטות. תופעה זו עלולה להעיד על בעיה משמעותית יותר. פתרון פשוט יהיה למחוק את ההודעה המדוברת (או לשנות את מועד המשלוח).\n'שלח מאורח יותר,' תדלג על הודעה זו, אולם תמשיך לטפל בהודעותיך המתוזמנות האחרות לאחר שתסגור את הודעת שגיאה זו"
+    "message": "נראה שההודעה “$1” $2 הספציפית הזו, נשלחה כבר בעבר, אולם עדיין נמצאת בתיקיית הטיוטות. תופעה זו עלולה להעיד על בעיה משמעותית יותר. פתרון פשוט יהיה למחוק את ההודעה המדוברת (או לקבוע מועד המשלוח חלופי).\n'שלח מאורח יותר,' תדלג על הודעה זו, אך תמשיך לטפל בהודעות האחרות שתזמנת, לאחר סגירת הודעת שגיאה זו."
   },
   "MessageResendError": {
     "message": "‫שלח מאוחר יותר‬: ניסית לשלוח מאוחר יותר, הודעה שכבר נשלחה?! יתכן ותיקיית הדואר היוצא או תיקיית הטיוטות $1 נפגמו. נסה לתקנן כפי שמתואר בקישור: https://extended-thunder.github.io/send-later/#corrupt-outbox.",
@@ -875,6 +875,10 @@
     "message": "מגבלת זמן החזרה שהוגדרה,  נמצאת בעבר",
     "description": ""
   },
+  "invalidUntilWarning_tooSoon": {
+    "message": "טווח הזמן לחזרה שנקבע, הוא לפני מועד המשלוח הראשון המתוכנן",
+    "description": ""
+  },
   "InvalidArgsTitle": {
     "message": "ארגומנטים לא תקינים לפונקציה",
     "description": ""
@@ -889,23 +893,27 @@
   },
   "EditorReadMeCode": {
     "message": "// ברוך הבא אל עורך הפונקציות של ‫שלח מאוחר יותר‬!\n//\n// בעזרת עורך זה תוכל ליצור פונקציות JavaScript המיישמות לוגיקה מורכבת של תזמון הודעות אותה ניתן לשייך ללחצני קיצור או לבחור בה מתיבת הדו שיח של ‫שלח מאוחר יותר‬\n//\n// כפי שניתן לראות למעלה, כאשר מתבצעת קריאה לפונקציית תזמון, יש לספק לה שלושה ארגומנטים: \n// * \"specname\" נדרש במידה ותרצה להפעיל את הפונקציה בצורה רקורסיבית (ראה בהמשך)\n// * \"prev\" הינו זמן השליחה הקודם שתוזמן, במידה וזו הפעלה חוזרת\n// * \"args\" הינם הארגומנטים הנוספים שהוחזרו בהפעלה הקודמת, במידה וזו הפעלה חוזרת\n//\n// על הקוד שלך לקבוע את המשתנים \"next\", \"nextspec\", וכן \n// \"nextargs\" באופן הבא:\n//\n// * \"next\" הינו מספר הדקות בעתיד או אובייקט Date המציין מתי יש לשלוח את ההודעה\n//   indicating when the message should be sent.\n// * \"nextspec\" הינו מפרט החזרה במידה וזו אמורה להיות הודעה חוזרת (ראה \n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence). במידה ולא תספק ערך לארגומנט זה, \n//  ההודעה תישלח פעם אחת בלבד. הערה: אם תרצה \n//  לקרוא שנית לפונקציה לצורך חזרה, עליך לבצע:\n\n//     nextspec = \"function \" + specname;\n\n// * \"nextargs\" הינו מערך ארגומנטים אותם תרצה להעביר \n//   להפעלה הבאה של הפונקציה כ-\"args\".\n//\n// במהלך העבודה על הפונקציה, תוכל לבדוק אותה על ידי הזנת ערכים\n// עבור \"prev\" ו-\"args\" בתיבות הטקסט שבהמשך ולאחר מכן ללחוץ על  \"Execute\" כדי\n// לבצע את הפונקציה ולצפות בתוצאות.\n//\n// ישנן שתי פונקציות דוגמה מוגדרות מראש, \"BusinessHours\" וכן\n// \"DaysInARow\", שתוכל להשתמש בהן ולבצע בעזרתן ניסויים לצורך למידה.\n//\n// פונקציה \"ReadMeFirst\" גורמת רק לשליחה של ההודעה כעת, פחות או יותר, \n// באמצעות הפעלת השורה הבאה.\n\nnext = new Date();",
-    "description": ""
+    "description": "This is the \"README\" text that appears in the dynamic function editor. The English text in the comments should be translated, but the variable and function names should be left in English."
   },
   "EditorReadMeHelp": {
     "message": "כל טקסט שתזין כאן יוצג כתיאור כלי כאשר תעביר את מצביע העכבר מעל לשם הפונקציה בתפריט. תוכל להשתמש בכך כדי לתעד את פעולת הפונקציה ואת הארגומנטים שהיא מקבלת.",
     "description": ""
   },
+  "_BusinessHoursCode": {
+    "message": "// Defaults / ברירות מחדל\nvar workDays = [1, 2, 3, 4, 5]; // שני - שישי; ראשון == 0, שבת == 6\nvar workStart = [8, 30]; // התחלת יום העבודה ב [H, M]\nvar workEnd = [17, 30]; // סוף יום העבודה ב  [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // לא אמור להיות בשימוש רגיל, אך משמש כזמן הנוכחי לצורך בדיקה.\n    next = new Date(prev);\nelse\n    next = new Date();\n// במידה ועברת את סוף יום העבודה הנוכחי או אם זהו אינו יום עבודה, עבור \n// לשעת התחלת העבודה ביום הבא.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// במידה והזמן הנוכחי הינו לפני תחילת יום העבודה, שנה לזמן התחלת היום.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
+  },
   "BusinessHoursHelp": {
     "message": "שלח את ההודעה כעת אם הזמן הנוכחי הינו במהלך שעות העבודה, או בתחילת יום העבודה הבא. תוכל לשנות את הגדרת ימי העבודה (ברירת מחדל: שני עד שישי) על ידי העברת מערך של מספרי ימי עבודה כארגומנט הראשון, כאשר 0 הינו יום ראשון ו-6 הינו יום שבת. תוכל לשנות את זמן ההתחלה או הסיום של יום העבודה (ברירת מחדל: 8:30 - 17:30) על ידי העברת מערכת מסוג [H, M] כארגומנט השני או השלישי, ולציין \"null\" עבור ארגומנטים קודמים שאינך משנה. לדוגמה, \"null, [9,0], [17,0]\" משנה את שעות העבודה מבלי לשנות את ימי העבודה.",
-    "description": ""
+    "description": "This is the help message for the \"BusinessHours\" dynamic scheduling function. The function name should not be translated."
   },
   "DaysInARowCode": {
     "message": "// JavaScript really wants to be left-to-right, so let's start this\n// file with English.\n//\n// שלח את ההודעה הראשונה כעת, ואת ההודעות הבאות פעם ביום.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copy date argument so we don't modify it.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ אל תנסה לשלוח בתאריך שעבר, במידה ו-Thunderbird לא היה פעיל\n    // בזמן שנקבע.\n}\nif (! args) // כברירת מחדל, שלח הודעות שלוש פעמים.\n    args = [3];\nnextargs = [args[0] - 1];\n// חזור במידה ועדיין לא בוצעו מספיק שליחות.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
-    "description": ""
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "DaysInARowHelp": {
     "message": "שלח את ההודעה כעת, ולאחר מכן פעם ביום באותה השעה, עד שההודעה תישלח שלוש פעמים. ציין מספר כארגומנט לשינוי המספר הכולל של שליחות.",
-    "description": ""
+    "description": "This is the help message for the \"DaysInARow\" dynamic scheduling function. The function name should not be translated."
   },
   "DiscardConfirmTitle": {
     "message": "לבטל את השינויים?",
@@ -1026,5 +1034,13 @@
   "longDateTimeFormatsPrefLabel": {
     "message": "תצורת תאריך /שעה ארוך:",
     "description": "Preference input for extended datetime format (e.g. Wed, Apr 28 2021 11:45)"
+  },
+  "invalidDateFormat": {
+    "message": "תבנית התאריך אינה מלאה או אינה נכונה",
+    "description": "Message displayed in the user interface inside parentheses when the user enters an invalid custom date format"
+  },
+  "menuScheduleMsg": {
+    "message": "תיזמון הודעה/ות",
+    "description": "Command added to the message list menu for the user to use to schedule one or more selected messages with Send Later"
   }
 }

@@ -893,7 +893,7 @@
   },
   "EditorReadMeCode": {
     "message": "// Herzlich Willkommen Sie auf der Später Senden-Funktion-Editor!\n// \n// Der Editor können Sie JavaScript-Funktionen implementieren komplexe\n// erstellen message Disposition Logik die Shortcut-Tasten zugeordnet\n// werden kann oder ausgewählte im Dialogfeld \"Später Senden\".\n// \n// Wie Sie oben sehen können wenn eine scheduling-Funktion aufgerufen\n// wird, erhält es drei Argumente:\n// \n// * \"specname\" wird benötigt, wenn Sie diese Funktion wieder\n//   auftreten (siehe unten) soll\n// \n// * \"prev\" ist die vorherige geplant Sendezeit, ist dies ein sich\n//   wiederholendes Aufruf\n// \n// * \"args\" ist die zusätzlichen Argumente von der vorherigen Aufruf\n//   zurückgegeben, wenn diese ist eine wiederkehrende Invocation\n// \n// der Code muss die Variablen \"next\", \"xextspec\", und \"nextargs\"\n// wie folgt:\n//\n// * \"next\" ist entweder die Anzahl der Minuten in der Zukunft oder\n//   ein Date-Objekt angibt, wann die Nachricht gesendet werden soll.\n// \n// * \"nextspec\" ist eine Wiederholung-Spezifikation, wenn dies\n//   beabsichtigt ist, ein wiederkehrende Nachricht (siehe\n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence). Wenn Sie\n//   nicht dies, dann die Nachricht wird nur einmal gesendet\n//   werden. Hinweis: Wenn Sie wollen Ihre Funktion aufgerufen werden\n//   für Wiederholung, wiederholen:\n//   \n//   nextspec = \"function \" + specname;\n//   \n// * \"nextargs\" ist ein Array von Argumenten, die an die nächste\n//   übergeben werden soll Aufruf der Funktion als \"Args\".\n//   \n// Während Sie auf Ihre Funktion arbeiten, können Sie es testen, indem\n// Werte ausfüllen für \"Prev\" und \"Args\" in den Textfeldern unten und\n// klicken Sie dann auf \"Ausführen\" die Funktion ausführen und die\n// Ergebnisse zu sehen.\n// \n// Gibt es zwei vorkonfigurierte Beispielfunktionen, \"BusinessHours\"\n// und \"DaysInARow\", die Sie betrachten und spielen Sie mit um mehr zu\n// erfahren.  Diese Funktion \"ReadMeFirst\" verursacht nur die\n// Nachricht jetzt, um gesendet werden über die folgende Zeile.\n\nnext = new Date();",
-    "description": ""
+    "description": "This is the \"README\" text that appears in the dynamic function editor. The English text in the comments should be translated, but the variable and function names should be left in English."
   },
   "EditorReadMeHelp": {
     "message": "Text, den Sie hier eingeben, wird als PopUp angezeigt, wenn Sie im Menü mit der Maus über die Funktion gehen. Sie können hier dokumentieren, was die Funktion macht und welche Argumente sie erwartet.",
@@ -901,15 +901,15 @@
   },
   "BusinessHoursHelp": {
     "message": "Nachricht jetzt senden, falls es während der Geschäftszeiten ist, oder zu Beginn des nächsten Werktages. Sie können die Werktage ändern (standardäßig: Mo – Fr), indem Sie in einer Reihe die Werktagsnummern als ersten Parameter angeben, wobei 0 Sonntag und 6 Sonnabend entspricht. Sie können Arbeitsbeginn und Feierabend verändern (standardmäßig: 8:30 – 17:30), indem die in einer Reihe [Stunde, Minute] als zweiten oder dritten Parameter angeben. Legen Sie “null” für vorherige Parameter fest, die Sie nicht ändern! Zum Beispiel, “null, [9, 0], [17, 0]” ändert die Arbeitszeit ohne die Werktage zu verändern.",
-    "description": ""
+    "description": "This is the help message for the \"BusinessHours\" dynamic scheduling function. The function name should not be translated."
   },
   "DaysInARowCode": {
     "message": "// Erste Nachricht jetzt senden, nachfolgende Nachrichten einmal täglich.\nif (! prev)\n next = new Date();\nelse {\n var now = new Date();\n next = new Date(prev); // Datumsparameter kopieren, sodass wir diesen nicht verändern.\n do {\n next.setDate(next.getDate() + 1);\n } while (next < now);\n // ^^^ Versuchen Sie nicht, in der Vergangenheit zu senden, falls Thunderbird um\n // zur geplanten Sendezeit inaktiv war.\n}\nif (! args) // Nachrichten standardmäßig dreimal senden.\n args = [3];\nnextargs = [args[0] - 1];\n// Wiederholen, falls wir noch nicht oft genug gesendet haben.\nif (nextargs[0] > 0)\n nextspec = \"function \" + specname;",
-    "description": ""
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "DaysInARowHelp": {
     "message": "Nachricht jetzt senden - danach einmal täglich zur gleichen Zeit bis sie dreimal versendet wurde. Geben Sie eine Zahl als Argument ein, um die Anzahl der Sendevorgänge zu ändern.",
-    "description": ""
+    "description": "This is the help message for the \"DaysInARow\" dynamic scheduling function. The function name should not be translated."
   },
   "DiscardConfirmTitle": {
     "message": "Änderungen verwerfen?",

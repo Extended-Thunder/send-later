@@ -829,7 +829,7 @@
   },
   "EditorReadMeCode": {
     "message": "/歡迎使用延期發信功能編輯器！\n//\n//這個編輯器讓您使用JavaScript函數，利用快捷按鈕\n//，以及延期發信對話框中的選擇，\n//建立複雜的郵件排程邏輯。\n//\n//如上所述，當調用調度函數時，它將被給予\n//三個參數：\n//如果您希望此函數重覆執行　（見下文），需要提供“*”specname“\n// *如果需要重覆執行，您需要提供“prev”，即之前的預定發送時間\n// *“args”是上一次調用返回的額外參數，如果這是一個排程調用\n//\n//你的編程需要如下般設置“next”，“nextspec”和\n//“nextargs”變數(variables)：\n//\n// *“next”是將來的分鐘數或Date對象(object)\n//，指示消息何時發送。\n// *“nextspec”是一個重複執行的規格(recurring specification)，用作執行\n//排程郵件（見\n// https://extended-thunder.github.io/send-later/#dynamic-recurrence）。如果你沒有提供\n//這個變數，那麼訊息只會被發送一次。注意：如果你想要\n//函數重複排程執行，請執行以下操作：\n// nextspec =“function”+ specname;\n// *“nextargs”是一組數組的參數，會被傳遞為下一個\n//排程函數調用的“args”參數。\n//\n//在編寫您的函數時，可以透過填寫以下的“prev”和“args”文本框\n//進行測試，單擊“Execute”\n//執行該函數並查看結果。\n//\n//這裡有兩個預先配置的示例函數“BusinessHours”和\n//“DaysInArow”，你可以參考及試用，以了解更多。\n//\n//這個“ReadMeFirst”函數只是通過以下編程，\n//令訊息即發送。\nnext = new Date（）;",
-    "description": ""
+    "description": "This is the \"README\" text that appears in the dynamic function editor. The English text in the comments should be translated, but the variable and function names should be left in English."
   },
   "EditorReadMeHelp": {
     "message": "任何放置在此處的文字，均會在鼠標停在菜單功能名稱以提示方式顯示。你可以使用它來描述函數和接受的參數。",
@@ -837,15 +837,15 @@
   },
   "BusinessHoursHelp": {
     "message": "在辦公時間內或在下一個工作日開始時立即發送消息。 您可以在第一個參數發出工作日數字數組(array)修改辦公時間（預設為週一至週五），其中0為星期日，6為星期六。您可在第二及第三個參數發出一個[H，M]數組，更改工作開始或結束時間（預設為8:30 - 17:30）。如不更改較早的參數，請指定“null”。 例如，“null，[9，0]，[17，0]”改變工作時間，而不改變工作日。",
-    "description": ""
+    "description": "This is the help message for the \"BusinessHours\" dynamic scheduling function. The function name should not be translated."
   },
   "DaysInARowCode": {
     "message": "//現在發送第一條訊息，隨後每天發送一條訊息。\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); //複製日期參數，以便我們不會修改它。\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n     // ^^^不要當試在過去發送，以防Thunderbird\n     //在預定的發送時間睡著了。\n\n}\nif (! args) //預設發送消息三次。\n    args = [3];\nnextargs = [args[0] - 1];\n//如果我們還沒有做完發送，就會重新執行\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
-    "description": ""
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "DaysInARowHelp": {
     "message": "立即發送訊息，隨後每天一次，直到發送三次至企。 提供一個數字作參數，來更改發送的總數。",
-    "description": ""
+    "description": "This is the help message for the \"DaysInARow\" dynamic scheduling function. The function name should not be translated."
   },
   "DiscardConfirmTitle": {
     "message": "放棄修改？",

@@ -837,7 +837,7 @@
   },
   "EditorReadMeCode": {
     "message": "// Vítejte v editoru funkcí pro „Odeslat Později“! //\n//\n// Pomocí tohoto editoru můžete vytvářet JavaSkriptové funkce obsahující\n// komplexní logiku plánování zpráv, které můžou být připojené k tlačítkovým\n// předvolbám, nebo vybrané v „Odeslat Později“ dialogu.\n//\n// Jak můžete vidět výše, když je plánovací funkce vyvolána, bude mít tři \n// argumenty:\n// * \"specname\" se používá, pokud chcete, aby funkce vytvořila opakování\n// (více níže)\n// * \"prev\"  je předchozí naplánovaný čas odeslání, pokud se jedná o \n// opakující se vyvolání\n// * \"args\" je extra argument vrácený předchozím vyvoláním, pokud se jedná\n// o opakující se vyvolání\n//\n// Ve vašem kódu musí být proměnné \"next\", \"nextspec\", a\n// \"nextargs\" určené následovně:\n//\n// * \"next\" je buď počet minut v budoucnosti, nebo objekt Date indikující,\n// kdy by měla být zpráva odeslána\n// * \"nextspec\" je specifikace opakování, pokud se má jednat o opakující \n// se zprávu (podívejte se na\n// https://extended-thunder.github.io/send-later/#dynamic-recurrence). Pokud toto\n// nenastavíte, bude zpráva odeslaná pouze jednou. Pozn.: Pokud chcete,\n// aby byla vaše funkce vyvolaná znovu pro opakování zadejte tohle:\n// nextspec = \"funkce \" + specname;\n// * \"nextargs\" je pole argumentů, které chcete předat do dalšího\n// vyvolání funkce jako \"args\".\n//\n// Během práce na vaší funkci ji můžete otestovat vyplněním hodnot\n// pro  \"prev\" a \"args\" v textových polích níže a pak kliknutím na „Spustit“\n// pro spuštění funkce a zobrazení výsledků.\n//\n// Nahoře najdete dvě předdefinované ukázkové funkce\n// „BusinessHours“ (Úřední hodiny) a „DaysInARow“ (Dny po sobě), na které\n// se můžete podívat a vyzkoušet si je, abyste se o nich dozvěděli víc.\n//\n// Tato funkce „ReadMeFirst“ umí jenom odeslat zprávu nyní,\n// jak je nadefinováno na následujícím řádku:\nnext = new Date();",
-    "description": ""
+    "description": "This is the \"README\" text that appears in the dynamic function editor. The English text in the comments should be translated, but the variable and function names should be left in English."
   },
   "EditorReadMeHelp": {
     "message": "Text, který zde zadáte, bude zobrazen jako nápověda při najetí myší na funkce v menu. To můžete využít jako pomůcku k zjištění, co funkce dělá a jaké argumenty přijímá.",
@@ -845,19 +845,19 @@
   },
   "_BusinessHoursCode": {
     "message": "// Výchozí hodnoty\nvar workDays = [1, 2, 3, 4, 5]; // Po - Pá; Ne == 0, So == 6\nvar workStart = [8, 30]; // Začátek pracovní doby ve formátu [H, M]\nvar workEnd = [17, 30]; // Konec pracovní doby ve formátu [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Běžně se nepoužívá, ale používá se jako aktuální čas pro testování.\n    next = new Date(prev);\nelse\n    next = new Date();\n\nif (workDays.length == 0 || !workDays.every(d => (d >= 0) && (d <= 6))) { return undefined; }\n\n// Pokud se dostaneme za konec pracovních hodin, nebo není pracovní den,\n// přejdeme na začátek dalšího pracovního dne.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// Pokud jsme před začátkem pracovního dne, přejdeme na jeho začátek.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
-    "description": ""
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "BusinessHoursHelp": {
     "message": "Odeslat zprávu nyní, pokud je běžná pracovní doba, nebo na začátku příštího pracovního dne. Definici pracovních dní (Po - Pá) lze upravit změnou posloupnosti čísel dní v prvním argumentu, kde 0 je neděle a 6 je sobota. Pracovní dobu (8:30 - 17:30) lze změnit úpravou začátku pracovní doby v druhém arugmentu a konce v třetím ve formátu [H, M]. Do argumentů, které se měnit nemají, zadej \"null\". Například \"null, [9, 0], [17, 0]\" změní pracovní hodiny na 9:00 - 17:00 bez změny pracovních dnů.",
-    "description": ""
+    "description": "This is the help message for the \"BusinessHours\" dynamic scheduling function. The function name should not be translated."
   },
   "DaysInARowCode": {
     "message": "// Odešle zprávu poprvé teď a dále pak jednou za den.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Kopie argumentu date, abychom ho neupravili.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Nechceme zprávu odeslat v minulosti v případě, že Thunderbird\n    // spal v naplánovaném čase odeslání.\n}\nif (! args) // Ve výchozím nastavení odešle zprávu třikrát.\n    args = [3];\nnextargs = [args[0] - 1];\n// Opakovat, pokud ještě nebylo dost odeslaní.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
-    "description": ""
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "DaysInARowHelp": {
     "message": "Odešle zprávu nyní a poté denně po dobu tří dní ve stejný čas. Zadejte číslo, pokud chcete změnit celkový počet odeslání.",
-    "description": ""
+    "description": "This is the help message for the \"DaysInARow\" dynamic scheduling function. The function name should not be translated."
   },
   "DiscardConfirmTitle": {
     "message": "Zahodit změny?",

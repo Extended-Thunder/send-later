@@ -1,4 +1,8 @@
 {
+  "extensionName": {
+    "message": "Send Later",
+    "description": "The name of the add-on, displayed in various places."
+  },
   "extensionDescription": {
     "message": "Echte functionaliteit voor ‘Later verzenden’ om het verzendtijdstip van een e-mailbericht te plannen.",
     "description": "A short description of the add-on."
@@ -69,6 +73,10 @@
   },
   "logLevelFatal": {
     "message": "Onherstelbaar",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "Info",
     "description": ""
   },
   "logLevelTrace": {
@@ -243,6 +251,10 @@
     "message": "Niet een tijdstip voor verzending kiezen, maar in het Postvak UIT plaatsen voor verzending wanneer de nog niet verzonden berichten worden verzonden",
     "description": ""
   },
+  "sendlater.prompt.sendnow.accesskey": {
+    "message": "N",
+    "description": ""
+  },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "Bericht onmiddellijk verzenden zonder ‘Send Later’",
     "description": ""
@@ -317,6 +329,10 @@
   },
   "sendlater.prompt.cancelonreply.tooltip": {
     "message": "Op eerder verzonden kopieën van herhalende berichten letten. Een herhalend bericht annuleren en het uit de map Concepten verwijderen als een antwoord is ontvangen.",
+    "description": ""
+  },
+  "sendlater3header.label": {
+    "message": "Send Later",
     "description": ""
   },
   "prefwindow.title": {
@@ -433,6 +449,10 @@
   },
   "sendlater.ask.remind.label": {
     "message": "Mij later herinneren",
+    "description": ""
+  },
+  "sendlater.ask.already.accesskey": {
+    "message": "a",
     "description": ""
   },
   "sendlater.ask.already.label": {
@@ -873,7 +893,7 @@
   },
   "EditorReadMeCode": {
     "message": "// Welkom bij de functie-editor van Send Later!\n//\n// Met de editor kunt u JavaScript-functies maken die complexe logica voor\n// berichtplanning implementeren en met sneltoetsen kunnen worden gekoppeld\n// of in het dialoogvenster van Send Later kunnen worden geselecteerd.\n//\n// Zoals u hierboven kunt zien, worden bij het aanroepen van een\n// planningsfunctie drie argumenten meegegeven:\n// * ‘specname’ is nodig als u deze functie wilt laten herhalen (zie hieronder)\n// * ‘prev’ is de vorige geplande verzendtijd, als dit een herhalende\n//   aanroep is\n// * ‘args’ zijn de extra argumenten die door de vorige aanroep worden\n//   teruggegeven als dit een herhalende aanroep is\n//\n// Uw code dient de variabelen ‘next’, ‘nextspec’ en ‘nextargs’\n// als volgt in te stellen:\n//\n// * ‘next’ is ofwel het aantal minuten in de toekomst, of een Datum-object\n//   dat aangeeft wanneer het bericht dient te worden verzonden.\n// * ‘nextspec’ is een herhalingsspecificatie als dit is bedoeld als een\n//   herhalend bericht (zie\n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence). Als u dit niet\n//   instelt, wordt het bericht maar één keer verzonden. Noot: als u uw\n//   functie nogmaals wilt laten aanroepen voor herhaling, gebruik dan:\n//     nextspec = \"function \" + specname;\n// * ‘nextargs’ is een array van argumenten die u in de volgende aanroep\n//   van de functie wilt ingeven als ‘args’.\n//\n// Terwijl u aan uw functie werkt, kunt u deze testen door waarden voor\n// ‘prev’ en ‘args’ in de onderstaande tekstvelden in te vullen en daarna op\n// ‘Uitvoeren’ te klikken om de functie uit te voeren en de resultaten te zien.\n//\n// Er zijn twee vooraf geconfigureerde voorbeeldfuncties, ‘BusinessHours’ en\n// ‘DaysInARow’, die u kunt bekijken en waarmee u kunt spelen om meer te leren.\n//\n// Deze ‘ReadMeFirst’-functie zorgt er alleen voor dat het bericht ongeveer\n// nu wordt verzonden, via de volgende regel.\nnext = new Date();",
-    "description": ""
+    "description": "This is the \"README\" text that appears in the dynamic function editor. The English text in the comments should be translated, but the variable and function names should be left in English."
   },
   "EditorReadMeHelp": {
     "message": "Tekst die u hier plaatst, wordt als een tooltip weergegeven als u de muisaanwijzer boven de functienaam in het menu houdt. Dit kunt u gebruiken om te documenteren wat de functie doet en welke argumenten deze accepteert.",
@@ -881,19 +901,19 @@
   },
   "_BusinessHoursCode": {
     "message": "// Standaardwaarden\nvar workDays = [1, 2, 3, 4, 5]; // ma - vr; zo == 0, za == 6\nvar workStart = [8, 30]; // Begin van de werkdag als [H, M]\nvar workEnd = [17, 30]; // Einde van de werkdag als [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Niet verwacht bij normaal gebruik, maar gebruikt als het huidige tijdstip voor testen.\n    next = new Date(prev);\nelse\n    next = new Date();\n\nif (workDays.length == 0 || !workDays.every(d => (d >= 0) && (d <= 6))) { return undefined; }\n\n// Als het einde van de werkdag voorbij is of als het geen werkdag is, doorgaan naar de\n// beginwerktijd op de volgende dag.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// Als het voor het begin van de werkdag is, doorgaan naar de begintijd ervan.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
-    "description": ""
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "BusinessHoursHelp": {
     "message": "Het bericht nu verzenden als het tijdens werktijd is, of aan het begin van de volgende werkdag. U kunt de definitie van werkdagen wijzigen (standaard ma - vr) door een array met nummers van werkdagen als het eerste argument in te geven, waarbij 0 zondag is en 6 zaterdag. U kunt de begin- of eindtijd van werkdagen (standaard: 8:30 - 17:30) wijzigen door een array van [H, M] als het tweede of derde argument in te geven. Geef ‘null’ op voor vroegere argumenten die u niet wijzigt. ‘null, [9, 0], [17, 0]’ wijzigt bijvoorbeeld de werktijden zonder de werkdagen te wijzigen.",
-    "description": ""
+    "description": "This is the help message for the \"BusinessHours\" dynamic scheduling function. The function name should not be translated."
   },
   "DaysInARowCode": {
     "message": "// Het eerste bericht nu verzenden, opvolgende berichten eenmaal per dag.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Datumargument kopiëren, zodat we het niet aanpassen.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Niet proberen in het verleden te verzenden, voor het geval dat\n    // Thunderbird op het geplande verzendtijdstip niet actief was.\n}\nif (! args) // Berichten standaard drie keer verzenden.\n    args = [3];\nnextargs = [args[0] - 1];\n// Herhalen als we nog niet genoeg verzendingen hebben verricht.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
-    "description": ""
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "DaysInARowHelp": {
     "message": "Het bericht nu verzenden, en vervolgens eenmaal per dag op hetzelfde tijdstip, totdat het drie keer is verzonden. Geef een getal op als argument om het totale aantal verzendingen te wijzigen.",
-    "description": ""
+    "description": "This is the help message for the \"DaysInARow\" dynamic scheduling function. The function name should not be translated."
   },
   "DiscardConfirmTitle": {
     "message": "Wijzigingen verwerpen?",
@@ -995,6 +1015,10 @@
     "message": "Shift+klikken",
     "description": "Indicates key combination to access the shift+click accelerator function"
   },
+  "okay": {
+    "message": "OK",
+    "description": "Confirm an action (presented in popup dialogs)"
+  },
   "cancel": {
     "message": "Annuleren",
     "description": "Cancel an action (presented in popup dialogs)"
@@ -1010,5 +1034,13 @@
   "longDateTimeFormatsPrefLabel": {
     "message": "Lange datum-/tijdnotatie:",
     "description": "Preference input for extended datetime format (e.g. Wed, Apr 28 2021 11:45)"
+  },
+  "invalidDateFormat": {
+    "message": "ongeldige of onvolledige datumnotatie",
+    "description": "Message displayed in the user interface inside parentheses when the user enters an invalid custom date format"
+  },
+  "menuScheduleMsg": {
+    "message": "Bericht(en) plannen",
+    "description": "Command added to the message list menu for the user to use to schedule one or more selected messages with Send Later"
   }
 }

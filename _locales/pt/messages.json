@@ -846,7 +846,7 @@
   },
   "EditorReadMeCode": {
     "message": "// Bemvindo ao editor da função Send Later!\n//\n// O editor deixa-o criar funções javaScript implementando agendamento complexo de mensagens que podem ser associadas a botões de atalho ou selecionadas no diálogo Send Later.\n//\n// Como pode ver em cima, quando uma função de agendamento é chamada, vão ser dados três argumentos:\n// * \"specname\" é necessário se quiser recorrências (ver em baixo)\n// * \"prev\" é a hora de agendamento anterior, caso seja uma chamada recorrente\n// * \"args\" é um argumento extra que é retornado pela chamada anterior se esta for a chamada recorrente\n//\n// O código precisa das variáveis \"next\", \"nextspec\", and\n// \"nextargs\" como descrito:\n// * \"next\" é o número de minutos no futuro ou uma data indicando \n// quando é que a mensagem deve ser enviada.\n// * \"nextspec\" é a especificação da recorrência se for esta a intenção \n// (ver https://extended-thunder.github.io/send-later/#dynamic-recurrence). \n// Se não for definida, então a mensagem só será enviada uma vez. \n// Nota: Se quiser que a função seja chamada outra vez para uma recorrência, \n// fazer o seguinte:\n//     nextspec = \"function \" + specname;\n// * \"nextargs\" é um série de argumentos que serão passados para a \n// próxima chamada da função como \"args\".\n//\n// Enquanto estiver a trabalhar na sua função, pode testá-la preenchendo os valores para \"prev\"\n// e \"args\" na caixa de texto que está a seguir e clicando \"Execute\" para executar a função \n// e ver os resultados.\n//\n// Há duas funções de exemplo pré-configuradas, \"BusinessHours\" e \"DaysInARow\",\n// que pode ver e brincar com ela para aprender melhor.\n//\n// Esta função \"ReadMeFirst\" apenas envia a mensagem, agora.\nnext = new Date();",
-    "description": ""
+    "description": "This is the \"README\" text that appears in the dynamic function editor. The English text in the comments should be translated, but the variable and function names should be left in English."
   },
   "EditorReadMeHelp": {
     "message": "Qualquer texto que coloque aqui será mostrado como uma legenda quando passar o rato sobre o nome da função no menu. Pode usar esta opção para documentar o que a função faz e quais os argumentos que esta aceita.",
@@ -854,19 +854,19 @@
   },
   "_BusinessHoursCode": {
     "message": "// Padrão\nvar workDays = [1, 2, 3, 4, 5]; // Seg - Sex; Sun == 0, Sat == 6\nvar workStart = [8, 30]; // Inicio do dia util em [H, M]\nvar workEnd = [17, 30]; // Fim do dia util em [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Not expected in normal usage, but used as the current time for testing.\n    next = new Date(prev);\nelse\n    next = new Date();\n\nif (workDays.length == 0 || !workDays.every(d => (d >= 0) && (d <= 6))) { return undefined; }\n\n// Se esta apos o fim do dia util ou num dia não útil, \n// avançar para a primeira hora útil do dia seguinte.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// Se a hora actual é antes do inicio do dia de trabalho, mover para o inicio do dia de trabalho.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
-    "description": ""
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "BusinessHoursHelp": {
     "message": "Envie a mensagem agora se é durante o horário laboral, ou no início do próximo dia de trabalho. Pode alterar a definição de dias de trabalho (padrão: Seg - Sex), passando uma matriz de números de dia de trabalho como o primeiro argumento, onde 0 é domingo e 6 é sábado. Pode alterar o início do trabalho ou horário de término (padrão: 08:30-17:30), passando uma matriz de [H, M] como o segundo ou terceiro argumento. Especifique \"nulo\" para argumentos anteriores, que você não mudar. Por exemplo, \"null, [9, 0], [17, 0]\" muda as horas de trabalho sem alterar os dias de trabalho.",
-    "description": ""
+    "description": "This is the help message for the \"BusinessHours\" dynamic scheduling function. The function name should not be translated."
   },
   "DaysInARowCode": {
     "message": "// Envie  a primeira mensagem agora, mensagens seguintes uma vez por dia.\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // Copie o argumento de data para que ele não seja modificado por nós. \n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n    // ^^^ Não tente enviar no passado em caso de que o Thunderbird estivesse em modo de hibernação durante \n    // o periodo de envio agendado\n}\nif (! args) // Enviar a mensagem 3 vezes por defeito.\n    args = [3];\nnextargs = [args[0] - 1];\n// Reocurre se não tiverem sido feitos envios suficientes.\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
-    "description": ""
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "DaysInARowHelp": {
     "message": "Enviar a mensagem agora, e subsequentemente uma vez por dia, ao mesmo tempo, até que tenha sido enviada três vezes. Especifique um número como um argumento para alterar o número total de envios.",
-    "description": ""
+    "description": "This is the help message for the \"DaysInARow\" dynamic scheduling function. The function name should not be translated."
   },
   "DiscardConfirmTitle": {
     "message": "Ignorar alterações?",

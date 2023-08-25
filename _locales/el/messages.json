@@ -845,7 +845,7 @@
   },
   "EditorReadMeCode": {
     "message": "// Καλώς ήλθατε στο πρόγραμμα επεξεργασίας συνάρτησης Send Later!\n//\n// Το πρόγραμμα επεξεργασίας σας επιτρέπει να δημιουργήσετε πολύπλοκες λειτουργίες εφαρμογής JavaScript \n// μήνυμα προγραμματισμού λογικής η οποία μπορεί να συσχετιστεί με πλήκτρα συντόμευσης ή \n// επιλεγμένο παράθυρο διαλόγου Send Later.\n// Όπως μπορείτε να δείτε παραπάνω, όταν καλείτε μια λειτουργία προγραμματισμού, θα δοθούν\n// τρία επιχειρήματα:\n// * \"specname\" είναι απαραίτητη αν θέλετε αυτή η λειτουργία να επαναληφθεί (βλέπε παρακάτω)\n// * \"prev\" είναι η προηγούμενη προγραμματισμένη χρονική αποστολή, αν αυτό είναι επαναλαμβανόμενη\n// επίκληση\n// * \"args\" είναι επιπλέον επιχειρήματα που επιστρέφουν από προηγούμενη επίκληση αν αυτό\n// είναι μια επαναλαμβανόμενη επίκληση\n// \n// Ο κωδικό σας πρέπει να ορίσει τις μεταβλητές \"next\", \"nextspec\", και\n// \"nextargs\" ως εξής:\n//\n// * \"next\" είναι ο αριθμός των λεπτών στο μέλλον ή μία ημερομηνία αντικειμένου\n// που δείχνει πότε πρέπει να σταλεί το μήνυμα. \n//* \"nextspec\" είναι μια προδιαγραφή επανάληψης εάν αυτό προορίζεται να είναι ένα\n// επαναλαμβανόμενο μήνυμα (βλ.\n// https://extended-thunder.github.io/send-later/#dynamic-recurrence). Αν δεν ορίσετε\n// αυτό, τότε το μήνυμα θα σταλεί μόνο μία φορά. Σημείωση: αν θέλετε \n// η συνάρτηση σας για να κληθεί ξανά για υποτροπή, κάνει:\n// nextspec = \"function \" + specname;\n// * \"nextargs\" είναι μια σειρά με ορισμούς που θέλετε να περάσει στην επόμενη\n// επίκληση της συνάρτησης ως \"args\".\n// Ενώ εργάζεστε σε λειτουργία σας, μπορείτε να το δοκιμάσετε, συμπληρώνοντας τις τιμες\n// για \"prev\" και \"args\" στα παρακάτω πλαίσια κειμένου και, στη συνέχεια, κάνοντας κλικ στο κουμπί \"Execute\" να\n// εκτέλεση τη συνάρτηση και να δείτε τα αποτελέσματα. \n// Υπάρχουν δύο προ-διαμορφωμένο δείγματα λειτουργίας, \"BusinessHours\" και\n// \"DaysInARow\", το οποίο μπορείτε να εξετάσετε και να παίξετε για να μάθετε περισσότερα.\n// Αυτή τη λειτουργία \"ReadMeFirst\" προκαλεί ακριβώς το μήνυμα να σταλεί περίπου τώρα, \n// μέσω της ακόλουθης γραμμής. \nnext = new Date();",
-    "description": ""
+    "description": "This is the \"README\" text that appears in the dynamic function editor. The English text in the comments should be translated, but the variable and function names should be left in English."
   },
   "EditorReadMeHelp": {
     "message": "Οποιοδήποτε κείμενο που βάζετε εδώ θα εμφανιστεί ως επεξήγηση εργαλείου όταν αιωρείστε πάνω από το όνομα της λειτουργίας στο μενού. Μπορείτε να χρησιμοποιήσετε αυτό για να τεκμηριώσει τι κάνει η λειτουργία και τι επιχειρήματα δέχεται.",
@@ -853,19 +853,19 @@
   },
   "_BusinessHoursCode": {
     "message": "// Προεπιλογές\nvar workDays = [1, 2, 3, 4, 5]; // Δευ - Παρ; Sun == 0, Sat == 6\nvar workStart = [8, 30]; //  Έναρξη της εργάσιμης ημέρας ως [H, M]\nvar workEnd = [17, 30]; // Τέλος της εργάσιμης ημέρας ως [Η, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Δεν αναμένεται σε κανονική χρήση, αλλά χρησιμοποιείται ως η τρέχουσα ώρα δοκιμής.\n    next = new Date(prev);\nelse\n    next = new Date();\n\nif (workDays.length == 0 || !workDays.every(d => (d >= 0) && (d <= 6))) { return undefined; }\n\n// Αν έχουμε περάσει από το τέλος της εργάσιμης ημέρας ή όχι σε μια εργάσιμη ημέρα, μεταβείτε στην εργασία\n// ώρα έναρξης την επόμενη ημέρα.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// Αν είμαστε πριν από την έναρξη της εργάσιμης ημέρας, μεταβείτε στην ώρα έναρξης.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
-    "description": ""
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "BusinessHoursHelp": {
     "message": "Στείλτε τώρα το μήνυμα , αν είναι κατά τις εργάσιμες ώρες, ή στην αρχή της επόμενης εργάσιμης ημέρας. Μπορείτε να αλλάξετε τον ορισμό των ημερών εργασίας (προεπιλογή: Δευ - Παρ) περνώντας σε μια σειρά από αριθμούς ημέρας εργασίας ως το πρώτο επιχείρημα, όπου 0 είναι η Κυριακή και 6 είναι το Σάββατο. Μπορείτε να αλλάξετε την έναρξη εργασίας ή χρόνος λήξης (προεπιλογή: 8:30-17:30) με το πέρασμα σε μια σειρά από [H, M] ως το δεύτερο ή τρίτο όρισμα. Καθορίστε \"null\" για παλαιότερες επιχειρήματα, δεν μπορείτε να αλλάξετε. Για παράδειγμα, “null, [9, 0], [17, 0]” αλλάζει τις ώρες εργασίας, χωρίς να αλλάζουν οι ημέρες εργασίας.",
-    "description": ""
+    "description": "This is the help message for the \"BusinessHours\" dynamic scheduling function. The function name should not be translated."
   },
   "DaysInARowCode": {
     "message": "//Στείλτε το πρώτο μήνυμα τώρα, επόμενα μηνύματα μιά φορά ανά ημέρα. \nif (! prev)\n     next = new Date(); \nelse {\n     var now = new Date();\n     next = new Date(prev); // Αντιγράψτε τον ορισμό ημερομηνία, ώστε να μην το τροποποιήσουμε .\n    do {            \nnext.setDate(next.getDate() + 1);\n     } while (next < now);\n     // ^^^ Μην προσπαθείτε να στείλετε στο παρελθόν, σε περίπτωση που κοιμόταν το Thunderbird \n // την προγραμματισμένη ώρα αποστολής. \n} if (! args) // στείλετε μηνύματα τρεις φορές από προεπιλογή.\n    args = [3]; \nnextargs = [args[0] - 1];\nΝα επαναληφθεί εάν δεν κάναμε αρκετά σταλμένα ακόμα. \nif (nextargs[0] > 0)     nextspec = \"function \" + specname;",
-    "description": ""
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "DaysInARowHelp": {
     "message": "Στείλτε το μήνυμα τώρα, και στη συνέχεια μία φορά ανά ημέρα, την ίδια στιγμή, έως ότου έχει σταλεί τρεις φορές. Καθορίστε έναν αριθμό ως επιχείρημα για να αλλάξετε το συνολικό αριθμό των σταλμένων.",
-    "description": ""
+    "description": "This is the help message for the \"DaysInARow\" dynamic scheduling function. The function name should not be translated."
   },
   "DiscardConfirmTitle": {
     "message": "Απόρριψη αλλαγών;",

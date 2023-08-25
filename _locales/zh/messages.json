@@ -817,15 +817,15 @@
   },
   "BusinessHoursHelp": {
     "message": "在办公时间内或在下一个工作日开始时立即发送消息。 你可以在第一个参数发出工作日数字数组(array)修改办公时间（预设为周一至周五），其中0为星期日，6为星期六。你可在第二及第三个参数发出一个[H，M]数组，更改工作开始或结束时间（预设为8:30 - 17:30）。如不更改较早的参数，请指定“null”。 例如，“null，[9，0]，[17，0]”改变工作时间，而不改变工作日。",
-    "description": ""
+    "description": "This is the help message for the \"BusinessHours\" dynamic scheduling function. The function name should not be translated."
   },
   "DaysInARowCode": {
     "message": "// 现在发送第一条消息，随后发送一条消息。\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev); // 复制日期参数，以便我們不会修改它。\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n     // ^^^不要尝试在过去发送，以防 Thunderbird\n     // 在预定的发送时间睡着了。\n\n}\nif (! args) // 预设发送消息三次。\n    args = [3];\nnextargs = [args[0] - 1];\n// 如果我们还没有做完发送，就会重新执行\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
-    "description": ""
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "DaysInARowHelp": {
     "message": "立即发送消息，随后每天一次，直到发送三次至止。 提供一个数字作参数，來更改发送的总数。",
-    "description": ""
+    "description": "This is the help message for the \"DaysInARow\" dynamic scheduling function. The function name should not be translated."
   },
   "DiscardConfirmTitle": {
     "message": "放弃更改？",
