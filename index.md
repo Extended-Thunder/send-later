@@ -53,7 +53,7 @@ to do so, at which point the install warning about full, unrestricted access
 will go away.
 
 Note that all add-ons published on addons.thunderbird.net are reviewed by the
-moderator the site before they are released to the public, to confirm that
+moderators the site before they are released to the public, to confirm that
 there is no malicious or inappropriate functionality in them. You can therefore
 be confident that Send Later is safe to use, despite the somewhat alarming
 warning when you install it.
