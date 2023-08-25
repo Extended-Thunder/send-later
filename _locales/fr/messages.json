@@ -814,28 +814,6 @@
     "message": "Avertissement relatif aux envois programmés",
     "description": ""
   },
-  "SanityCheckOutbox": {
-    "message": "Il existe $1 message(s) non envoyé(s) dont l'envoi sera déclenché la prochaine fois qu'un message programmé soit l'être."
-  },
-  "SanityCheckDrafts": {
-    "message": "Il existe $1 message(s) dont l'envoi par Envoyer plus tard est planifié.\nLe prochain message est programmé pour $2.",
-    "description": "$1 is replaced with a number, and $2 is replaced with the date/time of the next scheduled message."
-  },
-  "SanityCheckCorruptFolderWarning": {
-    "message": "Si ces valeurs vous semblent incorrectes, il est probable que la boîte d'envoi et/ou le dossier des brouillons soient corrompus. Dans ce cas, il est conseillé de compacter et de reconstruire ces dossiers avant d'activer Envoyer plus tard. Voir <$CORRUPTOUTBOXDOCS$> et <$CORRUPTDRAFTDOCS$> pour plus de détails.",
-    "description": "Part of \"sanity check\" prompt potentially displayed during version migration. If there are scheduled messages in the user's Drafts and/or Outbox folders, then the user will be prompted to confirm that the message counts are accurate. This message is preceeded by one or both of the translation strings: \"SanityCheckDrafts\" and/or \"SanityCheckOutbox\".",
-    "placeholders": {
-      "CorruptOutboxDocs": {
-        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Outbox_folder"
-      },
-      "CorruptDraftDocs": {
-        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Drafts_folders"
-      }
-    }
-  },
-  "SanityCheckConfirmOptionMessage": {
-    "message": "Choisir l'une des options :\n  « OK » : continuer comme d'habitude. L'avertissement n'apparaîtra plus.\n\n  « Annuler » : Envoyer plus tard sera désactivé via ses propres préférences.\n                    Pour réactiver Envoyer plus tard, allez sur sa page d'options et définissez\n                    la préférence \"Vérifier toutes les ___ minutes\" à une valeur non nulle.\n                    Vous recevrez à nouveau cet avertissement la prochaine fois que vous redémarrez\n                    Thunderbird"
-  },
   "ShowQuitNotificationPreference": {
     "message": "Afficher un avertissement avant de quitter s'il y a des messages en attente"
   },

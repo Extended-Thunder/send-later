@@ -834,28 +834,6 @@
     "message": "Warnung: Geplante Nachrichten",
     "description": ""
   },
-  "SanityCheckOutbox": {
-    "message": "Sie haben $1 ungesendete Nachricht(en) die mit ausgelöst werden, wenn das nächste Mal eine geplante Nachricht gesendet wird."
-  },
-  "SanityCheckDrafts": {
-    "message": "Sie haben $1 geplante Nachricht(en) für den Versand durch Später Senden.\nDer Versand der nächsten Nachricht ist für $2 geplant.",
-    "description": "$1 is replaced with a number, and $2 is replaced with the date/time of the next scheduled message."
-  },
-  "SanityCheckCorruptFolderWarning": {
-    "message": "Wenn Ihnen diese Zahlen nicht plausibel erscheinen, ist möglicherweise Ihr Postausgang und/oder der Entwürfe-Ordner beschädigt. In diesem Fall empfiehlt es sich, diese zu komprimieren und neu aufzubauen, bevor Sie Später Senden aktivieren. Siehe <$CORRUPTOUTBOXDOCS$> und <$CORRUPTDRAFTDOCS$> für weitere Details.",
-    "description": "Part of \"sanity check\" prompt potentially displayed during version migration. If there are scheduled messages in the user's Drafts and/or Outbox folders, then the user will be prompted to confirm that the message counts are accurate. This message is preceeded by one or both of the translation strings: \"SanityCheckDrafts\" and/or \"SanityCheckOutbox\".",
-    "placeholders": {
-      "CorruptOutboxDocs": {
-        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Outbox_folder"
-      },
-      "CorruptDraftDocs": {
-        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Drafts_folders"
-      }
-    }
-  },
-  "SanityCheckConfirmOptionMessage": {
-    "message": "Wählen Sie eine der Optionen:\n  „OK“: Fortfahren wie üblich. Sie werden nicht erneut gefragt.\n\n  „Abbrechen“: Später Senden wird über eigene Einstellungen deaktiviert.\n                    Um später erneut zu senden, gehen Sie auf die Optionsseite und setzen Sie\n                    die Einstellung „Alle ___ Minuten prüfen“ auf einen Wert ungleich 0.\n                    Sie erhalten diese Eingabeaufforderung erneut beim nächsten Neustart von\n                    Thunderbird"
-  },
   "ShowQuitNotificationPreference": {
     "message": "Vor dem Beenden eine Warnung anzeigen, wenn noch ungesendete Nachrichten vorhanden sind"
   },

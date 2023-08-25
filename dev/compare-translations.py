@@ -25,11 +25,17 @@ obsolete_keys = (
 
     'close.accesskey',
     'close.cmdkey',
+    'CompactionFailureNoError',
+    'CompactionFailureWithError',
     'delete.accesskey',
     'everymonthly_short',
     'export.accesskey',
     'reset.accesskey',
-    "save.accesskey",
+    'SanityCheckConfirmOptionMessage',
+    'SanityCheckCorruptFolderWarning',
+    'SanityCheckDrafts',
+    'SanityCheckOutbox',
+    'save.accesskey',
     'sendlater.ask.donate.accesskey',
     'sendlater.ask.donate.label',
 )

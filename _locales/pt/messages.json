@@ -806,28 +806,6 @@
     "message": "Aviso de mensagens agendadas",
     "description": ""
   },
-  "SanityCheckOutbox": {
-    "message": "Existem $1 mensagem(ns) não enviada(s) que será(ão) enviadas da próxima vez que ocorrer um agendamento."
-  },
-  "SanityCheckDrafts": {
-    "message": "Existem $1 mensagem(ns) agendadas para serem enviadas pelo Send Later.\nA próxima está agendada para $2.",
-    "description": "$1 is replaced with a number, and $2 is replaced with the date/time of the next scheduled message."
-  },
-  "SanityCheckCorruptFolderWarning": {
-    "message": "Se estes valores não parecem corretos, pode ter uma caixa de saída e/ou rascunhos corrompida. Nesse caso, é recomendado que compacte e recrie essas pastas antes de ativar Send Later. Veja <$CORRUPTOUTBOXDOCS$> e <$CORRUPTDRAFTDOCS$> para mais detalhes.",
-    "description": "Part of \"sanity check\" prompt potentially displayed during version migration. If there are scheduled messages in the user's Drafts and/or Outbox folders, then the user will be prompted to confirm that the message counts are accurate. This message is preceeded by one or both of the translation strings: \"SanityCheckDrafts\" and/or \"SanityCheckOutbox\".",
-    "placeholders": {
-      "CorruptOutboxDocs": {
-        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Outbox_folder"
-      },
-      "CorruptDraftDocs": {
-        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Drafts_folders"
-      }
-    }
-  },
-  "SanityCheckConfirmOptionMessage": {
-    "message": "Selecione uma das opções:\n  \"OK\": prossiga como de costume. Você não será solicitada confirmação novamente.\n\n  \"Cancelar\": Send Later será desativado nas suas preferências.\n                    Para reativar o Send Later, vá para sua página de opções e defina\n                    a opção \"Verifique a cada ___ minutos\" para um valor que não seja zero.\n                    Receberá este aviso novamente na próxima vez que reiniciar o\n                    Thunderbird"
-  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Há mensagens agendadas para serem enviadas. O Send Later apenas pode enviar mensagens quando $1 está a correr. Tem a certeza de que pretende sair?",
     "description": ""

@@ -814,28 +814,6 @@
     "message": "Advarsel om planlagte beskeder",
     "description": ""
   },
-  "SanityCheckOutbox": {
-    "message": "Du har $1 ikke-sendte beskeder, som vil blive sendt næste gang en planlagt besked udløses."
-  },
-  "SanityCheckDrafts": {
-    "message": "Du har $1 besked(er) planlagt til at blive leveret af Send senere.\nDen næste er planlagt til $2.",
-    "description": "$1 is replaced with a number, and $2 is replaced with the date/time of the next scheduled message."
-  },
-  "SanityCheckCorruptFolderWarning": {
-    "message": "Hvis disse tal ikke ser rigtige  ud, kan årsagen være at du har en beskadiget Udbakke og/eller Kladder mappe(r). I så fald anbefales det, at du optimerer og genopbygger disse mapper, før du aktiverer Send senere. Se<$CORRUPTOUTBOXDOCS$> og <$CORRUPTDRAFTDOCS$> for flere detaljer.",
-    "description": "Part of \"sanity check\" prompt potentially displayed during version migration. If there are scheduled messages in the user's Drafts and/or Outbox folders, then the user will be prompted to confirm that the message counts are accurate. This message is preceeded by one or both of the translation strings: \"SanityCheckDrafts\" and/or \"SanityCheckOutbox\".",
-    "placeholders": {
-      "CorruptOutboxDocs": {
-        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Outbox_folder"
-      },
-      "CorruptDraftDocs": {
-        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Drafts_folders"
-      }
-    }
-  },
-  "SanityCheckConfirmOptionMessage": {
-    "message": "Vælg en af mulighederne:\n  “OK”: Fortsæt som sædvanlig. Du vil ikke blive spurgt igen.\n\n  “Annullér”: Send senere vil blive deaktiveret via egne præferencer.\n                    For at genaktivere Send senere, gå til siden med valgmuligheder og sæt\n                    “Tjek hver ___ minutter” præferencen til en ikke-nul værdi.\n                    Du vil se denne forespørgsel igen, næste gang du genstarter\n                    Thunderbird"
-  },
   "ShowQuitNotificationPreference": {
     "message": "Vis advarsel før afslutning hvis der er ventende beskeder"
   },

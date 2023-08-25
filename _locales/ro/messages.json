@@ -826,28 +826,6 @@
     "message": "Avertisment mesaje programate",
     "description": ""
   },
-  "SanityCheckOutbox": {
-    "message": "Ai $1 (de) mesaj(e) netrimis(e) a căror trimitere va fi declanșată data viitoare când un mesaj programat devine exigibil."
-  },
-  "SanityCheckDrafts": {
-    "message": "Ai $1 (de) mesaj(e) programate să fie livrate de Send Later.\nUrmătorul este programat pentru $2.",
-    "description": "$1 is replaced with a number, and $2 is replaced with the date/time of the next scheduled message."
-  },
-  "SanityCheckCorruptFolderWarning": {
-    "message": "Dacă aceste valori par incorecte, este posibil să ai un dosar „De trimis” și/sau „Mesaje nefinalizate” corupt(e). În acest caz, se recomandă să compactezi și să reconstruiești aceste dosare înainte de a activa Send Later. Vezi <$CORRUPTOUTBOXDOCS$> și <$CORRUPTDRAFTDOCS$> pentru mai multe detalii.",
-    "description": "Part of \"sanity check\" prompt potentially displayed during version migration. If there are scheduled messages in the user's Drafts and/or Outbox folders, then the user will be prompted to confirm that the message counts are accurate. This message is preceeded by one or both of the translation strings: \"SanityCheckDrafts\" and/or \"SanityCheckOutbox\".",
-    "placeholders": {
-      "CorruptOutboxDocs": {
-        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Outbox_folder"
-      },
-      "CorruptDraftDocs": {
-        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Drafts_folders"
-      }
-    }
-  },
-  "SanityCheckConfirmOptionMessage": {
-    "message": "Selectează una dintre opțiuni:\n  “OK”: Continuă ca de obicei. Opțiunea se salvează.\n\n  “Cancel”: Send Later va fi dezactivat prin intermediul preferințelor sale.\n                    Pentru a reactiva Send Later, mergi la pagina de opțiuni și setează\n                    pentru preferința “Verifică la fiecare ___ minute” o valoare non-zero.\n                    Vei primi această solicitare din nou data viitoare când repornești\n                    Thunderbird"
-  },
   "ShowQuitNotificationPreference": {
     "message": "Arată avertisment înainte de a închide dacă există mesaje în așteptare"
   },

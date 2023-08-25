@@ -838,28 +838,6 @@
     "message": "Ostrzeżenie: problem z zaplanowaniem wysyłki",
     "description": ""
   },
-  "SanityCheckOutbox": {
-    "message": "Masz $1 niewysłanych wiadomości, które zostaną wysłane wraz z następną zaplanowaną wiadomością."
-  },
-  "SanityCheckDrafts": {
-    "message": "Masz $1 wiadomości zaplanowanych do dostarczenia przez Send Later.\nNastępna wiadomość jest zaplanowana na $2.",
-    "description": "$1 is replaced with a number, and $2 is replaced with the date/time of the next scheduled message."
-  },
-  "SanityCheckCorruptFolderWarning": {
-    "message": "Jeśli te liczby nie wyglądają prawidłowo, możesz mieć uszkodzone foldery Outbox lub Szkice. W takim przypadku zaleca się kompaktowanie i przebudowanie tych folderów przed aktywacją Send Later. Zobacz <$CORRUPTOUTBOXDOCS$> i <$CORRUPTDRAFTDOCS$> aby uzyskać więcej informacji.",
-    "description": "Part of \"sanity check\" prompt potentially displayed during version migration. If there are scheduled messages in the user's Drafts and/or Outbox folders, then the user will be prompted to confirm that the message counts are accurate. This message is preceeded by one or both of the translation strings: \"SanityCheckDrafts\" and/or \"SanityCheckOutbox\".",
-    "placeholders": {
-      "CorruptOutboxDocs": {
-        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Outbox_folder"
-      },
-      "CorruptDraftDocs": {
-        "content": "https://github.com/Extended-Thunder/send-later/wiki/Troubleshooting#Corrupt_Drafts_folders"
-      }
-    }
-  },
-  "SanityCheckConfirmOptionMessage": {
-    "message": "Wybierz jedną z opcji:\n  \"OK\": Kontynuuj jak zwykle. Nie będziesz więcej o to pytany.\n\n  \"Anuluj\": Send Later będzie wyłączony we własnych preferencjach.\n                  Aby ponownie włączyć Send Later, przejdź do opcji i ustaw\n                  opcję \"Sprawdź co ___ minut\" na wartość różną od zera.\n                  To powiadomienie pojawi się ponownie przy restarcie\n                  Thunderbirda."
-  },
   "ShowQuitNotificationPreference": {
     "message": "Pokaż ostrzeżenie przed zamknięciem aplikacji jeśli są oczekujące wiadomości"
   },
