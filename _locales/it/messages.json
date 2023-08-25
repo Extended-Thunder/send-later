@@ -567,54 +567,6 @@
     "message": "Scegli una funzione dal menù",
     "description": ""
   },
-  "January": {
-    "message": "Gennaio",
-    "description": ""
-  },
-  "February": {
-    "message": "Febbraio",
-    "description": ""
-  },
-  "March": {
-    "message": "Marzo",
-    "description": ""
-  },
-  "April": {
-    "message": "Aprile",
-    "description": ""
-  },
-  "May": {
-    "message": "Maggio",
-    "description": ""
-  },
-  "June": {
-    "message": "Giugno",
-    "description": ""
-  },
-  "July": {
-    "message": "Luglio",
-    "description": ""
-  },
-  "August": {
-    "message": "Agosto",
-    "description": ""
-  },
-  "September": {
-    "message": "Settembre",
-    "description": ""
-  },
-  "October": {
-    "message": "Ottobre",
-    "description": ""
-  },
-  "November": {
-    "message": "Novembre",
-    "description": ""
-  },
-  "December": {
-    "message": "Dicembre",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "Valore scelta rapida non valido",
     "description": ""

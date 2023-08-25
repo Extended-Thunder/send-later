@@ -599,54 +599,6 @@
     "message": "בחר פונקציה מהתפריט שלמעלה",
     "description": ""
   },
-  "January": {
-    "message": "‫ינואר‬",
-    "description": ""
-  },
-  "February": {
-    "message": "‫פברואר‬",
-    "description": ""
-  },
-  "March": {
-    "message": "‫מרץ‬",
-    "description": ""
-  },
-  "April": {
-    "message": "‫אפריל‬",
-    "description": ""
-  },
-  "May": {
-    "message": "‫מאי‬",
-    "description": ""
-  },
-  "June": {
-    "message": "‫יוני‬",
-    "description": ""
-  },
-  "July": {
-    "message": "‫יולי‬",
-    "description": ""
-  },
-  "August": {
-    "message": "‫אוגוסט‬",
-    "description": ""
-  },
-  "September": {
-    "message": "‫ספטמבר‬",
-    "description": ""
-  },
-  "October": {
-    "message": "‫אוקטובר‬",
-    "description": ""
-  },
-  "November": {
-    "message": "‫נובמבר‬",
-    "description": ""
-  },
-  "December": {
-    "message": "‫דצמבר‬",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "‫ערך קיצור דרך שגוי‬",
     "description": ""

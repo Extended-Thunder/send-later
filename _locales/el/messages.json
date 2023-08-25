@@ -571,54 +571,6 @@
     "message": "Επιλέξτε μία συνάρτηση από το παραπάνω μενού",
     "description": ""
   },
-  "January": {
-    "message": "Ιανουάριος",
-    "description": ""
-  },
-  "February": {
-    "message": "Φεβρουάριος",
-    "description": ""
-  },
-  "March": {
-    "message": "Μάρτιος",
-    "description": ""
-  },
-  "April": {
-    "message": "Απρίλιος",
-    "description": ""
-  },
-  "May": {
-    "message": "Μάιος",
-    "description": ""
-  },
-  "June": {
-    "message": "Ιούνιος",
-    "description": ""
-  },
-  "July": {
-    "message": "Ιούλιος",
-    "description": ""
-  },
-  "August": {
-    "message": "Άυγουστος",
-    "description": ""
-  },
-  "September": {
-    "message": "Σεπτέμβριος",
-    "description": ""
-  },
-  "October": {
-    "message": "Οκτώβριος",
-    "description": ""
-  },
-  "November": {
-    "message": "Νοέμβριος",
-    "description": ""
-  },
-  "December": {
-    "message": "Δεκέμβριος",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "Η συντόμευση δεν είναι έγκυρη.",
     "description": ""

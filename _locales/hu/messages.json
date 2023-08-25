@@ -599,54 +599,6 @@
     "message": "Válasszon ki egy függvényt a fenti menüből",
     "description": ""
   },
-  "January": {
-    "message": "január",
-    "description": ""
-  },
-  "February": {
-    "message": "február",
-    "description": ""
-  },
-  "March": {
-    "message": "március",
-    "description": ""
-  },
-  "April": {
-    "message": "április",
-    "description": ""
-  },
-  "May": {
-    "message": "május",
-    "description": ""
-  },
-  "June": {
-    "message": "június",
-    "description": ""
-  },
-  "July": {
-    "message": "július",
-    "description": ""
-  },
-  "August": {
-    "message": "augusztus",
-    "description": ""
-  },
-  "September": {
-    "message": "szeptember",
-    "description": ""
-  },
-  "October": {
-    "message": "október",
-    "description": ""
-  },
-  "November": {
-    "message": "november",
-    "description": ""
-  },
-  "December": {
-    "message": "december",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "Érvénytelen gyorsbillentyű érték",
     "description": ""

@@ -563,54 +563,6 @@
     "message": "Välj en funktion från menyn ovan",
     "description": ""
   },
-  "January": {
-    "message": "januari",
-    "description": ""
-  },
-  "February": {
-    "message": "februari",
-    "description": ""
-  },
-  "March": {
-    "message": "mars",
-    "description": ""
-  },
-  "April": {
-    "message": "april",
-    "description": ""
-  },
-  "May": {
-    "message": "maj",
-    "description": ""
-  },
-  "June": {
-    "message": "juni",
-    "description": ""
-  },
-  "July": {
-    "message": "juli",
-    "description": ""
-  },
-  "August": {
-    "message": "augusti",
-    "description": ""
-  },
-  "September": {
-    "message": "september",
-    "description": ""
-  },
-  "October": {
-    "message": "oktober",
-    "description": ""
-  },
-  "November": {
-    "message": "november",
-    "description": ""
-  },
-  "December": {
-    "message": "december",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "Ogiltigt värde för genväg",
     "description": ""

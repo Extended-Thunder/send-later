@@ -571,54 +571,6 @@
     "message": "Vyberte funkci z menu nahoře",
     "description": ""
   },
-  "January": {
-    "message": "Leden",
-    "description": ""
-  },
-  "February": {
-    "message": "Únor",
-    "description": ""
-  },
-  "March": {
-    "message": "Březen",
-    "description": ""
-  },
-  "April": {
-    "message": "Duben",
-    "description": ""
-  },
-  "May": {
-    "message": "Květen",
-    "description": ""
-  },
-  "June": {
-    "message": "Červen",
-    "description": ""
-  },
-  "July": {
-    "message": "Červenec",
-    "description": ""
-  },
-  "August": {
-    "message": "Srpen",
-    "description": ""
-  },
-  "September": {
-    "message": "Září",
-    "description": ""
-  },
-  "October": {
-    "message": "Říjen",
-    "description": ""
-  },
-  "November": {
-    "message": "Listopad",
-    "description": ""
-  },
-  "December": {
-    "message": "Prosinec",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "Neplatná hodnota předvolby",
     "description": ""

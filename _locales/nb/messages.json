@@ -567,38 +567,6 @@
     "message": "Velg en funksjon fra menyen ovenfor",
     "description": ""
   },
-  "January": {
-    "message": "Januar",
-    "description": ""
-  },
-  "February": {
-    "message": "Februar",
-    "description": ""
-  },
-  "March": {
-    "message": "Mars",
-    "description": ""
-  },
-  "May": {
-    "message": "Mai",
-    "description": ""
-  },
-  "June": {
-    "message": "Juni",
-    "description": ""
-  },
-  "July": {
-    "message": "Juli",
-    "description": ""
-  },
-  "October": {
-    "message": "Oktober",
-    "description": ""
-  },
-  "December": {
-    "message": "Desember",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "Ugyldig snarveien verdi",
     "description": ""

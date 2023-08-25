@@ -563,54 +563,6 @@
     "message": "從以上選單選擇一個功能",
     "description": ""
   },
-  "January": {
-    "message": "一月",
-    "description": ""
-  },
-  "February": {
-    "message": "二月",
-    "description": ""
-  },
-  "March": {
-    "message": "三月",
-    "description": ""
-  },
-  "April": {
-    "message": "四月",
-    "description": ""
-  },
-  "May": {
-    "message": "五月",
-    "description": ""
-  },
-  "June": {
-    "message": "六月",
-    "description": ""
-  },
-  "July": {
-    "message": "七月",
-    "description": ""
-  },
-  "August": {
-    "message": "八月",
-    "description": ""
-  },
-  "September": {
-    "message": "九月",
-    "description": ""
-  },
-  "October": {
-    "message": "十月",
-    "description": ""
-  },
-  "November": {
-    "message": "十一月",
-    "description": ""
-  },
-  "December": {
-    "message": "十二月",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "無效的快捷按鈕值",
     "description": ""

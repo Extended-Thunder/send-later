@@ -583,54 +583,6 @@
     "message": "Selecionar uma função do menu acima",
     "description": ""
   },
-  "January": {
-    "message": "Janeiro",
-    "description": ""
-  },
-  "February": {
-    "message": "Fevereiro",
-    "description": ""
-  },
-  "March": {
-    "message": "Março",
-    "description": ""
-  },
-  "April": {
-    "message": "Abril",
-    "description": ""
-  },
-  "May": {
-    "message": "Maio",
-    "description": ""
-  },
-  "June": {
-    "message": "Junho",
-    "description": ""
-  },
-  "July": {
-    "message": "Julho",
-    "description": ""
-  },
-  "August": {
-    "message": "Agosto",
-    "description": ""
-  },
-  "September": {
-    "message": "Setembro",
-    "description": ""
-  },
-  "October": {
-    "message": "Outubro",
-    "description": ""
-  },
-  "November": {
-    "message": "Novembro",
-    "description": ""
-  },
-  "December": {
-    "message": "Dezembro",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "Valor de atalho inválido",
     "description": ""

@@ -571,54 +571,6 @@
     "message": "Выберете функцию из меню выше",
     "description": ""
   },
-  "January": {
-    "message": "Январь",
-    "description": ""
-  },
-  "February": {
-    "message": "Февраль",
-    "description": ""
-  },
-  "March": {
-    "message": "Март",
-    "description": ""
-  },
-  "April": {
-    "message": "Апрель",
-    "description": ""
-  },
-  "May": {
-    "message": "Май",
-    "description": ""
-  },
-  "June": {
-    "message": "Июнь",
-    "description": ""
-  },
-  "July": {
-    "message": "Июль",
-    "description": ""
-  },
-  "August": {
-    "message": "Август",
-    "description": ""
-  },
-  "September": {
-    "message": "Сентябрь",
-    "description": ""
-  },
-  "October": {
-    "message": "Октябрь",
-    "description": ""
-  },
-  "November": {
-    "message": "Ноябрь",
-    "description": ""
-  },
-  "December": {
-    "message": "Декабрь",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "Недопустимое сокращение",
     "description": ""

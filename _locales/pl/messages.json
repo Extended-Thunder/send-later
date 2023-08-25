@@ -599,54 +599,6 @@
     "message": "Wybierz funkcję z menu powyżej",
     "description": ""
   },
-  "January": {
-    "message": "Styczeń",
-    "description": ""
-  },
-  "February": {
-    "message": "Luty",
-    "description": ""
-  },
-  "March": {
-    "message": "Marzec",
-    "description": ""
-  },
-  "April": {
-    "message": "Kwiecień",
-    "description": ""
-  },
-  "May": {
-    "message": "Maj",
-    "description": ""
-  },
-  "June": {
-    "message": "Czerwiec",
-    "description": ""
-  },
-  "July": {
-    "message": "Lipiec",
-    "description": ""
-  },
-  "August": {
-    "message": "Sierpień",
-    "description": ""
-  },
-  "September": {
-    "message": "Wrzesień",
-    "description": ""
-  },
-  "October": {
-    "message": "Październik",
-    "description": ""
-  },
-  "November": {
-    "message": "Listopad",
-    "description": ""
-  },
-  "December": {
-    "message": "Grudzień",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "Nieprawidłowa wartość skrótu",
     "description": ""

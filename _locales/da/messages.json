@@ -575,38 +575,6 @@
     "message": "Vælg en funktion fra menuen ovenfor",
     "description": ""
   },
-  "January": {
-    "message": "Januar",
-    "description": ""
-  },
-  "February": {
-    "message": "Februar",
-    "description": ""
-  },
-  "March": {
-    "message": "Marts",
-    "description": ""
-  },
-  "April": {
-    "message": "april",
-    "description": ""
-  },
-  "May": {
-    "message": "Maj",
-    "description": ""
-  },
-  "June": {
-    "message": "Juni",
-    "description": ""
-  },
-  "July": {
-    "message": "Juli",
-    "description": ""
-  },
-  "October": {
-    "message": "Oktober",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "Ugyldig genvejsværdi",
     "description": ""

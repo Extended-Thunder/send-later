@@ -595,38 +595,6 @@
     "message": "Wählen Sie eine Funktion aus dem obigen Menü aus",
     "description": ""
   },
-  "January": {
-    "message": "Januar",
-    "description": ""
-  },
-  "February": {
-    "message": "Februar",
-    "description": ""
-  },
-  "March": {
-    "message": "März",
-    "description": ""
-  },
-  "May": {
-    "message": "Mai",
-    "description": ""
-  },
-  "June": {
-    "message": "Juni",
-    "description": ""
-  },
-  "July": {
-    "message": "Juli",
-    "description": ""
-  },
-  "October": {
-    "message": "Oktober",
-    "description": ""
-  },
-  "December": {
-    "message": "Dezember",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "Ungültiger Tastaturkürzel-Wert",
     "description": ""

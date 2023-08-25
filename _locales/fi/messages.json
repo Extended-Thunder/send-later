@@ -579,54 +579,6 @@
     "message": "Valitse funktio ylhäällä olevasta valikosta",
     "description": ""
   },
-  "January": {
-    "message": "Tammikuu",
-    "description": ""
-  },
-  "February": {
-    "message": "helmikuu",
-    "description": ""
-  },
-  "March": {
-    "message": "maaliskuu",
-    "description": ""
-  },
-  "April": {
-    "message": "huhtikuu",
-    "description": ""
-  },
-  "May": {
-    "message": "toukokuu",
-    "description": ""
-  },
-  "June": {
-    "message": "kesäkuu",
-    "description": ""
-  },
-  "July": {
-    "message": "heinäkuu",
-    "description": ""
-  },
-  "August": {
-    "message": "elokuu",
-    "description": ""
-  },
-  "September": {
-    "message": "syyskuu",
-    "description": ""
-  },
-  "October": {
-    "message": "lokakuu",
-    "description": ""
-  },
-  "November": {
-    "message": "marraskuu",
-    "description": ""
-  },
-  "December": {
-    "message": "joulukuu",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "Virheellinen pikatoiminnon arvo",
     "description": ""

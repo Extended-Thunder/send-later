@@ -395,54 +395,6 @@
     "message": "Նշեք ճիշտ ամսաթիվ",
     "description": ""
   },
-  "January": {
-    "message": "Հունվար",
-    "description": ""
-  },
-  "February": {
-    "message": "Փետրվար",
-    "description": ""
-  },
-  "March": {
-    "message": "Մարտ",
-    "description": ""
-  },
-  "April": {
-    "message": "Ապրիլ",
-    "description": ""
-  },
-  "May": {
-    "message": "Մայիս",
-    "description": ""
-  },
-  "June": {
-    "message": "Հունիս",
-    "description": ""
-  },
-  "July": {
-    "message": "Հուլիս",
-    "description": ""
-  },
-  "August": {
-    "message": "Օգոստոս",
-    "description": ""
-  },
-  "September": {
-    "message": "Սեպտեմբեր",
-    "description": ""
-  },
-  "October": {
-    "message": "Հոկտեմբեր",
-    "description": ""
-  },
-  "November": {
-    "message": "Նոյեմբեր",
-    "description": ""
-  },
-  "December": {
-    "message": "Դեկտեմբեր",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "Պիտակի նշանկ-ը սխալ է",
     "description": ""

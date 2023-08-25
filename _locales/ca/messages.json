@@ -583,54 +583,6 @@
     "message": "Sel·leccioni una funció del menú superior",
     "description": ""
   },
-  "January": {
-    "message": "gener",
-    "description": ""
-  },
-  "February": {
-    "message": "febrer",
-    "description": ""
-  },
-  "March": {
-    "message": "març",
-    "description": ""
-  },
-  "April": {
-    "message": "abril",
-    "description": ""
-  },
-  "May": {
-    "message": "maig",
-    "description": ""
-  },
-  "June": {
-    "message": "juny",
-    "description": ""
-  },
-  "July": {
-    "message": "juliol",
-    "description": ""
-  },
-  "August": {
-    "message": "agost",
-    "description": ""
-  },
-  "September": {
-    "message": "setembre",
-    "description": ""
-  },
-  "October": {
-    "message": "octubre",
-    "description": ""
-  },
-  "November": {
-    "message": "novembre",
-    "description": ""
-  },
-  "December": {
-    "message": "desembre",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "Valor de drecera invàlid",
     "description": ""

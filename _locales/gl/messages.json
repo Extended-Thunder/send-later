@@ -555,54 +555,6 @@
     "message": "Seleccionar unha función do menú superior",
     "description": ""
   },
-  "January": {
-    "message": "Xaneiro",
-    "description": ""
-  },
-  "February": {
-    "message": "Febreiro",
-    "description": ""
-  },
-  "March": {
-    "message": "Marzo",
-    "description": ""
-  },
-  "April": {
-    "message": "Abril",
-    "description": ""
-  },
-  "May": {
-    "message": "Maio",
-    "description": ""
-  },
-  "June": {
-    "message": "Xuño",
-    "description": ""
-  },
-  "July": {
-    "message": "Xullo",
-    "description": ""
-  },
-  "August": {
-    "message": "Agosto",
-    "description": ""
-  },
-  "September": {
-    "message": "Setembro",
-    "description": ""
-  },
-  "October": {
-    "message": "Outubro",
-    "description": ""
-  },
-  "November": {
-    "message": "Novembro",
-    "description": ""
-  },
-  "December": {
-    "message": "Decembro",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "Valor de atallo non válido",
     "description": ""

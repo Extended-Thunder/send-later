@@ -599,54 +599,6 @@
     "message": "Select a function from the menu above",
     "description": ""
   },
-  "January": {
-    "message": "January",
-    "description": ""
-  },
-  "February": {
-    "message": "February",
-    "description": ""
-  },
-  "March": {
-    "message": "March",
-    "description": ""
-  },
-  "April": {
-    "message": "April",
-    "description": ""
-  },
-  "May": {
-    "message": "May",
-    "description": ""
-  },
-  "June": {
-    "message": "June",
-    "description": ""
-  },
-  "July": {
-    "message": "July",
-    "description": ""
-  },
-  "August": {
-    "message": "August",
-    "description": ""
-  },
-  "September": {
-    "message": "September",
-    "description": ""
-  },
-  "October": {
-    "message": "October",
-    "description": ""
-  },
-  "November": {
-    "message": "November",
-    "description": ""
-  },
-  "December": {
-    "message": "December",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "Invalid shortcut value",
     "description": ""

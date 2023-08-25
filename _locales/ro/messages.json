@@ -587,54 +587,6 @@
     "message": "Selectează o funcție din meniul de mai sus",
     "description": ""
   },
-  "January": {
-    "message": "ianuarie",
-    "description": ""
-  },
-  "February": {
-    "message": "februarie",
-    "description": ""
-  },
-  "March": {
-    "message": "martie",
-    "description": ""
-  },
-  "April": {
-    "message": "aprilie",
-    "description": ""
-  },
-  "May": {
-    "message": "mai",
-    "description": ""
-  },
-  "June": {
-    "message": "iunie",
-    "description": ""
-  },
-  "July": {
-    "message": "iulie",
-    "description": ""
-  },
-  "August": {
-    "message": "august",
-    "description": ""
-  },
-  "September": {
-    "message": "septembrie",
-    "description": ""
-  },
-  "October": {
-    "message": "octombrie",
-    "description": ""
-  },
-  "November": {
-    "message": "noiembrie",
-    "description": ""
-  },
-  "December": {
-    "message": "decembrie",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "Valoare comanda rapidă invalidă",
     "description": ""

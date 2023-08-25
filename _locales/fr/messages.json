@@ -575,54 +575,6 @@
     "message": "Sélectionnez une fonction dans le menu ci-dessous",
     "description": ""
   },
-  "January": {
-    "message": "Janvier",
-    "description": ""
-  },
-  "February": {
-    "message": "Février",
-    "description": ""
-  },
-  "March": {
-    "message": "Mars",
-    "description": ""
-  },
-  "April": {
-    "message": "Avril",
-    "description": ""
-  },
-  "May": {
-    "message": "Mai",
-    "description": ""
-  },
-  "June": {
-    "message": "Juin",
-    "description": ""
-  },
-  "July": {
-    "message": "Juillet",
-    "description": ""
-  },
-  "August": {
-    "message": "Août",
-    "description": ""
-  },
-  "September": {
-    "message": "Septembre",
-    "description": ""
-  },
-  "October": {
-    "message": "Octobre",
-    "description": ""
-  },
-  "November": {
-    "message": "Novembre",
-    "description": ""
-  },
-  "December": {
-    "message": "Décembre",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "Valeur de raccourci incorrecte",
     "description": ""

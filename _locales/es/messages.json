@@ -567,54 +567,6 @@
     "message": "Seleccione una función en el menú de arriba",
     "description": ""
   },
-  "January": {
-    "message": "Enero",
-    "description": ""
-  },
-  "February": {
-    "message": "Febrero",
-    "description": ""
-  },
-  "March": {
-    "message": "Marzo",
-    "description": ""
-  },
-  "April": {
-    "message": "Abril",
-    "description": ""
-  },
-  "May": {
-    "message": "Mayo",
-    "description": ""
-  },
-  "June": {
-    "message": "Junio",
-    "description": ""
-  },
-  "July": {
-    "message": "Julio",
-    "description": ""
-  },
-  "August": {
-    "message": "Agosto",
-    "description": ""
-  },
-  "September": {
-    "message": "Septiembre",
-    "description": ""
-  },
-  "October": {
-    "message": "Octubre",
-    "description": ""
-  },
-  "November": {
-    "message": "Noviembre",
-    "description": ""
-  },
-  "December": {
-    "message": "Diciembre",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "Valor de botón de preajuste no válido",
     "description": ""

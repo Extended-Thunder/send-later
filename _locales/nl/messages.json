@@ -575,54 +575,6 @@
     "message": "Selecteer een functie vanuit het menu hierboven",
     "description": ""
   },
-  "January": {
-    "message": "januari",
-    "description": ""
-  },
-  "February": {
-    "message": "februari",
-    "description": ""
-  },
-  "March": {
-    "message": "maart",
-    "description": ""
-  },
-  "April": {
-    "message": "april",
-    "description": ""
-  },
-  "May": {
-    "message": "mei",
-    "description": ""
-  },
-  "June": {
-    "message": "juni",
-    "description": ""
-  },
-  "July": {
-    "message": "juli",
-    "description": ""
-  },
-  "August": {
-    "message": "augustus",
-    "description": ""
-  },
-  "September": {
-    "message": "september",
-    "description": ""
-  },
-  "October": {
-    "message": "oktober",
-    "description": ""
-  },
-  "November": {
-    "message": "november",
-    "description": ""
-  },
-  "December": {
-    "message": "december",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "Ongeldige waarde",
     "description": ""

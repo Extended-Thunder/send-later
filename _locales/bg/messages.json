@@ -595,54 +595,6 @@
     "message": "Изберете функция от менюто по-горе",
     "description": ""
   },
-  "January": {
-    "message": "Януари",
-    "description": ""
-  },
-  "February": {
-    "message": "Февруари",
-    "description": ""
-  },
-  "March": {
-    "message": "Март",
-    "description": ""
-  },
-  "April": {
-    "message": "Април",
-    "description": ""
-  },
-  "May": {
-    "message": "Май",
-    "description": ""
-  },
-  "June": {
-    "message": "Юни",
-    "description": ""
-  },
-  "July": {
-    "message": "Юли",
-    "description": ""
-  },
-  "August": {
-    "message": "Август",
-    "description": ""
-  },
-  "September": {
-    "message": "Септември",
-    "description": ""
-  },
-  "October": {
-    "message": "Октомври",
-    "description": ""
-  },
-  "November": {
-    "message": "Ноември",
-    "description": ""
-  },
-  "December": {
-    "message": "Декември",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "Невалиден пряк път",
     "description": ""

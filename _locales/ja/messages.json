@@ -551,54 +551,6 @@
     "message": "上記メニューから関数を選択",
     "description": ""
   },
-  "January": {
-    "message": "1月",
-    "description": ""
-  },
-  "February": {
-    "message": "2月",
-    "description": ""
-  },
-  "March": {
-    "message": "3月",
-    "description": ""
-  },
-  "April": {
-    "message": "4月",
-    "description": ""
-  },
-  "May": {
-    "message": "5月",
-    "description": ""
-  },
-  "June": {
-    "message": "6月",
-    "description": ""
-  },
-  "July": {
-    "message": "7月",
-    "description": ""
-  },
-  "August": {
-    "message": "8月",
-    "description": ""
-  },
-  "September": {
-    "message": "9月",
-    "description": ""
-  },
-  "October": {
-    "message": "10月",
-    "description": ""
-  },
-  "November": {
-    "message": "11月",
-    "description": ""
-  },
-  "December": {
-    "message": "12月",
-    "description": ""
-  },
   "OptionShortcutAlertTitle": {
     "message": "無効なショートカット値",
     "description": ""
