@@ -834,12 +834,6 @@
     "message": "Warnung: Geplante Nachrichten",
     "description": ""
   },
-  "CompactionFailureWithError": {
-    "message": "Komprimieren des Postausgangs und/oder Entwürfe-Ordners fehlgeschlagen mit Fehler:"
-  },
-  "CompactionFailureNoError": {
-    "message": "Komprimieren von $1 ist ohne Fehlermeldung fehlgeschlagen."
-  },
   "SanityCheckOutbox": {
     "message": "Sie haben $1 ungesendete Nachricht(en) die mit ausgelöst werden, wenn das nächste Mal eine geplante Nachricht gesendet wird."
   },

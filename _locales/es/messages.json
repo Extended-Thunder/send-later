@@ -806,12 +806,6 @@
     "message": "Aviso de mensajes programados",
     "description": ""
   },
-  "CompactionFailureWithError": {
-    "message": "La tarea de compactar las carpetas de salida y/o borradores fallaron con un error:"
-  },
-  "CompactionFailureNoError": {
-    "message": "Compactar $1 falló sin generar ningún mensaje de error."
-  },
   "SanityCheckOutbox": {
     "message": "Tiene $1 mensaje(s) sin enviar, que se activará(n) para enviar la próxima vez que se realice un envío programado de mensajes."
   },

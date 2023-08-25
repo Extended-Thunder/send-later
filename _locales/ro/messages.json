@@ -826,12 +826,6 @@
     "message": "Avertisment mesaje programate",
     "description": ""
   },
-  "CompactionFailureWithError": {
-    "message": "Compactarea „De trimis” și/sau „Mesaje nefinalizate” a eșuat cu eroarea:"
-  },
-  "CompactionFailureNoError": {
-    "message": "Compactarea $1 a eșuat fără mesaj de eroare."
-  },
   "SanityCheckOutbox": {
     "message": "Ai $1 (de) mesaj(e) netrimis(e) a căror trimitere va fi declanșată data viitoare când un mesaj programat devine exigibil."
   },

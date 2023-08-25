@@ -838,12 +838,6 @@
     "message": "התראת לוח זמנים",
     "description": ""
   },
-  "CompactionFailureWithError": {
-    "message": "דחיסת תיקיות הדואר היוצא ו/או הטיוטות נכשלה כתוצאה מהטעות:"
-  },
-  "CompactionFailureNoError": {
-    "message": "דחיסת $1 נכשלה ללא הודעת טעות."
-  },
   "SanityCheckOutbox": {
     "message": "יש לך $1 הודעות שטרם נשלחו. הן הוגדרו למשלוח במועד הקרוב הבא שנקבע לשליחת הודעות."
   },

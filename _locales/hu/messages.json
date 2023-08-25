@@ -838,12 +838,6 @@
     "message": "Ütemezett üzenetek figyelmeztetése",
     "description": ""
   },
-  "CompactionFailureWithError": {
-    "message": "A Kimenő és/vagy Piszkozatok mappák tömörítése hibával sikertelen:"
-  },
-  "CompactionFailureNoError": {
-    "message": "A(z) $1 tömörítése hibaüzenet nélkül nem sikerült."
-  },
   "SanityCheckOutbox": {
     "message": "$1 el nem küldött üzenete van, amelyeket legközelebb elküldünk, amikor egy ütemezett üzenet esedékessé válik."
   },

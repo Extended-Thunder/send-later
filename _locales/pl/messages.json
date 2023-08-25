@@ -838,12 +838,6 @@
     "message": "Ostrzeżenie: problem z zaplanowaniem wysyłki",
     "description": ""
   },
-  "CompactionFailureWithError": {
-    "message": "Kompaktowanie folderów Outbox lub Szkice nie powiodło się z błędem:"
-  },
-  "CompactionFailureNoError": {
-    "message": "Kompaktowanie $1 nie powiodło się bez komunikatu o błędzie."
-  },
   "SanityCheckOutbox": {
     "message": "Masz $1 niewysłanych wiadomości, które zostaną wysłane wraz z następną zaplanowaną wiadomością."
   },

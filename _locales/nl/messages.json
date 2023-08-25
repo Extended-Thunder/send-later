@@ -814,12 +814,6 @@
     "message": "Waarschuwing voor geplande berichten",
     "description": ""
   },
-  "CompactionFailureWithError": {
-    "message": "Comprimeren van mappen Postvak UIT en/of Concepten is mislukt met deze fout:"
-  },
-  "CompactionFailureNoError": {
-    "message": "Comprimeren van $1 is mislukt zonder foutmelding."
-  },
   "SanityCheckOutbox": {
     "message": "U hebt $1 niet-verzonden bericht(en) dat of die de volgende keer dat een gepland bericht vervalt wordt of worden geactiveerd voor verzending."
   },

@@ -838,12 +838,6 @@
     "message": "Scheduled messages warning",
     "description": ""
   },
-  "CompactionFailureWithError": {
-    "message": "Compacting Outbox and/or Drafts folders failed with error:"
-  },
-  "CompactionFailureNoError": {
-    "message": "Compacting $1 failed without error message."
-  },
   "SanityCheckOutbox": {
     "message": "You have $1 unsent message(s) which will be triggered to send next time a scheduled message becomes due."
   },

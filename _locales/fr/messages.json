@@ -814,12 +814,6 @@
     "message": "Avertissement relatif aux envois programmés",
     "description": ""
   },
-  "CompactionFailureWithError": {
-    "message": "La compression des dossiers d'envoi et/ou de brouillons a échoué avec l'erreur:"
-  },
-  "CompactionFailureNoError": {
-    "message": "La compression de $1 a échoué sans message d'erreur."
-  },
   "SanityCheckOutbox": {
     "message": "Il existe $1 message(s) non envoyé(s) dont l'envoi sera déclenché la prochaine fois qu'un message programmé soit l'être."
   },

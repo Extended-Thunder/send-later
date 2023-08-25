@@ -10,6 +10,19 @@ import sys
 
 default_locale = 'en'
 obsolete_keys = (
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+
     'close.accesskey',
     'close.cmdkey',
     'delete.accesskey',

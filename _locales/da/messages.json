@@ -814,12 +814,6 @@
     "message": "Advarsel om planlagte beskeder",
     "description": ""
   },
-  "CompactionFailureWithError": {
-    "message": "Optimering af udbakke og/eller kladdemapper mislykkedes med fejl:"
-  },
-  "CompactionFailureNoError": {
-    "message": "Optimering af $1 mislykkedes uden fejlmeddelelse."
-  },
   "SanityCheckOutbox": {
     "message": "Du har $1 ikke-sendte beskeder, som vil blive sendt næste gang en planlagt besked udløses."
   },

@@ -818,12 +818,6 @@
     "message": "Aviso de mensagens agendadas",
     "description": ""
   },
-  "CompactionFailureWithError": {
-    "message": "A compressão das pastas de Saída e/ou Rascunhos falharam com erro:"
-  },
-  "CompactionFailureNoError": {
-    "message": "A compressão de $1 falhou sem mensagem de erro."
-  },
   "SanityCheckOutbox": {
     "message": "Existem $1 mensagem(ns) não enviada(s) que será(ão) enviadas da próxima vez que ocorrer um agendamento."
   },

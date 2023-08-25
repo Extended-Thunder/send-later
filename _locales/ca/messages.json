@@ -822,12 +822,6 @@
     "message": "Avís de missatges programats",
     "description": ""
   },
-  "CompactionFailureWithError": {
-    "message": "Compactant la Safata de Sortida i/o la carpeta d'Esborranys amb l'error:"
-  },
-  "CompactionFailureNoError": {
-    "message": "Compactant $1 ha fallat sense error."
-  },
   "SanityCheckOutbox": {
     "message": "Tens $1 missatges sense enviar que seran enviats durant la següent iteració."
   },
