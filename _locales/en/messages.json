@@ -333,7 +333,7 @@
   },
   "sendlater3header.label": {
     "message": "Send Later",
-    "description": ""
+    "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
   },
   "prefwindow.title": {
     "message": "Send Later preferences",
