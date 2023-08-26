@@ -1387,6 +1387,8 @@ const SendLater = {
   async handleMessageCommand(command, options, tabId, messageIds) {
     options.first = true;
     if (messageIds) {
+      let total = messageIds.length;
+      let successful = 0;
       for (let messageId of messageIds) {
         let message = await messenger.messages.get(messageId);
         let identityId = await findBestIdentity(message);
@@ -1398,19 +1400,32 @@ const SendLater = {
         });
         if ((await promise) && (await command(tab.id, options, true))) {
           await SendLater.deleteMessage(message);
+          successful++;
         } else {
-          messenger.tabs.remove(tab.id);
-          return;
+          break;
         }
         options.first = false;
+      }
+      if (messageIds.length > 1) {
+        let title = messenger.i18n.getMessage("resultsTitle");
+        let text;
+        if (total == successful) {
+          text = messenger.i18n.getMessage("resultsAllSuccess");
+        } else {
+          text = messenger.i18n.getMessage("resultsPartialSuccess", [
+            successful,
+            total,
+          ]);
+        }
+        SLTools.alert(title, text);
       }
       SLTools.scheduledMsgCache.clear();
       SLTools.unscheduledMsgCache.clear();
       setTimeout(SendLater.updateStatusIndicator, 1000);
+      return total == successful;
     } else {
-      await command(tabId, options);
+      return await command(tabId, options);
     }
-    return true;
   },
 
   // Various extension components communicate with

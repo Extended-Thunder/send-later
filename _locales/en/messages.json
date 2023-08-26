@@ -994,5 +994,17 @@
   "menuScheduleMsg": {
     "message": "Schedule message(s)",
     "description": "Command added to the message list menu for the user to use to schedule one or more selected drafts with Send Later"
+  },
+  "resultsTitle": {
+    "message": "Message processing results",
+    "description": "The title of the pop-up that displays results after the user uses the message list context menu to perform an operation on more than one selected message."
+  },
+  "resultsAllSuccess": {
+    "message": "Successfully processed all selected messages.",
+    "description": "Message displayed in the message list context menu results pop-up when multiple messages were selected and all were processed successfully."
+  },
+  "resultsPartialSuccess": {
+    "message": "Successfully processed $1 of $2 selected messages.",
+    "description": "Message displayed in the message list context menu results pop-up when multiple messages were selected and some were not processed successfully. The first placeholder is the number of successful messages and the second is the total number of selected messages."
   }
 }
