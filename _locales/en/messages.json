@@ -563,10 +563,6 @@
     "message": "Close",
     "description": ""
   },
-  "sendaround": {
-    "message": "Send around",
-    "description": ""
-  },
   "entervalid": {
     "message": "Enter a valid date above",
     "description": ""

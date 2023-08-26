@@ -543,10 +543,6 @@
     "message": "Luk",
     "description": ""
   },
-  "sendaround": {
-    "message": "Sende kl.",
-    "description": ""
-  },
   "entervalid": {
     "message": "Indtast venligst en gyldig dato ovenfor",
     "description": ""

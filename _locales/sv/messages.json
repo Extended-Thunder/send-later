@@ -531,10 +531,6 @@
     "message": "Stäng",
     "description": ""
   },
-  "sendaround": {
-    "message": "Skicka kring",
-    "description": ""
-  },
   "entervalid": {
     "message": "Ange ett giltigt datum ovan",
     "description": ""

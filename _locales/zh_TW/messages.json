@@ -531,10 +531,6 @@
     "message": "關閉",
     "description": ""
   },
-  "sendaround": {
-    "message": "大約發信時間",
-    "description": ""
-  },
   "entervalid": {
     "message": "請在上面輸入有效的日期",
     "description": ""

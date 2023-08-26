@@ -535,10 +535,6 @@
     "message": "Закрыть",
     "description": ""
   },
-  "sendaround": {
-    "message": "Отправить примерно",
-    "description": ""
-  },
   "entervalid": {
     "message": "Введите корректную дату выше",
     "description": ""

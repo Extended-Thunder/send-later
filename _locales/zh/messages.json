@@ -523,10 +523,6 @@
     "message": "关闭",
     "description": ""
   },
-  "sendaround": {
-    "message": "将在此时间附近发送",
-    "description": ""
-  },
   "entervalid": {
     "message": "请在上面输入有效的日期",
     "description": ""

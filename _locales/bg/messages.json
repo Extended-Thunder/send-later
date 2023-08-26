@@ -559,10 +559,6 @@
     "message": "Затваряне",
     "description": ""
   },
-  "sendaround": {
-    "message": "Изпращане около",
-    "description": ""
-  },
   "entervalid": {
     "message": "Въведете валидна дата по-горе",
     "description": ""

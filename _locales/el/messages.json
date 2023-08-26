@@ -535,10 +535,6 @@
     "message": "Κλείσιμο",
     "description": ""
   },
-  "sendaround": {
-    "message": "Αποστολή αργότερα",
-    "description": ""
-  },
   "entervalid": {
     "message": "Εισάγετε μία έγκυρη ημερομηνία",
     "description": ""

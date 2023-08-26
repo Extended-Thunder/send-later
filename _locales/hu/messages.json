@@ -563,10 +563,6 @@
     "message": "Bezárás",
     "description": ""
   },
-  "sendaround": {
-    "message": "Küldés kb",
-    "description": ""
-  },
   "entervalid": {
     "message": "Adjon meg fent egy érvényes dátumot",
     "description": ""

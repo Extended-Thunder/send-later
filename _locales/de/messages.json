@@ -563,10 +563,6 @@
     "message": "Schließen",
     "description": ""
   },
-  "sendaround": {
-    "message": "Geschätzte Sendezeit",
-    "description": ""
-  },
   "entervalid": {
     "message": "Geben Sie oben ein gültiges Datum ein",
     "description": ""

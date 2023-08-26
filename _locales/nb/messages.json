@@ -535,10 +535,6 @@
     "message": "Lukk",
     "description": ""
   },
-  "sendaround": {
-    "message": "Send rundt",
-    "description": ""
-  },
   "entervalid": {
     "message": "Skriv inn en gyldig dato ovenfor",
     "description": ""

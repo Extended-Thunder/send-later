@@ -543,10 +543,6 @@
     "message": "Sulje",
     "description": ""
   },
-  "sendaround": {
-    "message": "Lähetä",
-    "description": ""
-  },
   "entervalid": {
     "message": "Anna ensin kelvollinen päiväys yllä",
     "description": ""

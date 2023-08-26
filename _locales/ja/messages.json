@@ -519,10 +519,6 @@
     "message": "閉じる",
     "description": ""
   },
-  "sendaround": {
-    "message": "送信予定日時",
-    "description": ""
-  },
   "entervalid": {
     "message": "適切な日時を入力してください",
     "description": ""
