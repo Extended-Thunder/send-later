@@ -256,7 +256,7 @@
     "description": ""
   },
   "sendlater.prompt.sendnow.tooltip": {
-    "message": "Send the message immediately, bypassing “Send Later”.",
+    "message": "Send the message immediately, bypassing “Send Later”",
     "description": ""
   },
   "sendlater.prompt.title.label": {
@@ -276,7 +276,7 @@
     "description": ""
   },
   "sendlater.prompt.sendat.tooltip": {
-    "message": "Save message in Drafts folder for automatic delivery at the time set above.",
+    "message": "Save message in Drafts folder for automatic delivery at the time set above",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -348,7 +348,7 @@
     "description": ""
   },
   "showsendlaterheader.tooltip": {
-    "message": "Whether to show the “X-Send-Later-At” header, i.e., the time when a draft is scheduled to be sent, in the header when viewing a message.",
+    "message": "Whether to show the “X-Send-Later-At” header, i.e., the time when a draft is scheduled to be sent, in the header when viewing a message",
     "description": ""
   },
   "showsendlaterprogress.caption": {
@@ -360,11 +360,11 @@
     "description": ""
   },
   "sendlatersendbutton.tooltip": {
-    "message": "With this option enabled, the “Send” command (either the button or typing Ctrl-Enter) acts the same as “Send Later”.",
+    "message": "Make the “Send” command (either the button or typing Ctrl-Enter) acts the same as “Send Later”",
     "description": ""
   },
   "senddelay.tooltip": {
-    "message": "With this option enabled, all messages sent with the “Send” command (either the button or typing Ctrl-Enter) are delayed by the specified number of minutes by scheduling them with Send Later.",
+    "message": "Delay all messages sent with the “Send” command (either the button or typing Ctrl-Enter) by the specified number of minutes by scheduling them with Send Later",
     "description": ""
   },
   "composewindowhotkeys.tooltip": {
@@ -376,11 +376,11 @@
     "description": ""
   },
   "contactauthor.tooltip": {
-    "message": "Send a mail message to the author of Send Later.",
+    "message": "Send a mail message to the author of Send Later",
     "description": ""
   },
   "helplink.tooltip": {
-    "message": "View the Send Later documentation.",
+    "message": "View the Send Later documentation",
     "description": ""
   },
   "releasenotes.value": {
