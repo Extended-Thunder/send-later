@@ -995,6 +995,10 @@
     "message": "Schedule message(s)",
     "description": "Command added to the message list menu for the user to use to schedule one or more selected drafts with Send Later"
   },
+  "menuSkipMsg": {
+    "message": "Skip next occurrence",
+    "description": "Command added to the message list menu for the user to use to skip the next occurrence of one or more selected recurring drafts"
+  },
   "resultsTitle": {
     "message": "Message processing results",
     "description": "The title of the pop-up that displays results after the user uses the message list context menu to perform an operation on more than one selected message."
@@ -1006,5 +1010,25 @@
   "resultsPartialSuccess": {
     "message": "Successfully processed $1 of $2 selected messages.",
     "description": "Message displayed in the message list context menu results pop-up when multiple messages were selected and some were not processed successfully. The first placeholder is the number of successful messages and the second is the total number of selected messages."
+  },
+  "cantSkipSingletonTitle": {
+    "message": "Can't skip occurrence of non-recurring message",
+    "description": "The title of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a non-recurring message."
+  },
+  "cantSkipSingletonText": {
+    "message": "The message with the subject “$1” is not a recurring message, so you can't skip its next scheduled occurrence.",
+    "description": "The text of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a non-recurring message. The placeholder is for the message subject."
+  },
+  "cantSKipPastLastTitle": {
+    "message": "Message has no more recurrences",
+    "description": "The title of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a message that has no further occurrences after that one."
+  },
+  "cantSkipPastLastText": {
+    "message": "The message with the subject “$1” has no more occurrences so you can't skip the next one.",
+    "description": "The text of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a message that has no further occurrences after that one. The placeholder is for the message subject."
+  },
+  "SkipConfirmMessage": {
+    "message": "You have indicated that you wish to skip the next occurrence of one of the selected messages. If you change your mind after doing this, you will need to reschedule the messages by hand. Are you sure you wish to proceed?",
+    "description": "The text of the pop-up that warns the user when they activate the message list context menu command to skip the next occurrence of one or more messages. The purpose of this warning is to ensure that the user knows what the command does before using it. There is a checkbox in the pop-up which they can uncheck if they don't want to see the message again. See also 'AreYouSure' and 'ConfirmAgain' strings which occur in the same pop-up."
   }
 }

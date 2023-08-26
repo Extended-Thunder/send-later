@@ -302,14 +302,20 @@ const SendLater = {
   // the draft copy.
   // TODO: Break this up into more manageable parts. This function is
   // ridiculously long.
-  async possiblySendMessage(msgHdr) {
+  async possiblySendMessage(msgHdr, options) {
+    if (!options) {
+      options = {};
+    }
+    let skipping = options.skipping;
+
     // Determines whether or not a particular draft message is due to be sent
     if (SLTools.unscheduledMsgCache.has(msgHdr.id)) {
       return;
     }
 
     SLStatic.debug(`Checking message ${msgHdr.id}.`);
-    const fullMsg = await messenger.messages.getFull(msgHdr.id);
+    const fullMsg =
+      options.messageFull || (await messenger.messages.getFull(msgHdr.id));
 
     if (!fullMsg.headers.hasOwnProperty("x-send-later-at")) {
       SLTools.unscheduledMsgCache.add(msgHdr.id);
@@ -353,7 +359,7 @@ const SendLater = {
       return;
     }
 
-    if (msgUUID !== preferences.instanceUUID) {
+    if (!skipping && msgUUID !== preferences.instanceUUID) {
       SLStatic.debug(
         `Message <${originalMsgId}> is scheduled by a ` +
           `different Thunderbird instance.`,
@@ -392,7 +398,7 @@ const SendLater = {
       return;
     }
 
-    if (!(Date.now() >= nextSend.getTime())) {
+    if (!skipping && Date.now() < nextSend.getTime()) {
       SLStatic.debug(
         `Message ${msgHdr.id} not due for send until ` +
           `${SLStatic.humanDateTimeFormat(nextSend)}`,
@@ -404,7 +410,7 @@ const SendLater = {
     const args = msgRecurArgs ? SLStatic.parseArgs(msgRecurArgs) : null;
 
     // Respect late message blocker
-    if (preferences.blockLateMessages) {
+    if (!skipping && preferences.blockLateMessages) {
       const lateness = (Date.now() - nextSend.getTime()) / 60000;
       if (lateness > preferences.lateGracePeriod) {
         SLStatic.warn(`Grace period exceeded for message ${msgHdr.id}`);
@@ -429,7 +435,7 @@ const SendLater = {
       // Respect "until" preference
       if (recur.until) {
         if (SLStatic.compareTimes(Date.now(), ">", recur.until)) {
-          SLStatic.debug(
+          (skipping ? SLStatic.error : SLStatic.debug)(
             `Message ${msgHdr.id} ${originalMsgId} past ` +
               `"until" restriction. Skipping.`,
           );
@@ -438,7 +444,7 @@ const SendLater = {
       }
 
       // Respect "send between" preference
-      if (recur.between) {
+      if (!skipping && recur.between) {
         if (
           SLStatic.compareTimes(Date.now(), "<", recur.between.start) ||
           SLStatic.compareTimes(Date.now(), ">", recur.between.end)
@@ -454,7 +460,7 @@ const SendLater = {
       }
 
       // Respect "only on days of week" preference
-      if (recur.days) {
+      if (!skipping && recur.days) {
         const today = new Date().getDay();
         if (!recur.days.includes(today)) {
           // Reschedule for next valid time.
@@ -510,36 +516,38 @@ const SendLater = {
       }
     }
 
-    // Initiate send from draft message
-    SLStatic.info(`Sending message ${originalMsgId}.`);
+    if (!skipping) {
+      // Initiate send from draft message
+      SLStatic.info(`Sending message ${originalMsgId}.`);
 
-    const success = await messenger.SL3U.sendRaw(
-      SLStatic.prepNewMessageHeaders(
-        await messenger.messages.getRaw(msgHdr.id),
-      ),
-      preferences.sendUnsentMsgs,
-    ).catch((ex) => {
-      SLStatic.error(`Error sending raw message from drafts`, ex);
-      return null;
-    });
+      const success = await messenger.SL3U.sendRaw(
+        SLStatic.prepNewMessageHeaders(
+          await messenger.messages.getRaw(msgHdr.id),
+        ),
+        preferences.sendUnsentMsgs,
+      ).catch((ex) => {
+        SLStatic.error(`Error sending raw message from drafts`, ex);
+        return null;
+      });
 
-    if (success) {
-      lock[msgLockId] = true;
-      await messenger.storage.local.set({ lock });
-      SLStatic.debug(`Locked message <${msgLockId}> from re-sending.`);
-      if (preferences.throttleDelay) {
-        SLStatic.debug(
-          `Throttling send rate: ${preferences.throttleDelay / 1000}s`,
+      if (success) {
+        lock[msgLockId] = true;
+        await messenger.storage.local.set({ lock });
+        SLStatic.debug(`Locked message <${msgLockId}> from re-sending.`);
+        if (preferences.throttleDelay) {
+          SLStatic.debug(
+            `Throttling send rate: ${preferences.throttleDelay / 1000}s`,
+          );
+          await new Promise((resolve) =>
+            setTimeout(resolve, preferences.throttleDelay),
+          );
+        }
+      } else {
+        SLStatic.error(
+          `Something went wrong while sending message ${originalMsgId}`,
         );
-        await new Promise((resolve) =>
-          setTimeout(resolve, preferences.throttleDelay),
-        );
+        return;
       }
-    } else {
-      SLStatic.error(
-        `Something went wrong while sending message ${originalMsgId}`,
-      );
-      return;
     }
 
     let nextRecur;
@@ -630,11 +638,11 @@ const SendLater = {
             `<${originalMsgId}>. Deleting original.`,
         );
         await SendLater.deleteMessage(msgHdr);
-        return;
+        return true;
       } else {
         SLStatic.error("Unable to schedule next recuurrence.");
       }
-    } else {
+    } else if (!skipping) {
       SLStatic.info(
         `No recurrences for message <${originalMsgId}>. Deleting original.`,
       );
@@ -872,37 +880,60 @@ const SendLater = {
     // take effect immediately.
     messenger.storage.onChanged.addListener(SendLater.storageChangedListener);
 
-    this.menuId = await messenger.menus.create({
+    this.scheduleMenuId = await messenger.menus.create({
       contexts: ["message_list"],
       title: messenger.i18n.getMessage("menuScheduleMsg"),
     });
+    this.skipMenuId = await messenger.menus.create({
+      contexts: ["message_list"],
+      title: messenger.i18n.getMessage("menuSkipMsg"),
+    });
     this.menuVisible = true;
-    messenger.menus.onClicked.addListener(SendLater.scheduleSelectedMessages);
-    messenger.menus.onShown.addListener(SendLater.checkScheduleMenu);
+    messenger.menus.onClicked.addListener(async (info, tab) => {
+      SendLater.menuClickHandler(info, tab);
+    });
+    messenger.menus.onShown.addListener(async (info, tab) => {
+      SendLater.checkMenu(info, tab);
+    });
   },
 
-  async scheduleSelectedMessages(info, tab) {
+  async menuClickHandler(info, tab) {
     SLStatic.trace("SendLater.scheduleSelectedMessages", info, tab);
     let messageIds = info.selectedMessages.messages.map((msg) => msg.id);
     if (!messageIds.length) {
       return;
     }
-    let queryString = messageIds.map((id) => `messageId=${id}`).join("&");
-    await messenger.windows.create({
-      allowScriptsToClose: true,
-      type: "popup",
-      url: `ui/popup.html?${queryString}`,
-    });
+    if (info.menuItemId == this.scheduleMenuId) {
+      let queryString = messageIds.map((id) => `messageId=${id}`).join("&");
+      await messenger.windows.create({
+        allowScriptsToClose: true,
+        type: "popup",
+        url: `ui/popup.html?${queryString}`,
+      });
+    } else if (info.menuItemId == this.skipMenuId) {
+      await SendLater.handleMessageCommand(
+        SendLater.doSkipNextOccurrence,
+        {
+          messageChecker: SendLater.checkSkipNextOccurrence,
+          messageCheckerFull: true,
+          batchMode: true,
+        },
+        null,
+        messageIds,
+      );
+    } else {
+      SLStatic.error(`Unrecognized menu item ID ${info.menuItemId}`);
+    }
   },
 
-  async checkScheduleMenu(info, tab) {
+  async checkMenu(info, tab) {
     SLStatic.trace("SendLater.checkScheduleMenu", info, tab);
     let visible = info.displayedFolder.type == "drafts";
     if (SendLater.menuVisible != visible) {
-      SLStatic.debug(
-        `Making schedule menu item ${visible ? "" : "in"}visible`,
-      );
-      await messenger.menus.update(SendLater.menuId, { visible: visible });
+      SLStatic.debug(`Making menu items ${visible ? "" : "in"}visible`);
+      for (let menuId of [this.scheduleMenuId, this.skipMenuId]) {
+        await messenger.menus.update(menuId, { visible: visible });
+      }
       await messenger.menus.refresh();
       SendLater.menuVisible = visible;
     }
@@ -1287,6 +1318,86 @@ const SendLater = {
       }
     }
     return false;
+  },
+
+  async checkSkipNextOccurrence(options) {
+    // Is the user sure they want to do this?
+    if (options.first) {
+      let preferences = await SLTools.getPrefs();
+      if (preferences.showSkipAlert) {
+        const result = await SLTools.confirmCheck(
+          messenger.i18n.getMessage("AreYouSure"),
+          messenger.i18n.getMessage("SkipConfirmMessage"),
+          messenger.i18n.getMessage("ConfirmAgain"),
+          true,
+        ).catch((err) => {
+          SLStatic.trace(err);
+        });
+        if (result.check === false) {
+          preferences.showSkipAlert = false;
+          await messenger.storage.local.set({ preferences });
+        }
+        if (!result.ok) {
+          SLStatic.debug(`User canceled occurrence skip.`);
+          return false;
+        }
+      }
+    }
+    // Is this a recurring message?
+    let recurHeader = (options.messageFull.headers["x-send-later-recur"] ||
+      [])[0];
+    let recur = SLStatic.parseRecurSpec(recurHeader);
+    if (recur.type == "none") {
+      let title = messenger.i18n.getMessage("cantSkipSingletonTitle");
+      let text = messenger.i18n.getMessage("cantSkipSingletonText", [
+        options.messageHeader.subject,
+      ]);
+      await SLTools.alert(title, text);
+      return false;
+    }
+    // Does the message have another recurrence in the future?
+    let sendAtHeader = (options.messageFull.headers["x-send-later-at"] ||
+      [])[0];
+    if (!sendAtHeader) {
+      // This should never happen so not bothering with a user message.
+      SLStatic.error(
+        `Message ${options.messageId} (${options.messageHeader.subject}) ` +
+          `has recur header but no at header?`,
+      );
+      return false;
+    }
+    let argsHeader = (options.messageFull.headers["x-send-later-args"] ||
+      [])[0];
+    let args = argsHeader ? SLStatic.parseArgs(msgRecurArgs) : null;
+    let sendAt = new Date(sendAtHeader);
+    let now = new Date();
+    if (now < sendAt) {
+      now = sendAt;
+    }
+    let nextRecur = await SLStatic.nextRecurDate(
+      sendAt,
+      recurHeader,
+      now,
+      args,
+    );
+    if (!nextRecur || !nextRecur.sendAt) {
+      let title = messenger.i18n.getMessage("cantSkipPastLastTitle");
+      let text = messenger.i18n.getMessage("cantSkipPastLastText", [
+        options.messageHeader.subject,
+      ]);
+      await SLTools.alert(title, text);
+      return false;
+    }
+    return true;
+  },
+
+  async doSkipNextOccurrence(tabId, options, fromMenuCommand) {
+    if (tabId || !fromMenuCommand) {
+      SLStatic.error("Unsupported doSkipNextOccurrence call from window");
+      return false;
+    }
+    options.skipping = true;
+    return await SendLater.possiblySendMessage(options.messageHeader, options);
   },
 
   async handleMessageCommand(command, options, tabId, messageIds) {

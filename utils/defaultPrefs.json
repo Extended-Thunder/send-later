@@ -29,6 +29,7 @@
   "showEditAlert": ["bool", true],
   "showOutboxAlert": ["bool", true],
   "showSendNowAlert": ["bool", true],
+  "showSkipAlert": ["bool", true],
   "altBinding": ["bool", false],
   "sendWhileOffline": ["bool", true],
   "enforceTimeRestrictions": ["bool", true],
