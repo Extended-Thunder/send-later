@@ -553,14 +553,9 @@ const SendLater = {
     }
 
     if (nextRecur) {
-      let nextRecurAt, nextRecurSpec, nextRecurArgs;
-      if (nextRecur.getTime) {
-        nextRecurAt = nextRecur;
-      } else {
-        nextRecurAt = nextRecur.sendAt;
-        nextRecurSpec = nextRecur.nextspec;
-        nextRecurArgs = nextRecur.nextargs;
-      }
+      let nextRecurAt = nextRecur.sendAt;
+      let nextRecurSpec = nextRecur.nextspec;
+      let nextRecurArgs = nextRecur.nextargs;
       while (nextRecurAt < new Date()) {
         nextRecurAt = new Date(nextRecurAt.getTime() + 60000);
       }

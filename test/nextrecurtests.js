@@ -11,10 +11,10 @@ exports.init = function () {
       return "Unexpected error: " + ex;
     }
     expected = new Date(expected);
-    if (result.getTime() == expected.getTime()) {
+    if (result.sendAt.getTime() == expected.getTime()) {
       return true;
     } else {
-      return `Expected ${expected}, got ${result}`;
+      return `Expected ${expected}, got ${result.sendAt}`;
     }
   }
 
@@ -26,7 +26,7 @@ exports.init = function () {
         recur,
         new Date(now),
       );
-      return "Expected exception, got " + result;
+      return "Expected exception, got " + result.sendAt;
     } catch (ex) {
       if ((ex + "").indexOf(expected) !== -1) {
         return true;

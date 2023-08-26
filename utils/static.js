@@ -1498,7 +1498,7 @@ var SLStatic = {
       return null;
     }
 
-    return next;
+    return { sendAt: next };
   },
 
   // sendAt is a Date object for the scheduled send time we need to adjust.
