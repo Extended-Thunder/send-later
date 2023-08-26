@@ -799,11 +799,11 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "Clicking “Put in Outbox” puts the message in your Outbox immediately. It DOES NOT schedule the message to be sent at a specific time. For that, click the “Send around” button in the green box after entering a valid send time. Are you sure you want to put the message in your Outbox now?",
+    "message": "Clicking “Put in Outbox” puts the message in your Outbox immediately. It DOES NOT schedule the message to be sent at a specific time. For that, click the “Send at” button in the green box after entering a valid send time. Are you sure you want to put the message in your Outbox now?",
     "description": ""
   },
   "SendNowConfirmMessage": {
-    "message": "Clicking “Send Now” sends the message immediately. It DOES NOT schedule the message to be sent at a specific time. For that, click the “Send around” button in the green box after entering a valid send time. Are you sure you want to send the message now?",
+    "message": "Clicking “Send Now” sends the message immediately. It DOES NOT schedule the message to be sent at a specific time. For that, click the “Send at” button in the green box after entering a valid send time. Are you sure you want to send the message now?",
     "description": ""
   },
   "ConfirmAgain": {
