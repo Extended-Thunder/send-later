@@ -3,16 +3,6 @@ var SLStatic = {
 
   timeRegex: /^(2[0-3]|[01]?\d):?([0-5]\d)$/,
 
-  // Indicator to signify a preference migration
-  // Migration 1: import options from legacy prefbranch
-  // Migration 2: update format for defaultPrefs.json
-  // Migration 3: indicate that "sanity check" has been performed
-  // Migration 4: add instanceUUID
-  // Migration 5: add accelerator shortcut options
-  // Migration 6: Add longDateTimeFormat/shortDateTimeFormat
-  // Migration 7: Fix bug in BusinessHours function
-  CURRENT_LEGACY_MIGRATION: 7,
-
   // HTML element IDs in options.html correspond to preference keys
   // in local storage.
   prefInputIds: [

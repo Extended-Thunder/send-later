@@ -643,110 +643,41 @@ const SendLater = {
     }
   },
 
-  async migratePreferences() {
-    // Migrate legacy preferences to local storage.
+  async updatePreferences() {
     let { preferences, ufuncs } = await messenger.storage.local.get({
       preferences: {},
       ufuncs: {},
     });
-    const currentMigrationNumber = preferences.migratedLegacy | 0;
-
-    if (currentMigrationNumber === SLStatic.CURRENT_LEGACY_MIGRATION) {
-      SLStatic.logConsoleLevel = (
-        preferences.logConsoleLevel || "info"
-      ).toLowerCase();
-      return currentMigrationNumber;
-    }
 
     // (Re-)load the built-in user functions
-    ufuncs.ReadMeFirst = {
-      help: messenger.i18n.getMessage("EditorReadMeHelp"),
-      body: messenger.i18n.getMessage("EditorReadMeCode"),
-    };
-    ufuncs.BusinessHours = {
-      help: messenger.i18n.getMessage("BusinessHoursHelp"),
-      body: messenger.i18n.getMessage("_BusinessHoursCode"),
-    };
-    ufuncs.DaysInARow = {
-      help: messenger.i18n.getMessage("DaysInARowHelp"),
-      body: messenger.i18n.getMessage("DaysInARowCode"),
-    };
-    ufuncs.Delay = {
-      help: messenger.i18n.getMessage("DelayFunctionHelp"),
-      body: "next = new Date(Date.now() + args[0]*60000);",
-    };
+    if (!ufuncs.ReadMeFirst) {
+      ufuncs.ReadMeFirst = {
+        help: messenger.i18n.getMessage("EditorReadMeHelp"),
+        body: messenger.i18n.getMessage("EditorReadMeCode"),
+      };
+    }
+    if (!ufuncs.BusinessHours) {
+      ufuncs.BusinessHours = {
+        help: messenger.i18n.getMessage("BusinessHoursHelp"),
+        body: messenger.i18n.getMessage("_BusinessHoursCode"),
+      };
+    }
+    if (!ufuncs.DaysInARow) {
+      ufuncs.DaysInARow = {
+        help: messenger.i18n.getMessage("DaysInARowHelp"),
+        body: messenger.i18n.getMessage("DaysInARowCode"),
+      };
+    }
+    if (!ufuncs.Delay) {
+      ufuncs.Delay = {
+        help: messenger.i18n.getMessage("DelayFunctionHelp"),
+        body: "next = new Date(Date.now() + args[0]*60000);",
+      };
+    }
 
     const prefDefaults = await fetch("/utils/defaultPrefs.json").then((ptxt) =>
       ptxt.json(),
     );
-
-    // Load legacy preferences
-    if (currentMigrationNumber === 0) {
-      // Merge any existing legacy preferences into the new storage system
-      let prefKeys = [];
-      let legacyValuePromises = [];
-
-      // Load values from legacy storage, substitute defaults if not defined.
-      for (let prefName of Object.getOwnPropertyNames(prefDefaults)) {
-        prefKeys.push(prefName);
-        let dtype = prefDefaults[prefName][0];
-        let defVal = prefDefaults[prefName][1];
-        let legacyKey = prefDefaults[prefName][2];
-        let pp; // Promise that resolves to this preference value.
-        const isquickopt = prefName.match(/quickOptions(\d)Label/);
-        if (isquickopt) {
-          // I'm pretty sure that the "+" at the start of this expression is
-          // unnecessary, and I'm also pretty sure that the "|0" at the end
-          // is supposed to be "||0", bit I could be wrong about both of these
-          // (perhaps the "+" and/or "|0" is intended to convert a string into
-          // an integer? I'm not certain), and I'm not going to bother to worry
-          // about it because I'm about to throw away this code anyway (it's
-          // time for us to deprecate legacy preferences migration).
-          const delayMins =
-            +prefDefaults[`quickOptions${isquickopt[1]}Args`][1] | 0;
-          const localizedDelayLabel = `${new Sugar.Date(
-            Date.now() + 60000 * delayMins,
-          ).relative()}`;
-          pp = new Promise((resolve, reject) => {
-            resolve(localizedDelayLabel);
-          });
-        } else if (legacyKey === null) {
-          pp = new Promise((resolve, reject) => resolve(defVal));
-        } else {
-          pp = messenger.SL3U.getLegacyPref(
-            legacyKey,
-            dtype,
-            defVal.toString(),
-          );
-        }
-        legacyValuePromises.push(pp);
-      }
-      // Combine keys and legacy/default values back into a single object.
-      let legacyPrefs = await Promise.all(legacyValuePromises).then(
-        (legacyVals) => {
-          return legacyVals.reduce((r, f, i) => {
-            r[prefKeys[i]] = f;
-            return r;
-          }, {});
-        },
-      );
-
-      SLStatic.info("SendLater: migrating legacy/default preferences.");
-
-      // Merge legacy preferences into undefined preference keys
-      prefKeys.forEach((key) => {
-        if (preferences[key] === undefined) {
-          preferences[key] = legacyPrefs[key];
-        }
-      });
-    }
-
-    SLStatic.logConsoleLevel = (
-      preferences.logConsoleLevel || "info"
-    ).toLowerCase();
-    SLStatic.customizeDateTime = preferences.customizeDateTime === true;
-    SLStatic.longDateTimeFormat = preferences.longDateTimeFormat;
-    SLStatic.shortDateTimeFormat = preferences.shortDateTimeFormat;
 
     // Pick up any new properties from defaults
     for (let prefName of Object.getOwnPropertyNames(prefDefaults)) {
@@ -757,37 +688,15 @@ const SendLater = {
       }
     }
 
-    //if (currentMigrationNumber < 4)
     if (preferences.instanceUUID) {
       SLStatic.info(`This instance's UUID: ${preferences.instanceUUID}`);
     } else {
-      let instance_uuid = await messenger.SL3U.getLegacyPref(
-        "instance.uuid",
-        "string",
-        "",
-      );
-      if (instance_uuid) {
-        SLStatic.info(`Using migrated UUID: ${instance_uuid}`);
-        preferences.instanceUUID = instance_uuid;
-      }
-    }
-
-    if (currentMigrationNumber < SLStatic.CURRENT_LEGACY_MIGRATION) {
-      preferences.migratedLegacy = SLStatic.CURRENT_LEGACY_MIGRATION;
-    }
-
-    if (preferences.migratedLegacy !== SLStatic.CURRENT_LEGACY_MIGRATION) {
-      SLStatic.error(
-        "Something has gone wrong with migrating preferences. " +
-          "The migration number is currently set to an " +
-          "invalid value:",
-        preferences.migratedLegacy,
-      );
+      let instance_uuid = SLStatic.generateUUID();
+      SLStatic.info(`Generated new UUID: ${instance_uuid}`);
+      preferences.instanceUUID = instance_uuid;
     }
 
     await messenger.storage.local.set({ preferences, ufuncs });
-
-    return currentMigrationNumber;
   },
 
   async updateStatusIndicator(nActive, waitFor) {
@@ -912,18 +821,11 @@ const SendLater = {
     // Clear the current message settings cache
     await messenger.storage.local.set({ scheduleCache: {} });
 
-    // Perform any pending preference migrations.
-    await this.migratePreferences();
+    // Perform any necessary preference updates
+    await this.updatePreferences();
 
     try {
       let preferences = await SLTools.getPrefs();
-
-      if (!preferences.instanceUUID) {
-        let instance_uuid = SLStatic.generateUUID();
-        SLStatic.info(`Generated new UUID: ${instance_uuid}`);
-        preferences.instanceUUID = instance_uuid;
-        messenger.storage.local.set({ preferences });
-      }
 
       SendLater.prefCache = preferences;
       SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
