@@ -20,51 +20,57 @@ const SendLater = {
 
   // Cause current compose window to send immediately
   // (after some pre-send checks)
-  async doSendNow(tabId) {
-    let preferences = await SLTools.getPrefs();
-    if (preferences.showSendNowAlert) {
-      const result = await SLTools.confirmCheck(
-        messenger.i18n.getMessage("AreYouSure"),
-        messenger.i18n.getMessage("SendNowConfirmMessage"),
-        messenger.i18n.getMessage("ConfirmAgain"),
-        true,
-      ).catch((err) => {
-        SLStatic.trace(err);
-      });
-      if (result.check === false) {
-        preferences.showSendNowAlert = false;
-        await messenger.storage.local.set({ preferences });
-      }
-      if (!result.ok) {
-        SLStatic.debug(`User canceled send now.`);
-        return;
+  async doSendNow(tabId, options, fromMenuCommand) {
+    if (options.first) {
+      let preferences = await SLTools.getPrefs();
+      if (preferences.showSendNowAlert) {
+        const result = await SLTools.confirmCheck(
+          messenger.i18n.getMessage("AreYouSure"),
+          messenger.i18n.getMessage("SendNowConfirmMessage"),
+          messenger.i18n.getMessage("ConfirmAgain"),
+          true,
+        ).catch((err) => {
+          SLStatic.trace(err);
+        });
+        if (result.check === false) {
+          preferences.showSendNowAlert = false;
+          await messenger.storage.local.set({ preferences });
+        }
+        if (!result.ok) {
+          SLStatic.debug(`User canceled send now.`);
+          return;
+        }
       }
     }
     await messenger.compose.sendMessage(tabId, { mode: "sendNow" });
+    return true;
   },
 
   // Use built-in send later function (after some pre-send checks)
-  async doPlaceInOutbox(tabId) {
-    let preferences = await SLTools.getPrefs();
-    if (preferences.showOutboxAlert) {
-      const result = await SLTools.confirmCheck(
-        messenger.i18n.getMessage("AreYouSure"),
-        messenger.i18n.getMessage("OutboxConfirmMessage"),
-        messenger.i18n.getMessage("ConfirmAgain"),
-        true,
-      ).catch((err) => {
-        SLStatic.trace(err);
-      });
-      if (result.check === false) {
-        preferences.showOutboxAlert = false;
-        await messenger.storage.local.set({ preferences });
-      }
-      if (!result.ok) {
-        SLStatic.debug(`User canceled send later.`);
-        return;
+  async doPlaceInOutbox(tabId, options, fromMenuCommand) {
+    if (options.first) {
+      let preferences = await SLTools.getPrefs();
+      if (preferences.showOutboxAlert) {
+        const result = await SLTools.confirmCheck(
+          messenger.i18n.getMessage("AreYouSure"),
+          messenger.i18n.getMessage("OutboxConfirmMessage"),
+          messenger.i18n.getMessage("ConfirmAgain"),
+          true,
+        ).catch((err) => {
+          SLStatic.trace(err);
+        });
+        if (result.check === false) {
+          preferences.showOutboxAlert = false;
+          await messenger.storage.local.set({ preferences });
+        }
+        if (!result.ok) {
+          SLStatic.debug(`User canceled send later.`);
+          return;
+        }
       }
     }
     await messenger.compose.sendMessage(tabId, { mode: "sendLater" });
+    return true;
   },
 
   // Sends composed message according to user function (specified
@@ -1378,6 +1384,35 @@ const SendLater = {
     return false;
   },
 
+  async handleMessageCommand(command, options, tabId, messageIds) {
+    options.first = true;
+    if (messageIds) {
+      for (let messageId of messageIds) {
+        let message = await messenger.messages.get(messageId);
+        let identityId = await findBestIdentity(message);
+        let promise = new Promise((r) => {
+          SendLater.windowCreatedResolver = r;
+        });
+        let tab = await messenger.compose.beginNew(messageId, {
+          identityId: identityId,
+        });
+        if ((await promise) && (await command(tab.id, options, true))) {
+          await SendLater.deleteMessage(message);
+        } else {
+          messenger.tabs.remove(tab.id);
+          return;
+        }
+        options.first = false;
+      }
+      SLTools.scheduledMsgCache.clear();
+      SLTools.unscheduledMsgCache.clear();
+      setTimeout(SendLater.updateStatusIndicator, 1000);
+    } else {
+      await command(tabId, options);
+    }
+    return true;
+  },
+
   // Various extension components communicate with
   // the background script via these runtime messages.
   // e.g. the options page and the scheduler dialog.
@@ -1400,12 +1435,22 @@ const SendLater = {
       }
       case "doSendNow": {
         SLStatic.debug("User requested send immediately.");
-        await SendLater.doSendNow(message.tabId);
+        await SendLater.handleMessageCommand(
+          SendLater.doSendNow,
+          {},
+          message.tabId,
+          message.messageIds,
+        );
         break;
       }
       case "doPlaceInOutbox": {
         SLStatic.debug("User requested system send later.");
-        await SendLater.doPlaceInOutbox(message.tabId);
+        await SendLater.handleMessageCommand(
+          SendLater.doPlaceInOutbox,
+          {},
+          message.tabId,
+          message.messageIds,
+        );
         break;
       }
       case "doSendLater": {
@@ -1416,29 +1461,12 @@ const SendLater = {
           args: message.args,
           cancelOnReply: message.cancelOnReply,
         };
-        if (message.messageIds) {
-          for (let messageId of message.messageIds) {
-            let message = await messenger.messages.get(messageId);
-            let identityId = await findBestIdentity(message);
-            let promise = new Promise((r) => {
-              SendLater.windowCreatedResolver = r;
-            });
-            let tab = await messenger.compose.beginNew(messageId, {
-              identityId: identityId,
-            });
-            if (
-              (await promise) &&
-              (await SendLater.scheduleSendLater(tab.id, options, true))
-            ) {
-              await SendLater.deleteMessage(message);
-            }
-          }
-          SLTools.scheduledMsgCache.clear();
-          SLTools.unscheduledMsgCache.clear();
-          setTimeout(SendLater.updateStatusIndicator, 1000);
-        } else {
-          await SendLater.scheduleSendLater(message.tabId, options);
-        }
+        await SendLater.handleMessageCommand(
+          SendLater.scheduleSendLater,
+          options,
+          message.tabId,
+          message.messageIds,
+        );
         break;
       }
       case "getMainLoopStatus": {

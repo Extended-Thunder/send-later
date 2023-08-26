@@ -901,8 +901,6 @@ const SLPopup = {
     if (messageIds.length) {
       SLPopup.messageIds = messageIds;
       SLPopup.tabId = null;
-      document.getElementById("sendNow").disabled = true;
-      document.getElementById("placeInOutbox").disabled = true;
     } else {
       SLPopup.messageIds = null;
       SLPopup.tabId = await browser.tabs
