@@ -60,7 +60,7 @@ var SLTools = {
         .create({
           url: url,
           type: "popup",
-          titlePreface: title,
+          titlePreface: title + " - ",
           height: 250,
           width: 750,
         })
