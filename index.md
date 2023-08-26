@@ -490,22 +490,18 @@ Some things to keep in mind:
     you do experiment with it let me know the results.
 6.  I have been told by multiple people that messages sent from or to iCloud or
     me.com accounts never appear in the recipient's inbox even though
-    Thunderbird says they were sent successfully. Please note that this is *not*
-    a bug in Send Later or Thunderbird, it's a problem with iCloud. Apparently,
-    Apple thinks it's OK to run a mail server which arbitrarily and completely
-    silently discards valid email messages with no notification to either the
-    sender or recipient that this has occurred (this is discussed by others on
-    the internet, e.g.:
-    [here](https://www.macworld.com/article/2029570/silent-email-filtering-makes-icloud-an-unreliable-option.html),
-    [here](https://discussions.apple.com/thread/3153039),
-    [here](https://www.cultofmac.com/103703/apple-may-be-invisibly-filtering-your-outgoing-mobileme-email-exclusive/103703/),
-    [here](https://www.imore.com/apple-slipping-lately#comment-610145)).
-    I have tried, unfortunately without success, to find a fix or workaround for
-    this problem. The only possible fix I've been able to find --- and I'm not
-    actually sure it works --- is to check your account settings and confirm
-    that the outbound SMTP configuration in Thunderbird for your iCloud account
-    matches the
-    [settings Apple says you should be using](https://support.apple.com/en-us/HT202304).
+    Thunderbird says they were sent successfully. Please note that this is
+    *not* a bug in Send Later or Thunderbird, it's a problem with iCloud.
+    Apparently, Apple thinks it's OK to run a mail server which arbitrarily and
+    completely silently discards valid email messages with no notification to
+    either the sender or recipient that this has occurred (this is discussed by
+    others on the internet, e.g.: [here][icloud1], [here][icloud2],
+    [here][icloud3]). I have tried, unfortunately without success, to find a
+    fix or workaround for this problem. The only possible fix I've been able to
+    find --- and I'm not actually sure it works --- is to check your account
+    settings and confirm that the outbound SMTP configuration in Thunderbird
+    for your iCloud account matches the [settings Apple says you should be
+    using](https://support.apple.com/en-us/HT202304).
 7.  <a name="exquilla"></a>Send Later does not work with ExQuilla, because Send
     Later depends on being able to put messages into your local Outbox and then
     send them with the "Send Unsent Messages" command, but
@@ -517,6 +513,10 @@ Some things to keep in mind:
     [Owl for Exchange](https://addons.thunderbird.net/thunderbird/addon/owl-for-exchange/),
     the add-on which is intended to replace ExQuilla, when configured as
     described [below](#owl).
+
+[icloud1]: https://www.macworld.com/article/2029570/silent-email-filtering-makes-icloud-an-unreliable-option.html
+[icloud2]: https://discussions.apple.com/thread/3153039
+[icloud3]: https://www.cultofmac.com/103703/apple-may-be-invisibly-filtering-your-outgoing-mobileme-email-exclusive/103703/)
 
 <a name="missing-column"></a>
 ### The Send Later column in the Drafts folder message list is missing
