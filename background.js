@@ -1,6 +1,7 @@
 // Pseudo-namespace encapsulation for global-ish variables.
 const SendLater = {
   prefCache: {},
+  windowCreatedResolver: null,
 
   // The user should be alerted about messages which are
   // beyond their late grace period once per session.
@@ -96,7 +97,7 @@ const SendLater = {
 
   // Go through the process of handling pre-send checks, assigning custom
   // header fields, and saving the message to Drafts.
-  async scheduleSendLater(tabId, options) {
+  async scheduleSendLater(tabId, options, fromMenuCommand) {
     let now = new Date();
     SLStatic.debug(`Pre-send check initiated at ${now}`);
     let check = await messenger.SL3U.GenericPreSendCheck();
@@ -199,7 +200,7 @@ const SendLater = {
 
     // If message was a reply or forward, update the original message
     // to show that it has been replied to or forwarded.
-    if (composeDetails.relatedMessageId) {
+    if (!fromMenuCommand && composeDetails.relatedMessageId) {
       if (composeDetails.type == "reply") {
         SLStatic.debug("This is a reply message. Setting original 'replied'");
         await messenger.SL3U.setDispositionState(
@@ -222,7 +223,12 @@ const SendLater = {
     // where the message ID reported to us is not the actual saved message.
     // Best option right now seems to be invalidating and regenerating the
     // entire unscheduledMsgCache.
-    SLTools.unscheduledMsgCache.clear();
+    if (!fromMenuCommand) {
+      SLTools.unscheduledMsgCache.clear();
+      // It seems that a delay is required for messages.getFull to successfully
+      // access the recently saved message.
+      setTimeout(SendLater.updateStatusIndicator, 1000);
+    }
     // // Different workaround:
     // function touchDraftMsg(draftId) {
     //   SLTools.unscheduledMsgCache.delete(draftId);
@@ -237,10 +243,7 @@ const SendLater = {
     // await messenger.SL3U.findAssociatedDraft(windowId).then(
     //   newDraftMsg => touchDraftMsg(newDraftMsg.id)
     // );
-
-    // It seems that a delay is required for messages.getFull to successfully
-    // access the recently saved message.
-    setTimeout(SendLater.updateStatusIndicator, 1000);
+    return true;
   },
 
   async deleteMessage(hdr) {
@@ -957,6 +960,41 @@ const SendLater = {
     // initialization is complete. It ensures that subsequent changes to storage
     // take effect immediately.
     messenger.storage.onChanged.addListener(SendLater.storageChangedListener);
+
+    this.menuId = await messenger.menus.create({
+      contexts: ["message_list"],
+      title: messenger.i18n.getMessage("menuScheduleMsg"),
+    });
+    this.menuVisible = true;
+    messenger.menus.onClicked.addListener(SendLater.scheduleSelectedMessages);
+    messenger.menus.onShown.addListener(SendLater.checkScheduleMenu);
+  },
+
+  async scheduleSelectedMessages(info, tab) {
+    SLStatic.trace("SendLater.scheduleSelectedMessages", info, tab);
+    let messageIds = info.selectedMessages.messages.map((msg) => msg.id);
+    if (!messageIds.length) {
+      return;
+    }
+    let queryString = messageIds.map((id) => `messageId=${id}`).join("&");
+    await messenger.windows.create({
+      allowScriptsToClose: true,
+      type: "popup",
+      url: `ui/popup.html?${queryString}`,
+    });
+  },
+
+  async checkScheduleMenu(info, tab) {
+    SLStatic.trace("SendLater.checkScheduleMenu", info, tab);
+    let visible = info.displayedFolder.type == "drafts";
+    if (SendLater.menuVisible != visible) {
+      SLStatic.debug(
+        `Making schedule menu item ${visible ? "" : "in"}visible`,
+      );
+      await messenger.menus.update(SendLater.menuId, { visible: visible });
+      await messenger.menus.refresh();
+      SendLater.menuVisible = visible;
+    }
   },
 
   async storageChangedListener(changes, areaName) {
@@ -1078,6 +1116,22 @@ const SendLater = {
       return;
     }
 
+    let resolver = SendLater.windowCreatedResolver;
+    SendLater.windowCreatedResolver = null;
+    try {
+      await SendLater.setUpWindow(window);
+      if (resolver) {
+        resolver(true);
+      }
+    } catch (ex) {
+      if (resolver) {
+        resolver(false);
+      }
+      throw ex;
+    }
+  },
+
+  async setUpWindow(window) {
     // Wait for window to fully load
     window = await messenger.windows.get(window.id, { populate: true });
     SLStatic.info("Opened new window", window);
@@ -1362,7 +1416,29 @@ const SendLater = {
           args: message.args,
           cancelOnReply: message.cancelOnReply,
         };
-        await SendLater.scheduleSendLater(message.tabId, options);
+        if (message.messageIds) {
+          for (let messageId of message.messageIds) {
+            let message = await messenger.messages.get(messageId);
+            let identityId = await findBestIdentity(message);
+            let promise = new Promise((r) => {
+              SendLater.windowCreatedResolver = r;
+            });
+            let tab = await messenger.compose.beginNew(messageId, {
+              identityId: identityId,
+            });
+            if (
+              (await promise) &&
+              (await SendLater.scheduleSendLater(tab.id, options, true))
+            ) {
+              await SendLater.deleteMessage(message);
+            }
+          }
+          SLTools.scheduledMsgCache.clear();
+          SLTools.unscheduledMsgCache.clear();
+          setTimeout(SendLater.updateStatusIndicator, 1000);
+        } else {
+          await SendLater.scheduleSendLater(message.tabId, options);
+        }
         break;
       }
       case "getMainLoopStatus": {
@@ -1837,6 +1913,80 @@ function setDeferred(name, timeout, func) {
 async function clearDeferred(deferredObj) {
   clearTimeout(deferredObj.timeoutId);
   await messenger.alarms.clear(deferredObj.name);
+}
+
+async function findBestIdentity(message) {
+  // First try to find the author of the message in the account associated
+  // with the folder it's in. If that fails, save the default identity for
+  // that account and try to find the author in the identities of all other
+  // accounts. If that fails, return the default identity of the account
+  // associated with the folder.
+  let author = message.author;
+  let account = await messenger.accounts.get(message.folder.accountId, false);
+  let primaryAccountId = account.id;
+  let nameMatchId = null;
+  let emailMatchId = null;
+  for (let identity of account.identities) {
+    // There really should be a way to parse From lines in the TB API.
+    if (exactIdentityMatch(author, identity)) {
+      return identity.id;
+    } else if (!nameMatchId && nameIdentityMatch(author, identity)) {
+      nameMatchId = identity.id;
+    } else if (!emailMatchId && emailIdentityMatch(author, identity)) {
+      emailMatchId = identity.id;
+    }
+  }
+  if (nameMatchId || emailMatchId) {
+    return nameMatchId || emailMatchId;
+  }
+  let primaryIdentityId = account.identities[0].id;
+  for (account of await messenger.accounts.list(false)) {
+    if (account.id == primaryAccountId) {
+      continue;
+    }
+    for (let identity of account.identities) {
+      if (exactIdentityMatch(author, identity)) {
+        return identity.id;
+      } else if (!nameMatchId && nameIdentityMatch(author, identity)) {
+        nameMatchId = identity.id;
+      } else if (!emailMatchId && emailIdentityMatch(author, identity)) {
+        emailMatchId = identity.id;
+      }
+    }
+    if (nameMatchId) {
+      return nameMatchId;
+    }
+  }
+  if (nameMatchId || emailMatchId) {
+    return nameMatchId || emailMatchId;
+  }
+  return primaryIdentityId;
+}
+
+function exactIdentityMatch(author, identity) {
+  if (identity.name && identity.email) {
+    return author == `${identity.name} <${identity.email}>`;
+  } else if (identity.email) {
+    return author == identity.email || author == `<${identity.email}>`;
+  }
+  return false;
+}
+
+function nameIdentityMatch(author, identity) {
+  if (identity.name && identity.email) {
+    return (
+      author.startsWith(identity.name) &&
+      author.endsWith(`<${identity.email}>`)
+    );
+  }
+  return false;
+}
+
+function emailIdentityMatch(author, identity) {
+  if (identity.email) {
+    return author == identity.email || author.includes(`<${identity.email}>`);
+  }
+  return false;
 }
 
 SendLater.init()

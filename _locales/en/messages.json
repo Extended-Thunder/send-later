@@ -1041,6 +1041,10 @@
   },
   "invalidDateFormat": {
     "message": "invalid or incomplete date format",
-    "description": "Message displayed in the inser interface inside parentheses when the user enters an invalid custom date format"
+    "description": "Message displayed in the user interface inside parentheses when the user enters an invalid custom date format"
+  },
+  "menuScheduleMsg": {
+    "message": "Schedule message(s)",
+    "description": "Command added to the message list menu for the user to use to schedule one or more selected messages with Send Later"
   }
 }

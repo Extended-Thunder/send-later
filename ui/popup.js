@@ -28,6 +28,7 @@ const SLPopup = {
   doSendWithSchedule(schedule) {
     if (schedule && !schedule.err) {
       const message = {
+        messageIds: SLPopup.messageIds,
         tabId: SLPopup.tabId,
         action: "doSendLater",
         sendAt: schedule.sendAt,
@@ -46,20 +47,28 @@ const SLPopup = {
 
   doSendNow() {
     const message = {
+      messageIds: SLPopup.messageIds,
       tabId: SLPopup.tabId,
       action: "doSendNow",
     };
     SLStatic.debug(message);
-    browser.runtime.sendMessage(message).catch((err) => SLStatic.error(err));
+    browser.runtime
+      .sendMessage(message)
+      .then(() => window.close())
+      .catch((err) => SLStatic.error(err));
   },
 
   doPlaceInOutbox() {
     const message = {
+      messageIds: SLPopup.messageIds,
       tabId: SLPopup.tabId,
       action: "doPlaceInOutbox",
     };
     SLStatic.debug(message);
-    browser.runtime.sendMessage(message).catch((err) => SLStatic.trace(err));
+    browser.runtime
+      .sendMessage(message)
+      .then(() => window.close())
+      .catch((err) => SLStatic.trace(err));
   },
 
   domElementsAsArray() {
@@ -861,12 +870,8 @@ const SLPopup = {
   },
 
   async init() {
-    SLPopup.tabId = await browser.tabs
-      .query({
-        active: true,
-        currentWindow: true,
-      })
-      .then((tabs) => tabs[0].id);
+    SLStatic.trace("SLPopup.init", window.location);
+    document.title = browser.i18n.getMessage("extensionName");
 
     await SLStatic.cachePrefs();
 
@@ -888,6 +893,25 @@ const SLPopup = {
     SLPopup.attachListeners();
 
     SLPopup.applyDefaults();
+
+    let messageIds = new URLSearchParams(window.location.search)
+      .getAll("messageId")
+      .map((str) => parseInt(str));
+
+    if (messageIds.length) {
+      SLPopup.messageIds = messageIds;
+      SLPopup.tabId = null;
+      document.getElementById("sendNow").disabled = true;
+      document.getElementById("placeInOutbox").disabled = true;
+    } else {
+      SLPopup.messageIds = null;
+      SLPopup.tabId = await browser.tabs
+        .query({
+          active: true,
+          currentWindow: true,
+        })
+        .then((tabs) => tabs[0].id);
+    }
 
     SLStatic.debug("Initialized popup window");
   },
