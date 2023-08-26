@@ -7,6 +7,7 @@ import glob
 import itertools
 import json
 import sys
+import textwrap
 
 default_locale = 'en'
 obsolete_keys = (
@@ -90,8 +91,8 @@ def compare_trees(old, new):
             try:
                 before_value = before[key]
             except KeyError:
-                print(f'{locale}: {key} added (translated from '
-                      f'{old[default_locale][key]}): {after[key]}')
+                print(wrap(f'{locale}: {key} added (translated from '
+                           f'{old[default_locale][key]}): {after[key]}'))
                 continue
             try:
                 after_value = after[key]
@@ -103,13 +104,25 @@ def compare_trees(old, new):
                     pass
 
                 if key not in obsolete_keys:
-                    print(f'{locale}: {key} deleted (was {before[key]})')
+                    print(wrap(f'{locale}: {key} deleted (was {before[key]})'))
                 continue
             if key in obsolete_keys:
                 print(f'{locale}: {key} should be deleted')
                 continue
             if before_value != after_value:
-                print(f'{locale}: {key}: {before_value} -> {after_value}')
+                print(wrap(f'{locale}: {key}: {before_value} -> '
+                           f'{after_value}'))
+
+
+def wrap(str):
+    width = 79
+    indent = '    '
+    lines = str.split('\n')
+    wrapped = textwrap.wrap(lines.pop(0), width=width, subsequent_indent=indent)
+    for line in lines:
+        wrapped.extend(textwrap.wrap(line, width=width, initial_indent=indent,
+                                     subsequent_indent=indent))
+    return '\n'.join(wrapped)
 
 
 if __name__ == '__main__':
