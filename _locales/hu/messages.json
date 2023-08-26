@@ -259,14 +259,6 @@
     "message": "Az üzenetet azonnal küldje el, megkerülve a „Küldés később”-kiegészítőt.",
     "description": ""
   },
-  "sendlater.prompt.close.accesskey": {
-    "message": "M",
-    "description": ""
-  },
-  "sendlater.prompt.close.tooltip": {
-    "message": "Menjen vissza az üzenet szerkesztéséhez.",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "Küldje el ezt az e-mailt később",
     "description": ""

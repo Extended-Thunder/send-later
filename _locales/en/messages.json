@@ -259,14 +259,6 @@
     "message": "Send the message immediately, bypassing “Send Later”.",
     "description": ""
   },
-  "sendlater.prompt.close.accesskey": {
-    "message": "C",
-    "description": ""
-  },
-  "sendlater.prompt.close.tooltip": {
-    "message": "Go back to editing the message.",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "Send this email later",
     "description": ""

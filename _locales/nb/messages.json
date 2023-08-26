@@ -235,14 +235,6 @@
     "message": "Send meldingen umiddelbart ved å overstyre “Send senere”.",
     "description": ""
   },
-  "sendlater.prompt.close.accesskey": {
-    "message": "A",
-    "description": ""
-  },
-  "sendlater.prompt.close.tooltip": {
-    "message": "Gå tilbake for å redigere meldingen.",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "Send denne e-posten senere",
     "description": ""

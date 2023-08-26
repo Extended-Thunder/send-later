@@ -243,14 +243,6 @@
     "message": "Lähettää viestin heti, ohittaen ”Lähetä myöhemmin” -toiminnon.",
     "description": ""
   },
-  "sendlater.prompt.close.accesskey": {
-    "message": "P",
-    "description": ""
-  },
-  "sendlater.prompt.close.tooltip": {
-    "message": "Palaa viestin muokkaamiseen.",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "Lähetä tämä viesti myöhemmin",
     "description": ""

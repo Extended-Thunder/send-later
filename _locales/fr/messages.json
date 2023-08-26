@@ -243,14 +243,6 @@
     "message": "Envoyer le message immédiatement sans utiliser « Envoyer Plus Tard ».",
     "description": ""
   },
-  "sendlater.prompt.close.accesskey": {
-    "message": "A",
-    "description": ""
-  },
-  "sendlater.prompt.close.tooltip": {
-    "message": "Revenir à la rédaction du message",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "Envoyer cet e-mail plus tard",
     "description": ""

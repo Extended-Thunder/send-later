@@ -255,14 +255,6 @@
     "message": "Изпратете незабавно съобщението, като заобиколите “Изпращане по-късно”.",
     "description": ""
   },
-  "sendlater.prompt.close.accesskey": {
-    "message": "О",
-    "description": ""
-  },
-  "sendlater.prompt.close.tooltip": {
-    "message": "Върнете се обратно към редактиране на съобщението.",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "Изпращане на този имейл по-късно",
     "description": ""

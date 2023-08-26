@@ -243,10 +243,6 @@
     "message": "立即发送消息，跳过 “Send Later”。",
     "description": ""
   },
-  "sendlater.prompt.close.tooltip": {
-    "message": "回到编写消息。",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "延期发送这封电子邮件",
     "description": ""

@@ -251,10 +251,6 @@
     "message": "Enviar el missatge immediatament, ignorant “Send Later”.",
     "description": ""
   },
-  "sendlater.prompt.close.tooltip": {
-    "message": "Tornar a editar el missatge.",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "Enviar aquest correu després",
     "description": ""

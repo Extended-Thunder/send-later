@@ -259,14 +259,6 @@
     "message": "שלח מייד את ההודעה, ועקוף את “‫שלח מאוחר יותר‬”.",
     "description": ""
   },
-  "sendlater.prompt.close.accesskey": {
-    "message": "ב",
-    "description": ""
-  },
-  "sendlater.prompt.close.tooltip": {
-    "message": "‫חזור להמשך עריכת ההודעה‬",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "‫שלח הודעת דוא“ל זו מאוחר יותר‬",
     "description": ""

@@ -211,14 +211,6 @@
     "message": "Նամակը ուղարկել անմիջապես՝ շրջանցելով «Ուղարկել ավելի ուշ»-ն",
     "description": ""
   },
-  "sendlater.prompt.close.accesskey": {
-    "message": "Չ",
-    "description": ""
-  },
-  "sendlater.prompt.close.tooltip": {
-    "message": "Վերադառնալ խմբագրմանը",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "Ուղարկել նամակը ավելի ուշ",
     "description": ""

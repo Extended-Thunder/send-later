@@ -235,14 +235,6 @@
     "message": "Skicka meddelandet omedelbart oavsett inställningar i “Skicka Senare”.",
     "description": ""
   },
-  "sendlater.prompt.close.accesskey": {
-    "message": "A",
-    "description": ""
-  },
-  "sendlater.prompt.close.tooltip": {
-    "message": "Gå tillbaka för att redigera meddelandet.",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "Skicka detta e-brev senare",
     "description": ""

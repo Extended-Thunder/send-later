@@ -259,14 +259,6 @@
     "message": "Bericht onmiddellijk verzenden zonder ‘Send Later’",
     "description": ""
   },
-  "sendlater.prompt.close.accesskey": {
-    "message": "A",
-    "description": ""
-  },
-  "sendlater.prompt.close.tooltip": {
-    "message": "Terug naar bewerken van het bericht",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "Dit e-mailbericht later verzenden",
     "description": ""

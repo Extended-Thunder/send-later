@@ -251,14 +251,6 @@
     "message": "Enviar imediatamente, ignorando “Enviar mais tarde”.",
     "description": ""
   },
-  "sendlater.prompt.close.accesskey": {
-    "message": "a",
-    "description": ""
-  },
-  "sendlater.prompt.close.tooltip": {
-    "message": "Voltar e editar mensagem.",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "Enviar este email mais tarde",
     "description": ""

@@ -247,10 +247,6 @@
     "message": "Envie a mensagem imediatamente, ignorando “Send Later”.",
     "description": ""
   },
-  "sendlater.prompt.close.tooltip": {
-    "message": "Voltar à edição da mensagem.",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "Enviar este email mais tarde",
     "description": ""

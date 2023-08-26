@@ -239,14 +239,6 @@
     "message": "Παρακάμπτει το “Send Later” και στέλνει το μήνυμα αμέσως.",
     "description": ""
   },
-  "sendlater.prompt.close.accesskey": {
-    "message": "Α",
-    "description": ""
-  },
-  "sendlater.prompt.close.tooltip": {
-    "message": "Επιστροφή στην επεξεργασία του μηνύματος.",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "Αποστολή του μηνύματος αργότερα",
     "description": ""

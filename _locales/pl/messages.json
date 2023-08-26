@@ -259,14 +259,6 @@
     "message": "Wyślij wiadomość TERAZ, pomijając funkcjonalność dodatku “Send Later”.",
     "description": ""
   },
-  "sendlater.prompt.close.accesskey": {
-    "message": "A",
-    "description": ""
-  },
-  "sendlater.prompt.close.tooltip": {
-    "message": "Wróć do edycji wiadomości.",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "Wyślij tę wiadomość później",
     "description": ""

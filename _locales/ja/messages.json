@@ -231,10 +231,6 @@
     "message": "“Send Later”をバイパスして、直ちにメッセージを送信します。",
     "description": ""
   },
-  "sendlater.prompt.close.tooltip": {
-    "message": "メッセージの編集に戻ります。",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "このメールを後で送信する",
     "description": ""

@@ -259,14 +259,6 @@
     "message": "Trimite mesajul imediat, ignorând Send Later.",
     "description": ""
   },
-  "sendlater.prompt.close.accesskey": {
-    "message": "A",
-    "description": ""
-  },
-  "sendlater.prompt.close.tooltip": {
-    "message": "Revino la editarea mesajului.",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "Trimite acest e-mail mai târziu",
     "description": ""

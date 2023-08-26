@@ -247,10 +247,6 @@
     "message": "跳過延期發信, 馬上寄出訊息",
     "description": ""
   },
-  "sendlater.prompt.close.tooltip": {
-    "message": "回到編輯郵件。",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "延期發送這封電子郵件",
     "description": ""

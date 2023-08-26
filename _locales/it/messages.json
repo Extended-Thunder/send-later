@@ -239,14 +239,6 @@
     "message": "Invia il messaggio immediatamente, evitando “Invia Dopo”.",
     "description": ""
   },
-  "sendlater.prompt.close.accesskey": {
-    "message": "A",
-    "description": ""
-  },
-  "sendlater.prompt.close.tooltip": {
-    "message": "Torna a modificare il messaggio.",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "Invia questa e-mail dopo",
     "description": ""

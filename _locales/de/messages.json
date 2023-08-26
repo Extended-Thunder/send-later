@@ -259,14 +259,6 @@
     "message": "Die Nachricht sofort statt mit “Später Senden” senden.",
     "description": ""
   },
-  "sendlater.prompt.close.accesskey": {
-    "message": "A",
-    "description": ""
-  },
-  "sendlater.prompt.close.tooltip": {
-    "message": "Zurück zum Verfassen der Nachricht.",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "Diese Nachricht später senden",
     "description": ""

@@ -239,14 +239,6 @@
     "message": "Отправка сообщения минуя Send Later.",
     "description": ""
   },
-  "sendlater.prompt.close.accesskey": {
-    "message": "О",
-    "description": ""
-  },
-  "sendlater.prompt.close.tooltip": {
-    "message": "Вернуться к редактированию сообщения.",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "Отложенная отправка письма",
     "description": ""

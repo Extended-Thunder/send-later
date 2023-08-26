@@ -239,14 +239,6 @@
     "message": "Odeslat zprávu hned bez použití „Odeslat Později“.",
     "description": ""
   },
-  "sendlater.prompt.close.accesskey": {
-    "message": "Z",
-    "description": ""
-  },
-  "sendlater.prompt.close.tooltip": {
-    "message": "Zpět na úpravu zprávy.",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "Odeslat tento email později",
     "description": ""

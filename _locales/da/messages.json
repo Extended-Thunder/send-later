@@ -251,10 +251,6 @@
     "message": "Send beskeden med det samme, undlad “Send senere”.",
     "description": ""
   },
-  "sendlater.prompt.close.tooltip": {
-    "message": "Gå tilbage til redigering af beskeden.",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "Send denne e-mail senere",
     "description": ""
