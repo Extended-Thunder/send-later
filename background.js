@@ -1455,7 +1455,10 @@ const SendLater = {
       SLTools.unscheduledMsgCache.clear();
       setTimeout(SendLater.updateStatusIndicator, 1000);
       return total == successful;
-    } else if (!options.messageChecker || options.messageChecker(options)) {
+    } else if (
+      !options.messageChecker ||
+      (await options.messageChecker(options))
+    ) {
       // N.B. In window mode the message checker doesn't get the message ID,
       // message header, or full message.
       return await command(tabId, options);
