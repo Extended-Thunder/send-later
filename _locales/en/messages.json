@@ -783,14 +783,6 @@
   "EncryptionIncompatText": {
     "message": "This message is encrypted with your own PGP key, and therefore cannot be delivered to its recipients. See this discussion for more details on why you're seeing this message: https://github.com/Extended-Thunder/send-later/discussions/200"
   },
-  "EnigmailIncompatTitle": {
-    "message": "Send Later / Enigmail compatibility issue",
-    "description": ""
-  },
-  "EnigmailIncompatText": {
-    "message": "The installed version of Enigmail is incompatible with Send Later, so scheduling messages with Send Later has been disabled. Please contact the maintainer of Send Later (send-later-support@extended-thunder.org) for assistance.",
-    "description": ""
-  },
   "incorrectUUID": {
     "message": "Scheduled by another client",
     "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."

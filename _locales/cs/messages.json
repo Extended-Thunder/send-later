@@ -743,14 +743,6 @@
     "message": "„Odeslat Později“ může odesílat zprávy pouze, když $1 běží. Prosím, nezapomeňte ho znovu spustit před tím, než jsou vaše zprávy naplánované k odeslání!",
     "description": ""
   },
-  "EnigmailIncompatTitle": {
-    "message": "Odeslat Později / Enigmail - problém s kompatibilitou",
-    "description": ""
-  },
-  "EnigmailIncompatText": {
-    "message": "Nainstalovaná verze programu „Enigmail“ není kompatibilní s rozšířením „Odeslat Později“, proto bylo plánování odesílání zpráv s „Odeslat Později“ zakázáno. Kontaktujte, prosím, vývojáře „Odeslat Později“ (send-later-support@extended-thunder.org) s žádostí o pomoc.",
-    "description": ""
-  },
   "TimeMismatchConfirmTitle": {
     "message": "Čas odeslání a omezení času odeslání se neshodují",
     "description": ""

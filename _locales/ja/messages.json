@@ -727,14 +727,6 @@
     "message": "Send Later は $1 が起動しているときのみ、メッセージを送信することができます。送信予定日時までに再起動するのを忘れないでください！",
     "description": ""
   },
-  "EnigmailIncompatTitle": {
-    "message": "Send Later / Enigmail の互換性の問題",
-    "description": ""
-  },
-  "EnigmailIncompatText": {
-    "message": "インストールされている Enigmail は Send Later と互換性がありません。Send Later でスケジュールされたメッセージは無効化されています。Send Later の開発者(send-later-support@extended-thunder.org) に連絡してください。",
-    "description": ""
-  },
   "TimeMismatchConfirmTitle": {
     "message": "送信時間 / 条件の不一致",
     "description": ""

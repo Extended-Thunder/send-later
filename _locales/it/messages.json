@@ -743,14 +743,6 @@
     "message": "Invia Dopo può inviare messaggi solamente quando $1 è in esecuzione. Per cortesia ricordati di riavviarlo prima di quando hai pianificato l'invio dei tuoi messaggi!",
     "description": ""
   },
-  "EnigmailIncompatTitle": {
-    "message": "Problema di compatibilità Invia Dopo / Enigmail",
-    "description": ""
-  },
-  "EnigmailIncompatText": {
-    "message": "La versione di Enigmail installata non è compatibile con Invia Dopo, quindi la pianificazione dei messaggi con Invia Dopo è stata disattivata. Per cortesia contattare l'autore di Invia Dopo (send-later-support@extended-thunder.org) per assistenza.",
-    "description": ""
-  },
   "TimeMismatchConfirmTitle": {
     "message": "Incongruenza orario di invio/restrizione",
     "description": ""

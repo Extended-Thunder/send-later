@@ -739,14 +739,6 @@
     "message": "Send senere kan bare sende meldinger når $1 kjører. Husk å starte den på nytt før meldingene dine er planlagt å bli sendt!",
     "description": ""
   },
-  "EnigmailIncompatTitle": {
-    "message": "Send senere / Enigmail-kompatibilitetsproblem",
-    "description": ""
-  },
-  "EnigmailIncompatText": {
-    "message": "Den installerte versjonen av Enigmail er ikke kompatibel med Send senere, så det å planlegge meldinger med Send senere er deaktivert. Kontakt den ansvarlige for Send senere (send-later-support@extended-thunder.org) for hjelp.",
-    "description": ""
-  },
   "TimeMismatchConfirmTitle": {
     "message": "Usamsvar mellom sendingstidspunkt og begrensninger",
     "description": ""

@@ -764,14 +764,6 @@
   "EncryptionIncompatText": {
     "message": "Esta mensagem é criptografada com a sua própria chave PGP e, portanto, não pode ser entregue aos destinatários. Veja esta discussão para mais detalhes sobre porque está vendo esta mensagem: https://github.com/Extended-Thunder/send-later/discussions/200"
   },
-  "EnigmailIncompatTitle": {
-    "message": "Falha de compatibilidade entre Enviar mais tarde e Enigmail",
-    "description": ""
-  },
-  "EnigmailIncompatText": {
-    "message": "A versão instalada de Enigmail é incompatível com Enviar mais tarde: o serviço de agendar mensagens com Enviar mais tarde foi desativado. Contate o responsável por Enviar mais tarde (send-later-support@extended-thunder.org) para assistência.",
-    "description": ""
-  },
   "TimeMismatchConfirmTitle": {
     "message": "Incompatibilidade entre hora de envio / restrição",
     "description": ""

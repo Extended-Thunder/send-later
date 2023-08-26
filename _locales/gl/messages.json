@@ -739,14 +739,6 @@
     "message": "Send Later so pode enviar mensaxes cando $1 está en funcionamento. Por favor, ¡lembre volver a inicialo antes do intre programado de envío das súas mensaxes!",
     "description": ""
   },
-  "EnigmailIncompatTitle": {
-    "message": "Problema de compatibilidade do Send Later / Enigmail",
-    "description": ""
-  },
-  "EnigmailIncompatText": {
-    "message": "A versión instalada do Enigmail é incompatible con Send Later, por iso a programación de mensaxes con o Send Later foi desactivada. Por favor contacte co responsable do Send Later (send-later-support@extended-thunder.org) para obter asistencia.",
-    "description": ""
-  },
   "TimeMismatchConfirmTitle": {
     "message": "Incoherencia na hora de envío / restrición",
     "description": ""

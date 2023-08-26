@@ -783,14 +783,6 @@
   "EncryptionIncompatText": {
     "message": "Diese Nachricht ist mit Ihrem eigenen PGP-Schlüssel verschlüsselt und kann deshalb nicht an die Empfänger zugestellt werden. Für mehr Details zum Hintergrund dieser Meldung siehe https://github.com/Extended-Thunder/send-later/discussions/200"
   },
-  "EnigmailIncompatTitle": {
-    "message": "„Später Senden” / Kompatibilitätsprobleme mit Enigmail",
-    "description": ""
-  },
-  "EnigmailIncompatText": {
-    "message": "Die installierte Version von Enigmail ist mit „Später Senden” nicht kompatibel, das Planen von Nachrichten mit „Später Senden” ist also deaktiviert. Kontaktieren Sie bitte den Später Senden-Entwickler (send-later-support@extended-thunder.org), um Hilfe zu erhalten.",
-    "description": ""
-  },
   "incorrectUUID": {
     "message": "Von einem anderen Client geplant",
     "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."

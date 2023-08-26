@@ -751,14 +751,6 @@
   "EncryptionIncompatText": {
     "message": "Αυτό το μήνυμα είναι κρυπτογραφημένο με το δικό σας κλειδί PGP και επομένως δεν μπορεί να παραδοθεί στους παραλήπτες του. Δείτε αυτή τη συζήτηση για περισσότερες λεπτομέρειες σχετικά με το γιατί βλέπετε αυτό το μήνυμα: https://github.com/Extended-Thunder/send-later/discussions/200"
   },
-  "EnigmailIncompatTitle": {
-    "message": "Πρόβλημα συμβατότητας ανάμεσα στο Send Later και το Enigmail.",
-    "description": ""
-  },
-  "EnigmailIncompatText": {
-    "message": "Η εγκατεστημένη έκδοση του Enigmail είναι ασύμβατη με το Send Later, επομένως ο προγραμματισμός αποστολής μηνυμάτων με το Send Later απενεργοποιήθηκε. Παρακαλούμε επικοινωνήστε με τον διαχειριστή του Send Later (send-later-support@extended-thunder.org) για βοήθεια.",
-    "description": ""
-  },
   "TimeMismatchConfirmTitle": {
     "message": "Ασυμφωνία χρόνου αποστολής / περιορισμού",
     "description": ""

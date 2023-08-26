@@ -751,14 +751,6 @@
     "message": "延期發信只會在$1開啟時才能發送訊息。請記得在郵件排程時間前重新開啟。",
     "description": ""
   },
-  "EnigmailIncompatTitle": {
-    "message": "延期發信與Enigmail相容性問題",
-    "description": ""
-  },
-  "EnigmailIncompatText": {
-    "message": "Enigmail 版本與延期發信不相容，因此延期發信的排程訊息已經關閉。請與延期發信的維護者 (send-later-support@extended-thunder.org)聯繫。",
-    "description": ""
-  },
   "TimeMismatchConfirmTitle": {
     "message": "寄出的時間/限制不吻合",
     "description": ""

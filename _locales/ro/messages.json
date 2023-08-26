@@ -779,14 +779,6 @@
   "EncryptionIncompatText": {
     "message": "Acest mesaj este criptat cu propria ta cheie PGP și, prin urmare, nu poate fi livrat destinatarilor. Vezi această discuție pentru mai multe detalii despre motivul pentru care apare acest mesaj: https://github.com/Extended-Thunder/send-later/discussions/200"
   },
-  "EnigmailIncompatTitle": {
-    "message": "Problemă de compatibilitate Send Later / Enigmail",
-    "description": ""
-  },
-  "EnigmailIncompatText": {
-    "message": "Versiunea de Enigmail instalată este incompatibilă cu Send Later, deci programarea mesajelor cu Send Later a fost dezactivată. Contactează responsabilul Send Later (send-later-support@extended-thunder.org) pentru asistență.",
-    "description": ""
-  },
   "incorrectUUID": {
     "message": "Programat de un alt Thunderbird.",
     "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."

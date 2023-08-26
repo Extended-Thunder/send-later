@@ -775,14 +775,6 @@
   "EncryptionIncompatText": {
     "message": "Denne besked er krypteret med din egen PGP-nøgle, og kan derfor ikke leveres til modtagerne. Se denne diskussion for flere detaljer om, hvorfor du ser denne besked: https://github.com/Extended-Thunder/send-later/discussions/200"
   },
-  "EnigmailIncompatTitle": {
-    "message": "Send senere / Enigmail kompatibilitetsproblem",
-    "description": ""
-  },
-  "EnigmailIncompatText": {
-    "message": "Den installerede version af Enigmail er inkompatibel med Send senere, så planlægningen af beskeder med Send senere er blevet deaktiveret. Kontakt supporten af Send senere (send-later-support@extended-thunder.org) for assistance.",
-    "description": ""
-  },
   "incorrectUUID": {
     "message": "Planlagt af en anden klient",
     "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."

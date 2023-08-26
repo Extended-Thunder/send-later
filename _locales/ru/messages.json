@@ -739,14 +739,6 @@
     "message": "Send Later может отправлять сообщения только когда $1 запущен. Пожалуйста, не забудьте включить его, прежде чем запланированные сообщения будут отправлены!",
     "description": ""
   },
-  "EnigmailIncompatTitle": {
-    "message": "Совместимость Send Later / Enigmail",
-    "description": ""
-  },
-  "EnigmailIncompatText": {
-    "message": "Установленная версия Enigmail несовместима с Send Later, поэтому планирование сообщения через Send Later недоступно. Для помощи, пожалуйста, свяжитесь с поддержкой Send Later (send-later-support@extended-thunder.org).",
-    "description": ""
-  },
   "TimeMismatchConfirmTitle": {
     "message": "Несоответствие времени отправки / ограничения",
     "description": ""

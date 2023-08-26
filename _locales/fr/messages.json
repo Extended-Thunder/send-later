@@ -763,14 +763,6 @@
   "EncryptionIncompatText": {
     "message": "Ce message est chiffré avec votre propre clé PGP ce qui empêche l'envoi programmé. Des informations complémentaires sont disponibles ici : https://github.com/Extended-Thunder/send-later/discussions/200"
   },
-  "EnigmailIncompatTitle": {
-    "message": "Problèmes de comptabilité entre Envoyer Plus Tard et Enigmail",
-    "description": ""
-  },
-  "EnigmailIncompatText": {
-    "message": "La version installée d'Enigmail est incompatible avec Envoyer Plus Tard. Par conséquent, la programmation des envois de messages par Envoyer Plus Tard a été désactivée. Merci de contacter l'administrateur de Envoyer Plus Tard (send-later-support@extended-thunder.org) pour toute demande d'assistance.",
-    "description": ""
-  },
   "incorrectUUID": {
     "message": "Planifié par un autre client",
     "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."

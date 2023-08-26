@@ -739,14 +739,6 @@
     "message": "Skicka Senare kan endast skicka meddelanden när $1 körs. Kom ihåg att starta om programmet innan dina meddelanden har schemalagts att skickas!",
     "description": ""
   },
-  "EnigmailIncompatTitle": {
-    "message": "Skicka Senare / Enigmail kompatibilitetsproblem",
-    "description": ""
-  },
-  "EnigmailIncompatText": {
-    "message": "Den installerade versionen av Enigmail är inkompatibel med Skicka Senare och schemaläggning med Skicka Senare är avaktiverad. Kontakta utvecklare av Skicka Senare (send-later-support@extended-thunder.org) för assistans.",
-    "description": ""
-  },
   "TimeMismatchConfirmTitle": {
     "message": "Inställning för att skicka överensstämmer ej",
     "description": ""

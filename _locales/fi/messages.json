@@ -747,14 +747,6 @@
     "message": "Lähetä myöhemmin voi lähettää viestejä ainosstaan silloin, kun $1 on käynnissä. Muista käynnistää se ajoissa uudelleen, jotta ajastettujen viestien lähetys toimisi!",
     "description": ""
   },
-  "EnigmailIncompatTitle": {
-    "message": "Lähetä myöhemmin / Enigmail -yhteensopivuusongelma",
-    "description": ""
-  },
-  "EnigmailIncompatText": {
-    "message": "Enigmailin asennettu versio ei ole yhteensopiva ”Lähetä myöhemmin” kanssa, joten viestien ajastus ”Lähetä myöhemmin” on poistettu käytöstä. Ota yhteys ”Lähetä myöhemmin” ylläpitäjään (send-later-support@extended-thunder.org) avun saamiseksi.",
-    "description": ""
-  },
   "TimeMismatchConfirmTitle": {
     "message": "Lähetysaika/rajoitusristiriita",
     "description": ""

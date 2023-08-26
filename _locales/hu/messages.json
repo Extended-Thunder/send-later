@@ -783,14 +783,6 @@
   "EncryptionIncompatText": {
     "message": "Ez az üzenet a saját PGP-kulcsával van titkosítva, ezért nem küldhető el a címzetteknek. Nézze meg ezt a vitát, ha további részleteket szeretne tudni arról, miért látja ezt az üzenetet: https://github.com/Extended-Thunder/send-later/discussions/200"
   },
-  "EnigmailIncompatTitle": {
-    "message": "Küldés később / Enigmail-kiegészítő összeegyeztethetői hiba",
-    "description": ""
-  },
-  "EnigmailIncompatText": {
-    "message": "Az Enigmail telepített verziója összeegyeztethetetlen a Küldés később-kiegészítővel, így a(z) Küldés később üzenetek ütemezése le van tiltva. Kérjük, forduljon a Küldés később (send-later-support@extended-thunder.org) karbantartójához segítségért.",
-    "description": ""
-  },
   "incorrectUUID": {
     "message": "Egy másik ügyfél ütemezte",
     "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."

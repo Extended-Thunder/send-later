@@ -735,14 +735,6 @@
     "message": "“Send Later”只能在 $1 运行的时候发送消息。请记得在您的预定发送时间之前重新运行程序！",
     "description": ""
   },
-  "EnigmailIncompatTitle": {
-    "message": "Send Later以及Enigmail兼容性问题",
-    "description": ""
-  },
-  "EnigmailIncompatText": {
-    "message": "现在安装的Enigmail版本与Send Later不兼容，因此Send Later消息日程已禁用。请联系Send Later维护人员(send-later-support@extended-thunder.org)以获得帮助。",
-    "description": ""
-  },
   "TimeMismatchConfirmTitle": {
     "message": "发送时间与限制不匹配",
     "description": ""
