@@ -253,7 +253,7 @@
   },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "N",
-    "description": ""
+    "description": "Accesskey corresponding to 'sendNowLabel'"
   },
   "sendlater.prompt.sendnow.tooltip": {
     "message": "Send the message immediately, bypassing “Send Later”",
