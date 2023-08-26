@@ -415,6 +415,16 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return msgCompFields[field];
         },
 
+        async signingOrEncryptingMessage(tabId) {
+          let tab = context.extension.tabManager.get(tabId);
+          let cw = tab.nativeTab;
+          return (
+            cw.gSendSigned ||
+            cw.gSendEncrypted ||
+            cw.gCurrentIdentity.autoEncryptDrafts
+          );
+        },
+
         /*
          * Pre-send checks are tricky. They happen in the compose window's
          * GenericSendMessage() function, but only when a message is actually
@@ -450,7 +460,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
          * hang for quite some time, so don't `await` this function unless the
          * subsequent code is conditional on a `true` response anyway.
          */
-        GenericPreSendCheck() {
+        async GenericPreSendCheck() {
           const cw = Services.wm.getMostRecentWindow("msgcompose");
 
           if (cw.ResolvePendingPreSendCheck) {

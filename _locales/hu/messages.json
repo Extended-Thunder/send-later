@@ -777,12 +777,6 @@
     "message": "Küldés később csak akkor küldhet üzeneteket, amikor a(z) $1 fut. Kérjük, ne felejtse el újraindítani, mielőtt üzeneteit elküldeni szeretné!",
     "description": ""
   },
-  "EncryptionIncompatTitle": {
-    "message": "Titkosítás kompatibilitási probléma"
-  },
-  "EncryptionIncompatText": {
-    "message": "Ez az üzenet a saját PGP-kulcsával van titkosítva, ezért nem küldhető el a címzetteknek. Nézze meg ezt a vitát, ha további részleteket szeretne tudni arról, miért látja ezt az üzenetet: https://github.com/Extended-Thunder/send-later/discussions/200"
-  },
   "incorrectUUID": {
     "message": "Egy másik ügyfél ütemezte",
     "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."

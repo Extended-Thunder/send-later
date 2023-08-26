@@ -773,12 +773,6 @@
     "message": "Send Later poate trimite mesaje doar când $1 rulează. Nu uita sa repornești aplicația înainte de trimiterea programată!",
     "description": ""
   },
-  "EncryptionIncompatTitle": {
-    "message": "Problemă de compatibilitate criptare"
-  },
-  "EncryptionIncompatText": {
-    "message": "Acest mesaj este criptat cu propria ta cheie PGP și, prin urmare, nu poate fi livrat destinatarilor. Vezi această discuție pentru mai multe detalii despre motivul pentru care apare acest mesaj: https://github.com/Extended-Thunder/send-later/discussions/200"
-  },
   "incorrectUUID": {
     "message": "Programat de un alt Thunderbird.",
     "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."

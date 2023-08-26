@@ -777,12 +777,6 @@
     "message": "\"‫שלח מאוחר יותר‬\" תשלח הודעות רק כאשר $1 פועלת. אנא זכרו להפעילה מחדש לפני המועד המתוכנן למשלוח ההודעות!‬",
     "description": ""
   },
-  "EncryptionIncompatTitle": {
-    "message": "סוגיית תאימות בהצפנה"
-  },
-  "EncryptionIncompatText": {
-    "message": "הודעה זו מוצפנת באמצעות מפתח ה PGP שלך ולכן לא תוכל להימסר לנמען. פנה לקישור הדיון להלן כדי לקבל פרטים נוספים על הסיבות להצגת הודעה זו: https://github.com/Extended-Thunder/send-later/discussions/200"
-  },
   "incorrectUUID": {
     "message": "התזמון נקבע על ידי למשתמש אחר",
     "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."

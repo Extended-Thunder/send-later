@@ -757,12 +757,6 @@
     "message": "Envoyer Plus Tard ne peut envoyer de message que lorsque $1 est ouvert. Pensez à le lancer pour que vos envois programmés soient expédiés!",
     "description": ""
   },
-  "EncryptionIncompatTitle": {
-    "message": "Problème de compatibilité de chiffrement"
-  },
-  "EncryptionIncompatText": {
-    "message": "Ce message est chiffré avec votre propre clé PGP ce qui empêche l'envoi programmé. Des informations complémentaires sont disponibles ici : https://github.com/Extended-Thunder/send-later/discussions/200"
-  },
   "incorrectUUID": {
     "message": "Planifié par un autre client",
     "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."

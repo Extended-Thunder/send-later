@@ -757,12 +757,6 @@
     "message": "Send Later sólo puede enviar mensajes cuando $1 está en funcionamiento. Por favor, ¡recuerde volver a iniciarlo antes del momento programado de envío de sus mensajes!",
     "description": ""
   },
-  "EncryptionIncompatTitle": {
-    "message": "Problema de compatibilidad del encriptado"
-  },
-  "EncryptionIncompatText": {
-    "message": "Este mensaje está encriptado con tu clave PGP y no puede entregarse a sus destinatarios. Lee la discusión para más detalles de por qué estás viendo este mensaje: https://github.com/Extended-Thunder/send-later/discussions/200"
-  },
   "incorrectUUID": {
     "message": "Programado por otro cliente",
     "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."

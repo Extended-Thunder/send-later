@@ -114,6 +114,18 @@ const SendLater = {
   async scheduleSendLater(tabId, options, fromMenuCommand) {
     let now = new Date();
     SLStatic.debug(`Pre-send check initiated at ${now}`);
+    let encrypting = await messenger.SL3U.signingOrEncryptingMessage(tabId);
+    if (encrypting) {
+      let name = messenger.i18n.getMessage("extensionName");
+      let title = messenger.i18n.getMessage("EncryptionUnsupportedTitle", [
+        name,
+      ]);
+      let text = messenger.i18n.getMessage("EncryptionUnsupportedText", [
+        name,
+      ]);
+      SLTools.alert(title, text);
+      return false;
+    }
     let check = await messenger.SL3U.GenericPreSendCheck();
     if (!check) {
       SLStatic.warn(
@@ -1536,7 +1548,6 @@ const SendLater = {
 
           const preferences = await SLTools.getPrefs();
 
-          const msgContentType = fullMsg.contentType;
           const msgSendAt = (fullMsg.headers["x-send-later-at"] || [])[0];
           const msgUuid = (fullMsg.headers["x-send-later-uuid"] || [])[0];
           const msgRecur = (fullMsg.headers["x-send-later-recur"] || [])[0];
@@ -1550,9 +1561,6 @@ const SendLater = {
             break;
           } else if (msgUuid !== preferences.instanceUUID) {
             response.err = messenger.i18n.getMessage("incorrectUUID");
-            break;
-          } else if (msgContentType && /encrypted/i.test(msgContentType)) {
-            response.err = messenger.i18n.getMessage("EncryptionIncompatText");
             break;
           }
 

@@ -736,9 +736,6 @@ var SLStatic = {
     if (customHeaders["x-send-later-uuid"] !== instanceUUID) {
       cellText = this.i18n.getMessage("incorrectUUID");
       sortValue = (Math.pow(2, 31) - 2) | 0;
-    } else if (/encrypted/i.test(customHeaders["content-type"])) {
-      cellText = this.i18n.getMessage("EncryptionIncompatText");
-      sortValue = (Math.pow(2, 31) - 1) | 0;
     } else {
       const sendAt = new Date(customHeaders["x-send-later-at"]);
       const recurSpec = customHeaders["x-send-later-recur"] || "none";

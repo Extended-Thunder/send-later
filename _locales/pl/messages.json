@@ -777,12 +777,6 @@
     "message": "“Send Later” może wysłać zaplanowane na później wiadomości tylko gdy $1 jest włączony. Proszę pamiętać o ponownym uruchomieniu przed zaplanowanym czasem wysłania!",
     "description": ""
   },
-  "EncryptionIncompatTitle": {
-    "message": "Problem z kompatybilnością szyfrowania"
-  },
-  "EncryptionIncompatText": {
-    "message": "Ta wiadomość jest zaszyfrowana własnym kluczem PGP i dlatego nie może być dostarczona odbiorcom. Zobacz tę dyskusję, aby uzyskać więcej informacji na temat tego, dlaczego widzisz tę wiadomość: https://github.com/Extended-Thunder/send-later/discussions/200"
-  },
   "incorrectUUID": {
     "message": "Zaplanowane przez innego klienta",
     "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."

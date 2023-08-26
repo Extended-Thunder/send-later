@@ -777,11 +777,13 @@
     "message": "Send Later can only send messages when $1 is running. Please remember to restart it before your messages are scheduled to be sent!",
     "description": ""
   },
-  "EncryptionIncompatTitle": {
-    "message": "Encryption compatibility issue"
+  "EncryptionUnsupportedTitle": {
+    "message": "$1 does not support encryption",
+    "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has encryption or signing enabled. The placeholder is replaced with the extension name."
   },
-  "EncryptionIncompatText": {
-    "message": "This message is encrypted with your own PGP key, and therefore cannot be delivered to its recipients. See this discussion for more details on why you're seeing this message: https://github.com/Extended-Thunder/send-later/discussions/200"
+  "EncryptionUnsupportedText": {
+    "message": "$1 can't schedule messages that are encrypted or digitally signed; you must disable these on a draft before you can schedule it. You must also disable “Store draft messages in encrypted format” under “End-To-End Encryption” for accounts or identities for which you wish to schedule messages.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has encryption or signing enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
   },
   "incorrectUUID": {
     "message": "Scheduled by another client",

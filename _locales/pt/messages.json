@@ -750,12 +750,6 @@
     "message": "O Send Later apenas pode enviar mensagens quando $1 está a correr. Por favor lembre-se de o reiniciar antes da data agendada para as mensagens serem enviadas.",
     "description": ""
   },
-  "EncryptionIncompatTitle": {
-    "message": "Problema de compatibilidade de criptografia"
-  },
-  "EncryptionIncompatText": {
-    "message": "Esta mensagem é criptografada com a sua própria chave PGP e, portanto, não pode ser entregue aos destinatários. Veja esta discussão para mais detalhes sobre porque está vendo esta mensagem: https://github.com/Extended-Thunder/send-later/discussions/200"
-  },
   "TimeMismatchConfirmTitle": {
     "message": "Horário de envio / restrição incoerentes.",
     "description": ""

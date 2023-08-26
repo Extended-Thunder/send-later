@@ -769,12 +769,6 @@
     "message": "Send senere kan kun sende beskeder, når $1 kører. Husk at genstarte den, før dine beskeder er planlagt til at blive sendt!",
     "description": ""
   },
-  "EncryptionIncompatTitle": {
-    "message": "Problem med kompatibiliteten af krypteringen"
-  },
-  "EncryptionIncompatText": {
-    "message": "Denne besked er krypteret med din egen PGP-nøgle, og kan derfor ikke leveres til modtagerne. Se denne diskussion for flere detaljer om, hvorfor du ser denne besked: https://github.com/Extended-Thunder/send-later/discussions/200"
-  },
   "incorrectUUID": {
     "message": "Planlagt af en anden klient",
     "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."

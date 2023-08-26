@@ -96,9 +96,6 @@ var LegacyColumn = {
     const sendAtStr = hdr.getStringProperty("x-send-later-at");
     const msgUuid = hdr.getStringProperty("x-send-later-uuid");
     const incorrectUUIDMsg = this.SLStatic.i18n.getMessage("incorrectUUID");
-    const encryptionIncompatMsg = this.SLStatic.i18n.getMessage(
-      "EncryptionIncompatTitle",
-    );
     if (!sendAtStr) {
       return { valid: false, detail: "Not scheduled" };
     } else if (msgUuid !== instanceUUID) {
@@ -109,8 +106,6 @@ var LegacyColumn = {
       };
     } else if (!msgContentType) {
       return { valid: false, detail: "Missing ContentType" };
-    } else if (/encrypted/i.test(msgContentType)) {
-      return { valid: false, detail: "Encrypted", msg: encryptionIncompatMsg };
     }
     return { valid: true };
   },

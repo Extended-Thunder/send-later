@@ -777,12 +777,6 @@
     "message": "„Später Senden” kann Nachrichten nur versenden, wenn $1 geöffnet ist. Bitte denken Sie daran, das Programm vor dem planmäßigen Sendetermin der Nachrichten wieder zu starten!",
     "description": ""
   },
-  "EncryptionIncompatTitle": {
-    "message": "Problem inkompatibler Verschlüsselung"
-  },
-  "EncryptionIncompatText": {
-    "message": "Diese Nachricht ist mit Ihrem eigenen PGP-Schlüssel verschlüsselt und kann deshalb nicht an die Empfänger zugestellt werden. Für mehr Details zum Hintergrund dieser Meldung siehe https://github.com/Extended-Thunder/send-later/discussions/200"
-  },
   "incorrectUUID": {
     "message": "Von einem anderen Client geplant",
     "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."

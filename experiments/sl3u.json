@@ -31,6 +31,18 @@
         ]
       },
       {
+        "name": "signingOrEncryptingMessage",
+        "type": "function",
+        "async": true,
+        "description": "Indicates whether the draft in the specified tab has signing or encryption enabled",
+        "parameters": [
+          {
+            "name": "tabId",
+            "type": "integer"
+          }
+        ]
+      },
+      {
         "name": "GenericPreSendCheck",
         "type": "function",
         "async": true,
