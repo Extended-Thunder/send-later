@@ -383,46 +383,6 @@
     "message": "設定",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "Send Later を支援する",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "数え切れないほどの時間が、このアドオンの開発、メンテナンス、サポートに費やされています。",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "今後も開発を続けていくためにも寄付をよろしくお願いします！",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "ありがとうございます！",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "M",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "あとで知らせる",
-    "description": ""
-  },
-  "sendlater.ask.already.accesskey": {
-    "message": "S",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "すでに寄付しました",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "U",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "もう聞かないでください",
-    "description": ""
-  },
   "windowtitle": {
     "message": "Send Later ユーザー関数エディタ",
     "description": ""

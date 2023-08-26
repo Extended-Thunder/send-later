@@ -391,46 +391,6 @@
     "message": "Настройки",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "Поддержка Send Later",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "Целая вечность была затрачена на разработку, обслуживание и поддержку этого дополнения.",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "Пожалуйста, подумайте о пожертвовании для поддержки дальнейших разработок!",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "Большое спасибо!",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "Н",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "Напомнить позже",
-    "description": ""
-  },
-  "sendlater.ask.already.accesskey": {
-    "message": "У",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "Уже поддержал",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "в",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "Не уведомлять",
-    "description": ""
-  },
   "windowtitle": {
     "message": "Редактор Динамических Функций Send Later",
     "description": ""

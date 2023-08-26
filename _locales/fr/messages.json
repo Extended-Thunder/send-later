@@ -403,46 +403,6 @@
     "message": "Configuration",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "Aidez Envoyer Plus Tard",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "De nombreuses heures de travail ont été nécessaires pour développer, maintenir et aider à utiliser ce module.",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "Faites un don pour aider à son développement!",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "Merci!",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "r",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "Me rappeler",
-    "description": ""
-  },
-  "sendlater.ask.already.accesskey": {
-    "message": "D",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "Don déjà effectué",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "N",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "Ne plus demander",
-    "description": ""
-  },
   "windowtitle": {
     "message": "Éditeur de fonction dynamique pour Envoyer Plus Tard",
     "description": ""

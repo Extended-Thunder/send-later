@@ -419,46 +419,6 @@
     "message": "Konfiguracja",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "Wesprzyj projekt “Send Later”",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "Na rozwój, utrzymanie i wsparcie dla tego dodatku została poświęcona niezliczona ilość godzin.",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "Rozważ przekazanie darowizny na poparcie dalszego rozwoju!",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "Dziękuję!",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "P",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "Przypomnij mi później",
-    "description": ""
-  },
-  "sendlater.ask.already.accesskey": {
-    "message": "J",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "Już pomogłem",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "N",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "Nie pytaj mnie więcej",
-    "description": ""
-  },
   "windowtitle": {
     "message": "Edytor funkcji specjalnych dla “Send Later”",
     "description": ""

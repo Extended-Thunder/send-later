@@ -391,42 +391,6 @@
     "message": "Konfigurera",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "Stöd Skicka Senare",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "Oräkneliga timmar har lagts ner på utveckling, underhåll och teknisk support för detta tillägg.",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "Vi vore tacksamma om du övervägde att göra en donation för att stödja dess fortsatta utveckling!",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "Tack för ditt stöd!",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "P",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "Påminn mig senare",
-    "description": ""
-  },
-  "sendlater.ask.already.accesskey": {
-    "message": "J",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "Jag har redan donerat",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "Sluta fråga",
-    "description": ""
-  },
   "windowtitle": {
     "message": "Skicka Senare dynamisk funktionseditor",
     "description": ""

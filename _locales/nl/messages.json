@@ -419,46 +419,6 @@
     "message": "Configuratie",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "Steun Send Later",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "Er zijn vele uren in ontwikkeling, onderhoud en ondersteuning van deze add-on gaan zitten.",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "Overweeg een donatie te doen om de verdere ontwikkeling ervan te steunen!",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "Dank u!",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "h",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "Mij later herinneren",
-    "description": ""
-  },
-  "sendlater.ask.already.accesskey": {
-    "message": "a",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "Ik heb al gedoneerd",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "v",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "Niet meer vragen",
-    "description": ""
-  },
   "windowtitle": {
     "message": "Send Later - Editor voor dynamische functies",
     "description": ""

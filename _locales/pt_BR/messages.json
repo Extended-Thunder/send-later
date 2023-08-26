@@ -411,46 +411,6 @@
     "message": "Configuração",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "Contribua com Enviar mais tarde",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "Muitas horas foram dispendidas para desenvolvimento, manutenção e suporte deste add-on.",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "Por favor, considere a possibilidade de contribuição financeiro apoiando o contínuo desenvolvimento do produto!",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "Obrigado!",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "L",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "Lembre-me mais tarde",
-    "description": ""
-  },
-  "sendlater.ask.already.accesskey": {
-    "message": "J",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "Já fiz minha contribuição",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "N",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "Não pergunte mais",
-    "description": ""
-  },
   "windowtitle": {
     "message": "Editor de Função Dinâmica do Enviar mais tarde",
     "description": ""

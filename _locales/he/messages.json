@@ -419,46 +419,6 @@
     "message": "תצורה",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "‫תמוך בפיתוח '‫שלח מאוחר יותר‬'‬",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "‫שעות רבות הושקעו בפיתוח, בתמיכה ובתחזוקת התוסף הזה‬",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "‫אנא שיקלו לתמוך בהמשך הפיתוח בעזרת תרומה סמלית‬",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "‫תודה רבה‬",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "ז",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "‫הזכר לי מאוחר יותר‬",
-    "description": ""
-  },
-  "sendlater.ask.already.accesskey": {
-    "message": "ע",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "‫תרמתי בעבר‬",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "פ",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "‫הפסק לשאול‬",
-    "description": ""
-  },
   "windowtitle": {
     "message": "‫שלח מאוחר יותר‬ עורך פונקציות דינמי",
     "description": ""

@@ -399,42 +399,6 @@
     "message": "Abre una ventana para crear y editar funciones JavaScript que implementan una lógica de planificación compleja.",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "Apoyar a Send Later",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "Se invirtieron muchísimas horas en la creación, mantenimiento y soporte de este complemento.",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "Por favor, ¡considere efectuar un donativo para apoyar su desarrollo continuado!",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "¡Gracias!",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "Recordármelo más tarde",
-    "description": ""
-  },
-  "sendlater.ask.already.accesskey": {
-    "message": "Y",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "Ya he donado",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "e",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "Dejar de preguntar",
-    "description": ""
-  },
   "windowtitle": {
     "message": "Editor de funciones dinámicas de Send Later",
     "description": ""

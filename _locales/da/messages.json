@@ -411,38 +411,6 @@
     "message": "Konfiguration",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "Støt Send Senere",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "Der er brugt utallige timer til udvikling, vedligeholdelse og support af denne tilføjelse.",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "Overvej om ikke du skulle yde en lille donation for at støtte for den fortsatte udvikling!",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "Mange tak!",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "M",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "Mind mig om det senere",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "Jeg har allerede doneret",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "Spørg ikke igen",
-    "description": ""
-  },
   "windowtitle": {
     "message": "Send Later Redigér Dynamiske Funktioner",
     "description": ""

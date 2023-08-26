@@ -395,42 +395,6 @@
     "message": "Configurazione",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "Sostieni Invia Dopo",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "Per lo sviluppo, la manutenzione e il supporto di questo componente aggiuntivo ci sono volute innumerevoli ore.",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "Per cortesia valuta se fare una donazione per sostenere il suo continuo sviluppo!",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "Grazie!",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "Ricordamelo in seguito",
-    "description": ""
-  },
-  "sendlater.ask.already.accesskey": {
-    "message": "G",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "Già fatta una donazione",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "N",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "Non chiedere più",
-    "description": ""
-  },
   "windowtitle": {
     "message": "Editor delle funzioni di Invia Dopo",
     "description": ""

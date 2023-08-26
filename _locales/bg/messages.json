@@ -415,46 +415,6 @@
     "message": "Конфигуриране",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "Подкрепете Изпращане по-късно",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "Безброй часове са отишли в разработка, обслужване и поддръжка на тази добавка.",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "Моля, помислете дали да направите дарение, за да подкрепите бъдещото развитие на проекта!",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "Благодарим Ви!",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "Н",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "Напомняне по-късно",
-    "description": ""
-  },
-  "sendlater.ask.already.accesskey": {
-    "message": "а",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "Направих дарение",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "С",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "Спиране на питането",
-    "description": ""
-  },
   "windowtitle": {
     "message": "Изпращане по-късно Редактор на динамични функции",
     "description": ""

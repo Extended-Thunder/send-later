@@ -419,46 +419,6 @@
     "message": "Beállítás",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "Küldés később támogatása",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "A kiegészítő fejlesztése, karbantartása és támogatása számtalan órát vett igénybe.",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "Kérjük, fontolja meg, hogy adományozzon, hogy támogassa a folyamatos fejlődését!",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "Köszönjük!",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "F",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "Figyelmeztetés később",
-    "description": ""
-  },
-  "sendlater.ask.already.accesskey": {
-    "message": "M",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "Már adományoztam",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "l",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "Kérdés leállítása",
-    "description": ""
-  },
   "windowtitle": {
     "message": "Küldés később erőteljes függvény szerkesztő",
     "description": ""

@@ -419,46 +419,6 @@
     "message": "Config",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "Support Send Later",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "Countless hours have gone into the development, maintenance and support of this add-on.",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "Please consider making a donation to support its continued development!",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "Thank you!",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "R",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "Remind me later",
-    "description": ""
-  },
-  "sendlater.ask.already.accesskey": {
-    "message": "a",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "I already donated",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "S",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "Stop asking",
-    "description": ""
-  },
   "windowtitle": {
     "message": "Send Later Dynamic Function Editor",
     "description": ""

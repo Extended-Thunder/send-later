@@ -49,8 +49,6 @@ obsolete_keys = (
     'SanityCheckDrafts',
     'SanityCheckOutbox',
     'save.accesskey',
-    'sendlater.ask.donate.accesskey',
-    'sendlater.ask.donate.label',
 )
 
 

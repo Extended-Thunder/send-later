@@ -391,38 +391,6 @@
     "message": "Configurar",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "Axudar a Send Later",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "Incontábeis horas foron adicadas ao desenvolvemento, o mantemento e o apoio desta extensión.",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "Considera facer unha doazón para apoiar o seu mantemento continuo!",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "Grazas!",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "Recordarmo mais tarde",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "Xa doei",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "P",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "Para de preguntar",
-    "description": ""
-  },
   "windowtitle": {
     "message": "Editor de funcións dinámicas de “Send Later”",
     "description": ""

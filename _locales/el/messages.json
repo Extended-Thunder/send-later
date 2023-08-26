@@ -391,46 +391,6 @@
     "message": "Ρύθμηση",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "Υποστηρίξτε το Send Later",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "Αμέτρητες ώρες έχουν αφιερωθεί στην ανάπτυξη και υποστήριξη αυτού του πρόσθετου.",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "Παρακαλούμε, σκεφτείτε σοβαρά να κάνετε μια δωρεά για να υποστηρίξετε την ανάπτυξή του!",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "Σας ευχαριστούμε!",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "Υ",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "Υπενθύμιση αργότερα",
-    "description": ""
-  },
-  "sendlater.ask.already.accesskey": {
-    "message": "ω",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "Έχω ήδη κάνει δωρεά",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "Ν",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "Να μην εμφανίζεται",
-    "description": ""
-  },
   "windowtitle": {
     "message": "Επεξεργαστής Δυναμικής Συνάρτησης Send Later",
     "description": ""

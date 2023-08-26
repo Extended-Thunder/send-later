@@ -407,34 +407,6 @@
     "message": "配置信息",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "贊助延期發信",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "此附加元件的開發、維護和支持花費了大量時間。",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "請考慮贊助，以支持其繼續發展。",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "謝謝！",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "以後提醒我",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "我已贊助",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "不再詢問",
-    "description": ""
-  },
   "windowtitle": {
     "message": "延期發信動態函數編輯器",
     "description": ""

@@ -411,42 +411,6 @@
     "message": "Configuració",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "Dóna suport a Send Later",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "S'han anat moltes hores en el desenvolupament, manteniment i suport d'aquest complement.",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "Si us plau, considereu fer una donació per donar suport al seu continu desenvolupament!",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "Gràcies!",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "Recordeu-m'ho més tard",
-    "description": ""
-  },
-  "sendlater.ask.already.accesskey": {
-    "message": "J",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "Ja he donat",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "e",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "Deixar de demanar-m'ho",
-    "description": ""
-  },
   "windowtitle": {
     "message": "Editor de funcions dinàmiques de “Send Later”",
     "description": ""

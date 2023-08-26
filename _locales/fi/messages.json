@@ -399,46 +399,6 @@
     "message": "Asetukset",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "Tue Lähetä myöhemmin -laajennuksen kehitystä",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "Lukematon määrä työtunteja on mennyt tämän laajennuksen kehitystyöhön, ylläpitoon ja tukeen.",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "Harkitsethan lahjoitusta, jotta tämän laajennuksen kehitystyötä voidaan jatkaa!",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "Kiitos!",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "M",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "Muistuta myöhemmin",
-    "description": ""
-  },
-  "sendlater.ask.already.accesskey": {
-    "message": "O",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "Olen jo lahjoittanut",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "Ä",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "Älä kysy enää",
-    "description": ""
-  },
   "windowtitle": {
     "message": "Lähetä myöhemmin - Dynaaminen funktioeditori",
     "description": ""

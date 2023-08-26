@@ -419,42 +419,6 @@
     "message": "Configurație",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "Ajută Send Later",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "Multe ore au fost necesare pentru dezvoltarea, menținerea și asistența acestui add-on.",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "Vă rog să vă gândiți la o donație pentru a sprijini continuarea dezvoltării aplicației!",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "Mulțumesc!",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "t",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "Amintește-mi mai târziu",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "Am donat deja",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "N",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "Nu mai întreba",
-    "description": ""
-  },
   "windowtitle": {
     "message": "Send Later - Editor dinamic de funcții",
     "description": ""

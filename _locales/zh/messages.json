@@ -399,34 +399,6 @@
     "message": "配置",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "支持Send Later",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "此附加组件的开发、维护和支持花费了大量时间。",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "请考虑捐赠，以支持其继续发展。",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "谢谢！",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "以后提醒我",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "我已捐赠",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "不再询问",
-    "description": ""
-  },
   "windowtitle": {
     "message": "Send Later动态函数编辑器",
     "description": ""

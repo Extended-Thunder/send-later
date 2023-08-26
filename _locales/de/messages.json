@@ -419,46 +419,6 @@
     "message": "Konfiguration",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "„Später Senden” unterstützen",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "Unzählige Stunden wurden in Entwicklung, Unterhalt und Unterstützung für dieses Add-on investiert.",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "Bitte erwägen Sie eine Spende, um die weitere Entwicklung zu unterstützen!",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "Besten Dank!",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "e",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "Später erinnern",
-    "description": ""
-  },
-  "sendlater.ask.already.accesskey": {
-    "message": "b",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "Ich habe bereits gespendet",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "N",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "Nicht mehr nachfragen",
-    "description": ""
-  },
   "windowtitle": {
     "message": "Dynamischer Funktionseditor von Später Senden",
     "description": ""

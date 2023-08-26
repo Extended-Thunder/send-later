@@ -391,46 +391,6 @@
     "message": "Oppsett",
     "description": ""
   },
-  "sendlater.ask.title.label": {
-    "message": "Støtt Send senere",
-    "description": ""
-  },
-  "sendlater.ask.message1": {
-    "message": "Uendelig mange timer har gått med til utvikling og vedlikehold av dette programtillegget, og til brukerstøtte.",
-    "description": ""
-  },
-  "sendlater.ask.message2": {
-    "message": "Vurder gjerne om du vil bidra med en donasjon for å sikre videre utvikling av programtillegget!",
-    "description": ""
-  },
-  "sendlater.ask.message3": {
-    "message": "Takk!",
-    "description": ""
-  },
-  "sendlater.ask.remind.accesskey": {
-    "message": "M",
-    "description": ""
-  },
-  "sendlater.ask.remind.label": {
-    "message": "Minn meg på dette senere",
-    "description": ""
-  },
-  "sendlater.ask.already.accesskey": {
-    "message": "J",
-    "description": ""
-  },
-  "sendlater.ask.already.label": {
-    "message": "Jeg har alt gitt en donasjon",
-    "description": ""
-  },
-  "sendlater.ask.stop.accesskey": {
-    "message": "I",
-    "description": ""
-  },
-  "sendlater.ask.stop.label": {
-    "message": "Ikke spør igjen",
-    "description": ""
-  },
   "windowtitle": {
     "message": "Send senere Dynamisk funksjonredigerer",
     "description": ""
