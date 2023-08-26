@@ -97,11 +97,11 @@
   },
   "recurAnnuallyLabel": {
     "message": "anual",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurDailyLabel": {
     "message": "zilnic",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurFunctionLabel": {
     "message": "funcție",
@@ -113,11 +113,11 @@
   },
   "recurMinutelyLabel": {
     "message": "la fiecare minut",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurMonthlyLabel": {
     "message": "lunar",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurOnceLabel": {
     "message": "o dată",
@@ -125,7 +125,7 @@
   },
   "recurWeeklyLabel": {
     "message": "săptămânal",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "resetPrefsButton": {
     "message": "Resetare preferințe",
@@ -161,31 +161,31 @@
   },
   "sendSundayLabel": {
     "message": "duminică",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendMondayLabel": {
     "message": "luni",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendTuesdayLabel": {
     "message": "marți",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendWednesdayLabel": {
     "message": "miercuri",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendThursdayLabel": {
     "message": "joi",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendFridayLabel": {
     "message": "vineri",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendSaturdayLabel": {
     "message": "sâmbătă",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendNowLabel": {
     "message": "Trimite Acum",
@@ -512,31 +512,31 @@
   },
   "everymonthly_day0": {
     "message": "duminică",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day1": {
     "message": "luni",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day2": {
     "message": "marți",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day3": {
     "message": "miercuri",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day4": {
     "message": "joi",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day5": {
     "message": "vineri",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day6": {
     "message": "sâmbătă",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "betw_times": {
     "message": "între $1 și $2",

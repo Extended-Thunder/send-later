@@ -97,11 +97,11 @@
   },
   "recurAnnuallyLabel": {
     "message": "每年",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurDailyLabel": {
     "message": "每天",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurFunctionLabel": {
     "message": "功能：",
@@ -113,11 +113,11 @@
   },
   "recurMinutelyLabel": {
     "message": "每分鐘",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurMonthlyLabel": {
     "message": "每月",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurOnceLabel": {
     "message": "無",
@@ -125,7 +125,7 @@
   },
   "recurWeeklyLabel": {
     "message": "每週",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "resetPrefsButton": {
     "message": "重置偏好",
@@ -157,31 +157,31 @@
   },
   "sendSundayLabel": {
     "message": "星期日",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendMondayLabel": {
     "message": "星期一",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendTuesdayLabel": {
     "message": "星期二",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendWednesdayLabel": {
     "message": "星期三",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendThursdayLabel": {
     "message": "星期四",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendFridayLabel": {
     "message": "星期五",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendSaturdayLabel": {
     "message": "星期六",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendNowLabel": {
     "message": "立即寄出",
@@ -497,31 +497,31 @@
   },
   "everymonthly_day0": {
     "message": "星期日",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day1": {
     "message": "星期一",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day2": {
     "message": "星期二",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day3": {
     "message": "星期三",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day4": {
     "message": "星期四",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day5": {
     "message": "星期五",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day6": {
     "message": "星期六",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "betw_times": {
     "message": "介於$1和$2之間",

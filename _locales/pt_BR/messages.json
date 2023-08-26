@@ -93,11 +93,11 @@
   },
   "recurAnnuallyLabel": {
     "message": "anualmente",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurDailyLabel": {
     "message": "diariamente",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurFunctionLabel": {
     "message": "função",
@@ -109,11 +109,11 @@
   },
   "recurMinutelyLabel": {
     "message": "a cada minuto",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurMonthlyLabel": {
     "message": "mensalmente",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurOnceLabel": {
     "message": "nunca",
@@ -121,7 +121,7 @@
   },
   "recurWeeklyLabel": {
     "message": "semanalmente",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "resetPrefsButton": {
     "message": "Repor as preferências",
@@ -153,31 +153,31 @@
   },
   "sendSundayLabel": {
     "message": "domingo",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendMondayLabel": {
     "message": "segunda-feira",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendTuesdayLabel": {
     "message": "terça-feira",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendWednesdayLabel": {
     "message": "quarta-feira",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendThursdayLabel": {
     "message": "quinta-feira",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendFridayLabel": {
     "message": "sexta-feira",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendSaturdayLabel": {
     "message": "sábado",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendNowLabel": {
     "message": "Enviar Agora",
@@ -504,31 +504,31 @@
   },
   "everymonthly_day0": {
     "message": "domingo",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day1": {
     "message": "segunda-feira",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day2": {
     "message": "terça-feira",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day3": {
     "message": "quarta-feira",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day4": {
     "message": "quinta-feira",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day5": {
     "message": "sexta-feira",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day6": {
     "message": "sábado",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "betw_times": {
     "message": "entre $1 e $2",
@@ -737,5 +737,41 @@
   "cancel": {
     "message": "Cancelar",
     "description": "Cancel an action (presented in popup dialogs)"
+  },
+  "customizeDateTimeFormatsPrefLabel": {
+    "message": "Personalizar formatos de data/hora",
+    "description": "Option to enable customizing date/time formats"
+  },
+  "shortDateTimeFormatsPrefLabel": {
+    "message": "Formato curto de data/hora:",
+    "description": "Preference input for short datetime format (e.g. 2021/04/28 11:45)"
+  },
+  "longDateTimeFormatsPrefLabel": {
+    "message": "Formato de data/hora longo:",
+    "description": "Preference input for extended datetime format (e.g. Wed, Apr 28 2021 11:45)"
+  },
+  "menuSkipMsg": {
+    "message": "Pular próxima ocorrência",
+    "description": "Command added to the message list menu for the user to use to skip the next occurrence of one or more selected recurring drafts"
+  },
+  "resultsAllSuccess": {
+    "message": "Todas as mensagens selecionadas foram processadas com sucesso.",
+    "description": "Message displayed in the message list context menu results pop-up when multiple messages were selected and all were processed successfully."
+  },
+  "cantSkipSingletonText": {
+    "message": "A mensagem com o assunto \"$1\" não é uma mensagem recorrente, então você não pode pular a próxima ocorrência programada.",
+    "description": "The text of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a non-recurring message. The placeholder is for the message subject."
+  },
+  "cantSKipPastLastTitle": {
+    "message": "A mensagem não tem mais recorrências",
+    "description": "The title of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a message that has no further occurrences after that one."
+  },
+  "cantSkipPastLastText": {
+    "message": "A mensagem com o assunto \"$1\" não tem mais ocorrências, por isso você não possa pular a próxima.",
+    "description": "The text of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a message that has no further occurrences after that one. The placeholder is for the message subject."
+  },
+  "SkipConfirmMessage": {
+    "message": "Você indicou que deseja pular a próxima ocorrência de uma das mensagens selecionadas. Se você mudar de ideia depois de fazer isso, você precisará reagendar as mensagens manualmente. Tem certeza de que deseja continuar?",
+    "description": "The text of the pop-up that warns the user when they activate the message list context menu command to skip the next occurrence of one or more messages. The purpose of this warning is to ensure that the user knows what the command does before using it. There is a checkbox in the pop-up which they can uncheck if they don't want to see the message again. See also 'AreYouSure' and 'ConfirmAgain' strings which occur in the same pop-up."
   }
 }

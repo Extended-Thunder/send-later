@@ -97,11 +97,11 @@
   },
   "recurAnnuallyLabel": {
     "message": "‫שנתי‬",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurDailyLabel": {
     "message": "‫השהה‬",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurFunctionLabel": {
     "message": "פונקציה",
@@ -112,12 +112,12 @@
     "description": ""
   },
   "recurMinutelyLabel": {
-    "message": "דקתי",
-    "description": ""
+    "message": "כל דקה",
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurMonthlyLabel": {
     "message": "‫חודשי‬",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurOnceLabel": {
     "message": "‫ללא‬",
@@ -125,7 +125,7 @@
   },
   "recurWeeklyLabel": {
     "message": "‫שבועי‬",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "resetPrefsButton": {
     "message": "אתחל העדפות מחדש",
@@ -161,31 +161,31 @@
   },
   "sendSundayLabel": {
     "message": "‫יום ראשון‬",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendMondayLabel": {
     "message": "‫יום שני‬",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendTuesdayLabel": {
     "message": "‫יום שלישי‬",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendWednesdayLabel": {
     "message": "‫יום רביעי‬",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendThursdayLabel": {
     "message": "‫יום חמישי‬",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendFridayLabel": {
     "message": "‫יום שישי‬",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendSaturdayLabel": {
     "message": "‫יום שבת‬",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendNowLabel": {
     "message": "‫שלח כעת‬",
@@ -516,31 +516,31 @@
   },
   "everymonthly_day0": {
     "message": "‫יום ראשון‬",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day1": {
     "message": "‫יום שני‬",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day2": {
     "message": "‫יום שלישי‬",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day3": {
     "message": "‫יום רביעי‬",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day4": {
     "message": "‫יום חמישי‬",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day5": {
     "message": "‫יום שישי‬",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day6": {
     "message": "‫יום שבת‬",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "betw_times": {
     "message": "בין. $1 לבין $2",
@@ -583,11 +583,11 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "בחירה ב \"שלח\" מעבירה את ההודעה לתיבת הדואר היוצא באופן מיידי ולא מתבצע תיזמון משלוח של ההודעה למועד ספציפי. לשם קביעת מועד, יש לבחור בכפתור \"שלח בערך\" בתיבה  הירוקה לאחר שקבעת מועד מתאים למשלוח. האם את/ה בטוח שאת/ה מעוניין להעביר את ההודעה לתיבת הדואר היוצא כעט?",
+    "message": "בחירה ב \"שלח\" מעבירה את ההודעה לתיבת הדואר היוצא באופן מיידי ולא מתבצע תיזמון למשלוח ההודעה במועד ספציפי. לשם קביעת מועד, יש לבחור בכפתור \"שלח במועד\" בתיבה  הירוקה לאחר שקבעת מועד מתאים למשלוח. האם את/ה בטוח שאת/ה מעוניין להעביר את ההודעה לתיבת הדואר היוצא כעט?",
     "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "SendNowConfirmMessage": {
-    "message": "לחיצה על \"שלח כעת\" תשלח את ההודעה מייד. פונקציה זו אינה מתזמנת את ההודעה לשליחה בזמן ספציפי. לשם כך, לחץ \"שלח בערך\" בתיבה הירוקה לארח הזנת זמן שליחה תקין. האם אתה בטוח שברצונך לשלוח את ההודעה כעת?",
+    "message": "לחיצה על \"שלח כעת\" תשלח את ההודעה מייד. פונקציה זו אינה מתזמנת את ההודעה למשלוח בזמן ספציפי. לשם כך, לחץ \"שלח במועד\" בתיבה הירוקה לאחר הזנת זמן משלוח תקין. האם אתה בטוח שברצונך לשלוח את ההודעה כעת?",
     "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
   },
   "ConfirmAgain": {
@@ -608,6 +608,14 @@
   "ScheduledMessagesWarningQuit": {
     "message": "\"‫שלח מאוחר יותר‬\" תשלח הודעות רק כאשר $1 פועלת. אנא זכרו להפעילה מחדש לפני המועד המתוכנן למשלוח ההודעות!‬",
     "description": ""
+  },
+  "EncryptionUnsupportedTitle": {
+    "message": "$1 אינו תומך בהצפנה",
+    "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has encryption or signing enabled. The placeholder is replaced with the extension name."
+  },
+  "EncryptionUnsupportedText": {
+    "message": "$1 אינו מסוגל לתזמן שליחת הודעות מוצפנות או חתומות דיגיטלית. עליך לנטרל אפשרויות אילו בטיוטות לפני שניתן יהיה לתזמן אותן. עליך לנטרל גם את \"Store draft messages in encrypted format” תחת “End-To-End Encryption” עבור חשבונות ו/או זהויות להם את/ה מעוניינים לתשלוח הודעות מתוזמנות.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has encryption or signing enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
   },
   "incorrectUUID": {
     "message": "התזמון נקבע על ידי למשתמש אחר",
@@ -811,6 +819,42 @@
   },
   "menuScheduleMsg": {
     "message": "תיזמון הודעה/ות",
-    "description": "Command added to the message list menu for the user to use to schedule one or more selected messages with Send Later"
+    "description": "Command added to the message list menu for the user to use to schedule one or more selected drafts with Send Later"
+  },
+  "menuSkipMsg": {
+    "message": "דלג על האירוע הבא",
+    "description": "Command added to the message list menu for the user to use to skip the next occurrence of one or more selected recurring drafts"
+  },
+  "resultsTitle": {
+    "message": "תוצאות עיבוד ההודעות",
+    "description": "The title of the pop-up that displays results after the user uses the message list context menu to perform an operation on more than one selected message."
+  },
+  "resultsAllSuccess": {
+    "message": "כל ההודעות שנבחרו, עובדו בהצלחה.",
+    "description": "Message displayed in the message list context menu results pop-up when multiple messages were selected and all were processed successfully."
+  },
+  "resultsPartialSuccess": {
+    "message": "$1 מיתוך $2 ההודעות, עובדו בהצלחה.",
+    "description": "Message displayed in the message list context menu results pop-up when multiple messages were selected and some were not processed successfully. The first placeholder is the number of successful messages and the second is the total number of selected messages."
+  },
+  "cantSkipSingletonTitle": {
+    "message": "הדילוג על הודעת האירוע, על אירוע שלא חזר על עצמו, אינו אפשרי.",
+    "description": "The title of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a non-recurring message."
+  },
+  "cantSkipSingletonText": {
+    "message": "ההודעה בנושא \"$1\" אינה על אירוע שחזר על עצמו, לכן אין אפשרות לדלג לאירוע המתוכנן הבא.",
+    "description": "The text of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a non-recurring message. The placeholder is for the message subject."
+  },
+  "cantSKipPastLastTitle": {
+    "message": "אין אירועים חוזרים נוספים בהודעה",
+    "description": "The title of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a message that has no further occurrences after that one."
+  },
+  "cantSkipPastLastText": {
+    "message": "ההודעה בנושא \"$1\" אינה כוללת אירועים נוספים, לכן אין אפשרות לדלג להמשך.",
+    "description": "The text of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a message that has no further occurrences after that one. The placeholder is for the message subject."
+  },
+  "SkipConfirmMessage": {
+    "message": "ציינת שבחרת לדלג לאירוע הבא של אחת מההודעות שנבחרו. אם תתחרט על כך לאחר מכן, יהיה עליך לעדכן את לוח הזמנים באופן ידני. האם את/ה בטוח שאת/ה רוצה להמשיך?",
+    "description": "The text of the pop-up that warns the user when they activate the message list context menu command to skip the next occurrence of one or more messages. The purpose of this warning is to ensure that the user knows what the command does before using it. There is a checkbox in the pop-up which they can uncheck if they don't want to see the message again. See also 'AreYouSure' and 'ConfirmAgain' strings which occur in the same pop-up."
   }
 }

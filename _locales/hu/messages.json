@@ -97,11 +97,11 @@
   },
   "recurAnnuallyLabel": {
     "message": "évente",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurDailyLabel": {
     "message": "naponta",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurFunctionLabel": {
     "message": "függvény",
@@ -113,11 +113,11 @@
   },
   "recurMinutelyLabel": {
     "message": "percenként",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurMonthlyLabel": {
     "message": "havonta",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurOnceLabel": {
     "message": "egyszer",
@@ -125,7 +125,7 @@
   },
   "recurWeeklyLabel": {
     "message": "hetente",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "resetPrefsButton": {
     "message": "Beállítások visszaállítása",
@@ -161,31 +161,31 @@
   },
   "sendSundayLabel": {
     "message": "vasárnap",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendMondayLabel": {
     "message": "hétfő",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendTuesdayLabel": {
     "message": "kedd",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendWednesdayLabel": {
     "message": "szerda",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendThursdayLabel": {
     "message": "csütörtök",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendFridayLabel": {
     "message": "péntek",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendSaturdayLabel": {
     "message": "szombat",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendNowLabel": {
     "message": "Küldés most",
@@ -244,7 +244,7 @@
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
-    "message": "például: „15:00 csütörtök”, „2015. 12. 31. 15:27”",
+    "message": "például: „15:00 csütörtök”, „2012. 12. 31. 15:27”",
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
@@ -296,7 +296,7 @@
     "description": ""
   },
   "composewindowhotkeys.caption": {
-    "message": "Billentyűkötések előbeállítások engedélyezése a szerkesztőablaknak",
+    "message": "Szerkesztőablak billentyűtársításainak engedélyezése az előbeállításokhoz",
     "description": ""
   },
   "releasenotes.value": {
@@ -312,15 +312,15 @@
     "description": ""
   },
   "editorlink.value": {
-    "message": "Erőteljes függvény szerkesztő",
+    "message": "Dinamikus funkciószerkesztő",
     "description": ""
   },
   "editorbutton": {
-    "message": "Erőteljes függvény szerkesztő megnyitása…",
+    "message": "Dinamikus funkciószerkesztő megnyitása…",
     "description": ""
   },
   "editortip": {
-    "message": "Nyisson meg egy ablakot a bonyolult ütemezési logikát megvalósító JavaScript funkciók létrehozásához és szerkesztéséhez.",
+    "message": "Nyissa meg az összetett ütemezési logikát megvalósító JavaScript-funkciók létrehozására és szerkesztésére szolgáló ablakot.",
     "description": ""
   },
   "loglevel.config": {
@@ -328,7 +328,7 @@
     "description": ""
   },
   "windowtitle": {
-    "message": "Küldés később erőteljes függvény szerkesztő",
+    "message": "Küldés később Dinamikus függvényszerkesztője",
     "description": ""
   },
   "selectfunction": {
@@ -336,19 +336,19 @@
     "description": ""
   },
   "selectfunctiontip": {
-    "message": "Válasszon egy függvény a létrehozásához vagy törléshez, vagy „(új függvény létrehozása)” az új függvény létrehozásához.",
+    "message": "Válasszon ki egy funkciót szerkesztéshez vagy törléshez, vagy az \"(új funkció létrehozása)\" egy új funkció készítéséhez.",
     "description": ""
   },
   "createnewfunction": {
-    "message": "(új függvény létrehozása)",
+    "message": "(új funkció létrehozása)",
     "description": ""
   },
   "delete.label": {
-    "message": "Törlése",
+    "message": "Törlés",
     "description": ""
   },
   "functionnametip": {
-    "message": "Írjon be egy betű-szám függvénynevet. Ha változtatja a meglévő függvény nevét, akkor megkérdezi, hogy menti-e a függvény átnevezését, vagy új függvényt hoz létre a megváltoztatta névvel.",
+    "message": "Írjon be egy alfanumerikus funkciónevet. Ha változtatja a meglévő funkció nevét, akkor megkérdezi, hogy menti-e a funkció átnevezését, vagy új funkciót hoz-e létre a megváltoztatt névvel.",
     "description": ""
   },
   "functionnameplaceholder": {
@@ -516,31 +516,31 @@
   },
   "everymonthly_day0": {
     "message": "vasárnapja",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day1": {
     "message": "hétfője",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day2": {
     "message": "keddje",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day3": {
     "message": "szerdája",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day4": {
     "message": "csütörtöke",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day5": {
     "message": "pénteke",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day6": {
     "message": "szombata",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "betw_times": {
     "message": "$1 és $2 között",
@@ -608,6 +608,14 @@
   "ScheduledMessagesWarningQuit": {
     "message": "Küldés később csak akkor küldhet üzeneteket, amikor a(z) $1 fut. Kérjük, ne felejtse el újraindítani, mielőtt üzeneteit elküldeni szeretné!",
     "description": ""
+  },
+  "EncryptionUnsupportedTitle": {
+    "message": "A $1 nem támogatja a titkosítást",
+    "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has encryption or signing enabled. The placeholder is replaced with the extension name."
+  },
+  "EncryptionUnsupportedText": {
+    "message": "$1 nem tudja ütemezni a titkosított vagy digitálisan aláírt üzeneteket; ezeket ki kell kapcsolni a piszkozatokon az ütemezésük előtt. Ezenkívül ki kell kapcsolni a „Piszkozatok tárolása titkosított formátumban” lehetőséget a „Végponttól végpontig terjedő titkosítás” alatt azoknál a fiókoknál vagy identitásoknál, amelyekhez üzeneteket szeretne ütemezni.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has encryption or signing enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
   },
   "incorrectUUID": {
     "message": "Egy másik ügyfél ütemezte",
@@ -811,6 +819,42 @@
   },
   "menuScheduleMsg": {
     "message": "Üzenet(ek) ütemezése",
-    "description": "Command added to the message list menu for the user to use to schedule one or more selected messages with Send Later"
+    "description": "Command added to the message list menu for the user to use to schedule one or more selected drafts with Send Later"
+  },
+  "menuSkipMsg": {
+    "message": "Következő előfordulás kihagyása",
+    "description": "Command added to the message list menu for the user to use to skip the next occurrence of one or more selected recurring drafts"
+  },
+  "resultsTitle": {
+    "message": "Üzenetfeldolgozási eredmények",
+    "description": "The title of the pop-up that displays results after the user uses the message list context menu to perform an operation on more than one selected message."
+  },
+  "resultsAllSuccess": {
+    "message": "Az összes kiválasztott üzenet sikeresen feldolgozva.",
+    "description": "Message displayed in the message list context menu results pop-up when multiple messages were selected and all were processed successfully."
+  },
+  "resultsPartialSuccess": {
+    "message": "$2 kiválasztott üzenet közül $1 sikeresen feldolgozva.",
+    "description": "Message displayed in the message list context menu results pop-up when multiple messages were selected and some were not processed successfully. The first placeholder is the number of successful messages and the second is the total number of selected messages."
+  },
+  "cantSkipSingletonTitle": {
+    "message": "Nem lehet kihagyni a nem ismétlődő üzenetek előfordulását",
+    "description": "The title of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a non-recurring message."
+  },
+  "cantSkipSingletonText": {
+    "message": "A(z) „$1” tárgyú üzenet nem egy ismétlődő üzenet, így nem hagyható ki a következő ütemezett előfordulás.",
+    "description": "The text of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a non-recurring message. The placeholder is for the message subject."
+  },
+  "cantSKipPastLastTitle": {
+    "message": "Az üzenetnek nincs több ismétlődése",
+    "description": "The title of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a message that has no further occurrences after that one."
+  },
+  "cantSkipPastLastText": {
+    "message": "A(z) „$1” tárgyú üzenetnek nincs több előfordulása, így nem hagyhatja ki a következő.",
+    "description": "The text of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a message that has no further occurrences after that one. The placeholder is for the message subject."
+  },
+  "SkipConfirmMessage": {
+    "message": "Jelezte, hogy ki szeretné hagyni a kiválasztott üzenetek egyikének következő előfordulását. Ha ezt követően meggondolja magát, kézzel át kell ütemeznie az üzeneteket. Biztos, hogy folytatni kívánja?",
+    "description": "The text of the pop-up that warns the user when they activate the message list context menu command to skip the next occurrence of one or more messages. The purpose of this warning is to ensure that the user knows what the command does before using it. There is a checkbox in the pop-up which they can uncheck if they don't want to see the message again. See also 'AreYouSure' and 'ConfirmAgain' strings which occur in the same pop-up."
   }
 }

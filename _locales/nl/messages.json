@@ -97,11 +97,11 @@
   },
   "recurAnnuallyLabel": {
     "message": "jaarlijks",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurDailyLabel": {
     "message": "dagelijks",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurFunctionLabel": {
     "message": "functie",
@@ -113,11 +113,11 @@
   },
   "recurMinutelyLabel": {
     "message": "elke minuut",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurMonthlyLabel": {
     "message": "maandelijks",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurOnceLabel": {
     "message": "geen",
@@ -125,7 +125,7 @@
   },
   "recurWeeklyLabel": {
     "message": "wekelijks",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "resetPrefsButton": {
     "message": "Voorkeuren herinitialiseren",
@@ -161,31 +161,31 @@
   },
   "sendSundayLabel": {
     "message": "zondag",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendMondayLabel": {
     "message": "maandag",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendTuesdayLabel": {
     "message": "dinsdag",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendWednesdayLabel": {
     "message": "woensdag",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendThursdayLabel": {
     "message": "donderdag",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendFridayLabel": {
     "message": "vrijdag",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendSaturdayLabel": {
     "message": "zaterdag",
-    "description": ""
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendNowLabel": {
     "message": "Nu verzenden",
@@ -516,31 +516,31 @@
   },
   "everymonthly_day0": {
     "message": "zondag",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day1": {
     "message": "maandag",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day2": {
     "message": "dinsdag",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day3": {
     "message": "woensdag",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day4": {
     "message": "donderdag",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day5": {
     "message": "vrijdag",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "everymonthly_day6": {
     "message": "zaterdag",
-    "description": ""
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "betw_times": {
     "message": "tussen $1 en $2",
@@ -609,6 +609,14 @@
     "message": "Send Later kan alleen berichten verzenden als $1 actief is. Denk eraan dat het weer moet worden gestart voordat uw berichten voor verzending worden ingepland!",
     "description": ""
   },
+  "EncryptionUnsupportedTitle": {
+    "message": "$1 ondersteunt geen versleuteling",
+    "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has encryption or signing enabled. The placeholder is replaced with the extension name."
+  },
+  "EncryptionUnsupportedText": {
+    "message": "$1 kan geen berichten plannen die versleuteld of digitaal ondertekend zijn; u moet dit uitschakelen in een concept voordat u het kunt plannen. Ook moet u ‘Conceptberichten opslaan in versleutelde opmaak’ onder ‘End-to-end-versleuteling’ uitschakelen voor accounts of identiteiten waarvoor u berichten wilt plannen.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has encryption or signing enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
   "incorrectUUID": {
     "message": "Gepland door een andere client",
     "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."
@@ -618,7 +626,7 @@
     "description": ""
   },
   "TimeMismatchConfirmBody": {
-    "message": "Het ingevoerde verzendtijdstip, $1, voldoet niet aan de opgegeven tijdsrestricties. Klik op Annuleren om uw verzendtijd te bewerken, of op OK om deze automatisch naar $2 te wijzigen.",
+    "message": "Het ingevoerde verzendtijdstip, $1, voldoet niet aan de opgegeven tijdsrestricties. Klik op Annuleren om uw verzendtijdstip te bewerken, of op OK om dit automatisch naar $2 te wijzigen.",
     "description": ""
   },
   "endTimeWarningTitle": {
@@ -811,6 +819,42 @@
   },
   "menuScheduleMsg": {
     "message": "Bericht(en) plannen",
-    "description": "Command added to the message list menu for the user to use to schedule one or more selected messages with Send Later"
+    "description": "Command added to the message list menu for the user to use to schedule one or more selected drafts with Send Later"
+  },
+  "menuSkipMsg": {
+    "message": "Volgende herhaling overslaan",
+    "description": "Command added to the message list menu for the user to use to skip the next occurrence of one or more selected recurring drafts"
+  },
+  "resultsTitle": {
+    "message": "Resultaten van berichtverwerking",
+    "description": "The title of the pop-up that displays results after the user uses the message list context menu to perform an operation on more than one selected message."
+  },
+  "resultsAllSuccess": {
+    "message": "Alle geselecteerde berichten zijn verwerkt.",
+    "description": "Message displayed in the message list context menu results pop-up when multiple messages were selected and all were processed successfully."
+  },
+  "resultsPartialSuccess": {
+    "message": "$1 van $2 geselecteerde berichten zijn verwerkt.",
+    "description": "Message displayed in the message list context menu results pop-up when multiple messages were selected and some were not processed successfully. The first placeholder is the number of successful messages and the second is the total number of selected messages."
+  },
+  "cantSkipSingletonTitle": {
+    "message": "Kan geen herhaling van eenmalig bericht overslaan",
+    "description": "The title of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a non-recurring message."
+  },
+  "cantSkipSingletonText": {
+    "message": "Het bericht met het onderwerp ‘$1’ is geen herhalend bericht, dus u kunt de volgende geplande herhaling ervan niet overslaan.",
+    "description": "The text of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a non-recurring message. The placeholder is for the message subject."
+  },
+  "cantSKipPastLastTitle": {
+    "message": "Bericht heeft geen herhalingen meer",
+    "description": "The title of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a message that has no further occurrences after that one."
+  },
+  "cantSkipPastLastText": {
+    "message": "Het bericht met het onderwerp ‘$1’ heeft geen herhalingen meer, dus u kunt de volgende niet overslaan.",
+    "description": "The text of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a message that has no further occurrences after that one. The placeholder is for the message subject."
+  },
+  "SkipConfirmMessage": {
+    "message": "U hebt aangegeven dat u de volgende herhaling van een van de geselecteerde berichten wilt overslaan. Als u hierna van gedachten verandert, dient u de berichten handmatig opnieuw te plannen. Weet u zeker dat u wilt doorgaan?",
+    "description": "The text of the pop-up that warns the user when they activate the message list context menu command to skip the next occurrence of one or more messages. The purpose of this warning is to ensure that the user knows what the command does before using it. There is a checkbox in the pop-up which they can uncheck if they don't want to see the message again. See also 'AreYouSure' and 'ConfirmAgain' strings which occur in the same pop-up."
   }
 }
