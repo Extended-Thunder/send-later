@@ -993,6 +993,6 @@
   },
   "menuScheduleMsg": {
     "message": "Schedule message(s)",
-    "description": "Command added to the message list menu for the user to use to schedule one or more selected messages with Send Later"
+    "description": "Command added to the message list menu for the user to use to schedule one or more selected drafts with Send Later"
   }
 }
