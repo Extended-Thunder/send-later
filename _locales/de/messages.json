@@ -315,10 +315,6 @@
     "message": "Später Senden - Einstellungen",
     "description": ""
   },
-  "pane1.title": {
-    "message": "Später Senden - Einstellungen",
-    "description": ""
-  },
   "checktimepref.tooltip": {
     "message": "Intervall in Minuten zwischen den Prüfungen, welche Entwürfe für die Zustellung bereit sind. Diesen Wert erhöhen, wenn die Entwürfe manchmal nicht rechtzeitig gesendet werden oder der Mitteilungszähler in der Statuszeile nicht alle zeitlich geplanten Entwürfe wiedergibt.",
     "description": ""

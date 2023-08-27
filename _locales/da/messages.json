@@ -307,10 +307,6 @@
     "message": "Send senere præferencer",
     "description": ""
   },
-  "pane1.title": {
-    "message": "Send senere præferencer",
-    "description": ""
-  },
   "checktimepref.tooltip": {
     "message": "Interval, i minutter, mellem kontrol af kladder, hvis leveringstid er nået. Forøg denne værdi, hvis dine kladder sommetider ikke sendes til tiden, eller hvis ventende beskedantal i din statuslinje indimellem ikke afspejler alle planlagte kladder.",
     "description": ""

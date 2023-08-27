@@ -307,10 +307,6 @@
     "message": "Preferências de Enviar mais tarde",
     "description": ""
   },
-  "pane1.title": {
-    "message": "Preferências de Enviar mais tarde",
-    "description": ""
-  },
   "checktimepref.tooltip": {
     "message": "Intervalo, em minutos, entre a checagem de rascunhos que atingiram o horário de envio. Caso rascunhos não tenham sido enviados no horário definido ou se a informação do contador de mensagens pendentes na barra de status divergir do agendamento de rascunhos, amplie este intervalo.",
     "description": ""

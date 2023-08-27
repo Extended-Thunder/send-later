@@ -291,10 +291,6 @@
     "message": "Inställningar för Skicka Senare",
     "description": ""
   },
-  "pane1.title": {
-    "message": "Inställningar för Skicka Senare",
-    "description": ""
-  },
   "checktimepref.tooltip": {
     "message": "Intervall, i minuter, mellan sökningar efter utkast vars sändtid har kommit. Öka detta värde om dina utkast ibland inte skickas på utsatt tid eller antalet väntande meddelanden i ditt statusfält inte speglar alla schemalagda utkast.",
     "description": ""

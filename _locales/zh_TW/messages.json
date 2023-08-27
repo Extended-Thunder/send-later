@@ -303,10 +303,6 @@
     "message": "延期發信首選項",
     "description": ""
   },
-  "pane1.title": {
-    "message": "延期發信首選項",
-    "description": ""
-  },
   "checktimepref.tooltip": {
     "message": "檢查是否已到草稿的傳送時間的間隔，單位為分鐘。如果草稿沒能及時傳送，或者狀態欄的待傳送信件數比實際少時，請增加這個值。",
     "description": ""

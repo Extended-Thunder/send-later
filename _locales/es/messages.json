@@ -299,10 +299,6 @@
     "message": "Preferencias de Send Later",
     "description": ""
   },
-  "pane1.title": {
-    "message": "Preferencias de Send Later",
-    "description": ""
-  },
   "checktimepref.tooltip": {
     "message": "Intervalo, en minutos, entre comprobaciones para borradores a los que les ha llegado su hora de envío. Aumente este valor si a veces sus borradores no se envían a tiempo o si el recuento de mensajes pendientes en su barra de estado no refleja todos los envíos programados.",
     "description": ""

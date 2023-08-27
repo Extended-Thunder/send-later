@@ -283,10 +283,6 @@
     "message": "Send Later 設定",
     "description": ""
   },
-  "pane1.title": {
-    "message": "Send Later 設定",
-    "description": ""
-  },
   "checktimepref.tooltip": {
     "message": "送信すべき下書きがないかどうかをチェックする分単位の間隔。時間通りに送信されない場合や、ステータスバーに表示されている [送信待ち] のメッセージ数と送信予定の下書きの数が一致していない場合には、この値を増やしてください。",
     "description": ""

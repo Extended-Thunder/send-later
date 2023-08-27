@@ -299,10 +299,6 @@
     "message": "Options d'« Envoyer Plus Tard »",
     "description": ""
   },
-  "pane1.title": {
-    "message": "Options d'« Envoyer Plus Tard »",
-    "description": ""
-  },
   "checktimepref.tooltip": {
     "message": "Intervalle (en minutes) des vérifications de messages à expédier. Augmenter cette valeur si les messages ne sont pas expédiés à temps ou si le nombre de message en attente est erroné.",
     "description": ""

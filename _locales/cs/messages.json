@@ -295,10 +295,6 @@
     "message": "Odeslat Později - předvolby",
     "description": ""
   },
-  "pane1.title": {
-    "message": "Odeslat Později - předvolby",
-    "description": ""
-  },
   "checktimepref.tooltip": {
     "message": "Po kolika minutách se kontroluje, zda je třeba odeslat koncepty. Zvyš tuto hodnotu, pokud tvoje koncepty neodchází včas nebo množství čekajících zpráv ve stavovém řádku někdy neodpovídá skutečnosti.",
     "description": ""

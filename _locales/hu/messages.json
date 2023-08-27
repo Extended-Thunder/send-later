@@ -315,10 +315,6 @@
     "message": "Küldés később beállításai",
     "description": ""
   },
-  "pane1.title": {
-    "message": "Küldés később beállításai",
-    "description": ""
-  },
   "checktimepref.tooltip": {
     "message": "Időközönként, percben, a piszkozatok ellenőrzése között, amelyek elküldése ideje megérkezett. Növelje ezt az értéket, ha a piszkozatait időnként nem vannak elküldve, vagy az állapotsorban lévő függőben lévő üzenetek száma néha nem tükrözi az összes ütemezett piszkozatot.",
     "description": ""

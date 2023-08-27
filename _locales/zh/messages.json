@@ -295,10 +295,6 @@
     "message": "Send Later首选项",
     "description": ""
   },
-  "pane1.title": {
-    "message": "Send Later首选项",
-    "description": ""
-  },
   "checktimepref.tooltip": {
     "message": "检查是否已到草稿的发送时间的时间间隔，单位为分钟。如果草稿没能及时发送，或者状态栏的待发送消息数比实际少时，请增大这个值。",
     "description": ""

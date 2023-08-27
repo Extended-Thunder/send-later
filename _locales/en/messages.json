@@ -315,10 +315,6 @@
     "message": "Send Later preferences",
     "description": ""
   },
-  "pane1.title": {
-    "message": "Send Later preferences",
-    "description": ""
-  },
   "checktimepref.tooltip": {
     "message": "Interval, in minutes, between checks for drafts whose delivery time has arrived. Increase this value if your drafts sometimes aren't sent on time or the pending message count in your status bar sometimes doesn't reflect all scheduled drafts.",
     "description": ""

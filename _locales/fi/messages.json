@@ -299,10 +299,6 @@
     "message": "Lähetä myöhemmin - Asetukset",
     "description": ""
   },
-  "pane1.title": {
-    "message": "Lähetä myöhemmin - Asetukset",
-    "description": ""
-  },
   "checktimepref.tooltip": {
     "message": "Aikaväli minuuteissa sen tarkistamiseksi, onko luonnoskansiossa viestejä, jotka olisi jo aika lähettää. Kasvata tätä arvoa, jos kaikki viestisi eivät aina lähde ajallaan tai jos lähetysjonossa olevien viestien laskuri ei aina täsmää.",
     "description": ""
