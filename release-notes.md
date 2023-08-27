@@ -97,6 +97,14 @@ enabled, etc. The only thing you can't do without the toolbar button
 is activate the shift-click and control-click shortcuts (if any)
 configured in Send Later's preferences.
 
+Send Later now displays the release notes automatically when it is
+installed or upgraded to a new major or minor release. This can be
+disabled by setting the releaseNotesShow preference to false in the
+advanced configuration editor. Also, the release notes page has been
+changed from the GitHub releases to the page you're reading right now,
+and instead of opening it in a browser it is now opened in a
+Thunderbird tab.
+
 Previously, if you opened Send Later's preferences, made changes in
 the advanced configuration editor at the bottom but did not save them,
 made different changes in the top section of the preferences page, and
