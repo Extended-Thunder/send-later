@@ -370,8 +370,8 @@ const SendLater = {
       return;
     }
 
-    if (!skipping && msgUUID !== preferences.instanceUUID) {
-      SLStatic.debug(
+    if (msgUUID !== preferences.instanceUUID) {
+      (skipping ? SLStatic.error : SLStatic.debug)(
         `Message <${originalMsgId}> is scheduled by a ` +
           `different Thunderbird instance.`,
       );
@@ -1632,9 +1632,9 @@ const SendLater = {
         break;
       }
       case "showReleaseNotes": {
-        messenger.windows.openDefaultBrowser(
-          "https://github.com/Extended-Thunder/send-later/releases",
-        );
+        messenger.tabs.create({
+          url: "https://github.com/Extended-Thunder/send-later/releases",
+        });
         break;
       }
       case "contactAuthor": {
