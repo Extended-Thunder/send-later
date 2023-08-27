@@ -843,9 +843,9 @@ const SendLater = {
     // Perform any necessary preference updates
     await this.updatePreferences();
 
-    try {
-      let preferences = await SLTools.getPrefs();
+    let preferences = await SLTools.getPrefs();
 
+    try {
       SendLater.prefCache = preferences;
       SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
       SLStatic.customizeDateTime = preferences.customizeDateTime === true;
@@ -902,6 +902,40 @@ const SendLater = {
     messenger.menus.onShown.addListener(async (info, tab) => {
       SendLater.checkMenu(info, tab);
     });
+
+    if (preferences.releaseNotesShow) {
+      SLStatic.debug("Checking if release notes should be displayed");
+      let slVersionString = messenger.runtime.getManifest().version;
+      let slVersion = slVersionString.split(".").map((n) => {
+        return parseInt(n);
+      });
+      let oldVersion = preferences.releaseNotesVersion;
+      if (!oldVersion) {
+        oldVersion = "0.0.0";
+      }
+      oldVersion = oldVersion.split(".").map((n) => {
+        return parseInt(n);
+      });
+      if (
+        !oldVersion.length ||
+        slVersion[0] > oldVersion[0] ||
+        (slVersion[0] == oldVersion[0] && slVersion[1] > oldVersion[1])
+      ) {
+        SLStatic.debug("Displaying release notes");
+        await SendLater.onRuntimeMessageListenerasync(
+          { action: "showReleaseNotes" },
+          {},
+        );
+        preferences.releaseNotesVersion = slVersionString;
+        await messenger.storage.local.set({
+          preferences,
+        });
+      } else {
+        SLStatic.debug("Release notes display not needed");
+      }
+    } else {
+      SLStatic.debug("Release notes display not wanted");
+    }
   },
 
   async menuClickHandler(info, tab) {

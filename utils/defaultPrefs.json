@@ -41,7 +41,6 @@
   "askTime": ["int", 0],
   "askSent": ["int", 0],
   "askQuit": ["bool", true],
-  "relNotes": ["string", ""],
   "disabledForEnigmail": ["bool", false],
   "editorFirstUse": ["bool", true],
   "promptDefaults": ["string", ""],
@@ -52,5 +51,7 @@
   "customizeDateTime": ["boolean", false],
   "shortDateTimeFormat": ["string", ""],
   "longDateTimeFormat": ["string", ""],
-  "scheduledDateField": ["boolean", true]
+  "scheduledDateField": ["boolean", true],
+  "releaseNotesShow": ["boolean", true],
+  "releaseNotesVersion": ["string", "0.0.0"]
 }
