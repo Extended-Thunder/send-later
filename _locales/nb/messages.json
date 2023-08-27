@@ -627,34 +627,6 @@
     "message": "på $1",
     "description": ""
   },
-  "only_on_day0": {
-    "message": "Søndag",
-    "description": ""
-  },
-  "only_on_day1": {
-    "message": "Mandag",
-    "description": ""
-  },
-  "only_on_day2": {
-    "message": "Tirsdag",
-    "description": ""
-  },
-  "only_on_day3": {
-    "message": "Onsdag",
-    "description": ""
-  },
-  "only_on_day4": {
-    "message": "Torsdag",
-    "description": ""
-  },
-  "only_on_day5": {
-    "message": "Fredag",
-    "description": ""
-  },
-  "only_on_day6": {
-    "message": "Lørdag",
-    "description": ""
-  },
   "ord1": {
     "message": "1.",
     "description": ""

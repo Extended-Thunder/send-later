@@ -627,34 +627,6 @@
     "message": "o $1",
     "description": ""
   },
-  "only_on_day0": {
-    "message": "Domingo",
-    "description": ""
-  },
-  "only_on_day1": {
-    "message": "Luns",
-    "description": ""
-  },
-  "only_on_day2": {
-    "message": "Martes",
-    "description": ""
-  },
-  "only_on_day3": {
-    "message": "Mércores",
-    "description": ""
-  },
-  "only_on_day4": {
-    "message": "Xoves",
-    "description": ""
-  },
-  "only_on_day5": {
-    "message": "Venres",
-    "description": ""
-  },
-  "only_on_day6": {
-    "message": "Sábado",
-    "description": ""
-  },
   "ord1": {
     "message": "1º",
     "description": ""

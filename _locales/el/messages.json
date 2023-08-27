@@ -630,34 +630,6 @@
     "message": "ημέρα $1",
     "description": ""
   },
-  "only_on_day0": {
-    "message": "Κυριακή",
-    "description": ""
-  },
-  "only_on_day1": {
-    "message": "Δευτέρα",
-    "description": ""
-  },
-  "only_on_day2": {
-    "message": "Τρίτη",
-    "description": ""
-  },
-  "only_on_day3": {
-    "message": "Τετάρτη",
-    "description": ""
-  },
-  "only_on_day4": {
-    "message": "Πέμπτη",
-    "description": ""
-  },
-  "only_on_day5": {
-    "message": "Παρασκευή",
-    "description": ""
-  },
-  "only_on_day6": {
-    "message": "Σάββατο",
-    "description": ""
-  },
   "ord1": {
     "message": "1η",
     "description": ""

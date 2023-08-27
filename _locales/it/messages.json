@@ -631,34 +631,6 @@
     "message": "di $1",
     "description": ""
   },
-  "only_on_day0": {
-    "message": "domenica",
-    "description": ""
-  },
-  "only_on_day1": {
-    "message": "lunedì",
-    "description": ""
-  },
-  "only_on_day2": {
-    "message": "martedì",
-    "description": ""
-  },
-  "only_on_day3": {
-    "message": "mercoledì",
-    "description": ""
-  },
-  "only_on_day4": {
-    "message": "giovedì",
-    "description": ""
-  },
-  "only_on_day5": {
-    "message": "venerdì",
-    "description": ""
-  },
-  "only_on_day6": {
-    "message": "sabato",
-    "description": ""
-  },
   "ord1": {
     "message": "1°",
     "description": ""

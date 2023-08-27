@@ -615,34 +615,6 @@
     "message": "$1",
     "description": ""
   },
-  "only_on_day0": {
-    "message": "日曜日",
-    "description": ""
-  },
-  "only_on_day1": {
-    "message": "月曜日",
-    "description": ""
-  },
-  "only_on_day2": {
-    "message": "火曜日",
-    "description": ""
-  },
-  "only_on_day3": {
-    "message": "水曜日",
-    "description": ""
-  },
-  "only_on_day4": {
-    "message": "木曜日",
-    "description": ""
-  },
-  "only_on_day5": {
-    "message": "金曜日",
-    "description": ""
-  },
-  "only_on_day6": {
-    "message": "土曜日",
-    "description": ""
-  },
   "ord1": {
     "message": "第1",
     "description": ""

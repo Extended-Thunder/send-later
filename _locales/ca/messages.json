@@ -654,34 +654,6 @@
     "message": "fins $1",
     "description": "Describes when a recurrence should terminate. Used in the scheduler dialog."
   },
-  "only_on_day0": {
-    "message": "diumenge",
-    "description": ""
-  },
-  "only_on_day1": {
-    "message": "dilluns",
-    "description": ""
-  },
-  "only_on_day2": {
-    "message": "dimarts",
-    "description": ""
-  },
-  "only_on_day3": {
-    "message": "dimecres",
-    "description": ""
-  },
-  "only_on_day4": {
-    "message": "dijous",
-    "description": ""
-  },
-  "only_on_day5": {
-    "message": "divendres",
-    "description": ""
-  },
-  "only_on_day6": {
-    "message": "dissabte",
-    "description": ""
-  },
   "ord1": {
     "message": "1r",
     "description": ""

@@ -471,34 +471,6 @@
     "message": "$1-ին",
     "description": ""
   },
-  "only_on_day0": {
-    "message": "Կիրակի",
-    "description": ""
-  },
-  "only_on_day1": {
-    "message": "Երկուշաբթի",
-    "description": ""
-  },
-  "only_on_day2": {
-    "message": "Երեքշաբթի",
-    "description": ""
-  },
-  "only_on_day3": {
-    "message": "Չորեքշաբթի",
-    "description": ""
-  },
-  "only_on_day4": {
-    "message": "Հինգշաբթի",
-    "description": ""
-  },
-  "only_on_day5": {
-    "message": "Ուրբաթ",
-    "description": ""
-  },
-  "only_on_day6": {
-    "message": "Շաբաթ",
-    "description": ""
-  },
   "ord1": {
     "message": "1-ին",
     "description": ""

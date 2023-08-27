@@ -662,34 +662,6 @@
     "message": "eddig: $1",
     "description": "Describes when a recurrence should terminate. Used in the scheduler dialog."
   },
-  "only_on_day0": {
-    "message": "vasárnapon",
-    "description": ""
-  },
-  "only_on_day1": {
-    "message": "hétfőn",
-    "description": ""
-  },
-  "only_on_day2": {
-    "message": "kedden",
-    "description": ""
-  },
-  "only_on_day3": {
-    "message": "szerdán",
-    "description": ""
-  },
-  "only_on_day4": {
-    "message": "csütörtökön",
-    "description": ""
-  },
-  "only_on_day5": {
-    "message": "pénteken",
-    "description": ""
-  },
-  "only_on_day6": {
-    "message": "szombaton",
-    "description": ""
-  },
   "ord1": {
     "message": "első",
     "description": ""

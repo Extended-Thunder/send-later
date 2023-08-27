@@ -658,34 +658,6 @@
     "message": "până la $1",
     "description": "Describes when a recurrence should terminate. Used in the scheduler dialog."
   },
-  "only_on_day0": {
-    "message": "duminică",
-    "description": ""
-  },
-  "only_on_day1": {
-    "message": "luni",
-    "description": ""
-  },
-  "only_on_day2": {
-    "message": "marți",
-    "description": ""
-  },
-  "only_on_day3": {
-    "message": "miercuri",
-    "description": ""
-  },
-  "only_on_day4": {
-    "message": "joi",
-    "description": ""
-  },
-  "only_on_day5": {
-    "message": "vineri",
-    "description": ""
-  },
-  "only_on_day6": {
-    "message": "sâmbătă",
-    "description": ""
-  },
   "ord1": {
     "message": "1",
     "description": ""

@@ -190,33 +190,5 @@
   "everymonthly_day6": {
     "message": "Cumartesi",
     "description": ""
-  },
-  "only_on_day0": {
-    "message": "Pazar",
-    "description": ""
-  },
-  "only_on_day1": {
-    "message": "Pazartesi",
-    "description": ""
-  },
-  "only_on_day2": {
-    "message": "Salı",
-    "description": ""
-  },
-  "only_on_day3": {
-    "message": "Çarşamba",
-    "description": ""
-  },
-  "only_on_day4": {
-    "message": "Perşembe",
-    "description": ""
-  },
-  "only_on_day5": {
-    "message": "Cuma",
-    "description": ""
-  },
-  "only_on_day6": {
-    "message": "Cumartesi",
-    "description": ""
   }
 }

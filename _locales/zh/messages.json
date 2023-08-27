@@ -623,34 +623,6 @@
     "message": "星期六",
     "description": ""
   },
-  "only_on_day0": {
-    "message": "星期日",
-    "description": ""
-  },
-  "only_on_day1": {
-    "message": "星期一",
-    "description": ""
-  },
-  "only_on_day2": {
-    "message": "星期二",
-    "description": ""
-  },
-  "only_on_day3": {
-    "message": "星期三",
-    "description": ""
-  },
-  "only_on_day4": {
-    "message": "星期四",
-    "description": ""
-  },
-  "only_on_day5": {
-    "message": "星期五",
-    "description": ""
-  },
-  "only_on_day6": {
-    "message": "星期六",
-    "description": ""
-  },
   "ord1": {
     "message": "第 1 个",
     "description": ""

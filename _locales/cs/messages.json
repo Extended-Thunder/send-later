@@ -631,34 +631,6 @@
     "message": "v $1",
     "description": ""
   },
-  "only_on_day0": {
-    "message": "Neděli",
-    "description": ""
-  },
-  "only_on_day1": {
-    "message": "Pondělí",
-    "description": ""
-  },
-  "only_on_day2": {
-    "message": "Úterý",
-    "description": ""
-  },
-  "only_on_day3": {
-    "message": "Středu",
-    "description": ""
-  },
-  "only_on_day4": {
-    "message": "Čtvrtek",
-    "description": ""
-  },
-  "only_on_day5": {
-    "message": "Pátek",
-    "description": ""
-  },
-  "only_on_day6": {
-    "message": "Sobotu",
-    "description": ""
-  },
   "ord1": {
     "message": "1.",
     "description": ""

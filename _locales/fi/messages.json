@@ -635,34 +635,6 @@
     "message": "vain $1",
     "description": ""
   },
-  "only_on_day0": {
-    "message": "Sunnuntai",
-    "description": ""
-  },
-  "only_on_day1": {
-    "message": "Maanantai",
-    "description": ""
-  },
-  "only_on_day2": {
-    "message": "Tiistai",
-    "description": ""
-  },
-  "only_on_day3": {
-    "message": "Keskiviikko",
-    "description": ""
-  },
-  "only_on_day4": {
-    "message": "Torstai",
-    "description": ""
-  },
-  "only_on_day5": {
-    "message": "Perjantai",
-    "description": ""
-  },
-  "only_on_day6": {
-    "message": "Lauantai",
-    "description": ""
-  },
   "ord1": {
     "message": "1.",
     "description": ""

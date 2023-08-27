@@ -662,34 +662,6 @@
     "message": "עד ל $1",
     "description": "Describes when a recurrence should terminate. Used in the scheduler dialog."
   },
-  "only_on_day0": {
-    "message": "‫יום ראשון‬",
-    "description": ""
-  },
-  "only_on_day1": {
-    "message": "‫יום שני‬",
-    "description": ""
-  },
-  "only_on_day2": {
-    "message": "‫יום שלישי‬",
-    "description": ""
-  },
-  "only_on_day3": {
-    "message": "‫יום רביעי‬",
-    "description": ""
-  },
-  "only_on_day4": {
-    "message": "‫יום חמישי‬",
-    "description": ""
-  },
-  "only_on_day5": {
-    "message": "‫יום שישי‬",
-    "description": ""
-  },
-  "only_on_day6": {
-    "message": "‫יום שבת‬",
-    "description": ""
-  },
   "ord1": {
     "message": "‫ראשון",
     "description": ""

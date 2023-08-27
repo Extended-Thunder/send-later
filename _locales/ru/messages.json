@@ -627,34 +627,6 @@
     "message": "на $1",
     "description": ""
   },
-  "only_on_day0": {
-    "message": "Воскресенье",
-    "description": ""
-  },
-  "only_on_day1": {
-    "message": "Понедельник",
-    "description": ""
-  },
-  "only_on_day2": {
-    "message": "Вторник",
-    "description": ""
-  },
-  "only_on_day3": {
-    "message": "Среда",
-    "description": ""
-  },
-  "only_on_day4": {
-    "message": "Четверг",
-    "description": ""
-  },
-  "only_on_day5": {
-    "message": "Пятница",
-    "description": ""
-  },
-  "only_on_day6": {
-    "message": "Суббота",
-    "description": ""
-  },
   "ord1": {
     "message": "1й",
     "description": ""

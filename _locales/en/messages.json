@@ -662,34 +662,6 @@
     "message": "until $1",
     "description": "Describes when a recurrence should terminate. Used in the scheduler dialog."
   },
-  "only_on_day0": {
-    "message": "Sunday",
-    "description": ""
-  },
-  "only_on_day1": {
-    "message": "Monday",
-    "description": ""
-  },
-  "only_on_day2": {
-    "message": "Tuesday",
-    "description": ""
-  },
-  "only_on_day3": {
-    "message": "Wednesday",
-    "description": ""
-  },
-  "only_on_day4": {
-    "message": "Thursday",
-    "description": ""
-  },
-  "only_on_day5": {
-    "message": "Friday",
-    "description": ""
-  },
-  "only_on_day6": {
-    "message": "Saturday",
-    "description": ""
-  },
   "ord1": {
     "message": "1st",
     "description": ""
