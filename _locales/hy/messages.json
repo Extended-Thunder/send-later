@@ -463,34 +463,6 @@
     "message": "Շաբաթ",
     "description": ""
   },
-  "everymonthly_short_day0": {
-    "message": "Կիրակի",
-    "description": ""
-  },
-  "everymonthly_short_day1": {
-    "message": "Երկուշաբթի",
-    "description": ""
-  },
-  "everymonthly_short_day2": {
-    "message": "Երեքշաբթի",
-    "description": ""
-  },
-  "everymonthly_short_day3": {
-    "message": "Չորեքշաբթի",
-    "description": ""
-  },
-  "everymonthly_short_day4": {
-    "message": "Հինգշաբթի",
-    "description": ""
-  },
-  "everymonthly_short_day5": {
-    "message": "Ուրբաթ",
-    "description": ""
-  },
-  "everymonthly_short_day6": {
-    "message": "Շաբաթ",
-    "description": ""
-  },
   "betw_times": {
     "message": "$1-ից $2",
     "description": ""

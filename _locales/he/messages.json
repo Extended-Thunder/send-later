@@ -650,34 +650,6 @@
     "message": "‫יום שבת‬",
     "description": ""
   },
-  "everymonthly_short_day0": {
-    "message": "‫יום ראשון‬",
-    "description": ""
-  },
-  "everymonthly_short_day1": {
-    "message": "‫יום שני‬",
-    "description": ""
-  },
-  "everymonthly_short_day2": {
-    "message": "‫יום שלישי‬",
-    "description": ""
-  },
-  "everymonthly_short_day3": {
-    "message": "‫יום רביעי‬",
-    "description": ""
-  },
-  "everymonthly_short_day4": {
-    "message": "‫יום חמישי‬",
-    "description": ""
-  },
-  "everymonthly_short_day5": {
-    "message": "‫יום שישי‬",
-    "description": ""
-  },
-  "everymonthly_short_day6": {
-    "message": "‫יום שבת‬",
-    "description": ""
-  },
   "betw_times": {
     "message": "בין. $1 לבין $2",
     "description": ""

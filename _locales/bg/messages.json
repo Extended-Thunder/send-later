@@ -643,34 +643,6 @@
     "message": "Събота",
     "description": ""
   },
-  "everymonthly_short_day0": {
-    "message": "Неделя",
-    "description": ""
-  },
-  "everymonthly_short_day1": {
-    "message": "Понеделник",
-    "description": ""
-  },
-  "everymonthly_short_day2": {
-    "message": "Вторник",
-    "description": ""
-  },
-  "everymonthly_short_day3": {
-    "message": "Сряда",
-    "description": ""
-  },
-  "everymonthly_short_day4": {
-    "message": "Четвъртък",
-    "description": ""
-  },
-  "everymonthly_short_day5": {
-    "message": "Петък",
-    "description": ""
-  },
-  "everymonthly_short_day6": {
-    "message": "Събота",
-    "description": ""
-  },
   "betw_times": {
     "message": "между $1 и $2",
     "description": ""

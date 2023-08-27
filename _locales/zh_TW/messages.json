@@ -631,34 +631,6 @@
     "message": "星期六",
     "description": ""
   },
-  "everymonthly_short_day0": {
-    "message": "星期日",
-    "description": ""
-  },
-  "everymonthly_short_day1": {
-    "message": "星期一",
-    "description": ""
-  },
-  "everymonthly_short_day2": {
-    "message": "星期二",
-    "description": ""
-  },
-  "everymonthly_short_day3": {
-    "message": "星期三",
-    "description": ""
-  },
-  "everymonthly_short_day4": {
-    "message": "星期四",
-    "description": ""
-  },
-  "everymonthly_short_day5": {
-    "message": "星期五",
-    "description": ""
-  },
-  "everymonthly_short_day6": {
-    "message": "星期六",
-    "description": ""
-  },
   "betw_times": {
     "message": "介於$1和$2之間",
     "description": ""

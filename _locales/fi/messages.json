@@ -627,34 +627,6 @@
     "message": "Lauantai",
     "description": ""
   },
-  "everymonthly_short_day0": {
-    "message": "Sunnuntai",
-    "description": ""
-  },
-  "everymonthly_short_day1": {
-    "message": "Maanantai",
-    "description": ""
-  },
-  "everymonthly_short_day2": {
-    "message": "Tiistai",
-    "description": ""
-  },
-  "everymonthly_short_day3": {
-    "message": "Keskiviikko",
-    "description": ""
-  },
-  "everymonthly_short_day4": {
-    "message": "Torstai",
-    "description": ""
-  },
-  "everymonthly_short_day5": {
-    "message": "Perjantai",
-    "description": ""
-  },
-  "everymonthly_short_day6": {
-    "message": "Lauantai",
-    "description": ""
-  },
   "betw_times": {
     "message": "$1 ja $2 välillä",
     "description": ""

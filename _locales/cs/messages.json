@@ -623,34 +623,6 @@
     "message": "Sobotu",
     "description": ""
   },
-  "everymonthly_short_day0": {
-    "message": "Neděli",
-    "description": ""
-  },
-  "everymonthly_short_day1": {
-    "message": "Pondělí",
-    "description": ""
-  },
-  "everymonthly_short_day2": {
-    "message": "Úterý",
-    "description": ""
-  },
-  "everymonthly_short_day3": {
-    "message": "Středu",
-    "description": ""
-  },
-  "everymonthly_short_day4": {
-    "message": "Čtvrtek",
-    "description": ""
-  },
-  "everymonthly_short_day5": {
-    "message": "Pátek",
-    "description": ""
-  },
-  "everymonthly_short_day6": {
-    "message": "Sobotu",
-    "description": ""
-  },
   "betw_times": {
     "message": "mezi $1 a $2",
     "description": ""

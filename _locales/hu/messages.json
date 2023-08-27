@@ -650,34 +650,6 @@
     "message": "szombata",
     "description": ""
   },
-  "everymonthly_short_day0": {
-    "message": "vasárnap",
-    "description": ""
-  },
-  "everymonthly_short_day1": {
-    "message": "hétfő",
-    "description": ""
-  },
-  "everymonthly_short_day2": {
-    "message": "kedd",
-    "description": ""
-  },
-  "everymonthly_short_day3": {
-    "message": "szerda",
-    "description": ""
-  },
-  "everymonthly_short_day4": {
-    "message": "csütörtök",
-    "description": ""
-  },
-  "everymonthly_short_day5": {
-    "message": "péntek",
-    "description": ""
-  },
-  "everymonthly_short_day6": {
-    "message": "szombat",
-    "description": ""
-  },
   "betw_times": {
     "message": "$1 és $2 között",
     "description": ""

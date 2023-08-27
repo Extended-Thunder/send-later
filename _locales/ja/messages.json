@@ -607,34 +607,6 @@
     "message": "土曜日",
     "description": ""
   },
-  "everymonthly_short_day0": {
-    "message": "日曜日",
-    "description": ""
-  },
-  "everymonthly_short_day1": {
-    "message": "月曜日",
-    "description": ""
-  },
-  "everymonthly_short_day2": {
-    "message": "火曜日",
-    "description": ""
-  },
-  "everymonthly_short_day3": {
-    "message": "水曜日",
-    "description": ""
-  },
-  "everymonthly_short_day4": {
-    "message": "木曜日",
-    "description": ""
-  },
-  "everymonthly_short_day5": {
-    "message": "金曜日",
-    "description": ""
-  },
-  "everymonthly_short_day6": {
-    "message": "土曜日",
-    "description": ""
-  },
   "betw_times": {
     "message": "$1 ～ $2",
     "description": ""

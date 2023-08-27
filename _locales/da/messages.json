@@ -642,34 +642,6 @@
     "message": "Lørdag",
     "description": ""
   },
-  "everymonthly_short_day0": {
-    "message": "Søndag",
-    "description": ""
-  },
-  "everymonthly_short_day1": {
-    "message": "Mandag",
-    "description": ""
-  },
-  "everymonthly_short_day2": {
-    "message": "Tirsdag",
-    "description": ""
-  },
-  "everymonthly_short_day3": {
-    "message": "Onsdag",
-    "description": ""
-  },
-  "everymonthly_short_day4": {
-    "message": "Torsdag",
-    "description": ""
-  },
-  "everymonthly_short_day5": {
-    "message": "Fredag",
-    "description": ""
-  },
-  "everymonthly_short_day6": {
-    "message": "Lørdag",
-    "description": ""
-  },
   "betw_times": {
     "message": "mell. $1 og $2",
     "description": ""

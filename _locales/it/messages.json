@@ -623,34 +623,6 @@
     "message": "sabato",
     "description": ""
   },
-  "everymonthly_short_day0": {
-    "message": "domenica",
-    "description": ""
-  },
-  "everymonthly_short_day1": {
-    "message": "lunedì",
-    "description": ""
-  },
-  "everymonthly_short_day2": {
-    "message": "martedì",
-    "description": ""
-  },
-  "everymonthly_short_day3": {
-    "message": "mercoledì",
-    "description": ""
-  },
-  "everymonthly_short_day4": {
-    "message": "giovedì",
-    "description": ""
-  },
-  "everymonthly_short_day5": {
-    "message": "venerdì",
-    "description": ""
-  },
-  "everymonthly_short_day6": {
-    "message": "sabato",
-    "description": ""
-  },
   "betw_times": {
     "message": "tra le $1 e le $2",
     "description": ""

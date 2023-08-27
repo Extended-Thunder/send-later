@@ -650,34 +650,6 @@
     "message": "Sobota",
     "description": ""
   },
-  "everymonthly_short_day0": {
-    "message": "Niedziela",
-    "description": ""
-  },
-  "everymonthly_short_day1": {
-    "message": "Poniedziałek",
-    "description": ""
-  },
-  "everymonthly_short_day2": {
-    "message": "Wtorek",
-    "description": ""
-  },
-  "everymonthly_short_day3": {
-    "message": "Środa",
-    "description": ""
-  },
-  "everymonthly_short_day4": {
-    "message": "Czwartek",
-    "description": ""
-  },
-  "everymonthly_short_day5": {
-    "message": "Piątek",
-    "description": ""
-  },
-  "everymonthly_short_day6": {
-    "message": "Sobota",
-    "description": ""
-  },
   "betw_times": {
     "message": "między $1 a $2",
     "description": ""

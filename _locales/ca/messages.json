@@ -642,34 +642,6 @@
     "message": "dissabte",
     "description": ""
   },
-  "everymonthly_short_day0": {
-    "message": "diumenge",
-    "description": ""
-  },
-  "everymonthly_short_day1": {
-    "message": "dilluns",
-    "description": ""
-  },
-  "everymonthly_short_day2": {
-    "message": "dimarts",
-    "description": ""
-  },
-  "everymonthly_short_day3": {
-    "message": "dimecres",
-    "description": ""
-  },
-  "everymonthly_short_day4": {
-    "message": "dijous",
-    "description": ""
-  },
-  "everymonthly_short_day5": {
-    "message": "divendres",
-    "description": ""
-  },
-  "everymonthly_short_day6": {
-    "message": "dissabte",
-    "description": ""
-  },
   "betw_times": {
     "message": "entre $1 i $2",
     "description": ""

@@ -650,34 +650,6 @@
     "message": "zaterdag",
     "description": ""
   },
-  "everymonthly_short_day0": {
-    "message": "zondag",
-    "description": ""
-  },
-  "everymonthly_short_day1": {
-    "message": "maandag",
-    "description": ""
-  },
-  "everymonthly_short_day2": {
-    "message": "dinsdag",
-    "description": ""
-  },
-  "everymonthly_short_day3": {
-    "message": "woensdag",
-    "description": ""
-  },
-  "everymonthly_short_day4": {
-    "message": "donderdag",
-    "description": ""
-  },
-  "everymonthly_short_day5": {
-    "message": "vrijdag",
-    "description": ""
-  },
-  "everymonthly_short_day6": {
-    "message": "zaterdag",
-    "description": ""
-  },
   "betw_times": {
     "message": "tussen $1 en $2",
     "description": ""

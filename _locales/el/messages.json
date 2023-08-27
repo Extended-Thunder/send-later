@@ -622,34 +622,6 @@
     "message": "Σάββατο",
     "description": ""
   },
-  "everymonthly_short_day0": {
-    "message": "Κυριακή",
-    "description": ""
-  },
-  "everymonthly_short_day1": {
-    "message": "Δευτέρα",
-    "description": ""
-  },
-  "everymonthly_short_day2": {
-    "message": "Τρίτη",
-    "description": ""
-  },
-  "everymonthly_short_day3": {
-    "message": "Τετάρτη",
-    "description": ""
-  },
-  "everymonthly_short_day4": {
-    "message": "Πέμπτη",
-    "description": ""
-  },
-  "everymonthly_short_day5": {
-    "message": "Παρασκευή",
-    "description": ""
-  },
-  "everymonthly_short_day6": {
-    "message": "Σάββατο",
-    "description": ""
-  },
   "betw_times": {
     "message": "μεταξύ $1 και $2",
     "description": ""

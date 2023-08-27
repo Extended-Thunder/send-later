@@ -646,34 +646,6 @@
     "message": "sâmbătă",
     "description": ""
   },
-  "everymonthly_short_day0": {
-    "message": "duminică",
-    "description": ""
-  },
-  "everymonthly_short_day1": {
-    "message": "luni",
-    "description": ""
-  },
-  "everymonthly_short_day2": {
-    "message": "marți",
-    "description": ""
-  },
-  "everymonthly_short_day3": {
-    "message": "miercuri",
-    "description": ""
-  },
-  "everymonthly_short_day4": {
-    "message": "joi",
-    "description": ""
-  },
-  "everymonthly_short_day5": {
-    "message": "vineri",
-    "description": ""
-  },
-  "everymonthly_short_day6": {
-    "message": "sâmbătă",
-    "description": ""
-  },
   "betw_times": {
     "message": "între $1 și $2",
     "description": ""
