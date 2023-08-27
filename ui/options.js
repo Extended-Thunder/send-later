@@ -559,7 +559,11 @@ const SLOptions = {
       const { preferences } = await browser.storage.local.get({
         preferences: {},
       });
-      prefsNode.value = JSON.stringify(preferences, null, 2);
+      prefsNode.value = JSON.stringify(
+        preferences,
+        Object.keys(preferences).sort(),
+        2,
+      );
       prefsNode.disabled = false;
     };
 
