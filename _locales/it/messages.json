@@ -511,26 +511,6 @@
     "message": "Invia Dopo: Tentativo di inviare nuovamente un massaggio già inviato?! La tua cartella Posta in uscita o Bozze $1 è probabilmente danneggiata. Per cortesia riparale come descritto in https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
-  "minutely": {
-    "message": "di minuti",
-    "description": ""
-  },
-  "daily": {
-    "message": "giornaliera",
-    "description": ""
-  },
-  "weekly": {
-    "message": "settimanale",
-    "description": ""
-  },
-  "monthly": {
-    "message": "mensile",
-    "description": ""
-  },
-  "yearly": {
-    "message": "annuale",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "minuti",
     "description": ""

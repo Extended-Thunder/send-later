@@ -538,26 +538,6 @@
     "message": "Send Later: Nastąpiła próba ponownego wysłania wcześniej wysłanej wiadomości!? Twój folder Wysłane albo Szkice $1 jest prawdopodobnie uszkodzony. Spróbuj naprawić zgodnie z opisem https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
-  "minutely": {
-    "message": "co minuta",
-    "description": ""
-  },
-  "daily": {
-    "message": "codziennie",
-    "description": ""
-  },
-  "weekly": {
-    "message": "co tydzień",
-    "description": ""
-  },
-  "monthly": {
-    "message": "co miesiąc",
-    "description": ""
-  },
-  "yearly": {
-    "message": "co rok",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "min.",
     "description": ""

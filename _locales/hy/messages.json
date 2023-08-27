@@ -355,26 +355,6 @@
     "message": "Ուղարկել ավելի ուշ. Ուղարկել հետո. Կրկի՞ն ուղարկել արդեն ուղարկված նամակները: Ձեր $1 Ելքային կամ Սևագրեր թղթապանակը հնարավոր է վնասված է: Ուղղեք այն ինչպես նկարագրված է https://extended-thunder.github.io/send-later/#corrupt-outbox-ում",
     "description": ""
   },
-  "minutely": {
-    "message": "յուրք. րոպե",
-    "description": ""
-  },
-  "daily": {
-    "message": "օրական",
-    "description": ""
-  },
-  "weekly": {
-    "message": "շաբաթական",
-    "description": ""
-  },
-  "monthly": {
-    "message": "ամսական",
-    "description": ""
-  },
-  "yearly": {
-    "message": "տարեկան",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "րոպե",
     "description": ""

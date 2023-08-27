@@ -799,6 +799,7 @@ var SLStatic = {
       return "";
     }
     let recurText = "";
+    let typeCap = recur.type.charAt(0).toUpperCase() + recur.type.slice(1);
     if (recur.type === "function") {
       // Almost certainly doesn't work for all languages. Need a new translation
       // for "recur according to function $1"
@@ -817,7 +818,7 @@ var SLStatic = {
       let monthlyRecurParts = [];
 
       if (!recur.multiplier) {
-        monthlyRecurParts.push(this.i18n.getMessage(recur.type));
+        monthlyRecurParts.push(this.i18n.getMessage(`recur${typeCap}Label`));
       }
 
       if (recur.monthly_day) {
@@ -835,12 +836,12 @@ var SLStatic = {
       }
 
       recurText += monthlyRecurParts.join(", ");
-    } else if (recur.type !== "none") {
+    } else {
       recurText = this.i18n.getMessage("recurLabel") + " ";
 
       const multiplier = recur.multiplier || 1;
       if (multiplier === 1) {
-        recurText += this.i18n.getMessage(recur.type);
+        recurText += this.i18n.getMessage(`recur${typeCap}Label`);
       } else {
         recurText += this.i18n.getMessage("every_" + recur.type, multiplier);
       }
@@ -1193,8 +1194,8 @@ var SLStatic = {
         }
         if (/^[1-9]\d*$/.test(params[1])) {
           recur.monthly_day = {
-            day: params.shift(),
-            week: params.shift(),
+            day: parseInt(params.shift()),
+            week: parseInt(params.shift()),
           };
           if (recur.monthly_day.day < 0 || recur.monthly_day.day > 6) {
             throw new Error("Invalid monthly day argument in " + recurSpec);
@@ -1203,7 +1204,7 @@ var SLStatic = {
             throw new Error("Invalid monthly week argument in " + recurSpec);
           }
         } else {
-          recur.monthly = params.shift();
+          recur.monthly = parseInt(params.shift());
           if (recur.monthly > 31)
             throw new Error("Invalid monthly date argument in " + recurSpec);
         }
@@ -1216,8 +1217,8 @@ var SLStatic = {
           throw "Invalid second yearly argument in " + recurSpec;
         }
         recur.yearly = {
-          month: +params.shift(),
-          date: +params.shift(),
+          month: parseInt(params.shift()),
+          date: parseInt(params.shift()),
         };
 
         // Check that this month/date combination is possible at all.
@@ -1249,7 +1250,7 @@ var SLStatic = {
         if (!/^[1-9]\d*$/.test(multiplier)) {
           throw new Error("Invalid multiplier argument in " + recurSpec);
         }
-        recur.multiplier = +multiplier;
+        recur.multiplier = parseInt(multiplier);
         params.splice(slashIndex, 2);
       }
     }
@@ -1280,7 +1281,7 @@ var SLStatic = {
         if (day > 6) {
           throw new Error("Bad restriction day in " + recurSpec);
         }
-        recur.days.push(Number(day));
+        recur.days.push(parseInt(day));
       }
       if (!recur.days.length) {
         throw new Error("Day restriction with no days in spec " + recurSpec);

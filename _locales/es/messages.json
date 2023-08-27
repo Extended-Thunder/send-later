@@ -518,26 +518,6 @@
     "message": "Send Later: ¡¿Intenta volver a remitir un mensaje ya enviado?! Su Bandeja de Salida o su carpeta de Borradores $1 probablemente está dañada. Por favor, repárelas como se describe en https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
-  "minutely": {
-    "message": "cada minuto",
-    "description": ""
-  },
-  "daily": {
-    "message": "a diario",
-    "description": ""
-  },
-  "weekly": {
-    "message": "semanalmente",
-    "description": ""
-  },
-  "monthly": {
-    "message": "mensualmente",
-    "description": ""
-  },
-  "yearly": {
-    "message": "anualmente",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "minutos",
     "description": ""

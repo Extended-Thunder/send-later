@@ -507,26 +507,6 @@
     "message": "Send senere: Forsøker du å sende en allerede sendt melding?! Utboks- eller Kladden-mappen din $1 er sannsynligvis skadet. Vennligst reparer dem som beskrevet i https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
-  "minutely": {
-    "message": "hvert minutt",
-    "description": ""
-  },
-  "daily": {
-    "message": "daglig",
-    "description": ""
-  },
-  "weekly": {
-    "message": "hver uke",
-    "description": ""
-  },
-  "monthly": {
-    "message": "månedlig",
-    "description": ""
-  },
-  "yearly": {
-    "message": "årlig",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "minutter",
     "description": ""

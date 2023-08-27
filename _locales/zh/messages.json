@@ -511,26 +511,6 @@
     "message": "Send Later: 尝试重新发送已发送的消息？！你的发件箱或草稿文件夹 $1 可能已损坏。请按照 https://extended-thunder.github.io/send-later/#corrupt-outbox 上的描述进行修复。",
     "description": ""
   },
-  "minutely": {
-    "message": "每分钟",
-    "description": ""
-  },
-  "daily": {
-    "message": "每天",
-    "description": ""
-  },
-  "weekly": {
-    "message": "每周",
-    "description": ""
-  },
-  "monthly": {
-    "message": "每月",
-    "description": ""
-  },
-  "yearly": {
-    "message": "每年",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "分钟",
     "description": ""

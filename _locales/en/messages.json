@@ -105,11 +105,11 @@
   },
   "recurAnnuallyLabel": {
     "message": "yearly",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurDailyLabel": {
     "message": "daily",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurFunctionLabel": {
     "message": "function",
@@ -120,12 +120,12 @@
     "description": ""
   },
   "recurMinutelyLabel": {
-    "message": "minutely",
-    "description": ""
+    "message": "every minute",
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurMonthlyLabel": {
     "message": "monthly",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurOnceLabel": {
     "message": "once",
@@ -133,7 +133,7 @@
   },
   "recurWeeklyLabel": {
     "message": "weekly",
-    "description": ""
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "resetPrefsButton": {
     "message": "Reset Preferences",
@@ -536,26 +536,6 @@
   },
   "MessageResendError": {
     "message": "Send Later: Attempt to resend already sent message?! Your Outbox or Drafts folder $1 is probably corrupt. Please repair them as described at https://extended-thunder.github.io/send-later/#corrupt-outbox.",
-    "description": ""
-  },
-  "minutely": {
-    "message": "minutely",
-    "description": ""
-  },
-  "daily": {
-    "message": "daily",
-    "description": ""
-  },
-  "weekly": {
-    "message": "weekly",
-    "description": ""
-  },
-  "monthly": {
-    "message": "monthly",
-    "description": ""
-  },
-  "yearly": {
-    "message": "yearly",
     "description": ""
   },
   "plural_minutely": {

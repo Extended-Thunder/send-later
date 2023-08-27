@@ -518,26 +518,6 @@
     "message": "Envoyer Plus Tard : Tenter de renvoyer un message déjà envoyer ?! Vos dossiers « Messages en attente » ou « Brouillons » $1 sont peut-être corrompus. Veuillez procéder à leur réparation comme décrit sur https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
-  "minutely": {
-    "message": "à la minute",
-    "description": ""
-  },
-  "daily": {
-    "message": "quotidienne",
-    "description": ""
-  },
-  "weekly": {
-    "message": "hebdomadaire",
-    "description": ""
-  },
-  "monthly": {
-    "message": "mensuelle",
-    "description": ""
-  },
-  "yearly": {
-    "message": "annuelle",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "aux minutes",
     "description": ""

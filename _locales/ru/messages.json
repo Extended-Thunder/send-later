@@ -507,26 +507,6 @@
     "message": "Send Later: Попытка переотправить уже отправленное сообщение. Папка «Исходящие» или «Черновики» $1 вероятно повреждена. Пожалуйста, восстановите их как сказано здесь https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
-  "minutely": {
-    "message": "ежеминутно",
-    "description": ""
-  },
-  "daily": {
-    "message": "ежедневно",
-    "description": ""
-  },
-  "weekly": {
-    "message": "еженедельно",
-    "description": ""
-  },
-  "monthly": {
-    "message": "ежемесячно",
-    "description": ""
-  },
-  "yearly": {
-    "message": "ежегодно",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "мин.",
     "description": ""

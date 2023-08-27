@@ -538,26 +538,6 @@
     "message": "‫שלח מאוחר יותר‬: ניסית לשלוח מאוחר יותר, הודעה שכבר נשלחה?! יתכן ותיקיית הדואר היוצא או תיקיית הטיוטות $1 נפגמו. נסה לתקנן כפי שמתואר בקישור: https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
-  "minutely": {
-    "message": "דקתי",
-    "description": ""
-  },
-  "daily": {
-    "message": "‫עכב משלוח‬",
-    "description": ""
-  },
-  "weekly": {
-    "message": "‫שבועי‬",
-    "description": ""
-  },
-  "monthly": {
-    "message": "‫חודשי‬",
-    "description": ""
-  },
-  "yearly": {
-    "message": "‫שנתי‬",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "דקות",
     "description": ""

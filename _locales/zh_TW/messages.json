@@ -519,26 +519,6 @@
     "message": "延期發信: 嘗試重新發送已經發出的信件？！發件箱或草稿文件夾$1可能已損壞。請根據https://extended-thunder.github.io/send-later/#corrupt-outbox 的說明來修復。",
     "description": ""
   },
-  "minutely": {
-    "message": "每分鐘",
-    "description": ""
-  },
-  "daily": {
-    "message": "每天",
-    "description": ""
-  },
-  "weekly": {
-    "message": "每週",
-    "description": ""
-  },
-  "monthly": {
-    "message": "每月",
-    "description": ""
-  },
-  "yearly": {
-    "message": "每年",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "分鐘",
     "description": ""

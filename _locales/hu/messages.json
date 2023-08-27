@@ -538,26 +538,6 @@
     "message": "Küldés később: Megpróbál újra elküldeni a már elküldött üzenetet! A(z) $1 Kimenő vagy Piszkozatok mappa valószínűleg sérült. Kérjük, javítsa meg azokat a https://extended-thunder.github.io/send-later/#corrupt-outbox címen leírtak szerint.",
     "description": ""
   },
-  "minutely": {
-    "message": "percenként",
-    "description": ""
-  },
-  "daily": {
-    "message": "naponta",
-    "description": ""
-  },
-  "weekly": {
-    "message": "hetente",
-    "description": ""
-  },
-  "monthly": {
-    "message": "havonta",
-    "description": ""
-  },
-  "yearly": {
-    "message": "évente",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "percenként",
     "description": ""

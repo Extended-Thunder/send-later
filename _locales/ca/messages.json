@@ -530,26 +530,6 @@
     "message": "Send Later: Intenteu reenviar un missatge ja enviat?! La vostre Safata de Sortida o la Carpeta d'Esborranys $1 probablement està corrompuda. Si us plau, repareu-la tal com s'especifica a https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
-  "minutely": {
-    "message": "cada minut",
-    "description": ""
-  },
-  "daily": {
-    "message": "cada dia",
-    "description": ""
-  },
-  "weekly": {
-    "message": "cada setmana",
-    "description": ""
-  },
-  "monthly": {
-    "message": "cada mes",
-    "description": ""
-  },
-  "yearly": {
-    "message": "cada any",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "minuts",
     "description": ""

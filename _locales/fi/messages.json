@@ -515,26 +515,6 @@
     "message": "Lähetä myöhemmin: Yritätkö lähettää uudelleen jo kerran lähetetyn viestin?! \"Lähtevät\" tai \"Luonnokset\" $1 -kansiosi on luultavasti vialllinen. Korjaa vika linkissä kuvatulla tavalla: https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
-  "minutely": {
-    "message": "minuuteittain",
-    "description": ""
-  },
-  "daily": {
-    "message": "päivittäin",
-    "description": ""
-  },
-  "weekly": {
-    "message": "viikoittain",
-    "description": ""
-  },
-  "monthly": {
-    "message": "kuukausittain",
-    "description": ""
-  },
-  "yearly": {
-    "message": "vuosittain",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "minuutteitain",
     "description": ""

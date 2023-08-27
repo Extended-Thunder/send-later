@@ -538,26 +538,6 @@
     "message": "Später Senden: Bereits versandte Nachrichten erneut versenden?! Der Postausgangs- oder Entwürfe-Ordner „$1” ist möglicherweise beschädigt. Bitte nehmen sie Reparaturmaßnahmen vor, wie im folgenden Blog beschrieben: https://extended-thunder.github.io/send-later/#corrupt-outbox (Englisch).",
     "description": ""
   },
-  "minutely": {
-    "message": "minütlich",
-    "description": ""
-  },
-  "daily": {
-    "message": "täglich",
-    "description": ""
-  },
-  "weekly": {
-    "message": "wöchentlich",
-    "description": ""
-  },
-  "monthly": {
-    "message": "monatlich",
-    "description": ""
-  },
-  "yearly": {
-    "message": "jährlich",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "Minuten",
     "description": ""

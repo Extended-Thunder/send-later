@@ -135,26 +135,6 @@
     "message": "Kapat",
     "description": ""
   },
-  "minutely": {
-    "message": "dakikalık",
-    "description": ""
-  },
-  "daily": {
-    "message": "günlük",
-    "description": ""
-  },
-  "weekly": {
-    "message": "haftalık",
-    "description": ""
-  },
-  "monthly": {
-    "message": "aylık",
-    "description": ""
-  },
-  "yearly": {
-    "message": "yıllık",
-    "description": ""
-  },
   "everymonthly_day0": {
     "message": "Pazar",
     "description": ""

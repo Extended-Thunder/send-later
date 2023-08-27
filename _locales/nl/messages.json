@@ -538,26 +538,6 @@
     "message": "Send Later: al verzonden bericht proberen opnieuw te verzenden?! Uw Postvak UIT of map Concepten $1 is waarschijnlijk beschadigd. Repareer deze zoals beschreven op https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
-  "minutely": {
-    "message": "elke minuut",
-    "description": ""
-  },
-  "daily": {
-    "message": "dagelijks",
-    "description": ""
-  },
-  "weekly": {
-    "message": "wekelijks",
-    "description": ""
-  },
-  "monthly": {
-    "message": "maandelijks",
-    "description": ""
-  },
-  "yearly": {
-    "message": "jaarlijks",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "minuten",
     "description": ""

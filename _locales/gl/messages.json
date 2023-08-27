@@ -507,26 +507,6 @@
     "message": "Send Later: Tenta enviar unha mensaxe xa enviada?! A súa Bandexa de Saída ou o cartafol de Borradores $1 probablemente estean danados. Por favor, amáñeos coma se describe en https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
-  "minutely": {
-    "message": "cada minuto",
-    "description": ""
-  },
-  "daily": {
-    "message": "a diario",
-    "description": ""
-  },
-  "weekly": {
-    "message": "semanalmente",
-    "description": ""
-  },
-  "monthly": {
-    "message": "mensualmente",
-    "description": ""
-  },
-  "yearly": {
-    "message": "anualmente",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "minutos",
     "description": ""

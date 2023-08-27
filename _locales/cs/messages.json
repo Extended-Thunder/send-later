@@ -511,26 +511,6 @@
     "message": "Odeslat Později: Pokus o opakované odeslání již odeslané zprávy? Vaše složka „$1“ v „Poště k odeslání“ nebo „Konceptech“ je pravděpodobně poškozená. Opravte, prosím, složku, jak je popsáno zde - https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
-  "minutely": {
-    "message": "každou minutu",
-    "description": ""
-  },
-  "daily": {
-    "message": "denně",
-    "description": ""
-  },
-  "weekly": {
-    "message": "týdně",
-    "description": ""
-  },
-  "monthly": {
-    "message": "měsíčně",
-    "description": ""
-  },
-  "yearly": {
-    "message": "ročně",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "minut",
     "description": ""

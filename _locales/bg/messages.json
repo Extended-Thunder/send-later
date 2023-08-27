@@ -531,26 +531,6 @@
     "message": "Изпращане по-късно: Опитване на повторно изпращане на съобщение?! Вашата папка Изходящи или Чернови $1 е вероятно повредена. Поправете я, както е описано в https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
-  "minutely": {
-    "message": "ежеминутно",
-    "description": ""
-  },
-  "daily": {
-    "message": "ежедневно",
-    "description": ""
-  },
-  "weekly": {
-    "message": "ежеседмично",
-    "description": ""
-  },
-  "monthly": {
-    "message": "ежемесечно",
-    "description": ""
-  },
-  "yearly": {
-    "message": "ежегодно",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "минути",
     "description": ""

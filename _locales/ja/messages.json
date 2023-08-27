@@ -495,26 +495,6 @@
     "message": "Send Later: すでに送信済みのメッセージを再送信しようとしていませんか？！ [送信トレイ] か [下書き] フォルダ $1 が壊れている可能性があります。修復するには https://extended-thunder.github.io/send-later/#corrupt-outbox を参照してください。",
     "description": ""
   },
-  "minutely": {
-    "message": "毎分",
-    "description": ""
-  },
-  "daily": {
-    "message": "毎日",
-    "description": ""
-  },
-  "weekly": {
-    "message": "毎週",
-    "description": ""
-  },
-  "monthly": {
-    "message": "毎月",
-    "description": ""
-  },
-  "yearly": {
-    "message": "毎年",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "分ごとに",
     "description": ""

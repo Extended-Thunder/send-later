@@ -507,26 +507,6 @@
     "message": "Skicka Senare: Försöker du skicka ett meddelande som redan har skickats?! Din Utkorg- eller Utkast-mapp $1 är antagligen skadad. Reparera dem genom att följa instruktionerna på https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
-  "minutely": {
-    "message": "varje minut",
-    "description": ""
-  },
-  "daily": {
-    "message": "varje dag",
-    "description": ""
-  },
-  "weekly": {
-    "message": "varje vecka",
-    "description": ""
-  },
-  "monthly": {
-    "message": "varje månad",
-    "description": ""
-  },
-  "yearly": {
-    "message": "varje år",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "minuter",
     "description": ""

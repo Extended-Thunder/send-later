@@ -530,26 +530,6 @@
     "message": "Sende senere: Forsøg på at gensende allerede sendt besked?! Din udbakke eller kladdemappe $1 er sandsynligvis korrupt. Reparér dem som beskrevet på https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
-  "minutely": {
-    "message": "hvertminut",
-    "description": ""
-  },
-  "daily": {
-    "message": "hverdag",
-    "description": ""
-  },
-  "weekly": {
-    "message": "hveruge",
-    "description": ""
-  },
-  "monthly": {
-    "message": "hvertmåned",
-    "description": ""
-  },
-  "yearly": {
-    "message": "hvertår",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "minut",
     "description": ""

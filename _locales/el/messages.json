@@ -510,26 +510,6 @@
     "message": "Send Later: Να επιχειρηθεί η επαναποστολή του μηνύματος; Ο φάκελος $1 για Εξερχόμενα ή Πρόχειρα είναι πιθανότατα κατεστραμμένος. Παρακαλούμε επιδιορθώστε τον όπως περιγράφεται στο https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
-  "minutely": {
-    "message": "κάθε λεπτό",
-    "description": ""
-  },
-  "daily": {
-    "message": "ημερήσια",
-    "description": ""
-  },
-  "weekly": {
-    "message": "εβδομαδιαία",
-    "description": ""
-  },
-  "monthly": {
-    "message": "μηνιαία",
-    "description": ""
-  },
-  "yearly": {
-    "message": "ετήσια",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "λεπτά",
     "description": ""

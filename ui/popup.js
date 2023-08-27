@@ -213,7 +213,7 @@ const SLPopup = {
       schedule.recur.cancelOnReply = inputs[`recur-cancelonreply`];
 
       if (schedule.recur.type !== "function") {
-        schedule.recur.multiplier = inputs[`recur-multiplier`];
+        schedule.recur.multiplier = parseInt(inputs[`recur-multiplier`]);
       }
     }
     schedule.recur.type = schedule.recur.type || "none";

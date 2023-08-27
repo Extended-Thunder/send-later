@@ -526,26 +526,6 @@
     "message": "Enviar mais tarde: Tentativa de reenvio de mensagem já enviada?! Sua caixa de saída ou rascunhos $1 está provavelmente corrompida. Por favor, corrija como descrito em https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
-  "minutely": {
-    "message": "a cada minuto",
-    "description": ""
-  },
-  "daily": {
-    "message": "diariamente",
-    "description": ""
-  },
-  "weekly": {
-    "message": "semanalmente",
-    "description": ""
-  },
-  "monthly": {
-    "message": "mensalmente",
-    "description": ""
-  },
-  "yearly": {
-    "message": "anualmente",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "minutos",
     "description": ""

@@ -534,26 +534,6 @@
     "message": "Send Later: Încercare de a retrimite un mesaj deja trimis?! Dosarul „De trimis” sau „Mesaje nefinalizate” $1 este probabil corupt. Repară-le cum e descris la https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
-  "minutely": {
-    "message": "la fiecare minut",
-    "description": ""
-  },
-  "daily": {
-    "message": "zilnic",
-    "description": ""
-  },
-  "weekly": {
-    "message": "săptămânal",
-    "description": ""
-  },
-  "monthly": {
-    "message": "lunar",
-    "description": ""
-  },
-  "yearly": {
-    "message": "anual",
-    "description": ""
-  },
   "plural_minutely": {
     "message": "minute",
     "description": ""
