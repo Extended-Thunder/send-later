@@ -374,6 +374,7 @@ const SLOptions = {
       }
 
       await browser.storage.local.set({ preferences });
+      await SLOptions.resetAdvConfigEditor();
     } catch (ex) {
       SLStatic.error(ex);
       SLOptions.showXMark(element, "red");
@@ -439,6 +440,22 @@ const SLOptions = {
         if (id1 !== id2) SLOptions.checkboxGroups[id1].push(id2);
       });
     });
+  },
+
+  async resetAdvConfigEditor() {
+    SLStatic.debug("Refreshing advanced config editor contents");
+    const prefsNode = document.getElementById("advancedConfigText");
+    prefsNode.disabled = true;
+    prefsNode.value = "";
+    const { preferences } = await browser.storage.local.get({
+      preferences: {},
+    });
+    prefsNode.value = JSON.stringify(
+      preferences,
+      Object.keys(preferences).sort(),
+      2,
+    );
+    prefsNode.disabled = false;
   },
 
   attachListeners() {
@@ -551,22 +568,6 @@ const SLOptions = {
         );
       });
 
-    const resetAdvConfigEditor = async () => {
-      SLStatic.debug("Refreshing advanced config editor contents");
-      const prefsNode = document.getElementById("advancedConfigText");
-      prefsNode.disabled = true;
-      prefsNode.value = "";
-      const { preferences } = await browser.storage.local.get({
-        preferences: {},
-      });
-      prefsNode.value = JSON.stringify(
-        preferences,
-        Object.keys(preferences).sort(),
-        2,
-      );
-      prefsNode.disabled = false;
-    };
-
     document
       .getElementById("advancedEditorTitle")
       .addEventListener("mousedown", () => {
@@ -575,7 +576,7 @@ const SLOptions = {
           "advancedEditorVisibleIndicator",
         );
         if (advEditorDiv.style.display === "none") {
-          resetAdvConfigEditor()
+          SLOptions.resetAdvConfigEditor()
             .then(() => {
               advEditorDiv.style.display = "block";
               visIndicator.textContent = "-";
@@ -597,7 +598,7 @@ const SLOptions = {
     document
       .getElementById("advancedEditReset")
       .addEventListener("click", (evt) => {
-        resetAdvConfigEditor()
+        SLOptions.resetAdvConfigEditor()
           .then(() => {
             SLOptions.showCheckMark(evt.target, "green");
           })
