@@ -894,7 +894,8 @@ const SLPopup = {
 
     SLPopup.applyDefaults();
 
-    let messageIds = new URLSearchParams(window.location.search)
+    let queryString = new URLSearchParams(window.location.search);
+    let messageIds = queryString
       .getAll("messageId")
       .map((str) => parseInt(str));
 
@@ -903,12 +904,17 @@ const SLPopup = {
       SLPopup.tabId = null;
     } else {
       SLPopup.messageIds = null;
-      SLPopup.tabId = await browser.tabs
-        .query({
-          active: true,
-          currentWindow: true,
-        })
-        .then((tabs) => tabs[0].id);
+      let tabIdString = queryString.get("tabId");
+      if (tabIdString) {
+        SLPopup.tabId = parseInt(tabIdString);
+      } else {
+        SLPopup.tabId = await browser.tabs
+          .query({
+            active: true,
+            currentWindow: true,
+          })
+          .then((tabs) => tabs[0].id);
+      }
     }
 
     SLStatic.debug("Initialized popup window");

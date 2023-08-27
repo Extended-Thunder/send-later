@@ -163,20 +163,6 @@
         ]
       },
       {
-        "name": "forceToolbarVisible",
-        "type": "function",
-        "async": true,
-        "description": "Handle  when a new compose window is opened.",
-        "parameters": [
-          {
-            "name": "windowId",
-            "type": "integer",
-            "optional": true,
-            "description": "If unset, the function will run on all available windows. Otherwise just the most recent msgcompose window."
-          }
-        ]
-      },
-      {
         "name": "hijackComposeWindowKeyBindings",
         "type": "function",
         "async": true,
