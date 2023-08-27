@@ -374,7 +374,7 @@ const SLOptions = {
       }
 
       await browser.storage.local.set({ preferences });
-      await SLOptions.resetAdvConfigEditor();
+      await SLOptions.updateAdvConfigEditor();
     } catch (ex) {
       SLStatic.error(ex);
       SLOptions.showXMark(element, "red");
@@ -442,14 +442,17 @@ const SLOptions = {
     });
   },
 
-  async resetAdvConfigEditor() {
+  async resetAdvConfigEditor(preferences) {
     SLStatic.debug("Refreshing advanced config editor contents");
     const prefsNode = document.getElementById("advancedConfigText");
     prefsNode.disabled = true;
     prefsNode.value = "";
-    const { preferences } = await browser.storage.local.get({
-      preferences: {},
-    });
+    if (!preferences) {
+      ({ preferences } = await browser.storage.local.get({
+        preferences: {},
+      }));
+      SLOptions.advPrefs = preferences;
+    }
     prefsNode.value = JSON.stringify(
       preferences,
       Object.keys(preferences).sort(),
@@ -458,7 +461,33 @@ const SLOptions = {
     prefsNode.disabled = false;
   },
 
-  attachListeners() {
+  async updateAdvConfigEditor() {
+    let currentContents;
+    try {
+      let prefContent = document.getElementById("advancedConfigText").value;
+      currentContents = JSON.parse(prefContent);
+    } catch (ex) {
+      await SLOptions.resetAdvConfigEditor();
+      return;
+    }
+    let priorContents = SLOptions.advPrefs;
+    let { preferences } = await browser.storage.local.get({
+      preferences: {},
+    });
+    let changed;
+    for (let key of Object.keys(preferences)) {
+      if (preferences[key] != priorContents[key]) {
+        priorContents[key] = preferences[key];
+        currentContents[key] = preferences[key];
+        changed = true;
+      }
+    }
+    if (changed) {
+      await SLOptions.resetAdvConfigEditor(currentContents);
+    }
+  },
+
+  async attachListeners() {
     // Attach listeners for all input fields
     for (const id of SLStatic.prefInputIds) {
       const el = document.getElementById(id);
@@ -568,6 +597,8 @@ const SLOptions = {
         );
       });
 
+    await SLOptions.resetAdvConfigEditor();
+
     document
       .getElementById("advancedEditorTitle")
       .addEventListener("mousedown", () => {
@@ -576,19 +607,15 @@ const SLOptions = {
           "advancedEditorVisibleIndicator",
         );
         if (advEditorDiv.style.display === "none") {
-          SLOptions.resetAdvConfigEditor()
-            .then(() => {
-              advEditorDiv.style.display = "block";
-              visIndicator.textContent = "-";
-              setTimeout(
-                () =>
-                  document
-                    .getElementById("advanced-section")
-                    .scrollIntoView(true /* align to top */),
-                100,
-              );
-            })
-            .catch(SLStatic.error);
+          advEditorDiv.style.display = "block";
+          visIndicator.textContent = "-";
+          setTimeout(
+            () =>
+              document
+                .getElementById("advanced-section")
+                .scrollIntoView(true /* align to top */),
+            100,
+          );
         } else {
           advEditorDiv.style.display = "none";
           visIndicator.textContent = "+";
@@ -854,9 +881,8 @@ const SLOptions = {
       document.getElementById("showColumnRow").hidden = true;
     });
 
-    SLOptions.applyPrefsToUI()
-      .then(SLOptions.attachListeners)
-      .catch(SLStatic.error);
+    await SLOptions.applyPrefsToUI();
+    await SLOptions.attachListeners();
   },
 };
 
