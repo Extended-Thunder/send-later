@@ -1632,9 +1632,16 @@ const SendLater = {
         break;
       }
       case "showReleaseNotes": {
-        messenger.tabs.create({
-          url: "https://github.com/Extended-Thunder/send-later/releases",
-        });
+        let locale = SLStatic.i18n.getUILanguage();
+        let url;
+        if (locale.toLowerCase().startsWith("en")) {
+          url = "https://extended-thunder.github.io/send-later/release-notes";
+        } else {
+          url =
+            `https://extended--thunder-github-io.translate.goog/` +
+            `send-later/?_x_tr_sl=en&_x_tr_tl=${locale}`;
+        }
+        messenger.tabs.create({ url });
         break;
       }
       case "contactAuthor": {
