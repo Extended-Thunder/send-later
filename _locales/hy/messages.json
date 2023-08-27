@@ -27,10 +27,6 @@
     "message": "Ստուգել ամեն՝",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "րոպե",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "Մաքրել սկզբնադիրները",
     "description": ""
@@ -125,10 +121,6 @@
   },
   "sendButtonPrefLabel": {
     "message": "«Ուղարկելը»-ը «Ուղարկել ավելի ուշ»-ն է",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "րոպե",
     "description": ""
   },
   "sendSundayLabel": {

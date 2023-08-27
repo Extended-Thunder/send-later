@@ -27,10 +27,6 @@
     "message": "Tjek hvert",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "minut",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "Ryd standarder",
     "description": ""
@@ -165,10 +161,6 @@
   },
   "sendDelayPrefLabel1": {
     "message": "“Send” forsinker meddelelser med",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "minutter",
     "description": ""
   },
   "sendSundayLabel": {

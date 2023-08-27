@@ -27,10 +27,6 @@
     "message": "Controlla ogni",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "minuti",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "Cancella i valori predefiniti",
     "description": ""
@@ -153,10 +149,6 @@
   },
   "sendDelayPrefLabel1": {
     "message": "“Invia” ritarderà sempre i messaggi di",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "minuti",
     "description": ""
   },
   "sendSundayLabel": {

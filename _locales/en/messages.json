@@ -27,10 +27,6 @@
     "message": "Check every",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "minutes",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "Clear defaults",
     "description": ""
@@ -165,10 +161,6 @@
   },
   "sendDelayPrefLabel1": {
     "message": "“Send” delays messages by",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "minutes",
     "description": ""
   },
   "sendSundayLabel": {

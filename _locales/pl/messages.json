@@ -27,10 +27,6 @@
     "message": "Sprawdzaj co",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "minut",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "Wyzeruj ustawienia domyślne",
     "description": ""
@@ -165,10 +161,6 @@
   },
   "sendDelayPrefLabel1": {
     "message": "“Wyślij” będzie opóźniony o",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "minut",
     "description": ""
   },
   "sendSundayLabel": {

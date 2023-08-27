@@ -23,10 +23,6 @@
     "message": "Έλεγχος κάθε",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "λεπτά",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "Καθαρισμός προεπιλογών",
     "description": ""
@@ -153,10 +149,6 @@
   },
   "sendDelayPrefLabel1": {
     "message": "Η “Αποστολή” καθυστερεί κατά",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "λεπτά",
     "description": ""
   },
   "sendSundayLabel": {

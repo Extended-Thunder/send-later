@@ -27,10 +27,6 @@
     "message": "Comprovar cada",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "minuts",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "Esborrar els valors per omissió",
     "description": ""
@@ -157,10 +153,6 @@
   },
   "sendDelayPrefLabel1": {
     "message": "“Enviar” ajorna els missatges durant",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "minuts",
     "description": ""
   },
   "sendSundayLabel": {

@@ -27,10 +27,6 @@
     "message": "Sjekk hvert",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "minutt",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "Tøm standardverdier",
     "description": ""
@@ -149,10 +145,6 @@
   },
   "sendDelayPrefLabel1": {
     "message": "«Send» utsetter meldinger med",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "minutter",
     "description": ""
   },
   "sendSundayLabel": {

@@ -23,10 +23,6 @@
     "message": "Проверять каждые",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "мин.",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "Сбросить настройки по умолчанию",
     "description": ""
@@ -153,10 +149,6 @@
   },
   "sendDelayPrefLabel1": {
     "message": "«Отправить» откладывает сообщения на",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "мин.",
     "description": ""
   },
   "sendSundayLabel": {

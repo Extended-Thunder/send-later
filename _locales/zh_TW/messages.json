@@ -27,10 +27,6 @@
     "message": "檢查間隔：",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "分鐘",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "清除預設值",
     "description": ""
@@ -161,10 +157,6 @@
   },
   "sendDelayPrefLabel1": {
     "message": "預設所有訊息自動延遲：",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "分鐘",
     "description": ""
   },
   "sendSundayLabel": {

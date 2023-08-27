@@ -27,10 +27,6 @@
     "message": "Ellenőrzés gyakorisága:",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "perc",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "Alapértelmezések törlése",
     "description": ""
@@ -165,10 +161,6 @@
   },
   "sendDelayPrefLabel1": {
     "message": "A „küldés” ennyivel késleltet:",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "perc",
     "description": ""
   },
   "sendSundayLabel": {

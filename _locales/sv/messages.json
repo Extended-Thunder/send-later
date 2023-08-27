@@ -27,10 +27,6 @@
     "message": "Kontrollera var",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "minuter",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "Rensa standardinställningar",
     "description": ""
@@ -149,10 +145,6 @@
   },
   "sendDelayPrefLabel1": {
     "message": "”Skicka” försenar meddelanden genom att",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "minuter",
     "description": ""
   },
   "sendSundayLabel": {

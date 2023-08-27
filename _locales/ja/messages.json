@@ -23,10 +23,6 @@
     "message": "チェック間隔",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "分",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "デフォルトをクリア",
     "description": ""
@@ -153,10 +149,6 @@
   },
   "sendDelayPrefLabel1": {
     "message": "メッセージの“送信”を遅延する",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "分",
     "description": ""
   },
   "sendSundayLabel": {

@@ -27,10 +27,6 @@
     "message": "‫בדוק כל :‬",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "‫דקות‬",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "נקה ברירות מחדל",
     "description": ""
@@ -165,10 +161,6 @@
   },
   "sendDelayPrefLabel1": {
     "message": "עכב משלוח הודעות ב",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "דקות",
     "description": ""
   },
   "sendSundayLabel": {

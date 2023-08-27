@@ -27,10 +27,6 @@
     "message": "Elke",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "minuten controleren",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "Standaardwaarden wissen",
     "description": ""
@@ -165,10 +161,6 @@
   },
   "sendDelayPrefLabel1": {
     "message": "‘Verzenden’ vertraagt berichten met",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "minuten",
     "description": ""
   },
   "sendSundayLabel": {

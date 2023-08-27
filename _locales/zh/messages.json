@@ -23,10 +23,6 @@
     "message": "检查间隔：",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "分钟",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "清除默认",
     "description": ""
@@ -157,10 +153,6 @@
   },
   "sendDelayPrefLabel1": {
     "message": "预设所有讯息自动延迟：",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "分钟",
     "description": ""
   },
   "sendSundayLabel": {

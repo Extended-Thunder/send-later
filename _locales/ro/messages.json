@@ -27,10 +27,6 @@
     "message": "Verifică la fiecare",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "minute",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "Șterge valorile implicite",
     "description": ""
@@ -165,10 +161,6 @@
   },
   "sendDelayPrefLabel1": {
     "message": "„Trimite” va trimite mesajele cu o întârziere de",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "minute",
     "description": ""
   },
   "sendSundayLabel": {

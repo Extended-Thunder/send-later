@@ -27,10 +27,6 @@
     "message": "Überprüfen alle",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "Minuten",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "Defaultwerte  zurücksetzen",
     "description": ""
@@ -165,10 +161,6 @@
   },
   "sendDelayPrefLabel1": {
     "message": "“Senden” verzögert den Nachrichtenversand um",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "Minuten",
     "description": ""
   },
   "sendSundayLabel": {

@@ -23,10 +23,6 @@
     "message": "Comprobar cada",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "minutos",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "Limpar valores predeterminados",
     "description": ""
@@ -153,10 +149,6 @@
   },
   "sendDelayPrefLabel1": {
     "message": "“Enviar” atrasa as mensaxes de",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "minutos",
     "description": ""
   },
   "sendSundayLabel": {

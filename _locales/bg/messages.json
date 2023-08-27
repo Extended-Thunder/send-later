@@ -27,10 +27,6 @@
     "message": "Проверка на всеки",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "минути",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "Изчистване на стойностите по подразбиране",
     "description": ""
@@ -161,10 +157,6 @@
   },
   "sendDelayPrefLabel1": {
     "message": "„Изпращане“ забавя съобщенията от",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "минути",
     "description": ""
   },
   "sendSundayLabel": {

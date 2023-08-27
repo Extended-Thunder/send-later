@@ -27,10 +27,6 @@
     "message": "Tarkista joka",
     "description": ""
   },
-  "checkTimePrefLabel2": {
-    "message": "minuutti",
-    "description": ""
-  },
   "clearDefaultsLabel": {
     "message": "Poista oletusarvot",
     "description": ""
@@ -157,10 +153,6 @@
   },
   "sendDelayPrefLabel1": {
     "message": "“Lähetä” viivyttää viestejä",
-    "description": ""
-  },
-  "sendDelayPrefLabel2": {
-    "message": "minuutilla",
     "description": ""
   },
   "sendSundayLabel": {
