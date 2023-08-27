@@ -7,19 +7,21 @@ Introduction
 The Send Later Thunderbird add-on allows you you to write an email message and
 then tell Thunderbird when you want it to be sent. The message is saved into
 your Drafts folder, and delivered at approximately the specified time. The
-add-on is available for download from
-[addons.thunderbird.net](https://addons.thunderbird.net/thunderbird/addon/send-later-3/).
-Release notes for each new version of Send Later are published there and
-[on GitHub](https://github.com/Extended-Thunder/send-later/releases).
+add-on is available for download from [addons.thunderbird.net][atn]. New
+releases are documented in our [fancy release notes](release-notes.html), as
+well as in the [version listing on addons.thunderbird.net][atnversions] and our
+[GitHub releases page][ghreleases].
+
 What follows is a user manual for the add-on.
+
 Everything below (except for the [installation section](#install)) assumes that
 you've already installed the add-on and restarted Thunderbird.
 
-If you have any comments, questions, or feedback about the add-on, please
-[get in touch](#help).
+If you have any comments, questions, or feedback about the add-on, please [get
+in touch](#help).
 
-*This user manual is written for Thunderbird 78 or newer. Things might be
-slightly different for older versions.*
+This user manual is written for Thunderbird 102 or newer. Things are quite
+different for older versions, and we can offer only minimal support for them.
 
 <a name="install"></a>
 
@@ -1930,3 +1932,7 @@ BabelZilla (Spanish),
 and Wang.H.K from BabelZilla (Simplified Chinese).
 
 Please [see above](#translate) if you would like to help add another translation.
+
+[atn]: https://addons.thunderbird.net/thunderbird/addon/send-later-3/
+[atnversions]: https://addons.thunderbird.net/thunderbird/addon/send-later-3/versions/
+[ghreleases]: https://github.com/Extended-Thunder/send-later/releases
