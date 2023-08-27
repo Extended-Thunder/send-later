@@ -712,6 +712,10 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
         async setHeader(tabId, name, value) {
           let tab = context.extension.tabManager.get(tabId);
           let window = tab.nativeTab;
+          // Ugh, Thunderbird expects the Date field to be a Date object.
+          if (typeof value == "string" && name.toLowerCase() == "date") {
+            value = new Date(value);
+          }
           window.gMsgCompose.compFields.setHeader(name, value);
         },
 

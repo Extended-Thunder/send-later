@@ -150,21 +150,20 @@ const SendLater = {
     ];
 
     // Determine time at which this message should be sent
+    let sendAt;
     if (options.sendAt !== undefined) {
-      const sendAt = new Date(options.sendAt);
-      customHeaders.push({
-        name: "X-Send-Later-At",
-        value: SLStatic.parseableDateTimeFormat(sendAt),
-      });
+      sendAt = new Date(options.sendAt);
     } else if (options.delay !== undefined) {
-      const sendAt = new Date(Date.now() + options.delay * 60000);
-      customHeaders.push({
-        name: "X-Send-Later-At",
-        value: SLStatic.parseableDateTimeFormat(sendAt),
-      });
+      sendAt = new Date(Date.now() + options.delay * 60000);
     } else {
       SLStatic.error("scheduleSendLater requires scheduling information");
       return;
+    }
+
+    sendAt = SLStatic.parseableDateTimeFormat(sendAt);
+    customHeaders.push({ name: "X-Send-Later-At", value: sendAt });
+    if (preferences.scheduledDateField) {
+      customHeaders.push({ name: "Date", value: sendAt });
     }
 
     if (options.recurSpec) {

@@ -51,5 +51,6 @@
   "throttleDelay": ["int", 0],
   "customizeDateTime": ["boolean", false],
   "shortDateTimeFormat": ["string", ""],
-  "longDateTimeFormat": ["string", ""]
+  "longDateTimeFormat": ["string", ""],
+  "scheduledDateField": ["boolean", true]
 }
