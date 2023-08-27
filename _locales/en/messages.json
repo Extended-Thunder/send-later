@@ -283,18 +283,6 @@
     "message": "Calculate",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Send Later",
-    "description": ""
-  },
-  "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "Activate Send Later to schedule a message after entering the desired send time in the text box. This button does not do anything by itself; you also need to add the text box or date/time pickers (not supported in all Thunderbird versions) to the toolbar for this button to be useful.",
-    "description": ""
-  },
-  "sendlater.toolbar.textbox.emptytext": {
-    "message": "send time",
-    "description": ""
-  },
   "sendlater.prompt.every.label": {
     "message": "Every",
     "description": ""

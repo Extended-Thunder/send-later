@@ -267,18 +267,6 @@
     "message": "Laske",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Lähetä myöhemmin",
-    "description": ""
-  },
-  "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "Aktivoi Lähetä myöhemmin ja syötä tekstikenttään haluamasi lähetysaika. Tämä painike yksinään ei tee mitään, vaan sinun on annettava lähetysaika tekstikenttään tai valittava se päivämäärä-/aikavalitsimesta (ei tuettu kaikilla Thunderbird-versioilla).",
-    "description": ""
-  },
-  "sendlater.toolbar.textbox.emptytext": {
-    "message": "lähetysaika",
-    "description": ""
-  },
   "sendlater.prompt.every.label": {
     "message": "joka",
     "description": ""

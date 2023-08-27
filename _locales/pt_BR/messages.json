@@ -275,18 +275,6 @@
     "message": "Calcular",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Enviar mais Tarde",
-    "description": ""
-  },
-  "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "Ative Enviar mais tarde para agendar uma mensagem depois de entrar o horário desejado de envio na caixa de texto. Este botão não funciona por si; você também precisa adicionar a caixa de texto ou seletor de data/horário (não suportado em todas as versões do Thunderbird) à barra de ferramentas para que este botão seja útil.",
-    "description": ""
-  },
-  "sendlater.toolbar.textbox.emptytext": {
-    "message": "hora de envio",
-    "description": ""
-  },
   "sendlater.prompt.every.label": {
     "message": "A cada",
     "description": ""

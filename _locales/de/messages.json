@@ -283,18 +283,6 @@
     "message": "Berechnen",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Später senden",
-    "description": ""
-  },
-  "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "Aktivieren Sie Später Senden, um eine Nachricht zu planen, nachdem Sie den gewünschten Versandzeitpunkt in das Textfeld eingegeben haben. Diese Schaltfläche muss mit dem Eingabefeld oder der Schaltfläche zur Datums-/Zeit-Auswahl (nicht von allen Thunderbird-Versionen unterstützt) kombiniert werden, um nützlich zu sein.",
-    "description": ""
-  },
-  "sendlater.toolbar.textbox.emptytext": {
-    "message": "Sendezeit",
-    "description": ""
-  },
   "sendlater.prompt.every.label": {
     "message": "Jede",
     "description": ""

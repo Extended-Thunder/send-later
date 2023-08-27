@@ -263,18 +263,6 @@
     "message": "Вычислить",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Отправить позже",
-    "description": ""
-  },
-  "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "Активируйте Send Later, чтобы запланировать сообщение после ввода желаемого времени отправки в текстовое поле. Эта кнопка ничего не делает сама по себе; вам также нужно добавить текстовое поле или поле выбора даты/времени (поддерживается не во всех версиях Thunderbird) на панель инструментов, чтобы эта кнопка была полезной.",
-    "description": ""
-  },
-  "sendlater.toolbar.textbox.emptytext": {
-    "message": "время отправки",
-    "description": ""
-  },
   "sendlater.prompt.every.label": {
     "message": "Каждые",
     "description": ""

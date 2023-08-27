@@ -275,18 +275,6 @@
     "message": "Calcular",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Enviar més tard",
-    "description": ""
-  },
-  "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "Activeu Send Later per a planificar un missatge després d'introduir l'hora d'enviament desitjada al quadre de text. Aquest botó no fa cap cosa ell mateix; també cal afegir el quadre de text o selector de data/hora (no suportat en totes les versions de Thunderbird) a la barra d'eines per a que aquest botó siga útil.",
-    "description": ""
-  },
-  "sendlater.toolbar.textbox.emptytext": {
-    "message": "hora d'enviament",
-    "description": ""
-  },
   "sendlater.prompt.every.label": {
     "message": "Cada",
     "description": ""

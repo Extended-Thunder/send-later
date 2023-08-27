@@ -263,18 +263,6 @@
     "message": "Calcola",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Invia dopo",
-    "description": ""
-  },
-  "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "Attiva Invia Dopo per pianificare un messaggio dopo aver inserito l'orario di invio desiderato nella casella di testo. Questo pulsante non fa nulla da solo; è necessario anche aggiungere la casella di testo o i selettori di orario/data (non supportati in tutte le versioni Thunderbird) alla barra degli strumenti per essere utile.",
-    "description": ""
-  },
-  "sendlater.toolbar.textbox.emptytext": {
-    "message": "Orario di invio",
-    "description": ""
-  },
   "sendlater.prompt.every.label": {
     "message": "Ogni",
     "description": ""

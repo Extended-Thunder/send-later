@@ -267,18 +267,6 @@
     "message": "Calculer",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Envoyer Plus Tard",
-    "description": ""
-  },
-  "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "Activez Envoyer Plus Tard pour planifier un message après avoir entré l'heure d'envoi souhaitée dans la zone de texte. Ce bouton ne fait rien par lui-même ; vous devez également ajouter les sélecteurs de la zone de texte ou de la date/heure (non pris en charge dans toutes les versions de Thunderbird) à la barre d'outils pour que ce bouton soit utile.",
-    "description": ""
-  },
-  "sendlater.toolbar.textbox.emptytext": {
-    "message": "Date et heure d'envoi",
-    "description": ""
-  },
   "sendlater.prompt.every.label": {
     "message": "Chaque",
     "description": ""

@@ -263,18 +263,6 @@
     "message": "Vypočítat",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Odeslat později",
-    "description": ""
-  },
-  "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "Po zadání kýženého času do textového pole aktivujte Odeslat Později pro naplánování zprávy. Toto tlačítko samo o sobě nic nedělá; musíte přidat údaj o datu do textového pole nebo vybrat čas na liště (není podporování ve všech verzích Thunderbirdu) aby fungovalo.",
-    "description": ""
-  },
-  "sendlater.toolbar.textbox.emptytext": {
-    "message": "čas odeslání",
-    "description": ""
-  },
   "sendlater.prompt.every.label": {
     "message": "Každých",
     "description": ""

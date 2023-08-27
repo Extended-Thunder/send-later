@@ -267,18 +267,6 @@
     "message": "Calcular",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Enviar más tarde",
-    "description": ""
-  },
-  "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "Activa Send Later para programar un mensaje después de introducir el tiempo de envío deseado en el cuadro de texto. Este botón no hace nada por sí mismo; también necesitas añadir el cuadro de texto o los selectores de fecha/hora (no soportados en todas las versiones de Thunderbird) a la barra de herramientas para que este botón sea útil.",
-    "description": ""
-  },
-  "sendlater.toolbar.textbox.emptytext": {
-    "message": "hora de envío",
-    "description": ""
-  },
   "sendlater.prompt.every.label": {
     "message": "Cada",
     "description": ""

@@ -259,18 +259,6 @@
     "message": "Kalkuler",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Send senere",
-    "description": ""
-  },
-  "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "Skru på Send senere for å planlegge en melding etter å ha skrevet inn det ønskede tidspunktet i tekstboksen. Denne knappen gjør ikke noe i seg selv; du vil også måtte legge til tekstboksen eller data-/tidsvelgere (Støttes ikke i alle Thunderbird-versjoner) i verktøylinjen for at denne knappen skal bli nyttig.",
-    "description": ""
-  },
-  "sendlater.toolbar.textbox.emptytext": {
-    "message": "sendetidspunkt",
-    "description": ""
-  },
   "sendlater.prompt.every.label": {
     "message": "Hver",
     "description": ""

@@ -71,14 +71,6 @@
     "message": "Hesapla",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Sonra Gönder",
-    "description": ""
-  },
-  "sendlater.toolbar.textbox.emptytext": {
-    "message": "gönderme zamanı",
-    "description": ""
-  },
   "sendlater.prompt.every.label": {
     "message": "Her",
     "description": ""

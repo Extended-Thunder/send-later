@@ -283,18 +283,6 @@
     "message": "Kiszámít",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Küldés később",
-    "description": ""
-  },
-  "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "Aktiválja a Küldés később parancsot az üzenet ütemezéséhez, miután megadta a kívánt küldési időt a szövegmezőbe. Ez a gomb önmagában nem tesz semmit; hozzá kell adnia a szövegdobozot vagy a dátum/idő választókat (amelyek nem támogatottak az összes Thunderbird verzióban) az eszköztárhoz, hogy ez a gomb hasznos legyen.",
-    "description": ""
-  },
-  "sendlater.toolbar.textbox.emptytext": {
-    "message": "a küldés dátuma és időpontja",
-    "description": ""
-  },
   "sendlater.prompt.every.label": {
     "message": "Minden",
     "description": ""

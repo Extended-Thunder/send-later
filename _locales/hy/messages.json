@@ -235,14 +235,6 @@
     "message": "Հաշվել",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Ուղարկել ավելի ուշ",
-    "description": ""
-  },
-  "sendlater.toolbar.textbox.emptytext": {
-    "message": "ուղարկելու ժամանակը",
-    "description": ""
-  },
   "sendlater.prompt.every.label": {
     "message": "Ամեն՝",
     "description": ""

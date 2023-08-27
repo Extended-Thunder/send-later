@@ -263,18 +263,6 @@
     "message": "Υπολογισμός",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Αποστολή αργότερα",
-    "description": ""
-  },
-  "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "Ενεργοποιείστε Send Later για να προγραμματίσετε την εμφάνιση μηνύματος κατά την επιθυμητή ώρα που εισάγατε στο πλαίσιο. Το κουμπί αυτό δεν κάνει κάτι από μόνο του. Πρέπει να επιλέξετε και την ημερομηνία/ώρα (δεν υποστηρίζεται για εκδόσεις Thunderbird) για να λειτουργήσει.",
-    "description": ""
-  },
-  "sendlater.toolbar.textbox.emptytext": {
-    "message": "ώρα αποστολής",
-    "description": ""
-  },
   "sendlater.prompt.every.label": {
     "message": "Κάθε",
     "description": ""

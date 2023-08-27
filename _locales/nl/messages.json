@@ -283,18 +283,6 @@
     "message": "Berekenen",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Later verzenden",
-    "description": ""
-  },
-  "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "Activeer Send Later om een bericht in te plannen nadat de gewenste verzendtijd in het tekstvak is ingevoerd. Deze knop doet op zichzelf niets; u dient ook het tekstvak of datum-/tijdkiezers (niet in alle Thunderbird-versies ondersteund) aan de werkbalk toe te voegen om deze knop te laten werken.",
-    "description": ""
-  },
-  "sendlater.toolbar.textbox.emptytext": {
-    "message": "verzendtijdstip",
-    "description": ""
-  },
   "sendlater.prompt.every.label": {
     "message": "Elke",
     "description": ""

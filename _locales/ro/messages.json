@@ -283,18 +283,6 @@
     "message": "Calculează",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Trimite mai târziu",
-    "description": ""
-  },
-  "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "Activează Send Later pentru a programa un mesaj după introducerea momentului trimiterii în caseta de text. Acest buton nu face nimic singur; caseta de text sau selectorul de dată/oră (nedisponibile în toate versiunile de Thunderbird) trebuie adăugate în bara de instrumente pentru a-l putea folosi.",
-    "description": ""
-  },
-  "sendlater.toolbar.textbox.emptytext": {
-    "message": "data și ora trimiterii",
-    "description": ""
-  },
   "sendlater.prompt.every.label": {
     "message": "La fiecare",
     "description": ""

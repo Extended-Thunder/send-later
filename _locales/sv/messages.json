@@ -259,18 +259,6 @@
     "message": "Beräkna",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Skicka senare",
-    "description": ""
-  },
-  "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "Aktivera Skicka Senare för att schemalägga ett meddelande efter att ha angett önskad sändningstid i textrutan. Den här knappen gör ingenting självt; du behöver också lägga till textrutan eller datum/tidsväljare (stöds inte i alla Thunderbird-versioner) i verktygsfältet för att denna knapp ska vara användbar.",
-    "description": ""
-  },
-  "sendlater.toolbar.textbox.emptytext": {
-    "message": "sändningstid",
-    "description": ""
-  },
   "sendlater.prompt.every.label": {
     "message": "Var",
     "description": ""

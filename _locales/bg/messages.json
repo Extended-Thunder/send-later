@@ -279,18 +279,6 @@
     "message": "Изчисляване",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Изпращане по-късно",
-    "description": ""
-  },
-  "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "Активирайте Изпращане по-късно, за да планирате съобщение след въвеждане на желаното време за изпращане в текстовото поле. Този бутон не прави нищо сам; трябва също да добавите текстовото поле или инструментите за избор на дата / час (не се поддържат във всички версии на Thunderbird) към лентата с инструменти, за да бъде полезен този бутон.",
-    "description": ""
-  },
-  "sendlater.toolbar.textbox.emptytext": {
-    "message": "време на изпращане",
-    "description": ""
-  },
   "sendlater.prompt.every.label": {
     "message": "Всеки",
     "description": ""

@@ -267,18 +267,6 @@
     "message": "计算",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "延期发送",
-    "description": ""
-  },
-  "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "在文本框中输入想要发送的时间之后激活 Send Later 安排发送消息。此按钮本身没有任何内容；您还需要将文本框或日期/时间选择器(并非在所有 Thunderbird 版本中支持) 添加到工具栏，以使此按钮有用。",
-    "description": ""
-  },
-  "sendlater.toolbar.textbox.emptytext": {
-    "message": "发送时间",
-    "description": ""
-  },
   "sendlater.prompt.every.label": {
     "message": "每",
     "description": ""

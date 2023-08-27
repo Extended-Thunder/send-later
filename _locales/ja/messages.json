@@ -255,18 +255,6 @@
     "message": "計算",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "後で送信",
-    "description": ""
-  },
-  "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "希望する送信時刻をテキスト入力欄に入力した後でメッセージ送信を予約するためにSend Later を有効にします。このボタン自身は何もしません。このボタン用に、テキスト入力欄あるいは日時入力欄(これらはすべてのThunderbirdバージョンでサポートされているわけではありません) をツールバーに加えると良いでしょう。",
-    "description": ""
-  },
-  "sendlater.toolbar.textbox.emptytext": {
-    "message": "送信日時",
-    "description": ""
-  },
   "sendlater.prompt.every.label": {
     "message": "間隔",
     "description": ""

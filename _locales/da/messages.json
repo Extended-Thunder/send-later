@@ -275,18 +275,6 @@
     "message": "Beregn",
     "description": ""
   },
-  "sendlater.toolbar.sendlater.button.label": {
-    "message": "Sende Senere",
-    "description": ""
-  },
-  "sendlater.toolbar.sendlater.button.tooltip": {
-    "message": "Aktivér Send senere for at planlægge afsendelsen af en besked efter indtastning af den ønskede sendetid i tekstfeltet. Denne knap gør ikke noget af sig selv. Du skal også tilføje tekstfeltet eller dato/tid vælgere (ikke understøttet i alle Thunderbird versioner) til værktøjslinjen, for at denne knap kan være nyttig.",
-    "description": ""
-  },
-  "sendlater.toolbar.textbox.emptytext": {
-    "message": "sende tid",
-    "description": ""
-  },
   "sendlater.prompt.every.label": {
     "message": "Hver",
     "description": ""
