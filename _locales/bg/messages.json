@@ -23,10 +23,6 @@
     "message": "минути по-късно",
     "description": ""
   },
-  "cancelLabel": {
-    "message": "Отказ",
-    "description": ""
-  },
   "checkTimePrefLabel1": {
     "message": "Проверка на всеки",
     "description": ""

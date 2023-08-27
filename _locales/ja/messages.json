@@ -19,10 +19,6 @@
     "message": "分以上",
     "description": ""
   },
-  "cancelLabel": {
-    "message": "キャンセル",
-    "description": ""
-  },
   "checkTimePrefLabel1": {
     "message": "チェック間隔",
     "description": ""

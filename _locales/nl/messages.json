@@ -23,10 +23,6 @@
     "message": "minuten te laat afleveren",
     "description": ""
   },
-  "cancelLabel": {
-    "message": "Annuleren",
-    "description": ""
-  },
   "checkTimePrefLabel1": {
     "message": "Elke",
     "description": ""

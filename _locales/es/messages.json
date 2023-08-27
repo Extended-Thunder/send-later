@@ -19,10 +19,6 @@
     "message": "minuto(s) de retraso",
     "description": ""
   },
-  "cancelLabel": {
-    "message": "Cancelar",
-    "description": ""
-  },
   "checkTimePrefLabel1": {
     "message": "Comprobar cada",
     "description": ""

@@ -23,10 +23,6 @@
     "message": "minute",
     "description": ""
   },
-  "cancelLabel": {
-    "message": "Anulează",
-    "description": ""
-  },
   "checkTimePrefLabel1": {
     "message": "Verifică la fiecare",
     "description": ""

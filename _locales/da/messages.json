@@ -23,10 +23,6 @@
     "message": "minutter for sent",
     "description": ""
   },
-  "cancelLabel": {
-    "message": "Afbryd",
-    "description": ""
-  },
   "checkTimePrefLabel1": {
     "message": "Tjek hvert",
     "description": ""

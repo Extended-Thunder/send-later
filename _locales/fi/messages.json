@@ -23,10 +23,6 @@
     "message": "minuuttia myöhässä",
     "description": ""
   },
-  "cancelLabel": {
-    "message": "Peruuta",
-    "description": ""
-  },
   "checkTimePrefLabel1": {
     "message": "Tarkista joka",
     "description": ""

@@ -19,10 +19,6 @@
     "message": "分钟则不要发送消息",
     "description": ""
   },
-  "cancelLabel": {
-    "message": "取消",
-    "description": ""
-  },
   "checkTimePrefLabel1": {
     "message": "检查间隔：",
     "description": ""

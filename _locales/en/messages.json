@@ -23,10 +23,6 @@
     "message": "minutes late",
     "description": ""
   },
-  "cancelLabel": {
-    "message": "Cancel",
-    "description": ""
-  },
   "checkTimePrefLabel1": {
     "message": "Check every",
     "description": ""

@@ -23,10 +23,6 @@
     "message": "perc késéssel",
     "description": ""
   },
-  "cancelLabel": {
-    "message": "Mégse",
-    "description": ""
-  },
   "checkTimePrefLabel1": {
     "message": "Ellenőrzés gyakorisága:",
     "description": ""

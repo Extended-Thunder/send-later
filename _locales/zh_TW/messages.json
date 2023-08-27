@@ -23,10 +23,6 @@
     "message": "分鐘以上的訊息寄出",
     "description": ""
   },
-  "cancelLabel": {
-    "message": "取消",
-    "description": ""
-  },
   "checkTimePrefLabel1": {
     "message": "檢查間隔：",
     "description": ""

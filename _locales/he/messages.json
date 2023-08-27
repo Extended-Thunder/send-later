@@ -23,10 +23,6 @@
     "message": "דקות מאוחר יותר",
     "description": ""
   },
-  "cancelLabel": {
-    "message": "‫בטל‬",
-    "description": ""
-  },
   "checkTimePrefLabel1": {
     "message": "‫בדוק כל :‬",
     "description": ""

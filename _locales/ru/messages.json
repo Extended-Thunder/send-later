@@ -19,10 +19,6 @@
     "message": "минут",
     "description": ""
   },
-  "cancelLabel": {
-    "message": "Отмена",
-    "description": ""
-  },
   "checkTimePrefLabel1": {
     "message": "Проверять каждые",
     "description": ""

@@ -19,10 +19,6 @@
     "message": "λεπτά καθυστέρησης",
     "description": ""
   },
-  "cancelLabel": {
-    "message": "Ακύρωση",
-    "description": ""
-  },
   "checkTimePrefLabel1": {
     "message": "Έλεγχος κάθε",
     "description": ""

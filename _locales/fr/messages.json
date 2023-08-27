@@ -23,10 +23,6 @@
     "message": "minutes de retard.",
     "description": ""
   },
-  "cancelLabel": {
-    "message": "Annuler",
-    "description": ""
-  },
   "checkTimePrefLabel1": {
     "message": "Vérifier toutes les",
     "description": ""

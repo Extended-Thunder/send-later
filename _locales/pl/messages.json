@@ -23,10 +23,6 @@
     "message": "minut",
     "description": ""
   },
-  "cancelLabel": {
-    "message": "Anuluj",
-    "description": ""
-  },
   "checkTimePrefLabel1": {
     "message": "Sprawdzaj co",
     "description": ""

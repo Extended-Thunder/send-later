@@ -23,10 +23,6 @@
     "message": "Minuten zu spät senden",
     "description": ""
   },
-  "cancelLabel": {
-    "message": "Abbrechen",
-    "description": ""
-  },
   "checkTimePrefLabel1": {
     "message": "Überprüfen alle",
     "description": ""
