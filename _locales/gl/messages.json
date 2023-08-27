@@ -215,17 +215,9 @@
     "message": "S",
     "description": ""
   },
-  "sendlater.prompt.sendlater.tooltip": {
-    "message": "En troques de programa-lo envío para unha hora específica, move a mensaxe ó cartafol da Bandexa de Saída para envialo na seguinte ocasión na que se remitan as mensaxes non enviadas.",
-    "description": ""
-  },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "E",
     "description": "Accesskey corresponding to 'sendNowLabel'"
-  },
-  "sendlater.prompt.sendnow.tooltip": {
-    "message": "Enviar a mensaxe inmediatamente, ignorando “Send Later”.",
-    "description": ""
   },
   "sendlater.prompt.title.label": {
     "message": "Enviar este correo máis tarde",
@@ -241,10 +233,6 @@
   },
   "sendlater.prompt.sendat.label": {
     "message": "Enviar máis tarde, á(s) hora(s) especificada(s) arriba",
-    "description": ""
-  },
-  "sendlater.prompt.sendat.tooltip": {
-    "message": "Garda a mensaxe no cartafol Borradores para o seu envío automático á hora especificada.",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -275,60 +263,20 @@
     "message": "Cancelar repeticións cando reciba resposta",
     "description": ""
   },
-  "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Verifica as respostas ás copias enviadas previamente de mensaxes recorrentes. Cancela unha mensaxe recorrente e bórrao do cartafol Borradores cando recibe resposta.",
-    "description": ""
-  },
   "prefwindow.title": {
     "message": "Preferencias de Send Later",
-    "description": ""
-  },
-  "checktimepref.tooltip": {
-    "message": "Intervalo, en minutos, entre comprobacións para borradores cuxa hora de envío chegou. Aumenta este valor se ás veces os borradores non se envían a tempo ou se o reconto de mensaxes pendentes na barra de estado non reflicte todos os envíos programados.",
     "description": ""
   },
   "quickoptionname.label": {
     "message": "Etiqueta do botón",
     "description": ""
   },
-  "showsendlatercolumn.tooltip": {
-    "message": "Establece se incluír ou non a columna “Send Later” ó amosar os cartafoles de borradores",
-    "description": ""
-  },
-  "showsendlaterheader.tooltip": {
-    "message": "Establece se amosar o encabezado “X-Send-Later-At”, que marca a hora á que está programado o envío dun borrador, na cabeceira cando se ve o código dunha mensaxe.",
-    "description": ""
-  },
   "showsendlaterprogress.caption": {
     "message": "Amosa-lo progreso en segundo plano na Barra de estado",
     "description": ""
   },
-  "showsendlaterunsentmessages.tooltip": {
-    "message": "Se desactiva esta opción, Send Later non enviará as mensaxes directamente, senón que as situará na Bandexa de Saída cando estean programadas para o seu envío. Desmarque esta opción se, por exemplo, usa algún outro complemento (coma BlunderDelay) para enviar mensaxes de xeito periódico dende a Bandexa de Saída. Teña en conta que cando se activa esta opción, no intre en que Send Laterenvía unha mensaxe TÓDALAS mensaxes da Bandexa de Saída serán enviadas.",
-    "description": ""
-  },
-  "sendlatersendbutton.tooltip": {
-    "message": "Con esta opción habilitada, o comando “Enviar” (tanto co botón coma premendo Ctrl+Intro) funciona igual que “Enviar máis tarde”.",
-    "description": ""
-  },
-  "senddelay.tooltip": {
-    "message": "Con esta opción habilitada, todas as mensaxes enviadas co comando “Enviar” (xa sexa pulsando o botón ou seleccionando Ctrl-Enter) atrasan o número de minutos especificado programados con Send Later.",
-    "description": ""
-  },
-  "composewindowhotkeys.tooltip": {
-    "message": "Ao escribir unha mensaxe, podes escribir Ctrl-Alt-1, -2 ou -3 para activar o primeiro, segundo ou terceiro botón preestablecido, a non ser que desmarques esta preferencia; nese caso estas ligazóns clave estarán desactivadas.",
-    "description": ""
-  },
   "composewindowhotkeys.caption": {
     "message": "Habilitar atallos de teclas na ventá de redacción da mensaxe para predeterminados",
-    "description": ""
-  },
-  "contactauthor.tooltip": {
-    "message": "Envía unha mensaxe de correo ó autor de Send Later.",
-    "description": ""
-  },
-  "helplink.tooltip": {
-    "message": "Ver a documentación de Send Later.",
     "description": ""
   },
   "releasenotes.value": {
@@ -341,14 +289,6 @@
   },
   "editorlink.value": {
     "message": "Editor de funciones dinámicas",
-    "description": ""
-  },
-  "enforcerestrictions.tooltip": {
-    "message": "Se unha mensaxe programada para enviar está fora dos prazos establecidos; por exemplo debido a que Thunderbird non se executase na hora de envío programado, adiarase o envío ata que as condicións de día e hora se cumpran.",
-    "description": ""
-  },
-  "blocklatemessages.tooltip": {
-    "message": "Non envía as mensaxes que pasaron a data e hora definidas para o envío; por exemplo a causa de que Thunderbird non se executase nese intre.",
     "description": ""
   },
   "editorbutton": {

@@ -227,17 +227,9 @@
     "message": "P",
     "description": ""
   },
-  "sendlater.prompt.sendlater.tooltip": {
-    "message": "Plutôt que d'être programmé à une date précise, le message est placé dans le dossier « Messages en attente » pour faire partie de la prochaine expédition des messages non envoyés.",
-    "description": ""
-  },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "m",
     "description": "Accesskey corresponding to 'sendNowLabel'"
-  },
-  "sendlater.prompt.sendnow.tooltip": {
-    "message": "Envoyer le message immédiatement sans utiliser « Envoyer Plus Tard ».",
-    "description": ""
   },
   "sendlater.prompt.title.label": {
     "message": "Envoyer cet e-mail plus tard",
@@ -253,10 +245,6 @@
   },
   "sendlater.prompt.sendat.label": {
     "message": "Envoyer au moment choisi",
-    "description": ""
-  },
-  "sendlater.prompt.sendat.tooltip": {
-    "message": "Enregistre le message dans « Brouillons » pour envoi au moment indiqué.",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -287,10 +275,6 @@
     "message": "Annuler la récurrence en cas de réponse",
     "description": ""
   },
-  "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Vérifie la présence de réponses à un précédent envoi d'un message récurrent. Annule la récurrence et efface le fichier du dossier Brouillons lorsqu'une réponse est reçue à l'un des envois.",
-    "description": ""
-  },
   "sendlater3header.label": {
     "message": "Envoyer Plus Tard",
     "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
@@ -299,52 +283,16 @@
     "message": "Options d'« Envoyer Plus Tard »",
     "description": ""
   },
-  "checktimepref.tooltip": {
-    "message": "Intervalle (en minutes) des vérifications de messages à expédier. Augmenter cette valeur si les messages ne sont pas expédiés à temps ou si le nombre de message en attente est erroné.",
-    "description": ""
-  },
   "quickoptionname.label": {
     "message": "Texte du bouton",
-    "description": ""
-  },
-  "showsendlatercolumn.tooltip": {
-    "message": "Ajoute la colonne « Envoyer Plus Tard » pour les messages dans le dossier « Brouillons ».",
-    "description": ""
-  },
-  "showsendlaterheader.tooltip": {
-    "message": "Autorise l'affichage de l'en-tête « x-send-later-at », c.à.d., le moment prévu d'envoi du message.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
     "message": "Afficher les tâches en arrière-plan dans la barre d'état",
     "description": ""
   },
-  "showsendlaterunsentmessages.tooltip": {
-    "message": "Effectue les envois planifiés sans les placer dans « Message en attente ». Désactiver l'option, par exemple, lors de l'utilisation d'une extension automatisant l'envoi des messages en attente (tel que BlunderDelay). Remarque : si cette option est activée ; quand « Envoyer Plus Tard » déclenche un envoi, TOUS les messages en attente sont expédiés.",
-    "description": ""
-  },
-  "sendlatersendbutton.tooltip": {
-    "message": "Remplace l'action par défaut d'« Envoyer » (bouton ou raccourci « Ctrl+Entrée ») par celle d'« Envoyer Plus Tard ».",
-    "description": ""
-  },
-  "senddelay.tooltip": {
-    "message": "Quand cette option est activée, tous les messages envoyés avec la commande “Envoyer” (avec le bouton ou avec Ctrl+Entrée) sont retardés du nombre de minutes spécifié dans Envoyer Plus Tard.",
-    "description": ""
-  },
-  "composewindowhotkeys.tooltip": {
-    "message": "Pendant la rédaction d'un message vous pouvez taper Ctrl-Alt-1, -2 ou -3 pour activer respectivement le premier, le deuxième ou le troisième bouton prédéfini, sauf si cette option est décochée auquel cas, ces raccourcis clavier sont désactivés.",
-    "description": ""
-  },
   "composewindowhotkeys.caption": {
     "message": "Autoriser les raccourcis claviers vers les boutons prédéfinis, dans la fenêtre de composition du message",
-    "description": ""
-  },
-  "contactauthor.tooltip": {
-    "message": "Envoyer un message à l'auteur de Envoyer Envoyer Plus Tard (en anglais, s'il vous plaît !).",
-    "description": ""
-  },
-  "helplink.tooltip": {
-    "message": "Ouvre la documentation en ligne pour Envoyer Plus Tard (en anglais).",
     "description": ""
   },
   "releasenotes.value": {
@@ -361,14 +309,6 @@
   },
   "editorlink.value": {
     "message": "Éditeur de fonction dynamique",
-    "description": ""
-  },
-  "enforcerestrictions.tooltip": {
-    "message": "En cas de dépassement du moment programmé pour la distribution, notamment si Thunderbird n'était pas ouvert, alors repousser le moment de la distribution, à condition que le moment initialement prévu soit dépassé.",
-    "description": ""
-  },
-  "blocklatemessages.tooltip": {
-    "message": "Ne pas distribuer les messages qui ont dépassé le moment de l'envoi, notamment parce que Thunderbird n'était pas ouvert à ce moment-là.",
     "description": ""
   },
   "editorbutton": {

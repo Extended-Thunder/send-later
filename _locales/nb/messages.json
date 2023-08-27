@@ -211,17 +211,9 @@
     "message": "u",
     "description": ""
   },
-  "sendlater.prompt.sendlater.tooltip": {
-    "message": "Heller enn å planlegge levering til et bestemt tidspunkt, flytt meldingen til utboksmappen for å sendes neste gang usendte meldinger blir sendt.",
-    "description": ""
-  },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "n",
     "description": "Accesskey corresponding to 'sendNowLabel'"
-  },
-  "sendlater.prompt.sendnow.tooltip": {
-    "message": "Send meldingen umiddelbart ved å overstyre “Send senere”.",
-    "description": ""
   },
   "sendlater.prompt.title.label": {
     "message": "Send denne e-posten senere",
@@ -237,10 +229,6 @@
   },
   "sendlater.prompt.sendat.label": {
     "message": "Send senere på tidspunkt(er) spesifisert ovenfor",
-    "description": ""
-  },
-  "sendlater.prompt.sendat.tooltip": {
-    "message": "Lagre meldingen i Kladd-mappen for automatisk levering på tidspunktet som er valgt ovenfor.",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -271,10 +259,6 @@
     "message": "Avbryt gjentakelse ved svar",
     "description": ""
   },
-  "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Se etter svar på tidligere sendte kopier av regelmessige meldinger. Avbryt en gjentakende melding og fjern den fra utkastmappen når et svar mottas.",
-    "description": ""
-  },
   "sendlater3header.label": {
     "message": "Send senere",
     "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
@@ -283,52 +267,16 @@
     "message": "Valg for Send senere",
     "description": ""
   },
-  "checktimepref.tooltip": {
-    "message": "Intervall, i minutter, mellom hver sjekk for utkast som er klare for levering. Øk denne verdien dersom dine utkast ikke alltid sendes til riktig tid eller dersom antallet ventende meldinger i statuslinja ikke reflekterer riktig antall utkast planlagt til sending.",
-    "description": ""
-  },
   "quickoptionname.label": {
     "message": "Etikett for knapp",
-    "description": ""
-  },
-  "showsendlatercolumn.tooltip": {
-    "message": "Om du vil vise «Send senere»--kolonnen når du ser på utkastmapper",
-    "description": ""
-  },
-  "showsendlaterheader.tooltip": {
-    "message": "Om du vil vise «X-Send-Later-At»-topptekst, dvs. tidspunktet da et utkast er planlagt å bli sendt, i overskriften når du ser en melding.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
     "message": "Vis bakgrunnsfremgang i statuslinjen",
     "description": ""
   },
-  "showsendlaterunsentmessages.tooltip": {
-    "message": "Hvis du fjerner dette alternativet, vil Send senere ikke levere meldinger, men i stedet vil bare sette dem i utboksen når de er planlagt for levering. Fjern dette alternativet hvis du for eksempel bruker en annen utvidelse, f.eks. BlunderDelay, til å periodisk plassere meldinger i utgangen. Merk at når dette alternativet er angitt, når Send senere leverer en melding, vil alle meldinger i utboksen leveres.",
-    "description": ""
-  },
-  "sendlatersendbutton.tooltip": {
-    "message": "Er dette alternativet blir aktivert, fungerer kommandoen “Send” (Enten knappen eller å trykke Ctrl-Enter) på samme måte som “Send senere”.",
-    "description": ""
-  },
-  "senddelay.tooltip": {
-    "message": "Hvis denne innstillingen er skrudd på, vil alle meldinger med «Send»-kommandoen (Enten knappen eller å trykke Ctrl-Enter) bli utsatt med det valgte antall minutter ved å planlegge dem med Send senere.",
-    "description": ""
-  },
-  "composewindowhotkeys.tooltip": {
-    "message": "Mens du skriver en melding, kan du trykke Ctrl-Alt-1/-2/-3 for å aktivere de første, andre og tredje knappebindingssettene, med mindre du skrur av denne innstillingen, hvorpå disse knappebindingene blir skrudd av.",
-    "description": ""
-  },
   "composewindowhotkeys.caption": {
     "message": "Skru på meldingsskrivevindu-knappebindingene for forhåndsbindinger",
-    "description": ""
-  },
-  "contactauthor.tooltip": {
-    "message": "Send en e-postmelding til skaperen av Send senere.",
-    "description": ""
-  },
-  "helplink.tooltip": {
-    "message": "Vis Send senere-dokumentasjonen.",
     "description": ""
   },
   "releasenotes.value": {
@@ -341,14 +289,6 @@
   },
   "editorlink.value": {
     "message": "Dynamisk funksjonsredigerer",
-    "description": ""
-  },
-  "enforcerestrictions.tooltip": {
-    "message": "Hvis en melding som skal leveres er utenfor dens tids- eller dagsrestriksjoner, f.eks. fordi Thunderbird ikke kjørte på dens planlagte leveringstid, skal leveringen utsettes frem til tids- og dagsrestriksjonene er oppfylt.",
-    "description": ""
-  },
-  "blocklatemessages.tooltip": {
-    "message": "Ikke lever planlagte meldinger som har blitt utsatt forbi sin planlagte tid, f.eks fordi Thunderbird ikke kjørte på den tiden.",
     "description": ""
   },
   "editorbutton": {

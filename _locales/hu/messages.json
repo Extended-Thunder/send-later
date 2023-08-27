@@ -235,17 +235,9 @@
     "message": "P",
     "description": ""
   },
-  "sendlater.prompt.sendlater.tooltip": {
-    "message": "Ahelyett, hogy ütemezné a szállítást egy adott időre, helyezze át az üzenetet a Kimenő mappába, hogy legközelebb elküldje a nem küldött üzeneteket.",
-    "description": ""
-  },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "d",
     "description": "Accesskey corresponding to 'sendNowLabel'"
-  },
-  "sendlater.prompt.sendnow.tooltip": {
-    "message": "Az üzenetet azonnal küldje el, megkerülve a „Küldés később”-kiegészítőt.",
-    "description": ""
   },
   "sendlater.prompt.title.label": {
     "message": "Küldje el ezt az e-mailt később",
@@ -261,10 +253,6 @@
   },
   "sendlater.prompt.sendat.label": {
     "message": "Küldés később a fent meghatározott időpont(ok)ban",
-    "description": ""
-  },
-  "sendlater.prompt.sendat.tooltip": {
-    "message": "Mentse az üzenetet a Piszkozatok mappába az önműködő küldéséhez a fenti időpontban.",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -295,10 +283,6 @@
     "message": "Ismétlődés visszavonása válasz esetén",
     "description": ""
   },
-  "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Az ismétlődő üzenetekre adott válaszok figyelése. Ismétlődő üzenetet megszakítása és távolítsa el a Piszkozatok mappából, amikor válasz érkezik.",
-    "description": ""
-  },
   "sendlater3header.label": {
     "message": "Küldés később",
     "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
@@ -307,52 +291,16 @@
     "message": "Küldés később beállításai",
     "description": ""
   },
-  "checktimepref.tooltip": {
-    "message": "Időközönként, percben, a piszkozatok ellenőrzése között, amelyek elküldése ideje megérkezett. Növelje ezt az értéket, ha a piszkozatait időnként nem vannak elküldve, vagy az állapotsorban lévő függőben lévő üzenetek száma néha nem tükrözi az összes ütemezett piszkozatot.",
-    "description": ""
-  },
   "quickoptionname.label": {
     "message": "Gombfelirat",
-    "description": ""
-  },
-  "showsendlatercolumn.tooltip": {
-    "message": "Akár a „Küldés később” oszlopot is megjelenítheti a vázlatmappák megtekintése közben",
-    "description": ""
-  },
-  "showsendlaterheader.tooltip": {
-    "message": "Az „X-Send-Later-At” fejléc megjelenítése, azaz idő, amikor a tervezetet elküldjük, a fejlécben, amikor üzenetet nézünk.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
     "message": "Háttérállapot megjelenítése az állapotsorban",
     "description": ""
   },
-  "showsendlaterunsentmessages.tooltip": {
-    "message": "Ha kikapcsolja ezt az opciót, akkor a Küldés később nem fogja teljes mértékben kézbesíteni az üzeneteket, hanem csak azokat a Kimenő mappába helyezi, amikor azokat a szállításra tervezik. Törölje ezt az opciót, például, ha valamilyen más kiterjesztést, például Baklövés késleltetést használ az üzenetek időszakos küldésére a Kimenő mappából. Ne feledje, hogy ha ez az opció be van állítva, akkor, amikor Küldés később üzenetet küld, a Kimenő összes üzeneteit fogja elküldeni.",
-    "description": ""
-  },
-  "sendlatersendbutton.tooltip": {
-    "message": "Ezzel az opcióval a „Küldés” parancs (vagy a gomb vagy a Ctrl+Enter beírása) ugyanaz, mint a „Küldés később”.",
-    "description": ""
-  },
-  "senddelay.tooltip": {
-    "message": "Ezzel az opcióval a „Küldés” paranccsal elküldött összes üzenet (a gomb vagy a Ctrl-Enter gépelés után) a megadott perc számmal késik, ha a Küldés később ütemezést küld.",
-    "description": ""
-  },
-  "composewindowhotkeys.tooltip": {
-    "message": "Üzenet írása közben beírhatja a Ctrl-Alt-1, -2 vagy -3 gombot az első, a második vagy a harmadik előre beállított gomb aktiválásához, kivéve, ha nincs bejelölve ez a beállítás, ebben az esetben ezek a billentyűkötések le vannak tiltva.",
-    "description": ""
-  },
   "composewindowhotkeys.caption": {
     "message": "Billentyűkötések előbeállítások engedélyezése a szerkesztőablaknak",
-    "description": ""
-  },
-  "contactauthor.tooltip": {
-    "message": "E-mail üzenet küldése a Küldés később szerzőjének.",
-    "description": ""
-  },
-  "helplink.tooltip": {
-    "message": "A Küldés később dokumentáció megtekintése.",
     "description": ""
   },
   "releasenotes.value": {
@@ -369,14 +317,6 @@
   },
   "editorlink.value": {
     "message": "Erőteljes függvény szerkesztő",
-    "description": ""
-  },
-  "enforcerestrictions.tooltip": {
-    "message": "Ha egy kézbesítendő üzenet az idő vagy a nap korlátozásain kívül esik, például azért, mert a Thunderbird nem futott az ütemezett szállítási időpontban, akkor késleltesse annak kézbesítését, amíg az idő és a nap korlátozásai nem teljesülnek.",
-    "description": ""
-  },
-  "blocklatemessages.tooltip": {
-    "message": "Ne küldjön ütemezett üzeneteket, amelyek késleltetettek az ütemezett időn túl, például azért, mert a Thunderbird ekkor nem futott.",
     "description": ""
   },
   "editorbutton": {

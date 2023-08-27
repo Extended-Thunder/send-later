@@ -219,17 +219,9 @@
     "message": "S",
     "description": ""
   },
-  "sendlater.prompt.sendlater.tooltip": {
-    "message": "En lugar de programar el envío para una hora específica, mueve el mensaje a la carpeta de Bandeja de Salida para que se envíe la próxima vez que se remitan los mensajes no enviados.",
-    "description": ""
-  },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "h",
     "description": "Accesskey corresponding to 'sendNowLabel'"
-  },
-  "sendlater.prompt.sendnow.tooltip": {
-    "message": "Envía el mensaje inmediatamente, ignorando “Send Later”.",
-    "description": ""
   },
   "sendlater.prompt.title.label": {
     "message": "Enviar más tarde este correo",
@@ -245,10 +237,6 @@
   },
   "sendlater.prompt.sendat.label": {
     "message": "Enviar más tarde a la(s) hora(s) especificada(s) arriba",
-    "description": ""
-  },
-  "sendlater.prompt.sendat.tooltip": {
-    "message": "Guarda el mensaje en la carpeta Borradores para su envío automático a la hora establecida arriba.",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -279,10 +267,6 @@
     "message": "Cancelar repetición cuando el destinatario responda al mensaje",
     "description": ""
   },
-  "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Monitoriza respuestas a copias previas de mensajes planificados de forma recurrente. Cancela un mensaje recurrente (planificado para su envío repetidas veces) y se elimina de la carpeta “borradores” cuando se recibe una respuesta al mismo.",
-    "description": ""
-  },
   "sendlater3header.label": {
     "message": "Enviar Más Tarde",
     "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
@@ -291,52 +275,16 @@
     "message": "Preferencias de Send Later",
     "description": ""
   },
-  "checktimepref.tooltip": {
-    "message": "Intervalo, en minutos, entre comprobaciones para borradores a los que les ha llegado su hora de envío. Aumente este valor si a veces sus borradores no se envían a tiempo o si el recuento de mensajes pendientes en su barra de estado no refleja todos los envíos programados.",
-    "description": ""
-  },
   "quickoptionname.label": {
     "message": "Etiqueta del botón",
-    "description": ""
-  },
-  "showsendlatercolumn.tooltip": {
-    "message": "Especifica si incluir o no la columna “Send Later” al mostrar las carpetas de borradores",
-    "description": ""
-  },
-  "showsendlaterheader.tooltip": {
-    "message": "Especifica si mostrar o el encabezamiento “X-Send-Later-At”, que marca la hora a la que está programado el envío de un borrador, en la cabecera al ver el código de un mensaje.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
     "message": "Mostrar progreso en segundo plano en la barra de estado",
     "description": ""
   },
-  "showsendlaterunsentmessages.tooltip": {
-    "message": "Si deshabilita esta opción, Send Later no completará el envío de mensajes sino que únicamente los situará en la Bandeja de Salida cuando estén programados para su envío. Deshabilite esta opción si, por ejemplo, usa alguna otra extensión, como BlunderDelay, para enviar mensajes periódicamente desde la Bandeja de Salida. Observe que cuando se habilita esta opción, en el momento en que Send Later envíe un mensaje, TODOS los mensajes presentes en su Bandeja de Salida serán enviados.",
-    "description": ""
-  },
-  "sendlatersendbutton.tooltip": {
-    "message": "Con esta opción habilitada, el comando “Enviar” (bien con el botón o pulsando Ctrl+Intro) actúa del mismo modo que “Enviar más tarde”.",
-    "description": ""
-  },
-  "senddelay.tooltip": {
-    "message": "Con esta opción activada, todos los mensajes enviados con el comando “Enviar” (ya sea pulsando el botón o tecleando Ctrl-Enter) se retrasan por el número de minutos especificado al planificar con Send Later.",
-    "description": ""
-  },
-  "composewindowhotkeys.tooltip": {
-    "message": "Mientras se compone un mensaje, puede escribir Ctrl-Alt-1, -2, o -3 para activar el primer, segundo o tercer botón preset, a menos que desactive esta preferencia, en cuyo caso estos atajos de teclas están desactivadas.",
-    "description": ""
-  },
   "composewindowhotkeys.caption": {
     "message": "Habilitar atajos de teclas en la ventana de “Redactar mensaje” para predeterminados",
-    "description": ""
-  },
-  "contactauthor.tooltip": {
-    "message": "Envía un mensaje de correo al autor de Send Later.",
-    "description": ""
-  },
-  "helplink.tooltip": {
-    "message": "Vea la documentación de Send Later.",
     "description": ""
   },
   "releasenotes.value": {
@@ -353,14 +301,6 @@
   },
   "editorlink.value": {
     "message": "Editor de funciones dinámicas",
-    "description": ""
-  },
-  "enforcerestrictions.tooltip": {
-    "message": "Si un mensaje que debe ser enviado está fuera de sus restricciones de hora o día, por ejemplo, a causa de que Thunderbird no estuviera en marcha a la hora de envío programada, se demora su envío hasta que las restricciones de hora y día se cumplan.",
-    "description": ""
-  },
-  "blocklatemessages.tooltip": {
-    "message": "No remite los mensajes cuyo envío se haya demorado más allá de su hora programada, por ejemplo, a causa de que Thunderbird no estuviera en marcha en ese momento.",
     "description": ""
   },
   "editorbutton": {

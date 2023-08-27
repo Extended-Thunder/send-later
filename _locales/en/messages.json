@@ -235,17 +235,9 @@
     "message": "O",
     "description": ""
   },
-  "sendlater.prompt.sendlater.tooltip": {
-    "message": "Rather than scheduling delivery for a specific time, move the message to the Outbox folder for delivery next time unsent messages are sent.",
-    "description": ""
-  },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "N",
     "description": "Accesskey corresponding to 'sendNowLabel'"
-  },
-  "sendlater.prompt.sendnow.tooltip": {
-    "message": "Send the message immediately, bypassing “Send Later”",
-    "description": ""
   },
   "sendlater.prompt.title.label": {
     "message": "Send this email later",
@@ -261,10 +253,6 @@
   },
   "sendlater.prompt.sendat.label": {
     "message": "Send later at time(s) specified above",
-    "description": ""
-  },
-  "sendlater.prompt.sendat.tooltip": {
-    "message": "Save message in Drafts folder for automatic delivery at the time set above",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -295,10 +283,6 @@
     "message": "Cancel recurrence upon reply",
     "description": ""
   },
-  "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Watch for replies to previously sent copies of recurring messages. Cancel a recurring message and remove it from the Drafts folder when a reply is received.",
-    "description": ""
-  },
   "sendlater3header.label": {
     "message": "Send Later",
     "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
@@ -307,52 +291,16 @@
     "message": "Send Later preferences",
     "description": ""
   },
-  "checktimepref.tooltip": {
-    "message": "Interval, in minutes, between checks for drafts whose delivery time has arrived. Increase this value if your drafts sometimes aren't sent on time or the pending message count in your status bar sometimes doesn't reflect all scheduled drafts.",
-    "description": ""
-  },
   "quickoptionname.label": {
     "message": "Button Label",
-    "description": ""
-  },
-  "showsendlatercolumn.tooltip": {
-    "message": "Whether to show the “Send Later” column when viewing draft folders",
-    "description": ""
-  },
-  "showsendlaterheader.tooltip": {
-    "message": "Whether to show the “X-Send-Later-At” header, i.e., the time when a draft is scheduled to be sent, in the header when viewing a message",
     "description": ""
   },
   "showsendlaterprogress.caption": {
     "message": "Show Background Progress In Status Bar",
     "description": ""
   },
-  "showsendlaterunsentmessages.tooltip": {
-    "message": "If you unset this option, then Send Later will not fully deliver messages, but instead will just put them in your Outbox when they are scheduled for delivery. Unset this option, for example, if you use some other extension, e.g., BlunderDelay, to periodically send messages from your Outbox. Note that when this option is set, then whenever Send Later delivers a message, ALL messages in your Outbox will be delivered.",
-    "description": ""
-  },
-  "sendlatersendbutton.tooltip": {
-    "message": "Make the “Send” command (either the button or typing Ctrl-Enter) acts the same as “Send Later”",
-    "description": ""
-  },
-  "senddelay.tooltip": {
-    "message": "Delay all messages sent with the “Send” command (either the button or typing Ctrl-Enter) by the specified number of minutes by scheduling them with Send Later",
-    "description": ""
-  },
-  "composewindowhotkeys.tooltip": {
-    "message": "While composing a message you can type Ctrl-Alt-1, -2, or -3 to activate the first, second, or third preset button, unless you uncheck this preference, in which case these key bindings are disabled.",
-    "description": ""
-  },
   "composewindowhotkeys.caption": {
     "message": "Enable compose window key bindings for presets",
-    "description": ""
-  },
-  "contactauthor.tooltip": {
-    "message": "Send a mail message to the author of Send Later",
-    "description": ""
-  },
-  "helplink.tooltip": {
-    "message": "View the Send Later documentation",
     "description": ""
   },
   "releasenotes.value": {
@@ -369,14 +317,6 @@
   },
   "editorlink.value": {
     "message": "Dynamic function editor",
-    "description": ""
-  },
-  "enforcerestrictions.tooltip": {
-    "message": "If a message that is due to be delivered is outside its time or day restrictions, e.g., because Thunderbird was not running at its scheduled delivery time, then delay its delivery until the time and day restrictions are met.",
-    "description": ""
-  },
-  "blocklatemessages.tooltip": {
-    "message": "Don't deliver scheduled messages that have been delayed past their scheduled time, e.g., because Thunderbird wasn't running at that time.",
     "description": ""
   },
   "editorbutton": {

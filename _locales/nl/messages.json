@@ -235,17 +235,9 @@
     "message": "U",
     "description": ""
   },
-  "sendlater.prompt.sendlater.tooltip": {
-    "message": "Niet een tijdstip voor verzending kiezen, maar in het Postvak UIT plaatsen voor verzending wanneer de nog niet verzonden berichten worden verzonden",
-    "description": ""
-  },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "N",
     "description": "Accesskey corresponding to 'sendNowLabel'"
-  },
-  "sendlater.prompt.sendnow.tooltip": {
-    "message": "Bericht onmiddellijk verzenden zonder ‘Send Later’",
-    "description": ""
   },
   "sendlater.prompt.title.label": {
     "message": "Dit e-mailbericht later verzenden",
@@ -261,10 +253,6 @@
   },
   "sendlater.prompt.sendat.label": {
     "message": "Later op bovengenoemd(e) tijdstip(pen) verzenden",
-    "description": ""
-  },
-  "sendlater.prompt.sendat.tooltip": {
-    "message": "Bericht opslaan in de map Concepten voor automatisch verzenden op het hierboven aangegeven tijdstip",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -295,10 +283,6 @@
     "message": "Herhaling annuleren bij antwoord",
     "description": ""
   },
-  "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Op eerder verzonden kopieën van herhalende berichten letten. Een herhalend bericht annuleren en het uit de map Concepten verwijderen als een antwoord is ontvangen.",
-    "description": ""
-  },
   "sendlater3header.label": {
     "message": "Send Later",
     "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
@@ -307,52 +291,16 @@
     "message": "Send Later-voorkeuren",
     "description": ""
   },
-  "checktimepref.tooltip": {
-    "message": "Interval, in minuten, tussen controles op concepten waarvoor de aflevertijd is bereikt. Vergroot deze waarde als uw concepten niet altijd op tijd worden verzonden of als het aantal af te handelen berichten in uw statusbalk niet altijd overeenkomt met het werkelijke aantal.",
-    "description": ""
-  },
   "quickoptionname.label": {
     "message": "Knoptekst",
-    "description": ""
-  },
-  "showsendlatercolumn.tooltip": {
-    "message": "Of de kolom ‘Send Later’ bij het bekijken van conceptmappen moet worden getoond",
-    "description": ""
-  },
-  "showsendlaterheader.tooltip": {
-    "message": "Of de header ‘X-Send-Later-At’ moet worden getoond als een bericht wordt bekeken, m.a.w. de tijd waarop een concept gepland staat om te worden verzonden.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
     "message": "Achtergrondvoortgang in statusbalk tonen",
     "description": ""
   },
-  "showsendlaterunsentmessages.tooltip": {
-    "message": "Als u deze optie uitvinkt, zal Send Later berichten niet volledig verzenden, maar deze op het moment van verzenden alleen in uw Postvak UIT plaatsen. Vink deze optie uit als u bijvoorbeeld een andere extensie gebruikt, zoals BlunderDelay, die periodiek berichten uit uw Postvak UIT verzendt. Denk eraan dat als deze optie is aangevinkt, Send Later bij het afleveren van een bericht ALLE berichten in uw Postvak UIT aflevert.",
-    "description": ""
-  },
-  "sendlatersendbutton.tooltip": {
-    "message": "Met deze optie ingeschakeld, werkt de opdracht ‘Verzenden’ (via zowel de knop als het intoetsen van Ctrl-Enter) hetzelfde als ‘Later verzenden’.",
-    "description": ""
-  },
-  "senddelay.tooltip": {
-    "message": "Met deze optie ingeschakeld, worden alle met de opdracht ‘Verzenden’ verzonden berichten (via zowel de knop als het typen van Ctrl-Enter) met het opgegeven aantal minuten vertraagd door ze met Send Later in te plannen.",
-    "description": ""
-  },
-  "composewindowhotkeys.tooltip": {
-    "message": "Tijdens het opstellen van een bericht kunt u Ctrl-Alt-1, -2 of -3 typen om de eerste, tweede of derde voorkeuzeknop te activeren, tenzij u deze voorkeur uitschakelt, waardoor deze toetsenbindingen zijn uitgeschakeld.",
-    "description": ""
-  },
   "composewindowhotkeys.caption": {
     "message": "Toetsenbindingen van opstelvenster voor voorkeuzes inschakelen",
-    "description": ""
-  },
-  "contactauthor.tooltip": {
-    "message": "Een e-mailbericht naar de schrijver van Send Later verzenden (in het Engels)",
-    "description": ""
-  },
-  "helplink.tooltip": {
-    "message": "De documentatie voor Send Later bekijken",
     "description": ""
   },
   "releasenotes.value": {
@@ -369,14 +317,6 @@
   },
   "editorlink.value": {
     "message": "Editor voor dynamische functies",
-    "description": ""
-  },
-  "enforcerestrictions.tooltip": {
-    "message": "Als een bericht dat dient te worden afgeleverd buiten de tijds- of dagrestricties komt, bijvoorbeeld omdat Thunderbird ten tijde van de geplande aflevertijd niet actief was, dan de aflevering ervan vertragen totdat aan de tijds- en dagrestricties wordt voldaan.",
-    "description": ""
-  },
-  "blocklatemessages.tooltip": {
-    "message": "Geplande berichten die voorbij hun geplande tijd zijn vertraagd, bijvoorbeeld omdat Thunderbird niet actief was, niet afleveren",
     "description": ""
   },
   "editorbutton": {

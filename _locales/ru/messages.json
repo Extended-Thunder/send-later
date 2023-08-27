@@ -215,17 +215,9 @@
     "message": "И",
     "description": ""
   },
-  "sendlater.prompt.sendlater.tooltip": {
-    "message": "Вместо того, чтобы планировать доставку в течение определенного времени, переместите сообщение в папку «Исходящие» для доставки в следующий раз, когда будут отправлены не отправленные сообщения.",
-    "description": ""
-  },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "с",
     "description": "Accesskey corresponding to 'sendNowLabel'"
-  },
-  "sendlater.prompt.sendnow.tooltip": {
-    "message": "Отправка сообщения минуя Send Later.",
-    "description": ""
   },
   "sendlater.prompt.title.label": {
     "message": "Отложенная отправка письма",
@@ -241,10 +233,6 @@
   },
   "sendlater.prompt.sendat.label": {
     "message": "Отправить позже в указанное время",
-    "description": ""
-  },
-  "sendlater.prompt.sendat.tooltip": {
-    "message": "Сохранить сообщение в «Черновиках» для автоматической доставки в указанное время.",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -275,60 +263,20 @@
     "message": "Отменить повторную отправку после ответа",
     "description": ""
   },
-  "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Отслеживать ответы, для отмены отправки копий рекурсивных сообщений. Отменяет повторяющиеся сообщения и удаляет их из «Черновиков», после получения ответа.",
-    "description": ""
-  },
   "prefwindow.title": {
     "message": "Настройки Send Later",
-    "description": ""
-  },
-  "checktimepref.tooltip": {
-    "message": "Интервал в минутах между проверками черновиков, чье время доставки уже наступило. Увеличьте это число, если ваши черновики иногда не отправляются вовремя, или если количество сообщений в вашей строке состояния не отражает все запланированные отправки.",
     "description": ""
   },
   "quickoptionname.label": {
     "message": "Имя кнопки",
     "description": ""
   },
-  "showsendlatercolumn.tooltip": {
-    "message": "Показывать столбец «Send Later» при просмотре черновиков",
-    "description": ""
-  },
-  "showsendlaterheader.tooltip": {
-    "message": "Указывать, показывать ли заголовок «X-Send-Later-At», то есть время отправки черновика, в заголовке при просмотре сообщения.",
-    "description": ""
-  },
   "showsendlaterprogress.caption": {
     "message": "Показывать фоновый прогресс в строке состояния",
     "description": ""
   },
-  "showsendlaterunsentmessages.tooltip": {
-    "message": "Если вы отключите эту опцию, то Send Later не будет доставлять сообщения, а поместит их в папку «Исходящие», когда они будут запланированы для доставки. Отключение этой опции нужно, например, если вы используете другое расширение, скажем, BlunderDelay для периодической отправки сообщений из папки «Исходящие». Когда эта опция активна, то всякий раз при отправке сообщений через Send Later, ВСЕ сообщения в вашей папке «Исходящие» будут доставлены.",
-    "description": ""
-  },
-  "sendlatersendbutton.tooltip": {
-    "message": "Когда эта опция активна, то команда «Отправить» (и кнопка и нажатие на Ctrl-Enter) выполняется так же как и «Отправить позже».",
-    "description": ""
-  },
-  "senddelay.tooltip": {
-    "message": "Если эта опция включена, все сообщения, отправленные с помощью команды «Отправить» (либо кнопки, либо сочетания клавиш Ctrl-Enter), откладываются на указанное количество минут, запланированных с помощью Send Later.",
-    "description": ""
-  },
-  "composewindowhotkeys.tooltip": {
-    "message": "При написании сообщения вы можете нажать Ctrl-Alt-1, -2 или -3 для активации первой, второй, или третьей предустановленной кнопки, если вы не сняли флажок с этой настройки, в этом случае эти сочетания клавиш отключены.",
-    "description": ""
-  },
   "composewindowhotkeys.caption": {
     "message": "Включить привязку клавиш для предустановок в окне сообщения",
-    "description": ""
-  },
-  "contactauthor.tooltip": {
-    "message": "Написать письмо автору Send Later.",
-    "description": ""
-  },
-  "helplink.tooltip": {
-    "message": "Посмотреть документацию на Send Later.",
     "description": ""
   },
   "releasenotes.value": {
@@ -341,14 +289,6 @@
   },
   "editorlink.value": {
     "message": "Редактор динамических функций",
-    "description": ""
-  },
-  "enforcerestrictions.tooltip": {
-    "message": "Если сообщение, которое должно быть доставлено, выходит за пределы своих ограничений по времени, например, из-за того, что Thunderbird не работал в запланированное время, то его доставка задержится до тех пор, пока не будут соблюдены ограничения по времени и дню.",
-    "description": ""
-  },
-  "blocklatemessages.tooltip": {
-    "message": "Не доставлять запланированные сообщения, которые были задержаны до их запланированного времени, например, из-за того, что Thunderbird не был запущен в этот момент.",
     "description": ""
   },
   "editorbutton": {

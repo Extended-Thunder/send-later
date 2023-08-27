@@ -235,17 +235,9 @@
     "message": "P",
     "description": ""
   },
-  "sendlater.prompt.sendlater.tooltip": {
-    "message": "Die Nachricht in den Postausgang verschieben und beim nächsten Senden ungesendeter Nachrichten versenden.",
-    "description": ""
-  },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "J",
     "description": "Accesskey corresponding to 'sendNowLabel'"
-  },
-  "sendlater.prompt.sendnow.tooltip": {
-    "message": "Die Nachricht sofort statt mit “Später Senden” senden.",
-    "description": ""
   },
   "sendlater.prompt.title.label": {
     "message": "Diese Nachricht später senden",
@@ -261,10 +253,6 @@
   },
   "sendlater.prompt.sendat.label": {
     "message": "Später senden, zu den oben festgelegten Zeiten",
-    "description": ""
-  },
-  "sendlater.prompt.sendat.tooltip": {
-    "message": "Nachrichten im Entwürfe-Ordner speichern, um sie zum oben angegebenen Zeitpunkt automatisch zu versenden.",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -295,10 +283,6 @@
     "message": "Wiederkehrendes Senden bei Antwort beenden",
     "description": ""
   },
-  "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Beendet das Versenden einer wiederkehrenden Nachricht und löscht sie aus dem Entwurf-Ordner, sobald auf eine zuvor versendete Kopie geantwortet wurde.",
-    "description": ""
-  },
   "sendlater3header.label": {
     "message": "Später Senden",
     "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
@@ -307,52 +291,16 @@
     "message": "Später Senden - Einstellungen",
     "description": ""
   },
-  "checktimepref.tooltip": {
-    "message": "Intervall in Minuten zwischen den Prüfungen, welche Entwürfe für die Zustellung bereit sind. Diesen Wert erhöhen, wenn die Entwürfe manchmal nicht rechtzeitig gesendet werden oder der Mitteilungszähler in der Statuszeile nicht alle zeitlich geplanten Entwürfe wiedergibt.",
-    "description": ""
-  },
   "quickoptionname.label": {
     "message": "Schaltflächen-Text",
-    "description": ""
-  },
-  "showsendlatercolumn.tooltip": {
-    "message": "Auswählen, ob die „Später Senden”-Spalte beim Öffnen des Entwürfe-Ordners angezeigt werden soll oder nicht.",
-    "description": ""
-  },
-  "showsendlaterheader.tooltip": {
-    "message": "Auswählen, ob die „X-Send-Later-At:”-Kopfzeile (z.B. die Zeit, wann ein Entwurf zum Senden geplant ist) im Nachrichtenkopf anzeigt werden soll oder nicht.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
     "message": "Hintergrund-Fortschritt in der Statusleiste anzeigen",
     "description": ""
   },
-  "showsendlaterunsentmessages.tooltip": {
-    "message": "Wird diese Option deaktiviert, wird „Später Senden” die Nachrichten nicht im vollen Umfang senden. Stattdessen werden sie für die geplante Zustellung in den Postausgang verschoben. Diese Option deaktivieren, wenn ein anderes Add-on, wie z.B. BlunderDelay verwendet wird, um regelmäßig Nachrichten aus dem Postausgang zu versenden.\nAnmerkung: Wenn diese Option aktiviert wird, werden von „Später Senden”, immer wenn es eine Nachricht senden soll, ALLE Nachrichten im Postausgang versendet.",
-    "description": ""
-  },
-  "sendlatersendbutton.tooltip": {
-    "message": "Wird diese Option aktiviert, bewirkt der „Senden”-Befehl (entweder die Schaltfläche oder Strg+Return) das Gleiche wie „Später senden”.",
-    "description": ""
-  },
-  "senddelay.tooltip": {
-    "message": "Wenn diese Option aktiviert ist, wird der Versand aller Nachrichten, die mit dem “Senden”-Befehl gesendet werden (mit der Schaltfläche oder mittels CRTL-Enter), als Später Senden um die angegebene Anzahl Minuten verzögert geplant.",
-    "description": ""
-  },
-  "composewindowhotkeys.tooltip": {
-    "message": "Während Sie eine Nachricht erstellen, können Sie Strg-Alt-1, -2 oder -3 eingeben, um den ersten, zweiten oder dritten Kurzbefehl-Button zu aktivieren, es sei denn, Sie deaktivieren diese Einstellung (in diesem Fall sind diese Tasten deaktiviert).",
-    "description": ""
-  },
   "composewindowhotkeys.caption": {
     "message": "Aktiviere Kurzbefehl-Tastenkombinationen im E-Mail-Editor",
-    "description": ""
-  },
-  "contactauthor.tooltip": {
-    "message": "Senden Sie dem Autor von „Später Senden” eine Nachricht. (auf Englisch bitte!)",
-    "description": ""
-  },
-  "helplink.tooltip": {
-    "message": "Sehen Sie sich die Dokumentation von „Später Senden” an. (Englisch)",
     "description": ""
   },
   "releasenotes.value": {
@@ -369,14 +317,6 @@
   },
   "editorlink.value": {
     "message": "Funktionseditor",
-    "description": ""
-  },
-  "enforcerestrictions.tooltip": {
-    "message": "Wenn eine zu sendende Nachricht die Zeit- und Tagesbeschränkung überschritten hat, zum Beispiel weil Thunderbird zur eingestellten Zeit nicht lief, dann wird das Senden der Nachricht solange verzögert, bis die Zeitbeschränkungen erfüllt werden.",
-    "description": ""
-  },
-  "blocklatemessages.tooltip": {
-    "message": "Wenn eine zu sendende Nachricht die geplante Sendezeit überschritten hat, zum Beispiel weil Thunderbird zur eingestellten Zeit nicht lief, dann soll die Nachricht nicht mehr gesendet werden, wenn die geplante Sendezeit um mehr als die angegebene Zeitdauer überschritten ist.",
     "description": ""
   },
   "editorbutton": {

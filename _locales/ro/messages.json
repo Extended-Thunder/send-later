@@ -235,17 +235,9 @@
     "message": "P",
     "description": ""
   },
-  "sendlater.prompt.sendlater.tooltip": {
-    "message": "În loc de programarea trimiterii la un anumit moment, mută mesajul în dosarul „De trimis” pentru a fi trimis la următoare trimitere de mesaje neexpediate.",
-    "description": ""
-  },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "T",
     "description": "Accesskey corresponding to 'sendNowLabel'"
-  },
-  "sendlater.prompt.sendnow.tooltip": {
-    "message": "Trimite mesajul imediat, ignorând Send Later.",
-    "description": ""
   },
   "sendlater.prompt.title.label": {
     "message": "Trimite acest e-mail mai târziu",
@@ -261,10 +253,6 @@
   },
   "sendlater.prompt.sendat.label": {
     "message": "Trimite mai târziu, la momentul(ele) specificate mai sus",
-    "description": ""
-  },
-  "sendlater.prompt.sendat.tooltip": {
-    "message": "Salvează mesajul în dosarul „Mesaje nefinalizate” pentru livrare automata la momentul setat mai sus.",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -295,10 +283,6 @@
     "message": "Anulează retrimiterea când se primește răspuns",
     "description": ""
   },
-  "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Monitorizează primirea de răspuns la trimiterile anterioare ale mesajelor repetitive. Anulează un mesaj repetitiv și șterge-l din dosarul „Mesaje netrimise” când se primește răspuns.",
-    "description": ""
-  },
   "sendlater3header.label": {
     "message": "Trimite mai târziu",
     "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
@@ -307,52 +291,16 @@
     "message": "Preferințe Send Later",
     "description": ""
   },
-  "checktimepref.tooltip": {
-    "message": "Intervalul, în minute, între verificarea mesajelor nefinalizate al căror termen de trimitere a sosit. Crește această valoare dacă mesajele nu sunt trimise la timp câteodată sau dacă numărul de mesaje în așteptare din bara de stare nu corespunde trimiterilor programate.",
-    "description": ""
-  },
   "quickoptionname.label": {
     "message": "Etichetă buton",
-    "description": ""
-  },
-  "showsendlatercolumn.tooltip": {
-    "message": "Dacă se afișează coloana “Send Later” când se vizualizează dosarele de mesaje nefinalizate",
-    "description": ""
-  },
-  "showsendlaterheader.tooltip": {
-    "message": "Dacă se afișează headerul “X-Send-Later-At”, adică momentul când un mesaj e programat să fie trimis, în header, la vizualizarea unui mesaj.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
     "message": "Arată progresul în bara de stare",
     "description": ""
   },
-  "showsendlaterunsentmessages.tooltip": {
-    "message": "Dacă dezactivezi opțiunea aceasta, atunci Send Later nu va trimite mesajele ci le va copia în dosarul „De trimis” când sunt programate pentru trimitere. Dezactivează aceasta opțiune, de exemplu, când folosești și o alta extensie cum ar fi BlunderDelay pentru a trimite periodic mesajele din „De trimis”. Notă: când această opțiune este activată, de fiecare dată când Send Later trimite un mesaj, toate mesajele din dosarul „De trimis” for fi trimise.",
-    "description": ""
-  },
-  "sendlatersendbutton.tooltip": {
-    "message": "Cu această opțiune activată, comanda “Trimite” (fie butonul fie tastând Ctrl-Enter) acționează la fel ca “Trimite mai târziu”.",
-    "description": ""
-  },
-  "senddelay.tooltip": {
-    "message": "Când această opțiune este activată, toate mesajele trimise folosind comanda “Trimite” (indiferent dacă e vorba de buton sau de scurtătura Ctrl-Enter) vor fi trimise mai târziu cu numărul specificat de minute - prin programarea lor cu Send Later.",
-    "description": ""
-  },
-  "composewindowhotkeys.tooltip": {
-    "message": "În timp ce scrieți mesajul puteți apăsa Ctrl-Alt-1, -2, sau -3 pentru a activa primul, al doilea sau al treilea buton prestabilit. Dacă deselectați această opțiune, combinațiile de taste vor fi dezactivate.",
-    "description": ""
-  },
   "composewindowhotkeys.caption": {
     "message": "Activează scurtăturile de taste pentru acțiuni prestabilite",
-    "description": ""
-  },
-  "contactauthor.tooltip": {
-    "message": "Trimite un mesaj autorului extensiei Send Later.",
-    "description": ""
-  },
-  "helplink.tooltip": {
-    "message": "Vezi documentația Send Later.",
     "description": ""
   },
   "releasenotes.value": {
@@ -369,14 +317,6 @@
   },
   "editorlink.value": {
     "message": "Editor dinamic de funcții",
-    "description": ""
-  },
-  "enforcerestrictions.tooltip": {
-    "message": "Dacă un mesaj care este programat să fie livrat este în afara restricțiilor de oră/dată, de exemplu pentru că Thunderbird nu rula la momentul programat, amână trimiterea acestuia până când sunt întrunite condițiile de trimitere.",
-    "description": ""
-  },
-  "blocklatemessages.tooltip": {
-    "message": "Nu livra mesajele programate care au fost întârziate după timpul programat, de exemplu, pentru că Thunderbird nu era deschis la momentul respectiv.",
     "description": ""
   },
   "editorbutton": {

@@ -235,17 +235,9 @@
     "message": "ה",
     "description": ""
   },
-  "sendlater.prompt.sendlater.tooltip": {
-    "message": "‫במקום לקבוע מועד משלוח מוגדר, העבר את ההודעה לתיבת הדואר היוצא כדי לשלוח אותה בפעם הבאה, יחד עם שאר ההודעות הממתינות למשלוח‬",
-    "description": ""
-  },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "כ",
     "description": "Accesskey corresponding to 'sendNowLabel'"
-  },
-  "sendlater.prompt.sendnow.tooltip": {
-    "message": "שלח מייד את ההודעה, ועקוף את “‫שלח מאוחר יותר‬”.",
-    "description": ""
   },
   "sendlater.prompt.title.label": {
     "message": "‫שלח הודעת דוא“ל זו מאוחר יותר‬",
@@ -261,10 +253,6 @@
   },
   "sendlater.prompt.sendat.label": {
     "message": "‫שלח מאוחר יותר במועד(ים) שהוגדרו לעיל‬",
-    "description": ""
-  },
-  "sendlater.prompt.sendat.tooltip": {
-    "message": "‫שמור את ההודעה בתיקית הטיוטות למשלוח אוטומטי במועד שהוגדר לעיל‬",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -295,10 +283,6 @@
     "message": "בטל חזרה בתשובה",
     "description": ""
   },
-  "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "המתן לתגובות לעותקי הודעות חוזרות שנשלחו בעבר. בטל הודעה חוזרת והסר אותה מתיקיית הטיוטות כאשר מתקבלת תשובה.",
-    "description": ""
-  },
   "sendlater3header.label": {
     "message": "‫‫שלח מאוחר יותר‬‬",
     "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
@@ -307,52 +291,16 @@
     "message": "‫העדפות ‫שלח מאוחר יותר‬‬",
     "description": ""
   },
-  "checktimepref.tooltip": {
-    "message": "‫המרווח, בדקות, בין הבדיקות להודעות טיוטה שמועד שליחתן הגיע. הגדל ערך זה אם קורה לעיטים שהטיוטות שהכנת אינן נשלחות במועדן או שלפעמים מספר ההודעות הממתינות, המופיע בשורת המצב, אינו תואם למספר הטיוטות המיועדות למשלוח בפועל‬",
-    "description": ""
-  },
   "quickoptionname.label": {
     "message": "‫תווית הכפתור :‬",
-    "description": ""
-  },
-  "showsendlatercolumn.tooltip": {
-    "message": "‫האם להציג את הטור '‫שלח מאוחר יותר‬' כאשר צופים בתיקית הטיוטות‬",
-    "description": ""
-  },
-  "showsendlaterheader.tooltip": {
-    "message": "‫האם להציג את הכותרת 'X-Send-Later-At', כלומר הזמן בו מיועדת הטיוטה להישלח, בשורת הכותרת כאשר צופים בהודעה‬",
     "description": ""
   },
   "showsendlaterprogress.caption": {
     "message": "‫הצג את תהליכי הרקע בשורת המצב‬",
     "description": ""
   },
-  "showsendlaterunsentmessages.tooltip": {
-    "message": "‫במידה ולא תסומן אפשרות זו, '‫שלח מאוחר יותר‬' לא ישלח את ההודעות בפועל, אלא רק יעביר אותן לתיבת הדואר היוצא במועד המשלוח המתוכנן שלהן. אל תסמן אפשרות זו, למשל, אם יש לעיטים שימוש בתוסף אחר למשלוח הודעות מתיבת הדואר היוצא. שים לב שאם נבחרה האפשרות הזו ישלח '‫שלח מאוחר יותר‬' את כל ההודעות מתיבת הדואר היוצא בעת שליחת הודעה מתוכננת,‬",
-    "description": ""
-  },
-  "sendlatersendbutton.tooltip": {
-    "message": "‫בחירה באפשרות זו תהפוך את פקודת ה 'שלח' (גם הלחצן וגם צרוף המקשים) לפקודה 'שלח מאוחר יותר'‬",
-    "description": ""
-  },
-  "senddelay.tooltip": {
-    "message": "בחירה באפשרות זו, תגרום לכך שכל ההודעות הנשלחות עם הפקודה “שלח” (בין אם לחיצה על הכפתור או עם קיצור המקלדת Ctrl-Enter) יעוכבו במספר הדקות שהוגדרו מראש עם ‫שלח מאוחר יותר‬",
-    "description": ""
-  },
-  "composewindowhotkeys.tooltip": {
-    "message": "ניתן ללחוץ על צירופי המקשים Ctrl-Alt-1, 2 או 3 כדי להפעיל את כפתורי קיצורי התזמון הראשון, השני או השלישי שתוכנתו מראש, במהלך חיבור הודעה. אם בוטל הסימון לתכונה זו, יושבתו צירופי מקשים אילו.",
-    "description": ""
-  },
   "composewindowhotkeys.caption": {
     "message": "אפשר הפעלת צירופי מקשים מתוכנתים מראש בחלון העריכה",
-    "description": ""
-  },
-  "contactauthor.tooltip": {
-    "message": "‫שלח הודעת דוא“ל למפתח של '‫שלח מאוחר יותר‬'‬",
-    "description": ""
-  },
-  "helplink.tooltip": {
-    "message": "‫צפה במסמכי התיעוד של '‫שלח מאוחר יותר‬'‬",
     "description": ""
   },
   "releasenotes.value": {
@@ -369,14 +317,6 @@
   },
   "editorlink.value": {
     "message": "עורך פונקציה דינמית",
-    "description": ""
-  },
-  "enforcerestrictions.tooltip": {
-    "message": "במידה ומגבלות הזמן או היום שנקבעו למשלוח ההודעה חרגו מעבר להגדרה המקורית, למשל בגלל שתנדרבירד לא פעל במועד המתוכנן, דחה את משלוח ההודעה בהתאם מגבלות הזמן והיום המקוריות שנקבעו.",
-    "description": ""
-  },
-  "blocklatemessages.tooltip": {
-    "message": "אל תשלח הודעות מתוזמנות שמועד המשלוח המתוכנן שלהן חלף, למשל בגלל שתנדרבירד לא פעל במועד המתוכנן.",
     "description": ""
   },
   "editorbutton": {

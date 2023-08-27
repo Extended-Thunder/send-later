@@ -219,17 +219,9 @@
     "message": "S",
     "description": ""
   },
-  "sendlater.prompt.sendlater.tooltip": {
-    "message": "Ajastamisen sijasta siirrä Lähtevät-kansioon lähetettäväksi seuraavalla kerralla, kun muitakin viestejä lähetetään.",
-    "description": ""
-  },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "h",
     "description": "Accesskey corresponding to 'sendNowLabel'"
-  },
-  "sendlater.prompt.sendnow.tooltip": {
-    "message": "Lähettää viestin heti, ohittaen ”Lähetä myöhemmin” -toiminnon.",
-    "description": ""
   },
   "sendlater.prompt.title.label": {
     "message": "Lähetä tämä viesti myöhemmin",
@@ -245,10 +237,6 @@
   },
   "sendlater.prompt.sendat.label": {
     "message": "Lähetä myöhemmin yllä määriteltyinä ajankohtina",
-    "description": ""
-  },
-  "sendlater.prompt.sendat.tooltip": {
-    "message": "Tallenna viesti Luonnokset-kansioon lähetettäväksi automaattisesti yllä määriteltynä ajankohtana.",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -279,10 +267,6 @@
     "message": "Hylkää toistuvuus vastattaessa",
     "description": ""
   },
-  "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Etsi vastauksia aiemmin lähetettyihin kopioihin toistuvista viesteistä. Peruuta toistuva viesti ja poista se Luonnokset-kansiosta kun vastaus on vastaanotettu.",
-    "description": ""
-  },
   "sendlater3header.label": {
     "message": "Lähetä myöhemmin",
     "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
@@ -291,52 +275,16 @@
     "message": "Lähetä myöhemmin - Asetukset",
     "description": ""
   },
-  "checktimepref.tooltip": {
-    "message": "Aikaväli minuuteissa sen tarkistamiseksi, onko luonnoskansiossa viestejä, jotka olisi jo aika lähettää. Kasvata tätä arvoa, jos kaikki viestisi eivät aina lähde ajallaan tai jos lähetysjonossa olevien viestien laskuri ei aina täsmää.",
-    "description": ""
-  },
   "quickoptionname.label": {
     "message": "Painiketeksti",
-    "description": ""
-  },
-  "showsendlatercolumn.tooltip": {
-    "message": "Näytetäänkö Lähetä myöhemmin -sarake selattaessa luonnoskansioita",
-    "description": ""
-  },
-  "showsendlaterheader.tooltip": {
-    "message": "Näytetäänkö ”X-Send-Later-At” -otsake, esim. silloin kun viestiluonnos on ajastettu lähtemään, viestin otsakkeessa viestiä selatessa.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
     "message": "Näytä tilapalkissa taustaeteneminen",
     "description": ""
   },
-  "showsendlaterunsentmessages.tooltip": {
-    "message": "Jos et aseta tätä valintaa, ei Lähetä myöhemmin tule toimittamaan viestejä, vaan sen sijaan se siirtää ne Lähtevät-kansioon niiden lähetysajankohtana. Jätä asettamatta tämä valinta, esim. jos käytät jotain muuta lisäosaa, kuten BlunderDelay, lähettääksesi määräajoin viestejä Lähtevät-kansiostasi. Huomaa, että kun tämä valinta on asetettuna, niin aina kun Lähetä myöhemmin lähettää viestin, lähtevät KAIKKI viestisi Lähtevät-kansiostasi.",
-    "description": ""
-  },
-  "sendlatersendbutton.tooltip": {
-    "message": "Tämän valinnan ollessa käytössä “Lähetä” -komento (joko painike, tai näppäimet Ctrl-Enter) toimii kuten “Lähetä myöhemmin”.",
-    "description": ""
-  },
-  "senddelay.tooltip": {
-    "message": "Tämä valinta aktivoituna kaikki “Lähetä” -komennolla (joko painikkeella, tai painamalla Ctrl+Enter) lähetetyt viestit lähtevät määritetyn arvon mukaisella viiveellä aikatauluttamalla ne käyttämällä Lähetä myöhemmin.",
-    "description": ""
-  },
-  "composewindowhotkeys.tooltip": {
-    "message": "Kirjoittaessasi viestiä voit painaa Ctrl-Alt-1, -2, tai -3 aktivoidaksesi ensimmäisen, toisen, tai kolmannen painikkeen. Jos määritys on jätetty valitsematta, eivät näppäinyhdistelmät ole käytöstä.",
-    "description": ""
-  },
   "composewindowhotkeys.caption": {
     "message": "Salli esiasetettujen näppäinkommentojen käyttö viestinkirjoituksessa",
-    "description": ""
-  },
-  "contactauthor.tooltip": {
-    "message": "Lähetä Lähetä myöhemmin -ohjelman tekijälle sähköpostia.",
-    "description": ""
-  },
-  "helplink.tooltip": {
-    "message": "Selaa Lähetä myöhemmin -ohjetta.",
     "description": ""
   },
   "releasenotes.value": {
@@ -349,14 +297,6 @@
   },
   "editorlink.value": {
     "message": "Dynaaminen toimintomuokkain",
-    "description": ""
-  },
-  "enforcerestrictions.tooltip": {
-    "message": "Jos toimitettava viesti on aika- tai päivärajoitteidensa ulkopuolella esim. siksi, että Thunderbird ei ollut käynnissä ajastettuna lähetysaikana, viivästytä lähetystä siihen asti, kunnes aika- ja päivärajoitteet täsmäävät.",
-    "description": ""
-  },
-  "blocklatemessages.tooltip": {
-    "message": "Älä toimita ajastettuja sanomia, joiden lähetys on viivästynyt ajastushetkensä yli, esim. koska Thunderbird ei ollut tuolloin käynnissä.",
     "description": ""
   },
   "editorbutton": {

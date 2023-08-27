@@ -215,17 +215,9 @@
     "message": "P",
     "description": ""
   },
-  "sendlater.prompt.sendlater.tooltip": {
-    "message": "Anziché inviarlo in automatico a un orario specifico, sposta il messaggio nella cartella “Posta in uscita” per inviarlo non appena i messaggi da inviare verranno spediti.",
-    "description": ""
-  },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "O",
     "description": "Accesskey corresponding to 'sendNowLabel'"
-  },
-  "sendlater.prompt.sendnow.tooltip": {
-    "message": "Invia il messaggio immediatamente, evitando “Invia Dopo”.",
-    "description": ""
   },
   "sendlater.prompt.title.label": {
     "message": "Invia questa e-mail dopo",
@@ -241,10 +233,6 @@
   },
   "sendlater.prompt.sendat.label": {
     "message": "Invia dopo, all'orario sopra indicato",
-    "description": ""
-  },
-  "sendlater.prompt.sendat.tooltip": {
-    "message": "Salva il messaggio nella cartella “Bozze” per l'invio automatico all'orario sopra impostato.",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -275,10 +263,6 @@
     "message": "Annulla ricorrenza in caso di risposta",
     "description": ""
   },
-  "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Individua eventuali risposte alle copie dei messaggi ricorrenti precedentemente inviati. Quando viene ricevuta una risposta annulla il messaggio ricorrente ed eliminalo dalla cartella Bozze.",
-    "description": ""
-  },
   "sendlater3header.label": {
     "message": "Invia Dopo",
     "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
@@ -287,52 +271,16 @@
     "message": "Preferenze Invia Dopo",
     "description": ""
   },
-  "checktimepref.tooltip": {
-    "message": "Frequenza in minuti con cui viene verificata la presenza nella cartella “Bozze” di e-mail di cui è arrivato l'orario di invio. Aumentare questo valore se qualche volta le mail programmate per l'invio non partono o se qualche volta il numero dei messaggi in coda indicato nella barra di stato non corrisponde a quello di tutti i messaggi pianificati.",
-    "description": ""
-  },
   "quickoptionname.label": {
     "message": "Etichetta pulsante",
-    "description": ""
-  },
-  "showsendlatercolumn.tooltip": {
-    "message": "Mostra la colonna “Invia Dopo” nella cartella “Bozze”",
-    "description": ""
-  },
-  "showsendlaterheader.tooltip": {
-    "message": "Mostra l'intestazione “X-Send-Later-At”, cioè l'orario a cui la mail in “Bozze” è pianificata per l'invio, nell'intestazione quando guardi un messaggio.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
     "message": "Mostra nella Barra di Stato la progressione degli invii in background",
     "description": ""
   },
-  "showsendlaterunsentmessages.tooltip": {
-    "message": "Se non spunti questa opzione, Invia Dopo non provvederà all'invio del messaggio, ma quando arriverà l'ora pianificata per la spedizione, lo parcheggerà semplicemente nella “Posta in Uscita”. Togliere la spunta nel caso di utilizzo con altri componenti aggiuntivi come ad esempio BlunderDelay, per inviare i messaggi presenti nella “Posta in Uscita” periodicamente. Da notare che se questa opzione è selezionata, quando Invia Dopo invia un messaggio, anche TUTTI gli altri messaggi presenti nella “Posta in Uscita” verranno inviati.",
-    "description": ""
-  },
-  "sendlatersendbutton.tooltip": {
-    "message": "Con questa opzione attivata, il comando “Invia” (sia il pulsante che la pressione di Ctrl-Invio) si comporta come “Invia dopo”.",
-    "description": ""
-  },
-  "senddelay.tooltip": {
-    "message": "Con questa opzione attivata, tutti i messaggi inviati con il comando “Invia” (sia col pulsante che digitando Ctrl+Invio) sono ritardati del numero di minuti indicato, tramite la pianificazione di Invia Dopo.",
-    "description": ""
-  },
-  "composewindowhotkeys.tooltip": {
-    "message": "Mentre si compone un messaggio è possibile digitare Ctrl-Alt-1, -2, o -3 per attivare il primo, secondo o terzo pulsante preset, a meno che non si deselezioni questa preferenza, nel qual caso queste combinazioni di tasti sono disabilitate.",
-    "description": ""
-  },
   "composewindowhotkeys.caption": {
     "message": "Abilita le associazioni di tasti per la finestra di composizione",
-    "description": ""
-  },
-  "contactauthor.tooltip": {
-    "message": "Invia una e-mail all'autore di Invia Dopo.",
-    "description": ""
-  },
-  "helplink.tooltip": {
-    "message": "Visualizza la documentazione di Invia Dopo.",
     "description": ""
   },
   "releasenotes.value": {
@@ -345,14 +293,6 @@
   },
   "editorlink.value": {
     "message": "Editor di funzioni dinamiche",
-    "description": ""
-  },
-  "enforcerestrictions.tooltip": {
-    "message": "Se un messaggio che deve essere inviato si trova al di fuori delle sue restrizioni di orario e giorno impostate, ad esempio perché Thunderbird non era in esecuzione all'orario di invio pianificato, ritarda il suo invio finché non vengono soddisfatte le restrizioni di orario e giorno.",
-    "description": ""
-  },
-  "blocklatemessages.tooltip": {
-    "message": "Non inviare messaggi pianificati che sono stati ritardati oltre il loro orario pianificato, ad esempio perché Thunderbird non era in esecuzione a quell'ora.",
     "description": ""
   },
   "editorbutton": {

@@ -231,17 +231,9 @@
     "message": "И",
     "description": ""
   },
-  "sendlater.prompt.sendlater.tooltip": {
-    "message": "Вместо да планирате доставка за определено време, преместете съобщението в папка Изходящи за доставка следващия път, когато се изпращат неизпратените съобщения.",
-    "description": ""
-  },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "с",
     "description": "Accesskey corresponding to 'sendNowLabel'"
-  },
-  "sendlater.prompt.sendnow.tooltip": {
-    "message": "Изпратете незабавно съобщението, като заобиколите “Изпращане по-късно”.",
-    "description": ""
   },
   "sendlater.prompt.title.label": {
     "message": "Изпращане на този имейл по-късно",
@@ -257,10 +249,6 @@
   },
   "sendlater.prompt.sendat.label": {
     "message": "Изпращане по-късно по време(на), посочено(и) по-горе",
-    "description": ""
-  },
-  "sendlater.prompt.sendat.tooltip": {
-    "message": "Запазете съобщението в папка “Чернови” за автоматична доставка в посоченото по-горе време.",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -291,10 +279,6 @@
     "message": "Отменете повторението при отговор",
     "description": ""
   },
-  "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Гледайте за отговори на изпратените преди това копия на повтарящи се съобщения. Отменете повтарящо се съобщение и го извадете от папка Чернови, когато получите отговор.",
-    "description": ""
-  },
   "sendlater3header.label": {
     "message": "Изпращане по-късно",
     "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
@@ -303,52 +287,16 @@
     "message": "Изпращане по-късно настройки",
     "description": ""
   },
-  "checktimepref.tooltip": {
-    "message": "Интервал в минути, между проверките за чернови, чието време на доставка е настъпило. Увеличете тази стойност, ако понякога черновите ви не се изпращат навреме, или броят на изчакващите съобщения в лентата ви на състоянието понякога не отразява всички насрочени чернови.",
-    "description": ""
-  },
   "quickoptionname.label": {
     "message": "Етикет на бутон",
-    "description": ""
-  },
-  "showsendlatercolumn.tooltip": {
-    "message": "Да се показва ли “Изпращане по-късно” колоната, когато разглеждате чернови папки",
-    "description": ""
-  },
-  "showsendlaterheader.tooltip": {
-    "message": "Да се показва ли “X-Send-Later-At” заглавката, т.е. времето, когато се планира да бъде изпратена черновата, в заглавката, когато преглеждате съобщението.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
     "message": "Показване напредъка в лентата на състоянието",
     "description": ""
   },
-  "showsendlaterunsentmessages.tooltip": {
-    "message": "Ако деактивирате тази опция, то Изпращане по-късно няма да доставя напълно съобщенията, а вместо това просто ще ги постави в кутията Изходящи, когато те са насрочени за доставка. Деактивирайте тази опция, например, ако използвате друго разширение, например BlunderDelay, за периодично изпращане на съобщения от вашата Изходяща кутия. Имайте предвид, че когато тази опция е настроена, тогава когато Изпращане по-късно достави съобщение, ВСИЧКИ съобщения във вашата Изходяща кутия ще бъдат доставени.",
-    "description": ""
-  },
-  "sendlatersendbutton.tooltip": {
-    "message": "С тази настройка е активирана командата “Изпращане” (натиснете бутона или въведете Ctrl-Enter) действа, също като “Изпращане по-късно”.",
-    "description": ""
-  },
-  "senddelay.tooltip": {
-    "message": "Когато тази опция е активирана, всички съобщения, изпратени с командата „Изпращане“ (или бутона, или въвеждането на Ctrl-Enter), се забавят с посочения брой минути, като ги планирате с Изпращане по-късно.",
-    "description": ""
-  },
-  "composewindowhotkeys.tooltip": {
-    "message": "Докато съставяте съобщение, можете да въведете Ctrl-Alt-1, -2 или -3, за да активирате първия, втория или третия предварително зададен бутон, освен ако не премахнете отметката от това предпочитание, като в този случай тези връзки на клавиши са деактивирани.",
-    "description": ""
-  },
   "composewindowhotkeys.caption": {
     "message": "Активирайте свързването на клавишите на прозореца за композиране за предварително зададени настройки",
-    "description": ""
-  },
-  "contactauthor.tooltip": {
-    "message": "Изпращане на съобщение до автора на Изпращане по-късно.",
-    "description": ""
-  },
-  "helplink.tooltip": {
-    "message": "Преглед на Изпращане по-късно документацията.",
     "description": ""
   },
   "releasenotes.value": {
@@ -365,14 +313,6 @@
   },
   "editorlink.value": {
     "message": "Редактор на динамични функции",
-    "description": ""
-  },
-  "enforcerestrictions.tooltip": {
-    "message": "Ако съобщението, което трябва да бъде доставено, е извън ограниченията му за време или ден, например, тъй като Thunderbird не е работел в определеното му време за доставка, то забавя доставката му, докато не бъдат изпълнени ограниченията във времето и деня.",
-    "description": ""
-  },
-  "blocklatemessages.tooltip": {
-    "message": "Не доставяйте планирани съобщения, които са били отложени по-късно от планираното им време, например, защото Thunderbird не е работил по това време.",
     "description": ""
   },
   "editorbutton": {

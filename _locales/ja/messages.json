@@ -211,14 +211,6 @@
     "message": "[送信トレイ] に置く",
     "description": ""
   },
-  "sendlater.prompt.sendlater.tooltip": {
-    "message": "送信日時を指定せず、メッセージを [送信トレイ] へ移し、次の機会に未送信のメッセージを送信します。",
-    "description": ""
-  },
-  "sendlater.prompt.sendnow.tooltip": {
-    "message": "“Send Later”をバイパスして、直ちにメッセージを送信します。",
-    "description": ""
-  },
   "sendlater.prompt.title.label": {
     "message": "このメールを後で送信する",
     "description": ""
@@ -233,10 +225,6 @@
   },
   "sendlater.prompt.sendat.label": {
     "message": "指定した日時に送信する",
-    "description": ""
-  },
-  "sendlater.prompt.sendat.tooltip": {
-    "message": "指定した日時に自動的に送信するために [下書き] フォルダへメッセージを保存します。",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -267,60 +255,20 @@
     "message": "返信を受信したら定期送信メールをキャンセルする",
     "description": ""
   },
-  "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "以前に送信した定期送信メールへの返信を監視します。もし返信を受信したら定期送信メールをキャンセルして下書きフォルダから削除します。",
-    "description": ""
-  },
   "prefwindow.title": {
     "message": "Send Later 設定",
-    "description": ""
-  },
-  "checktimepref.tooltip": {
-    "message": "送信すべき下書きがないかどうかをチェックする分単位の間隔。時間通りに送信されない場合や、ステータスバーに表示されている [送信待ち] のメッセージ数と送信予定の下書きの数が一致していない場合には、この値を増やしてください。",
     "description": ""
   },
   "quickoptionname.label": {
     "message": "ボタンラベル",
     "description": ""
   },
-  "showsendlatercolumn.tooltip": {
-    "message": "[下書き] フォルダに “Send Later” 列を表示するかどうかを設定します。",
-    "description": ""
-  },
-  "showsendlaterheader.tooltip": {
-    "message": "メッセージを開く際に、“X-Send-Later-At” ヘッダー (下書きの送信予定日時) を表示するかどうかを設定します。",
-    "description": ""
-  },
   "showsendlaterprogress.caption": {
     "message": "バックグラウンドの進捗をステータスバーに表示する",
     "description": ""
   },
-  "showsendlaterunsentmessages.tooltip": {
-    "message": "このオプションを無効にすると、Send Later はメッセージを送信しませんが、送信予定日時になると [送信トレイ] へメッセージを移します。他の拡張機能 (BlunderDelay など) を使って、メッセージを [送信トレイ] から定期的に送信するようにしている場合には、このオプションを無効にしてください。注意: このオプションを有効にすると、メッセージを送信する際に、Send Later は [送信トレイ] にあるすべてのメッセージを送信します。",
-    "description": ""
-  },
-  "sendlatersendbutton.tooltip": {
-    "message": "このオプションを有効にすると、“送信” コマンド (ボタンと Ctrl-Enter の両方) は “後で送信” と同じ動作をします。",
-    "description": ""
-  },
-  "senddelay.tooltip": {
-    "message": "このオプションを有効にすると、Send Later でスケジュールされた特定の時間(分) だけ“送信”コマンド(ボタンクリックあるいはCtrl-Enterキー) によるすべてのメッセージ送信を遅延します。",
-    "description": ""
-  },
-  "composewindowhotkeys.tooltip": {
-    "message": "メッセージの作成中にCtrl-Alt-1, -2, -3を押すと1,2,3番目のプリセットボタンが作動します。これは設定でチェックを外すかキー割り当てを無効にしない限り有効です。",
-    "description": ""
-  },
   "composewindowhotkeys.caption": {
     "message": "メッセージ作成ウィンドウでプリセット用のキー割り当てを有効にする",
-    "description": ""
-  },
-  "contactauthor.tooltip": {
-    "message": "Send Later の作者へメールでメッセージを送ります。",
-    "description": ""
-  },
-  "helplink.tooltip": {
-    "message": "Send Later ドキュメントを見てください。",
     "description": ""
   },
   "releasenotes.value": {
@@ -333,14 +281,6 @@
   },
   "editorlink.value": {
     "message": "ユーザー関数エディタ",
-    "description": ""
-  },
-  "enforcerestrictions.tooltip": {
-    "message": "例えば、Thunderbird がスケジュールされた配送時刻に実行されていなかったといった理由で、配送されるはずのメッセージが、その時間や曜日の条件外にある場合、時間と曜日の制限が満たされるまで、その配送を遅らせます。",
-    "description": ""
-  },
-  "blocklatemessages.tooltip": {
-    "message": "例えば、Thunderbird がその時点で実行されていなかったといった理由で、スケジュールされた時間を過ぎてしまったときにスケジュールされたメッセージを配信しない。",
     "description": ""
   },
   "editorbutton": {

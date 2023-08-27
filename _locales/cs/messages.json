@@ -215,17 +215,9 @@
     "message": "P",
     "description": ""
   },
-  "sendlater.prompt.sendlater.tooltip": {
-    "message": "Namísto plánování doručení v určitý čas, přesune zprávu do složky „Pošta k odeslání“ pro doručení ve chvíli, kdy bude zadán příkaz pro odeslání neodeslaných zpráv.",
-    "description": ""
-  },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "O",
     "description": "Accesskey corresponding to 'sendNowLabel'"
-  },
-  "sendlater.prompt.sendnow.tooltip": {
-    "message": "Odeslat zprávu hned bez použití „Odeslat Později“.",
-    "description": ""
   },
   "sendlater.prompt.title.label": {
     "message": "Odeslat tento email později",
@@ -241,10 +233,6 @@
   },
   "sendlater.prompt.sendat.label": {
     "message": "Odeslat později v čase(ch) určených výše",
-    "description": ""
-  },
-  "sendlater.prompt.sendat.tooltip": {
-    "message": "Uložit zprávu do složky Koncepty pro automatické doručení v čase nastaveném výše.",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -275,10 +263,6 @@
     "message": "Zrušit opakování po odpovědi",
     "description": ""
   },
-  "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Kontrolovat odpovědi na dříve poslané opakované zprávy. Opakující se zpráva je zrušena a odstraněna z Konceptů, pokud na ni adresát odpoví.",
-    "description": ""
-  },
   "sendlater3header.label": {
     "message": "Odeslat Později",
     "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
@@ -287,52 +271,16 @@
     "message": "Odeslat Později - předvolby",
     "description": ""
   },
-  "checktimepref.tooltip": {
-    "message": "Po kolika minutách se kontroluje, zda je třeba odeslat koncepty. Zvyš tuto hodnotu, pokud tvoje koncepty neodchází včas nebo množství čekajících zpráv ve stavovém řádku někdy neodpovídá skutečnosti.",
-    "description": ""
-  },
   "quickoptionname.label": {
     "message": "Popisek tlačítka",
-    "description": ""
-  },
-  "showsendlatercolumn.tooltip": {
-    "message": "Zobrazovat sloupeček „Odeslat Později“ při prohlížení složek s koncepty",
-    "description": ""
-  },
-  "showsendlaterheader.tooltip": {
-    "message": "Má-li se zobrazovat v záhlaví zprávy hlavička “X-Send-Later-At”, tj. datum a čas, kdy bude koncept odeslán.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
     "message": "Zobrazit stav na pozadí zpracovávaných úloh ve stavovém řádku",
     "description": ""
   },
-  "showsendlaterunsentmessages.tooltip": {
-    "message": "Vypnete-li toto nastavení, pak Odeslat Později nebude odesílat zprávy - pouze je uloží do složky “K odeslání”. Hodí se to když používáte jiná rozšíření, např. BlunderDelay pro pravidelné odesílání zpráv ze složky “K odeslání”. Pokud bude toto nastavení zapnuté, pokaždé, když Odeslat Později odešle zprávu, budou odeslány VŠECHNY zprávy z vaší složky “K odeslání”.",
-    "description": ""
-  },
-  "sendlatersendbutton.tooltip": {
-    "message": "Pokud tuto možnost povolíte, bude se příkaz „Odeslat“ (tlačítko nebo klávesová zkratka Ctrl-Enter) chovat stejně jako „Odeslat později“.",
-    "description": ""
-  },
-  "senddelay.tooltip": {
-    "message": "Pokud je tato možnost zapnutá, všechny zprávy odeslané příkazem “Odeslat” (tlačítkem nebo stisknutím Ctrl-Enter) budou zdrženy o zadaný čas naplánovaný pomocí Odeslat Později.",
-    "description": ""
-  },
-  "composewindowhotkeys.tooltip": {
-    "message": "Zatímco píšete zprávu, můžete stisknout Ctrl-Alt-1, -2 nebo -3 abyste aktivovali první, druhé nebo třetí tlačítko předvolby odesílání. Platí pouze pokud jste v nastavení nezakázali použití klávesový zkratek.",
-    "description": ""
-  },
   "composewindowhotkeys.caption": {
     "message": "Povolit použití klávesových zkratek (pro předvolby odeslání) při psaní zprávy",
-    "description": ""
-  },
-  "contactauthor.tooltip": {
-    "message": "Pošlete email autorovi rozšíření „Odeslat Později“.",
-    "description": ""
-  },
-  "helplink.tooltip": {
-    "message": "Zobrazte dokumentaci rozšíření „Odeslat Později“.",
     "description": ""
   },
   "releasenotes.value": {
@@ -345,14 +293,6 @@
   },
   "editorlink.value": {
     "message": "Editor dynamických funkcí",
-    "description": ""
-  },
-  "enforcerestrictions.tooltip": {
-    "message": "Pokud zpráva nemůže být doručena v požadovaný datum a čas, např. proto, že Thunderbird je vypnutý, bude odeslána nejdřívě jak to bude možné.",
-    "description": ""
-  },
-  "blocklatemessages.tooltip": {
-    "message": "Nedoručovat naplánované zprávy, které byly zpožděné, po jejich naplánovaném čase (např. protože Thunderbird neběžel).",
     "description": ""
   },
   "editorbutton": {

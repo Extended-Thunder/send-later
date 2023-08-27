@@ -223,17 +223,9 @@
     "message": "o",
     "description": ""
   },
-  "sendlater.prompt.sendlater.tooltip": {
-    "message": "Em vez de definir a entrega para uma hora especifica, mover a mensagem para a Caixa de Saída de forma a ser enviada da próxima vez que o Send Later enviar as mensagens ainda não enviadas.",
-    "description": ""
-  },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "A",
     "description": "Accesskey corresponding to 'sendNowLabel'"
-  },
-  "sendlater.prompt.sendnow.tooltip": {
-    "message": "Envie a mensagem imediatamente, ignorando “Send Later”.",
-    "description": ""
   },
   "sendlater.prompt.title.label": {
     "message": "Enviar este email mais tarde",
@@ -249,10 +241,6 @@
   },
   "sendlater.prompt.sendat.label": {
     "message": "Enviar mais tarde na(s) hora(s) especificada(s) a cima",
-    "description": ""
-  },
-  "sendlater.prompt.sendat.tooltip": {
-    "message": "Guardar a mensagem nos Rascunhos para enviar automaticamente na hora definida a cima.",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -283,60 +271,20 @@
     "message": "Cancelar a mensagem recorrente após resposta",
     "description": ""
   },
-  "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Verifique as respostas às cópias enviadas anteriormente de mensagens recorrentes. Cancele uma mensagem recorrente e apague-a da pasta Rascunhos quando uma resposta for recebida.",
-    "description": ""
-  },
   "prefwindow.title": {
     "message": "Definições do Send Later",
-    "description": ""
-  },
-  "checktimepref.tooltip": {
-    "message": "Intervalo, em minutos, entre verificações de rascunhos cuja data de entrega já chegou. Aumente este valor se os seus rascunhos por vezes não são enviados a tempo ou se a contagem de mensagem pendente na sua barra de estado nem sempre reflecte todos os rascunhos agendados.",
     "description": ""
   },
   "quickoptionname.label": {
     "message": "Etiqueta do botão",
     "description": ""
   },
-  "showsendlatercolumn.tooltip": {
-    "message": "A coluna “Send Later” deve ser mostrada ao visualizar as pastas de rascunho",
-    "description": ""
-  },
-  "showsendlaterheader.tooltip": {
-    "message": "O cabeçalho “X-Send-Later-At” deve ser mostrado, isto é, na altura em que o rascunho está programado para ser enviado, ao visualizar uma mensagem no cabeçalho.",
-    "description": ""
-  },
   "showsendlaterprogress.caption": {
     "message": "Mostrar Progresso Em Segundo Plano Na Barra de Estado",
     "description": ""
   },
-  "showsendlaterunsentmessages.tooltip": {
-    "message": "Se desmarcar esta opção, o Send Later em vez de entregar as mensagens, coloca-as na sua Caixa de Saída quando estas estiverem agendadas para entrega. Desmarque esta opção se, por exemplo, usar outra extensão como o BlunderDelay para enviar periodicamente as mensagens na sua Caixa de Saída. No caso de esta opção estar marcada, sempre que o Send Later entrega uma mensagem, TODAS as mensagens na sua Caixa de Saída serão entregues.",
-    "description": ""
-  },
-  "sendlatersendbutton.tooltip": {
-    "message": "Com esta opção activa, o comando “Enviar” (através do botão ou pressionando Ctrl-Enter) actua da mesma forma que “Enviar mais tarde”.",
-    "description": ""
-  },
-  "senddelay.tooltip": {
-    "message": "Com esta opção ativada, todas as mensagens enviadas com o comando “Enviar” (tanto no botão com o atalho Ctrl-Enter) são atrasadas pelo número especificado de minutos com Send Later.",
-    "description": ""
-  },
-  "composewindowhotkeys.tooltip": {
-    "message": "Enquanto escreve uma mensagem, pode digitar Ctrl-Alt-1, -2, ou -3 para ativar o primeiro, segundo, ou terceiro botão predefinido, a menos que desmarque esta opção, nesse caso combinações de teclas estão desativadas.",
-    "description": ""
-  },
   "composewindowhotkeys.caption": {
     "message": "Ativar combinações de teclas na janela de composição para predefinições",
-    "description": ""
-  },
-  "contactauthor.tooltip": {
-    "message": "Enviar uma mensagem de correio para o autor do Send Later.",
-    "description": ""
-  },
-  "helplink.tooltip": {
-    "message": "Ver a documentação do Send Later",
     "description": ""
   },
   "releasenotes.value": {
@@ -353,14 +301,6 @@
   },
   "editorlink.value": {
     "message": "Editor de função dinamica",
-    "description": ""
-  },
-  "enforcerestrictions.tooltip": {
-    "message": "Se uma mensagem que devia ser entregue estiver fora das restrições de data ou horário por, por exemplo, o Thunderbird não estar a correr na altura para a qual estava agendada a sua entrega, então atrase a sua entrega até que as restrições de horário e a data sejam cumpridas.",
-    "description": ""
-  },
-  "blocklatemessages.tooltip": {
-    "message": "Não entregar mensagens agendadas que tenham sido adiadas para depois do tempo agendado, porque, por exemplo, o Thunderbird não estava a correr nessa altura.",
     "description": ""
   },
   "editorbutton": {

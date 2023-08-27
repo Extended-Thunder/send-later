@@ -227,17 +227,9 @@
     "message": "C",
     "description": ""
   },
-  "sendlater.prompt.sendlater.tooltip": {
-    "message": "Ao invés de agendar o envio para uma hora específica, mova a mensagem para Caixa de Saída para envio na próxima vez em que mensagens não enviadas forem enviadas.",
-    "description": ""
-  },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "E",
     "description": "Accesskey corresponding to 'sendNowLabel'"
-  },
-  "sendlater.prompt.sendnow.tooltip": {
-    "message": "Enviar imediatamente, ignorando “Enviar mais tarde”.",
-    "description": ""
   },
   "sendlater.prompt.title.label": {
     "message": "Enviar este email mais tarde",
@@ -253,10 +245,6 @@
   },
   "sendlater.prompt.sendat.label": {
     "message": "Enviar mais tarde no horário especificado acima",
-    "description": ""
-  },
-  "sendlater.prompt.sendat.tooltip": {
-    "message": "Salvar mensagem na pasta de rascunho para envio automático na hora informada acima.",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -287,10 +275,6 @@
     "message": "Cancele recorrência após resposta",
     "description": ""
   },
-  "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Verifique por respostas de cópias de mensagem previamente enviadas. Cancele uma mensagem recorrente e a remova da pasta Rascunhos quando uma resposta é recebida.",
-    "description": ""
-  },
   "sendlater3header.label": {
     "message": "Enviar mais tarde",
     "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
@@ -299,52 +283,16 @@
     "message": "Preferências de Enviar mais tarde",
     "description": ""
   },
-  "checktimepref.tooltip": {
-    "message": "Intervalo, em minutos, entre a checagem de rascunhos que atingiram o horário de envio. Caso rascunhos não tenham sido enviados no horário definido ou se a informação do contador de mensagens pendentes na barra de status divergir do agendamento de rascunhos, amplie este intervalo.",
-    "description": ""
-  },
   "quickoptionname.label": {
     "message": "Identificação do Botão",
-    "description": ""
-  },
-  "showsendlatercolumn.tooltip": {
-    "message": "Exibir coluna “Enviar mais tarde” apenas quando visualizar pasta de rascunhos",
-    "description": ""
-  },
-  "showsendlaterheader.tooltip": {
-    "message": "Exibe ou não cabeçalho “X-Send-Later-At”, isto é, ao visualizar a mensagem, no cabeçalho a hora programada de envio do rascunho.",
     "description": ""
   },
   "showsendlaterprogress.caption": {
     "message": "Exibir na barra de status progresso em segundo plano",
     "description": ""
   },
-  "showsendlaterunsentmessages.tooltip": {
-    "message": "Ao desativar essa opção, Enviar mais tarde não enviará todas as mensagens; em vez disso, transfere-a para a caixa de saída quando agendadas para envio. Desative esta opção caso use outras extensões como p.ex. BlunderDelay para o envio periódico de mensagens em sua caixa de saída. Observe que, quando essa opção estiver ativa, sempre que Enviar mais tarde enviar uma mensagem, TODAS as outra mensagens em sua caixa de saída serão enviadas.",
-    "description": ""
-  },
-  "sendlatersendbutton.tooltip": {
-    "message": "Ao ativar esta opção, o comando “Enviar” (tanto seu ícone quanto teclando Ctrl+Enter) age da mesma forma que “Envie Mais Tarde”.",
-    "description": ""
-  },
-  "senddelay.tooltip": {
-    "message": "Com esta opção habilitada, todas as mensagens enviadas com o comando “Enviar” (com o botão ou digitando Ctrl-Enter) são atrasadas pelo número especificado de minutos do agendamento com Enviar mais tarde.",
-    "description": ""
-  },
-  "composewindowhotkeys.tooltip": {
-    "message": "Enquanto você digita uma mensagem, você pode usar Ctrl-Alt-1, -2, ou -3 para ativar a primeira, segunda ou terceira predefinição, a menos que você desmarque esta preferência, nesse caso esses atalhos estarão desabilitados.",
-    "description": ""
-  },
   "composewindowhotkeys.caption": {
     "message": "Ativar combinações de teclas da janela de composição para predefinições",
-    "description": ""
-  },
-  "contactauthor.tooltip": {
-    "message": "Envie uma mensagem ao desenvolvedor de Enviar mais tarde.",
-    "description": ""
-  },
-  "helplink.tooltip": {
-    "message": "Ver a documentação de Enviar mais tarde",
     "description": ""
   },
   "releasenotes.value": {
@@ -361,14 +309,6 @@
   },
   "editorlink.value": {
     "message": "Editor de função dinâmica",
-    "description": ""
-  },
-  "enforcerestrictions.tooltip": {
-    "message": "Se uma mensagem a ser enviada estiver fora das restrições de hora ou dia, devido p.ex. ao Thunderbird não estar rodando na hora do envio, adie o envio até que as restrições sejam cumpridas.",
-    "description": ""
-  },
-  "blocklatemessages.tooltip": {
-    "message": "Não enviar mensagens agendadas para além da hora programada, p.ex., devido ao Thunderbird não estar rodando àquela hora.",
     "description": ""
   },
   "editorbutton": {
