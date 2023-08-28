@@ -184,7 +184,7 @@
     "description": ""
   },
   "sendUnsentMessagesPrefLabel": {
-    "message": "Invia i messaggi in attesa in “Posta in Uscita”",
+    "message": "Attiva la spedizione automatica dei messaggi dalla “Posta in Uscita”",
     "description": ""
   },
   "sendUnsentMessagesPrefTooltip": {
