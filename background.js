@@ -511,11 +511,17 @@ const SendLater = {
 
     // Respect late message blocker
     if (!skipping) {
-      let lateGracePeriod = preferences.lateGracePeriod || 0;
-      if (!preferences.blockLateMessages) {
-        // We enforce a late grace period of six months even when one isn't
-        // specified in the user's preferences, for safety.
-        lateGracePeriod = 60 * 24 * 180;
+      // We enforce a maximum grace period of six months even when one isn't
+      // specified in the user's preferences, for safety.
+      let maxGracePeriod = 60 * 24 * 180; // minutes
+      let lateGracePeriod;
+      if (preferences.blockLateMessages) {
+        lateGracePeriod = Math.min(
+          preferences.lateGracePeriod,
+          maxGracePeriod,
+        );
+      } else {
+        lateGracePeriod = maxGracePeriod;
       }
       let lateness = (Date.now() - nextSend.getTime()) / 60000;
       if (lateness > lateGracePeriod) {
