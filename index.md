@@ -1544,23 +1544,15 @@ if (! SendButtonPrefTimer) {
 ### Checking for scheduled messages more than once per minute
 
 If you need to control when messages are sent with smaller granularity
-than one minute, you can tweak the Send Later configuration options to
-specify more exactly how often to check for scheduled messages:
-
-1.  Open the Send Later options page.
-2.  Set your "Check every ... minutes" value to 0.
-3.  Open the "Advanced configuration editor", and find the line with
-    `"checkTimePref_isMilliseconds": false`. Change the value to `true`, and
-    click the "Save" button at the bottom of the panel.
-3.  Set the "Check every ..." option to whatever timeout you'd prefer,
-    *this time in milliseconds rather than minutes* (note that the option label
-    text will still say "minutes").
+than one minute, you can specify a fractional frequency in the add-on
+preferences. For example, "Check every 0.25 minutes" will cause Send
+Later to check every 15 seconds.
 
 Important notes:
 
 -   Setting the delay between scans too low could cause the add-on to
-    become confused. Fifteen seconds (15000 ms) is probably pretty safe. Five
-    seconds (5000 ms) may even be safe, though it's pushing it. Less than five
+    become confused. Fifteen seconds is probably pretty safe. Five
+    seconds may even be safe, though it's pushing it. Less than five
     seconds is probably a bad idea.
 -   Whatever check frequency you configure, a scheduled message could be
     sent up to that many seconds later than it was actually scheduled.
