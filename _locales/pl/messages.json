@@ -199,6 +199,10 @@
     "message": "Włącz/wyłącz wysyłanie wiadomości z “Wychodzących…”",
     "description": ""
   },
+  "sendUnsentMessagesPrefTooltip": {
+    "message": "Jeżeli ta opcja jest wyłączona wiadomości zamiast zostać wysłane w wyznaczonym czasie zostaną przeniesione do folderu “Wychodzące”. Wyłącz tą opcję jeżeli korzystasz z innych rozszerzeń, które okresowo wysyłają wiadomości z folderu “Wychodzące”, np. BlunderDelay. Zauważ, że jeżeli ta opcja jest włączona, to za każdym razem kiedy “Send Later” spróbuje wysłać zaplanowaną wiadomość WSZYSTKIE inne wiadomości z folderu “Wychodzące” zostaną wysłane.",
+    "description": ""
+  },
   "showColumnPrefLabel": {
     "message": "Pokaż kolumnę “Send Later”",
     "description": ""

@@ -199,6 +199,10 @@
     "message": "Trigger unsent message delivery from Outbox",
     "description": ""
   },
+  "sendUnsentMessagesPrefTooltip": {
+    "message": "If you unset this option, then Send Later will not fully deliver messages, but instead will just put them in your Outbox when they are scheduled for delivery. Unset this option, for example, if you use some other extension, e.g., BlunderDelay, to periodically send messages from your Outbox. Note that when this option is set, then whenever Send Later delivers a message, ALL messages in your Outbox will be delivered.",
+    "description": ""
+  },
   "showColumnPrefLabel": {
     "message": "Show Send Later Column",
     "description": ""

@@ -183,6 +183,10 @@
     "message": "Activar envío desde la Bandeja de Salida de mensajes no enviados",
     "description": ""
   },
+  "sendUnsentMessagesPrefTooltip": {
+    "message": "Si deshabilita esta opción, Send Later no completará el envío de mensajes sino que únicamente los situará en la Bandeja de Salida cuando estén programados para su envío. Deshabilite esta opción si, por ejemplo, usa alguna otra extensión, como BlunderDelay, para enviar mensajes periódicamente desde la Bandeja de Salida. Observe que cuando se habilita esta opción, en el momento en que Send Later envíe un mensaje, TODOS los mensajes presentes en su Bandeja de Salida serán enviados.",
+    "description": ""
+  },
   "showColumnPrefLabel": {
     "message": "Mostrar columna de Send Later",
     "description": ""

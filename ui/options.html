@@ -2,9 +2,9 @@
 
 <html>
   <head>
-    <!-- Title will be replaced with localized name by options.js -->
-    <title>Send Later</title>
+    <title>__MSG_extensionName__</title>
     <meta charset="utf-8">
+    <script src="/utils/i18n.js"></script>
     <style>
       body {
         font-family: sans-serif;
@@ -93,98 +93,98 @@
 
   <body>
     <section style="margin-top:0px;">
-      <div class="title option-label localized __MSG_generalOptionsTitle__">General Options</div>
+      <div class="title option-label __MSG_generalOptionsTitle__">General Options</div>
       <label>
-        <span class="option-label localized __MSG_checkTimePrefLabel1__">Check every</span>
+        <span class="option-label __MSG_checkTimePrefLabel1__">Check every</span>
         <input type="number" min="0" id="checkTimePref" style="width:6em;" class="preference"/>
-        <span id="checkEveryUnits" class="option-label localized __MSG_plural_minutely__">minutes</span>
+        <span id="checkEveryUnits" class="option-label __MSG_plural_minutely__">minutes</span>
       </label>
 
       <label>
         <input type="checkbox" id="sendDoesDelay" class="preference"/>
-        <span class="option-label localized __MSG_sendDelayPrefLabel1__">
+        <span class="option-label __MSG_sendDelayPrefLabel1__">
           &quot;Send&quot; delays messages by
         </span>
         <input type="number" min=1 style="width:6em;" id="sendDelay" class="preference"/>
-        <span class="option-label localized __MSG_plural_minutely__">minutes</span>
+        <span class="option-label __MSG_plural_minutely__">minutes</span>
       </label>
 
       <label>
         <input type="checkbox" id="sendDoesSL" class="preference"/>
-        <span class="option-label localized __MSG_sendButtonPrefLabel__">
+        <span class="option-label __MSG_sendButtonPrefLabel__">
           &quot;Send&quot; does &quot;Send later&quot;
         </span>
       </label>
 
       <label>
         <input type="checkbox" id="altBinding" class="preference"/>
-        <span class="option-label localized __MSG_altBindingPrefLabel__">
+        <span class="option-label __MSG_altBindingPrefLabel__">
           Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter</span>
       </label>
 
       <label>
         <input type="checkbox" id="markDraftsRead" class="preference"/>
-        <span class="option-label localized __MSG_markReadPrefLabel__">
+        <span class="option-label __MSG_markReadPrefLabel__">
           Mark scheduled drafts as read</span>
       </label>
 
       <span id="showColumnRow">
         <label>
           <input type="checkbox" id="showColumn" class="preference"/>
-          <span class="option-label localized __MSG_showColumnPrefLabel__">
+          <span class="option-label __MSG_showColumnPrefLabel__">
             Show Send Later column</span>
         </label>
       </span>
 
       <label>
         <input type="checkbox" id="showHeader" class="preference"/>
-        <span class="option-label localized __MSG_showHeaderPrefLabel__">
+        <span class="option-label __MSG_showHeaderPrefLabel__">
           Show Send Later header</span>
       </label>
 
       <label>
         <input type="checkbox" id="showStatus" class="preference"/>
-        <span class="option-label localized __MSG_showStatusPrefLabel__">
+        <span class="option-label __MSG_showStatusPrefLabel__">
           Show text in toolbar button</span>
       </label>
 
       <label>
         <input type="checkbox" id="enforceTimeRestrictions" class="preference"/>
-        <span class="option-label localized __MSG_enforceRestrictionsPrefLabel__">
+        <span class="option-label __MSG_enforceRestrictionsPrefLabel__">
           Enforce time and day restrictions at delivery time</span>
       </label>
 
       <label>
         <input type="checkbox" id="blockLateMessages" class="preference"/>
-        <span class="option-label localized __MSG_blockLateMessagesPrefLabel1__">
+        <span class="option-label __MSG_blockLateMessagesPrefLabel1__">
           Don't deliver messages more than</span>
         <input type="number" min=1 style="width:6em;" id="lateGracePeriod" class="preference"/>
-        <span class="option-label localized __MSG_blockLateMessagesPrefLabel2__" id="gracePeriodUnitLabel">
+        <span class="option-label __MSG_blockLateMessagesPrefLabel2__" id="gracePeriodUnitLabel">
           minutes late</span>
       </label>
 
-      <label>
+      <label title="__MSG_sendUnsentMessagesPrefTooltip__">
         <input type="checkbox" id="sendUnsentMsgs" class="preference"/>
-        <span class="option-label localized __MSG_sendUnsentMessagesPrefLabel__">
+        <span class="option-label __MSG_sendUnsentMessagesPrefLabel__">
           Trigger unsent message delivery from Outbox</span>
       </label>
 
       <label>
         <input type="checkbox" id="customizeDateTime" class="preferences"/>
-        <span class="option-label localized __MSG_customizeDateTimeFormatsPrefLabel__">
+        <span class="option-label __MSG_customizeDateTimeFormatsPrefLabel__">
           Customize date/time formats
         </span>
       </label>
       <div id="customDateTimeFormatsDiv" style="display:none;padding-left:1em;">
         <label>
-          <span class="option-label localized __MSG_shortDateTimeFormatsPrefLabel__">
+          <span class="option-label __MSG_shortDateTimeFormatsPrefLabel__">
             Short date/time format:
           </span>
           <input type="text" id="shortDateTimeFormat" class="preferences"/><br/>
           (<span id="sampleShortDateTime" style="white-space:nowrap;"></span>)
         </label>
         <label>
-          <span class="option-label localized __MSG_longDateTimeFormatsPrefLabel__">
+          <span class="option-label __MSG_longDateTimeFormatsPrefLabel__">
             Long date/time format:
           </span>
           <input type="text" id="longDateTimeFormat" class="preferences"/><br/>
@@ -193,7 +193,7 @@
       </div>
       <label>
         <input type="checkbox" id="askQuit" class="preferences"/>
-        <span class="option-label localized __MSG_ShowQuitNotificationPreference__">
+        <span class="option-label __MSG_ShowQuitNotificationPreference__">
           Show warning before quit if there are pending messages
         </span>
       </label>
@@ -214,7 +214,7 @@
         </div>
         <div class="div-table-row">
           <div class="div-table-cell">
-            <span class="option-label localized __MSG_quickOptionsLabel1Label__">Shortcut 1</span>:
+            <span class="option-label __MSG_quickOptionsLabel1Label__">Shortcut 1</span>:
           </div>
           <div class="div-table-cell">
             <input type="text" id="quickOptions1Label" style="width:10em;" class="preference"/>
@@ -230,7 +230,7 @@
         </div>
         <div class="div-table-row">
           <div class="div-table-cell">
-            <span class="option-label localized __MSG_quickOptionsLabel2Label__">Shortcut 2</span>:
+            <span class="option-label __MSG_quickOptionsLabel2Label__">Shortcut 2</span>:
           </div>
           <div class="div-table-cell">
             <input type="text" id="quickOptions2Label" style="width:10em;" class="preference"/>
@@ -246,7 +246,7 @@
         </div>
         <div class="div-table-row">
           <div class="div-table-cell">
-            <span class="option-label localized __MSG_quickOptionsLabel3Label__">Shortcut 3</span>:
+            <span class="option-label __MSG_quickOptionsLabel3Label__">Shortcut 3</span>:
           </div>
           <div class="div-table-cell">
             <input type="text" id="quickOptions3Label" style="width:10em;" class="preference"/>
@@ -262,11 +262,11 @@
         </div>
         <div class="div-table-row">
           <div class="div-table-cell">
-            <span class="option-label localized __MSG_accelKeyLabel__">Accelerator key</span>:
+            <span class="option-label __MSG_accelKeyLabel__">Accelerator key</span>:
           </div>
           <div class="div-table-cell">
             <!-- Will be replaced with "Cmd+Click" on MacOS -->
-            <span class="option-label localized __MSG_accelCtrlLabel__" id="accelCtrlLabel">Ctrl+Click</span>
+            <span class="option-label __MSG_accelCtrlLabel__" id="accelCtrlLabel">Ctrl+Click</span>
           </div>
           <div class="div-table-cell">
             <select id="accelCtrlfuncselect" style="margin-bottom:0.5em;margin-left:0.5em;min-width:10em;">
@@ -279,10 +279,10 @@
         </div>
         <div class="div-table-row">
           <div class="div-table-cell">
-            <span class="option-label localized __MSG_accelKeyLabel__">Accelerator key</span>:
+            <span class="option-label __MSG_accelKeyLabel__">Accelerator key</span>:
           </div>
           <div class="div-table-cell">
-            <span class="option-label localized __MSG_accelShiftLabel__">Shift+Click</span>
+            <span class="option-label __MSG_accelShiftLabel__">Shift+Click</span>
           </div>
           <div class="div-table-cell">
             <select id="accelShiftfuncselect" style="margin-bottom:0.5em;margin-left:0.5em;min-width:10em;">
@@ -320,7 +320,7 @@
             Delay
           </option>
           <option value="newFunctionName" id="ufunc-newFunctionName"
-            class="option-label localized __MSG_createnewfunction__">
+            class="option-label __MSG_createnewfunction__">
             Create new function
           </option>
         </select>
@@ -331,7 +331,7 @@
           <span class="pre"> (specname, prev, args) { </span><br/>
           <pre>  let next, nextspec, nextargs;</pre>
           <textarea id="functionEditorContent" type="textbox" disabled
-            class="pre localized __MSG_EditorReadMeCode__"
+            class="pre __MSG_EditorReadMeCode__"
             style="width:98%;height:18em;margin-left:1%;"></textarea>
           <pre>  return { next, nextspec, nextargs };</pre>
           <pre>}</pre>
@@ -339,7 +339,7 @@
           <span class="localized __MSG_helptextheader__" style="margin:1em;">
             Function help text</span>
           <textarea id="functionHelpText" type="textbox" disabled
-            class="pre localized __MSG_EditorReadMeHelp__"
+            class="pre __MSG_EditorReadMeHelp__"
             style="width:98%;height:6em;margin-left:1%;margin-top:0.25em;"></textarea>
 
           <fieldset id="functionTestFields">
@@ -348,7 +348,7 @@
               <div class="div-table-row">
                 <div class="div-table-cell" style="white-space:nowrap;">
                   <label for="functionTestDateTimeGroup"
-                     class="option-label localized __MSG_inputtime__">
+                     class="option-label __MSG_inputtime__">
                      Input time
                   </label>
                 </div>
@@ -360,7 +360,7 @@
               <div class="div-table-row">
                 <div class="div-table-cell" style="white-space:nowrap;">
                   <label for="functionTestArgs"
-                     class="option-label localized __MSG_inputargs__">
+                     class="option-label __MSG_inputargs__">
                      Input arguments
                   </label>
                 </div>
@@ -376,7 +376,7 @@
                 <input id="funcTestRun" type="button"
                   value="Execute function" class="localized __MSG_run.label__">
                 =>
-                <span class="option-label localized __MSG_output__">Output</span>:
+                <span class="option-label __MSG_output__">Output</span>:
               </div>
               <div id="functionTestOutput"class="pre"></div>
             </div>
@@ -395,7 +395,7 @@
     </section>
 
     <section id="advanced-section">
-      <div class="title option-label localized __MSG_advancedOptionsTitle__">Advanced</div>
+      <div class="title option-label __MSG_advancedOptionsTitle__">Advanced</div>
 
       <div id="advancedEditorTitle" class="subtitle option-label" style="cursor:pointer;">
         <span id="advancedEditorVisibleIndicator"
@@ -420,22 +420,22 @@
       </div>
 
       <label for="logConsoleLevel">
-        <span class="option-label localized __MSG_logConsoleLevelLabel__">Console log level</span>:
+        <span class="option-label __MSG_logConsoleLevelLabel__">Console log level</span>:
         <select id="logConsoleLevel" class="preference">
           <option value="fatal"
-            class="option-label localized __MSG_logLevelFatal__">Fatal</option>
+            class="option-label __MSG_logLevelFatal__">Fatal</option>
           <option value="error"
-            class="option-label localized __MSG_logLevelError__">Error</option>
+            class="option-label __MSG_logLevelError__">Error</option>
           <option value="warn"
-            class="option-label localized __MSG_logLevelWarn__">Warn</option>
+            class="option-label __MSG_logLevelWarn__">Warn</option>
           <option value="info"
-            class="option-label localized __MSG_logLevelInfo__">Info</option>
+            class="option-label __MSG_logLevelInfo__">Info</option>
           <option value="debug"
-            class="option-label localized __MSG_logLevelDebug__">Debug</option>
+            class="option-label __MSG_logLevelDebug__">Debug</option>
           <option value="trace"
-            class="option-label localized __MSG_logLevelTrace__">Trace</option>
+            class="option-label __MSG_logLevelTrace__">Trace</option>
           <option value="all"
-            class="option-label localized __MSG_logLevelAll__">All</option>
+            class="option-label __MSG_logLevelAll__">All</option>
         </select>
       </label>
     </section>
@@ -444,17 +444,16 @@
 
     <div class="footer">
       <a href="mailto:send-later-support@extended-thunder.org?subject=Send%20Later"
-        class="option-label localized __MSG_contactAuthorLabel__">Contact the author</a>
+        class="option-label __MSG_contactAuthorLabel__">Contact the author</a>
       <a href="https://extended-thunder.github.io/send-later/"
-        class="option-label localized __MSG_userGuideLabel__">User guide</a>
+        class="option-label __MSG_userGuideLabel__">User guide</a>
       <a href="https://extended-thunder.github.io/send-later/#support-send-later"
-        class="option-label localized __MSG_donatelink.value__">Donate</a>
+        class="option-label __MSG_donatelink.value__">Donate</a>
     </div>
 
     <script type="text/javascript" src="/utils/sugar-custom.js"></script>
     <script type="text/javascript" src="/utils/varNameValidator.js"></script>
     <script type="text/javascript" src="/utils/static.js"></script>
-    <script type="text/javascript" src="/ui/localize.js"></script>
     <script type="text/javascript" src="/ui/options.js"></script>
   </body>
 

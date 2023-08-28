@@ -187,6 +187,10 @@
     "message": "未送信メッセージを [送信トレイ] から送信する",
     "description": ""
   },
+  "sendUnsentMessagesPrefTooltip": {
+    "message": "このオプションを無効にすると、Send Later はメッセージを送信しませんが、送信予定日時になると [送信トレイ] へメッセージを移します。他の拡張機能 (BlunderDelay など) を使って、メッセージを [送信トレイ] から定期的に送信するようにしている場合には、このオプションを無効にしてください。注意: このオプションを有効にすると、メッセージを送信する際に、Send Later は [送信トレイ] にあるすべてのメッセージを送信します。",
+    "description": ""
+  },
   "showColumnPrefLabel": {
     "message": "“Send Later” 列を表示する",
     "description": ""

@@ -832,9 +832,6 @@ const SLOptions = {
   },
 
   async onLoad() {
-    // Set title
-    document.title = browser.i18n.getMessage("extensionName");
-
     if (navigator.userAgent.indexOf("Mac") != -1)
       document.getElementById("accelCtrlLabel").textContent =
         browser.i18n.getMessage("accelCtrlLabel.MacOS");

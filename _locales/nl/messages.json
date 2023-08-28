@@ -199,6 +199,10 @@
     "message": "Niet-verzonden berichten in Postvak UIT afleveren",
     "description": ""
   },
+  "sendUnsentMessagesPrefTooltip": {
+    "message": "Als u deze optie uitvinkt, zal Send Later berichten niet volledig verzenden, maar deze op het moment van verzenden alleen in uw Postvak UIT plaatsen. Vink deze optie uit als u bijvoorbeeld een andere extensie gebruikt, zoals BlunderDelay, die periodiek berichten uit uw Postvak UIT verzendt. Denk eraan dat als deze optie is aangevinkt, Send Later bij het afleveren van een bericht ALLE berichten in uw Postvak UIT aflevert.",
+    "description": ""
+  },
   "showColumnPrefLabel": {
     "message": "Kolom Send Later tonen",
     "description": ""

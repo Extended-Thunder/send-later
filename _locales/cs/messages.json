@@ -187,6 +187,10 @@
     "message": "Odeslat čekající zprávy ze složky “K odeslání”",
     "description": ""
   },
+  "sendUnsentMessagesPrefTooltip": {
+    "message": "Vypnete-li toto nastavení, pak Odeslat Později nebude odesílat zprávy - pouze je uloží do složky “K odeslání”. Hodí se to když používáte jiná rozšíření, např. BlunderDelay pro pravidelné odesílání zpráv ze složky “K odeslání”. Pokud bude toto nastavení zapnuté, pokaždé, když Odeslat Později odešle zprávu, budou odeslány VŠECHNY zprávy z vaší složky “K odeslání”.",
+    "description": ""
+  },
   "showColumnPrefLabel": {
     "message": "Zobrazovat sloupec „Odeslat Později“",
     "description": ""

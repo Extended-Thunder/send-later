@@ -191,6 +191,10 @@
     "message": "Expédier automatiquement les messages programmés",
     "description": ""
   },
+  "sendUnsentMessagesPrefTooltip": {
+    "message": "Effectue les envois planifiés sans les placer dans « Message en attente ». Désactiver l'option, par exemple, lors de l'utilisation d'une extension automatisant l'envoi des messages en attente (tel que BlunderDelay). Remarque : si cette option est activée ; quand « Envoyer Plus Tard » déclenche un envoi, TOUS les messages en attente sont expédiés.",
+    "description": ""
+  },
   "showColumnPrefLabel": {
     "message": "Afficher la colonne d'Envoyer Plus Tard",
     "description": ""

@@ -195,6 +195,10 @@
     "message": "傳送寄件匣中的未傳送的信件",
     "description": ""
   },
+  "sendUnsentMessagesPrefTooltip": {
+    "message": "如果取消此選項，那麼達到信件的預定傳送時間時，延期發信 將不會完全傳送信件，只會將它們放到寄件匣。如果您使用一些其他的擴充元件，如 BlunderDelay， 來定期地發送您寄件匣的信件，請取消此選項。注意，勾選此選項後，只要 延期發信 發送信件，寄件匣的所有信件都將被傳送出去。",
+    "description": ""
+  },
   "showColumnPrefLabel": {
     "message": "顯示延期發信列",
     "description": ""

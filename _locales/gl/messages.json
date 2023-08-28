@@ -187,6 +187,10 @@
     "message": "Activar o envío de mensaxes non enviadas dende a Bandexa de Saída",
     "description": ""
   },
+  "sendUnsentMessagesPrefTooltip": {
+    "message": "Se desactiva esta opción, Send Later non enviará as mensaxes directamente, senón que as situará na Bandexa de Saída cando estean programadas para o seu envío. Desmarque esta opción se, por exemplo, usa algún outro complemento (coma BlunderDelay) para enviar mensaxes de xeito periódico dende a Bandexa de Saída. Teña en conta que cando se activa esta opción, no intre en que Send Laterenvía unha mensaxe TÓDALAS mensaxes da Bandexa de Saída serán enviadas.",
+    "description": ""
+  },
   "showColumnPrefLabel": {
     "message": "Mostrar columna de Send Later",
     "description": ""

@@ -191,6 +191,10 @@
     "message": "Acionar envio de mensagens salvas na Caixa de Saída",
     "description": ""
   },
+  "sendUnsentMessagesPrefTooltip": {
+    "message": "Ao desativar essa opção, Enviar mais tarde não enviará todas as mensagens; em vez disso, transfere-a para a caixa de saída quando agendadas para envio. Desative esta opção caso use outras extensões como p.ex. BlunderDelay para o envio periódico de mensagens em sua caixa de saída. Observe que, quando essa opção estiver ativa, sempre que Enviar mais tarde enviar uma mensagem, TODAS as outra mensagens em sua caixa de saída serão enviadas.",
+    "description": ""
+  },
   "showColumnPrefLabel": {
     "message": "Exibir Coluna de Enviar mais tarde",
     "description": ""

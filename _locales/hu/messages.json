@@ -199,6 +199,10 @@
     "message": "Indítsa el a nem küldött üzeneteket a Kimenő mappából",
     "description": ""
   },
+  "sendUnsentMessagesPrefTooltip": {
+    "message": "Ha kikapcsolja ezt az opciót, akkor a Küldés később nem fogja teljes mértékben kézbesíteni az üzeneteket, hanem csak azokat a Kimenő mappába helyezi, amikor azokat a szállításra tervezik. Törölje ezt az opciót, például, ha valamilyen más kiterjesztést, például Baklövés késleltetést használ az üzenetek időszakos küldésére a Kimenő mappából. Ne feledje, hogy ha ez az opció be van állítva, akkor, amikor Küldés később üzenetet küld, a Kimenő összes üzeneteit fogja elküldeni.",
+    "description": ""
+  },
   "showColumnPrefLabel": {
     "message": "Küldés később oszlop megjelenítése",
     "description": ""

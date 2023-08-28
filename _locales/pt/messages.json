@@ -187,6 +187,10 @@
     "message": "Acionar a entrega de mensagens não enviadas a partir da caixa de saída",
     "description": ""
   },
+  "sendUnsentMessagesPrefTooltip": {
+    "message": "Se desmarcar esta opção, o Send Later em vez de entregar as mensagens, coloca-as na sua Caixa de Saída quando estas estiverem agendadas para entrega. Desmarque esta opção se, por exemplo, usar outra extensão como o BlunderDelay para enviar periodicamente as mensagens na sua Caixa de Saída. No caso de esta opção estar marcada, sempre que o Send Later entrega uma mensagem, TODAS as mensagens na sua Caixa de Saída serão entregues.",
+    "description": ""
+  },
   "showColumnPrefLabel": {
     "message": "Mostrar coluna do Send Later",
     "description": ""

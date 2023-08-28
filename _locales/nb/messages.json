@@ -183,6 +183,10 @@
     "message": "Iverksett levering av usendte meldinger fra utboksen",
     "description": ""
   },
+  "sendUnsentMessagesPrefTooltip": {
+    "message": "Hvis du fjerner dette alternativet, vil Send senere ikke levere meldinger, men i stedet vil bare sette dem i utboksen når de er planlagt for levering. Fjern dette alternativet hvis du for eksempel bruker en annen utvidelse, f.eks. BlunderDelay, til å periodisk plassere meldinger i utgangen. Merk at når dette alternativet er angitt, når Send senere leverer en melding, vil alle meldinger i utboksen leveres.",
+    "description": ""
+  },
   "showColumnPrefLabel": {
     "message": "Vis kolonne for Send senere",
     "description": ""

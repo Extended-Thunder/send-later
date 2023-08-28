@@ -191,6 +191,10 @@
     "message": "Käynnistä Lähtevät-kansiosta lähettämättömien viestien lähetys",
     "description": ""
   },
+  "sendUnsentMessagesPrefTooltip": {
+    "message": "Jos et aseta tätä valintaa, ei Lähetä myöhemmin tule toimittamaan viestejä, vaan sen sijaan se siirtää ne Lähtevät-kansioon niiden lähetysajankohtana. Jätä asettamatta tämä valinta, esim. jos käytät jotain muuta lisäosaa, kuten BlunderDelay, lähettääksesi määräajoin viestejä Lähtevät-kansiostasi. Huomaa, että kun tämä valinta on asetettuna, niin aina kun Lähetä myöhemmin lähettää viestin, lähtevät KAIKKI viestisi Lähtevät-kansiostasi.",
+    "description": ""
+  },
   "showColumnPrefLabel": {
     "message": "Näytä Lähetä myöhemmin -sarake",
     "description": ""

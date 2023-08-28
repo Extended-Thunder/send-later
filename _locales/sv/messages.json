@@ -199,6 +199,10 @@
     "message": "Utlös sändning av ej skickade meddelanden från Utkorgen",
     "description": ""
   },
+  "sendUnsentMessagesPrefTooltip": {
+    "message": "Om du avmarkerar detta alternativ, så skickar inte Skicka Senare iväg dina meddelanden, utan lägger dem i din utkorg när de har schemalagts för avsändning. Avmarkera detta alternativ om du, exempelvis, använder något annat tillägg, t.ex. BlunderDelay, för att med regelbundna intervall skicka meddelanden från Utkorgen. Observera att när detta alternativ är markerat, så skickar Skicka Senare SAMTLIGA meddelanden i din utkorg varje gång ett meddelande skall skickas.",
+    "description": ""
+  },
   "showColumnPrefLabel": {
     "message": "Visa kolumnen “Skicka Senare”",
     "description": ""

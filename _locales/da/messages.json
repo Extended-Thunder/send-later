@@ -199,6 +199,10 @@
     "message": "Udløsere sendte levering af beskeder fra udbakken",
     "description": ""
   },
+  "sendUnsentMessagesPrefTooltip": {
+    "message": "Hvis du deaktiverer denne indstilling, så vil Send senere ikke fuldt ud levere beskeder, men vil i stedet bare lægge dem i din udbakke når de er planlagt til levering. Fjern denne indstilling, eksempelvis, hvis du bruger en anden udvidelse, f.eks., BlunderDelay, til periodisk at sende beskeder fra din udbakke. Bemærk, at når denne indstilling er aktiveret, så vil ALLE beskeder der ligger i din udbakke blive sendt næste gang Send Senere sender en besked.",
+    "description": ""
+  },
   "showColumnPrefLabel": {
     "message": "Vis kolonnen Send senere",
     "description": ""

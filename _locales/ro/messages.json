@@ -199,6 +199,10 @@
     "message": "Declanșează trimiterea mesajelor netrimise din „De trimis”",
     "description": ""
   },
+  "sendUnsentMessagesPrefTooltip": {
+    "message": "Dacă dezactivezi opțiunea aceasta, atunci Send Later nu va trimite mesajele ci le va copia în dosarul „De trimis” când sunt programate pentru trimitere. Dezactivează aceasta opțiune, de exemplu, când folosești și o alta extensie cum ar fi BlunderDelay pentru a trimite periodic mesajele din „De trimis”. Notă: când această opțiune este activată, de fiecare dată când Send Later trimite un mesaj, toate mesajele din dosarul „De trimis” for fi trimise.",
+    "description": ""
+  },
   "showColumnPrefLabel": {
     "message": "Arată coloana Send Later",
     "description": ""
