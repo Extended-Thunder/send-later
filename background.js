@@ -988,10 +988,6 @@ const SendLater = {
       SLStatic.error("SL3U.setCustomDBHeaders", ex);
     });
 
-    // Before preferences are available, let's set logging
-    // to the default level.
-    SLStatic.logConsoleLevel = "info";
-
     // Clear the current message settings cache
     await messenger.storage.local.set({ scheduleCache: {} });
 
@@ -1002,11 +998,7 @@ const SendLater = {
 
     try {
       SendLater.prefCache = preferences;
-      SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
-      SLStatic.customizeDateTime = preferences.customizeDateTime === true;
-      SLStatic.longDateTimeFormat = preferences.longDateTimeFormat;
-      SLStatic.shortDateTimeFormat = preferences.shortDateTimeFormat;
-      await messenger.SL3U.setLogConsoleLevel(SLStatic.logConsoleLevel);
+      await messenger.SL3U.setLogConsoleLevel(preferences.logConsoleLevel);
 
       await SLStatic.tb115(false, async () => {
         for (let pref of [

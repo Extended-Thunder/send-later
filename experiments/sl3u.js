@@ -598,7 +598,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
         },
 
         async setLogConsoleLevel(level) {
-          SendLaterVars.logConsoleLevel = level;
+          SendLaterVars.logConsoleLevel = level.toLowerCase();
         },
 
         // Find whether the current composition window is editing an existing

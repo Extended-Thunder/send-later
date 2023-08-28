@@ -32,13 +32,7 @@ var SLStatic = {
     }
   },
 
-  // Non-static preferences (I know...), which affect the behavior of
-  // various functions. Specifically, the log output level, and customized
-  // date/time formats.
-  _logConsoleLevel: null,
-  _longDateTimeFormat: null,
-  _shortDateTimeFormat: null,
-  _customizeDateTime: null,
+  preferences: {},
   listeningForStorageChanges: false,
 
   error: console.error,
@@ -48,18 +42,8 @@ var SLStatic = {
   debug: console.debug,
   trace: console.trace,
 
-  get logConsoleLevel() {
-    if (this._logConsoleLevel === null) {
-      this.cachePrefs().catch(console.error);
-      return "all";
-    } else {
-      return this._logConsoleLevel;
-    }
-  },
-
-  set logConsoleLevel(level) {
-    level = (level || "all").toLowerCase();
-    this._logConsoleLevel = level;
+  setLogConsoleLevel() {
+    level = (this.preferences.logConsoleLevel || "all").toLowerCase();
     function logThreshold(l) {
       const levels = [
         "all",
@@ -114,45 +98,21 @@ var SLStatic = {
     }
   },
 
-  get customizeDateTime() {
-    if (this._customizeDateTime === null) {
-      this.cachePrefs().catch(console.error);
-      return false;
-    } else {
-      return this._customizeDateTime === true;
-    }
-  },
-
-  set customizeDateTime(val) {
-    this._customizeDateTime = val;
-  },
-
-  get longDateTimeFormat() {
-    return this._longDateTimeFormat;
-  },
-
-  set longDateTimeFormat(fmt) {
-    this._longDateTimeFormat = fmt;
-  },
-
-  get shortDateTimeFormat() {
-    return this._shortDateTimeFormat;
-  },
-
-  set shortDateTimeFormat(fmt) {
-    this._shortDateTimeFormat = fmt;
-  },
-
   async cachePrefs() {
     if (!SLStatic.listeningForStorageChanges) {
       browser.storage.local.onChanged.addListener(SLStatic.cachePrefs);
       SLStatic.listeningForStorageChanges = true;
     }
-    let { preferences } = await browser.storage.local.get({ preferences: {} });
-    SLStatic.logConsoleLevel = preferences.logConsoleLevel;
-    SLStatic._customizeDateTime = preferences.customizeDateTime;
-    SLStatic._longDateTimeFormat = preferences.longDateTimeFormat;
-    SLStatic._shortDateTimeFormat = preferences.shortDateTimeFormat;
+    let { preferences } = await browser.storage.local
+      .get({ preferences: {} })
+      .catch(console.error);
+    if (preferences) {
+      SLStatic.preferences = preferences;
+    }
+    SLStatic.setLogConsoleLevel();
+    if (preferences) {
+      SLStatic.debug("SLStatic.cachePrefs success");
+    }
   },
 
   RFC5322: {
@@ -369,9 +329,15 @@ var SLStatic = {
   },
 
   humanDateTimeFormat(date) {
-    if (this.customizeDateTime && this.longDateTimeFormat !== "") {
+    if (
+      this.preferences.customizeDateTime &&
+      this.preferences.longDateTimeFormat !== ""
+    ) {
       try {
-        return this.customHumanDateTimeFormat(date, this.longDateTimeFormat);
+        return this.customHumanDateTimeFormat(
+          date,
+          this.preferences.longDateTimeFormat,
+        );
       } catch (ex) {
         this.warn(ex);
       }
@@ -380,9 +346,15 @@ var SLStatic = {
   },
 
   shortHumanDateTimeFormat(date) {
-    if (this.customizeDateTime && this.shortDateTimeFormat !== "") {
+    if (
+      this.preferences.customizeDateTime &&
+      this.preferences.shortDateTimeFormat !== ""
+    ) {
       try {
-        return this.customHumanDateTimeFormat(date, this.shortDateTimeFormat);
+        return this.customHumanDateTimeFormat(
+          date,
+          this.preferences.shortDateTimeFormat,
+        );
       } catch (ex) {
         this.warn(ex);
       }
@@ -2031,3 +2003,5 @@ try {
 } catch (ex) {
   console.warn("[SendLater]: Unable to set date Sugar.js locale", ex);
 }
+
+SLStatic.cachePrefs();
