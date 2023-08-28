@@ -118,7 +118,8 @@ def wrap(str):
     width = 79
     indent = '    '
     lines = str.split('\n')
-    wrapped = textwrap.wrap(lines.pop(0), width=width, subsequent_indent=indent)
+    wrapped = textwrap.wrap(lines.pop(0), width=width,
+                            subsequent_indent=indent)
     for line in lines:
         wrapped.extend(textwrap.wrap(line, width=width, initial_indent=indent,
                                      subsequent_indent=indent))
