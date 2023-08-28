@@ -169,7 +169,7 @@ var SLStatic = {
       SLStatic.listeningForStorageChanges = true;
     }
     let { preferences } = await browser.storage.local.get({ preferences: {} });
-    SLStatic._logConsoleLevel = preferences.logConsoleLevel;
+    SLStatic.logConsoleLevel = preferences.logConsoleLevel;
     SLStatic._customizeDateTime = preferences.customizeDateTime;
     SLStatic._longDateTimeFormat = preferences.longDateTimeFormat;
     SLStatic._shortDateTimeFormat = preferences.shortDateTimeFormat;
