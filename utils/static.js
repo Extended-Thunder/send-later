@@ -1,6 +1,6 @@
 var SLStatic = {
   i18n: null,
-
+  tempFolderName: "Send-Later-Temp",
   timeRegex: /^(2[0-3]|[01]?\d):?([0-5]\d)$/,
 
   // HTML element IDs in options.html correspond to preference keys
@@ -1671,6 +1671,65 @@ var SLStatic = {
     }
 
     return dom;
+  },
+
+  // Like messenger.messages.import, but supports IMAP folders.
+  // Cribbed from https://github.com/cleidigh/EditEmailSubject-MX/blob/master/
+  // src/content/scripts/editemailsubject.mjs, as recommended by John Bieling.
+  async messageImport(file, destination, properties) {
+    // Operation is piped thru a local folder, since messages.import does not
+    // currently work with imap.
+    let localAccount = (await messenger.accounts.list(false)).find(
+      (account) => account.type == "none",
+    );
+    let isLocal = localAccount.id == destination.accountId;
+    let localFolder;
+    if (isLocal) {
+      localFolder = destination;
+    } else {
+      let localFolders = await messenger.folders.getSubFolders(
+        localAccount,
+        false,
+      );
+      localFolder = localFolders.find(
+        (folder) => folder.name == SLStatic.tempFolderName,
+      );
+      if (!localFolder) {
+        localFolder = await messenger.folders.create(
+          localAccount,
+          SLStatic.tempFolderName,
+        );
+      }
+    }
+    let newMsgHeader = await messenger.messages.import(
+      file,
+      localFolder,
+      properties,
+    );
+
+    if (!newMsgHeader) {
+      return false;
+    }
+    SLStatic.debug(`Saved local message ${newMsgHeader.id}`);
+
+    if (isLocal) {
+      SLStatic.debug(
+        "Destination folder is already local, not moving message",
+      );
+      return true;
+    }
+
+    // Move new message from temp folder to real destination.
+    let moved;
+    await messenger.messages
+      .move([newMsgHeader.id], destination)
+      .then(() => {
+        moved = true;
+      })
+      .catch(() => {
+        moved = false;
+      });
+    return moved;
   },
 };
 

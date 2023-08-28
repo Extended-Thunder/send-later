@@ -506,11 +506,12 @@ const SendLater = {
             false,
           );
 
-          const success = await messenger.SL3U.saveMessage(
-            msgHdr.folder.accountId,
-            msgHdr.folder.path,
-            newMsgContent,
-            preferences.markDraftsRead,
+          let success = await SLStatic.messageImport(
+            new File([new TextEncoder().encode(newMsgContent)], "draft.eml", {
+              type: "message/rfc822",
+            }),
+            msgHdr.folder,
+            { new: false, read: preferences.markDraftsRead },
           );
 
           if (success) {
@@ -531,17 +532,34 @@ const SendLater = {
       // Initiate send from draft message
       SLStatic.info(`Sending message ${originalMsgId}.`);
 
-      const success = await messenger.SL3U.sendRaw(
-        SLStatic.prepNewMessageHeaders(
-          await messenger.messages.getRaw(msgHdr.id),
-        ),
-        preferences.sendUnsentMsgs,
-      ).catch((ex) => {
-        SLStatic.error(`Error sending raw message from drafts`, ex);
-        return null;
+      let localAccount = (await messenger.accounts.list(false)).find(
+        (account) => account.type == "none",
+      );
+      let localFolders = await messenger.folders.getSubFolders(localAccount);
+      let outboxFolder = localFolders.find((f) => f.type == "outbox");
+      if (!outboxFolder) {
+        SLStatic.error("Could not find outbox folder to deliver message");
+        return false;
+      }
+      let content = SLStatic.prepNewMessageHeaders(
+        await messenger.messages.getRaw(msgHdr.id),
+      );
+      let file = new File(
+        [new TextEncoder().encode(content)],
+        "outbound-message.eml",
+        {
+          type: "message/rfc822",
+        },
+      );
+      let success = await SLStatic.messageImport(file, outboxFolder, {
+        new: false,
+        read: true,
       });
 
       if (success) {
+        if (preferences.sendUnsentMsgs) {
+          setTimeout(messenger.SL3U.queueSendUnsentMessages, 1000);
+        }
         lock[msgLockId] = true;
         await messenger.storage.local.set({ lock });
         SLStatic.debug(`Locked message <${msgLockId}> from re-sending.`);
@@ -636,11 +654,12 @@ const SendLater = {
       //   false
       // );
 
-      const success = await messenger.SL3U.saveMessage(
-        msgHdr.folder.accountId,
-        msgHdr.folder.path,
-        newMsgContent,
-        preferences.markDraftsRead,
+      let success = await SLStatic.messageImport(
+        new File([new TextEncoder().encode(newMsgContent)], "draft.eml", {
+          type: "message/rfc822",
+        }),
+        msgHdr.folder,
+        { new: false, read: preferences.markDraftsRead },
       );
 
       if (success) {

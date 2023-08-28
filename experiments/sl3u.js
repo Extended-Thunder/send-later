@@ -168,50 +168,6 @@ const SendLaterFunctions = {
     return msgSendLater.getUnsentMessagesFolder(null);
   },
 
-  queueSendUnsentMessages() {
-    if (Utils.isOffline) {
-      SendLaterFunctions.debug(
-        "SendLaterFunctions.queueSendUnsentMessages " +
-          "Deferring sendUnsentMessages while offline",
-      );
-    } else if (SendLaterVars.sendingUnsentMessages) {
-      SendLaterFunctions.debug(
-        "SendLaterFunctions.queueSendUnsentMessages " +
-          "Deferring sendUnsentMessages",
-      );
-      SendLaterVars.needToSendUnsentMessages = true;
-    } else {
-      try {
-        // From mailWindowOverlay.js
-        let msgSendLater = Cc[
-          "@mozilla.org/messengercompose/sendlater;1"
-        ].getService(Ci.nsIMsgSendLater);
-        for (let identity of MailServices.accounts.allIdentities) {
-          let msgFolder = msgSendLater.getUnsentMessagesFolder(identity);
-          if (msgFolder) {
-            let numMessages = msgFolder.getTotalMessages(
-              false /* include subfolders */,
-            );
-            if (numMessages > 0) {
-              msgSendLater.sendUnsentMessages(identity);
-              // Right now, all identities point to the same unsent messages
-              // folder, so to avoid sending multiple copies of the unsent
-              // messages, we only call messenger.SendUnsentMessages() once.
-              // See bug #89150 for details.
-              break;
-            }
-          }
-        }
-      } catch (ex) {
-        SendLaterFunctions.error(
-          "SendLaterFunctions.queueSendUnsentMessages",
-          "Error triggering send from unsent messages folder.",
-          ex,
-        );
-      }
-    }
-  },
-
   copyStringMessageToFolder(content, folder, listener, markRead) {
     const dirService = Cc["@mozilla.org/file/directory_service;1"].getService(
       Ci.nsIProperties,
@@ -394,6 +350,50 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
     return {
       SL3U: {
+        async queueSendUnsentMessages() {
+          if (Utils.isOffline) {
+            SendLaterFunctions.debug(
+              "SendLaterFunctions.queueSendUnsentMessages " +
+                "Deferring sendUnsentMessages while offline",
+            );
+          } else if (SendLaterVars.sendingUnsentMessages) {
+            SendLaterFunctions.debug(
+              "SendLaterFunctions.queueSendUnsentMessages " +
+                "Deferring sendUnsentMessages",
+            );
+            SendLaterVars.needToSendUnsentMessages = true;
+          } else {
+            try {
+              // From mailWindowOverlay.js
+              let msgSendLater = Cc[
+                "@mozilla.org/messengercompose/sendlater;1"
+              ].getService(Ci.nsIMsgSendLater);
+              for (let identity of MailServices.accounts.allIdentities) {
+                let msgFolder = msgSendLater.getUnsentMessagesFolder(identity);
+                if (msgFolder) {
+                  let numMessages = msgFolder.getTotalMessages(
+                    false /* include subfolders */,
+                  );
+                  if (numMessages > 0) {
+                    msgSendLater.sendUnsentMessages(identity);
+                    // Right now, all identities point to the same unsent messages
+                    // folder, so to avoid sending multiple copies of the unsent
+                    // messages, we only call messenger.SendUnsentMessages() once.
+                    // See bug #89150 for details.
+                    break;
+                  }
+                }
+              }
+            } catch (ex) {
+              SendLaterFunctions.error(
+                "SendLaterFunctions.queueSendUnsentMessages",
+                "Error triggering send from unsent messages folder.",
+                ex,
+              );
+            }
+          }
+        },
+
         async expandRecipients(tabId, field) {
           function composeWindowIsReady(composeWindow) {
             return new Promise((resolve) => {
@@ -555,158 +555,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               `Unrecognized message disposition state: ` + `"${disposition}"`,
             );
           }
-        },
-
-        async sendRaw(content, sendUnsentMsgs) {
-          // Dump message content as new message in the outbox folder
-          function CopyUnsentListener(triggerOutbox) {
-            this._sendUnsentMsgs = triggerOutbox;
-          }
-          CopyUnsentListener.prototype = {
-            QueryInterface: function (iid) {
-              SendLaterFunctions.debug(
-                "SL3U.sendRaw.CopyUnsentListener.QueryInterface: Entering",
-              );
-              if (
-                iid.equals(Ci.nsIMsgCopyServiceListener) ||
-                iid.equals(Ci.nsISupports)
-              ) {
-                SendLaterFunctions.debug(
-                  "SL3U.sendRaw.CopyUnsentListener.QueryInterface: Returning",
-                  this,
-                );
-                return this;
-              }
-              SendLaterFunctions.error(
-                "SL3U.sendRaw.CopyUnsentListener.QueryInterface",
-                Components.results.NS_NOINTERFACE,
-              );
-              throw Components.results.NS_NOINTERFACE;
-            },
-            OnProgress: function (progress, progressMax) {},
-            OnStartCopy: function () {},
-            OnStopCopy: function (status) {
-              const copying = this.localFile;
-              if (copying.exists()) {
-                try {
-                  copying.remove(true);
-                } catch (ex) {
-                  SendLaterFunctions.debug(
-                    `SL3U.sendRaw.CopyUnsentListener.OnStopCopy:`,
-                    `Failed to delete ${copying.path}.` +
-                      `Trying again with waitAndDelete.`,
-                  );
-                  SendLaterFunctions.waitAndDelete(copying);
-                }
-              }
-              if (Components.isSuccessCode(status)) {
-                SendLaterFunctions.debug(
-                  "SL3U.sendRaw.CopyUnsentListener.OnStopCopy:",
-                  "Successfully copied message to outbox.",
-                );
-                if (this._sendUnsentMsgs) {
-                  SendLaterFunctions.debug(
-                    "SL3U.sendRaw.CopyUnsentListener.OnStopCopy:",
-                    "Triggering send unsent messages.",
-                  );
-                  const mailWindow =
-                    Services.wm.getMostRecentWindow("mail:3pane");
-                  mailWindow.setTimeout(
-                    SendLaterFunctions.queueSendUnsentMessages,
-                    1000,
-                  );
-                } else {
-                  SendLaterFunctions.debug(
-                    "SL3U.sendRaw.CopyUnsentListener.OnStopCopy:",
-                    "Not triggering send operation per user prefs.",
-                  );
-                }
-              } else {
-                SendLaterFunctions.error(
-                  "SL3U.sendRaw.CopyUnsentListener.OnStopCopy",
-                  status,
-                );
-
-                const hexStatus = `0x${status.toString(16)}`;
-                const CopyUnsentError = SendLaterFunctions.getMessage(
-                  context,
-                  "CopyUnsentError",
-                  [hexStatus],
-                );
-                Services.prompt.alert(null, null, CopyUnsentError);
-              }
-            },
-            SetMessageKey: function (key) {},
-          };
-          const fdrunsent = SendLaterFunctions.getUnsentMessagesFolder();
-          const listener = new CopyUnsentListener(sendUnsentMsgs);
-          SendLaterFunctions.copyStringMessageToFolder(
-            content,
-            fdrunsent,
-            listener,
-            false,
-          );
-
-          return true;
-        },
-
-        // Saves raw message content in specified folder.
-        async saveMessage(accountId, path, content, markRead) {
-          function CopyRecurListener(folder) {
-            this._folder = folder;
-          }
-
-          CopyRecurListener.prototype = {
-            QueryInterface: function (iid) {
-              if (
-                iid.equals(Ci.nsIMsgCopyServiceListener) ||
-                iid.equals(Ci.nsISupports)
-              ) {
-                return this;
-              }
-              throw Components.results.NS_NOINTERFACE;
-            },
-            OnProgress: function (progress, progressMax) {},
-            OnStartCopy: function () {},
-            OnStopCopy: function (status) {
-              const copying = this.localFile;
-              if (copying.exists()) {
-                try {
-                  copying.remove(true);
-                } catch (ex) {
-                  SendLaterFunctions.debug(
-                    `SL3U.saveMessage: Failed to delete ${copying.path}.`,
-                  );
-                  SendLaterFunctions.waitAndDelete(copying);
-                }
-              }
-              if (Components.isSuccessCode(status)) {
-                SendLaterFunctions.debug(
-                  "SL3U.saveMessage: Saved updated message",
-                );
-              } else {
-                SendLaterFunctions.error(
-                  "SL3U.saveMessage:",
-                  `0x${status.toString(16)}`,
-                );
-              }
-            },
-            SetMessageKey: function (key) {
-              this._key = key;
-            },
-          };
-
-          const uri = SendLaterFunctions.folderPathToURI(accountId, path);
-          const folder = MailServices.folderLookup.getFolderForURL(uri);
-          const listener = new CopyRecurListener(folder);
-          SendLaterFunctions.copyStringMessageToFolder(
-            content,
-            folder,
-            listener,
-            markRead,
-          );
-
-          return true;
         },
 
         async setHeader(tabId, name, value) {
