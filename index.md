@@ -1,8 +1,7 @@
 * TOC
 {:toc}
 
-Introduction
-----------------------------
+## Introduction
 
 The Send Later Thunderbird add-on allows you you to write an email message and
 then tell Thunderbird when you want it to be sent. The message is saved into
@@ -25,8 +24,7 @@ different for older versions, and we can offer only minimal support for them.
 
 <a name="install"></a>
 
-Installation
-------------------------------
+## Installation
 
 ### Why Send Later asks for "full, unrestricted" access to your computer
 
@@ -85,8 +83,7 @@ warning when you install it.
     `.xpi` package.
 4.  Recommended: restart Thunderbird after the add-on is installed.
 
-Basic usage
----------------------------
+## Basic usage
 
 When you want to schedule a message for later delivery, either select the
 `File > Send Later` menu command in the message composition window, or hit
@@ -212,8 +209,7 @@ understand but doesn't,
 
 <a name="prefs"></a>
 
-Preferences
----------------------------
+## Preferences
 
 You can get to the add-on's preferences page in several ways:
 
@@ -469,8 +465,7 @@ again by hand.
 
 <a name="caveats"></a>
 
-Caveats and known issues
-------------------------------------------
+## Caveats and known issues
 
 Some things to keep in mind:
 
@@ -984,8 +979,7 @@ formats to control how Send Later formats dates for display, you can't
 currently use them to control how it _parses_ dates; that's controlled by the
 language and region setting in your operating system.
 
-Advanced usage
----------------------------------
+## Advanced usage
 
 ### Hot keys
 
@@ -1544,8 +1538,7 @@ Important notes:
     Outbox and tell Thunderbird to send it, the actual transmitting of
     the message takes a bit of time as well, especially if it's large.
 
-Troubleshooting
------------------------------------------
+## Troubleshooting
 
 ### Messages don't send or send multiple times
 
@@ -1797,8 +1790,7 @@ to do that.
     "Select All".
 8. Copy and paste the selected messages into an email message to us.
 
-Helping to improve the add-on
------------------------------------------------
+## Helping to improve the add-on
 
 <a name="translate"></a>
 ### Translations
@@ -1824,8 +1816,7 @@ contributions are very welcome!
 
 <a name="help"></a>
 
-Getting help
----------------------------
+## Getting help
 
 ### Discussion forum
 
@@ -1862,8 +1853,7 @@ a previous version of Send Later, but most of it should still apply.
 
 <a name="donate"></a>
 
-Support Send Later!
-------------------------------------
+## Support Send Later!
 
 The development and maintenance of Send Later is financially supported
 by Extended Thunder Inc., a non-profit organization in the United
@@ -1884,8 +1874,7 @@ and we can discuss it. Of course, you should feel free to send us feature
 requests at any time, even ones you do not wish to fund; We'll put them into our
 queue and get to them as soon as we can.
 
-Other recommended extensions
--------------------------------------------------
+## Other recommended extensions
 
 Jonathan Kamens (long time developer and maintainer of Send Later) has also
 written or maintained several
@@ -1916,8 +1905,7 @@ which you may find useful:
     it opens. See also its
     [home on Github](https://github.com/jikamens/userChromeJS).
 
-Credits
--------------------------
+## Credits
 
 Thanks to:
 
