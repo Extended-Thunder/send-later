@@ -470,6 +470,26 @@
     "message": "Send Later: Attempt to resend already sent message?! Your Outbox or Drafts folder $1 is probably corrupt. Please repair them as described at https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
+  "single_minute": {
+    "message": "minute",
+    "description": "Used in an error message when the phrase '1 minute' needs to be displayed."
+  },
+  "single_day": {
+    "message": "day",
+    "description": "Used in an error message when the phrase '1 day' needs to be displayed."
+  },
+  "single_week": {
+    "message": "week",
+    "description": "Used in an error message when the phrase '1 week' needs to be displayed."
+  },
+  "single_month": {
+    "message": "month",
+    "description": "Used in an error message when the phrase '1 month' needs to be displayed."
+  },
+  "single_year": {
+    "message": "year",
+    "description": "Used in an error message when the phrase '1 year' needs to be displayed."
+  },
   "plural_minutely": {
     "message": "minutes",
     "description": ""
@@ -673,6 +693,10 @@
     "message": "The message with subject “$1” in Drafts folder $2 was scheduled to be delivered more than $3 minutes ago, so delivery has been blocked. You should edit the draft and either send it by hand or reschedule it. You can also disable the “Don't deliver messages more than # minutes late” preference to stop blocking delivery of late messages.",
     "description": ""
   },
+  "BlockedLateMessage2": {
+    "message": "The message with subject “$1” in Drafts folder $2 was scheduled to be delivered more than $3 $4 ago, so delivery has been blocked. You should edit the draft and either send it by hand or reschedule it. You can also disable the “Don't deliver messages more than…” preference to stop blocking delivery of some late messages, but messages more than six months late are always blocked.",
+    "description": "This is an updated version of the BlockedLateMessage string which is intended to replace it. I've left the old string in the database for the time being so translators can use it as a reference / starting point. The 3rd placeholder in THIS string is a number and the fourth is a unit such as 'minutes', 'days', etc. It will be singular if the number is 1 or plural otherwise. The unit is pulled from single_day etc. or plural_daily etc."
+  },
   "EditorReadMeCode": {
     "message": "// Welcome to the Send Later function editor!\n//\n// The editor allows you to create JavaScript functions implementing complex\n// message scheduling logic which can be associated with shortcut buttons or\n// selected in the Send Later dialog.\n//\n// As you can see above, when a scheduling function is called, it will be given\n// three arguments:\n// * \"specname\" is needed if you want this function to recur (see below)\n// * \"prev\" is the previous scheduled send time, if this is a recurring\n//   invocation\n// * \"args\" is the extra arguments returned by the previous invocation if this\n//   is a recurring invocation\n//\n// Your code needs to set the variables \"next\", \"nextspec\", and\n// \"nextargs\" as follows:\n//\n// * \"next\" is either the number of minutes in the future or a Date object\n//   indicating when the message should be sent.\n// * \"nextspec\" is a recurrence specification if this is intended to be a\n//   recurring message (see\n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence). If you don't set\n//   this, then the message will only be sent once. Note: if you want your\n//   function to be called again for recurrence, do:\n//     nextspec = \"function \" + specname;\n// * \"nextargs\" is an array of arguments you want to be passed into the next\n//   invocation of the function as \"args\".\n//\n// While you are working on your function, you can test it by filling in values\n// for \"prev\" and \"args\" in the Text boxes below and then clicking \"Execute\" to\n// execute the function and see the results.\n//\n// There are two pre-configured sample functions, \"BusinessHours\" and\n// \"DaysInARow\", which you can look at and play with to learn more.\n//\n// This \"ReadMeFirst\" function just causes the message to be sent around now,\n// via the following line.\nnext = new Date();",
     "description": "This is the \"README\" text that appears in the dynamic function editor. The English text in the comments should be translated, but the variable and function names should be left in English."
@@ -860,5 +884,13 @@
   "SkipConfirmMessage": {
     "message": "You have indicated that you wish to skip the next occurrence of one of the selected messages. If you change your mind after doing this, you will need to reschedule the messages by hand. Are you sure you wish to proceed?",
     "description": "The text of the pop-up that warns the user when they activate the message list context menu command to skip the next occurrence of one or more messages. The purpose of this warning is to ensure that the user knows what the command does before using it. There is a checkbox in the pop-up which they can uncheck if they don't want to see the message again. See also 'AreYouSure' and 'ConfirmAgain' strings which occur in the same pop-up."
+  },
+  "RescheduleErrorTitle": {
+    "message": "Error rescheduling message",
+    "description": "Title of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "RescheduleErrorText": {
+    "message": "WARNING: An unexpected error occurred while attempting to schedule the next occurrence of a scheduled message with the subject “$1”. See the Thunderbird error log for details. The previous scheduled draft therefore has not been deleted. You should either delete it or edit it and reschedule it if desired.",
+    "description": "Text of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
   }
 }
