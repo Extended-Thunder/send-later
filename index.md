@@ -333,6 +333,16 @@ able to do so. If this option is enabled, then Send Later will pop up a warning
 about any such messages and leave them for you to reschedule by editing the
 relevant draft message by hand.
 
+**NOTE:** Send Later enforces a maximum delivery delay of six months
+even if you disable this preference or set it to longer than that.
+This is necessary because Send Later internally keeps a list of all
+scheduled message deliveries to prevent it from accidentally sending
+the same message twice if something goes wrong, and we need to be able
+to prune that list occasionally so that it doesn't get bigger and
+bigger forever. Preventing messages more than six months late from
+being delivered means it's safe for us to prune messages that old from
+the list.
+
 ### Trigger unsent message delivery from Outbox
 
 This preference controls whether the add-on actually sends messages when
