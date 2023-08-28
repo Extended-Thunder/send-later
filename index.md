@@ -315,6 +315,13 @@ list. We hope to add the custom column back when Thunderbird supprts it; in the
 meantime, you can see a list of scheduled messages by clicking on the Send
 Later button in the main Thunderbird window.
 
+**ANOTHER NOTE:** Because the column isn't currently available in
+Thunderbird, Send Later now saves the next scheduled send time of each
+scheduled message in its date field, so it's visible in the Date
+column of the message list. This means that any messages in your
+drafts folder with dates in the future are probably scheduled with
+Send Later!
+
 ### Show Send Later Header
 
 This preference controls whether the Send Later schedule should be displayed
