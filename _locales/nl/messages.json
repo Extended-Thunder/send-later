@@ -514,6 +514,26 @@
     "message": "Send Later: al verzonden bericht proberen opnieuw te verzenden?! Uw Postvak UIT of map Concepten $1 is waarschijnlijk beschadigd. Repareer deze zoals beschreven op https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
+  "single_minute": {
+    "message": "minuut",
+    "description": "Used in an error message when the phrase '1 minute' needs to be displayed."
+  },
+  "single_day": {
+    "message": "dag",
+    "description": "Used in an error message when the phrase '1 day' needs to be displayed."
+  },
+  "single_week": {
+    "message": "week",
+    "description": "Used in an error message when the phrase '1 week' needs to be displayed."
+  },
+  "single_month": {
+    "message": "maand",
+    "description": "Used in an error message when the phrase '1 month' needs to be displayed."
+  },
+  "single_year": {
+    "message": "jaar",
+    "description": "Used in an error message when the phrase '1 year' needs to be displayed."
+  },
   "plural_minutely": {
     "message": "minuten",
     "description": ""
@@ -717,6 +737,10 @@
     "message": "Het bericht met onderwerp ‘$1’ in de map Concepten $2 stond meer dan $3 minuten geleden ingepland voor verzenden, dus aflevering is geblokkeerd. U dient het concept te bewerken en het bericht handmatig te verzenden of een nieuwe planning te maken. U kunt ook de instelling ‘Berichten niet meer dan # minuten te laat afleveren’ uitschakelen om het blokkeren van de aflevering van verlate berichten te stoppen.",
     "description": ""
   },
+  "BlockedLateMessage2": {
+    "message": "Het bericht met onderwerp ‘$1’ in de map Concepten $2 stond meer dan $3 $4 ingepland voor verzending, dus aflevering is geblokeerd. U dient het concept te bewerken en het bericht handmatig te verzenden of opnieuw in te plannen. U kunt ook de voorkeur ‘Berichten niet meer dan…’ uitschakelen om het blokkeren van de aflevering van enkele verlate berichten te stoppen, maar berichten die meer dan zes maanden verlaat zijn, worden altijd geblokkeerd.",
+    "description": "This is an updated version of the BlockedLateMessage string which is intended to replace it. I've left the old string in the database for the time being so translators can use it as a reference / starting point. The 3rd placeholder in THIS string is a number and the fourth is a unit such as 'minutes', 'days', etc. It will be singular if the number is 1 or plural otherwise. The unit is pulled from single_day etc. or plural_daily etc."
+  },
   "EditorReadMeCode": {
     "message": "// Welkom bij de functie-editor van Send Later!\n//\n// Met de editor kunt u JavaScript-functies maken die complexe logica voor\n// berichtplanning implementeren en met sneltoetsen kunnen worden gekoppeld\n// of in het dialoogvenster van Send Later kunnen worden geselecteerd.\n//\n// Zoals u hierboven kunt zien, worden bij het aanroepen van een\n// planningsfunctie drie argumenten meegegeven:\n// * ‘specname’ is nodig als u deze functie wilt laten herhalen (zie hieronder)\n// * ‘prev’ is de vorige geplande verzendtijd, als dit een herhalende\n//   aanroep is\n// * ‘args’ zijn de extra argumenten die door de vorige aanroep worden\n//   teruggegeven als dit een herhalende aanroep is\n//\n// Uw code dient de variabelen ‘next’, ‘nextspec’ en ‘nextargs’\n// als volgt in te stellen:\n//\n// * ‘next’ is ofwel het aantal minuten in de toekomst, of een Datum-object\n//   dat aangeeft wanneer het bericht dient te worden verzonden.\n// * ‘nextspec’ is een herhalingsspecificatie als dit is bedoeld als een\n//   herhalend bericht (zie\n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence). Als u dit niet\n//   instelt, wordt het bericht maar één keer verzonden. Noot: als u uw\n//   functie nogmaals wilt laten aanroepen voor herhaling, gebruik dan:\n//     nextspec = \"function \" + specname;\n// * ‘nextargs’ is een array van argumenten die u in de volgende aanroep\n//   van de functie wilt ingeven als ‘args’.\n//\n// Terwijl u aan uw functie werkt, kunt u deze testen door waarden voor\n// ‘prev’ en ‘args’ in de onderstaande tekstvelden in te vullen en daarna op\n// ‘Uitvoeren’ te klikken om de functie uit te voeren en de resultaten te zien.\n//\n// Er zijn twee vooraf geconfigureerde voorbeeldfuncties, ‘BusinessHours’ en\n// ‘DaysInARow’, die u kunt bekijken en waarmee u kunt spelen om meer te leren.\n//\n// Deze ‘ReadMeFirst’-functie zorgt er alleen voor dat het bericht ongeveer\n// nu wordt verzonden, via de volgende regel.\nnext = new Date();",
     "description": "This is the \"README\" text that appears in the dynamic function editor. The English text in the comments should be translated, but the variable and function names should be left in English."
@@ -904,5 +928,13 @@
   "SkipConfirmMessage": {
     "message": "U hebt aangegeven dat u de volgende herhaling van een van de geselecteerde berichten wilt overslaan. Als u hierna van gedachten verandert, dient u de berichten handmatig opnieuw te plannen. Weet u zeker dat u wilt doorgaan?",
     "description": "The text of the pop-up that warns the user when they activate the message list context menu command to skip the next occurrence of one or more messages. The purpose of this warning is to ensure that the user knows what the command does before using it. There is a checkbox in the pop-up which they can uncheck if they don't want to see the message again. See also 'AreYouSure' and 'ConfirmAgain' strings which occur in the same pop-up."
+  },
+  "RescheduleErrorTitle": {
+    "message": "Fout bij opnieuw inplannen van bericht",
+    "description": "Title of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "RescheduleErrorText": {
+    "message": "WAARSCHUWING: er is een onverwachte fout opgetreden bij het inplannen van de volgende herhaling van een gepland bericht met het onderwerp ‘$1’. Zie het Thunderbird-foutenlogboek voor details. Het vorige geplande concept is daarom niet verwijderd. U dient dit te verwijderen of te bewerken en opnieuw in te plannen als u dat wilt.",
+    "description": "Text of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
   }
 }

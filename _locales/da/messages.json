@@ -506,6 +506,26 @@
     "message": "Sende senere: Forsøg på at gensende allerede sendt besked?! Din udbakke eller kladdemappe $1 er sandsynligvis korrupt. Reparér dem som beskrevet på https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
+  "single_minute": {
+    "message": "minut",
+    "description": "Used in an error message when the phrase '1 minute' needs to be displayed."
+  },
+  "single_day": {
+    "message": "dag",
+    "description": "Used in an error message when the phrase '1 day' needs to be displayed."
+  },
+  "single_week": {
+    "message": "uge",
+    "description": "Used in an error message when the phrase '1 week' needs to be displayed."
+  },
+  "single_month": {
+    "message": "måned",
+    "description": "Used in an error message when the phrase '1 month' needs to be displayed."
+  },
+  "single_year": {
+    "message": "år",
+    "description": "Used in an error message when the phrase '1 year' needs to be displayed."
+  },
   "plural_minutely": {
     "message": "minut",
     "description": ""
@@ -709,6 +729,10 @@
     "message": "Beskeden med emne “$1” i Kladdemappe $2 var planlagt til at blive leveret for mere end $3 minutter siden, så levering er blevet blokeret. Du bør redigere kladden og enten sende den manuelt eller genplanlægge den. Du kan også deaktivere “Må ikke levere beskeder mere end # minutter for sent” præferencen, for at stoppe blokeringen af levering af for sene beskeder.",
     "description": ""
   },
+  "BlockedLateMessage2": {
+    "message": "Beskeden med emne “$1” i Kladdemappe $2 var planlagt til at blive leveret for mere end $3 $4 siden, så levering er blevet blokeret. Du bør redigere kladden og enten sende den manuelt eller genplanlægge den. Du kan også deaktivere “Må ikke levere beskeder mere end…” præferencen for ikke at blokere levering af nogle overskredne meddelelser. Meddelelser der er mere end seks måneder for sent bliver altid blokeret.",
+    "description": "This is an updated version of the BlockedLateMessage string which is intended to replace it. I've left the old string in the database for the time being so translators can use it as a reference / starting point. The 3rd placeholder in THIS string is a number and the fourth is a unit such as 'minutes', 'days', etc. It will be singular if the number is 1 or plural otherwise. The unit is pulled from single_day etc. or plural_daily etc."
+  },
   "EditorReadMeCode": {
     "message": "// Velkommen til Send Senere funktion editor!\n//\n// Editoren giver dig mulighed for at oprette JavaScript-funktioner, der implementerer kompleks\n// besked planlægnings logik som kan knyttes til genvejsknapper eller\n// vælges i Send Senere dialogen.\n//\n// Som du kan se ovenfor, når en planlægningsfunktion kaldes, vil den blive givet\n// tre argumenter:\n// * \"specname\" er nødvendig hvis du ønsker at denne funktion skal gentages (se nedenfor)\n// * \"prev\" er den forrige planlagte sendetid hvis dette er et kald der skal \n// gentages \n// * \"args\" er de ekstra argumenter returneret af det foregående kald, hvis dette\n// er et gentaget kald\n//\n// Din kode skal angive variablerne \"next\" \"nextspec\" og\n// \"nextargs\" som følger:\n//\n// * \"next\" er enten antallet af minutter i fremtiden eller et Datoobjekt\n// som angiver, hvornår meddelelsen skal sendes.\n// * \"nextspec\" er en gentagelse specifikation, hvis dette er beregnet til at være en\n// gentaget meddelelse (se\n// https://extended-thunder.github.io/send-later/#dynamic-recurrence). Hvis du ikke sætter\n// dette, vil meddelelsen kun blive sendt én gang. Bemærk: Hvis du ønsker at din\n// funktion skal kaldes igen ved gentagelse, gør sådan:\n// nextspec = \"function \" + specname;\n// * \"nextargs\" er et array af argumenter, du ønsker at blive overført til det næste\n// kald af funktionen som \"args\".\n//\n// Mens du arbejder på din funktion, kan du teste det ved at udfylde værdierne\n// for \"prev\" og \"args\" i tekstfelterne nedenfor og derefter klikke på \"Kør\" for\n// at udføre funktionen og se resultaterne.\n//\n// Der er to prækonfigurerede eksempel funktioner, \"BusinessHours\" og\n// \"DaysInARow\", som du kan se på og lege med for at lære mere.\n//\n// Denne \"ReadMeFirst\" funktion gør kun, at meddelelsen sendes rundt nu,\n// via den følgende linje.\nnext = ny dato();",
     "description": "This is the \"README\" text that appears in the dynamic function editor. The English text in the comments should be translated, but the variable and function names should be left in English."
@@ -888,5 +912,33 @@
   "SkipConfirmMessage": {
     "message": "Du har angivet at du ønsker at springe over den næste forekomst af en af de valgte beskeder. Hvis du ændrer mening efter at have gjort dette, bliver du nødt til at gen planlægge meddelelserne manuelt. Er du sikker på, at du ønsker at fortsætte?",
     "description": "The text of the pop-up that warns the user when they activate the message list context menu command to skip the next occurrence of one or more messages. The purpose of this warning is to ensure that the user knows what the command does before using it. There is a checkbox in the pop-up which they can uncheck if they don't want to see the message again. See also 'AreYouSure' and 'ConfirmAgain' strings which occur in the same pop-up."
+  },
+  "RescheduleErrorTitle": {
+    "message": "Fejl under planlægning af besked",
+    "description": "Title of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "RescheduleErrorText": {
+    "message": "ADVARSEL: Der opstod en uventet fejl under forsøget på at planlægge næste forekomst af en planlagt besked med emnet “$1”. Kig i Thunderbird fejlloggen for detaljer. Det forrige planlagte udkast er derfor ikke blevet slettet. Du bør enten slette det eller redigere det og genplanlægge det, hvis det ønskes.",
+    "description": "Text of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "TelemetryAskTitle": {
+    "message": "$1 anmodning om dataindsamling",
+    "description": "Title of the pop-up that asks the user whether we can collect anonymous usage data. The placeholder is replaced with the extension name."
+  },
+  "TelemetryAskText": {
+    "message": "Kan vi indsamle anonyme data om din brug af $1? Dataene fortæller os, hvordan du bruger tilføjelsen og om dit miljø. Den indeholder ingen identificerende oplysninger, e-mail-indhold, eller kontooplysninger. Vi bruger dataene til at forbedre tilføjelsen, måle dens brug, og identificere, hvor vi kan fokusere på vores indsats. Vi deler ikke dataene med nogen. Dit svar vil ikke påvirke tilføjelsens funktionalitet. Fuldstændige detaljer er tilgængelige i vores $2.",
+    "description": "Text of the pop-up that asks the user whether we can collect anonymous usage data. The second placeholder is replaced with the contents of the string PrivacyPolicy (so we can make it a link."
+  },
+  "PrivacyPolicy": {
+    "message": "Privatlivspolitik",
+    "description": "Inserted into TelemetryAskText. Also used to link to the privacy policy from the Send Later pop-up in the main Thunderbird window."
+  },
+  "TelemetryAskYes": {
+    "message": "Ja, du kan indsamle brugsdata",
+    "description": "Label for the yes button on the telemetry request dialog."
+  },
+  "TelemetryAskNo": {
+    "message": "Nej, du må ikke indsamle brugsdata",
+    "description": "Label for the no button on the telemetry request dialog."
   }
 }

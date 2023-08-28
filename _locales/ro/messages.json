@@ -510,6 +510,26 @@
     "message": "Send Later: Încercare de a retrimite un mesaj deja trimis?! Dosarul „De trimis” sau „Mesaje nefinalizate” $1 este probabil corupt. Repară-le cum e descris la https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
+  "single_minute": {
+    "message": "minut",
+    "description": "Used in an error message when the phrase '1 minute' needs to be displayed."
+  },
+  "single_day": {
+    "message": "zi",
+    "description": "Used in an error message when the phrase '1 day' needs to be displayed."
+  },
+  "single_week": {
+    "message": "săptămână",
+    "description": "Used in an error message when the phrase '1 week' needs to be displayed."
+  },
+  "single_month": {
+    "message": "lună",
+    "description": "Used in an error message when the phrase '1 month' needs to be displayed."
+  },
+  "single_year": {
+    "message": "an",
+    "description": "Used in an error message when the phrase '1 year' needs to be displayed."
+  },
   "plural_minutely": {
     "message": "minute",
     "description": ""
@@ -705,6 +725,10 @@
     "message": "Mesajul cu subiectul \"$1\" din dosarul „Mesaje nefinalizate” $2 a fost programat să fie livrat acum $3 minute, deci livrarea a fost blocată. Editează ciorna și fie trimite manual, fie reprogramează trimiterea. De asemenea, se poate dezactiva opțiunea \"Nu trimite mesaje mai târziu de # minute\" pentru a dezactiva blocarea mesajelor întârziate.",
     "description": ""
   },
+  "BlockedLateMessage2": {
+    "message": "Mesajul cu subiectul „$1” din dosarul „Mesaje nefinalizate” $2 a fost programat să fie trimis mai mult de $3 $4 în urmă, deci trimiterea a fost blocată. Editează ciorna și fie retrimite manual, fie reprogramează. De asemenea, se poate dezactiva opțiunea \"Nu trimite mesaje mai mult de…\" pentru a opri blocarea trimiterii unor mesaje tardive, dar mesajele cu mai mult de șase luni întârziere sunt întotdeauna blocate.",
+    "description": "This is an updated version of the BlockedLateMessage string which is intended to replace it. I've left the old string in the database for the time being so translators can use it as a reference / starting point. The 3rd placeholder in THIS string is a number and the fourth is a unit such as 'minutes', 'days', etc. It will be singular if the number is 1 or plural otherwise. The unit is pulled from single_day etc. or plural_daily etc."
+  },
   "EditorReadMeCode": {
     "message": "// Bun venit la editorul de funcții Send Later!\n//\n// Editorul îți permite să creezi funcții JavaScript implementând logica complexă \n// de planificare a mesajelor care poate fi asociată cu butoane rapide sau\n// selectate în dialogul Trimitere mai târziu.\n//\n// După cum poți vedea mai sus, atunci când este apelată o funcție de programare, \n// sunt folosite trei argumente:\n// * \"specname\" este necesar dacă dorești ca această funcție să reapară (a se vedea mai jos)\n// * \"prev\" este ora de trimitere programată anterior, dacă aceasta este o invocare recurentă\n// * \"args\" sunt argumentele suplimentare returnate de invocarea anterioară, dacă aceasta este\n// este o invocare recurentă\n//\n// Codul trebuie să seteze variabilele \"next\", \"nextspec\" și \"nextargs\" \n// după cum urmează:\n// * \"next\" este fie numărul de minute în viitor, fie un obiect dată\n// indicând când trebuie trimis mesajul.\n// * \"nextspec\" este o specificație de recurență dacă se intenționează ca acesta să fie \n// un mesaj recurent (vezi https://extended-thunder. iyet. .io/send-later/#dynamic-recurrence).\n// Dacă acesta nu este setat, atunci mesajul va fi trimis o singură dată. \n// Notă: dacă vrei ca funcția ta să fie apelată din nou pentru recurență, folosește:\n// nextspec = \"function \" + specname;\n// * \"nextargs\" este o serie de argumente folosite în invocarea funcției ca \"args\".\n//\n// În timp ce lucrezi la funcție, o poți testa completând valorile\n// pentru \"pre\" și \"args\" în casetele de text de mai jos și apăsând \"Execută\" pentru \n// a executa funcția și a vedea rezultatele.\n//\n// Există două funcții-eșantion preconfigurate, \"BusinessHours\" și\n// \"DaysInARow\", la care te poți uita și pe care le poți modifica pentru a afla mai multe.\n//\n// Această funcție \"ReadMeFirst\" are ca efect trimiterea mesajului acum\n// prin linia următoare.\nnext = new Date();",
     "description": "This is the \"README\" text that appears in the dynamic function editor. The English text in the comments should be translated, but the variable and function names should be left in English."
@@ -852,5 +876,13 @@
   "invalidDateFormat": {
     "message": "format de dată incorect sau incomplet",
     "description": "Message displayed in the user interface inside parentheses when the user enters an invalid custom date format"
+  },
+  "RescheduleErrorTitle": {
+    "message": "Eroare la reprogramarea mesajului",
+    "description": "Title of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "RescheduleErrorText": {
+    "message": "AVERTISMENT: A apărut o eroare neașteptată la încercarea de a programa următoarea iterație a unui mesaj programat cu subiectul „$1”. Vezi jurnalul de erori Thunderbird pentru detalii. Prin urmare, ciorna programată anterior nu a fost ștearsă și trebuie fie ștearsă, fie editată și reprogramată dacă e necesar.",
+    "description": "Text of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
   }
 }

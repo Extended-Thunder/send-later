@@ -904,5 +904,9 @@
   "SkipConfirmMessage": {
     "message": "Jelezte, hogy ki szeretné hagyni a kiválasztott üzenetek egyikének következő előfordulását. Ha ezt követően meggondolja magát, kézzel át kell ütemeznie az üzeneteket. Biztos, hogy folytatni kívánja?",
     "description": "The text of the pop-up that warns the user when they activate the message list context menu command to skip the next occurrence of one or more messages. The purpose of this warning is to ensure that the user knows what the command does before using it. There is a checkbox in the pop-up which they can uncheck if they don't want to see the message again. See also 'AreYouSure' and 'ConfirmAgain' strings which occur in the same pop-up."
+  },
+  "PrivacyPolicy": {
+    "message": "Adatvédelem",
+    "description": "Inserted into TelemetryAskText. Also used to link to the privacy policy from the Send Later pop-up in the main Thunderbird window."
   }
 }

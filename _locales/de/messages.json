@@ -216,7 +216,7 @@
     "description": ""
   },
   "sendNowTooltip": {
-    "message": "Die Nachricht sofort statt mit “Später Senden” senden.",
+    "message": "Die Nachricht sofort statt mit “Später senden” senden.",
     "description": ""
   },
   "sendOnlyOnLabel": {
@@ -228,7 +228,7 @@
     "description": ""
   },
   "sendUnsentMessagesPrefTooltip": {
-    "message": "Wird diese Option deaktiviert, wird „Später Senden” die Nachrichten nicht im vollen Umfang senden. Stattdessen werden sie für die geplante Zustellung in den Postausgang verschoben. Diese Option deaktivieren, wenn ein anderes Add-on, wie z.B. BlunderDelay verwendet wird, um regelmäßig Nachrichten aus dem Postausgang zu versenden.\nAnmerkung: Wenn diese Option aktiviert wird, werden von „Später Senden”, immer wenn es eine Nachricht senden soll, ALLE Nachrichten im Postausgang versendet.",
+    "message": "Wird diese Option deaktiviert, wird „Später senden” die Nachrichten nicht im vollen Umfang senden. Stattdessen werden sie für die geplante Zustellung in den Postausgang verschoben. Diese Option deaktivieren, wenn ein anderes Add-on, wie z.B. BlunderDelay verwendet wird, um regelmäßig Nachrichten aus dem Postausgang zu versenden.\nAnmerkung: Wenn diese Option aktiviert wird, werden von „Später senden”, immer wenn es eine Nachricht senden soll, ALLE Nachrichten im Postausgang versendet.",
     "description": ""
   },
   "showColumnPrefLabel": {
@@ -236,7 +236,7 @@
     "description": ""
   },
   "showColumnPrefTooltip": {
-    "message": "Auswählen, ob die „Später Senden”-Spalte beim Öffnen des Entwürfe-Ordners angezeigt werden soll oder nicht.",
+    "message": "Auswählen, ob die „Später senden”-Spalte beim Öffnen des Entwürfe-Ordners angezeigt werden soll oder nicht.",
     "description": ""
   },
   "showHeaderPrefLabel": {
@@ -514,6 +514,26 @@
     "message": "Später senden: Bereits versandte Nachrichten erneut versenden?! Der Postausgangs- oder Entwürfe-Ordner „$1” ist möglicherweise beschädigt. Bitte nehmen sie Reparaturmaßnahmen vor, wie im folgenden Blog beschrieben: https://extended-thunder.github.io/send-later/#corrupt-outbox (Englisch).",
     "description": ""
   },
+  "single_minute": {
+    "message": "Minute",
+    "description": "Used in an error message when the phrase '1 minute' needs to be displayed."
+  },
+  "single_day": {
+    "message": "Tag",
+    "description": "Used in an error message when the phrase '1 day' needs to be displayed."
+  },
+  "single_week": {
+    "message": "Woche",
+    "description": "Used in an error message when the phrase '1 week' needs to be displayed."
+  },
+  "single_month": {
+    "message": "Monat",
+    "description": "Used in an error message when the phrase '1 month' needs to be displayed."
+  },
+  "single_year": {
+    "message": "Jahr",
+    "description": "Used in an error message when the phrase '1 year' needs to be displayed."
+  },
   "plural_minutely": {
     "message": "Minuten",
     "description": ""
@@ -717,6 +737,10 @@
     "message": "Die Nachricht mit dem Betreff „$1“ im Ordner Entwürfe $2 sollte planmäßig vor mehr als $3 Minuten versandt werden, daher wurde der Versand blockiert. Sie sollten den Entwurf entweder direkt senden oder eine neue Zeit für „Später senden“ angeben. Sie können auch die Einstellung „Nachrichten nicht mehr als # Minuten zu spät senden“ deaktivieren, um das verspätete Senden von Nachrichten zu erlauben.",
     "description": ""
   },
+  "BlockedLateMessage2": {
+    "message": "Die Nachricht mit dem Betreff „$1“ im Ordner Entwürfe $2 sollte planmäßig vor mehr als $3 $4 versandt werden, daher wurde der Versand blockiert. Sie sollten den Entwurf entweder bearbeiten und direkt senden oder eine neue Zeit für „Später senden“ angeben. Sie können auch die Einstellung „Nachrichten nicht mehr als # Minuten zu spät senden“ deaktivieren, um das verspätete Senden von Nachrichten zu erlauben. Nachrichten mit einer Verspätung von mehr als sechs Monaten werden immer blockiert.",
+    "description": "This is an updated version of the BlockedLateMessage string which is intended to replace it. I've left the old string in the database for the time being so translators can use it as a reference / starting point. The 3rd placeholder in THIS string is a number and the fourth is a unit such as 'minutes', 'days', etc. It will be singular if the number is 1 or plural otherwise. The unit is pulled from single_day etc. or plural_daily etc."
+  },
   "EditorReadMeCode": {
     "message": "// Herzlich Willkommen Sie auf der Später senden-Funktion-Editor!\n// \n// Der Editor können Sie JavaScript-Funktionen implementieren komplexe\n// erstellen message Disposition Logik die Shortcut-Tasten zugeordnet\n// werden kann oder ausgewählte im Dialogfeld \"Später senden\".\n// \n// Wie Sie oben sehen können wenn eine scheduling-Funktion aufgerufen\n// wird, erhält es drei Argumente:\n// \n// * \"specname\" wird benötigt, wenn Sie diese Funktion wieder\n//   auftreten (siehe unten) soll\n// \n// * \"prev\" ist die vorherige geplant Sendezeit, ist dies ein sich\n//   wiederholendes Aufruf\n// \n// * \"args\" ist die zusätzlichen Argumente von der vorherigen Aufruf\n//   zurückgegeben, wenn diese ist eine wiederkehrende Invocation\n// \n// der Code muss die Variablen \"next\", \"xextspec\", und \"nextargs\"\n// wie folgt:\n//\n// * \"next\" ist entweder die Anzahl der Minuten in der Zukunft oder\n//   ein Date-Objekt angibt, wann die Nachricht gesendet werden soll.\n// \n// * \"nextspec\" ist eine Wiederholung-Spezifikation, wenn dies\n//   beabsichtigt ist, ein wiederkehrende Nachricht (siehe\n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence). Wenn Sie\n//   nicht dies, dann die Nachricht wird nur einmal gesendet\n//   werden. Hinweis: Wenn Sie wollen Ihre Funktion aufgerufen werden\n//   für Wiederholung, wiederholen:\n//   \n//   nextspec = \"function \" + specname;\n//   \n// * \"nextargs\" ist ein Array von Argumenten, die an die nächste\n//   übergeben werden soll Aufruf der Funktion als \"Args\".\n//   \n// Während Sie auf Ihre Funktion arbeiten, können Sie es testen, indem\n// Werte ausfüllen für \"Prev\" und \"Args\" in den Textfeldern unten und\n// klicken Sie dann auf \"Ausführen\" die Funktion ausführen und die\n// Ergebnisse zu sehen.\n// \n// Gibt es zwei vorkonfigurierte Beispielfunktionen, \"BusinessHours\"\n// und \"DaysInARow\", die Sie betrachten und spielen Sie mit um mehr zu\n// erfahren.  Diese Funktion \"ReadMeFirst\" verursacht nur die\n// Nachricht jetzt, um gesendet werden über die folgende Zeile.\n\nnext = new Date();",
     "description": "This is the \"README\" text that appears in the dynamic function editor. The English text in the comments should be translated, but the variable and function names should be left in English."
@@ -724,6 +748,10 @@
   "EditorReadMeHelp": {
     "message": "Text, den Sie hier eingeben, wird als PopUp angezeigt, wenn Sie im Menü mit der Maus über die Funktion gehen. Sie können hier dokumentieren, was die Funktion macht und welche Argumente sie erwartet.",
     "description": ""
+  },
+  "_BusinessHoursCode": {
+    "message": "// Defaults\nvar workDays = [1, 2, 3, 4, 5]; // Mo – Fr; So == 0, Sa == 6\nvar workStart = [8, 30]; // Arbeitsbeginn um [H, M]\nvar workEnd = [17, 30]; // Feierabend um [H, M]\nif (args && args[0])\n    workDays = args[0];\nif (args && args[1])\n    workStart = args[1];\nif (args && args[2])\n    workEnd = args[2];\nif (prev)\n    // Für den normalen Gebrauch nicht notwendig, aber benutzt als aktuelle Zeit zum Testen.\n    next = new Date(prev);\nelse\n    next = new Date();\n// Falls wir nach Feierabend haben oder kein Werktag ist, auf den Arbeitsbeginn\n// am nächsten Tag setzen.\nwhile ((next.getHours() > workEnd[0]) ||\n       (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n       (workDays.indexOf(next.getDay()) == -1)) {\n    next.setDate(next.getDate() + 1);\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}\n// Falls wir vor Arbeitsbeginn an einem Werktag haben, auf Arbeitsbeginn setzen.\nif ((next.getHours() < workStart[0]) ||\n    (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\n    next.setHours(workStart[0]);\n    next.setMinutes(workStart[1]);\n}",
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "BusinessHoursHelp": {
     "message": "Nachricht jetzt senden, falls es während der Geschäftszeiten ist, oder zu Beginn des nächsten Werktages. Sie können die Werktage ändern (standardäßig: Mo – Fr), indem Sie in einer Reihe die Werktagsnummern als ersten Parameter angeben, wobei 0 Sonntag und 6 Sonnabend entspricht. Sie können Arbeitsbeginn und Feierabend verändern (standardmäßig: 8:30 – 17:30), indem die in einer Reihe [Stunde, Minute] als zweiten oder dritten Parameter angeben. Legen Sie “null” für vorherige Parameter fest, die Sie nicht ändern! Zum Beispiel, “null, [9, 0], [17, 0]” ändert die Arbeitszeit ohne die Werktage zu verändern.",
@@ -821,6 +849,26 @@
     "message": "Dieses Add-on ändert den Befehl „Später senden“ (Strg+Umschalt+Return) im Fenster zum Verfassen einer Nachricht, so dass Sie die Nachricht nicht nur in Ihren Postausgang kopieren, sondern das nächste Mal verschicken, wenn Sie online gehen oder den Befehl \"Ungesendete Nachrichten senden\" aufrufen. Es erscheint ein Dialog, in dem Sie festlegen können, wann die Nachricht gesendet wird.\n\nSie können eine Zeit und ein Datum angeben, oder auf „15 Minuten später“, „30 Minuten später“ oder „2 Stunden später“ klicken, und benutzerdefinierte Tastenkürzel definieren. Sie können auch eine Nachricht planen, die Sie wiederholt mit einfachen Regeln (alle N Stunden, Tage, etc.) oder anhand anpassbarer Funktionen versenden können.\n\nSpäter senden basiert auf der leistungsfähigen Datumseingabe-Bibliothek von Andrew Plummer <a href=\"https://sugarjs.com/\">Sugar. s Library</a>.\n\nFeedback und Fehlerberichte sind sehr willkommen und können auf der Projektseite <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">GitHub-Seite</a> eingereicht werden.",
     "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   },
+  "accelKeyLabel": {
+    "message": "Schnellzugriff-Taste",
+    "description": "Label for options window to identify accelerator shortcuts"
+  },
+  "accelCtrlLabel": {
+    "message": "Strg+Klick",
+    "description": "Indicates key combination to access the ctrl+click accelerator function"
+  },
+  "accelCtrlLabel.MacOS": {
+    "message": "Befehlstaste+Klick",
+    "description": "Indicates key combination to access the ctrl+click accelerator function. On mac the Ctrl key is replaced with the 'Command' key"
+  },
+  "accelShiftLabel": {
+    "message": "Umschalt + Klick",
+    "description": "Indicates key combination to access the shift+click accelerator function"
+  },
+  "okay": {
+    "message": "OK",
+    "description": "Confirm an action (presented in popup dialogs)"
+  },
   "cancel": {
     "message": "Abbrechen",
     "description": "Cancel an action (presented in popup dialogs)"
@@ -836,6 +884,10 @@
   "longDateTimeFormatsPrefLabel": {
     "message": "Langes Datums-/Zeit-Format:",
     "description": "Preference input for extended datetime format (e.g. Wed, Apr 28 2021 11:45)"
+  },
+  "invalidDateFormat": {
+    "message": "ungültiges oder unvollständiges Datumsformat",
+    "description": "Message displayed in the user interface inside parentheses when the user enters an invalid custom date format"
   },
   "menuScheduleMsg": {
     "message": "Nachricht(en) planen",
@@ -876,5 +928,13 @@
   "SkipConfirmMessage": {
     "message": "Sie haben angegeben, dass Sie das nächste Vorkommen einer der ausgewählten Nachrichten überspringen möchten. Wenn Sie später Ihre Meinung ändern, müssen Sie die Nachrichten manuell neu planen. Sind Sie sicher, dass Sie fortfahren möchten?",
     "description": "The text of the pop-up that warns the user when they activate the message list context menu command to skip the next occurrence of one or more messages. The purpose of this warning is to ensure that the user knows what the command does before using it. There is a checkbox in the pop-up which they can uncheck if they don't want to see the message again. See also 'AreYouSure' and 'ConfirmAgain' strings which occur in the same pop-up."
+  },
+  "RescheduleErrorTitle": {
+    "message": "Fehler beim erneuten Planen der Nachricht",
+    "description": "Title of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "RescheduleErrorText": {
+    "message": "ACHTUNG: Beim Versuch, das nächste Auftreten einer geplanten Nachricht mit dem Betreff „$1“ zu planen, ist ein unerwarteter Fehler aufgetreten. Details finden Sie im Thunderbird-Fehlerprotokoll. Der vorherige geplante Entwurf wurde daher nicht gelöscht. Sie sollten ihn entweder löschen oder bei Bedarf bearbeiten und neu planen.",
+    "description": "Text of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
   }
 }

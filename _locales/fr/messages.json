@@ -116,7 +116,7 @@
     "description": ""
   },
   "recurMinutelyLabel": {
-    "message": "à la minute",
+    "message": "toutes les minutes",
     "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurMonthlyLabel": {
