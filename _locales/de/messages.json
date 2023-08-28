@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "Später Senden",
+    "message": "Später senden",
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
@@ -200,15 +200,15 @@
     "description": ""
   },
   "showColumnPrefLabel": {
-    "message": "„Später Senden”-Spalte anzeigen",
+    "message": "„Später senden”-Spalte anzeigen",
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "„Später Senden”-Kopfzeile anzeigen",
+    "message": "„Später senden”-Kopfzeile anzeigen",
     "description": ""
   },
   "showStatusPrefLabel": {
-    "message": "„Später Senden” in der Statusleiste anzeigen",
+    "message": "„Später senden” in der Statusleiste anzeigen",
     "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
@@ -280,11 +280,11 @@
     "description": ""
   },
   "sendlater3header.label": {
-    "message": "Später Senden",
+    "message": "Später senden",
     "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
   },
   "prefwindow.title": {
-    "message": "Später Senden - Einstellungen",
+    "message": "Später senden - Einstellungen",
     "description": ""
   },
   "quickoptionname.label": {
@@ -328,7 +328,7 @@
     "description": ""
   },
   "windowtitle": {
-    "message": "Dynamischer Funktionseditor von Später Senden",
+    "message": "Dynamischer Funktionseditor von Später senden",
     "description": ""
   },
   "selectfunction": {
@@ -388,7 +388,7 @@
     "description": ""
   },
   "inputtimetip": {
-    "message": "Hier können Sie Zeit- und Datums-Angaben in allen Formaten einfügen, die von Später Senden verstanden werden.",
+    "message": "Hier können Sie Zeit- und Datums-Angaben in allen Formaten einfügen, die von Später senden verstanden werden.",
     "description": ""
   },
   "inputtimeplaceholder": {
@@ -444,26 +444,26 @@
     "description": ""
   },
   "SendingUnsentError": {
-    "message": "Später Senden: Fehler beim Senden ungesendeter Nachrichten. Der Postausgangs-Ordner ist möglicherweise beschädigt und die geplanten Nachrichten konnten womöglich nicht gesendet werden. Details unter https://extended-thunder.github.io/send-later/#corrupt-outbox (Englisch).",
+    "message": "Später senden: Fehler beim Senden ungesendeter Nachrichten. Der Postausgangs-Ordner ist möglicherweise beschädigt und die geplanten Nachrichten konnten womöglich nicht gesendet werden. Details unter https://extended-thunder.github.io/send-later/#corrupt-outbox (Englisch).",
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "Später Senden: Fehler beim Kopieren der geplanten Nachricht in den Postausgangs-Ordner (Code $1). „Später Senden” wurde deaktiviert! Details unter https://extended-thunder.github.io/send-later/#outbox-copy-failure (Englisch).",
+    "message": "Später senden: Fehler beim Kopieren der geplanten Nachricht in den Postausgangs-Ordner (Code $1). „Später senden” wurde deaktiviert! Details unter https://extended-thunder.github.io/send-later/#outbox-copy-failure (Englisch).",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "Später Senden: Fehler beim Kopieren der wiederkehrenden Nachricht in den Entwürfe-Ordner (Code $1). „Später Senden” wurde deaktiviert! Details unter https://extended-thunder.github.io/send-later/#drafts-copy-failure (Englisch).",
+    "message": "Später senden: Fehler beim Kopieren der wiederkehrenden Nachricht in den Entwürfe-Ordner (Code $1). „Später senden” wurde deaktiviert! Details unter https://extended-thunder.github.io/send-later/#drafts-copy-failure (Englisch).",
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "Später Senden: Der Ordner „$1” ist möglicherweise beschädigt. Öffnen Sie bitte die Ordner-Eigenschaften und reparieren sie ihn. Details unter https://extended-thunder.github.io/send-later/#corrupt-drafts-error (Englisch).",
+    "message": "Später senden: Der Ordner „$1” ist möglicherweise beschädigt. Öffnen Sie bitte die Ordner-Eigenschaften und reparieren sie ihn. Details unter https://extended-thunder.github.io/send-later/#corrupt-drafts-error (Englisch).",
     "description": ""
   },
   "CorruptFolderErrorDetails": {
     "message": "Konkret sieht es so aus, als ob die Nachricht „$1“ (ID $2) bereits verschickt wurde, aber immer noch im Ordner „Entwürfe“ existiert. Dies ist vielleicht ein Indiz für ein ernsteres Problem. Sie können einfach versuchen, die betreffende Nachricht zu löschen (oder neu zu planen).\n\nSend Later wird diese Nachricht überspringen, aber die Bearbeitung Ihrer anderen geplanten Entwurfsnachrichten fortsetzen, wenn Sie diese Benachrichtigung schließen."
   },
   "MessageResendError": {
-    "message": "Später Senden: Bereits versandte Nachrichten erneut versenden?! Der Postausgangs- oder Entwürfe-Ordner „$1” ist möglicherweise beschädigt. Bitte nehmen sie Reparaturmaßnahmen vor, wie im folgenden Blog beschrieben: https://extended-thunder.github.io/send-later/#corrupt-outbox (Englisch).",
+    "message": "Später senden: Bereits versandte Nachrichten erneut versenden?! Der Postausgangs- oder Entwürfe-Ordner „$1” ist möglicherweise beschädigt. Bitte nehmen sie Reparaturmaßnahmen vor, wie im folgenden Blog beschrieben: https://extended-thunder.github.io/send-later/#corrupt-outbox (Englisch).",
     "description": ""
   },
   "plural_minutely": {
@@ -575,7 +575,7 @@
     "description": ""
   },
   "draftSaveWarning": {
-    "message": "WARNUNG: Um zu verhindern, dass die Nachricht von „Später Senden” während des Schreibens gesendet wird, wurde die geplante Sendezeit abgebrochen. Geben Sie bitte eine neue Sendezeit für die Nachricht ein, sobald sie mit dem Verfassen fertig sind.",
+    "message": "WARNUNG: Um zu verhindern, dass die Nachricht von „Später senden” während des Schreibens gesendet wird, wurde die geplante Sendezeit abgebrochen. Geben Sie bitte eine neue Sendezeit für die Nachricht ein, sobald sie mit dem Verfassen fertig sind.",
     "description": ""
   },
   "AreYouSure": {
@@ -602,11 +602,11 @@
     "message": "Vor dem Beenden eine Warnung anzeigen, wenn noch ungesendete Nachrichten vorhanden sind"
   },
   "ScheduledMessagesWarningQuitRequested": {
-    "message": "Es gibt noch Nachrichten, deren Senden geplant ist. „Später Senden” kann Nachrichten nur versenden, wenn $1 geöffnet ist. Möchten Sie das Programm dennoch schließen?",
+    "message": "Es gibt noch Nachrichten, deren Senden geplant ist. „Später senden” kann Nachrichten nur versenden, wenn $1 geöffnet ist. Möchten Sie das Programm dennoch schließen?",
     "description": ""
   },
   "ScheduledMessagesWarningQuit": {
-    "message": "„Später Senden” kann Nachrichten nur versenden, wenn $1 geöffnet ist. Bitte denken Sie daran, das Programm vor dem planmäßigen Sendetermin der Nachrichten wieder zu starten!",
+    "message": "„Später senden” kann Nachrichten nur versenden, wenn $1 geöffnet ist. Bitte denken Sie daran, das Programm vor dem planmäßigen Sendetermin der Nachrichten wieder zu starten!",
     "description": ""
   },
   "EncryptionUnsupportedTitle": {
@@ -666,11 +666,11 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "Die Nachricht mit dem Betreff „$1“ im Ordner Entwürfe $2 sollte planmäßig vor mehr als $3 Minuten versandt werden, daher wurde der Versand blockiert. Sie sollten den Entwurf entweder direkt senden oder eine neue Zeit für „Später Senden“ angeben. Sie können auch die Einstellung „Nachrichten nicht mehr als # Minuten zu spät senden“ deaktivieren, um das verspätete Senden von Nachrichten zu erlauben.",
+    "message": "Die Nachricht mit dem Betreff „$1“ im Ordner Entwürfe $2 sollte planmäßig vor mehr als $3 Minuten versandt werden, daher wurde der Versand blockiert. Sie sollten den Entwurf entweder direkt senden oder eine neue Zeit für „Später senden“ angeben. Sie können auch die Einstellung „Nachrichten nicht mehr als # Minuten zu spät senden“ deaktivieren, um das verspätete Senden von Nachrichten zu erlauben.",
     "description": ""
   },
   "EditorReadMeCode": {
-    "message": "// Herzlich Willkommen Sie auf der Später Senden-Funktion-Editor!\n// \n// Der Editor können Sie JavaScript-Funktionen implementieren komplexe\n// erstellen message Disposition Logik die Shortcut-Tasten zugeordnet\n// werden kann oder ausgewählte im Dialogfeld \"Später Senden\".\n// \n// Wie Sie oben sehen können wenn eine scheduling-Funktion aufgerufen\n// wird, erhält es drei Argumente:\n// \n// * \"specname\" wird benötigt, wenn Sie diese Funktion wieder\n//   auftreten (siehe unten) soll\n// \n// * \"prev\" ist die vorherige geplant Sendezeit, ist dies ein sich\n//   wiederholendes Aufruf\n// \n// * \"args\" ist die zusätzlichen Argumente von der vorherigen Aufruf\n//   zurückgegeben, wenn diese ist eine wiederkehrende Invocation\n// \n// der Code muss die Variablen \"next\", \"xextspec\", und \"nextargs\"\n// wie folgt:\n//\n// * \"next\" ist entweder die Anzahl der Minuten in der Zukunft oder\n//   ein Date-Objekt angibt, wann die Nachricht gesendet werden soll.\n// \n// * \"nextspec\" ist eine Wiederholung-Spezifikation, wenn dies\n//   beabsichtigt ist, ein wiederkehrende Nachricht (siehe\n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence). Wenn Sie\n//   nicht dies, dann die Nachricht wird nur einmal gesendet\n//   werden. Hinweis: Wenn Sie wollen Ihre Funktion aufgerufen werden\n//   für Wiederholung, wiederholen:\n//   \n//   nextspec = \"function \" + specname;\n//   \n// * \"nextargs\" ist ein Array von Argumenten, die an die nächste\n//   übergeben werden soll Aufruf der Funktion als \"Args\".\n//   \n// Während Sie auf Ihre Funktion arbeiten, können Sie es testen, indem\n// Werte ausfüllen für \"Prev\" und \"Args\" in den Textfeldern unten und\n// klicken Sie dann auf \"Ausführen\" die Funktion ausführen und die\n// Ergebnisse zu sehen.\n// \n// Gibt es zwei vorkonfigurierte Beispielfunktionen, \"BusinessHours\"\n// und \"DaysInARow\", die Sie betrachten und spielen Sie mit um mehr zu\n// erfahren.  Diese Funktion \"ReadMeFirst\" verursacht nur die\n// Nachricht jetzt, um gesendet werden über die folgende Zeile.\n\nnext = new Date();",
+    "message": "// Herzlich Willkommen Sie auf der Später senden-Funktion-Editor!\n// \n// Der Editor können Sie JavaScript-Funktionen implementieren komplexe\n// erstellen message Disposition Logik die Shortcut-Tasten zugeordnet\n// werden kann oder ausgewählte im Dialogfeld \"Später senden\".\n// \n// Wie Sie oben sehen können wenn eine scheduling-Funktion aufgerufen\n// wird, erhält es drei Argumente:\n// \n// * \"specname\" wird benötigt, wenn Sie diese Funktion wieder\n//   auftreten (siehe unten) soll\n// \n// * \"prev\" ist die vorherige geplant Sendezeit, ist dies ein sich\n//   wiederholendes Aufruf\n// \n// * \"args\" ist die zusätzlichen Argumente von der vorherigen Aufruf\n//   zurückgegeben, wenn diese ist eine wiederkehrende Invocation\n// \n// der Code muss die Variablen \"next\", \"xextspec\", und \"nextargs\"\n// wie folgt:\n//\n// * \"next\" ist entweder die Anzahl der Minuten in der Zukunft oder\n//   ein Date-Objekt angibt, wann die Nachricht gesendet werden soll.\n// \n// * \"nextspec\" ist eine Wiederholung-Spezifikation, wenn dies\n//   beabsichtigt ist, ein wiederkehrende Nachricht (siehe\n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence). Wenn Sie\n//   nicht dies, dann die Nachricht wird nur einmal gesendet\n//   werden. Hinweis: Wenn Sie wollen Ihre Funktion aufgerufen werden\n//   für Wiederholung, wiederholen:\n//   \n//   nextspec = \"function \" + specname;\n//   \n// * \"nextargs\" ist ein Array von Argumenten, die an die nächste\n//   übergeben werden soll Aufruf der Funktion als \"Args\".\n//   \n// Während Sie auf Ihre Funktion arbeiten, können Sie es testen, indem\n// Werte ausfüllen für \"Prev\" und \"Args\" in den Textfeldern unten und\n// klicken Sie dann auf \"Ausführen\" die Funktion ausführen und die\n// Ergebnisse zu sehen.\n// \n// Gibt es zwei vorkonfigurierte Beispielfunktionen, \"BusinessHours\"\n// und \"DaysInARow\", die Sie betrachten und spielen Sie mit um mehr zu\n// erfahren.  Diese Funktion \"ReadMeFirst\" verursacht nur die\n// Nachricht jetzt, um gesendet werden über die folgende Zeile.\n\nnext = new Date();",
     "description": "This is the \"README\" text that appears in the dynamic function editor. The English text in the comments should be translated, but the variable and function names should be left in English."
   },
   "EditorReadMeHelp": {
@@ -738,7 +738,7 @@
     "description": ""
   },
   "SLJFilterLabel": {
-    "message": "Später Senden JSON Dateien",
+    "message": "Später senden JSON Dateien",
     "description": ""
   },
   "FunctionErrorTitle": {
@@ -770,7 +770,7 @@
     "description": ""
   },
   "LongDescription": {
-    "message": "Dieses Add-on ändert den Befehl „Später senden“ (Strg+Umschalt+Return) im Fenster zum Verfassen einer Nachricht, so dass Sie die Nachricht nicht nur in Ihren Postausgang kopieren, sondern das nächste Mal verschicken, wenn Sie online gehen oder den Befehl \"Ungesendete Nachrichten senden\" aufrufen. Es erscheint ein Dialog, in dem Sie festlegen können, wann die Nachricht gesendet wird.\n\nSie können eine Zeit und ein Datum angeben, oder auf „15 Minuten später“, „30 Minuten später“ oder „2 Stunden später“ klicken, und benutzerdefinierte Tastenkürzel definieren. Sie können auch eine Nachricht planen, die Sie wiederholt mit einfachen Regeln (alle N Stunden, Tage, etc.) oder anhand anpassbarer Funktionen versenden können.\n\nSpäter Senden basiert auf der leistungsfähigen Datumseingabe-Bibliothek von Andrew Plummer <a href=\"https://sugarjs.com/\">Sugar. s Library</a>.\n\nFeedback und Fehlerberichte sind sehr willkommen und können auf der Projektseite <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">GitHub-Seite</a> eingereicht werden.",
+    "message": "Dieses Add-on ändert den Befehl „Später senden“ (Strg+Umschalt+Return) im Fenster zum Verfassen einer Nachricht, so dass Sie die Nachricht nicht nur in Ihren Postausgang kopieren, sondern das nächste Mal verschicken, wenn Sie online gehen oder den Befehl \"Ungesendete Nachrichten senden\" aufrufen. Es erscheint ein Dialog, in dem Sie festlegen können, wann die Nachricht gesendet wird.\n\nSie können eine Zeit und ein Datum angeben, oder auf „15 Minuten später“, „30 Minuten später“ oder „2 Stunden später“ klicken, und benutzerdefinierte Tastenkürzel definieren. Sie können auch eine Nachricht planen, die Sie wiederholt mit einfachen Regeln (alle N Stunden, Tage, etc.) oder anhand anpassbarer Funktionen versenden können.\n\nSpäter senden basiert auf der leistungsfähigen Datumseingabe-Bibliothek von Andrew Plummer <a href=\"https://sugarjs.com/\">Sugar. s Library</a>.\n\nFeedback und Fehlerberichte sind sehr willkommen und können auf der Projektseite <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">GitHub-Seite</a> eingereicht werden.",
     "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   },
   "cancel": {
