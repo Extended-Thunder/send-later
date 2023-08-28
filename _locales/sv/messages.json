@@ -47,10 +47,6 @@
     "message": "Loggningsnivå för konsol",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "Loggningsnivå för loggdump",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "Alla",
     "description": ""

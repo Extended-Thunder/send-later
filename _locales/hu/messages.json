@@ -47,10 +47,6 @@
     "message": "Vezérlőpult naplószint",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "Összeomlási naplószint",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "Összes",
     "description": ""

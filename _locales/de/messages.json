@@ -47,10 +47,6 @@
     "message": "Log-Einträge auf der Konsole ausgeben ab Protokollierungsebene",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "Log-Einträge speichern ab Protokollierungsebene",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "Alle",
     "description": ""

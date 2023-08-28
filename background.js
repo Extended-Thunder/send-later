@@ -38,7 +38,7 @@ class Locker {
           }
           if (value[1] < cutoff) {
             changed = true;
-            delete Locker.locks[key];
+            delete Locker.locks[lockId];
           }
         }
         if (changed) {
@@ -840,9 +840,7 @@ const SendLater = {
       };
     }
 
-    const prefDefaults = await fetch("/utils/defaultPrefs.json").then((ptxt) =>
-      ptxt.json(),
-    );
+    let prefDefaults = await SLStatic.prefDefaults();
 
     // Pick up any new properties from defaults
     for (let prefName of Object.getOwnPropertyNames(prefDefaults)) {
@@ -859,6 +857,11 @@ const SendLater = {
       let instance_uuid = SLStatic.generateUUID();
       SLStatic.info(`Generated new UUID: ${instance_uuid}`);
       preferences.instanceUUID = instance_uuid;
+    }
+
+    if (preferences.checkTimePref_isMilliseconds) {
+      preferences.checkTimePref /= 60000;
+      delete preferences.checkTimePref_isMilliseconds;
     }
 
     await messenger.storage.local.set({ preferences, ufuncs });
@@ -1449,47 +1452,47 @@ const SendLater = {
       }
       case "getPreferences": {
         // Return Promise for the allowed preferences.
-        return SLTools.getPrefs()
-          .then((prefs) => {
+        let prefKeysPromise = SLStatic.userPrefKeys();
+        let prefsPromise = SLTools.getPrefs();
+        return Promise.all([prefKeysPromise, prefsPromise])
+          .then(([prefKeys, prefs]) => {
             prefs = Object.entries(prefs);
-            prefs = prefs.filter(([key, value]) =>
-              SLStatic.prefInputIds.includes(key),
-            );
+            prefs = prefs.filter(([key, value]) => prefKeys.includes(key));
             prefs = Object.fromEntries(prefs);
             return prefs;
           })
           .catch((ex) => SLStatic.error(ex));
       }
       case "setPreferences": {
-        const setAndReturnPrefs = async (old_prefs, new_prefs) => {
-          for (const prop in new_prefs) {
-            if (!SLStatic.prefInputIds.includes(prop)) {
-              throw new Error(
-                `Property ${prop} is not a valid Send Later preference.`,
-              );
-            }
-            if (
-              prop in old_prefs &&
-              typeof old_prefs[prop] != "undefined" &&
-              typeof new_prefs[prop] != "undefined" &&
-              typeof old_prefs[prop] != typeof new_prefs[prop]
-            ) {
-              throw new Error(
-                `Type of ${prop} is invalid: new ` +
-                  `${typeof new_prefs[prop]} vs. current ` +
-                  `${typeof old_prefs[prop]}.`,
-              );
-            }
-            old_prefs[prop] = new_prefs[prop];
-          }
-          await messenger.storage.local.set({ preferences: old_prefs });
-          return old_prefs;
-        };
         // Return Promise for updating the allowed preferences.
-        return SLTools.getPrefs()
-          .then((old_prefs) =>
-            setAndReturnPrefs(old_prefs, message.preferences),
-          )
+        let prefKeysPromise = SLStatic.userPrefKeys();
+        let prefsPromise = SLTools.getPrefs();
+        return Promise.all([prefKeysPromise, prefsPromise])
+          .then(async ([prefKeys, old_prefs]) => {
+            let new_prefs = message.preferences;
+            for (const prop in new_prefs) {
+              if (!prefKeys.includes(prop)) {
+                throw new Error(
+                  `Property ${prop} is not a valid Send Later preference.`,
+                );
+              }
+              if (
+                prop in old_prefs &&
+                typeof old_prefs[prop] != "undefined" &&
+                typeof new_prefs[prop] != "undefined" &&
+                typeof old_prefs[prop] != typeof new_prefs[prop]
+              ) {
+                throw new Error(
+                  `Type of ${prop} is invalid: new ` +
+                    `${typeof new_prefs[prop]} vs. current ` +
+                    `${typeof old_prefs[prop]}.`,
+                );
+              }
+              old_prefs[prop] = new_prefs[prop];
+            }
+            await messenger.storage.local.set({ preferences: old_prefs });
+            return old_prefs;
+          })
           .catch((ex) => SLStatic.error(ex));
       }
       case "parseDate": {
@@ -2069,9 +2072,6 @@ async function mainLoop() {
   try {
     let preferences = await SLTools.getPrefs();
     let interval = +preferences.checkTimePref || 0;
-    if (preferences.checkTimePref_isMilliseconds) {
-      interval /= 60000;
-    }
 
     SendLater.loopMinutes = interval;
 

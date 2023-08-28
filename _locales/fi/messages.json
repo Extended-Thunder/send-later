@@ -47,10 +47,6 @@
     "message": "Konsolilokitaso",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "Datankeruutaso",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "Kaikki",
     "description": ""

@@ -43,10 +43,6 @@
     "message": "コンソールログレベル",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "出力ログレベル",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "すべて",
     "description": ""

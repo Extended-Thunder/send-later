@@ -47,10 +47,6 @@
     "message": "Konsolloggføringsnivå",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "Loggføringsdumpnivå",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "Alle",
     "description": ""

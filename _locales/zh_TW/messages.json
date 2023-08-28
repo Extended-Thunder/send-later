@@ -47,10 +47,6 @@
     "message": "控制台除錯紀錄層級：",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "除錯紀錄層級：",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "所有訊息",
     "description": ""

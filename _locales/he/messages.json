@@ -47,10 +47,6 @@
     "message": "‫רמת ההתראות לתיעוד במסוף הבקרה‬",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "‫רמת ההתראות לתיעוד במסוף הג'אווה‬",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "כולם",
     "description": ""

@@ -7,7 +7,7 @@ const SLOptions = {
   applyValue(id, value) {
     const element = document.getElementById(id);
     if (!element) {
-      SLStatic.error(id, element, value);
+      return;
     } else {
       if (element.tagName === "INPUT") {
         switch (element.type) {
@@ -154,6 +154,8 @@ const SLOptions = {
 
   async applyPrefsToUI() {
     // Sets all UI element states from stored preferences
+    let prefKeys = await SLStatic.userPrefKeys();
+
     const ufuncPromise = browser.storage.local
       .get({ ufuncs: {} })
       .then(({ ufuncs }) => {
@@ -167,24 +169,14 @@ const SLOptions = {
       .get({ preferences: {} })
       .then(({ preferences }) => {
         SLStatic.logConsoleLevel = preferences.logConsoleLevel;
-        for (let id of SLStatic.prefInputIds) {
+        for (let id of prefKeys) {
           let prefVal = preferences[id];
-          if (
-            id === "checkTimePref" &&
-            preferences.checkTimePref_isMilliseconds
-          ) {
-            prefVal /= 60000;
-          }
           SLStatic.debug(`Setting ${id}: ${prefVal}`);
           SLOptions.applyValue(id, prefVal);
         }
 
         const checkTimePrefElement = document.getElementById("checkTimePref");
-        if (preferences.checkTimePref_isMilliseconds) {
-          checkTimePrefElement.step = 0.1;
-        } else {
-          checkTimePrefElement.step = 1.0;
-        }
+        checkTimePrefElement.step = 1.0;
 
         try {
           // Attempt to setup UI alternative units for specifying
@@ -320,8 +312,6 @@ const SLOptions = {
           id = "lateGracePeriod";
           value = gracePeriodValue * multiplier[gracePeriodUnits.value];
         }
-      } else if (id === "checkTimePref") {
-        value *= preferences.checkTimePref_isMilliseconds ? 60000 : 1;
       } else if (id === "logConsoleLevel") {
         SLStatic.logConsoleLevel = value;
       } else if (["shortDateTimeFormat", "longDateTimeFormat"].includes(id)) {
@@ -489,9 +479,12 @@ const SLOptions = {
 
   async attachListeners() {
     // Attach listeners for all input fields
-    for (const id of SLStatic.prefInputIds) {
+    let prefKeys = await SLStatic.userPrefKeys();
+    for (const id of prefKeys) {
       const el = document.getElementById(id);
-      el.addEventListener("change", SLOptions.updatePrefListener);
+      if (el) {
+        el.addEventListener("change", SLOptions.updatePrefListener);
+      }
     }
 
     SLOptions.exclusiveCheckboxSet(["sendDoesSL", "sendDoesDelay"]);
@@ -784,9 +777,7 @@ const SLOptions = {
       const { preferences } = await browser.storage.local.get({
         preferences: {},
       });
-      const defaults = await fetch("/utils/defaultPrefs.json").then((ptxt) =>
-        ptxt.json(),
-      );
+      const defaults = await SLStatic.prefDefaults();
 
       for (let key of Object.keys(defaults)) {
         if (key !== "instanceUUID") {

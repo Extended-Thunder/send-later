@@ -47,10 +47,6 @@
     "message": "Konsol logniveau",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "Dump log niveauet",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "Alle",
     "description": ""

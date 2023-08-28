@@ -43,10 +43,6 @@
     "message": "Nivel de consola de rexistro (log)",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "Nivel de volcado do rexistro (log)",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "Todos",
     "description": ""

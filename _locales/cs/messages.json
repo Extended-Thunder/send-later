@@ -47,10 +47,6 @@
     "message": "Úroveň zápisu protokolu pro příkazový řádek",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "Úroveň zápisu protokolu",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "Vše",
     "description": ""

@@ -43,10 +43,6 @@
     "message": "Registro (log) de nivel consola",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "Registro (log) de nivel volcado",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "Todos",
     "description": ""

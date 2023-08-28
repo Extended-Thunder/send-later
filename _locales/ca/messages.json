@@ -43,10 +43,6 @@
     "message": "Nivell de consola de registre",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "Nivell de bolcat de registre",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "Tots",
     "description": ""

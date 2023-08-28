@@ -2,44 +2,8 @@ var SLStatic = {
   i18n: null,
   tempFolderName: "Send-Later-Temp",
   timeRegex: /^(2[0-3]|[01]?\d):?([0-5]\d)$/,
-
-  // HTML element IDs in options.html correspond to preference keys
-  // in local storage.
-  prefInputIds: [
-    "checkTimePref",
-    "sendDoesDelay",
-    "sendDelay",
-    "sendDoesSL",
-    "altBinding",
-    "markDraftsRead",
-    "showColumn",
-    "showHeader",
-    "showStatus",
-    "blockLateMessages",
-    "lateGracePeriod",
-    "askQuit",
-    "sendUnsentMsgs",
-    "enforceTimeRestrictions",
-    "logDumpLevel",
-    "logConsoleLevel",
-    "quickOptions1Label",
-    "quickOptions1funcselect",
-    "quickOptions1Args",
-    "quickOptions2Label",
-    "quickOptions2funcselect",
-    "quickOptions2Args",
-    "quickOptions3Label",
-    "quickOptions3funcselect",
-    "quickOptions3Args",
-    "accelCtrlfuncselect",
-    "accelCtrlArgs",
-    "accelShiftfuncselect",
-    "accelShiftArgs",
-    "customizeDateTime",
-    "shortDateTimeFormat",
-    "longDateTimeFormat",
-  ],
-
+  _prefDefaults: null,
+  internalPrefs: ["instanceUUID", "releaseNotesVersion"],
   thunderbirdVersion: null,
 
   async tb115(yes, no) {
@@ -124,6 +88,22 @@ var SLStatic = {
     } catch (e) {
       console.error(e);
     }
+  },
+
+  async prefDefaults() {
+    if (!SLStatic._prefDefaults) {
+      SLStatic._prefDefaults = await fetch("/utils/defaultPrefs.json").then(
+        (ptxt) => ptxt.json(),
+      );
+    }
+    return SLStatic._prefDefaults;
+  },
+
+  async userPrefKeys() {
+    let prefDefaults = await SLStatic.prefDefaults();
+    return Object.keys(prefDefaults).filter(
+      (k) => !SLStatic.internalPrefs.includes(k),
+    );
   },
 
   getLocale() {

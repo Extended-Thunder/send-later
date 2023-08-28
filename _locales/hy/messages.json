@@ -47,10 +47,6 @@
     "message": "Console մատյանի աստիճանը՝",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "Dump մատյանի աստիճանը՝",
-    "description": ""
-  },
   "markReadPrefLabel": {
     "message": "Նշել հերթագրված սևագրերը որպես ընթերցված",
     "description": ""

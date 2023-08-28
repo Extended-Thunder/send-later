@@ -47,10 +47,6 @@
     "message": "Nivel jurnal consolă",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "Nivel jurnal fișier",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "Tot",
     "description": ""

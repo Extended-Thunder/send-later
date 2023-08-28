@@ -47,10 +47,6 @@
     "message": "Nível de log do console",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "Nível de log de descarga",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "Todos",
     "description": ""

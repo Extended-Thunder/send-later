@@ -47,10 +47,6 @@
     "message": "Конзолно ниво на дневника",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "Дъмп ниво на дневника",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "Всичи",
     "description": ""

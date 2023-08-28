@@ -43,10 +43,6 @@
     "message": "Nível de registo da consola",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "Nível de registo de descarga",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "Todos",
     "description": ""

@@ -47,10 +47,6 @@
     "message": "Console de journalisation",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "Niveau de journalisation",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "Tout",
     "description": ""

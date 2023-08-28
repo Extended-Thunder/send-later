@@ -47,10 +47,6 @@
     "message": "Poziom logowania w konsoli",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "Poziom logowania do pliku",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "Wszystkie",
     "description": ""

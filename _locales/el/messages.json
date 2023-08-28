@@ -43,10 +43,6 @@
     "message": "Επίπεδο καταγραφής κονσόλας",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "Επίπεδο καταγραφής ένδειξης σφαλμάτων",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "Όλα",
     "description": ""

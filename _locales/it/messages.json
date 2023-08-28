@@ -47,10 +47,6 @@
     "message": "Livello log Console",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "Livello log Dump",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "Tutto",
     "description": ""

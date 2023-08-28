@@ -43,10 +43,6 @@
     "message": "Уровень логирования для консоли",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "Уровень логирования для дампа",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "Все",
     "description": ""

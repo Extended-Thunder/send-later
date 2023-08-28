@@ -43,10 +43,6 @@
     "message": "控制台日志级别：",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "转储日志级别：",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "所有",
     "description": ""

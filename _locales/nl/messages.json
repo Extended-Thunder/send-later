@@ -47,10 +47,6 @@
     "message": "Consolelogniveau",
     "description": ""
   },
-  "logDumpLevelLabel": {
-    "message": "Dumplogniveau",
-    "description": ""
-  },
   "logLevelAll": {
     "message": "Alles",
     "description": ""
