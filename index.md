@@ -207,6 +207,28 @@ in English. If you encounter something you think the add-on should
 understand but doesn't,
 [let us know](#help).
 
+### Scheduling multiple messages at once
+
+You can select one or more messages in a Drafts folder, right-click or
+ctrl-click on them to bring up the menu, and select "Send Later >
+Schedule messages(s)" from the menu to schedule all of them at once.
+After clicking "Send at...", "Send Now", or "Put in Outbox" in the
+pop-up, Send Later will open all the messages one by one and process
+them as requested.
+
+### Skipping the next occurrence of recurring messages
+
+You can select one or more scheduled, recurring messages in a Drafts
+folder, right-click or ctrl-click on them to bring up the menu, and
+select "Send Later > Skip next occurrence" from the menu to skip the
+next occurrence of each selected message.
+
+For example, if you have a scheduled message that is delivered weekly
+at 14:00 every Wednesday, and its next scheduled send time is
+Wednesday, August 23, and it's currently Tuesday, August 22, and you
+do "Skip next occurrence" on the message, then it'll be rescheduled
+and next delivered at 14:00 on Wednesday, August 30.
+
 <a name="prefs"></a>
 
 ## Preferences
