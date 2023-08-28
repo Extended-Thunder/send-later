@@ -40,5 +40,10 @@
   "longDateTimeFormat": ["string", ""],
   "scheduledDateField": ["boolean", true],
   "releaseNotesShow": ["boolean", true],
-  "releaseNotesVersion": ["string", "0.0.0"]
+  "releaseNotesVersion": ["string", "0.0.0"],
+  "telemetryAsked": ["boolean", false],
+  "telemetryEnabled": ["boolean", true],
+  "telemetryUUID": ["string", ""],
+  "telemetryUUIDEnabled": ["boolean", true],
+  "telemetryURL": ["string", "https://telemetry.kamens.us/"]
 }

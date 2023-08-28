@@ -18,7 +18,7 @@ var SLTools = {
   },
 
   // Debugging info printed to log during intialization.
-  async printVersionInfo() {
+  async startupLogVersionInfo() {
     const extensionName = messenger.i18n.getMessage("extensionName");
     const slVersion = messenger.runtime.getManifest().version;
     const browserInfo = await messenger.runtime.getBrowserInfo();
@@ -29,6 +29,15 @@ var SLTools = {
         `(${browserInfo.buildID}) ` +
         `[${platformInfo.os} ${platformInfo.arch}]`,
     );
+    SLStatic.telemetrySend({
+      event: "startup",
+      version: slVersion,
+      browserName: browserInfo.name,
+      browserVersion: browserInfo.version,
+      browserBuild: browserInfo.buildID,
+      platformOS: platformInfo.os,
+      platformArch: platformInfo.arch,
+    });
   },
 
   handlePopupCallback(tabId, message) {

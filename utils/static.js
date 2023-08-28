@@ -1683,6 +1683,43 @@ var SLStatic = {
       });
     return moved;
   },
+
+  telemetrySend(values) {
+    console.log("telemetrySend");
+    if (!this.preferences.telemetryEnabled) {
+      return;
+    }
+    if (this.preferences.telemetryUUIDEnabled) {
+      let uuid = this.telemetryUUID;
+      if (!this.telemetryUUID) {
+        uuid = this.generateUUID().slice(1, -1);
+        this.preferences.telemetryUUID = uuid;
+        // We just let this promise complete in the background because it's not
+        // incredibly important if the UUID isn't saved successfully, better
+        // luck next time!
+        messenger.storage.local.set({ preferences: this.preferences });
+      }
+      values.uuid = uuid;
+    }
+    values.locale = this.getLocale();
+    if (!this.preferences.telemetryURL) {
+      return;
+    }
+    let query = new URLSearchParams();
+    Object.entries(values).forEach(([key, value]) => {
+      query.append(key, value);
+    });
+    let url = `${this.preferences.telemetryURL}?${query.toString()}`;
+    try {
+      let req = new XMLHttpRequest();
+      req.open("GET", url);
+      req.send();
+      // We don't care about the response. Off it goes into the ether! Hopefully
+      // it arrives, but we're not going to wait around to find out!
+    } catch (ex) {
+      SLStatic.error("telemetrySend failure", ex);
+    }
+  },
 };
 
 /*

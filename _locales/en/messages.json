@@ -888,5 +888,25 @@
   "RescheduleErrorText": {
     "message": "WARNING: An unexpected error occurred while attempting to schedule the next occurrence of a scheduled message with the subject “$1”. See the Thunderbird error log for details. The previous scheduled draft therefore has not been deleted. You should either delete it or edit it and reschedule it if desired.",
     "description": "Text of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "TelemetryAskTitle": {
+    "message": "$1 data collection request",
+    "description": "Title of the pop-up that asks the user whether we can collect anonymous usage data. The placeholder is replaced with the extension name."
+  },
+  "TelemetryAskText": {
+    "message": "Can we collect anonymous data about your use of $1? The data tells us how you use the add-on and about your environment. It contains no identifying information, email content, or account information. We use the data to improve the add-on, measure its usage, and identify where to focus our efforts. We don't share the data with anyone. Your response will not impact the add-on's functionality. Full details are available in our $2.",
+    "description": "Text of the pop-up that asks the user whether we can collect anonymous usage data. The second placeholder is replaced with the contents of the string PrivacyPolicy (so we can make it a link."
+  },
+  "PrivacyPolicy": {
+    "message": "Privacy Policy",
+    "description": "Inserted into TelemetryAskText. Also used to link to the privacy policy from the Send Later pop-up in the main Thunderbird window."
+  },
+  "TelemetryAskYes": {
+    "message": "Yes, you can collect usage data",
+    "description": "Label for the yes button on the telemetry request dialog."
+  },
+  "TelemetryAskNo": {
+    "message": "No, don't collect usage data",
+    "description": "Label for the no button on the telemetry request dialog."
   }
 }

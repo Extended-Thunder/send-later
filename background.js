@@ -934,7 +934,7 @@ const SendLater = {
   },
 
   async init() {
-    SLTools.printVersionInfo();
+    SLTools.startupLogVersionInfo();
 
     // Add listeners to the various events we care about
     messenger.alarms.onAlarm.addListener(alarmsListener);
@@ -1082,6 +1082,14 @@ const SendLater = {
       }
     } else {
       SLStatic.debug("Release notes display not wanted");
+    }
+
+    if (!preferences.telemetryAsked) {
+      await messenger.windows.create({
+        url: "ui/telemetry.html",
+        type: "popup",
+        allowScriptsToClose: true,
+      });
     }
   },
 
