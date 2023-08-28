@@ -105,6 +105,18 @@ changed from the GitHub releases to the page you're reading right now,
 and instead of opening it in a browser it is now opened in a
 Thunderbird tab.
 
+Send Later now prevents messages with schedule dates more than six
+months in the past from being delivered automatically, even if you
+have the preference for enforcing that disabled or set to a value
+higher than six months. This is necessary because Send Later keeps
+records of all delivered messages to prevent it from accidentally
+re-delivering a message if something goes wrong, and we don't want to
+have to keep those records around forever taking up increasing disk
+space and having an increasing impact on performance. Now that we're
+enforcing a six-month maximum delay for message delivery, Send Later
+can safely remove any delivery records older than six months, so
+that's what it now does.
+
 Previously, if you opened Send Later's preferences, made changes in
 the advanced configuration editor at the bottom but did not save them,
 made different changes in the top section of the preferences page, and
@@ -121,6 +133,12 @@ looking for.
 Send Later no longer saves bad or incomplete [custom date
 formats][customdates] in your preferences. Instead it warns you that
 the format is invalid and won't save it until you fix it.
+
+The hidden "checkTimePref_isMilliseconds" preference is gone. The
+frequency with which Send Later checks for messages to be delivered
+can no longer be set in milliseconds. If you were using this
+preference then Send Later should convert it automatically on upgrade,
+but you might want to check your preferences to make sure.
 
 Many updates have been made to Send Later's translations. Thank you,
 as always, to our many dedicated translators who make Send Later
@@ -156,6 +174,15 @@ separator between the title and the words "Mozilla Thunderbird",
 rather than those being glommed right onto the end of Send Later's
 specified title with no space separating them.
 
+We believe some users may have been getting error pop-ups about their
+Drafts folders being corrupted when that wasn't actually the problem.
+We've fixed at least some cases of this, though we don't know if we
+got all of them.
+
+There were some contexts in which the log level was not being set
+properly so more was being logged than should have been. We believe
+this has been fixed.
+
 ### Known issues
 
 Please check [the user guide][caveats] for persistent caveats and known
@@ -175,6 +202,16 @@ Later preferences. Versions of Thunderbird without modern preferences
 support have been obsolete, unsupported, and not receiving security
 updates for several years, so it was time for this old code to say
 good-bye.
+
+The "experiment" code for saving messages into the user's Drafts
+folder when scheduling the next instance of a recurring message, and
+for copying messages into the user's Outbox during delivery, have been
+replaced with code that uses the supported Thunderbird add-on APIs.
+Send Later is still using quite a bit of experiment code (as noted
+elsewhere, this is why when you install it Thunderbird warns that it
+has full access to your computer), but we are gradually getting rid of
+it as the add-on APIs are enhanced to support more of what Send Later
+needs to do.
 
 ## Release 10.0.x
 
