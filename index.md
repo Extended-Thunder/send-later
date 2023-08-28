@@ -552,12 +552,12 @@ Some things to keep in mind:
 7.  <a name="exquilla"></a>Send Later does not work with ExQuilla, because Send
     Later depends on being able to put messages into your local Outbox and then
     send them with the "Send Unsent Messages" command, but
-    ["Send Unsent Messages" is not implemented in ExQuilla](https://exquilla.zendesk.com/entries/25723967-Messages-stuck-in-Outbox).
+    ["Send Unsent Messages" is not implemented in ExQuilla][exquillaoutbox].
     If you would like to see Send Later work with ExQuilla, I suggest you
     contact the maintainers of ExQuilla and ask them to make sending messages to
     ExQuilla from the local Outbox work properly; the more people ask, the more
     likely it is that they will fix this problem. Send Later *does* work with
-    [Owl for Exchange](https://addons.thunderbird.net/thunderbird/addon/owl-for-exchange/),
+    [Owl for Exchange][owl],
     the add-on which is intended to replace ExQuilla, when configured as
     described [below](#owl).
 8.  Send Later is incompatible with message encryption and digital signatures
@@ -1141,7 +1141,7 @@ Mail Merge Dialog, you usually want to use something like this:
 <a name="owl"></a>
 ### Owl for Exchange add-on
 
-The [Owl for Exchange](https://addons.thunderbird.net/thunderbird/addon/owl-for-exchange/)
+The [Owl for Exchange][owl]
 add-on allows Thunderbird to send and receive email through a Microsoft
 Exchange Server account. Send Later can be made to work with Owl for
 Exchange, but only if you configure an SMTP server for outbound
@@ -1976,3 +1976,5 @@ Please [see above](#translate) if you would like to help add another translation
 [atnversions]: https://addons.thunderbird.net/thunderbird/addon/send-later-3/versions/
 [ghreleases]: https://github.com/Extended-Thunder/send-later/releases
 [privacy]: https://addons.thunderbird.net/thunderbird/addon/send-later-3/privacy/
+[exquillaoutbox]: https://exquilla.zendesk.com/entries/25723967-Messages-stuck-in-Outbox
+[owl]: https://addons.thunderbird.net/thunderbird/addon/owl-for-exchange/
