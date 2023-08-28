@@ -23,8 +23,16 @@
     "message": "minute",
     "description": ""
   },
+  "blockLateMessagesPrefTooltip": {
+    "message": "Nu livra mesajele programate care au fost întârziate după timpul programat, de exemplu, pentru că Thunderbird nu era deschis la momentul respectiv.",
+    "description": ""
+  },
   "checkTimePrefLabel1": {
     "message": "Verifică la fiecare",
+    "description": ""
+  },
+  "checkTimePrefTooltip": {
+    "message": "Intervalul, în minute, între verificarea mesajelor nefinalizate al căror termen de trimitere a sosit. Crește această valoare dacă mesajele nu sunt trimise la timp câteodată sau dacă numărul de mesaje în așteptare din bara de stare nu corespunde trimiterilor programate.",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -37,6 +45,10 @@
   },
   "enforceRestrictionsPrefLabel": {
     "message": "Impune restricțiile de oră și zi în momentul livrării",
+    "description": ""
+  },
+  "enforceRestrictionsPrefTooltip": {
+    "message": "Dacă un mesaj care este programat să fie livrat este în afara restricțiilor de oră/dată, de exemplu pentru că Thunderbird nu rula la momentul programat, amână trimiterea acestuia până când sunt întrunite condițiile de trimitere.",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -155,8 +167,20 @@
     "message": "„Trimite” face „Trimite mai târziu”",
     "description": ""
   },
+  "sendButtonPrefTooltip": {
+    "message": "Cu această opțiune activată, comanda “Trimite” (fie butonul fie tastând Ctrl-Enter) acționează la fel ca “Trimite mai târziu”.",
+    "description": ""
+  },
   "sendDelayPrefLabel1": {
     "message": "„Trimite” va trimite mesajele cu o întârziere de",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Monitorizează primirea de răspuns la trimiterile anterioare ale mesajelor repetitive. Anulează un mesaj repetitiv și șterge-l din dosarul „Mesaje netrimise” când se primește răspuns.",
+    "description": ""
+  },
+  "sendDelayPrefTooltip": {
+    "message": "Când această opțiune este activată, toate mesajele trimise folosind comanda “Trimite” (indiferent dacă e vorba de buton sau de scurtătura Ctrl-Enter) vor fi trimise mai târziu cu numărul specificat de minute - prin programarea lor cu Send Later.",
     "description": ""
   },
   "sendSundayLabel": {
@@ -191,6 +215,10 @@
     "message": "Trimite Acum",
     "description": ""
   },
+  "sendNowTooltip": {
+    "message": "Trimite mesajul imediat, ignorând Send Later.",
+    "description": ""
+  },
   "sendOnlyOnLabel": {
     "message": "Doar",
     "description": ""
@@ -207,8 +235,16 @@
     "message": "Arată coloana Send Later",
     "description": ""
   },
+  "showColumnPrefTooltip": {
+    "message": "Dacă se afișează coloana “Send Later” când se vizualizează dosarele de mesaje nefinalizate",
+    "description": ""
+  },
   "showHeaderPrefLabel": {
     "message": "Arată headerul Send Later",
+    "description": ""
+  },
+  "showHeaderPrefTooltip": {
+    "message": "Dacă se afișează headerul “X-Send-Later-At”, adică momentul când un mesaj e programat să fie trimis, în header, la vizualizarea unui mesaj.",
     "description": ""
   },
   "showStatusPrefLabel": {
@@ -229,6 +265,10 @@
   },
   "sendlater.prompt.sendlater.label": {
     "message": "Pune în „De trimis”",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "În loc de programarea trimiterii la un anumit moment, mută mesajul în dosarul „De trimis” pentru a fi trimis la următoare trimitere de mesaje neexpediate.",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -421,6 +461,10 @@
   },
   "close.label": {
     "message": "Închide",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Salvează mesajul în dosarul „Mesaje nefinalizate” pentru livrare automata la momentul setat mai sus.",
     "description": ""
   },
   "entervalid": {

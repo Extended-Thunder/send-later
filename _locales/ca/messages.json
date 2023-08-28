@@ -23,8 +23,16 @@
     "message": "minuts de retard",
     "description": ""
   },
+  "blockLateMessagesPrefTooltip": {
+    "message": "No lliurar els missatges programats que hagin sobrepassat la data i hora definides, p.ex., degut a que Thunderbird no s'estava executant en aquell moment.",
+    "description": ""
+  },
   "checkTimePrefLabel1": {
     "message": "Comprovar cada",
+    "description": ""
+  },
+  "checkTimePrefTooltip": {
+    "message": "Interval, en minuts, entre les comprovacions dels esborranys als que els ha arribat el moment de ser lliurats. Augmenteu aquest valor si els vostres esborranys algunes vegades no son enviats a temps o si el comptador de missatges pendents en la barra d'estat no reflecteix algun cop tots els esborranys programats.",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -37,6 +45,10 @@
   },
   "enforceRestrictionsPrefLabel": {
     "message": "Fer complir les restriccions de dia i hora en el moment de lliurar",
+    "description": ""
+  },
+  "enforceRestrictionsPrefTooltip": {
+    "message": "Si un missatge prèviament programat per ser enviat està fora de temps o dia per restriccions, p.ex., degut a que Thunderbird no s'estava executant en l'hora de lliurament programada, llavors es retarda el lliurament fins que s'acompleixin les restriccions de dia i hora.",
     "description": ""
   },
   "logConsoleLevelLabel": {
@@ -147,8 +159,20 @@
     "message": "“Enviar” actua com “Enviar més endavant”",
     "description": ""
   },
+  "sendButtonPrefTooltip": {
+    "message": "Amb aquesta opció habilitada, la comanda “Enviar” (tant el botó com al teclejar Ctrl-Intro) funciona igual que “Enviar més endavant”",
+    "description": ""
+  },
   "sendDelayPrefLabel1": {
     "message": "“Enviar” ajorna els missatges durant",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Monitoritza les respostes a les còpies enviades prèviament de missatges repetitius. Cancel·la les repeticions del missatge i l'esborra de la safata d'esborranys quan es rep una resposta.",
+    "description": ""
+  },
+  "sendDelayPrefTooltip": {
+    "message": "Amb aquesta opció activada, tots els missatges enviats amb la comanda “Enviar” (amb el botó o prement Ctrl+Intro) s'ajornaran durant el número de minuts especificats programant-los amb Send Later.",
     "description": ""
   },
   "sendSundayLabel": {
@@ -183,6 +207,10 @@
     "message": "Enviar ara",
     "description": ""
   },
+  "sendNowTooltip": {
+    "message": "Enviar el missatge immediatament, ignorant “Send Later”.",
+    "description": ""
+  },
   "sendOnlyOnLabel": {
     "message": "Només en",
     "description": ""
@@ -199,8 +227,16 @@
     "message": "Mostrar la columna Send Later",
     "description": ""
   },
+  "showColumnPrefTooltip": {
+    "message": "Si s'ha de mostrar la columna “Send Later” en la vista de les carpetes d'esborranys",
+    "description": ""
+  },
   "showHeaderPrefLabel": {
     "message": "Mostrar la capçalera Send Later",
+    "description": ""
+  },
+  "showHeaderPrefTooltip": {
+    "message": "Si es mostra la capçalera “X-Send-Later-A”, p.ex., l'hora en la que l'esborrany és programat per a ser enviat, en la capçalera de visualització del missatge.",
     "description": ""
   },
   "showStatusPrefLabel": {
@@ -221,6 +257,10 @@
   },
   "sendlater.prompt.sendlater.label": {
     "message": "Posar a la Safata de Sortida",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "En comptes de programar el lliurament a una hora específica, moure el missatge a la Safata de Sortida per lliurar-lo el proper cop que els missatges no enviats siguin lliurats.",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -417,6 +457,10 @@
   },
   "close.label": {
     "message": "Tancar",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Guardar el missatge a la Carpeta d'Esborranys per al seu lliurament automàtic a l'hora especificada.",
     "description": ""
   },
   "entervalid": {

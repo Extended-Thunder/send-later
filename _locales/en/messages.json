@@ -23,8 +23,16 @@
     "message": "minutes late",
     "description": ""
   },
+  "blockLateMessagesPrefTooltip": {
+    "message": "Don't deliver scheduled messages that have been delayed past their scheduled time, e.g., because Thunderbird wasn't running at that time.",
+    "description": ""
+  },
   "checkTimePrefLabel1": {
     "message": "Check every",
+    "description": ""
+  },
+  "checkTimePrefTooltip": {
+    "message": "Interval, in minutes, between checks for drafts whose delivery time has arrived. Increase this value if your drafts sometimes aren't sent on time or the pending message count in your status bar sometimes doesn't reflect all scheduled drafts.",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -37,6 +45,10 @@
   },
   "enforceRestrictionsPrefLabel": {
     "message": "Enforce time and day restrictions at delivery time",
+    "description": ""
+  },
+  "enforceRestrictionsPrefTooltip": {
+    "message": "If a message that is due to be delivered is outside its time or day restrictions, e.g., because Thunderbird was not running at its scheduled delivery time, then delay its delivery until the time and day restrictions are met.",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -155,8 +167,20 @@
     "message": "“Send” does “Send Later”",
     "description": ""
   },
+  "sendButtonPrefTooltip": {
+    "message": "Make the “Send” command (either the button or typing Ctrl-Enter) act the same as “Send Later”",
+    "description": ""
+  },
   "sendDelayPrefLabel1": {
     "message": "“Send” delays messages by",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Watch for replies to previously sent copies of recurring messages. Cancel a recurring message and remove it from the Drafts folder when a reply is received.",
+    "description": ""
+  },
+  "sendDelayPrefTooltip": {
+    "message": "Delay all messages sent with the “Send” command (either the button or typing Ctrl-Enter) by the specified number of minutes by scheduling them with Send Later",
     "description": ""
   },
   "sendSundayLabel": {
@@ -191,6 +215,10 @@
     "message": "Send Now",
     "description": ""
   },
+  "sendNowTooltip": {
+    "message": "Send the message immediately, bypassing “Send Later”",
+    "description": ""
+  },
   "sendOnlyOnLabel": {
     "message": "Only on",
     "description": ""
@@ -207,8 +235,16 @@
     "message": "Show Send Later Column",
     "description": ""
   },
+  "showColumnPrefTooltip": {
+    "message": "Whether to show the “Send Later” column when viewing draft folders",
+    "description": ""
+  },
   "showHeaderPrefLabel": {
     "message": "Show Send Later Header",
+    "description": ""
+  },
+  "showHeaderPrefTooltip": {
+    "message": "Whether to show the “X-Send-Later-At” header, i.e., the time when a draft is scheduled to be sent, in the header when viewing a message",
     "description": ""
   },
   "showStatusPrefLabel": {
@@ -229,6 +265,10 @@
   },
   "sendlater.prompt.sendlater.label": {
     "message": "Put in Outbox",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "Rather than scheduling delivery for a specific time, move the message to the Outbox folder for delivery next time unsent messages are sent.",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -425,6 +465,10 @@
   },
   "close.label": {
     "message": "Close",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Save message in Drafts folder for automatic delivery at the time set above",
     "description": ""
   },
   "entervalid": {

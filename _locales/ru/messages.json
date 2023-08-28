@@ -19,8 +19,16 @@
     "message": "минут",
     "description": ""
   },
+  "blockLateMessagesPrefTooltip": {
+    "message": "Не доставлять запланированные сообщения, которые были задержаны до их запланированного времени, например, из-за того, что Thunderbird не был запущен в этот момент.",
+    "description": ""
+  },
   "checkTimePrefLabel1": {
     "message": "Проверять каждые",
+    "description": ""
+  },
+  "checkTimePrefTooltip": {
+    "message": "Интервал в минутах между проверками черновиков, чье время доставки уже наступило. Увеличьте это число, если ваши черновики иногда не отправляются вовремя, или если количество сообщений в вашей строке состояния не отражает все запланированные отправки.",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -33,6 +41,10 @@
   },
   "enforceRestrictionsPrefLabel": {
     "message": "Обеспечить ограничение времени и дня во время доставки",
+    "description": ""
+  },
+  "enforceRestrictionsPrefTooltip": {
+    "message": "Если сообщение, которое должно быть доставлено, выходит за пределы своих ограничений по времени, например, из-за того, что Thunderbird не работал в запланированное время, то его доставка задержится до тех пор, пока не будут соблюдены ограничения по времени и дню.",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -143,8 +155,20 @@
     "message": "Заменить «Отправить» на «Отправить позже»",
     "description": ""
   },
+  "sendButtonPrefTooltip": {
+    "message": "Когда эта опция активна, то команда «Отправить» (и кнопка и нажатие на Ctrl-Enter) выполняется так же как и «Отправить позже».",
+    "description": ""
+  },
   "sendDelayPrefLabel1": {
     "message": "«Отправить» откладывает сообщения на",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Отслеживать ответы, для отмены отправки копий рекурсивных сообщений. Отменяет повторяющиеся сообщения и удаляет их из «Черновиков», после получения ответа.",
+    "description": ""
+  },
+  "sendDelayPrefTooltip": {
+    "message": "Если эта опция включена, все сообщения, отправленные с помощью команды «Отправить» (либо кнопки, либо сочетания клавиш Ctrl-Enter), откладываются на указанное количество минут, запланированных с помощью Send Later.",
     "description": ""
   },
   "sendSundayLabel": {
@@ -179,6 +203,10 @@
     "message": "Отправить сейчас",
     "description": ""
   },
+  "sendNowTooltip": {
+    "message": "Отправка сообщения минуя Send Later.",
+    "description": ""
+  },
   "sendOnlyOnLabel": {
     "message": "Только в",
     "description": ""
@@ -195,8 +223,16 @@
     "message": "Показать столбец Send Later",
     "description": ""
   },
+  "showColumnPrefTooltip": {
+    "message": "Показывать столбец «Send Later» при просмотре черновиков",
+    "description": ""
+  },
   "showHeaderPrefLabel": {
     "message": "Показывать заголовок Send Later",
+    "description": ""
+  },
+  "showHeaderPrefTooltip": {
+    "message": "Указывать, показывать ли заголовок «X-Send-Later-At», то есть время отправки черновика, в заголовке при просмотре сообщения.",
     "description": ""
   },
   "showStatusPrefLabel": {
@@ -209,6 +245,10 @@
   },
   "sendlater.prompt.sendlater.label": {
     "message": "Поместить в «Исходящие»",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "Вместо того, чтобы планировать доставку в течение определенного времени, переместите сообщение в папку «Исходящие» для доставки в следующий раз, когда будут отправлены не отправленные сообщения.",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -397,6 +437,10 @@
   },
   "close.label": {
     "message": "Закрыть",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Сохранить сообщение в «Черновиках» для автоматической доставки в указанное время.",
     "description": ""
   },
   "entervalid": {

@@ -23,8 +23,16 @@
     "message": "minuti dopo",
     "description": ""
   },
+  "blockLateMessagesPrefTooltip": {
+    "message": "Non inviare messaggi pianificati che sono stati ritardati oltre il loro orario pianificato, ad esempio perché Thunderbird non era in esecuzione a quell'ora.",
+    "description": ""
+  },
   "checkTimePrefLabel1": {
     "message": "Controlla ogni",
+    "description": ""
+  },
+  "checkTimePrefTooltip": {
+    "message": "Frequenza in minuti con cui viene verificata la presenza nella cartella “Bozze” di e-mail di cui è arrivato l'orario di invio. Aumentare questo valore se qualche volta le mail programmate per l'invio non partono o se qualche volta il numero dei messaggi in coda indicato nella barra di stato non corrisponde a quello di tutti i messaggi pianificati.",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -37,6 +45,10 @@
   },
   "enforceRestrictionsPrefLabel": {
     "message": "Imponi le restrizioni di orario e giorno all'orario di invio",
+    "description": ""
+  },
+  "enforceRestrictionsPrefTooltip": {
+    "message": "Se un messaggio che deve essere inviato si trova al di fuori delle sue restrizioni di orario e giorno impostate, ad esempio perché Thunderbird non era in esecuzione all'orario di invio pianificato, ritarda il suo invio finché non vengono soddisfatte le restrizioni di orario e giorno.",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -143,8 +155,20 @@
     "message": "“Invia” diventa “Invia dopo”",
     "description": ""
   },
+  "sendButtonPrefTooltip": {
+    "message": "Con questa opzione attivata, il comando “Invia” (sia il pulsante che la pressione di Ctrl-Invio) si comporta come “Invia dopo”.",
+    "description": ""
+  },
   "sendDelayPrefLabel1": {
     "message": "“Invia” ritarderà sempre i messaggi di",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Individua eventuali risposte alle copie dei messaggi ricorrenti precedentemente inviati. Quando viene ricevuta una risposta annulla il messaggio ricorrente ed eliminalo dalla cartella Bozze.",
+    "description": ""
+  },
+  "sendDelayPrefTooltip": {
+    "message": "Con questa opzione attivata, tutti i messaggi inviati con il comando “Invia” (sia col pulsante che digitando Ctrl+Invio) sono ritardati del numero di minuti indicato, tramite la pianificazione di Invia Dopo.",
     "description": ""
   },
   "sendSundayLabel": {
@@ -179,6 +203,10 @@
     "message": "Invia Ora",
     "description": ""
   },
+  "sendNowTooltip": {
+    "message": "Invia il messaggio immediatamente, evitando “Invia Dopo”.",
+    "description": ""
+  },
   "sendOnlyOnLabel": {
     "message": "Solo di",
     "description": ""
@@ -195,8 +223,16 @@
     "message": "Mostra colonna Invia Dopo",
     "description": ""
   },
+  "showColumnPrefTooltip": {
+    "message": "Mostra la colonna “Invia Dopo” nella cartella “Bozze”",
+    "description": ""
+  },
   "showHeaderPrefLabel": {
     "message": "Mostra l'intestazione di Invia Dopo",
+    "description": ""
+  },
+  "showHeaderPrefTooltip": {
+    "message": "Mostra l'intestazione “X-Send-Later-At”, cioè l'orario a cui la mail in “Bozze” è pianificata per l'invio, nell'intestazione quando guardi un messaggio.",
     "description": ""
   },
   "showStatusPrefLabel": {
@@ -209,6 +245,10 @@
   },
   "sendlater.prompt.sendlater.label": {
     "message": "Metti nella “Posta in uscita”",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "Anziché inviarlo in automatico a un orario specifico, sposta il messaggio nella cartella “Posta in uscita” per inviarlo non appena i messaggi da inviare verranno spediti.",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -401,6 +441,10 @@
   },
   "close.label": {
     "message": "Chiudi",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Salva il messaggio nella cartella “Bozze” per l'invio automatico all'orario sopra impostato.",
     "description": ""
   },
   "entervalid": {

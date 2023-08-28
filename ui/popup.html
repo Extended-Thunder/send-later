@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- Title will be replaced with localized name by popup.js -->
-    <title>Send Later</title>
+    <title>__MSG_extensionName__</title>
     <meta charset="utf-8">
+    <script src="/utils/i18n.js"></script>
     <style>
       body {
         font-family: sans-serif;
@@ -93,13 +93,13 @@
     <section style="display:block;" id="sendAtTimeDateDiv">
       <div class="div-table">
         <div class="div-table-row">
-          <div class="div-table-cell localized __MSG_sendAtLabel__"
+          <div class="div-table-cell"
                 style="white-space: nowrap">
-            Send at
+             __MSG_sendAtLabel__
           </div>
           <div class="div-table-cell" style="width:100%">
             <input id="send-datetime" type="text" style="width:100%"
-              class="localized __MSG_sendAtDefaultLabel__"/>
+              value="__MSG_sendAtDefaultLabel__"/>
           </div>
         </div>
         <div class="div-table-row">
@@ -115,44 +115,41 @@
     <section style="display:block;">
       <div style="display: table-row;">
         <div style="display: table-cell;">
-          <span style="margin-right:0.5em;"
-              class="localized __MSG_recurLabel__">Recur</span>
+          <span style="margin-right:0.5em;">__MSG_recurLabel__</span>
         </div>
         <div style="display: table-cell;">
           <label>
             <input type="radio" id="once" name="recur" value="none" checked/>
-            <span class="localized __MSG_recurOnceLabel__">Once</span>
+            <span>__MSG_recurOnceLabel__</span>
           </label>
           <label>
             <input type="radio" id="minutely" name="recur" value="minutely"/>
-            <span class="localized __MSG_recurMinutelyLabel__">Minutely</span>
+            <span>__MSG_recurMinutelyLabel__</span>
           </label>
           <label>
             <input type="radio" id="daily" name="recur" value="daily"/>
-            <span class="localized __MSG_recurDailyLabel__">Daily</span>
+            <span>__MSG_recurDailyLabel__</span>
           </label>
           <label>
             <input type="radio" id="weekly" name="recur" value="weekly"/>
-            <span class="localized __MSG_recurWeeklyLabel__">Weekly</span>
+            <span>__MSG_recurWeeklyLabel__</span>
           </label>
           <label>
             <input type="radio" id="monthly" name="recur" value="monthly"/>
-            <span class="localized __MSG_recurMonthlyLabel__">Monthly</span>
+            <span>__MSG_recurMonthlyLabel__</span>
           </label>
           <label>
             <input type="radio" id="yearly" name="recur" value="yearly"/>
-            <span class="localized __MSG_recurAnnuallyLabel__">Annually</span>
+            <span>__MSG_recurAnnuallyLabel__</span>
           </label>
           <br/>
           <label id="function-recur-radio">
             <input type="radio" id="function" name="recur" value="function"/>
-            <span class="localized __MSG_recurFunctionLabel__">Function</span>
+            <span>__MSG_recurFunctionLabel__</span>
             <select id="recurFuncSelect">
             </select>
             <div id="showHideFunctionHelp">
-              (<span class="localized __MSG_helptextheader__">
-                Function help text
-              </span>)
+              (<span>__MSG_helptextheader__</span>)
             </div>
             <div id="funcHelpDiv"></div>
           </label>
@@ -161,7 +158,7 @@
             <div id="recur-time-args-div" style="margin-left:2em;">
               <!-- <input type="radio" name="monthly-recur-type" id='recur-multiply'
                     style="margin-left:1em;" value='recur-multiply' checked/> -->
-              <span class="localized __MSG_sendlater.prompt.every.label__">Every</span>
+              <span>__MSG_sendlater.prompt.every.label__</span>
               <input type="number" id="recur-multiplier" value="1" min="1" style="width:5em;"/>
               <span id="recurperiod_plural">days</span>
             </div>
@@ -172,39 +169,36 @@
                 </div>
                 <div style="display: table-cell;" id="recur-monthly-byweek-options">
                   <select id="recur-monthly-byweek-week" style="margin:0.15em;">
-                    <option value="1" class="option-label localized __MSG_ord1__">1st</option>
-                    <option value="2" class="option-label localized __MSG_ord2__">2nd</option>
-                    <option value="3" class="option-label localized __MSG_ord3__">3rd</option>
-                    <option value="4" class="option-label localized __MSG_ord4__">4th</option>
-                    <option value="5" class="option-label localized __MSG_ord5__">5th</option>
+                    <option value="1" class="option-label">__MSG_ord1__</option>
+                    <option value="2" class="option-label">__MSG_ord2__</option>
+                    <option value="3" class="option-label">__MSG_ord3__</option>
+                    <option value="4" class="option-label">__MSG_ord4__</option>
+                    <option value="5" class="option-label">__MSG_ord5__</option>
                   </select>
                   <select id="recur-monthly-byweek-day" style="margin:0.15em;">
-                    <option value="0" class="option-label localized __MSG_everymonthly_day0__">Sunday</option>
-                    <option value="1" class="option-label localized __MSG_everymonthly_day1__">Monday</option>
-                    <option value="2" class="option-label localized __MSG_everymonthly_day2__">Tuesday</option>
-                    <option value="3" class="option-label localized __MSG_everymonthly_day3__">Wednesday</option>
-                    <option value="4" class="option-label localized __MSG_everymonthly_day4__">Thursday</option>
-                    <option value="5" class="option-label localized __MSG_everymonthly_day5__">Friday</option>
-                    <option value="6" class="option-label localized __MSG_everymonthly_day6__">Saturday</option>
+                    <option value="0" class="option-label">__MSG_everymonthly_day0__</option>
+                    <option value="1" class="option-label">__MSG_everymonthly_day1__</option>
+                    <option value="2" class="option-label">__MSG_everymonthly_day2__</option>
+                    <option value="3" class="option-label">__MSG_everymonthly_day3__</option>
+                    <option value="4" class="option-label">__MSG_everymonthly_day4__</option>
+                    <option value="5" class="option-label">__MSG_everymonthly_day5__</option>
+                    <option value="6" class="option-label">__MSG_everymonthly_day6__</option>
                   </select>
-                  <span class="localized __MSG_everymonthly__">of the month</span>
+                  <span>__MSG_everymonthly__</span>
                 </div>
               </div>
             </div>
             <div id="recur-function-args-div">
               <label>
-                <span class="localized __MSG_sendlater.prompt.functionargs.label__">
-                  Function arguments
-                </span>
+                <span>__MSG_sendlater.prompt.functionargs.label__</span>
                 <input type="text" id="recur-function-args"/>
               </label>
             </div>
-            <div id="cancel-on-reply-div" style="margin-top:0.25em;">
+            <div id="cancel-on-reply-div" style="margin-top:0.25em;"
+                 title="__MSG_sendlater.prompt.cancelonreply.tooltip__">
               <label>
                 <input type="checkbox" id="recur-cancelonreply"/>
-                <span class="localized __MSG_sendlater.prompt.cancelonreply.label__">
-                  Cancel recurrence upon reply
-                </span>
+                <span>__MSG_sendlater.prompt.cancelonreply.label__</span>
               </label>
             </div>
           </div>
@@ -218,7 +212,7 @@
         <div style="display: table-cell;white-space:nowrap;">
           <label style="margin-right:0.5em;">
             <input type="checkbox" id="sendbetween"/>
-            <span class="localized __MSG_sendBtwnLabel__">Between</span>
+            <span>__MSG_sendBtwnLabel__</span>
           </label>
         </div>
         <div id="betweenDiv">
@@ -236,38 +230,38 @@
         <div style="display: table-cell;white-space:nowrap;">
           <label>
             <input type="checkbox" id="sendon"/>
-            <span class="localized __MSG_sendOnlyOnLabel__">Only on</span>
+            <span>__MSG_sendOnlyOnLabel__</span>
           </label>
         </div>
         <div style="display: table-cell;" id="onlyOnDiv">
           <label>
             <input type="checkbox" name="weekdayChecks" id="sendon-sunday"/>
-            <span class="localized __MSG_sendSundayLabel__">Sunday</span>
+            <span>__MSG_sendSundayLabel__</span>
           </label>
           <label>
             <input type="checkbox" name="weekdayChecks" id="sendon-monday" checked/>
-            <span class="localized __MSG_sendMondayLabel__">Monday</span>
+            <span>__MSG_sendMondayLabel__</span>
           </label>
           <label>
             <input type="checkbox" name="weekdayChecks" id="sendon-tuesday" checked/>
-            <span class="localized __MSG_sendTuesdayLabel__">Tuesday</span>
+            <span>__MSG_sendTuesdayLabel__</span>
           </label>
           <label>
             <input type="checkbox" name="weekdayChecks" id="sendon-wednesday" checked/>
-            <span class="localized __MSG_sendWednesdayLabel__">Wednesday</span>
+            <span>__MSG_sendWednesdayLabel__</span>
           </label>
           <br/>
           <label>
             <input type="checkbox" name="weekdayChecks" id="sendon-thursday" checked/>
-            <span class="localized __MSG_sendThursdayLabel__">Thursday</span>
+            <span>__MSG_sendThursdayLabel__</span>
           </label>
           <label>
             <input type="checkbox" name="weekdayChecks" id="sendon-friday" checked/>
-            <span class="localized __MSG_sendFridayLabel__">Friday</span>
+            <span>__MSG_sendFridayLabel__</span>
           </label>
           <label>
             <input type="checkbox" name="weekdayChecks" id="sendon-saturday"/>
-            <span class="localized __MSG_sendSaturdayLabel__">Saturday</span>
+            <span>__MSG_sendSaturdayLabel__</span>
           </label>
         </div>
       </div>
@@ -278,7 +272,7 @@
         <div style="display: table-cell;white-space:nowrap;">
           <label style="margin-right:0.5em;">
             <input type="checkbox" id="senduntil"/>
-            <span class="localized __MSG_sendUntilLabel__">Until</span>
+            <span>__MSG_sendUntilLabel__</span>
           </label>
         </div>
         <div id="untilDiv">
@@ -294,17 +288,17 @@
     <section style="text-align: center;">
       <label style="margin-right:2%;">
         <input type="button" id="save-defaults"
-          value="Save these values as defaults"
-          class="localized __MSG_saveDefaultsLabel__"/>
+          value="__MSG_saveDefaultsLabel__"/>
       </label>
       <label style="margin-left:2%;">
-        <input type="button" id="clear-defaults" value="Clear defaults"
-          class="localized __MSG_clearDefaultsLabel__"/>
+        <input type="button" id="clear-defaults"
+          value="__MSG_clearDefaultsLabel__"/>
       </label>
     </section>
 
     <section style="clear:both;display:block;">
-      <button style="width:100%; margin:0;" id="sendScheduleButton" disabled>
+      <button style="width:100%; margin:0;" id="sendScheduleButton" disabled
+              title="__MSG_sendlater.prompt.sendat.tooltip__">
         Enter a valid date above
       </button>
       <br/>
@@ -331,16 +325,16 @@
         <tr>
           <td>
             <button id="sendNow"
-              class="localized __MSG_sendNowLabel__"
+              title="__MSG_sendNowTooltip__"
               style="margin:0 2.5%;width:95%;" class="delayButton">
-              Send Now
+              __MSG_sendNowLabel__
             </button>
           </td>
           <td>
               <button id="placeInOutbox"
-                class="localized __MSG_sendlater.prompt.sendlater.label__"
+                title="__MSG_sendlater.prompt.sendlater.tooltip__"
                 style="margin:0 2.5%;width:95%;" class="delayButton">
-                Put in Outbox
+                __MSG_sendlater.prompt.sendlater.label__
               </button>
             </td>
         </tr>
@@ -349,7 +343,6 @@
 
     <script type="text/javascript" src="/utils/sugar-custom.js"></script>
     <script type="text/javascript" src="/utils/static.js"></script>
-    <script type="text/javascript" src="/ui/localize.js"></script>
     <script type="text/javascript" src="/ui/popup.js"></script>
   </body>
 

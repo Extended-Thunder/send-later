@@ -23,8 +23,16 @@
     "message": "分鐘以上的訊息寄出",
     "description": ""
   },
+  "blockLateMessagesPrefTooltip": {
+    "message": "不將晚於預計寄出時間的訊息寄出. 比方說, Thunderbird在該時並沒有運作",
+    "description": ""
+  },
   "checkTimePrefLabel1": {
     "message": "檢查間隔：",
+    "description": ""
+  },
+  "checkTimePrefTooltip": {
+    "message": "檢查是否已到草稿的傳送時間的間隔，單位為分鐘。如果草稿沒能及時傳送，或者狀態欄的待傳送信件數比實際少時，請增加這個值。",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -37,6 +45,10 @@
   },
   "enforceRestrictionsPrefLabel": {
     "message": "在寄訊息時強制執行時間和日期的限制",
+    "description": ""
+  },
+  "enforceRestrictionsPrefTooltip": {
+    "message": "假如該寄出的訊息不在時間與日期的限制內, 比如說, 當Thunderbird沒有在預計寄出的時刻執行,就將寄出的時刻延至下次符合時間與日期的限制內",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -151,8 +163,20 @@
     "message": "“發送”變成“延期發送”",
     "description": ""
   },
+  "sendButtonPrefTooltip": {
+    "message": "啟用此選項時，“傳送”命令（按鈕或 Ctrl-Enter 快捷鍵）效果會變為“延期傳送”。",
+    "description": ""
+  },
   "sendDelayPrefLabel1": {
     "message": "預設所有訊息自動延遲：",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "查看已發出的重覆電郵的所有回覆，如果已收到回覆，不再發送重覆電郵，並將它從草稿文件夾中刪除。",
+    "description": ""
+  },
+  "sendDelayPrefTooltip": {
+    "message": "所有訊息自動使用預設延遲發送時間，“傳送”命令（按鈕或 Ctrl-Enter）均會由 延期發信 按照預設延遲發送時間自動發出。",
     "description": ""
   },
   "sendSundayLabel": {
@@ -187,6 +211,10 @@
     "message": "立即寄出",
     "description": ""
   },
+  "sendNowTooltip": {
+    "message": "跳過延期發信, 馬上寄出訊息",
+    "description": ""
+  },
   "sendOnlyOnLabel": {
     "message": "只在",
     "description": ""
@@ -203,8 +231,16 @@
     "message": "顯示延期發信列",
     "description": ""
   },
+  "showColumnPrefTooltip": {
+    "message": "查看草稿箱時是否顯示延期發信列",
+    "description": ""
+  },
   "showHeaderPrefLabel": {
     "message": "顯示延期發信標題",
+    "description": ""
+  },
+  "showHeaderPrefTooltip": {
+    "message": "查看信件時是否顯示“X-Send-Later-At”頭，即草稿預定要傳送的時間。",
     "description": ""
   },
   "showStatusPrefLabel": {
@@ -225,6 +261,10 @@
   },
   "sendlater.prompt.sendlater.label": {
     "message": "存至寄件匣",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "不指定發送時間，而是移動信件至寄件匣，等待下一次傳送信件。",
     "description": ""
   },
   "sendlater.prompt.title.label": {
@@ -409,6 +449,10 @@
   },
   "close.label": {
     "message": "關閉",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "儲存信件至草稿，在上面設定的時間自動發信。",
     "description": ""
   },
   "entervalid": {

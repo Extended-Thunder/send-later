@@ -23,8 +23,16 @@
     "message": "Minuten zu spät senden",
     "description": ""
   },
+  "blockLateMessagesPrefTooltip": {
+    "message": "Wenn eine zu sendende Nachricht die geplante Sendezeit überschritten hat, zum Beispiel weil Thunderbird zur eingestellten Zeit nicht lief, dann soll die Nachricht nicht mehr gesendet werden, wenn die geplante Sendezeit um mehr als die angegebene Zeitdauer überschritten ist.",
+    "description": ""
+  },
   "checkTimePrefLabel1": {
     "message": "Überprüfen alle",
+    "description": ""
+  },
+  "checkTimePrefTooltip": {
+    "message": "Intervall in Minuten zwischen den Prüfungen, welche Entwürfe für die Zustellung bereit sind. Diesen Wert erhöhen, wenn die Entwürfe manchmal nicht rechtzeitig gesendet werden oder der Mitteilungszähler in der Statuszeile nicht alle zeitlich geplanten Entwürfe wiedergibt.",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -37,6 +45,10 @@
   },
   "enforceRestrictionsPrefLabel": {
     "message": "Zeit- und Tagesbeschränkungen beim Senden immer beachten",
+    "description": ""
+  },
+  "enforceRestrictionsPrefTooltip": {
+    "message": "Wenn eine zu sendende Nachricht die Zeit- und Tagesbeschränkung überschritten hat, zum Beispiel weil Thunderbird zur eingestellten Zeit nicht lief, dann wird das Senden der Nachricht solange verzögert, bis die Zeitbeschränkungen erfüllt werden.",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -155,8 +167,20 @@
     "message": "„Senden” durch „Später senden” ersetzen",
     "description": ""
   },
+  "sendButtonPrefTooltip": {
+    "message": "Wird diese Option aktiviert, bewirkt der „Senden”-Befehl (entweder die Schaltfläche oder Strg+Return) das Gleiche wie „Später senden”.",
+    "description": ""
+  },
   "sendDelayPrefLabel1": {
     "message": "“Senden” verzögert den Nachrichtenversand um",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Beendet das Versenden einer wiederkehrenden Nachricht und löscht sie aus dem Entwurf-Ordner, sobald auf eine zuvor versendete Kopie geantwortet wurde.",
+    "description": ""
+  },
+  "sendDelayPrefTooltip": {
+    "message": "Wenn diese Option aktiviert ist, wird der Versand aller Nachrichten, die mit dem “Senden”-Befehl gesendet werden (mit der Schaltfläche oder mittels CRTL-Enter), als Später Senden um die angegebene Anzahl Minuten verzögert geplant.",
     "description": ""
   },
   "sendSundayLabel": {
@@ -191,6 +215,10 @@
     "message": "Jetzt senden",
     "description": ""
   },
+  "sendNowTooltip": {
+    "message": "Die Nachricht sofort statt mit “Später Senden” senden.",
+    "description": ""
+  },
   "sendOnlyOnLabel": {
     "message": "Nur",
     "description": ""
@@ -207,8 +235,16 @@
     "message": "„Später senden”-Spalte anzeigen",
     "description": ""
   },
+  "showColumnPrefTooltip": {
+    "message": "Auswählen, ob die „Später Senden”-Spalte beim Öffnen des Entwürfe-Ordners angezeigt werden soll oder nicht.",
+    "description": ""
+  },
   "showHeaderPrefLabel": {
     "message": "„Später senden”-Kopfzeile anzeigen",
+    "description": ""
+  },
+  "showHeaderPrefTooltip": {
+    "message": "Auswählen, ob die „X-Send-Later-At:”-Kopfzeile (z.B. die Zeit, wann ein Entwurf zum Senden geplant ist) im Nachrichtenkopf anzeigt werden soll oder nicht.",
     "description": ""
   },
   "showStatusPrefLabel": {
@@ -229,6 +265,10 @@
   },
   "sendlater.prompt.sendlater.label": {
     "message": "In den Postausgang verschieben",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "Die Nachricht in den Postausgang verschieben und beim nächsten Senden ungesendeter Nachrichten versenden.",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -425,6 +465,10 @@
   },
   "close.label": {
     "message": "Schließen",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Nachrichten im Entwürfe-Ordner speichern, um sie zum oben angegebenen Zeitpunkt automatisch zu versenden.",
     "description": ""
   },
   "entervalid": {

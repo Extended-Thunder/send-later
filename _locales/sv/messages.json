@@ -23,8 +23,16 @@
     "message": "minuter sent",
     "description": ""
   },
+  "blockLateMessagesPrefTooltip": {
+    "message": "Skicka inte schemalagda meddelanden som blivit försenade, pga att Thunderbird inte var igång, och nu är utanför inställning för tid och datum",
+    "description": ""
+  },
   "checkTimePrefLabel1": {
     "message": "Kontrollera var",
+    "description": ""
+  },
+  "checkTimePrefTooltip": {
+    "message": "Intervall, i minuter, mellan sökningar efter utkast vars sändtid har kommit. Öka detta värde om dina utkast ibland inte skickas på utsatt tid eller antalet väntande meddelanden i ditt statusfält inte speglar alla schemalagda utkast.",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -37,6 +45,10 @@
   },
   "enforceRestrictionsPrefLabel": {
     "message": "Tid- och datuminställning är tvingande för att skicka",
+    "description": ""
+  },
+  "enforceRestrictionsPrefTooltip": {
+    "message": "Om Thunderbird inte var igång och ett schemalagt meddelande nu är utanför tid- och datuminställning, avvakta sändning tills tid- och datuminställning överensstämmer igen.",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -155,8 +167,20 @@
     "message": "“Skicka” innebär “Skicka senare”",
     "description": ""
   },
+  "sendButtonPrefTooltip": {
+    "message": "Om detta alternativ är aktiverat, så utförs kommandot “Skicka” (antingen via knappen eller genom att trycka ner Ctrl+Retur) precis som “Skicka senare”.",
+    "description": ""
+  },
   "sendDelayPrefLabel1": {
     "message": "”Skicka” försenar meddelanden genom att",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Invänta svar på tidigare skickade kopior av återkommande meddelanden. Avbryt ett återkommande meddelande och ta bort det från mappen Utkast när ett svar tas emot.",
+    "description": ""
+  },
+  "sendDelayPrefTooltip": {
+    "message": "Med detta alternativ aktiverat, kommer alla meddelanden som skickas med kommandot “Skicka” (antingen via knappen eller genom att skriva Ctrl-Enter) att fördröjas av det angivna antalet minuter genom att schemalägga dem med Skicka Senare.",
     "description": ""
   },
   "sendSundayLabel": {
@@ -191,6 +215,10 @@
     "message": "Skicka nu",
     "description": ""
   },
+  "sendNowTooltip": {
+    "message": "Skicka meddelandet omedelbart oavsett inställningar i “Skicka Senare”.",
+    "description": ""
+  },
   "sendOnlyOnLabel": {
     "message": "Endast på",
     "description": ""
@@ -207,8 +235,16 @@
     "message": "Visa kolumnen “Skicka Senare”",
     "description": ""
   },
+  "showColumnPrefTooltip": {
+    "message": "Visning av kolumnen “Skicka Senare” vid granskning av utkastmappar",
+    "description": ""
+  },
   "showHeaderPrefLabel": {
     "message": "Visa huvudet “Skicka Senare”",
+    "description": ""
+  },
+  "showHeaderPrefTooltip": {
+    "message": "Visning av huvudet “X-Send-Later-At”, d.v.s. den tidpunkt då ett utkast har schemalagts att skickas, i meddelandehuvudet vid granskning av ett meddelande.",
     "description": ""
   },
   "showStatusPrefLabel": {
@@ -229,6 +265,10 @@
   },
   "sendlater.prompt.sendlater.label": {
     "message": "Lägg i Utkorgen",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "Istället för att schemalägga sändningen till en särskild tid flyttas meddelandet till Utkorgen och skickas nästa gång osända meddelanden skickas.",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -425,6 +465,10 @@
   },
   "close.label": {
     "message": "Stäng",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Spara meddelandet i Utkast-mappen för automatisk sändning vid ovan angivna tidpunkt.",
     "description": ""
   },
   "entervalid": {

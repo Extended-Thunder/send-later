@@ -19,8 +19,16 @@
     "message": "分钟则不要发送消息",
     "description": ""
   },
+  "blockLateMessagesPrefTooltip": {
+    "message": "如果预定发送的消息被延迟超过了它们预定的时间，比如雷鸟客户端当时没有在运行，则不发送这些消息。",
+    "description": ""
+  },
   "checkTimePrefLabel1": {
     "message": "检查间隔：",
+    "description": ""
+  },
+  "checkTimePrefTooltip": {
+    "message": "检查是否已到草稿的发送时间的时间间隔，单位为分钟。如果草稿没能及时发送，或者状态栏的待发送消息数比实际少时，请增大这个值。",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -33,6 +41,10 @@
   },
   "enforceRestrictionsPrefLabel": {
     "message": "强制执行发送的时间和日期限制",
+    "description": ""
+  },
+  "enforceRestrictionsPrefTooltip": {
+    "message": "如果预定发送的消息超出了它的时间和日期限制，比如雷鸟在消息预定发送时间没有在运行，那么延迟发送消息直到满足它的发送时间和日期限制。",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -147,8 +159,20 @@
     "message": "“发送”变成“延期发送”",
     "description": ""
   },
+  "sendButtonPrefTooltip": {
+    "message": "启用此选项时，“发送”命令（按钮或 Ctrl-Enter 快捷键）效果会变为“延期发送”。",
+    "description": ""
+  },
   "sendDelayPrefLabel1": {
     "message": "预设所有讯息自动延迟：",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "查看已发送的重复电子邮件的所有回复，如果已收到回复，不再发送重复电子邮件，并将它从草稿文件夹中删除。",
+    "description": ""
+  },
+  "sendDelayPrefTooltip": {
+    "message": "所有讯息自动使用预设延迟发送时间，“传送”命令（按钮或 Ctrl-Enter）均会由 Send Later 延迟发送。",
     "description": ""
   },
   "sendSundayLabel": {
@@ -183,6 +207,10 @@
     "message": "立即发送",
     "description": ""
   },
+  "sendNowTooltip": {
+    "message": "立即发送消息，跳过 “Send Later”。",
+    "description": ""
+  },
   "sendOnlyOnLabel": {
     "message": "指定时间",
     "description": ""
@@ -199,8 +227,16 @@
     "message": "显示Send Later列",
     "description": ""
   },
+  "showColumnPrefTooltip": {
+    "message": "查看草稿箱时是否显示Send Later列",
+    "description": ""
+  },
   "showHeaderPrefLabel": {
     "message": "显示Send Later消息头",
+    "description": ""
+  },
+  "showHeaderPrefTooltip": {
+    "message": "查看消息时是否显示“X-Send-Later-At”头，即草稿预定要发送的时间。",
     "description": ""
   },
   "showStatusPrefLabel": {
@@ -221,6 +257,10 @@
   },
   "sendlater.prompt.sendlater.label": {
     "message": "放到发件箱",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "不指定发送时间，而是移动消息到发件箱，等待下一次发送未发送消息时发送。",
     "description": ""
   },
   "sendlater.prompt.title.label": {
@@ -401,6 +441,10 @@
   },
   "close.label": {
     "message": "关闭",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "保存消息到草稿箱，在上面设定的时间自动发送。",
     "description": ""
   },
   "entervalid": {

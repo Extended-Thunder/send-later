@@ -23,8 +23,16 @@
     "message": "minuuttia myöhässä",
     "description": ""
   },
+  "blockLateMessagesPrefTooltip": {
+    "message": "Älä toimita ajastettuja sanomia, joiden lähetys on viivästynyt ajastushetkensä yli, esim. koska Thunderbird ei ollut tuolloin käynnissä.",
+    "description": ""
+  },
   "checkTimePrefLabel1": {
     "message": "Tarkista joka",
+    "description": ""
+  },
+  "checkTimePrefTooltip": {
+    "message": "Aikaväli minuuteissa sen tarkistamiseksi, onko luonnoskansiossa viestejä, jotka olisi jo aika lähettää. Kasvata tätä arvoa, jos kaikki viestisi eivät aina lähde ajallaan tai jos lähetysjonossa olevien viestien laskuri ei aina täsmää.",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -37,6 +45,10 @@
   },
   "enforceRestrictionsPrefLabel": {
     "message": "Pidä kiinni aika- ja päivärajoituksista lähetyshetkellä",
+    "description": ""
+  },
+  "enforceRestrictionsPrefTooltip": {
+    "message": "Jos toimitettava viesti on aika- tai päivärajoitteidensa ulkopuolella esim. siksi, että Thunderbird ei ollut käynnissä ajastettuna lähetysaikana, viivästytä lähetystä siihen asti, kunnes aika- ja päivärajoitteet täsmäävät.",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -147,8 +159,20 @@
     "message": "”Lähetä” toimii, kuten ”Lähetä myöhemmin”",
     "description": ""
   },
+  "sendButtonPrefTooltip": {
+    "message": "Tämän valinnan ollessa käytössä “Lähetä” -komento (joko painike, tai näppäimet Ctrl-Enter) toimii kuten “Lähetä myöhemmin”.",
+    "description": ""
+  },
   "sendDelayPrefLabel1": {
     "message": "“Lähetä” viivyttää viestejä",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Etsi vastauksia aiemmin lähetettyihin kopioihin toistuvista viesteistä. Peruuta toistuva viesti ja poista se Luonnokset-kansiosta kun vastaus on vastaanotettu.",
+    "description": ""
+  },
+  "sendDelayPrefTooltip": {
+    "message": "Tämä valinta aktivoituna kaikki “Lähetä” -komennolla (joko painikkeella, tai painamalla Ctrl+Enter) lähetetyt viestit lähtevät määritetyn arvon mukaisella viiveellä aikatauluttamalla ne käyttämällä Lähetä myöhemmin.",
     "description": ""
   },
   "sendSundayLabel": {
@@ -183,6 +207,10 @@
     "message": "Lähetä heti",
     "description": ""
   },
+  "sendNowTooltip": {
+    "message": "Lähettää viestin heti, ohittaen ”Lähetä myöhemmin” -toiminnon.",
+    "description": ""
+  },
   "sendOnlyOnLabel": {
     "message": "Vain",
     "description": ""
@@ -199,8 +227,16 @@
     "message": "Näytä Lähetä myöhemmin -sarake",
     "description": ""
   },
+  "showColumnPrefTooltip": {
+    "message": "Näytetäänkö Lähetä myöhemmin -sarake selattaessa luonnoskansioita",
+    "description": ""
+  },
   "showHeaderPrefLabel": {
     "message": "Näytä Lähetä myöhemmin -otsake",
+    "description": ""
+  },
+  "showHeaderPrefTooltip": {
+    "message": "Näytetäänkö ”X-Send-Later-At” -otsake, esim. silloin kun viestiluonnos on ajastettu lähtemään, viestin otsakkeessa viestiä selatessa.",
     "description": ""
   },
   "showStatusPrefLabel": {
@@ -213,6 +249,10 @@
   },
   "sendlater.prompt.sendlater.label": {
     "message": "Siirrä Lähteviin",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "Ajastamisen sijasta siirrä Lähtevät-kansioon lähetettäväksi seuraavalla kerralla, kun muitakin viestejä lähetetään.",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -405,6 +445,10 @@
   },
   "close.label": {
     "message": "Sulje",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Tallenna viesti Luonnokset-kansioon lähetettäväksi automaattisesti yllä määriteltynä ajankohtana.",
     "description": ""
   },
   "entervalid": {

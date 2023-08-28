@@ -23,8 +23,16 @@
     "message": "דקות מאוחר יותר",
     "description": ""
   },
+  "blockLateMessagesPrefTooltip": {
+    "message": "אל תשלח הודעות מתוזמנות שמועד המשלוח המתוכנן שלהן חלף, למשל בגלל שתנדרבירד לא פעל במועד המתוכנן.",
+    "description": ""
+  },
   "checkTimePrefLabel1": {
     "message": "‫בדוק כל :‬",
+    "description": ""
+  },
+  "checkTimePrefTooltip": {
+    "message": "‫המרווח, בדקות, בין הבדיקות להודעות טיוטה שמועד שליחתן הגיע. הגדל ערך זה אם קורה לעיטים שהטיוטות שהכנת אינן נשלחות במועדן או שלפעמים מספר ההודעות הממתינות, המופיע בשורת המצב, אינו תואם למספר הטיוטות המיועדות למשלוח בפועל‬",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -37,6 +45,10 @@
   },
   "enforceRestrictionsPrefLabel": {
     "message": "כפה הגבלות יום ושעה על מועד המשלוח",
+    "description": ""
+  },
+  "enforceRestrictionsPrefTooltip": {
+    "message": "במידה ומגבלות הזמן או היום שנקבעו למשלוח ההודעה חרגו מעבר להגדרה המקורית, למשל בגלל שתנדרבירד לא פעל במועד המתוכנן, דחה את משלוח ההודעה בהתאם מגבלות הזמן והיום המקוריות שנקבעו.",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -155,8 +167,20 @@
     "message": "‫הפוך את 'שלח' ל 'שלח מאוחר יותר'‬",
     "description": ""
   },
+  "sendButtonPrefTooltip": {
+    "message": "‫בחירה באפשרות זו תהפוך את פקודת ה 'שלח' (גם הלחצן וגם צרוף המקשים) לפקודה 'שלח מאוחר יותר'‬",
+    "description": ""
+  },
   "sendDelayPrefLabel1": {
     "message": "עכב משלוח הודעות ב",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "המתן לתגובות לעותקי הודעות חוזרות שנשלחו בעבר. בטל הודעה חוזרת והסר אותה מתיקיית הטיוטות כאשר מתקבלת תשובה.",
+    "description": ""
+  },
+  "sendDelayPrefTooltip": {
+    "message": "בחירה באפשרות זו, תגרום לכך שכל ההודעות הנשלחות עם הפקודה “שלח” (בין אם לחיצה על הכפתור או עם קיצור המקלדת Ctrl-Enter) יעוכבו במספר הדקות שהוגדרו מראש עם ‫שלח מאוחר יותר‬",
     "description": ""
   },
   "sendSundayLabel": {
@@ -191,6 +215,10 @@
     "message": "‫שלח כעת‬",
     "description": ""
   },
+  "sendNowTooltip": {
+    "message": "שלח מייד את ההודעה, ועקוף את “‫שלח מאוחר יותר‬”.",
+    "description": ""
+  },
   "sendOnlyOnLabel": {
     "message": "רק כאשר",
     "description": ""
@@ -207,8 +235,16 @@
     "message": "‫הצג את הטור '‫שלח מאוחר יותר‬'‬",
     "description": ""
   },
+  "showColumnPrefTooltip": {
+    "message": "‫האם להציג את הטור '‫שלח מאוחר יותר‬' כאשר צופים בתיקית הטיוטות‬",
+    "description": ""
+  },
   "showHeaderPrefLabel": {
     "message": "‫הצג את הכותרת '‫שלח מאוחר יותר‬'‬",
+    "description": ""
+  },
+  "showHeaderPrefTooltip": {
+    "message": "‫האם להציג את הכותרת 'X-Send-Later-At', כלומר הזמן בו מיועדת הטיוטה להישלח, בשורת הכותרת כאשר צופים בהודעה‬",
     "description": ""
   },
   "showStatusPrefLabel": {
@@ -229,6 +265,10 @@
   },
   "sendlater.prompt.sendlater.label": {
     "message": "‫העבר לתיבת דואר יוצא‬",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "‫במקום לקבוע מועד משלוח מוגדר, העבר את ההודעה לתיבת הדואר היוצא כדי לשלוח אותה בפעם הבאה, יחד עם שאר ההודעות הממתינות למשלוח‬",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -425,6 +465,10 @@
   },
   "close.label": {
     "message": "סגור",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "‫שמור את ההודעה בתיקית הטיוטות למשלוח אוטומטי במועד שהוגדר לעיל‬",
     "description": ""
   },
   "entervalid": {

@@ -19,8 +19,16 @@
     "message": "minuto(s) de retraso",
     "description": ""
   },
+  "blockLateMessagesPrefTooltip": {
+    "message": "No remite los mensajes cuyo envío se haya demorado más allá de su hora programada, por ejemplo, a causa de que Thunderbird no estuviera en marcha en ese momento.",
+    "description": ""
+  },
   "checkTimePrefLabel1": {
     "message": "Comprobar cada",
+    "description": ""
+  },
+  "checkTimePrefTooltip": {
+    "message": "Intervalo, en minutos, entre comprobaciones para borradores a los que les ha llegado su hora de envío. Aumente este valor si a veces sus borradores no se envían a tiempo o si el recuento de mensajes pendientes en su barra de estado no refleja todos los envíos programados.",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -33,6 +41,10 @@
   },
   "enforceRestrictionsPrefLabel": {
     "message": "Satisfacer las restricciones de hora y día en el momento del envío",
+    "description": ""
+  },
+  "enforceRestrictionsPrefTooltip": {
+    "message": "Si un mensaje que debe ser enviado está fuera de sus restricciones de hora o día, por ejemplo, a causa de que Thunderbird no estuviera en marcha a la hora de envío programada, se demora su envío hasta que las restricciones de hora y día se cumplan.",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -139,8 +151,20 @@
     "message": "“Enviar” efectúa “Enviar más tarde”",
     "description": ""
   },
+  "sendButtonPrefTooltip": {
+    "message": "Con esta opción habilitada, el comando “Enviar” (bien con el botón o pulsando Ctrl+Intro) actúa del mismo modo que “Enviar más tarde”.",
+    "description": ""
+  },
   "sendDelayPrefLabel1": {
     "message": "“Enviar” retrasa los mensajes",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Monitoriza respuestas a copias previas de mensajes planificados de forma recurrente. Cancela un mensaje recurrente (planificado para su envío repetidas veces) y se elimina de la carpeta “borradores” cuando se recibe una respuesta al mismo.",
+    "description": ""
+  },
+  "sendDelayPrefTooltip": {
+    "message": "Con esta opción activada, todos los mensajes enviados con el comando “Enviar” (ya sea pulsando el botón o tecleando Ctrl-Enter) se retrasan por el número de minutos especificado al planificar con Send Later.",
     "description": ""
   },
   "sendSundayLabel": {
@@ -175,6 +199,10 @@
     "message": "Enviar ahora",
     "description": ""
   },
+  "sendNowTooltip": {
+    "message": "Envía el mensaje inmediatamente, ignorando “Send Later”.",
+    "description": ""
+  },
   "sendOnlyOnLabel": {
     "message": "Sólo en",
     "description": ""
@@ -191,8 +219,16 @@
     "message": "Mostrar columna de Send Later",
     "description": ""
   },
+  "showColumnPrefTooltip": {
+    "message": "Especifica si incluir o no la columna “Send Later” al mostrar las carpetas de borradores",
+    "description": ""
+  },
   "showHeaderPrefLabel": {
     "message": "Mostrar encabezamiento de Send Later",
+    "description": ""
+  },
+  "showHeaderPrefTooltip": {
+    "message": "Especifica si mostrar o el encabezamiento “X-Send-Later-At”, que marca la hora a la que está programado el envío de un borrador, en la cabecera al ver el código de un mensaje.",
     "description": ""
   },
   "showStatusPrefLabel": {
@@ -213,6 +249,10 @@
   },
   "sendlater.prompt.sendlater.label": {
     "message": "Poner en la Bandeja de Salida",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "En lugar de programar el envío para una hora específica, mueve el mensaje a la carpeta de Bandeja de Salida para que se envíe la próxima vez que se remitan los mensajes no enviados.",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -405,6 +445,10 @@
   },
   "close.label": {
     "message": "Cerrar",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Guarda el mensaje en la carpeta Borradores para su envío automático a la hora establecida arriba.",
     "description": ""
   },
   "entervalid": {

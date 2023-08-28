@@ -23,8 +23,16 @@
     "message": "րոպե ուշ",
     "description": ""
   },
+  "blockLateMessagesPrefTooltip": {
+    "message": "Չուղարկել պլանավորված նամակները, որոնք ուշացվել են",
+    "description": ""
+  },
   "checkTimePrefLabel1": {
     "message": "Ստուգել ամեն՝",
+    "description": ""
+  },
+  "checkTimePrefTooltip": {
+    "message": "Դադարը րոպեներով՝ ստուգելու համար սևագրերի այն նամակները, որոնց ուղարկելու ժամանակ եկել է: Նվազեցրեք դադարը, եթե սևագրերը երբեմն չեն ուղարկվում ժամանակին կամ ոչ բոլոր պլանավորված նամակներն են ցուցադրվում",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -37,6 +45,10 @@
   },
   "enforceRestrictionsPrefLabel": {
     "message": "Ապահովել ժամանակը և օրվա սահմանափակումները՝ ուղարկելու ժամանակ",
+    "description": ""
+  },
+  "enforceRestrictionsPrefTooltip": {
+    "message": "Եթե նամակը պլանավորված ժամանակ չի ուղարկվել կամ օրվա սահմանափակման պատճառով, ապա ուշացնել նամակի ուղարկումը՝ մինչև համապատասխանի ժամանակի և օրվա սահմանափակումներին",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -119,6 +131,10 @@
     "message": "«Ուղարկելը»-ը «Ուղարկել ավելի ուշ»-ն է",
     "description": ""
   },
+  "sendButtonPrefTooltip": {
+    "message": "Եթե միացված է՝ “Ուղարկել” հրամանը (և կոճակը և Ctrl-Enter սեղմելիս) կնշանակի նույնը՝ “Ուղարկել ավելի ուշ”",
+    "description": ""
+  },
   "sendSundayLabel": {
     "message": "Կիրակի",
     "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
@@ -151,6 +167,10 @@
     "message": "Ուղարկել հիմա",
     "description": ""
   },
+  "sendNowTooltip": {
+    "message": "Նամակը ուղարկել անմիջապես՝ շրջանցելով «Ուղարկել ավելի ուշ»-ն",
+    "description": ""
+  },
   "sendOnlyOnLabel": {
     "message": "Միայն՝",
     "description": ""
@@ -167,8 +187,16 @@
     "message": "Ցուցադրել «Ուղարկել ավելի ուշ»-ի սյունը",
     "description": ""
   },
+  "showColumnPrefTooltip": {
+    "message": "Անկախ ամեն ինչից ցուցադրել «Ուղարկել ավելի ուշ»-ի սյունը՝ սևագրերը դիտելիս",
+    "description": ""
+  },
   "showHeaderPrefLabel": {
     "message": "Ցուցադրել «Ուղարկել ավելի ուշ»-ի գլխագիրը",
+    "description": ""
+  },
+  "showHeaderPrefTooltip": {
+    "message": "Անկախ ամեն ինչից ցուցադրել “X-Send-Later-At” գլխագիրը, այսինքն՝ ժամանակը, երբ սևագիրը պետք է ուղարկվի, գլխագրում՝ նամակը դիտելիս",
     "description": ""
   },
   "showStatusPrefLabel": {
@@ -181,6 +209,10 @@
   },
   "sendlater.prompt.sendlater.label": {
     "message": "Պահել Ելքայինում",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "Ուղարկելը որոշակի ժամանակում պլանավորելու փոխարեն՝ տեղափոխեք նամակը Ելքային թղթապանակ՝ հաջորդ անգամ չուղարկած նամակները ուղարկելիս այն ևս ուղարկելու համար",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -265,6 +297,10 @@
   },
   "editortip": {
     "message": "Բացել JavaScript գործառույթներ ստեղծելու և խմբագրելու պատուհանը",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Պահպանել նամակը Սևագրում՝ հետո նշված ժամանակում այն ուղարկելու համար",
     "description": ""
   },
   "entervalid": {

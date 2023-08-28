@@ -23,8 +23,16 @@
     "message": "minutos de atraso",
     "description": ""
   },
+  "blockLateMessagesPrefTooltip": {
+    "message": "Não enviar mensagens agendadas para além da hora programada, p.ex., devido ao Thunderbird não estar rodando àquela hora.",
+    "description": ""
+  },
   "checkTimePrefLabel1": {
     "message": "Verificar a cada",
+    "description": ""
+  },
+  "checkTimePrefTooltip": {
+    "message": "Intervalo, em minutos, entre a checagem de rascunhos que atingiram o horário de envio. Caso rascunhos não tenham sido enviados no horário definido ou se a informação do contador de mensagens pendentes na barra de status divergir do agendamento de rascunhos, amplie este intervalo.",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -37,6 +45,10 @@
   },
   "enforceRestrictionsPrefLabel": {
     "message": "Impor restrições de hora e dia à data de envio",
+    "description": ""
+  },
+  "enforceRestrictionsPrefTooltip": {
+    "message": "Se uma mensagem a ser enviada estiver fora das restrições de hora ou dia, devido p.ex. ao Thunderbird não estar rodando na hora do envio, adie o envio até que as restrições sejam cumpridas.",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -147,8 +159,20 @@
     "message": "“Enviar Mais Tarde” substitui “Enviar”",
     "description": ""
   },
+  "sendButtonPrefTooltip": {
+    "message": "Ao ativar esta opção, o comando “Enviar” (tanto seu ícone quanto teclando Ctrl+Enter) age da mesma forma que “Envie Mais Tarde”.",
+    "description": ""
+  },
   "sendDelayPrefLabel1": {
     "message": "“Enviar” posterga o envio por",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Verifique por respostas de cópias de mensagem previamente enviadas. Cancele uma mensagem recorrente e a remova da pasta Rascunhos quando uma resposta é recebida.",
+    "description": ""
+  },
+  "sendDelayPrefTooltip": {
+    "message": "Com esta opção habilitada, todas as mensagens enviadas com o comando “Enviar” (com o botão ou digitando Ctrl-Enter) são atrasadas pelo número especificado de minutos do agendamento com Enviar mais tarde.",
     "description": ""
   },
   "sendSundayLabel": {
@@ -183,6 +207,10 @@
     "message": "Enviar Agora",
     "description": ""
   },
+  "sendNowTooltip": {
+    "message": "Enviar imediatamente, ignorando “Enviar mais tarde”.",
+    "description": ""
+  },
   "sendOnlyOnLabel": {
     "message": "Somente",
     "description": ""
@@ -199,8 +227,16 @@
     "message": "Exibir Coluna de Enviar mais tarde",
     "description": ""
   },
+  "showColumnPrefTooltip": {
+    "message": "Exibir coluna “Enviar mais tarde” apenas quando visualizar pasta de rascunhos",
+    "description": ""
+  },
   "showHeaderPrefLabel": {
     "message": "Enviar mais tarde exibir Cabeçalho",
+    "description": ""
+  },
+  "showHeaderPrefTooltip": {
+    "message": "Exibe ou não cabeçalho “X-Send-Later-At”, isto é, ao visualizar a mensagem, no cabeçalho a hora programada de envio do rascunho.",
     "description": ""
   },
   "showStatusPrefLabel": {
@@ -221,6 +257,10 @@
   },
   "sendlater.prompt.sendlater.label": {
     "message": "Coloque na Caixa de Saída",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "Ao invés de agendar o envio para uma hora específica, mova a mensagem para Caixa de Saída para envio na próxima vez em que mensagens não enviadas forem enviadas.",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -413,6 +453,10 @@
   },
   "close.label": {
     "message": "Fechar",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Salvar mensagem na pasta de rascunho para envio automático na hora informada acima.",
     "description": ""
   },
   "entervalid": {

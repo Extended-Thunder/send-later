@@ -93,109 +93,91 @@
 
   <body>
     <section style="margin-top:0px;">
-      <div class="title option-label __MSG_generalOptionsTitle__">General Options</div>
-      <label>
-        <span class="option-label __MSG_checkTimePrefLabel1__">Check every</span>
+      <div class="title option-label">__MSG_generalOptionsTitle__</div>
+      <label title="__MSG_checkTimePrefTooltip__">
+        <span class="option-label">__MSG_checkTimePrefLabel1__</span>
         <input type="number" min="0" id="checkTimePref" style="width:6em;" class="preference"/>
-        <span id="checkEveryUnits" class="option-label __MSG_plural_minutely__">minutes</span>
+        <span id="checkEveryUnits" class="option-label">__MSG_plural_minutely__</span>
       </label>
 
-      <label>
+      <label title="__MSG_sendDelayPrefTooltip__">
         <input type="checkbox" id="sendDoesDelay" class="preference"/>
-        <span class="option-label __MSG_sendDelayPrefLabel1__">
-          &quot;Send&quot; delays messages by
-        </span>
+        <span class="option-label"> __MSG_sendDelayPrefLabel1__</span>
         <input type="number" min=1 style="width:6em;" id="sendDelay" class="preference"/>
-        <span class="option-label __MSG_plural_minutely__">minutes</span>
+        <span class="option-label">__MSG_plural_minutely__</span>
       </label>
 
-      <label>
+      <label title="__MSG_sendButtonPrefTooltip__">
         <input type="checkbox" id="sendDoesSL" class="preference"/>
-        <span class="option-label __MSG_sendButtonPrefLabel__">
-          &quot;Send&quot; does &quot;Send later&quot;
-        </span>
+        <span class="option-label">__MSG_sendButtonPrefLabel__</span>
       </label>
 
       <label>
         <input type="checkbox" id="altBinding" class="preference"/>
-        <span class="option-label __MSG_altBindingPrefLabel__">
-          Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter</span>
+        <span class="option-label">__MSG_altBindingPrefLabel__</span>
       </label>
 
       <label>
         <input type="checkbox" id="markDraftsRead" class="preference"/>
-        <span class="option-label __MSG_markReadPrefLabel__">
-          Mark scheduled drafts as read</span>
+        <span class="option-label">__MSG_markReadPrefLabel__</span>
       </label>
 
       <span id="showColumnRow">
-        <label>
+        <label title="__MSG_showColumnPrefTooltip__">
           <input type="checkbox" id="showColumn" class="preference"/>
-          <span class="option-label __MSG_showColumnPrefLabel__">
-            Show Send Later column</span>
+          <span class="option-label">__MSG_showColumnPrefLabel__</span>
         </label>
       </span>
 
-      <label>
+      <label title="__MSG_showHeaderPrefTooltip__">
         <input type="checkbox" id="showHeader" class="preference"/>
-        <span class="option-label __MSG_showHeaderPrefLabel__">
-          Show Send Later header</span>
+        <span class="option-label">__MSG_showHeaderPrefLabel__</span>
       </label>
 
       <label>
         <input type="checkbox" id="showStatus" class="preference"/>
-        <span class="option-label __MSG_showStatusPrefLabel__">
-          Show text in toolbar button</span>
+        <span class="option-label">__MSG_showStatusPrefLabel__</span>
       </label>
 
-      <label>
+      <label title="__MSG_enforceRestrictionsPrefTooltip__">
         <input type="checkbox" id="enforceTimeRestrictions" class="preference"/>
-        <span class="option-label __MSG_enforceRestrictionsPrefLabel__">
-          Enforce time and day restrictions at delivery time</span>
+        <span class="option-label">__MSG_enforceRestrictionsPrefLabel__</span>
       </label>
 
-      <label>
+      <label title="__MSG_blockLateMessagesPrefTooltip__">
         <input type="checkbox" id="blockLateMessages" class="preference"/>
-        <span class="option-label __MSG_blockLateMessagesPrefLabel1__">
-          Don't deliver messages more than</span>
+        <span class="option-label">__MSG_blockLateMessagesPrefLabel1__</span>
         <input type="number" min=1 style="width:6em;" id="lateGracePeriod" class="preference"/>
-        <span class="option-label __MSG_blockLateMessagesPrefLabel2__" id="gracePeriodUnitLabel">
-          minutes late</span>
+        <span class="option-label" id="gracePeriodUnitLabel">
+          __MSG_blockLateMessagesPrefLabel2__</span>
       </label>
 
       <label title="__MSG_sendUnsentMessagesPrefTooltip__">
         <input type="checkbox" id="sendUnsentMsgs" class="preference"/>
-        <span class="option-label __MSG_sendUnsentMessagesPrefLabel__">
-          Trigger unsent message delivery from Outbox</span>
+        <span class="option-label">__MSG_sendUnsentMessagesPrefLabel__</span>
       </label>
 
       <label>
         <input type="checkbox" id="customizeDateTime" class="preferences"/>
-        <span class="option-label __MSG_customizeDateTimeFormatsPrefLabel__">
-          Customize date/time formats
+        <span class="option-label">__MSG_customizeDateTimeFormatsPrefLabel__
         </span>
       </label>
       <div id="customDateTimeFormatsDiv" style="display:none;padding-left:1em;">
         <label>
-          <span class="option-label __MSG_shortDateTimeFormatsPrefLabel__">
-            Short date/time format:
+          <span class="option-label">__MSG_shortDateTimeFormatsPrefLabel__
           </span>
           <input type="text" id="shortDateTimeFormat" class="preferences"/><br/>
           (<span id="sampleShortDateTime" style="white-space:nowrap;"></span>)
         </label>
         <label>
-          <span class="option-label __MSG_longDateTimeFormatsPrefLabel__">
-            Long date/time format:
-          </span>
+          <span class="option-label">__MSG_longDateTimeFormatsPrefLabel__</span>
           <input type="text" id="longDateTimeFormat" class="preferences"/><br/>
           (<span id="sampleLongDateTime" style="white-space:nowrap;"></span>)
         </label>
       </div>
       <label>
         <input type="checkbox" id="askQuit" class="preferences"/>
-        <span class="option-label __MSG_ShowQuitNotificationPreference__">
-          Show warning before quit if there are pending messages
-        </span>
+        <span class="option-label">__MSG_ShowQuitNotificationPreference__</span>
       </label>
     </section>
 
@@ -205,16 +187,17 @@
       <div class="div-table">
         <div class="div-table-row" style="font-weight:bold;">
           <div class="div-table-cell"></div>
-          <div class="div-table-cell locallized __MSG_quickoptionname.label__"
-             style="padding-left:1em;">Button label</div>
-          <div class="div-table-cell locallized __MSG_functionnameplaceholder__"
-             style="padding-left:1em;">Function name</div>
-          <div class="div-table-cell locallized __MSG_sendlater.prompt.functionargs.label__"
-             style="padding-left:1em;">Input arguments</div>
+          <div class="div-table-cell"
+             style="padding-left:1em;">__MSG_quickoptionname.label__</div>
+          <div class="div-table-cell"
+             style="padding-left:1em;">__MSG_functionnameplaceholder__</div>
+          <div class="div-table-cell"
+               style="padding-left:1em;">
+            __MSG_sendlater.prompt.functionargs.label__</div>
         </div>
         <div class="div-table-row">
           <div class="div-table-cell">
-            <span class="option-label __MSG_quickOptionsLabel1Label__">Shortcut 1</span>:
+            <span class="option-label">__MSG_quickOptionsLabel1Label__</span>:
           </div>
           <div class="div-table-cell">
             <input type="text" id="quickOptions1Label" style="width:10em;" class="preference"/>
@@ -230,7 +213,7 @@
         </div>
         <div class="div-table-row">
           <div class="div-table-cell">
-            <span class="option-label __MSG_quickOptionsLabel2Label__">Shortcut 2</span>:
+            <span class="option-label">__MSG_quickOptionsLabel2Label__</span>:
           </div>
           <div class="div-table-cell">
             <input type="text" id="quickOptions2Label" style="width:10em;" class="preference"/>
@@ -246,7 +229,7 @@
         </div>
         <div class="div-table-row">
           <div class="div-table-cell">
-            <span class="option-label __MSG_quickOptionsLabel3Label__">Shortcut 3</span>:
+            <span class="option-label">__MSG_quickOptionsLabel3Label__</span>:
           </div>
           <div class="div-table-cell">
             <input type="text" id="quickOptions3Label" style="width:10em;" class="preference"/>
@@ -262,11 +245,12 @@
         </div>
         <div class="div-table-row">
           <div class="div-table-cell">
-            <span class="option-label __MSG_accelKeyLabel__">Accelerator key</span>:
+            <span class="option-label">__MSG_accelKeyLabel__</span>:
           </div>
           <div class="div-table-cell">
             <!-- Will be replaced with "Cmd+Click" on MacOS -->
-            <span class="option-label __MSG_accelCtrlLabel__" id="accelCtrlLabel">Ctrl+Click</span>
+            <span class="option-label" id="accelCtrlLabel">
+              __MSG_accelCtrlLabel__</span>
           </div>
           <div class="div-table-cell">
             <select id="accelCtrlfuncselect" style="margin-bottom:0.5em;margin-left:0.5em;min-width:10em;">
@@ -279,10 +263,10 @@
         </div>
         <div class="div-table-row">
           <div class="div-table-cell">
-            <span class="option-label __MSG_accelKeyLabel__">Accelerator key</span>:
+            <span class="option-label">__MSG_accelKeyLabel__</span>:
           </div>
           <div class="div-table-cell">
-            <span class="option-label __MSG_accelShiftLabel__">Shift+Click</span>
+            <span class="option-label">__MSG_accelShiftLabel__</span>
           </div>
           <div class="div-table-cell">
             <select id="accelShiftfuncselect" style="margin-bottom:0.5em;margin-left:0.5em;min-width:10em;">
@@ -300,8 +284,7 @@
       <div id="functionEditorTitle" class="title option-label" style="cursor:pointer;">
         <span id="functionEditorVisibleIndicator"
           style="margin-right: 0.25em;">+</span>
-        <span class="localized __MSG_editorlink.value__">
-          Dynamic function editor</span>
+        <span class="">__MSG_editorlink.value__</span>
       </div>
 
       <div id="FunctionEditorDiv" style="display:none;">
@@ -320,8 +303,8 @@
             Delay
           </option>
           <option value="newFunctionName" id="ufunc-newFunctionName"
-            class="option-label __MSG_createnewfunction__">
-            Create new function
+            class="option-label">
+             __MSG_createnewfunction__
           </option>
         </select>
 
@@ -331,16 +314,16 @@
           <span class="pre"> (specname, prev, args) { </span><br/>
           <pre>  let next, nextspec, nextargs;</pre>
           <textarea id="functionEditorContent" type="textbox" disabled
-            class="pre __MSG_EditorReadMeCode__"
-            style="width:98%;height:18em;margin-left:1%;"></textarea>
+            class="pre"
+            style="width:98%;height:18em;margin-left:1%;">__MSG_EditorReadMeCode__</textarea>
           <pre>  return { next, nextspec, nextargs };</pre>
           <pre>}</pre>
 
-          <span class="localized __MSG_helptextheader__" style="margin:1em;">
-            Function help text</span>
+          <span class="" style="margin:1em;">__MSG_helptextheader__</span>
           <textarea id="functionHelpText" type="textbox" disabled
-            class="pre __MSG_EditorReadMeHelp__"
-            style="width:98%;height:6em;margin-left:1%;margin-top:0.25em;"></textarea>
+            class="pre"
+            style="width:98%;height:6em;margin-left:1%;margin-top:0.25em;"
+            >__MSG_EditorReadMeHelp__</textarea>
 
           <fieldset id="functionTestFields">
             <legend>Test</legend>
@@ -348,9 +331,7 @@
               <div class="div-table-row">
                 <div class="div-table-cell" style="white-space:nowrap;">
                   <label for="functionTestDateTimeGroup"
-                     class="option-label __MSG_inputtime__">
-                     Input time
-                  </label>
+                     class="option-label">__MSG_inputtime__</label>
                 </div>
                 <div class="div-table-cell" style="width:100%;">
                   <input id="functionTestDate" type="date"/>
@@ -360,9 +341,7 @@
               <div class="div-table-row">
                 <div class="div-table-cell" style="white-space:nowrap;">
                   <label for="functionTestArgs"
-                     class="option-label __MSG_inputargs__">
-                     Input arguments
-                  </label>
+                     class="option-label">__MSG_inputargs__</label>
                 </div>
                 <div class="div-table-cell" style="width:100%;">
                   <input type="text" id="functionTestArgs"
@@ -374,9 +353,9 @@
             <div>
               <div style="display: table-cell;height:2em;line-height:2em;white-space:nowrap;padding-right:0.5em;">
                 <input id="funcTestRun" type="button"
-                  value="Execute function" class="localized __MSG_run.label__">
+                  value="__MSG_run.label__">
                 =>
-                <span class="option-label __MSG_output__">Output</span>:
+                <span class="option-label">__MSG_output__</span>:
               </div>
               <div id="functionTestOutput"class="pre"></div>
             </div>
@@ -384,24 +363,23 @@
 
           <div>
             <input id="funcEditSave" type="button" style="margin-right:0.5em;"
-              value="Save" class="localized __MSG_save.label__">
+              value="__MSG_save.label__">
             <input id="funcEditReset" type="button" style="margin-right:0.5em;"
-              value="Discard changes" class="localized __MSG_reset.label__">
+              value="__MSG_reset.label__">
             <input id="funcEditDelete" type="button" style="margin-right:0.5em;"
-              value="Delete" class="localized __MSG_delete.label__">
+              value="__MSG_delete.label__">
           </div>
         </div>
       </div>
     </section>
 
     <section id="advanced-section">
-      <div class="title option-label __MSG_advancedOptionsTitle__">Advanced</div>
+      <div class="title option-label">__MSG_advancedOptionsTitle__</div>
 
       <div id="advancedEditorTitle" class="subtitle option-label" style="cursor:pointer;">
         <span id="advancedEditorVisibleIndicator"
           style="margin-right: 0.25em;">+</span>
-        <span class="localized __MSG_advancededitor.title__">
-          Advanced configuration editor</span>
+        <span class="">__MSG_advancededitor.title__</span>
       </div>
 
       <div id="advancedConfigEditor" style="display:none;">
@@ -410,32 +388,32 @@
             style="width:80%;height:50em;margin: 0.25em 0px 0.25em 1em;"></textarea>
         <div style="padding-left: 4em;">
           <input id="advancedEditSave" type="button" style="margin:0.25em;"
-            value="Save" class="localized __MSG_save.label__">
+            value="__MSG_save.label__">
           <input id="advancedEditReset" type="button" style="margin:0.25em;"
-            value="Discard changes" class="localized __MSG_reset.label__">
+            value="__MSG_reset.label__">
           <input id="clearPrefs" type="button" style="margin:0.25em;"
-            value="Reset Preferences" class="localized __MSG_resetPrefsButton__">
+            value="__MSG_resetPrefsButton__">
         </div>
         <hr/>
       </div>
 
       <label for="logConsoleLevel">
-        <span class="option-label __MSG_logConsoleLevelLabel__">Console log level</span>:
+        <span class="option-label">__MSG_logConsoleLevelLabel__</span>:
         <select id="logConsoleLevel" class="preference">
           <option value="fatal"
-            class="option-label __MSG_logLevelFatal__">Fatal</option>
+            class="option-label">__MSG_logLevelFatal__</option>
           <option value="error"
-            class="option-label __MSG_logLevelError__">Error</option>
+            class="option-label">__MSG_logLevelError__</option>
           <option value="warn"
-            class="option-label __MSG_logLevelWarn__">Warn</option>
+            class="option-label">__MSG_logLevelWarn__</option>
           <option value="info"
-            class="option-label __MSG_logLevelInfo__">Info</option>
+            class="option-label">__MSG_logLevelInfo__</option>
           <option value="debug"
-            class="option-label __MSG_logLevelDebug__">Debug</option>
+            class="option-label">__MSG_logLevelDebug__</option>
           <option value="trace"
-            class="option-label __MSG_logLevelTrace__">Trace</option>
+            class="option-label">__MSG_logLevelTrace__</option>
           <option value="all"
-            class="option-label __MSG_logLevelAll__">All</option>
+            class="option-label">__MSG_logLevelAll__</option>
         </select>
       </label>
     </section>
@@ -444,11 +422,11 @@
 
     <div class="footer">
       <a href="mailto:send-later-support@extended-thunder.org?subject=Send%20Later"
-        class="option-label __MSG_contactAuthorLabel__">Contact the author</a>
+        class="option-label">__MSG_contactAuthorLabel__</a>
       <a href="https://extended-thunder.github.io/send-later/"
-        class="option-label __MSG_userGuideLabel__">User guide</a>
+        class="option-label">__MSG_userGuideLabel__</a>
       <a href="https://extended-thunder.github.io/send-later/#support-send-later"
-        class="option-label __MSG_donatelink.value__">Donate</a>
+        class="option-label">__MSG_donatelink.value__</a>
     </div>
 
     <script type="text/javascript" src="/utils/sugar-custom.js"></script>

@@ -23,8 +23,16 @@
     "message": "perc késéssel",
     "description": ""
   },
+  "blockLateMessagesPrefTooltip": {
+    "message": "Ne küldjön ütemezett üzeneteket, amelyek késleltetettek az ütemezett időn túl, például azért, mert a Thunderbird ekkor nem futott.",
+    "description": ""
+  },
   "checkTimePrefLabel1": {
     "message": "Ellenőrzés gyakorisága:",
+    "description": ""
+  },
+  "checkTimePrefTooltip": {
+    "message": "Időközönként, percben, a piszkozatok ellenőrzése között, amelyek elküldése ideje megérkezett. Növelje ezt az értéket, ha a piszkozatait időnként nem vannak elküldve, vagy az állapotsorban lévő függőben lévő üzenetek száma néha nem tükrözi az összes ütemezett piszkozatot.",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -37,6 +45,10 @@
   },
   "enforceRestrictionsPrefLabel": {
     "message": "A kézbesítés időpontjában tartsa be az időre és a napra vonatkozó korlátozásokat",
+    "description": ""
+  },
+  "enforceRestrictionsPrefTooltip": {
+    "message": "Ha egy kézbesítendő üzenet az idő vagy a nap korlátozásain kívül esik, például azért, mert a Thunderbird nem futott az ütemezett szállítási időpontban, akkor késleltesse annak kézbesítését, amíg az idő és a nap korlátozásai nem teljesülnek.",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -155,8 +167,20 @@
     "message": "„Küldés” úgy működik, mint „Küldés később”",
     "description": ""
   },
+  "sendButtonPrefTooltip": {
+    "message": "Ezzel az opcióval a „Küldés” parancs (vagy a gomb vagy a Ctrl+Enter beírása) ugyanaz, mint a „Küldés később”.",
+    "description": ""
+  },
   "sendDelayPrefLabel1": {
     "message": "A „küldés” ennyivel késleltet:",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Az ismétlődő üzenetekre adott válaszok figyelése. Ismétlődő üzenetet megszakítása és távolítsa el a Piszkozatok mappából, amikor válasz érkezik.",
+    "description": ""
+  },
+  "sendDelayPrefTooltip": {
+    "message": "Ezzel az opcióval a „Küldés” paranccsal elküldött összes üzenet (a gomb vagy a Ctrl-Enter gépelés után) a megadott perc számmal késik, ha a Küldés később ütemezést küld.",
     "description": ""
   },
   "sendSundayLabel": {
@@ -191,6 +215,10 @@
     "message": "Küldés most",
     "description": ""
   },
+  "sendNowTooltip": {
+    "message": "Az üzenetet azonnal küldje el, megkerülve a „Küldés később”-kiegészítőt.",
+    "description": ""
+  },
   "sendOnlyOnLabel": {
     "message": "Csak",
     "description": ""
@@ -207,8 +235,16 @@
     "message": "Küldés később oszlop megjelenítése",
     "description": ""
   },
+  "showColumnPrefTooltip": {
+    "message": "Akár a „Küldés később” oszlopot is megjelenítheti a vázlatmappák megtekintése közben",
+    "description": ""
+  },
   "showHeaderPrefLabel": {
     "message": "Küldés később fejlécek megjelenítése",
+    "description": ""
+  },
+  "showHeaderPrefTooltip": {
+    "message": "Az „X-Send-Later-At” fejléc megjelenítése, azaz idő, amikor a tervezetet elküldjük, a fejlécben, amikor üzenetet nézünk.",
     "description": ""
   },
   "showStatusPrefLabel": {
@@ -229,6 +265,10 @@
   },
   "sendlater.prompt.sendlater.label": {
     "message": "Postázandó üzenetek közé helyezés",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "Ahelyett, hogy ütemezné a szállítást egy adott időre, helyezze át az üzenetet a Kimenő mappába, hogy legközelebb elküldje a nem küldött üzeneteket.",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -425,6 +465,10 @@
   },
   "close.label": {
     "message": "Bezárás",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Mentse az üzenetet a Piszkozatok mappába az önműködő küldéséhez a fenti időpontban.",
     "description": ""
   },
   "entervalid": {

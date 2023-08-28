@@ -23,8 +23,16 @@
     "message": "minutter for sent",
     "description": ""
   },
+  "blockLateMessagesPrefTooltip": {
+    "message": "Ikke lever planlagte meldinger som har blitt utsatt forbi sin planlagte tid, f.eks fordi Thunderbird ikke kjørte på den tiden.",
+    "description": ""
+  },
   "checkTimePrefLabel1": {
     "message": "Sjekk hvert",
+    "description": ""
+  },
+  "checkTimePrefTooltip": {
+    "message": "Intervall, i minutter, mellom hver sjekk for utkast som er klare for levering. Øk denne verdien dersom dine utkast ikke alltid sendes til riktig tid eller dersom antallet ventende meldinger i statuslinja ikke reflekterer riktig antall utkast planlagt til sending.",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -37,6 +45,10 @@
   },
   "enforceRestrictionsPrefLabel": {
     "message": "Håndhev tids- og dagsrestriksjoner ved leveringstid",
+    "description": ""
+  },
+  "enforceRestrictionsPrefTooltip": {
+    "message": "Hvis en melding som skal leveres er utenfor dens tids- eller dagsrestriksjoner, f.eks. fordi Thunderbird ikke kjørte på dens planlagte leveringstid, skal leveringen utsettes frem til tids- og dagsrestriksjonene er oppfylt.",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -139,8 +151,20 @@
     "message": "“Send” betyr “Send senere”",
     "description": ""
   },
+  "sendButtonPrefTooltip": {
+    "message": "Er dette alternativet blir aktivert, fungerer kommandoen “Send” (Enten knappen eller å trykke Ctrl-Enter) på samme måte som “Send senere”.",
+    "description": ""
+  },
   "sendDelayPrefLabel1": {
     "message": "«Send» utsetter meldinger med",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Se etter svar på tidligere sendte kopier av regelmessige meldinger. Avbryt en gjentakende melding og fjern den fra utkastmappen når et svar mottas.",
+    "description": ""
+  },
+  "sendDelayPrefTooltip": {
+    "message": "Hvis denne innstillingen er skrudd på, vil alle meldinger med «Send»-kommandoen (Enten knappen eller å trykke Ctrl-Enter) bli utsatt med det valgte antall minutter ved å planlegge dem med Send senere.",
     "description": ""
   },
   "sendSundayLabel": {
@@ -175,6 +199,10 @@
     "message": "Send nå",
     "description": ""
   },
+  "sendNowTooltip": {
+    "message": "Send meldingen umiddelbart ved å overstyre “Send senere”.",
+    "description": ""
+  },
   "sendOnlyOnLabel": {
     "message": "Bare på",
     "description": ""
@@ -191,8 +219,16 @@
     "message": "Vis kolonne for Send senere",
     "description": ""
   },
+  "showColumnPrefTooltip": {
+    "message": "Om du vil vise «Send senere»--kolonnen når du ser på utkastmapper",
+    "description": ""
+  },
   "showHeaderPrefLabel": {
     "message": "Vis Send senere topptekst",
+    "description": ""
+  },
+  "showHeaderPrefTooltip": {
+    "message": "Om du vil vise «X-Send-Later-At»-topptekst, dvs. tidspunktet da et utkast er planlagt å bli sendt, i overskriften når du ser en melding.",
     "description": ""
   },
   "showStatusPrefLabel": {
@@ -205,6 +241,10 @@
   },
   "sendlater.prompt.sendlater.label": {
     "message": "Legg i utboks",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "Heller enn å planlegge levering til et bestemt tidspunkt, flytt meldingen til utboksmappen for å sendes neste gang usendte meldinger blir sendt.",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -397,6 +437,10 @@
   },
   "close.label": {
     "message": "Lukk",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Lagre meldingen i Kladd-mappen for automatisk levering på tidspunktet som er valgt ovenfor.",
     "description": ""
   },
   "entervalid": {

@@ -23,8 +23,16 @@
     "message": "minuten te laat afleveren",
     "description": ""
   },
+  "blockLateMessagesPrefTooltip": {
+    "message": "Geplande berichten die voorbij hun geplande tijd zijn vertraagd, bijvoorbeeld omdat Thunderbird niet actief was, niet afleveren",
+    "description": ""
+  },
   "checkTimePrefLabel1": {
     "message": "Elke",
+    "description": ""
+  },
+  "checkTimePrefTooltip": {
+    "message": "Interval, in minuten, tussen controles op concepten waarvoor de aflevertijd is bereikt. Vergroot deze waarde als uw concepten niet altijd op tijd worden verzonden of als het aantal af te handelen berichten in uw statusbalk niet altijd overeenkomt met het werkelijke aantal.",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -37,6 +45,10 @@
   },
   "enforceRestrictionsPrefLabel": {
     "message": "Tijds- en dagrestricties bij aflevertijd afdwingen",
+    "description": ""
+  },
+  "enforceRestrictionsPrefTooltip": {
+    "message": "Als een bericht dat dient te worden afgeleverd buiten de tijds- of dagrestricties komt, bijvoorbeeld omdat Thunderbird ten tijde van de geplande aflevertijd niet actief was, dan de aflevering ervan vertragen totdat aan de tijds- en dagrestricties wordt voldaan.",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -155,8 +167,20 @@
     "message": "‘Verzenden’ werkt als ‘Later verzenden’",
     "description": ""
   },
+  "sendButtonPrefTooltip": {
+    "message": "Met deze optie ingeschakeld, werkt de opdracht ‘Verzenden’ (via zowel de knop als het intoetsen van Ctrl-Enter) hetzelfde als ‘Later verzenden’.",
+    "description": ""
+  },
   "sendDelayPrefLabel1": {
     "message": "‘Verzenden’ vertraagt berichten met",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Op eerder verzonden kopieën van herhalende berichten letten. Een herhalend bericht annuleren en het uit de map Concepten verwijderen als een antwoord is ontvangen.",
+    "description": ""
+  },
+  "sendDelayPrefTooltip": {
+    "message": "Met deze optie ingeschakeld, worden alle met de opdracht ‘Verzenden’ verzonden berichten (via zowel de knop als het typen van Ctrl-Enter) met het opgegeven aantal minuten vertraagd door ze met Send Later in te plannen.",
     "description": ""
   },
   "sendSundayLabel": {
@@ -191,6 +215,10 @@
     "message": "Nu verzenden",
     "description": ""
   },
+  "sendNowTooltip": {
+    "message": "Bericht onmiddellijk verzenden zonder ‘Send Later’",
+    "description": ""
+  },
   "sendOnlyOnLabel": {
     "message": "Alleen op",
     "description": ""
@@ -207,8 +235,16 @@
     "message": "Kolom Send Later tonen",
     "description": ""
   },
+  "showColumnPrefTooltip": {
+    "message": "Of de kolom ‘Send Later’ bij het bekijken van conceptmappen moet worden getoond",
+    "description": ""
+  },
   "showHeaderPrefLabel": {
     "message": "Header Send Later tonen",
+    "description": ""
+  },
+  "showHeaderPrefTooltip": {
+    "message": "Of de header ‘X-Send-Later-At’ moet worden getoond als een bericht wordt bekeken, m.a.w. de tijd waarop een concept gepland staat om te worden verzonden.",
     "description": ""
   },
   "showStatusPrefLabel": {
@@ -229,6 +265,10 @@
   },
   "sendlater.prompt.sendlater.label": {
     "message": "In Postvak UIT plaatsen",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "Niet een tijdstip voor verzending kiezen, maar in het Postvak UIT plaatsen voor verzending wanneer de nog niet verzonden berichten worden verzonden",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -425,6 +465,10 @@
   },
   "close.label": {
     "message": "Sluiten",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Bericht opslaan in de map Concepten voor automatisch verzenden op het hierboven aangegeven tijdstip",
     "description": ""
   },
   "entervalid": {

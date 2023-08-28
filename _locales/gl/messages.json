@@ -19,8 +19,16 @@
     "message": "minuto(s) de retraso",
     "description": ""
   },
+  "blockLateMessagesPrefTooltip": {
+    "message": "Non envía as mensaxes que pasaron a data e hora definidas para o envío; por exemplo a causa de que Thunderbird non se executase nese intre.",
+    "description": ""
+  },
   "checkTimePrefLabel1": {
     "message": "Comprobar cada",
+    "description": ""
+  },
+  "checkTimePrefTooltip": {
+    "message": "Intervalo, en minutos, entre comprobacións para borradores cuxa hora de envío chegou. Aumenta este valor se ás veces os borradores non se envían a tempo ou se o reconto de mensaxes pendentes na barra de estado non reflicte todos os envíos programados.",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -33,6 +41,10 @@
   },
   "enforceRestrictionsPrefLabel": {
     "message": "Facer cumprir as condicións de día e hora no momento do envío",
+    "description": ""
+  },
+  "enforceRestrictionsPrefTooltip": {
+    "message": "Se unha mensaxe programada para enviar está fora dos prazos establecidos; por exemplo debido a que Thunderbird non se executase na hora de envío programado, adiarase o envío ata que as condicións de día e hora se cumpran.",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -143,8 +155,20 @@
     "message": "“Enviar” funciona coma “Enviar máis tarde”",
     "description": ""
   },
+  "sendButtonPrefTooltip": {
+    "message": "Con esta opción habilitada, o comando “Enviar” (tanto co botón coma premendo Ctrl+Intro) funciona igual que “Enviar máis tarde”.",
+    "description": ""
+  },
   "sendDelayPrefLabel1": {
     "message": "“Enviar” atrasa as mensaxes de",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Verifica as respostas ás copias enviadas previamente de mensaxes recorrentes. Cancela unha mensaxe recorrente e bórrao do cartafol Borradores cando recibe resposta.",
+    "description": ""
+  },
+  "sendDelayPrefTooltip": {
+    "message": "Con esta opción habilitada, todas as mensaxes enviadas co comando “Enviar” (xa sexa pulsando o botón ou seleccionando Ctrl-Enter) atrasan o número de minutos especificado programados con Send Later.",
     "description": ""
   },
   "sendSundayLabel": {
@@ -179,6 +203,10 @@
     "message": "Enviar agora",
     "description": ""
   },
+  "sendNowTooltip": {
+    "message": "Enviar a mensaxe inmediatamente, ignorando “Send Later”.",
+    "description": ""
+  },
   "sendOnlyOnLabel": {
     "message": "So en",
     "description": ""
@@ -195,8 +223,16 @@
     "message": "Mostrar columna de Send Later",
     "description": ""
   },
+  "showColumnPrefTooltip": {
+    "message": "Establece se incluír ou non a columna “Send Later” ó amosar os cartafoles de borradores",
+    "description": ""
+  },
   "showHeaderPrefLabel": {
     "message": "Mostrar cabeceira de Send Later",
+    "description": ""
+  },
+  "showHeaderPrefTooltip": {
+    "message": "Establece se amosar o encabezado “X-Send-Later-At”, que marca a hora á que está programado o envío dun borrador, na cabeceira cando se ve o código dunha mensaxe.",
     "description": ""
   },
   "showStatusPrefLabel": {
@@ -209,6 +245,10 @@
   },
   "sendlater.prompt.sendlater.label": {
     "message": "Poñer na Bandexa de Saída",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "En troques de programa-lo envío para unha hora específica, move a mensaxe ó cartafol da Bandexa de Saída para envialo na seguinte ocasión na que se remitan as mensaxes non enviadas.",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -397,6 +437,10 @@
   },
   "close.label": {
     "message": "Pechar",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Garda a mensaxe no cartafol Borradores para o seu envío automático á hora especificada.",
     "description": ""
   },
   "entervalid": {
