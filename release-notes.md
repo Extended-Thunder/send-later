@@ -26,6 +26,32 @@ This is an exciting release with many new features and improvements!
 
 ### New features
 
+#### Collection of anonymous usage data
+
+We're putting this first in the release notes because we think it's
+important to be fully transparent about things like this: starting
+with this release, Send Later collects anonymous usage data to help us
+improve the add-on, measure its usage, and identify where to focus our
+efforts.
+
+We're extremely careful to ensure that there's nothing private or
+personally identifiable in the data we collect and certainly no
+information whatsoever about your email or email accounts. We don't
+even capture your IP address on the server to which the collected data
+is sent. It's a private server under our exclusive control, and we
+don't share the data with anyone.
+
+When the add-on is installed or upgraded to the new release you will
+be asked whether you wish to participate in data collection, but note
+that it is enabled by default since there is no personally
+identifiable or private information in the collected data. If you just
+close the prompt window rather than responding, the add-on will keep
+asking each time you launch Thunderbird until you answer.
+
+See our [privacy policy][privacy] for additional details, including
+details about the data we collect and how to change your mind and opt
+in or out when you've already responded to the pop-up.
+
 #### Bulk scheduling messages from the message list
 
 You can now select one or more drafts from the message list,
@@ -72,7 +98,7 @@ curently no pop-up notification) in these circumstances:
 * The message was originally scheduled in a different Thunderbird
   profile.
 * The message has an "until" date/time that has passed.
-   
+
 ### Improvements
 
 Since we had to remove support for the Send Later column in the
@@ -289,3 +315,4 @@ later.
 [caveats]: https://extended-thunder.github.io/send-later/#caveats
 [issues]: https://github.com/Extended-Thunder/send-later/issues
 [funclib]: https://github.com/Extended-Thunder/send-later/tree/main/contrib/scheduling-functions
+[privacy]: https://addons.thunderbird.net/thunderbird/addon/send-later-3/privacy/

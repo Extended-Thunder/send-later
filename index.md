@@ -1853,6 +1853,15 @@ a previous version of Send Later, but most of it should still apply.
 
 <a name="donate"></a>
 
+## Data collection and privacy policy
+
+Send Later collects anonymous usage data to help us improve the
+add-on, measure its usage, and identify where to focus our efforts.
+The data we collect contains no identifying information, email
+content, or account information. We don't share the data with anyone.
+For full details about the data we collect and how to opt in or out of
+data collection, please see our [privacy policy][privacy].
+ 
 ## Support Send Later!
 
 The development and maintenance of Send Later is financially supported
@@ -1935,3 +1944,4 @@ Please [see above](#translate) if you would like to help add another translation
 [atn]: https://addons.thunderbird.net/thunderbird/addon/send-later-3/
 [atnversions]: https://addons.thunderbird.net/thunderbird/addon/send-later-3/versions/
 [ghreleases]: https://github.com/Extended-Thunder/send-later/releases
+[privacy]: https://addons.thunderbird.net/thunderbird/addon/send-later-3/privacy/
