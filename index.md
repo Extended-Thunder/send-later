@@ -173,6 +173,13 @@ a scheduled message delivery, edit the draft and save it normally
 without "Send Later" (or just send it immediately, if that's what you
 want to do), and the scheduling information will be removed.
 
+When the scheduled delivery time for a message arrives, Send Later
+copies the message from your Drafts folder to your Outbox under Local
+Folders, then tells Thunderbird to deliver the messages in your
+Outbox, then removes the message from your Drafts folder, possibly
+leaving a new one in its place if it's a [recurring](#recurring)
+message.
+
 <a name="date-formats"></a>
 ### Date formats
 
