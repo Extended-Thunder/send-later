@@ -991,8 +991,15 @@ const SendLater = {
       SendLater.clickComposeListener,
     );
 
+    // Perform any necessary preference updates
+    await this.updatePreferences();
+
+    let preferences = await SLTools.getPrefs();
+    SendLater.prefCache = preferences;
+
     await SLStatic.tb115(false, async () => {
       // Initialize drafts folder column
+      await messenger.columnHandler.cachePrefs(preferences);
       await messenger.columnHandler
         .addCustomColumn({
           name: messenger.i18n.getMessage("sendlater3header.label"),
@@ -1028,25 +1035,8 @@ const SendLater = {
     // Clear the current message settings cache
     await messenger.storage.local.set({ scheduleCache: {} });
 
-    // Perform any necessary preference updates
-    await this.updatePreferences();
-
-    let preferences = await SLTools.getPrefs();
-
     try {
-      SendLater.prefCache = preferences;
       await messenger.SL3U.setLogConsoleLevel(preferences.logConsoleLevel);
-
-      await SLStatic.tb115(false, async () => {
-        for (let pref of [
-          "customizeDateTime",
-          "longDateTimeFormat",
-          "shortDateTimeFormat",
-          "instanceUUID",
-        ]) {
-          await messenger.columnHandler.setPreference(pref, preferences[pref]);
-        }
-      });
 
       let nActive = await SLTools.countActiveScheduledMessages();
       await SendLater.updateStatusIndicator(nActive);
@@ -1188,19 +1178,7 @@ const SendLater = {
       });
 
       await SLStatic.tb115(false, async () => {
-        for (let pref of [
-          "customizeDateTime",
-          "longDateTimeFormat",
-          "shortDateTimeFormat",
-          "instanceUUID",
-        ]) {
-          if (changes.preferences.oldValue[pref] !== preferences[pref]) {
-            SLStatic[pref] = preferences[pref];
-            messenger.columnHandler.setPreference(pref, preferences[pref]);
-            // messenger.columnHandler.invalidateAll();
-          }
-        }
-
+        messenger.columnHandler.cachePrefs(preferences);
         // Note: It's possible to immediately obey a preference change if the
         // user has decided to disable the send later column, but when the
         // column is being enabled there isn't a simple way to tell whether

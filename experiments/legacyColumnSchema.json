@@ -21,19 +21,14 @@
     ],
     "functions": [
       {
-        "name": "setPreference",
+        "name": "cachePrefs",
         "type": "function",
         "async": true,
         "parameters": [
           {
-            "name": "key",
-            "type": "string",
-            "description": "Name of preference to set"
-          },
-          {
-            "name": "value",
+            "name": "preferences",
             "type": "any",
-            "description": "Value to assign to this preference"
+            "description": "Preferences object"
           }
         ]
       },

@@ -9,6 +9,7 @@ var ExtensionSupport =
 var LegacyColumn = {
   // ExtensionParent,
 
+  preferences: {},
   storageLocalMap: new Map(),
 
   getStorageLocal(key) {
@@ -89,7 +90,7 @@ var LegacyColumn = {
   },
 
   checkValidSchedule(hdr) {
-    const instanceUUID = this.getStorageLocal("instanceUUID");
+    const instanceUUID = this.preferences.instanceUUID;
     const msgId = hdr.getStringProperty("message-id");
     const CTPropertyName = `content-type-${msgId}`;
     const msgContentType = this.getStorageLocal(CTPropertyName);
@@ -350,9 +351,9 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
           columns.delete(name);
         },
 
-        async setPreference(key, value) {
-          LegacyColumn.SLStatic[key] = value;
-          LegacyColumn.setStorageLocal(key, value);
+        async cachePrefs(preferences) {
+          await LegacyColumn.SLStatic.cachePrefs(preferences);
+          LegacyColumn.preferences = preferences;
         },
 
         async setColumnVisible(name, visible, windowId) {

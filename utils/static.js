@@ -1,3 +1,9 @@
+// WARNING: If you are importing script into an Experiement, then your
+// Experiment MUST have a cachePrefs endpoint which takes an object and passes
+// it into SLStatic.cachePrefs(...), and the extension's background script must
+// call the Experiment's cachePrefs on initialization and every time the
+// preferences change.
+
 var SLStatic = {
   i18n: null,
   tempFolderName: "Send-Later-Temp",
@@ -44,6 +50,7 @@ var SLStatic = {
 
   setLogConsoleLevel() {
     level = (this.preferences.logConsoleLevel || "all").toLowerCase();
+    SLStatic.debug(`SLStatic.setLogConsoleLevel(${level})`);
     function logThreshold(l) {
       const levels = [
         "all",
@@ -98,20 +105,24 @@ var SLStatic = {
     }
   },
 
-  async cachePrefs() {
-    if (!SLStatic.listeningForStorageChanges) {
-      browser.storage.local.onChanged.addListener(SLStatic.cachePrefs);
-      SLStatic.listeningForStorageChanges = true;
+  cacheChanged() {
+    SLStatic.cachePrefs();
+  },
+
+  async cachePrefs(preferences) {
+    if (!preferences) {
+      if (!SLStatic.listeningForStorageChanges) {
+        browser.storage.local.onChanged.addListener(SLStatic.cacheChanged);
+        SLStatic.listeningForStorageChanges = true;
+      }
+      let storage = await browser.storage.local.get(["preferences"]);
+      if (storage.preferences) {
+        preferences = storage.preferences;
+      }
     }
-    let { preferences } = await browser.storage.local
-      .get({ preferences: {} })
-      .catch(console.error);
     if (preferences) {
       SLStatic.preferences = preferences;
-    }
-    SLStatic.setLogConsoleLevel();
-    if (preferences) {
-      SLStatic.debug("SLStatic.cachePrefs success");
+      SLStatic.setLogConsoleLevel();
     }
   },
 
@@ -2053,4 +2064,6 @@ try {
   console.warn("[SendLater]: Unable to set date Sugar.js locale", ex);
 }
 
-SLStatic.cachePrefs();
+if (browser) {
+  SLStatic.cachePrefs();
+}
