@@ -38,7 +38,7 @@ If you have opted in to data collection with a unique identifier and you would l
 
 ## History
 
-The history of this privacy policy can be viewed [on GitHub][history]
+The history of this privacy policy can be viewed [on GitHub][history].
 
 [telemetry]: https://github.com/search?q=repo%3AExtended-Thunder%2Fsend-later+%22telemetrySend%28%22&type=code
 [emailus]: mailto:send-later-support@extended-thunder.org
