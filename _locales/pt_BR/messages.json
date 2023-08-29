@@ -243,10 +243,6 @@
     "message": "Exibe ou não cabeçalho “X-Send-Later-At”, isto é, ao visualizar a mensagem, no cabeçalho a hora programada de envio do rascunho.",
     "description": ""
   },
-  "showStatusPrefLabel": {
-    "message": "Exibir Enviar mais tarde na Barra de Status",
-    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
-  },
   "userGuideLabel": {
     "message": "Manual",
     "description": ""

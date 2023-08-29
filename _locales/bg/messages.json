@@ -247,10 +247,6 @@
     "message": "Да се показва ли “X-Send-Later-At” заглавката, т.е. времето, когато се планира да бъде изпратена черновата, в заглавката, когато преглеждате съобщението.",
     "description": ""
   },
-  "showStatusPrefLabel": {
-    "message": "Показване на Изпращане по-късно в лентата на състоянието",
-    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
-  },
   "userGuideLabel": {
     "message": "Ръководство на потребителя",
     "description": ""

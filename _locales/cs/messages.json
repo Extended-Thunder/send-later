@@ -239,10 +239,6 @@
     "message": "Má-li se zobrazovat v záhlaví zprávy hlavička “X-Send-Later-At”, tj. datum a čas, kdy bude koncept odeslán.",
     "description": ""
   },
-  "showStatusPrefLabel": {
-    "message": "Zobrazit „Odeslat Později“ ve stavovém řádku",
-    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
-  },
   "userGuideLabel": {
     "message": "Uživatelská příručka",
     "description": ""

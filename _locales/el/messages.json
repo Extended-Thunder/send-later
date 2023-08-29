@@ -239,10 +239,6 @@
     "message": "Ορίζει αν θα εμφανίζεται η επικεφλαίδα “X-Send-Later-At”, δηλ. ο χρόνος που έχει καθοριστεί για την αποστολή του μηνύματος, στην επικεφαλίδα όταν προβάλλεται ένα μήνυμα.",
     "description": ""
   },
-  "showStatusPrefLabel": {
-    "message": "Εμφάνιση του Send Later στη γραμμή κατάστασης",
-    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
-  },
   "userGuideLabel": {
     "message": "Οδηγίες χρήσης",
     "description": ""

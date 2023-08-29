@@ -251,10 +251,6 @@
     "message": "Dacă se afișează headerul “X-Send-Later-At”, adică momentul când un mesaj e programat să fie trimis, în header, la vizualizarea unui mesaj.",
     "description": ""
   },
-  "showStatusPrefLabel": {
-    "message": "Afișează Send Later în bara de stare",
-    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
-  },
   "userGuideLabel": {
     "message": "Ghidul utilizatorului",
     "description": ""

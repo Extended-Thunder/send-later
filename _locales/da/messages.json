@@ -251,10 +251,6 @@
     "message": "Skal overskriften “X-Send-senere-Kl” vises, altså det tidspunkt hvor en kladde er planlagt til at blive sendt, i overskriften når du ser på en besked.",
     "description": ""
   },
-  "showStatusPrefLabel": {
-    "message": "Vis menuen Send senere i statuslinjen",
-    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
-  },
   "userGuideLabel": {
     "message": "Brugervejledning",
     "description": ""

@@ -239,10 +239,6 @@
     "message": "Указывать, показывать ли заголовок «X-Send-Later-At», то есть время отправки черновика, в заголовке при просмотре сообщения.",
     "description": ""
   },
-  "showStatusPrefLabel": {
-    "message": "Показывать Send Later в строке состояния",
-    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
-  },
   "userGuideLabel": {
     "message": "Руководство Пользователя",
     "description": ""

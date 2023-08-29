@@ -235,10 +235,6 @@
     "message": "Especifica si mostrar o el encabezamiento “X-Send-Later-At”, que marca la hora a la que está programado el envío de un borrador, en la cabecera al ver el código de un mensaje.",
     "description": ""
   },
-  "showStatusPrefLabel": {
-    "message": "Mostrar “Send Later” en la barra de estado",
-    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
-  },
   "userGuideLabel": {
     "message": "Guía de usuario",
     "description": ""

@@ -203,10 +203,6 @@
     "message": "Անկախ ամեն ինչից ցուցադրել “X-Send-Later-At” գլխագիրը, այսինքն՝ ժամանակը, երբ սևագիրը պետք է ուղարկվի, գլխագրում՝ նամակը դիտելիս",
     "description": ""
   },
-  "showStatusPrefLabel": {
-    "message": "Ցուցադրել «Ուղարկել ավելի ուշ»-ը Վիճակի տողում",
-    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
-  },
   "userGuideLabel": {
     "message": "Օգտվողի ուղեցույցը",
     "description": ""

@@ -251,10 +251,6 @@
     "message": "Visning av huvudet “X-Send-Later-At”, d.v.s. den tidpunkt då ett utkast har schemalagts att skickas, i meddelandehuvudet vid granskning av ett meddelande.",
     "description": ""
   },
-  "showStatusPrefLabel": {
-    "message": "Visa Skicka Senare i statusfältet",
-    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
-  },
   "userGuideLabel": {
     "message": "Användarhandbok",
     "description": ""
