@@ -5,6 +5,11 @@ const SLPopup = {
   previousLoop: new Date(),
   loopMinutes: 1,
 
+  // Workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=1850454
+  // Won't work for everyone, but will work for a lot of people.
+  sendNowCode: null,
+  placeInOutboxCode: null,
+
   debugSchedule() {
     const inputs = SLPopup.objectifyFormValues();
     const schedule = SLPopup.parseInputs(inputs);
@@ -878,6 +883,30 @@ const SLPopup = {
         const inputs = SLPopup.objectifyFormValues();
         const schedule = SLPopup.parseInputs(inputs);
         SLPopup.doSendWithSchedule(schedule);
+      } else if (event.key == "Dead" && event.ctrlKey && event.altKey) {
+        // https://bugzilla.mozilla.org/show_bug.cgi?id=1850454
+        if (event.code == SLPopup.sendNowCode) {
+          SLStatic.telemetrySend({
+            event: "sendNowDeadKey",
+            code: event.code,
+          });
+          event.preventDefault();
+          SLPopup.doSendNow();
+        } else if (event.code == SLPopup.placeInOutboxCode) {
+          SLStatic.telemetrySend({
+            event: "placeInOutboxDeadKey",
+            code: event.code,
+          });
+          event.preventDefault();
+          SLPopup.doPlaceInOutbox();
+        } else {
+          SLStatic.telemetrySend({
+            event: "unrecognizedDeadKey",
+            code: event.code,
+            sendNowCode: SLPopup.sendNowCode,
+            placeInOutboxCode: SLPopup.placeInOutboxCode,
+          });
+        }
       }
     });
 
@@ -889,6 +918,7 @@ const SLPopup = {
       const contents = SLStatic.underlineAccessKey(label, accessKey);
 
       dom["sendNow"].accessKey = accessKey;
+      SLPopup.sendNowCode = `Key${accessKey.toUpperCase()}`;
       dom["sendNow"].textContent = "";
       for (let span of contents) {
         dom["sendNow"].appendChild(span);
@@ -904,6 +934,7 @@ const SLPopup = {
       const contents = SLStatic.underlineAccessKey(label, accessKey);
 
       dom["placeInOutbox"].accessKey = accessKey;
+      SLPopup.placeInOutboxCode = `Key${accessKey.toUpperCase()}`;
       dom["placeInOutbox"].textContent = "";
       for (let span of contents) {
         dom["placeInOutbox"].appendChild(span);
