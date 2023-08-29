@@ -125,6 +125,10 @@ Here is what you can do from this dialog:
     this button by hitting Alt+Shift+N (Ctrl+Option+N on macOS) or the
     equivalent in your language.
 
+Also, you can type Ctrl-Plus or Ctrl-Minus (or Command-Plus or
+Command-Minus) to zoom in or out, i.e., make the content of the dialog
+large or smaller, as needed to make it easier for you to use.
+
 ### Time-of-day and day-of-week restrictions
 
 You can also specify time-of-day and day-of-week restrictions for when
