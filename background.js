@@ -627,12 +627,27 @@ const SendLater = {
             false,
           );
 
-          let success = await SLStatic.messageImport(
-            new File([new TextEncoder().encode(newMsgContent)], "draft.eml", {
-              type: "message/rfc822",
-            }),
-            msgHdr.folder,
-            { new: false, read: preferences.markDraftsRead },
+          let success = await SLStatic.tb115(
+            async () => {
+              let file = new File(
+                [new TextEncoder().encode(newMsgContent)],
+                "draft.eml",
+                {
+                  type: "message/rfc822",
+                },
+              );
+              return await SLStatic.messageImport(file, msgHdr.folder, {
+                new: false,
+                read: preferences.markDraftsRead,
+              });
+            },
+            async () => {
+              return messenger.SL3U.saveMessage(
+                newMsgContent,
+                msgHdr.folder,
+                preferences.markDraftsRead,
+              );
+            },
           );
 
           if (success) {
@@ -665,17 +680,24 @@ const SendLater = {
       let content = SLStatic.prepNewMessageHeaders(
         await messenger.messages.getRaw(msgHdr.id),
       );
-      let file = new File(
-        [new TextEncoder().encode(content)],
-        "outbound-message.eml",
-        {
-          type: "message/rfc822",
+      let success = await SLStatic.tb115(
+        async () => {
+          let file = new File(
+            [new TextEncoder().encode(content)],
+            "outbound-message.eml",
+            {
+              type: "message/rfc822",
+            },
+          );
+          return await SLStatic.messageImport(file, outboxFolder, {
+            new: false,
+            read: true,
+          });
+        },
+        async () => {
+          return await messenger.SL3U.saveMessage(content, outboxFolder, true);
         },
       );
-      let success = await SLStatic.messageImport(file, outboxFolder, {
-        new: false,
-        read: true,
-      });
 
       if (success) {
         if (preferences.sendUnsentMsgs) {
@@ -778,12 +800,27 @@ const SendLater = {
         //   false
         // );
 
-        let success = await SLStatic.messageImport(
-          new File([new TextEncoder().encode(newMsgContent)], "draft.eml", {
-            type: "message/rfc822",
-          }),
-          msgHdr.folder,
-          { new: false, read: preferences.markDraftsRead },
+        let success = await SLStatic.tb115(
+          async () => {
+            let file = new File(
+              [new TextEncoder().encode(newMsgContent)],
+              "draft.eml",
+              {
+                type: "message/rfc822",
+              },
+            );
+            return await SLStatic.messageImport(file, msgHdr.folder, {
+              new: false,
+              read: preferences.markDraftsRead,
+            });
+          },
+          async () => {
+            return messenger.SL3U.saveMessage(
+              newMsgContent,
+              msgHdr.folder,
+              preferences.markDraftsRead,
+            );
+          },
         );
 
         if (success) {

@@ -557,6 +557,65 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
         },
 
+        // Saves raw message content in specified folder.
+        async saveMessage(content, { accountId, path }, markRead) {
+          function CopyRecurListener(folder) {
+            this._folder = folder;
+          }
+
+          CopyRecurListener.prototype = {
+            QueryInterface: function (iid) {
+              if (
+                iid.equals(Ci.nsIMsgCopyServiceListener) ||
+                iid.equals(Ci.nsISupports)
+              ) {
+                return this;
+              }
+              throw Components.results.NS_NOINTERFACE;
+            },
+            OnProgress: function (progress, progressMax) {},
+            OnStartCopy: function () {},
+            OnStopCopy: function (status) {
+              const copying = this.localFile;
+              if (copying.exists()) {
+                try {
+                  copying.remove(true);
+                } catch (ex) {
+                  SendLaterFunctions.debug(
+                    `SL3U.saveMessage: Failed to delete ${copying.path}.`,
+                  );
+                  SendLaterFunctions.waitAndDelete(copying);
+                }
+              }
+              if (Components.isSuccessCode(status)) {
+                SendLaterFunctions.debug(
+                  "SL3U.saveMessage: Saved updated message",
+                );
+              } else {
+                SendLaterFunctions.error(
+                  "SL3U.saveMessage:",
+                  `0x${status.toString(16)}`,
+                );
+              }
+            },
+            SetMessageKey: function (key) {
+              this._key = key;
+            },
+          };
+
+          const uri = SendLaterFunctions.folderPathToURI(accountId, path);
+          const folder = MailServices.folderLookup.getFolderForURL(uri);
+          const listener = new CopyRecurListener(folder);
+          SendLaterFunctions.copyStringMessageToFolder(
+            content,
+            folder,
+            listener,
+            markRead,
+          );
+
+          return true;
+        },
+
         async setHeader(tabId, name, value) {
           let tab = context.extension.tabManager.get(tabId);
           let window = tab.nativeTab;

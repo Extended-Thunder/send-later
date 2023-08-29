@@ -74,6 +74,26 @@
         ]
       },
       {
+        "name": "saveMessage",
+        "type": "function",
+        "async": true,
+        "description": "Save a message into a folder",
+        "parameters": [
+          {
+            "name": "content",
+            "type": "string"
+          },
+          {
+            "name": "folder",
+            "$ref": "folders.MailFolder"
+          },
+          {
+            "name": "markRead",
+            "type": "boolean"
+          }
+        ]
+      },
+      {
         "name": "setHeader",
         "type": "function",
         "async": true,
