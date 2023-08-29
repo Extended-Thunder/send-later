@@ -1970,15 +1970,12 @@ const SendLater = {
       );
       if (preferences.showHeader === true && cellText !== "") {
         await messenger.headerView
-          .addCustomHdrRow(tab.windowId, headerName, cellText)
+          .addCustomHdrRow(tab.id, headerName, cellText)
           .catch((ex) => {
             SLStatic.error("headerView.addCustomHdrRow", ex);
           });
       } else {
-        await messenger.headerView.removeCustomHdrRow(
-          tab.windowId,
-          headerName,
-        );
+        await messenger.headerView.removeCustomHdrRow(tab.id, headerName);
       }
 
       let msg = await messenger.messages.getFull(hdr.id);
@@ -1986,7 +1983,7 @@ const SendLater = {
         await messenger.messageDisplayAction.enable(tab.id);
       }
     } else {
-      await messenger.headerView.removeCustomHdrRow(tab.windowId, headerName);
+      await messenger.headerView.removeCustomHdrRow(tab.id, headerName);
     }
   },
 

@@ -34,19 +34,45 @@ class CustomHdrRow {
     );
   }
 
-  async getDocument(window) {
-    return await tb115(
+  async getDocument(tab) {
+    // Three possibilities:
+    // 1. Message pane in 3pane tab
+    // 2. Message in its own tab
+    // 3. Message in its own window
+    // What to do for each also differs TB102 vs. TB115.
+    return tb115(
       () => {
-        let document;
+        // TB115: Message pane in 3pane tab
         try {
-          document = window.gTabmail.currentAbout3Pane.document;
-        } catch (ex) {
-          document = window.document;
-        }
-        return document.getElementById("messageBrowser").contentDocument;
+          let doc =
+            tab.nativeTab.chromeBrowser.contentDocument.getElementById(
+              "messageBrowser",
+            ).contentDocument;
+          if (doc) {
+            return doc;
+          }
+        } catch (ex) {}
+        // TB115: Message in its own tab
+        try {
+          let doc = tab.nativeTab.chromeBrowser.contentDocument;
+          if (doc.getElementById("messageHeader")) {
+            return doc;
+          }
+        } catch (ex) {}
+        // TB115: Message in its own window
+        try {
+          let doc =
+            tab.nativeTab.document.getElementById(
+              "messageBrowser",
+            ).contentDocument;
+          if (doc) {
+            return doc;
+          }
+        } catch (ex) {}
       },
       () => {
-        return window.document;
+        // TB102 is always the same thing
+        return tab.window.document;
       },
     );
   }
@@ -156,15 +182,7 @@ class CustomHdrRow {
 }
 
 var headerView = class extends ExtensionCommon.ExtensionAPI {
-  async close() {
-    for (let hdrRow of this.hdrRows.values()) {
-      for (let window of Services.wm.getEnumerator("mail:3pane")) {
-        try {
-          await hdrRow.remove(window);
-        } catch (ex) {}
-      }
-    }
-  }
+  async close() {}
 
   getAPI(context) {
     context.callOnClose(this);
@@ -173,23 +191,23 @@ var headerView = class extends ExtensionCommon.ExtensionAPI {
 
     return {
       headerView: {
-        async addCustomHdrRow(windowId, name, value) {
-          let window = context.extension.windowManager.get(windowId).window;
+        async addCustomHdrRow(tabId, name, value) {
+          let tab = context.extension.tabManager.get(tabId);
           let hdrRow = hdrRows.get(name);
           if (!hdrRow) {
             hdrRow = new CustomHdrRow(context, name);
             hdrRows.set(name, hdrRow);
           }
-          await hdrRow.addToWindow(window, value);
+          await hdrRow.addToWindow(tab, value);
         },
 
-        async removeCustomHdrRow(windowId, name) {
-          let window = context.extension.windowManager.get(windowId).window;
+        async removeCustomHdrRow(tabId, name) {
+          let tab = context.extension.tabManager.get(tabId);
           let hdrRow = hdrRows.get(name);
           if (!hdrRow) {
             return;
           }
-          await hdrRow.remove(window);
+          await hdrRow.remove(tab);
         },
       },
     };
