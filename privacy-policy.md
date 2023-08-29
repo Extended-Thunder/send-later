@@ -18,7 +18,7 @@ We also collect by default a persistent, unique identifier so that we can associ
 
 When we say we don't collect any identifying information, we mean it; our data collection server (which we host and control) does not even log your IP address. Furthermore, when we say we don't collect the data, we mean that it isn't even transmitted to our data collection server, i.e., we are careful to ensure that the add-on only transmits the data that is appropriate to collect.
 
-For those who are so inclined, you can <span class="notranslate" translate="no">[search our source code][telemetry]</span> to see exactly what data we are currently collecting.
+For those who are so inclined, you can [search our source code][telemetry] to see exactly what data we are currently collecting.
 
 ## How to opt out in or out of data collection
 
@@ -34,11 +34,11 @@ If you have opted out of data collection then we have no data about you whatsoev
 
 If you have opted in to data collection but opted out of a unique identifier being associated with your data, then it is impossible for us to tell you what data we have about you or delete it, since there is nothing in the data associating it with you in any way.
 
-If you have opted in to data collection with a unique identifier and you would like to know what data we have about your usage of the add-on, please <span class="notranslate" translate="no">[contact us][emailus]</span> with your request. Include in your request the value of the telemetryUUID preference in the Advanced configuration editor in the add-on preferences. We will either send back an export of your data or remove it from our database as requested. Note that if you do not disable data collection as described above, the add-on will continue to collect new data about you even after we've deleted the old data upon request.
+If you have opted in to data collection with a unique identifier and you would like to know what data we have about your usage of the add-on, please [contact us][emailus] with your request. Include in your request the value of the telemetryUUID preference in the Advanced configuration editor in the add-on preferences. We will either send back an export of your data or remove it from our database as requested. Note that if you do not disable data collection as described above, the add-on will continue to collect new data about you even after we've deleted the old data upon request.
 
 ## History
 
-The history of this privacy policy can be viewed <span class="notranslate" translate="no">[on GitHub][history]</span>.
+The history of this privacy policy can be viewed [on GitHub][history]
 
 [telemetry]: https://github.com/search?q=repo%3AExtended-Thunder%2Fsend-later+%22telemetrySend%28%22&type=code
 [emailus]: mailto:send-later-support@extended-thunder.org
