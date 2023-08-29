@@ -131,6 +131,16 @@ changed from the GitHub releases to the page you're reading right now,
 and instead of opening it in a browser it is now opened in a
 Thunderbird tab.
 
+You can now zoom in and out (i.e., make everything bigger or smaller)
+in the scheduling pop-up by typing Ctrl-Plus or Ctrl-Minus or
+Command-Plus or Command-Minus.
+
+A bunch of tooltips, mostly in the preferences window but some in the
+scheduling pop-up, that were lost in the conversion of the add-on to
+Thunderbird 78 have been restored. That is, there are now some useful
+detailed explanatory messages that display when you hover the mouse
+over certain settings and buttons.
+
 Send Later now prevents messages with schedule dates more than six
 months in the past from being delivered automatically, even if you
 have the preference for enforcing that disabled or set to a value
@@ -166,8 +176,18 @@ can no longer be set in milliseconds. If you were using this
 preference then Send Later should convert it automatically on upgrade,
 but you might want to check your preferences to make sure.
 
-Many updates have been made to Send Later's translations. Thank you,
-as always, to our many dedicated translators who make Send Later
+An misleading Italian translation of the "Trigger unsent message
+delivery from Outbox" setting in the preferences window has been
+updated to make it clearer. This plus the tooltip will hopefully make
+it much less likely that someone will uncheck this preference when
+they shouldn't.
+
+The capitalization of the name of the add-on in German has been fixed;
+it should be "Später senden", not "Später Senden" (not the change in
+capitalization).
+
+Many other updates have been made to Send Later's translations. Thank
+you, as always, to our many dedicated translators who make Send Later
 accessible to users all over the world!
 
 ### Bug fixes
@@ -178,6 +198,13 @@ the scheduling pop-up had the month and day reversed. This is now
 fixed for users for whom it _can_ be fixed automatically. If you're
 still seeing this issue, see [the user guide][baddates] for how to
 address it.
+
+For users of Send Later in English on macOS, the access key for the
+"Send Now" button in the scheduling pop-up wasn't working, i.e., you
+couldn't type Ctrl-Option-N to activate the "Send Now" button. This is
+due to either a macOS bug, or a Thunderbird bug, it's not clear which,
+but in any case, we've implemented a workaround in Send Later, so the
+access key works now.
 
 Previously, if you had end-to-end encryption or signing enabled on a
 message and then scheduled it it with Send Later, it would be sent
