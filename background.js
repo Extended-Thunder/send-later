@@ -1827,14 +1827,9 @@ const SendLater = {
       }
       case "showReleaseNotes": {
         let locale = SLStatic.i18n.getUILanguage();
-        let url;
-        if (locale.toLowerCase().startsWith("en")) {
-          url = "https://extended-thunder.github.io/send-later/release-notes";
-        } else {
-          url =
-            `https://extended--thunder-github-io.translate.goog/` +
-            `send-later/?_x_tr_sl=en&_x_tr_tl=${locale}`;
-        }
+        let url = SLStatic.translationURL(
+          "https://extended-thunder.github.io/send-later/release-notes",
+        );
         messenger.tabs.create({ url });
         break;
       }

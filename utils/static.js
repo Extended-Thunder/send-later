@@ -1684,6 +1684,18 @@ var SLStatic = {
     return moved;
   },
 
+  translationURL(url) {
+    let locale = SLStatic.i18n.getUILanguage();
+    if (locale.toLowerCase().startsWith("en")) {
+      return url;
+    } else {
+      let [all, before, host, after] = /(.*\/\/)([^/]+)(.*)/.exec(url);
+      host =
+        host.replaceAll("-", "--").replaceAll(".", "-") + ".translate.goog";
+      return before + host + after + `?_x_tr_sl=en&_x_tr_tl=${locale}`;
+    }
+  },
+
   telemetrySend(values) {
     console.log("telemetrySend");
     if (!this.preferences.telemetryEnabled) {

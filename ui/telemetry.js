@@ -1,5 +1,6 @@
-let privacyUrl =
-  "https://addons.thunderbird.net/thunderbird/addon/send-later-3/privacy/";
+let privacyUrl = SLStatic.translationURL(
+  "https://extended-thunder.github.io/send-later/privacy-policy.html",
+);
 
 function init() {
   let name = browser.i18n.getMessage("extensionName");
