@@ -91,7 +91,7 @@ to be sent today at 10:00, and at 9:30 you skip its next occurrence,
 it is rescheduled to tomorrow at 10:00.
 
 This fails (and logs the failure in the error console, though there is
-curently no pop-up notification) in these circumstances:
+currently no pop-up notification) in these circumstances:
 
 * Thunderbird is currently offline (unless the "sendWhileOffline"
   preference is enabled).
