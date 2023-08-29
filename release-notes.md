@@ -113,15 +113,18 @@ behavior, you can turn it off by setting the "scheduledDateField'
 preference to "false" in the advanced configuration editor.
 
 Send Later no longer forces the toolbar button to be visible in
-compose windows by default. Although it is visible by default when
-Send Later is installed, you can now customize the toolbar and remove
-it if you wish. In the absence of the toolbar button, you can still
-activate Send Later by typing ctrl-shift-enter (ctrl-shift-Command on
-macOS), or using the "File > Send Later" menu command, or by clicking
-the Send button if you have the "Send does Send Later" preference
-enabled, etc. The only thing you can't do without the toolbar button
-is activate the shift-click and control-click shortcuts (if any)
-configured in Send Later's preferences.
+compose windows by default in Thunderbird 115. Although it is visible
+by default when Send Later is installed, you can now customize the
+toolbar and remove it if you wish. In the absence of the toolbar
+button, you can still activate Send Later by typing ctrl-shift-enter
+(ctrl-shift-Command on macOS), or using the "File > Send Later" menu
+command, or by clicking the Send button if you have the "Send does
+Send Later" preference enabled, etc. The only thing you can't do
+without the toolbar button is activate the shift-click and
+control-click shortcuts (if any) configured in Send Later's
+preferences. This improvement is not possible for Thunderbird 102, so
+Send Later is still forcing the button to be in the toolbar for
+Thunderbird 102 users.
 
 Send Later now displays the release notes automatically when it is
 installed or upgraded to a new major or minor release. This can be
