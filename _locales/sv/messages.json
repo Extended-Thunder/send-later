@@ -29,11 +29,11 @@
   },
   "checkTimePrefLabel1": {
     "message": "Kontrollera var",
-    "description": ""
+    "description": "In the preferences window, for the 'Check ever # minutes' preference, where # is a text field for the user to enter a number, this label comes _before_ the #. See also checkTimePrefLabel2."
   },
   "checkTimePrefLabel2": {
     "message": "minuter",
-    "description": ""
+    "description": "In the preferences window, for the 'Check ever # minutes' preference, where # is a text field for the user to enter a number, this label comes _after_ the #. In some languages it may have the same translation as other strings, but in other languages it's different e.g. because the 'every' part needs to be in this string instead of in checkTimePrefLabel1."
   },
   "checkTimePrefTooltip": {
     "message": "Intervall, i minuter, mellan sökningar efter utkast vars sändtid har kommit. Öka detta värde om dina utkast ibland inte skickas på utsatt tid eller antalet väntande meddelanden i ditt statusfält inte speglar alla schemalagda utkast.",

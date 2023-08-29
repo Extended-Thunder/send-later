@@ -25,11 +25,11 @@
   },
   "checkTimePrefLabel1": {
     "message": "Comprobar cada",
-    "description": ""
+    "description": "In the preferences window, for the 'Check ever # minutes' preference, where # is a text field for the user to enter a number, this label comes _before_ the #. See also checkTimePrefLabel2."
   },
   "checkTimePrefLabel2": {
     "message": "minuto(s)",
-    "description": ""
+    "description": "In the preferences window, for the 'Check ever # minutes' preference, where # is a text field for the user to enter a number, this label comes _after_ the #. In some languages it may have the same translation as other strings, but in other languages it's different e.g. because the 'every' part needs to be in this string instead of in checkTimePrefLabel1."
   },
   "checkTimePrefTooltip": {
     "message": "Intervalo, en minutos, entre comprobaciones para borradores a los que les ha llegado su hora de envío. Aumente este valor si a veces sus borradores no se envían a tiempo o si el recuento de mensajes pendientes en su barra de estado no refleja todos los envíos programados.",

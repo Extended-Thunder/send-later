@@ -29,11 +29,11 @@
   },
   "checkTimePrefLabel1": {
     "message": "Tarkista joka",
-    "description": ""
+    "description": "In the preferences window, for the 'Check ever # minutes' preference, where # is a text field for the user to enter a number, this label comes _before_ the #. See also checkTimePrefLabel2."
   },
   "checkTimePrefLabel2": {
     "message": "minuutti",
-    "description": ""
+    "description": "In the preferences window, for the 'Check ever # minutes' preference, where # is a text field for the user to enter a number, this label comes _after_ the #. In some languages it may have the same translation as other strings, but in other languages it's different e.g. because the 'every' part needs to be in this string instead of in checkTimePrefLabel1."
   },
   "checkTimePrefTooltip": {
     "message": "Aikaväli minuuteissa sen tarkistamiseksi, onko luonnoskansiossa viestejä, jotka olisi jo aika lähettää. Kasvata tätä arvoa, jos kaikki viestisi eivät aina lähde ajallaan tai jos lähetysjonossa olevien viestien laskuri ei aina täsmää.",

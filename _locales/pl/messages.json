@@ -29,11 +29,11 @@
   },
   "checkTimePrefLabel1": {
     "message": "Sprawdzaj co",
-    "description": ""
+    "description": "In the preferences window, for the 'Check ever # minutes' preference, where # is a text field for the user to enter a number, this label comes _before_ the #. See also checkTimePrefLabel2."
   },
   "checkTimePrefLabel2": {
     "message": "minut",
-    "description": ""
+    "description": "In the preferences window, for the 'Check ever # minutes' preference, where # is a text field for the user to enter a number, this label comes _after_ the #. In some languages it may have the same translation as other strings, but in other languages it's different e.g. because the 'every' part needs to be in this string instead of in checkTimePrefLabel1."
   },
   "checkTimePrefTooltip": {
     "message": "Odstęp czasu w minutach określający częstość z jaką program będzie sprawdzał, czy nie należy wysłać zaplanowanych do wysyłki wiadomości. Zwiększ tą wartość, jezeli zaplanowane do wysyłki wiadomości nie są wysyłane o czasie lub jeśli licznik wiadomości na pasku statusu wskazuje mniejszą niż w rzeczywistości liczbę zaplanowanych do wysłania wiadomości.",

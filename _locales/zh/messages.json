@@ -25,11 +25,11 @@
   },
   "checkTimePrefLabel1": {
     "message": "检查间隔：",
-    "description": ""
+    "description": "In the preferences window, for the 'Check ever # minutes' preference, where # is a text field for the user to enter a number, this label comes _before_ the #. See also checkTimePrefLabel2."
   },
   "checkTimePrefLabel2": {
     "message": "分钟",
-    "description": ""
+    "description": "In the preferences window, for the 'Check ever # minutes' preference, where # is a text field for the user to enter a number, this label comes _after_ the #. In some languages it may have the same translation as other strings, but in other languages it's different e.g. because the 'every' part needs to be in this string instead of in checkTimePrefLabel1."
   },
   "checkTimePrefTooltip": {
     "message": "检查是否已到草稿的发送时间的时间间隔，单位为分钟。如果草稿没能及时发送，或者状态栏的待发送消息数比实际少时，请增大这个值。",
