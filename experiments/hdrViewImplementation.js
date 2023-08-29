@@ -37,9 +37,13 @@ class CustomHdrRow {
   async getDocument(window) {
     return await tb115(
       () => {
-        return window.gTabmail.currentAbout3Pane.document.getElementById(
-          "messageBrowser",
-        ).contentDocument;
+        let document;
+        try {
+          document = window.gTabmail.currentAbout3Pane.document;
+        } catch (ex) {
+          document = window.document;
+        }
+        return document.getElementById("messageBrowser").contentDocument;
       },
       () => {
         return window.document;
