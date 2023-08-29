@@ -655,12 +655,12 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "Clicking “Put in Outbox” puts the message in your Outbox immediately. It DOES NOT schedule the message to be sent at a specific time. For that, click the “Send at” button in the green box after entering a valid send time. Are you sure you want to put the message in your Outbox now?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "message": "Clicking “Put in Outbox” puts the message in your Outbox immediately. It DOES NOT schedule the message to be sent at a specific time. For that, click the “Send at” button after entering a valid send time. Are you sure you want to put the message in your Outbox now?",
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
-    "message": "Clicking “Send Now” sends the message immediately. It DOES NOT schedule the message to be sent at a specific time. For that, click the “Send at” button in the green box after entering a valid send time. Are you sure you want to send the message now?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "message": "Clicking “Send Now” sends the message immediately. It DOES NOT schedule the message to be sent at a specific time. For that, click the “Send at” button after entering a valid send time. Are you sure you want to send the message now?",
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "Show this warning next time",
