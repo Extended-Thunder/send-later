@@ -25,6 +25,44 @@ const SLPopup = {
     }
   },
 
+  adjustFontSize(style, delta) {
+    style = (style || "").trim();
+    if (!style) {
+      return `font-size: ${100 + delta}%;`;
+    }
+    let re = /\s*font-size\s*:\s*(\d+)%\s*;?/;
+    let match = re.exec(style);
+    if (match) {
+      let newZoom = parseInt(match[1]) + delta;
+      style = style.replace(re, `font-size: ${newZoom}%;`);
+      return style;
+    }
+    if (!style.endsWith(";")) {
+      style += "; ";
+    }
+    style += `font-size: ${100 + delta}%;`;
+    return style;
+  },
+
+  adjustZoom(delta) {
+    for (let tagName of ["body", "button", "input"]) {
+      let tags = document.getElementsByTagName(tagName);
+      for (let tag of tags) {
+        old_style = tag.getAttribute("style");
+        new_style = SLPopup.adjustFontSize(old_style, delta);
+        tag.setAttribute("style", new_style);
+      }
+    }
+  },
+
+  zoomIn() {
+    SLPopup.adjustZoom(10);
+  },
+
+  zoomOut() {
+    SLPopup.adjustZoom(-10);
+  },
+
   doSendWithSchedule(schedule) {
     if (schedule && !schedule.err) {
       const message = {
@@ -829,7 +867,13 @@ const SLPopup = {
     });
 
     document.addEventListener("keydown", function (event) {
-      if (event.key === "Enter") {
+      if (
+        ["-", "_", "=", "+"].includes(event.key) &&
+        (event.ctrlKey || event.metaKey)
+      ) {
+        event.preventDefault();
+        ["-", "_"].includes(event.key) ? SLPopup.zoomOut() : SLPopup.zoomIn();
+      } else if (event.key === "Enter") {
         event.preventDefault();
         const inputs = SLPopup.objectifyFormValues();
         const schedule = SLPopup.parseInputs(inputs);
