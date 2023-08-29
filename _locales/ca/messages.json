@@ -31,6 +31,10 @@
     "message": "Comprovar cada",
     "description": ""
   },
+  "checkTimePrefLabel2": {
+    "message": "minuts",
+    "description": ""
+  },
   "checkTimePrefTooltip": {
     "message": "Interval, en minuts, entre les comprovacions dels esborranys als que els ha arribat el moment de ser lliurats. Augmenteu aquest valor si els vostres esborranys algunes vegades no son enviats a temps o si el comptador de missatges pendents en la barra d'estat no reflecteix algun cop tots els esborranys programats.",
     "description": ""

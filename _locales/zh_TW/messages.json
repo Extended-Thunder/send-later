@@ -31,6 +31,10 @@
     "message": "檢查間隔：",
     "description": ""
   },
+  "checkTimePrefLabel2": {
+    "message": "分鐘",
+    "description": ""
+  },
   "checkTimePrefTooltip": {
     "message": "檢查是否已到草稿的傳送時間的間隔，單位為分鐘。如果草稿沒能及時傳送，或者狀態欄的待傳送信件數比實際少時，請增加這個值。",
     "description": ""

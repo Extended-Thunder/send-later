@@ -27,6 +27,10 @@
     "message": "Comprobar cada",
     "description": ""
   },
+  "checkTimePrefLabel2": {
+    "message": "minutos",
+    "description": ""
+  },
   "checkTimePrefTooltip": {
     "message": "Intervalo, en minutos, entre comprobacións para borradores cuxa hora de envío chegou. Aumenta este valor se ás veces os borradores non se envían a tempo ou se o reconto de mensaxes pendentes na barra de estado non reflicte todos os envíos programados.",
     "description": ""

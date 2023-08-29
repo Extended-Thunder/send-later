@@ -31,6 +31,10 @@
     "message": "Vérifier toutes les",
     "description": ""
   },
+  "checkTimePrefLabel2": {
+    "message": "minutes",
+    "description": ""
+  },
   "checkTimePrefTooltip": {
     "message": "Intervalle (en minutes) entre les vérifications de messages à expédier. Augmenter cette valeur si les messages ne sont pas expédiés à temps ou si le nombre de messages indiqués en attente dans la barre d'état ne correspond pas aux brouillons programmés.",
     "description": ""

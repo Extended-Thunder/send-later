@@ -31,6 +31,10 @@
     "message": "Kontrollera var",
     "description": ""
   },
+  "checkTimePrefLabel2": {
+    "message": "minuter",
+    "description": ""
+  },
   "checkTimePrefTooltip": {
     "message": "Intervall, i minuter, mellan sökningar efter utkast vars sändtid har kommit. Öka detta värde om dina utkast ibland inte skickas på utsatt tid eller antalet väntande meddelanden i ditt statusfält inte speglar alla schemalagda utkast.",
     "description": ""

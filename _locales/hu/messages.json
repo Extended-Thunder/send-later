@@ -31,6 +31,10 @@
     "message": "Ellenőrzés gyakorisága:",
     "description": ""
   },
+  "checkTimePrefLabel2": {
+    "message": "perc",
+    "description": ""
+  },
   "checkTimePrefTooltip": {
     "message": "Időközönként, percben, a piszkozatok ellenőrzése között, amelyek elküldése ideje megérkezett. Növelje ezt az értéket, ha a piszkozatait időnként nem vannak elküldve, vagy az állapotsorban lévő függőben lévő üzenetek száma néha nem tükrözi az összes ütemezett piszkozatot.",
     "description": ""

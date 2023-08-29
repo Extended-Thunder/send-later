@@ -31,6 +31,10 @@
     "message": "Zkontrolovat každých",
     "description": ""
   },
+  "checkTimePrefLabel2": {
+    "message": "minut",
+    "description": ""
+  },
   "checkTimePrefTooltip": {
     "message": "Po kolika minutách se kontroluje, zda je třeba odeslat koncepty. Zvyš tuto hodnotu, pokud tvoje koncepty neodchází včas nebo množství čekajících zpráv ve stavovém řádku někdy neodpovídá skutečnosti.",
     "description": ""

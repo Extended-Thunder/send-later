@@ -31,6 +31,10 @@
     "message": "Verificar a cada",
     "description": ""
   },
+  "checkTimePrefLabel2": {
+    "message": "minutos",
+    "description": ""
+  },
   "checkTimePrefTooltip": {
     "message": "Intervalo, em minutos, entre a checagem de rascunhos que atingiram o horário de envio. Caso rascunhos não tenham sido enviados no horário definido ou se a informação do contador de mensagens pendentes na barra de status divergir do agendamento de rascunhos, amplie este intervalo.",
     "description": ""

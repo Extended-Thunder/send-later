@@ -27,6 +27,10 @@
     "message": "Verificar a cada",
     "description": ""
   },
+  "checkTimePrefLabel2": {
+    "message": "minutos",
+    "description": ""
+  },
   "checkTimePrefTooltip": {
     "message": "Intervalo, em minutos, entre verificações de rascunhos cuja data de entrega já chegou. Aumente este valor se os seus rascunhos por vezes não são enviados a tempo ou se a contagem de mensagem pendente na sua barra de estado nem sempre reflecte todos os rascunhos agendados.",
     "description": ""

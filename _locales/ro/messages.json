@@ -31,6 +31,10 @@
     "message": "Verifică la fiecare",
     "description": ""
   },
+  "checkTimePrefLabel2": {
+    "message": "minute",
+    "description": ""
+  },
   "checkTimePrefTooltip": {
     "message": "Intervalul, în minute, între verificarea mesajelor nefinalizate al căror termen de trimitere a sosit. Crește această valoare dacă mesajele nu sunt trimise la timp câteodată sau dacă numărul de mesaje în așteptare din bara de stare nu corespunde trimiterilor programate.",
     "description": ""

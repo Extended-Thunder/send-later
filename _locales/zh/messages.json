@@ -27,6 +27,10 @@
     "message": "检查间隔：",
     "description": ""
   },
+  "checkTimePrefLabel2": {
+    "message": "分钟",
+    "description": ""
+  },
   "checkTimePrefTooltip": {
     "message": "检查是否已到草稿的发送时间的时间间隔，单位为分钟。如果草稿没能及时发送，或者状态栏的待发送消息数比实际少时，请增大这个值。",
     "description": ""

@@ -31,6 +31,10 @@
     "message": "Sprawdzaj co",
     "description": ""
   },
+  "checkTimePrefLabel2": {
+    "message": "minut",
+    "description": ""
+  },
   "checkTimePrefTooltip": {
     "message": "Odstęp czasu w minutach określający częstość z jaką program będzie sprawdzał, czy nie należy wysłać zaplanowanych do wysyłki wiadomości. Zwiększ tą wartość, jezeli zaplanowane do wysyłki wiadomości nie są wysyłane o czasie lub jeśli licznik wiadomości na pasku statusu wskazuje mniejszą niż w rzeczywistości liczbę zaplanowanych do wysłania wiadomości.",
     "description": ""

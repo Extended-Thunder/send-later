@@ -31,6 +31,10 @@
     "message": "Tjek hvert",
     "description": ""
   },
+  "checkTimePrefLabel2": {
+    "message": "minut",
+    "description": ""
+  },
   "checkTimePrefTooltip": {
     "message": "Interval, i minutter, mellem kontrol af kladder, hvis leveringstid er nået. Forøg denne værdi, hvis dine kladder sommetider ikke sendes til tiden, eller hvis ventende beskedantal i din statuslinje indimellem ikke afspejler alle planlagte kladder.",
     "description": ""

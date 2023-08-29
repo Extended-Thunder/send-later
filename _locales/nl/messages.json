@@ -31,6 +31,10 @@
     "message": "Elke",
     "description": ""
   },
+  "checkTimePrefLabel2": {
+    "message": "minuten controleren",
+    "description": ""
+  },
   "checkTimePrefTooltip": {
     "message": "Interval, in minuten, tussen controles op concepten waarvoor de aflevertijd is bereikt. Vergroot deze waarde als uw concepten niet altijd op tijd worden verzonden of als het aantal af te handelen berichten in uw statusbalk niet altijd overeenkomt met het werkelijke aantal.",
     "description": ""

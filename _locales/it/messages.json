@@ -31,6 +31,10 @@
     "message": "Controlla ogni",
     "description": ""
   },
+  "checkTimePrefLabel2": {
+    "message": "minuti",
+    "description": ""
+  },
   "checkTimePrefTooltip": {
     "message": "Frequenza in minuti con cui viene verificata la presenza nella cartella “Bozze” di e-mail di cui è arrivato l'orario di invio. Aumentare questo valore se qualche volta le mail programmate per l'invio non partono o se qualche volta il numero dei messaggi in coda indicato nella barra di stato non corrisponde a quello di tutti i messaggi pianificati.",
     "description": ""

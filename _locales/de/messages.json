@@ -31,6 +31,10 @@
     "message": "Überprüfen alle",
     "description": ""
   },
+  "checkTimePrefLabel2": {
+    "message": "Minuten",
+    "description": ""
+  },
   "checkTimePrefTooltip": {
     "message": "Intervall in Minuten zwischen den Prüfungen, welche Entwürfe für die Zustellung bereit sind. Diesen Wert erhöhen, wenn die Entwürfe manchmal nicht rechtzeitig gesendet werden oder der Mitteilungszähler in der Statuszeile nicht alle zeitlich geplanten Entwürfe wiedergibt.",
     "description": ""
