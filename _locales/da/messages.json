@@ -24,7 +24,7 @@
     "description": ""
   },
   "blockLateMessagesPrefTooltip": {
-    "message": "Levér ikke planlagte meddelelser, der er blevet forsinket udover deres planlagte tid, f.eks. fordi Thunderbird ikke kørte på det tidspunkt.",
+    "message": "Levér ikke de planlagte meddelelser, der er blevet forsinket udover deres planlagte tid, f.eks. fordi Thunderbird ikke kørte på det tidspunkt.",
     "description": ""
   },
   "checkTimePrefLabel1": {
@@ -176,7 +176,7 @@
     "description": ""
   },
   "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Hold øje med svar på tidligere sendte kopier af tilbagevendende beskeder. Annullér en tilbagevendende besked og fjern det fra Kladder-mappen, når et svar modtages.",
+    "message": "Hold øje med svar på tidligere sendte kopier af tilbagevendende beskeder. Annullér en tilbagevendende besked og fjern den fra Kladder mappen, når et svar modtages.",
     "description": ""
   },
   "sendDelayPrefTooltip": {
@@ -236,7 +236,7 @@
     "description": ""
   },
   "showColumnPrefTooltip": {
-    "message": "Om “Send senere” kolonnen skal vises i kladder mappe vinduet",
+    "message": "Om “Send senere” kolonnen skal vises i Kladder mappe vinduet",
     "description": ""
   },
   "showHeaderPrefLabel": {
@@ -460,7 +460,7 @@
     "description": ""
   },
   "sendlater.prompt.sendat.tooltip": {
-    "message": "Gem besked i Kladdemappe til automatisk levering på det tidspunkt, der er angivet ovenfor.",
+    "message": "Gem besked i Kladde mappen til automatisk levering på det tidspunkt, der er angivet ovenfor.",
     "description": ""
   },
   "entervalid": {

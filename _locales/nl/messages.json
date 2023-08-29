@@ -168,7 +168,7 @@
     "description": ""
   },
   "sendButtonPrefTooltip": {
-    "message": "Met deze optie ingeschakeld, werkt de opdracht ‘Verzenden’ (via zowel de knop als het intoetsen van Ctrl-Enter) hetzelfde als ‘Later verzenden’.",
+    "message": "De opdracht ‘Verzenden’ (via de knop of het intoetsen van Ctrl-Enter) hetzelfde laten werken als ‘Later verzenden’",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -180,7 +180,7 @@
     "description": ""
   },
   "sendDelayPrefTooltip": {
-    "message": "Met deze optie ingeschakeld, worden alle met de opdracht ‘Verzenden’ verzonden berichten (via zowel de knop als het typen van Ctrl-Enter) met het opgegeven aantal minuten vertraagd door ze met Send Later in te plannen.",
+    "message": "Alle met de opdracht ‘Verzenden’ verzonden berichten (via de knop of het typen van Ctrl-Enter) met het opgegeven aantal minuten vertragen door ze met Send Later in te plannen",
     "description": ""
   },
   "sendSundayLabel": {
@@ -244,7 +244,7 @@
     "description": ""
   },
   "showHeaderPrefTooltip": {
-    "message": "Of de header ‘X-Send-Later-At’ moet worden getoond als een bericht wordt bekeken, m.a.w. de tijd waarop een concept gepland staat om te worden verzonden.",
+    "message": "De header ‘X-Send-Later-At’ wel of niet tonen bij het bekijken van een bericht, m.a.w. de tijd waarop een concept gepland staat om te worden verzonden",
     "description": ""
   },
   "showStatusPrefLabel": {
@@ -936,5 +936,25 @@
   "RescheduleErrorText": {
     "message": "WAARSCHUWING: er is een onverwachte fout opgetreden bij het inplannen van de volgende herhaling van een gepland bericht met het onderwerp ‘$1’. Zie het Thunderbird-foutenlogboek voor details. Het vorige geplande concept is daarom niet verwijderd. U dient dit te verwijderen of te bewerken en opnieuw in te plannen als u dat wilt.",
     "description": "Text of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "TelemetryAskTitle": {
+    "message": "Verzoek voor gegevensverzameling door $1",
+    "description": "Title of the pop-up that asks the user whether we can collect anonymous usage data. The placeholder is replaced with the extension name."
+  },
+  "TelemetryAskText": {
+    "message": "Kunnen we anonieme gegevens verzamelen over uw gebruik van $1? De gegevens vertellen ons hoe u de add-on gebruikt en over uw omgeving. Ze bevatten geen identificerende informatie, e-mailinhoud of accountgegevens. We gebruiken de gegevens om de add-on te verbeteren, het gebruik ervan te meten en te bepalen waarop we onze inspanningen moeten richten. We delen de gegevens met niemand. Uw antwoord heeft geen invloed op de functionaliteit van de add-on. Volledige details zijn beschikbaar in ons $2.",
+    "description": "Text of the pop-up that asks the user whether we can collect anonymous usage data. The second placeholder is replaced with the contents of the string PrivacyPolicy (so we can make it a link."
+  },
+  "PrivacyPolicy": {
+    "message": "Privacybeleid",
+    "description": "Inserted into TelemetryAskText. Also used to link to the privacy policy from the Send Later pop-up in the main Thunderbird window."
+  },
+  "TelemetryAskYes": {
+    "message": "Ja, gebruiksgegevens verzamelen",
+    "description": "Label for the yes button on the telemetry request dialog."
+  },
+  "TelemetryAskNo": {
+    "message": "Nee, geen gebruiksgegevens verzamelen",
+    "description": "Label for the no button on the telemetry request dialog."
   }
 }

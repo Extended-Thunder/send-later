@@ -32,7 +32,7 @@
     "description": ""
   },
   "checkTimePrefTooltip": {
-    "message": "Intervalle (en minutes) des vérifications de messages à expédier. Augmenter cette valeur si les messages ne sont pas expédiés à temps ou si le nombre de message en attente est erroné.",
+    "message": "Intervalle (en minutes) entre les vérifications de messages à expédier. Augmenter cette valeur si les messages ne sont pas expédiés à temps ou si le nombre de messages indiqués en attente dans la barre d'état ne correspond pas aux brouillons programmés.",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -48,7 +48,7 @@
     "description": ""
   },
   "enforceRestrictionsPrefTooltip": {
-    "message": "En cas de dépassement du moment programmé pour la distribution, notamment si Thunderbird n'était pas ouvert, alors repousser le moment de la distribution, à condition que le moment initialement prévu soit dépassé.",
+    "message": "Si un message programmé n'est pas dans ses créneaux de restriction d'heure et de jours, notamment si Thunderbird n'était pas ouvert à l'heure programmée, repousser le moment de la distribution jusqu'au créneau suivant qui satisfait aux restrictions de jours et d'heure.",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -160,7 +160,7 @@
     "description": ""
   },
   "sendButtonPrefTooltip": {
-    "message": "Remplace l'action par défaut d'« Envoyer » (bouton ou raccourci « Ctrl+Entrée ») par celle d'« Envoyer Plus Tard ».",
+    "message": "Remplace l'action par défaut d'« Envoyer » (bouton ou raccourci « Ctrl+Entrée ») par celle d'« Envoyer Plus Tard »",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -172,7 +172,7 @@
     "description": ""
   },
   "sendDelayPrefTooltip": {
-    "message": "Quand cette option est activée, tous les messages envoyés avec la commande “Envoyer” (avec le bouton ou avec Ctrl+Entrée) sont retardés du nombre de minutes spécifié dans Envoyer Plus Tard.",
+    "message": "Quand cette option est activée, tous les messages envoyés avec la commande « Envoyer » (avec le bouton ou avec Ctrl+Entrée) sont retardés du nombre de minutes spécifié dans « Envoyer Plus Tard »",
     "description": ""
   },
   "sendSundayLabel": {
@@ -208,7 +208,7 @@
     "description": ""
   },
   "sendNowTooltip": {
-    "message": "Envoyer le message immédiatement sans utiliser « Envoyer Plus Tard ».",
+    "message": "Envoyer le message immédiatement sans utiliser « Envoyer Plus Tard »",
     "description": ""
   },
   "sendOnlyOnLabel": {
@@ -220,7 +220,7 @@
     "description": ""
   },
   "sendUnsentMessagesPrefTooltip": {
-    "message": "Effectue les envois planifiés sans les placer dans « Message en attente ». Désactiver l'option, par exemple, lors de l'utilisation d'une extension automatisant l'envoi des messages en attente (tel que BlunderDelay). Remarque : si cette option est activée ; quand « Envoyer Plus Tard » déclenche un envoi, TOUS les messages en attente sont expédiés.",
+    "message": "Si vous désactivez cette option, Send Later ne délivrera pas entièrement les messages, mais les mettra dans votre boîte d'envoi au moment programmé pour l'envoi. Vous pouvez désactiver cette option notamment si vous utilisez une autre extension, comme « BlunderDelay », pour envoyer périodiquement des messages depuis votre boîte d'envoi. Au contraire, lorsque cette option est activée, alors chaque fois que Send Later délivre un message, tous les messages de votre boîte d'envoi seront envoyés.",
     "description": ""
   },
   "showColumnPrefLabel": {
@@ -228,7 +228,7 @@
     "description": ""
   },
   "showColumnPrefTooltip": {
-    "message": "Ajoute la colonne « Envoyer Plus Tard » pour les messages dans le dossier « Brouillons ».",
+    "message": "Ajoute la colonne « Envoyer Plus Tard » pour les messages dans le dossier « Brouillons »",
     "description": ""
   },
   "showHeaderPrefLabel": {
@@ -236,7 +236,7 @@
     "description": ""
   },
   "showHeaderPrefTooltip": {
-    "message": "Autorise l'affichage de l'en-tête « x-send-later-at », c.à.d., le moment prévu d'envoi du message.",
+    "message": "Autorise l'affichage de l'en-tête « X-Send-Later-At », comportant le moment prévu d'envoi du message, dans l'en-tête, lors de l'affichage d'un message",
     "description": ""
   },
   "showStatusPrefLabel": {
@@ -260,7 +260,7 @@
     "description": ""
   },
   "sendlater.prompt.sendlater.tooltip": {
-    "message": "Plutôt que d'être programmé à une date précise, le message est placé dans le dossier « Messages en attente » pour faire partie de la prochaine expédition des messages non envoyés.",
+    "message": "Plutôt que d'être programmé à un moment précis, le message est placé dans le dossier d'envoi pour faire partie de la prochaine expédition des messages non envoyés.",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -456,7 +456,7 @@
     "description": ""
   },
   "sendlater.prompt.sendat.tooltip": {
-    "message": "Enregistre le message dans « Brouillons » pour envoi au moment indiqué.",
+    "message": "Enregistre le message dans « Brouillons » pour envoi au moment indiqué",
     "description": ""
   },
   "entervalid": {

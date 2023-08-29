@@ -936,5 +936,25 @@
   "RescheduleErrorText": {
     "message": "ACHTUNG: Beim Versuch, das nächste Auftreten einer geplanten Nachricht mit dem Betreff „$1“ zu planen, ist ein unerwarteter Fehler aufgetreten. Details finden Sie im Thunderbird-Fehlerprotokoll. Der vorherige geplante Entwurf wurde daher nicht gelöscht. Sie sollten ihn entweder löschen oder bei Bedarf bearbeiten und neu planen.",
     "description": "Text of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "TelemetryAskTitle": {
+    "message": "$1 Datenerfassungsanfrage",
+    "description": "Title of the pop-up that asks the user whether we can collect anonymous usage data. The placeholder is replaced with the extension name."
+  },
+  "TelemetryAskText": {
+    "message": "Dürfen wir anonyme Daten über Ihre Verwendung von $1 erfassen? Die Daten sagen uns, wie und in welcher Umgebung Sie das Add-on verwenden. Sie enthalten keine identifizierenden Informationen, E-Mail-Inhalte oder Kontoinformationen. Wir verwenden die Daten, um das Add-on zu verbessern, seine Verwendung zu messen und zu ermitteln, wo wir unsere Anstrengungen konzentrieren sollten. Wir teilen die Daten mit niemandem. Ihre Antwort wird die Funktionalität des Add-ons nicht beeinflussen. Vollständige Details sind in unserer $2 verfügbar.",
+    "description": "Text of the pop-up that asks the user whether we can collect anonymous usage data. The second placeholder is replaced with the contents of the string PrivacyPolicy (so we can make it a link."
+  },
+  "PrivacyPolicy": {
+    "message": "Datenschutzerklärung",
+    "description": "Inserted into TelemetryAskText. Also used to link to the privacy policy from the Send Later pop-up in the main Thunderbird window."
+  },
+  "TelemetryAskYes": {
+    "message": "Ja, Sie dürfen Nutzungsdaten erheben",
+    "description": "Label for the yes button on the telemetry request dialog."
+  },
+  "TelemetryAskNo": {
+    "message": "Nein, keine Nutzungsdaten erheben",
+    "description": "Label for the no button on the telemetry request dialog."
   }
 }
