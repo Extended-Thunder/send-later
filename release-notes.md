@@ -48,9 +48,9 @@ identifiable or private information in the collected data. If you just
 close the prompt window rather than responding, the add-on will keep
 asking each time you launch Thunderbird until you answer.
 
-See our [privacy policy][privacy] for additional details, including
-details about the data we collect and how to change your mind and opt
-in or out when you've already responded to the pop-up.
+See our [privacy policy](privacy-policy.html) for additional details,
+including details about the data we collect and how to change your
+mind and opt in or out when you've already responded to the pop-up.
 
 #### Bulk scheduling messages from the message list
 
@@ -342,4 +342,3 @@ later.
 [caveats]: https://extended-thunder.github.io/send-later/#caveats
 [issues]: https://github.com/Extended-Thunder/send-later/issues
 [funclib]: https://github.com/Extended-Thunder/send-later/tree/main/contrib/scheduling-functions
-[privacy]: https://addons.thunderbird.net/thunderbird/addon/send-later-3/privacy/
