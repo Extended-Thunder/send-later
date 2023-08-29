@@ -115,14 +115,18 @@ Here is what you can do from this dialog:
     your Outbox. This is the behavior of the standard Thunderbird "Send Later"
     command before you installed the add-on. The message will then be sent if
     you execute `File > Send Unsent Messages`, or if you go into and out of
-    offline mode, or if you exit and restart Thunderbird. In the latter two cases,
-    Thunderbird may or may not prompt for confirmation before sending
-    unsent messages, depending on how you have configured it.
+    offline mode, or if you exit and restart Thunderbird. In the
+    latter two cases, Thunderbird may or may not prompt for
+    confirmation before sending unsent messages, depending on how you
+    have configured it. You can also activate this button with
+    Alt+Shift+O (Ctrl+Option+O on macOS) or the equivalent in your
+    language (the access key should be underlined on the button to
+    show you which key it is).
 -   **Send the message immediately.** If you click "Send Now" the
     message will be delivered immediately, as if you had executed the
     "Send" command instead of "Send Later". Note that you can activate
-    this button by hitting Alt+Shift+N or the equivalent on your platform or
-    in your language.
+    this button by hitting Alt+Shift+N (Ctrl+Option+N on macOS) or the
+    equivalent in your language.
 
 ### Time-of-day and day-of-week restrictions
 
