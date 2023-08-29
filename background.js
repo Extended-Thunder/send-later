@@ -1056,6 +1056,12 @@ const SendLater = {
       SLStatic.error("SL3U.hijackComposeWindowKeyBindings", ex);
     });
 
+    await SLStatic.tb115(false, () => {
+      messenger.SL3U.forceToolbarVisible().catch((ex) => {
+        SLStatic.error("SL3U.forceToolbarVisible", ex);
+      });
+    });
+
     // This listener should be added *after* all of the storage-related
     // initialization is complete. It ensures that subsequent changes to storage
     // take effect immediately.
@@ -1289,6 +1295,14 @@ const SendLater = {
     window = await messenger.windows.get(window.id, { populate: true });
     SLStatic.info("Opened new window", window);
 
+    await SLStatic.tb115(false, () => {
+      // Ensure that the composeAction button is visible,
+      // otherwise the popup action will silently fail.
+      messenger.SL3U.forceToolbarVisible(window.id).catch((ex) => {
+        SLStatic.error("SL3U.forceToolbarVisible", ex);
+      });
+    });
+
     // Bind listeners to overlay components like File>Send,
     // Send Later, and keycodes like Ctrl+enter, etc.
     messenger.SL3U.hijackComposeWindowKeyBindings(window.id).catch((ex) => {
@@ -1375,19 +1389,23 @@ const SendLater = {
     messenger.composeAction.setPopup({ popup: "ui/popup.html" });
     try {
       if (!(await messenger.composeAction.openPopup())) {
-        SLStatic.info(
-          "composeAction pop-up failed to open, trying standalone",
-        );
-        let tab = (await browser.tabs.query({ currentWindow: true }))[0];
-        if (
-          !(await messenger.windows.create({
-            allowScriptsToClose: true,
-            type: "popup",
-            url: `ui/popup.html?tabId=${tab.id}`,
-          }))
-        ) {
-          SLStatic.error("standalone scheduling pop-up failed to open");
-        }
+        // openPopup doesn't return a status in TB102, so we just have to assume
+        // that it opened successfully. *sigh*
+        await SLStatic.tb115(async () => {
+          SLStatic.info(
+            "composeAction pop-up failed to open, trying standalone",
+          );
+          let tab = (await browser.tabs.query({ currentWindow: true }))[0];
+          if (
+            !(await messenger.windows.create({
+              allowScriptsToClose: true,
+              type: "popup",
+              url: `ui/popup.html?tabId=${tab.id}`,
+            }))
+          ) {
+            SLStatic.error("standalone scheduling pop-up failed to open");
+          }
+        });
       }
     } finally {
       messenger.composeAction.setPopup({ popup: null });

@@ -660,6 +660,83 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           SendLaterVars.logConsoleLevel = level.toLowerCase();
         },
 
+        async forceToolbarVisible(windowId) {
+          let windows;
+          if (windowId) {
+            let wm = context.extension.windowManager.get(windowId, context);
+            windows = [wm.window];
+          } else {
+            windows = Services.wm.getEnumerator("msgcompose");
+          }
+
+          for (let window of windows) {
+            let windowReadyPromise = new Promise((resolve) => {
+              if (window.document.readyState == "complete") resolve();
+              else window.addEventListener("load", resolve, { once: true });
+            });
+            await windowReadyPromise;
+
+            if (!window.gMsgCompose)
+              throw new Error(
+                "Attempted forceToolbarVisible on non-compose window",
+              );
+
+            const toolbarId = "composeToolbar2";
+            const toolbar = window.document.getElementById(toolbarId);
+
+            const widgetId = ExtensionCommon.makeWidgetId(extension.id);
+            const toolbarButtonId = `${widgetId}-composeAction-toolbarbutton`;
+            const windowURL =
+              "chrome://messenger/content/messengercompose/" +
+              "messengercompose.xhtml";
+            let currentSet = Services.xulStore.getValue(
+              windowURL,
+              toolbarId,
+              "currentset",
+            );
+            if (!currentSet) {
+              SendLaterFunctions.error(
+                "SL3U.bindKeyCodes.messengercompose.onLoadWindow",
+                "Unable to find compose window toolbar area",
+              );
+            } else if (currentSet.includes(toolbarButtonId)) {
+              SendLaterFunctions.debug(
+                "Toolbar includes Send Later compose action button.",
+              );
+            } else {
+              SendLaterFunctions.debug("Adding Send Later toolbar button");
+              currentSet = currentSet.split(",");
+              currentSet.push(toolbarButtonId);
+              toolbar.currentSet = currentSet.join(",");
+              toolbar.setAttribute("currentset", toolbar.currentSet);
+              SendLaterFunctions.debug(
+                "Current toolbar action buttons:",
+                currentSet,
+              );
+              Services.xulStore.setValue(
+                windowURL,
+                toolbarId,
+                "currentset",
+                currentSet.join(","),
+              );
+              // Services.xulStore.persist(toolbar, "currentset");
+            }
+
+            Services.xulStore.setValue(
+              windowURL,
+              toolbarId,
+              "collapsed",
+              "false",
+            );
+            toolbar.collapsed = false;
+            toolbar.hidden = false;
+
+            SendLaterFunctions.debug(
+              "Compose window has send later button now.",
+            );
+          }
+        },
+
         // Find whether the current composition window is editing an existing
         // draft
         async findAssociatedDraft(windowId) {
