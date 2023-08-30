@@ -719,6 +719,10 @@ const SendLater = {
         );
         return;
       }
+      SLStatic.telemetrySend({
+        event: "delivery",
+        successful: success,
+      });
     }
 
     let nextRecur;
@@ -823,6 +827,7 @@ const SendLater = {
           },
         );
 
+        SLStatic.telemetrySend({ event: "scheduleNext", successful: success });
         if (success) {
           SLStatic.info(
             `Scheduled next occurrence of message ` +
