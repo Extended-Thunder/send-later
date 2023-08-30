@@ -546,6 +546,7 @@ const SendLater = {
             lateness = Math.floor(lateness / 60 / 24);
             units = lateness == 1 ? "day" : "dai"; // ugh
           } else {
+            lateness = Math.floor(lateness);
             units = "minute";
           }
           units = SLStatic.i18n.getMessage(
