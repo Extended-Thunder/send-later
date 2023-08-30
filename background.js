@@ -1312,11 +1312,6 @@ const SendLater = {
     }
 
     let originalMsg = await messenger.SL3U.findAssociatedDraft(window.id);
-    SLStatic.telemetrySend({
-      event: "findDraft",
-      originalMsgId: originalMsg.id,
-      relatedMessageId: cd.relatedMessageId,
-    });
     if (originalMsg) {
       let originalMsgPart = await messenger.messages.getFull(originalMsg.id);
       SLTools.scheduledMsgCache.delete(originalMsg.id);
