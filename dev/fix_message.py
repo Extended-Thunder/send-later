@@ -60,8 +60,12 @@ def get_gh_info(want_version):
     return json.loads(result.stdout)
 
 
+def unwrap(text):
+    return re.sub(r'\n\s*\b', ' ', dedent(text))
+
+        
 def generate_markdown(version, on_atn, gh_info):
-    atn_steps = dedent(f'''\
+    atn_steps = unwrap(f'''\
     * Go to [addons.thunderbird.net]({atn_versions_url}) and confirm that
     release {version} is available for download there.
     * Open the Add-ons page in Thunderbird ("Add-ons and Themes" from the
@@ -75,7 +79,7 @@ def generate_markdown(version, on_atn, gh_info):
     markdown += (f'This issue should be fixed in release {version} of '
                  f'Send Later.\n\n')
     if on_atn:
-        markdown += dedent('''\
+        markdown += unwrap('''\
         This release is available on addons.thunderbird.net, and unless you've
         turned off automatic add-on updates, Thunderbird will eventually update
         to the new version automatically. To update immediately:\n\n''')
@@ -85,7 +89,7 @@ def generate_markdown(version, on_atn, gh_info):
         xpi_url = next(a['url'] for a in gh_info['assets']
                        if a['url'].endswith('.xpi'))
         release_url = gh_info['url']
-        markdown += dedent(f'''\
+        markdown += unwrap(f'''\
         This release is not yet available for download from
         addons.thunderbird.net, but you can download and install it from
         its [GitHub release page]({release_url}) as follows:
@@ -104,12 +108,12 @@ def generate_markdown(version, on_atn, gh_info):
         Thunderbird.\n\n''')
 
         if gh_info['isPrerelease']:
-            markdown += dedent('''\
+            markdown += unwrap('''\
             Note that this is a prerelease. While we make every effort to
             ensure that prereleases are stable, they are a bit more likely
             to have bugs, so proceed with caution.\n\n''')
 
-        markdown += dedent('''\
+        markdown += unwrap('''\
         If you prefer to wait, the release will eventually be available on
         addons.thunderbird.net, and unless you've turned off automatic
         add-on updates, Thunderbird will eventually update to the new
