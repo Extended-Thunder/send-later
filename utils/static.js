@@ -110,6 +110,7 @@ var SLStatic = {
   },
 
   async cachePrefs(preferences) {
+    SLStatic.debug("cachePrefs");
     if (!preferences) {
       if (!SLStatic.listeningForStorageChanges) {
         browser.storage.local.onChanged.addListener(SLStatic.cacheChanged);
@@ -1762,6 +1763,17 @@ var SLStatic = {
     } catch (ex) {
       SLStatic.error("telemetrySend failure", ex);
     }
+  },
+
+  // changes is an array of two-item arrays, each of which is a key and a value.
+  async setPreferences(changes) {
+    let { preferences } = await messenger.storage.local.get({
+      preferences: {},
+    });
+    changes.forEach(([key, value]) => {
+      preferences[key] = value;
+    });
+    await messenger.storage.local.set({ preferences });
   },
 };
 

@@ -1,7 +1,7 @@
 // initialize popup window
 const SLPopup = {
   buttonUpdater: null,
-
+  zoom: 100,
   previousLoop: new Date(),
   loopMinutes: 1,
 
@@ -30,49 +30,94 @@ const SLPopup = {
     }
   },
 
-  adjustFontSize(style, delta) {
+  windowPrefName(which) {
+    // Note that if you change this logic you also need to change the code in
+    // background.js that sets the window dimensions on creation.
+    return (
+      (SLPopup.attachedWindow ? "attached" : "detached") +
+      "PopupWindow" +
+      which
+    );
+  },
+
+  setFontSize(style) {
     style = (style || "").trim();
     if (!style) {
-      return `font-size: ${100 + delta}%;`;
+      return `font-size: ${SLPopup.zoom}%;`;
     }
-    let re = /\s*font-size\s*:\s*(\d+)%\s*;?/;
+    let re = /\s*font-size\s*:\s*\d+%\s*;?/;
     let match = re.exec(style);
     if (match) {
-      let newZoom = parseInt(match[1]) + delta;
-      style = style.replace(re, `font-size: ${newZoom}%;`);
+      style = style.replace(re, `font-size: ${SLPopup.zoom}%;`);
       return style;
     }
     if (!style.endsWith(";")) {
       style += "; ";
     }
-    style += `font-size: ${100 + delta}%;`;
+    style += `font-size: ${SLPopup.zoom}%;`;
     return style;
   },
 
-  adjustZoom(delta) {
+  setZoom() {
     for (let tagName of ["body", "button", "input"]) {
       let tags = document.getElementsByTagName(tagName);
       for (let tag of tags) {
         old_style = tag.getAttribute("style");
-        new_style = SLPopup.adjustFontSize(old_style, delta);
+        new_style = SLPopup.setFontSize(old_style);
         tag.setAttribute("style", new_style);
       }
     }
   },
 
-  zoomIn() {
-    SLPopup.adjustZoom(10);
+  async saveZoom() {
+    SLStatic.debug(`saveSoom: ${SLPopup.zoom}`);
+    let prefName = SLPopup.windowPrefName("Zoom");
+    await SLStatic.setPreferences([[prefName, SLPopup.zoom]]);
   },
 
-  zoomOut() {
-    SLPopup.adjustZoom(-10);
+  async saveDimensions() {
+    if (!SLPopup.messageTabId) {
+      return;
+    }
+    if (SLPopup.attachedWindow) {
+      return;
+    }
+    await SLStatic.setPreferences([
+      [SLPopup.windowPrefName("Width"), window.innerWidth],
+      [SLPopup.windowPrefName("Height"), window.innerHeight],
+    ]);
   },
 
-  doSendWithSchedule(schedule) {
+  restoreZoom() {
+    // Restore Zoom from preferences. If dimensions were saved, they're
+    // restored when the window is created, not here.
+    let zoom = SLStatic.preferences[SLPopup.windowPrefName("Zoom")] || 100;
+    SLPopup.zoom = Math.max(zoom, 10); // Window shouldn't be invisible
+    SLStatic.debug(`restoreZoom: ${SLPopup.zoom}`);
+    SLPopup.setZoom();
+  },
+
+  async zoomIn() {
+    SLPopup.zoom += 10;
+    SLStatic.debug(`zoomIn: ${SLPopup.zoom}`);
+    SLPopup.setZoom();
+    await SLPopup.saveZoom();
+  },
+
+  async zoomOut() {
+    let zoom = SLPopup.zoom - 10;
+    SLPopup.zoom = Math.max(zoom, 10);
+    SLStatic.debug(`zoomOut: ${SLPopup.zoom}`);
+    SLPopup.setZoom();
+    await SLPopup.saveZoom();
+  },
+
+  async doSendWithSchedule(schedule) {
+    await SLPopup.saveDimensions();
     if (schedule && !schedule.err) {
       const message = {
         messageIds: SLPopup.messageIds,
-        tabId: SLPopup.tabId,
+        tabId: SLPopup.messageTabId,
         action: "doSendLater",
         sendAt: schedule.sendAt,
         recurSpec: SLStatic.unparseRecurSpec(schedule.recur),
@@ -88,10 +133,11 @@ const SLPopup = {
     }
   },
 
-  doSendNow() {
+  async doSendNow() {
+    await SLPopup.saveDimensions();
     const message = {
       messageIds: SLPopup.messageIds,
-      tabId: SLPopup.tabId,
+      tabId: SLPopup.messageTabId,
       action: "doSendNow",
     };
     SLStatic.debug(message);
@@ -101,10 +147,11 @@ const SLPopup = {
       .catch((err) => SLStatic.error(err));
   },
 
-  doPlaceInOutbox() {
+  async doPlaceInOutbox() {
+    await SLPopup.saveDimensions();
     const message = {
       messageIds: SLPopup.messageIds,
-      tabId: SLPopup.tabId,
+      tabId: SLPopup.messageTabId,
       action: "doPlaceInOutbox",
     };
     SLStatic.debug(message);
@@ -947,6 +994,10 @@ const SLPopup = {
   async init() {
     SLStatic.trace("SLPopup.init", window.location);
 
+    // This happens asynchronously in static.js, but we need to make sure
+    // prefs are available, so let's just make sure.
+    await SLStatic.cachePrefs();
+
     const { ufuncs } = await browser.storage.local.get({ ufuncs: {} });
     SLPopup.ufuncs = ufuncs;
 
@@ -973,14 +1024,16 @@ const SLPopup = {
 
     if (messageIds.length) {
       SLPopup.messageIds = messageIds;
-      SLPopup.tabId = null;
+      SLPopup.messageTabId = null;
     } else {
       SLPopup.messageIds = null;
       let tabIdString = queryString.get("tabId");
       if (tabIdString) {
-        SLPopup.tabId = parseInt(tabIdString);
+        SLPopup.attachedWindow = false;
+        SLPopup.messageTabId = parseInt(tabIdString);
       } else {
-        SLPopup.tabId = await browser.tabs
+        SLPopup.attachedWindow = true;
+        SLPopup.messageTabId = await browser.tabs
           .query({
             active: true,
             currentWindow: true,
@@ -989,6 +1042,7 @@ const SLPopup = {
       }
     }
 
+    SLPopup.restoreZoom();
     SLStatic.debug("Initialized popup window");
   },
 };

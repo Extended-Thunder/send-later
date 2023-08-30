@@ -1401,13 +1401,19 @@ const SendLater = {
             "composeAction pop-up failed to open, trying standalone",
           );
           let tab = (await browser.tabs.query({ currentWindow: true }))[0];
+          let params = {
+            allowScriptsToClose: true,
+            type: "popup",
+            url: `ui/popup.html?tabId=${tab.id}`,
+          };
           if (
-            !(await messenger.windows.create({
-              allowScriptsToClose: true,
-              type: "popup",
-              url: `ui/popup.html?tabId=${tab.id}`,
-            }))
+            SendLater.prefCache.detachedPopupWindowWidth &&
+            SendLater.prefCache.detachedPopupWindowHeight
           ) {
+            params.width = SendLater.prefCache.detachedPopupWindowWidth;
+            params.height = SendLater.prefCache.detachedPopupWindowHeight;
+          }
+          if (!(await messenger.windows.create(params))) {
             SLStatic.error("standalone scheduling pop-up failed to open");
           }
         });
