@@ -947,8 +947,6 @@ const SLPopup = {
   async init() {
     SLStatic.trace("SLPopup.init", window.location);
 
-    await SLStatic.cachePrefs();
-
     const { ufuncs } = await browser.storage.local.get({ ufuncs: {} });
     SLPopup.ufuncs = ufuncs;
 
