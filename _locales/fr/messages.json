@@ -83,6 +83,10 @@
     "message": "Informations",
     "description": ""
   },
+  "logLevelTrace": {
+    "message": "Trace",
+    "description": ""
+  },
   "logLevelWarn": {
     "message": "Avertissement",
     "description": ""
@@ -101,6 +105,10 @@
   },
   "quickOptionsLabel3Label": {
     "message": "3e délai",
+    "description": ""
+  },
+  "quickOptionsValueLabel": {
+    "message": "Minutes",
     "description": ""
   },
   "recurAnnuallyLabel": {
@@ -419,6 +427,10 @@
     "message": "Exécuter la fonction",
     "description": ""
   },
+  "run.accesskey": {
+    "message": "x",
+    "description": ""
+  },
   "inputtime": {
     "message": "Date et heure",
     "description": ""
@@ -505,6 +517,26 @@
   "MessageResendError": {
     "message": "Envoyer Plus Tard : Tenter de renvoyer un message déjà envoyer ?! Vos dossiers « Messages en attente » ou « Brouillons » $1 sont peut-être corrompus. Veuillez procéder à leur réparation comme décrit sur https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
+  },
+  "single_minute": {
+    "message": "minute",
+    "description": "Used in an error message when the phrase '1 minute' needs to be displayed."
+  },
+  "single_day": {
+    "message": "jour",
+    "description": "Used in an error message when the phrase '1 day' needs to be displayed."
+  },
+  "single_week": {
+    "message": "semaine",
+    "description": "Used in an error message when the phrase '1 week' needs to be displayed."
+  },
+  "single_month": {
+    "message": "mois",
+    "description": "Used in an error message when the phrase '1 month' needs to be displayed."
+  },
+  "single_year": {
+    "message": "année",
+    "description": "Used in an error message when the phrase '1 year' needs to be displayed."
   },
   "plural_minutely": {
     "message": "aux minutes",
@@ -649,6 +681,26 @@
     "message": "Envoyer Plus Tard ne peut envoyer de message que lorsque $1 est ouvert. Pensez à le lancer pour que vos envois programmés soient expédiés!",
     "description": ""
   },
+  "IncompatibleEncryptionTitle": {
+    "message": "Paramètres de chiffrement incompatibles avec $1",
+    "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has incompatible encryption or signing enabled. The placeholder is replaced with the extension name."
+  },
+  "IncompatibleEncryption-pgp-error-Text": {
+    "message": "$1 ne peut pas planifier des messages chiffrés ou signés numériquement avec PGP ou dont les brouillons sont chiffrés avec PGP. Vous devez les désactiver ou passer à S/MIME avant de planifier ce message. Pour le chiffrement des brouillons, reportez-vous à la section « Enregistrer les messages brouillons en format chiffré » sous « Chiffrement de bout en bout » dans les paramètres du compte ou de l’identité.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has PGP encryption, signing, or draft encryption enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
+  "IncompatibleEncryption-drafty-error-Text": {
+    "message": "Si vous voulez que $1 signe ou chiffre avec S/MIME, des messages programmés, vous devez activer le chiffrement des brouillons. Pour ce faire, reportez-vous à la section « Enregistrer les messages brouillons en format chiffré » sous « Chiffrement de bout en bout » dans les paramètres du compte ou de l’identité.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has S/MIME encryption or signing without enabling draft encryption first. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
+  "EncryptionUnsupportedTitle": {
+    "message": "$1 ne gère pas le chiffrement",
+    "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has encryption or signing enabled. The placeholder is replaced with the extension name."
+  },
+  "EncryptionUnsupportedText": {
+    "message": "$1 ne peut pas planifier les messages chiffrés ou signés numériquement ; vous devez les désactiver sur un brouillon avant de pouvoir le planifier. Vous devez également désactiver « Enregistrer les messages brouillons en format chiffré » sous « Chiffrement de bout en bout » pour les comptes ou identités pour lesquels vous souhaitez planifier des messages.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has encryption or signing enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
   "incorrectUUID": {
     "message": "Planifié par un autre client",
     "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."
@@ -700,6 +752,10 @@
   "BlockedLateMessage": {
     "message": "Le message avec le sujet “$1” qui est dans le dossier brouillons $2 était programmé pour être distribué il y a plus de $3 minutes. Sa distribution a donc été bloquée. Vous devriez éditer le brouillon et l'envoyer ou le reprogrammer. Vous pouvez aussi désactiver l'option “Ne pas distribuer les messages en retard de plus de # minutes” afin d'empêcher l'envoi de messages en retard.",
     "description": ""
+  },
+  "BlockedLateMessage2": {
+    "message": "Le message avec le sujet « $1 » dans le dossier Brouillons $2 était prévu pour être distribué il y a plus de $3 $4, donc la livraison a été bloquée. Vous devriez modifier le brouillon et l'envoyer manuellement, ou le reprogrammer. Vous pouvez également désactiver le réglage « Ne pas délivrer les messages plus que… » pour arrêter de bloquer la distribution de certains messages en retard. Cependant, les messages de plus de six mois en retard seront toujours bloqués.",
+    "description": "This is an updated version of the BlockedLateMessage string which is intended to replace it. I've left the old string in the database for the time being so translators can use it as a reference / starting point. The 3rd placeholder in THIS string is a number and the fourth is a unit such as 'minutes', 'days', etc. It will be singular if the number is 1 or plural otherwise. The unit is pulled from single_day etc. or plural_daily etc."
   },
   "EditorReadMeCode": {
     "message": "// Bienvenue sur l’éditeur de fonction Envoyer Plus Tard !\n// \n// L’éditeur permet de créer des fonctions JavaScript d’application\n// complexe message logique de planification qui peut être associée à\n// des boutons de raccourci ou sélectionné dans la boîte de dialogue\n// Envoyer Plus Tard.\n// \n// Comme vous pouvez le voir ci-dessus, lorsqu’une fonction de\n// planification est appelée, elle sera donnée trois arguments :\n// \n// * « specname » est nécessaire si vous souhaitez que cette fonction\n//   se reproduire (voir ci-dessous)\n// \n// * « prev » est la précédente à la demande envoyer à temps, si il\n//   s’agit d’un abonnement appel\n// \n// * « args » est les arguments supplémentaires retournées par l’appel\n//   précédent si ce est une invocation récurrente\n// \n// votre code a besoin définir les variables « next » ,\n// « nextspec », et « nextargs » comme suit :\n//\n// * « next » est le nombre de minutes dans le futur ou un objet\n//   Date qui indique quand le message doit être envoyé.\n// \n// * « nextspec » est une spécification de récurrence si cela est\n//   destiné à être un récurrents message (Voir\n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence). Si vous\n//   ne définissez pas cela, alors que le message ne sera envoyée une\n//   fois. Remarque : Si vous souhaitez que votre fonction à appeler à\n//   nouveau pour la récurrence, do :\n// \n//   nextspec = \"function \" + specname;\n// \n// * « nextargs » est un tableau d’arguments à être passés dans\n//   l’autre appel de la fonction comme « args ».\n// \n// Pendant que vous travaillez sur votre fonction, vous pouvez le\n// tester en remplissant les valeurs pour « prev » et « args » dans\n// les zones de texte ci-dessous et puis en cliquant sur « Exécuter »\n// à exécuter la fonction et voir les résultats.\n// \n// Il y a deux exemples préconfigurée de fonctions, « BusinessHours »\n// et « DaysInARow », que vous pouvez regarder et jouer avec pour en\n// savoir plus.  Cette fonction « ReadMeFirst » pose simplement le\n// message à envoyer maintenant, autour de via la ligne suivante.\n\nnext = new Date();",
@@ -825,6 +881,10 @@
     "message": "Maj+Clic",
     "description": "Indicates key combination to access the shift+click accelerator function"
   },
+  "okay": {
+    "message": "OK",
+    "description": "Confirm an action (presented in popup dialogs)"
+  },
   "cancel": {
     "message": "Annuler",
     "description": "Cancel an action (presented in popup dialogs)"
@@ -844,6 +904,10 @@
   "invalidDateFormat": {
     "message": "format de date incorrect ou incomplet",
     "description": "Message displayed in the user interface inside parentheses when the user enters an invalid custom date format"
+  },
+  "menuScheduleMsg": {
+    "message": "Programmer le(s) message(s)",
+    "description": "Command added to the message list menu for the user to use to schedule one or more selected drafts with Send Later"
   },
   "menuSkipMsg": {
     "message": "Passer la prochaine occurence",
@@ -880,5 +944,33 @@
   "SkipConfirmMessage": {
     "message": "Vous avez indiqué que vous souhaitez sauter l'occurrence suivante d'un des messages sélectionnés. Si vous changez d'avis après avoir fait cela, vous devrez reprogrammer les messages à la main. Voulez-vous vraiment continuer ?",
     "description": "The text of the pop-up that warns the user when they activate the message list context menu command to skip the next occurrence of one or more messages. The purpose of this warning is to ensure that the user knows what the command does before using it. There is a checkbox in the pop-up which they can uncheck if they don't want to see the message again. See also 'AreYouSure' and 'ConfirmAgain' strings which occur in the same pop-up."
+  },
+  "RescheduleErrorTitle": {
+    "message": "Erreur de replanification du message",
+    "description": "Title of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "RescheduleErrorText": {
+    "message": "AVERTISSEMENT : Une erreur inattendue s'est produite lors de la tentative de planification de l'occurrence suivante d'un message programmé avec le sujet « $1 ». Voir le journal des erreurs de Thunderbird pour plus de détails. Le brouillon planifié précédent n'a donc pas été supprimé. Vous devriez soit le supprimer soit le modifier et le reprogrammer si désiré.",
+    "description": "Text of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "TelemetryAskTitle": {
+    "message": "Demande de collecte de données pour $1",
+    "description": "Title of the pop-up that asks the user whether we can collect anonymous usage data. The placeholder is replaced with the extension name."
+  },
+  "TelemetryAskText": {
+    "message": "Pouvons-nous collecter des données anonymes sur votre utilisation de $1 ? Les données nous indiquent comment vous utilisez le module et votre environnement. Elle ne comportent aucune information d’identification, aucun contenu de courrier électronique ou aucune information sur le compte. Ces données sont utilisées pour améliorer le module, mesurer son utilisation et déterminer où concentrer les efforts de développement. Elles ne sont partagées avec personne. Votre réponse n'impactera pas les fonctionnalités du module. Tous les détails sont disponibles dans nos $2.",
+    "description": "Text of the pop-up that asks the user whether we can collect anonymous usage data. The second placeholder is replaced with the contents of the string PrivacyPolicy (so we can make it a link."
+  },
+  "PrivacyPolicy": {
+    "message": "Charte de confidentialité",
+    "description": "Inserted into TelemetryAskText. Also used to link to the privacy policy from the Send Later pop-up in the main Thunderbird window."
+  },
+  "TelemetryAskYes": {
+    "message": "Oui, les données d'utilisation peuvent être collectées",
+    "description": "Label for the yes button on the telemetry request dialog."
+  },
+  "TelemetryAskNo": {
+    "message": "Non, ne pas collecter les données d'utilisation",
+    "description": "Label for the no button on the telemetry request dialog."
   }
 }

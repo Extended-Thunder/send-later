@@ -36,7 +36,7 @@
     "description": "In the preferences window, for the 'Check ever # minutes' preference, where # is a text field for the user to enter a number, this label comes _after_ the #. In some languages it may have the same translation as other strings, but in other languages it's different e.g. because the 'every' part needs to be in this string instead of in checkTimePrefLabel1."
   },
   "checkTimePrefTooltip": {
-    "message": "‫המרווח, בדקות, בין הבדיקות להודעות טיוטה שמועד שליחתן הגיע. הגדל ערך זה אם קורה לעיטים שהטיוטות שהכנת אינן נשלחות במועדן או שלפעמים מספר ההודעות הממתינות, המופיע בשורת המצב, אינו תואם למספר הטיוטות המיועדות למשלוח בפועל‬",
+    "message": "‫המרווח, בדקות, בין בדיקות להודעות טיוטה, שמועד שליחתן הגיע. הגדל ערך זה, אם לפעמים קורה שהטיוטות שהכנת אינן נשלחות במועדן או שמספר ההודעות הממתינות, המופיע בשורת המצב, אינו תואם לכל הטיוטות המתוכננות להישלח‬.",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -52,7 +52,7 @@
     "description": ""
   },
   "enforceRestrictionsPrefTooltip": {
-    "message": "במידה ומגבלות הזמן או היום שנקבעו למשלוח ההודעה חרגו מעבר להגדרה המקורית, למשל בגלל שתנדרבירד לא פעל במועד המתוכנן, דחה את משלוח ההודעה בהתאם מגבלות הזמן והיום המקוריות שנקבעו.",
+    "message": "במידה ומגבלות הזמן או היום שנקבעו למשלוח ההודעה חרגו מעבר להגדרה המקורית, למשל בגלל שתנדרבירד לא פעל במועד המתוכנן, דחה את משלוח ההודעה בהתאם מגבלות הזמן והיום המקוריים שנקבעו.",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -172,7 +172,7 @@
     "description": ""
   },
   "sendButtonPrefTooltip": {
-    "message": "‫בחירה באפשרות זו תהפוך את פקודת ה 'שלח' (גם הלחצן וגם צרוף המקשים) לפקודה 'שלח מאוחר יותר'‬",
+    "message": "‫בחירה באפשרות זו תהפוך את פקודת ה 'שלח' (או הלחצן או צרוף המקשים Ctrl-Enter) לפעול כפקודה 'שלח מאוחר יותר'‬",
     "description": ""
   },
   "sendDelayPrefLabel1": {
@@ -184,7 +184,7 @@
     "description": ""
   },
   "sendDelayPrefTooltip": {
-    "message": "בחירה באפשרות זו, תגרום לכך שכל ההודעות הנשלחות עם הפקודה “שלח” (בין אם לחיצה על הכפתור או עם קיצור המקלדת Ctrl-Enter) יעוכבו במספר הדקות שהוגדרו מראש עם ‫שלח מאוחר יותר‬",
+    "message": "בחירה באפשרות זו, תגרום לכך שכל ההודעות הנשלחות עם הפקודה “שלח” (או הלחצן או צירוף המקשים Ctrl-Enter) יעוכבו במספר הדקות שהוגדרו מראש עם ‫'שלח מאוחר יותר'‬.",
     "description": ""
   },
   "sendSundayLabel": {
@@ -232,7 +232,7 @@
     "description": ""
   },
   "sendUnsentMessagesPrefTooltip": {
-    "message": "‫במידה ולא תסומן אפשרות זו, '‫שלח מאוחר יותר‬' לא ישלח את ההודעות בפועל, אלא רק יעביר אותן לתיבת הדואר היוצא במועד המשלוח המתוכנן שלהן. אל תסמן אפשרות זו, למשל, אם יש לעיטים שימוש בתוסף אחר למשלוח הודעות מתיבת הדואר היוצא. שים לב שאם נבחרה האפשרות הזו ישלח '‫שלח מאוחר יותר‬' את כל ההודעות מתיבת הדואר היוצא בעת שליחת הודעה מתוכננת,‬",
+    "message": "‫במידה ולא תסומן אפשרות זו, '‫שלח מאוחר יותר‬' לא תישלח את ההודעות בפועל, אלא רק תיעביר אותן לתיבת הדואר היוצא במועד המשלוח שתוכנן להן. אל תסמן אפשרות זו, למשל, אם לעיטים, יש שימוש בתוסף אחר למשלוח הודעות מתיבת הדואר היוצא. שים לב שאם נבחרה האפשרות הזו ישלח '‫שלח מאוחר יותר‬' את כל ההודעות מתיבת הדואר היוצא בעת שליחת הודעה מתוכננת.",
     "description": ""
   },
   "showColumnPrefLabel": {
@@ -248,8 +248,12 @@
     "description": ""
   },
   "showHeaderPrefTooltip": {
-    "message": "‫האם להציג את הכותרת 'X-Send-Later-At', כלומר הזמן בו מיועדת הטיוטה להישלח, בשורת הכותרת כאשר צופים בהודעה‬",
+    "message": "‫האם להציג את הכותרת 'X-Send-Later-At', כלומר הזמן בו הטיוטה מיועדת להישלח, בשורת הכותרת כאשר צופים בהודעה‬",
     "description": ""
+  },
+  "showToolbarTextLabel": {
+    "message": "הצג טקסט בכפתורי בשורת הכלים",
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
     "message": "‫מדריך למשתמש‬",
@@ -268,7 +272,7 @@
     "description": ""
   },
   "sendlater.prompt.sendlater.tooltip": {
-    "message": "‫במקום לקבוע מועד משלוח מוגדר, העבר את ההודעה לתיבת הדואר היוצא כדי לשלוח אותה בפעם הבאה, יחד עם שאר ההודעות הממתינות למשלוח‬",
+    "message": "‫במקום לקבוע מועד משלוח מוגדר, העבר את ההודעה לתיבת הדואר היוצא, כדי לשלוח אותה בפעם הבאה, יחד עם שאר ההודעות הממתינות למשלוח‬.",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -631,11 +635,11 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "בחירה ב \"שלח\" מעבירה את ההודעה לתיבת הדואר היוצא באופן מיידי ולא מתבצע תיזמון למשלוח ההודעה במועד ספציפי. לשם קביעת מועד, יש לבחור בכפתור \"שלח במועד\" בתיבה  הירוקה לאחר שקבעת מועד מתאים למשלוח. האם את/ה בטוח שאת/ה מעוניין להעביר את ההודעה לתיבת הדואר היוצא כעט?",
+    "message": "בחירה ב \"הצב בתיבת דואר יוצא\" מעבירה את ההודעה לתיבת הדואר היוצא באופן מיידי ולא מתבצע תיזמון למשלוח ההודעה במועד ספציפי. לשם קביעת מועד, יש לבחור בכפתור \"שלח במועד\" לאחר שקבעת מועד מתאים למשלוח. האם את/ה בטוח שאת/ה מעוניין להעביר את ההודעה לתיבת הדואר היוצא כעט?",
     "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
-    "message": "לחיצה על \"שלח כעת\" תשלח את ההודעה מייד. פונקציה זו אינה מתזמנת את ההודעה למשלוח בזמן ספציפי. לשם כך, לחץ \"שלח במועד\" בתיבה הירוקה לאחר הזנת זמן משלוח תקין. האם אתה בטוח שברצונך לשלוח את ההודעה כעת?",
+    "message": "לחיצה על \"שלח כעת\" תשלח את ההודעה מייד ולא מתבצע תיזמון למשלוח ההודעה במועד ספציפי. לשם כך, לחץ \"שלח במועד\"  לאחר שקבעת מועד מתאים למשלוח. האם את/ה בטוח/ה שברצונך לשלוח את ההודעה כעת?",
     "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
@@ -656,6 +660,18 @@
   "ScheduledMessagesWarningQuit": {
     "message": "\"‫שלח מאוחר יותר‬\" תשלח הודעות רק כאשר $1 פועלת. אנא זכרו להפעילה מחדש לפני המועד המתוכנן למשלוח ההודעות!‬",
     "description": ""
+  },
+  "IncompatibleEncryptionTitle": {
+    "message": "הגדרות ההצפנה אינן תואמות ל $1",
+    "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has incompatible encryption or signing enabled. The placeholder is replaced with the extension name."
+  },
+  "IncompatibleEncryption-pgp-error-Text": {
+    "message": "$1 אינה יכולה לקבוע מועדים למשלוח הודעות מוצפנות, או כאלה החתומות דיגיטלית עם PGP או שהטיוטות מוצפנות עם PGP. עליך לנטרל אותן ואולעבור ל S/MIME לפני שתוכל/י לתכנן מועדי משלוח. בהוצעות טיוטה מוצפנות, ראה \"Store draft messages in encrypted format\" תחת \"End-To-End Encryption\" בהגדרות החשבון או הזהות האישית.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has PGP encryption, signing, or draft encryption enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
+  "IncompatibleEncryption-drafty-error-Text": {
+    "message": "אם את/ה מעוניינים ש$1 תחתום או תצפין הודעות ההמתוכננות למשלוח עם S/MIME, עליך לאפשר הצפנת טיוטות. כדי לעשות זאת, ראה \"Store draft messages in encrypted format\" תחת \"End-To-End Encryption\" בהגדרות החשבון או הזהות האישית.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has S/MIME encryption or signing without enabling draft encryption first. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
   },
   "EncryptionUnsupportedTitle": {
     "message": "$1 אינו תומך בהצפנה",
@@ -904,5 +920,25 @@
   "SkipConfirmMessage": {
     "message": "ציינת שבחרת לדלג לאירוע הבא של אחת מההודעות שנבחרו. אם תתחרט על כך לאחר מכן, יהיה עליך לעדכן את לוח הזמנים באופן ידני. האם את/ה בטוח שאת/ה רוצה להמשיך?",
     "description": "The text of the pop-up that warns the user when they activate the message list context menu command to skip the next occurrence of one or more messages. The purpose of this warning is to ensure that the user knows what the command does before using it. There is a checkbox in the pop-up which they can uncheck if they don't want to see the message again. See also 'AreYouSure' and 'ConfirmAgain' strings which occur in the same pop-up."
+  },
+  "TelemetryAskTitle": {
+    "message": "$1 מבקשת לאסוף מידע",
+    "description": "Title of the pop-up that asks the user whether we can collect anonymous usage data. The placeholder is replaced with the extension name."
+  },
+  "TelemetryAskText": {
+    "message": "האם אנו יכולים לאסוף מידע אנונימי על אופן השימוש שלך ב $1? המידע כולל פרטים על אופן השימוש שלך בתוסף ועל סביבת המערכת שלך. הוא אינו כולל מידע מזהה, תוכן הודעות או פרטי חשבונות דוא\"ל. אנו משתמשים במידע זה לשיפור התוסף, למדידת השימוש בו, ולצורך זיהוי הנושאים עלייהם אנו צריכים לשים דגש ולרכז מאמץ.אנו לא נחלוק את המידע עם אף גורם. תגובתך לא תשפיע בשום אופן,  על תפקוד התוסף. פרטים מלאים ניתן לקבל בקישור $2.",
+    "description": "Text of the pop-up that asks the user whether we can collect anonymous usage data. The second placeholder is replaced with the contents of the string PrivacyPolicy (so we can make it a link."
+  },
+  "PrivacyPolicy": {
+    "message": "מדיניות הפרטיות",
+    "description": "Inserted into TelemetryAskText. Also used to link to the privacy policy from the Send Later pop-up in the main Thunderbird window."
+  },
+  "TelemetryAskYes": {
+    "message": "כן, איספו מידע על השימוש",
+    "description": "Label for the yes button on the telemetry request dialog."
+  },
+  "TelemetryAskNo": {
+    "message": "לא, אל תאספו מידע על השימוש",
+    "description": "Label for the no button on the telemetry request dialog."
   }
 }

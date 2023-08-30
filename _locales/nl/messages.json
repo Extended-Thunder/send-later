@@ -251,6 +251,10 @@
     "message": "De header ‘X-Send-Later-At’ wel of niet tonen bij het bekijken van een bericht, m.a.w. de tijd waarop een concept gepland staat om te worden verzonden",
     "description": ""
   },
+  "showToolbarTextLabel": {
+    "message": "Tekst in werkbalkknop tonen",
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
+  },
   "userGuideLabel": {
     "message": "Handleiding",
     "description": ""
@@ -676,6 +680,18 @@
   "ScheduledMessagesWarningQuit": {
     "message": "Send Later kan alleen berichten verzenden als $1 actief is. Denk eraan dat het weer moet worden gestart voordat uw berichten voor verzending worden ingepland!",
     "description": ""
+  },
+  "IncompatibleEncryptionTitle": {
+    "message": "Versleutelingsinstellingen niet compatibel met $1",
+    "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has incompatible encryption or signing enabled. The placeholder is replaced with the extension name."
+  },
+  "IncompatibleEncryption-pgp-error-Text": {
+    "message": "$1 kan geen berichten inplannen die versleuteld of digitaal ondertekend zijn met PGP of waarvan concepten versleuteld zijn met PGP. U moet deze opties uitschakelen of naar S/MIME wisselen voordat dit bericht wordt ingepland. Voor het versleutelen van concepten, zie ‘Conceptberichten opslaan in versleutelde opmaak’ onder ‘End-to-end-versleuteling’ in de account- of identiteitsinstellingen.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has PGP encryption, signing, or draft encryption enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
+  "IncompatibleEncryption-drafty-error-Text": {
+    "message": "Als u $1 geplande berichten wilt laten ondertekenen of versleutelen met S/MIME, dient u versleuteling van concepten in te schakelen. Zie hiervoor ‘Conceptberichten opslaan in versleutelde opmaak’ onder ‘End-to-end-versleuteling’ in de account- of identiteitsinstellingen.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has S/MIME encryption or signing without enabling draft encryption first. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
   },
   "EncryptionUnsupportedTitle": {
     "message": "$1 ondersteunt geen versleuteling",
