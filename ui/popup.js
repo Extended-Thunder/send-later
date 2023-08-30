@@ -946,7 +946,6 @@ const SLPopup = {
 
   async init() {
     SLStatic.trace("SLPopup.init", window.location);
-    document.title = browser.i18n.getMessage("extensionName");
 
     await SLStatic.cachePrefs();
 
