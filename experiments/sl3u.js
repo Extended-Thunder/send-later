@@ -415,6 +415,18 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           return msgCompFields[field];
         },
 
+        // Returns:
+        // "unencrypted-ok" -- no encryption, nothing to worry about
+        // "smime-ok" -- encrypting and/or signing with S/MIME, AND the user has
+        //   drafts encryption enabled so the correct thing will happen to
+        //   scheduled messages
+        // "pgp-error" -- user has PGP enabled and has either requested
+        //   encryption or signing or has drafts encryption enabled
+        // "drafty-error" -- user has requested S/MIME signing or encryption but
+        //   doesn't have drafts encryption enabled so the wrong thing will
+        //   happen to scheduled messages
+        // Generally: ok return values all end in "-ok", error return values all
+        //   end in "-error".
         async signingOrEncryptingMessage(tabId) {
           let tab = context.extension.tabManager.get(tabId);
           let cw = tab.nativeTab;
@@ -425,13 +437,24 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               cw.isPgpConfigured()
             )
           ) {
-            return false;
+            return "unencrypted-ok";
           }
-          return (
-            cw.gSendSigned ||
-            cw.gSendEncrypted ||
-            cw.gCurrentIdentity.autoEncryptDrafts
-          );
+          if (
+            !(
+              cw.gSendSigned ||
+              cw.gSendEncrypted ||
+              cw.gCurrentIdentity.autoEncryptDrafts
+            )
+          ) {
+            return "unencrypted-ok";
+          }
+          if (cw.gSelectedTechnologyIsPGP) {
+            return "pgp-error";
+          }
+          if (!cw.gCurrentIdentity.autoEncryptDrafts) {
+            return "drafty-error";
+          }
+          return "smime-ok";
         },
 
         /*

@@ -188,15 +188,20 @@ const SendLater = {
   async scheduleSendLater(tabId, options, fromMenuCommand) {
     let now = new Date();
     SLStatic.debug(`Pre-send check initiated at ${now}`);
-    let encrypting = await messenger.SL3U.signingOrEncryptingMessage(tabId);
-    if (encrypting) {
+    let encryptionStatus = await messenger.SL3U.signingOrEncryptingMessage(
+      tabId,
+    );
+    SLStatic.telemetrySend({
+      event: "encryptionStatus",
+      encryptionStatus: encryptionStatus,
+    });
+    if (encryptionStatus.endsWith("-error")) {
       let name = messenger.i18n.getMessage("extensionName");
-      let title = messenger.i18n.getMessage("EncryptionUnsupportedTitle", [
+      let title = messenger.i18n.getMessage("IncompatibleEncryptionTitle", [
         name,
       ]);
-      let text = messenger.i18n.getMessage("EncryptionUnsupportedText", [
-        name,
-      ]);
+      let errorKey = `IncompatibleEncryption-${encryptionStatus}-Text`;
+      let text = messenger.i18n.getMessage(errorKey, [name]);
       SLTools.alert(title, text);
       return false;
     }

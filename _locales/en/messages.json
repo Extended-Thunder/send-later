@@ -681,6 +681,18 @@
     "message": "Send Later can only send messages when $1 is running. Please remember to restart it before your messages are scheduled to be sent!",
     "description": ""
   },
+  "IncompatibleEncryptionTitle": {
+    "message": "Encryption settings incompatible with $1",
+    "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has incompatible encryption or signing enabled. The placeholder is replaced with the extension name."
+  },
+  "IncompatibleEncryption-pgp-error-Text": {
+    "message": "$1 can't schedule messages that are encrypted or digitally signed with PGP or whose drafts are encrypted with PGP. You must disable these or switch to S/MIME before scheduling this message. For drafts encryption, see “Store draft messages in encrypted format” under “End-To-End Encryption” in the account or identity settings.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has PGP encryption, signing, or draft encryption enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
+  "IncompatibleEncryption-drafty-error-Text": {
+    "message": "If you want $1 to sign or encrypt scheduled messages with S/MIME, you need to enable encryption of drafts. To do that, see “Store draft messages in encrypted format” under “End-To-End Encryption” in the account or identity settings.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has S/MIME encryption or signing without enabling draft encryption first. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
   "EncryptionUnsupportedTitle": {
     "message": "$1 does not support encryption",
     "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has encryption or signing enabled. The placeholder is replaced with the extension name."
