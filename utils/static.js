@@ -1707,14 +1707,26 @@ var SLStatic = {
     }
   },
 
+  telemetryNonce() {
+    // Putting a nonce in the telemetry URL prevents identical telemetry
+    // requests from getting intercepted by the cache. Making the nonce only
+    // change once per minute leverages the cache to protect against the
+    // possibility of a bug causing a client to submit the same request many
+    // times in short order. This limits the use of telemetry for events that
+    // occur frequently whose frequency we care a lot about, but I'm OK with
+    // losing that big of signal for the sake of not accidentally DDoS'ing the
+    // telemetry server by introducing a bug in the add-on.
+    return new Sugar.Date().format("%Y%m%d%H%M").raw;
+  },
+
   telemetrySend(values) {
     console.log("telemetrySend");
     if (!this.preferences.telemetryEnabled) {
       return;
     }
     if (this.preferences.telemetryUUIDEnabled) {
-      let uuid = this.telemetryUUID;
-      if (!this.telemetryUUID) {
+      let uuid = this.preferences.telemetryUUID;
+      if (!uuid) {
         uuid = this.generateUUID().slice(1, -1);
         this.preferences.telemetryUUID = uuid;
         // We just let this promise complete in the background because it's not
@@ -1725,6 +1737,7 @@ var SLStatic = {
       values.uuid = uuid;
     }
     values.locale = this.getLocale();
+    values.nonce = this.telemetryNonce();
     if (!this.preferences.telemetryURL) {
       return;
     }
@@ -1735,6 +1748,13 @@ var SLStatic = {
     let url = `${this.preferences.telemetryURL}?${query.toString()}`;
     try {
       let req = new XMLHttpRequest();
+      req.addEventListener("load", (event) => {
+        SLStatic.debug("telemetrySend successful");
+      });
+      req.addEventListener("error", (event) => {
+        SLStatic.debug("telemetrySend failed", event);
+      });
+
       req.open("GET", url);
       req.send();
       // We don't care about the response. Off it goes into the ether! Hopefully
