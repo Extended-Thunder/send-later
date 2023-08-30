@@ -634,13 +634,7 @@ const SendLater = {
 
           let success = await SLStatic.tb115(
             async () => {
-              let file = new File(
-                [new TextEncoder().encode(newMsgContent)],
-                "draft.eml",
-                {
-                  type: "message/rfc822",
-                },
-              );
+              let file = SLStatic.getFileFromRaw(newMsgContent);
               return await SLStatic.messageImport(file, msgHdr.folder, {
                 new: false,
                 read: preferences.markDraftsRead,
@@ -687,13 +681,7 @@ const SendLater = {
       );
       let success = await SLStatic.tb115(
         async () => {
-          let file = new File(
-            [new TextEncoder().encode(content)],
-            "outbound-message.eml",
-            {
-              type: "message/rfc822",
-            },
-          );
+          let file = SLStatic.getFileFromRaw(content);
           return await SLStatic.messageImport(file, outboxFolder, {
             new: false,
             read: true,
@@ -811,13 +799,7 @@ const SendLater = {
 
         let success = await SLStatic.tb115(
           async () => {
-            let file = new File(
-              [new TextEncoder().encode(newMsgContent)],
-              "draft.eml",
-              {
-                type: "message/rfc822",
-              },
-            );
+            let file = SLStatic.getFileFromRaw(newMsgContent);
             return await SLStatic.messageImport(file, msgHdr.folder, {
               new: false,
               read: preferences.markDraftsRead,

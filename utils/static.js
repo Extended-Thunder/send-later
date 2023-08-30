@@ -1637,6 +1637,20 @@ var SLStatic = {
     return dom;
   },
 
+  // Original idea:
+  // https://thunderbird.topicbox.com/groups/addons/T06356567165277ee-M25e96f2d58e961d6167ad348/charset-problem-when-saving-to-eml-format
+  // My improvement to it:
+  // https://thunderbird.topicbox.com/groups/addons/T06356567165277ee-Md1002780236b2a1ad92e88bd/charset-problem-when-saving-to-eml-format
+  getFileFromRaw(binaryString) {
+    let bytes = new Array(binaryString.length);
+    for (let i = 0; i < bytes.length; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+    return new File([new Uint8Array(bytes)], "message.eml", {
+      type: "message/rfc822",
+    });
+  },
+
   // Like messenger.messages.import, but supports IMAP folders.
   // Cribbed from https://github.com/cleidigh/EditEmailSubject-MX/blob/master/
   // src/content/scripts/editemailsubject.mjs, as recommended by John Bieling.
