@@ -1,6 +1,7 @@
 *.html
 *.md
 *.yml
+Pipfile.lock
 _locales
 .github
 contrib
