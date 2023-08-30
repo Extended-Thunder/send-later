@@ -1580,17 +1580,17 @@ Important notes:
 #### Are you using the add-on correctly?
 
 If scheduled messages get moved into your Outbox (underneath Local
-Folders) at the scheduled send time but don't get delivered from there,
-then the first thing to do is confirm that you haven't *told* Send Later
-not to deliver messages. Open Send Later's preferences (click "Send
-Later" at the bottom of the main window and select "Send Later
-preferences" from the menu) and make sure the box next to "Trigger
-unsent message delivery from Outbox" is checked. It is checked by
-default, so if it isn't, then you unchecked it for some reason, and you
-should check it and click "OK" to save the change. Then, to cause past
-messages that were previously put into the Outbox to be delivered,
-select the `File > Send Unsent Messages` menu command. If that's not
-the problem, then read on.
+Folders) at the scheduled send time but don't get delivered from
+there, then the first thing to do is confirm that you haven't *told*
+Send Later not to deliver messages. Open Send Later's preferences
+(click the Send Later button at the top of the main window and then on
+the "Send Later preferences" link) and make sure the box next to
+"Trigger unsent message delivery from Outbox" is checked. It is
+checked by default, so if it isn't, then you unchecked it for some
+reason, and you should check it and click "OK" to save the change.
+Then, to cause past messages that were previously put into the Outbox
+to be delivered, select the `File > Send Unsent Messages` menu
+command. If that's not the problem, then read on.
 
 Another common mistake when using the add-on is clicking on the "Put in Outbox"
 button rather than the "Send at ..." button.
@@ -1729,11 +1729,13 @@ Here's how to do that:
 <a name="drafts-cleanup"></a>
 #### Corrupt Drafts folders
 
-A good sign that one of your Drafts folders is corrupted is if Send Later isn't
-noticing that there are scheduled messages, i.e., the message at the bottom of
-your Thunderbird window says "IDLE" instead of "PEND 1", "PEND 2", etc. However,
-if messages aren't getting sent at the scheduled time, then you may still have a
-corrupted Drafts folder even if the message says "PEND".
+A good sign that one of your Drafts folders is corrupted is if Send
+Later isn't noticing that there are scheduled messages, i.e., the Send
+Later button at the top of the main Thunderbird window doesn't have a
+badge showing the correct number of scheduled drafts in your Drafts
+folder(s). However, if messages aren't getting sent at the scheduled
+time, then you may still have a corrupted Drafts folder even if the
+badge count is correct.
 
 1.  Locate the Drafts folders for all of your accounts. The easiest way
     to do that, if you have multiple accounts, is to switch to the
@@ -1812,8 +1814,8 @@ logging on the add-on, perform some task with debug logging enabled, and
 then send us the resulting debug log. Here are the instructions for how
 to do that.
 
-1.  Click on "Send Later" at the bottom of the main Thunderbird window and
-    select "Send Later Preferences".
+1.  Click the Send Later button at the top of the main Thunderbird window and
+    then on the "Send Later Preferences" link.
 2.  Change "Console log level" to "All" (or whatever other value I tell you to
     change it to).
 3.  In the main Thunderbird window, type `Ctrl-Shift-J` to open the error console.
