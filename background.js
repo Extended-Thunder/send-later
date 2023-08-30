@@ -188,9 +188,8 @@ const SendLater = {
   async scheduleSendLater(tabId, options, fromMenuCommand) {
     let now = new Date();
     SLStatic.debug(`Pre-send check initiated at ${now}`);
-    let encryptionStatus = await messenger.SL3U.signingOrEncryptingMessage(
-      tabId,
-    );
+    let encryptionStatus =
+      await messenger.SL3U.signingOrEncryptingMessage(tabId);
     SLStatic.telemetrySend({
       event: "encryptionStatus",
       encryptionStatus: encryptionStatus,
