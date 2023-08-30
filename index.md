@@ -564,15 +564,15 @@ Some things to keep in mind:
     [Owl for Exchange][owl],
     the add-on which is intended to replace ExQuilla, when configured as
     described [below](#owl).
-8.  Send Later is incompatible with message encryption and digital signatures
-    (otherwise known as end-to-end encryption, PGP, GPG, Enigmail, S/MIME,
-    etc.). This means that you can't schedule a draft to be sent with Send
-    Later if you have encryption or signing enabled on the draft or if you have
-    encryption of drafts enabled for the account or identity the draft is
-    associatd with. The latter is enabled by default if you have end-to-end
-    encryption configured, but it can be disabled in your account settings
-    (look for a "Store draft messages in encrypted format" checkbox and uncheck
-    it).
+8.  Send Later is incompatible with PGP message encryption and digital
+    signatures. This means that you can't schedule a draft to be sent
+    with Send Later if you have PGP encryption or signing enabled on
+    the draft or if you have encryption of drafts enabled for the
+    account or identity the draft is associated with. The latter is
+    enabled by default if you have PGP end-to-end encryption
+    configured, but it can be disabled in your account settings (look
+    for a "Store draft messages in encrypted format" checkbox and
+    uncheck it).
 
 [icloud1]: https://www.macworld.com/article/2029570/silent-email-filtering-makes-icloud-an-unreliable-option.html
 [icloud2]: https://discussions.apple.com/thread/3153039

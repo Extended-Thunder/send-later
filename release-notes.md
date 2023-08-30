@@ -71,15 +71,16 @@ here, which means you can use this to send a bunch of drafts or put
 them all in your Outbox all at once, rather than editing them one by
 one to do it.
 
-There are two important caveats for users of end-to-end encryption:
+There are two important caveats for users of end-to-end encryption,
+due to gaps in the Thunderbird add-on APIs (this information is for
+Send Later 10.1.2 and newer):
 
 1. This does not work for messages in accounts or identities which
-   have encryption or signing enabled by default, even if you
+   have PGP encryption or signing enabled by default, even if you
    previously disabled encryption and signing when saving the draft.
-   This is due to a functionality gap in the Thunderbird add-on APIs.
-2. Similarly, if you previously saved a draft with encryption or
-   signing enabled and then schedule it like this, the draft is
-   scheduled without encryption or signing.
+2. Drafts scheduled like this are sent with your default S/MIME
+   encryption and signing settings regardless of what S/MIME settings
+   the draft was previously saved with.
 
 #### Skipping the next occurrence of recurring messages
 
@@ -136,7 +137,10 @@ Thunderbird tab.
 
 You can now zoom in and out (i.e., make everything bigger or smaller)
 in the scheduling pop-up by typing Ctrl-Plus or Ctrl-Minus or
-Command-Plus or Command-Minus.
+Command-Plus or Command-Minus. As of 10.1.2, the zoom level, and also
+the window dimensions if the pop-up isn't attached to the message
+window (i.e., the toolbar button isn't visible in the compose window),
+are preserved between invocations.
 
 A bunch of tooltips, mostly in the preferences window but some in the
 scheduling pop-up, that were lost in the conversion of the add-on to
