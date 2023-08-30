@@ -153,7 +153,7 @@
   },
   "sendAtLabel": {
     "message": "Enviar em/às",
-    "description": ""
+    "description": "This is used in the scheduling pop-up at the beginning of the dynamic label for the button the user clicks to send a scheduled message at the specified date/time. It is followed in the button by a formatted date/time. For example, in English: 'Send at Tue, Aug 29, 2023, 11:26 AM'."
   },
   "sendBtwnLabel": {
     "message": "Entre",
@@ -616,11 +616,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "Clicando em “Coloque na Caixa de Saída” transfere imediatamente a mensagem para sua Caixa de Saída e NÃO IRÁ programar o envio da mensagem em horário específico. Para isso, clique em “Enviar por volta de…” na caixa verde após inserir horário válido. Está seguro que deseja colocar a mensagem na Caixa de Saída agora?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "Ao clicar “Enviar Agora” a msg é enviada imediatamente e NÃO SERÁ agendada para um horário específico. Caso deseje esta opção, clique em “Enviar por volta de…” na área verde após inserir um horário válido. Deseja enviar esta mensagem imediatamente?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "Mostrar este aviso da próxima vez",

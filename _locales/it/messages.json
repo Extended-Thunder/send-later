@@ -149,7 +149,7 @@
   },
   "sendAtLabel": {
     "message": "Invia alle",
-    "description": ""
+    "description": "This is used in the scheduling pop-up at the beginning of the dynamic label for the button the user clicks to send a scheduled message at the specified date/time. It is followed in the button by a formatted date/time. For example, in English: 'Send at Tue, Aug 29, 2023, 11:26 AM'."
   },
   "sendBtwnLabel": {
     "message": "Tra",
@@ -601,11 +601,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "Cliccando su - Metti nella “Posta in uscita” - si mette il messaggio immediatamente nella cartella “Posta in uscita”. NON VIENE quindi pianificato l'invio del messaggio ad un orario specifico. Se lo si desidera inviare specificando un orario, cliccare il pulsante “Invia verso le:” nel riquadro verde dopo aver inserito un orario di invio valido. Sei sicuro di voler mettere adesso il messaggio nella “Posta in uscita”?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "Cliccando su “Invia adesso” si invia il messaggio immediatamente. NON VIENE quindi pianificato l'invio del messaggio ad un orario specifico. Se lo si desidera inviare specificando un orario, cliccare il pulsante “Invia verso le:” nel riquadro verde dopo aver inserito un orario di invio valido. Sei sicuro di voler inviare il messaggio adesso?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "Visualizza nuovamente questo avviso in futuro",

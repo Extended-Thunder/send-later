@@ -157,7 +157,7 @@
   },
   "sendAtLabel": {
     "message": "發信時間：",
-    "description": ""
+    "description": "This is used in the scheduling pop-up at the beginning of the dynamic label for the button the user clicks to send a scheduled message at the specified date/time. It is followed in the button by a formatted date/time. For example, in English: 'Send at Tue, Aug 29, 2023, 11:26 AM'."
   },
   "sendBtwnLabel": {
     "message": "介於",
@@ -609,11 +609,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "按\"放在寄件匣\"並立即將郵件送到寄件匣中。這個動作不會安排郵件在排程時間發送。要在排程時間發送，按一下綠色框中的\"發送於\"按鈕。你確定想要把郵件送到寄件匣中？",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "按\"立即發出\"並立即發出郵件。這個動作不會安排郵件在特定時間發送。要在特定時間發送，按一下綠色框中的\"發送於\"按鈕。你確定想要把郵件立即發出？",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "下次顯示此警告訊息",

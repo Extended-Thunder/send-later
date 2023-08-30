@@ -153,7 +153,7 @@
   },
   "sendAtLabel": {
     "message": "Lähetysajankohta",
-    "description": ""
+    "description": "This is used in the scheduling pop-up at the beginning of the dynamic label for the button the user clicks to send a scheduled message at the specified date/time. It is followed in the button by a formatted date/time. For example, in English: 'Send at Tue, Aug 29, 2023, 11:26 AM'."
   },
   "sendBtwnLabel": {
     "message": "Aikaväli",
@@ -605,11 +605,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "”Siirrä Lähteviin” -nappi siirtää viestin Lähtevät-kansioon, josta se lähetetään, kun viestejä lähetetään seuraavan kerran tai valitset valikosta ”Lähetä lähtevät viestit”. Viestiä EI siis ajasteta. Ajastukseen voit käyttää vihreäreunuksisen laatikon pitkää Lähetä-painiketta, joka näkyy kun olet määrittänyt ensin lähetysajan. Siirretäänkö viesti Lähteviin?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "”Lähetä heti” -napin painaminen lähettää viestin VÄLITTÖMÄSTI. Viestiä EI siis ajasteta. Ajastukseen voit käyttää vihreäreunuksisen laatikon pitkää Lähetä-painiketta, joka näkyy kun olet määrittänyt ensin lähetysajan. Haluatko varmasti lähettää viestin heti?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "Näytä tämä varoitus myös ensi kerralla",

@@ -145,7 +145,7 @@
   },
   "sendAtLabel": {
     "message": "Send",
-    "description": ""
+    "description": "This is used in the scheduling pop-up at the beginning of the dynamic label for the button the user clicks to send a scheduled message at the specified date/time. It is followed in the button by a formatted date/time. For example, in English: 'Send at Tue, Aug 29, 2023, 11:26 AM'."
   },
   "sendBtwnLabel": {
     "message": "Mellom",
@@ -597,11 +597,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "Å klikke på \"Plasser i utboksen\" legger meldingen i utboksen umiddelbart. Den VIL IKKE sette meldingen til å bli sendt på et bestemt tidspunkt. For det, velger du knappen \"Send rundt\" i den grønne boksen etter å ha skrevet inn et gyldig sendingstidspunkt. Er du sikker på at du vil plassere meldingen i utboksen nå?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "Å klikke på \"Send nå\" sender meldingen umiddelbart. Den VIL IKKE sette meldingen til å bli sendt på et bestemt tidspunkt. For det, velger du knappen \"Send rundt\" i den grønne boksen etter å ha skrevet inn et gyldig sendingstidspunkt. Er du sikker på at du vil sende meldingen nå?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "Vis denne advarselen neste gang",

@@ -149,7 +149,7 @@
   },
   "sendAtLabel": {
     "message": "Enviar às",
-    "description": ""
+    "description": "This is used in the scheduling pop-up at the beginning of the dynamic label for the button the user clicks to send a scheduled message at the specified date/time. It is followed in the button by a formatted date/time. For example, in English: 'Send at Tue, Aug 29, 2023, 11:26 AM'."
   },
   "sendBtwnLabel": {
     "message": "Entre",
@@ -608,11 +608,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "Clicando em \"Colocar na caixa de saída\" coloca a mensagem na caixa de saída imediatamente. Isto não agenda a mensagem para ser enviada num momento específico. Para isso, clique no botão \"Enviar\" na caixa verde depois de introduzir um tempo de envio válido. Tem certeza que quer colocar a mensagem na caixa de saída agora?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "Clicando em \"Enviar agora\" envia a mensagem imediatamente. Isto não agenda a mensagem para ser enviada num momento específico. Para isso, clique no botão \"Enviar\" na caixa verde depois de introduzir um tempo de envio válido. Tem certeza de que deseja enviar a mensagem agora?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "Mostre este aviso da próxima vez.",

@@ -157,7 +157,7 @@
   },
   "sendAtLabel": {
     "message": "Send kl.",
-    "description": ""
+    "description": "This is used in the scheduling pop-up at the beginning of the dynamic label for the button the user clicks to send a scheduled message at the specified date/time. It is followed in the button by a formatted date/time. For example, in English: 'Send at Tue, Aug 29, 2023, 11:26 AM'."
   },
   "sendBtwnLabel": {
     "message": "Mellem",
@@ -250,6 +250,10 @@
   "showHeaderPrefTooltip": {
     "message": "Skal overskriften “X-Send-senere-Kl” vises, altså det tidspunkt hvor en kladde er planlagt til at blive sendt, i overskriften når du ser på en besked.",
     "description": ""
+  },
+  "showToolbarTextLabel": {
+    "message": "Vis tekst på værktøjslinie knap",
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
     "message": "Brugervejledning",
@@ -643,12 +647,12 @@
     "description": ""
   },
   "OutboxConfirmMessage": {
-    "message": "Hvis du klikker på “Læg i udbakke” lægges meddelelsen i din udbakke med det samme. Det planlægger IKKE beskeden til at blive sendt på et bestemt tidspunkt. For at det skal ske, skal du klikke på “Send kl (tidspunkt)” knappen i den grønne boks efter indtastning af en gyldig sendetid. Er du sikker på, at du vil lægge beskeden i din udbakke nu?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "message": "Hvis du klikker på “Læg i udbakke” lægges meddelelsen i din udbakke med det samme. Det planlægger IKKE beskeden til at blive sendt på et bestemt tidspunkt. For at det skal ske, skal du klikke på “Send kl (tidspunkt)” knappen efter indtastning af et gyldigt tidspunkt. Er du sikker på, at du vil lægge beskeden i din udbakke nu?",
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
-    "message": "Klik på “Send nu” sender beskeden med det samme. Det planlægger IKKE beskeden til at blive sendt på et bestemt tidspunkt. For at det sker, skal du klikke på “Send kl. (tidspunkt)” knappen i den grønne boks efter indtastning af et gyldig tidspunkt. Er du sikker på, at du vil sende beskeden nu?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "message": "Klik på “Send nu” sender beskeden med det samme. Det planlægger IKKE beskeden til at blive sendt på et bestemt tidspunkt. For at det sker, skal du klikke på “Send kl. (tidspunkt)” knappen efter indtastning af et gyldigt tidspunkt. Er du sikker på, at du vil sende beskeden nu?",
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "Vis denne advarsel næste gang",

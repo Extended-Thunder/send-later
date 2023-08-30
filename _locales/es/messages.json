@@ -141,7 +141,7 @@
   },
   "sendAtLabel": {
     "message": "Enviar el",
-    "description": ""
+    "description": "This is used in the scheduling pop-up at the beginning of the dynamic label for the button the user clicks to send a scheduled message at the specified date/time. It is followed in the button by a formatted date/time. For example, in English: 'Send at Tue, Aug 29, 2023, 11:26 AM'."
   },
   "sendBtwnLabel": {
     "message": "Entre las",
@@ -612,11 +612,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "Hacer clic en “Poner en la Bandeja de Salida” sitúa el mensaje en su Bandeja de Salida de inmediato. NO programa el mensaje para que sea enviado a una hora específica. Para eso, haga clic en el botón “Enviar en torno al” en el recuadro verde, tras introducir una hora de envío válida. ¿Está seguro de que quiere poner el mensaje en su Bandeja de Salida ahora?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "Hacer clic en “Enviar ahora” envía el mensaje inmediatamente. NO programa el mensaje para que sea enviado a una hora específica. Para eso, haga clic en el botón “Enviar en torno al” en el recuadro verde tras introducir una hora de envío válida. ¿Está seguro de que quiere enviar el mensaje ahora?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "Mostrar esta advertencia la próxima vez",

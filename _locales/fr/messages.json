@@ -149,7 +149,7 @@
   },
   "sendAtLabel": {
     "message": "Programmer pour",
-    "description": ""
+    "description": "This is used in the scheduling pop-up at the beginning of the dynamic label for the button the user clicks to send a scheduled message at the specified date/time. It is followed in the button by a formatted date/time. For example, in English: 'Send at Tue, Aug 29, 2023, 11:26 AM'."
   },
   "sendBtwnLabel": {
     "message": "Entre",
@@ -242,6 +242,10 @@
   "showHeaderPrefTooltip": {
     "message": "Autorise l'affichage de l'en-tête « X-Send-Later-At », comportant le moment prévu d'envoi du message, dans l'en-tête, lors de l'affichage d'un message",
     "description": ""
+  },
+  "showToolbarTextLabel": {
+    "message": "Afficher « Envoyer Plus Tard » dans la barre d'état",
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
     "message": "Guide de l'utilisateur",
@@ -620,11 +624,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "« Placer en attente » mettra directement le message dans la boîte d'envoi. Le message NE SERA PAS programmé pour un envoi à un moment précis. À cette fin, cliquez sur « Programmer pour… » dans le cadre vert après avoir choisi une date d'envoi correcte. Êtes-vous sûr de vouloir placer le message dans la boîte d'envoi maintenant ?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "Cliquer sur « Envoyer maintenant » envoie le message immédiatement. Cela ne planifie PAS l'envoi du message à un moment ultérieur. Pour cela, il faut utiliser le bouton « Programmer pour » dans le cadre vert après avoir indiqué une heure d'envoi correcte. Voulez-vous vraiment envoyer le message maintenant ?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "Afficher cet avertissement la prochaine fois",

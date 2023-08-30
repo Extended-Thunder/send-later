@@ -149,7 +149,7 @@
   },
   "sendAtLabel": {
     "message": "Отправить в",
-    "description": ""
+    "description": "This is used in the scheduling pop-up at the beginning of the dynamic label for the button the user clicks to send a scheduled message at the specified date/time. It is followed in the button by a formatted date/time. For example, in English: 'Send at Tue, Aug 29, 2023, 11:26 AM'."
   },
   "sendBtwnLabel": {
     "message": "Между",
@@ -597,11 +597,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "Нажатие на “Поместить в «Исходящие»” помещает сообщение в папку «Исходящие» немедленно. Оно НЕ ПЛАНИРУЕТ отправку сообщения в указанное время. Для этого, нажмите на кнопку “Отправить примерно” в зеленой области после указания корректного времени. Вы уверены, что хотите поместить сообщение в папку «Исходящие»?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "Нажатие на “Отправить сейчас” отправляет сообщение немедленно. Оно НЕ ПЛАНИРУЕТ отправку сообщения в указанное время. Для этого, нажмите на кнопку “Отправить примерно” в зеленой области после указания корректного времени. Вы уверены, что хотите отправить сообщение сейчас?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "Показывать это предупреждение в следующий раз",

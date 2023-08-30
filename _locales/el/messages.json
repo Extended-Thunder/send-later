@@ -149,7 +149,7 @@
   },
   "sendAtLabel": {
     "message": "Αποστολή στις",
-    "description": ""
+    "description": "This is used in the scheduling pop-up at the beginning of the dynamic label for the button the user clicks to send a scheduled message at the specified date/time. It is followed in the button by a formatted date/time. For example, in English: 'Send at Tue, Aug 29, 2023, 11:26 AM'."
   },
   "sendBtwnLabel": {
     "message": "Μεταξύ",
@@ -600,11 +600,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "Επιλέγοντας “Μετακίνηση στα Εξερχόμενα”, το μήνυμα μετακινείται αμέσως στα Εξερχόμενα. ΔΕΝ ορίζεται η αποστολή του σε καθορισμένη στιγμή. Για να γίνει αυτό, πατήστε το κουμπί “Αποστολή αργότερα” στα πράσινο πλαίσιο, αφού ορίσετε μία έγκυρη στιγμή αποστολής. Είστε σίγουρος πως θέλετε να μετακινήσετε το μήνυμα στα Εξερχόμενα τώρα;",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "Επιλέγοντας “Αποστολή τώρα”, το μήνυμα στέλνεται αμέσως. ΔΕΝ ορίζεται η αποστολή του σε καθορισμένη στιγμή. Για να γίνει αυτό, πατήστε το κουμπί “Αποστολή αργότερα” στα πράσινο πλαίσιο, αφού ορίσετε μία έγκυρη στιγμή αποστολής. Είστε σίγουρος πως θέλετε να στείλετε το μήνυμα τώρα;",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "Προβολή αυτής της προειδοποίησης στο μέλλον",

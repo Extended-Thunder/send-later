@@ -149,7 +149,7 @@
   },
   "sendAtLabel": {
     "message": "Enviar a les",
-    "description": ""
+    "description": "This is used in the scheduling pop-up at the beginning of the dynamic label for the button the user clicks to send a scheduled message at the specified date/time. It is followed in the button by a formatted date/time. For example, in English: 'Send at Tue, Aug 29, 2023, 11:26 AM'."
   },
   "sendBtwnLabel": {
     "message": "Entre",
@@ -624,11 +624,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "Clicant “Col·locar en la Safata de Sortida” posa el missatge en la Safata de Sortida immediatament. NO programa el missatge per a ser enviat en una hora específica. Per fer això, cliqueu el botó “Enviar al voltant de” de la caixa verda després d'introduir una hora vàlida. Està segur que vol posar el missatge a la Safata de Sortida ara?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "Clicant “Enviar ara” envia el missatge immediatament. NO programa el missatge per a ser enviat a una hora específica. Per fer això, cliqueu el botó “Enviar al voltant de” de la caixa verda després d'introduir una hora vàlida. Està segur que vol enviar el missatge ara?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "Mostrar aquest avís el proper cop",

@@ -157,7 +157,7 @@
   },
   "sendAtLabel": {
     "message": "‫שלח ב:‬",
-    "description": ""
+    "description": "This is used in the scheduling pop-up at the beginning of the dynamic label for the button the user clicks to send a scheduled message at the specified date/time. It is followed in the button by a formatted date/time. For example, in English: 'Send at Tue, Aug 29, 2023, 11:26 AM'."
   },
   "sendBtwnLabel": {
     "message": "בין",
@@ -632,11 +632,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "בחירה ב \"שלח\" מעבירה את ההודעה לתיבת הדואר היוצא באופן מיידי ולא מתבצע תיזמון למשלוח ההודעה במועד ספציפי. לשם קביעת מועד, יש לבחור בכפתור \"שלח במועד\" בתיבה  הירוקה לאחר שקבעת מועד מתאים למשלוח. האם את/ה בטוח שאת/ה מעוניין להעביר את ההודעה לתיבת הדואר היוצא כעט?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "לחיצה על \"שלח כעת\" תשלח את ההודעה מייד. פונקציה זו אינה מתזמנת את ההודעה למשלוח בזמן ספציפי. לשם כך, לחץ \"שלח במועד\" בתיבה הירוקה לאחר הזנת זמן משלוח תקין. האם אתה בטוח שברצונך לשלוח את ההודעה כעת?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "הצג אזהרה זו בפעם הבאה",

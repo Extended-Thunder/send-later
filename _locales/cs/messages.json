@@ -149,7 +149,7 @@
   },
   "sendAtLabel": {
     "message": "Odeslat v",
-    "description": ""
+    "description": "This is used in the scheduling pop-up at the beginning of the dynamic label for the button the user clicks to send a scheduled message at the specified date/time. It is followed in the button by a formatted date/time. For example, in English: 'Send at Tue, Aug 29, 2023, 11:26 AM'."
   },
   "sendBtwnLabel": {
     "message": "Mezi",
@@ -601,11 +601,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "Kliknutí na tlačítko „Dát do „Pošty k odeslání““ vloží zprávu okamžitě do vaší „Pošty k odeslání“, takže u ní NEBUDE naplánováno odeslání v určitý čas. Pro odeslání naplánovaném v určitý čas klikněte (po vložení platného času odeslání) na tlačítko „Odeslat přibližně v“ v zeleném rámečku. Opravdu chcete zprávu vložit do vaší „Pošty k odeslání“?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "Kliknutí na \"Odeslat nyní\" odešle zprávu hned. Nenaplánuje ji to na konkrétní datum a čas. Abyste ji mohli naplánovat, klikněte na tlačítko \"Odeslat přibližně v\" v zeleném rámečku, poté, co zadáte čas odeslání. Opravdu chcete odeslat zprávu hned?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”."
+    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "Zobrazit toto varování příště",
