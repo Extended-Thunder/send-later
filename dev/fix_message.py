@@ -26,8 +26,11 @@ def parse_args():
     parser.add_argument('--version', action='store', help='Defaults to most '
                         'recent version on GitHub or ATN')
     parser.add_argument('--html', action='store_true')
-    parser.add_argument('--browser', action='store_true',
-                        help='Implies --html')
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('--browser', action='store_true',
+                       help='Show message in browser (implies --html)')
+    group.add_argument('--clipboard', action='store_true', help='Copy message '
+                       'to clipboard using xclip or wl-copy')
     args = parser.parse_args()
     if args.browser:
         args.html = True
@@ -141,6 +144,12 @@ def process(args, version, on_atn, gh_info):
                            check=True)
             # Give the browser time to read the file.
             time.sleep(5)
+    elif args.clipboard:
+        clip_command = (('xclip', '-selection', 'clipboard')
+                        if os.environ['XDG_SESSION_TYPE'] == 'x11'
+                        else ('wl-copy',))
+        subprocess.run(clip_command, input=output, check=True,
+                       encoding='utf8')
     else:
         print(output, end='')
 
