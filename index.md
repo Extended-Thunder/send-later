@@ -1821,11 +1821,9 @@ to do that.
 3.  In the main Thunderbird window, type `Ctrl-Shift-J` to open the error console.
 4.  Click the little trash can icon in the upper corner to clear the window.
 5.  Do whatever task I told you to do with debug logging enabled.
-6.  Repeat steps 1 and 2 above, but this time change the setting to "Fatal" or
-    "Info" instead of "All".
-7.  Right click on one of the messages in the error console window and click
+6.  Right click on one of the messages in the error console window and click
     "Select All".
-8. Copy and paste the selected messages into an email message to us.
+7.  Paste the messages into an email message to us.
 
 ## Helping to improve the add-on
 
