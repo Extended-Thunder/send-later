@@ -66,7 +66,7 @@ def get_gh_info(want_version):
 def unwrap(text):
     return re.sub(r'\n\s*\b', ' ', dedent(text))
 
-        
+
 def generate_markdown(version, on_atn, gh_info):
     atn_steps = unwrap(f'''\
     * Go to [addons.thunderbird.net]({atn_versions_url}) and confirm that
@@ -79,8 +79,21 @@ def generate_markdown(version, on_atn, gh_info):
     add-ons have been updated," next to the gear icon.\n\n''')
 
     markdown = ''
-    markdown += (f'This issue should be fixed in release {version} of '
-                 f'Send Later.\n\n')
+    markdown += unwrap(f'''\
+    This issue should be fixed in release {version} of Send Later.
+
+    To check what version of Send Later you have:
+
+    * Open the Add-ons page in Thunderbird ("Add-ons and Themes" from
+    the corner "hamburger" menu).
+    * Click on Extensions on the left if you're not already on the
+    left if you're not already there.
+    * Find Send Later in the list of extensions and click on it to
+    open its details page.
+    * The version number should be displayed there next to
+    "Version".\n
+    ''')
+
     if on_atn:
         markdown += unwrap('''\
         This release is available on addons.thunderbird.net, and unless you've
