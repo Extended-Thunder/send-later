@@ -90,10 +90,6 @@ const SendLater = {
   // Time for each loop over and above the interval time
   loopExcessTimes: [],
 
-  // Holds a reference to the main loop interval timeout
-  // (created via setTimeout(...) in mainLoop())
-  loopTimeout: null,
-
   // Cause current compose window to send immediately
   // (after some pre-send checks)
   async checkDoSendNow(options) {
@@ -2049,7 +2045,7 @@ const SendLater = {
   // get a false impression that the extension is working.
   async disable() {
     SLStatic.warn("Disabling Send Later.");
-    await SLStatic.nofail(clearDeferred, SendLater.loopTimeout);
+    await SLStatic.nofail(clearDeferred, "mainLoop");
     await SLStatic.nofail(SendLater.setQuitNotificationsEnabled, false);
     await SLStatic.nofail(messenger.browserAction.disable);
     await SLStatic.nofail(messenger.browserAction.setTitle, {
@@ -2117,9 +2113,7 @@ async function mainLoop() {
   SLStatic.debug("Entering main loop.");
 
   try {
-    if (SendLater.loopTimeout) {
-      await clearDeferred(SendLater.loopTimeout);
-    }
+    clearDeferred("mainLoop");
   } catch (ex) {
     SLStatic.error(ex);
   }
@@ -2175,11 +2169,7 @@ async function mainLoop() {
           nActive,
         );
 
-        SendLater.loopTimeout = setDeferred(
-          "mainLoop",
-          60000 * interval,
-          mainLoop,
-        );
+        setDeferred("mainLoop", 60000 * interval, mainLoop);
         SLStatic.debug(
           `Next main loop iteration in ${60 * interval} seconds.`,
         );
@@ -2193,7 +2183,7 @@ async function mainLoop() {
           nActive,
         );
 
-        SendLater.loopTimeout = setDeferred("mainLoop", 60000, mainLoop);
+        setDeferred("mainLoop", 60000, mainLoop);
         SLStatic.debug(`Next main loop iteration in 1 minute.`);
       }
     } else {
@@ -2206,16 +2196,18 @@ async function mainLoop() {
       });
       await messenger.browserAction.setBadgeText({ text: null });
 
-      SendLater.loopTimeout = setDeferred("mainLoop", 60000, mainLoop);
+      setDeferred("mainLoop", 60000, mainLoop);
       SLStatic.debug(`Next main loop iteration in 1 minute.`);
     }
   } catch (ex) {
     SLStatic.error(ex);
 
-    SendLater.loopTimeout = setDeferred("mainLoop", 60000, mainLoop);
+    setDeferred("mainLoop", 60000, mainLoop);
     SLStatic.debug(`Next main loop iteration in 1 minute.`);
   }
 }
+
+let deferredObjects = {};
 
 function alarmsListener(alarm, checking) {
   SLStatic.debug(`alarmsListener: alarm=${alarm.name}, checking=${checking}`);
@@ -2230,10 +2222,18 @@ function alarmsListener(alarm, checking) {
   if (checking) {
     return true;
   }
-  return func();
+  if (!deferredObjects[alarm.name].triggered) {
+    SLStatic.debug(`alarms.Listener: triggered ${alarm.name}`);
+    deferredObjects[alarm.name].triggered = true;
+    func();
+  } else {
+    SLStatic.debug(`alarmsListener: ${alarm.name} already triggered`);
+  }
 }
 
 function setDeferred(name, timeout, func) {
+  SLStatic.debug(`setDeferred(${name}, ${timeout})`);
+  clearDeferred(name);
   // Alarms' granularity is a minimum of one minute, but timeouts can run more
   // frequently than that. We use a timeout to try to get the best granularity,
   // and an alarm because timeouts don't run reliably when Thunderbird windows
@@ -2242,17 +2242,37 @@ function setDeferred(name, timeout, func) {
     throw new Error(`Unknown alarm: ${name}`);
   }
   let timeoutId;
+  let response = {
+    scheduledAt: new Date(),
+    timeout: timeout,
+    name: name,
+  };
   if (timeout >= 60000) {
-    timeoutId = undefined;
+    response.timeoutId = undefined;
   } else {
-    // timeoutId = setTimeout(func, timeout);
-    timeoutId = undefined;
+    response.timeoutId = setTimeout(() => {
+      if (!response.triggered) {
+        SLStatic.debug(`setDeferred timeout callback for ${name}`);
+        response.triggered = true;
+        func();
+      } else {
+        SLStatic.debug(`setDeferred timeout ${name} already triggered`);
+      }
+    }, timeout);
   }
   messenger.alarms.create(name, { delayInMinutes: timeout / 1000 / 60 });
-  return { timeoutId: timeoutId, name: name };
+  deferredObjects[name] = response;
+  SLStatic.debug(`setDeferred(${name}) success`);
 }
 
-async function clearDeferred(deferredObj) {
+async function clearDeferred(name) {
+  SLStatic.debug(`clearDeferred(${name})`);
+  let deferredObj = deferredObjects[name];
+  if (!deferredObj) {
+    SLStatic.debug("clearDeferred: no timer to clear");
+    return;
+  }
+  deferredObj.triggered = true;
   clearTimeout(deferredObj.timeoutId);
   await messenger.alarms.clear(deferredObj.name);
 }
