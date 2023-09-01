@@ -910,6 +910,20 @@ const SendLater = {
       delete preferences.checkTimePref_isMilliseconds;
     }
 
+    if (typeof preferences.checkTimePref == "string") {
+      // 2023-09-01 Old versions of the code didn't handle this properly. We
+      // can presumably eventually delete this backward compatibility fix.
+      let value = Number(preferences.checkTimePref);
+      if (isNaN(value)) {
+        SLStatic.error(
+          `Invalid value ${preferences.checkTimePref} for checkTimePref ` +
+            `preference, reverting to default value 1`,
+        );
+        value = 1;
+      }
+      preferences.checkTimePref = value;
+    }
+
     await messenger.storage.local.set({ preferences, ufuncs });
   },
 
@@ -944,7 +958,7 @@ const SendLater = {
     if (enabled) {
       if (!prefs) prefs = await SLTools.getPrefs();
       enabled =
-        prefs.askQuit && prefs.sendDrafts && (+prefs.checkTimePref || 0) > 0;
+        prefs.askQuit && prefs.sendDrafts && (prefs.checkTimePref || 0) > 0;
     }
     if (enabled) {
       if (nActive == undefined)
@@ -1172,9 +1186,13 @@ const SendLater = {
   },
 
   async storageChangedListener(changes, areaName) {
+    SLStatic.debug("storageChangedListener");
     if (areaName === "local" && changes.preferences) {
       SLStatic.debug("Propagating changes from local storage");
       const preferences = changes.preferences.newValue;
+      if (preferences.checkTimePref) {
+        rescheduleDeferred("mainLoop", preferences.checkTimePref * 60000);
+      }
       SendLater.prefCache = preferences;
       SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
 
@@ -2120,7 +2138,7 @@ async function mainLoop() {
 
   try {
     let preferences = await SLTools.getPrefs();
-    let interval = +preferences.checkTimePref || 0;
+    let interval = preferences.checkTimePref || 0;
     let now = new Date();
     if (SendLater.loopMinutes && SendLater.previousLoop) {
       SendLater.loopExcessTimes.push(
@@ -2233,7 +2251,9 @@ function alarmsListener(alarm, checking) {
 
 function setDeferred(name, timeout, func) {
   SLStatic.debug(`setDeferred(${name}, ${timeout})`);
-  clearDeferred(name);
+  if (deferredObjects[name] && !deferredObjects[name].triggered) {
+    clearDeferred(name);
+  }
   // Alarms' granularity is a minimum of one minute, but timeouts can run more
   // frequently than that. We use a timeout to try to get the best granularity,
   // and an alarm because timeouts don't run reliably when Thunderbird windows
@@ -2246,6 +2266,7 @@ function setDeferred(name, timeout, func) {
     scheduledAt: new Date(),
     timeout: timeout,
     name: name,
+    func: func,
   };
   if (timeout >= 60000) {
     response.timeoutId = undefined;
@@ -2263,6 +2284,42 @@ function setDeferred(name, timeout, func) {
   messenger.alarms.create(name, { delayInMinutes: timeout / 1000 / 60 });
   deferredObjects[name] = response;
   SLStatic.debug(`setDeferred(${name}) success`);
+}
+
+async function rescheduleDeferred(name, timeout) {
+  // If the specified alarm is currently scheduled, recalculate when it should
+  // be scheduled for based on the specified new timeout and reschedule as
+  // needed.
+  let deferred = deferredObjects[name];
+  if (!deferred) {
+    SLStatic.debug(`rescheduleDeferred: unrecognized time ${name}`);
+    return;
+  }
+  if (deferred.triggered) {
+    SLStatic.debug(`rescheduleDeferred: ${name} already triggered`);
+    return;
+  }
+  if (timeout == deferred.timeout) {
+    SLStatic.debug(`rescheduleDeferred: ${name} no change`);
+    return;
+  }
+  let scheduledAt = deferred.scheduledAt;
+  let now = new Date();
+  let msSinceScheduled = now - scheduledAt;
+  let msLeft = timeout - msSinceScheduled;
+  if (msLeft < 0) {
+    msLeft = 1;
+  }
+  let func = deferred.func;
+  clearDeferred(name);
+  setDeferred(name, msLeft, func);
+  // Gross but effective
+  deferred = deferredObjects[name];
+  deferred.scheduledAt = scheduledAt;
+  deferred.timeout = timeout;
+  SLStatic.debug(
+    `rescheduleDeferred moved ${name} to ${new Date(now.getTime() + msLeft)}`,
+  );
 }
 
 async function clearDeferred(name) {

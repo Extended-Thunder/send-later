@@ -1,5 +1,5 @@
 {
-  "checkTimePref": ["int", 1],
+  "checkTimePref": ["number", 1],
   "quickOptions1Label": ["string", "in 15 minutes"],
   "quickOptions1funcselect": ["string", "Delay"],
   "quickOptions1Args": ["string", "15"],

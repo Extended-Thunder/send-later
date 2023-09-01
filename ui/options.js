@@ -412,6 +412,23 @@ const SLOptions = {
         }
       }
 
+      if (element.type == "number") {
+        let numberValue;
+        if (value == "") {
+          // If you have a number input field and the user enters something
+          // non-numeric, then it returns the empty string as its value.
+          numberValue = NaN;
+        } else {
+          numberValue = Number(value);
+        }
+        if (isNaN(numberValue)) {
+          SLStatic.info(`Invalid numerical value "${value}" for ${id}`);
+          SLOptions.showXMark(element, "red");
+          return;
+        }
+        value = numberValue;
+      }
+
       SLStatic.info(
         `Set option (${element.type}) ${id}: ` +
           `${preferences[id]} -> ${value}`,
