@@ -53,7 +53,7 @@
   },
   "generalOptionsTitle": {
     "message": "一般",
-    "description": ""
+    "description": "The title of the 'General' section on the options page"
   },
   "logConsoleLevelLabel": {
     "message": "コンソールログレベル",

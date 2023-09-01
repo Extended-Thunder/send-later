@@ -57,7 +57,11 @@
   },
   "generalOptionsTitle": {
     "message": "Generelt",
-    "description": ""
+    "description": "The title of the 'General' section on the options page"
+  },
+  "shortcutsOptionsTitle": {
+    "message": "Genveje ",
+    "description": "The title of the 'Shortcuts' section on the options page"
   },
   "logConsoleLevelLabel": {
     "message": "Konsol logniveau",
@@ -346,6 +350,14 @@
   "donatelink.value": {
     "message": "Donér",
     "description": ""
+  },
+  "activeAccountsOptionsTitle": {
+    "message": "Aktive konti",
+    "description": "Subtitle of the 'Advanced' section in the options where the user can mark which accounts Send Later should pay attention to."
+  },
+  "activeAccountsOptionsText": {
+    "message": "De konti, du afmarkerer i dette afsnit, ignoreres af Send senere: de kontrolleres ikke for planlagte kladder, og eventuelle planlagte udkast i dem bliver ikke leveret. Nyoprettede konti er aktive som standard  og hvis du planlægger en ny besked på en inaktiv konto, genaktiveres den automatisk. Du bør deaktivere enhver konto som Thunderbird ikke kan logge på, f.eks. fordi dit login er deaktiveret eller serveren er  nede for øjeblikket.",
+    "description": "This explanation appears below activeAccountsOptionsTitle and above the list of accounts"
   },
   "advancededitor.title": {
     "message": "Avanceret konfigurationseditor",
@@ -672,6 +684,18 @@
   "ScheduledMessagesWarningQuit": {
     "message": "Send senere kan kun sende beskeder, når $1 kører. Husk at genstarte den, før dine beskeder er planlagt til at blive sendt!",
     "description": ""
+  },
+  "IncompatibleEncryptionTitle": {
+    "message": "Krypteringsindstillingerne er inkompatible med $1",
+    "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has incompatible encryption or signing enabled. The placeholder is replaced with the extension name."
+  },
+  "IncompatibleEncryption-pgp-error-Text": {
+    "message": "$1 kan ikke planlægge meddelelser, der er krypteret eller signeret digitalt med PGP, eller hvis kladder er krypteret med PGP. Du skal deaktivere disse eller skifte til S/MIME før planlægning af denne besked. For kryptering af udkast, se “Gem udkast beskeder i krypteret format” under “Ende-Til-Ende Kryptering” i konto- eller identitets indstillinger.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has PGP encryption, signing, or draft encryption enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
+  "IncompatibleEncryption-drafty-error-Text": {
+    "message": "Hvis du vil have $1 til at signere eller kryptere planlagte beskeder med S/MIME, skal du aktivere kryptering af kladder. For at gøre det, se “Gem udkast beskeder i krypteret format” under “Ende-til-Ende Kryptering” i konto- eller identitetsindstillinger.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has S/MIME encryption or signing without enabling draft encryption first. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
   },
   "EncryptionUnsupportedTitle": {
     "message": "$1 understøtter ikke kryptering",

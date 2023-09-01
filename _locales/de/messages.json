@@ -57,7 +57,11 @@
   },
   "generalOptionsTitle": {
     "message": "Allgemein",
-    "description": ""
+    "description": "The title of the 'General' section on the options page"
+  },
+  "shortcutsOptionsTitle": {
+    "message": "Tastenkürzel",
+    "description": "The title of the 'Shortcuts' section on the options page"
   },
   "logConsoleLevelLabel": {
     "message": "Log-Einträge auf der Konsole ausgeben ab Protokollierungsebene",
@@ -251,6 +255,10 @@
     "message": "Auswählen, ob die „X-Send-Later-At:”-Kopfzeile (z.B. die Zeit, wann ein Entwurf zum Senden geplant ist) im Nachrichtenkopf anzeigt werden soll oder nicht.",
     "description": ""
   },
+  "showToolbarTextLabel": {
+    "message": "Schaltfläche mit Text anzeigen",
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
+  },
   "userGuideLabel": {
     "message": "Benutzerhandbuch",
     "description": ""
@@ -350,6 +358,14 @@
   "donatelink.value": {
     "message": "Spenden",
     "description": ""
+  },
+  "activeAccountsOptionsTitle": {
+    "message": "Aktive Konten",
+    "description": "Subtitle of the 'Advanced' section in the options where the user can mark which accounts Send Later should pay attention to."
+  },
+  "activeAccountsOptionsText": {
+    "message": "Die Konten, die Sie in diesem Abschnitt deaktivieren, werden von „Später senden“ ignoriert: Sie werden nicht auf geplante Entwürfe überprüft, und alle geplanten Entwürfe werden nicht versendet. Neu erstellte Konten sind standardmäßig aktiv, und wenn Sie eine neue Nachricht in einem inaktiven Konto planen, wird das Konto automatisch reaktiviert. Sie sollten alle Konten deaktivieren, in die sich Thunderbird nicht einloggen kann, z. B. weil Ihr Login deaktiviert ist oder der Server momentan nicht erreichbar ist.",
+    "description": "This explanation appears below activeAccountsOptionsTitle and above the list of accounts"
   },
   "advancededitor.title": {
     "message": "Erweiterter Konfigurations-Editor",

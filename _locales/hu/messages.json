@@ -57,7 +57,11 @@
   },
   "generalOptionsTitle": {
     "message": "Általános",
-    "description": ""
+    "description": "The title of the 'General' section on the options page"
+  },
+  "shortcutsOptionsTitle": {
+    "message": "Gyorsbillentyűk",
+    "description": "The title of the 'Shortcuts' section on the options page"
   },
   "logConsoleLevelLabel": {
     "message": "Vezérlőpult naplószint",
@@ -251,6 +255,10 @@
     "message": "Az „X-Send-Later-At” fejléc megjelenítése, azaz idő, amikor a tervezetet elküldjük, a fejlécben, amikor üzenetet nézünk.",
     "description": ""
   },
+  "showToolbarTextLabel": {
+    "message": "Szöveg megjelenítése az eszköztár gombján",
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
+  },
   "userGuideLabel": {
     "message": "Felhasználói útmutató",
     "description": ""
@@ -350,6 +358,14 @@
   "donatelink.value": {
     "message": "Adományozás",
     "description": ""
+  },
+  "activeAccountsOptionsTitle": {
+    "message": "Aktív fiókok",
+    "description": "Subtitle of the 'Advanced' section in the options where the user can mark which accounts Send Later should pay attention to."
+  },
+  "activeAccountsOptionsText": {
+    "message": "Az ebben a szakaszban be nem jelölt fiókokat a Későbbi küldés figyelmen kívül hagyja: nem ellenőrzi az ütemezett piszkozatok meglétét, és a bennük lévő ütemezett piszkozatok nem kerülnek kézbesítésre. Az újonnan létrehozott fiókok alapértelmezés szerint aktívak, és ha egy inaktív fiókban új üzenetet ütemez, az automatikusan újra aktiválódik. Minden olyan fiókot deaktiválnia kell, amelybe a Thunderbird nem tud bejelentkezni, például mert a bejelentkezése deaktiválva van, vagy mert a szerver jelenleg nem működik.",
+    "description": "This explanation appears below activeAccountsOptionsTitle and above the list of accounts"
   },
   "advancededitor.title": {
     "message": "Haladó beállításszerkesztő",
@@ -514,6 +530,26 @@
     "message": "Küldés később: Megpróbál újra elküldeni a már elküldött üzenetet! A(z) $1 Kimenő vagy Piszkozatok mappa valószínűleg sérült. Kérjük, javítsa meg azokat a https://extended-thunder.github.io/send-later/#corrupt-outbox címen leírtak szerint.",
     "description": ""
   },
+  "single_minute": {
+    "message": "perc",
+    "description": "Used in an error message when the phrase '1 minute' needs to be displayed."
+  },
+  "single_day": {
+    "message": "nap",
+    "description": "Used in an error message when the phrase '1 day' needs to be displayed."
+  },
+  "single_week": {
+    "message": "hét",
+    "description": "Used in an error message when the phrase '1 week' needs to be displayed."
+  },
+  "single_month": {
+    "message": "hónap",
+    "description": "Used in an error message when the phrase '1 month' needs to be displayed."
+  },
+  "single_year": {
+    "message": "év",
+    "description": "Used in an error message when the phrase '1 year' needs to be displayed."
+  },
   "plural_minutely": {
     "message": "percenként",
     "description": ""
@@ -657,6 +693,18 @@
     "message": "Küldés később csak akkor küldhet üzeneteket, amikor a(z) $1 fut. Kérjük, ne felejtse el újraindítani, mielőtt üzeneteit elküldeni szeretné!",
     "description": ""
   },
+  "IncompatibleEncryptionTitle": {
+    "message": "A titkosítási beállítások nem kompatibilisek ezzel: $1",
+    "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has incompatible encryption or signing enabled. The placeholder is replaced with the extension name."
+  },
+  "IncompatibleEncryption-pgp-error-Text": {
+    "message": "A $1 nem tud olyan üzeneteket ütemezni, amelyek PGP-vel titkosítottak vagy digitálisan aláírtak, vagy amelyek tervezeteit PGP-vel titkosították. Az üzenet ütemezése előtt ezeket le kell tiltania vagy S/MIME-re kell váltania. A vázlatok titkosításához lásd a fiók- vagy személyazonossági beállítások \"Végpontok közötti titkosítás\" menüpontjában a \"Piszkozatok titkosított formátumban tárolása\" című részt.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has PGP encryption, signing, or draft encryption enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
+  "IncompatibleEncryption-drafty-error-Text": {
+    "message": "Ha azt szeretné, hogy az $1 aláírja vagy titkosítsa az ütemezett üzeneteket az S/MIME segítségével, engedélyeznie kell a tervezetek titkosítását. Ehhez lásd a fiók- vagy személyazonosság-beállítások \"Végpontok közötti titkosítás\" menüpontjában a \"Piszkozatok titkosított formátumban tárolása\" részt.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has S/MIME encryption or signing without enabling draft encryption first. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
   "EncryptionUnsupportedTitle": {
     "message": "A $1 nem támogatja a titkosítást",
     "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has encryption or signing enabled. The placeholder is replaced with the extension name."
@@ -716,6 +764,10 @@
   "BlockedLateMessage": {
     "message": "A(z) „$1” tárgyú üzenetet a(z) $2 Piszkozatok mappájában több mint $3 perccel ezelőtt szállították, így a szállítás le van tiltva. Szerkessze a tervezetet, és küldje el kézzel vagy átütemezze azt. A késői üzenetek kézbesítésének megakadályozását úgy is letilthatja, hogy a „Ne küldjön üzeneteket több mint x perccel későn” beállítást.",
     "description": ""
+  },
+  "BlockedLateMessage2": {
+    "message": "A(z)z \"$1\" tárgyú üzenetet a $2 Piszkozatok mappájában  több mint $3 $4 ezelőtt kellett volna kézbesíteni, ezért a kézbesítés blokkolva lett. Szerkessze a piskozatot, vagy küldje el kézzel, vagy ütemezze át. A \"Ne küldjön üzeneteket több mint...\" beállítás kikapcsolható, hogy egyes régi üzenetek kézbesítését ne blokkolja, de a hat hónapnál régebbi üzenetek mindig blokkolva lesznek.",
+    "description": "This is an updated version of the BlockedLateMessage string which is intended to replace it. I've left the old string in the database for the time being so translators can use it as a reference / starting point. The 3rd placeholder in THIS string is a number and the fourth is a unit such as 'minutes', 'days', etc. It will be singular if the number is 1 or plural otherwise. The unit is pulled from single_day etc. or plural_daily etc."
   },
   "EditorReadMeCode": {
     "message": "// Üdvözöljük a Küldés később-függvényszerkesztőben!\n//\n// A szerkesztő lehetővé teszi, hogy olyan JavaScript függvényeket hozzon létre,\n// amelyek összetett üzenetütemezési folyamatokat valósítanak meg, amelyek a\n// parancsikonokkal társíthatók vagy a Küldés később párbeszédablakban választhatók ki.\n//\n// Amint a fentiekben látható, az ütemezési függvény hívásakor három érvet kap:\n// * \"specname\" szükséges ha ezt a függvényt szeretné megismételni (lásd alább)\n// * \"prev\" az előző ütemezett küldési idő, ha ez ismétlődő hívás\n// * \"args\" az előző meghívás által visszaadott további érvek, ha ez \n//   ismétlődő hívás\n//\n// A kódnak meg kell adnia a \"next\", \"nextspec\" és \"nextargs\" változókat a\n// következőképpen:\n//\n// * \"next\" a percek száma a jövőben, vagy a Dátum objektum, amely jelzi, \n//   hogy az üzenetet kell elküldeni.\n// * \"nextspec\" visszatérési részletes leírás, ha ez ismétlődő üzenet (lásd\n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence). \n//   Ha ezt nem állítja be, akkor az üzenet csak egyszer kerül elküldésre.\n//   Megjegyzés: ha azt szeretné, hogy ismételten hívhassa a függvényt, tegye:\n//     nextspec = \"function \" + specname;\n// * \"nextargs\" olyan érvek tömbje, amelyeket az \"args\" függvény következő\n//   meghívására kíván átadni.\n//\n// Miközben dolgozik a függvényiekkel, vizsgálható azt az \"prev\" és az \"args\"\n// értékek kitöltésével az alábbi szövegdobozokban, majd a Végrehajtás gombra\n// kattintva a függvény végrehajtásához és az eredmények megtekintéséhez.\n//\n// Két előre beállított mintafüggvény van: \"BusinessHours\" és \"DaysInARow\",\n// amelyekkel meg lehet változtatni, hogy többet fedezzen fel.\n//\n// Ez a \"ReadMeFirst\" (olvass el először) függvény csak az üzenet továbbítását\n// teszi lehetővé most, a következő soron keresztül.\nnext = new Date();",
@@ -905,8 +957,32 @@
     "message": "Jelezte, hogy ki szeretné hagyni a kiválasztott üzenetek egyikének következő előfordulását. Ha ezt követően meggondolja magát, kézzel át kell ütemeznie az üzeneteket. Biztos, hogy folytatni kívánja?",
     "description": "The text of the pop-up that warns the user when they activate the message list context menu command to skip the next occurrence of one or more messages. The purpose of this warning is to ensure that the user knows what the command does before using it. There is a checkbox in the pop-up which they can uncheck if they don't want to see the message again. See also 'AreYouSure' and 'ConfirmAgain' strings which occur in the same pop-up."
   },
+  "RescheduleErrorTitle": {
+    "message": "Hiba az üzenet újraütemezésekor",
+    "description": "Title of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "RescheduleErrorText": {
+    "message": "FIGYELMEZTETÉS: Váratlan hiba történt, amikor megpróbálta ütemezni a(z) \"$1\" tárgyú ütemezett üzenet következő előfordulását. A részletekért tekintse meg a Thunderbird hibanaplóját. Az előző ütemezett vázlat ezért nem törlődött. Törölje, vagy szerkessze és ütemezze újra, ha szeretné.",
+    "description": "Text of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "TelemetryAskTitle": {
+    "message": "$1 adatgyűjtési kérelem",
+    "description": "Title of the pop-up that asks the user whether we can collect anonymous usage data. The placeholder is replaced with the extension name."
+  },
+  "TelemetryAskText": {
+    "message": "Gyűjthetünk anonim adatokat a $1 használatával kapcsolatban? Az adatokból megtudhatjuk, hogyan használja a kiegészítőt, és milyen környezetet használ. Nem tartalmaznak azonosító adatokat, e-mail tartalmakat vagy fiókinformációkat. Az adatokat arra használjuk, hogy fejlesszük a kiegészítőt, mérjük a használatát, és meghatározzuk, hogy mire kell összpontosítanunk erőfeszítéseinket. Az adatokat nem osztjuk meg senkivel. Az Ön válasza nem befolyásolja a bővítmény működését. A részleteket itt találja: $2.",
+    "description": "Text of the pop-up that asks the user whether we can collect anonymous usage data. The second placeholder is replaced with the contents of the string PrivacyPolicy (so we can make it a link."
+  },
   "PrivacyPolicy": {
     "message": "Adatvédelem",
     "description": "Inserted into TelemetryAskText. Also used to link to the privacy policy from the Send Later pop-up in the main Thunderbird window."
+  },
+  "TelemetryAskYes": {
+    "message": "Igen, gyűjthet használati adatokat",
+    "description": "Label for the yes button on the telemetry request dialog."
+  },
+  "TelemetryAskNo": {
+    "message": "Nem, nem gyűjthet használati adatokat",
+    "description": "Label for the no button on the telemetry request dialog."
   }
 }

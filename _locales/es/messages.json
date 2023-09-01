@@ -53,7 +53,7 @@
   },
   "generalOptionsTitle": {
     "message": "Generales",
-    "description": ""
+    "description": "The title of the 'General' section on the options page"
   },
   "logConsoleLevelLabel": {
     "message": "Registro (log) de nivel consola",

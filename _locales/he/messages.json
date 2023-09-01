@@ -57,7 +57,11 @@
   },
   "generalOptionsTitle": {
     "message": "‫כללי‬",
-    "description": ""
+    "description": "The title of the 'General' section on the options page"
+  },
+  "shortcutsOptionsTitle": {
+    "message": "קיצורי דרך",
+    "description": "The title of the 'Shortcuts' section on the options page"
   },
   "logConsoleLevelLabel": {
     "message": "‫רמת ההתראות לתיעוד במסוף הבקרה‬",
@@ -355,6 +359,14 @@
     "message": "‫תרום‬",
     "description": ""
   },
+  "activeAccountsOptionsTitle": {
+    "message": "חשבונות פעילים",
+    "description": "Subtitle of the 'Advanced' section in the options where the user can mark which accounts Send Later should pay attention to."
+  },
+  "activeAccountsOptionsText": {
+    "message": "'שלח מאוחר יותר' תתעלם מחשבונות שלא סומנו בחלק זה: הם אינם נבדקים להודאות טיוטה שתוזמנו, וכל הודעת טיוטה שזומנה בהם לא תישלח. חשבון חדש מופעל באופן אוטומטי בעט יצירתו כבררת מחדל, ואם נקבעת ההודעה חדשה למשלוח בחשבון לא פעיל, החשבון מופעל מחדש באופן אוטומטי. עליך להשבית כל חשבון שטנדרבירד לא יכולה להתחבר אליו, למשל בגלל שהחיבור הפך ללא פעיל או ששרת הדואר אינו זמין.",
+    "description": "This explanation appears below activeAccountsOptionsTitle and above the list of accounts"
+  },
   "advancededitor.title": {
     "message": "עורך התצורה המתקדם",
     "description": ""
@@ -517,6 +529,26 @@
   "MessageResendError": {
     "message": "‫שלח מאוחר יותר‬: ניסית לשלוח מאוחר יותר, הודעה שכבר נשלחה?! יתכן ותיקיית הדואר היוצא או תיקיית הטיוטות $1 נפגמו. נסה לתקנן כפי שמתואר בקישור: https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
+  },
+  "single_minute": {
+    "message": "דקה",
+    "description": "Used in an error message when the phrase '1 minute' needs to be displayed."
+  },
+  "single_day": {
+    "message": "יום",
+    "description": "Used in an error message when the phrase '1 day' needs to be displayed."
+  },
+  "single_week": {
+    "message": "שבוע",
+    "description": "Used in an error message when the phrase '1 week' needs to be displayed."
+  },
+  "single_month": {
+    "message": "חודש",
+    "description": "Used in an error message when the phrase '1 month' needs to be displayed."
+  },
+  "single_year": {
+    "message": "שנה",
+    "description": "Used in an error message when the phrase '1 year' needs to be displayed."
   },
   "plural_minutely": {
     "message": "דקות",
@@ -733,6 +765,10 @@
     "message": "ההודעה עם הנושא “$1” הנמצאת בתיקיית הטיוטות  $2 תוכננה להישלח לפני יותר מ $3 דקות, לכן המשלוח נחסם. עליך לערוך את הודעת הטיוטה מחדש ולשלוח אותה באופן מיידי או לקבוע מועד משלוח חדש. יש באפשרותך לבטל את התכונה \"אל תשלח הודעות אם מועד המשלוח המתוכנן שלהן חלף ביותר מ # דקות\" כדי למנוע חסימת משלוח הודעות בעתיד.",
     "description": ""
   },
+  "BlockedLateMessage2": {
+    "message": "ההודעה עם הנושא “$1” הנמצאת בתיקיית הטיוטות  $2 תוכננה להישלח לפני יותר מ $3 $4, לכן המשלוח נחסם. עליך לערוך את הודעת הטיוטה מחדש ולשלוח אותה באופן מיידי או לקבוע מועד משלוח חדש. יש באפשרותך לבטל את התכונה \"אל תשלח הודעות שמועד המשלוח שלהן חלף ...\" כדי למנוע חסימת משלוח הודעות ישנות יותר, אך הודעות ישנות, בנות יותר מחצי שנה, יחסמו תמיד.",
+    "description": "This is an updated version of the BlockedLateMessage string which is intended to replace it. I've left the old string in the database for the time being so translators can use it as a reference / starting point. The 3rd placeholder in THIS string is a number and the fourth is a unit such as 'minutes', 'days', etc. It will be singular if the number is 1 or plural otherwise. The unit is pulled from single_day etc. or plural_daily etc."
+  },
   "EditorReadMeCode": {
     "message": "// ברוך הבא אל עורך הפונקציות של ‫שלח מאוחר יותר‬!\n//\n// בעזרת עורך זה תוכל ליצור פונקציות JavaScript המיישמות לוגיקה מורכבת של תזמון הודעות אותה ניתן לשייך ללחצני קיצור או לבחור בה מתיבת הדו שיח של ‫שלח מאוחר יותר‬\n//\n// כפי שניתן לראות למעלה, כאשר מתבצעת קריאה לפונקציית תזמון, יש לספק לה שלושה ארגומנטים: \n// * \"specname\" נדרש במידה ותרצה להפעיל את הפונקציה בצורה רקורסיבית (ראה בהמשך)\n// * \"prev\" הינו זמן השליחה הקודם שתוזמן, במידה וזו הפעלה חוזרת\n// * \"args\" הינם הארגומנטים הנוספים שהוחזרו בהפעלה הקודמת, במידה וזו הפעלה חוזרת\n//\n// על הקוד שלך לקבוע את המשתנים \"next\", \"nextspec\", וכן \n// \"nextargs\" באופן הבא:\n//\n// * \"next\" הינו מספר הדקות בעתיד או אובייקט Date המציין מתי יש לשלוח את ההודעה\n//   indicating when the message should be sent.\n// * \"nextspec\" הינו מפרט החזרה במידה וזו אמורה להיות הודעה חוזרת (ראה \n//   https://extended-thunder.github.io/send-later/#dynamic-recurrence). במידה ולא תספק ערך לארגומנט זה, \n//  ההודעה תישלח פעם אחת בלבד. הערה: אם תרצה \n//  לקרוא שנית לפונקציה לצורך חזרה, עליך לבצע:\n\n//     nextspec = \"function \" + specname;\n\n// * \"nextargs\" הינו מערך ארגומנטים אותם תרצה להעביר \n//   להפעלה הבאה של הפונקציה כ-\"args\".\n//\n// במהלך העבודה על הפונקציה, תוכל לבדוק אותה על ידי הזנת ערכים\n// עבור \"prev\" ו-\"args\" בתיבות הטקסט שבהמשך ולאחר מכן ללחוץ על  \"Execute\" כדי\n// לבצע את הפונקציה ולצפות בתוצאות.\n//\n// ישנן שתי פונקציות דוגמה מוגדרות מראש, \"BusinessHours\" וכן\n// \"DaysInARow\", שתוכל להשתמש בהן ולבצע בעזרתן ניסויים לצורך למידה.\n//\n// פונקציה \"ReadMeFirst\" גורמת רק לשליחה של ההודעה כעת, פחות או יותר, \n// באמצעות הפעלת השורה הבאה.\n\nnext = new Date();",
     "description": "This is the \"README\" text that appears in the dynamic function editor. The English text in the comments should be translated, but the variable and function names should be left in English."
@@ -920,6 +956,14 @@
   "SkipConfirmMessage": {
     "message": "ציינת שבחרת לדלג לאירוע הבא של אחת מההודעות שנבחרו. אם תתחרט על כך לאחר מכן, יהיה עליך לעדכן את לוח הזמנים באופן ידני. האם את/ה בטוח שאת/ה רוצה להמשיך?",
     "description": "The text of the pop-up that warns the user when they activate the message list context menu command to skip the next occurrence of one or more messages. The purpose of this warning is to ensure that the user knows what the command does before using it. There is a checkbox in the pop-up which they can uncheck if they don't want to see the message again. See also 'AreYouSure' and 'ConfirmAgain' strings which occur in the same pop-up."
+  },
+  "RescheduleErrorTitle": {
+    "message": "שגיאה בתזמון הודעה מחדש",
+    "description": "Title of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "RescheduleErrorText": {
+    "message": "אזהרה: שגיאה בלתי צפויה התרחשה בעת הניסיון לתזמן את המשלוח המתוזמן הבא, להודעה עם הנושא \"$1\". עיין/י ביומן השגיאות בטנדרבירד לפרטים. לכן גרסת הטיוטה הקודמת לא נמחקה. באפשרותך למחוק אותה או לערוך אותה ולתזמן את המשלוח מחדש, אם תרצה/י",
+    "description": "Text of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
   },
   "TelemetryAskTitle": {
     "message": "$1 מבקשת לאסוף מידע",

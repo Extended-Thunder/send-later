@@ -53,7 +53,7 @@
   },
   "generalOptionsTitle": {
     "message": "Xeral",
-    "description": ""
+    "description": "The title of the 'General' section on the options page"
   },
   "logConsoleLevelLabel": {
     "message": "Nivel de consola de rexistro (log)",

@@ -53,7 +53,7 @@
   },
   "generalOptionsTitle": {
     "message": "Основные",
-    "description": ""
+    "description": "The title of the 'General' section on the options page"
   },
   "logConsoleLevelLabel": {
     "message": "Уровень логирования для консоли",

@@ -57,7 +57,7 @@
   },
   "generalOptionsTitle": {
     "message": "Obecné",
-    "description": ""
+    "description": "The title of the 'General' section on the options page"
   },
   "logConsoleLevelLabel": {
     "message": "Úroveň zápisu protokolu pro příkazový řádek",

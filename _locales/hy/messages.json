@@ -57,7 +57,7 @@
   },
   "generalOptionsTitle": {
     "message": "Գլխավորը",
-    "description": ""
+    "description": "The title of the 'General' section on the options page"
   },
   "logConsoleLevelLabel": {
     "message": "Console մատյանի աստիճանը՝",

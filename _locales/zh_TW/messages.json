@@ -57,7 +57,7 @@
   },
   "generalOptionsTitle": {
     "message": "一般",
-    "description": ""
+    "description": "The title of the 'General' section on the options page"
   },
   "logConsoleLevelLabel": {
     "message": "控制台除錯紀錄層級：",

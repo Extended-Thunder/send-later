@@ -57,7 +57,11 @@
   },
   "generalOptionsTitle": {
     "message": "Général",
-    "description": ""
+    "description": "The title of the 'General' section on the options page"
+  },
+  "shortcutsOptionsTitle": {
+    "message": "Raccourcis",
+    "description": "The title of the 'Shortcuts' section on the options page"
   },
   "logConsoleLevelLabel": {
     "message": "Console de journalisation",
@@ -252,7 +256,7 @@
     "description": ""
   },
   "showToolbarTextLabel": {
-    "message": "Afficher « Envoyer Plus Tard » dans la barre d'état",
+    "message": "Afficher texte et icône dans la barre d'outil",
     "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
@@ -354,6 +358,14 @@
   "donatelink.value": {
     "message": "Faire un don",
     "description": ""
+  },
+  "activeAccountsOptionsTitle": {
+    "message": "Comptes actifs",
+    "description": "Subtitle of the 'Advanced' section in the options where the user can mark which accounts Send Later should pay attention to."
+  },
+  "activeAccountsOptionsText": {
+    "message": "Les comptes que vous décochez dans cette section sont ignorés par Envoyer plus tard : ils ne sont pas vérifiés pour les brouillons planifiés, et tous les brouillons qui y sont présents ne seront pas envoyés. Les comptes nouvellement créés sont actifs par défaut, et si vous planifiez un nouveau message dans un compte inactif, il est réactivé automatiquement. Vous devriez désactiver tout compte auquel Thunderbird ne peut pas se connecter, par exemple parce que votre connexion est désactivée ou que le serveur est actuellement en panne.",
+    "description": "This explanation appears below activeAccountsOptionsTitle and above the list of accounts"
   },
   "advancededitor.title": {
     "message": "Éditeur de configuration avancé",
@@ -674,7 +686,7 @@
     "message": "Afficher un avertissement avant de quitter s'il y a des messages en attente"
   },
   "ScheduledMessagesWarningQuitRequested": {
-    "message": "Il y a des envois porgrammés. Envoyer Plus Tard ne peut envoyer de message que lorsque $1 est ouvert. Etes-vous sûr de vouloir quitter?",
+    "message": "Il y a des envois programmés. Envoyer Plus Tard ne peut envoyer de message que lorsque $1 est ouvert. Etes-vous sûr de vouloir quitter?",
     "description": ""
   },
   "ScheduledMessagesWarningQuit": {
