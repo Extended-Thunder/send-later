@@ -85,8 +85,10 @@ const SendLater = {
   // resolve sub-minute accuracy for very short scheduled times
   // (e.g. "Send in 38 seconds" ...). Only affects UI
   // elements in which a relative time is displayed.
-  previousLoop: new Date(Math.floor(Date.now() / 60000) * 60000),
+  previousLoop: null,
   loopMinutes: 1,
+  // Time for each loop over and above the interval time
+  loopExcessTimes: [],
 
   // Holds a reference to the main loop interval timeout
   // (created via setTimeout(...) in mainLoop())
@@ -1772,8 +1774,17 @@ const SendLater = {
         break;
       }
       case "getMainLoopStatus": {
-        response.previousLoop = SendLater.previousLoop.getTime();
+        response.previousLoop =
+          SendLater.previousLoop && SendLater.previousLoop.getTime();
         response.loopMinutes = SendLater.loopMinutes;
+        if (SendLater.loopMinutes && SendLater.loopExcessTimes) {
+          let a = SendLater.loopExcessTimes;
+          response.averageLoopMinutes =
+            SendLater.loopMinutes +
+            a.reduce((a, b) => a + b) / a.length / 60000;
+        } else {
+          response.averageLoopTimes = null;
+        }
         break;
       }
       case "getScheduleText": {
@@ -1888,6 +1899,7 @@ const SendLater = {
         SLStatic.warn(`Unrecognized operation <${message.action}>.`);
       }
     }
+    SLStatic.debug(`${message.action} action:`, response);
     return response;
   },
 
@@ -2103,6 +2115,7 @@ const SendLater = {
 
 async function mainLoop() {
   SLStatic.debug("Entering main loop.");
+
   try {
     if (SendLater.loopTimeout) {
       await clearDeferred(SendLater.loopTimeout);
@@ -2114,10 +2127,17 @@ async function mainLoop() {
   try {
     let preferences = await SLTools.getPrefs();
     let interval = +preferences.checkTimePref || 0;
-
+    let now = new Date();
+    if (SendLater.loopMinutes && SendLater.previousLoop) {
+      SendLater.loopExcessTimes.push(
+        now - SendLater.previousLoop - SendLater.loopMinutes * 60000,
+      );
+      SendLater.loopExcessTimes = SendLater.loopExcessTimes.slice(-10);
+    }
     SendLater.loopMinutes = interval;
 
     if (interval > 0) {
+      SendLater.previousLoop = now;
       // Possible refresh icon options (↻ \u8635); or (⟳ \u27F3)
       // or (⌛ \u231B) (e.g. badgeText = "\u27F3")
       let extName = messenger.i18n.getMessage("extensionName");
@@ -2155,7 +2175,6 @@ async function mainLoop() {
           nActive,
         );
 
-        SendLater.previousLoop = new Date();
         SendLater.loopTimeout = setDeferred(
           "mainLoop",
           60000 * interval,
@@ -2174,11 +2193,11 @@ async function mainLoop() {
           nActive,
         );
 
-        SendLater.previousLoop = new Date();
         SendLater.loopTimeout = setDeferred("mainLoop", 60000, mainLoop);
         SLStatic.debug(`Next main loop iteration in 1 minute.`);
       }
     } else {
+      SendLater.previousLoop = null;
       let extName = messenger.i18n.getMessage("extensionName");
       let disabledMsg = messenger.i18n.getMessage("DisabledMessage");
       await messenger.browserAction.disable();
@@ -2187,14 +2206,12 @@ async function mainLoop() {
       });
       await messenger.browserAction.setBadgeText({ text: null });
 
-      SendLater.previousLoop = new Date();
       SendLater.loopTimeout = setDeferred("mainLoop", 60000, mainLoop);
       SLStatic.debug(`Next main loop iteration in 1 minute.`);
     }
   } catch (ex) {
     SLStatic.error(ex);
 
-    SendLater.previousLoop = new Date();
     SendLater.loopTimeout = setDeferred("mainLoop", 60000, mainLoop);
     SLStatic.debug(`Next main loop iteration in 1 minute.`);
   }

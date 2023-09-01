@@ -2,7 +2,7 @@
 const SLPopup = {
   buttonUpdater: null,
   zoom: 100,
-  previousLoop: new Date(),
+  previousLoop: null,
   loopMinutes: 1,
 
   // Workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=1850454
@@ -1017,7 +1017,8 @@ const SLPopup = {
     if (mainLoop) {
       if (mainLoop.previousLoop)
         SLPopup.previousLoop = new Date(mainLoop.previousLoop);
-      if (mainLoop.loopMinutes) SLPopup.loopMinutes = mainLoop.loopMinutes;
+      SLPopup.loopMinutes =
+        mainLoop.averageLoopMinutes || mainLoop.loopMinutes;
     }
 
     SLPopup.attachListeners();
