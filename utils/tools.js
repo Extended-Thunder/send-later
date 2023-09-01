@@ -3,6 +3,31 @@
 // when they communicate back to the background script.
 var _popupCallbacks = new Map();
 
+// https://javascript.plainenglish.io/how-to-add-a-timeout-limit-to-asynchronous-javascript-functions-3676d89c186d
+// I would have been able to write this on my own, but it was easier to copy it
+// from someone else. ;-)
+/**
+ * Call an async function with a maximum time limit (in milliseconds) for the timeout
+ * @param {Promise<any>} asyncPromise An asynchronous promise to resolve
+ * @param {number} timeLimit Time limit to attempt function in milliseconds
+ * @returns {Promise<any> | undefined} Resolved promise for async function call, or an error if time limit reached
+ */
+const asyncTimeout = async (asyncPromise, timeLimit) => {
+  let timeoutHandle;
+
+  const timeoutPromise = new Promise((_resolve, reject) => {
+    timeoutHandle = setTimeout(
+      () => reject(new Error("Async call timeout limit reached")),
+      timeLimit,
+    );
+  });
+
+  return Promise.race([asyncPromise, timeoutPromise]).then((result) => {
+    clearTimeout(timeoutHandle);
+    return result;
+  });
+};
+
 var SLTools = {
   // Set of message ID's which are scheduled
   scheduledMsgCache: new Set(),
@@ -158,21 +183,43 @@ var SLTools = {
   // argument. If `sequential` is true, then the function will
   // `await` the result of each callback before moving on to the
   // next message.
-  async forAllDrafts(callback, sequential) {
+  // `timeout` specifies how long in milliseconds we should wait for the
+  // callback to finish for each message. If it's unset or 0, then it defaults
+  // to 5000 if if sequential is true or 60000 otherwise.
+  // If preferences isn't specified then this function will fetch preferences;
+  // otherwise it'll use what's passed in. So if the caller has fetched them
+  // already it should pass them in to avoid an extra storage call.
+  async forAllDrafts(callback, sequential, timeout, preferences) {
+    if (!preferences) {
+      preferences = await SLTools.getPrefs();
+    }
+    let ignoredAccounts = preferences.ignoredAccounts || [];
+    if (!timeout) {
+      timeout = sequential ? 5000 : 60000;
+    }
     let results = [];
     let accounts = await messenger.accounts.list(true);
     for (let acct of accounts) {
+      if (ignoredAccounts.includes(acct.id)) {
+        continue;
+      }
       let draftFolders = SLTools.getDraftFolders(acct);
       for (let folder of draftFolders) {
         let page = await messenger.messages.list(folder);
         while (true) {
           if (sequential) {
             for (let message of page.messages) {
-              results.push(await callback(message).catch(SLStatic.error));
+              results.push(
+                await asyncTimeout(callback(message), timeout).catch((ex) => {
+                  SLStatic.error("Error processing message", message, ex);
+                }),
+              );
             }
           } else {
             let pageResults = page.messages.map((message) =>
-              callback(message).catch(SLStatic.error),
+              asyncTimeout(callback(message), timeout).catch((ex) => {
+                SLStatic.error("Error processing message", message, ex);
+              }),
             );
             results = results.concat(pageResults);
           }
@@ -248,6 +295,8 @@ var SLTools = {
         }
       },
       true, // Running sequentially seems to give slightly better performance.
+      undefined,
+      preferences,
     );
     return isScheduled.filter((x) => x).length;
   },

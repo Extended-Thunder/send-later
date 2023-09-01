@@ -291,6 +291,19 @@ const SendLater = {
       SLStatic.error(`Saved ${saveProperties.messages.length} messages.`);
     }
 
+    if (preferences.ignoredAccounts && preferences.ignoredAccounts.length) {
+      let identity = await messenger.identities.get(composeDetails.identityId);
+      let accountId = identity.accountId;
+      if (preferences.ignoredAccounts.includes(accountId)) {
+        preferences.ignoredAccounts = preferences.ignoredAccounts.filter(
+          (a) => a != accountId,
+        );
+        await messenger.storage.local.set({ preferences });
+        SLStatic.info(
+          `Reactivating ${accountId} because message scheduled in it`,
+        );
+      }
+    }
     // Close the composition tab
     await messenger.tabs.remove(tabId);
 
@@ -2126,6 +2139,8 @@ async function mainLoop() {
           await SLTools.forAllDrafts(
             (message) => SendLater.possiblySendMessage(message, {}, locker),
             doSequential,
+            undefined,
+            preferences,
           );
         }
         let nActive = await SLTools.countActiveScheduledMessages();

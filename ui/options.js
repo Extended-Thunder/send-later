@@ -1,4 +1,18 @@
 // Functions related to the options UI (accessed via options.html)
+function makeExpandable(titleId, indicatorId, bodyId) {
+  document.getElementById(titleId).addEventListener("mousedown", (evt) => {
+    const bodyElt = document.getElementById(bodyId);
+    const visElt = document.getElementById(indicatorId);
+    if (bodyElt.style.display === "none") {
+      bodyElt.style.display = "block";
+      visElt.textContent = "-";
+    } else {
+      bodyElt.style.display = "none";
+      visElt.textContent = "+";
+    }
+  });
+}
+
 const SLOptions = {
   builtinFuncs: ["ReadMeFirst", "BusinessHours", "DaysInARow", "Delay"],
 
@@ -167,7 +181,7 @@ const SLOptions = {
 
     const prefPromise = browser.storage.local
       .get({ preferences: {} })
-      .then(({ preferences }) => {
+      .then(async ({ preferences }) => {
         SLStatic.logConsoleLevel = preferences.logConsoleLevel;
         for (let id of prefKeys) {
           let prefVal = preferences[id];
@@ -190,8 +204,85 @@ const SLOptions = {
         let customDT = document.getElementById("customizeDateTime");
         let customDTDiv = document.getElementById("customDateTimeFormatsDiv");
         customDTDiv.style.display = customDT.checked ? "block" : "none";
+
+        await SLOptions.setUpActiveAccounts(preferences.ignoredAccounts);
       });
     return await Promise.all([ufuncPromise, prefPromise]);
+  },
+
+  async setUpActiveAccounts(ignoredAccounts) {
+    ignoredAccounts = ignoredAccounts || [];
+    let accountsList = document.getElementById("activeAccountsList");
+    updating = accountsList.children.length > 0;
+    for (let account of await messenger.accounts.list()) {
+      // I don't know if this is comprehensive.
+      if (
+        !(
+          ["imap", "pop3"].includes(account.type) ||
+          account.type.startsWith("owl")
+        )
+      ) {
+        continue;
+      }
+      checkboxId = `activeAccount-${account.id}-Checkbox`;
+      if (updating) {
+        let checkboxElt = document.getElementById(checkboxId);
+        checkboxElt.checked = !ignoredAccounts.includes(account.id);
+      } else {
+        let labelElt = document.createElement("label");
+        let checkboxElt = document.createElement("input");
+        checkboxElt.id = checkboxId;
+        checkboxElt.type = "checkbox";
+        checkboxElt.class = "preference";
+        checkboxElt.checked = !ignoredAccounts.includes(account.id);
+        checkboxElt.addEventListener("change", SLOptions.activeAccountsChange);
+        labelElt.appendChild(checkboxElt);
+        let nameElt = document.createElement("span");
+        nameElt.class = "option-label";
+        nameElt.textContent = account.name;
+        labelElt.appendChild(nameElt);
+        accountsList.appendChild(labelElt);
+      }
+    }
+  },
+
+  // Scheduling a message while the preferences window is open could cause the
+  // list of ignored accounts to change.
+  async storageChangedListener(changes, areaName) {
+    if (areaName == "local" && changes.preferences) {
+      if (await SLOptions.updateAdvConfigEditor()) {
+        await SLOptions.setUpActiveAccounts(
+          changes.preferences.newValue.ignoredAccounts,
+        );
+      }
+    }
+  },
+
+  async activeAccountsChange(event) {
+    let { preferences } = await messenger.storage.local.get({
+      preferences: {},
+    });
+    if (!preferences.ignoredAccounts) {
+      preferences.ignoredAccounts = [];
+    }
+    let checkboxElt = event.target;
+    let accountId = /activeAccount-(.*)-Checkbox/.exec(checkboxElt.id)[1];
+    if (!accountId) {
+      // This shouldn't happen :shrug:
+      return;
+    }
+    if (checkboxElt.checked) {
+      preferences.ignoredAccounts = preferences.ignoredAccounts.filter(
+        (a) => a != accountId,
+      );
+    } else if (!preferences.ignoredAccounts.includes(accountId)) {
+      preferences.ignoredAccounts.push(accountId);
+    }
+    preferences.ignoredAccounts.sort();
+    await messenger.storage.local.set({ preferences }).then(() => {
+      SLOptions.showCheckMark(checkboxElt);
+    });
+    await SLOptions.updateAdvConfigEditor();
   },
 
   async saveUserFunction(name, body, help) {
@@ -458,7 +549,7 @@ const SLOptions = {
       currentContents = JSON.parse(prefContent);
     } catch (ex) {
       await SLOptions.resetAdvConfigEditor();
-      return;
+      return true;
     }
     let priorContents = SLOptions.advPrefs;
     let { preferences } = await browser.storage.local.get({
@@ -466,7 +557,7 @@ const SLOptions = {
     });
     let changed;
     for (let key of Object.keys(preferences)) {
-      if (preferences[key] != priorContents[key]) {
+      if (String(preferences[key]) != String(priorContents[key])) {
         priorContents[key] = preferences[key];
         currentContents[key] = preferences[key];
         changed = true;
@@ -475,6 +566,7 @@ const SLOptions = {
     if (changed) {
       await SLOptions.resetAdvConfigEditor(currentContents);
     }
+    return changed;
   },
 
   async attachListeners() {
@@ -489,21 +581,21 @@ const SLOptions = {
 
     SLOptions.exclusiveCheckboxSet(["sendDoesSL", "sendDoesDelay"]);
 
-    document
-      .getElementById("functionEditorTitle")
-      .addEventListener("mousedown", (evt) => {
-        const funcEditorDiv = document.getElementById("FunctionEditorDiv");
-        const visIndicator = document.getElementById(
-          "functionEditorVisibleIndicator",
-        );
-        if (funcEditorDiv.style.display === "none") {
-          funcEditorDiv.style.display = "block";
-          visIndicator.textContent = "-";
-        } else {
-          funcEditorDiv.style.display = "none";
-          visIndicator.textContent = "+";
-        }
-      });
+    makeExpandable(
+      "functionEditorTitle",
+      "functionEditorVisibleIndicator",
+      "FunctionEditorDiv",
+    );
+    makeExpandable(
+      "activeAccountsTitle",
+      "activeAccountsVisibleIndicator",
+      "activeAccountsEditor",
+    );
+    makeExpandable(
+      "advancedEditorTitle",
+      "advancedEditorVisibleIndicator",
+      "advancedConfigEditor",
+    );
 
     const resetFunctionInput = () => {
       const funcName = document.getElementById("functionNames").value;
@@ -591,29 +683,6 @@ const SLOptions = {
       });
 
     await SLOptions.resetAdvConfigEditor();
-
-    document
-      .getElementById("advancedEditorTitle")
-      .addEventListener("mousedown", () => {
-        const advEditorDiv = document.getElementById("advancedConfigEditor");
-        const visIndicator = document.getElementById(
-          "advancedEditorVisibleIndicator",
-        );
-        if (advEditorDiv.style.display === "none") {
-          advEditorDiv.style.display = "block";
-          visIndicator.textContent = "-";
-          setTimeout(
-            () =>
-              document
-                .getElementById("advanced-section")
-                .scrollIntoView(true /* align to top */),
-            100,
-          );
-        } else {
-          advEditorDiv.style.display = "none";
-          visIndicator.textContent = "+";
-        }
-      });
 
     document
       .getElementById("advancedEditReset")
@@ -797,6 +866,7 @@ const SLOptions = {
       elt.addEventListener("input", SLOptions.dateFormatChanged);
       SLOptions.checkDateFormat(elt);
     }
+    messenger.storage.onChanged.addListener(SLOptions.storageChangedListener);
   },
 
   dateFormatChanged(evt) {

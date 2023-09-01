@@ -57,7 +57,11 @@
   },
   "generalOptionsTitle": {
     "message": "General",
-    "description": ""
+    "description": "The title of the 'General' section on the options page"
+  },
+  "shortcutsOptionsTitle": {
+    "message": "Shortcuts",
+    "description": "The title of the 'Shortcuts' section on the options page"
   },
   "logConsoleLevelLabel": {
     "message": "Console log level",
@@ -354,6 +358,14 @@
   "donatelink.value": {
     "message": "Donate",
     "description": ""
+  },
+  "activeAccountsOptionsTitle": {
+    "message": "Active accounts",
+    "description": "Subtitle of the 'Advanced' section in the options where the user can mark which accounts Send Later should pay attention to."
+  },
+  "activeAccountsOptionsText": {
+    "message": "The accounts you uncheck in this section are ignored by Send Later: they aren't checked for scheduled drafts, and any scheduled drafts in them are not delivered. Newly created accounts are active by default, and if you schedule a new message in an inactive account it is reactivated automatically. You should deactivate any account that Thunderbird cannot log into, e.g., because your login is deactivated or the server is currently down.",
+    "description": "This explanation appears below activeAccountsOptionsTitle and above the list of accounts"
   },
   "advancededitor.title": {
     "message": "Advanced configuration editor",

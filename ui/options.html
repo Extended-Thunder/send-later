@@ -17,6 +17,10 @@
         margin: 1em 0;
       }
 
+      .midsubsection {
+        margin: 0 0 1em;
+      }
+
       #save-button, #reset-button {
         margin: 0 1.3em 1em 0;
         font-weight: bold;
@@ -182,7 +186,7 @@
     </section>
 
     <section>
-      <div class="title option-label" id="shortcutOptionsTitle">Shortcuts</div>
+      <div class="title option-label">__MSG_shortcutsOptionsTitle__</div>
 
       <div class="div-table">
         <div class="div-table-row" style="font-weight:bold;">
@@ -375,6 +379,18 @@
 
     <section id="advanced-section">
       <div class="title option-label">__MSG_advancedOptionsTitle__</div>
+
+      <div id="activeAccountsTitle" class="subtitle option-label"
+           style="cursor:pointer;">
+        <span id="activeAccountsVisibleIndicator"
+              style="margin-right: 0.25em;">+</span>
+        __MSG_activeAccountsOptionsTitle__
+      </div>
+
+      <div id="activeAccountsEditor" class="midsubsection" style="display:none">
+        <p>__MSG_activeAccountsOptionsText__</p>
+        <div id="activeAccountsList"></div>
+      </div>
 
       <div id="advancedEditorTitle" class="subtitle option-label" style="cursor:pointer;">
         <span id="advancedEditorVisibleIndicator"
