@@ -262,17 +262,29 @@ var SLStatic = {
     SLStatic.trace(
       `estimateSendTime(${scheduledDate}, ${previousLoop}, ${loopMinutes})`,
     );
+    // Probably redundant but might as well be careful.
     scheduledDate = SLStatic.convertDate(scheduledDate);
-    scheduledDate.setSeconds(0);
-
-    let estimate = new Date(previousLoop);
-    while (
-      estimate.getTime() < scheduledDate.getTime() ||
-      estimate.getTime() < Date.now() + 1000
-    ) {
-      estimate = new Date(estimate.getTime() + 60000 * loopMinutes);
+    if (!(previousLoop && loopMinutes)) {
+      SLStatic.debug(
+        "estimateSendTime: mainloop data not set, returning input",
+      );
+      return scheduledDate;
+    }
+    let now = new Date();
+    if (scheduledDate < now) {
+      SLStatic.debug(
+        "estimateSendTime: scheduled in past, starting with present",
+      );
+      scheduledDate = now;
     }
 
+    let delta = scheduledDate.getTime() - previousLoop;
+    let modulus = delta % (60000 * loopMinutes);
+    let estimate = new Date(scheduledDate.getTime() + modulus);
+    SLStatic.debug(
+      `estimateSendTime: delta=${delta}, modulus=${modulus}, ` +
+        `estimate=${estimate}`,
+    );
     return estimate;
   },
 

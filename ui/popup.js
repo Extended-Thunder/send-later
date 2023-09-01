@@ -262,15 +262,22 @@ const SLPopup = {
     // Construct a recur object { type: "...", multiplier: "...", ... }
     const recurType = inputs.radio.recur;
 
-    const sendAtDate = inputs["send-date"];
-    const sendAtTime = inputs["send-time"];
-    let sendAt, schedule;
+    // If the user has typed a send time into send-datetime, it may be more
+    // precise than what's in the date-picker and time-picker, so we prefer it.
+    try {
+      sendAt = SLStatic.convertDate(inputs["send-datetime"]);
+    } catch (ex) {}
+    if (!sendAt) {
+      const sendAtDate = inputs["send-date"];
+      const sendAtTime = inputs["send-time"];
+      let sendAt, schedule;
 
-    if (
-      /\d\d\d\d.\d\d.\d\d/.test(sendAtDate) &&
-      /\d\d.\d\d/.test(sendAtTime)
-    ) {
-      sendAt = SLStatic.parseDateTime(sendAtDate, sendAtTime);
+      if (
+        /\d\d\d\d.\d\d.\d\d/.test(sendAtDate) &&
+        /\d\d.\d\d/.test(sendAtTime)
+      ) {
+        sendAt = SLStatic.parseDateTime(sendAtDate, sendAtTime);
+      }
     }
 
     if (recurType === "function") {
@@ -734,7 +741,7 @@ const SLPopup = {
       try {
         let sendAt = SLStatic.convertDate(sendAtString);
 
-        if (!SLStatic.timeRegex.test(sendAtString)) {
+        if (sendAt && !SLStatic.timeRegex.test(sendAtString)) {
           // The time was specified indirectly, and the user is assuming we
           // make a reasonable interpretation of their input.
           // For instance, if they request 1 minute from now, but it is
