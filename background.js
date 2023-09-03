@@ -1518,7 +1518,7 @@ const SendLater = {
       }
       case "getPreferences": {
         // Return Promise for the allowed preferences.
-        let prefKeysPromise = SLStatic.userPrefKeys();
+        let prefKeysPromise = SLStatic.userPrefKeys(true);
         let prefsPromise = SLTools.getPrefs();
         return Promise.all([prefKeysPromise, prefsPromise])
           .then(([prefKeys, prefs]) => {
@@ -1531,7 +1531,7 @@ const SendLater = {
       }
       case "setPreferences": {
         // Return Promise for updating the allowed preferences.
-        let prefKeysPromise = SLStatic.userPrefKeys();
+        let prefKeysPromise = SLStatic.userPrefKeys(false);
         let prefsPromise = SLTools.getPrefs();
         return Promise.all([prefKeysPromise, prefsPromise])
           .then(async ([prefKeys, old_prefs]) => {

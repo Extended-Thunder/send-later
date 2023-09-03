@@ -9,7 +9,10 @@ var SLStatic = {
   tempFolderName: "Send-Later-Temp",
   timeRegex: /^(2[0-3]|[01]?\d):?([0-5]\d)$/,
   _prefDefaults: null,
-  internalPrefs: ["instanceUUID", "releaseNotesVersion"],
+  // setPreferences isn't allowed to modify these
+  readWriteFilterPrefs: ["instanceUUID", "releaseNotesVersion"],
+  // getPreferences isn't allowed to return these
+  readOnlyFilterPrefs: ["releaseNotesVersion"],
   thunderbirdVersion: null,
 
   async tb115(yes, no) {
@@ -90,11 +93,12 @@ var SLStatic = {
     return SLStatic._prefDefaults;
   },
 
-  async userPrefKeys() {
+  async userPrefKeys(readOnly) {
     let prefDefaults = await SLStatic.prefDefaults();
-    return Object.keys(prefDefaults).filter(
-      (k) => !SLStatic.internalPrefs.includes(k),
-    );
+    let filterArray = readOnly
+      ? SLStatic.readOnlyFilterPrefs
+      : SLStatic.readWriteFilterPrefs;
+    return Object.keys(prefDefaults).filter((k) => !filterArray.includes(k));
   },
 
   getLocale() {
