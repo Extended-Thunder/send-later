@@ -2358,7 +2358,9 @@ async function findBestIdentity(message) {
   if (nameMatchId || emailMatchId) {
     return nameMatchId || emailMatchId;
   }
-  let primaryIdentityId = account.identities[0].id;
+  let primaryIdentityId = account.identities.length
+    ? account.identities[0].id
+    : undefined;
   for (account of await messenger.accounts.list(false)) {
     if (account.id == primaryAccountId) {
       continue;
