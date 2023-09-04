@@ -686,7 +686,7 @@
     "message": "Afficher un avertissement avant de quitter s'il y a des messages en attente"
   },
   "ScheduledMessagesWarningQuitRequested": {
-    "message": "Il y a des envois programmés. Envoyer Plus Tard ne peut envoyer de message que lorsque $1 est ouvert. Etes-vous sûr de vouloir quitter?",
+    "message": "Il y a des envois programmés. Envoyer Plus Tard ne peut envoyer de message que lorsque $1 est ouvert. Êtes-vous sûr de vouloir quitter ?",
     "description": ""
   },
   "ScheduledMessagesWarningQuit": {

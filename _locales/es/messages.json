@@ -55,6 +55,10 @@
     "message": "Generales",
     "description": "The title of the 'General' section on the options page"
   },
+  "shortcutsOptionsTitle": {
+    "message": "Atajos",
+    "description": "The title of the 'Shortcuts' section on the options page"
+  },
   "logConsoleLevelLabel": {
     "message": "Registro (log) de nivel consola",
     "description": ""
@@ -334,6 +338,14 @@
   "donatelink.value": {
     "message": "Donar",
     "description": ""
+  },
+  "activeAccountsOptionsTitle": {
+    "message": "Cuentas activas",
+    "description": "Subtitle of the 'Advanced' section in the options where the user can mark which accounts Send Later should pay attention to."
+  },
+  "activeAccountsOptionsText": {
+    "message": "Las cuentas que desmarques en esta sección serán ignoradas por Send Later: no se comprobará si hay borradores programados, y cualquier borrador programado en ellas no será enviado. Las cuentas recién creadas se activan por defecto y si se programa un nuevo mensaje en una cuenta inactiva ésta se reactivará automáticamente. Debes desactivar cualquier cuenta en la que Thunderbird no pueda iniciar sesión, por ejemplo, porque dicho inicio de sesión está desactivado o el servidor está actualmente caído.",
+    "description": "This explanation appears below activeAccountsOptionsTitle and above the list of accounts"
   },
   "advancededitor.title": {
     "message": "Editor de configuración avanzada",
