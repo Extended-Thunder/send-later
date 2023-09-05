@@ -350,6 +350,68 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
     return {
       SL3U: {
+        async setLegacyPref(name, dtype, value) {
+          const prefName = `extensions.sendlater3.${name}`;
+
+          switch (dtype) {
+            case "bool": {
+              const prefValue = value === "true";
+              try {
+                Services.prefs.setBoolPref(prefName, prefValue);
+                return true;
+              } catch (err) {
+                SendLaterFunctions.error(
+                  "SL3U.setLegacyPref.dtype=" + dtype,
+                  err,
+                );
+                return false;
+              }
+            }
+            case "int": {
+              const prefValue = Number(value) | 0;
+              try {
+                Services.prefs.setIntPref(prefName, prefValue);
+                return true;
+              } catch (err) {
+                SendLaterFunctions.error(
+                  "SL3U.setLegacyPref.dtype=" + dtype,
+                  err,
+                );
+                return false;
+              }
+            }
+            case "char": {
+              const prefValue = value;
+              try {
+                Services.prefs.setCharPref(prefName, prefValue);
+                return true;
+              } catch (err) {
+                SendLaterFunctions.error(
+                  "SL3U.setLegacyPref.dtype=" + dtype,
+                  err,
+                );
+                return false;
+              }
+            }
+            case "string": {
+              const prefValue = value;
+              try {
+                Services.prefs.setStringPref(prefName, prefValue);
+                return true;
+              } catch (err) {
+                SendLaterFunctions.error(
+                  "SL3U.setLegacyPref.dtype=" + dtype,
+                  err,
+                );
+                return false;
+              }
+            }
+            default: {
+              throw new Error("Unexpected pref type");
+            }
+          }
+        },
+
         async queueSendUnsentMessages() {
           if (Utils.isOffline) {
             SendLaterFunctions.debug(

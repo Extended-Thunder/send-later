@@ -905,6 +905,13 @@ const SendLater = {
       preferences.instanceUUID = instance_uuid;
     }
 
+    // Needed for the time being for the Mail Merge add-on
+    messenger.SL3U.setLegacyPref(
+      "instance.uuid",
+      "string",
+      preferences.instanceUUID,
+    );
+
     if (preferences.checkTimePref_isMilliseconds) {
       preferences.checkTimePref /= 60000;
       delete preferences.checkTimePref_isMilliseconds;
