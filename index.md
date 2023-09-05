@@ -466,6 +466,20 @@ Note that the builtin functions cannot be edited, but they can be copied/pasted
 into new functions. They provide a good starting point for creating your own
 scheduling functions.
 
+<a name="active-accounts"></a>
+### Active accounts
+
+If you expand the "Active accounts" section under "Advanced" in the
+Send Later preferences, you will see a list of your mail accounts
+configured in Thunderbird with checkboxes next to them. If you are
+having problems with Send Later not delivering messages in a timely
+fashion, and there are accounts in this list which Thunderbird can no
+longer connect to, e.g., because the server is offline or because your
+account on the server is no longer valid, and for some reason you are
+unable to remove the affected accounts from Thunderbird entirely in
+your account settings, then you should uncheck them here to tell Send
+Later to ignore them.
+
 <a name="config-editor"></a>
 ### Advanced configuration editor
 
@@ -1610,6 +1624,14 @@ is discarding the Send Later headers, as described [above](#bad-mail-servers).
 If not, then proceed with the following troubleshooting steps.
 
 #### Messages not being sent: isolating the problem
+
+First, rule out a bad mail account. If you have a mail account
+configured that Thunderbird can't connect to, e.g., because the
+server is offline or because your account on that server is no longer
+valid, then that can significantly delivery by Send Later and possibly
+block it entirely. This could be the problem if messages are not
+moving form your Drafts folder into yor Outbox at their scheduled
+delivery times. See [above](#active-accounts) for how to address this.
 
 If Send Later fails to deliver messages at the scheduled time, or if
 scheduled messages are delivered repeatedly, the two most likely causes
