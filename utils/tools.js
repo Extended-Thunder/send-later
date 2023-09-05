@@ -48,11 +48,20 @@ var SLTools = {
     const slVersion = messenger.runtime.getManifest().version;
     const browserInfo = await messenger.runtime.getBrowserInfo();
     const platformInfo = await messenger.runtime.getPlatformInfo();
+    let UILocale = "unknown";
+    let DateLocale = "unknown";
+    try {
+      UILocale = browser.i18n.getUILanguage();
+    } catch (ex) {}
+    try {
+      DateLocale = Intl.DateTimeFormat().resolvedOptions().locale;
+    } catch (ex) {}
     console.info(
       `${extensionName} version ${slVersion} on ` +
         `${browserInfo.name} ${browserInfo.version} ` +
         `(${browserInfo.buildID}) ` +
-        `[${platformInfo.os} ${platformInfo.arch}]`,
+        `[${platformInfo.os} ${platformInfo.arch}] ` +
+        `UI locale ${UILocale}, Date Locale ${DateLocale}`,
     );
     SLStatic.telemetrySend({
       event: "startup",
