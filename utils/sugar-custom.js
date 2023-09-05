@@ -3666,7 +3666,7 @@
         function replaceParsingTokens(str) {
 
           // Make spaces optional
-          str = str.replace(/ /g, ' ?');
+          str = str.replace(/ /g, '\\s*');
 
           return str.replace(/\{([^,]+?)\}/g, function(match, token) {
             var tokens = token.split('|'), src;
