@@ -6,7 +6,7 @@ body:
   attributes:
     label: Prerequisites
     description: Please ensure that the following prerequisites are complete
-      before filing a bug report. Check off each one to confirm:
+      before filing a bug report. Check off each one to confirm.
     options:
     - label: I am reporting a problem, not asking a question (for questions, go
         to [Discussions](https://github.com/Extended-Thunder/send-later/discussions).
