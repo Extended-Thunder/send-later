@@ -76,11 +76,11 @@ body:
   id: send-later-string
   attributes:
     label: Send Later start-up string
-    description: Go to the Add-ons page in Thunderbird, disable and re-enable
-      Send Later, open the error console with Ctrl-Shift-j or Command-Shift-j,
+    description: Open the error console with Ctrl-Shift-j or Command-Shift-j and
       enter "locale" in the "filter" box at the top to search for the start-up
-      string since it always includes that word, and copy and paste it into
-      this bug report.
+      string, since it always includes that word. If it's not there, go to the
+      Add-ons page and disable and re-enable Send Later and the message should
+      appear in the error console.
 - type: markdown
   attributes:
     value: |
