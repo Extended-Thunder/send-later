@@ -59,6 +59,10 @@
     "message": "Algemeen",
     "description": "The title of the 'General' section on the options page"
   },
+  "shortcutsOptionsTitle": {
+    "message": "Sneltoetsen",
+    "description": "The title of the 'Shortcuts' section on the options page"
+  },
   "logConsoleLevelLabel": {
     "message": "Consolelogniveau",
     "description": ""
@@ -328,7 +332,7 @@
     "description": ""
   },
   "sendlater3header.label": {
-    "message": "Send Later",
+    "message": "Later verzenden",
     "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
   },
   "prefwindow.title": {
@@ -354,6 +358,14 @@
   "donatelink.value": {
     "message": "Doneren",
     "description": ""
+  },
+  "activeAccountsOptionsTitle": {
+    "message": "Actieve accounts",
+    "description": "Subtitle of the 'Advanced' section in the options where the user can mark which accounts Send Later should pay attention to."
+  },
+  "activeAccountsOptionsText": {
+    "message": "De accounts die u in deze sectie uitvinkt, worden door Send Later genegeerd; deze worden niet gecontroleerd op geplande concepten, en geplande concepten hierin worden niet afgeleverd. Nieuw aangemaakte accounts zijn standaard actief, en als u een nieuw bericht plant in een inactieve account, wordt deze automatisch opnieuw geactiveerd. U dient accounts waarbij Thunderbird zich niet kan aanmelden te deactiveren, bv. omdat uw aanmelding is gedeactiveerd of omdat de server momenteel niet actief is.",
+    "description": "This explanation appears below activeAccountsOptionsTitle and above the list of accounts"
   },
   "advancededitor.title": {
     "message": "Geavanceerde configuratie-editor",
