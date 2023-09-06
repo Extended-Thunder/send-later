@@ -84,5 +84,5 @@ body:
 - type: markdown
   attributes:
     value: |
-      ### Screenshots
+      #### Screenshots
       If applicable, add screenshots to help explain your problem in comments after submitting the bug report.
