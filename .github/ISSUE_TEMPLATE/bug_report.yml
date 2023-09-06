@@ -1,0 +1,88 @@
+name: Bug report
+description: Create a report to help us improve
+body:
+- type: checkboxes
+  id: terms
+  attributes:
+    label: Prerequisites
+    description: Please ensure that the following prerequisites are complete
+      before filing a bug report. Check off each one to confirm:
+    options:
+    - label: I am reporting a problem, not asking a question (for questions, go
+        to [Discussions](https://github.com/Extended-Thunder/send-later/discussions).
+      required: true
+    - label: I have consulted the
+        [user guide](https://extended-thunder.github.io/send-later/).
+      required: true
+    - label: I have confirmed that I'm running the current version and the
+        problem persists there (note the version number in fine print next to
+        the add-on name [on addons.thunderbird.net](https://addons.thunderbird.net/thunderbird/addon/send-later-3/)
+        and compare it to the version number listed in the add-on details
+        opened from the Add-ons page in Thunderbird; if you've got an old
+        version, click the gear icon and select "Check for Updates").
+      required: true
+    - label: If I'm having an issue with date-parsing confusion, I've read the
+        [section about that in the user guide](https://extended-thunder.github.io/send-later/#date-format-confusion-in-the-scheduler-pop-up)
+        and I still think this is something different.
+      required: true
+    - label: If I'm having an issue with messages not being delivered, I've
+        followed the [troubleshooting steps in the user guide](https://extended-thunder.github.io/send-later/#messages-dont-send-or-send-multiple-times)
+        and it's still an issue. 
+      required: true
+- type: textarea
+  id: description
+  attributes:
+    label: Describe the bug
+    description: A clear and concise description of the bug
+  validation:
+    required: true
+- type: textarea
+  id: reproduce
+  attributes:
+    label: How to reproduce
+    description: Steps to reproduce the behavior
+    placeholder: |
+      Steps to reproduce the behavior:
+      1. Go to '...'
+      2. Click on '....'
+      3. Scroll down to '....'
+      4. See error
+- type: textarea
+  id: expected
+  attributes:
+    label: Expected behavior
+    description: A clear and concise description of what you expected to happen
+- type: textarea
+  id: context
+  attributes:
+    label: Additional context
+    description: Any other relevant context about the problem
+- type: input
+  id: os
+  attributes:
+    label: Operating System
+    placeholder: Windows, macOS, Linux, etc.
+- type: input
+  id: os-version
+  attributes:
+    label: Operating System Version
+- type: input
+  id: thunderbird-version
+  attributes:
+    label: Thunderbird version
+  validation:
+    required: true
+- type: textarea
+  id: send-later-string
+  attributes:
+    label: Send Later start-up string
+    description: Go to the Add-ons page in Thunderbird, disable and re-enable
+      Send Later, open the error console with Ctrl-Shift-j or Command-Shift-j,
+      enter "locale" in the "filter" box at the top to search for the start-up
+      string since it always includes that word, and copy and paste it into
+      this bug report.
+- type: markdown
+  attributes:
+    value: |
+      **Screenshots**
+      If applicable, add screenshots to help explain your problem in comments after submitting the bug report.
