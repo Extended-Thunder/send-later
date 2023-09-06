@@ -7,5 +7,4 @@ _locales
 contrib
 package.json
 test/diff_match_patch.js
-utils/sugar-custom.js
 utils/varNameValidator.js
