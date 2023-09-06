@@ -3575,11 +3575,129 @@
       this.add(loc);
     }
 
+    function makeLocaleFromIntl(localeString) {
+      if (localeString in LazyLoadedLocales) {
+        return LazyLoadedLocales[localeString];
+      }
+      let variant = {};
+      // Remember that monthIndex argument is 0-11, not 1-12, so this is
+      // September
+      let date = new Date(2023, 8, 6, 1, 0);
+      let fullDate = Intl.DateTimeFormat(localeString, {
+        dateStyle: "full",
+      }).format(date);
+      let shortDate = Intl.DateTimeFormat(localeString, {
+        dateStyle: "short",
+      }).format(date);
+      let shortTime = Intl.DateTimeFormat(localeString, {
+        timeStyle: "short",
+      }).format(date);
+      let weekInfo = new Intl.Locale(localeString).weekInfo;
+      if (weekInfo) {
+        if ([0, 7].includes(weekInfo.firstDay)) {
+          variant.firstDayOfWeek = 0;
+        } else if (weekInfo.firstDay != 1) {
+          // 1 is the default
+          variant.firstDayOfWeek = weekInfo.firstDay;
+        }
+        if (weekInfo.minimalDays != 4) {
+          variant.firstDayOfWeekYear = weekInfo.minimalDays;
+        }
+      }
+      let match;
+      if (shortTime == "1:00") {
+        // Default time format is {H}:{mm}
+      } else if (shortTime == "1.00") {
+        variant.time = "{H}.{mm}";
+      } else if ((match = /^01([:.])00$/.exec(shortTime))) {
+        variant.time = `{HH}${match[1]}{mm}`;
+      } else if (/^1:00\sAM$/.exec(shortTime)) {
+        variant.time = "{h}:{mm} {TT}";
+      } else if (/^1:00\s(?:a\.m\.|am)$/.exec(shortTime)) {
+        variant.time = "{h}:{mm} {tt}";
+      } else {
+        throw new Error(
+          `Don't know how to deal with short time ${shortTime} for ${localeString}`,
+        );
+      }
+      if (/^0?9/.exec(shortDate)) {
+        variant.mdy = true;
+      } else if (/^2023.09/.exec(shortDate)) {
+        // Not mdy.
+      } else if (!/^0?6/.exec(shortDate)) {
+        throw new Error(
+          `Don't know how to deal with mdy short date ${shortDate} for ${localeString}`,
+        );
+      }
+      // I'm not using two-digit years even when the locale says to, because
+      // that's gross.
+      if (shortDate == "9/6/23") {
+        variant.short = "{M}/{d}/{yyyy}";
+      } else if (
+        (match = /^6(?<sep>[-\/])9\k<sep>(?:20)?23$/.exec(shortDate))
+      ) {
+        variant.short = `{d}${match[1]}{M}${match[1]}{yyyy}`;
+      } else if (
+        (match = /^6(?<sep>[-\/])09\k<sep>(?:20)?23$/.exec(shortDate))
+      ) {
+        variant.short = `{d}${match[1]}{MM}${match[1]}{yyyy}`;
+      } else if (
+        (match = /^06(?<sep>[\/.])09\k<sep>(?:20)?23$/.exec(shortDate))
+      ) {
+        variant.short = `{dd}${match[1]}{MM}${match[1]}{yyyy}`;
+      } else if ((match = /2023(?<sep>[-\/])09\k<sep>06/.exec(shortDate))) {
+        variant.short = `{yyyy}${match[1]}{MM}${match[1]}{dd}`;
+      } else {
+        throw new Error(
+          `Don't know how to deal with short date ${shortDate} for ${localeString}`,
+        );
+      }
+      if (fullDate == "Wednesday, September 6, 2023") {
+        variant.medium = "{Month} {d}, {yyyy}";
+        variant.long = "{Month} {d}, {yyyy} {time}";
+        variant.full = "{Weekday}, {Month} {d}, {yyyy} {time}";
+        variant.stamp = "{Dow} {Mon} {d} {yyyy} {time}";
+      } else if (fullDate == "Wednesday 6 September 2023") {
+        variant.medium = "{d} {Month} {yyyy}";
+        variant.long = "{d} {Month} {yyyy} {time}";
+        variant.full = "{Weekday} {d} {Month} {yyyy} {time}";
+        variant.stamp = "{Dow} {d} {Mon} {yyyy} {time}";
+      } else if (fullDate == "Wednesday, 6 September 2023") {
+        variant.medium = "{d} {Month} {yyyy}";
+        variant.long = "{d} {Month} {yyyy} {time}";
+        variant.full = "{Weekday}, {d} {Month} {yyyy} {time}";
+        variant.stamp = "{Dow} {d} {Mon} {yyyy} {time}";
+      } else if (fullDate == "Wednesday, 6 September, 2023") {
+        variant.medium = "{d} {Month}, {yyyy}";
+        variant.long = "{d} {Month}, {yyyy} {time}";
+        variant.full = "{Weekday}, {d} {Month}, {yyyy} {time}";
+        variant.stamp = "{Dow} {d} {Mon} {yyyy} {time}";
+      } else if (fullDate == "Wednesday, 06 September 2023") {
+        variant.medium = "{dd} {Month} {yyyy}";
+        variant.long = "{dd} {Month} {yyyy} {time}";
+        variant.full = "{Weekday}, {dd} {Month} {yyyy} {time}";
+        variant.stamp = "{Dow} {dd} {Mon} {yyyy} {time}";
+      } else {
+        throw new Error(
+          `Don't know how to deal with full date ${fullDate} for ${localeString}`,
+        );
+      }
+
+      LazyLoadedLocales[localeString] = getEnglishVariant(variant);
+      return LazyLoadedLocales[localeString];
+    }
+
     LocaleManager.prototype = {
       get: function (code, fallback) {
         var loc = this.locales[code];
-        if (!loc && LazyLoadedLocales[code]) {
-          loc = this.add(code, LazyLoadedLocales[code]);
+        var made;
+        if (
+          !loc &&
+          code &&
+          code.startsWith("en") &&
+          (made = makeLocaleFromIntl(code))
+        ) {
+          loc = this.add(made);
         } else if (!loc && code) {
           loc = this.locales[code.slice(0, 2)];
         }
@@ -3622,7 +3740,7 @@
     };
 
     // Sorry about this guys...
-    English = getNewLocale(AmericanEnglishDefinition);
+    English = getNewLocale(makeLocaleFromIntl("en-US"));
     localeManager = new LocaleManager(English);
   }
 
@@ -5384,40 +5502,7 @@
     ],
   };
 
-  var AmericanEnglishDefinition = getEnglishVariant({
-    mdy: true,
-    firstDayOfWeek: 0,
-    firstDayOfWeekYear: 1,
-    short: "{MM}/{dd}/{yyyy}",
-    medium: "{Month} {d}, {yyyy}",
-    long: "{Month} {d}, {yyyy} {time}",
-    full: "{Weekday}, {Month} {d}, {yyyy} {time}",
-    stamp: "{Dow} {Mon} {d} {yyyy} {time}",
-    time: "{h}:{mm} {TT}",
-  });
-
-  var BritishEnglishDefinition = getEnglishVariant({
-    short: "{dd}/{MM}/{yyyy}",
-    medium: "{d} {Month} {yyyy}",
-    long: "{d} {Month} {yyyy} {H}:{mm}",
-    full: "{Weekday}, {d} {Month}, {yyyy} {time}",
-    stamp: "{Dow} {d} {Mon} {yyyy} {time}",
-  });
-
-  var CanadianEnglishDefinition = getEnglishVariant({
-    short: "{yyyy}-{MM}-{dd}",
-    medium: "{d} {Month}, {yyyy}",
-    long: "{d} {Month}, {yyyy} {H}:{mm}",
-    full: "{Weekday}, {d} {Month}, {yyyy} {time}",
-    stamp: "{Dow} {d} {Mon} {yyyy} {time}",
-  });
-
-  var LazyLoadedLocales = {
-    "en-US": AmericanEnglishDefinition,
-    "en-GB": BritishEnglishDefinition,
-    "en-AU": BritishEnglishDefinition,
-    "en-CA": CanadianEnglishDefinition,
-  };
+  var LazyLoadedLocales = {};
 
   buildLocales();
 

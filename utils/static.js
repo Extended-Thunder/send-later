@@ -2120,10 +2120,19 @@ try {
   try {
     Sugar.Date.setLocale(locale);
   } catch (ex) {
-    Sugar.Date.setLocale(locale.split("-")[0]);
+    console.warn(`Error setting Sugar locale to ${locale}: ${ex}`, ex);
+    let fallback = locale.split("-")[0];
+    try {
+      Sugar.Date.setLocale(fallback);
+    } catch (ex) {
+      console.warn(
+        `[SendLater]: Error setting Sugar locale to ${fallback}: ${ex}`,
+        ex,
+      );
+    }
   }
 } catch (ex) {
-  console.warn("[SendLater]: Unable to set date Sugar.js locale", ex);
+  console.warn(`[SendLater]: Unable to set date Sugar.js locale: ${ex}`, ex);
 }
 
 if (browser) {
