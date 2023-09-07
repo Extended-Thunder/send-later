@@ -1751,7 +1751,7 @@ var SLStatic = {
   },
 
   telemetrySend(values) {
-    console.log("telemetrySend");
+    SLStatic.debug("telemetrySend", values);
     if (!this.preferences.telemetryEnabled) {
       return;
     }

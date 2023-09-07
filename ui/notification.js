@@ -1,3 +1,28 @@
+async function makeContentsVisible() {
+  let body = document.getElementsByTagName("body")[0];
+  let outerWidth = window.outerWidth;
+  let outerHeight = window.outerHeight;
+  let rect = body.getBoundingClientRect();
+  let viewPortBottom =
+    window.innerHeight || document.documentElement.clientHeight;
+  let hidden = rect.bottom - viewPortBottom;
+  if (hidden > 0) {
+    if (hidden > outerHeight) {
+      console.log(
+        "Not resizing notification window, would have to >double it",
+      );
+      SLStatic.telemetrySend({
+        event: "notResizingPopup",
+        outerHeight: outerHeight,
+        hidden: hidden,
+      });
+      return;
+    }
+    let apiWindow = await messenger.windows.getCurrent();
+    messenger.windows.update(apiWindow.id, { height: outerHeight + hidden });
+  }
+}
+
 function buttonListener(evt) {
   let user_check = document.getElementById("userCheck");
   let button_ok = document.getElementById("button_ok");
@@ -12,7 +37,9 @@ function buttonListener(evt) {
     });
 }
 
-function onLoad() {
+async function onLoad() {
+  await SLStatic.cachePrefs();
+
   let params = new URL(window.document.location).searchParams;
 
   let message = document.getElementById("message");
@@ -41,6 +68,7 @@ function onLoad() {
   } else {
     button_cancel.style.display = "none";
   }
+  makeContentsVisible();
 }
 
 window.addEventListener("load", onLoad);
