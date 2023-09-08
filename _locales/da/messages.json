@@ -179,6 +179,14 @@
     "message": "Få kommandoen “Send” (enten knappen eller ved at trykke Ctrl-Enter) til at virke på samme måde som “Send senere”.",
     "description": ""
   },
+  "whitelistPrefTooltip": {
+    "message": "Hvis `$1' eller `“Sende” sende senere er aktiveret, og du angiver navnet på en eksisterende adressebog her, så vil enhver besked, hvis modtagere alle er i adressebogen, omgå $2, når beskedens sendeknap eller menukommandoen er aktiveret.",
+    "description": "$1 is replaced with the contents of sendButtonPrefLabel, and $2 is replaced with extensionName."
+  },
+  "whitelistPrefLabel": {
+    "message": "Whitelist adressebog:",
+    "description": "Appears on the options tab, followed by an input box for the use to specify the name of an address book."
+  },
   "sendDelayPrefLabel1": {
     "message": "“Send” forsinker meddelelser med",
     "description": ""
@@ -278,6 +286,14 @@
   "sendlater.prompt.sendlater.tooltip": {
     "message": "I stedet for at planlægge afsendelse til en bestemt tid, flyt beskeden til Udbakke mappen, så bliver den sendt næste gang ikke-sendte beskeder sendes.",
     "description": ""
+  },
+  "sendlater.prompt.sendlater.accesskey": {
+    "message": "O",
+    "description": ""
+  },
+  "sendlater.prompt.sendnow.accesskey": {
+    "message": "N",
+    "description": "Accesskey corresponding to 'sendNowLabel'"
   },
   "sendlater.prompt.title.label": {
     "message": "Send denne e-mail senere",
@@ -659,19 +675,24 @@
     "description": ""
   },
   "answerYes": {
-    "message": "Ja"
+    "message": "Ja",
+    "description": "Affirmative answer for a yes/no question presented in a confirmation dialog"
   },
   "answerNo": {
     "message": "Nej",
-    "description": "Reject an action (presented in popup dialogs)"
+    "description": "Negative answer for a yes/no question presented in a confirmation dialog"
   },
   "OutboxConfirmMessage": {
-    "message": "Hvis du klikker på “Læg i udbakke” lægges meddelelsen i din udbakke med det samme. Det planlægger IKKE beskeden til at blive sendt på et bestemt tidspunkt. For at det skal ske, skal du klikke på “Send kl (tidspunkt)” knappen efter indtastning af et gyldigt tidspunkt. Er du sikker på, at du vil lægge beskeden i din udbakke nu?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "message": "Hvis du klikker på “Læg i udbakke” lægges meddelelsen i din udbakke med det samme. Det planlægger IKKE beskeden til at blive sendt på et bestemt tidspunkt. For at det skal ske, skal du klikke på “$2” knappen efter indtastning af et gyldigt tidspunkt. Er du sikker på, at du vil lægge beskeden i din udbakke nu?",
+    "description": "$1 is replaced with your translation of 'Put in Outbox' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "Klik på “Send nu” sender beskeden med det samme. Det planlægger IKKE beskeden til at blive sendt på et bestemt tidspunkt. For at det sker, skal du klikke på “Send kl. (tidspunkt)” knappen efter indtastning af et gyldigt tidspunkt. Er du sikker på, at du vil sende beskeden nu?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+  },
+  "PopupChangedConfirmMessage": {
+    "message": "Det ser ud som om du klikkede på “$1” efter at have ændret nogle af værdierne i tidsplanlægnings dialogen. Er du sikker på, at du mente at gøre det i stedet for at klikke på “$2” knappen?",
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'."
   },
   "ConfirmAgain": {
     "message": "Vis denne advarsel næste gang",
@@ -683,6 +704,10 @@
   },
   "ShowQuitNotificationPreference": {
     "message": "Vis advarsel før afslutning hvis der er ventende beskeder"
+  },
+  "SubfolderPreference": {
+    "message": "Gem planlagte breve i undermappe kaldet:",
+    "description": "In preferences tab, preceded by a checkbox and followed by a text input"
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Der er beskeder planlagt til at blive sendt. Send senere kan kun sende beskeder når $1 kører. Er du sikker på du vil afslutte?",
@@ -711,6 +736,18 @@
   "EncryptionUnsupportedText": {
     "message": "$1 kan ikke planlægge meddelelser, der er krypteret eller digitalt signeret. Du skal deaktivere dem på en kladde, før du kan planlægge den. Du skal også deaktivere “Gem udkast beskeder i krypteret format” under “End-To-End Encryption” for konti eller identiteter, som du ønsker at planlægge beskeder for.",
     "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has encryption or signing enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
+  "DSN": {
+    "message": "Besked om leveringsstatus",
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
+  },
+  "noDsnTitle": {
+    "message": "$1 understøttes ikke med $2",
+    "description": "The title of the alert that pops up when the user attempts to schedule a message with delivery status notification enabled. $1 is replaced with the string 'DSN' and $2 is replaced with the extension name."
+  },
+  "noDsnText": {
+    "message": "Muligheden $1 er inkompatibel med $2. Deaktivér denne indstilling på denne besked, før du planlægger den, eller send den uden $2.",
+    "description": "The text of the alert that pops up when the user attempts to schedule a message with delivery status notification enabled. $1 is replaced with the contents of the string 'DSN' and $2 is replaced with the extension name."
   },
   "incorrectUUID": {
     "message": "Planlagt af en anden klient",
@@ -856,6 +893,10 @@
     "message": "annullér ved svar",
     "description": ""
   },
+  "PendingMessage": {
+    "message": "afvent $1",
+    "description": ""
+  },
   "IdleMessage": {
     "message": "Inaktiv",
     "description": ""
@@ -867,6 +908,10 @@
   "CheckingMessage": {
     "message": "KONTROL",
     "description": ""
+  },
+  "longDonationMessage": {
+    "message": "[Udvikling og vedligeholdelse af denne tilføjelse understøttes af Extended Thunder Inc., en non-profit organisation dedikeret til at støtte gratis, open source Thunderbird add-ons. Støt venligst Extended Thunder for at hjælpe med at sikre, at tilføjelser som denne fortsat er tilgængelige. Du kan foretage en tilbagevendende donation hos <a href='https://liberapay.com/ExtendedThunder'>LiberaPay</a> eller en engangsdonation hos <a href='https://www.paypal.com/donate/?hosted_button_id=Y4V6TDZ2ZY5TS'>PayPal</a>. Donationer til Extended Thunder er skattefradragsberettigede i USA som tilladt ved lov. Tak!]",
+    "description": "This text appears at the start of the add-on's long description on addons.thunderbird.net, as well as on the add-on's details page inside Thunderbird. It appears right before the text in the 'LongDescription' string. Please leave the URLs intact when translating."
   },
   "LongDescription": {
     "message": "Denne tilføjelse ændrer kommandoen “Send senere” (Ctrl+Skift+Enter) i brevkompositionsvinduet, så i stedet for blot at kopiere beskeden ind i din udbakke, så den bliver sendt næste gang du går online eller trykker “Send meddelelser fra udbakke”, dukker en dialog  op, som lader dig angive hvornår meddelelsen vil blive sendt.\n\nDu kan angive et bestemt tidspunkt og dato, eller klik på “15 minutter senere”, “30 minutter senere” eller “2 timer senere”, eller lave brugerdefinerede genveje. Du kan også planlægge en besked til at blive sendt gentagne gange ved hjælp af enkle regler (hver N timer, dage, osv.) eller tilpassede funktioner.\n\nSend senere er afhængig af et pålideligt dato input check som bliver leveret af Andrew Plummer's <a href=\"https://sugarjs.com/\">Sugar.js library</a>.\n\nFeedback og fejlrapporter er meget velkomne og kan indsendes via projektets <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">GitHub side</a>.",
@@ -887,6 +932,10 @@
   "accelShiftLabel": {
     "message": "Skift+Klik",
     "description": "Indicates key combination to access the shift+click accelerator function"
+  },
+  "okay": {
+    "message": "OK",
+    "description": "Confirm an action (presented in popup dialogs)"
   },
   "cancel": {
     "message": "Afbryd",
@@ -915,6 +964,10 @@
   "menuSkipMsg": {
     "message": "Spring næste forekomst over",
     "description": "Command added to the message list menu for the user to use to skip the next occurrence of one or more selected recurring drafts"
+  },
+  "menuClaimMsg": {
+    "message": "Flyt planlagte beskeder til denne Thunderbird",
+    "description": "Command added to the message list menu for the user to use to move scheduled messages from another Thunderbird instance to this one."
   },
   "resultsTitle": {
     "message": "Resultat efter behandling af beskeder",

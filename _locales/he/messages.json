@@ -667,19 +667,20 @@
     "description": ""
   },
   "answerYes": {
-    "message": "כן"
+    "message": "כן",
+    "description": "Affirmative answer for a yes/no question presented in a confirmation dialog"
   },
   "answerNo": {
     "message": "לא",
-    "description": "Reject an action (presented in popup dialogs)"
+    "description": "Negative answer for a yes/no question presented in a confirmation dialog"
   },
   "OutboxConfirmMessage": {
     "message": "בחירה ב \"הצב בתיבת דואר יוצא\" מעבירה את ההודעה לתיבת הדואר היוצא באופן מיידי ולא מתבצע תיזמון למשלוח ההודעה במועד ספציפי. לשם קביעת מועד, יש לבחור בכפתור \"שלח במועד\" לאחר שקבעת מועד מתאים למשלוח. האם את/ה בטוח שאת/ה מעוניין להעביר את ההודעה לתיבת הדואר היוצא כעט?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Put in Outbox' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "לחיצה על \"שלח כעת\" תשלח את ההודעה מייד ולא מתבצע תיזמון למשלוח ההודעה במועד ספציפי. לשם כך, לחץ \"שלח במועד\"  לאחר שקבעת מועד מתאים למשלוח. האם את/ה בטוח/ה שברצונך לשלוח את ההודעה כעת?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "הצג אזהרה זו בפעם הבאה",
@@ -719,6 +720,10 @@
   "EncryptionUnsupportedText": {
     "message": "$1 אינו מסוגל לתזמן שליחת הודעות מוצפנות או חתומות דיגיטלית. עליך לנטרל אפשרויות אילו בטיוטות לפני שניתן יהיה לתזמן אותן. עליך לנטרל גם את \"Store draft messages in encrypted format” תחת “End-To-End Encryption” עבור חשבונות ו/או זהויות להם את/ה מעוניינים לתשלוח הודעות מתוזמנות.",
     "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has encryption or signing enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
+  "DSN": {
+    "message": "יידוע מצב קבלה",
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
   },
   "incorrectUUID": {
     "message": "התזמון נקבע על ידי למשתמש אחר",
@@ -879,6 +884,10 @@
   "CheckingMessage": {
     "message": "בודק",
     "description": ""
+  },
+  "longDonationMessage": {
+    "message": "[תחזוקה ופיצוח תוסף זה נתמך Extended Thunder Inc, ארגון ללא כוונת רווח שלקח על עצמו לתמוך בתוספי קוד פתוח לטנדרבירד. אנא שקול לתמוך Extended Thunder Inc כדי לאפשר לתוספים מסוג זה להמשיך להיות זמינים לשימוש. את/ה יכול יכול לבצע תרומה מתמשכת בקשור <a href='https://liberapay.com/ExtendedThunder'> LiberaPay</a>  או תרומה חד פעמית בקישור <a href='https://www.paypal.com/donate/?hosted_button_id=Y4V6TDZ2ZY5TS'>PayPal</a>. תרומות ל Extended Thunder Inc  מוכרות לצרכי מס בהתאם לחקיקה המקומית בארה\"ב. תודה רבה מראש]",
+    "description": "This text appears at the start of the add-on's long description on addons.thunderbird.net, as well as on the add-on's details page inside Thunderbird. It appears right before the text in the 'LongDescription' string. Please leave the URLs intact when translating."
   },
   "LongDescription": {
     "message": "תוסף זה משנה את פקודת \"שלח מאוחר יותר\" (Ctrl+Shift+Return) בחלון כתיבת ההודעות, באופן כזה שההודעות ישלחו בפעם הבאה בה מתחברים או בוחרים ב\"שלח הודעות שלא נשלחו\" ותופיע הודעה שתאפשר לך לקבל החלטה על מועד המשלוח העתידי, במקום להעביר את ההודעה לתיבת הדואר היוצא. \nיש באפשרותך להגדיר שעה ותאריך למשלוח או לבחור \"עוד 15 דקות\". \"עוד 30 דקות\", או \"עוד שעתיים\", או לקבוע מועד ייחודי  קבוע בהתאמה אישית. יש באפשרותך גם לקבוע מועדים חוזרים למשלוח הודעות ע\"י קביעת חוקיות פשוטה(כל N שעות, ימים וכו') או הגדרת חוקים בהתאמה אישית.\n'שלח מאוחר יותר' מתבססת על ניתוח נתוני קלט עוצמתיים שהתקבלו באדיבות ספרית Sugar.js <a href=\"https://sugarjs.com/\">  בבעלות אנדרו פלמר.\nמשוב ודיווח על באגים יתקבלו בברכה, ניתן לדווח עליהם בדף הפרוייקט בכתובת   <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">.",

@@ -631,18 +631,20 @@
     "description": ""
   },
   "answerYes": {
-    "message": "Ja"
+    "message": "Ja",
+    "description": "Affirmative answer for a yes/no question presented in a confirmation dialog"
   },
   "answerNo": {
-    "message": "Nej"
+    "message": "Nej",
+    "description": "Negative answer for a yes/no question presented in a confirmation dialog"
   },
   "OutboxConfirmMessage": {
     "message": "Alternativet “Lägg i Utkorgen” placerar omedelbart meddelandet i din utkorg. Det schemalägger INTE meddelandet för sändning vid en specifik tidpunkt. För att göra det, klicka på knappen “Skicka kring” i den gröna rutan efter det att du har angivit en giltig sändningstid. Är du säker på att du vill lägga meddelandet i Utkorgen nu?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Put in Outbox' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "Genom att klicka på “Skicka nu” sänds meddelandet omedelbart. Meddelandet schemaläggs INTE till en viss tid. För att schemalägga väljer du en tidpunkt och klickar på “Skicka kring” knappen i den gröna boxen. Är du säker på att du vill skicka meddelandet direkt?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "Visa denna varning nästa gång",
@@ -670,6 +672,10 @@
   "EncryptionUnsupportedText": {
     "message": "$1 kan inte schemalägga meddelanden som är krypterade eller digitalt signerade. Du måste inaktivera dessa i ett utkast innan de går att schemaläggas. Du måste också inaktivera “Store draft messages in encrypted format” under “End-To-End Encryption” för konton eller identiteter som du vill schemalägga meddelanden för.",
     "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has encryption or signing enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
+  "DSN": {
+    "message": "Leveranskvitto",
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
   },
   "incorrectUUID": {
     "message": "Schemalagd av en annan e-postklient",

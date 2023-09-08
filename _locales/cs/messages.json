@@ -600,18 +600,20 @@
     "description": ""
   },
   "answerYes": {
-    "message": "Ano"
+    "message": "Ano",
+    "description": "Affirmative answer for a yes/no question presented in a confirmation dialog"
   },
   "answerNo": {
-    "message": "Ne"
+    "message": "Ne",
+    "description": "Negative answer for a yes/no question presented in a confirmation dialog"
   },
   "OutboxConfirmMessage": {
     "message": "Kliknutí na tlačítko „Dát do „Pošty k odeslání““ vloží zprávu okamžitě do vaší „Pošty k odeslání“, takže u ní NEBUDE naplánováno odeslání v určitý čas. Pro odeslání naplánovaném v určitý čas klikněte (po vložení platného času odeslání) na tlačítko „Odeslat přibližně v“ v zeleném rámečku. Opravdu chcete zprávu vložit do vaší „Pošty k odeslání“?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Put in Outbox' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "Kliknutí na \"Odeslat nyní\" odešle zprávu hned. Nenaplánuje ji to na konkrétní datum a čas. Abyste ji mohli naplánovat, klikněte na tlačítko \"Odeslat přibližně v\" v zeleném rámečku, poté, co zadáte čas odeslání. Opravdu chcete odeslat zprávu hned?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "Zobrazit toto varování příště",
@@ -628,6 +630,10 @@
   "ScheduledMessagesWarningQuit": {
     "message": "„Odeslat Později“ může odesílat zprávy pouze, když $1 běží. Prosím, nezapomeňte ho znovu spustit před tím, než jsou vaše zprávy naplánované k odeslání!",
     "description": ""
+  },
+  "DSN": {
+    "message": "Potvrzení o doručení",
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
   },
   "TimeMismatchConfirmTitle": {
     "message": "Čas odeslání a omezení času odeslání se neshodují",

@@ -604,18 +604,20 @@
     "description": ""
   },
   "answerYes": {
-    "message": "Kyllä"
+    "message": "Kyllä",
+    "description": "Affirmative answer for a yes/no question presented in a confirmation dialog"
   },
   "answerNo": {
-    "message": "Ei"
+    "message": "Ei",
+    "description": "Negative answer for a yes/no question presented in a confirmation dialog"
   },
   "OutboxConfirmMessage": {
     "message": "”Siirrä Lähteviin” -nappi siirtää viestin Lähtevät-kansioon, josta se lähetetään, kun viestejä lähetetään seuraavan kerran tai valitset valikosta ”Lähetä lähtevät viestit”. Viestiä EI siis ajasteta. Ajastukseen voit käyttää vihreäreunuksisen laatikon pitkää Lähetä-painiketta, joka näkyy kun olet määrittänyt ensin lähetysajan. Siirretäänkö viesti Lähteviin?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Put in Outbox' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "”Lähetä heti” -napin painaminen lähettää viestin VÄLITTÖMÄSTI. Viestiä EI siis ajasteta. Ajastukseen voit käyttää vihreäreunuksisen laatikon pitkää Lähetä-painiketta, joka näkyy kun olet määrittänyt ensin lähetysajan. Haluatko varmasti lähettää viestin heti?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "Näytä tämä varoitus myös ensi kerralla",
@@ -632,6 +634,10 @@
   "ScheduledMessagesWarningQuit": {
     "message": "Lähetä myöhemmin voi lähettää viestejä ainosstaan silloin, kun $1 on käynnissä. Muista käynnistää se ajoissa uudelleen, jotta ajastettujen viestien lähetys toimisi!",
     "description": ""
+  },
+  "DSN": {
+    "message": "Toimitustilan ilmoitukset",
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
   },
   "TimeMismatchConfirmTitle": {
     "message": "Lähetysaika/rajoitusristiriita",

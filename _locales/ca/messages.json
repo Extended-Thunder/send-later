@@ -623,7 +623,8 @@
     "description": ""
   },
   "answerYes": {
-    "message": "Sí"
+    "message": "Sí",
+    "description": "Affirmative answer for a yes/no question presented in a confirmation dialog"
   },
   "answerNo": {
     "message": "No",
@@ -631,11 +632,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "Clicant “Col·locar en la Safata de Sortida” posa el missatge en la Safata de Sortida immediatament. NO programa el missatge per a ser enviat en una hora específica. Per fer això, cliqueu el botó “Enviar al voltant de” de la caixa verda després d'introduir una hora vàlida. Està segur que vol posar el missatge a la Safata de Sortida ara?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Put in Outbox' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "Clicant “Enviar ara” envia el missatge immediatament. NO programa el missatge per a ser enviat a una hora específica. Per fer això, cliqueu el botó “Enviar al voltant de” de la caixa verda després d'introduir una hora vàlida. Està segur que vol enviar el missatge ara?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "Mostrar aquest avís el proper cop",
@@ -655,6 +656,10 @@
   "ScheduledMessagesWarningQuit": {
     "message": "Send Later només pot enviar missatges si $1 s'està executant. Si us plau, recordi reiniciar-lo abans de programar els missatges per a ser enviats!",
     "description": ""
+  },
+  "DSN": {
+    "message": "Notificació de l'estat del lliurament",
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
   },
   "incorrectUUID": {
     "message": "Programat per un altre client",

@@ -164,16 +164,19 @@
     "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "AreYouSure": {
-    "message": "Emin misin?"
+    "message": "Emin misin?",
+    "description": ""
   },
   "answerYes": {
-    "message": "Evet"
+    "message": "Evet",
+    "description": "Affirmative answer for a yes/no question presented in a confirmation dialog"
   },
   "answerNo": {
-    "message": "Hayır"
+    "message": "Hayır",
+    "description": "Negative answer for a yes/no question presented in a confirmation dialog"
   },
   "DSN": {
     "message": "Teslimat durumu bildirimi",
-    "description": ""
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
   }
 }

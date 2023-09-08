@@ -179,6 +179,14 @@
     "message": "Remplace l'action par défaut d'« Envoyer » (bouton ou raccourci « Ctrl+Entrée ») par celle d'« Envoyer Plus Tard »",
     "description": ""
   },
+  "whitelistPrefTooltip": {
+    "message": "Si « $1» ou « Envoyer retarde les messages » sont utilisés et que vous indiquez ici le nom d'un carnet d'adresses existant, alors tout message dont les destinataires sont tous dans le carnet d'adresses contournera $2 lorsque le bouton d'envoi du message ou la commande du menu sont utilisés.",
+    "description": "$1 is replaced with the contents of sendButtonPrefLabel, and $2 is replaced with extensionName."
+  },
+  "whitelistPrefLabel": {
+    "message": "Carnet d'adresses de la liste blanche :",
+    "description": "Appears on the options tab, followed by an input box for the use to specify the name of an address book."
+  },
   "sendDelayPrefLabel1": {
     "message": "“Envoyer” retarde l'envoi du message de",
     "description": ""
@@ -256,7 +264,7 @@
     "description": ""
   },
   "showToolbarTextLabel": {
-    "message": "Afficher texte et icône dans la barre d'outil",
+    "message": "Afficher du texte, avec l'icône, dans la barre d'outil",
     "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
@@ -667,19 +675,24 @@
     "description": ""
   },
   "answerYes": {
-    "message": "Oui"
+    "message": "Oui",
+    "description": "Affirmative answer for a yes/no question presented in a confirmation dialog"
   },
   "answerNo": {
     "message": "Non",
-    "description": "Reject an action (presented in popup dialogs)"
+    "description": "Negative answer for a yes/no question presented in a confirmation dialog"
   },
   "OutboxConfirmMessage": {
     "message": "« Placer en attente » mettra directement le message dans la boîte d'envoi. Le message NE SERA PAS programmé pour un envoi à un moment précis. À cette fin, cliquez sur « Programmer pour… » dans le cadre vert après avoir choisi une date d'envoi correcte. Êtes-vous sûr de vouloir placer le message dans la boîte d'envoi maintenant ?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Put in Outbox' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "Cliquer sur « Envoyer maintenant » envoie le message immédiatement. Cela ne planifie PAS l'envoi du message à un moment ultérieur. Pour cela, il faut utiliser le bouton « Programmer pour » dans le cadre vert après avoir indiqué une heure d'envoi correcte. Voulez-vous vraiment envoyer le message maintenant ?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+  },
+  "PopupChangedConfirmMessage": {
+    "message": "Il semble que vous ayez cliqué sur « $1 » après avoir modifié certaines valeurs dans la fenêtre de planification. Confirmez-vous cette action plutôt que de cliquer sur le bouton « $2»?",
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'."
   },
   "ConfirmAgain": {
     "message": "Afficher cet avertissement la prochaine fois",
@@ -691,6 +704,10 @@
   },
   "ShowQuitNotificationPreference": {
     "message": "Afficher un avertissement avant de quitter s'il y a des messages en attente"
+  },
+  "SubfolderPreference": {
+    "message": "Enregistrer les messages programmés dans le sous-dossier appelé :",
+    "description": "In preferences tab, preceded by a checkbox and followed by a text input"
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Il y a des envois programmés. Envoyer Plus Tard ne peut envoyer de message que lorsque $1 est ouvert. Êtes-vous sûr de vouloir quitter ?",
@@ -719,6 +736,18 @@
   "EncryptionUnsupportedText": {
     "message": "$1 ne peut pas planifier les messages chiffrés ou signés numériquement ; vous devez les désactiver sur un brouillon avant de pouvoir le planifier. Vous devez également désactiver « Enregistrer les messages brouillons en format chiffré » sous « Chiffrement de bout en bout » pour les comptes ou identités pour lesquels vous souhaitez planifier des messages.",
     "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has encryption or signing enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
+  "DSN": {
+    "message": "Notification de l’état de la distribution",
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
+  },
+  "noDsnTitle": {
+    "message": "$1 n'est pas pris en charge avec $2",
+    "description": "The title of the alert that pops up when the user attempts to schedule a message with delivery status notification enabled. $1 is replaced with the string 'DSN' and $2 is replaced with the extension name."
+  },
+  "noDsnText": {
+    "message": "L'option $1 est incompatible avec $2. Veuillez désactiver cette option sur ce message avant de le planifier, ou bien envoyez-le sans $2.",
+    "description": "The text of the alert that pops up when the user attempts to schedule a message with delivery status notification enabled. $1 is replaced with the contents of the string 'DSN' and $2 is replaced with the extension name."
   },
   "incorrectUUID": {
     "message": "Planifié par un autre client",
@@ -880,6 +909,10 @@
     "message": "VÉRIFICATION",
     "description": ""
   },
+  "longDonationMessage": {
+    "message": "[Le développement et la maintenance de ce module est supporté par Extended Thunder Inc., une organisation à but non lucratif dédiée au support des modules gratuits et open-source Thunderbird. Vous pouvez aider Extended Thunder pour gérantir que des modules comme celui-ci puissent continuer à être disponibles. Vous pouvez faire un don récurrent sur <a href='https://liberapay.com/ExtendedThunder'>LiberaPay</a> ou un don unique sur <a href='https://www.paypal.com/donate/?hosted_button_id=Y4V6TDZ2ZY5TS'>PayPal</a>. Les dons à Extended Thunder sont déductibles des impôts aux États-Unis conformément à la loi. Merci!]",
+    "description": "This text appears at the start of the add-on's long description on addons.thunderbird.net, as well as on the add-on's details page inside Thunderbird. It appears right before the text in the 'LongDescription' string. Please leave the URLs intact when translating."
+  },
   "LongDescription": {
     "message": "Ce module modifie la commande « Envoyer plus tard» (Ctrl+Maj+Retour) dans la fenêtre de composition du message, de sorte qu'au lieu de simplement copier le message dans votre boîte d'envoi pour qu'il soit envoyé la prochaine fois que vous allez en ligne ou que vous faites « Envoyer des messages non envoyés », une boîte de dialogue apparaît qui vous permet d'indiquer quand le message sera envoyé.\n\nVous pouvez indiquer une heure et une date spécifiques, ou cliquer sur \"15 minutes plus tard\", \"30 minutes plus tard\" ou \"2 heures plus tard\", ou définir des raccourcis personnalisés. Vous pouvez également programmer un message à envoyer à plusieurs reprises en utilisant des règles simples (toutes les N heures, jours, etc.) ou des fonctions personnalisables.\n\nSend Later s'appuie sur une analyse de date puissante fournie par Andrew Plummer <a href=\"https://sugarjs.com/\">Sugar. s library</a>.\n\nLes commentaires et les rapports de bogues sont les bienvenus et peuvent être proposés via la <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">page GitHub</a> du projet.",
     "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
@@ -931,6 +964,10 @@
   "menuSkipMsg": {
     "message": "Passer la prochaine occurence",
     "description": "Command added to the message list menu for the user to use to skip the next occurrence of one or more selected recurring drafts"
+  },
+  "menuClaimMsg": {
+    "message": "Déplacer le(s) message(s) programmé(s) vers cette instance Thunderbird",
+    "description": "Command added to the message list menu for the user to use to move scheduled messages from another Thunderbird instance to this one."
   },
   "resultsTitle": {
     "message": "Résultats de traitement des messages",

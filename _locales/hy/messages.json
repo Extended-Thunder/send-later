@@ -448,18 +448,20 @@
     "description": ""
   },
   "answerYes": {
-    "message": "Այո"
+    "message": "Այո",
+    "description": "Affirmative answer for a yes/no question presented in a confirmation dialog"
   },
   "answerNo": {
-    "message": "Ոչ"
+    "message": "Ոչ",
+    "description": "Negative answer for a yes/no question presented in a confirmation dialog"
   },
   "OutboxConfirmMessage": {
     "message": "Սեղմելով “Դնել ելքայինում”՝ նամակը միանգամից կտեղափոխվի Ելքային թղթապանակ: Այն ՉԻ պլանավորի ուղարկելու նամակը որոշակի ժամի: Դրա համար սեղմեք “Ուղարկել հետո” կոճակը՝ կանաչ դաշտում նշելով ոիղարկելու ժամանակը: Այժմ դնե՞լ նամակը Ելքայինում",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Put in Outbox' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "Սեղմելով «Ուղարկել հիմա»՝ նամակը անմիջապես կուղարկվի: Այն ՉԻ պլանավորում նամակ ուղարկելը: Դրա համար սեղմեք «Ուղարկել մոտավորապես» կոճակը: Ուղարկե՞լ հիմա",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "Ցույց տալ այս զգուշացումը հաջորդ անգամ",
@@ -468,6 +470,10 @@
   "ScheduledMessagesWarningTitle": {
     "message": "Պլանավորված նամակի զգուշացում",
     "description": ""
+  },
+  "DSN": {
+    "message": "Հասցնելու վիճակի տեղեկությունը",
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
   },
   "TimeMismatchConfirmTitle": {
     "message": "Ուղարկելու ժամանակը / սահմանափակման անհամապատասխանություն",

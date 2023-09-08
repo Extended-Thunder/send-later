@@ -608,18 +608,20 @@
     "description": ""
   },
   "answerYes": {
-    "message": "是"
+    "message": "是",
+    "description": "Affirmative answer for a yes/no question presented in a confirmation dialog"
   },
   "answerNo": {
-    "message": "否"
+    "message": "否",
+    "description": "Negative answer for a yes/no question presented in a confirmation dialog"
   },
   "OutboxConfirmMessage": {
     "message": "按\"放在寄件匣\"並立即將郵件送到寄件匣中。這個動作不會安排郵件在排程時間發送。要在排程時間發送，按一下綠色框中的\"發送於\"按鈕。你確定想要把郵件送到寄件匣中？",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Put in Outbox' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "按\"立即發出\"並立即發出郵件。這個動作不會安排郵件在特定時間發送。要在特定時間發送，按一下綠色框中的\"發送於\"按鈕。你確定想要把郵件立即發出？",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "下次顯示此警告訊息",
@@ -636,6 +638,10 @@
   "ScheduledMessagesWarningQuit": {
     "message": "延期發信只會在$1開啟時才能發送訊息。請記得在郵件排程時間前重新開啟。",
     "description": ""
+  },
+  "DSN": {
+    "message": "遞送狀態通知",
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
   },
   "TimeMismatchConfirmTitle": {
     "message": "寄出的時間/限制不吻合",

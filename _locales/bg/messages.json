@@ -620,18 +620,20 @@
     "description": ""
   },
   "answerYes": {
-    "message": "Да"
+    "message": "Да",
+    "description": "Affirmative answer for a yes/no question presented in a confirmation dialog"
   },
   "answerNo": {
-    "message": "Не"
+    "message": "Не",
+    "description": "Negative answer for a yes/no question presented in a confirmation dialog"
   },
   "OutboxConfirmMessage": {
     "message": "Щракването върху \"Постави в изходяща кутия\" поставя съобщението в кутията Ви за Изходяща поща незабавно. Тя НЕ планира съобщението да бъде изпратено в определено време. За това кликнете върху бутона \"Изпращане около\" в зеленото поле след въвеждане на валидно време за изпращане. Наистина ли искате да поставите съобщението в кутията си за Изходяща поща сега?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Put in Outbox' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "Щракването върху \"Изпращане сега\" изпраща съобщението незабавно. Това не планира съобщението да бъде изпратено в определено време. За това щракнете върху бутона \"Изпращане около\" в зеленото поле след въвеждане на валидно време за изпращане. Наистина ли искате да изпратите съобщението сега?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "Показване на това предупреждение следващия път",
@@ -648,6 +650,10 @@
   "ScheduledMessagesWarningQuit": {
     "message": "Изпращане по-късно може да изпраща съобщения само когато $1 е стартирано. Моля, не забравяйте да го рестартирате преди съобщенията, които са планирани да бъдат изпратени!",
     "description": ""
+  },
+  "DSN": {
+    "message": "Уведомяване при доставка",
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
   },
   "TimeMismatchConfirmTitle": {
     "message": "Време за изпращане / несъответствие в ограниченията",

@@ -667,19 +667,20 @@
     "description": ""
   },
   "answerYes": {
-    "message": "Ja"
+    "message": "Ja",
+    "description": "Affirmative answer for a yes/no question presented in a confirmation dialog"
   },
   "answerNo": {
     "message": "Nein",
-    "description": "Reject an action (presented in popup dialogs)"
+    "description": "Negative answer for a yes/no question presented in a confirmation dialog"
   },
   "OutboxConfirmMessage": {
     "message": "Durch „In den Postausgang verschieben” wird die Nachricht augenblicklich in den Postausgangs-Ordner verschoben. Der Nachrichtenversand wird NICHT für eine bestimmte Zeit geplant. Dafür müssen Sie eine gültige Sendezeit eingeben und danach die „Geschätzte Sendezeit”-Schaltfläche im grün umrahmten Bereich klicken. Soll die Nachricht jetzt in den Postausgangs-Ordner verschoben werden?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Put in Outbox' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "Mit „Jetzt senden“ wird die Nachricht sofort gesendet. Das Versenden wird NICHT für eine bestimmte Zeit geplant. Dafür müssen Sie eine gültige Sendezeit eingeben und danach die „Geschätzte Sendezeit”-Schaltfläche im grün umrahmten Bereich klicken. Soll die Nachricht jetzt sofort gesendet werden?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "Diese Meldung beim nächsten Mal anzeigen",
@@ -707,6 +708,10 @@
   "EncryptionUnsupportedText": {
     "message": "$1 kann Nachrichten nicht planen, die verschlüsselt oder digital signiert sind; Sie müssen die Verschlüsselung und/oder Signatur  im Entwurf deaktivieren, bevor Sie die Nachricht  planen können. Sie müssen auch „Entwurfsnachrichten im verschlüsselten Format speichern“ unter „Ende-zu-Ende-Verschlüsselung“ für Konten oder Identitäten deaktivieren, für die Sie Nachrichten planen möchten.",
     "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has encryption or signing enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
+  "DSN": {
+    "message": "Übermittlungsstatus (DSN) anfordern",
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
   },
   "incorrectUUID": {
     "message": "Von einem anderen Client geplant",
@@ -867,6 +872,10 @@
   "CheckingMessage": {
     "message": "PRÜFE AUF NACHRICHTEN ZUM VERSAND",
     "description": ""
+  },
+  "longDonationMessage": {
+    "message": "[Die Entwicklung und Wartung dieses Add-ons wird von Extended Thunder Inc. unterstützt, einer gemeinnützigen Organisation, die sich der Unterstützung kostenloser Open-Source Thunderbird-Add-ons verschrieben hat. Bitte unterstützen Sie Extended Thunder, um sicherzustellen, dass Add-ons wie dieses weiterhin verfügbar sind. Sie können eine wiederkehrende Spende bei <a href='https://liberapay.com/ExtendedThunder'>LiberaPay</a> oder eine einmalige Spende bei <a href='https://www.paypal.com/donate/?hosted_button_id=Y4V6TDZ2ZY5TS'>PayPal</a>machen. Spenden an Extended Thunder sind in den USA steuerlich absetzbar gemäß der gesetzlich Vorschriften. Danke!]",
+    "description": "This text appears at the start of the add-on's long description on addons.thunderbird.net, as well as on the add-on's details page inside Thunderbird. It appears right before the text in the 'LongDescription' string. Please leave the URLs intact when translating."
   },
   "LongDescription": {
     "message": "Dieses Add-on ändert den Befehl „Später senden“ (Strg+Umschalt+Return) im Fenster zum Verfassen einer Nachricht, so dass Sie die Nachricht nicht nur in Ihren Postausgang kopieren, sondern das nächste Mal verschicken, wenn Sie online gehen oder den Befehl \"Ungesendete Nachrichten senden\" aufrufen. Es erscheint ein Dialog, in dem Sie festlegen können, wann die Nachricht gesendet wird.\n\nSie können eine Zeit und ein Datum angeben, oder auf „15 Minuten später“, „30 Minuten später“ oder „2 Stunden später“ klicken, und benutzerdefinierte Tastenkürzel definieren. Sie können auch eine Nachricht planen, die Sie wiederholt mit einfachen Regeln (alle N Stunden, Tage, etc.) oder anhand anpassbarer Funktionen versenden können.\n\nSpäter senden basiert auf der leistungsfähigen Datumseingabe-Bibliothek von Andrew Plummer <a href=\"https://sugarjs.com/\">Sugar. s Library</a>.\n\nFeedback und Fehlerberichte sind sehr willkommen und können auf der Projektseite <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">GitHub-Seite</a> eingereicht werden.",

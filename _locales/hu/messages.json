@@ -667,19 +667,20 @@
     "description": ""
   },
   "answerYes": {
-    "message": "Igen"
+    "message": "Igen",
+    "description": "Affirmative answer for a yes/no question presented in a confirmation dialog"
   },
   "answerNo": {
     "message": "Nem",
-    "description": "Reject an action (presented in popup dialogs)"
+    "description": "Negative answer for a yes/no question presented in a confirmation dialog"
   },
   "OutboxConfirmMessage": {
     "message": "A „Postázandó üzenetekbe” gombra kattintva az üzenet azonnal beteszi a Kimenő üzenetek mappába. NEM ütemezi az üzenetküldést egy adott időpontra. Ehhez kattintson az „Elküldés” gombra a zöld dobozban, miután megadta az érvényes küldési időt. Biztosan most szeretné az üzenetet a Kimenő üzenetek mappába tenni?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Put in Outbox' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "A „Küldés most” gombra kattintva azonnal elküldi az üzenetet. NEM ütemezi az üzenetet egy adott időpontban. Ehhez kattintson az „Elküldés” gombra a zöld dobozban, miután megadta az érvényes küldési időt. Biztosan most szeretné elküldeni az üzenetet?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "A figyelmeztetés megjelenítése legközelebb",
@@ -719,6 +720,10 @@
   "EncryptionUnsupportedText": {
     "message": "$1 nem tudja ütemezni a titkosított vagy digitálisan aláírt üzeneteket; ezeket ki kell kapcsolni a piszkozatokon az ütemezésük előtt. Ezenkívül ki kell kapcsolni a „Piszkozatok tárolása titkosított formátumban” lehetőséget a „Végponttól végpontig terjedő titkosítás” alatt azoknál a fiókoknál vagy identitásoknál, amelyekhez üzeneteket szeretne ütemezni.",
     "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has encryption or signing enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
+  "DSN": {
+    "message": "Értesítés a kézbesítésről",
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
   },
   "incorrectUUID": {
     "message": "Egy másik ügyfél ütemezte",

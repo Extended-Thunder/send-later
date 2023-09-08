@@ -667,19 +667,20 @@
     "description": ""
   },
   "answerYes": {
-    "message": "Ja"
+    "message": "Ja",
+    "description": "Affirmative answer for a yes/no question presented in a confirmation dialog"
   },
   "answerNo": {
     "message": "Nee",
-    "description": "Reject an action (presented in popup dialogs)"
+    "description": "Negative answer for a yes/no question presented in a confirmation dialog"
   },
   "OutboxConfirmMessage": {
     "message": "Door op ‘In Postvak UIT plaatsen’ te klikken, wordt het bericht direct in uw Postvak UIT geplaatst. Het bericht zal NIET op een specifiek tijdstip worden verzonden. Klik daarvoor na het invoeren van een geldige verzendtijd op de knop ‘Verzenden om’. Weet u zeker dat u het bericht nu in uw Postvak UIT wilt plaatsen?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Put in Outbox' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "Door op ‘Nu verzenden’ te klikken, wordt het bericht direct verzonden. Het bericht zal NIET op een specifiek tijdstip worden verzonden. Klik daarvoor na het invoeren van een geldige verzendtijd op de knop ‘Verzenden om’. Weet u zeker dat u het bericht nu wilt verzenden?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "Deze waarschuwing de volgende keer tonen",
@@ -719,6 +720,10 @@
   "EncryptionUnsupportedText": {
     "message": "$1 kan geen berichten plannen die versleuteld of digitaal ondertekend zijn; u moet dit uitschakelen in een concept voordat u het kunt plannen. Ook moet u ‘Conceptberichten opslaan in versleutelde opmaak’ onder ‘End-to-end-versleuteling’ uitschakelen voor accounts of identiteiten waarvoor u berichten wilt plannen.",
     "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has encryption or signing enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
+  "DSN": {
+    "message": "Afleverstatusnotificatie",
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
   },
   "incorrectUUID": {
     "message": "Gepland door een andere client",

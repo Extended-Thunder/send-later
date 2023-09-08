@@ -623,7 +623,8 @@
     "description": ""
   },
   "answerYes": {
-    "message": "Sí"
+    "message": "Sí",
+    "description": "Affirmative answer for a yes/no question presented in a confirmation dialog"
   },
   "answerNo": {
     "message": "No",
@@ -631,11 +632,11 @@
   },
   "OutboxConfirmMessage": {
     "message": "Hacer clic en “Poner en la Bandeja de Salida” sitúa el mensaje en su Bandeja de Salida de inmediato. NO programa el mensaje para que sea enviado a una hora específica. Para eso, haga clic en el botón “Enviar en torno al” en el recuadro verde, tras introducir una hora de envío válida. ¿Está seguro de que quiere poner el mensaje en su Bandeja de Salida ahora?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Put in Outbox' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
     "message": "Hacer clic en “Enviar ahora” envía el mensaje inmediatamente. NO programa el mensaje para que sea enviado a una hora específica. Para eso, haga clic en el botón “Enviar en torno al” en el recuadro verde tras introducir una hora de envío válida. ¿Está seguro de que quiere enviar el mensaje ahora?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
     "message": "Mostrar esta advertencia la próxima vez",
@@ -655,6 +656,10 @@
   "ScheduledMessagesWarningQuit": {
     "message": "Send Later sólo puede enviar mensajes cuando $1 está en funcionamiento. Por favor, ¡recuerde volver a iniciarlo antes del momento programado de envío de sus mensajes!",
     "description": ""
+  },
+  "DSN": {
+    "message": "Notificación de estado de entrega",
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
   },
   "incorrectUUID": {
     "message": "Programado por otro cliente",
