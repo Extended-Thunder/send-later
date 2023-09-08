@@ -1926,7 +1926,7 @@ by Extended Thunder Inc., a non-profit organization in the United
 States dedicated supporting the development and maintenance of free,
 open-source Thunderbird add-ons. You can support Extended Thunder [on Liberapay](https://liberapay.com/ExtendedThunder).
 
-If you'd prefer to make a one-time donation, you can do so [on PayPal](https://paypal.me/ExtendedThunder).
+If you'd prefer to make a one-time donation, you can do so [on PayPal](https://www.paypal.com/donate/?hosted_button_id=Y4V6TDZ2ZY5TS).
 
 A non-monetary way you can help is by
 [writing a review](https://addons.thunderbird.net/thunderbird/addon/send-later-3/reviews/add "Review Send Later").
