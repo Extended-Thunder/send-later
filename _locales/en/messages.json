@@ -873,6 +873,10 @@
     "message": "CHECKING",
     "description": ""
   },
+  "longDonationMessage": {
+    "message": "[Development and maintenance of this add-on is supported by Extended Thunder Inc., a non-profit organization dedicated to supporting free, open-source Thunderbird add-ons. Please support Extended Thunder to help ensure that add-ons like this one continue to be available. You can make a recurring donation at <a href='https://liberapay.com/ExtendedThunder'>LiberaPay</a> or a one-time donation at <a href='https://www.paypal.com/donate/?hosted_button_id=Y4V6TDZ2ZY5TS'>PayPal</a>. Donations to Extended Thunder are tax-deductible in the United States as permitted by law. Thank you!]",
+    "description": "This text appears at the start of the add-on's long description on addons.thunderbird.net, as well as on the add-on's details page inside Thunderbird. It appears right before the text in the 'LongDescription' string. Please leave the URLs intact when translating."
+  },
   "LongDescription": {
     "message": "This add-on changes the “Send Later” command (Ctrl+Shift+Return) in the message composition window, so that instead of merely copying the message into your Outbox so that it is sent the next time you go online or do “Send Unsent Messages”, a dialog pops up which allows you to specify when the message will be sent.\n\nYou can specify a specific time and date, or click “15 mins later”, “30 mins later” or “2 hours later”, or define custom shortcuts. You can also schedule a message to send repeatedly using simple rules (every N hours, days, etc.) or customizable functions.\n\nSend Later relies on powerful date input parsing provided by Andrew Plummer's <a href=\"https://sugarjs.com/\">Sugar.js library</a>.\n\nFeedback and bug reports are very welcome, and can be submitted via the project's <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">GitHub page</a>.",
     "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
