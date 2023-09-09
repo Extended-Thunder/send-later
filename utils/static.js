@@ -1031,7 +1031,6 @@ var SLStatic = {
       null,
       false,
     );
-    content = SLStatic.replaceHeader(content, "Autocrypt", null, false);
     content = SLStatic.replaceHeader(content, "Openpgp", null, false);
     return content;
   },
