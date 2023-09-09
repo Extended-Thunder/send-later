@@ -152,31 +152,40 @@ var SLTools = {
     );
   },
 
+  // Necessary because of https://bugzilla.mozilla.org/show_bug.cgi?id=1852407
+  async isDraftsFolder(folder) {
+    return (
+      folder.type == "drafts" ||
+      (await messenger.folders.getParentFolders(folder)).some(
+        (f) => f.type == "drafts",
+      )
+    );
+  },
+
   // Get all draft folders. Returns an array of Folder objects.
-  getDraftFolders(acct) {
-    function getDraftFoldersHelper(folder) {
-      // Recursive helper function to look through an account for draft folders
-      if (folder.type == "drafts") {
-        return folder;
-      } else {
-        const drafts = [];
-        for (let subFolder of folder.subFolders) {
-          drafts.push(getDraftFoldersHelper(subFolder));
-        }
+  async getDraftFolders(acct) {
+    async function getDraftFoldersHelper(folder) {
+      let drafts = [];
+      if (folder.type != "drafts") {
         return drafts;
       }
+      drafts.push(folder);
+      for (let subFolder of folder.subFolders) {
+        // Bug: subfolders of drafts folders aren't marked as drafts folders
+        // themselves even though they should be. See
+        // https://bugzilla.mozilla.org/show_bug.cgi?id=1852407
+        subFolder.type = "drafts";
+        drafts = drafts.concat(await getDraftFoldersHelper(subFolder));
+      }
+      return drafts;
     }
 
-    const draftSubFolders = [];
+    let folders = [];
     for (let folder of acct.folders) {
-      draftSubFolders.push(getDraftFoldersHelper(folder));
+      folders = folders.concat(await getDraftFoldersHelper(folder));
     }
-    const allDraftFolders = SLStatic.flatten(draftSubFolders);
-    SLStatic.debug(
-      `Found Draft folder(s) for account ${acct.name}`,
-      allDraftFolders,
-    );
-    return allDraftFolders;
+    SLStatic.debug(`Found Draft folder(s) for account ${acct.name}`, folders);
+    return folders;
   },
 
   async expandRecipients(tabId) {
@@ -185,6 +194,29 @@ var SLTools = {
       details[type] = await messenger.SL3U.expandRecipients(tabId, type);
     }
     await messenger.compose.setComposeDetails(tabId, details);
+  },
+
+  async getTargetSubfolder(preferences, msg) {
+    if (!preferences.storeInSubfolder) return;
+    let subfolderName = preferences.subfolderName;
+    if (!subfolderName) return;
+    let folder = msg.folder;
+    let found;
+    let subfolder;
+    for (subfolder of await messenger.folders.getSubFolders(folder)) {
+      if (subfolder.name == subfolderName) {
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      SLStatic.info(
+        `Creating subfolder ${subfolderName} of folder ${folder.name} in ` +
+          `account ${folder.accountId}`,
+      );
+      subfolder = await messenger.folders.create(folder, subfolderName);
+    }
+    return subfolder;
   },
 
   // Do something with each message in all draft folders. callback
@@ -212,7 +244,7 @@ var SLTools = {
       if (ignoredAccounts.includes(acct.id)) {
         continue;
       }
-      let draftFolders = SLTools.getDraftFolders(acct);
+      let draftFolders = await SLTools.getDraftFolders(acct);
       for (let folder of draftFolders) {
         let page = await messenger.messages.list(folder);
         while (true) {

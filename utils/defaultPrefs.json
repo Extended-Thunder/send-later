@@ -46,5 +46,7 @@
   "telemetryEnabled": ["boolean", true],
   "telemetryUUID": ["string", ""],
   "telemetryUUIDEnabled": ["boolean", true],
-  "telemetryURL": ["string", "https://telemetry.kamens.us/"]
+  "telemetryURL": ["string", "https://telemetry.kamens.us/"],
+  "storeInSubfolder": ["boolean", false],
+  "subfolderName": ["string", ""]
 }

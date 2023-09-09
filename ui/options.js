@@ -205,6 +205,10 @@ const SLOptions = {
         let customDTDiv = document.getElementById("customDateTimeFormatsDiv");
         customDTDiv.style.display = customDT.checked ? "block" : "none";
 
+        if (!preferences.storeInSubfolder) {
+          document.getElementById("subfolderName").disabled = true;
+        }
+
         await SLOptions.setUpActiveAccounts(preferences.ignoredAccounts);
       });
     return await Promise.all([ufuncPromise, prefPromise]);
@@ -386,6 +390,42 @@ const SLOptions = {
     const { preferences } = await browser.storage.local.get({
       preferences: {},
     });
+
+    // If subfolder checkbox was enabled and associated textbox is empty, set
+    // it to extension name. Also make it writable.
+    if (
+      element.id == "storeInSubfolder" &&
+      !preferences.storeInSubfolder &&
+      element.checked
+    ) {
+      if (!preferences.subfolderName) {
+        preferences.subfolderName = browser.i18n.getMessage("extensionName");
+        let subfolderName = document.getElementById("subfolderName");
+        subfolderName.value = preferences.subfolderName;
+      }
+      subfolderName.disabled = false;
+    }
+    // If subfolder checkbox was disabled then make subfolderName field
+    // unwritable.
+    else if (
+      element.id == "storeInSubfolder" &&
+      preferences.storeInSubfolder &&
+      !element.checked
+    ) {
+      document.getElementById("subfolderName").disabled = true;
+    }
+    // If subfolder name was emptied, uncheck the associated checkbox and make
+    // the textbox unwritable.
+    else if (
+      element.id == "subfolderName" &&
+      !element.value &&
+      preferences.subfolderName &&
+      preferences.storeInSubfolder
+    ) {
+      preferences.storeInSubfolder = false;
+      document.getElementById("storeInSubfolder").checked = false;
+      element.disabled = true;
+    }
 
     const setRegularPref = (element) => {
       let id = element.id;

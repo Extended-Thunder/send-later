@@ -329,6 +329,13 @@ const SendLater = {
       // TODO: Look into whether this could be a problem for
       // SendLater (possibility for duplicates?)
       SLStatic.error(`Saved ${saveProperties.messages.length} messages.`);
+    } else {
+      let msg = saveProperties.messages[0];
+      let targetFolder = await SLTools.getTargetSubfolder(preferences, msg);
+      if (targetFolder) {
+        await messenger.messages.move([msg.id], targetFolder);
+        // It appears that the message ID stays the same after the move.
+      }
     }
 
     if (preferences.ignoredAccounts && preferences.ignoredAccounts.length) {
@@ -1324,7 +1331,9 @@ const SendLater = {
   async displayedFolderChangedListener(tab, folder) {
     SLStatic.debug("SLTABS: displayedFolderChangedListener");
     const preferences = await SLTools.getPrefs();
-    let visible = folder.type == "drafts" && preferences.showColumn === true;
+    let visible =
+      preferences.showColumn === true &&
+      (await SLTools.isDraftsFolder(folder));
     let columnName = messenger.i18n.getMessage("sendlater3header.label");
     await messenger.columnHandler.setColumnVisible(
       columnName,
@@ -1409,6 +1418,14 @@ const SendLater = {
         let { messages } = await messenger.compose.saveMessage(tab.id, {
           mode: "draft",
         });
+
+        // Courtesy of https://bugzilla.mozilla.org/show_bug.cgi?id=263114, if
+        // the draft we're editing started in a subfolder than TB doesn't
+        // delete it automatically. *sigh*
+        if (!messages.map((m) => m.id).includes(originalMsg.id)) {
+          SendLater.deleteMessage(originalMsg);
+        }
+
         // Pick the message stored in the same folder as the original draft was
         // stored in.
         // let newMsg = messages.find(m => m.folder == originalMsg.folder);
@@ -1982,6 +1999,7 @@ const SendLater = {
       "archives",
       "junk",
       "outbox",
+      "drafts",
     ];
     if (skipFolders.includes(folder.type)) {
       SLStatic.debug(
@@ -2040,7 +2058,7 @@ const SendLater = {
     // opened in a separate tab or window.
     let headerName = messenger.i18n.getMessage("sendlater3header.label");
     await messenger.messageDisplayAction.disable(tab.id);
-    if (hdr.folder.type == "drafts") {
+    if (await SLTools.isDraftsFolder(hdr.folder)) {
       // Add header row
       const preferences = await SLTools.getPrefs();
       const instanceUUID = preferences.instanceUUID;
