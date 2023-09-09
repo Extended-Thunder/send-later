@@ -94,11 +94,15 @@ const SendLater = {
   // (after some pre-send checks)
   async checkDoSendNow(options) {
     if (options.first) {
+      let messageArgs = [
+        messenger.i18n.getMessage("sendNowLabel"),
+        messenger.i18n.getMessage("sendAtLabel"),
+      ];
       let preferences = await SLTools.getPrefs();
       if (preferences.showSendNowAlert) {
         const result = await SLTools.confirmCheck(
           messenger.i18n.getMessage("AreYouSure"),
-          messenger.i18n.getMessage("SendNowConfirmMessage"),
+          messenger.i18n.getMessage("SendNowConfirmMessage", messageArgs),
           messenger.i18n.getMessage("ConfirmAgain"),
           true,
         ).catch((err) => {
@@ -106,6 +110,23 @@ const SendLater = {
         });
         if (result.check === false) {
           preferences.showSendNowAlert = false;
+          await messenger.storage.local.set({ preferences });
+        }
+        if (!result.ok) {
+          SLStatic.debug(`User canceled send now.`);
+          return false;
+        }
+      } else if (options.changed && preferences.showChangedAlert) {
+        const result = await SLTools.confirmCheck(
+          messenger.i18n.getMessage("AreYouSure"),
+          messenger.i18n.getMessage("PopupChangedConfirmMessage", messageArgs),
+          messenger.i18n.getMessage("ConfirmAgain"),
+          true,
+        ).catch((err) => {
+          SLStatic.trace(err);
+        });
+        if (result.check === false) {
+          preferences.showChangedAlert = false;
           await messenger.storage.local.set({ preferences });
         }
         if (!result.ok) {
@@ -125,11 +146,15 @@ const SendLater = {
   // Use built-in send later function (after some pre-send checks)
   async checkDoPlaceInOutbox(options) {
     if (options.first) {
+      let messageArgs = [
+        messenger.i18n.getMessage("sendlater.prompt.sendlater.label"),
+        messenger.i18n.getMessage("sendAtLabel"),
+      ];
       let preferences = await SLTools.getPrefs();
       if (preferences.showOutboxAlert) {
         const result = await SLTools.confirmCheck(
           messenger.i18n.getMessage("AreYouSure"),
-          messenger.i18n.getMessage("OutboxConfirmMessage"),
+          messenger.i18n.getMessage("OutboxConfirmMessage", messageArgs),
           messenger.i18n.getMessage("ConfirmAgain"),
           true,
         ).catch((err) => {
@@ -137,6 +162,23 @@ const SendLater = {
         });
         if (result.check === false) {
           preferences.showOutboxAlert = false;
+          await messenger.storage.local.set({ preferences });
+        }
+        if (!result.ok) {
+          SLStatic.debug(`User canceled put in outbox.`);
+          return false;
+        }
+      } else if (options.changed && preferences.showChangedAlert) {
+        const result = await SLTools.confirmCheck(
+          messenger.i18n.getMessage("AreYouSure"),
+          messenger.i18n.getMessage("PopupChangedConfirmMessage", messageArgs),
+          messenger.i18n.getMessage("ConfirmAgain"),
+          true,
+        ).catch((err) => {
+          SLStatic.trace(err);
+        });
+        if (result.check === false) {
+          preferences.showChangedAlert = false;
           await messenger.storage.local.set({ preferences });
         }
         if (!result.ok) {
@@ -1762,7 +1804,10 @@ const SendLater = {
         SLStatic.debug("User requested send immediately.");
         await SendLater.handleMessageCommand(
           SendLater.doSendNow,
-          { messageChecker: SendLater.checkDoSendNow },
+          {
+            messageChecker: SendLater.checkDoSendNow,
+            changed: message.changed,
+          },
           message.tabId,
           message.messageIds,
         );
@@ -1772,7 +1817,10 @@ const SendLater = {
         SLStatic.debug("User requested system send later.");
         await SendLater.handleMessageCommand(
           SendLater.doPlaceInOutbox,
-          { messageChecker: SendLater.checkDoPlaceInOutbox },
+          {
+            messageChecker: SendLater.checkDoPlaceInOutbox,
+            changed: message.changed,
+          },
           message.tabId,
           message.messageIds,
         );

@@ -4,6 +4,8 @@ const SLPopup = {
   zoom: 100,
   previousLoop: null,
   loopMinutes: 1,
+  initialized: false,
+  changed: false,
 
   // Workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=1850454
   // Won't work for everyone, but will work for a lot of people.
@@ -139,6 +141,7 @@ const SLPopup = {
       messageIds: SLPopup.messageIds,
       tabId: SLPopup.messageTabId,
       action: "doSendNow",
+      changed: SLPopup.changed,
     };
     SLStatic.debug(message);
     browser.runtime
@@ -153,6 +156,7 @@ const SLPopup = {
       messageIds: SLPopup.messageIds,
       tabId: SLPopup.messageTabId,
       action: "doPlaceInOutbox",
+      changed: SLPopup.changed,
     };
     SLStatic.debug(message);
     browser.runtime
@@ -809,6 +813,9 @@ const SLPopup = {
         SLStatic.debug("onInput: redundant, returning");
         return;
       }
+      if (SLPopup.initialized) {
+        SLPopup.changed = true;
+      }
       priorInputs = inputs;
       const schedule = SLPopup.parseInputs(inputs);
 
@@ -1023,7 +1030,7 @@ const SLPopup = {
 
     SLPopup.attachListeners();
 
-    SLPopup.applyDefaults();
+    await SLPopup.applyDefaults();
 
     let queryString = new URLSearchParams(window.location.search);
     let messageIds = queryString
@@ -1051,6 +1058,7 @@ const SLPopup = {
     }
 
     SLPopup.restoreZoom();
+    SLPopup.initialized = true;
     SLStatic.debug("Initialized popup window");
   },
 };

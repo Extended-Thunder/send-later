@@ -675,12 +675,16 @@
     "description": "Negative answer for a yes/no question presented in a confirmation dialog"
   },
   "OutboxConfirmMessage": {
-    "message": "Clicking “Put in Outbox” puts the message in your Outbox immediately. It DOES NOT schedule the message to be sent at a specific time. For that, click the “Send at” button after entering a valid send time. Are you sure you want to put the message in your Outbox now?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "message": "Clicking “$1” puts the message in your Outbox immediately. It DOES NOT schedule the message to be sent at a specific time. For that, click the “$2” button after entering a valid send time. Are you sure you want to put the message in your Outbox now?",
+    "description": "$1 is replaced with your translation of 'Put in Outbox' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
-    "message": "Clicking “Send Now” sends the message immediately. It DOES NOT schedule the message to be sent at a specific time. For that, click the “Send at” button after entering a valid send time. Are you sure you want to send the message now?",
-    "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+    "message": "Clicking “$1” sends the message immediately. It DOES NOT schedule the message to be sent at a specific time. For that, click the “$2” button after entering a valid send time. Are you sure you want to send the message now?",
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+  },
+  "PopupChangedConfirmMessage": {
+    "message": "It looks like you clicked “$1” after changing some of the values in the scheduling dialog. Are you sure you meant to do that rather than clicking the “$2” button?",
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'."
   },
   "ConfirmAgain": {
     "message": "Show this warning next time",
@@ -692,6 +696,10 @@
   },
   "ShowQuitNotificationPreference": {
     "message": "Show warning before quit if there are pending messages"
+  },
+  "SubfolderPreference": {
+    "message": "Store scheduled messages in subfolder called:",
+    "description": "In preferences tab, preceded by a checkbox and followed by a text input"
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "There are messages scheduled to be sent. Send Later can only send messages when $1 is running. Are you sure you want to exit?",

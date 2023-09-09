@@ -22,6 +22,7 @@
   "sendDoesDelay": ["bool", false],
   "sendDelay": ["int", 10],
   "sendDoesSL": ["bool", false],
+  "showChangedAlert": ["bool", true],
   "showEditAlert": ["bool", true],
   "showOutboxAlert": ["bool", true],
   "showSendNowAlert": ["bool", true],
