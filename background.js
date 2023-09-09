@@ -683,7 +683,7 @@ const SendLater = {
               `for ${nextRecurAt}`,
           );
 
-          let newMsgContent = await messenger.messages.getRaw();
+          let newMsgContent = await messenger.messages.getRaw(msgHdr.id);
 
           newMsgContent = SLStatic.replaceHeader(
             newMsgContent,
