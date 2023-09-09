@@ -666,6 +666,13 @@
     "message": "Biztos benne?",
     "description": ""
   },
+  "answerYes": {
+    "message": "Igen"
+  },
+  "answerNo": {
+    "message": "Nem",
+    "description": "Reject an action (presented in popup dialogs)"
+  },
   "OutboxConfirmMessage": {
     "message": "A „Postázandó üzenetekbe” gombra kattintva az üzenet azonnal beteszi a Kimenő üzenetek mappába. NEM ütemezi az üzenetküldést egy adott időpontra. Ehhez kattintson az „Elküldés” gombra a zöld dobozban, miután megadta az érvényes küldési időt. Biztosan most szeretné az üzenetet a Kimenő üzenetek mappába tenni?",
     "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."

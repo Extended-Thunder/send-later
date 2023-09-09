@@ -489,8 +489,7 @@ const SLOptions = {
       confDiv.style.display = "block";
 
       const confirmPrompt = document.createElement("span");
-      // browser.i18n.getMessage("confirmPrompt") ?
-      confirmPrompt.textContent = "Are you sure?";
+      confirmPrompt.textContent = browser.i18n.getMessage("AreYouSure");
       confirmPrompt.style.fontWeight = "bold";
       confirmPrompt.style.color = "red";
       confirmPrompt.style.display = "inline";
@@ -499,7 +498,7 @@ const SLOptions = {
 
       const confirmBtn = document.createElement("button");
       confirmBtn.type = "button";
-      confirmBtn.textContent = "Yes"; // browser.i18n.getMessage("answerYes") ?
+      confirmBtn.textContent = browser.i18n.getMessage("answerYes");
       confirmBtn.style.fontWeight = "bold";
       confirmBtn.style.display = "inline";
       confirmBtn.style.margin = "0 0.5em";
@@ -507,7 +506,7 @@ const SLOptions = {
 
       const cancelBtn = document.createElement("button");
       cancelBtn.type = "button";
-      cancelBtn.textContent = "No"; // browser.i18n.getMessage("answerNo") ?
+      cancelBtn.textContent = browser.i18n.getMessage("answerNo");
       cancelBtn.style.fontWeight = "bold";
       cancelBtn.style.display = "inline";
       cancelBtn.style.margin = "0 0.5em";

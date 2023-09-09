@@ -666,6 +666,13 @@
     "message": "Confirmation",
     "description": ""
   },
+  "answerYes": {
+    "message": "Oui"
+  },
+  "answerNo": {
+    "message": "Non",
+    "description": "Reject an action (presented in popup dialogs)"
+  },
   "OutboxConfirmMessage": {
     "message": "« Placer en attente » mettra directement le message dans la boîte d'envoi. Le message NE SERA PAS programmé pour un envoi à un moment précis. À cette fin, cliquez sur « Programmer pour… » dans le cadre vert après avoir choisi une date d'envoi correcte. Êtes-vous sûr de vouloir placer le message dans la boîte d'envoi maintenant ?",
     "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."

@@ -666,6 +666,13 @@
     "message": "האם אתה בטוח?",
     "description": ""
   },
+  "answerYes": {
+    "message": "כן"
+  },
+  "answerNo": {
+    "message": "לא",
+    "description": "Reject an action (presented in popup dialogs)"
+  },
   "OutboxConfirmMessage": {
     "message": "בחירה ב \"הצב בתיבת דואר יוצא\" מעבירה את ההודעה לתיבת הדואר היוצא באופן מיידי ולא מתבצע תיזמון למשלוח ההודעה במועד ספציפי. לשם קביעת מועד, יש לבחור בכפתור \"שלח במועד\" לאחר שקבעת מועד מתאים למשלוח. האם את/ה בטוח שאת/ה מעוניין להעביר את ההודעה לתיבת הדואר היוצא כעט?",
     "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."

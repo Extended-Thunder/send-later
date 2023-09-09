@@ -666,6 +666,13 @@
     "message": "Sind Sie sicher?",
     "description": ""
   },
+  "answerYes": {
+    "message": "Ja"
+  },
+  "answerNo": {
+    "message": "Nein",
+    "description": "Reject an action (presented in popup dialogs)"
+  },
   "OutboxConfirmMessage": {
     "message": "Durch „In den Postausgang verschieben” wird die Nachricht augenblicklich in den Postausgangs-Ordner verschoben. Der Nachrichtenversand wird NICHT für eine bestimmte Zeit geplant. Dafür müssen Sie eine gültige Sendezeit eingeben und danach die „Geschätzte Sendezeit”-Schaltfläche im grün umrahmten Bereich klicken. Soll die Nachricht jetzt in den Postausgangs-Ordner verschoben werden?",
     "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."

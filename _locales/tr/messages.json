@@ -162,5 +162,14 @@
   "everymonthly_day6": {
     "message": "Cumartesi",
     "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "AreYouSure": {
+    "message": "Emin misin?"
+  },
+  "answerYes": {
+    "message": "Evet"
+  },
+  "answerNo": {
+    "message": "Hayır"
   }
 }

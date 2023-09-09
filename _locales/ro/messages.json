@@ -646,6 +646,13 @@
     "message": "Ești sigur?",
     "description": ""
   },
+  "answerYes": {
+    "message": "Da"
+  },
+  "answerNo": {
+    "message": "Nu",
+    "description": "Reject an action (presented in popup dialogs)"
+  },
   "OutboxConfirmMessage": {
     "message": "Apăsarea \"Pune în „De trimis”\" pune mesajul în „De trimis” imediat. NU programează mesajul să fie trimis la un anumit moment. Pentru a programa trimiterea selectează „Trimite în jurul” din caseta verde după introducerea unul moment de trimitere valid. Ești sigur că vrei sa pui mesajul în „De trimis” acum?",
     "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."

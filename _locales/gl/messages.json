@@ -595,6 +595,12 @@
     "message": "Estás seguro?",
     "description": ""
   },
+  "answerYes": {
+    "message": "Si"
+  },
+  "answerNo": {
+    "message": "Non"
+  },
   "OutboxConfirmMessage": {
     "message": "Clicando en \"Colocar na Bandexa de saída\" coloca a mensaxe na Bandexa de saída inmediatamente. Isto NON programa a mensaxe para ser enviada nun momento específico. Para iso, faga click no botón \"Enviar ó redor de\" no recadro verde despois de introducir un tempo de envío válido. Está seguro de querer colocar a mensaxe na Bandexa de saída agora?",
     "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."

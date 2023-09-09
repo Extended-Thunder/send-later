@@ -619,6 +619,12 @@
     "message": "Сигурни ли сте?",
     "description": ""
   },
+  "answerYes": {
+    "message": "Да"
+  },
+  "answerNo": {
+    "message": "Не"
+  },
   "OutboxConfirmMessage": {
     "message": "Щракването върху \"Постави в изходяща кутия\" поставя съобщението в кутията Ви за Изходяща поща незабавно. Тя НЕ планира съобщението да бъде изпратено в определено време. За това кликнете върху бутона \"Изпращане около\" в зеленото поле след въвеждане на валидно време за изпращане. Наистина ли искате да поставите съобщението в кутията си за Изходяща поща сега?",
     "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."

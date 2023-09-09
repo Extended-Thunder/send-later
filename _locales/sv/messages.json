@@ -630,6 +630,12 @@
     "message": "Är du säker?",
     "description": ""
   },
+  "answerYes": {
+    "message": "Ja"
+  },
+  "answerNo": {
+    "message": "Nej"
+  },
   "OutboxConfirmMessage": {
     "message": "Alternativet “Lägg i Utkorgen” placerar omedelbart meddelandet i din utkorg. Det schemalägger INTE meddelandet för sändning vid en specifik tidpunkt. För att göra det, klicka på knappen “Skicka kring” i den gröna rutan efter det att du har angivit en giltig sändningstid. Är du säker på att du vill lägga meddelandet i Utkorgen nu?",
     "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."

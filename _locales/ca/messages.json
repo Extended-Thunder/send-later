@@ -622,6 +622,13 @@
     "message": "Està segur?",
     "description": ""
   },
+  "answerYes": {
+    "message": "Sí"
+  },
+  "answerNo": {
+    "message": "No",
+    "description": "Reject an action (presented in popup dialogs)"
+  },
   "OutboxConfirmMessage": {
     "message": "Clicant “Col·locar en la Safata de Sortida” posa el missatge en la Safata de Sortida immediatament. NO programa el missatge per a ser enviat en una hora específica. Per fer això, cliqueu el botó “Enviar al voltant de” de la caixa verda després d'introduir una hora vàlida. Està segur que vol posar el missatge a la Safata de Sortida ara?",
     "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."

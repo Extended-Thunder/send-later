@@ -447,6 +447,12 @@
     "message": "Դուք համոզված էք?",
     "description": ""
   },
+  "answerYes": {
+    "message": "Այո"
+  },
+  "answerNo": {
+    "message": "Ոչ"
+  },
   "OutboxConfirmMessage": {
     "message": "Սեղմելով “Դնել ելքայինում”՝ նամակը միանգամից կտեղափոխվի Ելքային թղթապանակ: Այն ՉԻ պլանավորի ուղարկելու նամակը որոշակի ժամի: Դրա համար սեղմեք “Ուղարկել հետո” կոճակը՝ կանաչ դաշտում նշելով ոիղարկելու ժամանակը: Այժմ դնե՞լ նամակը Ելքայինում",
     "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."

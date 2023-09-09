@@ -606,6 +606,12 @@
     "message": "Tem a certeza?",
     "description": ""
   },
+  "answerYes": {
+    "message": "Sim"
+  },
+  "answerNo": {
+    "message": "Não"
+  },
   "OutboxConfirmMessage": {
     "message": "Clicando em \"Colocar na caixa de saída\" coloca a mensagem na caixa de saída imediatamente. Isto não agenda a mensagem para ser enviada num momento específico. Para isso, clique no botão \"Enviar\" na caixa verde depois de introduzir um tempo de envio válido. Tem certeza que quer colocar a mensagem na caixa de saída agora?",
     "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."

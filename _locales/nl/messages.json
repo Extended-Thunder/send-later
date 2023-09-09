@@ -666,6 +666,13 @@
     "message": "Weet u het zeker?",
     "description": ""
   },
+  "answerYes": {
+    "message": "Ja"
+  },
+  "answerNo": {
+    "message": "Nee",
+    "description": "Reject an action (presented in popup dialogs)"
+  },
   "OutboxConfirmMessage": {
     "message": "Door op ‘In Postvak UIT plaatsen’ te klikken, wordt het bericht direct in uw Postvak UIT geplaatst. Het bericht zal NIET op een specifiek tijdstip worden verzonden. Klik daarvoor na het invoeren van een geldige verzendtijd op de knop ‘Verzenden om’. Weet u zeker dat u het bericht nu in uw Postvak UIT wilt plaatsen?",
     "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."

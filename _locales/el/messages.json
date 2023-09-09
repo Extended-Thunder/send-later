@@ -598,6 +598,12 @@
     "message": "Είστε σίγουρος",
     "description": ""
   },
+  "answerYes": {
+    "message": "Ναι"
+  },
+  "answerNo": {
+    "message": "Όχι"
+  },
   "OutboxConfirmMessage": {
     "message": "Επιλέγοντας “Μετακίνηση στα Εξερχόμενα”, το μήνυμα μετακινείται αμέσως στα Εξερχόμενα. ΔΕΝ ορίζεται η αποστολή του σε καθορισμένη στιγμή. Για να γίνει αυτό, πατήστε το κουμπί “Αποστολή αργότερα” στα πράσινο πλαίσιο, αφού ορίσετε μία έγκυρη στιγμή αποστολής. Είστε σίγουρος πως θέλετε να μετακινήσετε το μήνυμα στα Εξερχόμενα τώρα;",
     "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."

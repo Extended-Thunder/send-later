@@ -599,6 +599,12 @@
     "message": "Sei sicuro?",
     "description": ""
   },
+  "answerYes": {
+    "message": "Si"
+  },
+  "answerNo": {
+    "message": "No"
+  },
   "OutboxConfirmMessage": {
     "message": "Cliccando su - Metti nella “Posta in uscita” - si mette il messaggio immediatamente nella cartella “Posta in uscita”. NON VIENE quindi pianificato l'invio del messaggio ad un orario specifico. Se lo si desidera inviare specificando un orario, cliccare il pulsante “Invia verso le:” nel riquadro verde dopo aver inserito un orario di invio valido. Sei sicuro di voler mettere adesso il messaggio nella “Posta in uscita”?",
     "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."

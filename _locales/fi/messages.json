@@ -603,6 +603,12 @@
     "message": "Oletko varma?",
     "description": ""
   },
+  "answerYes": {
+    "message": "Kyllä"
+  },
+  "answerNo": {
+    "message": "Ei"
+  },
   "OutboxConfirmMessage": {
     "message": "”Siirrä Lähteviin” -nappi siirtää viestin Lähtevät-kansioon, josta se lähetetään, kun viestejä lähetetään seuraavan kerran tai valitset valikosta ”Lähetä lähtevät viestit”. Viestiä EI siis ajasteta. Ajastukseen voit käyttää vihreäreunuksisen laatikon pitkää Lähetä-painiketta, joka näkyy kun olet määrittänyt ensin lähetysajan. Siirretäänkö viesti Lähteviin?",
     "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."

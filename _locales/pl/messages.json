@@ -650,6 +650,13 @@
     "message": "Czy na pewno?",
     "description": ""
   },
+  "answerYes": {
+    "message": "Tak"
+  },
+  "answerNo": {
+    "message": "Nie",
+    "description": "Reject an action (presented in popup dialogs)"
+  },
   "OutboxConfirmMessage": {
     "message": "Kliknięcie “Umieść w skrzynce nadawczej” umieszcza wiadomość od razu w skrzynce nadawczej. Wiadomość NIE ZOSTANIE zaplanowana do późniejszej wysyłki. Aby wysłać wiadomość później, kliknij znajdujący się wewnątrz zielonego pola przycisk “Wyślij” po uprzednim podaniu czasu wysyłki. Czy jesteś pewien, że chcesz umieścić wiadomość w swojej skrzynce nadawczej?",
     "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."

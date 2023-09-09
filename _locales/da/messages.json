@@ -658,6 +658,13 @@
     "message": "Er du sikker?",
     "description": ""
   },
+  "answerYes": {
+    "message": "Ja"
+  },
+  "answerNo": {
+    "message": "Nej",
+    "description": "Reject an action (presented in popup dialogs)"
+  },
   "OutboxConfirmMessage": {
     "message": "Hvis du klikker på “Læg i udbakke” lægges meddelelsen i din udbakke med det samme. Det planlægger IKKE beskeden til at blive sendt på et bestemt tidspunkt. For at det skal ske, skal du klikke på “Send kl (tidspunkt)” knappen efter indtastning af et gyldigt tidspunkt. Er du sikker på, at du vil lægge beskeden i din udbakke nu?",
     "description": "The “Send at” phrase in quotes in this string should match what's in the string labeled “sendAtLabel”. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
