@@ -26,7 +26,7 @@ the United States as permitted by law.
 
 You can now store scheduled drafts in a subfolder of your main drafts folder! This can be configured in the Send Later options.
 
-Return receipts work now. Delivery status notifications still don't work, because it's impossible to make them work due to limitations in Thunderbird, but Send Later will no longer allow you to schedule a message that has delivery status notifications enabled on it.
+Return receipts work now. Delivery status notifications still don't work, because it's impossible to make them work due to limitations in Thunderbird, but Send Later no longer allows you to schedule a message that has delivery status notifications enabled on it.
 
 You can now "claim" one or more messages that were scheduled in another Thunderbird instance by selecting them and then using the appropriate Send Later command in the message context menu. They are moved over to being managed by the Thunderbird profile in which you do the claiming, and their schedules are otherwise unmodified.
 
@@ -36,7 +36,7 @@ If you use "Send delays messages" or "Send does Send Later", you can now designa
 
 If you click the Send Now or Put in Outbox button after changing something in the pop-up, you now get a confirmation pop-up to make sure that's what you meant to do. You can disable it if you don't like it.
 
-If you hit Enter in the pop-up while you're focused on one of the buttons, that button will be activated, as opposed to the previous behavior where Enter always activated the "Send at" button even if you were focused on another button.
+If you hit Enter in the pop-up while you're focused on one of the buttons, that button is activated, as opposed to the previous behavior where Enter always activated the "Send at" button even if you were focused on another button.
 
 In previous releases of Send Later, allowing multiple instances of Thunderbird to operate on the same messages could be problematic, because if Thunderbird's internal identity keys differed between the two instances then messages scheduled on one instance and delivered on another could end up being sent through the wrong email account. Send Later now makes a best effort to avoid this by finding the appropriate identity for a message at delivery time and telling Thunderbird to use it.
 
@@ -215,7 +215,7 @@ can no longer be set in milliseconds. If you were using this
 preference then Send Later should convert it automatically on upgrade,
 but you might want to check your preferences to make sure.
 
-An misleading Italian translation of the "Trigger unsent message
+A misleading Italian translation of the "Trigger unsent message
 delivery from Outbox" setting in the preferences window has been
 updated to make it clearer. This plus the tooltip will hopefully make
 it much less likely that someone will uncheck this preference when
