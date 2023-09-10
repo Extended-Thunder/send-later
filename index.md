@@ -1136,7 +1136,7 @@ would like these restrictions to be enforced at delivery time as well,
 
 ### Mail Merge add-on
 
-The [Mail Merge add-on](https://addons.thunderbird.net/thunderbird/addon/mail-merge/)
+The [Mail Merge add-on][mailmerge]
 supports Send Later. The following documentation for using Send Later with Mail
 Merge is courtesy of Alexander Bergmann, the author of Mail Merge. Thanks very
 much to Alexander for adding this feature to his add-on!
@@ -1498,73 +1498,20 @@ There are several ways to avoid this problem:
     for the faint of heart, and make sure you save a backup copy you can
     restore if you screw things up!*
 
-### Making "Send" do "Send Later" only some of the time
+<a name="runtime"></a>
+### Talking to Send Later from other add-ons
 
-You may be in a situation where some of the time, you want to make sure
-to schedule every message you send, while other times, you want to send
-messages right away. For example, you might catch up on work late at
-night, but letting your clients know that might give them the incorrect
-impression that you don't mind if they call you at god-awful hours :-).
+Send Later accepts and responds to certain [runtime messages](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/sendMessage) from other add-ons as follows. The add-on ID to use when sending messages to Send later is "sendlater3@kamens.us".
 
-Most cases like this can be handled with [dynamic scheduling functions](#dynamic),
-but if you need to do something even more complex, then userChromeJS can help.
-The userChromeJS add-on allows you to add arbitrary JavaScript code and
-functions to your Thunderbird installation. Here's how you do that:
+- `getUUID` takes no arguments and returns the unique identifier of Send Later in this Thunderbird profile. It is primarily of interest to other add-ons which want to schedule messages that Send Later takes care of delivering for them, e.g., [Mail Merge][mailmerge].
 
-1.  Install the [userChromeJS add-on](http://userchromejs.mozdev.org/).
-2.  Find the `userChrome.js` file created by userChromeJS. It will be in
-    the `chrome` subfolder of your
-    [Thunderbird profile folder](http://kb.mozillazine.org/Profile_folder_-_Thunderbird).
-3.  Using your favorite text editor, add the code you want to
-    `userChrome.js`, then exit from and restart Thunderbird.
+- `getPreferences` takes no arguments and returns an object whose keys and values are Send Later's current preference settings.
 
-Here's an example of code you can put in `userChrome.js` to solve the
-problem above, i.e., you want the "Send" button to do "Send Later" after
-hours:
+- `setPreferences` takes one argument, `preferences`, an object containing key/value pairs to change in Send Later's preferences. Note that you can't change `instanceUUID`.
 
-``` {style="font-size: 125%;"}
-// Set up a timer to call a function every five minutes to check
-// whether we want the "Send" button to actually do "Send Later".
+- `parseDate` Takes one argument, `value`, a string describing a date, in any format understood by Send Later's date parser as described above. It parses the date and returns a string representing the date in the format that Send Later would put in the header of a scheduled message. This, too, is primarily intended for other add-ons which want to schedule messages that Send Later takes care of delivering for them.
 
-// This is the function that the timer will call.
-var SendButtonPrefCallback = {
-    notify: function(timer) {
-    var now = new Date();
-    // Sunday or Saturday
-    var weekend = now.getDay() == 0 || now.getDay() == 6;
-    // Before 9am
-    var early = now.getHours() < 9;
-    // After 5pm
-    var late = now.getHours() > 4;
-    // Put it all togther
-    var do_popup = weekend || early || late;
-    // Set the appropriate Send Later preference
-    var prefService = Components
-        .classes["@mozilla.org/preferences-service;1"]
-        .getService(Components.interfaces.nsIPrefBranch);
-    prefService.setBoolPref("extensions.sendlater3.sendbutton", do_popup);
-    }
-}
-
-// This is the variable that the timer will be stored in.
-var SendButtonPrefTimer = null;
-
-// Now set up the timer.
-if (! SendButtonPrefTimer) {
-    SendButtonPrefTimer = Components.classes["@mozilla.org/timer;1"]
-    .createInstance(Components.interfaces.nsITimer);
-    SendButtonPrefTimer.initWithCallback(
-    SendButtonPrefCallback,
-    300000,
-    Components.interfaces.nsITimer.TYPE_REPEATING_SLACK
-    );
-}
-
-// Note: This timer's going to run in every open Thunderbird window,
-// but there really isn't any harm in that, so it's easier to just let
-// that happen then to try to figure out how to make it run in only
-// one window.
-```
+For an example of an add-on which uses `getPreferences` and `setPreferences`, see [jik's Thunderbird tweaks][jiktbtweaks].
 
 ### Checking for scheduled messages more than once per minute
 
@@ -2003,3 +1950,5 @@ Please [see above](#translate) if you would like to help add another translation
 [ghreleases]: https://github.com/Extended-Thunder/send-later/releases
 [exquillaoutbox]: https://exquilla.zendesk.com/entries/25723967-Messages-stuck-in-Outbox
 [owl]: https://addons.thunderbird.net/thunderbird/addon/owl-for-exchange/
+[mailmerge]: https://addons.thunderbird.net/thunderbird/addon/mail-merge/
+[jiktbtweaks]: https://github.com/jikamens/jik-tb-tweaks
