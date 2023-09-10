@@ -20,6 +20,34 @@ through [LiberaPay][liberapay] or a one-time donation through
 [PayPal][paypal]. Donations to Extended Thunder are tax-deductible in
 the United States as permitted by law.
 
+## Release 10.2.x
+
+### New features
+
+You can now store scheduled drafts in a subfolder of your main drafts folder! This can be configured in the Send Later options.
+
+Return receipts work now. Delivery status notifications still don't work, because it's impossible to make them work due to limitations in Thunderbird, but Send Later will no longer allow you to schedule a message that has delivery status notifications enabled on it.
+
+You can now "claim" one or more messages that were scheduled in another Thunderbird instance by selecting them and then using the appropriate Send Later command in the message context menu. They are moved over to being managed by the Thunderbird profile in which you do the claiming, and their schedules are otherwise unmodified.
+
+If you use "Send delays messages" or "Send does Send Later", you can now designate a particular address book by name as a whitelist of recipients whose messages don't need to be scheduled. If all of a message's recipients are in the address book, then when you click the Send button or select the Send menu command, Send Later is skipped.
+
+### Improvements
+
+If you click the Send Now or Put in Outbox button after changing something in the pop-up, you now get a confirmation pop-up to make sure that's what you meant to do. You can disable it if you don't like it.
+
+If you hit Enter in the pop-up while you're focused on one of the buttons, that button will be activated, as opposed to the previous behavior where Enter always activated the "Send at" button even if you were focused on another button.
+
+### Bug fixes
+
+The confirmation message that Thunderbird is supposed to pop up when you type Ctrl-Enter and you're not using Send Later for it has been fixed.
+
+For some reason the "Are you sure? Yes / No" confirmation messages in the options tab were not localized, i.e., they were always in English even when the rest of the add-on was in a different language. This has been fixed.
+
+The Autocrypt header has been restored to outbound emails for users who have it turned on in their account settings.
+
+We've fixed a bug which could potentially spam the error console with errors every minute for an extended period of time when there is a pending message which can't be sent because of day-of-week restrictions.
+
 ## Release 10.1.x
 
 This is an exciting release with many new features and improvements!
