@@ -712,6 +712,16 @@ const SendLater = {
             false,
           );
 
+          if (SendLater.prefCache.scheduledDateField) {
+            newMsgContent = SLStatic.replaceHeader(
+              newMsgContent,
+              "Date",
+              SLStatic.parseableDateTimeFormat(nextRecurAt),
+              false /* replaceAll */,
+              true /* addIfMissing */,
+            );
+          }
+
           let success = await SLStatic.tb115(
             async () => {
               let file = SLStatic.getFileFromRaw(newMsgContent);
@@ -830,7 +840,9 @@ const SendLater = {
         newMsgContent = SLStatic.replaceHeader(
           newMsgContent,
           "Date",
-          SLStatic.parseableDateTimeFormat(Date.now()),
+          SLStatic.parseableDateTimeFormat(
+            SendLater.prefCache.scheduledDateField ? nextRecurAt : Date.now(),
+          ),
           false /* replaceAll */,
           true /* addIfMissing */,
         );
