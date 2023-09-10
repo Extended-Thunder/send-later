@@ -435,7 +435,6 @@ const SendLater = {
   async deleteMessage(hdr) {
     let account = await messenger.accounts.get(hdr.folder.accountId, false);
     let accountType = account.type;
-    SLStatic.info(`accountType=${accountType}`);
     let succeeded;
     if (!accountType.startsWith("owl")) {
       await messenger.messages
