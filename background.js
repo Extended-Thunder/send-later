@@ -1508,40 +1508,48 @@ const SendLater = {
       return false;
     }
     SLStatic.info("Opening popup");
-    // The onClicked event on the compose action button doesn't fire if a
-    // pop-up is configured, so we have to set and open the popup here and
-    // then immediately unset the popup so that we can catch the key binding
-    // if the user clicks again with a modifier.
-    messenger.composeAction.setPopup({ popup: "ui/popup.html" });
-    try {
-      if (!(await messenger.composeAction.openPopup())) {
-        // openPopup doesn't return a status in TB102, so we just have to assume
-        // that it opened successfully. *sigh*
-        await SLStatic.tb115(async () => {
-          SLStatic.info(
-            "composeAction pop-up failed to open, trying standalone",
-          );
-          let tab = (await browser.tabs.query({ currentWindow: true }))[0];
-          let params = {
-            allowScriptsToClose: true,
-            type: "popup",
-            url: `ui/popup.html?tabId=${tab.id}`,
-          };
-          if (
-            SendLater.prefCache.detachedPopupWindowWidth &&
-            SendLater.prefCache.detachedPopupWindowHeight
-          ) {
-            params.width = SendLater.prefCache.detachedPopupWindowWidth;
-            params.height = SendLater.prefCache.detachedPopupWindowHeight;
-          }
-          if (!(await messenger.windows.create(params))) {
-            SLStatic.error("standalone scheduling pop-up failed to open");
-          }
-        });
+
+    async function detachedPopup() {
+      let tab = (await browser.tabs.query({ currentWindow: true }))[0];
+      let params = {
+        allowScriptsToClose: true,
+        type: "popup",
+        url: `ui/popup.html?tabId=${tab.id}`,
+      };
+      if (
+        SendLater.prefCache.detachedPopupWindowWidth &&
+        SendLater.prefCache.detachedPopupWindowHeight
+      ) {
+        params.width = SendLater.prefCache.detachedPopupWindowWidth;
+        params.height = SendLater.prefCache.detachedPopupWindowHeight;
       }
-    } finally {
-      messenger.composeAction.setPopup({ popup: null });
+      if (!(await messenger.windows.create(params))) {
+        SLStatic.error("standalone scheduling pop-up failed to open");
+      }
     }
+
+    await SLStatic.tb115(
+      async () => {
+        // The onClicked event on the compose action button doesn't fire if a
+        // pop-up is configured, so we have to set and open the popup here and
+        // then immediately unset the popup so that we can catch the key binding
+        // if the user clicks again with a modifier.
+        messenger.composeAction.setPopup({ popup: "ui/popup.html" });
+        try {
+          if (!(await messenger.composeAction.openPopup())) {
+            SLStatic.info(
+              "composeAction pop-up failed to open, trying standalone",
+            );
+            return await detachedPopup();
+          }
+        } finally {
+          messenger.composeAction.setPopup({ popup: null });
+        }
+      },
+      async () => {
+        return await detachedPopup();
+      },
+    );
   },
 
   // Custom events that are attached to user actions within
