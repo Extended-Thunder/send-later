@@ -1253,7 +1253,6 @@ const SendLater = {
         SendLater.doSkipNextOccurrence,
         {
           messageChecker: SendLater.checkSkipNextOccurrence,
-          messageCheckerFull: true,
           batchMode: true,
         },
         null,
@@ -1264,7 +1263,6 @@ const SendLater = {
         SendLater.doClaimMessage,
         {
           messageChecker: SendLater.checkClaimMessage,
-          messageCheckerFull: true,
           batchMode: true,
         },
         null,
@@ -1934,6 +1932,14 @@ const SendLater = {
       true,
     );
 
+    newMsgContent = SLStatic.replaceHeader(
+      newMsgContent,
+      "X-Identity-Key",
+      options.identityId,
+      true,
+      true,
+    );
+
     let success = await SLStatic.tb115(
       async () => {
         let file = SLStatic.getFileFromRaw(newMsgContent);
@@ -1968,19 +1974,19 @@ const SendLater = {
       let successful = 0;
       for (let messageId of messageIds) {
         let message = await messenger.messages.get(messageId);
-        let identityId = await findBestIdentity(message);
+        options.messageFull = await messenger.messages.getFull(messageId);
+        let identityId = await findBestIdentity(message, options.messageFull);
+        options.identityId = identityId;
         options.messageId = messageId;
         options.messageHeader = message;
         // The message checker, if there is one, should return true to proceed
         // or false to stop processing any further messages. Individual message
         // commands should return false to indicate they were unsuccessful.
-        if (options.messageChecker) {
-          if (options.messageCheckerFull) {
-            options.messageFull = await messenger.messages.getFull(messageId);
-          }
-          if (!(await options.messageChecker(options))) {
-            break;
-          }
+        if (
+          options.messageChecker &&
+          !(await options.messageChecker(options))
+        ) {
+          break;
         }
         let tab;
         if (!options.batchMode) {
@@ -2641,13 +2647,20 @@ async function clearDeferred(name) {
   await messenger.alarms.clear(deferredObj.name);
 }
 
-async function findBestIdentity(message) {
+async function findBestIdentity(message, messageFull) {
   // First try to find the author of the message in the account associated
   // with the folder it's in. If that fails, save the default identity for
   // that account and try to find the author in the identities of all other
   // accounts. If that fails, return the default identity of the account
   // associated with the folder.
   let author = message.author;
+  let keyIdentityId = messageFull?.headers["x-identity-key"]?.at(0);
+  if (keyIdentityId) {
+    let keyIdentity = await messenger.identities.get(keyIdentityId);
+    if (keyIdentity && exactIdentityMatch(author, keyIdentity)) {
+      return keyIdentityId;
+    }
+  }
   let account = await messenger.accounts.get(message.folder.accountId, false);
   let primaryAccountId = account.id;
   let nameMatchId = null;
