@@ -412,6 +412,12 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
         },
 
+        async SendMessageWithCheck(tabId) {
+          context.extension.tabManager
+            .get(tabId)
+            .nativeTab.goDoCommand("cmd_sendWithCheck");
+        },
+
         async queueSendUnsentMessages() {
           if (Utils.isOffline) {
             SendLaterFunctions.debug(

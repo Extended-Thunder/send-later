@@ -3,6 +3,17 @@
     "namespace": "SL3U",
     "functions": [
       {
+        "name": "SendMessageWithCheck",
+        "type": "function",
+        "async": true,
+        "parameters": [
+          {
+            "name": "tabId",
+            "type": "integer"
+          }
+        ]
+      },
+      {
         "name": "queueSendUnsentMessages",
         "type": "function",
         "async": true,

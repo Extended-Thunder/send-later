@@ -1610,9 +1610,13 @@ const SendLater = {
         } else {
           let curTab = await SLTools.getActiveComposeTab();
           if (curTab) {
-            await messenger.compose.sendMessage(curTab.id, {
-              mode: "sendNow",
-            });
+            if (keyid == "key_send") {
+              await messenger.SL3U.SendMessageWithCheck(curTab.id);
+            } else {
+              await messenger.compose.sendMessage(curTab.id, {
+                mode: "sendNow",
+              });
+            }
           }
         }
         break;
