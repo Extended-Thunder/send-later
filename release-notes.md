@@ -38,9 +38,13 @@ If you click the Send Now or Put in Outbox button after changing something in th
 
 If you hit Enter in the pop-up while you're focused on one of the buttons, that button will be activated, as opposed to the previous behavior where Enter always activated the "Send at" button even if you were focused on another button.
 
+In previous releases of Send Later, allowing multiple instances of Thunderbird to operate on the same messages could be problematic, because if Thunderbird's internal identity keys differed between the two instances then messages scheduled on one instance and delivered on another could end up being sent through the wrong email account. Send Later now makes a best effort to avoid this by finding the appropriate identity for a message at delivery time and telling Thunderbird to use it.
+
 ### Bug fixes
 
 The confirmation message that Thunderbird is supposed to pop up when you type Ctrl-Enter and you're not using Send Later for it has been fixed.
+
+Send Later was previously putting the scheduled send time in the Date header of messages (when that feature was enabled in the preferences) only when initially scheduling messages, and not when rescheduling recurring messages. Now it does the right thing in both cases.
 
 For some reason the "Are you sure? Yes / No" confirmation messages in the options tab were not localized, i.e., they were always in English even when the rest of the add-on was in a different language. This has been fixed.
 
