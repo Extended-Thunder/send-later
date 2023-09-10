@@ -1228,6 +1228,7 @@ const SendLater = {
 
   async checkMenu(info, tab) {
     SLStatic.trace("SendLater.checkScheduleMenu", info, tab);
+    if (!(info && info.displayedFolder)) return;
     let visible = info.displayedFolder.type == "drafts";
     if (SendLater.menuVisible != visible) {
       SLStatic.debug(`Making menu items ${visible ? "" : "in"}visible`);
