@@ -1006,6 +1006,7 @@ const SLPopup = {
   },
 
   async init() {
+    await SLStatic.cachePrefs();
     SLStatic.trace("SLPopup.init", window.location);
 
     // This happens asynchronously in static.js, but we need to make sure
