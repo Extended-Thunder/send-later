@@ -769,6 +769,17 @@ const SendLater = {
       let content = SLStatic.prepNewMessageHeaders(
         await messenger.messages.getRaw(msgHdr.id),
       );
+
+      const identityId =
+        options.identityId ?? (await findBestIdentity(msgHdr, fullMsg));
+      content = SLStatic.replaceHeader(
+        content,
+        "X-Identity-Key",
+        identityId,
+        true,
+        true,
+      );
+
       let success = await SLStatic.tb115(
         async () => {
           let file = SLStatic.getFileFromRaw(content);
