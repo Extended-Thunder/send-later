@@ -501,9 +501,7 @@ const SendLater = {
       return;
     }
 
-    let { preferences } = await messenger.storage.local.get({
-      preferences: {},
-    });
+    let preferences = await SLTools.getPrefs();
 
     if (!preferences.sendWhileOffline && !window.navigator.onLine) {
       SLStatic.debug(
