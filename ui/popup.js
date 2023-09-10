@@ -940,10 +940,13 @@ const SLPopup = {
         event.preventDefault();
         ["-", "_"].includes(event.key) ? SLPopup.zoomOut() : SLPopup.zoomIn();
       } else if (event.key === "Enter") {
-        event.preventDefault();
-        const inputs = SLPopup.objectifyFormValues();
-        const schedule = SLPopup.parseInputs(inputs);
-        SLPopup.doSendWithSchedule(schedule);
+        // Enter on a button should activate the button.
+        if (event.target.tagName.toLowerCase() != "button") {
+          event.preventDefault();
+          const inputs = SLPopup.objectifyFormValues();
+          const schedule = SLPopup.parseInputs(inputs);
+          SLPopup.doSendWithSchedule(schedule);
+        }
       } else if (event.key == "Dead" && event.ctrlKey && event.altKey) {
         // https://bugzilla.mozilla.org/show_bug.cgi?id=1850454
         if (event.code == SLPopup.sendNowCode) {
