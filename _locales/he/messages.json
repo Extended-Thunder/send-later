@@ -179,6 +179,10 @@
     "message": "‫בחירה באפשרות זו תהפוך את פקודת ה 'שלח' (או הלחצן או צרוף המקשים Ctrl-Enter) לפעול כפקודה 'שלח מאוחר יותר'‬",
     "description": ""
   },
+  "whitelistPrefLabel": {
+    "message": "רשימת ספרי כתובות:",
+    "description": "Appears on the options tab, followed by an input box for the use to specify the name of an address book."
+  },
   "sendDelayPrefLabel1": {
     "message": "עכב משלוח הודעות ב",
     "description": ""
@@ -675,11 +679,11 @@
     "description": "Negative answer for a yes/no question presented in a confirmation dialog"
   },
   "OutboxConfirmMessage": {
-    "message": "בחירה ב \"הצב בתיבת דואר יוצא\" מעבירה את ההודעה לתיבת הדואר היוצא באופן מיידי ולא מתבצע תיזמון למשלוח ההודעה במועד ספציפי. לשם קביעת מועד, יש לבחור בכפתור \"שלח במועד\" לאחר שקבעת מועד מתאים למשלוח. האם את/ה בטוח שאת/ה מעוניין להעביר את ההודעה לתיבת הדואר היוצא כעט?",
+    "message": "בחירה ב \"$1\" מעבירה את ההודעה לתיבת הדואר היוצא באופן מיידי ולא מתבצע תיזמון למשלוח ההודעה במועד ספציפי. לשם קביעת מועד, יש לבחור בכפתור \"$2\" לאחר שקבעת מועד מתאים למשלוח. האם את/ה בטוח שאת/ה מעוניין להעביר את ההודעה לתיבת הדואר היוצא כעת?",
     "description": "$1 is replaced with your translation of 'Put in Outbox' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
-    "message": "לחיצה על \"שלח כעת\" תשלח את ההודעה מייד ולא מתבצע תיזמון למשלוח ההודעה במועד ספציפי. לשם כך, לחץ \"שלח במועד\"  לאחר שקבעת מועד מתאים למשלוח. האם את/ה בטוח/ה שברצונך לשלוח את ההודעה כעת?",
+    "message": "לחיצה על \"$1\" תשלח את ההודעה מייד ולא מתבצע תיזמון למשלוח ההודעה במועד ספציפי. לשם כך, לחץ \"$2\"  לאחר שקבעת מועד מתאים למשלוח. האם את/ה בטוח/ה שברצונך לשלוח את ההודעה כעת?",
     "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "ConfirmAgain": {
@@ -692,6 +696,10 @@
   },
   "ShowQuitNotificationPreference": {
     "message": "הצג הודעה אם קיימות הודעות ממתינות לפני היציאה"
+  },
+  "SubfolderPreference": {
+    "message": "שמור את ההודעות המתוזמנות בתת תיקיה בשם:",
+    "description": "In preferences tab, preceded by a checkbox and followed by a text input"
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "קיימות הודעות הממתינות למשלוח. \"‫שלח מאוחר יותר‬\" תשלח הודעות רק כאשר $1 פועלת. האם אתם רוצים לצאת עכשיו?",
@@ -724,6 +732,10 @@
   "DSN": {
     "message": "יידוע מצב קבלה",
     "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
+  },
+  "noDsnTitle": {
+    "message": "$1 אינו ניתמך בתוסף $2",
+    "description": "The title of the alert that pops up when the user attempts to schedule a message with delivery status notification enabled. $1 is replaced with the string 'DSN' and $2 is replaced with the extension name."
   },
   "incorrectUUID": {
     "message": "התזמון נקבע על ידי למשתמש אחר",
@@ -940,6 +952,10 @@
   "menuSkipMsg": {
     "message": "דלג על האירוע הבא",
     "description": "Command added to the message list menu for the user to use to skip the next occurrence of one or more selected recurring drafts"
+  },
+  "menuClaimMsg": {
+    "message": "העבר את ההודעות המתוזמנות למופע טנדרבירד זה.",
+    "description": "Command added to the message list menu for the user to use to move scheduled messages from another Thunderbird instance to this one."
   },
   "resultsTitle": {
     "message": "תוצאות עיבוד ההודעות",

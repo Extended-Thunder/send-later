@@ -12,7 +12,7 @@
     "description": ""
   },
   "altBindingPrefLabel": {
-    "message": "Kötés Alt-Shift-Enter a Ctrl-Shift-Enter helyett",
+    "message": "Alt-Shift-Enter társítása a Ctrl-Shift-Enter helyett",
     "description": ""
   },
   "blockLateMessagesPrefLabel1": {
@@ -178,6 +178,14 @@
   "sendButtonPrefTooltip": {
     "message": "Ezzel az opcióval a „Küldés” parancs (vagy a gomb vagy a Ctrl+Enter beírása) ugyanaz, mint a „Küldés később”.",
     "description": ""
+  },
+  "whitelistPrefTooltip": {
+    "message": "Ha `$1' vagy a `\"Késleltetett üzenetek küldése\" engedélyezve van, és itt megadj egy létező névjegyzéket, akkor minden olyan üzenet, amelynek minden címzettje szerepel a névjegyzékben, az üzenetküldés gomb vagy menüparancs aktiválásakor megkerüli a $2-t.",
+    "description": "$1 is replaced with the contents of sendButtonPrefLabel, and $2 is replaced with extensionName."
+  },
+  "whitelistPrefLabel": {
+    "message": "Fehérlista névjegyzék:",
+    "description": "Appears on the options tab, followed by an input box for the use to specify the name of an address book."
   },
   "sendDelayPrefLabel1": {
     "message": "A „küldés” ennyivel késleltet:",
@@ -682,6 +690,10 @@
     "message": "A „Küldés most” gombra kattintva azonnal elküldi az üzenetet. NEM ütemezi az üzenetet egy adott időpontban. Ehhez kattintson az „Elküldés” gombra a zöld dobozban, miután megadta az érvényes küldési időt. Biztosan most szeretné elküldeni az üzenetet?",
     "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
+  "PopupChangedConfirmMessage": {
+    "message": "Úgy tűnik, hogy az ütemezési párbeszédpanelen néhány érték módosítása után a „$1” gombra kattintott. Biztos benne, hogy ezt akarta tenni ahelyett, hogy a „$2” gombra kattintott volna?",
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'."
+  },
   "ConfirmAgain": {
     "message": "A figyelmeztetés megjelenítése legközelebb",
     "description": ""
@@ -692,6 +704,10 @@
   },
   "ShowQuitNotificationPreference": {
     "message": "Figyelmeztetés megjelenítése kilépés előtt, ha függőben lévő üzenetek vannak"
+  },
+  "SubfolderPreference": {
+    "message": "Ütemezett üzenetek tárolása a következő almappában:",
+    "description": "In preferences tab, preceded by a checkbox and followed by a text input"
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Vannak üzenetek, amelyeket el kell küldeni. Küldés később csak akkor küldhet üzeneteket, amikor a(z) $1 fut. Biztosan kilép?",
@@ -724,6 +740,14 @@
   "DSN": {
     "message": "Értesítés a kézbesítésről",
     "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
+  },
+  "noDsnTitle": {
+    "message": "$1 nem támogatott ezzel: $2",
+    "description": "The title of the alert that pops up when the user attempts to schedule a message with delivery status notification enabled. $1 is replaced with the string 'DSN' and $2 is replaced with the extension name."
+  },
+  "noDsnText": {
+    "message": "A $1 opció nem kompatibilis ezzel: $2. Kapcsolja ki ezt a lehetőséget ezen az üzeneten az ütemezés előtt, vagy küldje $2 nélkül.",
+    "description": "The text of the alert that pops up when the user attempts to schedule a message with delivery status notification enabled. $1 is replaced with the contents of the string 'DSN' and $2 is replaced with the extension name."
   },
   "incorrectUUID": {
     "message": "Egy másik ügyfél ütemezte",
@@ -885,6 +909,10 @@
     "message": "Üzenet küldésének ellenőrzése…",
     "description": ""
   },
+  "longDonationMessage": {
+    "message": "[A bővítmény fejlesztését és karbantartását az Extended Thunder Inc. támogatja, egy non-profit szervezet, amely az ingyenes, nyílt forráskódú Thunderbird-bővítmények támogatásával foglalkozik. Kérjük, támogassa az Extended Thundert, hogy biztosítsa, hogy az ehhez hasonló kiegészítők továbbra is elérhetőek legyenek. Ismétlődően adományozhat a <a href='https://liberapay.com/ExtendedThunder'>LiberaPay</a> oldalon, vagy egyszeri alkalommal a <a href='https://www.paypal.com/donate/?hosted_button_id=Y4V6TDZ2ZY5TS'>PayPal</a> oldalon. Az Extended Thundernek nyújtott adományok az Egyesült Államokban a törvény által megengedett módon levonhatók az adóból. Köszönöm!]",
+    "description": "This text appears at the start of the add-on's long description on addons.thunderbird.net, as well as on the add-on's details page inside Thunderbird. It appears right before the text in the 'LongDescription' string. Please leave the URLs intact when translating."
+  },
   "LongDescription": {
     "message": "Az üzenet-összetétel ablakban megváltoztatja a „Küldés később” parancsot (Ctrl+Shift+Enter), hogy ahelyett, hogy csak az üzeneteket másolná a Kimenő mappába, hogy elküldje a következő alkalommal, amikor online megy, vagy „Postázandó üzenetek elküldése”, megjelenik egy párbeszédablak, amely lehetővé teszi, hogy megadja, mikor küld az üzenet.\n\nMegadhat egy adott időpontot és dátumot, vagy rákattinthat a „15 perccel később”, „30 perccel később” vagy „2 órával később” gombra, vagy meghatározhat egyéni parancsikonokat. Üzenetek ütemezését is többször elküldhetjük egyszerű szabályok (N óránként, naponta stb.) vagy testreszabható függvények használatával.\n\nA Küldés később elemzés az Andrew Plummer <a href=\"https://sugarjs.com/\">Sugar.js könyvtárának</a> hatékony dátumbeviteli elemzésére támaszkodik.\n\nA visszajelzéseket és a hibajelentéseket nagyon várjuk, és a projekt <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">GitHub oldal</a>án keresztül lehet beküldeni.",
     "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
@@ -936,6 +964,10 @@
   "menuSkipMsg": {
     "message": "Következő előfordulás kihagyása",
     "description": "Command added to the message list menu for the user to use to skip the next occurrence of one or more selected recurring drafts"
+  },
+  "menuClaimMsg": {
+    "message": "Ütemezett üzenet(ek) áthelyezése erre a Thunderbirdre",
+    "description": "Command added to the message list menu for the user to use to move scheduled messages from another Thunderbird instance to this one."
   },
   "resultsTitle": {
     "message": "Üzenetfeldolgozási eredmények",

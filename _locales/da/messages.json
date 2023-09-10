@@ -351,6 +351,14 @@
     "message": "Knappens navn",
     "description": ""
   },
+  "quickoptionkey.label": {
+    "message": "Tast (Ctrl+Alt+…)",
+    "description": "Heading for the column in the preferences where the user can specify the key bindings to activate shortcut buttons"
+  },
+  "validKeysTooltip": {
+    "message": "Gyldige genvejstaster (forskel på store og små bogstaver) er: A-Z, 0-9, F1-F12, Komma (,), Punktum (.), Home, End, PageUp, PageDown, Mellemrum, Insert, Delete, Op, Ned, Venstre, Højre",
+    "description": "The tooltip that pops up to tell the user what the valid keys to bind the quick option shortcuts to. Do not translate the keys, just translate the 'Valid shortcut keys (case-sensitive!) are' part, because the keys have to be in English in the actual shortcut."
+  },
   "showsendlaterprogress.caption": {
     "message": "Vis Baggrundsfremskridt i Statuslinjen",
     "description": ""
@@ -1029,9 +1037,13 @@
     "message": "Nej, du må ikke indsamle brugsdata",
     "description": "Label for the no button on the telemetry request dialog."
   },
-  "DSN": {
-    "message": "Meddelelse om leveringsstatus",
+  "betaThankYouTitle": {
+    "message": "Tak for at være beta-tester!",
     "description": ""
+  },
+  "betaThankYouText": {
+    "message": "Du modtager i øjeblikket pre-release opdateringer til $1. Vi sætter pris på din hjælp, og vi vil ikke være påtrængende; men som en sikkerhedsforanstaltning påminder vi dig hver gang $1 opdateres. Hvis du ønsker at forlade beta-test programmet, kan du gøre det ved at downloade og installere den aktuelle version af $1 fra addons.thunderbird.net.",
+    "description": "$1 is replaced with the extension name"
   },
   "selectNone": {
     "message": "(Ingen)",
