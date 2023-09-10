@@ -204,6 +204,9 @@ const SendLater = {
         tabId = tab.id;
       }
     }
+    if (!(await SendLater.schedulePrecheck())) {
+      return false;
+    }
     if (tabId) {
       let { ufuncs } = await messenger.storage.local.get({ ufuncs: {} });
       let funcBody = ufuncs[funcName].body;
@@ -221,6 +224,26 @@ const SendLater = {
       };
       await SendLater.scheduleSendLater(tabId, options);
     }
+  },
+
+  async schedulePrecheck() {
+    let tab = await SLTools.getActiveComposeTab();
+    let composeDetails = await messenger.compose.getComposeDetails(tab.id);
+    if (composeDetails.deliveryStatusNotification) {
+      let extensionName = messenger.i18n.getMessage("extensionName");
+      let dsnName = messenger.i18n.getMessage("DSN");
+      let title = messenger.i18n.getMessage("noDsnTitle", [
+        dsnName,
+        extensionName,
+      ]);
+      let text = messenger.i18n.getMessage("noDsnText", [
+        dsnName,
+        extensionName,
+      ]);
+      SLTools.alert(title, text);
+      return false;
+    }
+    return true;
   },
 
   // Go through the process of handling pre-send checks, assigning custom
@@ -1481,6 +1504,9 @@ const SendLater = {
   },
 
   async openPopup() {
+    if (!(await SendLater.schedulePrecheck())) {
+      return false;
+    }
     SLStatic.info("Opening popup");
     // The onClicked event on the compose action button doesn't fire if a
     // pop-up is configured, so we have to set and open the popup here and
@@ -1564,8 +1590,14 @@ const SendLater = {
       case "cmd_sendButton":
       case "key_send": {
         if (SendLater.prefCache.sendDoesSL) {
+          if (!(await SendLater.schedulePrecheck())) {
+            return false;
+          }
           await SendLater.openPopup();
         } else if (SendLater.prefCache.sendDoesDelay) {
+          if (!(await SendLater.schedulePrecheck())) {
+            return false;
+          }
           // Schedule with delay.
           const sendDelay = SendLater.prefCache.sendDelay;
           SLStatic.info(

@@ -991,5 +991,9 @@
   "TelemetryAskNo": {
     "message": "Non, ne pas collecter les données d'utilisation",
     "description": "Label for the no button on the telemetry request dialog."
+  },
+  "DSN": {
+    "message": "Notification de l’état de la distribution",
+    "description": ""
   }
 }

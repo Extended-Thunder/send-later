@@ -991,5 +991,9 @@
   "TelemetryAskNo": {
     "message": "לא, אל תאספו מידע על השימוש",
     "description": "Label for the no button on the telemetry request dialog."
+  },
+  "DSN": {
+    "message": "יידוע מצב קבלה",
+    "description": ""
   }
 }

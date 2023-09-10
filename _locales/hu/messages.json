@@ -991,5 +991,9 @@
   "TelemetryAskNo": {
     "message": "Nem, nem gyűjthet használati adatokat",
     "description": "Label for the no button on the telemetry request dialog."
+  },
+  "DSN": {
+    "message": "Értesítés a kézbesítésről",
+    "description": ""
   }
 }

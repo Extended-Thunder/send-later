@@ -847,5 +847,9 @@
   "longDateTimeFormatsPrefLabel": {
     "message": "Format llarg de data/temps",
     "description": "Preference input for extended datetime format (e.g. Wed, Apr 28 2021 11:45)"
+  },
+  "DSN": {
+    "message": "Notificació de l'estat del lliurament",
+    "description": ""
   }
 }

@@ -1013,6 +1013,18 @@ var SLStatic = {
   },
 
   prepNewMessageHeaders(content) {
+    let draftInfo = SLStatic.getHeader(content, "x-mozilla-draft-info");
+    if (draftInfo.includes("receipt=1")) {
+      let fromHeader = SLStatic.getHeader(content, "from");
+      content = SLStatic.replaceHeader(
+        content,
+        "Disposition-Notification-To",
+        fromHeader,
+        false,
+        true,
+      );
+    }
+
     content = SLStatic.replaceHeader(
       content,
       "Date",

@@ -171,5 +171,9 @@
   },
   "answerNo": {
     "message": "Hayır"
+  },
+  "DSN": {
+    "message": "Teslimat durumu bildirimi",
+    "description": ""
   }
 }

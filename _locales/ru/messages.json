@@ -756,5 +756,9 @@
   "cancel": {
     "message": "Отмена",
     "description": "Cancel an action (presented in popup dialogs)"
+  },
+  "DSN": {
+    "message": "Уведомление о доставке",
+    "description": ""
   }
 }

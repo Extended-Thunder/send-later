@@ -729,6 +729,18 @@
     "message": "$1 can't schedule messages that are encrypted or digitally signed; you must disable these on a draft before you can schedule it. You must also disable “Store draft messages in encrypted format” under “End-To-End Encryption” for accounts or identities for which you wish to schedule messages.",
     "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has encryption or signing enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
   },
+  "DSN": {
+    "message": "Delivery Status Notification",
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
+  },
+  "noDsnTitle": {
+    "message": "$1 not supported with $2",
+    "description": "The title of the alert that pops up when the user attempts to schedule a message with delivery status notification enabled. $1 is replaced with the string 'DSN' and $2 is replaced with the extension name."
+  },
+  "noDsnText": {
+    "message": "The $1 option is incompatible with $2. Please disable that option on this message before scheduling it, or send it without $2.",
+    "description": "The text of the alert that pops up when the user attempts to schedule a message with delivery status notification enabled. $1 is replaced with the contents of the string 'DSN' and $2 is replaced with the extension name."
+  },
   "incorrectUUID": {
     "message": "Scheduled by another client",
     "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."

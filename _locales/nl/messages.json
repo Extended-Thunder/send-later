@@ -991,5 +991,9 @@
   "TelemetryAskNo": {
     "message": "Nee, geen gebruiksgegevens verzamelen",
     "description": "Label for the no button on the telemetry request dialog."
+  },
+  "DSN": {
+    "message": "Afleverstatusnotificatie",
+    "description": ""
   }
 }

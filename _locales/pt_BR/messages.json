@@ -827,5 +827,9 @@
   "SkipConfirmMessage": {
     "message": "Você indicou que deseja pular a próxima ocorrência de uma das mensagens selecionadas. Se você mudar de ideia depois de fazer isso, você precisará reagendar as mensagens manualmente. Tem certeza de que deseja continuar?",
     "description": "The text of the pop-up that warns the user when they activate the message list context menu command to skip the next occurrence of one or more messages. The purpose of this warning is to ensure that the user knows what the command does before using it. There is a checkbox in the pop-up which they can uncheck if they don't want to see the message again. See also 'AreYouSure' and 'ConfirmAgain' strings which occur in the same pop-up."
+  },
+  "DSN": {
+    "message": "Notificação de status da entrega",
+    "description": ""
   }
 }

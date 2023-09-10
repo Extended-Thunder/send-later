@@ -774,5 +774,9 @@
   "cancel": {
     "message": "Ακύρωση",
     "description": "Cancel an action (presented in popup dialogs)"
+  },
+  "DSN": {
+    "message": "Ειδοποίηση κατάστασης παράδοσης",
+    "description": ""
   }
 }

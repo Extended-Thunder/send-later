@@ -772,5 +772,9 @@
   "cancel": {
     "message": "Zrušit",
     "description": "Cancel an action (presented in popup dialogs)"
+  },
+  "DSN": {
+    "message": "Potvrzení o doručení",
+    "description": ""
   }
 }

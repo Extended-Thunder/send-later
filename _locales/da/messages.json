@@ -975,5 +975,9 @@
   "TelemetryAskNo": {
     "message": "Nej, du må ikke indsamle brugsdata",
     "description": "Label for the no button on the telemetry request dialog."
+  },
+  "DSN": {
+    "message": "Meddelelse om leveringsstatus",
+    "description": ""
   }
 }

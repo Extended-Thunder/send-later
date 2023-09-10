@@ -776,5 +776,9 @@
   "cancel": {
     "message": "取消",
     "description": "Cancel an action (presented in popup dialogs)"
+  },
+  "DSN": {
+    "message": "遞送狀態通知",
+    "description": ""
   }
 }

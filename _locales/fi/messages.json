@@ -776,5 +776,9 @@
   "cancel": {
     "message": "Peruuta",
     "description": "Cancel an action (presented in popup dialogs)"
+  },
+  "DSN": {
+    "message": "Toimitustilan ilmoitukset",
+    "description": ""
   }
 }
