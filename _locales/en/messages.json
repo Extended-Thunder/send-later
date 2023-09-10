@@ -179,6 +179,14 @@
     "message": "Make the “Send” command (either the button or typing Ctrl-Enter) act the same as “Send Later”",
     "description": ""
   },
+  "whitelistPrefTooltip": {
+    "message": "If `$1' or `“Send” delays messages' is enabled and you specify the name of an existing address book here, then any message whose recipients are all in the address book will bypass $2 when the message send button or menu command is activated.",
+    "description": "$1 is replaced with the contents of sendButtonPrefLabel, and $2 is replaced with extensionName."
+  },
+  "whitelistPrefLabel": {
+    "message": "Whitelist address book:",
+    "description": "Appears on the options tab, followed by an input box for the use to specify the name of an address book."
+  },
   "sendDelayPrefLabel1": {
     "message": "“Send” delays messages by",
     "description": ""

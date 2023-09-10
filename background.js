@@ -1589,12 +1589,18 @@ const SendLater = {
       case "cmd_sendNow":
       case "cmd_sendButton":
       case "key_send": {
-        if (SendLater.prefCache.sendDoesSL) {
+        if (
+          SendLater.prefCache.sendDoesSL &&
+          !(await SendLater.messageWhitelisted())
+        ) {
           if (!(await SendLater.schedulePrecheck())) {
             return false;
           }
           await SendLater.openPopup();
-        } else if (SendLater.prefCache.sendDoesDelay) {
+        } else if (
+          SendLater.prefCache.sendDoesDelay &&
+          !(await SendLater.messageWhitelisted())
+        ) {
           if (!(await SendLater.schedulePrecheck())) {
             return false;
           }
@@ -1625,6 +1631,69 @@ const SendLater = {
         SLStatic.error(`Unrecognized keycode ${keyid}`);
       }
     }
+  },
+
+  async messageWhitelisted() {
+    if (!SendLater.prefCache.whitelistName) return false;
+    let addressBook = (await messenger.addressBooks.list(false)).find(
+      (b) => b.name == SendLater.prefCache.whitelistName,
+    );
+    if (!addressBook) {
+      SLStatic.warn(`Could not find address book ${addressBook}`);
+      return false;
+    }
+    addressBook = await messenger.addressBooks.get(addressBook.id, true);
+    let whitelist = SendLater.addressBookToEmails(addressBook);
+    let tab = await SLTools.getActiveComposeTab();
+    let cd = await messenger.compose.getComposeDetails(tab.id);
+    console.log(cd.bcc, cd.cc, cd.to);
+    return (
+      (await SendLater.recipientsWhitelisted(whitelist, cd.bcc)) &&
+      (await SendLater.recipientsWhitelisted(whitelist, cd.cc)) &&
+      (await SendLater.recipientsWhitelisted(whitelist, cd.to))
+    );
+  },
+
+  addressBookToEmails(addressBook) {
+    console.log(addressBook);
+    return addressBook.contacts.map(SendLater.contactToEmails).flat();
+  },
+
+  contactToEmails(contact) {
+    let vcard = contact.properties.vCard;
+    vcard = new ICAL.Component(ICAL.parse(vcard));
+    console.log(vcard);
+    return vcard.getAllProperties("email").map((e) => e.jCal[3]);
+  },
+
+  async recipientToEmails(recipient) {
+    if (typeof recipient == "string") {
+      // Name <email> or just email
+      let match = /<([^<]+)>$/.exec(recipient);
+      if (!match) return [recipient];
+      return [match[1]];
+    } else if (typeof recipient == "object") {
+      // id, type == contact or mailingList
+      if (recipient.type == "mailingList") return false;
+      else if (recipient.type != "contact") return false;
+      let contact = await messenger.contacts.get(recipient.id);
+      if (!contact) return undefined;
+      return SendLater.contactToEmails(contact);
+    }
+    return undefined;
+  },
+
+  async recipientsWhitelisted(whitelist, recipients) {
+    if (Array.isArray(recipients)) {
+      for (let recipient of recipients) {
+        let ret = await SendLater.recipientsWhitelisted(whitelist, recipient);
+        if (!ret) return false;
+      }
+      return true;
+    }
+    let emails = await SendLater.recipientToEmails(recipients);
+    if (!emails) return false;
+    return emails.some((e) => whitelist.includes(e));
   },
 
   // Allow other extensions to access local preferences

@@ -205,9 +205,11 @@ const SLOptions = {
         let customDTDiv = document.getElementById("customDateTimeFormatsDiv");
         customDTDiv.style.display = customDT.checked ? "block" : "none";
 
-        if (!preferences.storeInSubfolder) {
-          document.getElementById("subfolderName").disabled = true;
-        }
+        document.getElementById("subfolderName").disabled =
+          !preferences.storeInSubfolder;
+        document.getElementById("whitelistName").disabled = !(
+          preferences.sendDoesSL || preferences.sendDoesDelay
+        );
 
         await SLOptions.setUpActiveAccounts(preferences.ignoredAccounts);
       });
@@ -426,6 +428,11 @@ const SLOptions = {
       document.getElementById("storeInSubfolder").checked = false;
       element.disabled = true;
     }
+
+    document.getElementById("whitelistName").disabled = !(
+      document.getElementById("sendDoesSL").checked ||
+      document.getElementById("sendDoesDelay").checked
+    );
 
     const setRegularPref = (element) => {
       let id = element.id;
@@ -961,6 +968,12 @@ const SLOptions = {
     if (navigator.userAgent.indexOf("Mac") != -1)
       document.getElementById("accelCtrlLabel").textContent =
         browser.i18n.getMessage("accelCtrlLabel.MacOS");
+
+    document.getElementById("whitelistPrefLabel").title =
+      browser.i18n.getMessage("whitelistPrefTooltip", [
+        browser.i18n.getMessage("sendButtonPrefLabel"),
+        browser.i18n.getMessage("extensionName"),
+      ]);
 
     const funcTestDate = document.getElementById("functionTestDate");
     const funcTestTime = document.getElementById("functionTestTime");

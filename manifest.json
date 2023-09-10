@@ -29,6 +29,7 @@
     "accountsFolders",
     "accountsRead",
     "activeTab",
+    "addressBooks",
     "alarms",
     "compose",
     "compose.save",
@@ -50,6 +51,7 @@
       "utils/sugar-custom.js",
       "utils/static.js",
       "utils/tools.js",
+      "utils/ical.js",
       "background.js"
     ]
   },
