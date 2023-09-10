@@ -259,6 +259,23 @@ Wednesday, August 23, and it's currently Tuesday, August 22, and you
 do "Skip next occurrence" on the message, then it'll be rescheduled
 and next delivered at 14:00 on Wednesday, August 30.
 
+## "Claiming" messages from a different Thunderbird instance
+
+You can use Send Later in multiple Thunderbird instances all talking
+to the same email account, but by default each instance of Thunderbird
+will only deliver scheduled messages that were created on that
+instance. If you want to reassign previously scheduled drafts from one
+Thunderbird instance to another, you can do that by selecting the
+messages, right-clicking or control-clicking on them to bring up the
+menu, and selecting "Send Later > Move scheduld messages(s) to this
+Thunderbird".
+
+**Beware,** however, that if the accounts configured into the two
+Thunderbird instances don't exactly match, you may see unpredictable
+behavior including Send Later messages getting sent out through the
+wrong mail servers. See [below](#matching-accounts) for more on this
+and what to do about it.
+
 <a name="prefs"></a>
 
 ## Preferences
@@ -292,17 +309,6 @@ frequency) if you have a very large number of messages in your Drafts
 folder and the Send Later status indicator at the bottom of your Thunderbird
 window is constantly "Checking".
 
-### "Send" does "Send Later"
-
-If it is enabled, this preference causes the scheduling dialog to pop up
-not only when you run the "Send Later" command, but also, when you run
-"Send", whether it's by clicking the "Send" button, selecting `File >
-Send Now`, or typing `Ctrl-Enter`. It'll therefore prevent you from
-accidentally sending a message now that you meant to schedule for later.
-This feature is *not* enabled by default.
-
-Note that this preference and the following one are mutually exclusive.
-
 ### "Send" delays messages by: <u>&nbsp;#&nbsp;</u> minutes
 
 If enabled, this preference causes all messages you send by clicking
@@ -317,7 +323,28 @@ your Drafts folder and either delete it (if you don't want it to be sent
 at all) or open it for editing, which automatically cancels the
 scheduled send.
 
+Note that this preference and the next one are mutually exclusive.
+
+### "Send" does "Send Later"
+
+If it is enabled, this preference causes the scheduling dialog to pop up
+not only when you run the "Send Later" command, but also, when you run
+"Send", whether it's by clicking the "Send" button, selecting `File >
+Send Now`, or typing `Ctrl-Enter`. It'll therefore prevent you from
+accidentally sending a message now that you meant to schedule for later.
+This feature is *not* enabled by default.
+
 Note that this preference and the previous one are mutually exclusive.
+
+### Whitelist address book
+
+If you are using "Send delays messages" or "Send does Send Later" and
+you put the name of one of your Thunderbird address books in the
+"Whitelist address book" setting, then whenever you send a message
+with the Send button or the File > Send Now menu command, Send Later
+checks if all of the message's recipients are in the specific address
+book, and if so, then it delivers the message directly instead of
+scheduling it.
 
 ### Mark scheduled drafts as read
 
@@ -428,6 +455,21 @@ explanation of what the format strings look like.
 As you edit the date format strings, it will show you what the current
 date/time looks like when formatted as you specify. If your format string is
 invalid it will tell you that, and the setting won't be saved until you fix it.
+
+### Show warning before quit
+
+By default Send Later will pop up a warning if you quit Thunderbird
+while there are scheduled messages, reminding you that it can't send
+the messages if it's not running at the scheduled delivery time. If
+you don't want to see these warnings you can disable them here.
+
+### Store scheduled messages in subfolder
+
+If you don't want your scheduled drafts mixed up with all your other
+drafts, you can tell Send Later to store them in a subfolder of your
+main drafts folder. If you enable this checkbox then the subfolder
+name defaults to the name of the add-on, but you are welcome to change
+it.
 
 ### Shortcut buttons
 
@@ -739,54 +781,15 @@ The list of sites above is provided for informational purposes only; it should
 not be construed as an endorsement of any of these services. I don't use them
 and don't know how well they work or how trustworthy they are.
 
-### Return receipts don't work
+### Delivery status notification doesn't work
 
-If you enable the Return Receipt option on a message you are composing,
-and then you schedule the message to be sent later, when it is sent, no
-return receipt will be requested. Unfortunately, fixing this requires
-significant changes to the internal architecture for how scheduled
-messages are sent, and the changes are difficult since the core
-Thunderbird components involved are completely undocumented, so I don't
-know when I'll be able to find the time to fix the problem. In the
-meantime, here's a workaround (thanks to
-[about.com](http://email.about.com/od/mozillathunderbirdtips/qt/Add_an_Arbitrary_Custom_Header_to_Mozilla_Thunderbird.htm)):
+If you enable the Delivery Status Notification (DSN) option on a
+message, Send Later won't let you schedule it for later delivery,
+because DSN is incompatible with Send Later due to a deficiency in
+Thunderbird.
 
-1.  Open the Thunderbird options dialog with `Edit > Preferences...`
-2.  Scroll to the bottom of the "General" page to the `Config Editor...` button
-    click the "I'll be careful, I promise!" button if it asks you to.
-3.  Enter "mail.compose.other.header" in the filter box.
-4.  Double-click on the mail.compose.other.header setting and set it to
-    "Disposition-Notification-To". If it already has a non-empty value,
-    add a comma and then "Disposition-Notification-To" to the end of it.
-5.  Quit from and restart Thunderbird.
-6.  When you are composing a message for which you want a return receipt
-    and which you want to schedule to be sent later, then click on an
-    empty line in the message header in the compose window, select
-    "Disposition-Notification-To" in the drop-down, and then enter your
-    email address as the value of the header.
-
-If you want to automatically request a return receipt for *every*
-message you send, so that you don't have to do it manually each time you
-schedule a message to be sent later, do the following (thanks to
-[MozillaZine](http://kb.mozillazine.org/Custom_headers)):
-
-1.  Open Thunderbird's configuration editor
-    (described [above](#thunderbird-config-editor)).
-2.  Enter "useremail" in the filter box and scan through the matches to
-    find the email address of the account which you want to generate
-    return receipts. Remember the "id*\#*" for that account, where
-    "id*\#*" here and below means the characters "id" followed by a
-    number which is different for each of your configured accounts.
-3.  Enter "mail.identity.id*\#*.headers" to find out if there are
-    already custom headers configured for the account. If not, then
-    right-click in the settings area to create a new string setting with
-    that name.
-4.  Put "receipt" as the value of the setting if it's empty, or append
-    ",receipt" to the end of the existing value.
-5.  Create a new string setting called
-    "mail.identity.id*\#*.header.receipt", and set its value to
-    "Disposition-Notification-To: *address*", where *address* is the
-    email address to which you would like return receipts sent.
+The Return Receipt option _does_ work; this is a change from previous
+versions of Send Later where it did not.
 
 ### Thunderbird hangs frequently on Windows
 
