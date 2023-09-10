@@ -270,10 +270,7 @@ messages, right-clicking or control-clicking on them to bring up the
 menu, and selecting "Send Later > Move scheduld messages(s) to this
 Thunderbird".
 
-**Beware,** however, that if the accounts configured into the two
-Thunderbird instances don't exactly match, you may see unpredictable
-behavior including Send Later messages getting sent out through the
-wrong mail servers. See [below](#matching-accounts) for more on this
+You probably want to make sure the email addresses in the From line of the messages you're claiming correspond to existing identities in your current Thunderbird instance, or strange things may happen when Send Later tries to deliver the messages. See [below](#matching-accounts) for more on this
 and what to do about it.
 
 <a name="prefs"></a>
@@ -1500,7 +1497,7 @@ server.
     I.e., do as much as you can to ensure that Thunderbird will stay
     running all the time.
 4.  Configure your email account into Thunderbird on the server.
-    **Important:** see [below](#matching-accounts) for a very important note
+    See [below](#matching-accounts) for an important note
     about configuring accounts and identities on different computers.
 5.  On the client, set "Check every ... minutes" to "0" as described
     [above](#senddrafts).
@@ -1528,55 +1525,18 @@ the scheduled time, you know that Thunderbird on the server has stopped running
 and you can log in and restart it.
 
 <a name="matching-accounts"></a>
-#### Accounts and identities on different computers
+#### Identities on different computers
 
-When you compose a draft message, Thunderbird inserts special, hidden
-settings into the message indicating the account and identity used to
-compose the draft. Although you don't see them in the user interface,
-Thunderbird assigns numerical identifiers to accounts and identities;
-these numerical identifiers are what gets put into the hidden settings
-in the draft message. You can see these identifiers by looking in your
-`prefs.js` file (`Help > Troubleshooting Information`, click on the button
-to open your profile directory, and load the file `prefs.js` in that
-directory into a text editor) for lines containing `mail.identity.id`
-and `mail.account.account`.
+When you're always using Send Later in a single Thunderbird profile on a single machine, Send Later's idea of the identity associated with a scheduled draft and Thunderbird's will always match up, so there's no problem.
 
-When you only use Thunderbird on one machine, you never have to worry
-about what those hidden identifiers are. However, when you try to share
-accounts between multiple Thunderbird installations, and you have more
-than one account and/or identity configured, then you will run into
-problems if the identifiers for the accounts and identifiers are
-different. In particular, if you configure things as described above to
-schedule messages from one computer and send them from another, and the
-account or identity numbers don't match on the two computers, *then the
-scheduled messages will be sent from the wrong identity and/or account.*
+However, there's a potential problem if a scheduled message is operated on by multiple Thunderbird instances, which can happen in two cases:
 
-There are several ways to avoid this problem:
+* You use Thunderbird on multiple machines, with the "sendDrafts" preference set to false on all but one of them as described above.
+* You move a scheduled draft from one Thunderbird profile to another using the "Move scheduled message(s)" menu command described above.
 
-1.  Back up your Thunderbird profile from one computer and restore it on
-    the other, thus guaranteeing that the account and identity
-    configuration on the two computers will match. This is harder than
-    it sounds because there are file paths hard-coded in various
-    locations in your profile, mostly in `prefs.js`, that will need to be
-    updated if your profile is in a different directory on the second
-    computer. A tool like [MozBackup](http://mozbackup.jasnapaka.com/)
-    may help with this, but it only runs on Windows and it may not fix
-    everything it needs to when the profile is restored.
-2.  Create a new Thunderbird profile on the second computer, then quit
-    out of Thunderbird there without configuring any accounts, load the
-    new profile's `prefs.js` into a text editor, and copy all the
-    `mail.account*`, `mail.identity.*`, `mail.server.*`, and `mail.smtp*`,
-    lines from your old `prefs.js` file to the new one, omitting any lines
-    that have hard-coded file paths in them. Then restart Thunderbird on
-    the new computer and log into all the accounts and send test
-    messages from all your identities so that Thunderbird's password
-    manager can save all the necessary passwords.
-3.  Edit `prefs.js` by hand (with Thunderbird not running!) on one of the
-    computers to swap around the numbers for all the accounts,
-    identities, servers, and SMTP servers so they match the numbers on
-    the other computers. *Editing prefs.js is dangerous, and this is not
-    for the faint of heart, and make sure you save a backup copy you can
-    restore if you screw things up!*
+When you do this, then Send Later makes a best effort to match the "From" line of the scheduled message to an identity in the local Thunderbird instance. However, it can't do that if there is no matching identity! Therefore, you should always make sure when using Send Later this way that the email address in the From line of your scheduled drafts that move around match an identity in the target Thunderbird profile.
+
+There's one more esoteric edge case worth pointing out here... When we said above that there's "no problem" when scheduled drafts are confined to a single Thunderbird instance, that wasn't entirely accurate. There can be a problem if you schedule a message from a particular identity, and then you delete that identity so it no longer exists at the time the message is scheduled to be sent. If you do that then Thunderbird will make a best guess at the identity to send the message from, but it might get it wrong, so your best bet is not to do that.
 
 <a name="runtime"></a>
 ### Talking to Send Later from other add-ons
