@@ -1146,6 +1146,10 @@ const SendLater = {
       contexts: ["message_list"],
       title: messenger.i18n.getMessage("menuSkipMsg"),
     });
+    this.claimMenuId = await messenger.menus.create({
+      contexts: ["message_list"],
+      title: messenger.i18n.getMessage("menuClaimMsg"),
+    });
     this.menuVisible = true;
     messenger.menus.onClicked.addListener(async (info, tab) => {
       SendLater.menuClickHandler(info, tab);
@@ -1221,6 +1225,17 @@ const SendLater = {
         null,
         messageIds,
       );
+    } else if (info.menuItemId == this.claimMenuId) {
+      await SendLater.handleMessageCommand(
+        SendLater.doClaimMessage,
+        {
+          messageChecker: SendLater.checkClaimMessage,
+          messageCheckerFull: true,
+          batchMode: true,
+        },
+        null,
+        messageIds,
+      );
     } else {
       SLStatic.error(`Unrecognized menu item ID ${info.menuItemId}`);
     }
@@ -1232,7 +1247,11 @@ const SendLater = {
     let visible = info.displayedFolder.type == "drafts";
     if (SendLater.menuVisible != visible) {
       SLStatic.debug(`Making menu items ${visible ? "" : "in"}visible`);
-      for (let menuId of [this.scheduleMenuId, this.skipMenuId]) {
+      for (let menuId of [
+        this.scheduleMenuId,
+        this.skipMenuId,
+        this.claimMenuId,
+      ]) {
         await messenger.menus.update(menuId, { visible: visible });
       }
       await messenger.menus.refresh();
@@ -1729,6 +1748,95 @@ const SendLater = {
     return await SendLater.possiblySendMessage(options.messageHeader, options);
   },
 
+  async checkClaimMessage(options) {
+    let preferences = await SLTools.getPrefs();
+    if (!preferences.sendWhileOffline && !window.navigator.onLine) {
+      SLStatic.warn(
+        "Send Later is configured to disable sending while offline. Skipping.",
+      );
+      return false;
+    }
+    return true;
+  },
+
+  // Claim a message previously scheduled by a different instance of Send Later
+  // without changing anything else about it.
+  async doClaimMessage(tabId, options, fromMenuCommand) {
+    if (tabId || !fromMenuCommand) {
+      SLStatic.error("Unsupported doClaimMessages call from window");
+      return false;
+    }
+
+    let msgHdr = options.messageHeader;
+    SLStatic.debug(`Claiming message ${msgHdr.id}`);
+
+    let originalMsgId = msgHdr.headerMessageId;
+    let fullMsg = options.messageFull;
+    if (!fullMsg.headers.hasOwnProperty("x-send-later-at")) {
+      SLStatic.warn(`Can't claim unscheduled message ${originalMsgId}`);
+      SLTools.unscheduledMsgCache.add(msgHdr.id);
+      return false;
+    }
+    let contentType = fullMsg.contentType;
+    if (/encrypted/i.test(contentType)) {
+      SLStatic.warn(
+        `Message ${originalMsgId} is encrypted, and will not ` +
+          `be processed by Send Later.`,
+      );
+      SLTools.unscheduledMsgCache.add(msgHdr.id);
+      return false;
+    }
+    let msgUUID = (fullMsg.headers["x-send-later-uuid"] || [])[0];
+    if (!msgUUID) {
+      SLStatic.warn(`Message <${originalMsgId}> has no uuid header.`);
+      SLTools.unscheduledMsgCache.add(msgHdr.id);
+      return false;
+    }
+    let preferences = await SLTools.getPrefs();
+    if (msgUUID == preferences.instanceUUID) {
+      SLStatic.warn(
+        `Message <${originalMsgId}> is already owned by this Thunderbird ` +
+          `instance.`,
+      );
+      return false;
+    }
+
+    let newMsgContent = await messenger.messages.getRaw(msgHdr.id);
+    newMsgContent = SLStatic.replaceHeader(
+      newMsgContent,
+      "X-Send-Later-UUID",
+      preferences.instanceUUID,
+      true,
+      true,
+    );
+
+    let success = await SLStatic.tb115(
+      async () => {
+        let file = SLStatic.getFileFromRaw(newMsgContent);
+        return await SLStatic.messageImport(file, msgHdr.folder, {
+          new: false,
+          read: preferences.markDraftsRead,
+        });
+      },
+      async () => {
+        return messenger.SL3U.saveMessage(
+          newMsgContent,
+          msgHdr.folder,
+          preferences.markDraftsRead,
+        );
+      },
+    );
+
+    if (success) {
+      SLStatic.debug(`Claimed message ${originalMsgId}. Deleting original.`);
+      await SendLater.deleteMessage(msgHdr);
+      return true;
+    } else {
+      SLStatic.error(`Unable to claim message ${originalMsgId}.`);
+      return;
+    }
+  },
+
   async handleMessageCommand(command, options, tabId, messageIds) {
     options.first = true;
     if (messageIds) {
@@ -1739,6 +1847,9 @@ const SendLater = {
         let identityId = await findBestIdentity(message);
         options.messageId = messageId;
         options.messageHeader = message;
+        // The message checker, if there is one, should return true to proceed
+        // or false to stop processing any further messages. Individual message
+        // commands should return false to indicate they were unsuccessful.
         if (options.messageChecker) {
           if (options.messageCheckerFull) {
             options.messageFull = await messenger.messages.getFull(messageId);

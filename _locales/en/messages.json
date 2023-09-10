@@ -945,6 +945,10 @@
     "message": "Skip next occurrence",
     "description": "Command added to the message list menu for the user to use to skip the next occurrence of one or more selected recurring drafts"
   },
+  "menuClaimMsg": {
+    "message": "Move scheduled message(s) to this Thunderbird",
+    "description": "Command added to the message list menu for the user to use to move scheduled messages from another Thunderbird instance to this one."
+  },
   "resultsTitle": {
     "message": "Message processing results",
     "description": "The title of the pop-up that displays results after the user uses the message list context menu to perform an operation on more than one selected message."
