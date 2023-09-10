@@ -343,7 +343,7 @@ later.
 
 [ghreleases]: https://github.com/Extended-Thunder/send-later/releases
 [LiberaPay]: https://liberapay.com/ExtendedThunder
-[paypal]: https://paypal.me/ExtendedThunder
+[paypal]: https://www.paypal.com/donate/?hosted_button_id=Y4V6TDZ2ZY5TS
 [customdates]: https://extended-thunder.github.io/send-later/#custom-dates
 [baddates]: https://extended-thunder.github.io/send-later/#date-format-problems
 [caveats]: https://extended-thunder.github.io/send-later/#caveats
