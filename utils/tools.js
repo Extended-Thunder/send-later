@@ -166,15 +166,20 @@ var SLTools = {
   async getDraftFolders(acct) {
     async function getDraftFoldersHelper(folder) {
       let drafts = [];
-      if (folder.type != "drafts") {
-        return drafts;
+      if (folder.type == "drafts") {
+        drafts.push(folder);
       }
-      drafts.push(folder);
+      // Even if the parent folder isn't a drafts folder we still need to
+      // recurse through subfolders because the user might have his drafts
+      // folder several layers deep in the hierarchy (e.g., that's the default
+      // in Gmail!).
       for (let subFolder of folder.subFolders) {
         // Bug: subfolders of drafts folders aren't marked as drafts folders
         // themselves even though they should be. See
         // https://bugzilla.mozilla.org/show_bug.cgi?id=1852407
-        subFolder.type = "drafts";
+        if (folder.type == "drafts") {
+          subFolder.type = "drafts";
+        }
         drafts = drafts.concat(await getDraftFoldersHelper(subFolder));
       }
       return drafts;
