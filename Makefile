@@ -30,6 +30,7 @@ send_later.xpi: dev/include-manifest $(RELEASE_FILES)
 # Prompts for title and for user to edit release notes.
 # Creates GitHub release as prerelease, uploading release notes and XPI files.
 # Regenerates and commits beta-channel.json.
+# Rebuilds github pages to deploy new beta XPI download link in user guide.
 # Pushes new beta-channel.json to GitHub.
 
 TITLE_FILE=/tmp/send-later-github-release-title.$(VERSION)
@@ -59,6 +60,10 @@ gh_release: send_later.xpi send_later_beta.xpi send_later_atn.xpi
 	@set -x; gh release create v$(VERSION) --prerelease \
 	  --title "$$(cat $(TITLE_FILE))" --notes-file $(FULL_NOTES_FILE) \
 	  --verify-tag send_later.xpi send_later_beta.xpi
+	set -e; \
+	gh_user=$$(yq -r '."github.com".user' ~/.config/gh/hosts.yml); \
+	pat=$$(jq -r .pages_pat secrets.json); \
+	curl -u $$gh_user:$$pat -X POST https://api.github.com/repos/Extended-Thunder/send-later/pages/builds
 	$(MAKE) update_beta_channel
 .PHONY: gh_release
 
