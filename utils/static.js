@@ -15,6 +15,31 @@ var SLStatic = {
   readOnlyFilterPrefs: ["releaseNotesVersion"],
   thunderbirdVersion: null,
 
+  async makeContentsVisible() {
+    let body = document.getElementsByTagName("body")[0];
+    let outerWidth = window.outerWidth;
+    let outerHeight = window.outerHeight;
+    let rect = body.getBoundingClientRect();
+    let viewPortBottom =
+      window.innerHeight || document.documentElement.clientHeight;
+    let hidden = rect.bottom - viewPortBottom;
+    if (hidden > 0) {
+      if (hidden > outerHeight) {
+        console.log("Not resizing popup, would have to >double it");
+        SLStatic.telemetrySend({
+          event: "notResizingPopup",
+          outerHeight: outerHeight,
+          hidden: hidden,
+        });
+        return;
+      }
+      let apiWindow = await messenger.windows.getCurrent();
+      messenger.windows.update(apiWindow.id, {
+        height: Math.floor(outerHeight + hidden),
+      });
+    }
+  },
+
   async tb115(yes, no) {
     if (!SLStatic.thunderbirdVersion) {
       let browserInfo = await messenger.runtime.getBrowserInfo();
