@@ -66,9 +66,11 @@ update_beta_channel:
 	pipenv run dev/beta-channel-generator.py $(BETA_JSON) > $(BETA_JSON).tmp
 	mv $(BETA_JSON).tmp $(BETA_JSON)
 	@if git diff --exit-code $(BETA_JSON); then \
+	  echo "$(BETA_JSON) unchanged" 1>&2; exit 1; \
+	else \
 	  git commit -m "Update beta channel from GitHub" $(BETA_JSON); \
 	  git push; \
-	else echo "$(BETA_JSON) unchanged" 1>&2; exit 1; fi
+	fi
 .PHONY: update_beta_channel
 
 beta: send_later_beta.xpi
