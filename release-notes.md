@@ -22,6 +22,23 @@ the United States as permitted by law.
 
 ## Release 10.2.x
 
+### You can now sign up to be a beta-tester
+
+We love our beta-testers, who get pre-release versions of Send Later before everyone else and help us find the bugs and other rough edges that we missed in our testing.
+
+To switch to the "beta channel" and thereby become a beta-tester, do the following:
+
+1. Go to the [GitHub releases page][ghreleases].
+2. Click on the title of the first listed release.
+3. Download the file "send\_later\_beta.xpi" from the release page. (If you're on Firefox, make sure to right-click and select "Save Link As..." because if you just click normally on the link it will try to install it as a Firefox extension.)
+4. Open the Add-ons page in Thunderbird.
+5. Either drag and drop the downloaded XPI file onto the Add-ons page, or click the gear icon and select "Install Add-on From File...".
+6. Once you've clicked through the install dialogs, you can delete the downloaded XPI file, since Thunderbird makes a copy of it during installation.
+
+To switch back to the main (non-beta) release channel at any time, repeat the above steps but download and install "send\_later.xpi" instead of "send\_later\_beta.xpi", or download and install the current version from [addons.thunderbird.net][atn].
+
+You can report issues with beta releases as [GitHub issues][ghissues] or [via email][email], or discuss them in our [discussions forum][ghdiscussions] or on our [mailing list][mlist].
+
 ### New features
 
 You can now store scheduled drafts in a subfolder of your main drafts folder! This can be configured in the Send Later options.
@@ -278,7 +295,7 @@ this has been fixed.
 ### Known issues
 
 Please check [the user guide][caveats] for persistent caveats and known
-issues. See also our [GitHub issues page][issues] for new issues that
+issues. See also our [GitHub issues page][ghissues] for new issues that
 may not have been triaged or made it into the user guide yet, or for
 which a fix is pending.
 
@@ -379,5 +396,9 @@ later.
 [customdates]: https://extended-thunder.github.io/send-later/#custom-dates
 [baddates]: https://extended-thunder.github.io/send-later/#date-format-problems
 [caveats]: https://extended-thunder.github.io/send-later/#caveats
-[issues]: https://github.com/Extended-Thunder/send-later/issues
+[ghissues]: https://github.com/Extended-Thunder/send-later/issues
 [funclib]: https://github.com/Extended-Thunder/send-later/tree/main/contrib/scheduling-functions
+[atn]: https://addons.thunderbird.net/thunderbird/addon/send-later-3/
+[email]: mailto:send-later-support@extended-thunder.org?subject=Send%20Later
+[ghdiscussions]: https://github.com/Extended-Thunder/send-later/discussions
+[mlist]: https://groups.google.com/g/send-later-users
