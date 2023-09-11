@@ -1,12 +1,7 @@
-_locales
-_locales/*
 _locales/*/*
-experiments
 experiments/*
-ui
-ui/*
+ui/*.*
 ui/*/*
-utils
 utils/*
 background.js
 manifest.json

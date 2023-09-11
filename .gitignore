@@ -1,4 +1,8 @@
+*.tmp
 node_modules
 package-lock.json
 send_later.xpi
+send_later_atn.xpi
+send_later_beta.xpi
 release
+tmp
