@@ -65,6 +65,5 @@ for release_line in result.stdout.split('\n'):
         }
     })
     insert_index += 1
-    break
 
 print(json.dumps(data, indent=2))
