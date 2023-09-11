@@ -921,7 +921,7 @@ to be save. You should:
     it to be delivered with the correct recurrence. Then restart
     Thunderbird to turn Send Later back on.
 4.  If the problem happens again,
-    [contact us](mailto:send-later-support@extended-thunder.org?subject=Send%20Later)
+    [contact us][email]
     and we'll try to help you figure out what's wrong and how to fix it.
  -->
 
@@ -1796,6 +1796,24 @@ to do that.
 
 ## Helping to improve the add-on
 
+<a name="beta-channel"></a>
+### Become a beta-tester
+
+We love our beta-testers, who get pre-release versions of Send Later before everyone else and help us find the bugs and other rough edges that we missed in our testing.
+
+To switch to the "beta channel" and thereby become a beta-tester, do the following:
+
+1. Go to the [GitHub releases page][ghreleases].
+2. Click on the title of the first listed release.
+3. Download the file "send\_later\_beta.xpi" from the release page. (If you're on Firefox, make sure to right-click and select "Save Link As..." because if you just click normally on the link it will try to install it as a Firefox extension.)
+4. Open the Add-ons page in Thunderbird.
+5. Either drag and drop the downloaded XPI file onto the Add-ons page, or click the gear icon and select "Install Add-on From File...".
+6. Once you've clicked through the install dialogs, you can delete the downloaded XPI file, since Thunderbird makes a copy of it during installation.
+
+To switch back to the main (non-beta) release channel at any time, repeat the above steps but download and install "send\_later.xpi" instead of "send\_later\_beta.xpi", or download and install the current version from [addons.thunderbird.net][atn].
+
+You can report issues with beta releases as [GitHub issues][ghissues] or [via email][email], or discuss them in our [discussions forum][ghdiscussions] or on our [mailing list][mlist].
+
 <a name="translate"></a>
 ### Translations
 
@@ -1825,23 +1843,29 @@ contributions are very welcome!
 ### Discussion forum
 
 Most support questions can be handled through Send Later's
-[discussion forum](https://github.com/Extended-Thunder/send-later/discussions).
+[discussion forum][ghdiscussions].
 Be sure to check whether your question has been asked/answered already, and
-post a new discussion topic if not.
+post a new discussion topic if not. Discussions are closed when they are resolved, so remove "is:open" from the search box to see all past discussions.
+
+We also have a [Google Group][mlist] for Send Later users you may wish to join.
+
+### Mailing list
+
+We have a [Google Group][mlist] where Send Later users hang out. You're welcome to browse or join!
 
 ### Reporting bugs
 
 All known bugs in Send Later are tracked through the project's
-[issue tracker](https://github.com/Extended-Thunder/send-later/issues).
+[issue tracker][ghissues].
 Please check whether your bug has already been reported, and if not then please
 either report it yourself, or
-[contact us](mailto:send-later-support@extended-thunder.org?subject=Send%20Later)
+[contact us][email]
 and we will do our best to get it sorted out.
 
 ### Contacting the maintainers
 
 **If and only if your question or comment cannot be addressed through the discussion forum**, then
-[e-mail us directly](mailto:send-later-support@extended-thunder.org?subject=Send%20Later)
+[e-mail us directly][email]
 and we will respond as soon as we can.
 **Please check the discussion forum and issue tracker first, to see whether your question has already been addressed.**
 
@@ -1882,7 +1906,7 @@ are linked to specific versions of the add-on, so when we release new versions
 and expire old ones, the reviews linked to them are removed from the site. Also,
 if there is a specific feature you would like us to add, and you're willing to
 fund its development, please
-[email us](mailto:send-later-support@extended-thunder.org?subject=Send%20Later)
+[email us][email]
 and we can discuss it. Of course, you should feel free to send us feature
 requests at any time, even ones you do not wish to fund; We'll put them into our
 queue and get to them as soon as we can.
@@ -1948,7 +1972,11 @@ Please [see above](#translate) if you would like to help add another translation
 [atn]: https://addons.thunderbird.net/thunderbird/addon/send-later-3/
 [atnversions]: https://addons.thunderbird.net/thunderbird/addon/send-later-3/versions/
 [ghreleases]: https://github.com/Extended-Thunder/send-later/releases
+[ghissues]: https://github.com/Extended-Thunder/send-later/issues
+[ghdiscussions]: https://github.com/Extended-Thunder/send-later/discussions
 [exquillaoutbox]: https://exquilla.zendesk.com/entries/25723967-Messages-stuck-in-Outbox
 [owl]: https://addons.thunderbird.net/thunderbird/addon/owl-for-exchange/
 [mailmerge]: https://addons.thunderbird.net/thunderbird/addon/mail-merge/
 [jiktbtweaks]: https://github.com/jikamens/jik-tb-tweaks
+[email]: mailto:send-later-support@extended-thunder.org?subject=Send%20Later
+[mlist]: https://groups.google.com/g/send-later-users
