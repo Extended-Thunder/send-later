@@ -88,7 +88,12 @@
         <ul class="downloads">
           <li><a href="https://addons.thunderbird.net/thunderbird/addon/send-later-3/" style="line-height:1.1;"><strong>ATN</strong> Homepage</a></li>
           <li><a href="{{ site.github.repository_url }}" style="line-height:1.1;"><strong>GitHub</strong> Repository</a></li>
-          <li><a href="{%- assign beta = site.github.releases | map: 'assets' | concat | where:'name','send_later_beta.xpi' | first -%}{{- beta.browser_download_url -}}" style="line-height:1.1;"><strong>Beta .XPI</strong> Download</a></li>
+          {%- assign assets = [] -%}
+          {%- for release in site.github.releases -%}
+          {%-   assign assets = assets | concat: release.assets -%}
+          {%- endfor -%}
+          {%- assign assets = assets | where:'name','send_later_beta.xpi' -%}
+          <li><a href="{{- assets[0].browser_download_url -}}" style="line-height:1.1;"><strong>Beta .XPI</strong> Download</a></li>
         </ul>
 
         <!--
