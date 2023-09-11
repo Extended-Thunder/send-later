@@ -13,8 +13,8 @@ import tempfile
 from textwrap import dedent
 import time
 
-atn_versions_url = ('https://addons.thunderbird.net/thunderbird/addon/'
-                    'send-later-3/versions/')
+atn_url = 'https://addons.thunderbird.net/thunderbird/addon/send-later-3/'
+atn_versions_url = f'{atn_url}versions/'
 gh_versions_url = 'https://github.com/Extended-Thunder/send-later/releases'
 markdown_file_path = 'download-response.md'
 
@@ -64,7 +64,7 @@ def get_gh_info(want_version):
 
 
 def unwrap(text):
-    return re.sub(r'\n\s*\b', ' ', dedent(text))
+    return re.sub(r'(\S)\n[ \t]*\b', r'\1 ', dedent(text))
 
 
 def generate_markdown(version, on_atn, gh_info):
@@ -103,14 +103,16 @@ def generate_markdown(version, on_atn, gh_info):
         markdown += atn_steps
     else:
         xpi_url = next(a['url'] for a in gh_info['assets']
-                       if a['url'].endswith('.xpi'))
+                       if a['name'] == 'send_later.xpi')
+        beta_url = next(a['url'] for a in gh_info['assets']
+                       if a['name'] == 'send_later_beta.xpi')
         release_url = gh_info['url']
         markdown += unwrap(f'''\
         This release is not yet available for download from
         addons.thunderbird.net, but you can download and install it from
         its [GitHub release page]({release_url}) as follows:
 
-        * Download [this file]({xpi_url}) to your computer. (If you are
+        * Download [send_later.xpi]({xpi_url}) to your computer. (If you are
         using Firefox, make sure to right click on the link and select
         "Save Link As..." rather than just clicking on it, because
         otherwise Firefox will try to install it as a Firefox add-on.)
@@ -121,7 +123,16 @@ def generate_markdown(version, on_atn, gh_info):
         * Browse to and select the downloaded file.
         * Click through the installation pop-ups.
         * You can delete the downloaded file once you've installed it into
-        Thunderbird.\n\n''')
+        Thunderbird.
+
+        To subscribe to future beta releases (we love beta testers!),
+        download and install [send_later_beta.xpi]({beta_url})
+        instead. The advantage is that if there's a bug that affects
+        your workflow you'll help find it and get it fixed quickly.
+        The disadvantage is that bugs are a bit more likely in beta
+        releases. You can unsubscribe from beta releases at any time
+        by downloading and installing send_later.xpi or installing
+        from [addons.thunderbird.net]({atn_url}).\n\n''')
 
         if gh_info['isPrerelease']:
             markdown += unwrap('''\
@@ -186,7 +197,7 @@ def main():
         if gh_info and gh_info['isDraft']:
             gh_info = None
         try:
-            next(a for a in gh_info['assets'] if a['url'].endswith('.xpi'))
+            next(a for a in gh_info['assets'] if a['name'] == 'send_later.xpi')
         except StopIteration:
             print(f'WARNING: release {version} has no assets on GitHub',
                   file=sys.stderr)
