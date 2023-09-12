@@ -493,7 +493,9 @@ the scheduler popup dialog using `Ctrl+1`, `Ctrl+2`, and `Ctrl+3`.
     in the dialog is bound to Alt+Shift+B, which may not be the case depending on
     your language settings.
 -   **function name** Specifies which [dynamic function](#dynamic) will be
-    attached to this shortcut button.
+    attached to this shortcut button. If you set it to "(none)", then
+    the shortcut is disabled and its button won't appear in the
+    scheduling popup.
 -   **Function arguments** Arguments that will be passed to the dynamic function
     that may modify its behavior. See the section on
     [dynamic functions](#dynamic) for details on what these arguments can do.
