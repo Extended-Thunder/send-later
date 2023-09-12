@@ -1206,13 +1206,27 @@ const SendLater = {
       SendLater.checkMenu(info, tab);
     });
 
+    let slVersionString = messenger.runtime.getManifest().version;
+    let oldVersion = preferences.releaseNotesVersion;
+
+    if (slVersionString != oldVersion) {
+      let extensionInfo = await messenger.management.getSelf();
+      let updateUrl = extensionInfo?.updateUrl;
+      if (updateUrl?.includes("beta-channel")) {
+        let title = messenger.i18n.getMessage("betaThankYouTitle");
+        let extensionName = messenger.i18n.getMessage("extensionName");
+        let text = messenger.i18n.getMessage("betaThankYouText", [
+          extensionName,
+        ]);
+        SLTools.alert(title, text);
+      }
+    }
+
     if (preferences.releaseNotesShow) {
       SLStatic.debug("Checking if release notes should be displayed");
-      let slVersionString = messenger.runtime.getManifest().version;
       let slVersion = slVersionString.split(".").map((n) => {
         return parseInt(n);
       });
-      let oldVersion = preferences.releaseNotesVersion;
       if (!oldVersion) {
         oldVersion = "0.0.0";
       }
@@ -1229,16 +1243,17 @@ const SendLater = {
           { action: "showReleaseNotes" },
           {},
         );
-        preferences.releaseNotesVersion = slVersionString;
-        await messenger.storage.local.set({
-          preferences,
-        });
       } else {
         SLStatic.debug("Release notes display not needed");
       }
     } else {
       SLStatic.debug("Release notes display not wanted");
     }
+
+    preferences.releaseNotesVersion = slVersionString;
+    await messenger.storage.local.set({
+      preferences,
+    });
 
     if (!preferences.telemetryAsked) {
       await messenger.windows.create({

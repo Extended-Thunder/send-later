@@ -1036,5 +1036,13 @@
   "TelemetryAskNo": {
     "message": "No, don't collect usage data",
     "description": "Label for the no button on the telemetry request dialog."
+  },
+  "betaThankYouTitle": {
+    "message": "Thank you for being a beta-tester!",
+    "description": ""
+  },
+  "betaThankYouText": {
+    "message": "You are currently receiving pre-release updates to $1. While we appreciate your help, we don't want to impose, so as a precautionary measure, we remind you of this each time $1 updates. If you wish to leave the beta-testing program, you can do so by downloading and installing the current version of $1 from addons.thunderbird.net.",
+    "description": "$1 is replaced with the extension name"
   }
 }
