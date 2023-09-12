@@ -170,12 +170,18 @@ const SLOptions = {
     // Sets all UI element states from stored preferences
     let prefKeys = await SLStatic.userPrefKeys();
 
+    SLOptions.addFuncOption("none", {
+      displayName: browser.i18n.getMessage("selectNone"),
+      value: "",
+      inEditor: false,
+    });
+
     const ufuncPromise = browser.storage.local
       .get({ ufuncs: {} })
       .then(({ ufuncs }) => {
         Object.keys(ufuncs).forEach((funcName) => {
           SLStatic.debug(`Adding function element ${funcName}`);
-          SLOptions.addFuncOption(funcName, false);
+          SLOptions.addFuncOption(funcName);
         });
       });
 
@@ -312,17 +318,21 @@ const SLOptions = {
     }
   },
 
-  addFuncOption(funcName, active) {
-    if (!document.getElementById(`ufunc-${funcName}`)) {
+  addFuncOption(funcName, options) {
+    let active = options?.active || false;
+    let displayName = options?.displayName ?? funcName;
+    let value = options?.value ?? funcName;
+    let inEditor = options?.inEditor ?? true;
+    if (inEditor && !document.getElementById(`ufunc-${funcName}`)) {
       const newOpt = document.createElement("option");
       newOpt.id = `ufunc-${funcName}`;
-      newOpt.value = funcName;
-      newOpt.textContent = funcName;
+      newOpt.value = value;
+      newOpt.textContent = displayName;
 
       const funcSelect = document.getElementById("functionNames");
       funcSelect.children[0].after(newOpt);
       if (active) {
-        funcSelect.value = funcName;
+        funcSelect.value = value;
       }
     }
     if (funcName !== "ReadMeFirst") {
@@ -338,8 +348,8 @@ const SLOptions = {
         if (document.getElementById(key)) continue;
         let newOpt = document.createElement("option");
         newOpt.id = key;
-        newOpt.value = funcName;
-        newOpt.textContent = funcName;
+        newOpt.value = value;
+        newOpt.textContent = displayName;
         let funcSelect = document.getElementById(funcSelectors[key]);
         funcSelect.appendChild(newOpt);
       }
@@ -759,7 +769,7 @@ const SLOptions = {
         SLOptions.saveUserFunction(funcName, funcContent, funcHelp).then(
           (success) => {
             if (success) {
-              SLOptions.addFuncOption(funcName, true);
+              SLOptions.addFuncOption(funcName, { active: true });
               SLOptions.showCheckMark(evt.target, "green");
             } else {
               document.getElementById("functionName").select();

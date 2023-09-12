@@ -901,9 +901,13 @@ const SLPopup = {
     browser.storage.local.get({ preferences: {} }).then(({ preferences }) => {
       for (let i = 1; i < 4; i++) {
         const funcName = preferences[`quickOptions${i}funcselect`];
+        const quickBtn = dom[`quick-opt-${i}`];
+        if (!funcName) {
+          quickBtn.parentElement.remove();
+          continue;
+        }
         const funcArgs = preferences[`quickOptions${i}Args`];
 
-        const quickBtn = dom[`quick-opt-${i}`];
         const quickBtnLabel = preferences[`quickOptions${i}Label`];
         const accelIdx = quickBtnLabel.indexOf("&");
         if (accelIdx === -1) {

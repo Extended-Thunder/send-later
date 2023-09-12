@@ -1044,5 +1044,9 @@
   "betaThankYouText": {
     "message": "You are currently receiving pre-release updates to $1. While we appreciate your help, we don't want to impose, so as a precautionary measure, we remind you of this each time $1 updates. If you wish to leave the beta-testing program, you can do so by downloading and installing the current version of $1 from addons.thunderbird.net.",
     "description": "$1 is replaced with the extension name"
+  },
+  "selectNone": {
+    "message": "(none)",
+    "description": "Used in pop-up menus and other menus where the user needs to be able to explicitly chose none as an option."
   }
 }

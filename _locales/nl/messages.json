@@ -1000,5 +1000,9 @@
   "DSN": {
     "message": "Afleverstatusnotificatie",
     "description": ""
+  },
+  "selectNone": {
+    "message": "(geen)",
+    "description": "Used in pop-up menus and other menus where the user needs to be able to explicitly chose none as an option."
   }
 }

@@ -856,5 +856,9 @@
   "DSN": {
     "message": "Notificació de l'estat del lliurament",
     "description": ""
+  },
+  "selectNone": {
+    "message": "(cap)",
+    "description": "Used in pop-up menus and other menus where the user needs to be able to explicitly chose none as an option."
   }
 }

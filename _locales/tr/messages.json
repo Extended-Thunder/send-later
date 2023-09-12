@@ -178,5 +178,9 @@
   "DSN": {
     "message": "Teslimat durumu bildirimi",
     "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
+  },
+  "selectNone": {
+    "message": "(yok)",
+    "description": "Used in pop-up menus and other menus where the user needs to be able to explicitly chose none as an option."
   }
 }

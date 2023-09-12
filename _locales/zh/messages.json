@@ -766,5 +766,9 @@
   "DSN": {
     "message": "递送状态通知",
     "description": ""
+  },
+  "selectNone": {
+    "message": "(无)",
+    "description": "Used in pop-up menus and other menus where the user needs to be able to explicitly chose none as an option."
   }
 }

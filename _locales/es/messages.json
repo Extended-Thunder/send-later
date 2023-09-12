@@ -860,5 +860,9 @@
   "DSN": {
     "message": "Notificación de estado de entrega",
     "description": ""
+  },
+  "selectNone": {
+    "message": "(ninguna)",
+    "description": "Used in pop-up menus and other menus where the user needs to be able to explicitly chose none as an option."
   }
 }

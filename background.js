@@ -2370,6 +2370,10 @@ const SendLater = {
     if (["1", "2", "3"].includes(cmdId)) {
       const preferences = await SLTools.getPrefs();
       const funcName = preferences[`quickOptions${cmdId}funcselect`];
+      if (!funcName) {
+        SLStatic.info(`Can't execute empty shortcut ${cmdId}`);
+        return;
+      }
       const funcArgs = preferences[`quickOptions${cmdId}Args`];
       SLStatic.info(`Executing shortcut ${cmdId}: ${funcName}(${funcArgs})`);
       await SendLater.quickSendWithUfunc(funcName, funcArgs);
