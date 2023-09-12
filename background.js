@@ -1113,6 +1113,9 @@ const SendLater = {
     let preferences = await SLTools.getPrefs();
     SendLater.prefCache = preferences;
 
+    // Update shortcut key bindings
+    await SLStatic.updateShortcuts(preferences);
+
     await SLStatic.tb115(false, async () => {
       // Initialize drafts folder column
       await messenger.columnHandler.cachePrefs(preferences);
@@ -1335,6 +1338,8 @@ const SendLater = {
           messenger.columnHandler.setColumnVisible(columnName, false);
         }
       });
+
+      await SLStatic.updateShortcuts(preferences);
     }
   },
 

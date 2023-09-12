@@ -351,6 +351,14 @@
     "message": "Button Label",
     "description": ""
   },
+  "quickoptionkey.label": {
+    "message": "Key (Ctrl+Alt+…)",
+    "description": "Heading for the column in the preferences where the user can specify the key bindings to activate shortcut buttons"
+  },
+  "validKeysTooltip": {
+    "message": "Valid shortcut keys (case-sensitive!) are A-Z, 0-9, F1-F12, Comma, Period, Home, End, PageUp, PageDown, Space, Insert, Delete, Up, Down, Left, Right",
+    "description": "The tooltip that pops up to tell the user what the valid keys to bind the quick option shortcuts to. Do not translate the keys, just translate the 'Valid shortcut keys (case-sensitive!) are' part, because the keys have to be in English in the actual shortcut."
+  },
   "showsendlaterprogress.caption": {
     "message": "Show Background Progress In Status Bar",
     "description": ""

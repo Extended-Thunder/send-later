@@ -14,6 +14,12 @@ var SLStatic = {
   // getPreferences isn't allowed to return these
   readOnlyFilterPrefs: ["releaseNotesVersion"],
   thunderbirdVersion: null,
+  // prettier-ignore
+  shortcutKeys: "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
+    .concat("0123456789".split(""))
+    .concat(["F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11",
+             "F12", "Comma", "Period", "Home", "End", "PageUp", "PageDown",
+             "Space", "Insert", "Delete", "Up", "Down", "Left", "Right"]),
 
   async makeContentsVisible() {
     let body = document.getElementsByTagName("body")[0];
@@ -1840,6 +1846,29 @@ var SLStatic = {
       preferences[key] = value;
     });
     await messenger.storage.local.set({ preferences });
+  },
+
+  async updateShortcuts(preferences) {
+    for (let i = 1; i <= 3; i++) {
+      let shortcutName = `send-later-shortcut-${i}`;
+      let shortcutPref = `quickOptions${i}Key`;
+      let shortcutValue = preferences[shortcutPref];
+      let shortcutKey = shortcutValue.length
+        ? `Ctrl+Alt+${shortcutValue}`
+        : "";
+      try {
+        await messenger.commands.update({
+          name: shortcutName,
+          shortcut: shortcutKey,
+        });
+        SLStatic.debug(`Set ${shortcutName} to ${shortcutKey}`);
+      } catch (ex) {
+        SLStatic.error(
+          `Error binding ${shortcutName} to ${shortcutKey}: ${ex}`,
+          ex,
+        );
+      }
+    }
   },
 };
 

@@ -434,6 +434,25 @@ const SLOptions = {
       document.getElementById("sendDoesDelay").checked
     );
 
+    // If one of the shortcut keys was changed to the value of a different
+    // shortcut key, then clear that one.
+    let match;
+    if ((match = /^quickOptions(.)Key$/.exec(element.id))) {
+      let keys = [1, 2, 3];
+      let thisKey = match[1];
+      let thisValue = element.value;
+      if (thisValue.length) {
+        for (let otherKey of keys.filter((k) => k != thisKey)) {
+          let pref = `quickOptions${otherKey}Key`;
+          let otherElement = document.getElementById(pref);
+          if (otherElement.value == thisValue) {
+            otherElement.value = "";
+            preferences[pref] = "";
+          }
+        }
+      }
+    }
+
     const setRegularPref = (element) => {
       let id = element.id;
       let value = element.value;
@@ -454,6 +473,11 @@ const SLOptions = {
         SLStatic.logConsoleLevel = value;
       } else if (["shortDateTimeFormat", "longDateTimeFormat"].includes(id)) {
         if (!SLOptions.checkDateFormat(element)) {
+          SLOptions.showXMark(element, "red");
+          return;
+        }
+      } else if (/^quickOptions.Key$/.exec(id)) {
+        if (value.length && !SLStatic.shortcutKeys.includes(value)) {
           SLOptions.showXMark(element, "red");
           return;
         }
