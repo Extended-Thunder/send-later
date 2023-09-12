@@ -16,7 +16,7 @@ BETA_JSON=beta-channel.json
 
 .PHONY: release
 
-all: send_later.xpi
+all: send_later.xpi send_later_beta.xpi send_later_atn.xpi
 clean:: ; -rm -f send_later.xpi
 
 send_later.xpi: dev/include-manifest $(RELEASE_FILES)
