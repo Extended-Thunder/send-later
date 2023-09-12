@@ -351,6 +351,10 @@
     "message": "Gombfelirat",
     "description": ""
   },
+  "quickoptionkey.label": {
+    "message": "Gomb (Ctrl+Alt+…)",
+    "description": "Heading for the column in the preferences where the user can specify the key bindings to activate shortcut buttons"
+  },
   "showsendlaterprogress.caption": {
     "message": "Háttérállapot megjelenítése az állapotsorban",
     "description": ""
@@ -739,7 +743,7 @@
   },
   "DSN": {
     "message": "Értesítés a kézbesítésről",
-    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message. This needs to match what's in the menu. NOTE: This is *different from* the 'Return Receipt' menu command which appears adjacent to it."
   },
   "noDsnTitle": {
     "message": "$1 nem támogatott ezzel: $2",
@@ -1028,10 +1032,6 @@
   "TelemetryAskNo": {
     "message": "Nem, nem gyűjthet használati adatokat",
     "description": "Label for the no button on the telemetry request dialog."
-  },
-  "DSN": {
-    "message": "Értesítés a kézbesítésről",
-    "description": ""
   },
   "selectNone": {
     "message": "(nincs)",

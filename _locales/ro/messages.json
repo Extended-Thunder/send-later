@@ -683,7 +683,7 @@
   },
   "DSN": {
     "message": "Notificare asupra stadiului livrării",
-    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message. This needs to match what's in the menu. NOTE: This is *different from* the 'Return Receipt' menu command which appears adjacent to it."
   },
   "incorrectUUID": {
     "message": "Programat de un alt Thunderbird.",
@@ -896,10 +896,6 @@
   "RescheduleErrorText": {
     "message": "AVERTISMENT: A apărut o eroare neașteptată la încercarea de a programa următoarea iterație a unui mesaj programat cu subiectul „$1”. Vezi jurnalul de erori Thunderbird pentru detalii. Prin urmare, ciorna programată anterior nu a fost ștearsă și trebuie fie ștearsă, fie editată și reprogramată dacă e necesar.",
     "description": "Text of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
-  },
-  "DSN": {
-    "message": "Notificare asupra stadiului livrării",
-    "description": ""
   },
   "selectNone": {
     "message": "(niciuna)",

@@ -179,6 +179,10 @@
     "message": "‫בחירה באפשרות זו תהפוך את פקודת ה 'שלח' (או הלחצן או צרוף המקשים Ctrl-Enter) לפעול כפקודה 'שלח מאוחר יותר'‬",
     "description": ""
   },
+  "whitelistPrefTooltip": {
+    "message": "במידה ו'$1' או התכונה '\"שלח\" הודעות מעוכבות' מאופשרת והגדת שם פנקס כתובות קיים כאן, אז כל כל הודעה הממוענת לכל הנמענים המופיעים בספר הכתובות, יעקפו את התוסף $2 בעת לחיצה על כפתור ה \"שלח\" או בחירת שלח מתפריט הפקודות.",
+    "description": "$1 is replaced with the contents of sendButtonPrefLabel, and $2 is replaced with extensionName."
+  },
   "whitelistPrefLabel": {
     "message": "רשימת ספרי כתובות:",
     "description": "Appears on the options tab, followed by an input box for the use to specify the name of an address book."
@@ -346,6 +350,14 @@
   "quickoptionname.label": {
     "message": "‫תווית הכפתור :‬",
     "description": ""
+  },
+  "quickoptionkey.label": {
+    "message": "צירוף המקשים  (Ctrl+Alt+…)",
+    "description": "Heading for the column in the preferences where the user can specify the key bindings to activate shortcut buttons"
+  },
+  "validKeysTooltip": {
+    "message": "קיצורי מקלדת תקפים (נדרש דיוק) הם:A-Z, 0-9, F1-F12, Comma, Period, Home, End, PageUp, PageDown, Space, Insert, Delete, Up, Down, Left, Right",
+    "description": "The tooltip that pops up to tell the user what the valid keys to bind the quick option shortcuts to. Do not translate the keys, just translate the 'Valid shortcut keys (case-sensitive!) are' part, because the keys have to be in English in the actual shortcut."
   },
   "showsendlaterprogress.caption": {
     "message": "‫הצג את תהליכי הרקע בשורת המצב‬",
@@ -686,6 +698,10 @@
     "message": "לחיצה על \"$1\" תשלח את ההודעה מייד ולא מתבצע תיזמון למשלוח ההודעה במועד ספציפי. לשם כך, לחץ \"$2\"  לאחר שקבעת מועד מתאים למשלוח. האם את/ה בטוח/ה שברצונך לשלוח את ההודעה כעת?",
     "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
+  "PopupChangedConfirmMessage": {
+    "message": "נראה שלחצת על כפתור \"$1\" לאחר ביצוע שינויי ערכים מסויימים בתפריט תזמון משלוח ההודעות. האם את/ה בטוח שרצית לעשות זאת, במקום ללחוץ על כפתור \"$2\"?",
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'."
+  },
   "ConfirmAgain": {
     "message": "הצג אזהרה זו בפעם הבאה",
     "description": ""
@@ -730,12 +746,16 @@
     "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has encryption or signing enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
   },
   "DSN": {
-    "message": "יידוע מצב קבלה",
-    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
+    "message": "אישור קבלת הודעה",
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message. This needs to match what's in the menu. NOTE: This is *different from* the 'Return Receipt' menu command which appears adjacent to it."
   },
   "noDsnTitle": {
     "message": "$1 אינו ניתמך בתוסף $2",
     "description": "The title of the alert that pops up when the user attempts to schedule a message with delivery status notification enabled. $1 is replaced with the string 'DSN' and $2 is replaced with the extension name."
+  },
+  "noDsnText": {
+    "message": "האפשרות $1 אינה תואמת ל $2. אנא נטרל אפשרות זו בהודעה, לפני קביעת מועד המשלוח שלה, או שלח אותה עם $2",
+    "description": "The text of the alert that pops up when the user attempts to schedule a message with delivery status notification enabled. $1 is replaced with the contents of the string 'DSN' and $2 is replaced with the extension name."
   },
   "incorrectUUID": {
     "message": "התזמון נקבע על ידי למשתמש אחר",
@@ -1017,9 +1037,13 @@
     "message": "לא, אל תאספו מידע על השימוש",
     "description": "Label for the no button on the telemetry request dialog."
   },
-  "DSN": {
-    "message": "יידוע מצב קבלה",
+  "betaThankYouTitle": {
+    "message": "תודה על שיתוף הפעולה כבודק גירסת בטא",
     "description": ""
+  },
+  "betaThankYouText": {
+    "message": "אתה מקבל כרגע גרסה מקדימה לקראת עדכון ל $1. אנו לא מעוניינים להתריח אותך אבל מאריכים את עזרתך, לכן כאמצעי זהירות, אנו מזכירים לך ראת זה בכל פעם ש $1 תעודכן. אם תחליט לעזוב את תוכנית בדיקת גרסאות הבטא, תוכל/י לעשות כן עי הורדת  התוסף $1 בגרסתו העדכנית מאתר  addons.thunderbird.net .",
+    "description": "$1 is replaced with the extension name"
   },
   "selectNone": {
     "message": "(ללא)",

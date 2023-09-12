@@ -629,7 +629,7 @@
   },
   "DSN": {
     "message": "Leveringsbekreftelse",
-    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message. This needs to match what's in the menu. NOTE: This is *different from* the 'Return Receipt' menu command which appears adjacent to it."
   },
   "TimeMismatchConfirmTitle": {
     "message": "Usamsvar mellom sendingstidspunkt og begrensninger",
@@ -766,10 +766,6 @@
   "cancel": {
     "message": "Avbryt",
     "description": "Cancel an action (presented in popup dialogs)"
-  },
-  "DSN": {
-    "message": "Leveringsbekreftelse",
-    "description": ""
   },
   "selectNone": {
     "message": "(ingen)",

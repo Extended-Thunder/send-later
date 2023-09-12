@@ -687,7 +687,7 @@
   },
   "DSN": {
     "message": "Informuj o stanie dostarczania",
-    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message. This needs to match what's in the menu. NOTE: This is *different from* the 'Return Receipt' menu command which appears adjacent to it."
   },
   "incorrectUUID": {
     "message": "Zaplanowane przez innego klienta",
@@ -900,10 +900,6 @@
   "RescheduleErrorText": {
     "message": "OSTRZEŻENIE: Wystąpił nieoczekiwany błąd podczas próby planowania wysyłki wiadomości z tematem „$1”. Sprawdź szczegóły w dzienniku błędów Thunderbird. Ze względu na ten błąd, poprzedni zaplanowany szkic nie został usunięty. Powinieneś go usunąć lub wejść do edycji i zaplanować wysyłkę.",
     "description": "Text of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
-  },
-  "DSN": {
-    "message": "Informuj o stanie dostarczania",
-    "description": ""
   },
   "selectNone": {
     "message": "(brak)",

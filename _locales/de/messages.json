@@ -179,6 +179,14 @@
     "message": "Wird diese Option aktiviert, bewirkt der „Senden”-Befehl (entweder die Schaltfläche oder Strg+Return) das Gleiche wie „Später senden”.",
     "description": ""
   },
+  "whitelistPrefTooltip": {
+    "message": "Wenn `$1' oder `\"Senden\" verzögert Nachrichten' aktiviert ist und Sie hier den Namen eines bestehenden Adressbuchs angeben, dann wird jede Nachricht, deren Empfänger alle im Adressbuch sind, $2 umgehen, wenn der Senden-Button oder der Menü-Befehl aktiviert ist.",
+    "description": "$1 is replaced with the contents of sendButtonPrefLabel, and $2 is replaced with extensionName."
+  },
+  "whitelistPrefLabel": {
+    "message": "Whitelist-Adressbuch:",
+    "description": "Appears on the options tab, followed by an input box for the use to specify the name of an address book."
+  },
   "sendDelayPrefLabel1": {
     "message": "“Senden” verzögert den Nachrichtenversand um",
     "description": ""
@@ -342,6 +350,14 @@
   "quickoptionname.label": {
     "message": "Schaltflächen-Text",
     "description": ""
+  },
+  "quickoptionkey.label": {
+    "message": "Taste (Strg+Alt+…)",
+    "description": "Heading for the column in the preferences where the user can specify the key bindings to activate shortcut buttons"
+  },
+  "validKeysTooltip": {
+    "message": "Gültige Tastenkombinationen (Groß- und Kleinschreibung!) sind A-Z, 0-9, F1-F12, Komma, Semikolon, Start, Ende, Seite nach oben, Seite nach unten, Leerzeichen, Einfügen, Löschen, auf, ab, links, rechts",
+    "description": "The tooltip that pops up to tell the user what the valid keys to bind the quick option shortcuts to. Do not translate the keys, just translate the 'Valid shortcut keys (case-sensitive!) are' part, because the keys have to be in English in the actual shortcut."
   },
   "showsendlaterprogress.caption": {
     "message": "Hintergrund-Fortschritt in der Statusleiste anzeigen",
@@ -682,6 +698,10 @@
     "message": "Mit „Jetzt senden“ wird die Nachricht sofort gesendet. Das Versenden wird NICHT für eine bestimmte Zeit geplant. Dafür müssen Sie eine gültige Sendezeit eingeben und danach die „Geschätzte Sendezeit”-Schaltfläche im grün umrahmten Bereich klicken. Soll die Nachricht jetzt sofort gesendet werden?",
     "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
+  "PopupChangedConfirmMessage": {
+    "message": "Es sieht so aus, als ob Sie \"$1\" angeklickt haben, nachdem Sie einige der Werte im Planen-Dialog geändert haben. Sind Sie sicher, dass Sie dies tun wollten, anstatt auf den \"$2\"-Button zu klicken?",
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'."
+  },
   "ConfirmAgain": {
     "message": "Diese Meldung beim nächsten Mal anzeigen",
     "description": ""
@@ -692,6 +712,10 @@
   },
   "ShowQuitNotificationPreference": {
     "message": "Vor dem Beenden eine Warnung anzeigen, wenn noch ungesendete Nachrichten vorhanden sind"
+  },
+  "SubfolderPreference": {
+    "message": "Geplante Nachrichten in folgendem Unterordner speichern:",
+    "description": "In preferences tab, preceded by a checkbox and followed by a text input"
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Es gibt noch Nachrichten, deren Senden geplant ist. „Später senden” kann Nachrichten nur versenden, wenn $1 geöffnet ist. Möchten Sie das Programm dennoch schließen?",
@@ -711,7 +735,15 @@
   },
   "DSN": {
     "message": "Übermittlungsstatus (DSN) anfordern",
-    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message. This needs to match what's in the menu. NOTE: This is *different from* the 'Return Receipt' menu command which appears adjacent to it."
+  },
+  "noDsnTitle": {
+    "message": "$1 nicht unterstützt mit $2",
+    "description": "The title of the alert that pops up when the user attempts to schedule a message with delivery status notification enabled. $1 is replaced with the string 'DSN' and $2 is replaced with the extension name."
+  },
+  "noDsnText": {
+    "message": "Die Option $1 ist nicht kompatibel mit $2. Bitte deaktivieren Sie diese Option für diese Nachricht bevor Sie sie planen, oder senden Sie sie ohne $2.",
+    "description": "The text of the alert that pops up when the user attempts to schedule a message with delivery status notification enabled. $1 is replaced with the contents of the string 'DSN' and $2 is replaced with the extension name."
   },
   "incorrectUUID": {
     "message": "Von einem anderen Client geplant",
@@ -929,6 +961,10 @@
     "message": "Überspringe das nächste Vorkommen",
     "description": "Command added to the message list menu for the user to use to skip the next occurrence of one or more selected recurring drafts"
   },
+  "menuClaimMsg": {
+    "message": "Geplante Nachricht(en) zu diesem Thunderbird verschieben",
+    "description": "Command added to the message list menu for the user to use to move scheduled messages from another Thunderbird instance to this one."
+  },
   "resultsTitle": {
     "message": "Ergebnisse der Nachrichtenverarbeitung",
     "description": "The title of the pop-up that displays results after the user uses the message list context menu to perform an operation on more than one selected message."
@@ -989,9 +1025,13 @@
     "message": "Nein, keine Nutzungsdaten erheben",
     "description": "Label for the no button on the telemetry request dialog."
   },
-  "DSN": {
-    "message": "Übermittlungsstatus (DSN) anfordern",
+  "betaThankYouTitle": {
+    "message": "Vielen Dank, dass Sie Beta-Tester sind!",
     "description": ""
+  },
+  "betaThankYouText": {
+    "message": "Sie erhalten derzeit Vorab-Aktualisierungen für $1. Wir schätzen Ihre Hilfe, möchten Sie hierzu jedoch nicht drängen, weshalb wir vorsorglich bei jeder Aktualisierung von $1 darauf hinweisen. Wenn Sie das Betatest-Programm verlassen möchten, können Sie dies tun, indem Sie die aktuelle Version von $1 von addons.thunderbird.net herunterladen und installieren.",
+    "description": "$1 is replaced with the extension name"
   },
   "selectNone": {
     "message": "(keine)",

@@ -351,6 +351,14 @@
     "message": "Texte du bouton",
     "description": ""
   },
+  "quickoptionkey.label": {
+    "message": "Touche (Ctrl+Alt+…)",
+    "description": "Heading for the column in the preferences where the user can specify the key bindings to activate shortcut buttons"
+  },
+  "validKeysTooltip": {
+    "message": "Les touches de raccourci valables (sensibles à la casse !) sont A-Z, 0-9, F1-F12, Virgule, Point, Début (Home), Fin (End), Page Haut (PageUp), Page Bas (PageDown), Espace, Inser (Insert), Suppr (Delete), Haut, Bas, Gauche, Droite",
+    "description": "The tooltip that pops up to tell the user what the valid keys to bind the quick option shortcuts to. Do not translate the keys, just translate the 'Valid shortcut keys (case-sensitive!) are' part, because the keys have to be in English in the actual shortcut."
+  },
   "showsendlaterprogress.caption": {
     "message": "Afficher les tâches en arrière-plan dans la barre d'état",
     "description": ""
@@ -739,7 +747,7 @@
   },
   "DSN": {
     "message": "Notification de l’état de la distribution",
-    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message. This needs to match what's in the menu. NOTE: This is *different from* the 'Return Receipt' menu command which appears adjacent to it."
   },
   "noDsnTitle": {
     "message": "$1 n'est pas pris en charge avec $2",
@@ -1029,9 +1037,13 @@
     "message": "Non, ne pas collecter les données d'utilisation",
     "description": "Label for the no button on the telemetry request dialog."
   },
-  "DSN": {
-    "message": "Notification de l’état de la distribution",
+  "betaThankYouTitle": {
+    "message": "Merci de faire partie des bêta-testeurs !",
     "description": ""
+  },
+  "betaThankYouText": {
+    "message": "Vous recevez actuellement des mises à jour de pré-publication à $1. Bien que nous appréciions votre aide, nous ne voulons pas imposer, donc par mesure de précaution, nous vous le rappelons à chaque mise à jour de $1. Si vous souhaitez quitter le programme de bêta-test, vous pouvez le faire en téléchargeant et en installant la version actuelle de $1 depuis addons.thunderbird.net.",
+    "description": "$1 is replaced with the extension name"
   },
   "selectNone": {
     "message": "(Aucune)",

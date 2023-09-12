@@ -655,7 +655,7 @@
   },
   "DSN": {
     "message": "Notificación de estado de entrega",
-    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message. This needs to match what's in the menu. NOTE: This is *different from* the 'Return Receipt' menu command which appears adjacent to it."
   },
   "incorrectUUID": {
     "message": "Programado por otro cliente",
@@ -852,10 +852,6 @@
   "longDateTimeFormatsPrefLabel": {
     "message": "Formato largo se fecha/tiempo",
     "description": "Preference input for extended datetime format (e.g. Wed, Apr 28 2021 11:45)"
-  },
-  "DSN": {
-    "message": "Notificación de estado de entrega",
-    "description": ""
   },
   "selectNone": {
     "message": "(ninguna)",

@@ -625,7 +625,7 @@
   },
   "DSN": {
     "message": "递送状态通知",
-    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message. This needs to match what's in the menu. NOTE: This is *different from* the 'Return Receipt' menu command which appears adjacent to it."
   },
   "TimeMismatchConfirmTitle": {
     "message": "发送时间与限制不匹配",
@@ -762,10 +762,6 @@
   "cancel": {
     "message": "取消",
     "description": "Cancel an action (presented in popup dialogs)"
-  },
-  "DSN": {
-    "message": "递送状态通知",
-    "description": ""
   },
   "selectNone": {
     "message": "(无)",

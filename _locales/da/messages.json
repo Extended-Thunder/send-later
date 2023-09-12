@@ -747,7 +747,7 @@
   },
   "DSN": {
     "message": "Besked om leveringsstatus",
-    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message."
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message. This needs to match what's in the menu. NOTE: This is *different from* the 'Return Receipt' menu command which appears adjacent to it."
   },
   "noDsnTitle": {
     "message": "$1 understøttes ikke med $2",
@@ -1046,7 +1046,7 @@
     "description": "$1 is replaced with the extension name"
   },
   "selectNone": {
-    "message": "(Ingen)",
+    "message": "(ingen)",
     "description": "Used in pop-up menus and other menus where the user needs to be able to explicitly chose none as an option."
   }
 }
