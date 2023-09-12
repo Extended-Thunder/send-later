@@ -479,7 +479,7 @@ different arguments to the dynamic function, thereby enabling you to reuse a
 single function for multiple shortcuts.
 
 The shortcuts can be accessed from within a message composition window using the
-keyboard commands `Ctrl+Alt+1`, `Ctrl+Alt+2`, and`Ctrl+Alt+3`, or from within
+keyboard commands `Ctrl+Alt+1`, `Ctrl+Alt+2`, and `Ctrl+Alt+3` (these bindings can be changed, as described below), or from within
 the scheduler popup dialog using `Ctrl+1`, `Ctrl+2`, and `Ctrl+3`.
 
 ![Send Later shortcut preferences](assets/v10-shortcut-options.png)
@@ -492,11 +492,20 @@ the scheduler popup dialog using `Ctrl+1`, `Ctrl+2`, and `Ctrl+3`.
     `Alt+Shift+B` (`Ctrl+Option+B` on Mac). Note: this assumes that nothing else
     in the dialog is bound to Alt+Shift+B, which may not be the case depending on
     your language settings.
--   **Function name** Specifies which [dynamic function](#dynamic) will be
+-   **function name** Specifies which [dynamic function](#dynamic) will be
     attached to this shortcut button.
--   **Input arguments** Arguments that will be passed to the dynamic function
+-   **Function arguments** Arguments that will be passed to the dynamic function
     that may modify its behavior. See the section on
     [dynamic functions](#dynamic) for details on what these arguments can do.
+-   **Key (Ctrl+Alt+…)** Specifies the key binding in the compose
+    window to activate the shortcut directly without opening the
+    pop-up. By default the shortcuts are bound to Ctrl-Alt-1, -2, and
+    -3, but if you don't like those or if they conflict with another
+    extension you use, you can change them. The valid keys you can
+    specify here, case-sensitive, are A-Z, 0-9, F1-F12, Comma, Period,
+    Home, End, PageUp, PageDown, Space, Insert, Delete, Up, Down,
+    Left, and Right. You can't bind the same key to two different
+    shortcuts.
 -   **Accelerator key: Ctrl+Click** allows you to specify what happens
     when you click on the Send Later button in the compose window
     while holding down the Ctrl key.
