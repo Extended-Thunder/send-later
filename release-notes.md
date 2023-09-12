@@ -47,6 +47,8 @@ Return receipts work now. Delivery status notifications still don't work, becaus
 
 You can now "claim" one or more messages that were scheduled in another Thunderbird instance by selecting them and then using the appropriate Send Later command in the message context menu. They are moved over to being managed by the Thunderbird profile in which you do the claiming, and their schedules are otherwise unmodified.
 
+You can now disable one or more of the shortcuts and remove them from the scheduling pop-up by selecting "(none)" for their function names in the preferences.
+
 If you use "Send delays messages" or "Send does Send Later", you can now designate a particular address book by name as a whitelist of recipients whose messages don't need to be scheduled. If all of a message's recipients are in the address book, then when you click the Send button or select the Send menu command, Send Later is skipped.
 
 You can now change the key bindings for the shortcut keys (Ctrl-Alt-1, -2, -3) use other keys if you don't like 1, 2, and 3 or if they conflict with other extensions.
