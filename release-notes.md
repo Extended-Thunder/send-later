@@ -49,6 +49,8 @@ You can now "claim" one or more messages that were scheduled in another Thunderb
 
 If you use "Send delays messages" or "Send does Send Later", you can now designate a particular address book by name as a whitelist of recipients whose messages don't need to be scheduled. If all of a message's recipients are in the address book, then when you click the Send button or select the Send menu command, Send Later is skipped.
 
+You can now change the key bindings for the shortcut keys (Ctrl-Alt-1, -2, -3) use other keys if you don't like 1, 2, and 3 or if they conflict with other extensions.
+
 ### Improvements
 
 If you click the Send Now or Put in Outbox button after changing something in the pop-up, you now get a confirmation pop-up to make sure that's what you meant to do. You can disable it if you don't like it.
@@ -56,6 +58,8 @@ If you click the Send Now or Put in Outbox button after changing something in th
 If you hit Enter in the pop-up while you're focused on one of the buttons, that button is activated, as opposed to the previous behavior where Enter always activated the "Send at" button even if you were focused on another button.
 
 In previous releases of Send Later, allowing multiple instances of Thunderbird to operate on the same messages could be problematic, because if Thunderbird's internal identity keys differed between the two instances then messages scheduled on one instance and delivered on another could end up being sent through the wrong email account. Send Later now makes a best effort to avoid this by finding the appropriate identity for a message at delivery time and telling Thunderbird to use it.
+
+The scheduling window is resized if it's too short to fit the content without scrolling, unless it would need to be resized by too much.
 
 ### Bug fixes
 
