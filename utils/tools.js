@@ -63,7 +63,7 @@ var SLTools = {
         `[${platformInfo.os} ${platformInfo.arch}] ` +
         `UI locale ${UILocale}, Date Locale ${DateLocale}`,
     );
-    SLStatic.telemetrySend({
+    data = {
       event: "startup",
       version: slVersion,
       browserName: browserInfo.name,
@@ -71,7 +71,13 @@ var SLTools = {
       browserBuild: browserInfo.buildID,
       platformOS: platformInfo.os,
       platformArch: platformInfo.arch,
-    });
+    };
+    let extensionInfo = await messenger.management.getSelf();
+    let updateUrl = extensionInfo?.updateUrl;
+    if (updateUrl?.includes("beta-channel")) {
+      data["beta"] = true;
+    }
+    SLStatic.telemetrySend(data);
   },
 
   handlePopupCallback(tabId, message) {
