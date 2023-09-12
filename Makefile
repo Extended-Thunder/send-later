@@ -1,3 +1,4 @@
+SHELL=/bin/bash
 VERSION=$(shell jq -r .version < manifest.json)
 MEDITOR=$(if $(EDITOR),$(EDITOR),$(VISUAL))
 # https://stackoverflow.com/a/17055840/937306
@@ -10,8 +11,17 @@ RELEASE_FILES=$(filter-out *~,$(wildcard $(RELEASE_PATTERNS)))
 # The line in the HTML that we're matching here looks like this:
 #    <li>Versions: <code>0.3, 0.4, ....lots of versions..., 119.*, *</code></li>
 # We can't currently use "*" as max version, so we need the second-to-last
-# version number on the line
-MAX_GECKO_VERSION=$(shell curl --silent https://addons.thunderbird.net/en-US/thunderbird/pages/appversions/ | sed -n -e 's/.*Versions: <code>.*, \([^,]*\),.*/\1/p' | head -1)
+# version number on the line.
+# We cache this so we don't have to fetch it every time.
+MAX_GECKO_VERSION=$(shell \
+  if (($$(date +%s) - $$(stat -c %Y .max_gecko_version) < 60 * 60 * 24)); then \
+    cat .max_gecko_version; \
+  else \
+    curl --silent https://addons.thunderbird.net/en-US/thunderbird/pages/appversions/ | \
+    sed -n -e 's/.*Versions: <code>.*, \([^,]*\),.*/\1/p' | \
+    head -1 >| .max_gecko_version; \
+  cat .max_gecko_version; \
+  fi)
 BETA_JSON=beta-channel.json
 
 .PHONY: release
@@ -90,6 +100,8 @@ send_later_beta.xpi: send_later.xpi
 	cd tmp && mv manifest.json.tmp manifest.json
 	cd tmp && zip -q -r ../$@.tmp *
 	mv $@.tmp $@
+
+clean:: ; rm -fr send_later_beta.xpi tmp
 
 send_later_atn.xpi: send_later.xpi
 	[ -n "$(MAX_GECKO_VERSION)" ]
