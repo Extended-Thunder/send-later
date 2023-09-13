@@ -1,6 +1,10 @@
+.bundle
+.sass-cache
+_site
 node_modules
 package-lock.json
 send_later.xpi
 index.html
 release-notes.html
 privacy-policy.html
+vendor

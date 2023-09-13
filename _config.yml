@@ -18,6 +18,10 @@ exclude:
   - Makefile
   - Gemfile
   - Gemfile.lock
+  - blog.kamens.us
+  - vendor
+  - '.#*'
+  - '*~'
   - '*.tex'
   - '*.log'
   - '*.aux'

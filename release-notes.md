@@ -1,3 +1,6 @@
+---
+layout: default
+---
 # Send Later release notes
 
 Welcome! We've been hard at work enhancing Send Later's functionality

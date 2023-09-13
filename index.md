@@ -1,3 +1,12 @@
+---
+layout: default
+---
+<div class="beta-only" style="font-size: 150%" markdown="1">
+
+**This user guide is for the current beta pre-release of Send later. Go [here](..) for the user guide of the current production release.**
+
+</div>
+
 * TOC
 {:toc}
 
@@ -21,6 +30,18 @@ in touch](#help).
 
 This user manual is written for Thunderbird 102 or newer. Things are quite
 different for older versions, and we can offer only minimal support for them.
+
+<div class="production-only" markdown="1">
+
+Note that this is the user guide for the current production release of Send Later. If you are using the beta release, you might want to go to the [beta user guide](/next) instead.
+
+</div>
+
+<div class="beta-only" hidden="true" markdown="1">
+
+Note that this is the user guide for the current beta pre-release of Send Later. If you are not using the beta release, you might want to go to the [production user guide](..) instead.
+
+</div>
 
 <a name="install"></a>
 
@@ -1980,3 +2001,4 @@ Please [see above](#translate) if you would like to help add another translation
 [jiktbtweaks]: https://github.com/jikamens/jik-tb-tweaks
 [email]: mailto:send-later-support@extended-thunder.org?subject=Send%20Later
 [mlist]: https://groups.google.com/g/send-later-users
+

@@ -1,5 +1,7 @@
+---
+layout: default
+---
 # Send Later Privacy Policy
-
 
 Send Later collects anonymous usage data to help us improve the add-on, measure its usage, and identify where to focus our efforts. The data we collect contains no identifying information, email content, or account information. We don't share the data with anyone.
 
