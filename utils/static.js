@@ -282,6 +282,10 @@ var SLStatic = {
         if (sugarDate.getTime()) {
           return new Date(sugarDate.getTime());
         }
+        let internalValue = Date.parse(date);
+        if (internalValue) {
+          return new Date(internalValue);
+        }
       }
 
       return null;
@@ -419,6 +423,23 @@ var SLStatic = {
       }
     }
     return this.defaultShortHumanDateTimeFormat(date);
+  },
+
+  parseableHumanDateTimeFormat(date) {
+    console.log("PHDTF 1", date);
+    let formatted = this.shortHumanDateTimeFormat(date);
+    console.log("PHDTF 2", formatted);
+    let parsed;
+    try {
+      parsed = this.convertDate(formatted);
+      console.log("PHDTF 3", parsed);
+    } catch (ex) {}
+    if (parsed) {
+      console.log("PHDTF 5", formatted);
+      return formatted;
+    }
+    console.log("PHDTF 6", date.toISOString());
+    return date.toISOString();
   },
 
   // There are definitely some edge cases here, e.g., !undefined == !0, but

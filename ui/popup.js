@@ -798,7 +798,7 @@ const SLPopup = {
               dom["send-time"].value,
             );
             dom["send-datetime"].value =
-              SLStatic.shortHumanDateTimeFormat(sendAt);
+              SLStatic.parseableHumanDateTimeFormat(sendAt);
           }
           break;
         case "send-datetime":
