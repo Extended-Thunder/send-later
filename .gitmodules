@@ -1,0 +1,4 @@
+[submodule "next"]
+	path = next
+	url = https://github.com/Extended-Thunder/send-later/
+	branch = webpage_next
