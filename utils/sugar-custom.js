@@ -6625,7 +6625,7 @@
    * Sugar.Date.setLocale('zh-CN')
    *
    */
-  Sugar.Date.addLocale("zh-CN", {
+  var zhCNDefinition = {
     ampmFront: true,
     numeralUnits: true,
     allowsFullWidth: true,
@@ -6667,7 +6667,10 @@
       "{year}",
     ],
     timeParse: ["{day|weekday}", "{shift}{weekday}", "{year?}{month?}{date}"],
-  });
+  };
+  Sugar.Date.addLocale("zh-CN", zhCNDefinition);
+  // zh should be interpreted like zh-DN
+  Sugar.Date.addLocale("zh", zhCNDefinition);
 
   /*
    * Traditional Chinese locale definition.
