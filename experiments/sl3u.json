@@ -85,6 +85,18 @@
         ]
       },
       {
+        "name": "compactFolder",
+        "type": "function",
+        "async": true,
+        "description": "Compact a folder",
+        "parameters": [
+          {
+            "name": "folder",
+            "$ref": "folders.MailFolder"
+          }
+        ]
+      },
+      {
         "name": "saveMessage",
         "type": "function",
         "async": true,

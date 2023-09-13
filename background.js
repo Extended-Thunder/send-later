@@ -432,7 +432,35 @@ const SendLater = {
     return true;
   },
 
+  draftsToCompact: [],
+
+  addToDraftsToCompact(folder) {
+    if (
+      !SendLater.draftsToCompact.some(
+        (f) => f.accountId == folder.accountId && f.path == folder.path,
+      )
+    ) {
+      SLStatic.debug("Adding folder to draftsToCompact:", folder);
+      SendLater.draftsToCompact.push(folder);
+    } else {
+      SLStatic.debug("Compact is already queued for:", folder);
+    }
+  },
+
+  async compactDrafts() {
+    if (SendLater.prefCache.compactDrafts) {
+      for (let folder of SendLater.draftsToCompact) {
+        SLStatic.debug("Compacting folder:", folder);
+        await messenger.SL3U.compactFolder(folder);
+      }
+    } else if (SendLater.draftsToCompact.length) {
+      SLStatic.debug("Not compacting folders, preference is disabled");
+    }
+    SendLater.draftsToCompact.length = 0;
+  },
+
   async deleteMessage(hdr) {
+    SendLater.addToDraftsToCompact(hdr.folder);
     let account = await messenger.accounts.get(hdr.folder.accountId, false);
     let accountType = account.type;
     let succeeded;
@@ -2524,6 +2552,7 @@ async function mainLoop() {
           nActive,
         );
 
+        await SendLater.compactDrafts();
         setDeferred("mainLoop", 60000 * interval, mainLoop);
         SLStatic.debug(
           `Next main loop iteration in ${60 * interval} seconds.`,

@@ -52,5 +52,6 @@
   "telemetryUUIDEnabled": ["boolean", true],
   "telemetryURL": ["string", "https://telemetry.kamens.us/"],
   "storeInSubfolder": ["boolean", false],
-  "subfolderName": ["string", ""]
+  "subfolderName": ["string", ""],
+  "compactDrafts": ["boolean", false]
 }

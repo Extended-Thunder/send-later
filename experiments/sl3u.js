@@ -196,8 +196,9 @@ const SendLaterFunctions = {
     const sfile1 = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
     sfile1.initWithPath(filePath);
     listener.localFile = sfile1;
-    let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"].createInstance();
-    msgWindow = msgWindow.QueryInterface(Ci.nsIMsgWindow);
+    let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"]
+      .createInstance()
+      .QueryInterface(Ci.nsIMsgWindow);
 
     let flags = 0;
     try {
@@ -295,9 +296,9 @@ const SendLaterFunctions = {
           0
       ) {
         try {
-          let msgWindow =
-            Cc["@mozilla.org/messenger/msgwindow;1"].createInstance();
-          msgWindow = msgWindow.QueryInterface(Ci.nsIMsgWindow);
+          let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"]
+            .createInstance()
+            .QueryInterface(Ci.nsIMsgWindow);
           let fdrunsent = SendLaterFunctions.getUnsentMessagesFolder();
           fdrunsent.compact(null, msgWindow);
           SendLaterVars.wantToCompactOutbox = false;
@@ -655,6 +656,16 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               `Unrecognized message disposition state: ` + `"${disposition}"`,
             );
           }
+        },
+
+        // Compact a folder
+        async compactFolder({ accountId, path }) {
+          let uri = SendLaterFunctions.folderPathToURI(accountId, path);
+          let folder = MailServices.folderLookup.getFolderForURL(uri);
+          let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"]
+            .createInstance()
+            .QueryInterface(Ci.nsIMsgWindow);
+          folder.compact(null, msgWindow);
         },
 
         // Saves raw message content in specified folder.
