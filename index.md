@@ -511,8 +511,50 @@ There are some preferences which do not have corresponding UI elements in the
 options dialog. Also, there are occasions where you just need fine-grained
 control over your preferences. The advanced configuration editor allows you
 to modify all of Send Later's preferences manually, using JSON-formatted input.
-Hopefully the interface is pretty self explanatory, but I highly recommend
+Hopefully the interface is pretty self explanatory, but we recommend
 avoiding this feature unless you know what you're doing.
+
+The following functional preferences are available only in the configuration editor, not elsewhere in the preferences:
+
+- **instanceUUID** is the unique, random identifier for Send Later in this
+  Thunderbird profile. Note that if you change this then Send Later will no
+  longer deliver any messages that you delivered before you changed it; you'll
+  have to reschedule them. This setting is discussed in more detail
+  [below](#server-side).
+- **releaseNotesShow** controls whether Send Later should display the release
+  notes automatically for major and minor updates (but not patch releases) of
+  Send Later.
+- **scheduledDateField** indicates whether Send Later should put the send time
+  of scheduled messages in their Date field so they're visible there in the
+  message list in your Drafts folder.
+- **sendDrafts** controls whether Send Later actually sends messages at their
+  scheduled delivery times, as described [below](#senddrafts).
+- **sendWhileOffline** controls whether Send Later should attempt to send
+  scheduled messages when Thunderbird thinks it's offline.
+- **showEditAlert** controls whether to display the pop-up alert when you start
+  editing a previously scheduled message. If you disabled this alert by
+  unchecking the box in the pop-up and you want to turn it back on, change this
+  from `false` to `true`.
+- **showOutboxAlert** controls whether to display the confirmation pop-up when
+  you click the "Put in Outbox" button in the scheduling pop-up. If you
+  disabled this alert by unchecking the box in the pop-up and you want to turn
+  it back on, change this from `false` to `true`.
+- **showSendNowAlert** controls whether to display the confirmation pop-up when
+  you click the "Swnd Now" button in the scheduling pop-up. If you disabled
+  this alert by unchecking the box in the pop-up and you want to turn it back
+  on, change this from `false` to `true`.
+- **showSkipAlert** controls whether to display the confirmation pop-up when
+  you use the "Skip next occurrence" context menu command. If you disabled this
+  alert by unchecking the box in the pop-up and you want to turn it back on,
+  change this from `false` to `true`.
+- **telemetryEnabled** indicates whether anonymous telemetry should be
+  transmitted during usage of Send Later. See our [privacy
+  policy](privacy-policy.html) for more information.
+- **throttleDelay** indicates how many milliseconds Send Later should pause
+  between delivering messages. You might need to do this if your mail server
+  gets uptight when you attempt to send adjacent messages too quickly or if you
+  send a lot of messages with Send Later and your server gets uptight if you
+  send too many messages in two short a period of time.
 
 <a name="thunderbird-config-editor"></a>
 ### Thunderbird's Config Editor
