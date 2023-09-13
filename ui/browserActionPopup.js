@@ -80,15 +80,6 @@ function init() {
       })
       .then(() => window.close());
   });
-  document
-    .getElementById("contactAuthorButton")
-    .addEventListener("click", () => {
-      messenger.runtime
-        .sendMessage({
-          action: "contactAuthor",
-        })
-        .then(() => window.close());
-    });
   document.getElementById("donateButton").addEventListener("click", () => {
     messenger.runtime
       .sendMessage({

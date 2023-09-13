@@ -1209,17 +1209,13 @@ const SendLater = {
     let slVersionString = messenger.runtime.getManifest().version;
     let oldVersion = preferences.releaseNotesVersion;
 
-    if (slVersionString != oldVersion) {
-      let extensionInfo = await messenger.management.getSelf();
-      let updateUrl = extensionInfo?.updateUrl;
-      if (updateUrl?.includes("beta-channel")) {
-        let title = messenger.i18n.getMessage("betaThankYouTitle");
-        let extensionName = messenger.i18n.getMessage("extensionName");
-        let text = messenger.i18n.getMessage("betaThankYouText", [
-          extensionName,
-        ]);
-        SLTools.alert(title, text);
-      }
+    if (slVersionString != oldVersion && (await SLTools.isOnBetaChannel())) {
+      let title = messenger.i18n.getMessage("betaThankYouTitle");
+      let extensionName = messenger.i18n.getMessage("extensionName");
+      let text = messenger.i18n.getMessage("betaThankYouText", [
+        extensionName,
+      ]);
+      SLTools.alert(title, text);
     }
 
     if (preferences.releaseNotesShow) {
@@ -2227,29 +2223,22 @@ const SendLater = {
         break;
       }
       case "showUserGuide": {
-        messenger.windows.openDefaultBrowser(
-          "https://extended-thunder.github.io/send-later/",
-        );
+        let url = SLStatic.translationURL(await SLTools.userGuideLink());
+        messenger.tabs.create({ url });
         break;
       }
       case "showReleaseNotes": {
-        let locale = SLStatic.i18n.getUILanguage();
         let url = SLStatic.translationURL(
-          "https://extended-thunder.github.io/send-later/release-notes",
+          await SLTools.userGuideLink("release-notes"),
         );
         messenger.tabs.create({ url });
         break;
       }
-      case "contactAuthor": {
-        messenger.windows.openDefaultBrowser(
-          "https://github.com/Extended-Thunder/send-later/discussions/278",
-        );
-        break;
-      }
       case "donateLink": {
-        messenger.windows.openDefaultBrowser(
-          "https://extended-thunder.github.io/send-later/#support-send-later",
+        let url = SLStatic.translationURL(
+          await SLTools.userGuideLink("#support-send-later"),
         );
+        messenger.tabs.create({ url });
         break;
       }
       default: {

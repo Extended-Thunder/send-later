@@ -17,6 +17,7 @@
         color: #069;
         text-decoration: underline;
         cursor: pointer;
+        font-size: medium;
       }
 
       button, input[type=button] {
@@ -63,33 +64,25 @@
     <hr style="margin: 0 auto; width: 70%; color: grey;"/>
 
     <section style="width: 100%;">
-      <div class="div-table" style="margin: 0 auto;">
-        <div class="div-table-row">
-          <div class="div-table-cell" style="text-align: center; padding: 0 0.5em;">
             <input type="button"
               id="showPrefsButton"
               class="clickable" value="__MSG_prefwindow.title__"></input>
-          </div>
-          <div class="div-table-cell" style="text-align: center; padding: 0 0.5em;">
+|
             <input type="button"
               id="showGuideButton"
               class="clickable" value="__MSG_userGuideLabel__"></input>
-          </div>
-          <div class="div-table-cell" style="text-align: center; padding: 0 0.5em;">
+|
             <input type="button"
               id="showNotesButton"
               class="clickable" value="__MSG_releasenotes.value__"></input>
-          </div>
-          <div class="div-table-cell" style="text-align: center; padding: 0 0.5em;">
-            <input type="button"
+|
+            <a
               id="contactAuthorButton"
-              class="clickable" value="__MSG_contactAuthorLabel__"></input>
-          </div>
-          <div class="div-table-cell" style="text-align: center; padding: 0 0.5em;">
+              class="clickable" href="mailto:send-later-support@extended-thunder.org?subject=Send%20Later">__MSG_contactAuthorLabel__</a>
+|
             <input type="button"
               id="donateButton"
               class="clickable" value="__MSG_donatelink.value__"></input>
-          </div>
         </div>
       </div>
     </div>

@@ -1044,6 +1044,12 @@ const SLOptions = {
 
     await SLOptions.applyPrefsToUI();
     await SLOptions.attachListeners();
+
+    document.getElementById("userGuideLink").href =
+      await SLTools.userGuideLink();
+    document.getElementById("donateLink").href = await SLTools.userGuideLink(
+      "#support-send-later",
+    );
   },
 };
 

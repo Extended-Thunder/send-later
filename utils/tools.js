@@ -42,6 +42,25 @@ var SLTools = {
     return preferences;
   },
 
+  async isOnBetaChannel() {
+    let extensionInfo = await messenger.management.getSelf();
+    let updateUrl = extensionInfo?.updateUrl;
+    return updateUrl?.includes("beta-channel");
+  },
+
+  async userGuideLink(tail) {
+    tail = tail ?? "";
+    let link = "https://extended-thunder.github.io/send-later";
+    if (await this.isOnBetaChannel()) {
+      link += "/next";
+    }
+    if (!tail.startsWith("/")) {
+      link += "/";
+    }
+    link += tail;
+    return link;
+  },
+
   // Debugging info printed to log during intialization.
   async startupLogVersionInfo() {
     const extensionName = messenger.i18n.getMessage("extensionName");
@@ -74,7 +93,7 @@ var SLTools = {
     };
     let extensionInfo = await messenger.management.getSelf();
     let updateUrl = extensionInfo?.updateUrl;
-    if (updateUrl?.includes("beta-channel")) {
+    if (await is.isOnBetaChannel()) {
       data["beta"] = true;
     }
     SLStatic.telemetrySend(data);

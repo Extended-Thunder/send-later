@@ -1794,10 +1794,12 @@ var SLStatic = {
     if (locale.toLowerCase().startsWith("en")) {
       return url;
     } else {
-      let [all, before, host, after] = /(.*\/\/)([^/]+)(.*)/.exec(url);
+      let [all, before, host, after, anchor] =
+        /(.*\/\/)([^/]+)(.*?)(#.*)?$/.exec(url);
+      anchor = anchor || "";
       host =
         host.replaceAll("-", "--").replaceAll(".", "-") + ".translate.goog";
-      return before + host + after + `?_x_tr_sl=en&_x_tr_tl=${locale}`;
+      return `${before}${host}${after}?_x_tr_sl=en&_x_tr_tl=${locale}${anchor}`;
     }
   },
 
