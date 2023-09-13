@@ -66,7 +66,11 @@ In previous releases of Send Later, allowing multiple instances of Thunderbird t
 
 The scheduling window is resized if it's too short to fit the content without scrolling, unless it would need to be resized by too much.
 
+There is a new advanced preference called `compactDrafts` which, when enabled, tells Send Later that at the end of each scheduling run it should compact any Drafts folders from which messages were deleted. If you use Send Later with a Gmail account and are annoyed by the fact that messages delivered by Send Later don't get removed from your Drafts folder in the Gmail app, this will fix that.
+
 ### Bug fixes
+
+The date/time pickers in the scheduling popup couldn't be used in some locales because when they were used the date that got inserted into the text field as a result was unparseable by Send Later. Now when all other attempts to determine a parseable date format fail, Send Later uses JavaScript's built in "ISO" date format, which is guaranteed to be parseable by Send Later regardless of locale.
 
 The confirmation message that Thunderbird is supposed to pop up when you type Ctrl-Enter and you're not using Send Later for it has been fixed.
 
