@@ -571,6 +571,12 @@ avoiding this feature unless you know what you're doing.
 
 The following functional preferences are available only in the configuration editor, not elsewhere in the preferences:
 
+- **compactDrafts** controls whether Send Later should compact any Drafts
+  folders from which messages were deleted at the end of each scheduling run.
+  The most common use case of this is if you use Send Later with a Gmail
+  account and you're annoyed that even after Send Later has deleted a message
+  from your Drafts folder it's still visible in the Gmail app. Compacting your
+  Gmail Drafts folder cleans up these ghost drafts.
 - **instanceUUID** is the unique, random identifier for Send Later in this
   Thunderbird profile. Note that if you change this then Send Later will no
   longer deliver any messages that you delivered before you changed it; you'll
