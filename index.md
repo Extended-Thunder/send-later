@@ -586,6 +586,11 @@ The following functional preferences are available only in the configuration edi
   scheduled delivery times, as described [below](#senddrafts).
 - **sendWhileOffline** controls whether Send Later should attempt to send
   scheduled messages when Thunderbird thinks it's offline.
+- **showChangedAlert** controls whether to display the confirmation pop-up when
+  you click "Send Now" or "Put in Outbox" after making changes in other parts
+  of the scheduling pop-up. If you disabled this alert by unchecking the box in
+  the pop-up and you want to turn it back on, change this from `false` to
+  `true`.
 - **showEditAlert** controls whether to display the pop-up alert when you start
   editing a previously scheduled message. If you disabled this alert by
   unchecking the box in the pop-up and you want to turn it back on, change this
