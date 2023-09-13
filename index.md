@@ -259,7 +259,7 @@ Wednesday, August 23, and it's currently Tuesday, August 22, and you
 do "Skip next occurrence" on the message, then it'll be rescheduled
 and next delivered at 14:00 on Wednesday, August 30.
 
-## "Claiming" messages from a different Thunderbird instance
+### "Claiming" messages from a different Thunderbird instance
 
 You can use Send Later in multiple Thunderbird instances all talking
 to the same email account, but by default each instance of Thunderbird
