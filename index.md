@@ -3,7 +3,8 @@ layout: default
 ---
 <div class="beta-only" style="font-size: 150%" markdown="1" hidden="true">
 
-**This user guide is for the current beta pre-release of Send later. Go [here](..) for the user guide of the current production release.**
+**This user guide is for the current beta pre-release of Send later. Go
+[here]({{"/" |relative_url}}..) for the user guide of the current production release.**
 
 </div>
 
@@ -33,13 +34,17 @@ different for older versions, and we can offer only minimal support for them.
 
 <div class="production-only" markdown="1">
 
-Note that this is the user guide for the current production release of Send Later. If you are using the beta release, you might want to go to the [beta user guide](/next) instead.
+Note that this is the user guide for the current production release of Send
+Later. If you are using the beta release, you might want to go to the [beta
+user guide]({{"/next" | relative_url}}) instead.
 
 </div>
 
 <div class="beta-only" hidden="true" markdown="1">
 
-Note that this is the user guide for the current beta pre-release of Send Later. If you are not using the beta release, you might want to go to the [production user guide](..) instead.
+Note that this is the user guide for the current beta pre-release of Send
+Later. If you are not using the beta release, you might want to go to the
+[production user guide]({{"/" | relative_url}}) instead.
 
 </div>
 
