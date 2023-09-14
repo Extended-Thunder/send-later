@@ -91,9 +91,7 @@ var SLTools = {
       platformOS: platformInfo.os,
       platformArch: platformInfo.arch,
     };
-    let extensionInfo = await messenger.management.getSelf();
-    let updateUrl = extensionInfo?.updateUrl;
-    if (await is.isOnBetaChannel()) {
+    if (await this.isOnBetaChannel()) {
       data["beta"] = true;
     }
     SLStatic.telemetrySend(data);
