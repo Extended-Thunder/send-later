@@ -900,6 +900,15 @@ If you encounter this issue and come up with a solution that works and
 is different from the solutions outlined above, please
 [let us know](#help)!
 
+<a name="big-messages"></a>
+### Very large messages break Send Later
+
+In a standard Thunderbird installation, if you try to send a message larger than 20MB, Thunderbird pops up a warning and asks you to confirm that you really want to do that. This limit can be adjusted by changing the value of the Thunderbird preference `mailnews.message_warning_size` using the [Thunderbird config editor](#thunderbird-config-editor); setting the limit to 0 disables the check entirely.
+
+If you schedule too-large message Send Later, You unfortunately will not get this warning. Worse, because of a [Thunderbird bug](https://bugzilla.mozilla.org/show_bug.cgi?id=1853253), the message won't be successfully sent at the scheduled delivery time, and it will probably block any other messages from being sent as well, until you remove it from your Outbox folder under Local Folders and quit and restart Thunderbird.
+
+We can't fix the delivery issue, though we can and will eventually enhance Send Later to at least prevent you from scheduling a message that's too large; we've got an [open ticket](https://github.com/Extended-Thunder/send-later/issues/643) to remind us to do that.
+
 ### Errors and problems you might encounter
 
 <!-- User alert needs to be implemented in Send Later 8 for this to be relevant.
@@ -1648,7 +1657,9 @@ block it entirely. This could be the problem if messages are not
 moving form your Drafts folder into yor Outbox at their scheduled
 delivery times. See [above](#active-accounts) for how to address this.
 
-If Send Later fails to deliver messages at the scheduled time, or if
+Second, make sure you're not scheduling messages that are too large, as described [above](#big-messages).
+
+Once you've ruled those out, if Send Later fails to deliver messages at the scheduled time, or if
 scheduled messages are delivered repeatedly, the two most likely causes
 are corrupt Drafts folders and a corrupted Outbox folder. A corrupted
 Outbox may even cause Thunderbird to crash when it tries to deliver
