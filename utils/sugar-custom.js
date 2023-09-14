@@ -6669,7 +6669,7 @@
     timeParse: ["{day|weekday}", "{shift}{weekday}", "{year?}{month?}{date}"],
   };
   Sugar.Date.addLocale("zh-CN", zhCNDefinition);
-  // zh should be interpreted like zh-DN
+  // zh should be interpreted like zh-CN
   Sugar.Date.addLocale("zh", zhCNDefinition);
 
   /*
@@ -6680,7 +6680,7 @@
    * Sugar.Date.setLocale('zh-TW')
    *
    */
-  Sugar.Date.addLocale("zh-TW", {
+  var zhTWDefinition = {
     ampmFront: true,
     numeralUnits: true,
     allowsFullWidth: true,
@@ -6722,7 +6722,10 @@
       "{year}",
     ],
     timeParse: ["{day|weekday}", "{shift}{weekday}", "{year?}{month?}{date}"],
-  });
+  };
+
+  Sugar.Date.addLocale("zh-TW", zhTWDefinition);
+  Sugar.Date.addLocale("zh-Hant-TW", zhTWDefinition);
 }).call(this);
 
 // When this script is loaded by the legacy column experiment,
