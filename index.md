@@ -1625,7 +1625,7 @@ Send Later not to deliver messages. Open Send Later's preferences
 the "Send Later preferences" link) and make sure the box next to
 "Trigger unsent message delivery from Outbox" is checked. It is
 checked by default, so if it isn't, then you unchecked it for some
-reason, and you should check it and click "OK" to save the change.
+reason, and you should check it.
 Then, to cause past messages that were previously put into the Outbox
 to be delivered, select the `File > Send Unsent Messages` menu
 command. If that's not the problem, then read on.
