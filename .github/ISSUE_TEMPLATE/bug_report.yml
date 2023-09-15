@@ -9,7 +9,7 @@ body:
       before filing a bug report. Check off each one to confirm.
     options:
     - label: I am reporting a problem, not asking a question (for questions, go
-        to [Discussions](https://github.com/Extended-Thunder/send-later/discussions).
+        to [Discussions](https://github.com/Extended-Thunder/send-later/discussions)).
       required: true
     - label: I have consulted the
         [user guide](https://extended-thunder.github.io/send-later/).
