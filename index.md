@@ -905,9 +905,9 @@ is different from the solutions outlined above, please
 
 In a standard Thunderbird installation, if you try to send a message larger than 20MB, Thunderbird pops up a warning and asks you to confirm that you really want to do that. This limit can be adjusted by changing the value of the Thunderbird preference `mailnews.message_warning_size` using the [Thunderbird config editor](#thunderbird-config-editor); setting the limit to 0 disables the check entirely.
 
-If you schedule too-large message Send Later, You unfortunately will not get this warning. Worse, because of a [Thunderbird bug](https://bugzilla.mozilla.org/show_bug.cgi?id=1853253), the message won't be successfully sent at the scheduled delivery time, and it will probably block any other messages from being sent as well, until you remove it from your Outbox folder under Local Folders and quit and restart Thunderbird.
+If you schedule a too-large message Send Later, You unfortunately will not get this warning. Worse, in Thunderbird 118 and older, because of a [Thunderbird bug](https://bugzilla.mozilla.org/show_bug.cgi?id=1853253), the message won't be successfully sent at the scheduled delivery time, and it will probably block any other messages from being sent as well, until you remove it from your Outbox folder under Local Folders and quit and restart Thunderbird. In Thunderbird 119 and newer, you will be prompted at delivery time to confirm that you want to send the large message, and the delivery of any further messages by Send Later will be blocked until you respond to that prompt. This is obviously a problem if you're relying on Send Later delivering messages for you when you're at your computer!
 
-We can't fix the delivery issue, though we can and will eventually enhance Send Later to at least prevent you from scheduling a message that's too large; we've got an [open ticket](https://github.com/Extended-Thunder/send-later/issues/643) to remind us to do that.
+We can't fix the delivery issues, though we may be able to eventually enhance Send Later to at least prevent you from scheduling a message that's too large; we've got an [open ticket](https://github.com/Extended-Thunder/send-later/issues/643) to remind us to figure out how to do that, if it's feasible.
 
 ### Errors and problems you might encounter
 
