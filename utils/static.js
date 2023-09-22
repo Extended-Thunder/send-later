@@ -426,19 +426,14 @@ var SLStatic = {
   },
 
   parseableHumanDateTimeFormat(date) {
-    console.log("PHDTF 1", date);
     let formatted = this.shortHumanDateTimeFormat(date);
-    console.log("PHDTF 2", formatted);
     let parsed;
     try {
       parsed = this.convertDate(formatted);
-      console.log("PHDTF 3", parsed);
     } catch (ex) {}
     if (parsed) {
-      console.log("PHDTF 5", formatted);
       return formatted;
     }
-    console.log("PHDTF 6", date.toISOString());
     return date.toISOString();
   },
 
