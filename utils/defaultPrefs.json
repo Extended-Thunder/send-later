@@ -20,6 +20,7 @@
   "showColumn": ["bool", true],
   "showStatus": ["bool", true],
   "logConsoleLevel": ["string", "info"],
+  "logStorageLevel": ["string", "none"],
   "sendUnsentMsgs": ["bool", true],
   "sendDrafts": ["bool", true],
   "sendDoesDelay": ["bool", false],

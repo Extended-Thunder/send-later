@@ -1360,7 +1360,10 @@ const SendLater = {
   },
 
   async storageChangedListener(changes) {
-    SLStatic.debug("storageChangedListener");
+    // You *must not* log anything in a storage changed listener until you've
+    // confirmed that the stuff you care about has actually changed, or you will
+    // cause an infinite logging loop when local storage logging is enabled,
+    // because in that case logging causes storage to change!
     if (changes.preferences) {
       SLStatic.debug("Propagating changes from local storage");
       const preferences = changes.preferences.newValue;
@@ -1368,9 +1371,8 @@ const SendLater = {
         rescheduleDeferred("mainLoop", preferences.checkTimePref * 60000);
       }
       SendLater.prefCache = preferences;
-      SLStatic.logConsoleLevel = preferences.logConsoleLevel.toLowerCase();
 
-      await messenger.SL3U.setLogConsoleLevel(SLStatic.logConsoleLevel);
+      await messenger.SL3U.setLogConsoleLevel(preferences.logConsoleLevel);
       await SendLater.setQuitNotificationsEnabled(true, preferences);
       await messenger.browserAction.setLabel({
         label: preferences.showStatus
@@ -2310,6 +2312,13 @@ const SendLater = {
           await SLTools.userGuideLink("#support-send-later"),
         );
         messenger.tabs.create({ url });
+        break;
+      }
+      case "logLink": {
+        let url = SLStatic.translationURL(
+          await SLTools.userGuideLink("#support-send-later"),
+        );
+        messenger.tabs.create({ url: "ui/log.html" });
         break;
       }
       default: {

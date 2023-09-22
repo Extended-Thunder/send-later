@@ -798,5 +798,9 @@
   "folder": {
     "message": "資料夾",
     "description": "Column header in message list in main window pop-up"
+  },
+  "internalLogCopyLabel": {
+    "message": "複製",
+    "description": "Label for the buttom to copy the internal log to the clipboard"
   }
 }

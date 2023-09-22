@@ -790,5 +790,9 @@
   "folder": {
     "message": "Cartella",
     "description": "Column header in message list in main window pop-up"
+  },
+  "internalLogCopyLabel": {
+    "message": "Copia",
+    "description": "Label for the buttom to copy the internal log to the clipboard"
   }
 }

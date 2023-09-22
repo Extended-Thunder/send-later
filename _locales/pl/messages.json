@@ -916,6 +916,9 @@
   "folder": {
     "message": "Folderu",
     "description": "Column header in message list in main window pop-up"
+  },
+  "internalLogCopyLabel": {
+    "message": "Kopiuj",
+    "description": "Label for the buttom to copy the internal log to the clipboard"
   }
 }
-

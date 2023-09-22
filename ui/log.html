@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>__MSG_internalLogTitle__</title>
+    <meta charset="utf-8">
+    <script src="/utils/i18n.js"></script>
+    <script src="/ui/log.js"></script>
+  </head>
+  <body>
+    <p>__MSG_internalLogLevelLabel__
+      <select id="internalLogLevel">
+        <option value="none"
+          class="option-label">__MSG_selectNone__</option>
+        <option value="fatal"
+          class="option-label">__MSG_logLevelFatal__</option>
+        <option value="error"
+          class="option-label">__MSG_logLevelError__</option>
+        <option value="warn"
+          class="option-label">__MSG_logLevelWarn__</option>
+        <option value="info"
+          class="option-label">__MSG_logLevelInfo__</option>
+        <option value="debug"
+          class="option-label">__MSG_logLevelDebug__</option>
+        <option value="trace"
+          class="option-label">__MSG_logLevelTrace__</option>
+        <option value="all"
+          class="option-label">__MSG_logLevelAll__</option>
+      </select>
+      <input type="button" id="clearButton"
+             value="__MSG_internalLogClearLabel__">
+      <input type="button" id="copyButton"
+             value="__MSG_internalLogCopyLabel__">
+    </p>
+    <pre id="logContent"></pre>
+  </body>
+</html>

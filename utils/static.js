@@ -97,34 +97,74 @@ var SLStatic = {
 
   preferences: {},
   listeningForStorageChanges: false,
+  logs: "",
 
-  error: console.error,
-  warn: console.warn,
-  info: console.info,
-  debug: console.debug,
-  trace: console.trace,
-
-  setLogConsoleLevel() {
-    level = (this.preferences.logConsoleLevel || "all").toLowerCase();
-    SLStatic.debug(`SLStatic.setLogConsoleLevel(${level})`);
-    function logThreshold(l) {
-      const levels = [
-        "all",
-        "trace",
-        "debug",
-        "info",
-        "warn",
-        "error",
-        "fatal",
-      ];
-      return levels.indexOf(l) >= levels.indexOf(level);
-    }
-    this.error = logThreshold("error") ? console.error : () => {};
-    this.warn = logThreshold("warn") ? console.warn : () => {};
-    this.info = logThreshold("info") ? console.info : () => {};
-    this.debug = logThreshold("debug") ? console.debug : () => {};
-    this.trace = logThreshold("trace") ? console.trace : () => {};
+  logThreshold(logLevel, messageLevel) {
+    const levels = [
+      "all",
+      "trace",
+      "debug",
+      "info",
+      "warn",
+      "error",
+      "fatal",
+      "none",
+    ];
+    return (
+      levels.indexOf(logLevel.toLowerCase()) <=
+      levels.indexOf(messageLevel.toLowerCase())
+    );
   },
+
+  async flushLogs() {
+    const maxStorageLogSize = 10 * 1024 * 1024; // 10MB
+    try {
+      let newLogs = SLStatic.logs;
+      if (newLogs) {
+        SLStatic.logs = "";
+        let { log } = await browser.storage.local.get(["log"]);
+        log = log || "";
+        log = newLogs + log;
+        if (log.length > maxStorageLogSize) {
+          let i = log.indexOf("\n", Math.floor(maxStorageLogSize / 2));
+
+          while (log[i] != "\n") i++;
+          log = log.substring(0, i + 1);
+        }
+        await browser.storage.local.set({ log });
+      }
+    } catch (ex) {
+      throw ex;
+    } finally {
+      setTimeout(SLStatic.flushLogs, 5000);
+    }
+  },
+
+  doLog(messageLevel, ...args) {
+    let logLevel = SLStatic.preferences.logConsoleLevel || "all";
+    if (SLStatic.logThreshold(logLevel, messageLevel)) {
+      console[messageLevel](...args);
+    }
+    logLevel = SLStatic.preferences.logStorageLevel || "none";
+    if (!SLStatic.logThreshold(logLevel, messageLevel)) return;
+    args = [...args];
+    for (let i in args) {
+      if (typeof args[i] == "object") {
+        try {
+          args[i] = JSON.stringify(args[i]);
+        } catch (ex) {}
+      }
+    }
+    message = "" + new Date().toISOString() + ": " + args.join(", ") + "\n";
+    SLStatic.logs = message + SLStatic.logs;
+  },
+
+  error: (...args) => SLStatic.doLog("error", ...args),
+  warn: (...args) => SLStatic.doLog("warn", ...args),
+  info: (...args) => SLStatic.doLog("info", ...args),
+  log: (...args) => SLStatic.doLog("all", ...args),
+  debug: (...args) => SLStatic.doLog("debug", ...args),
+  trace: (...args) => SLStatic.doLog("trace", ...args),
 
   // Run a function and report any errors to the console, but don't let the
   // error propagate to the caller.
@@ -161,8 +201,14 @@ var SLStatic = {
     }
   },
 
-  cacheChanged() {
-    SLStatic.cachePrefs();
+  cacheChanged(changes) {
+    // You *must not* log anything in a storage changed listener until you've
+    // confirmed that the stuff you care about has actually changed, or you will
+    // cause an infinite logging loop when local storage logging is enabled,
+    // because in that case logging causes storage to change!
+    if (changes.preferences) {
+      SLStatic.cachePrefs(changes.preferences.newValue);
+    }
   },
 
   async cachePrefs(preferences) {
@@ -179,7 +225,6 @@ var SLStatic = {
     }
     if (preferences) {
       SLStatic.preferences = preferences;
-      SLStatic.setLogConsoleLevel();
     }
   },
 
@@ -2223,6 +2268,8 @@ is taken as the delay time.`,
 if (browser) {
   SLStatic.cachePrefs();
 }
+
+SLStatic.flushLogs();
 
 try {
   const locale = SLStatic.getLocale();

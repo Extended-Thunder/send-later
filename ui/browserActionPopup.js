@@ -107,6 +107,13 @@ function init() {
       })
       .then(() => window.close());
   });
+  document.getElementById("logButton").addEventListener("click", () => {
+    messenger.runtime
+      .sendMessage({
+        action: "logLink",
+      })
+      .then(() => window.close());
+  });
   messenger.runtime.sendMessage({ action: "getAllSchedules" }).then((res) => {
     let headerAdded = false;
     let scheduleTable = document.getElementById("scheduleTable");

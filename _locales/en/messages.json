@@ -1064,5 +1064,25 @@
   "noneScheduled": {
     "message": "No scheduled messages",
     "description": "Message in main window pop-up when there are no scheduled messages"
+  },
+  "internalLogTitle": {
+    "message": "Send Later Internal Log",
+    "description": "Title of the tab where the Send Later internal log is displayed when the user requests it"
+  },
+  "internalLogLevelLabel": {
+    "message": "Internal log level:",
+    "description": "Label for the option menu for selecting the internal log level"
+  },
+  "internalLogClearLabel": {
+    "message": "Clear",
+    "description": "Label for the button to clear the internal log"
+  },
+  "internalLogCopyLabel": {
+    "message": "Copy",
+    "description": "Label for the buttom to copy the internal log to the clipboard"
+  },
+  "internalLogLinkLabel": {
+    "message": "View internal log",
+    "description": "Label for the link in the main window pop-up for opening the internal log tab."
   }
 }

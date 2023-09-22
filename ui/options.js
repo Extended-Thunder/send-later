@@ -192,7 +192,6 @@ const SLOptions = {
     const prefPromise = browser.storage.local
       .get({ preferences: {} })
       .then(async ({ preferences }) => {
-        SLStatic.logConsoleLevel = preferences.logConsoleLevel;
         for (let id of prefKeys) {
           let prefVal = preferences[id];
           SLStatic.debug(`Setting ${id}: ${prefVal}`);
@@ -265,6 +264,10 @@ const SLOptions = {
   // Scheduling a message while the preferences window is open could cause the
   // list of ignored accounts to change.
   async storageChangedListener(changes) {
+    // You *must not* log anything in a storage changed listener until you've
+    // confirmed that the stuff you care about has actually changed, or you will
+    // cause an infinite logging loop when local storage logging is enabled,
+    // because in that case logging causes storage to change!
     if (changes.preferences) {
       if (await SLOptions.updateAdvConfigEditor()) {
         await SLOptions.setUpActiveAccounts(
@@ -483,8 +486,6 @@ const SLOptions = {
           id = "lateGracePeriod";
           value = gracePeriodValue * multiplier[gracePeriodUnits.value];
         }
-      } else if (id === "logConsoleLevel") {
-        SLStatic.logConsoleLevel = value;
       } else if (["shortDateTimeFormat", "longDateTimeFormat"].includes(id)) {
         if (!SLOptions.checkDateFormat(element)) {
           SLOptions.showXMark(element, "red");

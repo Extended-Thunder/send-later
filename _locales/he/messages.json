@@ -1060,5 +1060,9 @@
   "folder": {
     "message": "תיקייה",
     "description": "Column header in message list in main window pop-up"
+  },
+  "internalLogCopyLabel": {
+    "message": "העתקה",
+    "description": "Label for the buttom to copy the internal log to the clipboard"
   }
 }
