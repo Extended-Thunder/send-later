@@ -1212,7 +1212,9 @@ const SendLater = {
     // This listener should be added *after* all of the storage-related
     // initialization is complete. It ensures that subsequent changes to storage
     // take effect immediately.
-    messenger.storage.onChanged.addListener(SendLater.storageChangedListener);
+    messenger.storage.local.onChanged.addListener(
+      SendLater.storageChangedListener,
+    );
 
     this.scheduleMenuId = await messenger.menus.create({
       contexts: ["message_list"],
@@ -1344,9 +1346,9 @@ const SendLater = {
     }
   },
 
-  async storageChangedListener(changes, areaName) {
+  async storageChangedListener(changes) {
     SLStatic.debug("storageChangedListener");
-    if (areaName === "local" && changes.preferences) {
+    if (changes.preferences) {
       SLStatic.debug("Propagating changes from local storage");
       const preferences = changes.preferences.newValue;
       if (preferences.checkTimePref) {
@@ -2485,7 +2487,7 @@ const SendLater = {
       SendLater.displayedFolderChangedListener,
     );
     await SLStatic.nofail(
-      messenger.storage.onChanged.removeListener,
+      messenger.storage.local.onChanged.removeListener,
       SendLater.storageChangedListener,
     );
     SLStatic.warn("Disabled.");

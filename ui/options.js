@@ -260,8 +260,8 @@ const SLOptions = {
 
   // Scheduling a message while the preferences window is open could cause the
   // list of ignored accounts to change.
-  async storageChangedListener(changes, areaName) {
-    if (areaName == "local" && changes.preferences) {
+  async storageChangedListener(changes) {
+    if (changes.preferences) {
       if (await SLOptions.updateAdvConfigEditor()) {
         await SLOptions.setUpActiveAccounts(
           changes.preferences.newValue.ignoredAccounts,
@@ -963,7 +963,9 @@ const SLOptions = {
       elt.addEventListener("input", SLOptions.dateFormatChanged);
       SLOptions.checkDateFormat(elt);
     }
-    messenger.storage.onChanged.addListener(SLOptions.storageChangedListener);
+    messenger.storage.local.onChanged.addListener(
+      SLOptions.storageChangedListener,
+    );
   },
 
   dateFormatChanged(evt) {
