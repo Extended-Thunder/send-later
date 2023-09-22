@@ -1538,7 +1538,7 @@ const SendLater = {
         // let newMsg = messages.find(m => m.folder == originalMsg.folder);
         // The saved message has a different message id then the original one.
         // The new message is not used.
-        // console.debug({originalMsg, newMsg});
+        // SLStatic.debug({originalMsg, newMsg});
 
         await SendLater.updateStatusIndicator();
 
@@ -1720,7 +1720,7 @@ const SendLater = {
     let whitelist = SendLater.addressBookToEmails(addressBook);
     let tab = await SLTools.getActiveComposeTab();
     let cd = await messenger.compose.getComposeDetails(tab.id);
-    console.log(cd.bcc, cd.cc, cd.to);
+    SLStatic.debug("Recipients:", cd.bcc, cd.cc, cd.to);
     return (
       (await SendLater.recipientsWhitelisted(whitelist, cd.bcc)) &&
       (await SendLater.recipientsWhitelisted(whitelist, cd.cc)) &&
@@ -1729,14 +1729,14 @@ const SendLater = {
   },
 
   addressBookToEmails(addressBook) {
-    console.log(addressBook);
+    SLStatic.debug("addressBookToEmails", addressBook);
     return addressBook.contacts.map(SendLater.contactToEmails).flat();
   },
 
   contactToEmails(contact) {
     let vcard = contact.properties.vCard;
     vcard = new ICAL.Component(ICAL.parse(vcard));
-    console.log(vcard);
+    SLStatic.debug("contactToEmails: vcard=", vcard);
     return vcard.getAllProperties("email").map((e) => e.jCal[3]);
   },
 
@@ -2788,6 +2788,6 @@ function emailIdentityMatch(author, identity) {
 SendLater.init()
   .then(mainLoop)
   .catch((err) => {
-    console.error("Error initializing Send Later", err);
+    SLStatic.error("Error initializing Send Later", err);
     SendLater.disable();
   });

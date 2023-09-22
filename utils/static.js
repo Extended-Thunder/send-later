@@ -31,7 +31,7 @@ var SLStatic = {
     let hidden = rect.bottom - viewPortBottom;
     if (hidden > 0) {
       if (hidden > outerHeight) {
-        console.log("Not resizing popup, would have to >double it");
+        SLStatic.info("Not resizing popup, would have to >double it");
         SLStatic.telemetrySend({
           event: "notResizingPopup",
           outerHeight: outerHeight,
@@ -111,7 +111,7 @@ var SLStatic = {
     try {
       await func(...args);
     } catch (e) {
-      console.error(e);
+      SLStatic.error(e);
     }
   },
 
@@ -1987,7 +1987,7 @@ if (SLStatic.i18n === null) {
             };
             return str.replace(/\$(?:([1-9]\d*)|(\$+))/g, replacer);
           } catch (e) {
-            console.warn("Unable to get localized message.", e);
+            SLStatic.warn("Unable to get localized message.", e);
           }
           return "";
         },
@@ -2203,26 +2203,26 @@ is taken as the delay time.`,
   };
 }
 
+if (browser) {
+  SLStatic.cachePrefs();
+}
+
 try {
   const locale = SLStatic.getLocale();
   try {
     Sugar.Date.setLocale(locale);
   } catch (ex) {
-    console.warn(`Error setting Sugar locale to ${locale}: ${ex}`, ex);
+    SLStatic.warn(`Error setting Sugar locale to ${locale}: ${ex}`, ex);
     let fallback = locale.split("-")[0];
     try {
       Sugar.Date.setLocale(fallback);
     } catch (ex) {
-      console.warn(
+      SLStatic.warn(
         `[SendLater]: Error setting Sugar locale to ${fallback}: ${ex}`,
         ex,
       );
     }
   }
 } catch (ex) {
-  console.warn(`[SendLater]: Unable to set date Sugar.js locale: ${ex}`, ex);
-}
-
-if (browser) {
-  SLStatic.cachePrefs();
+  SLStatic.warn(`[SendLater]: Unable to set date Sugar.js locale: ${ex}`, ex);
 }

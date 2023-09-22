@@ -75,7 +75,7 @@ var SLTools = {
     try {
       DateLocale = Intl.DateTimeFormat().resolvedOptions().locale;
     } catch (ex) {}
-    console.info(
+    SLStatic.info(
       `${extensionName} version ${slVersion} on ` +
         `${browserInfo.name} ${browserInfo.version} ` +
         `(${browserInfo.buildID}) ` +
