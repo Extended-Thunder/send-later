@@ -695,7 +695,7 @@ const SLPopup = {
           evt.initEvent("change", false, true);
           element.dispatchEvent(evt);
         } catch (err) {
-          SLStatic.log(err);
+          SLStatic.error(err);
         }
       }
     } else {
@@ -706,7 +706,7 @@ const SLPopup = {
         evt.initEvent("change", false, true);
         dom["send-datetime"].dispatchEvent(evt);
       } catch (err) {
-        SLStatic.log(err);
+        SLStatic.error(err);
       }
     }
 

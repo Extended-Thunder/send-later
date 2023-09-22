@@ -78,7 +78,6 @@ var SLStatic = {
   error: console.error,
   warn: console.warn,
   info: console.info,
-  log: console.log,
   debug: console.debug,
   trace: console.trace,
 
@@ -100,7 +99,6 @@ var SLStatic = {
     this.error = logThreshold("error") ? console.error : () => {};
     this.warn = logThreshold("warn") ? console.warn : () => {};
     this.info = logThreshold("info") ? console.info : () => {};
-    this.log = logThreshold("log") ? console.log : () => {};
     this.debug = logThreshold("debug") ? console.debug : () => {};
     this.trace = logThreshold("trace") ? console.trace : () => {};
   },

@@ -51,9 +51,13 @@ const SLOptions = {
         if (matchingChildren.length === 1) {
           element.value = matchingChildren[0].value;
         } else if (matchingChildren.length > 1) {
-          SLStatic.log("[SendLater]: Multiple options match", value, element);
+          SLStatic.error(
+            "[SendLater]: Multiple options match",
+            value,
+            element,
+          );
         } else {
-          SLStatic.log(
+          SLStatic.error(
             "[SendLater]: Could not find value in element ",
             value,
             element,
