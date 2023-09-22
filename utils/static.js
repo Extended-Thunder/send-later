@@ -1,4 +1,4 @@
-// WARNING: If you are importing script into an Experiement, then your
+// WARNING: If you are importing script into an Experiment, then your
 // Experiment MUST have a cachePrefs endpoint which takes an object and passes
 // it into SLStatic.cachePrefs(...), and the extension's background script must
 // call the Experiment's cachePrefs on initialization and every time the
