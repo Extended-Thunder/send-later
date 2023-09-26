@@ -348,19 +348,29 @@ const SendLater = {
     let saveProperties = await messenger.compose.saveMessage(tabId, {
       mode: "draft",
     });
-    if (saveProperties.messages.length != 1) {
-      // TODO: Look into whether this could be a problem for
-      // SendLater (possibility for duplicates?)
-      SLStatic.error(`Saved ${saveProperties.messages.length} messages.`);
-    } else {
-      let msg = saveProperties.messages[0];
-      let targetFolder = await SLTools.getTargetSubfolder(preferences, msg);
-      if (targetFolder) {
-        await messenger.messages.move([msg.id], targetFolder);
-        // It appears that the message ID stays the same after the move.
-      }
+    if (!saveProperties.messages.length) {
+      throw new Error(
+        "Failed to save draft, no exception thrown by Thunderbird",
+      );
     }
 
+    // The "real" draft, as opposed to the FCC, is always first.
+    let msg = saveProperties.messages[0];
+
+    // Optionally mark the saved message as "read"
+    if (preferences.markDraftsRead) {
+      await messenger.messages.update(msg.id, { read: true });
+    }
+
+    let targetFolder = await SLTools.getTargetSubfolder(preferences, msg);
+    if (targetFolder) {
+      await messenger.messages.move([msg.id], targetFolder);
+      // Message ID has changed so we want to make sure not to use the old one!
+      // If we forget and try to later on in the function this should cause an
+      // error.
+      msg.id = null;
+      msg.folder = targetFolder;
+    }
     if (preferences.ignoredAccounts && preferences.ignoredAccounts.length) {
       let identity = await messenger.identities.get(composeDetails.identityId);
       let accountId = identity.accountId;
@@ -376,13 +386,6 @@ const SendLater = {
     }
     // Close the composition tab
     await messenger.tabs.remove(tabId);
-
-    // Optionally mark the saved message as "read"
-    if (preferences.markDraftsRead) {
-      for (let msg of saveProperties.messages) {
-        await messenger.messages.update(msg.id, { read: true });
-      }
-    }
 
     // If message was a reply or forward, update the original message
     // to show that it has been replied to or forwarded.
@@ -407,6 +410,9 @@ const SendLater = {
     // checking for scheduled messages. We should be able to remove it from the
     // unscheduledMsgCache here, but there seems to be a bug in Thunderbird
     // where the message ID reported to us is not the actual saved message.
+    // Also, if the user is using a drafts folder then we no longer have the
+    // actual message ID of the draft because it changed when we moved it and
+    // we haven't searched and found the new ID.
     // Best option right now seems to be invalidating and regenerating the
     // entire unscheduledMsgCache.
     if (!fromMenuCommand) {
