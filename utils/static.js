@@ -1794,14 +1794,15 @@ var SLStatic = {
 
     // Move new message from temp folder to real destination.
     let moved;
-    await messenger.messages
-      .move([newMsgHeader.id], destination)
-      .then(() => {
-        moved = true;
-      })
-      .catch(() => {
-        moved = false;
-      });
+    try {
+      await messenger.messages
+        .move([newMsgHeader.id], destination)
+        .then(() => {
+          moved = true;
+        });
+    } catch (ex) {
+      moved = false;
+    }
     return moved;
   },
 

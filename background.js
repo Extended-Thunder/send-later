@@ -471,17 +471,16 @@ const SendLater = {
     let accountType = account.type;
     let succeeded;
     if (!accountType.startsWith("owl")) {
-      await messenger.messages
-        .delete([hdr.id], true)
-        .then(() => {
+      try {
+        await messenger.messages.delete([hdr.id], true).then(() => {
           succeeded = true;
           SLStatic.info("Deleted message", hdr.id);
           SLTools.scheduledMsgCache.delete(hdr.id);
           SLTools.unscheduledMsgCache.delete(hdr.id);
-        })
-        .catch((ex) => {
-          SLStatic.error(`Error deleting message ${hdr.id}`, ex);
         });
+      } catch (ex) {
+        SLStatic.error(`Error deleting message ${hdr.id}`, ex);
+      }
     } else {
       // When we're talking to an Owl Exchange account, the code simply
       // above... stops. Neither the code inside the `then` block nor the code
@@ -493,14 +492,13 @@ const SendLater = {
       // meantime we just have to do delete asynchronously, and we can't log
       // "Deleted message" because we don't know for certain that the message
       // was in fact deleted.
-      messenger.messages
-        .delete([hdr.id], true)
-        .then(() => {
+      try {
+        await messenger.messages.delete([hdr.id], true).then(() => {
           succeeded = true;
-        })
-        .catch((ex) => {
-          SLStatic.error(`Error deleting message ${hdr.id}`, ex);
         });
+      } catch (ex) {
+        SLStatic.error(`Error deleting message ${hdr.id}`, ex);
+      }
       SLTools.scheduledMsgCache.delete(hdr.id);
       SLTools.unscheduledMsgCache.delete(hdr.id);
     }
@@ -1156,14 +1154,14 @@ const SendLater = {
     await SLStatic.tb115(false, async () => {
       // Initialize drafts folder column
       await messenger.columnHandler.cachePrefs(preferences);
-      await messenger.columnHandler
-        .addCustomColumn({
+      try {
+        await messenger.columnHandler.addCustomColumn({
           name: messenger.i18n.getMessage("sendlater3header.label"),
           tooltip: "",
-        })
-        .catch((ex) => {
-          SLStatic.error("columnHandler.addCustomColumn", ex);
         });
+      } catch (ex) {
+        SLStatic.error("columnHandler.addCustomColumn", ex);
+      }
       messenger.mailTabs.onDisplayedFolderChanged.addListener(
         SendLater.displayedFolderChangedListener,
       );
@@ -1177,16 +1175,18 @@ const SendLater = {
     );
 
     // Set custom DB headers preference, if not already set.
-    await messenger.SL3U.setCustomDBHeaders([
-      "x-send-later-at",
-      "x-send-later-recur",
-      "x-send-later-args",
-      "x-send-later-cancel-on-reply",
-      "x-send-later-uuid",
-      "content-type",
-    ]).catch((ex) => {
+    try {
+      await messenger.SL3U.setCustomDBHeaders([
+        "x-send-later-at",
+        "x-send-later-recur",
+        "x-send-later-args",
+        "x-send-later-cancel-on-reply",
+        "x-send-later-uuid",
+        "content-type",
+      ]);
+    } catch (ex) {
       SLStatic.error("SL3U.setCustomDBHeaders", ex);
-    });
+    }
 
     // Clear the current message settings cache
     await messenger.storage.local.set({ scheduleCache: {} });
@@ -1208,14 +1208,18 @@ const SendLater = {
     }
 
     // Attach to all existing msgcompose windows
-    messenger.SL3U.hijackComposeWindowKeyBindings().catch((ex) => {
+    try {
+      messenger.SL3U.hijackComposeWindowKeyBindings();
+    } catch (ex) {
       SLStatic.error("SL3U.hijackComposeWindowKeyBindings", ex);
-    });
+    }
 
-    await SLStatic.tb115(false, () => {
-      messenger.SL3U.forceToolbarVisible().catch((ex) => {
+    await SLStatic.tb115(false, async () => {
+      try {
+        await messenger.SL3U.forceToolbarVisible();
+      } catch (ex) {
         SLStatic.error("SL3U.forceToolbarVisible", ex);
-      });
+      }
     });
 
     // This listener should be added *after* all of the storage-related
@@ -1490,19 +1494,23 @@ const SendLater = {
     window = await messenger.windows.get(window.id, { populate: true });
     SLStatic.info("Opened new window", window);
 
-    await SLStatic.tb115(false, () => {
+    await SLStatic.tb115(false, async () => {
       // Ensure that the composeAction button is visible,
       // otherwise the popup action will silently fail.
-      messenger.SL3U.forceToolbarVisible(window.id).catch((ex) => {
+      try {
+        await messenger.SL3U.forceToolbarVisible(window.id);
+      } catch (ex) {
         SLStatic.error("SL3U.forceToolbarVisible", ex);
-      });
+      }
     });
 
     // Bind listeners to overlay components like File>Send,
     // Send Later, and keycodes like Ctrl+enter, etc.
-    messenger.SL3U.hijackComposeWindowKeyBindings(window.id).catch((ex) => {
+    try {
+      await messenger.SL3U.hijackComposeWindowKeyBindings(window.id);
+    } catch (ex) {
       SLStatic.error("SL3U.hijackComposeWindowKeyBindings", ex);
-    });
+    }
 
     let tab = window.tabs[0];
     let cd = await messenger.compose.getComposeDetails(tab.id);
@@ -2391,11 +2399,15 @@ const SendLater = {
         instanceUUID,
       );
       if (preferences.showHeader === true && cellText !== "") {
-        await messenger.headerView
-          .addCustomHdrRow(tab.id, headerName, cellText)
-          .catch((ex) => {
-            SLStatic.error("headerView.addCustomHdrRow", ex);
-          });
+        try {
+          await messenger.headerView.addCustomHdrRow(
+            tab.id,
+            headerName,
+            cellText,
+          );
+        } catch (ex) {
+          SLStatic.error("headerView.addCustomHdrRow", ex);
+        }
       } else {
         await messenger.headerView.removeCustomHdrRow(tab.id, headerName);
       }

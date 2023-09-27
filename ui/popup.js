@@ -127,10 +127,11 @@ const SLPopup = {
         cancelOnReply: schedule.recur.cancelOnReply,
       };
       SLStatic.debug(message);
-      browser.runtime
-        .sendMessage(message)
-        .then(() => window.close())
-        .catch(SLStatic.error);
+      try {
+        await browser.runtime.sendMessage(message).then(() => window.close());
+      } catch (ex) {
+        SLStatic.error(ex);
+      }
       // setTimeout((() => window.close()), 150);
     }
   },
@@ -144,10 +145,11 @@ const SLPopup = {
       changed: SLPopup.changed,
     };
     SLStatic.debug(message);
-    browser.runtime
-      .sendMessage(message)
-      .then(() => window.close())
-      .catch((err) => SLStatic.error(err));
+    try {
+      await browser.runtime.sendMessage(message).then(() => window.close());
+    } catch (ex) {
+      SLStatic.error(ex);
+    }
   },
 
   async doPlaceInOutbox() {
@@ -159,10 +161,11 @@ const SLPopup = {
       changed: SLPopup.changed,
     };
     SLStatic.debug(message);
-    browser.runtime
-      .sendMessage(message)
-      .then(() => window.close())
-      .catch((err) => SLStatic.trace(err));
+    try {
+      await browser.runtime.sendMessage(message).then(() => window.close());
+    } catch (ex) {
+      SLStatic.trace(ex);
+    }
   },
 
   domElementsAsArray() {
@@ -601,11 +604,13 @@ const SLPopup = {
     SLStatic.debug("Caching current input values");
     browser.storage.local
       .get({ scheduleCache: {} })
-      .then(({ scheduleCache }) => {
-        browser.windows.getCurrent().then((cwin) => {
-          scheduleCache[cwin.id] = SLPopup.serializeInputs();
-          browser.storage.local.set({ scheduleCache });
-        });
+      .then(async ({ scheduleCache }) => {
+        let cwin = browser.windows.getCurrent();
+        return scheduleCache, cwin;
+      })
+      .then(async (scheduleCache, cwin) => {
+        scheduleCache[cwin.id] = SLPopup.serializeInputs();
+        await browser.storage.local.set({ scheduleCache });
       })
       .catch(SLStatic.error);
   },
