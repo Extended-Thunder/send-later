@@ -85,6 +85,18 @@
         ]
       },
       {
+        "name": "updateFolder",
+        "type": "function",
+        "async": true,
+        "description": "Force TB to look for new messages in folder",
+        "parameters": [
+          {
+            "name": "folder",
+            "$ref": "folders.MailFolder"
+          }
+        ]
+      },
+      {
         "name": "compactFolder",
         "type": "function",
         "async": true,

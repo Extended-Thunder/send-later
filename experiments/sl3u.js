@@ -658,6 +658,16 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
         },
 
+        // Force TB to reopen the folder so it sees new drafts
+        async updateFolder({ accountId, path }) {
+          let uri = SendLaterFunctions.folderPathToURI(accountId, path);
+          let folder = MailServices.folderLookup.getFolderForURL(uri);
+          let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"]
+            .createInstance()
+            .QueryInterface(Ci.nsIMsgWindow);
+          folder.updateFolder(Ci.nsIMsgWindow);
+        },
+
         // Compact a folder
         async compactFolder({ accountId, path }) {
           let uri = SendLaterFunctions.folderPathToURI(accountId, path);

@@ -247,6 +247,34 @@ var SLTools = {
     return subfolder;
   },
 
+  // Wait for the specified message to be visible in the folder.
+  async waitForMessage(hdr, timeout) {
+    let start = Date.now();
+    if (!timeout) timeout = 5000;
+    SLStatic.debug("Starting to wait for", hdr);
+    let found = false;
+    while (Date.now() - start < timeout) {
+      let result = await SLTools.forAllDrafts((dHdr) => dHdr.id == hdr.id);
+      if (result.some((v) => v)) {
+        found = true;
+        break;
+      }
+      await new Promise((r) => setTimeout(r, 100));
+    }
+    delta = Date.now() - start;
+    if (found) {
+      SLStatic.debug(`Found message after ${delta}ms`);
+    } else {
+      SLStatic.debug(`Failed to find message after ${delta}ms`);
+    }
+    SLStatic.telemetrySend({
+      event: "waitForMessage",
+      found: found,
+      elapsed: delta,
+    });
+    return found;
+  },
+
   // Do something with each message in all draft folders. callback
   // should be an async function that takes a single MessageHeader
   // argument. If `sequential` is true, then the function will
@@ -274,6 +302,7 @@ var SLTools = {
       }
       let draftFolders = await SLTools.getDraftFolders(acct);
       for (let folder of draftFolders) {
+        await messenger.SL3U.updateFolder(folder);
         let page = await messenger.messages.list(folder);
         while (true) {
           if (sequential) {

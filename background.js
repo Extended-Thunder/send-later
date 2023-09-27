@@ -1534,6 +1534,29 @@ const SendLater = {
         let { messages } = await messenger.compose.saveMessage(tab.id, {
           mode: "draft",
         });
+        let msg = messages[0];
+
+        // https://bugzilla.mozilla.org/show_bug.cgi?id=1855487
+        //
+        // This is a workaround for TB a bug. If we're editing a draft in a
+        // subfolder of the main Drafts folder, then when we save the draft
+        // above it sometimes gets saved to the server without the Send Later
+        // headers as expected, but TB doesn't realize that, i.e., it's still
+        // got the SL headers in the message database and if you view the
+        // message source you'll see them, even though they're not in the copy
+        // on the server! However, if we wait until the message is visible in
+        // the drafts folder and then save it again, the new save overwrites
+        // the old one _and_ the headers go away like they're supposed to.
+        if (originalMsg.folder.path != msg.folder.path) {
+          let found = await SLTools.waitForMessage(msg);
+          ({ messages } = await messenger.compose.saveMessage(tab.id, {
+            mode: "draft",
+          }));
+          if (!found && messages[0].id != msg.id) {
+            SendLater.deleteMessage(msg);
+          }
+          msg = messages[0];
+        }
 
         // Courtesy of https://bugzilla.mozilla.org/show_bug.cgi?id=263114, if
         // the draft we're editing started in a subfolder than TB may not
