@@ -103,18 +103,18 @@ def generate_markdown(version, on_atn, gh_info):
         markdown += atn_steps
     else:
         xpi_url = next(a['url'] for a in gh_info['assets']
-                       if a['name'] == 'send_later.xpi')
+                       if re.match(r'send_later_[0-9.]+\.xpi$', a['name']))
         beta_url = next(a['url'] for a in gh_info['assets']
-                       if a['name'] == 'send_later_beta.xpi')
+                       if a['name'].endswith('_beta.xpi'))
         release_url = gh_info['url']
         markdown += unwrap(f'''\
         This release is not yet available for download from
         addons.thunderbird.net, but you can download and install it from
         its [GitHub release page]({release_url}) as follows:
 
-        * Download [send_later.xpi]({xpi_url}) to your computer. (If you are
-        using Firefox, make sure to right click on the link and select
-        "Save Link As..." rather than just clicking on it, because
+        * Download [send_later_{version}.xpi]({xpi_url}) to your computer.
+        (If you are using Firefox, make sure to right click on the link and
+        select "Save Link As..." rather than just clicking on it, because
         otherwise Firefox will try to install it as a Firefox add-on.)
         * Open the Add-ons page in Thunderbird ("Add-ons and Themes" from
         the corner "hamburger" menu).
@@ -126,7 +126,7 @@ def generate_markdown(version, on_atn, gh_info):
         Thunderbird.
 
         To subscribe to future beta releases (we love beta testers!),
-        download and install [send_later_beta.xpi]({beta_url})
+        download and install [send_later_beta_{version}.xpi]({beta_url})
         instead. The advantage is that if there's a bug that affects
         your workflow you'll help find it and get it fixed quickly.
         The disadvantage is that bugs are a bit more likely in beta

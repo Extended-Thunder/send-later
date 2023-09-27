@@ -47,7 +47,9 @@ TITLE_FILE=/tmp/send-later-github-release-title.$(VERSION)
 NOTES_FILE=/tmp/send-later-github-release-notes.$(VERSION).md
 FULL_NOTES_FILE=/tmp/send-later-github-release-notes-full.$(VERSION).md
 
-gh_release: send_later.xpi send_later_beta.xpi send_later_atn.xpi
+ASSETS=dist/send_later_$(VERSION).xpi dist/send_later_$(VERSION)_beta.xpi
+
+gh_release: $(ASSETS)
 # No releases that aren't pushed to main
 	git merge-base --is-ancestor v$(VERSION) origin/main
 # No changes to release files in our checked-out tree
@@ -69,13 +71,18 @@ gh_release: send_later.xpi send_later_beta.xpi send_later_atn.xpi
 # rule earlier.
 	@set -x; gh release create v$(VERSION) --prerelease \
 	  --title "$$(cat $(TITLE_FILE))" --notes-file $(FULL_NOTES_FILE) \
-	  --verify-tag send_later.xpi send_later_beta.xpi
+	  --verify-tag $(ASSETS)
 	set -e; \
 	gh_user=$$(yq -r '."github.com".user' ~/.config/gh/hosts.yml); \
 	pat=$$(jq -r .pages_pat secrets.json); \
 	curl -u $$gh_user:$$pat -X POST https://api.github.com/repos/Extended-Thunder/send-later/pages/builds
 	$(MAKE) update_beta_channel
 .PHONY: gh_release
+
+dist/send_later_$(VERSION)%xpi: send_later%xpi
+	mkdir -p dist
+	cp $^ $@.tmp
+	mv $@.tmp $@
 
 update_beta_channel:
 	pipenv run dev/beta-channel-generator.py $(BETA_JSON) > $(BETA_JSON).tmp
