@@ -46,14 +46,33 @@ var SLStatic = {
     }
   },
 
-  async tb115(yes, no) {
+  async tbIsVersion(wantVersion, yes, no) {
+    if (typeof wantVersion == "number") {
+      wantVersion = [wantVersion];
+    }
+
     if (!SLStatic.thunderbirdVersion) {
       let browserInfo = await messenger.runtime.getBrowserInfo();
-      SLStatic.thunderbirdVersion = parseInt(
-        browserInfo.version.split(".")[0],
-      );
+      SLStatic.thunderbirdVersion = browserInfo.version
+        .split(".")
+        .map(parseInt);
     }
-    if (SLStatic.thunderbirdVersion >= 115) {
+
+    let tbVersion = [...SLStatic.thunderbirdVersion];
+    let satisfied = true;
+    while (wantVersion.length) {
+      let wantFirst = wantVersion.shift();
+      let tbFirst = tbVersion.shift();
+      if (wantFirst > tbFirst) {
+        satisfied = false;
+        break;
+      }
+      if (wantFirst < tbFirst) {
+        break;
+      }
+    }
+
+    if (satisfied) {
       if (yes) {
         if (typeof yes == "function") {
           return yes();
@@ -70,6 +89,10 @@ var SLStatic = {
         }
       }
     }
+  },
+
+  async tb115(yes, no) {
+    return SLStatic.tbIsVersion(115, yes, no);
   },
 
   preferences: {},
