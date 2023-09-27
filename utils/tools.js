@@ -347,6 +347,7 @@ var SLTools = {
     const preferences = await SLTools.getPrefs();
     let isScheduled = await SLTools.forAllDrafts(
       async (msgHdr) => {
+        SLStatic.debug(`Checking message ${msgHdr.id}`);
         if (SLTools.scheduledMsgCache.has(msgHdr.id)) {
           return true;
         } else if (SLTools.unscheduledMsgCache.has(msgHdr.id)) {

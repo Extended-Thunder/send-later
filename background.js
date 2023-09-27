@@ -1061,8 +1061,11 @@ const SendLater = {
   },
 
   async updateStatusIndicator(nActive, waitFor) {
+    SLStatic.debug(`updateStatusIndicator(${nActive})`);
     if (waitFor) {
+      SLStatic.debug("updateStatusIndicator waiting");
       await waitFor;
+      SLStatic.debug("updateStatusIndicator done waiting");
     }
     let extName = messenger.i18n.getMessage("extensionName");
     if (nActive == undefined)
@@ -1538,13 +1541,6 @@ const SendLater = {
         if (!messages.map((m) => m.id).includes(originalMsg.id)) {
           SendLater.deleteMessage(originalMsg);
         }
-
-        // Pick the message stored in the same folder as the original draft was
-        // stored in.
-        // let newMsg = messages.find(m => m.folder == originalMsg.folder);
-        // The saved message has a different message id then the original one.
-        // The new message is not used.
-        // SLStatic.debug({originalMsg, newMsg});
 
         await SendLater.updateStatusIndicator();
 
@@ -2549,7 +2545,7 @@ async function mainLoop() {
           );
         }
         let nActive = await SLTools.countActiveScheduledMessages();
-        // noawait (indeterminatee, see above)
+        // noawait (indeterminate, see above)
         SendLater.updateStatusIndicator(
           nActive,
           Promise.all([enablePromise, titlePromise]),
