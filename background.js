@@ -765,7 +765,7 @@ const SendLater = {
               });
             },
             async () => {
-              return messenger.SL3U.saveMessage(
+              return await messenger.SL3U.saveMessage(
                 newMsgContent,
                 msgHdr.folder,
                 preferences.markDraftsRead,
@@ -943,7 +943,7 @@ const SendLater = {
             });
           },
           async () => {
-            return messenger.SL3U.saveMessage(
+            return await messenger.SL3U.saveMessage(
               newMsgContent,
               msgHdr.folder,
               preferences.markDraftsRead,
@@ -2012,7 +2012,7 @@ const SendLater = {
         });
       },
       async () => {
-        return messenger.SL3U.saveMessage(
+        return await messenger.SL3U.saveMessage(
           newMsgContent,
           msgHdr.folder,
           preferences.markDraftsRead,
