@@ -3,6 +3,16 @@
     "sendlater3@kamens.us": {
       "updates": [
         {
+          "version": "10.2.10",
+          "update_info_url": "https://github.com/Extended-Thunder/send-later/releases/tag/v10.2.10",
+          "update_link": "https://github.com/Extended-Thunder/send-later/releases/download/v10.2.10/send_later_10.2.10_beta.xpi",
+          "applications": {
+            "gecko": {
+              "strict_min_version": "102.0"
+            }
+          }
+        },
+        {
           "version": "10.2.9",
           "update_info_url": "https://github.com/Extended-Thunder/send-later/releases/tag/v10.2.9",
           "update_link": "https://github.com/Extended-Thunder/send-later/releases/download/v10.2.9/send_later_beta.xpi",
