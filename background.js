@@ -1536,10 +1536,12 @@ const SendLater = {
         });
 
         // Courtesy of https://bugzilla.mozilla.org/show_bug.cgi?id=263114, if
-        // the draft we're editing started in a subfolder than TB doesn't
-        // delete it automatically. *sigh*
-        if (!messages.map((m) => m.id).includes(originalMsg.id)) {
-          SendLater.deleteMessage(originalMsg);
+        // the draft we're editing started in a subfolder than TB may not
+        // delete the original draft automatically.
+        if (msg.id != originalMsg.id) {
+          try {
+            SendLater.deleteMessage(originalMsg);
+          } catch (ex) {}
         }
 
         await SendLater.updateStatusIndicator();
