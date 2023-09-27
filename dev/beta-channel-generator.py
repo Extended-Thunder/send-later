@@ -42,7 +42,7 @@ for release_line in result.stdout.split('\n'):
     release_data = json.loads(result.stdout)
     try:
         beta_asset = next(a for a in release_data['assets']
-                          if a['name'] == 'send_later_beta.xpi')
+                          if a['name'].endswith('_beta.xpi'))
     except StopIteration:
         print(f'No beta asset in ${version}, skipping', file=sys.stderr)
         continue

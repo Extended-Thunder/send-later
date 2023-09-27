@@ -197,7 +197,8 @@ def main():
         if gh_info and gh_info['isDraft']:
             gh_info = None
         try:
-            next(a for a in gh_info['assets'] if a['name'] == 'send_later.xpi')
+            next(a for a in gh_info['assets']
+                 if re.match(r'send_later.*.xpi', a['name']))
         except StopIteration:
             print(f'WARNING: release {version} has no assets on GitHub',
                   file=sys.stderr)
