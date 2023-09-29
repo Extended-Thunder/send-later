@@ -1209,7 +1209,7 @@ const SendLater = {
 
     // Attach to all existing msgcompose windows
     try {
-      messenger.SL3U.hijackComposeWindowKeyBindings();
+      await messenger.SL3U.hijackComposeWindowKeyBindings();
     } catch (ex) {
       SLStatic.error("SL3U.hijackComposeWindowKeyBindings", ex);
     }
