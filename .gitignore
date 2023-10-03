@@ -1,5 +1,6 @@
 *.tmp
 .max_gecko_version
+dist
 node_modules
 package-lock.json
 send_later.xpi
