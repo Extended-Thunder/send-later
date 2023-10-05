@@ -161,7 +161,7 @@
   },
   "sendAtLabel": {
     "message": "Küldés ekkor",
-    "description": "This is used in the scheduling pop-up at the beginning of the dynamic label for the button the user clicks to send a scheduled message at the specified date/time. It is followed in the button by a formatted date/time. For example, in English: 'Send at Tue, Aug 29, 2023, 11:26 AM'."
+    "description": "This is used in the scheduling pop-up at the beginning of the dynamic label for the button the user clicks to send a scheduled message at the specified date/time. It is followed in the button by a formatted date/time. For example, in English: 'Send at Tue, Aug 29, 2023, 11:26 AM'. Also used in the main window pop-up as the header of the column containing message send times."
   },
   "sendBtwnLabel": {
     "message": "Között",
@@ -289,11 +289,11 @@
   },
   "sendlater.prompt.sendlater.accesskey": {
     "message": "P",
-    "description": ""
+    "description": "Accesskey for sendlater.prompt.sendlater.label. See https://github.com/Extended-Thunder/send-later/blob/main/TRANSLATING.md#accesskey-strings."
   },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "d",
-    "description": "Accesskey corresponding to 'sendNowLabel'"
+    "description": "Accesskey corresponding to 'sendNowLabel'. See https://github.com/Extended-Thunder/send-later/blob/main/TRANSLATING.md#accesskey-strings."
   },
   "sendlater.prompt.title.label": {
     "message": "Küldje el ezt az e-mailt később",
@@ -453,7 +453,7 @@
   },
   "run.accesskey": {
     "message": "F",
-    "description": ""
+    "description": "Accesskey for run.label. See https://github.com/Extended-Thunder/send-later/blob/main/TRANSLATING.md#accesskey-strings."
   },
   "inputtime": {
     "message": "Bemeneti idő",
@@ -1052,5 +1052,9 @@
   "internalLogCopyLabel": {
     "message": "Másolás",
     "description": "Label for the buttom to copy the internal log to the clipboard"
+  },
+  "noneScheduled": {
+    "message": "Nincs időzített üzenet",
+    "description": "Message in main window pop-up when there are no scheduled messages"
   }
 }

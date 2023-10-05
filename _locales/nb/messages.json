@@ -145,7 +145,7 @@
   },
   "sendAtLabel": {
     "message": "Send",
-    "description": "This is used in the scheduling pop-up at the beginning of the dynamic label for the button the user clicks to send a scheduled message at the specified date/time. It is followed in the button by a formatted date/time. For example, in English: 'Send at Tue, Aug 29, 2023, 11:26 AM'."
+    "description": "This is used in the scheduling pop-up at the beginning of the dynamic label for the button the user clicks to send a scheduled message at the specified date/time. It is followed in the button by a formatted date/time. For example, in English: 'Send at Tue, Aug 29, 2023, 11:26 AM'. Also used in the main window pop-up as the header of the column containing message send times."
   },
   "sendBtwnLabel": {
     "message": "Mellom",
@@ -249,11 +249,11 @@
   },
   "sendlater.prompt.sendlater.accesskey": {
     "message": "u",
-    "description": ""
+    "description": "Accesskey for sendlater.prompt.sendlater.label. See https://github.com/Extended-Thunder/send-later/blob/main/TRANSLATING.md#accesskey-strings."
   },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "n",
-    "description": "Accesskey corresponding to 'sendNowLabel'"
+    "description": "Accesskey corresponding to 'sendNowLabel'. See https://github.com/Extended-Thunder/send-later/blob/main/TRANSLATING.md#accesskey-strings."
   },
   "sendlater.prompt.title.label": {
     "message": "Send denne e-posten senere",
@@ -397,7 +397,7 @@
   },
   "run.accesskey": {
     "message": "K",
-    "description": ""
+    "description": "Accesskey for run.label. See https://github.com/Extended-Thunder/send-later/blob/main/TRANSLATING.md#accesskey-strings."
   },
   "inputtime": {
     "message": "Inndatatid",
