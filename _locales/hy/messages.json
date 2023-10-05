@@ -518,5 +518,17 @@
   "selectNone": {
     "message": "(չկա)",
     "description": "Used in pop-up menus and other menus where the user needs to be able to explicitly chose none as an option."
+  },
+  "recipients": {
+    "message": "Ստացողները",
+    "description": "Column header in message list in main window pop-up"
+  },
+  "subject": {
+    "message": "Վերնագիր",
+    "description": "Column header in message list in main window pop-up"
+  },
+  "folder": {
+    "message": "Թղթապանակ",
+    "description": "Column header in message list in main window pop-up"
   }
 }

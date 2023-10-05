@@ -35,27 +35,47 @@ function formatSchedule(msgData) {
   return SLStatic.formatScheduleForUIColumn(schedule);
 }
 
-function makeRow(scheduleStr, recipientsStr, subjectStr) {
+function setCellValue(elt, value, html) {
+  if (html) elt.innerHTML = value;
+  else elt.textContent = value;
+}
+
+function makeRow(scheduleStr, recipientsStr, subjectStr, folderStr, isHtml) {
+  let rowElement = document.createElement("div");
+  rowElement.classList.add("div-table-row");
+
   let scheduleCell = document.createElement("div");
   scheduleCell.classList.add("div-table-cell");
-  scheduleCell.textContent = scheduleStr;
+  setCellValue(scheduleCell, scheduleStr, isHtml);
+  rowElement.appendChild(scheduleCell);
 
   let recipientCell = document.createElement("div");
   recipientCell.classList.add("div-table-cell");
-  recipientCell.textContent = recipientsStr;
+  setCellValue(recipientCell, recipientsStr, isHtml);
+  rowElement.appendChild(recipientCell);
 
   let subjectCell = document.createElement("div");
   subjectCell.classList.add("div-table-cell");
-  subjectCell.textContent = subjectStr;
+  setCellValue(subjectCell, subjectStr, isHtml);
   subjectCell.style.minWidth = "40%";
-
-  let rowElement = document.createElement("div");
-  rowElement.classList.add("div-table-row");
-  rowElement.appendChild(scheduleCell);
-  rowElement.appendChild(recipientCell);
   rowElement.appendChild(subjectCell);
 
+  let folderCell = document.createElement("div");
+  folderCell.classList.add("div-table-cell");
+  setCellValue(folderCell, folderStr, isHtml);
+  rowElement.appendChild(folderCell);
+
   return rowElement;
+}
+
+function makeHeader() {
+  return makeRow(
+    `<u>${SLStatic.i18n.getMessage("sendAtLabel")}</u>`,
+    `<u>${SLStatic.i18n.getMessage("recipients")}</u>`,
+    `<u>${SLStatic.i18n.getMessage("subject")}</u>`,
+    `<u>${SLStatic.i18n.getMessage("folder")}</u>`,
+    true,
+  );
 }
 
 function init() {
@@ -88,21 +108,31 @@ function init() {
       .then(() => window.close());
   });
   messenger.runtime.sendMessage({ action: "getAllSchedules" }).then((res) => {
+    let headerAdded = false;
+    let scheduleTable = document.getElementById("scheduleTable");
     res.schedules
       .sort(
         (a, b) => new Date(a.sendAt).getTime() - new Date(b.sendAt).getTime(),
       )
       .forEach((msgData) => {
-        document
-          .getElementById("scheduleTable")
-          .appendChild(
-            makeRow(
-              truncateString(formatSchedule(msgData), 40),
-              formatRecipientList(msgData.recipients, 15),
-              truncateString(msgData.subject, 40),
-            ),
-          );
+        if (!headerAdded) {
+          scheduleTable.appendChild(makeHeader());
+          headerAdded = true;
+        }
+        scheduleTable.appendChild(
+          makeRow(
+            truncateString(formatSchedule(msgData), 40),
+            formatRecipientList(msgData.recipients, 15),
+            truncateString(msgData.subject, 40),
+            msgData.folder,
+          ),
+        );
       });
+    if (!headerAdded) {
+      scheduleTable.appendChild(
+        makeRow(SLStatic.i18n.getMessage("noneScheduled"), "", "", ""),
+      );
+    }
   });
 }
 

@@ -786,5 +786,17 @@
   "selectNone": {
     "message": "(ei yhtään)",
     "description": "Used in pop-up menus and other menus where the user needs to be able to explicitly chose none as an option."
+  },
+  "recipients": {
+    "message": "Vastaanottajan mukaan",
+    "description": "Column header in message list in main window pop-up"
+  },
+  "subject": {
+    "message": "Aihe",
+    "description": "Column header in message list in main window pop-up"
+  },
+  "folder": {
+    "message": "Kansiolle",
+    "description": "Column header in message list in main window pop-up"
   }
 }

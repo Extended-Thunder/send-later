@@ -1,1 +1,14 @@
-{}
+{
+  "recipients": {
+    "message": "Prejemniki",
+    "description": "Column header in message list in main window pop-up"
+  },
+  "subject": {
+    "message": "Zadeva",
+    "description": "Column header in message list in main window pop-up"
+  },
+  "folder": {
+    "message": "Mapo",
+    "description": "Column header in message list in main window pop-up"
+  }
+}

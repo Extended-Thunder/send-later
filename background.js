@@ -2258,11 +2258,16 @@ const SendLater = {
             }
             return await messenger.messages
               .getFull(draftHdr.id)
-              .then((draftMsg) => {
+              .then(async (draftMsg) => {
                 function getHeader(name) {
                   return (draftMsg.headers[name] || [])[0];
                 }
                 if (getHeader("x-send-later-at")) {
+                  let folderPath = draftHdr.folder.path;
+                  let accountId = draftHdr.folder.accountId;
+                  let account = await messenger.accounts.get(accountId, false);
+                  let accountName = account.name;
+                  let fullFolderName = accountName + folderPath;
                   SLTools.scheduledMsgCache.add(draftHdr.id);
                   return {
                     sendAt: getHeader("x-send-later-at"),
@@ -2271,6 +2276,7 @@ const SendLater = {
                     cancel: getHeader("x-send-later-cancel-on-reply"),
                     subject: draftHdr.subject,
                     recipients: draftHdr.recipients,
+                    folder: fullFolderName,
                   };
                 } else {
                   SLTools.unscheduledMsgCache.add(draftHdr.id);
