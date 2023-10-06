@@ -4,11 +4,11 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "Eine erweiterte „Später senden”-Funktion zur Planung der Sendezeit",
+    "message": "Eine echte „Später senden”-Funktion zur Planung der Sendezeit",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
-    "message": "Erweitert",
+    "message": "Fortgeschritten",
     "description": ""
   },
   "altBindingPrefLabel": {
@@ -44,7 +44,7 @@
     "description": ""
   },
   "contactAuthorLabel": {
-    "message": "Den Autor kontaktieren",
+    "message": "Den Entwickler kontaktieren",
     "description": ""
   },
   "enforceRestrictionsPrefLabel": {
@@ -52,7 +52,7 @@
     "description": ""
   },
   "enforceRestrictionsPrefTooltip": {
-    "message": "Wenn eine zu sendende Nachricht die Zeit- und Tagesbeschränkung überschritten hat, zum Beispiel weil Thunderbird zur eingestellten Zeit nicht lief, dann wird das Senden der Nachricht solange verzögert, bis die Zeitbeschränkungen erfüllt werden.",
+    "message": "Wenn eine zu sendende Nachricht sich außerhalb der Zeit- und Tagesbeschränkung befindet, zum Beispiel weil Thunderbird zur eingestellten Zeit nicht lief, dann wird das Senden der Nachricht so lange verzögert, bis die Zeitbeschränkungen erfüllt werden.",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -80,7 +80,7 @@
     "description": ""
   },
   "logLevelFatal": {
-    "message": "Schwerwiegend",
+    "message": "Kritischer Fehler",
     "description": ""
   },
   "logLevelInfo": {
@@ -116,7 +116,7 @@
     "description": ""
   },
   "recurAnnuallyLabel": {
-    "message": "jährlich",
+    "message": "alljährlich",
     "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurDailyLabel": {
@@ -140,7 +140,7 @@
     "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurOnceLabel": {
-    "message": "nie",
+    "message": "einmalig",
     "description": ""
   },
   "recurWeeklyLabel": {
@@ -172,7 +172,7 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "„Senden” durch „Später senden” ersetzen",
+    "message": "„Senden” als „Später senden” ausführen",
     "description": ""
   },
   "sendButtonPrefTooltip": {
@@ -236,15 +236,15 @@
     "description": ""
   },
   "sendOnlyOnLabel": {
-    "message": "Nur",
+    "message": "Nur an",
     "description": ""
   },
   "sendUnsentMessagesPrefLabel": {
-    "message": "Benachrichtigungen für ungesendete Nachrichten im Postausgang aktivieren",
+    "message": "Nicht gesendete Nachrichten aus dem Postausgang auslösen",
     "description": ""
   },
   "sendUnsentMessagesPrefTooltip": {
-    "message": "Wird diese Option deaktiviert, wird „Später senden” die Nachrichten nicht im vollen Umfang senden. Stattdessen werden sie für die geplante Zustellung in den Postausgang verschoben. Diese Option deaktivieren, wenn ein anderes Add-on, wie z.B. BlunderDelay verwendet wird, um regelmäßig Nachrichten aus dem Postausgang zu versenden.\nAnmerkung: Wenn diese Option aktiviert wird, werden von „Später senden”, immer wenn es eine Nachricht senden soll, ALLE Nachrichten im Postausgang versendet.",
+    "message": "Wird diese Option deaktiviert, wird „Später senden” die Nachrichten nicht senden und sie stattdessen zum Zeitpunkt der geplanten Zustellung in den Postausgang verschieben. Deaktivieren Sie diese Option, zum Beispiel, wenn ein anderes Add-on, wie z.B. BlunderDelay, verwendet wird, um regelmäßig Nachrichten aus dem Postausgang zu versenden.\nAnmerkung: Wenn diese Option aktiviert wird, werden von „Später senden” immer ALLE Nachrichten im Postausgang versendet sobald es eine davon senden soll.",
     "description": ""
   },
   "showColumnPrefLabel": {
@@ -252,7 +252,7 @@
     "description": ""
   },
   "showColumnPrefTooltip": {
-    "message": "Auswählen, ob die „Später senden”-Spalte beim Öffnen des Entwürfe-Ordners angezeigt werden soll oder nicht.",
+    "message": "Auswählen, ob die „Später senden”-Spalte beim Öffnen der Entwürfe-Ordner angezeigt werden soll oder nicht.",
     "description": ""
   },
   "showHeaderPrefLabel": {
@@ -272,7 +272,7 @@
     "description": ""
   },
   "errorDateInPast": {
-    "message": "Das ausgewählte Datum ist in der Vergangenheit",
+    "message": "Das ausgewählte Datum liegt in der Vergangenheit",
     "description": ""
   },
   "DelayFunctionHelp": {
@@ -284,7 +284,7 @@
     "description": ""
   },
   "sendlater.prompt.sendlater.tooltip": {
-    "message": "Die Nachricht in den Postausgang verschieben und beim nächsten Senden ungesendeter Nachrichten versenden.",
+    "message": "Anstatt die Zustellung für eine bestimmte Zeit zu planen, die Nachricht in den Postausgangsordner verschieben und beim nächsten Versenden von nicht gesendeten Nachrichten zustellen.",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -312,7 +312,7 @@
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
-    "message": "Argumente",
+    "message": "Funktionsargumente",
     "description": ""
   },
   "sendlater.prompt.calculate.label": {
@@ -356,7 +356,7 @@
     "description": "Heading for the column in the preferences where the user can specify the key bindings to activate shortcut buttons"
   },
   "validKeysTooltip": {
-    "message": "Gültige Tastenkombinationen (Groß- und Kleinschreibung!) sind A-Z, 0-9, F1-F12, Komma, Semikolon, Start, Ende, Seite nach oben, Seite nach unten, Leerzeichen, Einfügen, Löschen, auf, ab, links, rechts",
+    "message": "Gültige Tastenkombinationen (Groß- und Kleinschreibung beachten!) sind A-Z, 0-9, F1-F12, Komma, Semikolon, Start, Ende, Seite nach oben, Seite nach unten, Leerzeichen, Einfügen, Löschen, auf, ab, links, rechts",
     "description": "The tooltip that pops up to tell the user what the valid keys to bind the quick option shortcuts to. Do not translate the keys, just translate the 'Valid shortcut keys (case-sensitive!) are' part, because the keys have to be in English in the actual shortcut."
   },
   "showsendlaterprogress.caption": {
@@ -725,6 +725,18 @@
     "message": "„Später senden” kann Nachrichten nur versenden, wenn $1 geöffnet ist. Bitte denken Sie daran, das Programm vor dem planmäßigen Sendetermin der Nachrichten wieder zu starten!",
     "description": ""
   },
+  "IncompatibleEncryptionTitle": {
+    "message": "Verschlüsselungseinstellungen nicht mit $1 kompatibel",
+    "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has incompatible encryption or signing enabled. The placeholder is replaced with the extension name."
+  },
+  "IncompatibleEncryption-pgp-error-Text": {
+    "message": "$1 kann Nachrichten nicht planen, die verschlüsselt oder digital mit PGP signiert sind oder deren Entwürfe mit PGP verschlüsselt sind. Sie müssen diese deaktivieren oder zu S/MIME wechseln, bevor Sie diese Nachricht planen könne. Die Verschlüsselungseinstellungen finden Sie als „Entwürfe im verschlüsselten Format speichern“ unter „Ende-zu-Ende-Verschlüsselung“ in den Konto- oder Identitätseinstellungen.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has PGP encryption, signing, or draft encryption enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
+  "IncompatibleEncryption-drafty-error-Text": {
+    "message": "Wenn $1 geplante Nachrichten mit S/MIME signieren oder verschlüsseln soll, müssen Sie die Verschlüsselung von Entwürfen aktivieren. Um dies zu tun, lesen Sie bitte „Entwurfsnachrichten im verschlüsselten Format speichern“ unter „Ende-zu-Ende-Verschlüsselung“ in den Konto- oder Identitätseinstellungen.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has S/MIME encryption or signing without enabling draft encryption first. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
   "EncryptionUnsupportedTitle": {
     "message": "$1 unterstützt keine Verschlüsselung",
     "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has encryption or signing enabled. The placeholder is replaced with the extension name."
@@ -1049,8 +1061,28 @@
     "message": "Ordner",
     "description": "Column header in message list in main window pop-up"
   },
+  "noneScheduled": {
+    "message": "Keine terminierten Nachrichten",
+    "description": "Message in main window pop-up when there are no scheduled messages"
+  },
+  "internalLogTitle": {
+    "message": "Send Later internes Log",
+    "description": "Title of the tab where the Send Later internal log is displayed when the user requests it"
+  },
+  "internalLogLevelLabel": {
+    "message": "Interner Log-Level:",
+    "description": "Label for the option menu for selecting the internal log level"
+  },
+  "internalLogClearLabel": {
+    "message": "Leeren",
+    "description": "Label for the button to clear the internal log"
+  },
   "internalLogCopyLabel": {
     "message": "Kopieren",
     "description": "Label for the buttom to copy the internal log to the clipboard"
+  },
+  "internalLogLinkLabel": {
+    "message": "Internes Log anzeigen",
+    "description": "Label for the link in the main window pop-up for opening the internal log tab."
   }
 }

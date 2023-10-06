@@ -1061,12 +1061,28 @@
     "message": "תיקייה",
     "description": "Column header in message list in main window pop-up"
   },
+  "noneScheduled": {
+    "message": "אין הודאות מתוזמנות למשלוח",
+    "description": "Message in main window pop-up when there are no scheduled messages"
+  },
+  "internalLogTitle": {
+    "message": " 'שלח מאוחר יותר', תיעוד האירועים הפנימי",
+    "description": "Title of the tab where the Send Later internal log is displayed when the user requests it"
+  },
+  "internalLogLevelLabel": {
+    "message": "רמות התיעוד הפנימי",
+    "description": "Label for the option menu for selecting the internal log level"
+  },
+  "internalLogClearLabel": {
+    "message": "נקה",
+    "description": "Label for the button to clear the internal log"
+  },
   "internalLogCopyLabel": {
     "message": "העתקה",
     "description": "Label for the buttom to copy the internal log to the clipboard"
   },
-  "noneScheduled": {
-    "message": "אין הודאות מתוזמנות למשלוח",
-    "description": "Message in main window pop-up when there are no scheduled messages"
+  "internalLogLinkLabel": {
+    "message": "צפה בתיעוד האירועים הפנימי",
+    "description": "Label for the link in the main window pop-up for opening the internal log tab."
   }
 }

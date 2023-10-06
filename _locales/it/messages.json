@@ -59,12 +59,20 @@
     "message": "Generali",
     "description": "The title of the 'General' section on the options page"
   },
+  "shortcutsOptionsTitle": {
+    "message": "Scorciatoie",
+    "description": "The title of the 'Shortcuts' section on the options page"
+  },
   "logConsoleLevelLabel": {
     "message": "Livello log Console",
     "description": ""
   },
   "logLevelAll": {
     "message": "Tutto",
+    "description": ""
+  },
+  "logLevelDebug": {
+    "message": "Debug",
     "description": ""
   },
   "logLevelError": {
@@ -139,6 +147,10 @@
     "message": "settimanale",
     "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
+  "resetPrefsButton": {
+    "message": "Ripristina preferenze",
+    "description": ""
+  },
   "saveDefaultsLabel": {
     "message": "Salvare questi valori come predefiniti",
     "description": ""
@@ -155,6 +167,10 @@
     "message": "Tra",
     "description": ""
   },
+  "sendUntilLabel": {
+    "message": "Fino a",
+    "description": ""
+  },
   "sendButtonPrefLabel": {
     "message": "“Invia” diventa “Invia dopo”",
     "description": ""
@@ -162,6 +178,10 @@
   "sendButtonPrefTooltip": {
     "message": "Con questa opzione attivata, il comando “Invia” (sia il pulsante che la pressione di Ctrl-Invio) si comporta come “Invia dopo”.",
     "description": ""
+  },
+  "whitelistPrefLabel": {
+    "message": "Rubrica Whitelist",
+    "description": "Appears on the options tab, followed by an input box for the use to specify the name of an address book."
   },
   "sendDelayPrefLabel1": {
     "message": "“Invia” ritarderà sempre i messaggi di",
@@ -241,6 +261,10 @@
   },
   "userGuideLabel": {
     "message": "Manuale utente",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "La data selezionata è nel passato",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -329,6 +353,14 @@
   },
   "donatelink.value": {
     "message": "Donazioni",
+    "description": ""
+  },
+  "activeAccountsOptionsTitle": {
+    "message": "Account attivi",
+    "description": "Subtitle of the 'Advanced' section in the options where the user can mark which accounts Send Later should pay attention to."
+  },
+  "advancededitor.title": {
+    "message": "Editor di configurazione avanzato",
     "description": ""
   },
   "editorlink.value": {
@@ -487,6 +519,26 @@
     "message": "Invia Dopo: Tentativo di inviare nuovamente un massaggio già inviato?! La tua cartella Posta in uscita o Bozze $1 è probabilmente danneggiata. Per cortesia riparale come descritto in https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
+  "single_minute": {
+    "message": "minuto",
+    "description": "Used in an error message when the phrase '1 minute' needs to be displayed."
+  },
+  "single_day": {
+    "message": "giorno",
+    "description": "Used in an error message when the phrase '1 day' needs to be displayed."
+  },
+  "single_week": {
+    "message": "settimana",
+    "description": "Used in an error message when the phrase '1 week' needs to be displayed."
+  },
+  "single_month": {
+    "message": "mese",
+    "description": "Used in an error message when the phrase '1 month' needs to be displayed."
+  },
+  "single_year": {
+    "message": "anno",
+    "description": "Used in an error message when the phrase '1 year' needs to be displayed."
+  },
   "plural_minutely": {
     "message": "minuti",
     "description": ""
@@ -571,6 +623,10 @@
     "message": "di $1",
     "description": ""
   },
+  "until_datetime": {
+    "message": "fino a $1",
+    "description": "Describes when a recurrence should terminate. Used in the scheduler dialog."
+  },
   "ord1": {
     "message": "1°",
     "description": ""
@@ -603,6 +659,10 @@
     "message": "Si",
     "description": "Affirmative answer for a yes/no question presented in a confirmation dialog"
   },
+  "answerNo": {
+    "message": "No",
+    "description": "Negative answer for a yes/no question presented in a confirmation dialog"
+  },
   "OutboxConfirmMessage": {
     "message": "Cliccando su - Metti nella “Posta in uscita” - si mette il messaggio immediatamente nella cartella “Posta in uscita”. NON VIENE quindi pianificato l'invio del messaggio ad un orario specifico. Se lo si desidera inviare specificando un orario, cliccare il pulsante “Invia verso le:” nel riquadro verde dopo aver inserito un orario di invio valido. Sei sicuro di voler mettere adesso il messaggio nella “Posta in uscita”?",
     "description": "$1 is replaced with your translation of 'Put in Outbox' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
@@ -630,6 +690,10 @@
   "DSN": {
     "message": "Notifica dello stato di consegna",
     "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message. This needs to match what's in the menu. NOTE: This is *different from* the 'Return Receipt' menu command which appears adjacent to it."
+  },
+  "incorrectUUID": {
+    "message": "Pianificato da un altro client",
+    "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."
   },
   "TimeMismatchConfirmTitle": {
     "message": "Incongruenza orario di invio/restrizione",
@@ -771,9 +835,53 @@
     "message": "Controllo...",
     "description": ""
   },
+  "okay": {
+    "message": "OK",
+    "description": "Confirm an action (presented in popup dialogs)"
+  },
   "cancel": {
     "message": "Annulla",
     "description": "Cancel an action (presented in popup dialogs)"
+  },
+  "invalidDateFormat": {
+    "message": "formato data non valido o incompleto",
+    "description": "Message displayed in the user interface inside parentheses when the user enters an invalid custom date format"
+  },
+  "menuScheduleMsg": {
+    "message": "Programma messaggio/i",
+    "description": "Command added to the message list menu for the user to use to schedule one or more selected drafts with Send Later"
+  },
+  "menuSkipMsg": {
+    "message": "Salta prossima scadenza",
+    "description": "Command added to the message list menu for the user to use to skip the next occurrence of one or more selected recurring drafts"
+  },
+  "resultsTitle": {
+    "message": "Risultati dell'elaborazione dei messaggi",
+    "description": "The title of the pop-up that displays results after the user uses the message list context menu to perform an operation on more than one selected message."
+  },
+  "RescheduleErrorTitle": {
+    "message": "Errore nella riprogrammazione del messaggio",
+    "description": "Title of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "PrivacyPolicy": {
+    "message": "Informativa sulla privacy",
+    "description": "Inserted into TelemetryAskText. Also used to link to the privacy policy from the Send Later pop-up in the main Thunderbird window."
+  },
+  "TelemetryAskYes": {
+    "message": "Sì, raccogli i dati di utilizzo",
+    "description": "Label for the yes button on the telemetry request dialog."
+  },
+  "TelemetryAskNo": {
+    "message": "No, non raccogliere i dati di utilizzo",
+    "description": "Label for the no button on the telemetry request dialog."
+  },
+  "betaThankYouTitle": {
+    "message": "Grazie per essere un beta-tester!",
+    "description": ""
+  },
+  "betaThankYouText": {
+    "message": "Stai ricevendo aggiornamenti pre-rilascio di $1. Pur apprezzando il tuo aiuto, non vogliamo importi nulla, quindi, come misura precauzionale, ti ricordiamo questo ogni volta che $1 viene aggiornato. Se si desidera abbandonare il programma di beta-testing, è possibile farlo scaricando e installando la versione corrente di $1 da addons.thunderbird.net.",
+    "description": "$1 is replaced with the extension name"
   },
   "selectNone": {
     "message": "(Nessuna)",
@@ -791,8 +899,28 @@
     "message": "Cartella",
     "description": "Column header in message list in main window pop-up"
   },
+  "noneScheduled": {
+    "message": "Nessun messaggio programmato",
+    "description": "Message in main window pop-up when there are no scheduled messages"
+  },
+  "internalLogTitle": {
+    "message": "Log interno si Send Later",
+    "description": "Title of the tab where the Send Later internal log is displayed when the user requests it"
+  },
+  "internalLogLevelLabel": {
+    "message": "Livello di log interno:",
+    "description": "Label for the option menu for selecting the internal log level"
+  },
+  "internalLogClearLabel": {
+    "message": "Reset",
+    "description": "Label for the button to clear the internal log"
+  },
   "internalLogCopyLabel": {
     "message": "Copia",
     "description": "Label for the buttom to copy the internal log to the clipboard"
+  },
+  "internalLogLinkLabel": {
+    "message": "Visualizza log interno",
+    "description": "Label for the link in the main window pop-up for opening the internal log tab."
   }
 }

@@ -355,6 +355,10 @@
     "message": "Gomb (Ctrl+Alt+…)",
     "description": "Heading for the column in the preferences where the user can specify the key bindings to activate shortcut buttons"
   },
+  "validKeysTooltip": {
+    "message": "Az érvényes gyorsbillentyűk (a kis- és nagybetűk megkülönböztetése!) A-Z, 0-9, F1-F12, vessző, pont, Home, End, PageUp, PageDown, szóköz, Insert, Delete, fel, le, balra, jobbra",
+    "description": "The tooltip that pops up to tell the user what the valid keys to bind the quick option shortcuts to. Do not translate the keys, just translate the 'Valid shortcut keys (case-sensitive!) are' part, because the keys have to be in English in the actual shortcut."
+  },
   "showsendlaterprogress.caption": {
     "message": "Háttérállapot megjelenítése az állapotsorban",
     "description": ""
@@ -1033,6 +1037,14 @@
     "message": "Nem, nem gyűjthet használati adatokat",
     "description": "Label for the no button on the telemetry request dialog."
   },
+  "betaThankYouTitle": {
+    "message": "Köszönjük, hogy bétatesztelő!",
+    "description": ""
+  },
+  "betaThankYouText": {
+    "message": "Jelenleg kiadás előtti frissítéseket kap a(z) $1 kiegészítőhez. Noha nagyra értékeljük a segítségét, nem akarjuk kikényszeríteni, ezért elővigyázatossági intézkedésként emlékeztetünk erre minden alkalommal, amikor a(z) $1 frissít. Ha ki szeretne lépni a bétatesztelő programból, ezt a(z) $1 jelenlegi verziójának letöltésével és telepítésével teheti meg az addons.thunderbird.net webhelyről.",
+    "description": "$1 is replaced with the extension name"
+  },
   "selectNone": {
     "message": "(nincs)",
     "description": "Used in pop-up menus and other menus where the user needs to be able to explicitly chose none as an option."
@@ -1049,12 +1061,28 @@
     "message": "Mappa",
     "description": "Column header in message list in main window pop-up"
   },
+  "noneScheduled": {
+    "message": "Nincs időzített üzenet",
+    "description": "Message in main window pop-up when there are no scheduled messages"
+  },
+  "internalLogTitle": {
+    "message": "Küldés később belső naplója",
+    "description": "Title of the tab where the Send Later internal log is displayed when the user requests it"
+  },
+  "internalLogLevelLabel": {
+    "message": "Belső naplózási szint:",
+    "description": "Label for the option menu for selecting the internal log level"
+  },
+  "internalLogClearLabel": {
+    "message": "Törlés",
+    "description": "Label for the button to clear the internal log"
+  },
   "internalLogCopyLabel": {
     "message": "Másolás",
     "description": "Label for the buttom to copy the internal log to the clipboard"
   },
-  "noneScheduled": {
-    "message": "Nincs időzített üzenet",
-    "description": "Message in main window pop-up when there are no scheduled messages"
+  "internalLogLinkLabel": {
+    "message": "Belső napló megtekintése",
+    "description": "Label for the link in the main window pop-up for opening the internal log tab."
   }
 }

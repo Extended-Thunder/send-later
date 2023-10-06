@@ -351,6 +351,10 @@
     "message": "Donera",
     "description": ""
   },
+  "activeAccountsOptionsTitle": {
+    "message": "Aktiva konton",
+    "description": "Subtitle of the 'Advanced' section in the options where the user can mark which accounts Send Later should pay attention to."
+  },
   "advancededitor.title": {
     "message": "Avancerad konfigurationsredigerare",
     "description": ""
@@ -514,6 +518,26 @@
     "message": "Skicka Senare: Försöker du skicka ett meddelande som redan har skickats?! Din Utkorg- eller Utkast-mapp $1 är antagligen skadad. Reparera dem genom att följa instruktionerna på https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
+  "single_minute": {
+    "message": "minut",
+    "description": "Used in an error message when the phrase '1 minute' needs to be displayed."
+  },
+  "single_day": {
+    "message": "dag",
+    "description": "Used in an error message when the phrase '1 day' needs to be displayed."
+  },
+  "single_week": {
+    "message": "vecka",
+    "description": "Used in an error message when the phrase '1 week' needs to be displayed."
+  },
+  "single_month": {
+    "message": "månad",
+    "description": "Used in an error message when the phrase '1 month' needs to be displayed."
+  },
+  "single_year": {
+    "message": "",
+    "description": "Used in an error message when the phrase '1 year' needs to be displayed."
+  },
   "plural_minutely": {
     "message": "minuter",
     "description": ""
@@ -646,6 +670,10 @@
     "message": "Genom att klicka på “Skicka nu” sänds meddelandet omedelbart. Meddelandet schemaläggs INTE till en viss tid. För att schemalägga väljer du en tidpunkt och klickar på “Skicka kring” knappen i den gröna boxen. Är du säker på att du vill skicka meddelandet direkt?",
     "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
+  "PopupChangedConfirmMessage": {
+    "message": "Det verkar som du klickade “$1” efter att ha ändrat några av värdena i planeringsdialogen. Är du säker på att du tänkt att göra det snarare än att klicka på “$2”-knappen?",
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'."
+  },
   "ConfirmAgain": {
     "message": "Visa denna varning nästa gång",
     "description": ""
@@ -664,6 +692,10 @@
   "ScheduledMessagesWarningQuit": {
     "message": "Skicka Senare kan endast skicka meddelanden när $1 körs. Kom ihåg att starta om programmet innan dina meddelanden har schemalagts att skickas!",
     "description": ""
+  },
+  "IncompatibleEncryptionTitle": {
+    "message": "Krypteringsinställningar är inkompatibla med $1",
+    "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has incompatible encryption or signing enabled. The placeholder is replaced with the extension name."
   },
   "EncryptionUnsupportedTitle": {
     "message": "$1 stöder inte kryptering",
