@@ -289,11 +289,11 @@
   },
   "sendlater.prompt.sendlater.accesskey": {
     "message": "O",
-    "description": ""
+    "description": "Accesskey for sendlater.prompt.sendlater.label. See https://github.com/Extended-Thunder/send-later/blob/main/TRANSLATING.md#accesskey-strings."
   },
   "sendlater.prompt.sendnow.accesskey": {
     "message": "N",
-    "description": "Accesskey corresponding to 'sendNowLabel'"
+    "description": "Accesskey corresponding to 'sendNowLabel'. See https://github.com/Extended-Thunder/send-later/blob/main/TRANSLATING.md#accesskey-strings."
   },
   "sendlater.prompt.title.label": {
     "message": "Send this email later",
@@ -457,7 +457,7 @@
   },
   "run.accesskey": {
     "message": "x",
-    "description": ""
+    "description": "Accesskey for run.label. See https://github.com/Extended-Thunder/send-later/blob/main/TRANSLATING.md#accesskey-strings."
   },
   "inputtime": {
     "message": "Input time",
