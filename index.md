@@ -1851,16 +1851,13 @@ logging on the add-on, perform some task with debug logging enabled, and
 then send us the resulting debug log. Here are the instructions for how
 to do that.
 
-1.  Click the Send Later button at the top of the main Thunderbird window and
-    then on the "Send Later Preferences" link.
-2.  Change "Console log level" to "All" (or whatever other value I tell you to
-    change it to).
-3.  In the main Thunderbird window, type `Ctrl-Shift-J` to open the error console.
-4.  Click the little trash can icon in the upper corner to clear the window.
-5.  Do whatever task I told you to do with debug logging enabled.
-6.  Right click on one of the messages in the error console window and click
-    "Select All".
-7.  Paste the messages into an email message to us.
+1. Click the Send Later button in the toolbar of the main Thunderbird window and then on the "View internal log" link.
+2. Change the value of the "Internal log level:" pop-up from "(none)" to whatever log level we tell you to use (most frequently "Debug").
+3. You can close the internal log tab at this point or leave it open; it doesn't matter, since Send Later will now log into the internal log in the background until you open the tab again and change the log level back to "(none)".
+4. Do whatever we asked you to do with logging enabled.
+5. Click on or open the internal log tab again and click "Copy" to copy the contents of the internal log to the clipboard.
+6. Paste them into an email to us, or if they look really large, maybe save them into Google Drive or something and share a link with us.
+7. Change the value of the "Internal log level:" pop-up on the internal log tab back to "(none)" and click the "Clear" button to clear the log so it doesn't continue taking up space unnecessarily.
 
 ## Helping to improve the add-on
 
