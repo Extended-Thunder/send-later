@@ -23,6 +23,30 @@ through [LiberaPay][liberapay] or a one-time donation through
 [PayPal][paypal]. Donations to Extended Thunder are tax-deductible in
 the United States as permitted by law.
 
+## Release 10.3.x
+
+### New features
+
+#### Internal logging
+
+Send Later now has the ability to keep an internal log in local storage that persists across Thunderbird sessions. This is very useful for debugging issues that take a long time to manifest and/or manifest at an unpredictable time so they aren't discovered right away, because in either of those cases Thunderbird may get restarted before the issue is discovered in which case the logs related to it are gone from the error console.
+
+This adds a new "View internal log" link to the main window pop-up which opens the internal log page. Internal logging is disabled by default. It can be enabled, disabled, or cleared on the internal log page, and there's a "Copy" button on the internal log page which allows the contents of the log to be copied to the clipboard so they can be easily pasted into a file or email message.
+
+#### Other new features
+
+The list of scheduled drafts in the main window pop-up now includes the folder each draft is located in.
+
+### Improvements
+
+There are now column headers on the list of scheduled drafts in the main window pop-up.
+
+When there are no scheduled drafts we know say that explicitly in the main window pop-up rather than just leaving it empty.
+
+Translation updates
+
+### Bug fixes
+
 ## Release 10.2.x
 
 ### You can now sign up to be a beta-tester
