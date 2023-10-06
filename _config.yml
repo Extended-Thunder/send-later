@@ -16,11 +16,15 @@ exclude:
   - Makefile
   - Gemfile
   - Gemfile.lock
+  - README.html
+  - README.md
   - blog.kamens.us
   - vendor
   - next/Makefile
   - next/Gemfile
   - next/Gemfile.lock
+  - next/README.md
+  - next/README.html
   - next/blog.kamens.us
   - next/vendor
   - '.#*'
