@@ -175,21 +175,19 @@ var SLTools = {
     );
   },
 
-  // Necessary because of https://bugzilla.mozilla.org/show_bug.cgi?id=1852407
+  // Once https://bugzilla.mozilla.org/show_bug.cgi?id=1852407 and
+  // https://bugzilla.mozilla.org/show_bug.cgi?id=1857631 are fixed we can
+  // revisit whether we need an experiment for the following two functions or
+  // whether we can build them in native WebExtension code.
   async isDraftsFolder(folder) {
-    return (
-      folder.type == "drafts" ||
-      (await messenger.folders.getParentFolders(folder)).some(
-        (f) => f.type == "drafts",
-      )
-    );
+    return await messenger.SL3U.isDraftsFolder(folder.accountId, folder.path);
   },
 
   // Get all draft folders. Returns an array of Folder objects.
   async getDraftFolders(acct) {
     async function getDraftFoldersHelper(folder) {
       let drafts = [];
-      if (folder.type == "drafts") {
+      if (await messenger.SL3U.isDraftsFolder(folder.accountId, folder.path)) {
         drafts.push(folder);
       }
       // Even if the parent folder isn't a drafts folder we still need to
@@ -197,12 +195,6 @@ var SLTools = {
       // folder several layers deep in the hierarchy (e.g., that's the default
       // in Gmail!).
       for (let subFolder of folder.subFolders) {
-        // Bug: subfolders of drafts folders aren't marked as drafts folders
-        // themselves even though they should be. See
-        // https://bugzilla.mozilla.org/show_bug.cgi?id=1852407
-        if (folder.type == "drafts") {
-          subFolder.type = "drafts";
-        }
         drafts = drafts.concat(await getDraftFoldersHelper(subFolder));
       }
       return drafts;

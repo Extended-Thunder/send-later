@@ -16,6 +16,57 @@ const SendLaterVars = {
   context: null,
 };
 
+// We cache the URIs of all drafts folders for all accounts once per minute.
+// This way we don't have to go through all folders for all accounts every
+// time we need to check if a particular folder is a drafts folder. This means
+// if the user reconfigures their drafts folders Send Later will take up to a
+// minute to notice. This is an acceptable performance trade-off given how
+// infrequently this happens. Eventually I'd like to get rid of this entirely,
+// but first the extension API needs to be fixed
+// (https://bugzilla.mozilla.org/show_bug.cgi?id=1857631).
+var draftsFolderStatus = {};
+var draftsFolderTime = 0;
+
+function cacheDraftsFolders() {
+  if (Date.now() - draftsFolderTime < 60000) return;
+  draftsFolderStatus = {};
+  let accountManager = Cc[
+    "@mozilla.org/messenger/account-manager;1"
+  ].getService(Ci.nsIMsgAccountManager);
+  let fdrlocal = accountManager.localFoldersServer.rootFolder;
+  draftsFolderStatus[fdrlocal.findSubFolder("Drafts").URI] = true;
+  draftsFolderStatus[
+    Services.prefs.getCharPref("mail.identity.default.draft_folder")
+  ] = true;
+  let allaccounts = accountManager.accounts;
+  let acindex, numAccounts;
+  numAccounts = allaccounts.length;
+  for (acindex = 0; acindex < numAccounts; acindex++) {
+    let thisaccount = allaccounts[acindex].QueryInterface(Ci.nsIMsgAccount);
+    if (thisaccount) {
+      let numIdentities = thisaccount.identities.length;
+      switch (thisaccount.incomingServer.type) {
+        case "pop3":
+        case "imap":
+        case "owl":
+          let identityNum;
+          for (identityNum = 0; identityNum < numIdentities; identityNum++) {
+            try {
+              let identity = thisaccount.identities[
+                identityNum
+              ].QueryInterface(Ci.nsIMsgIdentity);
+              draftsFolderStatus[identity.draftFolder] = true;
+            } catch (e) {}
+          }
+          break;
+        default:
+          break;
+      }
+    }
+  }
+  draftsFolderTime = Date.now();
+}
+
 const SendLaterFunctions = {
   logger(msg, level, stream) {
     const levels = ["all", "trace", "debug", "info", "warn", "error", "fatal"];
@@ -482,6 +533,37 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           let msgCompFields = cw.GetComposeDetails();
           cw.expandRecipients();
           return msgCompFields[field];
+        },
+
+        async isDraftsFolder(accountId, path) {
+          cacheDraftsFolders();
+          const msgFolderUri = SendLaterFunctions.folderPathToURI(
+            accountId,
+            path,
+          );
+          if (draftsFolderStatus[msgFolderUri] !== undefined) {
+            return draftsFolderStatus[msgFolderUri];
+          }
+          // We consider a folder a Drafts folder if one of its parents is,
+          // because Thunderbird sort of does and we agree with that.
+          let parent = msgFolderUri;
+          let match;
+          while ((match = /^([^\/]+\/\/[^\/]+\/.*)\/[^\/]+$/.exec(parent))) {
+            parent = match[1];
+            if (draftsFolderStatus[parent] !== undefined) {
+              return (draftsFolderStatus[msgFolderUri] =
+                draftsFolderStatus[parent]);
+            }
+          }
+
+          let msgFolder =
+            MailServices.folderLookup.getFolderForURL(msgFolderUri);
+          if (msgFolder === null) return false;
+          let flag = Ci.nsMsgFolderFlags.Drafts;
+          if (msgFolder.isSpecialFolder(flag, true)) {
+            return (draftsFolderStatus[msgFolderUri] = true);
+          }
+          return (draftsFolderStatus[msgFolderUri] = false);
         },
 
         // Returns:

@@ -67,6 +67,24 @@
         "parameters": []
       },
       {
+        "name": "isDraftsFolder",
+        "type": "function",
+        "async": true,
+        "description": "Check whether folder is a Drafts folder",
+        "parameters": [
+          {
+            "name": "accountId",
+            "type": "string",
+            "description": "Account ID"
+          },
+          {
+            "name": "path",
+            "type": "string",
+            "description": "Folder path"
+          }
+        ]
+      },
+      {
         "name": "setDispositionState",
         "type": "function",
         "async": true,
