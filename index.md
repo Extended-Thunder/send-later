@@ -468,6 +468,10 @@ main drafts folder. If you enable this checkbox then the subfolder
 name defaults to the name of the add-on, but you are welcome to change
 it.
 
+Note that due to a deficiency in Gmail's IMAP implementation, this
+does not work for Gmail accounts unless you configure Thunderbird to
+store drafts in a folder other than the default "[Gmail]/Drafts".
+
 ### Shortcut buttons
 
 In addition to these main settings, you can change the behavior of the

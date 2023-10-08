@@ -44,7 +44,7 @@ You can report issues with beta releases as [GitHub issues][ghissues] or [via em
 
 ### New features
 
-You can now store scheduled drafts in a subfolder of your main drafts folder! This can be configured in the Send Later options.
+You can now store scheduled drafts in a subfolder of your main drafts folder! This can be configured in the Send Later options. Note that this does not work for Gmail accounts, unless you configure Thunderbird to store drafts in a folder other than the default "[Gmail]/Drafts".
 
 Return receipts work now. Delivery status notifications still don't work, because it's impossible to make them work due to limitations in Thunderbird, but Send Later no longer allows you to schedule a message that has delivery status notifications enabled on it.
 
