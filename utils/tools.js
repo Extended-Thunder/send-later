@@ -370,6 +370,10 @@ var SLTools = {
       async (msgHdr) => {
         SLStatic.debug(`Checking message ${msgHdr.id}`);
         if (SLTools.scheduledMsgCache.has(msgHdr.id)) {
+          SLStatic.debug(
+            "countActiveScheduledMessages found in cache",
+            msgHdr,
+          );
           return true;
         } else if (SLTools.unscheduledMsgCache.has(msgHdr.id)) {
           return false;
@@ -378,6 +382,10 @@ var SLTools = {
           let uuid = (fullMsg.headers["x-send-later-uuid"] || [])[0];
           if (uuid == preferences.instanceUUID) {
             SLTools.scheduledMsgCache.add(msgHdr.id);
+            SLStatic.debug(
+              "countActiveScheduledMessages added to cache",
+              msgHdr,
+            );
             return true;
           } else {
             SLTools.unscheduledMsgCache.add(msgHdr.id);
