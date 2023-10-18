@@ -13,8 +13,6 @@ kramdown:
     smart_quotes: ["apos", "apos", "quot", "quot"]
 
 exclude:
-  - _archive
-  - _etc
   - Makefile
   - Gemfile
   - Gemfile.lock
