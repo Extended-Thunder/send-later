@@ -147,6 +147,35 @@
         ]
       },
       {
+        "name": "getLegacyPref",
+        "type": "function",
+        "description": "Gets a preference.",
+        "async": true,
+        "parameters": [
+          {
+            "name": "name",
+            "type": "string",
+            "description": "The preference name"
+          },
+          {
+            "name": "dtype",
+            "type": "string",
+            "description": "Data type of the preference"
+          },
+          {
+            "name": "defVal",
+            "type": "string",
+            "description": "Fallback value if nothing is returned."
+          },
+          {
+            "name": "isFull",
+            "type": "boolean",
+            "optional": true,
+            "description": "True if it's a full Thunderbird preference key, not a Send Later preference."
+          }
+        ]
+      },
+      {
         "name": "setLegacyPref",
         "type": "function",
         "description": "Sets a preference.",

@@ -402,6 +402,54 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
 
     return {
       SL3U: {
+        async getLegacyPref(name, dtype, defVal, isFull) {
+          // Prefix for legacy preferences.
+          let prefName;
+          if (!isFull) {
+            prefName = `extensions.sendlater3.${name}`;
+          } else {
+            prefName = name;
+          }
+
+          switch (dtype) {
+            case "bool": {
+              const prefDefault = defVal === "true";
+              try {
+                return Services.prefs.getBoolPref(prefName, prefDefault);
+              } catch {
+                return prefDefault;
+              }
+            }
+            case "int": {
+              const prefDefault = Number(defVal) | 0;
+              try {
+                return Services.prefs.getIntPref(prefName, prefDefault);
+              } catch {
+                return prefDefault;
+              }
+            }
+            case "char": {
+              const prefDefault = defVal;
+              try {
+                return Services.prefs.getCharPref(prefName, prefDefault);
+              } catch (err) {
+                return prefDefault;
+              }
+            }
+            case "string": {
+              const prefDefault = defVal;
+              try {
+                return Services.prefs.getStringPref(prefName, prefDefault);
+              } catch (err) {
+                return prefDefault;
+              }
+            }
+            default: {
+              throw new Error("Unexpected pref type");
+            }
+          }
+        },
+
         async setLegacyPref(name, dtype, value) {
           const prefName = `extensions.sendlater3.${name}`;
 

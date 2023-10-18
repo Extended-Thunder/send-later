@@ -812,18 +812,58 @@ const SendLater = {
         true,
       );
 
-      let success = await SLStatic.tb115(
-        async () => {
-          let file = SLStatic.getFileFromRaw(content);
-          return await SLStatic.messageImport(file, outboxFolder, {
-            new: false,
-            read: true,
+      let success;
+
+      await SLStatic.tb115(undefined, async () => {
+        // See https://github.com/Extended-Thunder/send-later/issues/643
+        // Thunderbird will get sick if we try to deliver a message through the
+        // outbox larger than mailnews.message_warning_size.
+        let messageSizeLimit = await messenger.SL3U.getLegacyPref(
+          "mailnews.message_warning_size",
+          "int",
+          "0",
+          true,
+        );
+        if (messageSizeLimit && content.length > messageSizeLimit) {
+          let title = SLStatic.i18n.getMessage("messageTooLargeTitle");
+          let extensionName = SLStatic.i18n.getMessage("extensionName");
+          let numberFormatter = new Intl.NumberFormat();
+          let text = SLStatic.i18n.getMessage("messageTooLargeText", [
+            extensionName,
+            msgHdr.subject,
+            numberFormatter.format(content.length),
+            numberFormatter.format(messageSizeLimit),
+          ]);
+          await locker.lock(msgHdr, fullMsg, "too large");
+          SLStatic.debug(
+            `Locked too-large message <${msgLockId}> from re-sending.`,
+          );
+          SLTools.alert(title, text);
+          SLStatic.telemetrySend({
+            event: "tooLargeForOutbox",
           });
-        },
-        async () => {
-          return await messenger.SL3U.saveMessage(content, outboxFolder, true);
-        },
-      );
+          success = false;
+        }
+      });
+
+      if (success === undefined) {
+        success = await SLStatic.tb115(
+          async () => {
+            let file = SLStatic.getFileFromRaw(content);
+            return await SLStatic.messageImport(file, outboxFolder, {
+              new: false,
+              read: true,
+            });
+          },
+          async () => {
+            return await messenger.SL3U.saveMessage(
+              content,
+              outboxFolder,
+              true,
+            );
+          },
+        );
+      }
 
       if (success) {
         if (preferences.sendUnsentMsgs) {

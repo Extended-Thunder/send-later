@@ -1084,5 +1084,13 @@
   "internalLogLinkLabel": {
     "message": "View internal log",
     "description": "Label for the link in the main window pop-up for opening the internal log tab."
+  },
+  "messageTooLargeTitle": {
+    "message": "Message too large",
+    "description": "The title of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large."
+  },
+  "messageTooLargeText": {
+    "message": "Due to a bug in Thunderbird, $1 cannot deliver the message with subject “$2” because it is too large. It's $3 bytes long, which is larger than the configured limit of $4. If you wish, you can increase this limit by changing the preference “mailnews.message_warning_size” in the Thunderbird configuration editor, or set the preference to 0 to disable the limit entirely, but note that any change you make will also impact whether Thunderbird warns you about large messages being sent directly rather than through $1. In any case, to send this message you can either open it for editing and send it directly, or edit it and reschedule it after making it smaller or changing the Thunderbird preference.",
+    "description": "The (unfortunately very long) text of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large and the TB version is 114 or earlier. $1 is the extension name, $2 is the message subject, $3 is its length, and $4 is the length limit. Please don't translate 'mailnews.message_warning_size', that needs to stay in English."
   }
 }
