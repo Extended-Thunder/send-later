@@ -92,7 +92,7 @@ var SLStatic = {
   },
 
   async tb115(yes, no) {
-    return SLStatic.tbIsVersion(115, yes, no);
+    return await SLStatic.tbIsVersion(115, yes, no);
   },
 
   preferences: {},
