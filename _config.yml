@@ -18,6 +18,11 @@ exclude:
   - Gemfile.lock
   - blog.kamens.us
   - vendor
+  - next/Makefile
+  - next/Gemfile
+  - next/Gemfile.lock
+  - next/blog.kamens.us
+  - next/vendor
   - '.#*'
   - '*~'
   - '*.tex'
