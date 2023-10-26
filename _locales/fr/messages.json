@@ -1084,5 +1084,13 @@
   "internalLogLinkLabel": {
     "message": "Afficher le journal interne",
     "description": "Label for the link in the main window pop-up for opening the internal log tab."
+  },
+  "messageTooLargeTitle": {
+    "message": "Message trop volumineux",
+    "description": "The title of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large."
+  },
+  "messageTooLargeText": {
+    "message": "En raison d'un bug dans Thunderbird, $1 ne peut pas envoyer le message avec le sujet « $2 » car il est trop volumineux. Sa taille est de $3 octets et est supérieure à la limite configurée de $4 octets. Si vous le souhaitez, vous pouvez augmenter cette limite en changeant la valeur de « mailnews.message_warning_size » dans l'éditeur de configuration de Thunderbird, ou choisir une limite nulle pour la désactiver totalement. Cependant, veuillez noter que tout changement que vous apportez aura également un impact sur le fait que Thunderbird vous avertisse de l'envoi de messages volumineux directement plutôt que via $1. Dans tous les cas, pour envoyer ce message, vous pouvez soit l'ouvrir pour le modifier et l'envoyer directement, soit le modifier pour en réduire la taille et le reprogrammer soit changer le réglage de Thunderbird.",
+    "description": "The (unfortunately very long) text of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large and the TB version is 114 or earlier. $1 is the extension name, $2 is the message subject, $3 is its length, and $4 is the length limit. Please don't translate 'mailnews.message_warning_size', that needs to stay in English."
   }
 }

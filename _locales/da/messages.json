@@ -1084,5 +1084,13 @@
   "internalLogLinkLabel": {
     "message": "Se intern log",
     "description": "Label for the link in the main window pop-up for opening the internal log tab."
+  },
+  "messageTooLargeTitle": {
+    "message": "Besked for stor",
+    "description": "The title of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large."
+  },
+  "messageTooLargeText": {
+    "message": "På grund af en fejl i Thunderbird, kan $1 ikke levere meddelelsen med emnet “$2”, fordi den er for stor. Den er $3 bytes lang, hvilket er større end den konfigurerede grænse på $4. Hvis du ønsker det, kan du øge denne grænse ved at ændre præferencen i “mailnews. message_warning_size” i Thunderbird konfigurations editoren, eller indstille præferencen til 0 for at deaktivere grænsen helt, men bemærk, at enhver ændring, du foretager,  også vil påvirke om Thunderbird advarer dig om store meddelelser, der sendes direkte i stedet for gennem $1. Under alle omstændigheder, for at sende denne besked kan du enten åbne den til redigering og sende den direkte, eller redigere den og genplanlægge den efter at have gjort den mindre eller ændre Thunderbird præferencen.",
+    "description": "The (unfortunately very long) text of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large and the TB version is 114 or earlier. $1 is the extension name, $2 is the message subject, $3 is its length, and $4 is the length limit. Please don't translate 'mailnews.message_warning_size', that needs to stay in English."
   }
 }

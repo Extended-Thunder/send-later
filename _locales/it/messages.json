@@ -259,12 +259,20 @@
     "message": "Mostra l'intestazione “X-Send-Later-At”, cioè l'orario a cui la mail in “Bozze” è pianificata per l'invio, nell'intestazione quando guardi un messaggio.",
     "description": ""
   },
+  "showToolbarTextLabel": {
+    "message": "Mostra il testo nel pulsante della barra degli strumenti",
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
+  },
   "userGuideLabel": {
     "message": "Manuale utente",
     "description": ""
   },
   "errorDateInPast": {
     "message": "La data selezionata è nel passato",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Ritarda il messaggio di alcuni minuti. Il primo argomento è considerato il tempo di ritardo.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -338,6 +346,10 @@
   "quickoptionname.label": {
     "message": "Etichetta pulsante",
     "description": ""
+  },
+  "quickoptionkey.label": {
+    "message": "Tasto (Ctrl+Alt+…)",
+    "description": "Heading for the column in the preferences where the user can specify the key bindings to activate shortcut buttons"
   },
   "showsendlaterprogress.caption": {
     "message": "Mostra nella Barra di Stato la progressione degli invii in background",
@@ -679,6 +691,9 @@
     "message": "Avviso messaggi pianificati",
     "description": ""
   },
+  "ShowQuitNotificationPreference": {
+    "message": "Mostra un avvertimento prima di uscire se ci sono messaggi in attesa"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Ci sono messaggi pianificati per l'invio. Invia Dopo può inviare messaggi solamente quando $1 è in esecuzione. Sei sicuro di voler uscire?",
     "description": ""
@@ -687,9 +702,21 @@
     "message": "Invia Dopo può inviare messaggi solamente quando $1 è in esecuzione. Per cortesia ricordati di riavviarlo prima di quando hai pianificato l'invio dei tuoi messaggi!",
     "description": ""
   },
+  "IncompatibleEncryptionTitle": {
+    "message": "Impostazioni di crittografia incompatibili con $1",
+    "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has incompatible encryption or signing enabled. The placeholder is replaced with the extension name."
+  },
+  "EncryptionUnsupportedTitle": {
+    "message": "$1 non supporta la crittografia",
+    "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has encryption or signing enabled. The placeholder is replaced with the extension name."
+  },
   "DSN": {
     "message": "Notifica dello stato di consegna",
     "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message. This needs to match what's in the menu. NOTE: This is *different from* the 'Return Receipt' menu command which appears adjacent to it."
+  },
+  "noDsnTitle": {
+    "message": "$1 non supportato con $2",
+    "description": "The title of the alert that pops up when the user attempts to schedule a message with delivery status notification enabled. $1 is replaced with the string 'DSN' and $2 is replaced with the extension name."
   },
   "incorrectUUID": {
     "message": "Pianificato da un altro client",
@@ -835,6 +862,14 @@
     "message": "Controllo...",
     "description": ""
   },
+  "accelCtrlLabel": {
+    "message": "Ctrl+Click",
+    "description": "Indicates key combination to access the ctrl+click accelerator function"
+  },
+  "accelCtrlLabel.MacOS": {
+    "message": "Cmd+Click",
+    "description": "Indicates key combination to access the ctrl+click accelerator function. On mac the Ctrl key is replaced with the 'Command' key"
+  },
   "okay": {
     "message": "OK",
     "description": "Confirm an action (presented in popup dialogs)"
@@ -842,6 +877,14 @@
   "cancel": {
     "message": "Annulla",
     "description": "Cancel an action (presented in popup dialogs)"
+  },
+  "shortDateTimeFormatsPrefLabel": {
+    "message": "Formato data/ora breve:",
+    "description": "Preference input for short datetime format (e.g. 2021/04/28 11:45)"
+  },
+  "longDateTimeFormatsPrefLabel": {
+    "message": "Formato data/ora lungo:",
+    "description": "Preference input for extended datetime format (e.g. Wed, Apr 28 2021 11:45)"
   },
   "invalidDateFormat": {
     "message": "formato data non valido o incompleto",
@@ -859,9 +902,17 @@
     "message": "Risultati dell'elaborazione dei messaggi",
     "description": "The title of the pop-up that displays results after the user uses the message list context menu to perform an operation on more than one selected message."
   },
+  "resultsAllSuccess": {
+    "message": "Tutti i messaggi selezionati sono stati elaborati con successo.",
+    "description": "Message displayed in the message list context menu results pop-up when multiple messages were selected and all were processed successfully."
+  },
   "RescheduleErrorTitle": {
     "message": "Errore nella riprogrammazione del messaggio",
     "description": "Title of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "TelemetryAskTitle": {
+    "message": "$1 richiesta di raccolta dati",
+    "description": "Title of the pop-up that asks the user whether we can collect anonymous usage data. The placeholder is replaced with the extension name."
   },
   "PrivacyPolicy": {
     "message": "Informativa sulla privacy",
@@ -922,5 +973,9 @@
   "internalLogLinkLabel": {
     "message": "Visualizza log interno",
     "description": "Label for the link in the main window pop-up for opening the internal log tab."
+  },
+  "messageTooLargeTitle": {
+    "message": "Messaggio troppo grande",
+    "description": "The title of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large."
   }
 }

@@ -1084,5 +1084,13 @@
   "internalLogLinkLabel": {
     "message": "Belső napló megtekintése",
     "description": "Label for the link in the main window pop-up for opening the internal log tab."
+  },
+  "messageTooLargeTitle": {
+    "message": "Az üzenet túl nagy",
+    "description": "The title of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large."
+  },
+  "messageTooLargeText": {
+    "message": "A Thunderbird hibája miatt a $1 nem tudja kézbesíteni a „$2” tárgyú üzenetet, mert az túl nagy. $3 bájt hosszú, ami nagyobb, mint a beállított $4 bájtos korlát. Ha szeretné, növelheti ezt a korlátot a „mailnews.message_warning_size” beállítás módosításával a Thunderbird konfigurációs szerkesztőjében, vagy állítsa a beállítást 0-ra a korlát teljes letiltásához, de vegye figyelembe, hogy minden változtatás hatással lesz arra is, hogy a Thunderbird figyelmezteti-e Önt. arról, hogy a nagyméretű üzeneteket közvetlenül küldik, nem pedig $1-on keresztül. Mindenesetre az üzenet elküldéséhez megnyithatja szerkesztésre és közvetlenül elküldheti, vagy szerkesztheti és átütemezheti, miután kicsinyítette vagy megváltoztatta a Thunderbird beállítását.",
+    "description": "The (unfortunately very long) text of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large and the TB version is 114 or earlier. $1 is the extension name, $2 is the message subject, $3 is its length, and $4 is the length limit. Please don't translate 'mailnews.message_warning_size', that needs to stay in English."
   }
 }

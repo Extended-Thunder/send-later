@@ -1084,5 +1084,13 @@
   "internalLogLinkLabel": {
     "message": "צפה בתיעוד האירועים הפנימי",
     "description": "Label for the link in the main window pop-up for opening the internal log tab."
+  },
+  "messageTooLargeTitle": {
+    "message": "ההודעה ארוכה מדי",
+    "description": "The title of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large."
+  },
+  "messageTooLargeText": {
+    "message": "באג בטנדרבירד, מונע מ $1 לשלוח את ההודעה עם הנושא “$2” מאחר והיא גדולה מדי. היא באורך $3 בייטים, בעוד שהמגבלה המקסימלית המתוכננת היא $4. במידה ותרצו, ניתן להגדיל את המגבלה דרך הגדרות ההעדפות בעזרת עורך תצורה של טנדרבירד תחת  “mailnews.message_warning_size”, או להגדיר תכונה זו ל 0 כדי להסיר לחלוטין את מגבלה זו, אולם יש לשים לב שביצוע שינויים אילו, ישפיעו על יכולת טנדרבירד להתריע על משלוח הודעות גדולות בעת שליחה רגילה ולא רק דרך $1. בכל מקרה, ניתן לשלוח הודעה זו בשני דרכים, פתיחתה לעריכה ושליחתה באופן מיידי, או לערוך ולהקטין את ההודעה ולתזמן שליחה מאורחת חדשה, או לשנות את ההגדרות בטנדירבירד כאמור למעלה.  ",
+    "description": "The (unfortunately very long) text of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large and the TB version is 114 or earlier. $1 is the extension name, $2 is the message subject, $3 is its length, and $4 is the length limit. Please don't translate 'mailnews.message_warning_size', that needs to stay in English."
   }
 }
