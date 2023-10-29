@@ -179,6 +179,10 @@
     "message": "Con questa opzione attivata, il comando “Invia” (sia il pulsante che la pressione di Ctrl-Invio) si comporta come “Invia dopo”.",
     "description": ""
   },
+  "whitelistPrefTooltip": {
+    "message": "Se `$1' o `\"Invia\" ritarda messaggi' è abilitato e si specifica il nome di una rubrica esistente, qualsiasi messaggio i cui destinatari sono tutti nella rubrica verrà saltato da $2 quando si attiva il pulsante d'invio del messaggio o il comando di menu.",
+    "description": "$1 is replaced with the contents of sendButtonPrefLabel, and $2 is replaced with extensionName."
+  },
   "whitelistPrefLabel": {
     "message": "Rubrica Whitelist",
     "description": "Appears on the options tab, followed by an input box for the use to specify the name of an address book."
@@ -351,6 +355,10 @@
     "message": "Tasto (Ctrl+Alt+…)",
     "description": "Heading for the column in the preferences where the user can specify the key bindings to activate shortcut buttons"
   },
+  "validKeysTooltip": {
+    "message": "I tasti di scelta rapida validi (sensibili alle maiuscole e minuscole!) sono A-Z, 0-9, F1-F12, Virgola, Punto, Inizio, Fine, Pag Su, Pag Giù, Spazio, Inserisci, Cancella, Su, Giù, Sinistra, Destra.",
+    "description": "The tooltip that pops up to tell the user what the valid keys to bind the quick option shortcuts to. Do not translate the keys, just translate the 'Valid shortcut keys (case-sensitive!) are' part, because the keys have to be in English in the actual shortcut."
+  },
   "showsendlaterprogress.caption": {
     "message": "Mostra nella Barra di Stato la progressione degli invii in background",
     "description": ""
@@ -370,6 +378,10 @@
   "activeAccountsOptionsTitle": {
     "message": "Account attivi",
     "description": "Subtitle of the 'Advanced' section in the options where the user can mark which accounts Send Later should pay attention to."
+  },
+  "activeAccountsOptionsText": {
+    "message": "Gli account deselezionati in questa sezione vengono ignorati da Send Later: non vengono controllati per le bozze pianificate e le bozze pianificate in essi contenute non vengono consegnate. Gli account appena creati sono attivi per impostazione predefinita e se si pianifica un nuovo messaggio in un account inattivo, questo viene riattivato automaticamente. È consigliabile disattivare qualsiasi account a cui Thunderbird non può accedere, ad esempio perché il login è disattivato o perché il server è inattivo.",
+    "description": "This explanation appears below activeAccountsOptionsTitle and above the list of accounts"
   },
   "advancededitor.title": {
     "message": "Editor di configurazione avanzato",
@@ -527,6 +539,9 @@
     "message": "Invia Dopo: La cartella $1 potrebbe essere danneggiata. Per cortesia apri le sue proprietà e seleziona la voce Ripara. Vedi https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
+  "CorruptFolderErrorDetails": {
+    "message": "In particolare, sembra che il messaggio \"$1\" $2 sia già stato inviato in precedenza, ma sia ancora presente nella cartella Bozze. Questo può essere o meno indice di un problema più serio. Si può semplicemente provare a eliminare (o a riprogrammare) il messaggio in questione.\n\nSend Later salterà questo messaggio, ma continuerà a elaborare le altre bozze pianificate quando si chiude l'avviso."
+  },
   "MessageResendError": {
     "message": "Invia Dopo: Tentativo di inviare nuovamente un massaggio già inviato?! La tua cartella Posta in uscita o Bozze $1 è probabilmente danneggiata. Per cortesia riparale come descritto in https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
@@ -683,6 +698,10 @@
     "message": "Cliccando su “Invia adesso” si invia il messaggio immediatamente. NON VIENE quindi pianificato l'invio del messaggio ad un orario specifico. Se lo si desidera inviare specificando un orario, cliccare il pulsante “Invia verso le:” nel riquadro verde dopo aver inserito un orario di invio valido. Sei sicuro di voler inviare il messaggio adesso?",
     "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
+  "PopupChangedConfirmMessage": {
+    "message": "Sembra che si sia fatto clic su \"$1\" dopo aver modificato alcuni valori nel pannello di pianificazione. Sei sicuro di averlo fatto invece di fare clic sul pulsante \"$2\"?",
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'."
+  },
   "ConfirmAgain": {
     "message": "Visualizza nuovamente questo avviso in futuro",
     "description": ""
@@ -693,6 +712,10 @@
   },
   "ShowQuitNotificationPreference": {
     "message": "Mostra un avvertimento prima di uscire se ci sono messaggi in attesa"
+  },
+  "SubfolderPreference": {
+    "message": "Memorizzare i messaggi programmati nella sottocartella:",
+    "description": "In preferences tab, preceded by a checkbox and followed by a text input"
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Ci sono messaggi pianificati per l'invio. Invia Dopo può inviare messaggi solamente quando $1 è in esecuzione. Sei sicuro di voler uscire?",
@@ -744,6 +767,14 @@
   },
   "missingDaysWarningBody": {
     "message": "Hai abilitato una restrizione giornaliera del messaggio senza specificare alcun giorno. Per cortesia disabilita la restrizione giornaliera o specifica almeno un giorno di invio.",
+    "description": ""
+  },
+  "invalidUntilWarning_inPast": {
+    "message": "Il limite temporale di ricorrenza è nel passato.",
+    "description": ""
+  },
+  "invalidUntilWarning_tooSoon": {
+    "message": "Il limite del tempo d'invio è precedente al primo invio programmato.",
     "description": ""
   },
   "InvalidArgsTitle": {
@@ -862,6 +893,10 @@
     "message": "Controllo...",
     "description": ""
   },
+  "accelKeyLabel": {
+    "message": "Tasto acceleratore",
+    "description": "Label for options window to identify accelerator shortcuts"
+  },
   "accelCtrlLabel": {
     "message": "Ctrl+Click",
     "description": "Indicates key combination to access the ctrl+click accelerator function"
@@ -869,6 +904,10 @@
   "accelCtrlLabel.MacOS": {
     "message": "Cmd+Click",
     "description": "Indicates key combination to access the ctrl+click accelerator function. On mac the Ctrl key is replaced with the 'Command' key"
+  },
+  "accelShiftLabel": {
+    "message": "Shift+Click",
+    "description": "Indicates key combination to access the shift+click accelerator function"
   },
   "okay": {
     "message": "OK",
@@ -906,9 +945,17 @@
     "message": "Tutti i messaggi selezionati sono stati elaborati con successo.",
     "description": "Message displayed in the message list context menu results pop-up when multiple messages were selected and all were processed successfully."
   },
+  "cantSKipPastLastTitle": {
+    "message": "Il messaggio non ha più ricorrenze",
+    "description": "The title of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a message that has no further occurrences after that one."
+  },
   "RescheduleErrorTitle": {
     "message": "Errore nella riprogrammazione del messaggio",
     "description": "Title of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "RescheduleErrorText": {
+    "message": "ATTENZIONE: si è verificato un errore imprevisto durante il tentativo di pianificare la prossima occorrenza di un messaggio pianificato con oggetto \"$1\". Per maggiori dettagli, consultare il registro degli errori di Thunderbird. La precedente bozza pianificata non è stata quindi eliminata. È necessario eliminarla o modificarla e riprogrammarla, se lo si desidera.",
+    "description": "Text of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
   },
   "TelemetryAskTitle": {
     "message": "$1 richiesta di raccolta dati",
