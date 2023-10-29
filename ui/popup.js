@@ -600,19 +600,12 @@ const SLPopup = {
     return inputs;
   },
 
-  cacheSchedule() {
+  async cacheSchedule() {
     SLStatic.debug("Caching current input values");
-    browser.storage.local
-      .get({ scheduleCache: {} })
-      .then(async ({ scheduleCache }) => {
-        let cwin = browser.windows.getCurrent();
-        return scheduleCache, cwin;
-      })
-      .then(async (scheduleCache, cwin) => {
-        scheduleCache[cwin.id] = SLPopup.serializeInputs();
-        await browser.storage.local.set({ scheduleCache });
-      })
-      .catch(SLStatic.error);
+    let scheduleCache = await browser.storage.local.get({ scheduleCache: {} });
+    let cwin = await browser.windows.getCurrent();
+    scheduleCache[cwin.id] = SLPopup.serializeInputs();
+    await browser.storage.local.set({ scheduleCache });
   },
 
   saveDefaults() {
@@ -857,7 +850,7 @@ const SLPopup = {
 
       SLPopup.setScheduleButton(schedule);
 
-      SLPopup.cacheSchedule();
+      SLPopup.cacheSchedule().catch(SLStatic.error);
 
       const hdrs = SLPopup.debugSchedule();
       // Would be useful for debugging, but doesn't seem to work in a popup.

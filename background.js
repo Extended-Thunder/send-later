@@ -1847,6 +1847,33 @@ const SendLater = {
     return emails.some((e) => whitelist.includes(e));
   },
 
+  async setPreferencesMessage(new_prefs) {
+    let prefKeys = await SLStatic.userPrefKeys(false);
+    let old_prefs = await SLTools.getPrefs();
+    for (const prop in new_prefs) {
+      if (!prefKeys.includes(prop)) {
+        throw new Error(
+          `Property ${prop} is not a valid Send Later preference.`,
+        );
+      }
+      if (
+        prop in old_prefs &&
+        typeof old_prefs[prop] != "undefined" &&
+        typeof new_prefs[prop] != "undefined" &&
+        typeof old_prefs[prop] != typeof new_prefs[prop]
+      ) {
+        throw new Error(
+          `Type of ${prop} is invalid: new ` +
+            `${typeof new_prefs[prop]} vs. current ` +
+            `${typeof old_prefs[prop]}.`,
+        );
+      }
+      old_prefs[prop] = new_prefs[prop];
+    }
+    await messenger.storage.local.set({ preferences: old_prefs });
+    return old_prefs;
+  },
+
   // Allow other extensions to access local preferences
   onMessageExternalListener(message, sender, sendResponse) {
     switch (message.action) {
@@ -1871,35 +1898,9 @@ const SendLater = {
       }
       case "setPreferences": {
         // Return Promise for updating the allowed preferences.
-        let prefKeysPromise = SLStatic.userPrefKeys(false);
-        let prefsPromise = SLTools.getPrefs();
-        return Promise.all([prefKeysPromise, prefsPromise])
-          .then(async ([prefKeys, old_prefs]) => {
-            let new_prefs = message.preferences;
-            for (const prop in new_prefs) {
-              if (!prefKeys.includes(prop)) {
-                throw new Error(
-                  `Property ${prop} is not a valid Send Later preference.`,
-                );
-              }
-              if (
-                prop in old_prefs &&
-                typeof old_prefs[prop] != "undefined" &&
-                typeof new_prefs[prop] != "undefined" &&
-                typeof old_prefs[prop] != typeof new_prefs[prop]
-              ) {
-                throw new Error(
-                  `Type of ${prop} is invalid: new ` +
-                    `${typeof new_prefs[prop]} vs. current ` +
-                    `${typeof old_prefs[prop]}.`,
-                );
-              }
-              old_prefs[prop] = new_prefs[prop];
-            }
-            await messenger.storage.local.set({ preferences: old_prefs });
-            return old_prefs;
-          })
-          .catch((ex) => SLStatic.error(ex));
+        return SendLater.setPreferencesMessage(message.preferences).catch(
+          (ex) => SLStatic.error(ex),
+        );
       }
       case "parseDate": {
         SLStatic.trace("onMessageExternalListener.parseDate");
@@ -2171,6 +2172,34 @@ const SendLater = {
     }
   },
 
+  async getSchedule(hdr) {
+    let draftMsg = await messenger.messages.getFull(hdr.id);
+    function getHeader(name) {
+      return (draftMsg.headers[name] || [])[0];
+    }
+    if (getHeader("x-send-later-at")) {
+      let folderPath = hdr.folder.path;
+      let accountId = hdr.folder.accountId;
+      let account = await messenger.accounts.get(accountId, false);
+      let accountName = account.name;
+      let fullFolderName = accountName + folderPath;
+      SLTools.scheduledMsgCache.add(hdr.id);
+      return {
+        sendAt: getHeader("x-send-later-at"),
+        recur: getHeader("x-send-later-recur"),
+        args: getHeader("x-send-later-args"),
+        cancel: getHeader("x-send-later-cancel-on-reply"),
+        subject: hdr.subject,
+        recipients: hdr.recipients,
+        folder: fullFolderName,
+      };
+    } else {
+      SLTools.unscheduledMsgCache.add(hdr.id);
+      SLTools.scheduledMsgCache.delete(hdr.id);
+      return null;
+    }
+  },
+
   // Various extension components communicate with
   // the background script via these runtime messages.
   // e.g. the options page and the scheduler dialog.
@@ -2298,34 +2327,7 @@ const SendLater = {
               );
               return null;
             }
-            return await messenger.messages
-              .getFull(draftHdr.id)
-              .then(async (draftMsg) => {
-                function getHeader(name) {
-                  return (draftMsg.headers[name] || [])[0];
-                }
-                if (getHeader("x-send-later-at")) {
-                  let folderPath = draftHdr.folder.path;
-                  let accountId = draftHdr.folder.accountId;
-                  let account = await messenger.accounts.get(accountId, false);
-                  let accountName = account.name;
-                  let fullFolderName = accountName + folderPath;
-                  SLTools.scheduledMsgCache.add(draftHdr.id);
-                  return {
-                    sendAt: getHeader("x-send-later-at"),
-                    recur: getHeader("x-send-later-recur"),
-                    args: getHeader("x-send-later-args"),
-                    cancel: getHeader("x-send-later-cancel-on-reply"),
-                    subject: draftHdr.subject,
-                    recipients: draftHdr.recipients,
-                    folder: fullFolderName,
-                  };
-                } else {
-                  SLTools.unscheduledMsgCache.add(draftHdr.id);
-                  SLTools.scheduledMsgCache.delete(draftHdr.id);
-                  return null;
-                }
-              });
+            return await SendLater.getSchedule(draftHdr);
           },
           false, // non-sequential
         ).then((r) => r.filter((x) => x != null));
