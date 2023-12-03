@@ -624,7 +624,7 @@ The following functional preferences are available only in the configuration edi
   between delivering messages. You might need to do this if your mail server
   gets uptight when you attempt to send adjacent messages too quickly or if you
   send a lot of messages with Send Later and your server gets uptight if you
-  send too many messages in two short a period of time.
+  send too many messages in too short a period of time.
 
 <a name="thunderbird-config-editor"></a>
 ### Thunderbird's Config Editor
