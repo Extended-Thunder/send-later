@@ -624,8 +624,12 @@ The following functional preferences are available only in the configuration edi
   between delivering messages. You might need to do this if your mail server
   gets uptight when you attempt to send adjacent messages too quickly or if you
   send a lot of messages with Send Later and your server gets uptight if you
-  send too many messages in too short a period of time.
-
+  send too many messages in too short a period of time.  
+  This is _not_ intended to space out messages by more than a few seconds at
+  most, and bad things will happen if you try to do that. For that, look at
+  [scheduling messages with Mail Merge](#mailmerge) and giving the scheduled
+  messages staggered send times.
+  
 <a name="thunderbird-config-editor"></a>
 ### Thunderbird's Config Editor
 
@@ -1236,6 +1240,8 @@ the message will be sent immediately when Thunderbird wakes up even if
 the current time falls outside the time or weekday restrictions. If you
 would like these restrictions to be enforced at delivery time as well,
 [there's a preference for that](#prefs).
+
+<a name="mailmerge"></a>
 
 ### Mail Merge add-on
 
