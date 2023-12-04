@@ -795,7 +795,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"]
             .createInstance()
             .QueryInterface(Ci.nsIMsgWindow);
-          folder.updateFolder(Ci.nsIMsgWindow);
+          folder.updateFolder(msgWindow);
         },
 
         // Compact a folder
