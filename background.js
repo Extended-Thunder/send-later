@@ -505,6 +505,440 @@ const SendLater = {
     return succeeded;
   },
 
+  checkEncryption(contentType, originalMsgId, msgHdr) {
+    if (/encrypted/i.test(contentType)) {
+      SLStatic.debug(
+        `Message ${originalMsgId} is encrypted, and will not ` +
+          `be processed by Send Later.`,
+      );
+      SLTools.unscheduledMsgCache.add(msgHdr.id);
+      return false;
+    }
+    return true;
+  },
+
+  async checkLocked(
+    preferences,
+    locker,
+    originalMsgId,
+    msgHdr,
+    msgLockId,
+    fullMsg,
+  ) {
+    let locked = locker.isLocked(msgHdr, fullMsg);
+    if (!locked) return true;
+    const msgSubject = msgHdr.subject;
+    if (locked === true) {
+      if (preferences.optOutResendWarning === true) {
+        SLStatic.debug(
+          `Encountered previously sent message ` +
+            `"${msgSubject}" ${msgLockId}.`,
+        );
+      } else {
+        SLStatic.error(
+          `Attempted to resend message "${msgSubject}" ${msgLockId}.`,
+        );
+        const result = await SLTools.alertCheck(
+          null,
+          messenger.i18n.getMessage("CorruptFolderError", [
+            msgHdr.folder.path,
+          ]) +
+            "\n\n" +
+            messenger.i18n.getMessage("CorruptFolderErrorDetails", [
+              msgSubject,
+              originalMsgId,
+            ]),
+          null,
+          true,
+        );
+        if (result.check === false) {
+          preferences.optOutResendWarning = true;
+          await messenger.storage.local.set({ preferences });
+        }
+      }
+    }
+    return false;
+  },
+
+  async checkLate(preferences, locker, nextSend, msgHdr, fullMsg) {
+    // Respect late message blocker
+    // We enforce a maximum grace period of six months even when one isn't
+    // specified in the user's preferences, for safety.
+    let maxGracePeriod = 60 * 24 * 180; // minutes
+    let lateGracePeriod;
+    if (preferences.blockLateMessages) {
+      lateGracePeriod = Math.min(preferences.lateGracePeriod, maxGracePeriod);
+    } else {
+      lateGracePeriod = maxGracePeriod;
+    }
+    let lateness = (Date.now() - nextSend.getTime()) / 60000;
+    if (lateness <= lateGracePeriod) return true;
+    SLStatic.warn(`Grace period exceeded for message ${msgHdr.id}`);
+    if (locker.isLocked(msgHdr, fullMsg) != "late") {
+      let units, newLateness;
+      if (lateness / 60 / 24 / 365 > 1) {
+        lateness = Math.floor(lateness / 60 / 24 / 365);
+        units = "year";
+      } else if (lateness / 60 / 24 / 30 > 1) {
+        lateness = Math.floor(lateness / 60 / 24 / 30);
+        units = "month";
+      } else if (lateness / 60 / 24 / 7 > 1) {
+        lateness = Math.floor(lateness / 60 / 24 / 7);
+        units = "week";
+      } else if (lateness / 60 / 24 > 1) {
+        lateness = Math.floor(lateness / 60 / 24);
+        units = lateness == 1 ? "day" : "dai"; // ugh
+      } else {
+        lateness = Math.floor(lateness);
+        units = "minute";
+      }
+      units = SLStatic.i18n.getMessage(
+        lateness == 1 ? `single_${units}` : `plural_${units}ly`,
+      );
+      const msgSubject = msgHdr.subject;
+      const warningMsg = messenger.i18n.getMessage("BlockedLateMessage2", [
+        msgSubject,
+        msgHdr.folder.path,
+        lateness,
+        units,
+      ]);
+      const warningTitle = messenger.i18n.getMessage(
+        "ScheduledMessagesWarningTitle",
+      );
+      SLTools.alert(warningTitle, warningMsg);
+      await locker.lock(msgHdr, fullMsg, "late");
+    }
+    return false;
+  },
+
+  async checkTimeRestrictions(
+    preferences,
+    recur,
+    skipping,
+    originalMsgId,
+    msgHdr,
+  ) {
+    if (!preferences.enforceTimeRestrictions) return true;
+    // Respect "until" preference
+    if (recur.until) {
+      if (SLStatic.compareTimes(Date.now(), ">", recur.until)) {
+        (skipping ? SLStatic.error : SLStatic.debug)(
+          `Message ${msgHdr.id} ${originalMsgId} past ` +
+            `"until" restriction. Skipping.`,
+        );
+        return false;
+      }
+    }
+
+    // Respect "send between" preference
+    if (!skipping && recur.between) {
+      if (
+        SLStatic.compareTimes(Date.now(), "<", recur.between.start) ||
+        SLStatic.compareTimes(Date.now(), ">", recur.between.end)
+      ) {
+        // Skip message this time, but don't explicitly reschedule it.
+        SLStatic.debug(
+          `Message ${msgHdr.id} ${originalMsgId} outside of ` +
+            `sendable time range. Skipping.`,
+          recur.between,
+        );
+        return false;
+      }
+    }
+
+    // Respect "only on days of week" preference
+    if (!skipping && recur.days) {
+      const today = new Date().getDay();
+      if (!recur.days.includes(today)) {
+        // Reschedule for next valid time.
+        const start_time = recur.between && recur.between.start;
+        const end_time = recur.between && recur.between.end;
+        let nextRecurAt = SLStatic.adjustDateForRestrictions(
+          new Date(),
+          start_time,
+          end_time,
+          recur.days,
+          false,
+        );
+        while (nextRecurAt < new Date()) {
+          nextRecurAt = new Date(nextRecurAt.getTime() + 60000);
+        }
+
+        const this_wkday = new Intl.DateTimeFormat("default", {
+          weekday: "long",
+        });
+        SLStatic.info(
+          `Message ${msgHdr.id} not scheduled to send on ` +
+            `${this_wkday.format(new Date())}. Rescheduling ` +
+            `for ${nextRecurAt}`,
+        );
+
+        let newMsgContent = await messenger.messages.getRaw(msgHdr.id);
+
+        newMsgContent = SLStatic.replaceHeader(
+          newMsgContent,
+          "X-Send-Later-At",
+          SLStatic.parseableDateTimeFormat(nextRecurAt),
+          false,
+        );
+
+        if (preferences.scheduledDateField) {
+          newMsgContent = SLStatic.replaceHeader(
+            newMsgContent,
+            "Date",
+            SLStatic.parseableDateTimeFormat(nextRecurAt),
+            false /* replaceAll */,
+            true /* addIfMissing */,
+          );
+        }
+
+        let success = await SLStatic.tb115(
+          async () => {
+            let file = SLStatic.getFileFromRaw(newMsgContent);
+            return await SLStatic.messageImport(file, msgHdr.folder, {
+              new: false,
+              read: preferences.markDraftsRead,
+            });
+          },
+          async () => {
+            return await messenger.SL3U.saveMessage(
+              newMsgContent,
+              msgHdr.folder,
+              preferences.markDraftsRead,
+            );
+          },
+        );
+
+        if (success) {
+          SLStatic.debug(
+            `Rescheduled message ${originalMsgId}. Deleting original.`,
+          );
+          await SendLater.deleteMessage(msgHdr);
+        } else {
+          SLStatic.error("Unable to schedule next recurrence.");
+        }
+        return false;
+      }
+    }
+    return true;
+  },
+
+  async doSendMessage(
+    preferences,
+    options,
+    locker,
+    originalMsgId,
+    msgHdr,
+    msgLockId,
+    fullMsg,
+  ) {
+    // Initiate send from draft message
+    SLStatic.info(`Sending message ${originalMsgId}.`);
+
+    let localAccount = (await messenger.accounts.list(false)).find(
+      (account) => account.type == "none",
+    );
+    let localFolders = await messenger.folders.getSubFolders(localAccount);
+    let outboxFolder = localFolders.find((f) => f.type == "outbox");
+    if (!outboxFolder) {
+      SLStatic.error("Could not find outbox folder to deliver message");
+      return false;
+    }
+    let content = SLStatic.prepNewMessageHeaders(
+      await messenger.messages.getRaw(msgHdr.id),
+    );
+
+    const identityId =
+      options.identityId ?? (await findBestIdentity(msgHdr, fullMsg));
+    content = SLStatic.replaceHeader(
+      content,
+      "X-Identity-Key",
+      identityId,
+      true,
+      true,
+    );
+
+    let success;
+
+    await SLStatic.tb115(undefined, async () => {
+      // See https://github.com/Extended-Thunder/send-later/issues/643
+      // Thunderbird will get sick if we try to deliver a message through the
+      // outbox larger than mailnews.message_warning_size.
+      let messageSizeLimit = await messenger.SL3U.getLegacyPref(
+        "mailnews.message_warning_size",
+        "int",
+        "0",
+        true,
+      );
+      if (messageSizeLimit && content.length > messageSizeLimit) {
+        let title = SLStatic.i18n.getMessage("messageTooLargeTitle");
+        let extensionName = SLStatic.i18n.getMessage("extensionName");
+        let numberFormatter = new Intl.NumberFormat();
+        let text = SLStatic.i18n.getMessage("messageTooLargeText", [
+          extensionName,
+          msgHdr.subject,
+          numberFormatter.format(content.length),
+          numberFormatter.format(messageSizeLimit),
+        ]);
+        await locker.lock(msgHdr, fullMsg, "too large");
+        SLStatic.debug(
+          `Locked too-large message <${msgLockId}> from re-sending.`,
+        );
+        SLTools.alert(title, text);
+        SLStatic.telemetrySend({
+          event: "tooLargeForOutbox",
+        });
+        success = false;
+      }
+    });
+
+    if (success === undefined) {
+      success = await SLStatic.tb115(
+        async () => {
+          let file = SLStatic.getFileFromRaw(content);
+          return await SLStatic.messageImport(file, outboxFolder, {
+            new: false,
+            read: true,
+          });
+        },
+        async () => {
+          return await messenger.SL3U.saveMessage(content, outboxFolder, true);
+        },
+      );
+    }
+
+    SLStatic.telemetrySend({
+      event: "delivery",
+      successful: success,
+    });
+
+    if (success) {
+      if (preferences.sendUnsentMsgs) {
+        setTimeout(messenger.SL3U.queueSendUnsentMessages, 1000);
+      }
+      await locker.lock(msgHdr, fullMsg, true);
+      SLStatic.debug(`Locked message <${msgLockId}> from re-sending.`);
+    } else {
+      SLStatic.error(
+        `Something went wrong while sending message ${originalMsgId}`,
+      );
+    }
+
+    return success;
+  },
+
+  async doNextRecur(
+    preferences,
+    locker,
+    originalMsgId,
+    msgHdr,
+    recur,
+    nextSend,
+    msgRecurSpec,
+    args,
+  ) {
+    let nextRecur;
+    if (recur.type !== "none") {
+      nextRecur = await SLStatic.nextRecurDate(
+        nextSend,
+        msgRecurSpec,
+        new Date(),
+        args,
+      );
+    }
+
+    if (!nextRecur) return false;
+
+    try {
+      let nextRecurAt = nextRecur.sendAt;
+      let nextRecurSpec = nextRecur.nextspec;
+      let nextRecurArgs = nextRecur.nextargs;
+      while (nextRecurAt < new Date()) {
+        nextRecurAt = new Date(nextRecurAt.getTime() + 60000);
+      }
+      SLStatic.info(`Scheduling next recurrence of message ${originalMsgId}`, {
+        nextRecurAt,
+        nextRecurSpec,
+        nextRecurArgs,
+      });
+
+      let newMsgContent = await messenger.messages.getRaw(msgHdr.id);
+
+      newMsgContent = SLStatic.replaceHeader(
+        newMsgContent,
+        "Date",
+        SLStatic.parseableDateTimeFormat(
+          SendLater.prefCache.scheduledDateField ? nextRecurAt : Date.now(),
+        ),
+        false /* replaceAll */,
+        true /* addIfMissing */,
+      );
+
+      newMsgContent = SLStatic.replaceHeader(
+        newMsgContent,
+        "X-Send-Later-At",
+        SLStatic.parseableDateTimeFormat(nextRecurAt),
+        false,
+      );
+
+      if (typeof nextRecurSpec === "string") {
+        newMsgContent = SLStatic.replaceHeader(
+          newMsgContent,
+          "X-Send-Later-Recur",
+          nextRecurSpec,
+          false,
+          true,
+        );
+      }
+
+      if (typeof nextRecurArgs === "object") {
+        newMsgContent = SLStatic.replaceHeader(
+          newMsgContent,
+          "X-Send-Later-Args",
+          SLStatic.unparseArgs(nextRecurArgs),
+          false,
+          true,
+        );
+      }
+
+      let success = await SLStatic.tb115(
+        async () => {
+          let file = SLStatic.getFileFromRaw(newMsgContent);
+          return await SLStatic.messageImport(file, msgHdr.folder, {
+            new: false,
+            read: preferences.markDraftsRead,
+          });
+        },
+        async () => {
+          return await messenger.SL3U.saveMessage(
+            newMsgContent,
+            msgHdr.folder,
+            preferences.markDraftsRead,
+          );
+        },
+      );
+
+      SLStatic.telemetrySend({ event: "scheduleNext", successful: success });
+      if (success) {
+        SLStatic.info(
+          `Scheduled next occurrence of message ` +
+            `<${originalMsgId}>. Deleting original.`,
+        );
+      } else {
+        throw new Error("Unable to schedule next recurrence.");
+      }
+    } catch (ex) {
+      await locker.lock(msgHdr, fullMsg, "rescheduling");
+      SLStatic.error("Error scheduling next recurrence", ex);
+      let title = SLStatic.i18n.getMessage("RescheduleErrorTitle");
+      let text = SLStatic.i18n.getMessage("RescheduleErrorText", [msgSubject]);
+      SLTools.alert(title, text);
+      return true;
+    }
+    await SendLater.deleteMessage(msgHdr);
+    return true;
+  },
+
   // Given a MessageHeader object, identify whether the message is
   // scheduled, and due to be sent. If so, make sure it qualifies for
   // sending (not encrypted, not sent previously, not past the late
@@ -546,14 +980,7 @@ const SendLater = {
 
     const nextSend = new Date(msgSendAt);
 
-    if (/encrypted/i.test(contentType)) {
-      SLStatic.debug(
-        `Message ${originalMsgId} is encrypted, and will not ` +
-          `be processed by Send Later.`,
-      );
-      SLTools.unscheduledMsgCache.add(msgHdr.id);
-      return;
-    }
+    if (!SendLater.checkEncryption(contentType, originalMsgId, msgHdr)) return;
 
     let preferences = await SLTools.getPrefs();
 
@@ -579,40 +1006,17 @@ const SendLater = {
       return;
     }
 
-    let locked = locker.isLocked(msgHdr, fullMsg);
-    if (locked) {
-      const msgSubject = msgHdr.subject;
-      if (locked === true) {
-        if (preferences.optOutResendWarning === true) {
-          SLStatic.debug(
-            `Encountered previously sent message ` +
-              `"${msgSubject}" ${msgLockId}.`,
-          );
-        } else {
-          SLStatic.error(
-            `Attempted to resend message "${msgSubject}" ${msgLockId}.`,
-          );
-          const result = await SLTools.alertCheck(
-            null,
-            messenger.i18n.getMessage("CorruptFolderError", [
-              msgHdr.folder.path,
-            ]) +
-              "\n\n" +
-              messenger.i18n.getMessage("CorruptFolderErrorDetails", [
-                msgSubject,
-                originalMsgId,
-              ]),
-            null,
-            true,
-          );
-          if (result.check === false) {
-            preferences.optOutResendWarning = true;
-            await messenger.storage.local.set({ preferences });
-          }
-        }
-      }
+    if (
+      !(await SendLater.checkLocked(
+        preferences,
+        locker,
+        originalMsgId,
+        msgHdr,
+        msgLockId,
+        fullMsg,
+      ))
+    )
       return;
-    }
 
     if (!skipping && Date.now() < nextSend.getTime()) {
       SLStatic.debug(
@@ -625,397 +1029,77 @@ const SendLater = {
     const recur = SLStatic.parseRecurSpec(msgRecurSpec);
     const args = msgRecurArgs ? SLStatic.parseArgs(msgRecurArgs) : null;
 
-    // Respect late message blocker
-    if (!skipping) {
-      // We enforce a maximum grace period of six months even when one isn't
-      // specified in the user's preferences, for safety.
-      let maxGracePeriod = 60 * 24 * 180; // minutes
-      let lateGracePeriod;
-      if (preferences.blockLateMessages) {
-        lateGracePeriod = Math.min(
-          preferences.lateGracePeriod,
-          maxGracePeriod,
-        );
-      } else {
-        lateGracePeriod = maxGracePeriod;
-      }
-      let lateness = (Date.now() - nextSend.getTime()) / 60000;
-      if (lateness > lateGracePeriod) {
-        SLStatic.warn(`Grace period exceeded for message ${msgHdr.id}`);
-        if (locker.isLocked(msgHdr, fullMsg) != "late") {
-          let units, newLateness;
-          if (lateness / 60 / 24 / 365 > 1) {
-            lateness = Math.floor(lateness / 60 / 24 / 365);
-            units = "year";
-          } else if (lateness / 60 / 24 / 30 > 1) {
-            lateness = Math.floor(lateness / 60 / 24 / 30);
-            units = "month";
-          } else if (lateness / 60 / 24 / 7 > 1) {
-            lateness = Math.floor(lateness / 60 / 24 / 7);
-            units = "week";
-          } else if (lateness / 60 / 24 > 1) {
-            lateness = Math.floor(lateness / 60 / 24);
-            units = lateness == 1 ? "day" : "dai"; // ugh
-          } else {
-            lateness = Math.floor(lateness);
-            units = "minute";
-          }
-          units = SLStatic.i18n.getMessage(
-            lateness == 1 ? `single_${units}` : `plural_${units}ly`,
-          );
-          const msgSubject = msgHdr.subject;
-          const warningMsg = messenger.i18n.getMessage("BlockedLateMessage2", [
-            msgSubject,
-            msgHdr.folder.path,
-            lateness,
-            units,
-          ]);
-          const warningTitle = messenger.i18n.getMessage(
-            "ScheduledMessagesWarningTitle",
-          );
-          SLTools.alert(warningTitle, warningMsg);
-          await locker.lock(msgHdr, fullMsg, "late");
-        }
-        return;
-      }
-    }
-
-    if (preferences.enforceTimeRestrictions) {
-      // Respect "until" preference
-      if (recur.until) {
-        if (SLStatic.compareTimes(Date.now(), ">", recur.until)) {
-          (skipping ? SLStatic.error : SLStatic.debug)(
-            `Message ${msgHdr.id} ${originalMsgId} past ` +
-              `"until" restriction. Skipping.`,
-          );
-          return;
-        }
-      }
-
-      // Respect "send between" preference
-      if (!skipping && recur.between) {
-        if (
-          SLStatic.compareTimes(Date.now(), "<", recur.between.start) ||
-          SLStatic.compareTimes(Date.now(), ">", recur.between.end)
-        ) {
-          // Skip message this time, but don't explicitly reschedule it.
-          SLStatic.debug(
-            `Message ${msgHdr.id} ${originalMsgId} outside of ` +
-              `sendable time range. Skipping.`,
-            recur.between,
-          );
-          return;
-        }
-      }
-
-      // Respect "only on days of week" preference
-      if (!skipping && recur.days) {
-        const today = new Date().getDay();
-        if (!recur.days.includes(today)) {
-          // Reschedule for next valid time.
-          const start_time = recur.between && recur.between.start;
-          const end_time = recur.between && recur.between.end;
-          let nextRecurAt = SLStatic.adjustDateForRestrictions(
-            new Date(),
-            start_time,
-            end_time,
-            recur.days,
-            false,
-          );
-          while (nextRecurAt < new Date()) {
-            nextRecurAt = new Date(nextRecurAt.getTime() + 60000);
-          }
-
-          const this_wkday = new Intl.DateTimeFormat("default", {
-            weekday: "long",
-          });
-          SLStatic.info(
-            `Message ${msgHdr.id} not scheduled to send on ` +
-              `${this_wkday.format(new Date())}. Rescheduling ` +
-              `for ${nextRecurAt}`,
-          );
-
-          let newMsgContent = await messenger.messages.getRaw(msgHdr.id);
-
-          newMsgContent = SLStatic.replaceHeader(
-            newMsgContent,
-            "X-Send-Later-At",
-            SLStatic.parseableDateTimeFormat(nextRecurAt),
-            false,
-          );
-
-          if (SendLater.prefCache.scheduledDateField) {
-            newMsgContent = SLStatic.replaceHeader(
-              newMsgContent,
-              "Date",
-              SLStatic.parseableDateTimeFormat(nextRecurAt),
-              false /* replaceAll */,
-              true /* addIfMissing */,
-            );
-          }
-
-          let success = await SLStatic.tb115(
-            async () => {
-              let file = SLStatic.getFileFromRaw(newMsgContent);
-              return await SLStatic.messageImport(file, msgHdr.folder, {
-                new: false,
-                read: preferences.markDraftsRead,
-              });
-            },
-            async () => {
-              return await messenger.SL3U.saveMessage(
-                newMsgContent,
-                msgHdr.folder,
-                preferences.markDraftsRead,
-              );
-            },
-          );
-
-          if (success) {
-            SLStatic.debug(
-              `Rescheduled message ${originalMsgId}. Deleting original.`,
-            );
-            await SendLater.deleteMessage(msgHdr);
-            return;
-          } else {
-            SLStatic.error("Unable to schedule next recurrence.");
-            return;
-          }
-        }
-      }
-    }
-
-    if (!skipping) {
-      // Initiate send from draft message
-      SLStatic.info(`Sending message ${originalMsgId}.`);
-
-      let localAccount = (await messenger.accounts.list(false)).find(
-        (account) => account.type == "none",
-      );
-      let localFolders = await messenger.folders.getSubFolders(localAccount);
-      let outboxFolder = localFolders.find((f) => f.type == "outbox");
-      if (!outboxFolder) {
-        SLStatic.error("Could not find outbox folder to deliver message");
-        return false;
-      }
-      let content = SLStatic.prepNewMessageHeaders(
-        await messenger.messages.getRaw(msgHdr.id),
-      );
-
-      const identityId =
-        options.identityId ?? (await findBestIdentity(msgHdr, fullMsg));
-      content = SLStatic.replaceHeader(
-        content,
-        "X-Identity-Key",
-        identityId,
-        true,
-        true,
-      );
-
-      let success;
-
-      await SLStatic.tb115(undefined, async () => {
-        // See https://github.com/Extended-Thunder/send-later/issues/643
-        // Thunderbird will get sick if we try to deliver a message through the
-        // outbox larger than mailnews.message_warning_size.
-        let messageSizeLimit = await messenger.SL3U.getLegacyPref(
-          "mailnews.message_warning_size",
-          "int",
-          "0",
-          true,
-        );
-        if (messageSizeLimit && content.length > messageSizeLimit) {
-          let title = SLStatic.i18n.getMessage("messageTooLargeTitle");
-          let extensionName = SLStatic.i18n.getMessage("extensionName");
-          let numberFormatter = new Intl.NumberFormat();
-          let text = SLStatic.i18n.getMessage("messageTooLargeText", [
-            extensionName,
-            msgHdr.subject,
-            numberFormatter.format(content.length),
-            numberFormatter.format(messageSizeLimit),
-          ]);
-          await locker.lock(msgHdr, fullMsg, "too large");
-          SLStatic.debug(
-            `Locked too-large message <${msgLockId}> from re-sending.`,
-          );
-          SLTools.alert(title, text);
-          SLStatic.telemetrySend({
-            event: "tooLargeForOutbox",
-          });
-          success = false;
-        }
-      });
-
-      if (success === undefined) {
-        success = await SLStatic.tb115(
-          async () => {
-            let file = SLStatic.getFileFromRaw(content);
-            return await SLStatic.messageImport(file, outboxFolder, {
-              new: false,
-              read: true,
-            });
-          },
-          async () => {
-            return await messenger.SL3U.saveMessage(
-              content,
-              outboxFolder,
-              true,
-            );
-          },
-        );
-      }
-
-      if (success) {
-        if (preferences.sendUnsentMsgs) {
-          setTimeout(messenger.SL3U.queueSendUnsentMessages, 1000);
-        }
-        await locker.lock(msgHdr, fullMsg, true);
-        SLStatic.debug(`Locked message <${msgLockId}> from re-sending.`);
-        if (preferences.throttleDelay) {
-          SLStatic.debug(
-            `Throttling send rate: ${preferences.throttleDelay / 1000}s`,
-          );
-          await new Promise((resolve) =>
-            setTimeout(resolve, preferences.throttleDelay),
-          );
-        }
-      } else {
-        SLStatic.error(
-          `Something went wrong while sending message ${originalMsgId}`,
-        );
-        return;
-      }
-      SLStatic.telemetrySend({
-        event: "delivery",
-        successful: success,
-      });
-    }
-
-    let nextRecur;
-    if (recur.type !== "none") {
-      nextRecur = await SLStatic.nextRecurDate(
-        nextSend,
-        msgRecurSpec,
-        new Date(),
-        args,
-      );
-    }
-
-    if (nextRecur) {
-      try {
-        let nextRecurAt = nextRecur.sendAt;
-        let nextRecurSpec = nextRecur.nextspec;
-        let nextRecurArgs = nextRecur.nextargs;
-        while (nextRecurAt < new Date()) {
-          nextRecurAt = new Date(nextRecurAt.getTime() + 60000);
-        }
-        SLStatic.info(
-          `Scheduling next recurrence of message ${originalMsgId}`,
-          {
-            nextRecurAt,
-            nextRecurSpec,
-            nextRecurArgs,
-          },
-        );
-
-        let newMsgContent = await messenger.messages.getRaw(msgHdr.id);
-
-        newMsgContent = SLStatic.replaceHeader(
-          newMsgContent,
-          "Date",
-          SLStatic.parseableDateTimeFormat(
-            SendLater.prefCache.scheduledDateField ? nextRecurAt : Date.now(),
-          ),
-          false /* replaceAll */,
-          true /* addIfMissing */,
-        );
-
-        newMsgContent = SLStatic.replaceHeader(
-          newMsgContent,
-          "X-Send-Later-At",
-          SLStatic.parseableDateTimeFormat(nextRecurAt),
-          false,
-        );
-
-        if (typeof nextRecurSpec === "string") {
-          newMsgContent = SLStatic.replaceHeader(
-            newMsgContent,
-            "X-Send-Later-Recur",
-            nextRecurSpec,
-            false,
-            true,
-          );
-        }
-
-        if (typeof nextRecurArgs === "object") {
-          newMsgContent = SLStatic.replaceHeader(
-            newMsgContent,
-            "X-Send-Later-Args",
-            SLStatic.unparseArgs(nextRecurArgs),
-            false,
-            true,
-          );
-        }
-
-        // newMsgContent = SLStatic.appendHeader(
-        //   newMsgContent,
-        //   "References",
-        //   originalMsgId
-        // );
-
-        // const idkey = (fullMsg.headers["x-identity-key"]||[])[0];
-        // const newMessageId = await messenger.SL3U.generateMsgId(idkey);
-        // newMsgContent = SLStatic.replaceHeader(
-        //   newMsgContent,
-        //   "Message-ID",
-        //   newMessageId,
-        //   false
-        // );
-
-        let success = await SLStatic.tb115(
-          async () => {
-            let file = SLStatic.getFileFromRaw(newMsgContent);
-            return await SLStatic.messageImport(file, msgHdr.folder, {
-              new: false,
-              read: preferences.markDraftsRead,
-            });
-          },
-          async () => {
-            return await messenger.SL3U.saveMessage(
-              newMsgContent,
-              msgHdr.folder,
-              preferences.markDraftsRead,
-            );
-          },
-        );
-
-        SLStatic.telemetrySend({ event: "scheduleNext", successful: success });
-        if (success) {
-          SLStatic.info(
-            `Scheduled next occurrence of message ` +
-              `<${originalMsgId}>. Deleting original.`,
-          );
-        } else {
-          throw new Error("Unable to schedule next recurrence.");
-        }
-      } catch (ex) {
-        await locker.lock(msgHdr, fullMsg, "rescheduling");
-        SLStatic.error("Error scheduling next recurrence", ex);
-        let title = SLStatic.i18n.getMessage("RescheduleErrorTitle");
-        let text = SLStatic.i18n.getMessage("RescheduleErrorText", [
-          msgSubject,
-        ]);
-        SLTools.alert(title, text);
-      }
-      await SendLater.deleteMessage(msgHdr);
-      return true;
-    } else if (!skipping) {
-      SLStatic.info(
-        `No recurrences for message <${originalMsgId}>. Deleting original.`,
-      );
-      await SendLater.deleteMessage(msgHdr);
+    if (
+      !(
+        skipping ||
+        (await SendLater.checkLate(
+          preferences,
+          locker,
+          nextSend,
+          msgHdr,
+          fullMsg,
+        ))
+      )
+    )
       return;
+
+    if (
+      !(await SendLater.checkTimeRestrictions(
+        preferences,
+        recur,
+        skipping,
+        originalMsgId,
+        msgHdr,
+      ))
+    )
+      return;
+
+    if (
+      !(
+        skipping ||
+        (await SendLater.doSendMessage(
+          preferences,
+          options,
+          locker,
+          originalMsgId,
+          msgHdr,
+          msgLockId,
+          fullMsg,
+        ))
+      )
+    )
+      return;
+
+    if (!skipping) {
+      if (
+        !(await SendLater.doNextRecur(
+          preferences,
+          locker,
+          originalMsgId,
+          msgHdr,
+          recur,
+          nextSend,
+          msgRecurSpec,
+          args,
+        ))
+      ) {
+        SLStatic.info(
+          `No recurrences for message <${originalMsgId}>. Deleting original.`,
+        );
+        await SendLater.deleteMessage(msgHdr);
+      }
     }
+
+    if (preferences.throttleDelay) {
+      SLStatic.debug(
+        `Throttling send rate: ${preferences.throttleDelay / 1000}s`,
+      );
+      await new Promise((resolve) =>
+        setTimeout(resolve, preferences.throttleDelay),
+      );
+    }
+
+    return true;
   },
 
   async updatePreferences() {
