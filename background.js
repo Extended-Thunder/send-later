@@ -948,6 +948,8 @@ const SendLater = {
   // TODO: Break this up into more manageable parts. This function is
   // ridiculously long.
   async possiblySendMessage(msgHdr, options, locker) {
+    let throttleStart = Date.now();
+
     if (!options) {
       options = {};
     }
@@ -1094,9 +1096,9 @@ const SendLater = {
       SLStatic.debug(
         `Throttling send rate: ${preferences.throttleDelay / 1000}s`,
       );
-      await new Promise((resolve) =>
-        setTimeout(resolve, preferences.throttleDelay),
-      );
+      let throttleDelta = Date.now() - throttleStart;
+      let delay = preferences.throttleDelay - throttleDelta;
+      await new Promise((resolve) => setTimeout(resolve, delay));
     }
 
     return true;
@@ -2710,15 +2712,19 @@ async function mainLoop() {
         title: `${extName} [${isActiveMessage}]`,
       });
 
-      let doSequential = preferences.throttleDelay > 0;
+      let throttleDelay = preferences.throttleDelay;
 
       try {
         if (preferences.sendDrafts) {
           let locker = await new Locker();
           await SLTools.forAllDrafts(
             (message) => SendLater.possiblySendMessage(message, {}, locker),
-            doSequential,
-            undefined,
+            throttleDelay > 0,
+            // If we are doing a throttle delay then forAllDrafts needs to wait
+            // long enough for it to elapse. The "+ 10" we're adding to the
+            // throttleDelay is to avoid the race condition of the forAllDrafts
+            // timeout finishing just a wee bit before we finish throttling.
+            throttleDelay ? Math.max(5000, throttleDelay + 10) : undefined,
             preferences,
           );
         }
