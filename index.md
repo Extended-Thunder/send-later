@@ -1608,6 +1608,16 @@ Important notes:
 
 ## Troubleshooting
 
+<a name="local-drafts"></a>
+
+### Send Later causes Thunderbird to run slowly
+
+Because Thunderbird currently doesn't store enough metadata about messages, Send Later needs to read all of your drafts in full on a regular basis. This is relatively fast when you are keeping copies of your drafts synchronize to your local disk, but it can be very slow indeed, and impact Thunderbird's performance, when you have a large number of drafts and/or large drafts that aren't synchronized.
+
+Note that this also consumes network bandwidth on an ongoing basis, so this could cause the other things you're doing on your computer that use the network to be slower, or it could cost you money if your network traffic is metered.
+
+Therefore, if you notice any performance issues when Send Later is installed and enabled, the first thing you should try is open the properties window for each of your Drafts folders, click on the "Synchronization" tab, and ensure that "Select this folder for offline use" is enabled.
+
 ### Messages don't send or send multiple times
 
 #### Are you using the add-on correctly?
