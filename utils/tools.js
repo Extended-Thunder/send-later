@@ -246,6 +246,7 @@ var SLTools = {
     SLStatic.debug("Starting to wait for", hdr);
     let found = false;
     while (Date.now() - start < timeout) {
+      await messenger.SL3U.updateFolder(hdr.folder);
       let result = await SLTools.forAllDrafts((dHdr) => dHdr.id == hdr.id);
       if (result.some((v) => v)) {
         found = true;
@@ -294,7 +295,6 @@ var SLTools = {
       }
       let draftFolders = await SLTools.getDraftFolders(acct);
       for (let folder of draftFolders) {
-        await messenger.SL3U.updateFolder(folder);
         let page = await messenger.messages.list(folder);
         while (true) {
           if (sequential) {
