@@ -300,7 +300,8 @@ ICAL.helpers = {
     while (line.length) {
       var cp = line.codePointAt(pos);
       if (cp < 128) ++line_length;
-      else if (cp < 2048) line_length += 2; //needs 2 UTF-8 bytes
+      else if (cp < 2048)
+        line_length += 2; //needs 2 UTF-8 bytes
       else if (cp < 65536) line_length += 3;
       else line_length += 4; //cp is less than 1114112
       if (line_length < ICAL.foldLength + 1) pos += cp > 65535 ? 2 : 1;
