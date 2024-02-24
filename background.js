@@ -1677,7 +1677,7 @@ const SendLater = {
 
         // https://bugzilla.mozilla.org/show_bug.cgi?id=1855487
         //
-        // This is a workaround for TB a bug. If we're editing a draft in a
+        // This is a workaround for a TB bug. If we're editing a draft in a
         // subfolder of the main Drafts folder, then when we save the draft
         // above it sometimes gets saved to the server without the Send Later
         // headers as expected, but TB doesn't realize that, i.e., it's still
