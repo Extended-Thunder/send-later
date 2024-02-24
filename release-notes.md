@@ -37,15 +37,23 @@ This adds a new "View internal log" link to the main window pop-up which opens t
 
 The list of scheduled drafts in the main window pop-up now includes the folder each draft is located in.
 
+If Send Later discovers at delivery time that a message is too large for Thunderbird to deliver, i.e., Thunderbird is going to refuse to deliver the message if Send Later puts it in the Outbox and delivery of other messages will also be blocked, then Send Later now pops up an alert instead of putting the message into the Outbox.
+
 ### Improvements
 
 There are now column headers on the list of scheduled drafts in the main window pop-up.
 
 When there are no scheduled drafts we know say that explicitly in the main window pop-up rather than just leaving it empty.
 
-Translation updates
+Translation updates.
 
 ### Bug fixes
+
+When throttleDelay is in use, message that are deleted immediately after they are sent, before the throttle delay is imposed, rather than after the delay. Otherwise if there's another issue which causes the main loop to error out before the delay is finished, we could accidentally try sending the message again in the next main loop, which will cause a bogus warning about a corrupt drafts folder.
+
+When we fail to reschedule the next instance of a recurring message, the error message that we were popping up claimed that the original message wasn't deleted, but in fact we were deleting it. This is now fixed.
+
+The amount of time we wait for each message to finish being delivered in the main loop is now increased if needed to match throttleDelay when it is set, to make it less likely that the throttleDelay will cause us to error out of the main loop unnecessarily.
 
 ## Release 10.2.x
 
