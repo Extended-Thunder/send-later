@@ -295,6 +295,8 @@ var SLTools = {
       }
       let draftFolders = await SLTools.getDraftFolders(acct);
       for (let folder of draftFolders) {
+        if (preferences.autoUpdateDraftsFolders)
+          await messenger.SL3U.updateFolder(folder);
         let page = await messenger.messages.list(folder);
         while (true) {
           if (sequential) {
