@@ -399,6 +399,48 @@ var SLTools = {
     );
     return isScheduled.filter((x) => x).length;
   },
+
+  async prepNewMessageHeaders(content) {
+    let draftInfo = SLStatic.getHeader(content, "x-mozilla-draft-info");
+    if (draftInfo.includes("receipt=1")) {
+      let fromHeader = SLStatic.getHeader(content, "from");
+      content = SLStatic.replaceHeader(
+        content,
+        "Disposition-Notification-To",
+        fromHeader,
+        false,
+        true,
+      );
+    }
+
+    sanitize = await messenger.SL3U.getLegacyPref(
+      "mail.sanitize_date_header",
+      "bool",
+      "false",
+      true,
+    );
+
+    content = SLStatic.replaceHeader(
+      content,
+      "Date",
+      SLStatic.parseableDateTimeFormat(null, sanitize),
+      false,
+    );
+    content = SLStatic.replaceHeader(
+      content,
+      "X-Send-Later-[a-zA-Z0-9-]*",
+      null,
+      true,
+    );
+    content = SLStatic.replaceHeader(
+      content,
+      "X-Enigmail-Draft-Status",
+      null,
+      false,
+    );
+    content = SLStatic.replaceHeader(content, "Openpgp", null, false);
+    return content;
+  },
 };
 
 messenger.tabs.onRemoved.addListener((tabId) => {

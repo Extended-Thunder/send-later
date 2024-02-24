@@ -264,18 +264,26 @@ var SLStatic = {
       return `${H}:${M}:${S}`;
     },
 
-    tz(d) {
-      let offset = d.getTimezoneOffset() | 0;
+    tz(offset) {
       let sign = offset > 0 ? "-" : "+"; // yes, counterintuitive
       let absPad = (n) => Math.trunc(Math.abs(n)).toString().padStart(2, "0");
       return sign + absPad(offset / 60) + absPad(offset % 60);
     },
 
-    format(d) {
+    format(d, sanitize) {
+      let offset;
+      if (sanitize) {
+        d = new Date(d.toLocaleString("en-US", { timeZone: "UTC" }));
+        // Mimicking behavior in mailnews/mime/jsmime/jsmime.js in TB source.
+        d.setSeconds(0);
+        offset = 0;
+      } else {
+        offset = d.getTimezoneOffset() || 0;
+      }
       let day = this.dayOfWeek(d);
       let date = this.date(d);
       let time = this.time(d);
-      let tz = this.tz(d);
+      let tz = this.tz(offset);
       return `${day}, ${date} ${time} ${tz}`;
     },
   },
@@ -414,10 +422,10 @@ var SLStatic = {
     return new Date(Math.round(dt.getTime() / 60000) * 60000);
   },
 
-  parseableDateTimeFormat(date) {
+  parseableDateTimeFormat(date, sanitize) {
     SLStatic.trace(`parseableDateTimeFormat(${date})`);
     date = SLStatic.convertDate(date) || new Date();
-    return SLStatic.RFC5322.format(date);
+    return SLStatic.RFC5322.format(date, sanitize);
   },
 
   isoDateTimeFormat(date) {
@@ -1123,41 +1131,6 @@ var SLStatic = {
     } else {
       return `${hdrContent.trim()}\r\n${header}: ${value}\r\n\r\n${msgContent}`;
     }
-  },
-
-  prepNewMessageHeaders(content) {
-    let draftInfo = SLStatic.getHeader(content, "x-mozilla-draft-info");
-    if (draftInfo.includes("receipt=1")) {
-      let fromHeader = SLStatic.getHeader(content, "from");
-      content = SLStatic.replaceHeader(
-        content,
-        "Disposition-Notification-To",
-        fromHeader,
-        false,
-        true,
-      );
-    }
-
-    content = SLStatic.replaceHeader(
-      content,
-      "Date",
-      SLStatic.parseableDateTimeFormat(),
-      false,
-    );
-    content = SLStatic.replaceHeader(
-      content,
-      "X-Send-Later-[a-zA-Z0-9-]*",
-      null,
-      true,
-    );
-    content = SLStatic.replaceHeader(
-      content,
-      "X-Enigmail-Draft-Status",
-      null,
-      false,
-    );
-    content = SLStatic.replaceHeader(content, "Openpgp", null, false);
-    return content;
   },
 
   parseArgs(argstring) {

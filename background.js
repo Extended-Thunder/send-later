@@ -767,7 +767,7 @@ const SendLater = {
       SLStatic.error("Could not find outbox folder to deliver message");
       return false;
     }
-    let content = SLStatic.prepNewMessageHeaders(
+    let content = await SLTools.prepNewMessageHeaders(
       await messenger.messages.getRaw(msgHdr.id),
     );
 
