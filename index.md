@@ -724,10 +724,15 @@ Some things to keep in mind:
     configured, but it can be disabled in your account settings (look
     for a "Store draft messages in encrypted format" checkbox and
     uncheck it).
+9.  The Thunderbird account setting to mark messages as deleted, as opposed to
+    deleting them immediately or moving them to a Trash folder, is incompatible
+    with Send Later. This is due to a [deficiency in the Thunderbird add-on
+    API][mark].
 
 [icloud1]: https://www.macworld.com/article/2029570/silent-email-filtering-makes-icloud-an-unreliable-option.html
 [icloud2]: https://discussions.apple.com/thread/3153039
 [icloud3]: https://www.cultofmac.com/103703/apple-may-be-invisibly-filtering-your-outgoing-mobileme-email-exclusive/103703/)
+[mark]: https://bugzilla.mozilla.org/show_bug.cgi?id=1881929
 
 <a name="missing-column"></a>
 ### The Send Later column in the Drafts folder message list is missing
