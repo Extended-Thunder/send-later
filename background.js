@@ -324,6 +324,13 @@ const SendLater = {
       customHeaders.push({ name: "X-Send-Later-Args", value: options.args });
     }
 
+    // When Thunderbird saves an existing draft, it preserves its message ID
+    // (the RFC message ID, not the internal TB message ID). This causes
+    // problems, especially with Gmail. Setting Message-ID to an empty value
+    // here forces Thunderbird to generate a new Message ID when saving the
+    // message.
+    customHeaders.push({ name: "message-id", value: "" });
+
     let composeDetails = await messenger.compose.getComposeDetails(tabId);
     // // // Merge the new custom headers into the original headers
     // // // Note: this shouldn't be necessary, but it appears that
@@ -362,6 +369,18 @@ const SendLater = {
       await messenger.messages.update(msg.id, { read: true });
     }
 
+    // Some servers, most notably Gmail but perhaps others as well, don't
+    // refresh the content of the saved message properly when the new message
+    // is saved and the old one is deleted. This seems to be true even when
+    // we replace the Message-ID in the message as we do above. This also seems
+    // to be different from the bug which sometimes causes the local Thunderbird
+    // to display the old content for a message even though the server has the
+    // new content; in this case it appears that even the server doesn't show
+    // the new content, as evidenced by looking at the draft on mail.google.com.
+    // Compacting the Drafts folder after saving the message seems to solve
+    // this.
+    SendLater.addToDraftsToCompact(msg.folder);
+
     let targetFolder = await SLTools.getTargetSubfolder(preferences, msg);
     if (targetFolder) {
       await messenger.messages.move([msg.id], targetFolder);
@@ -370,7 +389,11 @@ const SendLater = {
       // error.
       msg.id = null;
       msg.folder = targetFolder;
+      SendLater.addToDraftsToCompact(msg.folder);
     }
+
+    await SendLater.compactDrafts(true);
+
     if (preferences.ignoredAccounts && preferences.ignoredAccounts.length) {
       let identity = await messenger.identities.get(composeDetails.identityId);
       let accountId = identity.accountId;
@@ -453,8 +476,8 @@ const SendLater = {
     }
   },
 
-  async compactDrafts() {
-    if (SendLater.prefCache.compactDrafts) {
+  async compactDrafts(force) {
+    if (force || SendLater.prefCache.compactDrafts) {
       for (let folder of SendLater.draftsToCompact) {
         SLStatic.debug("Compacting folder:", folder);
         await messenger.SL3U.compactFolder(folder);
