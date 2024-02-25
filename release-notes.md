@@ -23,6 +23,27 @@ through [LiberaPay][liberapay] or a one-time donation through
 [PayPal][paypal]. Donations to Extended Thunder are tax-deductible in
 the United States as permitted by law.
 
+## Release 10.4.x
+
+### New features
+
+None.
+
+### Improvements
+
+Send Later now obeys the `mail.sanitize_date_header` Thunderbird preference. If this preference is set to true then, as with messages sent directly without Send Later, the `Date` header inserted into scheduled messages upon delivery will be in the UTC timezone and will always have `00` for the number of seconds.
+
+There is a new `autoUpdateDraftsFolders` advanced preference which defaults to false. If you set it to true then whenever Send Later iterates through all Drafts folders it will tell Thunderbird to refresh them. You may need this if you schedule messages on one machine and have another machine deliver them; you probably won't need it otherwise. If you do enable this, you should configure Thunderbird to synchronize your Drafts folder locally because otherwise the performance impact could be noticeable, especially if you have a lot of drafts.
+
+### Bug fixes
+
+Many people reported that the Send Later scheduling window was disapppearing immediately after it popped up when they clicked on the Send Later button in a compose window. This appears to be due to a bug in Thunderbird. As a workaround, the scheduling window has been modified so that it is no longer "attached" to the button and is instead a separate window which does not exhibit this problem.
+
+We have continued to see consistency issues when editing scheduled drafts and rescheduling them, e.g., the changed content or schedule not being saved to the IMAP server, old versions of the draft continuing to appear in the Drafts folder, etc. These issues have been observed most frequently with Gmail but may also occur with other types of mail server. Two changes in Send Later have been introduced in this release to attempt to mitigate these issues:
+
+* Each time a draft is saved it is assigned a new messages ID (this was the behavior of the add-on before it was inadvertently removed by the previous maintainer).
+* We now compact the Drafts folder each time we save a scheduled draft.
+
 ## Release 10.3.x
 
 ### New features

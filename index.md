@@ -575,6 +575,14 @@ avoiding this feature unless you know what you're doing.
 
 The following functional preferences are available only in the configuration editor, not elsewhere in the preferences:
 
+- **autoUpdateDraftsFolders**, if true, makes Send Later tell
+  Thunderbird to refresh Drafts folders when iterating through them.
+  You may need this if you schedule messages on one machine and have
+  another machine deliver them; you probably won't need it otherwise.
+  If you do enable this, you should configure Thunderbird to
+  synchronize your Drafts folder locally because otherwise the
+  performance impact could be noticeable, especially if you have a lot
+  of drafts.
 - **compactDrafts** controls whether Send Later should compact any Drafts
   folders from which messages were deleted at the end of each scheduling run.
   The most common use case of this is if you use Send Later with a Gmail
@@ -1543,16 +1551,24 @@ server.
     in some other way.
 7.  On the server, use the advanced config editor to set `instanceUUID` to the
     value you copied from the client.
-
+8.  Make sure the Thunderbird account settings on the server are
+    configured to poll the server regularly for new messages, and make
+    sure your Drafts folder on the server is configured in its folder
+    properties to be checked for new messages.
+    
 After you follow these steps, the client will stop sending out scheduled
 messages, and the server will start sending them out instead, since
 you've tricked it into thinking it is the same "instance" of Send Later
 as the client.
 
-**Note**: If you use Send Later on multiple clients, e.g., on a desktop and a laptop,
-then you can make the value of `instanceUUID` the same on all of them so long
-as "Check every ... minutes" is set to 0 on all but one of the clients
-(i.e., the one that you keep running all the time).
+If you notice that the server isn't seeing new drafts saved into your
+Drafts folder on the client, then you may need to set the
+`autoUpdateDraftsFolders` preference to true as described
+[above](#server-side). Also, _make sure you don't have the Drafts
+folder open in a tab on the server,_ because Thunderbird may not
+update the folder if you're currently viewing it.
+
+**Note**: If you use Send Later on multiple clients, e.g., on a desktop and a laptop, then you can make the value of `instanceUUID` the same on all of them so long as "Check every ... minutes" is set to 0 or `sendDrafts` is set to false on all but one of the clients (i.e., the one that you keep running all the time).
 
 Remember that this only works if Thunderbird stays running on the server. Don't
 forget to keep an eye on it and restart it if it shuts down. If you want to be
