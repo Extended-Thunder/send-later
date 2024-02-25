@@ -221,6 +221,11 @@ var SLTools = {
     let subfolderName = preferences.subfolderName;
     if (!subfolderName) return;
     let folder = msg.folder;
+    // If the message is already in an appropriately named subfolder then
+    // don't go another level deep. Necessary starting in TB 115.2, because
+    // they changed TB so drafts loaded from a particular subfolder get saved
+    // back to that subfolder.
+    if (folder.path.endsWith("/" + subfolderName)) return;
     let found;
     let subfolder;
     for (subfolder of await messenger.folders.getSubFolders(folder)) {
