@@ -732,7 +732,7 @@
     "description": "Cancel an action (presented in popup dialogs)"
   },
   "selectNone": {
-    "message": "(keine)",
+    "message": "(なし)",
     "description": "Used in pop-up menus and other menus where the user needs to be able to explicitly chose none as an option."
   }
 }
