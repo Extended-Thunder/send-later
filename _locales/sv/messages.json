@@ -869,6 +869,10 @@
     "message": "Detta tillägg ändrar kommandot ”Skicka Senare” (Ctrl+Shift+Return) i meddelandefönstret, så att istället för att bara kopiera meddelandet till din Utkorg så att det skickas nästa gång du är online eller klickar på “Skicka Oskickade Meddelanden”, en dialogruta öppnas som låter dig ange när meddelandet ska skickas.\n\nDu kan ange en viss tid och datum, eller klicka på “15 minuter senare”, “30 minuter senare” eller “2 timmar senare” eller definiera anpassade genvägar. Du kan också schemalägga ett meddelande att skickas upprepade gånger med hjälp av enkla regler (varje N timmar, dagar etc.) eller anpassningsbara funktioner.\n\nSkicka Senare bygger på kraftfull datamängdstolkning som tillhandahålls av Andrew Plummers <a href=\"https://sugarjs.com/\">Sugar. s library</a>.\n\nFeedback och felrapporter är mycket välkomna och kan skickas via projektets <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">GitHub sida</a>.",
     "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   },
+  "DeveloperComments": {
+    "message": "Vänligen <a href='https://extended-thunder.github.io/send-later/#help'> maila mig</a> felrapporter, förslag, etc.",
+    "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
+  },
   "accelKeyLabel": {
     "message": "snabbtangent",
     "description": "Label for options window to identify accelerator shortcuts"

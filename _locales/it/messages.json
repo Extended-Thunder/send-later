@@ -925,6 +925,10 @@
     "message": "Questa estensione modifica il comando “Invia Dopo” (Ctrl+Shift+Invio) della finestra di composizione dei messaggi, così che, invece di una mera copia del messaggio nella cartella “Posta in uscita” (da cui viene inviato quando si ritorna online o quando si seleziona “Invia messaggi non inviati”), compaia una finestra in cui si può specificare in dettaglio quando il messaggio dovrà essere spedito.\n\nÈ possibile definire un orario e una data specifici o fare clic su: “Tra 15 minuti”, “Tra 30 minuti” o “Tra 2 ore”. Si possono anche definire delle scorciatoie personalizzate o pianificare un invio periodico di un messaggio usando delle semplici regole quali: ogni X ore, giorni, ecc… o creando funzioni personalizzate Javascript.\n\n<a href='https://extended-thunder.github.io/send-later/'>Guida utente</a> | <a href='https://github.com/Extended-Thunder/send-later/discussions'>Domande e Feedback</a> | <a href='https://github.com/Extended-Thunder/send-later/issues'>Segnalazione di bug</a>\n\n“Invia Dopo” (Send Later) si basa sulla libreria Sugar.js <a href='https://sugarjs.com/'> di Andrew Plummers potente strumento per analizzare l'input delle date</a>.",
     "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   },
+  "DeveloperComments": {
+    "message": "Ti prego di <a href='https://extended-thunder.github.io/send-later/#help'>inviarmi via email</a> segnalazioni di bug, consigli, ecc.",
+    "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
+  },
   "accelKeyLabel": {
     "message": "Tasto per scorciatoia",
     "description": "Label for options window to identify accelerator shortcuts"

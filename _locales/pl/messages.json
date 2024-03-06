@@ -853,6 +853,10 @@
     "message": "Ten dodatek zmienia polecenie \"Send Later\" (Ctrl+Shift+Return) w oknie nowej wiadomości tak, aby zamiast przenieść wiadomość do skrzynki nadawczej, aby była wysyłana przy następnym kliknięciu online lub wykonaniu \"Wyślij niewysłane wiadomości\", wyskakuje okno dialogowe, które pozwala określić, kiedy wiadomość zostanie wysłana.\n\nMożesz określić dokładny czas wysyłki, kliknąć \"15 minut później\", \"30 minut później\" lub \"2 godziny później\", lub zdefiniować niestandardowe skróty. Możesz również zaplanować wiadomość do wielokrotnego wysyłania przy użyciu prostych reguł (co N godzin, dni itp.) lub konfigurowalnych funkcji.\n\nSend Later opiera się na potężnej analizie danych wejściowych dostarczonych przez Andrew Plummer's <a href=\"https://sugarjs.com/\">Biblioteka Sugar.js</a>.\n\nOpinie i raporty o błędach są bardzo mile widziane i można je przesłać za pośrednictwem<a href=\"https://github.com/Extended-Thunder/send-later/discussions\">strony GitHub</a>.",
     "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   },
+  "DeveloperComments": {
+    "message": "Proszę <a href='https://extended-thunder.github.io/send-later/#help'>przyślij mi</a> informację o błędach, swoje sugestie, itp.",
+    "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
+  },
   "accelKeyLabel": {
     "message": "Przycisk przyspieszenia",
     "description": "Label for options window to identify accelerator shortcuts"

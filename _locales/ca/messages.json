@@ -813,6 +813,10 @@
     "message": "Aquest complement canvia la comanda \"Enviar més tard\" (Ctrl+Shift+Intro) a la següent finestra de composició. En comptes de copiar el missatge a la Safata de Sortida per a ésser enviat el proper cop que estiguis en línia o cliquis \"Enviar missatges no enviats\", apareixerà una finestra que et permetrà especificar quan s'enviarà el missatge.\n\nPots introduir una data específica, clicar \"15 minuts més tard\", \"30 minuts més tard\", \"2 hores més tard\" o definir una drecera. També pots programar l'enviament reiterat d'un missatge utilitzant normes senzilles (cada N hores, dies, etc.) o funcions personalitzades.\n\nSend Later es basa en un processament de la data d'entrada, proporcionat per la biblioteca d'Andrew Plummer <a href=\"https://sugarjs.com/\">Sugar.js</a>.",
     "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   },
+  "DeveloperComments": {
+    "message": "Si us plau <a href='https://extended-thunder.github.io/send-later/#help'>envia'm un correu</a> si trobes qualsevol problema, tens alguna suggerència, etc.",
+    "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
+  },
   "accelKeyLabel": {
     "message": "Drecera de tecla",
     "description": "Label for options window to identify accelerator shortcuts"

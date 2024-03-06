@@ -786,5 +786,9 @@
   "internalLogCopyLabel": {
     "message": "Kopier",
     "description": "Label for the buttom to copy the internal log to the clipboard"
+  },
+  "DeveloperComments": {
+    "message": "Vennligst <a href='https://extended-thunder.github.io/send-later/#help'> email meg </a> feilrapporter, forslag, etc.",
+    "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
   }
 }
