@@ -777,6 +777,10 @@
     "message": "Έλεγχος",
     "description": ""
   },
+  "DeveloperComments": {
+    "message": "Παρακαλώ <a href='https://extended-thunder.github.io/send-later/#help'> στείλτε μου μήνυμα μέσω του ηλεκτρονικού ταχυδρομείου </a> αναφορές σφαλμάτων, εισηγήσεις, κλπ.",
+    "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
+  },
   "cancel": {
     "message": "Ακύρωση",
     "description": "Cancel an action (presented in popup dialogs)"
@@ -800,9 +804,5 @@
   "internalLogCopyLabel": {
     "message": "Αντιγραφή",
     "description": "Label for the buttom to copy the internal log to the clipboard"
-  },
-  "DeveloperComments": {
-    "message": "Παρακαλώ <a href='https://extended-thunder.github.io/send-later/#help'> στείλτε μου μήνυμα μέσω του ηλεκτρονικού ταχυδρομείου </a> αναφορές σφαλμάτων, εισηγήσεις, κλπ.",
-    "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
   }
 }
