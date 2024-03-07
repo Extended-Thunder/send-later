@@ -727,6 +727,10 @@
     "message": "検証中です",
     "description": ""
   },
+  "DeveloperComments": {
+    "message": "バグ報告や提案は<a href='https://extended-thunder.github.io/send-later/#help'>こちらまで</a>ご連絡ください。",
+    "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
+  },
   "cancel": {
     "message": "キャンセル",
     "description": "Cancel an action (presented in popup dialogs)"
@@ -734,9 +738,5 @@
   "selectNone": {
     "message": "(なし)",
     "description": "Used in pop-up menus and other menus where the user needs to be able to explicitly chose none as an option."
-  },
-  "DeveloperComments": {
-    "message": "バグ報告や提案は<a href='https://extended-thunder.github.io/send-later/#help'>こちらまで</a>ご連絡ください。",
-    "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
   }
 }

@@ -795,6 +795,10 @@
     "message": "ПРОВЕРКА",
     "description": ""
   },
+  "DeveloperComments": {
+    "message": "Моля, <a href='https://extended-thunder.github.io/send-later/#help'>пишете ми</a> за възникнали грешки, предложения и др.",
+    "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
+  },
   "cancel": {
     "message": "Отказ",
     "description": "Cancel an action (presented in popup dialogs)"
@@ -814,9 +818,5 @@
   "folder": {
     "message": "Папка",
     "description": "Column header in message list in main window pop-up"
-  },
-  "DeveloperComments": {
-    "message": "Моля, <a href='https://extended-thunder.github.io/send-later/#help'>пишете ми</a> за възникнали грешки, предложения и др.",
-    "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
   }
 }

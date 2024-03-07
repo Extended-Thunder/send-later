@@ -775,6 +775,10 @@
     "message": "Probíhá kontrola",
     "description": ""
   },
+  "DeveloperComments": {
+    "message": "Prosím <a href='https://extended-thunder.github.io/send-later/#help'>pošlete mi</a> hlášení o chybách, návrhy na vylepšení atd.",
+    "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
+  },
   "cancel": {
     "message": "Zrušit",
     "description": "Cancel an action (presented in popup dialogs)"
@@ -798,9 +802,5 @@
   "internalLogCopyLabel": {
     "message": "Kopírovat",
     "description": "Label for the buttom to copy the internal log to the clipboard"
-  },
-  "DeveloperComments": {
-    "message": "Prosím <a href='https://extended-thunder.github.io/send-later/#help'>pošlete mi</a> hlášení o chybách, návrhy na vylepšení atd.",
-    "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
   }
 }

@@ -160,7 +160,7 @@
     "description": "Displayed in place of send at time before user makes selections"
   },
   "sendAtLabel": {
-    "message": "Invia alle",
+    "message": "Invia",
     "description": "This is used in the scheduling pop-up at the beginning of the dynamic label for the button the user clicks to send a scheduled message at the specified date/time. It is followed in the button by a formatted date/time. For example, in English: 'Send at Tue, Aug 29, 2023, 11:26 AM'. Also used in the main window pop-up as the header of the column containing message send times."
   },
   "sendBtwnLabel": {
@@ -356,7 +356,7 @@
     "description": "Heading for the column in the preferences where the user can specify the key bindings to activate shortcut buttons"
   },
   "validKeysTooltip": {
-    "message": "Scorciatoie valide (sensibili a maiuscole e minuscole!) sono: A-Z, 0-9, F1-F12, Comma, Period, Home, End, PageUp, PageDown, Space, Insert, Delete, Up, Down, Left, Right",
+    "message": "Scorciatoie valide (sensibili a maiuscole e minuscole!) sono: A-Z, 0-9, F1-F12. Vi sono inoltre dei tasti che debbono essere inseriti con il loro nome INGLESE e cioè: Comma [Virgola], Period [Punto], Home [Inizio], End [Fine], PageUp [PagSu], PageDown [PagGiù], Space [Barra spaziatrice], Insert [Ins], Delete [Canc], Up [FrecciaSu], Down [FrecciaGiù], Left [FrecciaSx], Right [FrecciaDx]",
     "description": "The tooltip that pops up to tell the user what the valid keys to bind the quick option shortcuts to. Do not translate the keys, just translate the 'Valid shortcut keys (case-sensitive!) are' part, because the keys have to be in English in the actual shortcut."
   },
   "showsendlaterprogress.caption": {
