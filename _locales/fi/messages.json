@@ -779,6 +779,10 @@
     "message": "TARKISTAA",
     "description": ""
   },
+  "DeveloperComments": {
+    "message": "Ole hyvä ja <a href='https://extended-thunder.github.io/send-later/#help'>lähetä minulle sähköpostia</a> virheistä, ehdotuksista jne.",
+    "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
+  },
   "cancel": {
     "message": "Peruuta",
     "description": "Cancel an action (presented in popup dialogs)"
@@ -802,9 +806,5 @@
   "internalLogCopyLabel": {
     "message": "Kopioi",
     "description": "Label for the buttom to copy the internal log to the clipboard"
-  },
-  "DeveloperComments": {
-    "message": "Ole hyvä ja <a href='https://extended-thunder.github.io/send-later/#help'>lähetä minulle sähköpostia</a> virheistä, ehdotuksista jne.",
-    "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
   }
 }

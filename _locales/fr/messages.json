@@ -926,7 +926,7 @@
     "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   },
   "DeveloperComments": {
-    "message": "N'hésitez pas à <a href='https://extended-thunder.github.io/send-later/#help'>m'envoyer</a> des rapports de bug, suggestions, etc.",
+    "message": "N'hésitez pas à <a href='https://extended-thunder.github.io/send-later/#help'>envoyer</a> des rapports d'anomalies ou des suggestions !",
     "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
   },
   "accelKeyLabel": {
