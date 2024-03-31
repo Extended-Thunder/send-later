@@ -37,7 +37,7 @@ There is a new `autoUpdateDraftsFolders` advanced preference which defaults to f
 
 ### Bug fixes
 
-Many people reported that the Send Later scheduling window was disapppearing immediately after it popped up when they clicked on the Send Later button in a compose window. This appears to be due to a bug in Thunderbird. As a workaround, the scheduling window has been modified so that it is no longer "attached" to the button and is instead a separate window which does not exhibit this problem.
+Many people reported that the Send Later scheduling window was disappearing immediately after it popped up when they clicked on the Send Later button in a compose window. This appears to be due to a bug in Thunderbird. As a workaround, the scheduling window has been modified so that it is no longer "attached" to the button and is instead a separate window which does not exhibit this problem.
 
 We have continued to see consistency issues when editing scheduled drafts and rescheduling them, e.g., the changed content or schedule not being saved to the IMAP server, old versions of the draft continuing to appear in the Drafts folder, etc. These issues have been observed most frequently with Gmail but may also occur with other types of mail server. Two changes in Send Later have been introduced in this release to attempt to mitigate these issues:
 
