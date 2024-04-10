@@ -1916,7 +1916,10 @@ want you to use.
 7.  Paste the messages into an email message to us, or if they look really
     large, maybe save them into Google Drive or something and share a link with
     us.
-
+8.  Change the "Console log level" in the Send Later Preferences back to "Info"
+    to minimize unnecessary Send Later logging when you're not actively
+    troubleshooting, since it impacts performance and takes up memory.
+    
 ## Helping to improve the add-on
 
 <a name="beta-channel"></a>
