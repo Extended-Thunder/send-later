@@ -1908,14 +1908,15 @@ want you to use.
     then on the "Send Later Preferences" link.
 2.  Change "Console log level" to "All" (or whatever other value I tell you to
     change it to).
-3.  In the main Thunderbird window, type `Ctrl-Shift-J` to open the error console.
+3.  In the main Thunderbird window, type `Ctrl-Shift-J` to open the error
+    console.
 4.  Click the little trash can icon in the upper corner to clear the window.
 5.  Do whatever task I told you to do with debug logging enabled.
-6.  Right click on one of the messages in the error console window and click
-    "Select All".
-7.  Paste the messages into an email message to us, or if they look really
-    large, maybe save them into Google Drive or something and share a link with
-    us.
+6.  Right click on one of the messages in the error console window and select
+    "Save all Messages to File".
+7.  Attach the saved file to an email message to us, or if it's larger than a
+    few hundred kilobytes, upload it to Google Drive or something and share a
+    link with us.
 8.  Change the "Console log level" in the Send Later Preferences back to "Info"
     to minimize unnecessary Send Later logging when you're not actively
     troubleshooting, since it impacts performance and takes up memory.
