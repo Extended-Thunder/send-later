@@ -758,11 +758,26 @@ const SendLater = {
     // Initiate send from draft message
     SLStatic.info(`Sending message ${originalMsgId}.`);
 
-    let localAccount = (await messenger.accounts.list(false)).find(
+    // "Why do we have to iterate through local accounts?" you ask. "Isn't
+    // there just one Local Folders account?" Well, sure, that's normally the
+    // case, but it's apparently possible to have multiple local accounts. See,
+    // for example, https://addons.thunderbird.net/thunderbird/addon/
+    // localfolder/. So we need to find the local account that has the Outbox
+    // in it.
+    let outboxFolder;
+    let localAccounts = (await messenger.accounts.list(false)).filter(
       (account) => account.type == "none",
     );
-    let localFolders = await messenger.folders.getSubFolders(localAccount);
-    let outboxFolder = localFolders.find((f) => f.type == "outbox");
+    for (let localAccount of localAccounts) {
+      let localFolders = await messenger.folders.getSubFolders(localAccount);
+      for (let localFolder of localFolders) {
+        if (localFolder.type == "outbox") {
+          outboxFolder = localFolder;
+          break;
+        }
+      }
+      if (outboxFolder) break;
+    }
     if (!outboxFolder) {
       SLStatic.error("Could not find outbox folder to deliver message");
       return false;
