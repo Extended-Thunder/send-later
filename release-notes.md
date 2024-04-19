@@ -35,7 +35,15 @@ Send Later now obeys the `mail.sanitize_date_header` Thunderbird preference. If 
 
 There is a new `autoUpdateDraftsFolders` advanced preference which defaults to false. If you set it to true then whenever Send Later iterates through all Drafts folders it will tell Thunderbird to refresh them. You may need this if you schedule messages on one machine and have another machine deliver them; you probably won't need it otherwise. If you do enable this, you should configure Thunderbird to synchronize your Drafts folder locally because otherwise the performance impact could be noticeable, especially if you have a lot of drafts.
 
+Translation updates.
+
 ### Bug fixes
+
+## Release 10.4.1
+
+Send Later previously assumed that there could be only one "local" account in a Thunderbird profile, but it turns out that's not the case. Therefore, when we're looking for the user's outbox we need to iterate through all available local accounts rather than just assuming there's one. Otherwise Send Later might not be able to deliver scheduled messages.
+
+## Release 10.4.0
 
 Many people reported that the Send Later scheduling window was disappearing immediately after it popped up when they clicked on the Send Later button in a compose window. This appears to be due to a bug in Thunderbird. As a workaround, the scheduling window has been modified so that it is no longer "attached" to the button and is instead a separate window which does not exhibit this problem.
 
