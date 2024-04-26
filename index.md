@@ -1639,6 +1639,32 @@ Note that this also consumes network bandwidth on an ongoing basis, so this coul
 
 Therefore, if you notice any performance issues when Send Later is installed and enabled, the first thing you should try is open the properties window for each of your Drafts folders, click on the "Synchronization" tab, and ensure that "Select this folder for offline use" is enabled.
 
+<a name="bad-unsent"></a>
+
+### Repeated delivery errors for bad messages stuck in your Outbox
+
+As noted above, Send Later works by moving messages from your Drafts
+folder to your Outbox folder (under Local Folders) at delivery time,
+and then telling Thunderbird to finish delivering the messages in your
+Outbox. Sometimes, a message will get "stuck" in your Outbox, meaning
+that Thunderbird is unable to deliver it from there, e.g., because
+there is a syntax error in the addressee list. There are two
+indications that this is happening:
+
+1. Every time Send Later delivers a message _after_ the stuck one,
+   Thunderbird will try again to deliver the message in your Outbox
+   and will pop up a new delivery failure error about it.
+
+2. When you restart Thunderbird it will ask if you want to deliver the
+   unsent messages in your Outbox, unless you've told Thunderbird to
+   disable that prompt.
+
+The fix for this is simple: locate the errant message in your Outbox
+(again, your Outbox folder is normally under Local Folders) and either
+delete it if you don't want it to be sent, or move it back into your
+Drafts folder, edit it there to fix whatever was wrong with it, and
+resend it.
+
 ### Messages don't send or send multiple times
 
 #### Are you using the add-on correctly?
