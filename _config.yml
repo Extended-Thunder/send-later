@@ -26,6 +26,7 @@ exclude:
   - next/README.md
   - next/README.html
   - next/blog.kamens.us
+  - next/next/
   - next/vendor
   - '.#*'
   - '*~'
