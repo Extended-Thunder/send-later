@@ -4,7 +4,7 @@ layout: default
 <div class="beta-only" style="font-size: 150%" markdown="1" hidden="true">
 
 **This user guide is for the current beta pre-release of Send later. Go
-[here]({{"/" |relative_url}}..) for the user guide of the current production release.**
+[here](..) for the user guide of the current production release.**
 
 </div>
 
