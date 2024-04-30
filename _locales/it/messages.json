@@ -12,7 +12,7 @@
     "description": ""
   },
   "altBindingPrefLabel": {
-    "message": "Associa a Alt-Maiusc-Invio anziché a Ctrl-Maiusc-Invio",
+    "message": "Associa ad Alt-Maiusc-Invio anziché a Ctrl-Maiusc-Invio",
     "description": ""
   },
   "blockLateMessagesPrefLabel1": {
@@ -24,7 +24,7 @@
     "description": ""
   },
   "blockLateMessagesPrefTooltip": {
-    "message": "Non spedire quei messaggi ad invio programmato che hanno subito ritardi oltre l'orario previsto (per es. perché Thunderbird non era in esecuzione in quel momento).",
+    "message": "Non spedire quei messaggi a invio programmato che hanno subito ritardi oltre l'orario previsto (per es. perché Thunderbird non era in esecuzione in quel momento).",
     "description": ""
   },
   "checkTimePrefLabel1": {
@@ -36,7 +36,7 @@
     "description": "In the preferences window, for the 'Check ever # minutes' preference, where # is a text field for the user to enter a number, this label comes _after_ the #. In some languages it may have the same translation as other strings, but in other languages it's different e.g. because the 'every' part needs to be in this string instead of in checkTimePrefLabel1."
   },
   "checkTimePrefTooltip": {
-    "message": "Intervallo di tempo (in minuti) che intercorre fra un controllo e il successivo atti a verificare se nella cartella “Bozze” siano presenti messaggi che hanno raggiunto l'orario di spedizione. Questo valore deve essere aumentato se le bozze non vengono spedite all'orario prestabilito o se il numero dei messaggi in coda (indicato nella barra di stato) non corrisponde a quello di tutti i messaggi di cui è stato programmato l'invio.",
+    "message": "Intervallo di tempo (in minuti) che intercorre fra un controllo e il successivo atto a verificare se vi siano dei messaggi che hanno raggiunto l'orario di spedizione. Bisogna aumentare questo valore se le bozze non vengono spedite all'orario prestabilito o se il numero dei messaggi in coda (indicato nella barra di stato) non corrisponde a quello di tutti i messaggi di cui è stato programmato l'invio.",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -52,7 +52,7 @@
     "description": ""
   },
   "enforceRestrictionsPrefTooltip": {
-    "message": "Se un messaggio, che deve essere recapitato, si trova al di fuori delle restrizioni di giorno o di orario impostate (per es. perché Thunderbird non era in esecuzione nell'orario di invio programmato), ne viene ritardato l'invio finché non siano soddisfatte le restrizioni di giorno e di orario.",
+    "message": "Se un messaggio, che deve essere recapitato in un giorno o in un orario in cui sono previste delle restrizioni (per es. perché Thunderbird non è in esecuzione in quel giorno o nell'orario di invio programmato), ne viene ritardato l'invio finché non siano soddisfatte le condizioni di invio (giorno e/o orario).",
     "description": ""
   },
   "generalOptionsTitle": {
@@ -64,7 +64,7 @@
     "description": "The title of the 'Shortcuts' section on the options page"
   },
   "logConsoleLevelLabel": {
-    "message": "Livello di registro della console",
+    "message": "Livello di log della console",
     "description": ""
   },
   "logLevelAll": {
@@ -96,7 +96,7 @@
     "description": ""
   },
   "markReadPrefLabel": {
-    "message": "Segna le bozze programmate per l'invio come “lette”",
+    "message": "Segna come “lette” le bozze programmate per l'invio",
     "description": ""
   },
   "quickOptionsLabel1Label": {
@@ -140,7 +140,7 @@
     "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurOnceLabel": {
-    "message": "Una sola volta",
+    "message": "Un'unica volta",
     "description": ""
   },
   "recurWeeklyLabel": {
@@ -180,7 +180,7 @@
     "description": ""
   },
   "whitelistPrefTooltip": {
-    "message": "Se è abilitato “$1” o '“Invia” ritarda i messaggi' e si specifica il nome di una rubrica esistente, qualsiasi messaggio (i cui destinatari siano tutti nella rubrica), ignora $2 quando si preme il pulsante “Invia” o quando si invoca tale comando da menu.",
+    "message": "Se “$1” è abilitato o se “Invia” è programmato per ritardare l'invio dei messaggi e qui si specifica il nome di una rubrica esistente, qualsiasi messaggio (i cui destinatari siano tutti in tale rubrica), ignora “$2” quando si preme il pulsante “Invia” o quando si invoca tale comando da menu.",
     "description": "$1 is replaced with the contents of sendButtonPrefLabel, and $2 is replaced with extensionName."
   },
   "whitelistPrefLabel": {
@@ -228,7 +228,7 @@
     "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
   },
   "sendNowLabel": {
-    "message": "Invia adesso",
+    "message": "Invia ora",
     "description": ""
   },
   "sendNowTooltip": {
@@ -248,7 +248,7 @@
     "description": ""
   },
   "showColumnPrefLabel": {
-    "message": "Mostra colonna “Invia Dopo”",
+    "message": "Mostra la colonna “Invia Dopo”",
     "description": ""
   },
   "showColumnPrefTooltip": {
@@ -256,11 +256,11 @@
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "Mostra l'intestazione di “Invia Dopo”",
+    "message": "Mostra l'intestazione “Invia Dopo”",
     "description": ""
   },
   "showHeaderPrefTooltip": {
-    "message": "Guardando l'intestazione di un messaggio visualizza la scritta “X-Send-Later-At”, cioè l'orario in cui è stata pianificata la spedizione della bozza del messaggio.",
+    "message": "Se questa opzione è attiva, visualizzando l'intestazione di un messaggio, compare anche il campo “X-Send-Later-At”, che contiene i dati relativi all'orario programmato per la spedizione della bozza",
     "description": ""
   },
   "showToolbarTextLabel": {
@@ -280,11 +280,11 @@
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
-    "message": "Spostalo in “Posta in uscita”",
+    "message": "Sposta in “Posta in uscita”",
     "description": ""
   },
   "sendlater.prompt.sendlater.tooltip": {
-    "message": "Anziché inviarlo automaticamente a un orario specifico, sposta il messaggio nella cartella “Posta in uscita” per inviarlo quando verranno spediti anche gli altri messaggi non ancora inviati.",
+    "message": "Anziché programmarne l'invio a un orario specifico, sposta il messaggio nella cartella “Posta in uscita” per inviarlo quando verranno spediti anche gli altri messaggi non ancora inviati.",
     "description": ""
   },
   "sendlater.prompt.sendlater.accesskey": {
@@ -364,7 +364,7 @@
     "description": ""
   },
   "composewindowhotkeys.caption": {
-    "message": "Abilita nella finestra di composizione le associazioni di tasti preimpostate",
+    "message": "Abilita nella finestra di composizione dei messaggi le associazioni di tasti preimpostate",
     "description": ""
   },
   "releasenotes.value": {
@@ -424,7 +424,7 @@
     "description": ""
   },
   "functionnametip": {
-    "message": "Inserisci o modifica il nome alfanumerico della funzione. Se si modifica il nome di una funzione esistente, al salvataggio verrà richiesto se si vuol rinominare la funzione esistente o se si vuole crearne una nuova avente nome modificato.",
+    "message": "Inserisce o modifica il nome alfanumerico della funzione. Se si modifica il nome di una funzione esistente, al salvataggio verrà richiesto se si vuol rinominare la funzione esistente o se si vuole crearne una nuova avente nome modificato.",
     "description": ""
   },
   "functionnameplaceholder": {
@@ -432,7 +432,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "Inserisci qui il codice sorgente per la tua funzione. Leggi la funzione di esempio “ReadMeFirst” per dettagli su come scrivere il tuo codice.",
+    "message": "Inserire qui il codice-sorgente della funzione da voi creata. Leggere il file “ReadMeFirst” (relativo a una funzione di esempio) per ottenere dettagli riguardanti che cosa il codice dovrebbe fare.",
     "description": ""
   },
   "codeplaceholder": {
@@ -444,7 +444,7 @@
     "description": ""
   },
   "helptexttip": {
-    "message": "Il testo qui inserito viene visualizzato quando l'utente si muove con il mouse sopra il nome della funzione nel menu a pop-up. Serve per spiegare che cosa fa la funzione e quali parametri accetta.",
+    "message": "Il testo inserito qui verrà visualizzato quando l'utente muove il mouse sopra il nome della funzione nel menu a pop-up. Ciò serve per spiegare che cosa fa la funzione e quali parametri accetta.",
     "description": ""
   },
   "helptextplaceholder": {
@@ -456,7 +456,7 @@
     "description": ""
   },
   "run.accesskey": {
-    "message": "F",
+    "message": "E",
     "description": "Accesskey for run.label. See https://github.com/Extended-Thunder/send-later/blob/main/TRANSLATING.md#accesskey-strings."
   },
   "inputtime": {
@@ -476,11 +476,11 @@
     "description": ""
   },
   "inputargstip": {
-    "message": "I parametri in ingresso devono essere specificati in formato JavaScript. Per es. le stringhe devono essere comprese fra doppie virgolette.",
+    "message": "I parametri devono essere specificati in formato JavaScript. Per es. le stringhe devono essere comprese fra doppie virgolette.",
     "description": ""
   },
   "inputargsplaceholder": {
-    "message": "Eventuali parametri separati da virgola da passare per effettuare dei test",
+    "message": "parametri separati da virgola (se presenti) da passare per effettuare dei test",
     "description": ""
   },
   "output": {
@@ -528,22 +528,22 @@
     "description": ""
   },
   "CopyUnsentError": {
-    "message": "“Invia Dopo”: errore di copia del messaggio a invio programmato presente nella cartella “Posta in uscita” per la sua spedizione (codice $1). Infatti “Invia Dopo” è stato disattivato! Vedi https://extended-thunder.github.io/send-later/#outbox-copy-failure.",
+    "message": "“Invia Dopo”: errore di copia del messaggio a invio programmato nella cartella “Posta in uscita” per la sua spedizione (codice $1). Infatti “Invia Dopo” è stato disattivato! Vedi https://extended-thunder.github.io/send-later/#outbox-copy-failure.",
     "description": ""
   },
   "CopyRecurError": {
-    "message": "“Invia Dopo”: errore di copia del messaggio ad invio periodico nella cartella “Bozze” (codice $1). Infatti “Invia Dopo” è stato disattivato! Vedi https://extended-thunder.github.io/send-later/#drafts-copy-failure.",
+    "message": "“Invia Dopo”: errore di copia del messaggio a invio periodico nella cartella “Bozze” (codice $1). Infatti “Invia Dopo” è stato disattivato! Vedi https://extended-thunder.github.io/send-later/#drafts-copy-failure.",
     "description": ""
   },
   "CorruptFolderError": {
-    "message": "Invia Dopo: La cartella $1 potrebbe essere danneggiata. Per cortesia apri le sue proprietà e seleziona la voce Ripara. Vedi https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
+    "message": "“Invia Dopo”: la cartella $1 potrebbe essere danneggiata. Visualizzare le proprietà della cartella e selezionare la voce Ripara. Vedi https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
     "description": ""
   },
   "CorruptFolderErrorDetails": {
     "message": "In particolare, sembra che il messaggio “$1” $2 sia stato già inviato, ma che sia tuttora presente nella cartella Bozze. Ciò può (o può non essere) spia di un problema più serio. Si può semplicemente provare ad eliminare il messaggio in questione o a riprogrammare la sua spedizione.\n\n“Invia Dopo” salterà questo messaggio, ma  una volta chiusa questa finestra di avvertimento, continuerà a elaborare le altre bozze di cui è stata programmata la spedizione."
   },
   "MessageResendError": {
-    "message": "Invia Dopo: Tentativo di inviare nuovamente un massaggio già inviato?! La tua cartella Posta in uscita o Bozze $1 è probabilmente danneggiata. Per cortesia riparale come descritto in https://extended-thunder.github.io/send-later/#corrupt-outbox.",
+    "message": "Invia Dopo: Tentativo di inviare nuovamente un massaggio già inviato?! La tua cartella Posta in uscita o Bozze $1 è probabilmente danneggiata. Si consiglia di ripararle come descritto in https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "single_minute": {
@@ -691,15 +691,15 @@
     "description": "Negative answer for a yes/no question presented in a confirmation dialog"
   },
   "OutboxConfirmMessage": {
-    "message": "Facendo clic, “$1” sposta immediatamente il messaggio nella cartella “Posta in uscita”. NON VIENE però programmato l'invio del messaggio ad un orario specifico. A tale scopo, bisogna fare clic sul pulsante “$2” dopo aver inserito un orario valido per la spedizione. Si è sicuri di voler spostare il messaggio in “Posta in uscita” adesso?",
+    "message": "Facendo clic, $1 trasferisce immediatamente il messaggio nella cartella “Posta in uscita”. NON VIENE però programmato l'invio del messaggio ad un orario specifico. A tale scopo, bisogna fare clic sul pulsante “$2” dopo aver inserito un orario valido per la spedizione. Si è sicuri di voler spostare il messaggio in “Posta in uscita” adesso?",
     "description": "$1 is replaced with your translation of 'Put in Outbox' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
-    "message": "Facendo clic su “$1” il messaggio viene inviato immediatamente. NON VIENE quindi programmata una spedizione ad un orario specifico. A tale scopo, bisogna fare clic sul pulsante “$2” dopo aver inserito un orario valido per la spedizione. Si è sicuri di voler inviare il messaggio adesso?",
+    "message": "Facendo clic su “$1” il messaggio viene inviato immediatamente. NON VIENE quindi programmata una spedizione a un orario specifico. A tale scopo, bisogna fare clic sul pulsante “$2” dopo aver inserito un orario valido per la spedizione. Si è sicuri di voler inviare il messaggio adesso?",
     "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "PopupChangedConfirmMessage": {
-    "message": "Sembra che sia stato fatto clic su “$1” dopo aver modificato alcuni valori della finestra di programmazione.. Si è sicuri che ciò sia stato fatto intenzionalmente al posto del clic sul pulsante “$2”?",
+    "message": "Sembra che sia stato fatto clic su “$1” dopo aver modificato alcuni valori della finestra di programmazione.. Si è sicuri di averlo fatto intenzionalmente invece di fare clic sul pulsante “$2”?",
     "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'."
   },
   "ConfirmAgain": {
@@ -766,15 +766,15 @@
     "description": ""
   },
   "TimeMismatchConfirmBody": {
-    "message": "L'orario di invio impostato, $1, non rientra nelle restrizioni orarie specificate. Clicca Annulla per modificare il tuo orario di invio, oppure OK per correggerlo automaticamente a $2.",
+    "message": "L'orario di spedizione impostato $1, non rientra nelle restrizioni orarie specificate. Fare clic su Annulla per modificare l'orario di invio o le eventuali restrizioni, oppure OK per correggerlo automaticamente in $2.",
     "description": ""
   },
   "endTimeWarningTitle": {
-    "message": "Restrizione oraria per il messaggio non valida",
+    "message": "Restrizione oraria del messaggio non valida",
     "description": ""
   },
   "endTimeWarningBody": {
-    "message": "Quando si specifica una restrizione oraria per un messaggio, l'orario di termine non può precedere l'orario di inizio. Correggere la restrizione oraria impostata o disabilitarla.",
+    "message": "Quando si specifica una restrizione oraria per un messaggio, l'orario di fine non può precedere l'orario di inizio. Correggere la restrizione oraria impostata o disabilitarla.",
     "description": ""
   },
   "missingDaysWarningTitle": {
@@ -786,7 +786,7 @@
     "description": ""
   },
   "invalidUntilWarningTitle": {
-    "message": "Restrizione di tipo “Fino a” non valida",
+    "message": "Restrizione del tipo “Fino a” non valida",
     "description": ""
   },
   "invalidUntilWarning_inPast": {
@@ -794,7 +794,7 @@
     "description": ""
   },
   "invalidUntilWarning_tooSoon": {
-    "message": "Il limite di periodicità temporale per l'invio è posto antecedentemente al primo invio programmato.",
+    "message": "Il limite di periodicità temporale per l'invio è antecedente al primo invio programmato.",
     "description": ""
   },
   "InvalidArgsTitle": {
@@ -806,7 +806,7 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "Il messaggio nella cartella Bozze $2 avente Oggetto “$1” era stato programmato per essere spedito più di $3 minuti fa. Pertanto la sua spedizione è stata bloccata. Bisogna modificare la bozza ed inviarla “a mano” oppure rirogrammare il suo invio. Si può anche disattivare la preferenza “Non inviare messaggi più di # minuti dopo” per evitare di bloccare la spedizione di eventuali messaggi in ritardo.",
+    "message": "Il messaggio nella cartella Bozze $2 avente Oggetto “$1” era stato programmato per essere spedito più di $3 minuti fa. Pertanto la sua spedizione è stata bloccata. Bisogna modificare la bozza ed inviarla “a mano” oppure riprogrammare il suo invio. Si può anche disattivare la preferenza “Non inviare messaggi più di # minuti dopo” per evitare di bloccare la spedizione di eventuali messaggi in ritardo.",
     "description": ""
   },
   "BlockedLateMessage2": {
@@ -826,11 +826,11 @@
     "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "BusinessHoursHelp": {
-    "message": "Se ci si trova in orario di lavoro o all'inizio del giorno lavorativo successivo, spedisce subito il messaggio. È possibile modificare quali sono i giorni lavorativi (predefiniti: Lun-Ven) passando un array (numerico) di giorni lavorativi come primo argomento in cui 0 è la Domenica e 6 è il il Sabato. È anche possibile modificare l'orario di inizio o di fine dei giorni lavorativi (valori predefiniti: 8:30-17:30) passando come secondo o terzo argomento un array di coppie di valori [ora, minuto]. Va specificato “null” per quegli argomenti precedenti che non si vogliono modificare. Per es.: “null, [9, 0], [17, 0]” modifica l'orario lavorativo (9:00-17:00) lasciando inalterati i giorni lavorativi.",
+    "message": "Se ci si trova in orario di lavoro o all'inizio del giorno lavorativo successivo, spedisce subito il messaggio. È possibile modificare quali sono i giorni lavorativi (predefiniti: Lun-Ven) passando un array (numerico) di giorni lavorativi come primo parametro e in cui il valore 0 è la Domenica e 6 è il il Sabato. È anche possibile modificare l'orario di inizio o di fine dei giorni lavorativi (valori predefiniti: 8:30-17:30) passando come secondo o terzo parametro un array di coppie di valori [ora, minuto]. Va specificato “null” per i parametri che non si vogliono modificare. Per es.: “null, [9, 0], [17, 0]” modifica l'orario lavorativo (9:00-17:00) lasciando inalterati i giorni lavorativi.",
     "description": "This is the help message for the \"BusinessHours\" dynamic scheduling function. The function name should not be translated."
   },
   "DaysInARowCode": {
-    "message": "// Invia subito il primo messaggio; gli altri uno al giorno\n// nei giorni successivi\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev);\n// Copia il parametro “Date” così da non modificarlo.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n//  ***\n//  Nel caso in cui Thunderbird fosse disattivo nel momento\n//  programmato per la spedizione, non cercare di inviare nel passato! \n//  ***\n\nif (! args)\n// Come scelta predefinita, il messaggio viene inviato tre volte:\n    args = [3];\nnextargs = [args[0] - 1];\n// Ritenta l'invio se non sono stati ancora effettuati\n// abbastanza tentativi:\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
+    "message": "// Invia subito il primo messaggio; gli altri uno al giorno\n// nei giorni successivi\nif (! prev)\n    next = new Date();\nelse {\n    var now = new Date();\n    next = new Date(prev);\n// Copia il parametro “Date” così da non modificarlo.\n    do {\n        next.setDate(next.getDate() + 1);\n    } while (next < now);\n//  ***\n//  Nel caso in cui Thunderbird fosse disattivo nel momento\n//  programmato per la spedizione, non cercare di inviare nel passato!\n//  ***\n\nif (! args)\n// Come scelta predefinita, il messaggio viene inviato tre volte:\n    args = [3];\nnextargs = [args[0] - 1];\n// Ritenta l'invio se non sono stati ancora effettuati\n// abbastanza tentativi:\nif (nextargs[0] > 0)\n    nextspec = \"function \" + specname;",
     "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "DaysInARowHelp": {
@@ -858,7 +858,7 @@
     "description": ""
   },
   "BadSaveBody": {
-    "message": "Assicurarsi che il nome della funzione e il codice-sorgente siano validi prima di salvarla o esportarla.",
+    "message": "Assicurarsi che il nome e il codice-sorgente della funzione siano validi prima di salvarla o esportarla.",
     "description": ""
   },
   "ReplacingFunctionTitle": {
@@ -866,11 +866,11 @@
     "description": ""
   },
   "ReplacingFunctionBody": {
-    "message": "Una funzione col nome indicato esiste già. Si è sicuri di volerla rimpiazzare?",
+    "message": "Una funzione con tale nome esiste già. Si è sicuri di volerla rimpiazzare?",
     "description": ""
   },
   "NoNextValueError": {
-    "message": "La funzione non ha la variabile  “next” impostata.",
+    "message": "La funzione ha la variabile  “next” che non è impostata.",
     "description": ""
   },
   "BadNextValueError": {
@@ -882,7 +882,7 @@
     "description": ""
   },
   "FunctionDeleteConfirmBody": {
-    "message": "Si è sicuri di voler eliminare questa funzione? Se la funzione è associata ad una combinazione di tasti (scorciatoia) questa non funzionerà più, ed eventuali messaggi periodici che usano tale funzione non saranno più ripianificati dopo il prossimo invio.",
+    "message": "Si è sicuri di voler eliminare questa funzione? Se la funzione è associata a una combinazione di tasti (scorciatoia) questa non funzionerà più, ed eventuali messaggi periodici che usano tale funzione non verranno più riprogrammati dopo il prossimo invio.",
     "description": ""
   },
   "SLJFilterLabel": {
@@ -890,11 +890,11 @@
     "description": ""
   },
   "FunctionErrorTitle": {
-    "message": "Errore nell'esecuzione di una funzione dinamica",
+    "message": "Errore di chiamata di una funzione dinamica",
     "description": ""
   },
   "FunctionErrorBody": {
-    "message": "Errore chiamando la funzione dinamica programmata: “$1”",
+    "message": "Errore di chiamata della funzione dinamica programmata: “$1”",
     "description": ""
   },
   "cancel_on_reply": {
@@ -918,15 +918,15 @@
     "description": ""
   },
   "longDonationMessage": {
-    "message": "[Lo sviluppo e il mantenimento di questa estensione è supportato da “Extended Thunder Inc.”, una organizzazione non-profit che si dedica a supportare estensioni “free” e “open source” per Thunderbird. Supportate “Extended Thunder” per continuare a garantire che estensioni come queste possano continuare ad essere disponibili. Si può effettuare una donazione ricorrente sul sito: <a href='https://liberapay.com/ExtendedThunder'>LiberaPay</a> o una donazione “una tantum” tramite <a href='https://www.paypal.com/donate/?hosted_button_id=Y4V6TDZ2ZY5TS'>PayPal</a>. Le donazioni a “Extended Thunder” sono deducibili dalle imposte negli Stati Uniti d'America secondo le modalità consentite dalla legge. Grazie!]",
+    "message": "[Lo sviluppo e il mantenimento di questa estensione è supportato da “Extended Thunder Inc.”, organizzazione no-profit che si dedica a supportare estensioni “free” e “open source” per Thunderbird. Supportate “Extended Thunder” per continuare a garantire che estensioni come queste possano continuare ad essere disponibili. Si può effettuare una donazione ricorrente sul sito: <a href='https://liberapay.com/ExtendedThunder'>LiberaPay</a> o una donazione “una tantum” tramite <a href='https://www.paypal.com/donate/?hosted_button_id=Y4V6TDZ2ZY5TS'>PayPal</a>. Le donazioni a “Extended Thunder” sono deducibili dalle imposte negli Stati Uniti d'America secondo le modalità consentite dalla legge. Grazie!]",
     "description": "This text appears at the start of the add-on's long description on addons.thunderbird.net, as well as on the add-on's details page inside Thunderbird. It appears right before the text in the 'LongDescription' string. Please leave the URLs intact when translating."
   },
   "LongDescription": {
-    "message": "Questa estensione modifica il comando “Invia Dopo” (Ctrl+Shift+Invio) della finestra di composizione dei messaggi, così che, invece di una mera copia del messaggio nella cartella “Posta in uscita” (da cui viene inviato quando si ritorna online o quando si seleziona “Invia messaggi non inviati”), compaia una finestra in cui si può specificare in dettaglio quando il messaggio dovrà essere spedito.\n\nÈ possibile definire un orario e una data specifici o fare clic su: “Tra 15 minuti”, “Tra 30 minuti” o “Tra 2 ore”. Si possono anche definire delle scorciatoie personalizzate o pianificare un invio periodico di un messaggio usando delle semplici regole quali: ogni X ore, giorni, ecc… o creando funzioni personalizzate Javascript.\n\n<a href='https://extended-thunder.github.io/send-later/'>Guida utente</a> | <a href='https://github.com/Extended-Thunder/send-later/discussions'>Domande e Feedback</a> | <a href='https://github.com/Extended-Thunder/send-later/issues'>Segnalazione di bug</a>\n\n“Invia Dopo” (Send Later) si basa sulla libreria Sugar.js <a href='https://sugarjs.com/'> di Andrew Plummers potente strumento per analizzare l'input delle date</a>.",
+    "message": "Questa estensione modifica il comando “Invia Dopo” (Ctrl+Shift+Invio) della finestra di composizione dei messaggi, così che, invece di una mera copia del messaggio nella cartella “Posta in uscita” (da cui viene inviato quando si ritorna online o quando si seleziona “Invia messaggi non inviati”), compaia una finestra in cui si può specificare in dettaglio quando il messaggio dovrà essere spedito.\n\nÈ possibile definire un orario e una data specifici o fare clic su: “Tra 15 minuti”, “Tra 30 minuti” o “Tra 2 ore”. Si possono anche definire delle scorciatoie personalizzate, o programmare l'invio periodico di un messaggio usando delle semplici regole quali: ogni X ore, giorni, ecc… o tramite la creazione di funzioni personalizzate Javascript.\n\n<a href='https://extended-thunder.github.io/send-later/'>Guida utente</a> | <a href='https://github.com/Extended-Thunder/send-later/discussions'>Domande e Feedback</a> | <a href='https://github.com/Extended-Thunder/send-later/issues'>Segnalazione di bug</a>\n\n“Invia Dopo” (Send Later) si basa sulla libreria Sugar.js <a href='https://sugarjs.com/'> di Andrew Plummers, potente strumento per analizzare l'input delle date</a>.",
     "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   },
   "DeveloperComments": {
-    "message": "Ti prego di <a href='https://extended-thunder.github.io/send-later/#help'>inviarmi via email</a> segnalazioni di bug, consigli, ecc.",
+    "message": "Vi preghiamo di <a href='https://extended-thunder.github.io/send-later/#help'>inviarmi tramite email</a> segnalazioni di bug, consigli, ecc…",
     "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
   },
   "accelKeyLabel": {
@@ -966,7 +966,7 @@
     "description": "Preference input for extended datetime format (e.g. Wed, Apr 28 2021 11:45)"
   },
   "invalidDateFormat": {
-    "message": "formato data non valido o incompleto",
+    "message": "Formato data non valido o incompleto",
     "description": "Message displayed in the user interface inside parentheses when the user enters an invalid custom date format"
   },
   "menuScheduleMsg": {
@@ -978,7 +978,7 @@
     "description": "Command added to the message list menu for the user to use to skip the next occurrence of one or more selected recurring drafts"
   },
   "menuClaimMsg": {
-    "message": "Sposta messaggio/i pianificato/i su questa istanza di Thunderbird",
+    "message": "Spostamento messaggi(o) con invio programmato su questa istanza di Thunderbird",
     "description": "Command added to the message list menu for the user to use to move scheduled messages from another Thunderbird instance to this one."
   },
   "resultsTitle": {
@@ -998,7 +998,7 @@
     "description": "The title of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a non-recurring message."
   },
   "cantSkipSingletonText": {
-    "message": "Il messaggio avente per Oggetto: “$1” non è ricorrente. Pertanto non si può saltare la sua prossima occorrenza pianificata.",
+    "message": "Il messaggio avente per Oggetto: “$1” non è ricorrente. Pertanto non è possibile saltare la sua prossima occorrenza pianificata.",
     "description": "The text of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a non-recurring message. The placeholder is for the message subject."
   },
   "cantSKipPastLastTitle": {
@@ -1010,7 +1010,7 @@
     "description": "The text of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a message that has no further occurrences after that one. The placeholder is for the message subject."
   },
   "SkipConfirmMessage": {
-    "message": "Si è specificato che si desidera saltare l'occorrenza successiva di uno dei messaggi selezionati. Se si cambia idea dopo aver fatto ciò, è necessario riprogrammare “a mano” l'invio del messaggio. Si è sicuri di vuol procedere?",
+    "message": "Si è specificato che si desidera saltare l'occorrenza successiva di uno dei messaggi selezionati. Se dopo aver fatto ciò si cambia idea, è necessario riprogrammare l'invio del messaggio “a mano”. Si è sicuri di vuol procedere?",
     "description": "The text of the pop-up that warns the user when they activate the message list context menu command to skip the next occurrence of one or more messages. The purpose of this warning is to ensure that the user knows what the command does before using it. There is a checkbox in the pop-up which they can uncheck if they don't want to see the message again. See also 'AreYouSure' and 'ConfirmAgain' strings which occur in the same pop-up."
   },
   "RescheduleErrorTitle": {
@@ -1018,7 +1018,7 @@
     "description": "Title of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
   },
   "RescheduleErrorText": {
-    "message": "ATTENZIONE: si è verificato un errore imprevisto durante il tentativo di programmare il prossimo invio di un messaggio già programmato avente per oggetto: “$1”. Consultare il registro degli errori di Thunderbird per avere dettagli in proposito. Perciò la precedente bozza a invio programmato non è stata eliminata. È quindi necessario eliminarla o, se lo si desidera, modificarla e riprogrammarla.",
+    "message": "ATTENZIONE: si è verificato un errore imprevisto durante il tentativo di programmare l'occorrenza successiva di un messaggio già programmato avente per oggetto: “$1”. Consultare il registro degli errori di Thunderbird per avere dettagli in proposito. La bozza di messaggio per la quale era stato programmato l'invio non è stata eliminata. È quindi necessario eliminarla  “a mano” o modificarla e riprogrammarne l'eventuale spedizione.",
     "description": "Text of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
   },
   "TelemetryAskTitle": {
@@ -1046,7 +1046,7 @@
     "description": ""
   },
   "betaThankYouText": {
-    "message": "State ricevendo degli aggiornamenti pre-rilascio ufficiale di $1. Pur apprezzando il vostro aiuto, non vogliamo imporvi nulla. Pertanto, come misura precauzionale, vi ricordiamo questo fatto ogni volta in cui $1 viene aggiornata. Qualora si intenda abbandonare il programma di beta-test, è possibile farlo scaricando e installando da addons.thunderbird.net la versione corrente di $1.",
+    "message": "State ricevendo degli aggiornamenti pre-rilascio ufficiale di $1. Pur apprezzando il vostro aiuto, non vogliamo imporvi nulla. Pertanto, come misura precauzionale, vi ricordiamo questo fatto ogni volta in cui $1 viene aggiornato. Qualora si intenda abbandonare il programma di beta-test, è possibile farlo scaricando e installando da addons.thunderbird.net la versione corrente di $1.",
     "description": "$1 is replaced with the extension name"
   },
   "selectNone": {
@@ -1070,7 +1070,7 @@
     "description": "Message in main window pop-up when there are no scheduled messages"
   },
   "internalLogTitle": {
-    "message": "Log di Invia Dopo",
+    "message": "Log di “Invia Dopo”",
     "description": "Title of the tab where the Send Later internal log is displayed when the user requests it"
   },
   "internalLogLevelLabel": {
@@ -1094,7 +1094,7 @@
     "description": "The title of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large."
   },
   "messageTooLargeText": {
-    "message": "A causa di un bug di Thunderbird, $1 non può spedire il messaggio avente Oggetto: “$2” perché è troppo grande. Infatti ha una dimensione di $3 byte, per cui è maggiore di $4 che è il limite configurato. Volendo si può aumentare questo limite modificando la preferenza “mailnews.message_warning_size” accedendo all'Editor di configurazione di Thunderbird. Si può anche eliminare del tutto questo limite impostando a 0 il valore di questa preferenza. Attenzione però perché qualsiasi variazione apportata comporta la possibilità che Thunderbird avverta che si stanno inviando messaggi troppo grandi in modalità diretta invece che attraverso $1. In ogni caso per inviare il messaggio in questione lo si può aprire, modificare e inviare direttamente oppure si può modificare e riprogrammare il suo invio dopo averlo ridotto di dimensioni o dopo aver cambiato la preferenza di Thunderbird.",
+    "message": "A causa di un bug di Thunderbird, $1 non può spedire il messaggio avente Oggetto: “$2” perché è troppo grande. Infatti ha una dimensione di $3 byte, che è superiore al limite configurato $4. Volendo si può aumentare questo limite  accedendo all'Editor di configurazione di Thunderbird e modificandone la preferenza “mailnews.message_warning_size”. Si può anche eliminare del tutto questo limite impostando a 0 il valore di questa preferenza. Attenzione però perché qualsiasi variazione apportata a questa preferenza comporta la possibilità che Thunderbird vi avverta che si stanno inviando messaggi troppo grandi in modalità diretta invece che attraverso $1. In ogni caso per inviare il messaggio in questione lo si può aprire, modificare e inviare direttamente oppure si può riprogrammare il suo invio dopo averne ridotto di dimensioni o dopo aver modificato la preferenza di Thunderbird.",
     "description": "The (unfortunately very long) text of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large and the TB version is 114 or earlier. $1 is the extension name, $2 is the message subject, $3 is its length, and $4 is the length limit. Please don't translate 'mailnews.message_warning_size', that needs to stay in English."
   }
 }
