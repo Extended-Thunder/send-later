@@ -39,6 +39,10 @@ Translation updates.
 
 ### Bug fixes
 
+## Release 10.4.2
+
+Fixed an issue with Thunderbird 122 and newer which was causing the Send Later dialogue not to close after scheduling a message.
+
 ## Release 10.4.1
 
 Send Later previously assumed that there could be only one "local" account in a Thunderbird profile, but it turns out that's not the case. Therefore, when we're looking for the user's outbox we need to iterate through all available local accounts rather than just assuming there's one. Otherwise Send Later might not be able to deliver scheduled messages.
