@@ -39,6 +39,7 @@
     "messagesImport",
     "messagesMove",
     "messagesRead",
+    "messagesUpdate",
     "notifications",
     "storage",
     "tabHide",
