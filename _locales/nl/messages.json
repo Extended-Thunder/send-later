@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "Met “Send Later” is het nu echt mogelijk het verzendtijdstip van een e-mailbericht te plannen.",
+    "message": "Met “Send Later” kunt u daadwerkelijk het verzendtijdstip van een e-mailbericht inplannen.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -44,7 +44,7 @@
     "description": ""
   },
   "contactAuthorLabel": {
-    "message": "Contact opnemen met de schrijver",
+    "message": "Contact opnemen met de auteur",
     "description": ""
   },
   "enforceRestrictionsPrefLabel": {
@@ -192,7 +192,7 @@
     "description": ""
   },
   "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Op eerder verzonden kopieën van herhalende berichten letten. Een herhalend bericht annuleren en het uit de map Concepten verwijderen als een antwoord is ontvangen.",
+    "message": "Stoppen met het verzenden van een herhaalbericht en het uit de map Concepten verwijderen zodra er op een eerder verzonden exemplaar een antwoord is ontvangen.",
     "description": ""
   },
   "sendDelayPrefTooltip": {
@@ -244,7 +244,7 @@
     "description": ""
   },
   "sendUnsentMessagesPrefTooltip": {
-    "message": "Als u deze optie uitvinkt, zal Send Later berichten niet volledig verzenden, maar deze op het moment van verzenden alleen in uw Postvak UIT plaatsen. Vink deze optie uit als u bijvoorbeeld een andere extensie gebruikt, zoals BlunderDelay, die periodiek berichten uit uw Postvak UIT verzendt. Denk eraan dat als deze optie is aangevinkt, Send Later bij het afleveren van een bericht ALLE berichten in uw Postvak UIT aflevert.",
+    "message": "Als u deze optie uitvinkt, verzendt Send Later op het geplande aflevermoment uw berichten niet direct, maar plaatst ze alleen in uw Postvak UIT. Vink deze optie uit als u bijvoorbeeld een andere extensie gebruikt, zoals BlunderDelay, die periodiek berichten uit uw Postvak UIT verzendt. Let op: als deze optie is aangevinkt, verzendt Send Later bij het afleveren van één bericht ook meteen ALLE berichten in uw Postvak UIT.",
     "description": ""
   },
   "showColumnPrefLabel": {
@@ -1026,7 +1026,7 @@
     "description": "Title of the pop-up that asks the user whether we can collect anonymous usage data. The placeholder is replaced with the extension name."
   },
   "TelemetryAskText": {
-    "message": "Kunnen we anonieme gegevens verzamelen over uw gebruik van $1? De gegevens vertellen ons hoe u de add-on gebruikt en over uw omgeving. Ze bevatten geen identificerende informatie, e-mailinhoud of accountgegevens. We gebruiken de gegevens om de add-on te verbeteren, het gebruik ervan te meten en te bepalen waarop we onze inspanningen moeten richten. We delen de gegevens met niemand. Uw antwoord heeft geen invloed op de functionaliteit van de add-on. Volledige details zijn beschikbaar in ons $2.",
+    "message": "Mogen wij anonieme gegevens verzamelen over uw gebruik van $1? De gegevens vertellen ons hoe u de add-on gebruikt en over uw omgeving. Ze bevatten geen identificerende informatie, e-mailinhoud of accountgegevens. We gebruiken de gegevens om de add-on te verbeteren, het gebruik ervan te meten en te bepalen waarop we onze inspanningen moeten richten. We delen de gegevens met niemand. Uw antwoord heeft geen invloed op de functionaliteit van de add-on. Volledige details zijn beschikbaar in ons $2.",
     "description": "Text of the pop-up that asks the user whether we can collect anonymous usage data. The second placeholder is replaced with the contents of the string PrivacyPolicy (so we can make it a link."
   },
   "PrivacyPolicy": {
