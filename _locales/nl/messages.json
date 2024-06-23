@@ -179,6 +179,14 @@
     "message": "De opdracht ‘Verzenden’ (via de knop of het intoetsen van Ctrl-Enter) hetzelfde laten werken als ‘Later verzenden’",
     "description": ""
   },
+  "whitelistPrefTooltip": {
+    "message": "Als een van de opties ‘$1’ of ‘“Verzenden” vertraagt berichten’ is ingeschakeld én u de naam van een bestaand adresboek hier opgeeft, dan wordt, bij gebruik van de knop of menuopdracht voor het verzenden van berichten, ‘$2’ overgeslagen voor elk bericht waarvan alle ontvangers in dat adresboek staan.",
+    "description": "$1 is replaced with the contents of sendButtonPrefLabel, and $2 is replaced with extensionName."
+  },
+  "whitelistPrefLabel": {
+    "message": "Adresboek voor witte lijst:",
+    "description": "Appears on the options tab, followed by an input box for the use to specify the name of an address book."
+  },
   "sendDelayPrefLabel1": {
     "message": "‘Verzenden’ vertraagt berichten met",
     "description": ""
@@ -342,6 +350,14 @@
   "quickoptionname.label": {
     "message": "Knoptekst",
     "description": ""
+  },
+  "quickoptionkey.label": {
+    "message": "Toets (Ctrl+Alt+…)",
+    "description": "Heading for the column in the preferences where the user can specify the key bindings to activate shortcut buttons"
+  },
+  "validKeysTooltip": {
+    "message": "De bruikbare sneltoetsen (hoofdlettergevoelig!) zijn A-Z, 0-9, F1-F12, komma, punt, Home, End, PageUp, PageDown, spatiebalk, Insert, Delete, omhoog, omlaag, links, rechts",
+    "description": "The tooltip that pops up to tell the user what the valid keys to bind the quick option shortcuts to. Do not translate the keys, just translate the 'Valid shortcut keys (case-sensitive!) are' part, because the keys have to be in English in the actual shortcut."
   },
   "showsendlaterprogress.caption": {
     "message": "Achtergrondvoortgang in statusbalk tonen",
