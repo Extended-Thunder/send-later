@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "Echte functionaliteit voor ‘Later verzenden’ om het verzendtijdstip van een e-mailbericht te plannen.",
+    "message": "Met “Send Later” kunt u daadwerkelijk het verzendtijdstip van een e-mailbericht inplannen.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -12,7 +12,7 @@
     "description": ""
   },
   "altBindingPrefLabel": {
-    "message": "Alt-Shift-Enter binden in plaats van Ctrl-Shift-Enter",
+    "message": "Aan Alt-Shift-Enter binden in plaats van Ctrl-Shift-Enter",
     "description": ""
   },
   "blockLateMessagesPrefLabel1": {
@@ -44,7 +44,7 @@
     "description": ""
   },
   "contactAuthorLabel": {
-    "message": "Contact opnemen met de schrijver",
+    "message": "Contact opnemen met de auteur",
     "description": ""
   },
   "enforceRestrictionsPrefLabel": {
@@ -64,7 +64,7 @@
     "description": "The title of the 'Shortcuts' section on the options page"
   },
   "logConsoleLevelLabel": {
-    "message": "Consolelogniveau",
+    "message": "Logboekniveau console",
     "description": ""
   },
   "logLevelAll": {
@@ -179,12 +179,20 @@
     "message": "De opdracht ‘Verzenden’ (via de knop of het intoetsen van Ctrl-Enter) hetzelfde laten werken als ‘Later verzenden’",
     "description": ""
   },
+  "whitelistPrefTooltip": {
+    "message": "Als een van de opties ‘$1’ of ‘“Verzenden” vertraagt berichten’ is ingeschakeld én u de naam van een bestaand adresboek hier opgeeft, dan wordt, bij gebruik van de knop of menuopdracht voor het verzenden van berichten, ‘$2’ overgeslagen voor elk bericht waarvan alle ontvangers in dat adresboek staan.",
+    "description": "$1 is replaced with the contents of sendButtonPrefLabel, and $2 is replaced with extensionName."
+  },
+  "whitelistPrefLabel": {
+    "message": "Adresboek voor witte lijst:",
+    "description": "Appears on the options tab, followed by an input box for the use to specify the name of an address book."
+  },
   "sendDelayPrefLabel1": {
     "message": "‘Verzenden’ vertraagt berichten met",
     "description": ""
   },
   "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Op eerder verzonden kopieën van herhalende berichten letten. Een herhalend bericht annuleren en het uit de map Concepten verwijderen als een antwoord is ontvangen.",
+    "message": "Stoppen met het verzenden van een herhaalbericht en het uit de map Concepten verwijderen zodra er op een eerder verzonden exemplaar een antwoord is ontvangen.",
     "description": ""
   },
   "sendDelayPrefTooltip": {
@@ -236,7 +244,7 @@
     "description": ""
   },
   "sendUnsentMessagesPrefTooltip": {
-    "message": "Als u deze optie uitvinkt, zal Send Later berichten niet volledig verzenden, maar deze op het moment van verzenden alleen in uw Postvak UIT plaatsen. Vink deze optie uit als u bijvoorbeeld een andere extensie gebruikt, zoals BlunderDelay, die periodiek berichten uit uw Postvak UIT verzendt. Denk eraan dat als deze optie is aangevinkt, Send Later bij het afleveren van een bericht ALLE berichten in uw Postvak UIT aflevert.",
+    "message": "Als u deze optie uitvinkt, verzendt Send Later op het geplande aflevermoment uw berichten niet direct, maar plaatst ze alleen in uw Postvak UIT. Vink deze optie uit als u bijvoorbeeld een andere extensie gebruikt, zoals BlunderDelay, die periodiek berichten uit uw Postvak UIT verzendt. Let op: als deze optie is aangevinkt, verzendt Send Later bij het afleveren van één bericht ook meteen ALLE berichten in uw Postvak UIT.",
     "description": ""
   },
   "showColumnPrefLabel": {
@@ -342,6 +350,14 @@
   "quickoptionname.label": {
     "message": "Knoptekst",
     "description": ""
+  },
+  "quickoptionkey.label": {
+    "message": "Toets (Ctrl+Alt+…)",
+    "description": "Heading for the column in the preferences where the user can specify the key bindings to activate shortcut buttons"
+  },
+  "validKeysTooltip": {
+    "message": "De bruikbare sneltoetsen (hoofdlettergevoelig!) zijn A-Z, 0-9, F1-F12, komma, punt, Home, End, PageUp, PageDown, spatiebalk, Insert, Delete, omhoog, omlaag, links, rechts",
+    "description": "The tooltip that pops up to tell the user what the valid keys to bind the quick option shortcuts to. Do not translate the keys, just translate the 'Valid shortcut keys (case-sensitive!) are' part, because the keys have to be in English in the actual shortcut."
   },
   "showsendlaterprogress.caption": {
     "message": "Achtergrondvoortgang in statusbalk tonen",
@@ -682,6 +698,10 @@
     "message": "Door op ‘Nu verzenden’ te klikken, wordt het bericht direct verzonden. Het bericht zal NIET op een specifiek tijdstip worden verzonden. Klik daarvoor na het invoeren van een geldige verzendtijd op de knop ‘Verzenden om’. Weet u zeker dat u het bericht nu wilt verzenden?",
     "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
+  "PopupChangedConfirmMessage": {
+    "message": "Na het wijzigen van enkele waarden in het planningsdialoogvenster hebt u op “$1” geklikt. Weet u zeker dat u die knop bedoelde en niet “$2”?",
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'."
+  },
   "ConfirmAgain": {
     "message": "Deze waarschuwing de volgende keer tonen",
     "description": ""
@@ -692,6 +712,10 @@
   },
   "ShowQuitNotificationPreference": {
     "message": "Waarschuwing tonen voor het afsluiten als er berichten in behandeling zijn"
+  },
+  "SubfolderPreference": {
+    "message": "Geplande berichten opslaan in deze submap:",
+    "description": "In preferences tab, preceded by a checkbox and followed by a text input"
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Er zijn berichten ingepland voor verzending. Send Later kan alleen berichten verzenden als $1 actief is. Weet u zeker dat u wilt afsluiten?",
@@ -724,6 +748,14 @@
   "DSN": {
     "message": "Afleverstatusnotificatie",
     "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message. This needs to match what's in the menu. NOTE: This is *different from* the 'Return Receipt' menu command which appears adjacent to it."
+  },
+  "noDsnTitle": {
+    "message": "$1 gaat niet samen met $2",
+    "description": "The title of the alert that pops up when the user attempts to schedule a message with delivery status notification enabled. $1 is replaced with the string 'DSN' and $2 is replaced with the extension name."
+  },
+  "noDsnText": {
+    "message": "De optie $1 kan niet samen met $2 worden gebruikt. Zet die optie voor dit bericht uit voordat u het inplant, of stuur het bericht zonder $2.",
+    "description": "The text of the alert that pops up when the user attempts to schedule a message with delivery status notification enabled. $1 is replaced with the contents of the string 'DSN' and $2 is replaced with the extension name."
   },
   "incorrectUUID": {
     "message": "Gepland door een andere client",
@@ -885,9 +917,17 @@
     "message": "CONTROLEREN",
     "description": ""
   },
+  "longDonationMessage": {
+    "message": "[De ontwikkeling en het onderhoud van deze add-on wordt mogelijk gemaakt door Extended Thunder Inc., een non-profit die zich toelegt op het ondersteunen van vrije, open-source Thunderbird add-ons. Steun alstublieft Extended Thunder zodat add-ons zoals deze beschikbaar blijven. U kunt een periodieke donatie doen bij <a href='https://liberapay.com/ExtendedThunder'>LiberaPay</a> of een eenmalige donatie bij <a href='https://www.paypal.com/donate/?hosted_button_id=Y4V6TDZ2ZY5TS'>PayPal</a>. Donaties aan Extended Thunder zijn in de Verenigde Staten aftrekbaar van de belasting, voor zover de wet dat toestaat. Dank u wel!]",
+    "description": "This text appears at the start of the add-on's long description on addons.thunderbird.net, as well as on the add-on's details page inside Thunderbird. It appears right before the text in the 'LongDescription' string. Please leave the URLs intact when translating."
+  },
   "LongDescription": {
     "message": "Deze add-on wijzigt de opdracht ‘Later verzenden’ (Ctrl+Shift+Return) in het berichtopstelvenster, zodat in plaats van alleen het bericht naar uw Postvak UIT te kopiëren en dit de volgende keer dat u online gaat of door ‘Niet-verzonden berichten verzenden’ te kiezen wordt verzonden, een dialoogvenster verschijnt waarmee u kunt opgeven wanneer het bericht wordt verzonden.\n\nU kunt een bepaalde tijd en datum opgeven, of op ‘15 min. later’, ‘30 min. later’ of ‘2 uur later’ klikken, of aangepaste sneltoetsen definiëren. Ook kunt u een bericht inplannen om herhaald te worden verzonden, gebruikmakend van eenvoudige regels (elke N uur, dagen, etc.) of aanpasbare functies.\n\nSend Later vertrouwt op krachtige parsing van datuminvoer, aangeleverd door Andrew Plummer’s <a href=\"https://sugarjs.com/\">Sugar.js-bibliotheek</a>.\n\nFeedback en bugmeldingen zijn zeer welkom, en kunnen worden ingediend via de <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">GitHub-pagina</a> van het project.",
     "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
+  },
+  "DeveloperComments": {
+    "message": "Wij ontvangen graag <a href='https://extended-thunder.github.io/send-later/#help'>uw probleemmeldingen en suggesties</a>!",
+    "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
   },
   "accelKeyLabel": {
     "message": "Sneltoets",
@@ -937,6 +977,10 @@
     "message": "Volgende herhaling overslaan",
     "description": "Command added to the message list menu for the user to use to skip the next occurrence of one or more selected recurring drafts"
   },
+  "menuClaimMsg": {
+    "message": "Geplande berichten naar deze Thunderbird verplaatsen",
+    "description": "Command added to the message list menu for the user to use to move scheduled messages from another Thunderbird instance to this one."
+  },
   "resultsTitle": {
     "message": "Resultaten van berichtverwerking",
     "description": "The title of the pop-up that displays results after the user uses the message list context menu to perform an operation on more than one selected message."
@@ -982,7 +1026,7 @@
     "description": "Title of the pop-up that asks the user whether we can collect anonymous usage data. The placeholder is replaced with the extension name."
   },
   "TelemetryAskText": {
-    "message": "Kunnen we anonieme gegevens verzamelen over uw gebruik van $1? De gegevens vertellen ons hoe u de add-on gebruikt en over uw omgeving. Ze bevatten geen identificerende informatie, e-mailinhoud of accountgegevens. We gebruiken de gegevens om de add-on te verbeteren, het gebruik ervan te meten en te bepalen waarop we onze inspanningen moeten richten. We delen de gegevens met niemand. Uw antwoord heeft geen invloed op de functionaliteit van de add-on. Volledige details zijn beschikbaar in ons $2.",
+    "message": "Mogen wij anonieme gegevens verzamelen over uw gebruik van $1? De gegevens vertellen ons hoe u de add-on gebruikt en over uw omgeving. Ze bevatten geen identificerende informatie, e-mailinhoud of accountgegevens. We gebruiken de gegevens om de add-on te verbeteren, het gebruik ervan te meten en te bepalen waarop we onze inspanningen moeten richten. We delen de gegevens met niemand. Uw antwoord heeft geen invloed op de functionaliteit van de add-on. Volledige details zijn beschikbaar in ons $2.",
     "description": "Text of the pop-up that asks the user whether we can collect anonymous usage data. The second placeholder is replaced with the contents of the string PrivacyPolicy (so we can make it a link."
   },
   "PrivacyPolicy": {
@@ -996,6 +1040,14 @@
   "TelemetryAskNo": {
     "message": "Nee, geen gebruiksgegevens verzamelen",
     "description": "Label for the no button on the telemetry request dialog."
+  },
+  "betaThankYouTitle": {
+    "message": "Bedankt voor het testen van de bèta-versie!",
+    "description": ""
+  },
+  "betaThankYouText": {
+    "message": "Momenteel krijgt u de nog niet officieel uitgebrachte testversies van $1. Natuurlijk stellen wij uw hulp bij het testen erg op prijs, maar we willen het u niet opdringen. Daarom herinneren wij u iedere keer dat $1 wordt bijgewerkt hieraan. Wilt u geen bètatester meer zijn, dan kunt u altijd de laatst uitgebrachte versie van $1 downloaden en installeren vanaf addons.thunderbird.net.",
+    "description": "$1 is replaced with the extension name"
   },
   "selectNone": {
     "message": "(geen)",
@@ -1013,8 +1065,36 @@
     "message": "Map",
     "description": "Column header in message list in main window pop-up"
   },
+  "noneScheduled": {
+    "message": "Geen geplande berichten",
+    "description": "Message in main window pop-up when there are no scheduled messages"
+  },
+  "internalLogTitle": {
+    "message": "Intern logboek van Send Later",
+    "description": "Title of the tab where the Send Later internal log is displayed when the user requests it"
+  },
+  "internalLogLevelLabel": {
+    "message": "Niveau intern logboek:",
+    "description": "Label for the option menu for selecting the internal log level"
+  },
+  "internalLogClearLabel": {
+    "message": "Wissen",
+    "description": "Label for the button to clear the internal log"
+  },
   "internalLogCopyLabel": {
     "message": "Kopiëren",
     "description": "Label for the buttom to copy the internal log to the clipboard"
+  },
+  "internalLogLinkLabel": {
+    "message": "Intern logboek bekijken",
+    "description": "Label for the link in the main window pop-up for opening the internal log tab."
+  },
+  "messageTooLargeTitle": {
+    "message": "Bericht te groot",
+    "description": "The title of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large."
+  },
+  "messageTooLargeText": {
+    "message": "Vanwege een bug in Thunderbird kan $1 het bericht met onderwerp “$2” niet afleveren omdat het te groot is. Het is $3 bytes lang, wat groter is dan de ingestelde beperking van $4. Als u wilt, kunt u deze beperking aanpassen door de voorkeursinstelling “mailnews.message_warning_size” in de Thunderbird configuratie-editor te wijzigen, of de voorkeursinstelling op 0 zetten om de beperking helemaal uit te schakelen. Houd er wel rekening mee dat een eventuele wijziging ook invloed heeft op de waarschuwingen van Thunderbird over grote berichten die rechtstreeks worden verzonden in plaats van via $1. Hoe dan ook, om dit bericht te versturen kunt u het openen om het te bewerken en het direct versturen, of het bewerken en opnieuw plannen nadat u het kleiner hebt gemaakt of de Thunderbird-voorkeur hebt gewijzigd.",
+    "description": "The (unfortunately very long) text of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large and the TB version is 114 or earlier. $1 is the extension name, $2 is the message subject, $3 is its length, and $4 is the length limit. Please don't translate 'mailnews.message_warning_size', that needs to stay in English."
   }
 }
