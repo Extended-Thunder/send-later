@@ -986,6 +986,7 @@ const SendLater = {
   // TODO: Break this up into more manageable parts. This function is
   // ridiculously long.
   async possiblySendMessage(msgHdr, options, locker) {
+    SLStatic.trace("possiblySendMessage", msgHdr, options, locker);
     let throttleStart = Date.now();
 
     if (!options) {
@@ -2127,6 +2128,7 @@ const SendLater = {
   },
 
   async doSkipNextOccurrence(tabId, options, fromMenuCommand) {
+    SLStatic.trace("doSkipNextOccurrence", tabId, options, fromMenuCommand);
     if (tabId || !fromMenuCommand) {
       SLStatic.error("Unsupported doSkipNextOccurrence call from window");
       return false;
@@ -2233,6 +2235,13 @@ const SendLater = {
   },
 
   async handleMessageCommand(command, options, tabId, messageIds) {
+    SLStatic.trace(
+      "handleMessageCommand",
+      command,
+      options,
+      tabId,
+      messageIds,
+    );
     options.first = true;
     if (messageIds) {
       let total = messageIds.length;
