@@ -6,14 +6,10 @@ exports.init = function () {
   // }, ['arg1','arg1foobar']);
 
   function testParseableDateTimeFormat(name, input, output) {
-    SLTests.AddTest(
-      name,
-      () => {
-        const result = SLStatic.parseableDateTimeFormat(new Date(input));
-        return result == output || `Expected "${output}", got "${result}"`;
-      },
-      [],
-    );
+    SLTests.AddTest(name, () => {
+      const result = SLStatic.parseableDateTimeFormat(new Date(input));
+      return result == output || `Expected "${output}", got "${result}"`;
+    }, []);
   }
 
   testParseableDateTimeFormat(
