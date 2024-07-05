@@ -603,8 +603,8 @@ const SLPopup = {
   async cacheSchedule() {
     SLStatic.debug("Caching current input values");
     let scheduleCache = await browser.storage.local.get({ scheduleCache: {} });
-    let cwin = await browser.windows.getCurrent();
-    scheduleCache[cwin.id] = SLPopup.serializeInputs();
+    let windowId = SLPopup.messageWindowId;
+    scheduleCache[windowId] = SLPopup.serializeInputs();
     await browser.storage.local.set({ scheduleCache });
   },
 
@@ -640,14 +640,20 @@ const SLPopup = {
       });
   },
 
-  async applyDefaults() {
+  async applyDefaults(tabId) {
     const storage = await browser.storage.local.get({
       defaults: {},
       scheduleCache: {},
     });
 
-    const cwin = await browser.windows.getCurrent();
-    const defaults = storage.scheduleCache[cwin.id] || storage.defaults;
+    const windowId = SLPopup.messageWindowId;
+
+    SLStatic.debug(
+      `scheduleCache[${windowId}] =`,
+      storage.scheduleCache[windowId],
+    );
+
+    const defaults = storage.scheduleCache[windowId] || storage.defaults;
 
     const dom = SLPopup.objectifyDOMElements();
 
@@ -1036,8 +1042,6 @@ const SLPopup = {
 
     SLPopup.attachListeners();
 
-    await SLPopup.applyDefaults();
-
     let queryString = new URLSearchParams(window.location.search);
     let messageIds = queryString
       .getAll("messageId")
@@ -1062,6 +1066,12 @@ const SLPopup = {
           .then((tabs) => tabs[0].id);
       }
     }
+
+    SLPopup.messageWindowId = (
+      await messenger.tabs.get(SLPopup.messageTabId)
+    ).windowId;
+
+    await SLPopup.applyDefaults();
 
     SLPopup.restoreZoom();
     SLPopup.initialized = true;
