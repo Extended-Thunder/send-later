@@ -1111,27 +1111,26 @@ const SendLater = {
     )
       return;
 
-    if (!skipping) {
-      if (
-        !(await SendLater.doNextRecur(
-          preferences,
-          locker,
-          originalMsgId,
-          msgHdr,
-          recur,
-          nextSend,
-          msgRecurSpec,
-          args,
-        ))
-      ) {
-        SLStatic.info(
-          `No recurrences for message <${originalMsgId}>. Deleting original.`,
-        );
-        await SendLater.deleteMessage(msgHdr);
-      }
+    if (
+      !(await SendLater.doNextRecur(
+        preferences,
+        locker,
+        originalMsgId,
+        msgHdr,
+        recur,
+        nextSend,
+        msgRecurSpec,
+        args,
+      )) &&
+      !skipping
+    ) {
+      SLStatic.info(
+        `No recurrences for message <${originalMsgId}>. Deleting original.`,
+      );
+      await SendLater.deleteMessage(msgHdr);
     }
 
-    if (preferences.throttleDelay) {
+    if (!skipping && preferences.throttleDelay) {
       SLStatic.debug(
         `Throttling send rate: ${preferences.throttleDelay / 1000}s`,
       );
@@ -2275,7 +2274,7 @@ const SendLater = {
           }
         }
         if (await command(options.batchMode ? null : tab.id, options, true)) {
-          await SendLater.deleteMessage(message);
+          if (!options.batchMode) await SendLater.deleteMessage(message);
           successful++;
         } else {
           break;
