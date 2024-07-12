@@ -227,21 +227,23 @@ const SendLater = {
   },
 
   async schedulePrecheck() {
-    let tab = await SLTools.getActiveComposeTab();
-    let composeDetails = await messenger.compose.getComposeDetails(tab.id);
-    if (composeDetails.deliveryStatusNotification) {
-      let extensionName = messenger.i18n.getMessage("extensionName");
-      let dsnName = messenger.i18n.getMessage("DSN");
-      let title = messenger.i18n.getMessage("noDsnTitle", [
-        dsnName,
-        extensionName,
-      ]);
-      let text = messenger.i18n.getMessage("noDsnText", [
-        dsnName,
-        extensionName,
-      ]);
-      SLTools.alert(title, text);
-      return false;
+    if (!(await SLStatic.tb128(true, false))) {
+      let tab = await SLTools.getActiveComposeTab();
+      let composeDetails = await messenger.compose.getComposeDetails(tab.id);
+      if (composeDetails.deliveryStatusNotification) {
+        let extensionName = messenger.i18n.getMessage("extensionName");
+        let dsnName = messenger.i18n.getMessage("DSN");
+        let title = messenger.i18n.getMessage("noDsnTitle", [
+          dsnName,
+          extensionName,
+        ]);
+        let text = messenger.i18n.getMessage("noDsnText", [
+          dsnName,
+          extensionName,
+        ]);
+        SLTools.alert(title, text);
+        return false;
+      }
     }
     return true;
   },
