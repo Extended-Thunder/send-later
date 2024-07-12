@@ -771,11 +771,9 @@ const SendLater = {
       (account) => account.type == "none",
     );
     for (let localAccount of localAccounts) {
-      let accountHandle = await SLStatic.tb128(
-        () => localAccount.id,
-        () => localAccount,
+      let localFolders = await messenger.folders.getSubFolders(
+        await SLStatic.tb128(localAccount.id, localAccount),
       );
-      let localFolders = await messenger.folders.getSubFolders(accountHandle);
       for (let localFolder of localFolders) {
         if (localFolder.type == "outbox") {
           outboxFolder = localFolder;

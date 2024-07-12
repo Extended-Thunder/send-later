@@ -1782,12 +1782,8 @@ var SLStatic = {
     if (isLocal) {
       localFolder = destination;
     } else {
-      let accountHandle = await SLStatic.tb128(
-        () => localAccount.id,
-        () => localAccount,
-      );
       let localFolders = await messenger.folders.getSubFolders(
-        accountHandle,
+        await SLStatic.tb128(localAccount.id, localAccount),
         false,
       );
       localFolder = localFolders.find(
@@ -1800,13 +1796,9 @@ var SLStatic = {
         );
       }
     }
-    let folderHandle = await SLStatic.tb128(
-      () => localFolder.id,
-      () => localFolder,
-    );
     let newMsgHeader = await messenger.messages.import(
       file,
-      folderHandle,
+      await SLStatic.tb128(localFolder.id, localFolder),
       properties,
     );
 

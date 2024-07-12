@@ -228,11 +228,9 @@ var SLTools = {
     if (folder.path.endsWith("/" + subfolderName)) return;
     let found;
     let subfolder;
-    let folderHandle = await SLStatic.tb128(
-      () => folder.id,
-      () => folder,
-    );
-    for (subfolder of await messenger.folders.getSubFolders(folderHandle)) {
+    for (subfolder of await messenger.folders.getSubFolders(
+      await SLStatic.tb128(folder.id, folder),
+    )) {
       if (subfolder.name == subfolderName) {
         found = true;
         break;
@@ -306,11 +304,9 @@ var SLTools = {
       for (let folder of draftFolders) {
         if (preferences.autoUpdateDraftsFolders)
           await messenger.SL3U.updateFolder(folder);
-        let folderToList = await SLStatic.tb128(
-          () => folder.id,
-          () => folder,
+        let page = await messenger.messages.list(
+          await SLStatic.tb128(folder.id, folder),
         );
-        let page = await messenger.messages.list(folderToList);
         while (true) {
           if (sequential) {
             for (let message of page.messages) {
