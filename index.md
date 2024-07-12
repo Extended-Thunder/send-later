@@ -823,6 +823,8 @@ and don't know how well they work or how trustworthy they are.
 
 ### Delivery status notification doesn't work
 
+_[This section is only applicable to versions of Thunderbird older than Thunderbird 128.]_
+
 If you enable the Delivery Status Notification (DSN) option on a
 message, Send Later won't let you schedule it for later delivery,
 because DSN is incompatible with Send Later due to a deficiency in
