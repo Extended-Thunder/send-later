@@ -3,6 +3,19 @@ layout: default
 ---
 # Send Later release notes
 
+---
+
+## ATTENTION THUNDERBIRD 128 (or newer) USERS
+
+You must have the "Encrypt" button present in your compose window
+toolbar to be able to schedule messages with Send Later. If you
+removed it some point, you need to customize the toolbar and put it
+back. This is due to a [Thunderbird
+bug](https://bugzilla.mozilla.org/show_bug.cgi?id=1906833) which we
+hope will be fixed soon.
+
+---
+
 Welcome! We've been hard at work enhancing Send Later's functionality
 and making it more robust and reliable, and we're excited to share our
 progress with you.
@@ -22,6 +35,15 @@ supporting it. You can make a recurring donation to Extended Thunder
 through [LiberaPay][liberapay] or a one-time donation through
 [PayPal][paypal]. Donations to Extended Thunder are tax-deductible in
 the United States as permitted by law.
+
+## Release 10.5.x
+
+There are some under-the-hood Thunderbird 128 compatibility changes in
+Release 10.5.0 which you shouldn't notice. Aside from that, there are
+no changes that were not already present in 10.4.3. the only reason
+the version number has been bumped from 10.4.3 to 10.5.x is to force
+the release notes to display again so Thunderbird 128 users see the
+message above about the "Encrypt" button.
 
 ## Release 10.4.x
 
