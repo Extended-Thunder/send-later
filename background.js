@@ -2567,10 +2567,12 @@ const SendLater = {
   // When a new message is displayed, check whether it is scheduled and
   // choose whether to show the messageDisplayAction button and the header.
   async onMessageDisplayedListener(tab, hdr) {
+    SLStatic.trace("onMessageDisplayedListener");
     if (!hdr) {
       // No, this shouldn't happen, but it does. It looks like this happens
       // if Thunderbird is in the process of displaying a message when the
       // user switches to a different folder.
+      SLStatic.debug("onMessageDisplayedListener: no hdr");
       return;
     }
     // TODO currently only display the Send Later header on messages in the
@@ -2579,6 +2581,7 @@ const SendLater = {
     let headerName = messenger.i18n.getMessage("sendlater3header.label");
     await messenger.messageDisplayAction.disable(tab.id);
     if (await SLTools.isDraftsFolder(hdr.folder)) {
+      SLStatic.debug("onMessageDisplayedListener: isDraftsFolder is true");
       // Add header row
       const preferences = await SLTools.getPrefs();
       const instanceUUID = preferences.instanceUUID;
@@ -2595,6 +2598,7 @@ const SendLater = {
       );
       if (preferences.showHeader === true && cellText !== "") {
         try {
+          SLStatic.trace("Calling addCustomHdrRow");
           await messenger.headerView.addCustomHdrRow(
             tab.id,
             headerName,
@@ -2604,6 +2608,7 @@ const SendLater = {
           SLStatic.error("headerView.addCustomHdrRow", ex);
         }
       } else {
+        SLStatic.trace("Calling removeCustomHdrRow");
         await messenger.headerView.removeCustomHdrRow(tab.id, headerName);
       }
 
@@ -2612,6 +2617,7 @@ const SendLater = {
         await messenger.messageDisplayAction.enable(tab.id);
       }
     } else {
+      SLStatic.debug("onMessageDisplayedListener: isDraftsFolder is false");
       await messenger.headerView.removeCustomHdrRow(tab.id, headerName);
     }
   },
