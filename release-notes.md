@@ -39,6 +39,12 @@ Translation updates.
 
 ### Bug fixes
 
+## Release 10.4.3
+
+Fixed the "Skip next occurrence" right-click menu command, which was deleting the scheduled message instead of skipping its next occurence!
+
+The scheduling pop-up is supposed to remember the previous values when the user edits a previously scheduled message or when the user opens the pop-up, edits its contents, closes it, and opens it again. At some point this fixed. Now it's fixed.
+
 ## Release 10.4.2
 
 Fixed an issue with Thunderbird 122 and newer which was causing the Send Later dialogue not to close after scheduling a message.
