@@ -38,12 +38,9 @@ the United States as permitted by law.
 
 ## Release 10.5.x
 
-There are some under-the-hood Thunderbird 128 compatibility changes in
-Release 10.5.0 which you shouldn't notice. Aside from that, there are
-no changes that were not already present in 10.4.3. the only reason
-the version number has been bumped from 10.4.3 to 10.5.x is to force
-the release notes to display again so Thunderbird 128 users see the
-message above about the "Encrypt" button.
+### Improvements
+
+In Thunderbird 128 or newer, Delivery Status Notifications work for messages scheduled with Send Later 10.5.1 or newer.
 
 ## Release 10.4.x
 
