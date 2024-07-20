@@ -402,27 +402,38 @@ var SLTools = {
     const preferences = await SLTools.getPrefs();
     let isScheduled = await SLTools.forAllDrafts(
       async (msgHdr) => {
-        SLStatic.debug(`Checking message ${msgHdr.id}`);
-        if (SLTools.scheduledMsgCache.has(msgHdr.id)) {
+        let msgId = msgHdr.id;
+        SLStatic.debug(
+          `countActiveScheduledMessages: Checking message ${msgId}`,
+        );
+        if (SLTools.scheduledMsgCache.has(msgId)) {
           SLStatic.debug(
-            "countActiveScheduledMessages found in cache",
+            `countActiveScheduledMessages: msg ${msgId} found in scheduled cache`,
             msgHdr,
           );
           return true;
-        } else if (SLTools.unscheduledMsgCache.has(msgHdr.id)) {
+        } else if (SLTools.unscheduledMsgCache.has(msgId)) {
+          SLStatic.debug(
+            `countActiveScheduledMessages: msg ${msgId} found in unscheduled cache`,
+          );
           return false;
         } else {
-          let fullMsg = await messenger.messages.getFull(msgHdr.id);
+          let fullMsg = await messenger.messages.getFull(msgId);
           let uuid = (fullMsg.headers["x-send-later-uuid"] || [])[0];
-          if (uuid == preferences.instanceUUID) {
-            SLTools.scheduledMsgCache.add(msgHdr.id);
+          let instanceUuid = preferences.instanceUUID;
+          if (uuid == instanceUuid) {
+            SLTools.scheduledMsgCache.add(msgId);
             SLStatic.debug(
-              "countActiveScheduledMessages added to cache",
+              `countActiveScheduledMessages: msg ${msgId} added to scheduled cache`,
               msgHdr,
             );
             return true;
           } else {
-            SLTools.unscheduledMsgCache.add(msgHdr.id);
+            SLStatic.debug(
+              `countActiveScheduledMessages: msg ${msgId} added to unscheduled cache` +
+                ` (uuid="${uuid}", instanceUuid="${instanceUuid}")`,
+            );
+            SLTools.unscheduledMsgCache.add(msgId);
             return false;
           }
         }
