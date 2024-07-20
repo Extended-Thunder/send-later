@@ -991,6 +991,8 @@ const SendLater = {
   // ridiculously long.
   async possiblySendMessage(msgHdr, options, locker) {
     SLStatic.trace("possiblySendMessage", msgHdr, options, locker);
+    let msgId = msgHdr.id;
+    let logPrefix = `possiblySendMessage(${msgId}): `;
     let throttleStart = Date.now();
 
     if (!options) {
@@ -1002,16 +1004,18 @@ const SendLater = {
     }
 
     // Determines whether or not a particular draft message is due to be sent
-    if (SLTools.unscheduledMsgCache.has(msgHdr.id)) {
+    if (SLTools.unscheduledMsgCache.has(msgId)) {
+      SLStatic.debug(`${logPrefix}unscheduledMsgCache.has returns true`);
       return;
     }
 
-    SLStatic.debug(`Checking message ${msgHdr.id}.`);
+    SLStatic.debug(`Checking message ${msgId}.`);
     const fullMsg =
-      options.messageFull || (await messenger.messages.getFull(msgHdr.id));
+      options.messageFull || (await messenger.messages.getFull(msgId));
 
     if (!fullMsg.headers.hasOwnProperty("x-send-later-at")) {
-      SLTools.unscheduledMsgCache.add(msgHdr.id);
+      SLTools.unscheduledMsgCache.add(msgId);
+      SLStatic.debug(`${logPrefix}no x-send-later-at`);
       return;
     }
 
@@ -1025,29 +1029,34 @@ const SendLater = {
 
     const nextSend = new Date(msgSendAt);
 
-    if (!SendLater.checkEncryption(contentType, originalMsgId, msgHdr)) return;
+    if (!SendLater.checkEncryption(contentType, originalMsgId, msgHdr)) {
+      SLStatic.debug(`${logPrefix}checkEncryption returns false`);
+      return;
+    }
 
     let preferences = await SLTools.getPrefs();
 
     if (!preferences.sendWhileOffline && !window.navigator.onLine) {
       SLStatic.debug(
-        "Send Later is configured to disable sending while offline. Skipping.",
+        `${logPrefix}Send Later is configured to disable sending while offline. Skipping.`,
       );
       return;
     }
 
     if (!msgUUID) {
-      SLStatic.debug(`Message <${originalMsgId}> has no uuid header.`);
-      SLTools.unscheduledMsgCache.add(msgHdr.id);
+      SLStatic.debug(
+        `${logPrefix}Message <${originalMsgId}> has no uuid header.`,
+      );
+      SLTools.unscheduledMsgCache.add(msgId);
       return;
     }
 
     if (msgUUID !== preferences.instanceUUID) {
       (skipping ? SLStatic.error : SLStatic.debug)(
-        `Message <${originalMsgId}> is scheduled by a ` +
+        `${logPrefix}Message <${originalMsgId}> is scheduled by a ` +
           `different Thunderbird instance.`,
       );
-      SLTools.unscheduledMsgCache.add(msgHdr.id);
+      SLTools.unscheduledMsgCache.add(msgId);
       return;
     }
 
@@ -1060,12 +1069,14 @@ const SendLater = {
         msgLockId,
         fullMsg,
       ))
-    )
+    ) {
+      SLStatic.debug(`${logPrefix}checkLocked returns false`);
       return;
+    }
 
     if (!skipping && Date.now() < nextSend.getTime()) {
       SLStatic.debug(
-        `Message ${msgHdr.id} not due for send until ` +
+        `${logPrefix}Message ${msgId} not due for send until ` +
           `${SLStatic.humanDateTimeFormat(nextSend)}`,
       );
       return;
@@ -1085,8 +1096,10 @@ const SendLater = {
           fullMsg,
         ))
       )
-    )
+    ) {
+      SLStatic.debug(`${logPrefix}checkLate returns false`);
       return;
+    }
 
     if (
       !(await SendLater.checkTimeRestrictions(
@@ -1096,8 +1109,10 @@ const SendLater = {
         originalMsgId,
         msgHdr,
       ))
-    )
+    ) {
+      SLStatic.debug(`${logPrefix}checkTimeRestrictions returns false`);
       return;
+    }
 
     if (
       !(
@@ -1112,8 +1127,10 @@ const SendLater = {
           fullMsg,
         ))
       )
-    )
+    ) {
+      SLStatic.debug(`${logPrefix}doSendMessage returns false`);
       return;
+    }
 
     if (
       !(await SendLater.doNextRecur(
@@ -1129,20 +1146,21 @@ const SendLater = {
       !skipping
     ) {
       SLStatic.info(
-        `No recurrences for message <${originalMsgId}>. Deleting original.`,
+        `${logPrefix}No recurrences for message <${originalMsgId}>. Deleting original.`,
       );
       await SendLater.deleteMessage(msgHdr);
     }
 
     if (!skipping && preferences.throttleDelay) {
       SLStatic.debug(
-        `Throttling send rate: ${preferences.throttleDelay / 1000}s`,
+        `${logPrefix}Throttling send rate: ${preferences.throttleDelay / 1000}s`,
       );
       let throttleDelta = Date.now() - throttleStart;
       let delay = preferences.throttleDelay - throttleDelta;
       await new Promise((resolve) => setTimeout(resolve, delay));
     }
 
+    SLStatic.debug(`${logPrefix}returning true at end of function`);
     return true;
   },
 
