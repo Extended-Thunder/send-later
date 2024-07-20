@@ -32,7 +32,30 @@ var SLTools = {
   // Set of message ID's which are scheduled
   scheduledMsgCache: new Set(),
   // Set of message ID's which are not scheduled
-  unscheduledMsgCache: new Set(),
+  _unscheduledMsgCache: new Set(),
+
+  unscheduledMsgCache: {
+    has: function (key) {
+      let ret = SLTools._unscheduledMsgCache.has(key);
+      SLStatic.trace(`unscheduledMsgCache.has(${key}) = ${ret}`);
+      return ret;
+    },
+    add: function (key) {
+      let ret = SLTools._unscheduledMsgCache.add(key);
+      SLStatic.trace(`unscheduledMsgCache.add(${key}) = ${ret}`);
+      return ret;
+    },
+    delete: function (key) {
+      let ret = SLTools._unscheduledMsgCache.delete(key);
+      SLStatic.trace(`unscheduledMsgCache.delete(${key}) = ${ret}`);
+      return ret;
+    },
+    clear: function () {
+      let ret = SLTools._unscheduledMsgCache.clear();
+      SLStatic.trace(`unscheduledMsgCache.clear() = ${ret}`);
+      return ret;
+    },
+  },
 
   // Convenience function for getting preferences.
   async getPrefs() {
