@@ -480,14 +480,17 @@ const SendLater = {
 
   async compactDrafts(force) {
     if (force || SendLater.prefCache.compactDrafts) {
-      for (let folder of SendLater.draftsToCompact) {
-        SLStatic.debug("Compacting folder:", folder);
-        await messenger.SL3U.compactFolder(folder);
-      }
+      setTimeout(async () => {
+        for (let folder of SendLater.draftsToCompact) {
+          SLStatic.debug("Compacting folder:", folder);
+          await messenger.SL3U.compactFolder(folder);
+        }
+        SendLater.draftsToCompact.length = 0;
+      }, 1000);
     } else if (SendLater.draftsToCompact.length) {
       SLStatic.debug("Not compacting folders, preference is disabled");
+      SendLater.draftsToCompact.length = 0;
     }
-    SendLater.draftsToCompact.length = 0;
   },
 
   async deleteMessage(hdr) {
