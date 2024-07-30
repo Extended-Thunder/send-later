@@ -488,13 +488,12 @@ const SendLater = {
       // This _may_ be fixed in TB129, so we may eventually be able to remove
       // the delay, but possibly not if the root cause can't be identified. See
       // https://bugzilla.mozilla.org/show_bug.cgi?id=1909111 .
-      setTimeout(async () => {
-        for (let folder of SendLater.draftsToCompact) {
-          SLStatic.debug("Compacting folder:", folder);
-          await messenger.SL3U.compactFolder(folder);
-        }
-        SendLater.draftsToCompact.length = 0;
-      }, 1000);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      for (let folder of SendLater.draftsToCompact) {
+        SLStatic.debug("Compacting folder:", folder);
+        await messenger.SL3U.compactFolder(folder);
+      }
+      SendLater.draftsToCompact.length = 0;
     } else if (SendLater.draftsToCompact.length) {
       SLStatic.debug("Not compacting folders, preference is disabled");
       SendLater.draftsToCompact.length = 0;
