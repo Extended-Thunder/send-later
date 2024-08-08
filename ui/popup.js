@@ -604,6 +604,7 @@ const SLPopup = {
     SLStatic.debug("Caching current input values");
     let scheduleCache = await browser.storage.local.get({ scheduleCache: {} });
     let windowId = SLPopup.messageWindowId;
+    if (!windowId) return;
     scheduleCache[windowId] = SLPopup.serializeInputs();
     await browser.storage.local.set({ scheduleCache });
   },
@@ -647,13 +648,17 @@ const SLPopup = {
     });
 
     const windowId = SLPopup.messageWindowId;
+    let defaults;
 
-    SLStatic.debug(
-      `scheduleCache[${windowId}] =`,
-      storage.scheduleCache[windowId],
-    );
+    if (windowId) {
+      SLStatic.debug(
+        `scheduleCache[${windowId}] =`,
+        storage.scheduleCache[windowId],
+      );
+      defaults = storage.scheduleCache[windowId];
+    }
 
-    const defaults = storage.scheduleCache[windowId] || storage.defaults;
+    defaults = defaults || storage.defaults;
 
     const dom = SLPopup.objectifyDOMElements();
 
@@ -1067,9 +1072,10 @@ const SLPopup = {
       }
     }
 
-    SLPopup.messageWindowId = (
-      await messenger.tabs.get(SLPopup.messageTabId)
-    ).windowId;
+    if (SLPopup.messageTabId)
+      SLPopup.messageWindowId = (
+        await messenger.tabs.get(SLPopup.messageTabId)
+      ).windowId;
 
     await SLPopup.applyDefaults();
 
