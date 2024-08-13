@@ -480,13 +480,11 @@ const SendLater = {
 
   async compactDrafts(force) {
     if (force || SendLater.prefCache.compactDrafts) {
-      // We are delaying the compact by one second here because it appears that
-      // there is some sort of race condition in TB128 which, in rare
-      // circumstances we can't quite identify, causes the local copies of
-      // messages in the Drafts folder to get corrupted. We don't know why, but
-      // delaying the compact by a second seems to prevent this from happening.
-      // This _may_ be fixed in TB129, so we may eventually be able to remove
-      // the delay, but possibly not if the root cause can't be identified. See
+      // We are delaying the compact here because it appears that there is some
+      // sort of race condition in TB128 which, in rare circumstances we can't
+      // quite identify, causes the local copies of messages in the Drafts
+      // folder to get corrupted. We don't know why, but delaying the compact
+      // seems to prevent this from happening. See
       // https://bugzilla.mozilla.org/show_bug.cgi?id=1909111 .
       setTimeout(async () => {
         for (let folder of SendLater.draftsToCompact) {
@@ -494,7 +492,7 @@ const SendLater = {
           await messenger.SL3U.compactFolder(folder);
         }
         SendLater.draftsToCompact.length = 0;
-      }, 1000);
+      }, 2000);
     } else if (SendLater.draftsToCompact.length) {
       SLStatic.debug("Not compacting folders, preference is disabled");
       SendLater.draftsToCompact.length = 0;
