@@ -381,7 +381,7 @@ const SendLater = {
     // the new content, as evidenced by looking at the draft on mail.google.com.
     // Compacting the Drafts folder after saving the message seems to solve
     // this.
-    SendLater.addToDraftsToCompact(msg.folder);
+    SendLater.addToDraftsToCompact(msg.folder, true);
 
     let targetFolder = await SLTools.getTargetSubfolder(preferences, msg);
     if (targetFolder) {
@@ -391,10 +391,15 @@ const SendLater = {
       // error.
       msg.id = null;
       msg.folder = targetFolder;
-      SendLater.addToDraftsToCompact(msg.folder);
+      SendLater.addToDraftsToCompact(msg.folder, true);
     }
 
-    await SendLater.compactDrafts(true);
+    // I would like to be able to call SendLater.compactDrafts() here to
+    // compact the Drafts folder immediately so that its content is updated to
+    // be "correct" as soon as possible, but as of 2024-08-18 there is some
+    // sort of mailbox corruption bug which gets triggered for some users when
+    // the compact happens here. We are therefore deferring the compact until
+    // the next run through the main loop. Hopefully this will be good enough.
 
     if (preferences.ignoredAccounts && preferences.ignoredAccounts.length) {
       let identity = await messenger.identities.get(composeDetails.identityId);
@@ -465,7 +470,7 @@ const SendLater = {
 
   draftsToCompact: [],
 
-  addToDraftsToCompact(folder) {
+  addToDraftsToCompact(folder, force) {
     if (
       !SendLater.draftsToCompact.some(
         (f) => f.accountId == folder.accountId && f.path == folder.path,
@@ -476,27 +481,23 @@ const SendLater = {
     } else {
       SLStatic.debug("Compact is already queued for:", folder);
     }
+    if (force) SendLater.draftsToCompact.slforce = true;
   },
 
-  async compactDrafts(force) {
-    if (force || SendLater.prefCache.compactDrafts) {
-      // We are delaying the compact here because it appears that there is some
-      // sort of race condition in TB128 which, in rare circumstances we can't
-      // quite identify, causes the local copies of messages in the Drafts
-      // folder to get corrupted. We don't know why, but delaying the compact
-      // seems to prevent this from happening. See
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1909111 .
-      setTimeout(async () => {
-        for (let folder of SendLater.draftsToCompact) {
-          SLStatic.debug("Compacting folder:", folder);
-          await messenger.SL3U.compactFolder(folder);
-        }
-        SendLater.draftsToCompact.length = 0;
-      }, 2000);
+  async compactDrafts() {
+    if (
+      SendLater.draftsToCompact.slforce ||
+      SendLater.prefCache.compactDrafts
+    ) {
+      for (let folder of SendLater.draftsToCompact) {
+        SLStatic.debug("Compacting folder:", folder);
+        await messenger.SL3U.compactFolder(folder);
+      }
+      SendLater.draftsToCompact.slforce = false;
     } else if (SendLater.draftsToCompact.length) {
       SLStatic.debug("Not compacting folders, preference is disabled");
-      SendLater.draftsToCompact.length = 0;
     }
+    SendLater.draftsToCompact.length = 0;
   },
 
   async deleteMessage(hdr) {
@@ -2777,6 +2778,13 @@ async function mainLoop() {
   }
 
   try {
+    // We do this compact at both the beginning and end of the main loop
+    // because at the beginning there may be compacting needed as a result of
+    // messages that were edited or scheduled in the interim, and at the end
+    // there may be compacting needed as a result of messages sent and/or
+    // rescheduled during the main loop.
+    await SendLater.compactDrafts();
+
     let preferences = await SLTools.getPrefs();
     let interval = preferences.checkTimePref || 0;
     let now = new Date();
