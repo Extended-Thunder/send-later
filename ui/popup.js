@@ -1072,10 +1072,19 @@ const SLPopup = {
       }
     }
 
-    if (SLPopup.messageTabId)
+    if (SLPopup.messageTabId) {
       SLPopup.messageWindowId = (
         await messenger.tabs.get(SLPopup.messageTabId)
       ).windowId;
+
+      messenger.windows.onRemoved.addListener((windowId) => {
+        if (windowId == SLPopup.messageWindowId) {
+          try {
+            window.close();
+          } catch {}
+        }
+      });
+    }
 
     await SLPopup.applyDefaults();
 
