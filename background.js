@@ -394,12 +394,7 @@ const SendLater = {
       SendLater.addToDraftsToCompact(msg.folder, true);
     }
 
-    // I would like to be able to call SendLater.compactDrafts() here to
-    // compact the Drafts folder immediately so that its content is updated to
-    // be "correct" as soon as possible, but as of 2024-08-18 there is some
-    // sort of mailbox corruption bug which gets triggered for some users when
-    // the compact happens here. We are therefore deferring the compact until
-    // the next run through the main loop. Hopefully this will be good enough.
+    SendLater.compactDrafts();
 
     if (preferences.ignoredAccounts && preferences.ignoredAccounts.length) {
       let identity = await messenger.identities.get(composeDetails.identityId);
@@ -485,16 +480,18 @@ const SendLater = {
   },
 
   async compactDrafts() {
+    if (!SendLater.draftsToCompact.length) return;
     if (
       SendLater.draftsToCompact.slforce ||
       SendLater.prefCache.compactDrafts
     ) {
+      await messenger.SL3U.waitUntilIdle();
       for (let folder of SendLater.draftsToCompact) {
         SLStatic.debug("Compacting folder:", folder);
         await messenger.SL3U.compactFolder(folder);
       }
       SendLater.draftsToCompact.slforce = false;
-    } else if (SendLater.draftsToCompact.length) {
+    } else {
       SLStatic.debug("Not compacting folders, preference is disabled");
     }
     SendLater.draftsToCompact.length = 0;

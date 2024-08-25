@@ -115,6 +115,13 @@
         ]
       },
       {
+        "name": "waitUntilIdle",
+        "type": "function",
+        "async": true,
+        "description": "Wait until the Activity Manager does not show any ongoing activity",
+        "parameters": []
+      },
+      {
         "name": "compactFolder",
         "type": "function",
         "async": true,

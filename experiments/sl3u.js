@@ -798,6 +798,32 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           folder.updateFolder(msgWindow);
         },
 
+        // Wait until the Activity Manager does not show any ongoing activity
+        async waitUntilIdle() {
+          SendLaterFunctions.debug("Waiting until idle");
+          let lastMsg;
+          while (true) {
+            let activities = Cc["@mozilla.org/activity-manager;1"]
+              .getService(Ci.nsIActivityManager)
+              .getActivities();
+            for (let activity of activities)
+              if (!activity.completionTime) {
+                let msg = `Waiting for activity ${activity.displayText} to complete`;
+                if (msg != lastMsg) {
+                  SendLaterFunctions.debug(msg);
+                  lastMsg = msg;
+                }
+                let window = Services.wm.getMostRecentWindow(null);
+                await new Promise((resolve) =>
+                  window.setTimeout(resolve, 1000),
+                );
+                continue;
+              }
+            break;
+          }
+          if (lastMsg) SendLaterFunctions.debug("Finished waiting until idle");
+        },
+
         // Compact a folder
         async compactFolder({ accountId, path }) {
           let uri = SendLaterFunctions.folderPathToURI(accountId, path);
