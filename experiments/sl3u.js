@@ -798,30 +798,38 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           folder.updateFolder(msgWindow);
         },
 
-        // Wait until the Activity Manager does not show any ongoing activity
-        async waitUntilIdle() {
+        // Wait until the folders aren't being modified.
+        async waitUntilIdle(folders) {
           SendLaterFunctions.debug("Waiting until idle");
-          let lastMsg;
+          let waited = false;
           while (true) {
-            let activities = Cc["@mozilla.org/activity-manager;1"]
-              .getService(Ci.nsIActivityManager)
-              .getActivities();
-            for (let activity of activities)
-              if (!activity.completionTime) {
-                let msg = `Waiting for activity ${activity.displayText} to complete`;
-                if (msg != lastMsg) {
-                  SendLaterFunctions.debug(msg);
-                  lastMsg = msg;
-                }
-                let window = Services.wm.getMostRecentWindow(null);
-                await new Promise((resolve) =>
-                  window.setTimeout(resolve, 1000),
+            let now = Date.now();
+            let waitTime = 0;
+            for (let { accountId, path } of folders) {
+              let uri = SendLaterFunctions.folderPathToURI(accountId, path);
+              let folder = MailServices.folderLookup.getFolderForURL(uri);
+              for (let suffix of ["", ".msf"]) {
+                let file = Cc["@mozilla.org/file/local;1"].createInstance(
+                  Ci.nsIFile,
                 );
-                continue;
+                let path = folder.filePath.path + suffix;
+                file.initWithPath(path);
+                if (!file.exists()) continue;
+                if (now - file.lastModifiedTime < 1000) {
+                  let newWaitTime = 1000 - (now - file.lastModifiedTime);
+                  if (newWaitTime > waitTime) waitTime = newWaitTime;
+                  SendLaterFunctions.debug(`Waiting for ${path} to settle`);
+                }
               }
-            break;
+            }
+            if (waitTime == 0) break;
+            let window = Services.wm.getMostRecentWindow("mail:3pane");
+            await new Promise((resolve) =>
+              window.setTimeout(resolve, waitTime),
+            );
+            waited = true;
           }
-          if (lastMsg) SendLaterFunctions.debug("Finished waiting until idle");
+          if (waited) SendLaterFunctions.debug("Finished waiting until idle");
         },
 
         // Compact a folder

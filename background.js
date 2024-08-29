@@ -485,7 +485,7 @@ const SendLater = {
       SendLater.draftsToCompact.slforce ||
       SendLater.prefCache.compactDrafts
     ) {
-      await messenger.SL3U.waitUntilIdle();
+      await messenger.SL3U.waitUntilIdle(SendLater.draftsToCompact);
       for (let folder of SendLater.draftsToCompact) {
         SLStatic.debug("Compacting folder:", folder);
         await messenger.SL3U.compactFolder(folder);

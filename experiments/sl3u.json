@@ -118,8 +118,16 @@
         "name": "waitUntilIdle",
         "type": "function",
         "async": true,
-        "description": "Wait until the Activity Manager does not show any ongoing activity",
-        "parameters": []
+        "description": "Wait until folders aren't being modified",
+        "parameters": [
+          {
+            "name": "folders",
+            "type": "array",
+            "items": {
+              "$ref": "folders.MailFolder"
+            }
+          }
+        ]
       },
       {
         "name": "compactFolder",
