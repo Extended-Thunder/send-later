@@ -717,6 +717,10 @@
     "message": "Store scheduled messages in subfolder called:",
     "description": "In preferences tab, preceded by a checkbox and followed by a text input"
   },
+  "detachedPopupPreference": {
+    "message": "Detach scheduling popup from compose window",
+    "description": "In preferences tab, preceded by a checkbox"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "There are messages scheduled to be sent. Send Later can only send messages when $1 is running. Are you sure you want to exit?",
     "description": ""

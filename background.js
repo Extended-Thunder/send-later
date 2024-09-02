@@ -1691,18 +1691,15 @@ const SendLater = {
     window = await messenger.windows.get(window.id, { populate: true });
     SLStatic.info("Opened new window", window);
 
-    // We are always using the detached pop-up now because of
-    // https://github.com/Extended-Thunder/send-later/issues/663,
-    // so we don't need to do this.
-    // await SLStatic.tb115(false, async () => {
-    //   // Ensure that the composeAction button is visible,
-    //   // otherwise the popup action will silently fail.
-    //   try {
-    //     await messenger.SL3U.forceToolbarVisible(window.id);
-    //   } catch (ex) {
-    //     SLStatic.error("SL3U.forceToolbarVisible", ex);
-    //   }
-    // });
+    await SLStatic.tb115(false, async () => {
+      // Ensure that the composeAction button is visible,
+      // otherwise the popup action will silently fail.
+      try {
+        await messenger.SL3U.forceToolbarVisible(window.id);
+      } catch (ex) {
+        SLStatic.error("SL3U.forceToolbarVisible", ex);
+      }
+    });
 
     // Bind listeners to overlay components like File>Send,
     // Send Later, and keycodes like Ctrl+enter, etc.
@@ -1829,31 +1826,29 @@ const SendLater = {
       }
     }
 
-    // Always use the detached popup, because of
-    // https://github.com/Extended-Thunder/send-later/issues/663.
-    await detachedPopup();
-    //   await SLStatic.tb115(
-    //     async () => {
-    //       // The onClicked event on the compose action button doesn't fire if a
-    //       // pop-up is configured, so we have to set and open the popup here and
-    //       // then immediately unset the popup so that we can catch the key binding
-    //       // if the user clicks again with a modifier.
-    //       messenger.composeAction.setPopup({ popup: "ui/popup.html" });
-    //       try {
-    //         if (!(await messenger.composeAction.openPopup())) {
-    //           SLStatic.info(
-    //             "composeAction pop-up failed to open, trying standalone",
-    //           );
-    //           return await detachedPopup();
-    //         }
-    //       } finally {
-    //         messenger.composeAction.setPopup({ popup: null });
-    //       }
-    //     },
-    //     async () => {
-    //       return await detachedPopup();
-    //     },
-    //   );
+    await SLStatic.tb128(
+      async () => {
+        if (SendLater.prefCache.detachedPopup) return await detachedPopup();
+        // The onClicked event on the compose action button doesn't fire if a
+        // pop-up is configured, so we have to set and open the popup here and
+        // then immediately unset the popup so that we can catch the key binding
+        // if the user clicks again with a modifier.
+        messenger.composeAction.setPopup({ popup: "ui/popup.html" });
+        try {
+          if (!(await messenger.composeAction.openPopup())) {
+            SLStatic.info(
+              "composeAction pop-up failed to open, trying standalone",
+            );
+            await detachedPopup();
+          }
+        } finally {
+          messenger.composeAction.setPopup({ popup: null });
+        }
+      },
+      async () => {
+        await detachedPopup();
+      },
+    );
   },
 
   // Custom events that are attached to user actions within

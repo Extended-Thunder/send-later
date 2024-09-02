@@ -55,5 +55,6 @@
   "storeInSubfolder": ["boolean", false],
   "subfolderName": ["string", ""],
   "compactDrafts": ["boolean", false],
-  "autoUpdateDraftsFolders": ["boolean", false]
+  "autoUpdateDraftsFolders": ["boolean", false],
+  "detachedPopup": ["boolean", true]
 }
