@@ -717,6 +717,10 @@
     "message": "Memorizza i messaggi con invio programmato nella sottocartella:",
     "description": "In preferences tab, preceded by a checkbox and followed by a text input"
   },
+  "detachedPopupPreference": {
+    "message": "Scorpora il popup di pianificazione dalla finestra di composizione",
+    "description": "In preferences tab, preceded by a checkbox"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Sono presenti dei messaggi con invio programmato. “Invia Dopo” può inviare messaggi solo quando $1 è in esecuzione. Si è sicuri di voler uscire?",
     "description": ""
