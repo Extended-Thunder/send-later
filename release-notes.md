@@ -5,14 +5,51 @@ layout: default
 
 ---
 
-## ATTENTION THUNDERBIRD 128 (or newer) USERS
+## CURRENT IMPORTANT KNOWN ISSUES
 
-You must have the "Encrypt" button present in your compose window
-toolbar to be able to schedule messages with Send Later. If you
-removed it some point, you need to customize the toolbar and put it
-back. This is due to a [Thunderbird
-bug](https://bugzilla.mozilla.org/show_bug.cgi?id=1906833) which we
-hope will be fixed soon.
+* [Data loss/corruption with TB128+](#issue-corrupt)
+* [Blank popups under Wayland with TB121+](#issue-wayland)
+* [Scheduling window gets narrower every time you use it](#issue-narrowing)
+* [Betterbird has issues and is not currently supported](#issue-betterbird)
+* [Send Later may be incompatible with the "Check and Send" add-on](#issue-checkandsend)
+
+### <a id="issue-corrupt"/>Thunderbird + Send Later Drafts folder corruption with TB128+
+
+_**TLDR Currently, you could lose data if you use Send Later with Thunderbird 128 or newer,**_ so either don't do that, or mitigate the risk as described below.
+
+A bug in Thunderbird 128 or newer can corrupt Thunderbird's copy of your Drafts folder in an IMAP account when you schedule a message with Send Later. This may also happen at delivery time when you have a recurring message scheduled.
+
+The impact of this bug is serious and includes data loss. Scheduled messages could be not sent at all, or could be sent multiples times, and unsent scheduled messages could be deleted entirely.
+
+A good (but not perfect) test of whether this bug is impacting you is to schedule five messages with different contents with Send Later and then check all five messages in your Drafts folder and make sure all of them have the correct headers and contents. If they're all correct, you're probably safe, because for people impacted by this issue, it happens consistently enough that scheduling five messages in a row should trigger it.
+
+As a workaround, you can stick with Thunderbird 115, or you can configure Thunderbird to store your drafts under Local Folders rather than in your IMAP account. We have not seen this issue occur with a local Drafts folder.
+
+We are actively researching better workarounds, and the Thunderbird team is actively working on finding and fixing the Thunderbird bug.
+
+### <a id="issue-wayland"/>Linux, Wayland: Send Later popups are blank for TB121+
+
+If you are using Wayland on Linux with Thunderbird 121.0b5 or newer, the Send Later popup in the main Thunderbird window is blank.
+
+The scheduling popup in the compose window is also blank, in the following circumstances: using Wayland, Thunderbird 128 or newer, Send Later 10.5.5 or newer.
+
+Available workarounds:
+
+* Stick with Thunderbird 115 for the time being.
+* Use Xorg instead of Wayland.
+* Enable the "Detach scheduling popup from compose window" option in the Send Later preferences for Send Later 10.5.5+ on TB128+. This will solve the problem for the scheduling popup but not for the main-window popup.
+
+### <a id="issue-narrowing"/>For some people, the scheduling popup gets narrower every time you schedule a message
+
+We [are aware of this issue](https://github.com/Extended-Thunder/send-later/issues/700) but have not yet had time to fully investigate it. For some users, uninstalling and reinstalling the add-on makes the problem go away. If you are running into this issue, please add a comment to the ticket above indicating what OS and Send Later version you are using and whether uninstalling and reinstalling the add-on fixes the problem for you.
+
+### <a id="issue-betterbird"/>Send Later is known to have issues with Betterbird
+
+The Send Later add-on is not regularly tested with the Thunderbird fork called Betterbird, and there are known, unresolved issues which may prevent the add-on from functioning as intended. Using Send Later with Betterbird is therefore not recommended.
+
+### <a id="issue-checkandsend"/>Send Later may be incompatible with the "Check and Send" add-on
+
+It has been [reported to us](https://github.com/Extended-Thunder/send-later/issues/668) that there are compatibility issues between the "Check and Send" add-on and Send-Later. We have not yet investigated this issue, so use the two add-ons together at your own risk.
 
 ---
 
