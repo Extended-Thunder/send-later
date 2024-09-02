@@ -347,9 +347,8 @@ const SLOptions = {
       funcSelectors[`ufunc-accel-ctrl-${funcName}`] = "accelCtrlfuncselect";
       funcSelectors[`ufunc-accel-shift-${funcName}`] = "accelShiftfuncselect";
       for (let i = 1; i < 4; i++)
-        funcSelectors[
-          `ufunc-shortcut-${i}-${funcName}`
-        ] = `quickOptions${i}funcselect`;
+        funcSelectors[`ufunc-shortcut-${i}-${funcName}`] =
+          `quickOptions${i}funcselect`;
 
       for (let key of Object.keys(funcSelectors)) {
         if (document.getElementById(key)) continue;
