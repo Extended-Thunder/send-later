@@ -717,6 +717,10 @@
     "message": "Gem planlagte breve i undermappe kaldet:",
     "description": "In preferences tab, preceded by a checkbox and followed by a text input"
   },
+  "detachedPopupPreference": {
+    "message": "Frigør planlægnings popup vinduet fra brevkompositionsvinduet",
+    "description": "In preferences tab, preceded by a checkbox"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Der er beskeder planlagt til at blive sendt. Send senere kan kun sende beskeder når $1 kører. Er du sikker på du vil afslutte?",
     "description": ""
