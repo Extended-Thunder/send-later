@@ -347,8 +347,9 @@ const SLOptions = {
       funcSelectors[`ufunc-accel-ctrl-${funcName}`] = "accelCtrlfuncselect";
       funcSelectors[`ufunc-accel-shift-${funcName}`] = "accelShiftfuncselect";
       for (let i = 1; i < 4; i++)
-        funcSelectors[`ufunc-shortcut-${i}-${funcName}`] =
-          `quickOptions${i}funcselect`;
+        funcSelectors[
+          `ufunc-shortcut-${i}-${funcName}`
+        ] = `quickOptions${i}funcselect`;
 
       for (let key of Object.keys(funcSelectors)) {
         if (document.getElementById(key)) continue;
@@ -1046,6 +1047,10 @@ const SLOptions = {
 
     await SLStatic.tb115(() => {
       document.getElementById("showColumnRow").hidden = true;
+    });
+
+    await SLStatic.tb128(false, () => {
+      document.getElementById("detachedPopupDiv").hidden = true;
     });
 
     await SLOptions.applyPrefsToUI();
