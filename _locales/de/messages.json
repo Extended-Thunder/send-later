@@ -717,6 +717,10 @@
     "message": "Geplante Nachrichten in folgendem Unterordner speichern:",
     "description": "In preferences tab, preceded by a checkbox and followed by a text input"
   },
+  "detachedPopupPreference": {
+    "message": "Zeitplan-Popup vom Editor-Fenster lösen",
+    "description": "In preferences tab, preceded by a checkbox"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Es gibt noch Nachrichten, deren Senden geplant ist. „Später senden” kann Nachrichten nur versenden, wenn $1 geöffnet ist. Möchten Sie das Programm dennoch schließen?",
     "description": ""
