@@ -717,6 +717,10 @@
     "message": "שמור את ההודעות המתוזמנות בתת תיקיה בשם:",
     "description": "In preferences tab, preceded by a checkbox and followed by a text input"
   },
+  "detachedPopupPreference": {
+    "message": "נתק את חלון התזמון הקופץ מחלון העריכה",
+    "description": "In preferences tab, preceded by a checkbox"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "קיימות הודעות הממתינות למשלוח. \"‫שלח מאוחר יותר‬\" תשלח הודעות רק כאשר $1 פועלת. האם אתם רוצים לצאת עכשיו?",
     "description": ""
