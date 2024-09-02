@@ -717,6 +717,10 @@
     "message": "Ütemezett üzenetek tárolása a következő almappában:",
     "description": "In preferences tab, preceded by a checkbox and followed by a text input"
   },
+  "detachedPopupPreference": {
+    "message": "Ütemezési előugró ablak leválasztása a levélírási ablakról",
+    "description": "In preferences tab, preceded by a checkbox"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Vannak üzenetek, amelyeket el kell küldeni. Küldés később csak akkor küldhet üzeneteket, amikor a(z) $1 fut. Biztosan kilép?",
     "description": ""
