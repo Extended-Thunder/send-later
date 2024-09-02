@@ -16,10 +16,11 @@ layout: default
 The Send Later Thunderbird add-on allows you you to write an email message and
 then tell Thunderbird when you want it to be sent. The message is saved into
 your Drafts folder, and delivered at approximately the specified time. The
-add-on is available for download from [addons.thunderbird.net][atn]. New
-releases are documented in our [fancy release notes](release-notes.html), as
-well as in the [version listing on addons.thunderbird.net][atnversions] and our
-[GitHub releases page][ghreleases].
+add-on is available for download from [addons.thunderbird.net][atn]. Important
+known issues and new releases are documented in our [fancy release
+notes](release-notes.html), as well as in the [version listing on
+addons.thunderbird.net][atnversions] and our [GitHub releases
+page][ghreleases].
 
 What follows is a user manual for the add-on.
 
