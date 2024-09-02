@@ -717,6 +717,10 @@
     "message": "Enregistrer les messages programmés dans le sous-dossier appelé :",
     "description": "In preferences tab, preceded by a checkbox and followed by a text input"
   },
+  "detachedPopupPreference": {
+    "message": "Détacher la fenêtre de planification de la fenêtre de composition",
+    "description": "In preferences tab, preceded by a checkbox"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Il y a des envois programmés. Envoyer Plus Tard ne peut envoyer de message que lorsque $1 est ouvert. Êtes-vous sûr de vouloir quitter ?",
     "description": ""
