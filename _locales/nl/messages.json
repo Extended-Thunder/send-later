@@ -717,6 +717,10 @@
     "message": "Geplande berichten opslaan in deze submap:",
     "description": "In preferences tab, preceded by a checkbox and followed by a text input"
   },
+  "detachedPopupPreference": {
+    "message": "Pop-up voor planning loskoppelen van opstelvenster",
+    "description": "In preferences tab, preceded by a checkbox"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Er zijn berichten ingepland voor verzending. Send Later kan alleen berichten verzenden als $1 actief is. Weet u zeker dat u wilt afsluiten?",
     "description": ""
