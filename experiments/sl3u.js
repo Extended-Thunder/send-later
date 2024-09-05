@@ -27,6 +27,8 @@ const SendLaterVars = {
 var draftsFolderStatus = {};
 var draftsFolderTime = 0;
 
+var draftsIdleTime = 5000;
+
 function cacheDraftsFolders() {
   if (Date.now() - draftsFolderTime < 60000) return;
   draftsFolderStatus = {};
@@ -815,8 +817,9 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
                 let path = folder.filePath.path + suffix;
                 file.initWithPath(path);
                 if (!file.exists()) continue;
-                if (now - file.lastModifiedTime < 1000) {
-                  let newWaitTime = 1000 - (now - file.lastModifiedTime);
+                if (now - file.lastModifiedTime < draftsIdleTime) {
+                  let newWaitTime =
+                    draftsIdleTime - (now - file.lastModifiedTime);
                   if (newWaitTime > waitTime) waitTime = newWaitTime;
                   SendLaterFunctions.debug(`Waiting for ${path} to settle`);
                 }
