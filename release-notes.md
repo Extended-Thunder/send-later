@@ -79,6 +79,12 @@ the United States as permitted by law.
 
 In Thunderbird 128 or newer, Delivery Status Notifications work for messages scheduled with Send Later 10.5.1 or newer.
 
+### Bug fixes
+
+Fixed in 10.5.4: the pop-up scheduling window is now dismissed properly when the message composition window it's associated with is closed.
+
+Fixed in 10.5.6: when execute a Send Later menu command on more than 100 messages in a drafts folder, Send Later now processes all of the selected messages rather than stopping after processing 100 of them.
+
 ## Release 10.4.x
 
 ### New features
