@@ -76,6 +76,24 @@ class Locker {
   }
 }
 
+async function* getMessages(list) {
+  let page = await list;
+  for (let message of page.messages) {
+    yield message;
+  }
+
+  while (page.id) {
+    page = await messenger.messages.continueList(page.id);
+    for (let message of page.messages) {
+      yield message;
+    }
+  }
+}
+
+async function* getMessageIds(list) {
+  for await (let message of getMessages(list)) yield message.id;
+}
+
 // Pseudo-namespace encapsulation for global-ish variables.
 const SendLater = {
   prefCache: {},
@@ -1500,10 +1518,10 @@ const SendLater = {
 
   async menuClickHandler(info, tab) {
     SLStatic.trace("SendLater.scheduleSelectedMessages", info, tab);
-    let messageIds = info.selectedMessages.messages.map((msg) => msg.id);
-    if (!messageIds.length) {
-      return;
-    }
+    let messageIds = await Array.fromAsync(
+      getMessageIds(info.selectedMessages),
+    );
+    if (!messageIds.length) return;
     if (info.menuItemId == this.scheduleMenuId) {
       let queryString = messageIds.map((id) => `messageId=${id}`).join("&");
       await messenger.windows.create({
