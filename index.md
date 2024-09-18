@@ -473,6 +473,14 @@ Note that due to a deficiency in Gmail's IMAP implementation, this
 does not work for Gmail accounts unless you configure Thunderbird to
 store drafts in a folder other than the default "[Gmail]/Drafts".
 
+### Detach scheduling popup from compose window
+
+If you find that the Send Later scheduling window disappears or flies off the screen immediately after it is opened, and the workarounds described in [this bug ticket](bug663) don't work for you, you can enable this preference to work around the problem by telling Send Later to detach the scheduling window from the button.
+
+(This preference is only visible in Thunderbird 128 and newer. The scheduling window is always detached from the button in older versions of Thunderbird.)
+
+[bug663]: https://github.com/Extended-Thunder/send-later/issues/663
+
 ### Shortcut buttons
 
 In addition to these main settings, you can change the behavior of the
