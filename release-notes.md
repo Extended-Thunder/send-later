@@ -13,9 +13,9 @@ layout: default
 * [Betterbird has issues and is not currently supported](#issue-betterbird)
 * [Send Later may be incompatible with the "Check and Send" add-on](#issue-checkandsend)
 
-### <a id="issue-corrupt"/>Thunderbird + Send Later Drafts folder corruption with TB128+
+### <a id="issue-corrupt"/>Potential Thunderbird + Send Later Drafts folder corruption with TB128+
 
-_**TLDR Currently, you could lose data if you use Send Later with Thunderbird 128 or newer,**_ so either don't do that, or mitigate the risk as described below.
+_**TLDR Currently, you could lose data if you use Send Later with Thunderbird 128 or newer.**_ There is a workaround for this issue in release 10.5.7 of Send Later, but we don't yet know for certain if this workaround works for everyone. You may wish to mitigate the risk as described below.
 
 A bug in Thunderbird 128 or newer can corrupt Thunderbird's copy of your Drafts folder in an IMAP account when you schedule a message with Send Later. This may also happen at delivery time when you have a recurring message scheduled.
 
@@ -25,7 +25,7 @@ A good (but not perfect) test of whether this bug is impacting you is to schedul
 
 As a workaround, you can stick with Thunderbird 115, or you can configure Thunderbird to store your drafts under Local Folders rather than in your IMAP account. We have not seen this issue occur with a local Drafts folder.
 
-We are actively researching better workarounds, and the Thunderbird team is actively working on finding and fixing the Thunderbird bug.
+Thunderbird team is actively working on finding and fixing the Thunderbird bug.
 
 ### <a id="issue-wayland"/>Linux, Wayland: Send Later popups are blank for TB121+
 
