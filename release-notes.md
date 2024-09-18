@@ -79,11 +79,19 @@ the United States as permitted by law.
 
 In Thunderbird 128 or newer, Delivery Status Notifications work for messages scheduled with Send Later 10.5.1 or newer.
 
+In Send Later 10.5.5 or newer, when using Thunderbird 128 or newer the scheduling popup is now "attached" to the Thunderbird window by default, rather than being a separate window. There is a new "Detach scheduling popup from compose window" preference you can enable if you find that the attached scheduling popup still isn't working for you (it disappears immediately after it is opened).
+
 ### Bug fixes
+
+Fixed in 10.5.3:  When the user selects one or more messages in the messages list and then uses the "Schedule message(s)" menu command, the pop-up window is now filled in properly with the default send time.
 
 Fixed in 10.5.4: the pop-up scheduling window is now dismissed properly when the message composition window it's associated with is closed.
 
-Fixed in 10.5.6: when execute a Send Later menu command on more than 100 messages in a drafts folder, Send Later now processes all of the selected messages rather than stopping after processing 100 of them.
+Fixed in 10.5.6:
+
+* when executing a Send Later menu command on more than 100 messages in a drafts folder, Send Later now processes all of the selected messages rather than stopping after processing 100 of them.
+
+* another attempt to work around the drafts folder corruption bug described [above](#issue-corrupt), plus translation updates.
 
 ## Release 10.4.x
 
