@@ -397,9 +397,8 @@ const SendLater = {
     // to display the old content for a message even though the server has the
     // new content; in this case it appears that even the server doesn't show
     // the new content, as evidenced by looking at the draft on mail.google.com.
-    // Compacting the Drafts folder after saving the message seems to solve
-    // this.
-    SendLater.addToDraftsToCompact(msg.folder, true);
+    // Cleaning the Drafts folder after saving the message seems to solve this.
+    SendLater.addToDraftsToClean(msg.folder, true);
 
     let targetFolder = await SLTools.getTargetSubfolder(preferences, msg);
     if (targetFolder) {
@@ -409,10 +408,10 @@ const SendLater = {
       // error.
       msg.id = null;
       msg.folder = targetFolder;
-      SendLater.addToDraftsToCompact(msg.folder, true);
+      SendLater.addToDraftsToClean(msg.folder, true);
     }
 
-    SendLater.compactDrafts();
+    SendLater.cleanDrafts();
 
     if (preferences.ignoredAccounts && preferences.ignoredAccounts.length) {
       let identity = await messenger.identities.get(composeDetails.identityId);
@@ -481,42 +480,39 @@ const SendLater = {
     return true;
   },
 
-  draftsToCompact: [],
+  draftsToClean: [],
 
-  addToDraftsToCompact(folder, force) {
+  addToDraftsToClean(folder, force) {
     if (
-      !SendLater.draftsToCompact.some(
+      !SendLater.draftsToClean.some(
         (f) => f.accountId == folder.accountId && f.path == folder.path,
       )
     ) {
-      SLStatic.debug("Adding folder to draftsToCompact:", folder);
-      SendLater.draftsToCompact.push(folder);
+      SLStatic.debug("Adding folder to draftsToClean:", folder);
+      SendLater.draftsToClean.push(folder);
     } else {
-      SLStatic.debug("Compact is already queued for:", folder);
+      SLStatic.debug("Clean is already queued for:", folder);
     }
-    if (force) SendLater.draftsToCompact.slforce = true;
+    if (force) SendLater.draftsToClean.slforce = true;
   },
 
-  async compactDrafts() {
-    if (!SendLater.draftsToCompact.length) return;
-    if (
-      SendLater.draftsToCompact.slforce ||
-      SendLater.prefCache.compactDrafts
-    ) {
-      await messenger.SL3U.waitUntilIdle(SendLater.draftsToCompact);
-      for (let folder of SendLater.draftsToCompact) {
-        SLStatic.debug("Compacting folder:", folder);
-        await messenger.SL3U.compactFolder(folder);
+  async cleanDrafts() {
+    if (!SendLater.draftsToClean.length) return;
+    if (SendLater.draftsToClean.slforce || SendLater.prefCache.compactDrafts) {
+      await messenger.SL3U.waitUntilIdle(SendLater.draftsToClean);
+      for (let folder of SendLater.draftsToClean) {
+        SLStatic.debug("Cleaning folder:", folder);
+        await messenger.SL3U.expungeOrCompactFolder(folder);
       }
-      SendLater.draftsToCompact.slforce = false;
+      SendLater.draftsToClean.slforce = false;
     } else {
-      SLStatic.debug("Not compacting folders, preference is disabled");
+      SLStatic.debug("Not cleaning folders, preference is disabled");
     }
-    SendLater.draftsToCompact.length = 0;
+    SendLater.draftsToClean.length = 0;
   },
 
   async deleteMessage(hdr) {
-    SendLater.addToDraftsToCompact(hdr.folder);
+    SendLater.addToDraftsToClean(hdr.folder);
     let account = await messenger.accounts.get(hdr.folder.accountId, false);
     let accountType = account.type;
     let succeeded;
@@ -2788,12 +2784,12 @@ async function mainLoop() {
   }
 
   try {
-    // We do this compact at both the beginning and end of the main loop
-    // because at the beginning there may be compacting needed as a result of
+    // We do this clean at both the beginning and end of the main loop
+    // because at the beginning there may be cleaning needed as a result of
     // messages that were edited or scheduled in the interim, and at the end
-    // there may be compacting needed as a result of messages sent and/or
+    // there may be cleaning needed as a result of messages sent and/or
     // rescheduled during the main loop.
-    await SendLater.compactDrafts();
+    await SendLater.cleanDrafts();
 
     let preferences = await SLTools.getPrefs();
     let interval = preferences.checkTimePref || 0;
@@ -2849,7 +2845,7 @@ async function mainLoop() {
           nActive,
         );
 
-        await SendLater.compactDrafts();
+        await SendLater.cleanDrafts();
         setDeferred("mainLoop", 60000 * interval, mainLoop);
         SLStatic.debug(
           `Next main loop iteration in ${60 * interval} seconds.`,

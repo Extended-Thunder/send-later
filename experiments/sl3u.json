@@ -130,10 +130,10 @@
         ]
       },
       {
-        "name": "compactFolder",
+        "name": "expungeOrCompactFolder",
         "type": "function",
         "async": true,
-        "description": "Compact a folder",
+        "description": "Expunge (IMAP) or compact a folder",
         "parameters": [
           {
             "name": "folder",

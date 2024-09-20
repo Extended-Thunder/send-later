@@ -835,14 +835,21 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           if (waited) SendLaterFunctions.debug("Finished waiting until idle");
         },
 
-        // Compact a folder
-        async compactFolder({ accountId, path }) {
+        // Expunge or compact a folder
+        async expungeOrCompactFolder({ accountId, path }) {
           let uri = SendLaterFunctions.folderPathToURI(accountId, path);
           let folder = MailServices.folderLookup.getFolderForURL(uri);
           let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"]
             .createInstance()
             .QueryInterface(Ci.nsIMsgWindow);
-          folder.compact(null, msgWindow);
+          try {
+            folder
+              .QueryInterface(Ci.nsIMsgImapMailFolder)
+              .expunge(null, msgWindow);
+          } catch {
+            SendLaterFunctions.debug("expunge failed, calling compact");
+            folder.compact(null, msgWindow);
+          }
         },
 
         // Saves raw message content in specified folder.
