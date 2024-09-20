@@ -496,19 +496,57 @@ const SendLater = {
     if (force) SendLater.draftsToClean.slforce = true;
   },
 
+  // There are two different race conditions we're concerned about here. First,
+  // while we're waiting for all of the drafts folders we're cleaning to become
+  // idle, someone else could call cleanDrafts a second time. Second, while
+  // we're awaiting for something in the loop of cleaning all the folders,
+  // someone could add another folder to the list.
+  // To address the first, any time cleanDrafts is invoked it needs to await
+  // for the prior running invocation to finish. We set this up in a loop that
+  // keeps awaiting until there's nothing to wait for, because if multiple
+  // invocations are awaiting for it to finish before they start, one of them
+  // could regain control before we do and start another clean cycle.
+  // To address the second, we make the list of drafts to clean local before we
+  // start the cleaning process, and reinitialize the shared list to an empty
+  // array, so if someone else adds a folder to the list once we've started
+  // cleaning it'll get picked up in the next invocation of cleanDrafts.
+
+  // This is just used so that different invocations of cleanDrafts can be
+  // distinguished from each other in the logs.
+  cdid: 0,
+  cleanDraftsPromise: null,
+
   async cleanDrafts() {
-    if (!SendLater.draftsToClean.length) return;
-    if (SendLater.draftsToClean.slforce || SendLater.prefCache.compactDrafts) {
-      await messenger.SL3U.waitUntilIdle(SendLater.draftsToClean);
-      for (let folder of SendLater.draftsToClean) {
+    let _id = SendLater.cdid++;
+    SLStatic.trace(`cleanDrafts[${_id}]: start`);
+    let waited;
+    while (SendLater.cleanDraftsPromise) {
+      waited = true;
+      SLStatic.debug(
+        `cleanDrafts[${_id}]: waiting for previous clean to finish`,
+      );
+      await SendLater.cleanDraftsPromise;
+    }
+    if (waited) SLStatic.debug(`cleanDrafts[${_id}]: finished waiting`);
+    SendLater.cleanDraftsPromise = SendLater.cleanDraftsReal();
+    await SendLater.cleanDraftsPromise;
+    SendLater.cleanDraftsPromise = null;
+    SLStatic.trace(`cleanDrafts[${_id}]: end`);
+  },
+
+  async cleanDraftsReal() {
+    draftsToClean = SendLater.draftsToClean;
+    SendLater.draftsToClean = [];
+    if (!draftsToClean.length) return;
+    if (draftsToClean.slforce || SendLater.prefCache.compactDrafts) {
+      await messenger.SL3U.waitUntilIdle(draftsToClean);
+      for (let folder of draftsToClean) {
         SLStatic.debug("Cleaning folder:", folder);
         await messenger.SL3U.expungeOrCompactFolder(folder);
       }
-      SendLater.draftsToClean.slforce = false;
     } else {
       SLStatic.debug("Not cleaning folders, preference is disabled");
     }
-    SendLater.draftsToClean.length = 0;
   },
 
   async deleteMessage(hdr) {
