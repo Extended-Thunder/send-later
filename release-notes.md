@@ -10,6 +10,7 @@ layout: default
 * [Data loss/corruption with TB128+](#issue-corrupt)
 * [Blank popups under Wayland with TB121+](#issue-wayland)
 * [Scheduling window gets narrower every time you use it](#issue-narrowing)
+* [Scheduling pop-up disappears or "flies off screen"](#issue-popup)
 * [Betterbird has issues and is not currently supported](#issue-betterbird)
 * [Send Later may be incompatible with the "Check and Send" add-on](#issue-checkandsend)
 
@@ -42,6 +43,14 @@ Available workarounds:
 ### <a id="issue-narrowing"/>For some people, the scheduling popup gets narrower every time you schedule a message
 
 We [are aware of this issue](https://github.com/Extended-Thunder/send-later/issues/700) but have not yet had time to fully investigate it. For some users, uninstalling and reinstalling the add-on makes the problem go away. If you are running into this issue, please add a comment to the ticket above indicating what OS and Send Later version you are using and whether uninstalling and reinstalling the add-on fixes the problem for you.
+
+### <a id="issue-popup"/>Scheduling pop-up disappears or "flies off screen"
+
+Some users are experiencing a problem where when you try to open the scheduling popup in a compose window, it flashes briefly and then disappears or seems to fly off the screen. This appears to be a Thunderbird issue, which we are tracking [here](https://github.com/Extended-Thunder/send-later/issues/663). There are several possible workarounds:
+
+* Customize the button bar in the compose window so the Send Later button is farther from the right edge of the screen (left if you're using a right-to-left language).
+* Move the compose window farther from the right edge of the screen (left if you're using a right-to-left language).)
+* If all else fails, enable the "Detach scheduling popup from compose window" option in the Send Later preferences so the popup is no longer connected to the Send Later button.
 
 ### <a id="issue-betterbird"/>Send Later is known to have issues with Betterbird
 
