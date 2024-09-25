@@ -37,6 +37,7 @@ The scheduling popup in the compose window is also blank, in the following circu
 Available workarounds:
 
 * Stick with Thunderbird 115 for the time being.
+* In the [Thunderbird advanced config editor](index.html#thunderbird-config-editor), set the preference `widget.wayland.use-move-to-rect` to false. Note, however, that if you do this then Thunderbird pop-up windows may run off the edge of the screen sometimes and you'll have to reposition your Thunderbird window and reopen the pop-up to be able to see them.
 * Use Xorg instead of Wayland.
 * Enable the "Detach scheduling popup from compose window" option in the Send Later preferences for Send Later 10.5.5+ on TB128+. This will solve the problem for the scheduling popup but not for the main-window popup.
 
