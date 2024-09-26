@@ -24,9 +24,9 @@ The impact of this bug is serious and includes data loss. Scheduled messages cou
 
 A good (but not perfect) test of whether this bug is impacting you is to schedule five messages with different contents with Send Later and then check all five messages in your Drafts folder and make sure all of them have the correct headers and contents. If they're all correct, you're probably safe, because for people impacted by this issue, it happens consistently enough that scheduling five messages in a row should trigger it.
 
-As a workaround, you can stick with Thunderbird 115, or you can configure Thunderbird to store your drafts under Local Folders rather than in your IMAP account. We have not seen this issue occur with a local Drafts folder.
+As a workaround, you can [stay on Thunderbird 115](tb115.html), or you can configure Thunderbird to store your drafts under Local Folders rather than in your IMAP account. We have not seen this issue occur with a local Drafts folder.
 
-Thunderbird team is actively working on finding and fixing the Thunderbird bug.
+The Thunderbird team is actively working on finding and fixing the Thunderbird bug.
 
 ### <a id="issue-wayland"/>Linux, Wayland: Send Later popups are blank for TB121+
 
@@ -36,7 +36,7 @@ The scheduling popup in the compose window is also blank, in the following circu
 
 Available workarounds:
 
-* Stick with Thunderbird 115 for the time being.
+* [Stay on Thunderbird 115](tb115.html) for the time being.
 * In the [Thunderbird advanced config editor](index.html#thunderbird-config-editor), set the preference `widget.wayland.use-move-to-rect` to false. Note, however, that if you do this then Thunderbird pop-up windows may run off the edge of the screen sometimes and you'll have to reposition your Thunderbird window and reopen the pop-up to be able to see them.
 * Use Xorg instead of Wayland.
 * Enable the "Detach scheduling popup from compose window" option in the Send Later preferences for Send Later 10.5.5+ on TB128+. This will solve the problem for the scheduling popup but not for the main-window popup.
