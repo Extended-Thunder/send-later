@@ -30,11 +30,11 @@ The Thunderbird team is actively working on finding and fixing the Thunderbird b
 
 ### <a id="issue-wayland"/>Linux, Wayland: Send Later popups are blank for TB121+
 
-If you are using Wayland on Linux with Thunderbird 121.0b5 or newer, the Send Later popup in the main Thunderbird window is blank.
+If you are using Wayland on Linux with Thunderbird newer than 121.0b5 and older than 128.3.2 or 132.0b5, the Send Later popup in the main Thunderbird window is blank. The scheduling popup in the compose window is also blank, with Send Later 10.5.5 or newer.
 
-The scheduling popup in the compose window is also blank, in the following circumstances: using Wayland, Thunderbird 128 or newer, Send Later 10.5.5 or newer.
+If you are experiencing this issue you should upgrade Thunderbird so that you're using at least 128.3.2 or 132.0b5. If you've done that and you're still experiencing this issue, please [let me know](mailto:send-later-support@extended-thunder.org?subject=Send%20Later%20Wayland%20blank%20popups).
 
-Available workarounds:
+If you can't upgrade Thunderbird for some reason, there are other available workarounds:
 
 * [Stay on Thunderbird 115](tb115.html) for the time being.
 * In the [Thunderbird advanced config editor](index.html#thunderbird-config-editor), set the preference `widget.wayland.use-move-to-rect` to false. Note, however, that if you do this then Thunderbird pop-up windows may run off the edge of the screen sometimes and you'll have to reposition your Thunderbird window and reopen the pop-up to be able to see them.
