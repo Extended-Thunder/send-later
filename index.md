@@ -2080,12 +2080,11 @@ queue and get to them as soon as we can.
 
 ## Other recommended extensions
 
-Jonathan Kamens (long time developer and maintainer of Send Later) has also
-written or maintained several
+Jonathan Kamens has also written or maintained several
 [other add-ons](https://addons.thunderbird.net/thunderbird/user/jikamens/)
 which you may find useful:
 
--   "[Folder Pane View Switcher](https://addons.thunderbird.net/thunderbird/addon/folder-pane-view-switcher/)"
+-   "[Folder Pane View Switcher][FPVS]"
     puts two little arrows above the folder tree which you can click to
     scroll back and forth through the available folder tree views.
     Furthermore, it causes the folder tree to switch to the "All
@@ -2093,21 +2092,26 @@ which you may find useful:
     dropping messages and you hover your mouse over the title bar at the
     top of the folder tree, so that you can drop the messages into a
     folder that isn't displayed in your current view.
--   "[Enhanced Priority Display](https://addons.thunderbird.net/thunderbird/addon/enhanced-priority-display/)"
-    makes message priorities display better by replacing the words in
-    the "Priority" column with icons, highlighting the rows in the
-    message list for high-priority messages, and fading the rows in the
-    message list for low-priority messages.
--   "[Remote Content By Folder](https://addons.thunderbird.net/thunderbird/addon/remote-content-by-folder/)"
+-   "[Remote Content By Folder][RCBF]"
     lets you decide which messages to show images in automatically based
     on what folder they are in (e.g., you might want to automatically
     show images for messages in your inbox, but not your Spam folder).
--   "[userChromeJS](https://addons.thunderbird.net/thunderbird/addon/userchromejs-2)"
+-   "[ToggleReplied][ToggleReplied]"
+    lets you to toggle on and off the "Forwarded", "Replied", and
+    "Redirected" flags on existing email messages. This add-on was
+    originally written by Christian Eyrich. He is no longer maintaining
+    it, so I've released an updated version of it which is compatible
+    with the newest Thunderbird versions.
+-   "[userChromeJS][userChromeJS]"
     is a rebuild from the ground up for Thunderbird 68+ of the earlier
     add-on of the same name. It allows you to configure Thunderbird to
     execute arbitrary JavaScript code in every Thunderbird window when
-    it opens. See also its
-    [home on Github](https://github.com/jikamens/userChromeJS).
+    it opens.
+
+[FPVS]: https://addons.thunderbird.net/thunderbird/addon/folder-pane-view-switcher/
+[RCBF]: https://addons.thunderbird.net/thunderbird/addon/remote-content-by-folder/
+[ToggleReplied]: https://addons.thunderbird.net/thunderbird/addon/togglereplied-2/
+[userChromeJS]: https://addons.thunderbird.net/thunderbird/addon/userchromejs-2
 
 ## Credits
 
