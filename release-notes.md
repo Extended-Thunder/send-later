@@ -74,14 +74,8 @@ our [GitHub release page][ghreleases].
 
 The full Send Later user guide is available [here](index.html).
 
-Maintenance and enhancement of Send Later is made possible by Extended
-Thunder Inc., a non-profit dedicated to supporting free, open-source
-Thunderbird add-on development. We put a lot of time and effort into
-Send Later, so we hope that if you find it useful you will consider
-supporting it. You can make a recurring donation to Extended Thunder
-through [LiberaPay][liberapay] or a one-time donation through
-[PayPal][paypal]. Donations to Extended Thunder are tax-deductible in
-the United States as permitted by law.
+We put a lot of time and effort into Send Later, and we hope that if
+you find it useful you will consider supporting it. See the [user guide](index.html#support-send-later) for how to do that.
 
 ## Release 10.5.x
 

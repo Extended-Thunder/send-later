@@ -2056,12 +2056,15 @@ data collection, please see our [privacy policy](privacy-policy.html).
  
 ## Support Send Later!
 
-The development and maintenance of Send Later is financially supported
-by Extended Thunder Inc., a non-profit organization in the United
-States dedicated supporting the development and maintenance of free,
-open-source Thunderbird add-ons. You can support Extended Thunder [on Liberapay](https://liberapay.com/ExtendedThunder).
+There are several ways to financially support continued development as follows:
 
-If you'd prefer to make a one-time donation, you can do so [on PayPal](https://www.paypal.com/donate/?hosted_button_id=Y4V6TDZ2ZY5TS).
+* [Liberapay][Liberapay] or [Patreon][Patreon] for recurring contributions
+* [Paypal][Paypal] or [Venmo][Venmo] for one-time contributions
+
+[Liberapay]: https://liberapay.com/jik
+[Patreon]: https://www.patreon.com/c/jikseclecticofferings
+[Paypal]: https://paypal.me/JonathanKamens
+[Venmo]: https://venmo.com/Jonathan-Kamens
 
 A non-monetary way you can help is by
 [writing a review](https://addons.thunderbird.net/thunderbird/addon/send-later-3/reviews/add "Review Send Later").
