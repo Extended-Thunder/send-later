@@ -77,6 +77,12 @@ The full Send Later user guide is available [here](index.html).
 We put a lot of time and effort into Send Later, and we hope that if
 you find it useful you will consider supporting it. See the [user guide](index.html#support-send-later) for how to do that.
 
+## Release 10.6.x
+
+### Bug fixes
+
+Fixed in 10.6.1: The message that was previously displayed when there were scheduled message when Thunderbird is shut down incorrectly said "Send Later" in the text when it should have said "Thunderbird", which made the message confusing. It now says the right thing.
+
 ## Release 10.5.x
 
 ### Improvements
