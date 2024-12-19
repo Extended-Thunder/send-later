@@ -1351,11 +1351,12 @@ const SendLater = {
       await messenger.quitter.removeQuitGrantedObserver();
       return;
     }
-    let appName = messenger.i18n.getMessage("extensionName");
+    let appName = (await messenger.runtime.getBrowserInfo()).name;
+    let extensionName = messenger.i18n.getMessage("extensionName");
     let title =
       messenger.i18n.getMessage("scheduledMessagesWarningTitle") +
       " - " +
-      appName;
+      extensionName;
     let requestWarning = messenger.i18n.getMessage(
       "scheduledMessagesWarningQuitRequested",
       appName,
