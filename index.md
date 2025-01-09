@@ -2107,11 +2107,17 @@ which you may find useful:
     add-on of the same name. It allows you to configure Thunderbird to
     execute arbitrary JavaScript code in every Thunderbird window when
     it opens.
+-   "[Addy.io / AnonAddy for Thunderbird][AnonAddyTB]"
+    integrates Thunderbird with [Addy.io][addyio], making it much
+    easier for Addy.io users to initiate email conversations while
+    keeping their real email addresses private.
 
 [FPVS]: https://addons.thunderbird.net/thunderbird/addon/folder-pane-view-switcher/
 [RCBF]: https://addons.thunderbird.net/thunderbird/addon/remote-content-by-folder/
 [ToggleReplied]: https://addons.thunderbird.net/thunderbird/addon/togglereplied-2/
 [userChromeJS]: https://addons.thunderbird.net/thunderbird/addon/userchromejs-2
+[AnonAddyTB]: https://addons.thunderbird.net/thunderbird/addon/addy-io-anonaddy/
+[addyio]: https://addy.io/
 
 ## Credits
 
