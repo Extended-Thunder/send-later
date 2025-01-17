@@ -7,24 +7,24 @@ layout: default
 
 ## CURRENT IMPORTANT KNOWN ISSUES
 
-* [Data loss/corruption with TB128+](#issue-corrupt)
+* [Data loss/corruption with TB 128 through 135.0b1](#issue-corrupt)
 * [Blank popups under Wayland with TB121+](#issue-wayland)
 * [Scheduling window gets narrower every time you use it](#issue-narrowing)
 * [Scheduling pop-up disappears or "flies off screen"](#issue-popup)
 * [Betterbird has issues and is not currently supported](#issue-betterbird)
 * [Send Later may be incompatible with the "Check and Send" add-on](#issue-checkandsend)
 
-### <a id="issue-corrupt"/>Potential Thunderbird + Send Later Drafts folder corruption with TB128+
+### <a id="issue-corrupt"/>Potential Thunderbird + Send Later Drafts folder corruption
 
-_**TLDR Currently, you could lose data if you use Send Later with Thunderbird 128 or newer.**_ There is a workaround for this issue in release 10.5.7 of Send Later, but we don't yet know for certain if this workaround works for everyone. You may wish to mitigate the risk as described below.
+_**TLDR If you are using a Thunderbird version between 128 and 135.0 beta 1, you could lose data.**_ There is a workaround for this issue in release 10.5.7 of Send Later, but we don't yet know for certain if this workaround works for everyone. You may wish to mitigate the risk as described below.
 
-A bug in Thunderbird 128 or newer can corrupt Thunderbird's copy of your Drafts folder in an IMAP account when you schedule a message with Send Later. This may also happen at delivery time when you have a recurring message scheduled.
+A bug in Thunderbird versions between 128 and 135.0 beta 1 inclusive can corrupt Thunderbird's copy of your Drafts folder in an IMAP account when you schedule a message with Send Later. This may also happen at delivery time when you have a recurring message scheduled.
 
 The impact of this bug is serious and includes data loss. Scheduled messages could be not sent at all, or could be sent multiples times, and unsent scheduled messages could be deleted entirely.
 
 A good (but not perfect) test of whether this bug is impacting you is to schedule five messages with different contents with Send Later and then check all five messages in your Drafts folder and make sure all of them have the correct headers and contents. If they're all correct, you're probably safe, because for people impacted by this issue, it happens consistently enough that scheduling five messages in a row should trigger it.
 
-As a workaround, you can [stay on Thunderbird 115](tb115.html), or you can configure Thunderbird to store your drafts under Local Folders rather than in your IMAP account. We have not seen this issue occur with a local Drafts folder.
+As a workaround, you can [stay on Thunderbird 115](tb115.html), or configure Thunderbird to store your drafts under Local Folders rather than in your IMAP account, or upgrade to Thunderbird 135.0 beta 2 or newer. We have not seen this issue occur with a local Drafts folder.
 
 The Thunderbird team is actively working on finding and fixing the Thunderbird bug.
 
