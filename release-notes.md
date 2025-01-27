@@ -8,6 +8,7 @@ layout: default
 ## CURRENT IMPORTANT KNOWN ISSUES
 
 * [Data loss/corruption with TB 128 through 135.0b1](#issue-corrupt)
+* [Recent TB/OWL versions break Send Later + Exchange](#issue-exchange)
 * [Blank popups under Wayland with TB121+](#issue-wayland)
 * [Scheduling window gets narrower every time you use it](#issue-narrowing)
 * [Scheduling pop-up disappears or "flies off screen"](#issue-popup)
@@ -27,6 +28,14 @@ A good (but not perfect) test of whether this bug is impacting you is to schedul
 As a workaround, you can [stay on Thunderbird 115](tb115.html), or configure Thunderbird to store your drafts under Local Folders rather than in your IMAP account, or upgrade to Thunderbird 135.0 beta 2 or newer. We have not seen this issue occur with a local Drafts folder.
 
 The Thunderbird team is actively working on finding and fixing the Thunderbird bug.
+
+### <a id="issue-exchange"/>Recent TB/OWL versions break Send Later + Exchange
+
+I have heard multiple reports that recent versions of Thunderbird and/or the OWL for Exchange add-on break Send Later's ability to send scheduled messages through Exchange accounts.
+
+Unfortunately, I do not have access to an Exchange server to test and troubleshoot this with, so I am unable to diagnose and fix the problem. I'm attempting to obtain more information about it from the maintainer of OWL, but in the meantime, it is likely that Send Later will not work with Exchange.
+
+If you want Send Later to work with Exchange and you have access to an Exchange server on which you can get an account created for me that I can use to troubleshoot this issue, please [let me know](mailto:send-later-support@extended-thunder.org?subject=Exchange%20support).
 
 ### <a id="issue-wayland"/>Linux, Wayland: Send Later popups are blank for TB121+
 
