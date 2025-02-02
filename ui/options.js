@@ -58,8 +58,7 @@ const SLOptions = {
           );
         } else {
           SLStatic.error(
-            "[SendLater]: Could not find value in element ",
-            value,
+            `[SendLater]: Could not find value ${value} in element ${id}`,
             element,
           );
         }
