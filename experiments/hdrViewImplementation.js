@@ -1,7 +1,6 @@
-var ExtensionSupport =
-  globalThis.ExtensionSupport ||
-  ChromeUtils.import("resource:///modules/ExtensionSupport.jsm")
-    .ExtensionSupport;
+var { ExtensionSupport } = ChromeUtils.importESModule(
+  "resource:///modules/ExtensionSupport.sys.mjs",
+);
 
 var thunderbirdVersion = parseInt(Services.appinfo.version.split(".")[0]);
 

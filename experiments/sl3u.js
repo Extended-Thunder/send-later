@@ -1,11 +1,14 @@
 // Get various parts of the WebExtension framework that we need.
-var Utils = ChromeUtils.import("resource://services-settings/Utils.jsm").Utils;
+var { Utils } = ChromeUtils.importESModule(
+  "resource://services-settings/Utils.sys.mjs",
+);
 var MailServices =
   globalThis.MailServices ||
-  ChromeUtils.import("resource:///modules/MailServices.jsm").MailServices;
+  ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs")
+    .MailServices;
 var NetUtil =
   globalThis.NetUtil ||
-  ChromeUtils.import("resource://gre/modules/NetUtil.jsm").NetUtil;
+  ChromeUtils.importESModule("resource://gre/modules/NetUtil.sys.mjs").NetUtil;
 
 const SendLaterVars = {
   fileNumber: 0,

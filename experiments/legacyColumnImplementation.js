@@ -1,14 +1,9 @@
 var ExtensionSupport =
   globalThis.ExtensionSupport ||
-  ChromeUtils.import("resource:///modules/ExtensionSupport.jsm")
+  ChromeUtils.importESModule("resource:///modules/ExtensionSupport.sys.mjs")
     .ExtensionSupport;
-// var ExtensionParent = globalThis.ExtensionParent || ChromeUtils.import(
-//   "resource://gre/modules/ExtensionParent.jsm"
-// ).ExtensionParent;
 
 var LegacyColumn = {
-  // ExtensionParent,
-
   preferences: {},
   storageLocalMap: new Map(),
 
