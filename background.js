@@ -2608,7 +2608,7 @@ const SendLater = {
     }
     SLStatic.debug("Received messages in folder", folder, ":", messagelist);
 
-    for (let rcvdHdr of messagelist.messages) {
+    for await (let rcvdHdr of getMessages(messagelist)) {
       let rcvdMsg = await messenger.messages.getFull(rcvdHdr.id);
       SLStatic.debug("Got message", rcvdHdr, rcvdMsg);
       let inReplyTo = (rcvdMsg.headers["in-reply-to"] || [])[0];
