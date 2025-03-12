@@ -35,7 +35,7 @@ I have heard multiple reports that recent versions of Thunderbird and/or the OWL
 
 Unfortunately, I do not have access to an Exchange server to test and troubleshoot this with, so I am unable to diagnose and fix the problem. I'm attempting to obtain more information about it from the maintainer of OWL, but in the meantime, it is likely that Send Later will not work with Exchange.
 
-If you want Send Later to work with Exchange and you have access to an Exchange server on which you can get an account created for me that I can use to troubleshoot this issue, please [let me know](mailto:send-later-support@extended-thunder.org?subject=Exchange%20support).
+If you want Send Later to work with Exchange and you have access to an Exchange server on which you can get an account created for me that I can use to troubleshoot this issue, please [let me know](mailto:send-later-support@kamens.us?subject=Exchange%20support).
 
 ### <a id="issue-wayland"/>Linux, Wayland: Send Later popups are blank for TB121+
 
