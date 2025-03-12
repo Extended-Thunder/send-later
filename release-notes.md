@@ -41,7 +41,7 @@ If you want Send Later to work with Exchange and you have access to an Exchange 
 
 If you are using Wayland on Linux with Thunderbird newer than 121.0b5 and older than 128.3.2 or 132.0b5, the Send Later popup in the main Thunderbird window is blank. The scheduling popup in the compose window is also blank, with Send Later 10.5.5 or newer.
 
-If you are experiencing this issue you should upgrade Thunderbird so that you're using at least 128.3.2 or 132.0b5. If you've done that and you're still experiencing this issue, please [let me know](mailto:send-later-support@extended-thunder.org?subject=Send%20Later%20Wayland%20blank%20popups).
+If you are experiencing this issue you should upgrade Thunderbird so that you're using at least 128.3.2 or 132.0b5. If you've done that and you're still experiencing this issue, please [let me know](mailto:send-later-support@kamens.us?subject=Send%20Later%20Wayland%20blank%20popups).
 
 If you can't upgrade Thunderbird for some reason, there are other available workarounds:
 
@@ -572,6 +572,6 @@ later.
 [ghissues]: https://github.com/Extended-Thunder/send-later/issues
 [funclib]: https://github.com/Extended-Thunder/send-later/tree/main/contrib/scheduling-functions
 [atn]: https://addons.thunderbird.net/thunderbird/addon/send-later-3/
-[email]: mailto:send-later-support@extended-thunder.org?subject=Send%20Later
+[email]: mailto:send-later-support@kamens.us?subject=Send%20Later
 [ghdiscussions]: https://github.com/Extended-Thunder/send-later/discussions
 [mlist]: https://groups.google.com/g/send-later-users

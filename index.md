@@ -2155,6 +2155,6 @@ Please [see above](#translate) if you would like to help add another translation
 [owl]: https://addons.thunderbird.net/thunderbird/addon/owl-for-exchange/
 [mailmerge]: https://addons.thunderbird.net/thunderbird/addon/mail-merge/
 [jiktbtweaks]: https://github.com/jikamens/jik-tb-tweaks
-[email]: mailto:send-later-support@extended-thunder.org?subject=Send%20Later
+[email]: mailto:send-later-support@kamens.us?subject=Send%20Later
 [mlist]: https://groups.google.com/g/send-later-users
 
