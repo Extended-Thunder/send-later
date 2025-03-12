@@ -921,6 +921,10 @@
     "message": "Üzenet küldésének ellenőrzése…",
     "description": ""
   },
+  "LongDescription": {
+    "message": "Megjegyzés: Ha ismétlődő adomány helyett egyszeri adományt szeretne adni, akkor ezt megteheti a https://paypal.me/jonathankamens vagy a https://venmo.com/Jonathan Kamens webhelyen, vagy konfiguráljon egy ismétlődő adományt a Liberapay-ben, majd egy kifizetés után törölje azt.\n\nEz a bővítmény módosítja az üzenetszerkesztő ablakban a „Küldés később” parancsot (Ctrl+Shift+Return), így ahelyett, hogy a rendszer az üzenetet egyszerűen a kimenő mappába másolná, hogy a következő alkalommal, amikor online, vagy a „Postázatlan üzenetek küldése” opciót használja, elküldje, ehelyett egy párbeszédpanel jelenik meg, amely lehetővé teszi, hogy megadhassa, mikor történjen meg az elküldés.\n\nMegadhat konkrét időpontot, vagy kattinthat a „15 perc múlva”, a „30 perc múlva” vagy a „2 órával később” gombra, illetve meghatározhat gyorsgombokhoz rendelt egyéni értékeket is. Az üzenetet akár ütemezheti is egyszerű szabályokkal (minden N. óra, nap stb.) vagy testreszabási funkciók segítségével üzenetek rendszeresen ismétlődő küldéséhez.\n\n<a href='https://extended-thunder.github.io/send-later/'>Felhasználói útmutató</a> | <a href='https://github.com/Extended-Thunder/send-later/discussions'>Kérdések és visszajelzések</a> | <a href='https://github.com/Extended-Thunder/send-later/issues'>Hibajelentések</a>\n\nA Send Later az Andrew Plummer által biztosított erőteljes dátum-bemenet elemzőre támaszkodik <a href='https://sugarjs.com/'>Sugar.js library</a>.",
+    "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
+  },
   "DeveloperComments": {
     "message": "Kérjük, <a href='https://extended-thunder.github.io/send-later/#help'>vegye fel a kapcsolatot</a> a hibajelentésekkel és javaslatokkal kapcsolatban!",
     "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
