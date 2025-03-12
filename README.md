@@ -24,5 +24,5 @@ the MPL can be found in the file [LICENSE](LICENSE).
 
 [atn]: https://addons.thunderbird.net/thunderbird/addon/send-later-3/
 [guide]: https://extended-thunder.github.io/send-later/
-[support]: mailto:send-later-support@extended-thunder.org
+[support]: mailto:send-later-support@kamens.us
 [donate]: https://extended-thunder.github.io/send-later/#support-send-later

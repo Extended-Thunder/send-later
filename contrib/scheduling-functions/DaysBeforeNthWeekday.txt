@@ -1,6 +1,6 @@
 Function name: DaysBeforeNthWeekday
 
-Author: Jonathan Kamens <jik@extended-thunder.org>
+Author: Jonathan Kamens <jik@kamens.us>
 
 Back story
 ----------

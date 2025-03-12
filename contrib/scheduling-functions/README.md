@@ -22,4 +22,4 @@ Thanks for your contributions!
 [atn]: https://addons.thunderbird.net/thunderbird/addon/send-later-3/
 [guide]: https://extended-thunder.github.io/send-later/#dynamic
 [github]: https://github.com/Extended-Thunder/send-later
-[email]: mailto:send-later-support@extended-thunder.org
+[email]: mailto:send-later-support@kamens.us
