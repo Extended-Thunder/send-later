@@ -723,11 +723,11 @@
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Der er beskeder planlagt til at blive sendt. Send senere kan kun sende beskeder når $1 kører. Er du sikker på du vil afslutte?",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "ScheduledMessagesWarningQuit": {
     "message": "Send senere kan kun sende beskeder, når $1 kører. Husk at genstarte den, før dine beskeder er planlagt til at blive sendt!",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "IncompatibleEncryptionTitle": {
     "message": "Krypteringsindstillingerne er inkompatible med $1",
@@ -920,10 +920,6 @@
   "CheckingMessage": {
     "message": "KONTROL",
     "description": ""
-  },
-  "LongDescription": {
-    "message": "Denne tilføjelse ændrer kommandoen “Send senere” (Ctrl+Skift+Enter) i brevkompositionsvinduet, så i stedet for blot at kopiere beskeden ind i din udbakke, så den bliver sendt næste gang du går online eller trykker “Send meddelelser fra udbakke”, dukker en dialog  op, som lader dig angive hvornår meddelelsen vil blive sendt.\n\nDu kan angive et bestemt tidspunkt og dato, eller klik på “15 minutter senere”, “30 minutter senere” eller “2 timer senere”, eller lave brugerdefinerede genveje. Du kan også planlægge en besked til at blive sendt gentagne gange ved hjælp af enkle regler (hver N timer, dage, osv.) eller tilpassede funktioner.\n\nSend senere er afhængig af et pålideligt dato input check som bliver leveret af Andrew Plummer's <a href=\"https://sugarjs.com/\">Sugar.js library</a>.\n\nFeedback og fejlrapporter er meget velkomne og kan indsendes via projektets <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">GitHub side</a>.",
-    "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   },
   "DeveloperComments": {
     "message": "<a href='https://extended-thunder.github.io/send-later/#help'>tag kontakt</a> vedrørende fejlrapporter og forslag!",
