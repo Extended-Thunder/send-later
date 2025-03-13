@@ -921,6 +921,10 @@
     "message": "IN FASE DI CONTROLLO",
     "description": ""
   },
+  "LongDescription": {
+    "message": "Nota: se vuoi fare una donazione una tantum invece di una donazione ricorrente, puoi farlo tramite https://paypal.me/JonathanKamens o https://venmo.com/Jonathan-Kamens, oppure configurare una donazione ricorrente com LiberaPay e poi annullarla dopo un pagamento.\n\nQuesta estensione modifica il comando \"Invia più tardi\" (Ctrl+Shift+Invio) nella finestra di composizione del messaggio, in modo che invece di copiare semplicemente il messaggio nella Posta in uscita in modo che venga inviato la prossima volta che vai online o fai \"Invia messaggi non inviati\", si apre una finestra di dialogo che ti consente di specificare quando verrà inviato il messaggio.\n\nPuoi specificare un'ora e una data specifiche, oppure fare clic su \"15 minuti dopo\", \"30 minuti dopo\" o \"2 ore dopo\", oppure definire scorciatoie personalizzate. Puoi anche programmare un messaggio da inviare ripetutamente utilizzando semplici regole (ogni N ore, giorni, ecc.) o funzioni personalizzabili.\n\n<a href='https://extended-thunder.github.io/send-later/'>Guida utente</a> | <a href='https://github.com/Extended-Thunder/send-later/discussions'>Domande e feedback</a> | <a href='https://github.com/Extended-Thunder/send-later/issues'>Segnalazioni di bug</a>\n\nSend Later si basa sulla potente <a href='https://sugarjs.com/'>libreria Sugar.js</a> di Andrew Plummer.",
+    "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
+  },
   "DeveloperComments": {
     "message": "Vi preghiamo di <a href='https://extended-thunder.github.io/send-later/#help'>inviarmi tramite email</a> segnalazioni di bug, consigli, ecc…",
     "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
