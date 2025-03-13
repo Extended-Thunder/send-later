@@ -723,11 +723,11 @@
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Er zijn berichten ingepland voor verzending. Send Later kan alleen berichten verzenden als $1 actief is. Weet u zeker dat u wilt afsluiten?",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "ScheduledMessagesWarningQuit": {
     "message": "Send Later kan alleen berichten verzenden als $1 actief is. Denk eraan dat het weer moet worden gestart voordat uw berichten voor verzending worden ingepland!",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "IncompatibleEncryptionTitle": {
     "message": "Versleutelingsinstellingen niet compatibel met $1",
@@ -920,10 +920,6 @@
   "CheckingMessage": {
     "message": "CONTROLEREN",
     "description": ""
-  },
-  "LongDescription": {
-    "message": "Deze add-on wijzigt de opdracht ‘Later verzenden’ (Ctrl+Shift+Return) in het berichtopstelvenster, zodat in plaats van alleen het bericht naar uw Postvak UIT te kopiëren en dit de volgende keer dat u online gaat of door ‘Niet-verzonden berichten verzenden’ te kiezen wordt verzonden, een dialoogvenster verschijnt waarmee u kunt opgeven wanneer het bericht wordt verzonden.\n\nU kunt een bepaalde tijd en datum opgeven, of op ‘15 min. later’, ‘30 min. later’ of ‘2 uur later’ klikken, of aangepaste sneltoetsen definiëren. Ook kunt u een bericht inplannen om herhaald te worden verzonden, gebruikmakend van eenvoudige regels (elke N uur, dagen, etc.) of aanpasbare functies.\n\nSend Later vertrouwt op krachtige parsing van datuminvoer, aangeleverd door Andrew Plummer’s <a href=\"https://sugarjs.com/\">Sugar.js-bibliotheek</a>.\n\nFeedback en bugmeldingen zijn zeer welkom, en kunnen worden ingediend via de <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">GitHub-pagina</a> van het project.",
-    "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   },
   "DeveloperComments": {
     "message": "<a href='https://extended-thunder.github.io/send-later/#help'>Neem contact op</a> voor bugrapporten en suggesties!",

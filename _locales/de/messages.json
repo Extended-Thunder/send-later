@@ -723,11 +723,11 @@
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Es gibt noch Nachrichten, deren Senden geplant ist. „Später senden” kann Nachrichten nur versenden, wenn $1 geöffnet ist. Möchten Sie das Programm dennoch schließen?",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "ScheduledMessagesWarningQuit": {
     "message": "„Später senden” kann Nachrichten nur versenden, wenn $1 geöffnet ist. Bitte denken Sie daran, das Programm vor dem planmäßigen Sendetermin der Nachrichten wieder zu starten!",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "IncompatibleEncryptionTitle": {
     "message": "Verschlüsselungseinstellungen nicht mit $1 kompatibel",
@@ -920,10 +920,6 @@
   "CheckingMessage": {
     "message": "PRÜFE AUF NACHRICHTEN ZUM VERSAND",
     "description": ""
-  },
-  "LongDescription": {
-    "message": "Dieses Add-on ändert den Befehl „Später senden“ (Strg+Umschalt+Return) im Fenster zum Verfassen einer Nachricht, so dass Sie die Nachricht nicht nur in Ihren Postausgang kopieren, sondern das nächste Mal verschicken, wenn Sie online gehen oder den Befehl \"Ungesendete Nachrichten senden\" aufrufen. Es erscheint ein Dialog, in dem Sie festlegen können, wann die Nachricht gesendet wird.\n\nSie können eine Zeit und ein Datum angeben, oder auf „15 Minuten später“, „30 Minuten später“ oder „2 Stunden später“ klicken, und benutzerdefinierte Tastenkürzel definieren. Sie können auch eine Nachricht planen, die Sie wiederholt mit einfachen Regeln (alle N Stunden, Tage, etc.) oder anhand anpassbarer Funktionen versenden können.\n\nSpäter senden basiert auf der leistungsfähigen Datumseingabe-Bibliothek von Andrew Plummer <a href=\"https://sugarjs.com/\">Sugar. s Library</a>.\n\nFeedback und Fehlerberichte sind sehr willkommen und können auf der Projektseite <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">GitHub-Seite</a> eingereicht werden.",
-    "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   },
   "DeveloperComments": {
     "message": "Bitte schreiben Sie mir für Fehlerberichte, Vorschläge und Ähnliches eine <a href='https://extended-thunder.github.io/send-later/#help'>E-Mail</a>.",

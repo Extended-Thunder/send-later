@@ -687,11 +687,11 @@
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Det finns meddelanden som har schemalagts för sändning. Skicka Senare kan endast skicka meddelanden när $1 körs. Är du säker på att du vill avsluta?",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "ScheduledMessagesWarningQuit": {
     "message": "Skicka Senare kan endast skicka meddelanden när $1 körs. Kom ihåg att starta om programmet innan dina meddelanden har schemalagts att skickas!",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "IncompatibleEncryptionTitle": {
     "message": "Krypteringsinställningar är inkompatibla med $1",
@@ -864,10 +864,6 @@
   "CheckingMessage": {
     "message": "KONTROLLERAR",
     "description": ""
-  },
-  "LongDescription": {
-    "message": "Detta tillägg ändrar kommandot ”Skicka Senare” (Ctrl+Shift+Return) i meddelandefönstret, så att istället för att bara kopiera meddelandet till din Utkorg så att det skickas nästa gång du är online eller klickar på “Skicka Oskickade Meddelanden”, en dialogruta öppnas som låter dig ange när meddelandet ska skickas.\n\nDu kan ange en viss tid och datum, eller klicka på “15 minuter senare”, “30 minuter senare” eller “2 timmar senare” eller definiera anpassade genvägar. Du kan också schemalägga ett meddelande att skickas upprepade gånger med hjälp av enkla regler (varje N timmar, dagar etc.) eller anpassningsbara funktioner.\n\nSkicka Senare bygger på kraftfull datamängdstolkning som tillhandahålls av Andrew Plummers <a href=\"https://sugarjs.com/\">Sugar. s library</a>.\n\nFeedback och felrapporter är mycket välkomna och kan skickas via projektets <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">GitHub sida</a>.",
-    "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   },
   "DeveloperComments": {
     "message": "Vänligen <a href='https://extended-thunder.github.io/send-later/#help'> maila mig</a> felrapporter, förslag, etc.",

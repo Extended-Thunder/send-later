@@ -621,11 +621,11 @@
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Det er meldinger som er planlagt å sendes. Send senere kan bare sende meldinger når $1 kjører. Er du sikker på at du vil avslutte?",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "ScheduledMessagesWarningQuit": {
     "message": "Send senere kan bare sende meldinger når $1 kjører. Husk å starte den på nytt før meldingene dine er planlagt å bli sendt!",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "DSN": {
     "message": "Leveringsbekreftelse",

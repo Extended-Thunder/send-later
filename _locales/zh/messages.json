@@ -617,11 +617,11 @@
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "您有预定发送的消息。“Send Later”只能在 $1 运行的时候发送您的消息。您确定要退出吗？",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "ScheduledMessagesWarningQuit": {
     "message": "“Send Later”只能在 $1 运行的时候发送消息。请记得在您的预定发送时间之前重新运行程序！",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "DSN": {
     "message": "递送状态通知",

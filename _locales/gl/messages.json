@@ -621,11 +621,11 @@
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Hai mensaxes programadas para ser enviados. Send Later so pode enviar mensaxes cando $1 está en funcionamento. ¿Está seguro de que quere sair?",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "ScheduledMessagesWarningQuit": {
     "message": "Send Later so pode enviar mensaxes cando $1 está en funcionamento. Por favor, ¡lembre volver a inicialo antes do intre programado de envío das súas mensaxes!",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "DSN": {
     "message": "Notificación do estado de envío",

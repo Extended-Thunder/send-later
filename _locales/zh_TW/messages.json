@@ -633,11 +633,11 @@
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "有排程郵件尚未發出。延期發信只會在$1開啟時才能發送訊息。確定要退出嗎？",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "ScheduledMessagesWarningQuit": {
     "message": "延期發信只會在$1開啟時才能發送訊息。請記得在郵件排程時間前重新開啟。",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "DSN": {
     "message": "遞送狀態通知",

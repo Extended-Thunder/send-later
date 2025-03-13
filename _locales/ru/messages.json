@@ -621,11 +621,11 @@
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Запланированные для отправки сообщения. Send Later может отправлять сообщения только когда $1 запущен. Вы уверены, что хотите выйти?",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "ScheduledMessagesWarningQuit": {
     "message": "Send Later может отправлять сообщения только когда $1 запущен. Пожалуйста, не забудьте включить его, прежде чем запланированные сообщения будут отправлены!",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "DSN": {
     "message": "Уведомление о доставке",
