@@ -679,11 +679,11 @@
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Istnieją wiadomości zaplanowane do wysłania! “Send Later” może je wysłać tylko gdy $1 jest włączony. Czy na pewno chcesz zakończyć?",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "ScheduledMessagesWarningQuit": {
     "message": "“Send Later” może wysłać zaplanowane na później wiadomości tylko gdy $1 jest włączony. Proszę pamiętać o ponownym uruchomieniu przed zaplanowanym czasem wysłania!",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "DSN": {
     "message": "Informuj o stanie dostarczania",
@@ -848,10 +848,6 @@
   "CheckingMessage": {
     "message": "SPRAWDZANIE",
     "description": ""
-  },
-  "LongDescription": {
-    "message": "Ten dodatek zmienia polecenie \"Send Later\" (Ctrl+Shift+Return) w oknie nowej wiadomości tak, aby zamiast przenieść wiadomość do skrzynki nadawczej, aby była wysyłana przy następnym kliknięciu online lub wykonaniu \"Wyślij niewysłane wiadomości\", wyskakuje okno dialogowe, które pozwala określić, kiedy wiadomość zostanie wysłana.\n\nMożesz określić dokładny czas wysyłki, kliknąć \"15 minut później\", \"30 minut później\" lub \"2 godziny później\", lub zdefiniować niestandardowe skróty. Możesz również zaplanować wiadomość do wielokrotnego wysyłania przy użyciu prostych reguł (co N godzin, dni itp.) lub konfigurowalnych funkcji.\n\nSend Later opiera się na potężnej analizie danych wejściowych dostarczonych przez Andrew Plummer's <a href=\"https://sugarjs.com/\">Biblioteka Sugar.js</a>.\n\nOpinie i raporty o błędach są bardzo mile widziane i można je przesłać za pośrednictwem<a href=\"https://github.com/Extended-Thunder/send-later/discussions\">strony GitHub</a>.",
-    "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   },
   "DeveloperComments": {
     "message": "Proszę <a href='https://extended-thunder.github.io/send-later/#help'>przyślij mi</a> informację o błędach, swoje sugestie, itp.",

@@ -629,11 +629,11 @@
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Lähetysjonossa on ajastettuja viestejä. Lähetä myöhemmin voi lähettää viestejä ainosstaan silloin, kun $1 on käynnissä. Haluatko varmasti sulkea sovelluksen?",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "ScheduledMessagesWarningQuit": {
     "message": "Lähetä myöhemmin voi lähettää viestejä ainosstaan silloin, kun $1 on käynnissä. Muista käynnistää se ajoissa uudelleen, jotta ajastettujen viestien lähetys toimisi!",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "DSN": {
     "message": "Toimitustilan ilmoitukset",

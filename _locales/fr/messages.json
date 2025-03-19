@@ -723,11 +723,11 @@
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Il y a des envois programmés. Envoyer Plus Tard ne peut envoyer de message que lorsque $1 est ouvert. Êtes-vous sûr de vouloir quitter ?",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "ScheduledMessagesWarningQuit": {
     "message": "Envoyer Plus Tard ne peut envoyer de message que lorsque $1 est ouvert. Pensez à le lancer pour que vos envois programmés soient expédiés!",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "IncompatibleEncryptionTitle": {
     "message": "Paramètres de chiffrement incompatibles avec $1",
@@ -920,10 +920,6 @@
   "CheckingMessage": {
     "message": "VÉRIFICATION",
     "description": ""
-  },
-  "LongDescription": {
-    "message": "Ce module modifie la commande « Envoyer plus tard» (Ctrl+Maj+Retour) dans la fenêtre de composition du message, de sorte qu'au lieu de simplement copier le message dans votre boîte d'envoi pour qu'il soit envoyé la prochaine fois que vous allez en ligne ou que vous faites « Envoyer des messages non envoyés », une boîte de dialogue apparaît qui vous permet d'indiquer quand le message sera envoyé.\n\nVous pouvez indiquer une heure et une date spécifiques, ou cliquer sur \"15 minutes plus tard\", \"30 minutes plus tard\" ou \"2 heures plus tard\", ou définir des raccourcis personnalisés. Vous pouvez également programmer un message à envoyer à plusieurs reprises en utilisant des règles simples (toutes les N heures, jours, etc.) ou des fonctions personnalisables.\n\nSend Later s'appuie sur une analyse de date puissante fournie par Andrew Plummer <a href=\"https://sugarjs.com/\">Sugar. s library</a>.\n\nLes commentaires et les rapports de bogues sont les bienvenus et peuvent être proposés via la <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">page GitHub</a> du projet.",
-    "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   },
   "DeveloperComments": {
     "message": "N'hésitez pas à <a href='https://extended-thunder.github.io/send-later/#help'>envoyer</a> des rapports d'anomalies ou des suggestions !",

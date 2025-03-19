@@ -627,11 +627,11 @@
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Υπάρχουν μηνύματα που πρόκειται να σταλούν αργότερα. Το Send Later μπορεί να στέλνει μηνύματα μόνο εφόσον το $1 τρέχει. Είστε σίγουρος ότι θέλετε να το κλείσετε;",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "ScheduledMessagesWarningQuit": {
     "message": "Το Send Later μπορεί να στέλνει μηνύματα μόνο εφόσον το $1 τρέχει. Παρακαλούμε επανεκκινήστε το πριν τη στιγμή που πρέπει να σταλούν τα μηνύματά σας!",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "DSN": {
     "message": "Ειδοποίηση κατάστασης παράδοσης",

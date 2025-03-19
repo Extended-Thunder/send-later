@@ -645,11 +645,11 @@
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Има съобщения, планирани да бъдат изпратени. Изпращане по-късно може да изпраща съобщения само когато $1 е стартирана. Наистина ли искате да излезете?",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "ScheduledMessagesWarningQuit": {
     "message": "Изпращане по-късно може да изпраща съобщения само когато $1 е стартирано. Моля, не забравяйте да го рестартирате преди съобщенията, които са планирани да бъдат изпратени!",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "DSN": {
     "message": "Уведомяване при доставка",

@@ -625,11 +625,11 @@
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Jsou tu zprávy naplánované pro odeslání. „Odeslat Později“ může odesílat zprávy pouze, když $1 běží. Opravdu chcete ukončit program?",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "ScheduledMessagesWarningQuit": {
     "message": "„Odeslat Později“ může odesílat zprávy pouze, když $1 běží. Prosím, nezapomeňte ho znovu spustit před tím, než jsou vaše zprávy naplánované k odeslání!",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "DSN": {
     "message": "Potvrzení o doručení",

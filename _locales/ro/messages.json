@@ -675,11 +675,11 @@
   },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Sunt mesaje cu trimitere programată. Send Later poate să trimită mesaje doar când $1 rulează. Ești sigur ca vrei sa închizi?",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "ScheduledMessagesWarningQuit": {
     "message": "Send Later poate trimite mesaje doar când $1 rulează. Nu uita sa repornești aplicația înainte de trimiterea programată!",
-    "description": ""
+    "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "DSN": {
     "message": "Notificare asupra stadiului livrării",
@@ -844,10 +844,6 @@
   "CheckingMessage": {
     "message": "VERIFICARE MESAJE",
     "description": ""
-  },
-  "LongDescription": {
-    "message": "Acest supliment schimbă comanda „Trimite mai târziu” (Ctrl+Shift+Return) în fereastra compoziției mesajului, astfel încât în loc să se copieze pur și simplu mesajul în „De trimis” pentru a fi trimis data viitoare când te conectezi online sau execuți comanda „Trimite mesaje netrimise”, un dialog îți permite să specifici când va fi trimis mesajul.\n\nPoți specifica un anumit timp și o anumită dată, sau clic pe „15 minute mai târziu”, „30 minute mai târziu” sau „2 ore mai târziu”, sau definește comenzi rapide personalizate. De asemenea, poți programa un mesaj pentru trimitere în mod repetat folosind reguli simple (N ore, zile, etc.) sau funcții personalizabile.\n\nSend Later se bazează pe modulul de analizare a datei furnizat de Andrew Plummer's <a href=\"https://sugarjs.com/\">Sugar. biblioteca s</a>.\n\nFeedback-ul și rapoartele de erori sunt foarte binevenite și pot fi trimise prin intermediul <a href=\"https://github.com/Extended-Thunder/send-later/discussions\">pagina GitHub</a>.",
-    "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   },
   "DeveloperComments": {
     "message": "Raportează erori sau trimite sugestii prin <a href='https://extended-thunder.github.io/send-later/#help'>email</a>.",
