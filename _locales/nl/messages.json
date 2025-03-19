@@ -921,6 +921,10 @@
     "message": "CONTROLEREN",
     "description": ""
   },
+  "LongDescription": {
+    "message": "Let op: als u een eenmalige in plaats van een terugkerende donatie wilt doen, dan kan dit via https://paypal.me/JonathanKamens of https://venmo.com/Jonathan-Kamens. U kunt ook een terugkerende donatie instellen in LiberaPay en deze dan na één betaling annuleren.\n\nMet deze add-on wordt de opdracht “Later verzenden” (Ctrl+Shift+Return) in het venster voor het samenstellen van berichten gewijzigd zodat, in plaats van het bericht naar uw Postvak UIT te kopiëren voor verzending bij de eerstvolgende gelegenheid, er een dialoogvenster verschijnt waarmee u kunt opgeven wanneer het bericht moet worden verzonden.\n\nU kunt een bepaalde datum en tijd opgeven, of klikken op “15 minuten later”, “30 minuten later” of “2 uur later”, of eigen voorinstellingen definiëren. U kunt ook het herhaald verzenden van een bericht inplannen met behulp van eenvoudige regels (elke N uur, dagen, enz.) of aanpasbare functies.\n\n<a href='https://extended-thunder.github.io/send-later/'>Gebruikersgids</a> | <a href='https://github.com/Extended-Thunder/send-later/discussions'>Vragen en terugkoppeling</a> | <a href='https://github.com/Extended-Thunder/send-later/issues'>Fouten melden</a>\n\nSend Later verwerkt datuminvoer met behulp van de krachtige bibliotheek <a href='https://sugarjs.com/'>Sugar.js</a> van Andrew Plummer.",
+    "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
+  },
   "DeveloperComments": {
     "message": "<a href='https://extended-thunder.github.io/send-later/#help'>Neem contact op</a> voor bugrapporten en suggesties!",
     "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
