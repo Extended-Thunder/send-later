@@ -1307,7 +1307,7 @@ messages you compose are delivered.
 Microsoft Exchange does support IMAP and SMTP, so if the administrator
 or your Exchange server has enabled them, you could configure
 Thunderbird to treat your Exchange server as a normal internet email
-account and not use Owl. However, you may need to use if your
+account and not use Owl. However, you may need to use Owl if your
 administrator has not enabled IMAP and SMTP, or you want to take
 advantage of additional Owl features such as its Exchange address book
 integration.
