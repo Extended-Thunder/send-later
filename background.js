@@ -554,37 +554,15 @@ const SendLater = {
     let account = await messenger.accounts.get(hdr.folder.accountId, false);
     let accountType = account.type;
     let succeeded;
-    if (!accountType.startsWith("owl")) {
-      try {
-        await messenger.messages.delete([hdr.id], true).then(() => {
-          succeeded = true;
-          SLStatic.info("Deleted message", hdr.id);
-          SLTools.scheduledMsgCache.delete(hdr.id);
-          SLTools.unscheduledMsgCache.delete(hdr.id);
-        });
-      } catch (ex) {
-        SLStatic.error(`Error deleting message ${hdr.id}`, ex);
-      }
-    } else {
-      // When we're talking to an Owl Exchange account, the code simply
-      // above... stops. Neither the code inside the `then` block nor the code
-      // inside the `catch` block is called. In fact, the code flow just stops
-      // and nothing after it gets executed. Basically, the extension is hung
-      // at that point. I have no idea what's going on here. Since it's likely
-      // to be a problem inside the Owl code, I've asked the author of Owl for
-      // assistance figuring it out. He may have no idea either :shrug:. In the
-      // meantime we just have to do delete asynchronously, and we can't log
-      // "Deleted message" because we don't know for certain that the message
-      // was in fact deleted.
-      try {
-        await messenger.messages.delete([hdr.id], true).then(() => {
-          succeeded = true;
-        });
-      } catch (ex) {
-        SLStatic.error(`Error deleting message ${hdr.id}`, ex);
-      }
-      SLTools.scheduledMsgCache.delete(hdr.id);
-      SLTools.unscheduledMsgCache.delete(hdr.id);
+    try {
+      await messenger.messages.delete([hdr.id], true).then(() => {
+        succeeded = true;
+        SLStatic.info("Deleted message", hdr.id);
+        SLTools.scheduledMsgCache.delete(hdr.id);
+        SLTools.unscheduledMsgCache.delete(hdr.id);
+      });
+    } catch (ex) {
+      SLStatic.error(`Error deleting message ${hdr.id}`, ex);
     }
     return succeeded;
   },
