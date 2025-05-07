@@ -744,6 +744,7 @@ var SLStatic = {
   },
 
   evaluateUfunc(name, body, prev, args) {
+    SLStatic.telemetrySend({ event: "evaluateUfunc" });
     const funcStr = `
       let next, nextspec, nextargs;
       ${body};
