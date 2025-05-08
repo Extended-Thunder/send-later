@@ -40,9 +40,6 @@ function cacheDraftsFolders() {
   ].getService(Ci.nsIMsgAccountManager);
   let fdrlocal = accountManager.localFoldersServer.rootFolder;
   draftsFolderStatus[fdrlocal.findSubFolder("Drafts").URI] = true;
-  draftsFolderStatus[
-    Services.prefs.getCharPref("mail.identity.default.draft_folder")
-  ] = true;
   let allaccounts = accountManager.accounts;
   let acindex, numAccounts;
   numAccounts = allaccounts.length;
