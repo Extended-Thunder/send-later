@@ -1047,9 +1047,7 @@ const SLOptions = {
       el.disabled = true;
     }
 
-    await SLStatic.tb115(() => {
-      document.getElementById("showColumnRow").hidden = true;
-    });
+    document.getElementById("showColumnRow").hidden = true;
 
     await SLStatic.tb128(false, () => {
       document.getElementById("detachedPopupDiv").hidden = true;

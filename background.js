@@ -754,22 +754,11 @@ const SendLater = {
           );
         }
 
-        let success = await SLStatic.tb115(
-          async () => {
-            let file = SLStatic.getFileFromRaw(newMsgContent);
-            return await SLStatic.messageImport(file, msgHdr.folder, {
-              new: false,
-              read: preferences.markDraftsRead,
-            });
-          },
-          async () => {
-            return await messenger.SL3U.saveMessage(
-              newMsgContent,
-              msgHdr.folder,
-              preferences.markDraftsRead,
-            );
-          },
-        );
+        let file = SLStatic.getFileFromRaw(newMsgContent);
+        let success = await SLStatic.messageImport(file, msgHdr.folder, {
+          new: false,
+          read: preferences.markDraftsRead,
+        });
 
         if (success) {
           SLStatic.debug(
@@ -837,54 +826,11 @@ const SendLater = {
       true,
     );
 
-    let success;
-
-    await SLStatic.tb115(undefined, async () => {
-      // See https://github.com/Extended-Thunder/send-later/issues/643
-      // Thunderbird will get sick if we try to deliver a message through the
-      // outbox larger than mailnews.message_warning_size.
-      let messageSizeLimit = await messenger.SL3U.getLegacyPref(
-        "mailnews.message_warning_size",
-        "int",
-        "0",
-        true,
-      );
-      if (messageSizeLimit && content.length > messageSizeLimit) {
-        let title = SLStatic.i18n.getMessage("messageTooLargeTitle");
-        let extensionName = SLStatic.i18n.getMessage("extensionName");
-        let numberFormatter = new Intl.NumberFormat();
-        let text = SLStatic.i18n.getMessage("messageTooLargeText", [
-          extensionName,
-          msgHdr.subject,
-          numberFormatter.format(content.length),
-          numberFormatter.format(messageSizeLimit),
-        ]);
-        await locker.lock(msgHdr, fullMsg, "too large");
-        SLStatic.debug(
-          `Locked too-large message <${msgLockId}> from re-sending.`,
-        );
-        SLTools.alert(title, text);
-        SLStatic.telemetrySend({
-          event: "tooLargeForOutbox",
-        });
-        success = false;
-      }
+    let file = SLStatic.getFileFromRaw(content);
+    let success = await SLStatic.messageImport(file, outboxFolder, {
+      new: false,
+      read: true,
     });
-
-    if (success === undefined) {
-      success = await SLStatic.tb115(
-        async () => {
-          let file = SLStatic.getFileFromRaw(content);
-          return await SLStatic.messageImport(file, outboxFolder, {
-            new: false,
-            read: true,
-          });
-        },
-        async () => {
-          return await messenger.SL3U.saveMessage(content, outboxFolder, true);
-        },
-      );
-    }
 
     SLStatic.telemetrySend({
       event: "delivery",
@@ -980,22 +926,11 @@ const SendLater = {
         );
       }
 
-      let success = await SLStatic.tb115(
-        async () => {
-          let file = SLStatic.getFileFromRaw(newMsgContent);
-          return await SLStatic.messageImport(file, msgHdr.folder, {
-            new: false,
-            read: preferences.markDraftsRead,
-          });
-        },
-        async () => {
-          return await messenger.SL3U.saveMessage(
-            newMsgContent,
-            msgHdr.folder,
-            preferences.markDraftsRead,
-          );
-        },
-      );
+      let file = SLStatic.getFileFromRaw(newMsgContent);
+      let success = await SLStatic.messageImport(file, msgHdr.folder, {
+        new: false,
+        read: preferences.markDraftsRead,
+      });
 
       SLStatic.telemetrySend({ event: "scheduleNext", successful: success });
       if (success) {
@@ -1377,25 +1312,6 @@ const SendLater = {
     // Update shortcut key bindings
     await SLStatic.updateShortcuts(preferences);
 
-    await SLStatic.tb115(false, async () => {
-      // Initialize drafts folder column
-      await messenger.columnHandler.cachePrefs(preferences);
-      try {
-        await messenger.columnHandler.addCustomColumn({
-          name: messenger.i18n.getMessage("sendlater3header.label"),
-          tooltip: "",
-        });
-      } catch (ex) {
-        SLStatic.error("columnHandler.addCustomColumn", ex);
-      }
-      messenger.mailTabs.onDisplayedFolderChanged.addListener(
-        SendLater.displayedFolderChangedListener,
-      );
-      messenger.tabs.onUpdated.addListener(SendLater.tabUpdatedListener);
-      // We won't get events for tabs that are already loaded.
-      SendLater.configureAllTabs();
-    });
-
     messenger.messages.onNewMailReceived.addListener(
       SendLater.onNewMailReceivedListener,
     );
@@ -1439,14 +1355,6 @@ const SendLater = {
     } catch (ex) {
       SLStatic.error("SL3U.hijackComposeWindowKeyBindings", ex);
     }
-
-    await SLStatic.tb115(false, async () => {
-      try {
-        await messenger.SL3U.forceToolbarVisible();
-      } catch (ex) {
-        SLStatic.error("SL3U.forceToolbarVisible", ex);
-      }
-    });
 
     // This listener should be added *after* all of the storage-related
     // initialization is complete. It ensures that subsequent changes to storage
@@ -1606,90 +1514,9 @@ const SendLater = {
           : "",
       });
 
-      await SLStatic.tb115(false, async () => {
-        messenger.columnHandler.cachePrefs(preferences);
-        // Note: It's possible to immediately obey a preference change if the
-        // user has decided to disable the send later column, but when the
-        // column is being enabled there isn't a simple way to tell whether
-        // we're in a drafts folder, so the user may need to navigate away and
-        // back to the folder before their preferences can fully take effect.
-        if (!preferences.showColumn) {
-          const columnName = messenger.i18n.getMessage(
-            "sendlater3header.label",
-          );
-          messenger.columnHandler.setColumnVisible(columnName, false);
-        }
-      });
-
       await SLStatic.updateShortcuts(preferences);
     }
   },
-
-  // The functions in this block are currently only used in tb102, although they
-  // may in some form start being used again later when TB once again supports
-  // add-ons adding custom columns. In the meantime I'm marking them with tb115(
-  // to make them easy to find later when I'm looking for code to remove when
-  // we're no longer supporting tb102.
-  // tb115(false, ...
-  async headerRowUpdateListener(hdr) {
-    const preferences = await SLTools.getPrefs();
-    let msgParts = await messenger.messages.getFull(hdr.id);
-    let hdrs = {
-      "content-type": msgParts.contentType,
-    };
-    for (let hdrName in msgParts.headers) {
-      hdrs[hdrName] = msgParts.headers[hdrName][0];
-    }
-    const { cellText } = SLStatic.customHdrToScheduleInfo(
-      hdrs,
-      preferences.instanceUUID,
-    );
-    const visible = preferences.showHeader === true && cellText !== "";
-    return { text: cellText, visible };
-  },
-
-  async configureAllTabs() {
-    SLStatic.debug("SLTABS: configureAllTabs");
-    messenger.tabs.query({ mailTab: true, active: true }).then((tabs) => {
-      for (let tab of tabs) {
-        SLStatic.debug(
-          "SLTABS: Calling tabUpdatedListener from configureAllTabs",
-        );
-        SendLater.tabUpdatedListener(tab.id, {}, tab);
-      }
-    });
-  },
-
-  async tabUpdatedListener(tabId, changeInfo, tab) {
-    SLStatic.debug(
-      `SLTABS: tabUpdatedListener tab.status=${tab.status} tab.mailTab=${tab.mailTab}`,
-    );
-    if (tab.status != "complete" || !tab.mailTab) return;
-    let tabProperties = await messenger.mailTabs.get(tabId);
-    SLStatic.debug(
-      `SLTABS: tabProperties.displayedFolder=${tabProperties.displayedFolder}`,
-    );
-    if (!tabProperties.displayedFolder) return;
-    await SendLater.displayedFolderChangedListener(
-      tab,
-      tabProperties.displayedFolder,
-    );
-  },
-
-  async displayedFolderChangedListener(tab, folder) {
-    SLStatic.debug("SLTABS: displayedFolderChangedListener");
-    const preferences = await SLTools.getPrefs();
-    let visible =
-      preferences.showColumn === true &&
-      (await SLTools.isDraftsFolder(folder));
-    let columnName = messenger.i18n.getMessage("sendlater3header.label");
-    await messenger.columnHandler.setColumnVisible(
-      columnName,
-      visible,
-      tab.windowId,
-    );
-  },
-  // ...) // tb115() end
 
   // When user opens a new messagecompose window, we need to do several things
   // to ensure that it behaves as they expect. namely, we need to override the
@@ -1721,16 +1548,6 @@ const SendLater = {
     // Wait for window to fully load
     window = await messenger.windows.get(window.id, { populate: true });
     SLStatic.info("Opened new window", window);
-
-    await SLStatic.tb115(false, async () => {
-      // Ensure that the composeAction button is visible,
-      // otherwise the popup action will silently fail.
-      try {
-        await messenger.SL3U.forceToolbarVisible(window.id);
-      } catch (ex) {
-        SLStatic.error("SL3U.forceToolbarVisible", ex);
-      }
-    });
 
     // Bind listeners to overlay components like File>Send,
     // Send Later, and keycodes like Ctrl+enter, etc.
@@ -2263,22 +2080,11 @@ const SendLater = {
       true,
     );
 
-    let success = await SLStatic.tb115(
-      async () => {
-        let file = SLStatic.getFileFromRaw(newMsgContent);
-        return await SLStatic.messageImport(file, msgHdr.folder, {
-          new: false,
-          read: preferences.markDraftsRead,
-        });
-      },
-      async () => {
-        return await messenger.SL3U.saveMessage(
-          newMsgContent,
-          msgHdr.folder,
-          preferences.markDraftsRead,
-        );
-      },
-    );
+    let file = SLStatic.getFileFromRaw(newMsgContent);
+    let success = await SLStatic.messageImport(file, msgHdr.folder, {
+      new: false,
+      read: preferences.markDraftsRead,
+    });
 
     if (success) {
       SLStatic.debug(`Claimed message ${originalMsgId}. Deleting original.`);
@@ -2778,10 +2584,6 @@ const SendLater = {
     await SLStatic.nofail(
       messenger.composeAction.onClicked.removeListener,
       SendLater.clickComposeListener,
-    );
-    await SLStatic.nofail(
-      messenger.mailTabs.onDisplayedFolderChanged.removeListener,
-      SendLater.displayedFolderChangedListener,
     );
     await SLStatic.nofail(
       messenger.storage.local.onChanged.removeListener,

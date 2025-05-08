@@ -91,10 +91,6 @@ var SLStatic = {
     }
   },
 
-  async tb115(yes, no) {
-    return await SLStatic.tbIsVersion(115, yes, no);
-  },
-
   async tb128(yes, no) {
     return await SLStatic.tbIsVersion(128, yes, no);
   },
