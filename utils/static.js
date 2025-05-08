@@ -95,6 +95,10 @@ var SLStatic = {
     return await SLStatic.tbIsVersion(128, yes, no);
   },
 
+  async tb137(yes, no) {
+    return await SLStatic.tbIsVersion(137, yes, no);
+  },
+
   preferences: {},
   listeningForStorageChanges: false,
   logs: "",

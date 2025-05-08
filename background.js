@@ -555,12 +555,17 @@ const SendLater = {
     let accountType = account.type;
     let succeeded;
     try {
-      await messenger.messages.delete([hdr.id], true).then(() => {
-        succeeded = true;
-        SLStatic.info("Deleted message", hdr.id);
-        SLTools.scheduledMsgCache.delete(hdr.id);
-        SLTools.unscheduledMsgCache.delete(hdr.id);
-      });
+      await messenger.messages
+        .delete(
+          [hdr.id],
+          await SLStatic.tb137({ deletePermanently: true }, true),
+        )
+        .then(() => {
+          succeeded = true;
+          SLStatic.info("Deleted message", hdr.id);
+          SLTools.scheduledMsgCache.delete(hdr.id);
+          SLTools.unscheduledMsgCache.delete(hdr.id);
+        });
     } catch (ex) {
       SLStatic.error(`Error deleting message ${hdr.id}`, ex);
     }
