@@ -402,7 +402,7 @@ const SendLater = {
 
     let targetFolder = await SLTools.getTargetSubfolder(preferences, msg);
     if (targetFolder) {
-      await messenger.messages.move([msg.id], targetFolder);
+      await messenger.messages.move([msg.id], targetFolder.id);
       // Message ID has changed so we want to make sure not to use the old one!
       // If we forget and try to later on in the function this should cause an
       // error.

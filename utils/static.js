@@ -1819,7 +1819,7 @@ var SLStatic = {
     let moved;
     try {
       await messenger.messages
-        .move([newMsgHeader.id], destination)
+        .move([newMsgHeader.id], destination.id)
         .then(() => {
           moved = true;
         });
