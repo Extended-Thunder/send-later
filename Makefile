@@ -13,14 +13,21 @@ RELEASE_FILES=$(filter-out *~,$(wildcard $(RELEASE_PATTERNS)))
 # We can't currently use "*" as max version, so we need the second-to-last
 # version number on the line.
 # We cache this so we don't have to fetch it every time.
+VERSIONS_URL=https://addons.thunderbird.net/en-US/thunderbird/pages/appversions/
 MAX_GECKO_VERSION=$(shell \
   if (($$(date +%s) - $$(stat -c %Y .max_gecko_version) < 60 * 60 * 24)); then \
     cat .max_gecko_version; \
   else \
-    curl --silent https://addons.thunderbird.net/en-US/thunderbird/pages/appversions/ | \
+    curl --silent "$(VERSIONS_URL)" | \
     sed -n -e 's/.*Versions: <code>.*, \([^,]*\),.*/\1/p' | \
     head -1 >| .max_gecko_version; \
-  cat .max_gecko_version; \
+    if [ ! -s .max_gecko_version ]; then \
+      open "$(VERSIONS_URL)"; \
+      echo -n "Enter max gecko version: " 1>&2; \
+      read max_gecko_version; \
+      echo $$max_gecko_version >| .max_gecko_version; \
+    fi; \
+    cat .max_gecko_version; \
   fi)
 BETA_JSON=beta-channel.json
 
