@@ -7,7 +7,7 @@ define n
 
 endef
 RELEASE_PATTERNS=$(subst $n, ,$(file <dev/include-manifest))
-RELEASE_FILES=$(filter-out *~,$(wildcard $(RELEASE_PATTERNS)))
+RELEASE_FILES=$(filter-out %~,$(wildcard $(RELEASE_PATTERNS)))
 # The line in the HTML that we're matching here looks like this:
 #    <li>Versions: <code>0.3, 0.4, ....lots of versions..., 119.*, *</code></li>
 # We can't currently use "*" as max version, so we need the second-to-last
