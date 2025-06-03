@@ -600,7 +600,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           let match;
           while ((match = /^([^\/]+\/\/[^\/]+\/.*)\/[^\/]+$/.exec(parent))) {
             parent = match[1];
-            if (draftsFolderStatus[parent] !== undefined) {
+            if (draftsFolderStatus[parent]) {
               return (draftsFolderStatus[msgFolderUri] =
                 draftsFolderStatus[parent]);
             }
