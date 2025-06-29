@@ -311,7 +311,11 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
     let columns = new Map();
     this.columns = columns;
 
-    for (let urlBase of ["utils/sugar-custom.js", "utils/static.js"]) {
+    for (let urlBase of [
+      "utils/sugar-custom.js",
+      "utils/static.js",
+      "utils/tools.js",
+    ]) {
       let url = context.extension.rootURI.resolve(urlBase);
       Services.scriptloader.loadSubScript(url, LegacyColumn);
     }
