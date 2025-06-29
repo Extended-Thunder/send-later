@@ -1096,5 +1096,9 @@
   "messageTooLargeText": {
     "message": "Vanwege een bug in Thunderbird kan $1 het bericht met onderwerp ‘$2’ niet afleveren, omdat het te groot is. Het is $3 bytes lang, wat groter is dan de geconfigureerde limiet van $4. Als u wilt, kunt u deze limiet aanpassen door de voorkeur ‘mailnews.message_warning_size‘ in de configuratie-editor van Thunderbird te wijzigen, of de voorkeur op 0 zetten om de limiet helemaal uit te schakelen. Houd er wel rekening mee dat een eventuele wijziging ook bepaalt of Thunderbird u waarschuwt voor grote berichten die direct worden verzonden in plaats van via $1. Hoe dan ook, om dit bericht te verzenden, kunt u het openen voor bewerking en het direct verzenden, of het bewerken en opnieuw inplannen nadat u het kleiner hebt gemaakt of de Thunderbird-voorkeur hebt gewijzigd.",
     "description": "The (unfortunately very long) text of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large and the TB version is 114 or earlier. $1 is the extension name, $2 is the message subject, $3 is its length, and $4 is the length limit. Please don't translate 'mailnews.message_warning_size', that needs to stay in English."
+  },
+  "dynamicCompatibilityTitle": {
+    "message": "Compatibiliteitswaarschuwing voor dynamische functies",
+    "description": "The title of the pop-up error that is displayed when the user has dynamic scheduling functions configured in Send Later and they are not currently using a version of Send Later that supports them."
   }
 }
