@@ -133,7 +133,7 @@ var SLTools = {
   },
 
   // Helper function to create simple HTML-based popup messages.
-  notificationPopup(type, title, message, checkLabel, checked) {
+  notificationPopup(type, title, message, checkLabel, checked, isFormatted) {
     title = title || messenger.i18n.getMessage("extensionName");
     checkLabel = checkLabel || messenger.i18n.getMessage("confirmAgain");
 
@@ -141,6 +141,7 @@ var SLTools = {
       `ui/notification.html?` +
       `&type=${type}` +
       `&message=${encodeURIComponent(message)}` +
+      `&isFormatted=${isFormatted ? "true" : "false"}` +
       `&checkLabel=${encodeURIComponent(checkLabel)}` +
       `&checked=${checked ? "true" : "false"}`;
 
@@ -161,40 +162,56 @@ var SLTools = {
   },
 
   // Create a popup with just an 'OK' button.
-  alert(title, message) {
-    return this.notificationPopup("alert", title, message);
+  alert(title, message, isFormatted) {
+    return this.notificationPopup(
+      "alert",
+      title,
+      message,
+      null,
+      null,
+      isFormatted,
+    );
   },
 
   // Create a popup with 'YES' and 'NO' buttons. Returns a promise
   // that resolves to an object with boolean member variable 'ok',
   // indicating the user's response.
-  confirm(title, message) {
-    return this.notificationPopup("confirm", title, message);
+  confirm(title, message, isFormatted) {
+    return this.notificationPopup(
+      "confirm",
+      title,
+      message,
+      null,
+      null,
+      isFormatted,
+    );
   },
 
   // Create a popup with a message and an 'OK' button.
   // Returns a promise that resolves to an object with boolean member
   // 'checked', indicating the user's response.
-  alertCheck(title, message, checkLabel, checked) {
+  alertCheck(title, message, checkLabel, checked, isFormatted) {
     return this.notificationPopup(
       "alertCheck",
       title,
       message,
       checkLabel,
       checked,
+      isFormatted,
     );
   },
 
   // Create a popup with a message, 'YES' and 'NO' buttons, and a checkbox.
   // Returns a promise that resolves to an object with boolean members
   // 'ok' and 'checked', indicating the user's response.
-  confirmCheck(title, message, checkLabel, checked) {
+  confirmCheck(title, message, checkLabel, checked, isFormatted) {
     return this.notificationPopup(
       "confirmCheck",
       title,
       message,
       checkLabel,
       checked,
+      isFormatted,
     );
   },
 

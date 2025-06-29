@@ -18,7 +18,11 @@ async function onLoad() {
   let params = new URL(window.document.location).searchParams;
 
   let message = document.getElementById("message");
-  message.textContent = params.get("message");
+  if (params.get("isFormatted") === "true") {
+    message.innerHTML = params.get("message");
+  } else {
+    message.textContent = params.get("message");
+  }
 
   let button_ok = document.getElementById("button_ok");
   button_ok.value = browser.i18n.getMessage("okay");
