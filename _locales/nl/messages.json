@@ -268,7 +268,7 @@
     "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
-    "message": "Handleiding",
+    "message": "Gebruikershandleiding",
     "description": ""
   },
   "errorDateInPast": {
@@ -922,7 +922,7 @@
     "description": ""
   },
   "LongDescription": {
-    "message": "Let op: als u een eenmalige in plaats van een terugkerende donatie wilt doen, dan kan dit via https://paypal.me/JonathanKamens of https://venmo.com/Jonathan-Kamens. U kunt ook een terugkerende donatie instellen in LiberaPay en deze dan na één betaling annuleren.\n\nMet deze add-on wordt de opdracht “Later verzenden” (Ctrl+Shift+Return) in het venster voor het samenstellen van berichten gewijzigd zodat, in plaats van het bericht naar uw Postvak UIT te kopiëren voor verzending bij de eerstvolgende gelegenheid, er een dialoogvenster verschijnt waarmee u kunt opgeven wanneer het bericht moet worden verzonden.\n\nU kunt een bepaalde datum en tijd opgeven, of klikken op “15 minuten later”, “30 minuten later” of “2 uur later”, of eigen voorinstellingen definiëren. U kunt ook het herhaald verzenden van een bericht inplannen met behulp van eenvoudige regels (elke N uur, dagen, enz.) of aanpasbare functies.\n\n<a href='https://extended-thunder.github.io/send-later/'>Gebruikersgids</a> | <a href='https://github.com/Extended-Thunder/send-later/discussions'>Vragen en terugkoppeling</a> | <a href='https://github.com/Extended-Thunder/send-later/issues'>Fouten melden</a>\n\nSend Later verwerkt datuminvoer met behulp van de krachtige bibliotheek <a href='https://sugarjs.com/'>Sugar.js</a> van Andrew Plummer.",
+    "message": "Noot: als u een eenmalige donatie wilt doen in plaats van een terugkerende donatie, kunt u dit doen via https://paypal.me/JonathanKamens of https://venmo.com/Jonathan-Kamens, of eenvoudig een terugkerende donatie configureren in LiberaPay en deze na één betaling annuleren.\n\nDeze add-on wijzigt de opdracht ‘Later verzenden’ (Ctrl+Shift+Return) in het berichtopstelvenster, zodat in plaats van alleen het bericht naar uw Postvak UIT te kopiëren en dit de volgende keer dat u online gaat of door ‘Niet-verzonden berichten verzenden’ te kiezen wordt verzonden, een dialoogvenster verschijnt waarmee u kunt opgeven wanneer het bericht wordt verzonden.\n\nU kunt een bepaalde tijd en datum opgeven, of op ‘15 min. later’, ‘30 min. later’ of ‘2 uur later’ klikken, of aangepaste sneltoetsen definiëren. Ook kunt u een bericht inplannen om herhaald te worden verzonden, gebruikmakend van eenvoudige regels (elke N uur, dagen, etc.) of aanpasbare functies.\n\n<a href='https://extended-thunder.github.io/send-later/'>Gebruikershandleiding</a> | <a href='https://github.com/Extended-Thunder/send-later/discussions'>Vragen en feedback</a> | <a href='https://github.com/Extended-Thunder/send-later/issues'>Bugrapporten</a>\n\nSend Later vertrouwt op krachtige parsing van datuminvoer, aangeleverd door de <a href='https://sugarjs.com/'>Sugar.js-bibliotheek</a> van Andrew Plummer.",
     "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   },
   "DeveloperComments": {
@@ -1100,5 +1100,9 @@
   "dynamicCompatibilityTitle": {
     "message": "Compatibiliteitswaarschuwing voor dynamische functies",
     "description": "The title of the pop-up error that is displayed when the user has dynamic scheduling functions configured in Send Later and they are not currently using a version of Send Later that supports them."
+  },
+  "dynamicCompatibilityMessage": {
+    "message": "<strong>WAARSCHUWING:</strong> de versie van $1 die u gebruikt, ondersteunt geen dynamische planningsfuncties. Pogingen om dynamische functies te gebruiken bij het inplannen van individuele of terugkerende berichten resulteren in ongedefinieerd, onjuist gedrag. <strong>Dit omvat alle dynamische terugkerende berichten die u in het verleden hebt ingepland.</strong><br/>Als u dynamische functies wilt blijven gebruiken, moet u overschakelen naar het bèta-updatekanaal, dat deze blijft ondersteunen.<br/>Deze wijziging is het gevolg van strengere beveiligingsbeperkingen die door de moderatoren van <a href='https://addons.thunderbird.net/'>addons.thunderbird.net</a> zijn opgelegd. Bekijk <a href='$2'>de gebruikershandleiding</a>voor meer informatie.<br/>U ziet dit bericht bij het opstarten totdat u ofwel naar het $1-bètakanaal gaat, of alle niet-standaard dynamische functies in de functie-editor verwijdert.",
+    "description": "The text of the pop-up error that is displayed when the user has dynamic scheduling functions configured in Send Later and they are not currently using a version of Send Later that supports them. $1 is replaced with extension name and $2 is replaced with the appropriate user guide link."
   }
 }
