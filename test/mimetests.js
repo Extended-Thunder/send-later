@@ -24,7 +24,7 @@ exports.init = function () {
       });
       let result = original;
 
-      result = SLStatic.replaceHeader(result, hdrstring, newvalue, false);
+      result = SLTools.replaceHeader(result, hdrstring, newvalue, false);
 
       if (result === expected) {
         return true;
@@ -38,7 +38,7 @@ exports.init = function () {
 
   function getHeaderTest(data, hdrstring, expected) {
     const original = fs.readFileSync(data, { encoding: "utf-8" });
-    result = SLStatic.getHeader(original, hdrstring);
+    result = SLTools.getHeader(original, hdrstring);
     return result === expected || `Expected "${expected}", got "${result}".`;
   }
 
@@ -110,7 +110,7 @@ exports.init = function () {
       });
       let result = original;
 
-      result = SLStatic.replaceHeader(
+      result = SLTools.replaceHeader(
         result,
         "X-Send-Later-[a-zA-Z0-9-]*",
         null,
@@ -142,22 +142,51 @@ exports.init = function () {
       );
       let result = original;
 
-      result = SLStatic.appendHeader(
+      function appendHeader(content, header, value) {
+        const regex = new RegExp(
+          `^${header}:([^\r\n]*)\r\n(\\s[^\r\n]*\r\n)*`,
+          "im",
+        );
+        const hdrContent = content.split(/\r\n\r\n/m)[0] + "\r\n";
+        const msgContent = content
+          .split(/\r\n\r\n/m)
+          .slice(1)
+          .join("\r\n\r\n");
+        if (regex.test(hdrContent)) {
+          const values = hdrContent
+            .match(regex)[0]
+            .trim()
+            .slice(header.length + 1)
+            .trim()
+            .split(/\r\n/)
+            .map((s) => s.trim());
+          values.push(value);
+          const newHdrs = hdrContent.replace(
+            regex,
+            `${header}: ${values.join("\r\n ")}\r\n`,
+          );
+          return `${newHdrs.trim()}\r\n\r\n${msgContent}`;
+        } else {
+          return `${hdrContent.trim()}\r\n${header}: ${value}\r\n\r\n${msgContent}`;
+        }
+      }
+
+      result = SLTools.appendHeader(
         result,
         hdrstring,
         "RANDOM INTERMEDIATE VALUE 1",
       );
-      result = SLStatic.appendHeader(
+      result = SLTools.appendHeader(
         result,
         hdrstring,
         "RANDOM INTERMEDIATE VALUE 2",
       );
-      result = SLStatic.appendHeader(
+      result = SLTools.appendHeader(
         result,
         hdrstring,
         "RANDOM INTERMEDIATE VALUE 3",
       );
-      result = SLStatic.replaceHeader(result, hdrstring, newvalue, true);
+      result = SLTools.replaceHeader(result, hdrstring, newvalue, true);
 
       if (result === expected) {
         return true;

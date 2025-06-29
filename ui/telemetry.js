@@ -1,4 +1,4 @@
-let privacyUrl = SLStatic.translationURL(
+let privacyUrl = SLTools.translationURL(
   "https://extended-thunder.github.io/send-later/privacy-policy.html",
 );
 

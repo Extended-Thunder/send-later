@@ -120,7 +120,8 @@ global.ObjToStr = (obj) => {
   }
 };
 
-require("../utils/static.js");
+require("../utils/sugar-custom.js");
+require("../utils/tools.js");
 
 const testPaths = [
   "./adjustdaterestrictionstests.js",

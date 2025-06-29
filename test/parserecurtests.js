@@ -31,7 +31,7 @@ exports.init = function () {
   }
 
   function ParseRecurGoodTest(spec, expected) {
-    const out = SLStatic.parseRecurSpec(spec);
+    const out = SLTools.parseRecurSpec(spec);
     if (CompareRecurs(out, expected)) {
       return true;
     } else {
@@ -72,8 +72,8 @@ exports.init = function () {
     SLTests.AddTest(
       `parseUnparseRecurSpec ${test[0]}`,
       (spec) => {
-        const parsed = SLStatic.parseRecurSpec(spec);
-        const unparsed = SLStatic.unparseRecurSpec(parsed);
+        const parsed = SLTools.parseRecurSpec(spec);
+        const unparsed = SLTools.unparseRecurSpec(parsed);
         return (
           spec === `${unparsed}` || `Expected "${spec}", got "${unparsed}"`
         );
@@ -84,7 +84,7 @@ exports.init = function () {
 
   function ParseRecurBadTest(spec, expected) {
     try {
-      const out = SLStatic.parseRecurSpec(spec);
+      const out = SLTools.parseRecurSpec(spec);
       return "expected exception, got " + JSON.stringify(out);
     } catch (ex) {
       if ((ex + "").indexOf(expected) === -1) {

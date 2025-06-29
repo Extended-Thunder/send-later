@@ -13,7 +13,7 @@ function buttonListener(evt) {
 }
 
 async function onLoad() {
-  await SLStatic.cachePrefs();
+  await SLTools.cachePrefs();
 
   let params = new URL(window.document.location).searchParams;
 
@@ -47,7 +47,7 @@ async function onLoad() {
   } else {
     button_cancel.style.display = "none";
   }
-  SLStatic.makeContentsVisible();
+  SLTools.makeContentsVisible();
 }
 
 window.addEventListener("load", onLoad);

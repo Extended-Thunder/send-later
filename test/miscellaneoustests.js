@@ -8,7 +8,7 @@ exports.init = function () {
   SLTests.AddTest(
     "Test flattener",
     (input, expected) => {
-      const result = SLStatic.flatten(input);
+      const result = SLTools.flatten(input);
       return (
         JSON.stringify(result) === JSON.stringify(expected) ||
         `Expected "${expected}", got "${result}"`
@@ -23,16 +23,16 @@ exports.init = function () {
   SLTests.AddTest(
     "Test unparseArgs",
     (input, expected) => {
-      const result = SLStatic.unparseArgs(input);
+      const result = SLTools.unparseArgs(input);
       return result === expected || `Expected "${expected}", got "${result}"`;
     },
     [[1, 2, "foo", [1, "bar"], 6], '1, 2, "foo", [1, "bar"], 6'],
   );
 
   function testEstimatedSendTime(scheduledDate, previousLoop, loopMinutes) {
-    scheduledDate = SLStatic.floorDateTime(scheduledDate);
+    scheduledDate = SLTools.floorDateTime(scheduledDate);
 
-    let result = SLStatic.estimateSendTime(
+    let result = SLTools.estimateSendTime(
       scheduledDate,
       previousLoop,
       loopMinutes,

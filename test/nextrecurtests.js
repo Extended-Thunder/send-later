@@ -2,7 +2,7 @@ exports.init = function () {
   async function NextRecurNormalTest(sendat, recur, now, expected) {
     let result;
     try {
-      result = await SLStatic.nextRecurDate(
+      result = await SLTools.nextRecurDate(
         new Date(sendat),
         recur,
         new Date(now),
@@ -21,7 +21,7 @@ exports.init = function () {
   async function NextRecurExceptionTest(sendat, recur, now, expected) {
     let result;
     try {
-      result = await SLStatic.nextRecurDate(
+      result = await SLTools.nextRecurDate(
         new Date(sendat),
         recur,
         new Date(now),
@@ -45,16 +45,16 @@ exports.init = function () {
     func,
     expected,
   ) {
-    SLStatic.mockStorage.ufuncs[func_name] =
+    SLTools.mockStorage.ufuncs[func_name] =
       func === undefined ? undefined : { body: func };
     let result;
     try {
       now = new Date(now);
       sendat = new Date(sendat);
-      result = await SLStatic.nextRecurDate(sendat, recur, now, args);
-      delete SLStatic.mockStorage.ufuncs[func_name];
+      result = await SLTools.nextRecurDate(sendat, recur, now, args);
+      delete SLTools.mockStorage.ufuncs[func_name];
     } catch (ex) {
-      delete SLStatic.mockStorage.ufuncs[func_name];
+      delete SLTools.mockStorage.ufuncs[func_name];
       return "Unexpected error: " + ex.message;
     }
     if (DeepCompare(result, expected)) {
@@ -72,15 +72,15 @@ exports.init = function () {
     func,
     expected,
   ) {
-    SLStatic.mockStorage.ufuncs[func_name] =
+    SLTools.mockStorage.ufuncs[func_name] =
       func === undefined ? undefined : { body: func };
     let result;
-    result = await SLStatic.nextRecurDate(
+    result = await SLTools.nextRecurDate(
       new Date(sendat),
       recur,
       new Date(now),
     );
-    delete SLStatic.mockStorage.ufuncs[func_name];
+    delete SLTools.mockStorage.ufuncs[func_name];
     if ((result.error + "").indexOf(expected) != -1) {
       return true;
     } else {

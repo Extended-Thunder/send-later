@@ -5,7 +5,7 @@ exports.init = function () {
     if (days) {
       orig_days = days.slice();
     }
-    const result = SLStatic.adjustDateForRestrictions(
+    const result = SLTools.adjustDateForRestrictions(
       dt,
       start_time,
       end_time,

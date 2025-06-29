@@ -28,11 +28,11 @@ function formatRecipientList(recipients, limit) {
 function formatSchedule(msgData) {
   let schedule = {
     sendAt: new Date(msgData.sendAt),
-    recur: SLStatic.parseRecurSpec(msgData.recur),
+    recur: SLTools.parseRecurSpec(msgData.recur),
   };
   schedule.recur.cancelOnReply = ["true", "yes"].includes(msgData.cancel);
   schedule.recur.args = msgData.args;
-  return SLStatic.formatScheduleForUIColumn(schedule);
+  return SLTools.formatScheduleForUIColumn(schedule);
 }
 
 function setCellValue(elt, value, html) {
@@ -70,10 +70,10 @@ function makeRow(scheduleStr, recipientsStr, subjectStr, folderStr, isHtml) {
 
 function makeHeader() {
   return makeRow(
-    `<u>${SLStatic.i18n.getMessage("sendAtLabel")}</u>`,
-    `<u>${SLStatic.i18n.getMessage("recipients")}</u>`,
-    `<u>${SLStatic.i18n.getMessage("subject")}</u>`,
-    `<u>${SLStatic.i18n.getMessage("folder")}</u>`,
+    `<u>${SLTools.i18n.getMessage("sendAtLabel")}</u>`,
+    `<u>${SLTools.i18n.getMessage("recipients")}</u>`,
+    `<u>${SLTools.i18n.getMessage("subject")}</u>`,
+    `<u>${SLTools.i18n.getMessage("folder")}</u>`,
     true,
   );
 }
@@ -137,7 +137,7 @@ function init() {
       });
     if (!headerAdded) {
       scheduleTable.appendChild(
-        makeRow(SLStatic.i18n.getMessage("noneScheduled"), "", "", ""),
+        makeRow(SLTools.i18n.getMessage("noneScheduled"), "", "", ""),
       );
     }
   });

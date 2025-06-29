@@ -99,7 +99,7 @@ const SendLaterFunctions = {
   },
 
   getMessage(context, messageName, substitutions) {
-    // from static.js
+    // from tools.js
     try {
       messageName = messageName.toLowerCase();
 

@@ -48,7 +48,6 @@
   "background": {
     "scripts": [
       "utils/sugar-custom.js",
-      "utils/static.js",
       "utils/tools.js",
       "utils/ical.js",
       "background.js"
@@ -57,7 +56,6 @@
 
   "web_accessible_resources": [
     "utils/sugar-custom.js",
-    "utils/static.js",
     "utils/tools.js",
     "utils/defaultPrefs.json"
   ],

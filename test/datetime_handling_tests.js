@@ -7,7 +7,7 @@ exports.init = function () {
 
   function testParseableDateTimeFormat(name, input, output) {
     SLTests.AddTest(name, () => {
-      const result = SLStatic.parseableDateTimeFormat(new Date(input));
+      const result = SLTools.parseableDateTimeFormat(new Date(input));
       return result == output || `Expected "${output}", got "${result}"`;
     }, []);
   }
@@ -79,7 +79,7 @@ exports.init = function () {
       let d = new Date('"Mon, 6 Sep 2021 07:28:10 -0700"');
       d.getTimezoneOffset = () => -570;
       let expected = "Mon, 6 Sep 2021 07:28:10 +0930";
-      let result = SLStatic.RFC5322.format(d);
+      let result = SLTools.RFC5322.format(d);
       return result == expected || `Expected "${expected}", got "${result}"`;
     },
     [],
@@ -91,7 +91,7 @@ exports.init = function () {
       let d = new Date('"Mon, 6 Sep 2021 07:28:10 -0700"');
       d.getTimezoneOffset = () => 555;
       let expected = "Mon, 6 Sep 2021 07:28:10 -0915";
-      let result = SLStatic.RFC5322.format(d);
+      let result = SLTools.RFC5322.format(d);
       return result == expected || `Expected "${expected}", got "${result}"`;
     },
     [],
@@ -102,7 +102,7 @@ exports.init = function () {
     () => {
       let d = new Date();
       d.getTimezoneOffset = () => 0;
-      let result = SLStatic.RFC5322.tz(d);
+      let result = SLTools.RFC5322.tz(d);
       return result === "+0000" || `Expected "+0000", got "${result}"`;
     },
     [],
@@ -112,7 +112,7 @@ exports.init = function () {
     "Local timezone offset comparison",
     () => {
       let d = new Date();
-      let rfc = SLStatic.RFC5322.tz(d);
+      let rfc = SLTools.RFC5322.tz(d);
       let match = d.toString().match(/[+-]\d\d\d\d/);
       if (!match) return `Unable to parse date string: ${d.toString()}`;
       else
@@ -131,7 +131,7 @@ exports.init = function () {
         let d = new Date();
 
         d.getTimezoneOffset = () => m;
-        let tz = SLStatic.RFC5322.tz(d);
+        let tz = SLTools.RFC5322.tz(d);
         let sign = tz.substr(0, 1);
         let hr = tz.substr(1, 2) | 0;
         let min = tz.substr(3, 2) | 0;
@@ -142,7 +142,7 @@ exports.init = function () {
           return `Invalid timezone offset: ${tz} (${m} minutes)`;
 
         d.getTimezoneOffset = () => -m;
-        let tz2 = SLStatic.RFC5322.tz(d);
+        let tz2 = SLTools.RFC5322.tz(d);
         if (tz2 != "+" + tz.substr(1))
           return `Invalid tz comparison: ${tz} vs ${tz2}`;
       }
@@ -159,7 +159,7 @@ exports.init = function () {
 
       for (let wd = 0; wd < days.length; wd++) {
         d.getDay = () => wd;
-        let result = SLStatic.RFC5322.dayOfWeek(d);
+        let result = SLTools.RFC5322.dayOfWeek(d);
         if (result !== days[wd])
           return `Incorrect day of week. Expected "${days[wd]}", got "${result}"`;
       }
@@ -189,7 +189,7 @@ exports.init = function () {
 
       for (let mo = 0; mo < months.length; mo++) {
         d.getMonth = () => mo;
-        let result = SLStatic.RFC5322.month(d);
+        let result = SLTools.RFC5322.month(d);
         if (result !== months[mo])
           return `Incorrect weekday. Expected "${months[mo]}", got "${result}"`;
       }
@@ -201,10 +201,10 @@ exports.init = function () {
   SLTests.AddTest(
     "Test parseableDateTimeFormat (current time fallback)",
     () => {
-      const result = SLStatic.parseableDateTimeFormat();
-      const expected = SLStatic.parseableDateTimeFormat(Date.now());
+      const result = SLTools.parseableDateTimeFormat();
+      const expected = SLTools.parseableDateTimeFormat(Date.now());
       return (
-        SLStatic.compareDateTimes(result, "==", expected, 100) ||
+        SLTools.compareDateTimes(result, "==", expected, 100) ||
         `Expected "${expected}", got "${result}"`
       );
     },
@@ -214,12 +214,12 @@ exports.init = function () {
   SLTests.AddTest(
     "Test parseableDateTimeFormat (relative time string)",
     () => {
-      const result = SLStatic.parseableDateTimeFormat("1 minute from now");
-      const expected = SLStatic.parseableDateTimeFormat(
+      const result = SLTools.parseableDateTimeFormat("1 minute from now");
+      const expected = SLTools.parseableDateTimeFormat(
         new Date(Date.now() + 60000),
       );
       return (
-        SLStatic.compareDateTimes(result, "==", expected, 100) ||
+        SLTools.compareDateTimes(result, "==", expected, 100) ||
         `Expected "${expected}", got "${result}"`
       );
     },
@@ -229,7 +229,7 @@ exports.init = function () {
   SLTests.AddTest(
     "Test humanDateTimeFormat",
     (input, expected) => {
-      const result = SLStatic.humanDateTimeFormat(new Date(input));
+      const result = SLTools.humanDateTimeFormat(new Date(input));
       return result == expected || `Expected "${expected}", got "${result}"`;
     },
     ["Sun Feb 01 1998 15:03:00 GMT+2", "Sun, Feb 1, 1998, 5:03 AM"],
@@ -238,7 +238,7 @@ exports.init = function () {
   SLTests.AddTest(
     "Test shortHumanDateTimeFormat",
     (input, expected) => {
-      const result = SLStatic.shortHumanDateTimeFormat(new Date(input));
+      const result = SLTools.shortHumanDateTimeFormat(new Date(input));
       return result == expected || `Expected "${expected}", got "${result}"`;
     },
     ["Sun Feb 01 1998 15:03:00 GMT+2", "2/1/1998, 5:03 AM"],
@@ -247,7 +247,7 @@ exports.init = function () {
   SLTests.AddTest(
     "Test customHumanDateTimeFormat",
     (input, expected) => {
-      const result = SLStatic.customHumanDateTimeFormat(
+      const result = SLTools.customHumanDateTimeFormat(
         new Date(input[0]),
         input[1],
       );
@@ -259,7 +259,7 @@ exports.init = function () {
   SLTests.AddTest(
     "Test getWkdayName Sunday",
     (input, expected) => {
-      const result = SLStatic.getWkdayName(input[0], input[1]);
+      const result = SLTools.getWkdayName(input[0], input[1]);
       return result == expected || `Expected "${expected}", got "${result}"`;
     },
     [[0, null], "Sunday"],
@@ -268,7 +268,7 @@ exports.init = function () {
   SLTests.AddTest(
     "Test getWkdayName Tuesday long",
     (input, expected) => {
-      const result = SLStatic.getWkdayName(input[0], input[1]);
+      const result = SLTools.getWkdayName(input[0], input[1]);
       return result == expected || `Expected "${expected}", got "${result}"`;
     },
     [[2, "long"], "Tuesday"],
@@ -277,7 +277,7 @@ exports.init = function () {
   SLTests.AddTest(
     "Test getWkdayName Wednesday short",
     (input, expected) => {
-      const result = SLStatic.getWkdayName(input[0], input[1]);
+      const result = SLTools.getWkdayName(input[0], input[1]);
       return result == expected || `Expected "${expected}", got "${result}"`;
     },
     [[3, "short"], "Wed"],
@@ -286,7 +286,7 @@ exports.init = function () {
   SLTests.AddTest(
     "Test formatTime from number",
     (input, expected) => {
-      const result = SLStatic.formatTime(input[0], input[1]);
+      const result = SLTools.formatTime(input[0], input[1]);
       return result == expected || `Expected "${expected}", got "${result}"`;
     },
     [[new Date(2020, 5, 3, 6, 55).getTime(), true], "0655"],
@@ -295,7 +295,7 @@ exports.init = function () {
   SLTests.AddTest(
     "Test formatTime from date",
     (input, expected) => {
-      const result = SLStatic.formatTime(input[0], input[1]);
+      const result = SLTools.formatTime(input[0], input[1]);
       return result == expected || `Expected "${expected}", got "${result}"`;
     },
     [[new Date(2020, 5, 3, 6, 5), false], "605"],
@@ -304,7 +304,7 @@ exports.init = function () {
   SLTests.AddTest(
     "Test formatTime from string",
     (input, expected) => {
-      const result = SLStatic.formatTime(input[0], input[1]);
+      const result = SLTools.formatTime(input[0], input[1]);
       return result == expected || `Expected "${expected}", got "${result}"`;
     },
     [["4:02", true], "0402"],
@@ -317,7 +317,7 @@ exports.init = function () {
   }
 
   SLTests.AddTest("Test compareTimes a < b", TestComparison, [
-    SLStatic.compareTimes,
+    SLTools.compareTimes,
     "8/31/2020, 05:00:00 AM",
     "<",
     "8/30/2020, 07:00:00 AM",
@@ -325,7 +325,7 @@ exports.init = function () {
     true,
   ]);
   SLTests.AddTest("Test compareTimes a >= b", TestComparison, [
-    SLStatic.compareTimes,
+    SLTools.compareTimes,
     "8/31/2020, 05:00:00 AM",
     "<=",
     "8/30/2020, 05:00:00 AM",
@@ -333,7 +333,7 @@ exports.init = function () {
     true,
   ]);
   SLTests.AddTest("Test compareTimes a > b", TestComparison, [
-    SLStatic.compareTimes,
+    SLTools.compareTimes,
     "8/31/2020, 05:15:00 PM",
     ">",
     "8/30/2020, 05:00:00 AM",
@@ -341,7 +341,7 @@ exports.init = function () {
     true,
   ]);
   SLTests.AddTest("Test compareTimes a >= b", TestComparison, [
-    SLStatic.compareTimes,
+    SLTools.compareTimes,
     "8/31/2020, 05:15:00 PM",
     ">=",
     "8/30/2020, 05:15:00 AM",
@@ -349,7 +349,7 @@ exports.init = function () {
     true,
   ]);
   SLTests.AddTest("Test compareTimes a === b", TestComparison, [
-    SLStatic.compareTimes,
+    SLTools.compareTimes,
     "8/31/2019, 05:01:00 PM",
     "===",
     "8/30/2020, 05:01:00 PM",
@@ -357,7 +357,7 @@ exports.init = function () {
     true,
   ]);
   SLTests.AddTest("Test compareDates a < b differentmonth", TestComparison, [
-    SLStatic.compareDates,
+    SLTools.compareDates,
     "7/31/2020, 09:01:00 AM",
     "<",
     "8/01/2020, 05:01:00 AM",
@@ -365,7 +365,7 @@ exports.init = function () {
     true,
   ]);
   SLTests.AddTest("Test compareDates ! a == b false", TestComparison, [
-    SLStatic.compareDates,
+    SLTools.compareDates,
     "7/31/2020, 09:01:00 AM",
     "==",
     "8/01/2020, 05:01:00 AM",
@@ -373,7 +373,7 @@ exports.init = function () {
     false,
   ]);
   SLTests.AddTest("Test compareDates a == b false", TestComparison, [
-    SLStatic.compareDates,
+    SLTools.compareDates,
     "7/31/2020, 09:01:00 AM",
     "==",
     "7/31/2020, 05:01:00 AM",
@@ -381,7 +381,7 @@ exports.init = function () {
     true,
   ]);
   SLTests.AddTest("Test compareDateTimes a === b !ignoreSec", TestComparison, [
-    SLStatic.compareDateTimes,
+    SLTools.compareDateTimes,
     "7/31/2020, 09:00:00 AM",
     "===",
     "7/31/2020, 09:00:20 AM",
@@ -389,7 +389,7 @@ exports.init = function () {
     false,
   ]);
   SLTests.AddTest("Test compareDateTimes a === b ignoreSec", TestComparison, [
-    SLStatic.compareDateTimes,
+    SLTools.compareDateTimes,
     "7/31/2020, 09:00:00 AM",
     "===",
     "7/31/2020, 09:00:20 AM",
@@ -400,7 +400,7 @@ exports.init = function () {
     "Test compareDateTimes a < b differentmonth",
     TestComparison,
     [
-      SLStatic.compareDateTimes,
+      SLTools.compareDateTimes,
       "7/31/2020, 09:01:00 AM",
       "<",
       "8/01/2020, 05:01:00 AM",
@@ -412,7 +412,7 @@ exports.init = function () {
   SLTests.AddTest(
     "Test parseDateTime",
     (dstr, tstr, expected) => {
-      const result = SLStatic.parseDateTime(dstr, tstr);
+      const result = SLTools.parseDateTime(dstr, tstr);
       return (
         result.getTime() === expected.getTime() ||
         `Expected "${expected}", got "${result}"`
@@ -424,7 +424,7 @@ exports.init = function () {
   SLTests.AddTest(
     "Test parseDateTime (time only)",
     (input, expected) => {
-      const result = SLStatic.parseDateTime(null, input);
+      const result = SLTools.parseDateTime(null, input);
       return (
         result.getTime() === expected.getTime() ||
         `Expected "${expected}", got "${result}"`
@@ -436,9 +436,9 @@ exports.init = function () {
   SLTests.AddTest(
     "Test convertDate (text string relative)",
     (input, expected) => {
-      const result = SLStatic.convertDate(input, false);
+      const result = SLTools.convertDate(input, false);
       return (
-        SLStatic.compareDateTimes(result, "==", expected, 100) ||
+        SLTools.compareDateTimes(result, "==", expected, 100) ||
         `Expected "${expected.getTime()}", got "${result.getTime()}"`
       );
     },
@@ -448,9 +448,9 @@ exports.init = function () {
   SLTests.AddTest(
     "Test convertDate (text string absolute)",
     (input, expected) => {
-      const result = SLStatic.convertDate(input);
+      const result = SLTools.convertDate(input);
       return (
-        SLStatic.compareDateTimes(result, "==", expected, 100) ||
+        SLTools.compareDateTimes(result, "==", expected, 100) ||
         `Expected "${expected.getTime()}", got "${result.getTime()}"`
       );
     },
@@ -460,9 +460,9 @@ exports.init = function () {
   SLTests.AddTest(
     "Test convertDate (number)",
     (input, expected) => {
-      const result = SLStatic.convertDate(input);
+      const result = SLTools.convertDate(input);
       return (
-        SLStatic.compareDateTimes(result, "==", expected, 100) ||
+        SLTools.compareDateTimes(result, "==", expected, 100) ||
         `Expected "${expected}", got "${result}"`
       );
     },
@@ -472,9 +472,9 @@ exports.init = function () {
   SLTests.AddTest(
     "Test convertDate (Date)",
     (input, expected) => {
-      const result = SLStatic.convertDate(input);
+      const result = SLTools.convertDate(input);
       return (
-        SLStatic.compareDateTimes(result, "==", expected, 100) ||
+        SLTools.compareDateTimes(result, "==", expected, 100) ||
         `Expected "${expected}", got "${result}"`
       );
     },
@@ -482,7 +482,7 @@ exports.init = function () {
   );
 
   function compareRelativeTime(dateTime, relativeTo, expected) {
-    const result = SLStatic.formatRelative(dateTime, relativeTo);
+    const result = SLTools.formatRelative(dateTime, relativeTo);
     return result === expected || `Expected "${expected}", got "${result}"`;
   }
 

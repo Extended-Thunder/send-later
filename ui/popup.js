@@ -1,3 +1,98 @@
+// changes is an array of two-item arrays, each of which is a key and a value.
+async function setPreferences(changes) {
+  let { preferences } = await messenger.storage.local.get({
+    preferences: {},
+  });
+  changes.forEach(([key, value]) => {
+    preferences[key] = value;
+  });
+  await messenger.storage.local.set({ preferences });
+}
+
+function stateSetter(enabled) {
+  // closure for enabling/disabling UI components
+  return async (element) => {
+    try {
+      if (["SPAN", "DIV", "LABEL"].includes(element.tagName)) {
+        element.style.color = enabled ? "black" : "#888888";
+      }
+      element.disabled = !enabled;
+    } catch (ex) {
+      SLTools.error(ex);
+    }
+    const enabler = stateSetter(enabled);
+    [...element.childNodes].forEach(enabler);
+  };
+}
+
+// Splits a single label string into spans, where the first occurrence
+// of the access key is in its own element, with an underline.
+function underlineAccessKey(label, modifier) {
+  let idx = label.indexOf(modifier || "&");
+  if (idx === -1 && modifier) {
+    modifier = modifier.toLowerCase();
+    idx = label.toLowerCase().indexOf(modifier);
+  }
+
+  if (idx === -1) {
+    const spanner = document.createElement("SPAN");
+    spanner.textContent = label;
+    return [spanner];
+  } else {
+    const span1 = document.createElement("SPAN");
+    span1.textContent = label.substr(0, idx);
+    const span2 = document.createElement("SPAN");
+    span2.style.textDecoration = "underline";
+    span2.textContent = modifier ? label[idx] : label[++idx];
+    const span3 = document.createElement("SPAN");
+    span3.textContent = label.substr(idx + 1);
+    return [span1, span2, span3];
+  }
+}
+
+// There are definitely some edge cases here, e.g., !undefined == !0, but
+// they're not important for the intended use of this function.
+function objectsAreTheSame(a, b) {
+  if (typeof a == "object") {
+    if (typeof b != "object") {
+      return false;
+    }
+  } else if (typeof b == "object") {
+    return false;
+  } else {
+    return a == b;
+  }
+
+  for (let key of Object.keys(a)) {
+    if (!b.hasOwnProperty(key)) {
+      return false;
+    }
+    if (!objectsAreTheSame(a[key], b[key])) {
+      return false;
+    }
+  }
+
+  for (let key of Object.keys(b)) {
+    if (!a.hasOwnProperty(key)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function parseableHumanDateTimeFormat(date) {
+  let formatted = SLTools.shortHumanDateTimeFormat(date);
+  let parsed;
+  try {
+    parsed = SLTools.convertDate(formatted);
+  } catch (ex) {}
+  if (parsed) {
+    return formatted;
+  }
+  return date.toISOString();
+}
+
 // initialize popup window
 const SLPopup = {
   buttonUpdater: null,
@@ -22,10 +117,8 @@ const SLPopup = {
     } else {
       let cancelOnReply = schedule.recur.cancelOnReply ? "yes" : "no";
       return [
-        `x-send-later-at: ${SLStatic.parseableDateTimeFormat(
-          schedule.sendAt,
-        )}`,
-        `x-send-later-recur: ${SLStatic.unparseRecurSpec(schedule.recur)}`,
+        `x-send-later-at: ${SLTools.parseableDateTimeFormat(schedule.sendAt)}`,
+        `x-send-later-recur: ${SLTools.unparseRecurSpec(schedule.recur)}`,
         `x-send-later-args: ${schedule.recur.args}`,
         `x-send-later-cancel-on-reply: ${cancelOnReply}`,
       ];
@@ -72,9 +165,9 @@ const SLPopup = {
   },
 
   async saveZoom() {
-    SLStatic.debug(`saveSoom: ${SLPopup.zoom}`);
+    SLTools.debug(`saveSoom: ${SLPopup.zoom}`);
     let prefName = SLPopup.windowPrefName("Zoom");
-    await SLStatic.setPreferences([[prefName, SLPopup.zoom]]);
+    await setPreferences([[prefName, SLPopup.zoom]]);
   },
 
   async saveDimensions() {
@@ -84,7 +177,7 @@ const SLPopup = {
     if (SLPopup.attachedWindow) {
       return;
     }
-    await SLStatic.setPreferences([
+    await setPreferences([
       [SLPopup.windowPrefName("Width"), window.innerWidth],
       [SLPopup.windowPrefName("Height"), window.innerHeight],
     ]);
@@ -93,15 +186,15 @@ const SLPopup = {
   restoreZoom() {
     // Restore Zoom from preferences. If dimensions were saved, they're
     // restored when the window is created, not here.
-    let zoom = SLStatic.preferences[SLPopup.windowPrefName("Zoom")] || 100;
+    let zoom = SLTools.preferences[SLPopup.windowPrefName("Zoom")] || 100;
     SLPopup.zoom = Math.max(zoom, 10); // Window shouldn't be invisible
-    SLStatic.debug(`restoreZoom: ${SLPopup.zoom}`);
+    SLTools.debug(`restoreZoom: ${SLPopup.zoom}`);
     SLPopup.setZoom();
   },
 
   async zoomIn() {
     SLPopup.zoom += 10;
-    SLStatic.debug(`zoomIn: ${SLPopup.zoom}`);
+    SLTools.debug(`zoomIn: ${SLPopup.zoom}`);
     SLPopup.setZoom();
     await SLPopup.saveZoom();
   },
@@ -109,7 +202,7 @@ const SLPopup = {
   async zoomOut() {
     let zoom = SLPopup.zoom - 10;
     SLPopup.zoom = Math.max(zoom, 10);
-    SLStatic.debug(`zoomOut: ${SLPopup.zoom}`);
+    SLTools.debug(`zoomOut: ${SLPopup.zoom}`);
     SLPopup.setZoom();
     await SLPopup.saveZoom();
   },
@@ -122,15 +215,15 @@ const SLPopup = {
         tabId: SLPopup.messageTabId,
         action: "doSendLater",
         sendAt: schedule.sendAt,
-        recurSpec: SLStatic.unparseRecurSpec(schedule.recur),
+        recurSpec: SLTools.unparseRecurSpec(schedule.recur),
         args: schedule.recur.args,
         cancelOnReply: schedule.recur.cancelOnReply,
       };
-      SLStatic.debug(message);
+      SLTools.debug(message);
       try {
         await browser.runtime.sendMessage(message).then(() => window.close());
       } catch (ex) {
-        SLStatic.error(ex);
+        SLTools.error(ex);
       }
       // setTimeout((() => window.close()), 150);
     }
@@ -144,11 +237,11 @@ const SLPopup = {
       action: "doSendNow",
       changed: SLPopup.changed,
     };
-    SLStatic.debug(message);
+    SLTools.debug(message);
     try {
       await browser.runtime.sendMessage(message).then(() => window.close());
     } catch (ex) {
-      SLStatic.error(ex);
+      SLTools.error(ex);
     }
   },
 
@@ -160,11 +253,11 @@ const SLPopup = {
       action: "doPlaceInOutbox",
       changed: SLPopup.changed,
     };
-    SLStatic.debug(message);
+    SLTools.debug(message);
     try {
       await browser.runtime.sendMessage(message).then(() => window.close());
     } catch (ex) {
-      SLStatic.trace(ex);
+      SLTools.trace(ex);
     }
   },
 
@@ -221,10 +314,10 @@ const SLPopup = {
 
     if (argStr) {
       try {
-        argStr = SLStatic.unparseArgs(SLStatic.parseArgs(argStr));
-        args = SLStatic.parseArgs(argStr);
+        argStr = SLTools.unparseArgs(SLTools.parseArgs(argStr));
+        args = SLTools.parseArgs(argStr);
       } catch (ex) {
-        SLStatic.warn(ex);
+        SLTools.warn(ex);
         return {
           err:
             browser.i18n.getMessage("InvalidArgsTitle") +
@@ -236,13 +329,13 @@ const SLPopup = {
 
     const body = SLPopup.ufuncs[funcName].body;
 
-    const { sendAt, nextspec, nextargs, error } = SLStatic.evaluateUfunc(
+    const { sendAt, nextspec, nextargs, error } = SLTools.evaluateUfunc(
       funcName,
       body,
       prev,
       args,
     );
-    SLStatic.debug("User function returned:", {
+    SLTools.debug("User function returned:", {
       sendAt,
       nextspec,
       nextargs,
@@ -252,27 +345,27 @@ const SLPopup = {
     if (error) {
       throw new Error(error);
     } else {
-      let recur = SLStatic.parseRecurSpec(nextspec || "none") || {
+      let recur = SLTools.parseRecurSpec(nextspec || "none") || {
         type: "none",
       };
       if (recur.type !== "none") {
         recur.args = nextargs || "";
       }
       const schedule = { sendAt, recur };
-      SLStatic.debug("Popup.js received ufunc response: ", schedule);
+      SLTools.debug("Popup.js received ufunc response: ", schedule);
       return schedule;
     }
   },
 
   parseInputs(inputs) {
-    SLStatic.debug("parseInputs:", inputs);
+    SLTools.debug("parseInputs:", inputs);
     // Construct a recur object { type: "...", multiplier: "...", ... }
     const recurType = inputs.radio.recur;
 
     // If the user has typed a send time into send-datetime, it may be more
     // precise than what's in the date-picker and time-picker, so we prefer it.
     try {
-      sendAt = SLStatic.convertDate(inputs["send-datetime"]);
+      sendAt = SLTools.convertDate(inputs["send-datetime"]);
     } catch (ex) {}
     if (!sendAt) {
       const sendAtDate = inputs["send-date"];
@@ -283,7 +376,7 @@ const SLPopup = {
         /\d\d\d\d.\d\d.\d\d/.test(sendAtDate) &&
         /\d\d.\d\d/.test(sendAtTime)
       ) {
-        sendAt = SLStatic.parseDateTime(sendAtDate, sendAtTime);
+        sendAt = SLTools.parseDateTime(sendAtDate, sendAtTime);
       }
     }
 
@@ -309,7 +402,7 @@ const SLPopup = {
       return { err: browser.i18n.getMessage("entervalid") };
     }
 
-    if (SLStatic.compareDateTimes(schedule.sendAt, "<", new Date(), true)) {
+    if (SLTools.compareDateTimes(schedule.sendAt, "<", new Date(), true)) {
       return { err: browser.i18n.getMessage("errorDateInPast") };
     }
 
@@ -349,9 +442,7 @@ const SLPopup = {
       case "function":
         break;
       default:
-        SLStatic.error(
-          `unrecognized recurrence type <${schedule.recur.type}>`,
-        );
+        SLTools.error(`unrecognized recurrence type <${schedule.recur.type}>`);
         break;
     }
 
@@ -360,10 +451,10 @@ const SLPopup = {
       const end = inputs["sendbetween-end"];
       if (start && end) {
         const between = {
-          start: SLStatic.convertTime(start),
-          end: SLStatic.convertTime(end),
+          start: SLTools.convertTime(start),
+          end: SLTools.convertTime(end),
         };
-        if (SLStatic.compareTimes(between.start, ">=", between.end)) {
+        if (SLTools.compareTimes(between.start, ">=", between.end)) {
           return {
             err:
               browser.i18n.getMessage("endTimeWarningTitle") +
@@ -398,7 +489,7 @@ const SLPopup = {
     const use_soonest_valid = schedule.recur.type === "none";
     const start_time = schedule.recur.between && schedule.recur.between.start;
     const end_time = schedule.recur.between && schedule.recur.between.end;
-    schedule.sendAt = SLStatic.adjustDateForRestrictions(
+    schedule.sendAt = SLTools.adjustDateForRestrictions(
       schedule.sendAt,
       start_time,
       end_time,
@@ -413,7 +504,7 @@ const SLPopup = {
         /^\d\d\d\d.\d\d.\d\d$/.test(untilDate) &&
         /^\d\d.\d\d$/.test(untilTime)
       ) {
-        sendUntil = SLStatic.parseDateTime(untilDate, untilTime);
+        sendUntil = SLTools.parseDateTime(untilDate, untilTime);
         if (sendUntil.getTime() <= Date.now()) {
           return {
             err:
@@ -452,7 +543,7 @@ const SLPopup = {
     const specDiv = dom["recurrence-spec"];
 
     if (recurrence) {
-      const sendAt = SLStatic.parseDateTime(
+      const sendAt = SLTools.parseDateTime(
         dom["send-date"].value,
         dom["send-time"].value,
       );
@@ -473,7 +564,7 @@ const SLPopup = {
           pluralTxt += ` (${dayOrd}`;
         } else if (recurrence === "weekly") {
           // ... , on [RECUR WEEKDAY]
-          const dateTxt = SLStatic.getWkdayName(sendAt);
+          const dateTxt = SLTools.getWkdayName(sendAt);
           pluralTxt += ", " + browser.i18n.getMessage("only_on_days", dateTxt);
         }
 
@@ -514,7 +605,7 @@ const SLPopup = {
     }
 
     try {
-      const scheduleText = SLStatic.formatScheduleForUI(
+      const scheduleText = SLTools.formatScheduleForUI(
         schedule,
         SLPopup.previousLoop,
         SLPopup.loopMinutes,
@@ -530,7 +621,7 @@ const SLPopup = {
           lineNode.textContent = segment.trim();
           sendScheduleButton.appendChild(lineNode);
         });
-        // SLStatic.stateSetter(schedule.recur.type !== "function")(
+        // stateSetter(schedule.recur.type !== "function")(
         //   document.getElementById("sendAtTimeDateDiv"));
         sendScheduleButton.disabled = false;
 
@@ -548,10 +639,10 @@ const SLPopup = {
         );
         return true;
       } else {
-        SLStatic.debug("scheduleText", scheduleText);
+        SLTools.debug("scheduleText", scheduleText);
       }
     } catch (ex) {
-      SLStatic.debug(ex);
+      SLTools.debug(ex);
     }
     sendScheduleButton.textContent = browser.i18n.getMessage("entervalid");
     sendScheduleButton.disabled = true;
@@ -565,9 +656,7 @@ const SLPopup = {
       const funcHelpDiv = document.getElementById("funcHelpDiv");
       funcHelpDiv.textContent = helpTxt;
     } else {
-      SLStatic.warn(
-        `Cannot set help text. Unrecognized function: ${funcName}`,
-      );
+      SLTools.warn(`Cannot set help text. Unrecognized function: ${funcName}`);
     }
   },
 
@@ -601,7 +690,7 @@ const SLPopup = {
   },
 
   async cacheSchedule() {
-    SLStatic.debug("Caching current input values");
+    SLTools.debug("Caching current input values");
     let scheduleCache = await browser.storage.local.get({ scheduleCache: {} });
     let windowId = SLPopup.messageWindowId;
     if (!windowId) return;
@@ -611,7 +700,7 @@ const SLPopup = {
 
   saveDefaults() {
     const defaults = SLPopup.serializeInputs();
-    SLStatic.debug("Saving default values", defaults);
+    SLTools.debug("Saving default values", defaults);
     const saveDefaultsElement = document.getElementById("save-defaults");
     browser.storage.local
       .set({ defaults })
@@ -619,13 +708,13 @@ const SLPopup = {
         SLPopup.showCheckMark(saveDefaultsElement, "green");
       })
       .catch((err) => {
-        SLStatic.error(err);
+        SLTools.error(err);
         SLPopup.showCheckMark(saveDefaultsElement, "red");
       });
   },
 
   clearDefaults() {
-    SLStatic.debug("Clearing default values");
+    SLTools.debug("Clearing default values");
     const clrDefaultsElement = document.getElementById("clear-defaults");
     browser.storage.local
       .set({
@@ -636,7 +725,7 @@ const SLPopup = {
         SLPopup.showCheckMark(clrDefaultsElement, "green");
       })
       .catch((err) => {
-        SLStatic.error(err);
+        SLTools.error(err);
         SLPopup.showCheckMark(clrDefaultsElement, "red");
       });
   },
@@ -651,7 +740,7 @@ const SLPopup = {
     let defaults;
 
     if (windowId) {
-      SLStatic.debug(
+      SLTools.debug(
         `scheduleCache[${windowId}] =`,
         storage.scheduleCache[windowId],
       );
@@ -674,7 +763,7 @@ const SLPopup = {
     });
 
     if (defaults && defaults.daily !== undefined) {
-      SLStatic.debug("Applying default values", defaults);
+      SLTools.debug("Applying default values", defaults);
       for (let key in dom) {
         const element = dom[key];
         if (element.tagName === "INPUT" || element.tagName === "SELECT") {
@@ -693,7 +782,7 @@ const SLPopup = {
           ) {
             element.value = defaults[element.id];
           } else {
-            SLStatic.warn(
+            SLTools.warn(
               `Unrecognized element <${element.tagName} ` +
                 `type=${element.type}...>`,
             );
@@ -704,7 +793,7 @@ const SLPopup = {
           evt.initEvent("change", false, true);
           element.dispatchEvent(evt);
         } catch (err) {
-          SLStatic.error(err);
+          SLTools.error(err);
         }
       }
     } else {
@@ -715,13 +804,13 @@ const SLPopup = {
         evt.initEvent("change", false, true);
         dom["send-datetime"].dispatchEvent(evt);
       } catch (err) {
-        SLStatic.error(err);
+        SLTools.error(err);
       }
     }
 
-    SLStatic.stateSetter(dom["sendon"].checked)(dom["onlyOnDiv"]);
-    SLStatic.stateSetter(dom["sendbetween"].checked)(dom["betweenDiv"]);
-    SLStatic.stateSetter(dom["senduntil"].checked)(dom["untilDiv"]);
+    stateSetter(dom["sendon"].checked)(dom["onlyOnDiv"]);
+    stateSetter(dom["sendbetween"].checked)(dom["betweenDiv"]);
+    stateSetter(dom["senduntil"].checked)(dom["untilDiv"]);
 
     SLPopup.loadFunctionHelpText();
 
@@ -747,14 +836,14 @@ const SLPopup = {
   },
 
   parseSugarDate() {
-    SLStatic.trace("parseSugarDate");
+    SLTools.trace("parseSugarDate");
     const dom = SLPopup.objectifyDOMElements();
     let sendAtString = dom["send-datetime"].value;
     if (sendAtString) {
       try {
-        let sendAt = SLStatic.convertDate(sendAtString);
+        let sendAt = SLTools.convertDate(sendAtString);
 
-        if (sendAt && !SLStatic.timeRegex.test(sendAtString)) {
+        if (sendAt && !SLTools.timeRegex.test(sendAtString)) {
           // The time was specified indirectly, and the user is assuming we
           // make a reasonable interpretation of their input.
           // For instance, if they request 1 minute from now, but it is
@@ -766,7 +855,7 @@ const SLPopup = {
           // next minute.
 
           let intendedSendAt = sendAt;
-          let actualSendAt = SLStatic.estimateSendTime(
+          let actualSendAt = SLTools.estimateSendTime(
             intendedSendAt,
             SLPopup.previousLoop,
             SLPopup.loopMinutes,
@@ -784,7 +873,7 @@ const SLPopup = {
           return sendAt;
         }
       } catch (ex) {
-        SLStatic.debug("Unable to parse user input", ex);
+        SLTools.debug("Unable to parse user input", ex);
       }
     }
     dom["send-date"].value = "";
@@ -797,17 +886,16 @@ const SLPopup = {
     let priorInputs = undefined;
 
     const onInput = (evt) => {
-      SLStatic.debug("onInput: entering");
+      SLTools.debug("onInput: entering");
       switch (evt.target.id) {
         case "send-date":
         case "send-time":
           if (dom["send-date"].value && dom["send-time"].value) {
-            const sendAt = SLStatic.parseDateTime(
+            const sendAt = SLTools.parseDateTime(
               dom["send-date"].value,
               dom["send-time"].value,
             );
-            dom["send-datetime"].value =
-              SLStatic.parseableHumanDateTimeFormat(sendAt);
+            dom["send-datetime"].value = parseableHumanDateTimeFormat(sendAt);
           }
           break;
         case "send-datetime":
@@ -818,8 +906,8 @@ const SLPopup = {
       }
 
       const inputs = SLPopup.objectifyFormValues();
-      if (SLStatic.objectsAreTheSame(inputs, priorInputs)) {
-        SLStatic.debug("onInput: redundant, returning");
+      if (objectsAreTheSame(inputs, priorInputs)) {
+        SLTools.debug("onInput: redundant, returning");
         return;
       }
       if (SLPopup.initialized) {
@@ -828,16 +916,16 @@ const SLPopup = {
       priorInputs = inputs;
       const schedule = SLPopup.parseInputs(inputs);
 
-      SLStatic.stateSetter(dom["sendon"].checked)(dom["onlyOnDiv"]);
-      SLStatic.stateSetter(dom["sendbetween"].checked)(dom["betweenDiv"]);
-      SLStatic.stateSetter(dom["senduntil"].checked)(dom["untilDiv"]);
+      stateSetter(dom["sendon"].checked)(dom["onlyOnDiv"]);
+      stateSetter(dom["sendbetween"].checked)(dom["betweenDiv"]);
+      stateSetter(dom["senduntil"].checked)(dom["untilDiv"]);
 
-      SLStatic.stateSetter(dom["recurFuncSelect"].length > 0)(
+      stateSetter(dom["recurFuncSelect"].length > 0)(
         dom["function-recur-radio"],
       );
-      SLStatic.stateSetter(dom["function"].checked)(dom["recurFuncSelect"]);
+      stateSetter(dom["function"].checked)(dom["recurFuncSelect"]);
 
-      SLStatic.stateSetter(dom["recur-monthly-byweek"].checked)(
+      stateSetter(dom["recur-monthly-byweek"].checked)(
         dom["recur-monthly-byweek-options"],
       );
 
@@ -861,13 +949,13 @@ const SLPopup = {
 
       SLPopup.setScheduleButton(schedule);
 
-      SLPopup.cacheSchedule().catch(SLStatic.error);
+      SLPopup.cacheSchedule().catch(SLTools.error);
 
       const hdrs = SLPopup.debugSchedule();
       // Would be useful for debugging, but doesn't seem to work in a popup.
       // const scheduleButton = document.getElementById("sendScheduleButton");
       // scheduleButton.title = hdrs.join(' | ');
-      SLStatic.debug(`Header values:\n    ${hdrs.join("\n    ")}`);
+      SLTools.debug(`Header values:\n    ${hdrs.join("\n    ")}`);
     };
 
     Object.keys(dom).forEach((key) => {
@@ -923,7 +1011,7 @@ const SLPopup = {
           quickBtn.textContent = quickBtnLabel;
         } else {
           quickBtn.accessKey = quickBtnLabel[accelIdx + 1];
-          const contents = SLStatic.underlineAccessKey(quickBtnLabel);
+          const contents = underlineAccessKey(quickBtnLabel);
           quickBtn.textContent = "";
           for (let span of contents) {
             quickBtn.appendChild(span);
@@ -937,7 +1025,7 @@ const SLPopup = {
           if ((event.ctrlKey || event.metaKey) && event.key === i.toString()) {
             // Note: also catches Ctrl+Alt+{i}
             event.preventDefault();
-            SLStatic.debug(`Executing shortcut ${i}`);
+            SLTools.debug(`Executing shortcut ${i}`);
             const schedule = SLPopup.evaluateUfunc(funcName, null, funcArgs);
             SLPopup.doSendWithSchedule(schedule);
           }
@@ -963,21 +1051,21 @@ const SLPopup = {
       } else if (event.key == "Dead" && event.ctrlKey && event.altKey) {
         // https://bugzilla.mozilla.org/show_bug.cgi?id=1850454
         if (event.code == SLPopup.sendNowCode) {
-          SLStatic.telemetrySend({
+          SLTools.telemetrySend({
             event: "sendNowDeadKey",
             code: event.code,
           });
           event.preventDefault();
           SLPopup.doSendNow();
         } else if (event.code == SLPopup.placeInOutboxCode) {
-          SLStatic.telemetrySend({
+          SLTools.telemetrySend({
             event: "placeInOutboxDeadKey",
             code: event.code,
           });
           event.preventDefault();
           SLPopup.doPlaceInOutbox();
         } else {
-          SLStatic.telemetrySend({
+          SLTools.telemetrySend({
             event: "unrecognizedDeadKey",
             code: event.code,
             sendNowCode: SLPopup.sendNowCode,
@@ -992,7 +1080,7 @@ const SLPopup = {
       const accessKey = browser.i18n.getMessage(
         "sendlater.prompt.sendnow.accesskey",
       );
-      const contents = SLStatic.underlineAccessKey(label, accessKey);
+      const contents = underlineAccessKey(label, accessKey);
 
       dom["sendNow"].accessKey = accessKey;
       SLPopup.sendNowCode = `Key${accessKey.toUpperCase()}`;
@@ -1008,7 +1096,7 @@ const SLPopup = {
       const accessKey = browser.i18n.getMessage(
         "sendlater.prompt.sendlater.accesskey",
       );
-      const contents = SLStatic.underlineAccessKey(label, accessKey);
+      const contents = underlineAccessKey(label, accessKey);
 
       dom["placeInOutbox"].accessKey = accessKey;
       SLPopup.placeInOutboxCode = `Key${accessKey.toUpperCase()}`;
@@ -1022,12 +1110,12 @@ const SLPopup = {
   },
 
   async init() {
-    await SLStatic.cachePrefs();
-    SLStatic.trace("SLPopup.init", window.location);
+    await SLTools.cachePrefs();
+    SLTools.trace("SLPopup.init", window.location);
 
-    // This happens asynchronously in static.js, but we need to make sure
+    // This happens asynchronously in tools.js, but we need to make sure
     // prefs are available, so let's just make sure.
-    await SLStatic.cachePrefs();
+    await SLTools.cachePrefs();
 
     const { ufuncs } = await browser.storage.local.get({ ufuncs: {} });
     SLPopup.ufuncs = ufuncs;
@@ -1036,7 +1124,7 @@ const SLPopup = {
       .sendMessage({
         action: "getMainLoopStatus",
       })
-      .catch(SLStatic.warn);
+      .catch(SLTools.warn);
 
     if (mainLoop) {
       if (mainLoop.previousLoop)
@@ -1090,8 +1178,8 @@ const SLPopup = {
 
     SLPopup.restoreZoom();
     SLPopup.initialized = true;
-    SLStatic.makeContentsVisible();
-    SLStatic.debug("Initialized popup window");
+    SLTools.makeContentsVisible();
+    SLTools.debug("Initialized popup window");
   },
 };
 

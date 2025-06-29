@@ -34,13 +34,13 @@ const SLOptions = {
             element.checked = value !== undefined && element.value === value;
             break;
           default:
-            SLStatic.error(
+            SLTools.error(
               "SendLater: Unable to populate input element of type " +
                 element.type,
             );
         }
       } else if (element.tagName === "SELECT") {
-        SLStatic.debug(`Applying stored default ${element.id}: ${value}`);
+        SLTools.debug(`Applying stored default ${element.id}: ${value}`);
         const matchingChildren = [...element.childNodes].filter(
           (opt) =>
             opt.tagName === "OPTION" &&
@@ -49,13 +49,9 @@ const SLOptions = {
         if (matchingChildren.length === 1) {
           element.value = matchingChildren[0].value;
         } else if (matchingChildren.length > 1) {
-          SLStatic.error(
-            "[SendLater]: Multiple options match",
-            value,
-            element,
-          );
+          SLTools.error("[SendLater]: Multiple options match", value, element);
         } else {
-          SLStatic.error(
+          SLTools.error(
             `[SendLater]: Could not find value ${value} in element ${id}`,
             element,
           );
@@ -169,7 +165,7 @@ const SLOptions = {
 
   async applyPrefsToUI() {
     // Sets all UI element states from stored preferences
-    let prefKeys = await SLStatic.userPrefKeys();
+    let prefKeys = await SLTools.userPrefKeys();
 
     SLOptions.addFuncOption("none", {
       displayName: browser.i18n.getMessage("selectNone"),
@@ -181,7 +177,7 @@ const SLOptions = {
       .get({ ufuncs: {} })
       .then(({ ufuncs }) => {
         Object.keys(ufuncs).forEach((funcName) => {
-          SLStatic.debug(`Adding function element ${funcName}`);
+          SLTools.debug(`Adding function element ${funcName}`);
           SLOptions.addFuncOption(funcName);
         });
       });
@@ -191,7 +187,7 @@ const SLOptions = {
       .then(async ({ preferences }) => {
         for (let id of prefKeys) {
           let prefVal = preferences[id];
-          SLStatic.debug(`Setting ${id}: ${prefVal}`);
+          SLTools.debug(`Setting ${id}: ${prefVal}`);
           SLOptions.applyValue(id, prefVal);
         }
 
@@ -204,7 +200,7 @@ const SLOptions = {
           SLOptions.replaceGracePeriodUnitSelect();
           SLOptions.autoConvertGracePeriodUnits();
         } catch (ex) {
-          SLStatic.debug("Unable to set time unit label", ex);
+          SLTools.debug("Unable to set time unit label", ex);
         }
 
         let customDT = document.getElementById("customizeDateTime");
@@ -308,10 +304,10 @@ const SLOptions = {
   async saveUserFunction(name, body, help) {
     if (
       name !== browser.i18n.getMessage("functionnameplaceholder") &&
-      !SLStatic.builtInFuncs[name] &&
+      !SLTools.builtInFuncs[name] &&
       validateFuncName(name)
     ) {
-      SLStatic.info(`Storing user function ${name}`);
+      SLTools.info(`Storing user function ${name}`);
       const { ufuncs } = await browser.storage.local.get({ ufuncs: {} });
       ufuncs[name] = { body, help };
       await browser.storage.local.set({ ufuncs });
@@ -492,7 +488,7 @@ const SLOptions = {
           return;
         }
       } else if (/^quickOptions.Key$/.exec(id)) {
-        if (value.length && !SLStatic.shortcutKeys.includes(value)) {
+        if (value.length && !SLTools.shortcutKeys.includes(value)) {
           SLOptions.showXMark(element, "red");
           return;
         }
@@ -510,14 +506,14 @@ const SLOptions = {
           numberValue = Number(value);
         }
         if (isNaN(numberValue)) {
-          SLStatic.info(`Invalid numerical value "${value}" for ${id}`);
+          SLTools.info(`Invalid numerical value "${value}" for ${id}`);
           SLOptions.showXMark(element, "red");
           return;
         }
         value = numberValue;
       }
 
-      SLStatic.info(
+      SLTools.info(
         `Set option (${element.type}) ${id}: ` +
           `${preferences[id]} -> ${value}`,
       );
@@ -532,7 +528,7 @@ const SLOptions = {
           case "radio":
             preferences[element.id] = element.checked;
             SLOptions.showCheckMark(element, "green");
-            SLStatic.info(
+            SLTools.info(
               `Set option (radio) ${element.id}: ${element.checked}`,
             );
             if (element.checked && SLOptions.checkboxGroups[element.id])
@@ -541,7 +537,7 @@ const SLOptions = {
                 if (element2.checked) {
                   element2.checked = false;
                   preferences[id2] = false;
-                  SLStatic.info(`Set option (radio) ${id2}: false`);
+                  SLTools.info(`Set option (radio) ${id2}: false`);
                   SLOptions.showCheckMark(element2, "green");
                 }
               }
@@ -562,7 +558,7 @@ const SLOptions = {
       await browser.storage.local.set({ preferences });
       await SLOptions.updateAdvConfigEditor();
     } catch (ex) {
-      SLStatic.error(ex);
+      SLTools.error(ex);
       SLOptions.showXMark(element, "red");
     }
   },
@@ -628,7 +624,7 @@ const SLOptions = {
   },
 
   async resetAdvConfigEditor(preferences) {
-    SLStatic.debug("Refreshing advanced config editor contents");
+    SLTools.debug("Refreshing advanced config editor contents");
     const prefsNode = document.getElementById("advancedConfigText");
     prefsNode.disabled = true;
     prefsNode.value = "";
@@ -675,7 +671,7 @@ const SLOptions = {
 
   async attachListeners() {
     // Attach listeners for all input fields
-    let prefKeys = await SLStatic.userPrefKeys();
+    let prefKeys = await SLTools.userPrefKeys();
     for (const id of prefKeys) {
       const el = document.getElementById(id);
       if (el) {
@@ -704,7 +700,7 @@ const SLOptions = {
     const resetFunctionInput = () => {
       const funcName = document.getElementById("functionNames").value;
       if (!funcName) {
-        SLStatic.error(`Unspecified function: ${funcName}`);
+        SLTools.error(`Unspecified function: ${funcName}`);
         return;
       }
 
@@ -715,7 +711,7 @@ const SLOptions = {
       const resetBtn = document.getElementById("funcEditReset");
       const deleteBtn = document.getElementById("funcEditDelete");
 
-      if (SLStatic.builtInFuncs[funcName]) {
+      if (SLTools.builtInFuncs[funcName]) {
         funcContentElmt.disabled = true;
         funcHelpElmt.disabled = true;
         funcNameElmt.disabled = true;
@@ -796,7 +792,7 @@ const SLOptions = {
           .then(() => {
             SLOptions.showCheckMark(evt.target, "green");
           })
-          .catch(SLStatic.error);
+          .catch(SLTools.error);
       });
 
     const saveAdvancedConfig = () => {
@@ -811,7 +807,7 @@ const SLOptions = {
           SLOptions.showCheckMark(saveBtn, "green");
         }
       } catch (err) {
-        SLStatic.warn(`JSON parsing failed with error`, err);
+        SLTools.warn(`JSON parsing failed with error`, err);
         SLOptions.showXMark(saveBtn, "red");
         browser.runtime.sendMessage({
           action: "alert",
@@ -852,7 +848,7 @@ const SLOptions = {
               .getElementById(`ufunc-shortcut-${i}-${funcName}`)
               .remove();
         } catch (ex) {
-          SLStatic.error("Unable to remove function selector element", ex);
+          SLTools.error("Unable to remove function selector element", ex);
         }
 
         browser.storage.local
@@ -861,7 +857,7 @@ const SLOptions = {
             delete ufuncs[funcName];
             browser.storage.local.set({ ufuncs });
           })
-          .catch(SLStatic.error);
+          .catch(SLTools.error);
       },
     );
     document
@@ -870,11 +866,11 @@ const SLOptions = {
         const funcNameSelect = document.getElementById("functionNames");
         const funcName = funcNameSelect.value;
         if (
-          [...Object.keys(SLStatic.builtInFuncs), "newFunctionName"].includes(
+          [...Object.keys(SLTools.builtInFuncs), "newFunctionName"].includes(
             funcName,
           )
         ) {
-          SLStatic.error("Trying to delete built-in user func.");
+          SLTools.error("Trying to delete built-in user func.");
           return;
         } else {
           doubleCheckDeleteListener(evt);
@@ -891,17 +887,17 @@ const SLOptions = {
         /\d\d\d\d.\d\d.\d\d/.test(funcTestDate) &&
         /\d\d.\d\d/.test(funcTestTime)
       ) {
-        testDateTime = SLStatic.parseDateTime(funcTestDate, funcTestTime);
+        testDateTime = SLTools.parseDateTime(funcTestDate, funcTestTime);
       }
       const funcTestArgs = document.getElementById("functionTestArgs").value;
 
-      const { sendAt, nextspec, nextargs, error } = SLStatic.evaluateUfunc(
+      const { sendAt, nextspec, nextargs, error } = SLTools.evaluateUfunc(
         funcName,
         funcBody,
         testDateTime,
-        funcTestArgs ? SLStatic.parseArgs(funcTestArgs) : null,
+        funcTestArgs ? SLTools.parseArgs(funcTestArgs) : null,
       );
-      SLStatic.debug("User function returned:", {
+      SLTools.debug("User function returned:", {
         sendAt,
         nextspec,
         nextargs,
@@ -928,7 +924,7 @@ const SLOptions = {
         outputCell.appendChild(mkSpan("Error:", true));
         outputCell.appendChild(mkSpan(error));
       } else {
-        const nextStr = SLStatic.parseableDateTimeFormat(sendAt);
+        const nextStr = SLTools.parseableDateTimeFormat(sendAt);
         outputCell.appendChild(
           mkBlock(mkSpan("next:", true), mkSpan(nextStr)),
         );
@@ -953,7 +949,7 @@ const SLOptions = {
       const { preferences } = await browser.storage.local.get({
         preferences: {},
       });
-      const defaults = await SLStatic.prefDefaults();
+      const defaults = await SLTools.prefDefaults();
 
       for (let key of Object.keys(defaults)) {
         if (key !== "instanceUUID") {
@@ -983,15 +979,15 @@ const SLOptions = {
   },
 
   checkDateFormat(element) {
-    SLStatic.trace("checkDateFormat", element);
+    SLTools.trace("checkDateFormat", element);
     let id = element.id;
     let sampleId, defaultFunction;
     if (id == "shortDateTimeFormat") {
       sampleId = "sampleShortDateTime";
-      defaultFunction = SLStatic.defaultShortHumanDateTimeFormat;
+      defaultFunction = SLTools.defaultShortHumanDateTimeFormat;
     } else {
       sampleId = "sampleLongDateTime";
-      defaultFunction = SLStatic.defaultHumanDateTimeFormat;
+      defaultFunction = SLTools.defaultHumanDateTimeFormat;
     }
     let now = new Date();
     let fmt = element.value;
@@ -999,7 +995,7 @@ const SLOptions = {
     let ret = true;
     if (fmt) {
       try {
-        sample.textContent = SLStatic.customHumanDateTimeFormat(now, fmt);
+        sample.textContent = SLTools.customHumanDateTimeFormat(now, fmt);
       } catch (ex) {
         sample.textContent = browser.i18n.getMessage("invalidDateFormat");
         ret = false;
@@ -1052,7 +1048,7 @@ const SLOptions = {
 
     document.getElementById("showColumnRow").hidden = true;
 
-    await SLStatic.tb128(false, () => {
+    await SLTools.tb128(false, () => {
       document.getElementById("detachedPopupDiv").hidden = true;
     });
 

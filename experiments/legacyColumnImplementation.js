@@ -3,6 +3,13 @@ var ExtensionSupport =
   ChromeUtils.importESModule("resource:///modules/ExtensionSupport.sys.mjs")
     .ExtensionSupport;
 
+function padNum(num, len) {
+  let isNegative = num < 0;
+  let padLen = len - (isNegative ? 1 : 0);
+  let padded = String(Math.abs(num)).padStart(padLen, "0");
+  return (isNegative ? "-" : "") + padded;
+}
+
 var LegacyColumn = {
   preferences: {},
   storageLocalMap: new Map(),
@@ -91,7 +98,7 @@ var LegacyColumn = {
     const msgContentType = this.getStorageLocal(CTPropertyName);
     const sendAtStr = hdr.getStringProperty("x-send-later-at");
     const msgUuid = hdr.getStringProperty("x-send-later-uuid");
-    const incorrectUUIDMsg = this.SLStatic.i18n.getMessage("incorrectUUID");
+    const incorrectUUIDMsg = this.SLTools.i18n.getMessage("incorrectUUID");
     if (!sendAtStr) {
       return { valid: false, detail: "Not scheduled" };
     } else if (msgUuid !== instanceUUID) {
@@ -113,7 +120,7 @@ var LegacyColumn = {
     const cancelStr = hdr.getStringProperty("x-send-later-cancel-on-reply");
 
     const schedule = { sendAt: new Date(sendAtStr) };
-    schedule.recur = this.SLStatic.parseRecurSpec(recurStr);
+    schedule.recur = this.SLTools.parseRecurSpec(recurStr);
     schedule.recur.cancelOnReply = cancelStr === "yes" || cancelStr === "true";
     schedule.recur.args = argsStr;
 
@@ -242,7 +249,7 @@ class MessageViewsCustomColumn {
         if (status.valid === true || status.detail === "Missing ContentType") {
           const schedule = LegacyColumn.getSchedule(hdr);
           const cellTxt =
-            LegacyColumn.SLStatic.formatScheduleForUIColumn(schedule);
+            LegacyColumn.SLTools.formatScheduleForUIColumn(schedule);
           return cellTxt;
         } else {
           return status.msg || "";
@@ -250,7 +257,7 @@ class MessageViewsCustomColumn {
       },
       getSortStringForRow(hdr) {
         // This should be ignored because isString returns false. Setting it anyway.
-        return LegacyColumn.SLStatic.padNum(this.getSortLongForRow(hdr), 12);
+        return padNum(this.getSortLongForRow(hdr), 12);
       },
       isString() {
         return false;
@@ -311,11 +318,7 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
     let columns = new Map();
     this.columns = columns;
 
-    for (let urlBase of [
-      "utils/sugar-custom.js",
-      "utils/static.js",
-      "utils/tools.js",
-    ]) {
+    for (let urlBase of ["utils/sugar-custom.js", "utils/tools.js"]) {
       let url = context.extension.rootURI.resolve(urlBase);
       Services.scriptloader.loadSubScript(url, LegacyColumn);
     }
@@ -351,7 +354,7 @@ var columnHandler = class extends ExtensionCommon.ExtensionAPI {
         },
 
         async cachePrefs(preferences) {
-          await LegacyColumn.SLStatic.cachePrefs(preferences);
+          await LegacyColumn.SLTools.cachePrefs(preferences);
           LegacyColumn.preferences = preferences;
         },
 

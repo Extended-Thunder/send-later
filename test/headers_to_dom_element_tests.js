@@ -1,6 +1,6 @@
 exports.init = function () {
   function popupDOMTest(headers, expected) {
-    const result = SLStatic.parseHeadersForPopupUICache(headers);
+    const result = SLTools.parseHeadersForPopupUICache(headers);
     return (
       DeepCompare(result, expected) ||
       `expected ${ObjToStr(expected)}", got "${ObjToStr(result)}"`
