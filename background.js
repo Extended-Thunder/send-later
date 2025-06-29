@@ -1621,13 +1621,23 @@ const SendLater = {
     let slVersionString = messenger.runtime.getManifest().version;
     let oldVersion = preferences.releaseNotesVersion;
 
-    if (slVersionString != oldVersion && (await SLTools.isOnBetaChannel())) {
+    if (
+      preferences.showBetaAlert &&
+      slVersionString != oldVersion &&
+      (await SLTools.isOnBetaChannel())
+    ) {
       let title = messenger.i18n.getMessage("betaThankYouTitle");
       let extensionName = messenger.i18n.getMessage("extensionName");
       let text = messenger.i18n.getMessage("betaThankYouText", [
         extensionName,
       ]);
-      SLTools.alert(title, text);
+      SLTools.alertCheck(title, text, null, true).then(async (result) => {
+        if (result.check === false) {
+          let preferences = await SLTools.getPrefs();
+          preferences.showBetaAlert = false;
+          await messenger.storage.local.set({ preferences });
+        }
+      });
     }
 
     if (preferences.releaseNotesShow) {
