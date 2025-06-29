@@ -551,17 +551,21 @@ var SLTools = {
     },
   },
 
-  async makeContentsVisible() {
+  async makeContentsVisible(attempts) {
+    SLTools.trace("makeContentsVisible start");
+    if (!attempts) attempts = 0;
     let body = document.getElementsByTagName("body")[0];
     let outerWidth = window.outerWidth;
     let outerHeight = window.outerHeight;
     let rect = body.getBoundingClientRect();
     let viewPortBottom =
       window.innerHeight || document.documentElement.clientHeight;
-    let hidden = rect.bottom - viewPortBottom;
+    let hidden = Math.floor(rect.bottom - viewPortBottom);
     if (hidden > 0) {
       if (hidden > outerHeight * 2) {
-        SLTools.info("Not resizing popup, would have to >triple it");
+        SLTools.info(
+          "makeContentsVisible not resizing popup, would have to >triple it",
+        );
         SLTools.telemetrySend({
           event: "notResizingPopup",
           outerHeight: outerHeight,
@@ -569,11 +573,26 @@ var SLTools = {
         });
         return;
       }
+      SLTools.debug(
+        `makeContentsVisible resizing popup from ${outerHeight} to ${outerHeight + hidden}`,
+      );
       let apiWindow = await messenger.windows.getCurrent();
       messenger.windows.update(apiWindow.id, {
         height: Math.floor(outerHeight + hidden),
       });
     }
+    // Sometimes when this function is called the first time, the height of the
+    // body it gets back is too small so the window doesn't get resized
+    // properly, because Thunderbird hasn't finished rendering the updated
+    // content. I have tried wrapping the body in nested requestAnimationFrame
+    // calls as suggested at
+    // https://macarthur.me/posts/when-dom-updates-appear-to-be-asynchronous/
+    // but it didn't work. This works instead: try up to 10 times, 10ms apart,
+    // to resize the window.
+    if (attempts < 10)
+      setTimeout(() => {
+        SLTools.makeContentsVisible(attempts + 1);
+      }, 10);
   },
 
   async tbIsVersion(wantVersion, yes, no) {
