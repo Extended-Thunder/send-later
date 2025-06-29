@@ -871,7 +871,7 @@ const SLOptions = {
         if (
           [...SLOptions.builtinFuncs, "newFunctionName"].includes(funcName)
         ) {
-          SLStatic.error("Trying to delete builtin user func.");
+          SLStatic.error("Trying to delete built-in user func.");
           return;
         } else {
           doubleCheckDeleteListener(evt);
