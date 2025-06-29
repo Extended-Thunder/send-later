@@ -1096,5 +1096,13 @@
   "messageTooLargeText": {
     "message": "Due to a bug in Thunderbird, $1 cannot deliver the message with subject “$2” because it is too large. It's $3 bytes long, which is larger than the configured limit of $4. If you wish, you can increase this limit by changing the preference “mailnews.message_warning_size” in the Thunderbird configuration editor, or set the preference to 0 to disable the limit entirely, but note that any change you make will also impact whether Thunderbird warns you about large messages being sent directly rather than through $1. In any case, to send this message you can either open it for editing and send it directly, or edit it and reschedule it after making it smaller or changing the Thunderbird preference.",
     "description": "The (unfortunately very long) text of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large and the TB version is 114 or earlier. $1 is the extension name, $2 is the message subject, $3 is its length, and $4 is the length limit. Please don't translate 'mailnews.message_warning_size', that needs to stay in English."
+  },
+  "dynamicCompatibilityTitle": {
+    "message": "Dynamic functions compatibility alert",
+    "description": "The title of the pop-up error that is displayed when the user has dynamic scheduling functions configured in Send Later and they are not currently using a version of Send Later that supports them."
+  },
+  "dynamicCompatibilityMessage": {
+    "message": "<strong>WARNING:</strong> The version of $1 you are using does not support dynamic scheduling functions. Attempts to use dynamic functions when scheduling individual or recurring messages will result in undefined, incorrect behavior. <strong>This includes any dynamic recurring messages you have scheduled in the past.</strong><br/>If you wish to keep using dynamic functions, you need to switch to the beta update channel, which continues to support them.<br/>This change is the result of stricter security restrictions imposed by the moderators of <a href='https://addons.thunderbird.net/'>addons.thunderbird.net</a>. For more information, see <a href='$2'>the user guide</a>.<br/>You will see this message on startup until you either switch to the $1 beta channel or delete all of the non-standard dynamic functions in the function editor.",
+    "description": "The text of the pop-up error that is displayed when the user has dynamic scheduling functions configured in Send Later and they are not currently using a version of Send Later that supports them. $1 is replaced with extension name and $2 is replaced with the appropriate user guide link."
   }
 }
