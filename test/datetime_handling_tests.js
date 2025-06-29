@@ -311,7 +311,8 @@ exports.init = function () {
   );
 
   function TestComparison(func, a, comparison, b, ignoreSec, expected) {
-    (a = new Date(a)), (b = new Date(b));
+    a = new Date(a);
+    b = new Date(b);
     const result = func(a, comparison, b, ignoreSec);
     return result === expected || `Expected "${expected}", got "${result}"`;
   }
