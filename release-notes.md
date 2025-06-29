@@ -33,31 +33,25 @@ you find it useful you will consider supporting it. See the [user guide](index.h
 
 ### <a id="issue-corrupt"/>Potential Thunderbird + Send Later Drafts folder corruption
 
-_**TLDR If you are using a Thunderbird version between 128 and 135.0 beta 1, you could lose data.**_ There is a workaround for this issue in release 10.5.7 of Send Later, but we don't yet know for certain if this workaround works for everyone. You may wish to mitigate the risk as described below.
-
-A bug in Thunderbird versions between 128 and 135.0 beta 1 inclusive can corrupt Thunderbird's copy of your Drafts folder in an IMAP account when you schedule a message with Send Later. This may also happen at delivery time when you have a recurring message scheduled.
+_**TLDR If you are using a Thunderbird version between 128 and 128.8.1, or between 129.0 and 135.0 beta 1, you could lose data.**_ A bug in these versions can corrupt Thunderbird's copy of your Drafts folder in an IMAP account when you schedule a message with Send Later. This may also happen at delivery time when you have a recurring message scheduled.
 
 The impact of this bug is serious and includes data loss. Scheduled messages could be not sent at all, or could be sent multiples times, and unsent scheduled messages could be deleted entirely.
 
 A good (but not perfect) test of whether this bug is impacting you is to schedule five messages with different contents with Send Later and then check all five messages in your Drafts folder and make sure all of them have the correct headers and contents. If they're all correct, you're probably safe, because for people impacted by this issue, it happens consistently enough that scheduling five messages in a row should trigger it.
 
-As a workaround, you can [stay on Thunderbird 115](tb115.html), or configure Thunderbird to store your drafts under Local Folders rather than in your IMAP account, or upgrade to Thunderbird 135.0 beta 2 or newer. We have not seen this issue occur with a local Drafts folder.
-
-The Thunderbird team is actively working on finding and fixing the Thunderbird bug.
+As a workaround, you can [stay on Thunderbird 115](tb115.html), or configure Thunderbird to store your drafts under Local Folders rather than in your IMAP account, or upgrade to a Thunderbird version without the bug. We have not seen this issue occur with a local Drafts folder.
 
 ### <a id="issue-exchange"/>Recent TB/OWL versions break Send Later + Exchange
 
-I have heard multiple reports that recent versions of Thunderbird and/or the OWL for Exchange add-on break Send Later's ability to send scheduled messages through Exchange accounts.
+Recent versions of Thunderbird and/or the OWL for Exchange add-on break Send Later's ability to send scheduled messages through Exchange accounts.
 
-Unfortunately, I do not have access to an Exchange server to test and troubleshoot this with, so I am unable to diagnose and fix the problem. I'm attempting to obtain more information about it from the maintainer of OWL, but in the meantime, it is likely that Send Later will not work with Exchange.
-
-If you want Send Later to work with Exchange and you have access to an Exchange server on which you can get an account created for me that I can use to troubleshoot this issue, please [let me know](mailto:send-later-support@kamens.us?subject=Exchange%20support).
+I am working on the issue but do not yet have a complete solution.
 
 ### <a id="issue-wayland"/>Linux, Wayland: Send Later popups are blank for TB121+
 
 If you are using Wayland on Linux with Thunderbird newer than 121.0b5 and older than 128.3.2 or 132.0b5, the Send Later popup in the main Thunderbird window is blank. The scheduling popup in the compose window is also blank, with Send Later 10.5.5 or newer.
 
-If you are experiencing this issue you should upgrade Thunderbird so that you're using at least 128.3.2 or 132.0b5. If you've done that and you're still experiencing this issue, please [let me know](mailto:send-later-support@kamens.us?subject=Send%20Later%20Wayland%20blank%20popups).
+If you are experiencing this issue you should upgrade Thunderbird so that you're using at least 128.3.2 or 132.0b5. If you've done that and you're still experiencing this issue, please [let me know](mailto:send-later-support@extended-thunder.org?subject=Send%20Later%20Wayland%20blank%20popups).
 
 If you can't upgrade Thunderbird for some reason, there are other available workarounds:
 
