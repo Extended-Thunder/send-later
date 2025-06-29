@@ -3,6 +3,22 @@ layout: default
 ---
 # Send Later release notes
 
+Welcome! We've been hard at work enhancing Send Later's functionality
+and making it more robust and reliable, and we're excited to share our
+progress with you.
+
+If you have arrived at this page because Thunderbird just upgraded your Send Later version and sent you to this page automatically, please review the list of known issues below, and then the list of changes below that for the upgrade you just got.
+
+This page focuses on user-visible changes to Send Later. Pre-release
+(beta) versions aren't listed separately here; their changes are
+listed as part of the next public release. To see pre-releases, visit
+our [GitHub release page][ghreleases].
+
+The full Send Later user guide is available [here](index.html).
+
+We put a lot of time and effort into Send Later, and we hope that if
+you find it useful you will consider supporting it. See the [user guide](index.html#support-send-later) for how to do that.
+
 ---
 
 ## CURRENT IMPORTANT KNOWN ISSUES
@@ -71,20 +87,6 @@ The Send Later add-on is not regularly tested with the Thunderbird fork called B
 It has been [reported to us](https://github.com/Extended-Thunder/send-later/issues/668) that there are compatibility issues between the "Check and Send" add-on and Send-Later. We have not yet investigated this issue, so use the two add-ons together at your own risk.
 
 ---
-
-Welcome! We've been hard at work enhancing Send Later's functionality
-and making it more robust and reliable, and we're excited to share our
-progress with you.
-
-This page focuses on user-visible changes to Send Later. Pre-release
-(beta) versions aren't listed separately here; their changes are
-listed as part of the next public release. To see pre-releases, visit
-our [GitHub release page][ghreleases].
-
-The full Send Later user guide is available [here](index.html).
-
-We put a lot of time and effort into Send Later, and we hope that if
-you find it useful you will consider supporting it. See the [user guide](index.html#support-send-later) for how to do that.
 
 ## Release 10.6.x
 
