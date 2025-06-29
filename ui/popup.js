@@ -968,7 +968,7 @@ const SLPopup = {
     });
 
     dom["send-datetime"].addEventListener("keyup", onInput);
-    dom["recur-function-args"], addEventListener("keyup", onInput);
+    dom["recur-function-args"].addEventListener("keyup", onInput);
 
     [...document.getElementsByName("recur")].forEach((element) =>
       element.addEventListener("change", SLPopup.updateRecurrenceInputs),
