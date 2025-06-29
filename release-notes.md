@@ -90,6 +90,14 @@ The moderators of [addons.thunderbird.net](https://addons.thunderbird.net/) are 
 
 If you don't use dynamic functions, or if you only use the built-in functions ("BusinessHours", "DaysInARow", and "Delay"), then you don't need to worry about this. However, if you use other dynamic functions that you created, then _they will no longer work with the version of Send Later on addons.thunderbird.net_. To keep using them, you need to switch to the [beta release channel](index#beta-channel). The user guide [has more details](index#dynamic-compatibility).
 
+## Improvements
+
+The popup which appears on upgrade when the user is running a beta release can now be suppressed.
+
+## Bug fixes
+
+Popups now resize more reliably to fit their content.
+
 ## Release 10.6.x
 
 ### Bug fixes
