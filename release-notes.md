@@ -82,6 +82,14 @@ It has been [reported to us](https://github.com/Extended-Thunder/send-later/issu
 
 ---
 
+## Release 10.7.x
+
+### Regressions
+
+The moderators of [addons.thunderbird.net](https://addons.thunderbird.net/) are no longer allowing extensions distributed there to use a particular permission which is necessary for user-created [dynamic scheduling functions](index#dynamic) to work.
+
+If you don't use dynamic functions, or if you only use the built-in functions ("BusinessHours", "DaysInARow", and "Delay"), then you don't need to worry about this. However, if you use other dynamic functions that you created, then _they will no longer work with the version of Send Later on addons.thunderbird.net_. To keep using them, you need to switch to the [beta release channel](index#beta-channel). The user guide [has more details](index#dynamic-compatibility).
+
 ## Release 10.6.x
 
 ### Bug fixes
