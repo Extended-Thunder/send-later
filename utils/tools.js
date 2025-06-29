@@ -138,7 +138,7 @@ var SLTools = {
     checkLabel = checkLabel || messenger.i18n.getMessage("confirmAgain");
 
     let url =
-      `ui/notification.html?` +
+      `/ui/notification.html?` +
       `&type=${type}` +
       `&message=${encodeURIComponent(message)}` +
       `&isFormatted=${isFormatted ? "true" : "false"}` +
