@@ -30,8 +30,8 @@ var SLStatic = {
       window.innerHeight || document.documentElement.clientHeight;
     let hidden = rect.bottom - viewPortBottom;
     if (hidden > 0) {
-      if (hidden > outerHeight) {
-        SLStatic.info("Not resizing popup, would have to >double it");
+      if (hidden > outerHeight * 2) {
+        SLStatic.info("Not resizing popup, would have to >triple it");
         SLStatic.telemetrySend({
           event: "notResizingPopup",
           outerHeight: outerHeight,
