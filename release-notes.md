@@ -86,6 +86,10 @@ It has been [reported to us](https://github.com/Extended-Thunder/send-later/issu
 
 ### Bug fixes
 
+Fixed in 10.6.6: Detect all of the user's Drafts folders correctly in Thunderbird 139 or newer. Before this fix, Send Later failed to find all Drafts folders and therefore failed to notice or deliver some scheduled messages.
+
+Fixed in 10.6.3: When monitoring incoming messages to implement the cancel schedule on reply feature, we need to page through all the pages of messages returned in the onNewMailReceived event, not just the first page. This is unlikely to matter in the vast majority of cases, i.e., it's possible that this bug never actually impacted anyone, but nevertheless we should do it correctly.
+
 Fixed in 10.6.1: The message that was previously displayed when there were scheduled message when Thunderbird is shut down incorrectly said "Send Later" in the text when it should have said "Thunderbird", which made the message confusing. It now says the right thing.
 
 ## Release 10.5.x
