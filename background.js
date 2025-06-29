@@ -1440,6 +1440,8 @@ const SendLater = {
         allowScriptsToClose: true,
       });
     }
+
+    await SLTools.ufuncCompatibilityWarning();
   },
 
   async menuClickHandler(info, tab) {

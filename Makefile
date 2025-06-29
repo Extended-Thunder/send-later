@@ -110,7 +110,7 @@ send_later_beta.xpi: send_later.xpi
 	rm -rf tmp $@.tmp
 	mkdir tmp
 	cd tmp && unzip -q ../send_later.xpi
-	cd tmp && jq '.applications.gecko.update_url="https://raw.githubusercontent.com/Extended-Thunder/send-later/main/beta-channel.json"' manifest.json > manifest.json.tmp
+	cd tmp && jq '.applications.gecko.update_url="https://raw.githubusercontent.com/Extended-Thunder/send-later/main/beta-channel.json"|.content_security_policy|=sub("script-src '\''self'\''";"script-src '\''self'\'' '\''unsafe-eval'\''")' manifest.json > manifest.json.tmp
 	cd tmp && mv manifest.json.tmp manifest.json
 	cd tmp && zip -q -r ../$@.tmp *
 	mv $@.tmp $@

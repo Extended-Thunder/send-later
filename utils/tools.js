@@ -132,6 +132,34 @@ var SLTools = {
     }
   },
 
+  async ufuncCompatibilityWarning(always, funcName) {
+    let doCheck =
+      always ||
+      (await browser.storage.local.get({ ufuncs: {} }).then(({ ufuncs }) => {
+        let funcNames;
+        if (!funcName) funcNames = Object.keys(ufuncs);
+        else funcNames = [funcName];
+        for (funcName of funcNames)
+          if (!SLStatic.builtInFuncs[funcName]) return true;
+        return false;
+      }));
+    if (doCheck) {
+      try {
+        const func = Function.apply(null, ["return true;"]);
+      } catch (ex) {
+        // Warn about dynamic function incompatibility
+        SLTools.alert(
+          messenger.i18n.getMessage("dynamicCompatibilityTitle"),
+          messenger.i18n.getMessage("dynamicCompatibilityMessage", [
+            messenger.i18n.getMessage("extensionName"),
+            await SLTools.userGuideLink("#dynamic-compatibility"),
+          ]),
+          true,
+        );
+      }
+    }
+  },
+
   // Helper function to create simple HTML-based popup messages.
   notificationPopup(type, title, message, checkLabel, checked, isFormatted) {
     title = title || messenger.i18n.getMessage("extensionName");

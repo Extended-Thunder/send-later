@@ -20,6 +20,79 @@ var SLStatic = {
     .concat(["F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11",
              "F12", "Comma", "Period", "Home", "End", "PageUp", "PageDown",
              "Space", "Insert", "Delete", "Up", "Down", "Left", "Right"]),
+  builtInFuncs: {
+    // This function isn't ever actually used, but the name needs to be here.
+    ReadMeFirst: (specname, prev, args) => {
+      return null;
+    },
+    BusinessHours: (specname, prev, args) => {
+      // Copied from _locales/en/messages.json, except the first and last line
+      let next, nextspec, nextargs;
+      // Defaults
+      var workDays = [1, 2, 3, 4, 5]; // Mon - Fri; Sun == 0, Sat == 6
+      var workStart = [8, 30]; // Start of the work day as [H, M]
+      var workEnd = [17, 30]; // End of the work day as [H, M]
+      if (args && args[0]) workDays = args[0];
+      if (args && args[1]) workStart = args[1];
+      if (args && args[2]) workEnd = args[2];
+      if (prev)
+        // Not expected in normal usage, but used as the current time for testing.
+        next = new Date(prev);
+      else next = new Date();
+
+      if (workDays.length == 0 || !workDays.every((d) => d >= 0 && d <= 6)) {
+        return undefined;
+      }
+
+      // If we're past the end of the workday or not on a workday, move to the work
+      // start time on the next day.
+      while (
+        next.getHours() > workEnd[0] ||
+        (next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||
+        workDays.indexOf(next.getDay()) == -1
+      ) {
+        next.setDate(next.getDate() + 1);
+        next.setHours(workStart[0]);
+        next.setMinutes(workStart[1]);
+      }
+      // If we're before the beginning of the workday, move to its start time.
+      if (
+        next.getHours() < workStart[0] ||
+        (next.getHours() == workStart[0] && next.getMinutes() < workStart[1])
+      ) {
+        next.setHours(workStart[0]);
+        next.setMinutes(workStart[1]);
+      }
+      return [next, nextspec, nextargs];
+    },
+    DaysInARow: (specname, prev, args) => {
+      // Copied from _locales/en/messages.json, except the first and last line
+      let next, nextspec, nextargs;
+      // Send the first message now, subsequent messages once per day.
+      if (!prev) next = new Date();
+      else {
+        var now = new Date();
+        next = new Date(prev); // Copy date argument so we don't modify it.
+        do {
+          next.setDate(next.getDate() + 1);
+        } while (next < now);
+        // ^^^ Don't try to send in the past, in case Thunderbird was asleep at
+        // the scheduled send time.
+      }
+      if (!args)
+        // Send messages three times by default.
+        args = [3];
+      nextargs = [args[0] - 1];
+      // Recur if we haven't done enough sends yet.
+      if (nextargs[0] > 0) nextspec = "function " + specname;
+      return [next, nextspec, nextargs];
+    },
+    Delay: (specname, prev, args) => {
+      let next, nextspec, nextargs;
+      next = new Date(Date.now() + args[0] * 60000);
+      return [next, nextspec, nextargs];
+    },
+  },
 
   async makeContentsVisible() {
     let body = document.getElementsByTagName("body")[0];
@@ -744,16 +817,25 @@ var SLStatic = {
   },
 
   evaluateUfunc(name, body, prev, args) {
-    SLStatic.telemetrySend({ event: "evaluateUfunc" });
-    const funcStr = `
-      let next, nextspec, nextargs;
-      ${body};
-      return([next, nextspec, nextargs]);
-    `;
-
+    let FUNC = SLStatic.builtInFuncs[name];
+    if (FUNC) {
+      SLStatic.telemetrySend({ event: "evaluateUfunc", func: name });
+    } else {
+      SLStatic.telemetrySend({ event: "evaluateUfunc", func: "<private>" });
+      SLTools.ufuncCompatibilityWarning(true);
+      const funcStr = `
+        let next, nextspec, nextargs;
+        ${body};
+        return([next, nextspec, nextargs]);`;
+      try {
+        FUNC = Function.apply(null, ["specname", "prev", "args", funcStr]);
+      } catch (ex) {
+        SLStatic.debug(`User function ${name} construction failed`, ex);
+        return { error: ex.message };
+      }
+    }
     let response;
     try {
-      const FUNC = Function.apply(null, ["specname", "prev", "args", funcStr]);
       response = FUNC(name, prev, args);
     } catch (ex) {
       SLStatic.debug(

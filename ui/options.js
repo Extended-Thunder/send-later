@@ -14,8 +14,6 @@ function makeExpandable(titleId, indicatorId, bodyId) {
 }
 
 const SLOptions = {
-  builtinFuncs: ["ReadMeFirst", "BusinessHours", "DaysInARow", "Delay"],
-
   checkboxGroups: {},
 
   applyValue(id, value) {
@@ -310,7 +308,7 @@ const SLOptions = {
   async saveUserFunction(name, body, help) {
     if (
       name !== browser.i18n.getMessage("functionnameplaceholder") &&
-      !SLOptions.builtinFuncs.includes(name) &&
+      !SLStatic.builtInFuncs[name] &&
       validateFuncName(name)
     ) {
       SLStatic.info(`Storing user function ${name}`);
@@ -498,6 +496,8 @@ const SLOptions = {
           SLOptions.showXMark(element, "red");
           return;
         }
+      } else if (/funcselect$/.exec(id)) {
+        SLTools.ufuncCompatibilityWarning(false, value);
       }
 
       if (element.type == "number") {
@@ -715,7 +715,7 @@ const SLOptions = {
       const resetBtn = document.getElementById("funcEditReset");
       const deleteBtn = document.getElementById("funcEditDelete");
 
-      if (SLOptions.builtinFuncs.includes(funcName)) {
+      if (SLStatic.builtInFuncs[funcName]) {
         funcContentElmt.disabled = true;
         funcHelpElmt.disabled = true;
         funcNameElmt.disabled = true;
@@ -729,6 +729,7 @@ const SLOptions = {
         funcNameElmt.disabled = false;
         saveBtn.disabled = false;
         if (funcName === "newFunctionName") {
+          SLTools.ufuncCompatibilityWarning(true);
           funcNameElmt.placeholder = browser.i18n.getMessage(
             "functionnameplaceholder",
           );
@@ -869,7 +870,9 @@ const SLOptions = {
         const funcNameSelect = document.getElementById("functionNames");
         const funcName = funcNameSelect.value;
         if (
-          [...SLOptions.builtinFuncs, "newFunctionName"].includes(funcName)
+          [...Object.keys(SLStatic.builtInFuncs), "newFunctionName"].includes(
+            funcName,
+          )
         ) {
           SLStatic.error("Trying to delete built-in user func.");
           return;
