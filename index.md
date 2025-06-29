@@ -1385,6 +1385,7 @@ messages:
     want to use.
 5.  Click "OK".
 
+<a name="dynamic"></a>
 ### Dynamic functions for complex scheduling rules
 
 The scheduling functionality built into Send Later is quite flexible,
@@ -1411,7 +1412,22 @@ In fact, the `BusinessHours` function is an implementation of the "Send
 this message at the start of the next work day" logic I've been asked
 for so many times!
 
-<a name="dynamic"></a>
+
+<a name="dynamic-compatibility"></a>
+#### Non-standard dynamic scheduling functions only work [on the beta channel](#beta-channel)!
+
+If you only want to use the built-in dynamic functions&mdash;"BusinessHours", "DaysInARow", and "Delay"&mdash;then you can use them with Send Later installed from either [addons.thunderbird.net](https://addons.thunderbird.net/) (which is where the extension is installed from if you search for it on the add-ons page inside Thunderbird) or from [GitHub](https://github.com/Extended-Thunder/send-later/releases).
+
+However, if you want to create your own dynamic functions, _you must use the version of Send Later available on the [beta release channel](#beta-channel)_. Otherwise, user-created dynamic functions will not work.
+
+Here's why this restriction is in place…
+
+To execute a user-created dynamic function, Send Later dynamically compiles its JavaScript code at run-time. This requires a special extension permission which the moderators of addons.thunderbird.net do not allow for extensions distributed there. Therefore, user-created dynamic functions don't work in that version of the extension, and Send Later will warn you if you try to use one.
+
+The built-in dynamic functions _do_ work in the addons.thunderbird.net version of the extension, because their code isn't compiled at run-time.
+
+For those of you who are extremely curious about the technical details… The required permission is "unsafe-eval" on the content security policy of the extension. Note that this permission only applies to code executed within the extension itself, not to code executed by other extensions or by HTML executed inside a browser tab, and the only code evaluated in this way by Send Later is code entered by the user when creating a dynamic function, so there is no security risk. Nevertheless, because the moderators do not want to have to evaluate the potential risk of every extension that uses "unsafe-eval", they have prohibited it entirely from all extensions they distribute.
+
 #### Using dynamic scheduling functions
 
 There are two ways to use a dynamic scheduling function
