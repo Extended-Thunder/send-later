@@ -1178,7 +1178,7 @@ const SLPopup = {
 
     SLPopup.restoreZoom();
     SLPopup.initialized = true;
-    SLTools.makeContentsVisible();
+    if (!SLPopup.attachedWindow) SLTools.makeContentsVisible();
     SLTools.debug("Initialized popup window");
   },
 };
