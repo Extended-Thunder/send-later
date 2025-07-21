@@ -598,6 +598,10 @@ The following functional preferences are available only in the configuration edi
   account and you're annoyed that even after Send Later has deleted a message
   from your Drafts folder it's still visible in the Gmail app. Compacting your
   Gmail Drafts folder cleans up these ghost drafts.
+- **detachedPopup** controls whether the Send Later pop-up in the
+  compose window is attached to the compose window or is a completely
+  independent window. You may wish to set this to true as a workaround
+  if the pop-up isn't displaying properly.
 - **instanceUUID** is the unique, random identifier for Send Later in this
   Thunderbird profile. Note that if you change this then Send Later will no
   longer deliver any messages that you delivered before you changed it; you'll
