@@ -1094,6 +1094,7 @@ const SendLater = {
     locker,
     originalMsgId,
     msgHdr,
+    fullMsg,
     recur,
     nextSend,
     msgRecurSpec,
@@ -1182,6 +1183,7 @@ const SendLater = {
       await locker.lock(msgHdr, fullMsg, "rescheduling");
       SLTools.error("Error scheduling next recurrence", ex);
       let title = SLTools.i18n.getMessage("RescheduleErrorTitle");
+      const msgSubject = msgHdr.subject;
       let text = SLTools.i18n.getMessage("RescheduleErrorText", [msgSubject]);
       SLTools.alert(title, text);
       return true;
@@ -1347,6 +1349,7 @@ const SendLater = {
         locker,
         originalMsgId,
         msgHdr,
+        fullMsg,
         recur,
         nextSend,
         msgRecurSpec,
