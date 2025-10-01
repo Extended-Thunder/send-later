@@ -3,6 +3,17 @@
     "namespace": "SL3U",
     "functions": [
       {
+        "name": "generateMessageId",
+        "type": "function",
+        "async": true,
+        "parameters": [
+          {
+            "name": "identity",
+            "$ref": "identities.MailIdentity"
+          }
+        ]
+      },
+      {
         "name": "SendMessageWithCheck",
         "type": "function",
         "async": true,

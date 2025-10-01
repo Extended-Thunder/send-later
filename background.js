@@ -1127,6 +1127,15 @@ const SendLater = {
 
       let newMsgContent = await messenger.messages.getRaw(msgHdr.id);
 
+      // Replace Message-ID so we don't send different messages with
+      // the same message ID.
+      let identity = await findBestIdentity(msgHdr, fullMsg);
+      newMsgContent = SLTools.replaceHeader(
+        newMsgContent,
+        "Message-ID",
+        await messenger.SL3U.generateMessageId(identity),
+      );
+
       newMsgContent = SLTools.replaceHeader(
         newMsgContent,
         "Date",
