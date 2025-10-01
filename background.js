@@ -1054,7 +1054,7 @@ const SendLater = {
     );
 
     const identityId =
-      options.identityId ?? (await findBestIdentity(msgHdr, fullMsg));
+      options.identityId ?? (await findBestIdentity(msgHdr, fullMsg)).id;
     content = SLTools.replaceHeader(
       content,
       "X-Identity-Key",
@@ -2353,7 +2353,8 @@ const SendLater = {
       for (let messageId of messageIds) {
         let message = await messenger.messages.get(messageId);
         options.messageFull = await messenger.messages.getFull(messageId);
-        let identityId = await findBestIdentity(message, options.messageFull);
+        let identityId = (await findBestIdentity(message, options.messageFull))
+          .id;
         options.identityId = identityId;
         options.messageId = messageId;
         options.messageHeader = message;
@@ -3053,51 +3054,36 @@ async function findBestIdentity(message, messageFull) {
   let keyIdentityId = messageFull?.headers["x-identity-key"]?.at(0);
   if (keyIdentityId) {
     let keyIdentity = await messenger.identities.get(keyIdentityId);
-    if (keyIdentity && exactIdentityMatch(author, keyIdentity)) {
-      return keyIdentityId;
-    }
+    if (keyIdentity && exactIdentityMatch(author, keyIdentity))
+      return keyIdentity;
   }
   let account = await messenger.accounts.get(message.folder.accountId, false);
-  let primaryAccountId = account.id;
-  let nameMatchId = null;
-  let emailMatchId = null;
-  for (let identity of account.identities) {
-    // There really should be a way to parse From lines in the TB API.
-    if (exactIdentityMatch(author, identity)) {
-      return identity.id;
-    } else if (!nameMatchId && nameIdentityMatch(author, identity)) {
-      nameMatchId = identity.id;
-    } else if (!emailMatchId && emailIdentityMatch(author, identity)) {
-      emailMatchId = identity.id;
-    }
-  }
-  if (nameMatchId || emailMatchId) {
-    return nameMatchId || emailMatchId;
-  }
-  let primaryIdentityId = account.identities.length
-    ? account.identities[0].id
+  let nameMatch = null;
+  let emailMatch = null;
+  // There really should be a way to parse From lines in the TB API.
+  for (let identity of account.identities)
+    if (exactIdentityMatch(author, identity)) return identity;
+    else if (!nameMatch && nameIdentityMatch(author, identity))
+      nameMatch = identity;
+    else if (!emailMatch && emailIdentityMatch(author, identity))
+      emailMatch = identity;
+  if (nameMatch || emailMatch) return nameMatch || emailMatch;
+  let primaryIdentity = account.identities.length
+    ? account.identities[0]
     : undefined;
+  let primaryAccountId = account.id;
   for (account of await messenger.accounts.list(false)) {
-    if (account.id == primaryAccountId) {
-      continue;
-    }
-    for (let identity of account.identities) {
-      if (exactIdentityMatch(author, identity)) {
-        return identity.id;
-      } else if (!nameMatchId && nameIdentityMatch(author, identity)) {
-        nameMatchId = identity.id;
-      } else if (!emailMatchId && emailIdentityMatch(author, identity)) {
-        emailMatchId = identity.id;
-      }
-    }
-    if (nameMatchId) {
-      return nameMatchId;
-    }
+    if (account.id == primaryAccountId) continue;
+    for (let identity of account.identities)
+      if (exactIdentityMatch(author, identity)) return identity;
+      else if (!nameMatch && nameIdentityMatch(author, identity))
+        nameMatch = identity;
+      else if (!emailMatch && emailIdentityMatch(author, identity))
+        emailMatch = identity;
+    if (nameMatch) return nameMatch;
   }
-  if (nameMatchId || emailMatchId) {
-    return nameMatchId || emailMatchId;
-  }
-  return primaryIdentityId;
+  if (nameMatch || emailMatch) return nameMatch || emailMatch;
+  return primaryIdentity;
 }
 
 function exactIdentityMatch(author, identity) {
