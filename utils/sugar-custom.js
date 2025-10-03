@@ -3592,7 +3592,7 @@
       let shortTime = Intl.DateTimeFormat(localeString, {
         timeStyle: "short",
       }).format(date);
-      let weekInfo = new Intl.Locale(localeString).weekInfo;
+      let weekInfo = new Intl.Locale(localeString).getWeekInfo();
       if (weekInfo) {
         if ([0, 7].includes(weekInfo.firstDay)) {
           variant.firstDayOfWeek = 0;
