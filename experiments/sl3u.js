@@ -514,12 +514,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
         },
 
-        async generateMessageId(identity) {
-          return Cc["@mozilla.org/messengercompose/computils;1"]
-            .createInstance(Ci.nsIMsgCompUtils)
-            .msgGenerateMessageId(identity, null);
-        },
-
         async SendMessageWithCheck(tabId) {
           context.extension.tabManager
             .get(tabId)

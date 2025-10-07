@@ -1133,7 +1133,7 @@ const SendLater = {
       newMsgContent = SLTools.replaceHeader(
         newMsgContent,
         "Message-ID",
-        await messenger.SL3U.generateMessageId(identity),
+        await SLTools.generateMessageID(identity),
       );
 
       newMsgContent = SLTools.replaceHeader(

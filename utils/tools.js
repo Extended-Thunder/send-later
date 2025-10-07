@@ -864,6 +864,12 @@ var SLTools = {
     return `{${uuid}}`;
   },
 
+  async generateMessageID(identity) {
+    const localPart = this.generateUUID().slice(1, -1);
+    const domain = identity.email.replace(/[^@]*/, "");
+    return `<${localPart}${domain}>`;
+  },
+
   convertTime(t) {
     if (!t) {
       return null;
