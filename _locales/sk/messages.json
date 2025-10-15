@@ -1,0 +1,1108 @@
+{
+  "extensionName": {
+    "message": "Odoslať neskôr",
+    "description": "The name of the add-on, displayed in various places."
+  },
+  "extensionDescription": {
+    "message": "„Odoslať neskôr“ umožňuje naplánovať čas na neskoršie odoslanie emailu.",
+    "description": "A short description of the add-on."
+  },
+  "advancedOptionsTitle": {
+    "message": "Rozšírené",
+    "description": ""
+  },
+  "altBindingPrefLabel": {
+    "message": "Použiť Alt-Shift-Enter namiesto Ctrl-Shift-Enter",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel1": {
+    "message": "Nedoručovať správy o viac ako",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel2": {
+    "message": "minút neskôr",
+    "description": ""
+  },
+  "blockLateMessagesPrefTooltip": {
+    "message": "Nedoručovať naplánované správy, ktoré boli oneskorené, po ich naplánovanom čase (napr. pretože Thunderbird nebežal)",
+    "description": ""
+  },
+  "checkTimePrefLabel1": {
+    "message": "Skontrolovať každých",
+    "description": "In the preferences window, for the 'Check ever # minutes' preference, where # is a text field for the user to enter a number, this label comes _before_ the #. See also checkTimePrefLabel2."
+  },
+  "checkTimePrefLabel2": {
+    "message": "minút",
+    "description": "In the preferences window, for the 'Check ever # minutes' preference, where # is a text field for the user to enter a number, this label comes _after_ the #. In some languages it may have the same translation as other strings, but in other languages it's different e.g. because the 'every' part needs to be in this string instead of in checkTimePrefLabel1."
+  },
+  "checkTimePrefTooltip": {
+    "message": "Po koľkých minútach sa kontroluje, či je potrebné odoslať koncepty. Zvýš túto hodnotu, pokiaľ tvoje koncepty neodchádzajú včas alebo množstvo čakajúcich správ v stavovom riadku niekedy nezodpovedá skutočnosti.",
+    "description": ""
+  },
+  "clearDefaultsLabel": {
+    "message": "Zmazať predvolené nastavenia",
+    "description": ""
+  },
+  "contactAuthorLabel": {
+    "message": "Kontaktovať autora",
+    "description": ""
+  },
+  "enforceRestrictionsPrefLabel": {
+    "message": "Vynútiť obmedzenie času a dňa pre čas doručenia",
+    "description": ""
+  },
+  "enforceRestrictionsPrefTooltip": {
+    "message": "Ak správa nemôže byť doručená v požadovaný dátum a čas, napr. preto, že je Thunderbird vypnutý, bude odoslaná najskôr ako to bude možné.",
+    "description": ""
+  },
+  "generalOptionsTitle": {
+    "message": "Všeobecné",
+    "description": "The title of the 'General' section on the options page"
+  },
+  "shortcutsOptionsTitle": {
+    "message": "Skratky",
+    "description": "The title of the 'Shortcuts' section on the options page"
+  },
+  "logConsoleLevelLabel": {
+    "message": "Úroveň zápisu protokolu pre príkazový riadok",
+    "description": ""
+  },
+  "logLevelAll": {
+    "message": "Všetko",
+    "description": ""
+  },
+  "logLevelDebug": {
+    "message": "Ladenie",
+    "description": ""
+  },
+  "logLevelError": {
+    "message": "Chyba",
+    "description": ""
+  },
+  "logLevelFatal": {
+    "message": "Kritický",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "Informácie",
+    "description": ""
+  },
+  "logLevelTrace": {
+    "message": "Trasovať",
+    "description": ""
+  },
+  "logLevelWarn": {
+    "message": "Varovať",
+    "description": ""
+  },
+  "markReadPrefLabel": {
+    "message": "Označiť naplánované koncepty ako prečítané",
+    "description": ""
+  },
+  "quickOptionsLabel1Label": {
+    "message": "Predvoľba 1",
+    "description": ""
+  },
+  "quickOptionsLabel2Label": {
+    "message": "Predvoľba 2",
+    "description": ""
+  },
+  "quickOptionsLabel3Label": {
+    "message": "Predvoľba 3",
+    "description": ""
+  },
+  "quickOptionsValueLabel": {
+    "message": "Minúty",
+    "description": ""
+  },
+  "recurAnnuallyLabel": {
+    "message": "ročne",
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
+  },
+  "recurDailyLabel": {
+    "message": "denne",
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
+  },
+  "recurFunctionLabel": {
+    "message": "funkcia",
+    "description": ""
+  },
+  "recurLabel": {
+    "message": "Opakovať",
+    "description": ""
+  },
+  "recurMinutelyLabel": {
+    "message": "každú minútu",
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
+  },
+  "recurMonthlyLabel": {
+    "message": "mesačne",
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
+  },
+  "recurOnceLabel": {
+    "message": "raz",
+    "description": ""
+  },
+  "recurWeeklyLabel": {
+    "message": "týždenne",
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
+  },
+  "resetPrefsButton": {
+    "message": "Obnoviť nastavenia",
+    "description": ""
+  },
+  "saveDefaultsLabel": {
+    "message": "Uložiť tieto hodnoty ako predvolené",
+    "description": ""
+  },
+  "sendAtDefaultLabel": {
+    "message": "Zadajte dátum a čas",
+    "description": "Displayed in place of send at time before user makes selections"
+  },
+  "sendAtLabel": {
+    "message": "Odoslať v",
+    "description": "This is used in the scheduling pop-up at the beginning of the dynamic label for the button the user clicks to send a scheduled message at the specified date/time. It is followed in the button by a formatted date/time. For example, in English: 'Send at Tue, Aug 29, 2023, 11:26 AM'. Also used in the main window pop-up as the header of the column containing message send times."
+  },
+  "sendBtwnLabel": {
+    "message": "Medzi",
+    "description": ""
+  },
+  "sendUntilLabel": {
+    "message": "Nie skôr ako",
+    "description": ""
+  },
+  "sendButtonPrefLabel": {
+    "message": "„Odoslať“ = „Odoslať neskôr“",
+    "description": ""
+  },
+  "sendButtonPrefTooltip": {
+    "message": "Ak túto možnosť povolíte, bude sa príkaz „Odoslať“ (tlačidlo alebo klávesová skratka Ctrl-Enter) správať rovnako ako „Odoslať neskôr“.",
+    "description": ""
+  },
+  "whitelistPrefTooltip": {
+    "message": "Ak je povolená možnosť `$1' alebo `\"Odoslať\" oneskorené správy' a tu zadáte existujúci zoznam kontaktov, akákoľvek správa, ktorá má všetkých príjemcov v zozname kontaktov, obíde $2, keď je aktivované tlačidlo odoslania alebo príkaz ponuky.",
+    "description": "$1 is replaced with the contents of sendButtonPrefLabel, and $2 is replaced with extensionName."
+  },
+  "whitelistPrefLabel": {
+    "message": "Adresár schválených odosielateľov:",
+    "description": "Appears on the options tab, followed by an input box for the use to specify the name of an address book."
+  },
+  "sendDelayPrefLabel1": {
+    "message": "„Odoslať” zdrží správy o",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Kontrolovať odpovede na skôr poslané opakované správy. Opakujúca sa správa je zrušená a odstránená z Konceptov, ak na ňu adresát odpovie.",
+    "description": ""
+  },
+  "sendDelayPrefTooltip": {
+    "message": "Ak je táto možnosť zapnutá, všetky správy odoslané príkazom ”Odoslať” (tlačidlom alebo stlačením Ctrl-Enter) budú zdržané o zadaný čas naplánovaný pomocou Odoslať neskôr.",
+    "description": ""
+  },
+  "sendSundayLabel": {
+    "message": "Nedeľu",
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "sendMondayLabel": {
+    "message": "Pondelok",
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "sendTuesdayLabel": {
+    "message": "Utorok",
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "sendWednesdayLabel": {
+    "message": "Stredu",
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "sendThursdayLabel": {
+    "message": "Štvrtok",
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "sendFridayLabel": {
+    "message": "Piatok",
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "sendSaturdayLabel": {
+    "message": "Sobotu",
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "sendNowLabel": {
+    "message": "Odoslať hneď",
+    "description": ""
+  },
+  "sendNowTooltip": {
+    "message": "Odoslať správu hneď bez použitia „Odoslať neskôr“",
+    "description": ""
+  },
+  "sendOnlyOnLabel": {
+    "message": "Iba v",
+    "description": ""
+  },
+  "sendUnsentMessagesPrefLabel": {
+    "message": "Odoslať čakajúce správy zo zložky „Na odoslanie”",
+    "description": ""
+  },
+  "sendUnsentMessagesPrefTooltip": {
+    "message": "Ak vypnete toto nastavenie, potom Odoslať neskôr nebude odosielať správy - iba ich uloží do zložky “Na odoslanie”. Hodí sa to keď používate iné rozšírenia, napr. BlunderDelay pre pravidelné odosielanie správ zo zložky “Na odoslanie”. Ak bude toto nastavenie zapnuté, zakaždým, keď Odoslať neskôr odošle správu, budú odoslané VŠETKY správy z vašej zložky “Na odoslanie”.",
+    "description": ""
+  },
+  "showColumnPrefLabel": {
+    "message": "Zobrazovať stĺpec „Odoslať neskôr“",
+    "description": ""
+  },
+  "showColumnPrefTooltip": {
+    "message": "Zobrazovať stĺpec „Odoslať neskôr“ pri prezeraní zložky s konceptmi",
+    "description": ""
+  },
+  "showHeaderPrefLabel": {
+    "message": "Zobraziť „Odoslať neskôr“ v hlavičke",
+    "description": ""
+  },
+  "showHeaderPrefTooltip": {
+    "message": "Či sa má pri prezeraní správy zobrazovať v hlavičke hlavička „X-Send-Later-At“, t. j. čas, kedy je naplánované odoslanie konceptu",
+    "description": ""
+  },
+  "showToolbarTextLabel": {
+    "message": "Tlačidlo Zobraziť text na paneli s nástrojmi",
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
+  },
+  "userGuideLabel": {
+    "message": "Užívateľská príručka",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "Vybraný dátum je minulosťou",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Jednoducho odložte správu o určitý počet minút. Prvý argument sa berie ako čas oneskorenia.",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.label": {
+    "message": "Dať do „Pošty na odoslanie“",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.tooltip": {
+    "message": "Namiesto plánovania doručenia v určitý čas, presunie správu do zložky „Pošta na odoslanie“ na doručenie vo chvíli, keď bude zadaný príkaz na odoslanie neodoslaných správ.",
+    "description": ""
+  },
+  "sendlater.prompt.sendlater.accesskey": {
+    "message": "O",
+    "description": "Accesskey for sendlater.prompt.sendlater.label. See https://github.com/Extended-Thunder/send-later/blob/main/TRANSLATING.md#accesskey-strings."
+  },
+  "sendlater.prompt.sendnow.accesskey": {
+    "message": "N",
+    "description": "Accesskey corresponding to 'sendNowLabel'. See https://github.com/Extended-Thunder/send-later/blob/main/TRANSLATING.md#accesskey-strings."
+  },
+  "sendlater.prompt.title.label": {
+    "message": "Odoslať tento email neskôr",
+    "description": ""
+  },
+  "sendlater.prompt.or.label": {
+    "message": "alebo",
+    "description": ""
+  },
+  "sendlater.prompt.textbox.emptytext": {
+    "message": "napr.: „15:00 hodiny štvrtok”, „12/31/2012 15:27”",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.label": {
+    "message": "Odoslať neskôr v čase(och) určených vyššie",
+    "description": ""
+  },
+  "sendlater.prompt.functionargs.label": {
+    "message": "Argumenty funkcie",
+    "description": ""
+  },
+  "sendlater.prompt.calculate.label": {
+    "message": "Vypočítať",
+    "description": ""
+  },
+  "sendlater.prompt.every.label": {
+    "message": "Každých",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "Za 15 minút",
+    "description": ""
+  },
+  "sendlater.button2.label": {
+    "message": "Za 30 minút",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "Za 2 hodiny",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.label": {
+    "message": "Zrušiť opakovanie po odpovedi",
+    "description": ""
+  },
+  "sendlater3header.label": {
+    "message": "Odoslať neskôr",
+    "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
+  },
+  "prefwindow.title": {
+    "message": "Odoslať neskôr predvoľby",
+    "description": ""
+  },
+  "quickoptionname.label": {
+    "message": "Popis tlačidla",
+    "description": ""
+  },
+  "quickoptionkey.label": {
+    "message": "Kláves",
+    "description": "Heading for the column in the preferences where the user can specify the key bindings to activate shortcut buttons"
+  },
+  "validKeysTooltip": {
+    "message": "Platné klávesové skratky (rozlišujú sa veľké a malé písmená!) sú A-Z, 0-9, F1-F12, Comma, Period, Home, End, PageUp, PageDown, Space, Insert, Delete, Up, Down, Left, Right",
+    "description": "The tooltip that pops up to tell the user what the valid keys to bind the quick option shortcuts to. Do not translate the keys, just translate the 'Valid shortcut keys (case-sensitive!) are' part, because the keys have to be in English in the actual shortcut."
+  },
+  "showsendlaterprogress.caption": {
+    "message": "Zobraziť stav na pozadí spracovávaných úloh v stavovom riadku",
+    "description": ""
+  },
+  "composewindowhotkeys.caption": {
+    "message": "Povoliť použitie klávesových skratiek (pre predvoľby odoslania) pri písaní správy",
+    "description": ""
+  },
+  "releasenotes.value": {
+    "message": "Poznámky k vydaniu",
+    "description": ""
+  },
+  "donatelink.value": {
+    "message": "Prispejte",
+    "description": ""
+  },
+  "activeAccountsOptionsTitle": {
+    "message": "Aktívne účty",
+    "description": "Subtitle of the 'Advanced' section in the options where the user can mark which accounts Send Later should pay attention to."
+  },
+  "activeAccountsOptionsText": {
+    "message": "Účty, ktoré v tejto sekcii zrušíte, budú funkciou Odoslať neskôr ignorované: nie sú kontrolované na naplánované koncepty a žiadne naplánované koncepty v nich nie sú doručené. Novovytvorené účty sú štandardne aktívne a ak naplánujete novú správu v neaktívnom účte, automaticky sa znova aktivuje. Mali by ste deaktivovať všetky účty, do ktorých sa Thunderbird nemôže prihlásiť, napríklad preto, že vaše prihlásenie je deaktivované alebo je server momentálne nedostupný.",
+    "description": "This explanation appears below activeAccountsOptionsTitle and above the list of accounts"
+  },
+  "advancededitor.title": {
+    "message": "Pokročilý editor konfigurácie",
+    "description": ""
+  },
+  "editorlink.value": {
+    "message": "Editor dynamických funkcií",
+    "description": ""
+  },
+  "editorbutton": {
+    "message": "Otvoriť editor dynamických funkcií…",
+    "description": ""
+  },
+  "editortip": {
+    "message": "Otvoriť okno na vytváranie a úpravu JavaScriptových funkcií implementujúcich komplexnú logiku plánovania.",
+    "description": ""
+  },
+  "loglevel.config": {
+    "message": "Nastavenia",
+    "description": ""
+  },
+  "windowtitle": {
+    "message": "Odoslať neskôr  Editor dynamických funkcií",
+    "description": ""
+  },
+  "selectfunction": {
+    "message": "Vyberte funkciu",
+    "description": ""
+  },
+  "selectfunctiontip": {
+    "message": "Vyberte funkciu na úpravu alebo zmazanie, alebo použite „(vytvoriť novú funkciu)“ pre vytvorenie novej funkcie.",
+    "description": ""
+  },
+  "createnewfunction": {
+    "message": "(vytvoriť novú funkciu)",
+    "description": ""
+  },
+  "delete.label": {
+    "message": "Zmazať",
+    "description": ""
+  },
+  "functionnametip": {
+    "message": "Zadajte alebo upravte názov alfanumerickej funkcie. Ak upravíte názov existujúcej funkcie, budete počas ukladania opýtaný, či chcete funkciu premenovať, alebo chcete vytvoriť funkciu novú s upraveným názvom.",
+    "description": ""
+  },
+  "functionnameplaceholder": {
+    "message": "Názov funkcie",
+    "description": ""
+  },
+  "codetip": {
+    "message": "Sem vložte zdrojový kód vašej funkcie. Podrobnosti o tom, čo by mal váš kód robiť, nájdete v ukážkovej funkcii „ReadMeFirst“.",
+    "description": ""
+  },
+  "codeplaceholder": {
+    "message": "zdrojový kód funkcie",
+    "description": ""
+  },
+  "helptextheader": {
+    "message": "Pomocník pre funkciu",
+    "description": ""
+  },
+  "helptexttip": {
+    "message": "Akýkoľvek text, ktorý sem zadáte, sa zobrazí, keď používateľ podrží kurzor myši nad názvom funkcie v kontextovej ponuke. Použite ho na vysvetlenie, čo funkcia robí a aké argumenty akceptuje.",
+    "description": ""
+  },
+  "helptextplaceholder": {
+    "message": "text pomocníka",
+    "description": ""
+  },
+  "run.label": {
+    "message": "Spustiť funkciu",
+    "description": ""
+  },
+  "run.accesskey": {
+    "message": "x",
+    "description": "Accesskey for run.label. See https://github.com/Extended-Thunder/send-later/blob/main/TRANSLATING.md#accesskey-strings."
+  },
+  "inputtime": {
+    "message": "Vstupný čas",
+    "description": ""
+  },
+  "inputtimetip": {
+    "message": "Sem môžete vložiť dáta a časy v akomkoľvek formáte, ktorému Odoslať neskôr rozumie.",
+    "description": ""
+  },
+  "inputtimeplaceholder": {
+    "message": "dátum a čas, ktoré budú použité na testovanie",
+    "description": ""
+  },
+  "inputargs": {
+    "message": "Vstupné argumenty",
+    "description": ""
+  },
+  "inputargstip": {
+    "message": "Argumenty by mali byť zadané v JavaScript formáte, napr, reťazce by mali byť v úvodzovkách.",
+    "description": ""
+  },
+  "inputargsplaceholder": {
+    "message": "čiarkou oddelené argumenty, ktoré budú použité na testovanie",
+    "description": ""
+  },
+  "output": {
+    "message": "Výstup",
+    "description": ""
+  },
+  "reset.label": {
+    "message": "Zahodiť zmeny",
+    "description": ""
+  },
+  "save.label": {
+    "message": "Uložiť",
+    "description": ""
+  },
+  "close.label": {
+    "message": "Zavrieť",
+    "description": ""
+  },
+  "sendlater.prompt.sendat.tooltip": {
+    "message": "Uložiť správu do zložky Koncepty pre automatické doručenie v čase nastavenom vyššie.",
+    "description": ""
+  },
+  "entervalid": {
+    "message": "Vložte vyššie platný dátum",
+    "description": ""
+  },
+  "sendwithfunction": {
+    "message": "Odoslať na základe funkcie „$1“",
+    "description": ""
+  },
+  "sendspecifyfunction": {
+    "message": "Vyberte funkciu z menu hore",
+    "description": ""
+  },
+  "OptionShortcutAlertTitle": {
+    "message": "Neplatná hodnota predvoľby",
+    "description": ""
+  },
+  "OptionShortcutAlertText": {
+    "message": "Predvoľba $1 má neplatnú hodnotu „$2“",
+    "description": ""
+  },
+  "SendingUnsentError": {
+    "message": "Odoslať neskôr: Chyba pri odosielaní neodoslaných správ. Vaša schránka na odoslanie môže byť poškodená a vaše naplánované správy sa možno neodoslali. Pozrite si https://extended-thunder.github.io/send-later/#corrupt-outbox.\n",
+    "description": ""
+  },
+  "CopyUnsentError": {
+    "message": "Odoslať neskôr: Chyba pri kopírovaní plánovanej správy do priečinka Na odoslanie na doručenie (kód $1). Funkcia Odoslať neskôr bola zakázaná! Viac informácií nájdete na stránke https://extended-thunder.github.io/send-later/#outbox-copy-failure.",
+    "description": ""
+  },
+  "CopyRecurError": {
+    "message": "Odoslať neskôr: Chyba pri kopírovaní opakujúcej sa správy do priečinka Koncepty (kód $1). Funkcia Odoslať neskôr bola vypnutá! Viac informácií nájdete na stránke https://extended-thunder.github.io/send-later/#drafts-copy-failure.",
+    "description": ""
+  },
+  "CorruptFolderError": {
+    "message": "Odoslať neskôr: Priečinok $1 môže byť poškodený. ​​Otvorte jeho vlastnosti a opravte ho. Pozrite si https://extended-thunder.github.io/send-later/#corrupt-drafts-error.",
+    "description": ""
+  },
+  "CorruptFolderErrorDetails": {
+    "message": "Konkrétne sa zdá, že správa „$1“ $2 už bola odoslaná, ale stále existuje v priečinku Koncepty. To môže, ale nemusí naznačovať vážnejší problém. Môžete jednoducho skúsiť danú správu odstrániť (alebo zmeniť jej plán odoslania).\n\nMožnosť Odoslať neskôr túto správu preskočí, ale po zatvorení tohto upozornenia bude pokračovať v spracovaní ostatných naplánovaných konceptov správ."
+  },
+  "MessageResendError": {
+    "message": "Odoslať neskôr: Pokus o opätovné odoslanie už odoslanej správy?! Váš priečinok Na odoslanie alebo Koncepty $1 je pravdepodobne poškodený. ​​Opravte ich podľa popisu na stránke https://extended-thunder.github.io/send-later/#corrupt-outbox.",
+    "description": ""
+  },
+  "single_minute": {
+    "message": "minúta",
+    "description": "Used in an error message when the phrase '1 minute' needs to be displayed."
+  },
+  "single_day": {
+    "message": "deň",
+    "description": "Used in an error message when the phrase '1 day' needs to be displayed."
+  },
+  "single_week": {
+    "message": "týždeň",
+    "description": "Used in an error message when the phrase '1 week' needs to be displayed."
+  },
+  "single_month": {
+    "message": "mesiac",
+    "description": "Used in an error message when the phrase '1 month' needs to be displayed."
+  },
+  "single_year": {
+    "message": "rok",
+    "description": "Used in an error message when the phrase '1 year' needs to be displayed."
+  },
+  "plural_minutely": {
+    "message": "minút",
+    "description": ""
+  },
+  "plural_daily": {
+    "message": "dní",
+    "description": ""
+  },
+  "plural_weekly": {
+    "message": "týždňov",
+    "description": ""
+  },
+  "plural_monthly": {
+    "message": "mesiacov",
+    "description": ""
+  },
+  "plural_yearly": {
+    "message": "rokov",
+    "description": ""
+  },
+  "every_minutely": {
+    "message": "každých (é) $1 minút (y)",
+    "description": ""
+  },
+  "every_daily": {
+    "message": "každých (é) $1 dní (i)",
+    "description": ""
+  },
+  "every_weekly": {
+    "message": "každých (é) $1 týždňov (e)",
+    "description": ""
+  },
+  "every_monthly": {
+    "message": "každých (é) mesiacov (e)",
+    "description": ""
+  },
+  "every_yearly": {
+    "message": "každých (é)1 roky (ov)",
+    "description": ""
+  },
+  "everyempty": {
+    "message": "týždeň v mesiaci",
+    "description": ""
+  },
+  "everymonthly": {
+    "message": "$1 $2 v mesiaci",
+    "description": ""
+  },
+  "everymonthly_day0": {
+    "message": "Nedeľu",
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "everymonthly_day1": {
+    "message": "Pondelok",
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "everymonthly_day2": {
+    "message": "Utorok",
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "everymonthly_day3": {
+    "message": "Stredu",
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "everymonthly_day4": {
+    "message": "Štvrtok",
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "everymonthly_day5": {
+    "message": "Piatok",
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "everymonthly_day6": {
+    "message": "Sobotu",
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "betw_times": {
+    "message": "medzi $1 a $2",
+    "description": ""
+  },
+  "only_on_days": {
+    "message": "v $1",
+    "description": ""
+  },
+  "until_datetime": {
+    "message": "nie skôr ako $1",
+    "description": "Describes when a recurrence should terminate. Used in the scheduler dialog."
+  },
+  "ord1": {
+    "message": "1.",
+    "description": ""
+  },
+  "ord2": {
+    "message": "2.",
+    "description": ""
+  },
+  "ord3": {
+    "message": "3.",
+    "description": ""
+  },
+  "ord4": {
+    "message": "4.",
+    "description": ""
+  },
+  "ord5": {
+    "message": "5.",
+    "description": ""
+  },
+  "draftSaveWarning": {
+    "message": "Upozornenie: Aby sa zabránilo doručeniu správy pomocou Odoslať neskôr v čase úprav, čas odoslania bol zrušený. Prosím naplánujte správu na odoslanie znova až úpravy dokončíte.",
+    "description": ""
+  },
+  "AreYouSure": {
+    "message": "Naozaj?",
+    "description": ""
+  },
+  "answerYes": {
+    "message": "Áno",
+    "description": "Affirmative answer for a yes/no question presented in a confirmation dialog"
+  },
+  "answerNo": {
+    "message": "Nie",
+    "description": "Negative answer for a yes/no question presented in a confirmation dialog"
+  },
+  "OutboxConfirmMessage": {
+    "message": "Kliknutím na tlačidlo ”$1” sa správa okamžite umiestni do priečinka Na odoslanie. Odoslanie správy sa NENAPLÁNUJE v konkrétnom čase. Ak to chcete urobiť, kliknite na tlačidlo ”$2” po zadaní platného času odoslania. Naozaj chcete správu teraz umiestniť do priečinka Na odoslanie?",
+    "description": "$1 is replaced with your translation of 'Put in Outbox' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+  },
+  "SendNowConfirmMessage": {
+    "message": "Kliknutím na tlačidlo „$1“ sa správa odošle okamžite. Odoslanie správy sa NENAPLÁNUJE na konkrétny čas. V takom prípade kliknite na tlačidlo „$2“ po zadaní platného času odoslania. Naozaj chcete správu odoslať teraz?\n",
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
+  },
+  "PopupChangedConfirmMessage": {
+    "message": "Zdá sa, že ste klikli na tlačidlo „$1“ po zmene niektorých hodnôt v dialógovom okne plánovania. Ste si istý, že ste to chceli urobiť, a nie kliknúť na tlačidlo „$2“?",
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'."
+  },
+  "ConfirmAgain": {
+    "message": "Zobraziť toto varovanie nabudúce",
+    "description": ""
+  },
+  "ScheduledMessagesWarningTitle": {
+    "message": "Upozornenie ohľadom naplánovaných správ",
+    "description": ""
+  },
+  "ShowQuitNotificationPreference": {
+    "message": "Zobraziť upozornenie pred ukončením, ak sú čakajúce správy"
+  },
+  "SubfolderPreference": {
+    "message": "Uložiť naplánované správy do podpriečinka s názvom:",
+    "description": "In preferences tab, preceded by a checkbox and followed by a text input"
+  },
+  "detachedPopupPreference": {
+    "message": "Oddeliť vyskakovacie okno plánovania od okna písania správy",
+    "description": "In preferences tab, preceded by a checkbox"
+  },
+  "ScheduledMessagesWarningQuitRequested": {
+    "message": "Sú tu správy naplánované na odoslanie. „Odoslať neskôr“ môže odosielať správy iba, keď $1 beží. Naozaj chcete ukončiť program?",
+    "description": "$1 is replaced with the localized name for Thunderbird"
+  },
+  "ScheduledMessagesWarningQuit": {
+    "message": "Funkcia Odoslať neskôr dokáže odosielať správy iba vtedy, keď je spustená aplikácia $1. Nezabudnite ju pred naplánovaným odoslaním správ reštartovať!",
+    "description": "$1 is replaced with the localized name for Thunderbird"
+  },
+  "IncompatibleEncryptionTitle": {
+    "message": "Nastavenia šifrovania nie sú kompatibilné s $1",
+    "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has incompatible encryption or signing enabled. The placeholder is replaced with the extension name."
+  },
+  "IncompatibleEncryption-pgp-error-Text": {
+    "message": "$1 nemôže naplánovať správy, ktoré sú šifrované alebo digitálne podpísané pomocou PGP, alebo ktorých koncepty sú šifrované pomocou PGP. Pred naplánovaním tejto správy musíte tieto funkcie vypnúť alebo prepnúť na S/MIME. Informácie o šifrovaní konceptov nájdete v časti „Ukladanie konceptov správ v šifrovanom formáte“ v časti „Šifrovanie End-To-End“ v nastaveniach účtu alebo identity.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has PGP encryption, signing, or draft encryption enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
+  "IncompatibleEncryption-drafty-error-Text": {
+    "message": "Ak chcete, aby aplikácia $1 podpisovala alebo šifrovala naplánované správy pomocou protokolu S/MIME, musíte povoliť šifrovanie konceptov. Ak to chcete urobiť, pozrite si časť „Ukladanie konceptov správ v šifrovanom formáte“ v časti „Šifrovanie End-To-End“ v nastaveniach účtu alebo identity.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has S/MIME encryption or signing without enabling draft encryption first. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
+  "EncryptionUnsupportedTitle": {
+    "message": "$1 nepodporuje šifrovanie",
+    "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has encryption or signing enabled. The placeholder is replaced with the extension name."
+  },
+  "EncryptionUnsupportedText": {
+    "message": "$1 nemôže naplánovať správy, ktoré sú šifrované alebo digitálne podpísané; pred naplánovaním musíte tieto funkcie v koncepte zakázať. Taktiež musíte v časti „Šifrovanie End-To-End“ zakázať možnosť „Ukladať koncepty správ v šifrovanom formáte“ pre účty alebo identity, pre ktoré chcete naplánovať správy.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has encryption or signing enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
+  "DSN": {
+    "message": "Potvrdenie o doručení",
+    "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message. This needs to match what's in the menu. NOTE: This is *different from* the 'Return Receipt' menu command which appears adjacent to it."
+  },
+  "noDsnTitle": {
+    "message": "$1 nie je podporované s $2",
+    "description": "The title of the alert that pops up when the user attempts to schedule a message with delivery status notification enabled. $1 is replaced with the string 'DSN' and $2 is replaced with the extension name."
+  },
+  "noDsnText": {
+    "message": "Možnosť $1 nie je kompatibilná s možnosťou $2. Pred naplánovaním správy túto možnosť vypnite alebo ju odošlite bez možnosti $2.",
+    "description": "The text of the alert that pops up when the user attempts to schedule a message with delivery status notification enabled. $1 is replaced with the contents of the string 'DSN' and $2 is replaced with the extension name."
+  },
+  "incorrectUUID": {
+    "message": "Naplánované iným klientom",
+    "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."
+  },
+  "TimeMismatchConfirmTitle": {
+    "message": "Čas odoslania a obmedzenie času odoslania sa nezhodujú",
+    "description": ""
+  },
+  "TimeMismatchConfirmBody": {
+    "message": "Čas na odoslanie $1 nespadá do nastavených obmedzení času na odoslanie. Použite Zrušiť a upravte čas na odoslanie alebo jeho obmedzenie. Tlačidlo OK upraví čas na odoslanie automaticky na $2.",
+    "description": ""
+  },
+  "endTimeWarningTitle": {
+    "message": "Neplatné obmedzenie času odoslania správy",
+    "description": ""
+  },
+  "endTimeWarningBody": {
+    "message": "Pri zadávaní obmedzenia času odoslania nesmie byť koncový čas skôr ako čas začiatku. Prosím upravte svoje obmedzenie času na odoslanie alebo obmedzenie vypnite.",
+    "description": ""
+  },
+  "missingDaysWarningTitle": {
+    "message": "Neplatné obmedzenie dňa",
+    "description": ""
+  },
+  "missingDaysWarningBody": {
+    "message": "Bolo zapnuté obmedzenie dňa odoslania správy bez zadania dní. Prosím vypnite obmedzenie dňa odoslania alebo špecifikujte aspoň jeden deň na odoslanie.",
+    "description": ""
+  },
+  "invalidUntilWarningTitle": {
+    "message": "Neplatné obmedzenie „nie skôr ako”",
+    "description": ""
+  },
+  "invalidUntilWarning_inPast": {
+    "message": "Časový limit opakovania je v minulosťou.",
+    "description": ""
+  },
+  "invalidUntilWarning_tooSoon": {
+    "message": "Časový limit opakovania je pred prvým plánovaným odoslaním.",
+    "description": ""
+  },
+  "InvalidArgsTitle": {
+    "message": "Neplatné argumenty funkcie",
+    "description": ""
+  },
+  "InvalidArgsBody": {
+    "message": "Argumenty funkcie nie sú platné. Zadajte zoznam JavaScript bez uzatvorených hranatých zátvoriek.",
+    "description": ""
+  },
+  "BlockedLateMessage": {
+    "message": "Doručenie správy s predmetom „$1“ v priečinku Koncepty $2 bolo naplánované pred viac ako $3 minútami, takže doručenie bolo zablokované. Koncept by ste mali upraviť a buď ho odoslať ručne, alebo ho preplánovať. Môžete tiež vypnúť predvoľbu „Nedoručovať správy s meškaním vyšším ako # minút“, aby ste prestali blokovať doručovanie oneskorených správ.",
+    "description": ""
+  },
+  "BlockedLateMessage2": {
+    "message": "Doručenie správy s predmetom “$1” v priečinku Koncepty $2 malo byť doručené pred viac ako $3 $4, takže doručenie bolo zablokované. Mali by ste upraviť koncept a buď ho poslať ručne, alebo ho naplánovať na nový termín. Môžete tiež vypnúť predvoľbu „Nedoručovať správy dlhšie ako…“, aby ste prestali blokovať doručovanie niektorých oneskorených správ, ale správy oneskorené viac ako šesť mesiacov budú vždy blokované.",
+    "description": "This is an updated version of the BlockedLateMessage string which is intended to replace it. I've left the old string in the database for the time being so translators can use it as a reference / starting point. The 3rd placeholder in THIS string is a number and the fourth is a unit such as 'minutes', 'days', etc. It will be singular if the number is 1 or plural otherwise. The unit is pulled from single_day etc. or plural_daily etc."
+  },
+  "EditorReadMeCode": {
+    "message": "// Vitajte v editore funkcie Odoslať neskôr!\n//\n// Editor vám umožňuje vytvárať funkcie JavaScript implementujúce komplexnú\n// logiku plánovania správ, ktorá môže byť spojená s tlačidlami skratiek alebo\n// vybraná v dialógovom okne Odoslať neskôr.\n//\n// Ako vidíte vyššie, pri volaní funkcie plánovania jej budú pridelené\n// tri argumenty:\n// * „specname“ je potrebné, ak chcete, aby sa táto funkcia opakovala (pozri nižšie)\n// * „prev“ je predchádzajúci plánovaný čas odoslania, ak ide o opakujúce sa\n// volanie\n// * „args“ sú dodatočné argumenty vrátené predchádzajúcim volaním, ak ide o opakujúce sa\n// volanie\n//\n// Váš kód musí nastaviť premenné „next“, „nextspec“ a\n// „nextargs“ takto:\n//\n// * „next“ je buď počet minút v budúcnosti, alebo objekt Date\n// označujúci, kedy sa má správa odoslať.\n// * „nextspec“ je špecifikácia opakovania, ak má byť\n// opakujúca sa správa (pozri\n// https://extended-thunder.github.io/send-later/#dynamic-recurrence). Ak toto nenastavíte,\n// správa sa odošle iba raz. Poznámka: Ak chcete, aby sa vaša\n// funkcia volala znova pre opakovanie, postupujte takto:\n// nextspec = \"function \" + specname;\n// * „nextargs“ je pole argumentov, ktoré chcete odovzdať do ďalšieho\n// volania funkcie ako „args“.\n//\n// Počas práce na funkcii ju môžete otestovať vyplnením hodnôt\n// pre „prev“ a „args“ do textových polí nižšie a potom kliknutím na „Spustiť“\n// spustením funkcie a zobrazením výsledkov.\n//\n// Existujú dve predkonfigurované vzorové funkcie, „BusinessHours“ a\n// „DaysInARow“, na ktoré si môžete pozrieť a pohrať sa s nimi, aby ste sa dozvedeli viac.\n//\n// Táto funkcia „ReadMeFirst“ len spôsobí, že sa správa odošle teraz,\n// prostredníctvom nasledujúceho riadku.\nnext = new Date();",
+    "description": "This is the \"README\" text that appears in the dynamic function editor. The English text in the comments should be translated, but the variable and function names should be left in English."
+  },
+  "EditorReadMeHelp": {
+    "message": "Text, ktorý tu zadáte, bude zobrazený ako popis pri nabehnutí myšou na funkcie v menu. To môžete využiť ako pomôcku na zistenie, čo funkcia robí a aké argumenty prijíma.",
+    "description": ""
+  },
+  "_BusinessHoursCode": {
+    "message": "// Predvolené hodnoty\nvar workDays = [1, 2, 3, 4, 5]; // Po - Pia; Ne == 0, So == 6\nvar workStart = [8, 30]; // Začiatok pracovného dňa ako [H, M]\nvar workEnd = [17, 30]; // Koniec pracovného dňa ako [H, M]\nif (args && args[0])\nworkDays = args[0];\nif (args && args[1])\nworkStart = args[1];\nif (args && args[2])\nworkEnd = args[2];\nif (prev)\n// Pri bežnom používaní sa neočakáva, ale používa sa ako aktuálny čas na testovanie.\nnext = new Date(prev);\nelse\nnext = new Date();\n\nif (workDays.length == 0 || !workDays.every(d => (d >= 0) && (d <= 6))) { return undefined; }\n\n// Ak sme po konci pracovného dňa alebo nie sme v pracovný deň, presunieme sa na čas začiatku práce v nasledujúci deň.\n// kým ((next.getHours() > workEnd[0]) ||\n(next.getHours() == workEnd[0] && next.getMinutes() > workEnd[1]) ||\n(workDays.indexOf(next.getDay()) == -1)) {\nnext.setDate(next.getDate() + 1);\nnext.setHours(workStart[0]);\nnext.setMinutes(workStart[1]);\n}\n// Ak sme pred začiatkom pracovného dňa, presunieme sa na jeho čas začiatku.\n\nak ((next.getHours() < workStart[0]) ||\n(next.getHours() == workStart[0] && next.getMinutes() < workStart[1])) {\nnext.setHours(workStart[0]);\nnext.setMinutes(workStart[1]);",
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
+  },
+  "BusinessHoursHelp": {
+    "message": "Odošlite správu teraz, ak je to počas pracovnej doby alebo na začiatku nasledujúceho pracovného dňa. Definíciu pracovných dní (predvolené: Po - Pia) môžete zmeniť odovzdaním poľa čísel pracovných dní ako prvého argumentu, kde 0 je nedeľa a 6 je sobota. Čas začiatku alebo konca práce (predvolené: 8:30 - 17:30) môžete zmeniť odovzdaním poľa [H, M] ako druhého alebo tretieho argumentu. Pre predchádzajúce argumenty, ktoré nemeníte, zadajte „null“. Napríklad „null, [9, 0], [17, 0]“ zmení pracovnú dobu bez zmeny pracovných dní.",
+    "description": "This is the help message for the \"BusinessHours\" dynamic scheduling function. The function name should not be translated."
+  },
+  "DaysInARowCode": {
+    "message": "// Prvú správu odoslať teraz, ďalšie správy raz za deň.\nif (! prev)\nnext = new Date();\nelse {\nvar now = new Date();\nnext = new Date(prev); // Kopírovať argument dátumu, aby sme ho nemodifikovali.\ndo {\nnext.setDate(next.getDate() + 1);\n} while (next < now);\n// ^^^ Nepokúšať sa odosielať v minulosti, pre prípad, že by Thunderbird bol v čase // naplánovaného odoslania v režime spánku.\n}\nif (! args) // Štandardne odoslať správy trikrát.\nargs = [3];\nnextargs = [args[0] - 1];\n// Zopakovať, ak sme ešte nevykonali dostatok odoslaní.\nif (nextargs[0] > 0)\nnextspec = \"function \" + specname;",
+    "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
+  },
+  "DaysInARowHelp": {
+    "message": "Odošle správu teraz a potom denne po dobu troch dní v rovnaký čas. Zadajte číslo, ak chcete zmeniť celkový počet odoslaní.",
+    "description": "This is the help message for the \"DaysInARow\" dynamic scheduling function. The function name should not be translated."
+  },
+  "DiscardConfirmTitle": {
+    "message": "Zahodiť zmeny?",
+    "description": ""
+  },
+  "DiscardConfirmBody": {
+    "message": "Máte neuložené zmeny. Chcete ich zahodiť?",
+    "description": ""
+  },
+  "UntestedSaveTitle": {
+    "message": "Uložiť neotestovanú funkciu?",
+    "description": ""
+  },
+  "UntestedSaveBody": {
+    "message": "Funkcia nebola od poslednej modifikácie otestovaná (pomocou tlačidla „Spustiť“). Chcete ju napriek tomu uložiť či exportovať?",
+    "description": ""
+  },
+  "BadSaveTitle": {
+    "message": "Neplatný názov funkcie alebo kódu",
+    "description": ""
+  },
+  "BadSaveBody": {
+    "message": "Uistite sa, že meno funkcie a jej kód je validný pred uložením či exportovaním.",
+    "description": ""
+  },
+  "ReplacingFunctionTitle": {
+    "message": "Prepísať existujúcu funkciu?",
+    "description": ""
+  },
+  "ReplacingFunctionBody": {
+    "message": "Funkcia daného mena už existuje. Naozaj sa má prepísať?",
+    "description": ""
+  },
+  "NoNextValueError": {
+    "message": "Funkcia nenastavila hodnotu „ďalší“.",
+    "description": ""
+  },
+  "BadNextValueError": {
+    "message": "„Ďalšia“ hodnota „$1“ nie je číslo ani dátum",
+    "description": ""
+  },
+  "BadNextArgsError": {
+    "message": "Hodnota  „$1“ pre  „nextargs“ nie je pole",
+    "description": ""
+  },
+  "FunctionDeleteConfirmBody": {
+    "message": "Naozaj sa má zmazať táto funkcia? Všetky tlačidlá, ktoré ju používajú, prestanú fungovať. Všetky správy s opakovaným odoslaním, ktoré ju využívajú, nebudú po odoslaní znovu naplánované.",
+    "description": ""
+  },
+  "SLJFilterLabel": {
+    "message": "Súbory Odoslať neskôr vo formáte JSON",
+    "description": ""
+  },
+  "FunctionErrorTitle": {
+    "message": "Chyba pri volaní dynamickej funkcie",
+    "description": ""
+  },
+  "FunctionErrorBody": {
+    "message": "Chyba pri volaní funkcie dynamického naplánovania „$1”",
+    "description": ""
+  },
+  "cancel_on_reply": {
+    "message": "zrušiť po odpovedi",
+    "description": ""
+  },
+  "PendingMessage": {
+    "message": "ČAKAJÚCE $1",
+    "description": ""
+  },
+  "IdleMessage": {
+    "message": "NEČINNÝ",
+    "description": ""
+  },
+  "DisabledMessage": {
+    "message": "VYPNUTÉ",
+    "description": ""
+  },
+  "CheckingMessage": {
+    "message": "Prebieha kontrola",
+    "description": ""
+  },
+  "LongDescription": {
+    "message": "Poznámka: Ak chcete namiesto opakovaného daru prispieť jednorazovo, môžete tak urobiť cez https://paypal.me/JonathanKamens alebo https://venmo.com/Jonathan-Kamens, alebo si jednoducho nastavte opakovaný dar v LiberaPay a potom ho po jednej platbe zrušte.\n\nTento doplnok mení príkaz „Odoslať neskôr“ (Ctrl+Shift+Return) v okne písania správy tak, že namiesto jednoduchého kopírovania správy do priečinka Na odoslanie, aby sa odoslala pri ďalšom pripojení k internetu alebo pri použití príkazu „Odoslať neodoslané správy“, sa zobrazí dialógové okno, ktoré vám umožní určiť, kedy sa má správa odoslať.\n\nMôžete zadať konkrétny čas a dátum alebo kliknúť na „o 15 minút neskôr“, „o 30 minút neskôr“ alebo „o 2 hodiny neskôr“, prípadne definovať vlastné skratky. Môžete tiež naplánovať opakované odosielanie správy pomocou jednoduchých pravidiel (každých N hodín, dní atď.) alebo prispôsobiteľných funkcií.\n\n<a href='https://extended-thunder.github.io/send-later/'>Používateľská príručka</a> | <a href='https://github.com/Extended-Thunder/send-later/discussions'>Otázky a spätná väzba</a> | <a href='https://github.com/Extended-Thunder/send-later/issues'>Správy o chybách</a>\n\nOdoslať neskôr sa spolieha na výkonnú analýzu vstupných údajov poskytovanú službou Andrew Plummer's <a href='https://sugarjs.com/'>Sugar.js library</a>.",
+    "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
+  },
+  "DeveloperComments": {
+    "message": "Prosím <a href='https://extended-thunder.github.io/send-later/#help'>pošlite mi</a> hlásenia o chybách a návrhoch!",
+    "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
+  },
+  "accelKeyLabel": {
+    "message": "Klávesa akcelerátora",
+    "description": "Label for options window to identify accelerator shortcuts"
+  },
+  "accelCtrlLabel": {
+    "message": "Ctrl+Click",
+    "description": "Indicates key combination to access the ctrl+click accelerator function"
+  },
+  "accelCtrlLabel.MacOS": {
+    "message": "Cmd+Click",
+    "description": "Indicates key combination to access the ctrl+click accelerator function. On mac the Ctrl key is replaced with the 'Command' key"
+  },
+  "accelShiftLabel": {
+    "message": "Shift+Click",
+    "description": "Indicates key combination to access the shift+click accelerator function"
+  },
+  "okay": {
+    "message": "OK",
+    "description": "Confirm an action (presented in popup dialogs)"
+  },
+  "cancel": {
+    "message": "Zrušiť",
+    "description": "Cancel an action (presented in popup dialogs)"
+  },
+  "customizeDateTimeFormatsPrefLabel": {
+    "message": "Prispôsobenie formátov dátumu/času",
+    "description": "Option to enable customizing date/time formats"
+  },
+  "shortDateTimeFormatsPrefLabel": {
+    "message": "Skrátený formát dátumu/času:",
+    "description": "Preference input for short datetime format (e.g. 2021/04/28 11:45)"
+  },
+  "longDateTimeFormatsPrefLabel": {
+    "message": "Dlhý formát dátumu/času:",
+    "description": "Preference input for extended datetime format (e.g. Wed, Apr 28 2021 11:45)"
+  },
+  "invalidDateFormat": {
+    "message": "neplatný alebo neúplný formát dátumu",
+    "description": "Message displayed in the user interface inside parentheses when the user enters an invalid custom date format"
+  },
+  "menuScheduleMsg": {
+    "message": "Naplánovať správu(y)",
+    "description": "Command added to the message list menu for the user to use to schedule one or more selected drafts with Send Later"
+  },
+  "menuSkipMsg": {
+    "message": "Preskočiť ďalší výskyt",
+    "description": "Command added to the message list menu for the user to use to skip the next occurrence of one or more selected recurring drafts"
+  },
+  "menuClaimMsg": {
+    "message": "Presunúť naplánované správu (y) do tohto Thunderbirdu",
+    "description": "Command added to the message list menu for the user to use to move scheduled messages from another Thunderbird instance to this one."
+  },
+  "resultsTitle": {
+    "message": "Výsledky spracovania správ",
+    "description": "The title of the pop-up that displays results after the user uses the message list context menu to perform an operation on more than one selected message."
+  },
+  "resultsAllSuccess": {
+    "message": "Všetky vybrané správy boli úspešne spracované.",
+    "description": "Message displayed in the message list context menu results pop-up when multiple messages were selected and all were processed successfully."
+  },
+  "resultsPartialSuccess": {
+    "message": "Úspešne spracované $1 z $2 vybraných správ.",
+    "description": "Message displayed in the message list context menu results pop-up when multiple messages were selected and some were not processed successfully. The first placeholder is the number of successful messages and the second is the total number of selected messages."
+  },
+  "cantSkipSingletonTitle": {
+    "message": "Nie je možné preskočiť výskyt neopakujúcej sa správy",
+    "description": "The title of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a non-recurring message."
+  },
+  "cantSkipSingletonText": {
+    "message": "Správa s predmetom „$1“ nie je opakujúca sa správa, takže nemôžete preskočiť jej ďalšie naplánované zobrazenie.",
+    "description": "The text of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a non-recurring message. The placeholder is for the message subject."
+  },
+  "cantSKipPastLastTitle": {
+    "message": "Správa už nemá žiadne opakovania",
+    "description": "The title of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a message that has no further occurrences after that one."
+  },
+  "cantSkipPastLastText": {
+    "message": "Správa s predmetom „$1“ sa už nevyskytuje, takže ďalšiu nemôžete preskočiť.",
+    "description": "The text of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a message that has no further occurrences after that one. The placeholder is for the message subject."
+  },
+  "SkipConfirmMessage": {
+    "message": "Uviedli ste, že chcete preskočiť ďalší výskyt jednej z vybratých správ. Ak po vykonaní tejto akcie zmeníte názor, budete musieť správy manuálne opakovane naplánovať. Naozaj chcete pokračovať?",
+    "description": "The text of the pop-up that warns the user when they activate the message list context menu command to skip the next occurrence of one or more messages. The purpose of this warning is to ensure that the user knows what the command does before using it. There is a checkbox in the pop-up which they can uncheck if they don't want to see the message again. See also 'AreYouSure' and 'ConfirmAgain' strings which occur in the same pop-up."
+  },
+  "RescheduleErrorTitle": {
+    "message": "Správa o chybe pri zmene plánu",
+    "description": "Title of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "RescheduleErrorText": {
+    "message": "UPOZORNENIE: Pri pokuse o naplánovanie ďalšieho výskytu plánovanej správy s predmetom „$1“ sa vyskytla neočakávaná chyba. Podrobnosti nájdete v protokole chýb Thunderbirdu. Predchádzajúci naplánovaný koncept preto nebol odstránený. V prípade potreby by ste ho mali buď odstrániť, alebo upraviť a znova naplánovať.",
+    "description": "Text of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "TelemetryAskTitle": {
+    "message": "$1 žiadosť o zhromažďovanie údajov",
+    "description": "Title of the pop-up that asks the user whether we can collect anonymous usage data. The placeholder is replaced with the extension name."
+  },
+  "TelemetryAskText": {
+    "message": "Môžeme zhromažďovať anonymné údaje o vašom používaní doplnku $1? Tieto údaje nám hovoria o tom, ako používate doplnok a o vašom prostredí. Neobsahujú žiadne identifikačné informácie, obsah e-mailov ani informácie o účte. Tieto údaje používame na vylepšenie doplnku, meranie jeho používania a identifikáciu oblastí, na ktoré sa zamerať. Tieto údaje s nikým nezdieľame. Vaša odpoveď neovplyvní funkčnosť doplnku. Úplné podrobnosti nájdete v našom dokumente $2.",
+    "description": "Text of the pop-up that asks the user whether we can collect anonymous usage data. The second placeholder is replaced with the contents of the string PrivacyPolicy (so we can make it a link."
+  },
+  "PrivacyPolicy": {
+    "message": "Zásady ochrany osobných údajov",
+    "description": "Inserted into TelemetryAskText. Also used to link to the privacy policy from the Send Later pop-up in the main Thunderbird window."
+  },
+  "TelemetryAskYes": {
+    "message": "Áno, môžete zhromažďovať údaje o používaní",
+    "description": "Label for the yes button on the telemetry request dialog."
+  },
+  "TelemetryAskNo": {
+    "message": "Nie, nezhromažďovať údaje o používaní",
+    "description": "Label for the no button on the telemetry request dialog."
+  },
+  "betaThankYouTitle": {
+    "message": "Ďakujem, že ste beta overovateľ!",
+    "description": ""
+  },
+  "betaThankYouText": {
+    "message": "Momentálne dostávate predbežné aktualizácie pre $1. Ďakujeme za vašu pomoc, ale nechceme vás ničomu vnucovať, preto vám to preventívne pripomíname pri každej aktualizácii $1. Ak chcete opustiť program beta testovania, môžete tak urobiť stiahnutím a nainštalovaním aktuálnej verzie $1 z addons.thunderbird.net.",
+    "description": "$1 is replaced with the extension name"
+  },
+  "selectNone": {
+    "message": "(Žiadny)",
+    "description": "Used in pop-up menus and other menus where the user needs to be able to explicitly chose none as an option."
+  },
+  "recipients": {
+    "message": "Príjemca",
+    "description": "Column header in message list in main window pop-up"
+  },
+  "subject": {
+    "message": "Predmet",
+    "description": "Column header in message list in main window pop-up"
+  },
+  "folder": {
+    "message": "Zložka",
+    "description": "Column header in message list in main window pop-up"
+  },
+  "noneScheduled": {
+    "message": "Žiadne naplánované správy",
+    "description": "Message in main window pop-up when there are no scheduled messages"
+  },
+  "internalLogTitle": {
+    "message": "Odoslať neskôr interný protokol",
+    "description": "Title of the tab where the Send Later internal log is displayed when the user requests it"
+  },
+  "internalLogLevelLabel": {
+    "message": "Úroveň interného protokolu:",
+    "description": "Label for the option menu for selecting the internal log level"
+  },
+  "internalLogClearLabel": {
+    "message": "Vymazať",
+    "description": "Label for the button to clear the internal log"
+  },
+  "internalLogCopyLabel": {
+    "message": "Kopírovať",
+    "description": "Label for the buttom to copy the internal log to the clipboard"
+  },
+  "internalLogLinkLabel": {
+    "message": "Zobraziť interný protokol",
+    "description": "Label for the link in the main window pop-up for opening the internal log tab."
+  },
+  "messageTooLargeTitle": {
+    "message": "Správa je príliš dlhá",
+    "description": "The title of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large."
+  },
+  "messageTooLargeText": {
+    "message": "Kvôli chybe v Thunderbirde nemôže $1 doručiť správu s predmetom „$2“, pretože je príliš veľká. Jej veľkosť je $3 bajty, čo je viac ako nastavený limit $4. Ak chcete, môžete tento limit zvýšiť zmenou preferencie „mailnews.message_warning_size“ v konfiguračnom editore Thunderbirdu alebo nastavením preferencie na 0 limit úplne zakážete. Upozorňujeme však, že akákoľvek zmena, ktorú vykonáte, ovplyvní aj to, či vás Thunderbird upozorní na veľké správy odosielané priamo, a nie cez $1. V každom prípade, ak chcete túto správu odoslať, môžete ju buď otvoriť na úpravu a odoslať priamo, alebo ju upraviť a preplánovať jej odoslanie po zmenšení alebo zmene preferencie Thunderbirdu.",
+    "description": "The (unfortunately very long) text of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large and the TB version is 114 or earlier. $1 is the extension name, $2 is the message subject, $3 is its length, and $4 is the length limit. Please don't translate 'mailnews.message_warning_size', that needs to stay in English."
+  },
+  "dynamicCompatibilityTitle": {
+    "message": "Upozornenie na kompatibilitu dynamických funkcií",
+    "description": "The title of the pop-up error that is displayed when the user has dynamic scheduling functions configured in Send Later and they are not currently using a version of Send Later that supports them."
+  },
+  "dynamicCompatibilityMessage": {
+    "message": "<strong>UPOZORNENIE:</strong> Verzia aplikácie $1, ktorú používate, nepodporuje funkcie dynamického plánovania. Pokusy o použitie dynamických funkcií pri plánovaní jednotlivých alebo opakujúcich sa správ budú mať za následok nedefinované a nesprávne správanie. <strong>Toto zahŕňa všetky dynamické opakujúce sa správy, ktoré ste si naplánovali v minulosti.</strong><br/>Ak chcete naďalej používať dynamické funkcie, musíte prejsť na beta aktualizačný kanál, ktorý ich naďalej podporuje.<br/>Táto zmena je výsledkom prísnejších bezpečnostných obmedzení zavedených moderátormi stránky <a href='https://addons.thunderbird.net/'>addons.thunderbird.net</a>. Viac informácií nájdete v <a href='$2'>používateľskej príručke</a>.<br/>Táto správa sa zobrazí pri spustení, kým neprepnete na beta kanál $1 alebo neodstránite všetky neštandardné dynamické funkcie v editore funkcií.",
+    "description": "The text of the pop-up error that is displayed when the user has dynamic scheduling functions configured in Send Later and they are not currently using a version of Send Later that supports them. $1 is replaced with extension name and $2 is replaced with the appropriate user guide link."
+  }
+}
