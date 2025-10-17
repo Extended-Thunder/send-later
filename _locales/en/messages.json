@@ -1104,5 +1104,17 @@
   "dynamicCompatibilityMessage": {
     "message": "<strong>WARNING:</strong> The version of $1 you are using does not support dynamic scheduling functions. Attempts to use dynamic functions when scheduling individual or recurring messages will result in undefined, incorrect behavior. <strong>This includes any dynamic recurring messages you have scheduled in the past.</strong><br/>If you wish to keep using dynamic functions, you need to switch to the beta update channel, which continues to support them.<br/>This change is the result of stricter security restrictions imposed by the moderators of <a href='https://addons.thunderbird.net/'>addons.thunderbird.net</a>. For more information, see <a href='$2'>the user guide</a>.<br/>You will see this message on startup until you either switch to the $1 beta channel or delete all of the non-standard dynamic functions in the function editor.",
     "description": "The text of the pop-up error that is displayed when the user has dynamic scheduling functions configured in Send Later and they are not currently using a version of Send Later that supports them. $1 is replaced with extension name and $2 is replaced with the appropriate user guide link."
+  },
+  "in15minutes": {
+    "message": "in 15 minutes",
+    "description": "Default quick button label"
+  },
+  "in30minutes": {
+    "message": "in 30 minutes",
+    "description": "Default quick button label"
+  },
+  "in2hours": {
+    "message": "in 2 hours",
+    "description": "Default quick button label"
   }
 }

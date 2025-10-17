@@ -35,6 +35,19 @@ const asyncTimeout = async (asyncPromise, timeLimit) => {
 };
 
 var SLTools = {
+  // Copied from updateString in i18n.js, with this.keyPrefix dereferenced
+  localizeString(string) {
+    let re = new RegExp("__MSG_(.+?)__", "g");
+    return string.replace(re, (matched) => {
+      // 6 is "__MSG_".length
+      const key = matched.slice(6, -2);
+      let rv = this.extension
+        ? this.extension.localeData.localizeMessage(key)
+        : messenger.i18n.getMessage(key);
+      return rv || matched;
+    });
+  },
+
   // Convenience function for getting preferences.
   async getPrefs() {
     let { preferences } = await messenger.storage.local.get({
@@ -731,9 +744,14 @@ var SLTools = {
 
   async prefDefaults() {
     if (!SLTools._prefDefaults) {
-      SLTools._prefDefaults = await fetch("/utils/defaultPrefs.json").then(
-        (ptxt) => ptxt.json(),
+      let defs = await fetch("/utils/defaultPrefs.json").then((ptxt) =>
+        ptxt.json(),
       );
+      for (const [key, value] of Object.entries(defs)) {
+        if (value[0] != "string") continue;
+        value[1] = this.localizeString(value[1]);
+      }
+      SLTools._prefDefaults = defs;
     }
     return SLTools._prefDefaults;
   },
