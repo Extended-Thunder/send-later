@@ -1104,5 +1104,17 @@
   "dynamicCompatibilityMessage": {
     "message": "<strong>WAARSCHUWING:</strong> de versie van $1 die u gebruikt, ondersteunt geen dynamische planningsfuncties. Pogingen om dynamische functies te gebruiken bij het inplannen van individuele of terugkerende berichten resulteren in ongedefinieerd, onjuist gedrag. <strong>Dit omvat alle dynamische terugkerende berichten die u in het verleden hebt ingepland.</strong><br/>Als u dynamische functies wilt blijven gebruiken, moet u overschakelen naar het bèta-updatekanaal, dat deze blijft ondersteunen.<br/>Deze wijziging is het gevolg van strengere beveiligingsbeperkingen die door de moderatoren van <a href='https://addons.thunderbird.net/'>addons.thunderbird.net</a> zijn opgelegd. Bekijk <a href='$2'>de gebruikershandleiding</a>voor meer informatie.<br/>U ziet dit bericht bij het opstarten totdat u ofwel naar het $1-bètakanaal gaat, of alle niet-standaard dynamische functies in de functie-editor verwijdert.",
     "description": "The text of the pop-up error that is displayed when the user has dynamic scheduling functions configured in Send Later and they are not currently using a version of Send Later that supports them. $1 is replaced with extension name and $2 is replaced with the appropriate user guide link."
+  },
+  "in15minutes": {
+    "message": "over 15 minuten",
+    "description": "Default quick button label"
+  },
+  "in30minutes": {
+    "message": "over 30 minuten",
+    "description": "Default quick button label"
+  },
+  "in2hours": {
+    "message": "over 2 uur",
+    "description": "Default quick button label"
   }
 }

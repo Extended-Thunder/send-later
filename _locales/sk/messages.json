@@ -180,7 +180,7 @@
     "description": ""
   },
   "whitelistPrefTooltip": {
-    "message": "Ak je povolená možnosť `$1' alebo `\"Odoslať\" oneskorené správy' a tu zadáte existujúci zoznam kontaktov, akákoľvek správa, ktorá má všetkých príjemcov v zozname kontaktov, obíde $2, keď je aktivované tlačidlo odoslania alebo príkaz ponuky.",
+    "message": "Ak je povolená možnosť `$1' alebo `„Odoslať“ oneskorené správy' a tu zadáte existujúci zoznam kontaktov, akákoľvek správa, ktorá má všetkých príjemcov v zozname kontaktov, obíde $2, keď je aktivované tlačidlo odoslania alebo príkaz ponuky.",
     "description": "$1 is replaced with the contents of sendButtonPrefLabel, and $2 is replaced with extensionName."
   },
   "whitelistPrefLabel": {
@@ -356,7 +356,7 @@
     "description": "Heading for the column in the preferences where the user can specify the key bindings to activate shortcut buttons"
   },
   "validKeysTooltip": {
-    "message": "Platné klávesové skratky (rozlišujú sa veľké a malé písmená!) sú A-Z, 0-9, F1-F12, Comma, Period, Home, End, PageUp, PageDown, Space, Insert, Delete, Up, Down, Left, Right",
+    "message": "Platné klávesové skratky (rozlišujú sa veľké a malé písmená!) sú A-Z, 0-9, F1-F12, Čiarka, Bodka, Domov, End, PageUp, PageDown, Medzerník, Vložiť, Vymazať, Hore, Dole, Vľavo, Vpravo",
     "description": "The tooltip that pops up to tell the user what the valid keys to bind the quick option shortcuts to. Do not translate the keys, just translate the 'Valid shortcut keys (case-sensitive!) are' part, because the keys have to be in English in the actual shortcut."
   },
   "showsendlaterprogress.caption": {
@@ -396,7 +396,7 @@
     "description": ""
   },
   "editortip": {
-    "message": "Otvoriť okno na vytváranie a úpravu JavaScriptových funkcií implementujúcich komplexnú logiku plánovania.",
+    "message": "Otvoriť okno na vytváranie a úpravu JavaScriptových funkcií uskutočňujúcich komplexnú logiku plánovania.",
     "description": ""
   },
   "loglevel.config": {
@@ -504,7 +504,7 @@
     "description": ""
   },
   "entervalid": {
-    "message": "Vložte vyššie platný dátum",
+    "message": "Vložte platný dátum",
     "description": ""
   },
   "sendwithfunction": {
@@ -595,7 +595,7 @@
     "description": ""
   },
   "every_weekly": {
-    "message": "každých (é) $1 týždňov (e)",
+    "message": "každých  $1 týždňov",
     "description": ""
   },
   "every_monthly": {
@@ -862,7 +862,7 @@
     "description": ""
   },
   "BadSaveBody": {
-    "message": "Uistite sa, že meno funkcie a jej kód je validný pred uložením či exportovaním.",
+    "message": "Uistite sa, že meno funkcie a jej kód je platný pred uložením či exportovaním.",
     "description": ""
   },
   "ReplacingFunctionTitle": {
@@ -1104,5 +1104,17 @@
   "dynamicCompatibilityMessage": {
     "message": "<strong>UPOZORNENIE:</strong> Verzia aplikácie $1, ktorú používate, nepodporuje funkcie dynamického plánovania. Pokusy o použitie dynamických funkcií pri plánovaní jednotlivých alebo opakujúcich sa správ budú mať za následok nedefinované a nesprávne správanie. <strong>Toto zahŕňa všetky dynamické opakujúce sa správy, ktoré ste si naplánovali v minulosti.</strong><br/>Ak chcete naďalej používať dynamické funkcie, musíte prejsť na beta aktualizačný kanál, ktorý ich naďalej podporuje.<br/>Táto zmena je výsledkom prísnejších bezpečnostných obmedzení zavedených moderátormi stránky <a href='https://addons.thunderbird.net/'>addons.thunderbird.net</a>. Viac informácií nájdete v <a href='$2'>používateľskej príručke</a>.<br/>Táto správa sa zobrazí pri spustení, kým neprepnete na beta kanál $1 alebo neodstránite všetky neštandardné dynamické funkcie v editore funkcií.",
     "description": "The text of the pop-up error that is displayed when the user has dynamic scheduling functions configured in Send Later and they are not currently using a version of Send Later that supports them. $1 is replaced with extension name and $2 is replaced with the appropriate user guide link."
+  },
+  "in15minutes": {
+    "message": "za 15 minút",
+    "description": "Default quick button label"
+  },
+  "in30minutes": {
+    "message": "za 30 minút",
+    "description": "Default quick button label"
+  },
+  "in2hours": {
+    "message": "za 2 hodiny",
+    "description": "Default quick button label"
   }
 }

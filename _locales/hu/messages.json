@@ -1104,5 +1104,17 @@
   "dynamicCompatibilityMessage": {
     "message": "<strong>FIGYELMEZTETÉS:</strong> A(z) $1 általad használt verziója nem támogatja a dinamikus ütemezési függvényeket. A dinamikus függvények használatára tett kísérletek egyedi vagy ismétlődő üzenetek ütemezésekor meghatározatlan, helytelen viselkedést eredményeznek. <strong>Ez vonatkozik a korábban ütemezett dinamikus ismétlődő üzenetekre is.</strong><br/>Ha továbbra is használni szeretnéd a dinamikus függvényeket, át kell váltanod a béta frissítési csatornára, amely továbbra is támogatja azokat.<br/>Ez a változás az <a href='https://addons.thunderbird.net/'>addons.thunderbird.net</a> moderátorai által bevezetett szigorúbb biztonsági korlátozások eredménye. További információkért lásd a <a href='$2'>felhasználói útmutatót</a>.<br/>Ez az üzenet indításkor mindaddig megjelenik, amíg át nem váltasz a(z) $1 béta csatornára, vagy nem törlöd az összes nem szabványos dinamikus függvényt a függvényszerkesztőben.",
     "description": "The text of the pop-up error that is displayed when the user has dynamic scheduling functions configured in Send Later and they are not currently using a version of Send Later that supports them. $1 is replaced with extension name and $2 is replaced with the appropriate user guide link."
+  },
+  "in15minutes": {
+    "message": "15 perc múlva",
+    "description": "Default quick button label"
+  },
+  "in30minutes": {
+    "message": "30 perc múlva",
+    "description": "Default quick button label"
+  },
+  "in2hours": {
+    "message": "2 óra múlva",
+    "description": "Default quick button label"
   }
 }
