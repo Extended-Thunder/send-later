@@ -1,4 +1,8 @@
 {
+  "extensionName": {
+    "message": "Αποστολή αργότερα",
+    "description": "The name of the add-on, displayed in various places."
+  },
   "extensionDescription": {
     "message": "Πραγματική «Στείλετε αργότερα» λειτουργικότητα για να προγραμματίσετε την ώρα για την αποστολή μηνύματοςμέσω ηλεκτρονικού ταχυδρομείου.",
     "description": "A short description of the add-on."
@@ -54,6 +58,10 @@
   "generalOptionsTitle": {
     "message": "Γενικές",
     "description": "The title of the 'General' section on the options page"
+  },
+  "shortcutsOptionsTitle": {
+    "message": "Συντομεύσεις",
+    "description": "The title of the 'Shortcuts' section on the options page"
   },
   "logConsoleLevelLabel": {
     "message": "Επίπεδο καταγραφής κονσόλας",
@@ -139,6 +147,10 @@
     "message": "εβδομαδιαία",
     "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
+  "resetPrefsButton": {
+    "message": "Επαναφορά Προτιμήσεων",
+    "description": ""
+  },
   "saveDefaultsLabel": {
     "message": "Αποθήκευση αυτών των τιμών ως προεπιλεγμένων",
     "description": ""
@@ -153,6 +165,10 @@
   },
   "sendBtwnLabel": {
     "message": "Μεταξύ",
+    "description": ""
+  },
+  "sendUntilLabel": {
+    "message": "Μέχρι",
     "description": ""
   },
   "sendButtonPrefLabel": {
@@ -303,6 +319,10 @@
     "message": "Ακυρώσετε την επανάληψη μετά την απάντηση",
     "description": ""
   },
+  "sendlater3header.label": {
+    "message": "Αποστολή αργότερα",
+    "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
+  },
   "prefwindow.title": {
     "message": "Επιλογές του Send Later",
     "description": ""
@@ -310,6 +330,10 @@
   "quickoptionname.label": {
     "message": "Ετικέτα κουμπιού",
     "description": ""
+  },
+  "quickoptionkey.label": {
+    "message": "Κλειδί (Ctrl+Alt+…)",
+    "description": "Heading for the column in the preferences where the user can specify the key bindings to activate shortcut buttons"
   },
   "showsendlaterprogress.caption": {
     "message": "Εμφάνιση παρασκηνιακών διαδικασιών στη γραμμή κατάστασης",
@@ -326,6 +350,10 @@
   "donatelink.value": {
     "message": "Δωρεά",
     "description": ""
+  },
+  "activeAccountsOptionsTitle": {
+    "message": "Ενεργοί λογαριασμοί",
+    "description": "Subtitle of the 'Advanced' section in the options where the user can mark which accounts Send Later should pay attention to."
   },
   "editorlink.value": {
     "message": "Επεξεργαστής Δυναμικής Συνάρτησης",
@@ -485,6 +513,22 @@
   "MessageResendError": {
     "message": "Send Later: Να επιχειρηθεί η επαναποστολή του μηνύματος; Ο φάκελος $1 για Εξερχόμενα ή Πρόχειρα είναι πιθανότατα κατεστραμμένος. Παρακαλούμε επιδιορθώστε τον όπως περιγράφεται στο https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
+  },
+  "single_minute": {
+    "message": "λεπτό",
+    "description": "Used in an error message when the phrase '1 minute' needs to be displayed."
+  },
+  "single_day": {
+    "message": "ημέρα",
+    "description": "Used in an error message when the phrase '1 day' needs to be displayed."
+  },
+  "single_week": {
+    "message": "εβδομάδα",
+    "description": "Used in an error message when the phrase '1 week' needs to be displayed."
+  },
+  "single_month": {
+    "message": "μήνας",
+    "description": "Used in an error message when the phrase '1 month' needs to be displayed."
   },
   "plural_minutely": {
     "message": "λεπτά",
