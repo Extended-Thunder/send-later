@@ -1,10 +1,10 @@
 {
   "extensionName": {
-    "message": "Invia Dopo",
+    "message": "Invia",
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "Vera funzionalità “Invia Dopo” per Thunderbird che consente di programmare l'orario di invio dei messaggi di posta elettronica",
+    "message": "Funzionalità “Invia Dopo” per Thunderbird/Betterbird che consente di programmare l'orario di invio dei messaggi di posta elettronica",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -1104,5 +1104,17 @@
   "dynamicCompatibilityMessage": {
     "message": "<strong>ATTENZIONE:</strong> La versione di $1 che stai utilizzando non supporta le funzioni di pianificazione dinamica. I tentativi di utilizzare funzioni dinamiche durante la pianificazione di messaggi singoli o ricorrenti causeranno un comportamento anomalo e non corretto. <strong>Questo include tutti i messaggi dinamici ricorrenti che hai pianificato in passato.</strong><br/>Se desideri continuare a utilizzare le funzioni dinamiche, devi passare al canale di aggiornamento beta, che continua a supportarle.<br/>Questa modifica è il risultato di restrizioni di sicurezza più severe imposte dai moderatori di <a href='https://addons.thunderbird.net/'>addons.thunderbird.net</a>. Per ulteriori informazioni, consulta la <a href='$2'>guida utente</a>.<br/>Questo messaggio verrà visualizzato all'avvio finché non passerai al canale beta di $1 o non eliminerai tutte le funzioni dinamiche non standard nell'editor delle funzioni.",
     "description": "The text of the pop-up error that is displayed when the user has dynamic scheduling functions configured in Send Later and they are not currently using a version of Send Later that supports them. $1 is replaced with extension name and $2 is replaced with the appropriate user guide link."
+  },
+  "in15minutes": {
+    "message": "Fra 15 minuti",
+    "description": "Default quick button label"
+  },
+  "in30minutes": {
+    "message": "Fra 30 minuti",
+    "description": "Default quick button label"
+  },
+  "in2hours": {
+    "message": "Fra 2 ore",
+    "description": "Default quick button label"
   }
 }
