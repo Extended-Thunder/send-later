@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "Vera funzionalità “Invia Dopo” per Thunderbird che consente di programmare l'orario di invio dei messaggi di posta elettronica",
+    "message": "“Invia Dopo” (Send Later) è un componente aggiuntivo per Thunderbird/Betterbird  che consente di programmare l'orario di invio dei messaggi di posta elettronica",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -36,7 +36,7 @@
     "description": "In the preferences window, for the 'Check ever # minutes' preference, where # is a text field for the user to enter a number, this label comes _after_ the #. In some languages it may have the same translation as other strings, but in other languages it's different e.g. because the 'every' part needs to be in this string instead of in checkTimePrefLabel1."
   },
   "checkTimePrefTooltip": {
-    "message": "Intervallo di tempo (in minuti) che intercorre fra un controllo e il successivo atto a verificare se vi siano dei messaggi che hanno raggiunto l'orario di spedizione. Bisogna aumentare questo valore se le bozze non vengono spedite all'orario prestabilito o se il numero dei messaggi in coda (indicato nella barra di stato) non corrisponde a quello di tutti i messaggi di cui è stato programmato l'invio.",
+    "message": "Intervallo di tempo (in minuti) che intercorre fra un controllo e il successivo, atto a verificare se vi siano dei messaggi che hanno raggiunto l'orario di spedizione. Questo valore deve essere aumentato qualora le bozze non vengano spedite all'orario prestabilito o se il numero dei messaggi in coda (indicato nella barra di stato) non corrisponde a quello di tutti i messaggi di cui è stato programmato l'invio.",
     "description": ""
   },
   "clearDefaultsLabel": {
@@ -64,7 +64,7 @@
     "description": "The title of the 'Shortcuts' section on the options page"
   },
   "logConsoleLevelLabel": {
-    "message": "Livello di log della console",
+    "message": "Livello di registrazione (log) della console",
     "description": ""
   },
   "logLevelAll": {
@@ -260,7 +260,7 @@
     "description": ""
   },
   "showHeaderPrefTooltip": {
-    "message": "Se questa opzione è attiva, visualizzando l'intestazione di un messaggio, compare anche il campo “X-Send-Later-At”, che contiene i dati relativi all'orario programmato per la spedizione della bozza",
+    "message": "Se questa opzione è attiva, visualizzando l'intestazione di un messaggio, compare anche il campo “X-Send-Later-At” che contiene i dati relativi all'orario programmato per la spedizione della bozza",
     "description": ""
   },
   "showToolbarTextLabel": {
@@ -308,7 +308,7 @@
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
-    "message": "Invia dopo, nell'orario sopra indicato",
+    "message": "Invia dopo, all'orario sopra indicato",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -360,7 +360,7 @@
     "description": "The tooltip that pops up to tell the user what the valid keys to bind the quick option shortcuts to. Do not translate the keys, just translate the 'Valid shortcut keys (case-sensitive!) are' part, because the keys have to be in English in the actual shortcut."
   },
   "showsendlaterprogress.caption": {
-    "message": "Mostra nella Barra di stato il progresso delle spedizioni in background",
+    "message": "Mostra nella Barra di stato il progredire delle spedizioni in background",
     "description": ""
   },
   "composewindowhotkeys.caption": {
@@ -380,7 +380,7 @@
     "description": "Subtitle of the 'Advanced' section in the options where the user can mark which accounts Send Later should pay attention to."
   },
   "activeAccountsOptionsText": {
-    "message": "Gli account deselezionati in questa sezione vengono ignorati da “Invia Dopo”. Non viene controllata la presenza di bozze aventi spedizione programmata e, se presenti, non vengono comunque spedite. Per impostazione predefinita, gli account di posta appena creati sono attivi. Se si programma l'invio di un nuovo messaggio da un account deselezionato (inattivo), questo viene riattivato automaticamente. È consigliabile disattivare qualsiasi account cui Thunderbird non possa accedere (per es. se è stata disattivata la funzione di login o se il server non è raggiungibile).",
+    "message": "Gli account deselezionati in questa sezione vengono ignorati da “Invia Dopo”. Non viene controllata la presenza di bozze aventi spedizione programmata e, se presenti, non vengono comunque spedite. Per impostazione predefinita, gli account di posta appena creati sono attivi. Se si programma l'invio di un nuovo messaggio da un account deselezionato (inattivo), questo viene riattivato automaticamente. È consigliabile disattivare qualsiasi account cui Thunderbird/Betterbird non possa accedere (per es. se è stata disattivata la funzione di login o se il server non è raggiungibile).",
     "description": "This explanation appears below activeAccountsOptionsTitle and above the list of accounts"
   },
   "advancededitor.title": {
@@ -396,7 +396,7 @@
     "description": ""
   },
   "editortip": {
-    "message": "Apre una finestra per creare e modificare funzioni Javascript consentendo di implementare logiche di programmazione di invio piuttosto complesse.",
+    "message": "Apre una finestra per creare e modificare funzioni JavaScript consentendo l'implementazione di logiche di programmazione di invio piuttosto complesse.",
     "description": ""
   },
   "loglevel.config": {
@@ -432,7 +432,7 @@
     "description": ""
   },
   "codetip": {
-    "message": "Inserire qui il codice-sorgente della funzione da voi creata. Leggere il file “ReadMeFirst” (relativo a una funzione di esempio) per ottenere dettagli riguardanti che cosa il codice dovrebbe fare.",
+    "message": "Inserire qui il codice-sorgente della funzione da voi creata. Leggere il file “ReadMeFirst” (relativo a una funzione di esempio) per ottenere dettagli riguardanti che cosa dovrebbe fare il codice.",
     "description": ""
   },
   "codeplaceholder": {
@@ -444,7 +444,7 @@
     "description": ""
   },
   "helptexttip": {
-    "message": "Il testo inserito qui verrà visualizzato quando l'utente muove il mouse sopra il nome della funzione nel menu a pop-up. Ciò serve per spiegare che cosa fa la funzione e quali parametri accetta.",
+    "message": "Qualsiasi testo inserito qui, verrà visualizzato quando l'utente muove il mouse sopra il nome della funzione nel menu a pop-up. Ciò serve per spiegare che cosa fa la funzione e quali parametri accetta.",
     "description": ""
   },
   "helptextplaceholder": {
@@ -468,7 +468,7 @@
     "description": ""
   },
   "inputtimeplaceholder": {
-    "message": "Data e orario (se presenti) da passare alla funzione per effettuare dei test",
+    "message": "Data e orario (se presenti) da passare alla funzione per effettuare test",
     "description": ""
   },
   "inputargs": {
@@ -480,7 +480,7 @@
     "description": ""
   },
   "inputargsplaceholder": {
-    "message": "parametri separati da virgola (se presenti) da passare per effettuare dei test",
+    "message": "parametri separati da virgola (se presenti) da passare per effettuare test",
     "description": ""
   },
   "output": {
@@ -543,7 +543,7 @@
     "message": "In particolare, sembra che il messaggio “$1” $2 sia stato già inviato, ma che sia tuttora presente nella cartella Bozze. Ciò può (o può non essere) spia di un problema più serio. Si può semplicemente provare ad eliminare il messaggio in questione o a riprogrammare la sua spedizione.\n\n“Invia Dopo” salterà questo messaggio, ma  una volta chiusa questa finestra di avvertimento, continuerà a elaborare le altre bozze di cui è stata programmata la spedizione."
   },
   "MessageResendError": {
-    "message": "Invia Dopo: Tentativo di inviare nuovamente un massaggio già inviato?! La tua cartella Posta in uscita o Bozze $1 è probabilmente danneggiata. Si consiglia di ripararle come descritto in https://extended-thunder.github.io/send-later/#corrupt-outbox.",
+    "message": "Invia Dopo: Tentativo di inviare nuovamente un massaggio già inviato?! La tua cartella Posta in uscita o la cartella Bozze $1 è probabilmente danneggiata. Si consiglia di ripararla/e come descritto in https://extended-thunder.github.io/send-later/#corrupt-outbox.",
     "description": ""
   },
   "single_minute": {
@@ -675,7 +675,7 @@
     "description": ""
   },
   "draftSaveWarning": {
-    "message": "ATTENZIONE: Per evitare che il messaggio venga spedito da “Invia Dopo” mentre lo si sta ancora modificando, ne viene annullato l'orario programmato per la spedizione. Si consiglia di riprogrammare l'orario di invio allorquando siano state completate le modifiche.",
+    "message": "ATTENZIONE: Per evitare che il messaggio venga spedito da “Invia Dopo” mentre lo si sta ancora modificando, ne viene annullato l'orario programmato per la spedizione. Si consiglia di riprogrammarne l'orario di invio allorquando siano state completate le modifiche.",
     "description": ""
   },
   "AreYouSure": {
@@ -699,7 +699,7 @@
     "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "PopupChangedConfirmMessage": {
-    "message": "Sembra che sia stato fatto clic su “$1” dopo aver modificato alcuni valori della finestra di programmazione.. Si è sicuri di averlo fatto intenzionalmente invece di fare clic sul pulsante “$2”?",
+    "message": "Sembra che sia stato fatto clic su “$1” dopo aver modificato alcuni valori della finestra di programmazione. Si è sicuri di averlo fatto intenzionalmente invece di fare clic sul pulsante “$2”?",
     "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'."
   },
   "ConfirmAgain": {
@@ -718,7 +718,7 @@
     "description": "In preferences tab, preceded by a checkbox and followed by a text input"
   },
   "detachedPopupPreference": {
-    "message": "Scorpora il popup di pianificazione dalla finestra di composizione",
+    "message": "Scorpora il pop-up di pianificazione dalla finestra di composizione",
     "description": "In preferences tab, preceded by a checkbox"
   },
   "ScheduledMessagesWarningQuitRequested": {
@@ -786,7 +786,7 @@
     "description": ""
   },
   "missingDaysWarningBody": {
-    "message": "Si è abilitata una restrizione giornaliera per il messaggio senza specificare alcun giorno. Disabilitare la restrizione giornaliera o specificare almeno un giorno per la spedizione.",
+    "message": "È stata abilitata una restrizione giornaliera per il messaggio senza specificare alcun giorno. Disabilitare la restrizione giornaliera o specificare almeno un giorno per la spedizione.",
     "description": ""
   },
   "invalidUntilWarningTitle": {
@@ -814,7 +814,7 @@
     "description": ""
   },
   "BlockedLateMessage2": {
-    "message": "Il messaggio nella cartella Bozze $2 avente Oggetto “$1” era stato programmato per essere spedito più di $3 $4 fa. Pertanto la sua spedizione è stata bloccata.  Bisogna modificare la bozza ed inviarla “a mano” oppure ripprogrammare il suo invio.  Si può anche disattivare la preferenza “Non inviare messaggi più di…”  per evitare di bloccare la spedizione di eventuali messaggi in ritardo, ma quelli in ritardo più di sei mesi vengono sempre bloccati.",
+    "message": "Il messaggio nella cartella Bozze $2 avente Oggetto “$1” era stato programmato per essere spedito più di $3 $4 fa. Pertanto la sua spedizione è stata bloccata.  Bisogna modificare la bozza ed inviarla “a mano” oppure ripprogrammare il suo invio.  Si può anche disattivare la preferenza “Non inviare messaggi più di…”  per evitare di bloccare la spedizione di eventuali messaggi in ritardo. Quelli in ritardo più di sei mesi vengono comunque sempre bloccati.",
     "description": "This is an updated version of the BlockedLateMessage string which is intended to replace it. I've left the old string in the database for the time being so translators can use it as a reference / starting point. The 3rd placeholder in THIS string is a number and the fourth is a unit such as 'minutes', 'days', etc. It will be singular if the number is 1 or plural otherwise. The unit is pulled from single_day etc. or plural_daily etc."
   },
   "EditorReadMeCode": {
@@ -830,7 +830,7 @@
     "description": "This is one of the sample dynamic scheduling functions. The English comments should be translated but the code and function name shouldn't be."
   },
   "BusinessHoursHelp": {
-    "message": "Se ci si trova in orario di lavoro o all'inizio del giorno lavorativo successivo, spedisce subito il messaggio. È possibile modificare quali sono i giorni lavorativi (predefiniti: Lun-Ven) passando un array (numerico) di giorni lavorativi come primo parametro e in cui il valore 0 è la Domenica e 6 è il il Sabato. È anche possibile modificare l'orario di inizio o di fine dei giorni lavorativi (valori predefiniti: 8:30-17:30) passando come secondo o terzo parametro un array di coppie di valori [ora, minuto]. Va specificato “null” per i parametri che non si vogliono modificare. Per es.: “null, [9, 0], [17, 0]” modifica l'orario lavorativo (9:00-17:00) lasciando inalterati i giorni lavorativi.",
+    "message": "Se ci si trova in orario di lavoro o all'inizio del giorno lavorativo successivo, spedisce subito il messaggio. È possibile modificare quali sono i giorni lavorativi (predefiniti: Lun-Ven) passando un array (numerico) di giorni lavorativi come primo parametro e in cui il valore 0 è la Domenica e 6 è il il Sabato. È anche possibile modificare l'orario di inizio o di fine dei giorni lavorativi (valori predefiniti: 8:30-17:30) passando come secondo o terzo parametro un array di coppie di valori [ora, minuto]. Va specificato “null” per i parametri che non si vogliono modificare. Per es.: “null, [9, 0], [17, 0]” modifica l'orario lavorativo in (9:00-17:00) lasciando inalterati i giorni lavorativi.",
     "description": "This is the help message for the \"BusinessHours\" dynamic scheduling function. The function name should not be translated."
   },
   "DaysInARowCode": {
@@ -846,7 +846,7 @@
     "description": ""
   },
   "DiscardConfirmBody": {
-    "message": "Vi sono delle modiche non salvate. Le si vuole abbandonare?",
+    "message": "Vi sono delle modifiche non salvate. Le si vuole abbandonare?",
     "description": ""
   },
   "UntestedSaveTitle": {
@@ -922,11 +922,11 @@
     "description": ""
   },
   "LongDescription": {
-    "message": "Nota: se vuoi fare una donazione una tantum invece di una donazione ricorrente, puoi farlo tramite https://paypal.me/JonathanKamens o https://venmo.com/Jonathan-Kamens, oppure configurare una donazione ricorrente com LiberaPay e poi annullarla dopo un pagamento.\n\nQuesta estensione modifica il comando \"Invia più tardi\" (Ctrl+Shift+Invio) nella finestra di composizione del messaggio, in modo che invece di copiare semplicemente il messaggio nella Posta in uscita in modo che venga inviato la prossima volta che vai online o fai \"Invia messaggi non inviati\", si apre una finestra di dialogo che ti consente di specificare quando verrà inviato il messaggio.\n\nPuoi specificare un'ora e una data specifiche, oppure fare clic su \"15 minuti dopo\", \"30 minuti dopo\" o \"2 ore dopo\", oppure definire scorciatoie personalizzate. Puoi anche programmare un messaggio da inviare ripetutamente utilizzando semplici regole (ogni N ore, giorni, ecc.) o funzioni personalizzabili.\n\n<a href='https://extended-thunder.github.io/send-later/'>Guida utente</a> | <a href='https://github.com/Extended-Thunder/send-later/discussions'>Domande e feedback</a> | <a href='https://github.com/Extended-Thunder/send-later/issues'>Segnalazioni di bug</a>\n\nSend Later si basa sulla potente <a href='https://sugarjs.com/'>libreria Sugar.js</a> di Andrew Plummer.",
+    "message": "Nota: se si vuole effettuare una donazione “una tantum” invece di una donazione ricorrente, si può farlo tramite https://paypal.me/JonathanKamens o https://venmo.com/Jonathan-Kamens, oppure si può configurare una donazione ricorrente con LiberaPay per poi annullarla dopo aver effettuato un unico pagamento.\n\nQuesta estensione modifica il comando “Invia più tardi” (Ctrl+Shift+Invio) della finestra di composizione del messaggio in modo tale che, invece di copiare semplicemente il messaggio nella cartella Posta in uscita (perché venga inviato la volta successiva che si va online o che si fa clic sul pulsante “Invia messaggi non inviati”), si apra una finestra di dialogo che consente di specificare l'orario di invio del messaggio.\n\nSi può specificare un'ora e una data specifica, oppure fare clic su: “15 minuti dopo”, “30 minuti dopo” o “2 ore dopo”, oppure si possono definire delle scorciatoie personalizzate. Si può anche programmare di inviare più volte un messaggio utilizzando delle semplici regole (ogni N ore, giorni, ecc.). Infine si possono anche definire delle funzioni personalizzate.\n\n<a href='https://extended-thunder.github.io/send-later/'>Guida utente</a> | <a href='https://github.com/Extended-Thunder/send-later/discussions'>Domande e feedback</a> | <a href='https://github.com/Extended-Thunder/send-later/issues'>Segnalazioni di bug</a>\n\nSend Later si basa sulla potente <a href='https://sugarjs.com/'>libreria Sugar.js</a> di Andrew Plummer.",
     "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
   },
   "DeveloperComments": {
-    "message": "Vi preghiamo di <a href='https://extended-thunder.github.io/send-later/#help'>inviarmi tramite email</a> segnalazioni di bug, consigli, ecc…",
+    "message": "Si prega di <a href='https://extended-thunder.github.io/send-later/#help'>inviarmi tramite email</a> segnalazioni di bug, consigli, ecc…",
     "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
   },
   "accelKeyLabel": {
@@ -978,7 +978,7 @@
     "description": "Command added to the message list menu for the user to use to skip the next occurrence of one or more selected recurring drafts"
   },
   "menuClaimMsg": {
-    "message": "Spostamento messaggi(o) con invio programmato su questa istanza di Thunderbird",
+    "message": "Spostamento messaggi(o) con invio programmato su questa istanza di Thunderbird/Betterbird",
     "description": "Command added to the message list menu for the user to use to move scheduled messages from another Thunderbird instance to this one."
   },
   "resultsTitle": {
@@ -994,7 +994,7 @@
     "description": "Message displayed in the message list context menu results pop-up when multiple messages were selected and some were not processed successfully. The first placeholder is the number of successful messages and the second is the total number of selected messages."
   },
   "cantSkipSingletonTitle": {
-    "message": "Non posso saltare l'occorrenza di messaggi non ricorrenti",
+    "message": "Non è possibile saltare l'occorrenza di messaggi non ricorrenti",
     "description": "The title of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a non-recurring message."
   },
   "cantSkipSingletonText": {
@@ -1018,7 +1018,7 @@
     "description": "Title of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
   },
   "RescheduleErrorText": {
-    "message": "ATTENZIONE: si è verificato un errore imprevisto durante il tentativo di programmare l'occorrenza successiva di un messaggio già programmato avente per oggetto: “$1”. Consultare il registro degli errori di Thunderbird per avere dettagli in proposito. La bozza di messaggio per la quale era stato programmato l'invio non è stata eliminata. È quindi necessario eliminarla  “a mano” o modificarla e riprogrammarne l'eventuale spedizione.",
+    "message": "ATTENZIONE: si è verificato un errore imprevisto durante il tentativo di programmare l'occorrenza successiva di un messaggio già programmato avente per oggetto: “$1”. Consultare il registro degli errori di Thunderbird/Betterbird per avere dettagli in proposito. La bozza di messaggio per la quale era stato programmato l'invio non è stata eliminata. È quindi necessario eliminarla  “a mano” o modificarla e riprogrammarne l'eventuale spedizione.",
     "description": "Text of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
   },
   "TelemetryAskTitle": {
@@ -1070,11 +1070,11 @@
     "description": "Message in main window pop-up when there are no scheduled messages"
   },
   "internalLogTitle": {
-    "message": "Log di “Invia Dopo”",
+    "message": "Registro (log) di “Invia Dopo”",
     "description": "Title of the tab where the Send Later internal log is displayed when the user requests it"
   },
   "internalLogLevelLabel": {
-    "message": "Livello di log di “Invia Dopo”:",
+    "message": "Livello del registro (log):",
     "description": "Label for the option menu for selecting the internal log level"
   },
   "internalLogClearLabel": {
@@ -1086,7 +1086,7 @@
     "description": "Label for the buttom to copy the internal log to the clipboard"
   },
   "internalLogLinkLabel": {
-    "message": "Visualizza log di “Invia Dopo”",
+    "message": "Visualizza registro (log) di “Invia Dopo”",
     "description": "Label for the link in the main window pop-up for opening the internal log tab."
   },
   "messageTooLargeTitle": {
@@ -1094,15 +1094,27 @@
     "description": "The title of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large."
   },
   "messageTooLargeText": {
-    "message": "A causa di un bug di Thunderbird, $1 non può spedire il messaggio avente Oggetto: “$2” perché è troppo grande. Infatti ha una dimensione di $3 byte, che è superiore al limite configurato $4. Volendo si può aumentare questo limite  accedendo all'Editor di configurazione di Thunderbird e modificandone la preferenza “mailnews.message_warning_size”. Si può anche eliminare del tutto questo limite impostando a 0 il valore di questa preferenza. Attenzione però perché qualsiasi variazione apportata a questa preferenza comporta la possibilità che Thunderbird vi avverta che si stanno inviando messaggi troppo grandi in modalità diretta invece che attraverso $1. In ogni caso per inviare il messaggio in questione lo si può aprire, modificare e inviare direttamente oppure si può riprogrammare il suo invio dopo averne ridotto di dimensioni o dopo aver modificato la preferenza di Thunderbird.",
+    "message": "A causa di un bug di Thunderbird/Betterbird, $1 non può spedire il messaggio avente Oggetto: “$2” perché è troppo grande. Infatti ha una dimensione di $3 byte, che è superiore al limite configurato $4. Volendo si può aumentare questo limite  accedendo all'Editor di configurazione di Thunderbird/Betterbird e modificandone la preferenza “mailnews.message_warning_size”. Si può anche eliminare del tutto questo limite impostando a 0 il valore di questa preferenza. Attenzione però perché qualsiasi variazione apportata a questa preferenza comporta la possibilità che Thunderbird/Betterbird vi avverta che si stanno inviando messaggi troppo grandi in modalità diretta invece che attraverso $1. In ogni caso per inviare il messaggio in questione lo si può aprire, modificare e inviare direttamente oppure si può riprogrammare il suo invio dopo averne ridotto di dimensioni o dopo aver modificato la preferenza di Thunderbird/Betterbird.",
     "description": "The (unfortunately very long) text of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large and the TB version is 114 or earlier. $1 is the extension name, $2 is the message subject, $3 is its length, and $4 is the length limit. Please don't translate 'mailnews.message_warning_size', that needs to stay in English."
   },
   "dynamicCompatibilityTitle": {
-    "message": "Il titolo del pop-up di errore che viene visualizzato quando l'utente ha configurato le funzioni di pianificazione dinamica in Send Later e non sta utilizzando una versione di Send Later che le supporta.",
+    "message": "Avviso di compatibilità delle funzioni dinamiche",
     "description": "The title of the pop-up error that is displayed when the user has dynamic scheduling functions configured in Send Later and they are not currently using a version of Send Later that supports them."
   },
   "dynamicCompatibilityMessage": {
-    "message": "<strong>ATTENZIONE:</strong> La versione di $1 che stai utilizzando non supporta le funzioni di pianificazione dinamica. I tentativi di utilizzare funzioni dinamiche durante la pianificazione di messaggi singoli o ricorrenti causeranno un comportamento anomalo e non corretto. <strong>Questo include tutti i messaggi dinamici ricorrenti che hai pianificato in passato.</strong><br/>Se desideri continuare a utilizzare le funzioni dinamiche, devi passare al canale di aggiornamento beta, che continua a supportarle.<br/>Questa modifica è il risultato di restrizioni di sicurezza più severe imposte dai moderatori di <a href='https://addons.thunderbird.net/'>addons.thunderbird.net</a>. Per ulteriori informazioni, consulta la <a href='$2'>guida utente</a>.<br/>Questo messaggio verrà visualizzato all'avvio finché non passerai al canale beta di $1 o non eliminerai tutte le funzioni dinamiche non standard nell'editor delle funzioni.",
+    "message": "<strong>ATTENZIONE:</strong> La versione di $1 che si sta utilizzando non supporta le funzioni di pianificazione dinamica. Il tentativo di utilizzare funzioni dinamiche per pianificare l'invio di messaggi singoli o ricorrenti causerà un comportamento scorretto, anomalo <strong> che include qualsiasi messaggio dinamico ricorrente pianificato in passato.</strong><br/>Se si desidera continuare ad utilizzare le funzioni dinamiche, bisogna passare al canale di aggiornamento beta, che continua a supportarle.<br/>Questa modifica è il risultato di restrizioni di sicurezza più severe imposte dai moderatori di <a href='https://addons.thunderbird.net/'>addons.thunderbird.net</a>. Per ulteriori informazioni, consultare la <a href='$2'>Guida utente</a>.<br/>Questo messaggio verrà visualizzato all'avvio finché non si passi al canale beta di $1 o non si eliminino tutte le funzioni dinamiche non standard nell'editor delle funzioni.",
     "description": "The text of the pop-up error that is displayed when the user has dynamic scheduling functions configured in Send Later and they are not currently using a version of Send Later that supports them. $1 is replaced with extension name and $2 is replaced with the appropriate user guide link."
+  },
+  "in15minutes": {
+    "message": "Tra 15 minuti",
+    "description": "Default quick button label"
+  },
+  "in30minutes": {
+    "message": "Tra 30 minuti",
+    "description": "Default quick button label"
+  },
+  "in2hours": {
+    "message": "Tra 2 ore",
+    "description": "Default quick button label"
   }
 }
