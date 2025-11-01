@@ -4,11 +4,11 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "Πραγματική «Στείλετε αργότερα» λειτουργικότητα για να προγραμματίσετε την ώρα για την αποστολή μηνύματοςμέσω ηλεκτρονικού ταχυδρομείου.",
+    "message": "Μια αξιόπιστη \"Αποστολή αργότερα\" για να προγραμματίσετε την ώρα αποστολής ενός email.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
-    "message": "Προχωρημένες",
+    "message": "Προχωρημένο",
     "description": ""
   },
   "altBindingPrefLabel": {
