@@ -1,4 +1,476 @@
 {
+  "extensionName": {
+    "message": "Pošlji kasneje",
+    "description": "The name of the add-on, displayed in various places."
+  },
+  "extensionDescription": {
+    "message": "Omogoča pošiljanje vašega sporočila ob točno določeni uri",
+    "description": "A short description of the add-on."
+  },
+  "advancedOptionsTitle": {
+    "message": "Napredno",
+    "description": ""
+  },
+  "altBindingPrefLabel": {
+    "message": "Uporabi Alt-Shift-Enter namesto Ctrl-Shift-Enter",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel1": {
+    "message": "Ne pošlji sporočila več kot",
+    "description": ""
+  },
+  "blockLateMessagesPrefLabel2": {
+    "message": "minut prepozno",
+    "description": ""
+  },
+  "blockLateMessagesPrefTooltip": {
+    "message": "Ne pošlji sporočil, katerih rok za pošiljanje je potekel, npr. ker Thunderbird ni deloval v tistem trenutku",
+    "description": ""
+  },
+  "checkTimePrefLabel1": {
+    "message": "Preveri vsakih",
+    "description": "In the preferences window, for the 'Check ever # minutes' preference, where # is a text field for the user to enter a number, this label comes _before_ the #. See also checkTimePrefLabel2."
+  },
+  "checkTimePrefLabel2": {
+    "message": "minut",
+    "description": "In the preferences window, for the 'Check ever # minutes' preference, where # is a text field for the user to enter a number, this label comes _after_ the #. In some languages it may have the same translation as other strings, but in other languages it's different e.g. because the 'every' part needs to be in this string instead of in checkTimePrefLabel1."
+  },
+  "checkTimePrefTooltip": {
+    "message": "Interval v minutah med preverjanjem, ali naj se sporočilo pošlje. Povečajte interval v primeru, da osnutki niso poslani pravočasno ali pa število čakajočih sporočil v vrstici stanja ne odraža dejanskega stanja",
+    "description": ""
+  },
+  "clearDefaultsLabel": {
+    "message": "Počisti privzeto",
+    "description": ""
+  },
+  "contactAuthorLabel": {
+    "message": "Kontaktiraj avtorja",
+    "description": ""
+  },
+  "enforceRestrictionsPrefLabel": {
+    "message": "Upoštevaj omejitve časa in dneva pri pošiljanju",
+    "description": ""
+  },
+  "enforceRestrictionsPrefTooltip": {
+    "message": "V primeru, da sporočilo ni bilo poslano znotraj dovoljenega časa pošiljanja, npr. ker Thunderbird ni deloval v tistem trenutku, zamakni pošiljanje dokler omejitev ne velja več",
+    "description": ""
+  },
+  "generalOptionsTitle": {
+    "message": "Splošno",
+    "description": "The title of the 'General' section on the options page"
+  },
+  "shortcutsOptionsTitle": {
+    "message": "Bližnjice",
+    "description": "The title of the 'Shortcuts' section on the options page"
+  },
+  "logConsoleLevelLabel": {
+    "message": "Stopnja beleženja dnevnika",
+    "description": ""
+  },
+  "logLevelAll": {
+    "message": "Vse",
+    "description": ""
+  },
+  "logLevelDebug": {
+    "message": "Razhroščevanje",
+    "description": ""
+  },
+  "logLevelError": {
+    "message": "Napake",
+    "description": ""
+  },
+  "logLevelFatal": {
+    "message": "Usodne napake",
+    "description": ""
+  },
+  "logLevelInfo": {
+    "message": "Informacije",
+    "description": ""
+  },
+  "logLevelTrace": {
+    "message": "Sledi",
+    "description": ""
+  },
+  "logLevelWarn": {
+    "message": "Opozorila",
+    "description": ""
+  },
+  "markReadPrefLabel": {
+    "message": "Označi osnutke za pošiljanje kot prebrane",
+    "description": ""
+  },
+  "quickOptionsLabel1Label": {
+    "message": "Bližnjica 1",
+    "description": ""
+  },
+  "quickOptionsLabel2Label": {
+    "message": "Bližnjica 2",
+    "description": ""
+  },
+  "quickOptionsLabel3Label": {
+    "message": "Bližnjica 3",
+    "description": ""
+  },
+  "quickOptionsValueLabel": {
+    "message": "Minute",
+    "description": ""
+  },
+  "recurAnnuallyLabel": {
+    "message": "letno",
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
+  },
+  "recurDailyLabel": {
+    "message": "dnevno",
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
+  },
+  "recurFunctionLabel": {
+    "message": "funkcija",
+    "description": ""
+  },
+  "recurLabel": {
+    "message": "Ponavljanje",
+    "description": ""
+  },
+  "recurMinutelyLabel": {
+    "message": "vsako minuto",
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
+  },
+  "recurMonthlyLabel": {
+    "message": "mesečno",
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
+  },
+  "recurOnceLabel": {
+    "message": "enkrat",
+    "description": ""
+  },
+  "recurWeeklyLabel": {
+    "message": "tedensko",
+    "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
+  },
+  "resetPrefsButton": {
+    "message": "Ponastavi nastavitve",
+    "description": ""
+  },
+  "saveDefaultsLabel": {
+    "message": "Shrani vrednosti kot privzete",
+    "description": ""
+  },
+  "sendAtDefaultLabel": {
+    "message": "Vnesi datum in čas",
+    "description": "Displayed in place of send at time before user makes selections"
+  },
+  "sendAtLabel": {
+    "message": "Pošlji ob",
+    "description": "This is used in the scheduling pop-up at the beginning of the dynamic label for the button the user clicks to send a scheduled message at the specified date/time. It is followed in the button by a formatted date/time. For example, in English: 'Send at Tue, Aug 29, 2023, 11:26 AM'. Also used in the main window pop-up as the header of the column containing message send times."
+  },
+  "sendBtwnLabel": {
+    "message": "Med",
+    "description": ""
+  },
+  "sendUntilLabel": {
+    "message": "Do",
+    "description": ""
+  },
+  "sendButtonPrefLabel": {
+    "message": "\"Pošlji\" naj pošlje kasneje",
+    "description": ""
+  },
+  "sendButtonPrefTooltip": {
+    "message": "Pošiljanje sporočila (s klikom na gumb \"Pošlji\" ali z bližnjico Ctrl-Enter) naj privzeto pošlje kasneje",
+    "description": ""
+  },
+  "whitelistPrefTooltip": {
+    "message": "Če velja '$1' ali funkcionalnost \"Pošlji naj pošlje kasneje\" in imate v imeniku tu dodanega prejemnika, potem bodo vsa sporočila zanj samodejno upoštevala zamaknjeno pošiljanje namesto $2",
+    "description": "$1 is replaced with the contents of sendButtonPrefLabel, and $2 is replaced with extensionName."
+  },
+  "whitelistPrefLabel": {
+    "message": "Imenik:",
+    "description": "Appears on the options tab, followed by an input box for the use to specify the name of an address book."
+  },
+  "sendDelayPrefLabel1": {
+    "message": "\"Pošlji\" zamakne sporočila za",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.tooltip": {
+    "message": "Preveri, če je na ponavljajoče sporočilo prispel odgovor. V primeru prejetega odgovora prekliči pošiljanje naknadnih sporočil in jih odstrani iz mape Osnutki.",
+    "description": ""
+  },
+  "sendDelayPrefTooltip": {
+    "message": "Zamakni pošiljanje vseh sporočil, poslanih z gumbom \"Pošlji\" ali bližnjico na tipkovnici Ctrl-Enter za določeno število minut",
+    "description": ""
+  },
+  "sendSundayLabel": {
+    "message": "Nedelja",
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "sendMondayLabel": {
+    "message": "Ponedeljek",
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "sendTuesdayLabel": {
+    "message": "Torek",
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "sendWednesdayLabel": {
+    "message": "Sreda",
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "sendThursdayLabel": {
+    "message": "Četrtek",
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "sendFridayLabel": {
+    "message": "Petek",
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "sendSaturdayLabel": {
+    "message": "Sobota",
+    "description": "Appears in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. Separate from the corresponding everymonthly_day? string (where ? is 0 for Sunday and 6 for Saturday), which is used next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "sendNowLabel": {
+    "message": "Pošlji zdaj",
+    "description": ""
+  },
+  "sendOnlyOnLabel": {
+    "message": "Le ob",
+    "description": ""
+  },
+  "userGuideLabel": {
+    "message": "Uporabniški priročnik",
+    "description": ""
+  },
+  "sendlater.prompt.or.label": {
+    "message": "ali",
+    "description": ""
+  },
+  "sendlater.prompt.calculate.label": {
+    "message": "Izračunaj",
+    "description": ""
+  },
+  "sendlater.prompt.every.label": {
+    "message": "Vsakih",
+    "description": ""
+  },
+  "sendlater.button1.label": {
+    "message": "15 minut kasneje",
+    "description": ""
+  },
+  "sendlater.button2.label": {
+    "message": "30 minut kasneje",
+    "description": ""
+  },
+  "sendlater.button3.label": {
+    "message": "2 uri kasneje",
+    "description": ""
+  },
+  "sendlater.prompt.cancelonreply.label": {
+    "message": "Prekliči ponavljajoče pošiljanje ob odgovoru",
+    "description": ""
+  },
+  "sendlater3header.label": {
+    "message": "Pošlji kasneje",
+    "description": "This string is used in several places: (1) it is the header of the column in the message list that shows the send times for scheduled messages, when that header is available and enabled; (2) it is the label for the Send Later button in the toolbar of the main Thunderbird window; (3) it is the label displayed next to the scheduled send time in the message header displayed in the message preview pane. Typically this string is the same as the 'extensionName' string, but it may be better for it to have a shorter value in a language for which the extension name is particularly long."
+  },
+  "prefwindow.title": {
+    "message": "Nastavitve zamaknjenega pošiljanja",
+    "description": ""
+  },
+  "quickoptionkey.label": {
+    "message": "Tipka (Ctrl+Alt+…)",
+    "description": "Heading for the column in the preferences where the user can specify the key bindings to activate shortcut buttons"
+  },
+  "donatelink.value": {
+    "message": "Prispevajte",
+    "description": ""
+  },
+  "activeAccountsOptionsTitle": {
+    "message": "Aktivni računi",
+    "description": "Subtitle of the 'Advanced' section in the options where the user can mark which accounts Send Later should pay attention to."
+  },
+  "loglevel.config": {
+    "message": "Konfiguracija",
+    "description": ""
+  },
+  "single_minute": {
+    "message": "minuta",
+    "description": "Used in an error message when the phrase '1 minute' needs to be displayed."
+  },
+  "single_day": {
+    "message": "dan",
+    "description": "Used in an error message when the phrase '1 day' needs to be displayed."
+  },
+  "single_week": {
+    "message": "teden",
+    "description": "Used in an error message when the phrase '1 week' needs to be displayed."
+  },
+  "single_month": {
+    "message": "mesec",
+    "description": "Used in an error message when the phrase '1 month' needs to be displayed."
+  },
+  "single_year": {
+    "message": "leto",
+    "description": "Used in an error message when the phrase '1 year' needs to be displayed."
+  },
+  "plural_minutely": {
+    "message": "minut",
+    "description": ""
+  },
+  "plural_daily": {
+    "message": "dni",
+    "description": ""
+  },
+  "plural_weekly": {
+    "message": "tednov",
+    "description": ""
+  },
+  "plural_monthly": {
+    "message": "mesecev",
+    "description": ""
+  },
+  "plural_yearly": {
+    "message": "let",
+    "description": ""
+  },
+  "every_minutely": {
+    "message": "vsakih $1 minut",
+    "description": ""
+  },
+  "every_daily": {
+    "message": "vsakih $1 dni",
+    "description": ""
+  },
+  "every_weekly": {
+    "message": "vsakih $1 tednov",
+    "description": ""
+  },
+  "every_monthly": {
+    "message": "vsakih $1 mesecev",
+    "description": ""
+  },
+  "every_yearly": {
+    "message": "vsakih $1 let",
+    "description": ""
+  },
+  "everyempty": {
+    "message": "teden v mesecu",
+    "description": ""
+  },
+  "everymonthly": {
+    "message": "$1 $1 v mesecu",
+    "description": ""
+  },
+  "everymonthly_day0": {
+    "message": "Nedelja",
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "everymonthly_day1": {
+    "message": "Ponedeljek",
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "everymonthly_day2": {
+    "message": "Torek",
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "everymonthly_day3": {
+    "message": "Sreda",
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "everymonthly_day4": {
+    "message": "Četrtek",
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "everymonthly_day5": {
+    "message": "Petek",
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "everymonthly_day6": {
+    "message": "Sobota",
+    "description": "Appears next to an one of the ordinals (e.g., ord1 for 1st) to indicate the 1st, 2nd, etc. of a particular day of the month, e.g., '1st Monday'. Separate from the corresponding send?Label string (where ? is Sunday, Monday, etc.), which is used in the message scheduling pop-up next to sendOnlyOnLabel to allow the user to select which day(s) to send the message on. These are separate strings because in some languages the weekday names are written differently in these two contexts."
+  },
+  "betw_times": {
+    "message": "med $1 in $2",
+    "description": ""
+  },
+  "only_on_days": {
+    "message": "od $1",
+    "description": ""
+  },
+  "until_datetime": {
+    "message": "do $1",
+    "description": "Describes when a recurrence should terminate. Used in the scheduler dialog."
+  },
+  "ord1": {
+    "message": "prvi",
+    "description": ""
+  },
+  "ord2": {
+    "message": "drugi",
+    "description": ""
+  },
+  "ord3": {
+    "message": "tretji",
+    "description": ""
+  },
+  "ord4": {
+    "message": "četrti",
+    "description": ""
+  },
+  "ord5": {
+    "message": "peti",
+    "description": ""
+  },
+  "AreYouSure": {
+    "message": "Ste prepričani?",
+    "description": ""
+  },
+  "answerYes": {
+    "message": "Da",
+    "description": "Affirmative answer for a yes/no question presented in a confirmation dialog"
+  },
+  "answerNo": {
+    "message": "Ne",
+    "description": "Negative answer for a yes/no question presented in a confirmation dialog"
+  },
+  "missingDaysWarningTitle": {
+    "message": "Neveljavna dnevna omejitev",
+    "description": ""
+  },
+  "accelCtrlLabel": {
+    "message": "Krmilka+klik",
+    "description": "Indicates key combination to access the ctrl+click accelerator function"
+  },
+  "okay": {
+    "message": "V redu",
+    "description": "Confirm an action (presented in popup dialogs)"
+  },
+  "cancel": {
+    "message": "Prekliči",
+    "description": "Cancel an action (presented in popup dialogs)"
+  },
+  "cantSKipPastLastTitle": {
+    "message": "Sporočilo nima več ponovitev",
+    "description": "The title of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a message that has no further occurrences after that one."
+  },
+  "PrivacyPolicy": {
+    "message": "Pravilnik o zasebnosti",
+    "description": "Inserted into TelemetryAskText. Also used to link to the privacy policy from the Send Later pop-up in the main Thunderbird window."
+  },
+  "TelemetryAskYes": {
+    "message": "Da, lahko zbirate moje podatke",
+    "description": "Label for the yes button on the telemetry request dialog."
+  },
+  "TelemetryAskNo": {
+    "message": "Ne, ne zbirajte mojih podatkov",
+    "description": "Label for the no button on the telemetry request dialog."
+  },
+  "betaThankYouTitle": {
+    "message": "Hvala, ker ste beta-tester!",
+    "description": ""
+  },
+  "selectNone": {
+    "message": "(nič)",
+    "description": "Used in pop-up menus and other menus where the user needs to be able to explicitly chose none as an option."
+  },
   "recipients": {
     "message": "Prejemniki",
     "description": "Column header in message list in main window pop-up"
@@ -10,5 +482,25 @@
   "folder": {
     "message": "Mapo",
     "description": "Column header in message list in main window pop-up"
+  },
+  "internalLogClearLabel": {
+    "message": "Počisti",
+    "description": "Label for the button to clear the internal log"
+  },
+  "internalLogCopyLabel": {
+    "message": "Kopiraj",
+    "description": "Label for the buttom to copy the internal log to the clipboard"
+  },
+  "in15minutes": {
+    "message": "v 15 minutah",
+    "description": "Default quick button label"
+  },
+  "in30minutes": {
+    "message": "v 30 minutah",
+    "description": "Default quick button label"
+  },
+  "in2hours": {
+    "message": "v 2 urah",
+    "description": "Default quick button label"
   }
 }

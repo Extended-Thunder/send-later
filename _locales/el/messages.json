@@ -179,6 +179,14 @@
     "message": "Με αυτή την επιλογή, η εντολή “Αποστολή” (είτε το κουμπί είτε ο συνδυασμός πλήκτρων Ctrl-Enter) μετατρέπεται σε “Αποστολή αργότερα”.",
     "description": ""
   },
+  "whitelistPrefTooltip": {
+    "message": "Αν ενεργοποιηθεί το `$1' ή `Το “Αποστολή καθυστερεί τα μηνύματα” και καθορίσετε εδώ το όνομα ενός υπάρχοντος καταλόγου διευθύνσεων, τότε οποιοδήποτε μήνυμα του οποίου οι παραλήπτες είναι όλοι στον κατάλογο διευθύνσεων θα παρακάμψει το $2 όταν ενεργοποιηθεί το κουμπί αποστολής μηνύματος ή η εντολή μενού.",
+    "description": "$1 is replaced with the contents of sendButtonPrefLabel, and $2 is replaced with extensionName."
+  },
+  "whitelistPrefLabel": {
+    "message": "Κατάλογος διευθύνσεων λευκής λίστας:",
+    "description": "Appears on the options tab, followed by an input box for the use to specify the name of an address book."
+  },
   "sendDelayPrefLabel1": {
     "message": "Η “Αποστολή” καθυστερεί κατά",
     "description": ""
@@ -255,8 +263,20 @@
     "message": "Ορίζει αν θα εμφανίζεται η επικεφλαίδα “X-Send-Later-At”, δηλ. ο χρόνος που έχει καθοριστεί για την αποστολή του μηνύματος, στην επικεφαλίδα όταν προβάλλεται ένα μήνυμα.",
     "description": ""
   },
+  "showToolbarTextLabel": {
+    "message": "Εμφάνιση κειμένου στο κουμπί εργαλειοθήκης",
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
+  },
   "userGuideLabel": {
     "message": "Οδηγίες χρήσης",
+    "description": ""
+  },
+  "errorDateInPast": {
+    "message": "Η επιλεγμένη ημερομηνία είναι στο παρελθόν",
+    "description": ""
+  },
+  "DelayFunctionHelp": {
+    "message": "Απλά καθυστερήστε το μήνυμα κατά μερικά λεπτά. Η πρώτη παράμετρος λαμβάνεται ως χρόνος καθυστέρησης.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -335,6 +355,10 @@
     "message": "Κλειδί (Ctrl+Alt+…)",
     "description": "Heading for the column in the preferences where the user can specify the key bindings to activate shortcut buttons"
   },
+  "validKeysTooltip": {
+    "message": "Έγκυρα πλήκτρα συντόμευσης (διάκριση πεζών-κεφαλαίων!) είναι A-Z, 0-9, F1-F12, Κόμμα, Τελεία, Home, End, PageUp, PageDown, Διάστημα, Εισαγωγή, Διαγραφή, Πάνω, Κάτω, Αριστερά, Δεξιά",
+    "description": "The tooltip that pops up to tell the user what the valid keys to bind the quick option shortcuts to. Do not translate the keys, just translate the 'Valid shortcut keys (case-sensitive!) are' part, because the keys have to be in English in the actual shortcut."
+  },
   "showsendlaterprogress.caption": {
     "message": "Εμφάνιση παρασκηνιακών διαδικασιών στη γραμμή κατάστασης",
     "description": ""
@@ -354,6 +378,14 @@
   "activeAccountsOptionsTitle": {
     "message": "Ενεργοί λογαριασμοί",
     "description": "Subtitle of the 'Advanced' section in the options where the user can mark which accounts Send Later should pay attention to."
+  },
+  "activeAccountsOptionsText": {
+    "message": "Οι λογαριασμοί που καταργείτε σε αυτήν την ενότητα αγνοούνται από το Αποστολή Αργότερα: δεν ελέγχονται για προγραμματισμένα προσχέδια, και οποιαδήποτε προγραμματισμένα προσχέδια σε αυτά δεν παραδίδονται. Οι νεοδημιουργημένοι λογαριασμοί είναι ενεργοί από προεπιλογή και αν προγραμματίσετε ένα νέο μήνυμα σε έναν ανενεργό λογαριασμό ενεργοποιείται αυτόματα. Θα πρέπει να απενεργοποιήσετε οποιονδήποτε λογαριασμό στον οποίο ο Thunderbird δεν μπορεί να συνδεθεί, π.χ. επειδή η σύνδεση είναι απενεργοποιημένη ή ο διακομιστής είναι προς το παρόν εκτός λειτουργίας.",
+    "description": "This explanation appears below activeAccountsOptionsTitle and above the list of accounts"
+  },
+  "advancededitor.title": {
+    "message": "Προηγμένος επεξεργαστής ρυθμίσεων",
+    "description": ""
   },
   "editorlink.value": {
     "message": "Επεξεργαστής Δυναμικής Συνάρτησης",
@@ -530,6 +562,10 @@
     "message": "μήνας",
     "description": "Used in an error message when the phrase '1 month' needs to be displayed."
   },
+  "single_year": {
+    "message": "έτος",
+    "description": "Used in an error message when the phrase '1 year' needs to be displayed."
+  },
   "plural_minutely": {
     "message": "λεπτά",
     "description": ""
@@ -614,6 +650,10 @@
     "message": "ημέρα $1",
     "description": ""
   },
+  "until_datetime": {
+    "message": "μέχρι $1",
+    "description": "Describes when a recurrence should terminate. Used in the scheduler dialog."
+  },
   "ord1": {
     "message": "1η",
     "description": ""
@@ -658,6 +698,10 @@
     "message": "Επιλέγοντας “Αποστολή τώρα”, το μήνυμα στέλνεται αμέσως. ΔΕΝ ορίζεται η αποστολή του σε καθορισμένη στιγμή. Για να γίνει αυτό, πατήστε το κουμπί “Αποστολή αργότερα” στα πράσινο πλαίσιο, αφού ορίσετε μία έγκυρη στιγμή αποστολής. Είστε σίγουρος πως θέλετε να στείλετε το μήνυμα τώρα;",
     "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
+  "PopupChangedConfirmMessage": {
+    "message": "Φαίνεται ότι κάνατε κλικ στο \"$1\" μετά την αλλαγή ορισμένων από τις τιμές στο διάλογο προγραμματισμού. Σίγουρα θέλατε να το κάνετε αυτό αντί να κάνετε κλικ στο κουμπί “$2”;",
+    "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'."
+  },
   "ConfirmAgain": {
     "message": "Προβολή αυτής της προειδοποίησης στο μέλλον",
     "description": ""
@@ -669,6 +713,14 @@
   "ShowQuitNotificationPreference": {
     "message": "Εμφάνιση προειδοποίησης πριν την έξοδο αν υπάρχουν εκκρεμή μηνύματα"
   },
+  "SubfolderPreference": {
+    "message": "Αποθήκευση προγραμματισμένων μηνυμάτων στον υποφάκελο που ονομάζεται:",
+    "description": "In preferences tab, preceded by a checkbox and followed by a text input"
+  },
+  "detachedPopupPreference": {
+    "message": "Αποσύνδεση αναδυόμενου παράθυρου από τη σύνθεση παραθύρου",
+    "description": "In preferences tab, preceded by a checkbox"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Υπάρχουν μηνύματα που πρόκειται να σταλούν αργότερα. Το Send Later μπορεί να στέλνει μηνύματα μόνο εφόσον το $1 τρέχει. Είστε σίγουρος ότι θέλετε να το κλείσετε;",
     "description": "$1 is replaced with the localized name for Thunderbird"
@@ -677,9 +729,41 @@
     "message": "Το Send Later μπορεί να στέλνει μηνύματα μόνο εφόσον το $1 τρέχει. Παρακαλούμε επανεκκινήστε το πριν τη στιγμή που πρέπει να σταλούν τα μηνύματά σας!",
     "description": "$1 is replaced with the localized name for Thunderbird"
   },
+  "IncompatibleEncryptionTitle": {
+    "message": "Ρυθμίσεις κρυπτογράφησης ασύμβατες με $1",
+    "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has incompatible encryption or signing enabled. The placeholder is replaced with the extension name."
+  },
+  "IncompatibleEncryption-pgp-error-Text": {
+    "message": "$1 δεν μπορεί να προγραμματίσει μηνύματα που είναι κρυπτογραφημένα ή ψηφιακά υπογεγραμμένα με PGP ή των οποίων τα προσχέδια είναι κρυπτογραφημένα με PGP. Πρέπει να τις απενεργοποιήσετε ή να μεταβείτε σε S/MIME πριν από τον προγραμματισμό αυτού του μηνύματος. Για κρυπτογράφηση προσχεδίων, ανατρέξτε στο “Αποθήκευση πρόχειρων μηνυμάτων σε κρυπτογραφημένη μορφή” στο “Διατερματική Κρυπτογράφηση” στις ρυθμίσεις λογαριασμού ή ταυτότητας.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has PGP encryption, signing, or draft encryption enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
+  "IncompatibleEncryption-drafty-error-Text": {
+    "message": "Αν θέλετε το $1 να υπογράψει ή να κρυπτογραφήσει προγραμματισμένα μηνύματα με S/MIME, πρέπει να ενεργοποιήσετε την κρυπτογράφηση των προσχεδίων. Για να το κάνετε αυτό, ανατρέξτε στο “Αποθήκευση πρόχειρων μηνυμάτων σε κρυπτογραφημένη μορφή” στο “Διατερματική Κρυπτογράφηση” στις ρυθμίσεις λογαριασμού ή ταυτότητας.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has S/MIME encryption or signing without enabling draft encryption first. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
+  "EncryptionUnsupportedTitle": {
+    "message": "Το $1 δεν υποστηρίζει κρυπτογράφηση",
+    "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has encryption or signing enabled. The placeholder is replaced with the extension name."
+  },
+  "EncryptionUnsupportedText": {
+    "message": "Το $1 δεν μπορεί να προγραμματίσει μηνύματα που είναι κρυπτογραφημένα ή ψηφιακά υπογεγραμμένα. Πρέπει να τα απενεργοποιήσετε σε ένα προσχέδιο για να μπορέσετε να τα προγραμματίσετε. Πρέπει επίσης να απενεργοποιήσετε το “Αποθήκευση πρόχειρων μηνυμάτων σε κρυπτογραφημένη μορφή” στο “Διατερματική Κρυπτογράφηση” στις ρυθμίσεις λογαριασμού ή ταυτότητας.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has encryption or signing enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
   "DSN": {
     "message": "Ειδοποίηση κατάστασης παράδοσης",
     "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message. This needs to match what's in the menu. NOTE: This is *different from* the 'Return Receipt' menu command which appears adjacent to it."
+  },
+  "noDsnTitle": {
+    "message": "$1 δεν υποστηρίζεται με $2",
+    "description": "The title of the alert that pops up when the user attempts to schedule a message with delivery status notification enabled. $1 is replaced with the string 'DSN' and $2 is replaced with the extension name."
+  },
+  "noDsnText": {
+    "message": "Η επιλογή $1 είναι ασύμβατη με $2. Παρακαλούμε απενεργοποιήστε αυτή την επιλογή σε αυτό το μήνυμα πριν το προγραμματίσετε ή στείλτε το χωρίς $2.",
+    "description": "The text of the alert that pops up when the user attempts to schedule a message with delivery status notification enabled. $1 is replaced with the contents of the string 'DSN' and $2 is replaced with the extension name."
+  },
+  "incorrectUUID": {
+    "message": "Προγραμματισμένο από άλλο πελάτη",
+    "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."
   },
   "TimeMismatchConfirmTitle": {
     "message": "Ασυμφωνία χρόνου αποστολής / περιορισμού",
@@ -705,6 +789,18 @@
     "message": "Έχετε ενεργοποιήσει ένα μήνυμα με χρονικό περιορισμό ημέρα χωρίς να καθορίσετε οποιεσδήποτε ημέρες. Παρακαλούμε να απενεργοποιήσετε τον χρονικό περιορισμό ημέρα ή καθορίστε τουλάχιστον μία ημέρα παράδοσης.",
     "description": ""
   },
+  "invalidUntilWarningTitle": {
+    "message": "Μη έγκυρος περιορισμός “μέχρι”",
+    "description": ""
+  },
+  "invalidUntilWarning_inPast": {
+    "message": "Το χρονικό όριο επανάληψης είναι στο παρελθόν.",
+    "description": ""
+  },
+  "invalidUntilWarning_tooSoon": {
+    "message": "Η προθεσμία επανάληψης είναι πριν από την πρώτη προγραμματισμένη αποστολή.",
+    "description": ""
+  },
   "InvalidArgsTitle": {
     "message": "Μη έγκυρη λειτουργία ορισμών",
     "description": ""
@@ -716,6 +812,10 @@
   "BlockedLateMessage": {
     "message": "Το μήνυμα με θέμα “$1“ στο φάκελο Πρόχειρα $2 είχε προγραμματιστεί να παραδοθεί περισσότερα πριν από $3 λεπτά, οπότε η παράδοση έχει μπλοκαριστεί. Θα πρέπει να επεξεργαστείτε το σχέδιο και στείλτε το με το χέρι ή να το επαναπρογραμματίσετε. Μπορείτε επίσης να απενεργοποιήσετε το \"Δεν παραδίδει μηνύματα περισσότερα από # λεπτά καθυστέρηση\" για να σταματήσουν να εμποδίζουν την παράδοση μηνυμάτων αργά.",
     "description": ""
+  },
+  "BlockedLateMessage2": {
+    "message": "Το μήνυμα με θέμα “$1“ στο φάκελο Πρόχειρα $2 είχε προγραμματιστεί να παραδοθεί παραπάνω από $3 λεπτά πριν, οπότε η παράδοση έχει μπλοκαριστεί. Θα πρέπει να επεξεργαστείτε το προσχέδιο και στείλτε το με το χέρι ή να το επαναπρογραμματίσετε. Μπορείτε επίσης να απενεργοποιήσετε το \"Να μην παραδίδονται μηνύματα περισσότερο από…\" για να σταματήσει να εμποδίζεται η παράδοση καθυστερημένων μηνυμάτων αλλά, μηνύματα με πάνω από 6 μήνες καθυστέρηση αποκλείονται πάντα.",
+    "description": "This is an updated version of the BlockedLateMessage string which is intended to replace it. I've left the old string in the database for the time being so translators can use it as a reference / starting point. The 3rd placeholder in THIS string is a number and the fourth is a unit such as 'minutes', 'days', etc. It will be singular if the number is 1 or plural otherwise. The unit is pulled from single_day etc. or plural_daily etc."
   },
   "EditorReadMeCode": {
     "message": "// Καλώς ήλθατε στο πρόγραμμα επεξεργασίας συνάρτησης Send Later!\n//\n// Το πρόγραμμα επεξεργασίας σας επιτρέπει να δημιουργήσετε πολύπλοκες λειτουργίες εφαρμογής JavaScript \n// μήνυμα προγραμματισμού λογικής η οποία μπορεί να συσχετιστεί με πλήκτρα συντόμευσης ή \n// επιλεγμένο παράθυρο διαλόγου Send Later.\n// Όπως μπορείτε να δείτε παραπάνω, όταν καλείτε μια λειτουργία προγραμματισμού, θα δοθούν\n// τρία επιχειρήματα:\n// * \"specname\" είναι απαραίτητη αν θέλετε αυτή η λειτουργία να επαναληφθεί (βλέπε παρακάτω)\n// * \"prev\" είναι η προηγούμενη προγραμματισμένη χρονική αποστολή, αν αυτό είναι επαναλαμβανόμενη\n// επίκληση\n// * \"args\" είναι επιπλέον επιχειρήματα που επιστρέφουν από προηγούμενη επίκληση αν αυτό\n// είναι μια επαναλαμβανόμενη επίκληση\n// \n// Ο κωδικό σας πρέπει να ορίσει τις μεταβλητές \"next\", \"nextspec\", και\n// \"nextargs\" ως εξής:\n//\n// * \"next\" είναι ο αριθμός των λεπτών στο μέλλον ή μία ημερομηνία αντικειμένου\n// που δείχνει πότε πρέπει να σταλεί το μήνυμα. \n//* \"nextspec\" είναι μια προδιαγραφή επανάληψης εάν αυτό προορίζεται να είναι ένα\n// επαναλαμβανόμενο μήνυμα (βλ.\n// https://extended-thunder.github.io/send-later/#dynamic-recurrence). Αν δεν ορίσετε\n// αυτό, τότε το μήνυμα θα σταλεί μόνο μία φορά. Σημείωση: αν θέλετε \n// η συνάρτηση σας για να κληθεί ξανά για υποτροπή, κάνει:\n// nextspec = \"function \" + specname;\n// * \"nextargs\" είναι μια σειρά με ορισμούς που θέλετε να περάσει στην επόμενη\n// επίκληση της συνάρτησης ως \"args\".\n// Ενώ εργάζεστε σε λειτουργία σας, μπορείτε να το δοκιμάσετε, συμπληρώνοντας τις τιμες\n// για \"prev\" και \"args\" στα παρακάτω πλαίσια κειμένου και, στη συνέχεια, κάνοντας κλικ στο κουμπί \"Execute\" να\n// εκτέλεση τη συνάρτηση και να δείτε τα αποτελέσματα. \n// Υπάρχουν δύο προ-διαμορφωμένο δείγματα λειτουργίας, \"BusinessHours\" και\n// \"DaysInARow\", το οποίο μπορείτε να εξετάσετε και να παίξετε για να μάθετε περισσότερα.\n// Αυτή τη λειτουργία \"ReadMeFirst\" προκαλεί ακριβώς το μήνυμα να σταλεί περίπου τώρα, \n// μέσω της ακόλουθης γραμμής. \nnext = new Date();",
@@ -821,13 +921,133 @@
     "message": "Έλεγχος",
     "description": ""
   },
+  "LongDescription": {
+    "message": "Σημείωση: Αν θέλετε να κάνετε μια μεμωνομένη δωρεά αντί μιας επαναλαμβανόμενης, μπορείτε να το κάνετε μέσω https://paypal.me/JonathanKamens ή https://venmo.com/Jonathan-Kamens, ή να ρυθμίσετε μια επαναλαμβανόμενη δωρεά στο LiberaPay και να την ακυρώσετε μέτα από μια πληρωμή.\n\nΑυτό το πρόσθετο αλλάζει την εντολή “Αποστολή Αργότερα” (Ctrl+Shift+Return) στο παράθυρο σύνταξης μηνύματος, οπότε αντί να αντιγράφει απλά το μήνυμα στα Εξερχόμενά σας και να σταλεί την επόμενη φορά που θα συνδεθείτε ή να εκτελεστεί το “Αποστολή Μη Απεσταλμένων Μηνυμάτων”, ένα παράθυρο εμφανίζεται που σας επιτρέπει να επιλέξετε πότε θα αποσταλεί το μήνυμα.\n\nΜπορείτε να προσδιορίσετε ημερομηνία και ώρα ή να επιλέξετε “σε 15 λεπτά”, “σε 30 λεπτά” ή “σε 2 ώρες” ή να ορίσετε δικές σας συντομεύσεις. Μπορείτε επίσης να προγραμματίσετε ένα μήνυμα να αποστέλλετε κατ' επανάληψη με χρήση απλών κανόνων (κάθε N ώρες, ημέρες, κτλ) ή τις δικές σας συναρτήσεις.\n\n<a href='https://extended-thunder.github.io/send-later/'>Οδηγός χρήστη</a> | <a href='https://github.com/Extended-Thunder/send-later/discussions'>Ερωτήσεις και Σχόλια</a> | <a href='https://github.com/Extended-Thunder/send-later/issues'>Αναφορές σφαλμάτων</a>\n\nΤο Αποστολή Αργότερα βασίζεται στον ισχυρό αναλυτή ημερομηνιών που προσφέρεται από την <a href='https://sugarjs.com/'>βιβλιοθήκη Sugar.js</a> του Andrew Plummer.",
+    "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
+  },
   "DeveloperComments": {
     "message": "Παρακαλώ <a href='https://extended-thunder.github.io/send-later/#help'> στείλτε μου μήνυμα μέσω του ηλεκτρονικού ταχυδρομείου </a> αναφορές σφαλμάτων, εισηγήσεις, κλπ.",
     "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
   },
+  "accelKeyLabel": {
+    "message": "Πλήκτρο επιταχυντή",
+    "description": "Label for options window to identify accelerator shortcuts"
+  },
+  "accelCtrlLabel": {
+    "message": "Ctrl+Κλικ",
+    "description": "Indicates key combination to access the ctrl+click accelerator function"
+  },
+  "accelCtrlLabel.MacOS": {
+    "message": "Cmd+Κλικ",
+    "description": "Indicates key combination to access the ctrl+click accelerator function. On mac the Ctrl key is replaced with the 'Command' key"
+  },
+  "accelShiftLabel": {
+    "message": "Shift+Κλικ",
+    "description": "Indicates key combination to access the shift+click accelerator function"
+  },
+  "okay": {
+    "message": "ΟΚ",
+    "description": "Confirm an action (presented in popup dialogs)"
+  },
   "cancel": {
     "message": "Ακύρωση",
     "description": "Cancel an action (presented in popup dialogs)"
+  },
+  "customizeDateTimeFormatsPrefLabel": {
+    "message": "Προσαρμογή μορφών ημερομηνίας/ώρας",
+    "description": "Option to enable customizing date/time formats"
+  },
+  "shortDateTimeFormatsPrefLabel": {
+    "message": "Σύντομη μορφή ημερομηνίας/ώρα:",
+    "description": "Preference input for short datetime format (e.g. 2021/04/28 11:45)"
+  },
+  "longDateTimeFormatsPrefLabel": {
+    "message": "Εκτεταμένη μορφή ημερομηνίας/ώρας:",
+    "description": "Preference input for extended datetime format (e.g. Wed, Apr 28 2021 11:45)"
+  },
+  "invalidDateFormat": {
+    "message": "μη έγκυρη ή ελλιπής μορφή ημερομηνίας",
+    "description": "Message displayed in the user interface inside parentheses when the user enters an invalid custom date format"
+  },
+  "menuScheduleMsg": {
+    "message": "Προγραμματισμός μηνυμάτων",
+    "description": "Command added to the message list menu for the user to use to schedule one or more selected drafts with Send Later"
+  },
+  "menuSkipMsg": {
+    "message": "Παράλειψη επόμενης εμφάνισης",
+    "description": "Command added to the message list menu for the user to use to skip the next occurrence of one or more selected recurring drafts"
+  },
+  "menuClaimMsg": {
+    "message": "Μετακίνηση προγραμματισμένων μηνυμάτων σε αυτό το Thunderbird",
+    "description": "Command added to the message list menu for the user to use to move scheduled messages from another Thunderbird instance to this one."
+  },
+  "resultsTitle": {
+    "message": "Αποτελέσματα επεξεργασίας μηνυμάτων",
+    "description": "The title of the pop-up that displays results after the user uses the message list context menu to perform an operation on more than one selected message."
+  },
+  "resultsAllSuccess": {
+    "message": "Επιτυχής επεξεργασία όλων των επιλεγμένων μηνυμάτων.",
+    "description": "Message displayed in the message list context menu results pop-up when multiple messages were selected and all were processed successfully."
+  },
+  "resultsPartialSuccess": {
+    "message": "Επιτυχής επεξεργασία $1 από $2 επιλεγμένα μηνύματα.",
+    "description": "Message displayed in the message list context menu results pop-up when multiple messages were selected and some were not processed successfully. The first placeholder is the number of successful messages and the second is the total number of selected messages."
+  },
+  "cantSkipSingletonTitle": {
+    "message": "Αδυναμία παράλειψης εμφάνισης μη επαναλαμβανόμενου μηνύματος",
+    "description": "The title of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a non-recurring message."
+  },
+  "cantSkipSingletonText": {
+    "message": "Το μήνυμα με το θέμα “$1” δεν είναι ένα επαναλαμβανόμενο μήνυμα, οπότε δεν μπορείτε να παραλείψετε την επόμενη προγραμματισμένη εμφάνισή του.",
+    "description": "The text of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a non-recurring message. The placeholder is for the message subject."
+  },
+  "cantSKipPastLastTitle": {
+    "message": "Το μήνυμα δεν έχει άλλες επαναλήψεις",
+    "description": "The title of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a message that has no further occurrences after that one."
+  },
+  "cantSkipPastLastText": {
+    "message": "Το μήνυμα με το θέμα “$1” δεν έχει άλλες εμφανίσεις, οπότε δεν μπορείτε να παραλείψετε το επόμενο.",
+    "description": "The text of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a message that has no further occurrences after that one. The placeholder is for the message subject."
+  },
+  "SkipConfirmMessage": {
+    "message": "Υποδείξατε ότι επιθυμείτε να παραλείψετε την επόμενη εμφάνιση ενός από τα επιλεγμένα μηνύματα. Αν αλλάξετε γνώμη μετά από αυτό, θα πρέπει να επαναπρογραμματίσετε τα μηνύματα με το χέρι. Σίγουρα θέλετε να συνεχίσετε;",
+    "description": "The text of the pop-up that warns the user when they activate the message list context menu command to skip the next occurrence of one or more messages. The purpose of this warning is to ensure that the user knows what the command does before using it. There is a checkbox in the pop-up which they can uncheck if they don't want to see the message again. See also 'AreYouSure' and 'ConfirmAgain' strings which occur in the same pop-up."
+  },
+  "RescheduleErrorTitle": {
+    "message": "Σφάλμα επαναπρογραμματισμού μηνύματος",
+    "description": "Title of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "RescheduleErrorText": {
+    "message": "ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Παρουσιάστηκε ένα μη αναμενόμενο σφάλμα κατά την προσπάθεια προγραμματισμού της επόμενης εμφάνισης ενός προγραμματισμένου μηνύματος με θέμα “$1”. Δείτε το αρχείο καταγραφής σφαλμάτων του Thunderbird για λεπτομέρειες. Το προηγούμενο προγραμματισμένο προσχέδιο επομένως δεν έχει διαγραφεί. Θα πρέπει είτε να το διαγράψετε ή να το επεξεργαστείτε και να το προγραμματίσετε εκ νέου αν είναι επιθυμητό.",
+    "description": "Text of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "TelemetryAskTitle": {
+    "message": "αίτημα συλλογής δεδομένων $1",
+    "description": "Title of the pop-up that asks the user whether we can collect anonymous usage data. The placeholder is replaced with the extension name."
+  },
+  "TelemetryAskText": {
+    "message": "Μπορούμε να συλλέξουμε ανώνυμα δεδομένα σχετικά με τη χρήση του $1; Τα δεδομένα μάς λένε πώς χρησιμοποιείτε το πρόσθετο και το περιβάλλον σας. Δεν περιέχει πληροφορίες αναγνώρισης, περιεχόμενο ηλεκτρονικού ταχυδρομείου ή πληροφορίες λογαριασμού. Χρησιμοποιούμε τα δεδομένα για να βελτιώσουμε το πρόσθετο, να μετρήσουμε τη χρήση του και να προσδιορίσουμε πού θα επικεντρώσουμε τις προσπάθειές μας. Δεν μοιραζόμαστε τα δεδομένα με κανέναν. Η απάντησή σας δεν θα επηρεάσει τη λειτουργικότητα του πρόσθετου. Οι πλήρεις λεπτομέρειες είναι διαθέσιμες στο $2.",
+    "description": "Text of the pop-up that asks the user whether we can collect anonymous usage data. The second placeholder is replaced with the contents of the string PrivacyPolicy (so we can make it a link."
+  },
+  "PrivacyPolicy": {
+    "message": "Πολιτική Απορρήτου",
+    "description": "Inserted into TelemetryAskText. Also used to link to the privacy policy from the Send Later pop-up in the main Thunderbird window."
+  },
+  "TelemetryAskYes": {
+    "message": "Ναι, μπορείτε να συλλέξετε δεδομένα χρήσης",
+    "description": "Label for the yes button on the telemetry request dialog."
+  },
+  "TelemetryAskNo": {
+    "message": "Όχι, μη συλλέξετε δεδομένα χρήσης",
+    "description": "Label for the no button on the telemetry request dialog."
+  },
+  "betaThankYouTitle": {
+    "message": "Σας ευχαριστούμε που είστε δοκιμαστής!",
+    "description": ""
+  },
+  "betaThankYouText": {
+    "message": "Αυτή τη στιγμή λαμβάνετε ενημερώσεις προ-κυκλοφορίας σε $1. Ενώ εκτιμούμε τη βοήθειά σας, δεν θέλουμε να επιβάλλουμε, έτσι ώστε ως προληπτικό μέτρο, σας το υπενθυμίζουμε αυτό κάθε φορά που γίνεται ενημέρωση $1. Αν θέλετε να αφήσετε το πρόγραμμα δοκιμής, μπορείτε να το κάνετε με τη λήψη και εγκατάσταση της τρέχουσας έκδοσης του $1 από addons.thunderbird.net.",
+    "description": "$1 is replaced with the extension name"
   },
   "selectNone": {
     "message": "(καμία)",
@@ -845,8 +1065,56 @@
     "message": "Φάκελο",
     "description": "Column header in message list in main window pop-up"
   },
+  "noneScheduled": {
+    "message": "Κανένα προγραμματισμένο μήνυμα",
+    "description": "Message in main window pop-up when there are no scheduled messages"
+  },
+  "internalLogTitle": {
+    "message": "Εσψτερική Καταγραφή του Αποστολή Αργότερα",
+    "description": "Title of the tab where the Send Later internal log is displayed when the user requests it"
+  },
+  "internalLogLevelLabel": {
+    "message": "Εσωτερικό επίπεδο καταγραφής:",
+    "description": "Label for the option menu for selecting the internal log level"
+  },
+  "internalLogClearLabel": {
+    "message": "Εκκαθάριση",
+    "description": "Label for the button to clear the internal log"
+  },
   "internalLogCopyLabel": {
     "message": "Αντιγραφή",
     "description": "Label for the buttom to copy the internal log to the clipboard"
+  },
+  "internalLogLinkLabel": {
+    "message": "Προβολή εσωτερικού αρχείου καταγραφής",
+    "description": "Label for the link in the main window pop-up for opening the internal log tab."
+  },
+  "messageTooLargeTitle": {
+    "message": "Πολύ μεγάλο μήνυμα",
+    "description": "The title of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large."
+  },
+  "messageTooLargeText": {
+    "message": "Λόγω ενός σφάλματος στο Thunderbird, το $1 δεν μπορεί να παραδώσει το μήνυμα με θέμα “$2” επειδή είναι πολύ μεγάλο. Έχει μήκος $3 bytes, το οποίο είναι μεγαλύτερο από το ρυθμισμένο όριο των $4. Αν θέλετε, μπορείτε να αυξήσετε αυτό το όριο αλλάζοντας την προτίμηση “mailnews. essage_warning_size” στον επεξεργαστή ρυθμίσεων Thunderbird, ή ορίστε την προτίμηση σε 0 για να απενεργοποιήσετε το όριο εντελώς, αλλά σημειώστε ότι οποιαδήποτε αλλαγή κάνετε θα επηρεάσει επίσης αν το Thunderbird σας προειδοποιεί για μεγάλα μηνύματα που αποστέλλονται απευθείας και όχι μέσω $1. Σε κάθε περίπτωση, για να στείλετε αυτό το μήνυμα μπορείτε είτε να το ανοίξετε για επεξεργασία και να το στείλετε άμεσα ή να το επεξεργαστείτε και να το επαναπρογραμματίσετε αφού το κάνετε μικρότερο ή αλλάξετε την προτίμηση στο Thunderbird.",
+    "description": "The (unfortunately very long) text of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large and the TB version is 114 or earlier. $1 is the extension name, $2 is the message subject, $3 is its length, and $4 is the length limit. Please don't translate 'mailnews.message_warning_size', that needs to stay in English."
+  },
+  "dynamicCompatibilityTitle": {
+    "message": "Ειδοποίηση συμβατότητας δυναμικών λειτουργιών",
+    "description": "The title of the pop-up error that is displayed when the user has dynamic scheduling functions configured in Send Later and they are not currently using a version of Send Later that supports them."
+  },
+  "dynamicCompatibilityMessage": {
+    "message": "<strong>ΠΡΟΣΟΧΗ:</strong> Η έκδοση $1 που χρησιμοποείτε δεν υποστηρίζει συναρτήσεις δυναμικής αποστολής. Προσπάθειες να χρησιμοποιηθούν οι δυναμικές συναρτήσεις κατά τον προγραμματισμό ενός μηνύματος ή επαναλαμβανομένων θα οδηγήσει σε απροσδιόριστη, λανθασμένη συμπεριφορά. <strong>Αυτό περιλαμβάνει οποιοδήποτε δυναμικό επαναλαμβανόμενο μήνυμα έχετε προγραμματίσει στο παρελθόν.</strong><br/>Αν θέλετε να συνεχίσετε να χρησιμοποείτε δυναμικές συναρτήσεις, πρέπει να επιλέξετε το κανάλι δοκιμαστικών ενημερώσεων, που συνεχίζει να τις υποστηρίζει.<br/>Αυτή η αλλαγή είναι αποτέλεσμα πιο αυστηρών περιορισμών ασφαλείας που τέθηκαν από τους συντονιστές του <a href='https://addons.thunderbird.net/'>addons.thunderbird.net</a>. Για περισσότερες πληροφορίες, δείτε τον <a href='$2'>οδηγό χρήστη</a>.<br/>Θα βλέπετε αυτό το μήνυμα κατά την έναρξη μέχρι είτε να επιλέξετε στο κανάλι δοκιμών $1 είτε μέχρι να διαγράψετε όλες τις μη καθορισμένες δυναμικές συναρτήσεις στον συντάκτη συναρτήσεων.",
+    "description": "The text of the pop-up error that is displayed when the user has dynamic scheduling functions configured in Send Later and they are not currently using a version of Send Later that supports them. $1 is replaced with extension name and $2 is replaced with the appropriate user guide link."
+  },
+  "in15minutes": {
+    "message": "σε 15 λεπτά",
+    "description": "Default quick button label"
+  },
+  "in30minutes": {
+    "message": "σε 30 λεπτά",
+    "description": "Default quick button label"
+  },
+  "in2hours": {
+    "message": "σε 2 ώρες",
+    "description": "Default quick button label"
   }
 }
