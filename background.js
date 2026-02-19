@@ -3063,16 +3063,21 @@ async function findBestIdentity(message, messageFull) {
   let keyIdentityId = messageFull?.headers["x-identity-key"]?.at(0);
   if (keyIdentityId) {
     let keyIdentity = await messenger.identities.get(keyIdentityId);
-    // Trust X-Identity-Key if the identity exists and the email address
-    // matches. This header was set by Thunderbird's compose system when
-    // the user scheduled the message, so it reflects the user's intent.
-    // Using exactIdentityMatch here is too strict — it fails when the
-    // From header has different formatting (RFC 2047 encoding, quoting,
-    // whitespace) than identity.name + " <" + identity.email + ">",
-    // causing the authoritative identity key to be discarded and the
-    // wrong identity to be selected via the fallback cascade.
-    // See: https://github.com/Extended-Thunder/send-later/issues/781
-    if (keyIdentity && emailIdentityMatch(author, keyIdentity))
+    if (keyIdentity) {
+      let expected = keyIdentity.name
+        ? `${keyIdentity.name} <${keyIdentity.email}>`
+        : keyIdentity.email;
+      SLTools.info("findBestIdentity: X-Identity-Key lookup", {
+        keyIdentityId,
+        author: JSON.stringify(author),
+        expected: JSON.stringify(expected),
+        identityName: JSON.stringify(keyIdentity.name),
+        identityEmail: JSON.stringify(keyIdentity.email),
+        exactMatch: exactIdentityMatch(author, keyIdentity),
+        emailMatch: emailIdentityMatch(author, keyIdentity),
+      });
+    }
+    if (keyIdentity && exactIdentityMatch(author, keyIdentity))
       return keyIdentity;
   }
   let account = await messenger.accounts.get(message.folder.accountId, false);
