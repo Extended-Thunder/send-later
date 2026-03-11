@@ -198,12 +198,7 @@ process, but in a different way.
 ### What happens when you schedule a message?
 
 When you schedule a message for delivery, it is saved in your Drafts
-folder with the necessary scheduling information embedded in it. If you
-wish to reschedule a message later, just edit the saved draft and do
-"Send Later" again to specify the new send time. If you wish to cancel
-a scheduled message delivery, edit the draft and save it normally
-without "Send Later" (or just send it immediately, if that's what you
-want to do), and the scheduling information will be removed.
+folder with the necessary scheduling information embedded in it.
 
 When the scheduled delivery time for a message arrives, Send Later
 copies the message from your Drafts folder to your Outbox under Local
@@ -211,6 +206,15 @@ Folders, then tells Thunderbird to deliver the messages in your
 Outbox, then removes the message from your Drafts folder, possibly
 leaving a new one in its place if it's a [recurring](#recurring)
 message.
+
+### How do I reschedule or cancel a scheduled send?
+
+If you wish to reschedule a message, edit the saved draft and do "Send
+Later" again to specify the new send time.
+
+If you wish to cancel a scheduled message delivery, either delete the
+draft or open it for editing; as soon as you start editing a draft,
+any scheduled send is removed.
 
 <a name="date-formats"></a>
 ### Date formats
