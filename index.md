@@ -1702,6 +1702,10 @@ resend it.
 
 ### Messages don't send or send multiple times
 
+#### Are there messages stuck in your Outbox?
+
+Bad messages suck in your Outbox, as described [above](#bad-unsent), can cause other messages not to send. Check that first.
+
 #### Are you using the add-on correctly?
 
 If scheduled messages get moved into your Outbox (underneath Local
