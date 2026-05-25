@@ -802,6 +802,7 @@ only valid when you are accessing Exchange as a generic IMAP server,
 *not* when you are using ExQuilla, which as noted [just above](#exquilla) is
 incompatible with Send Later anyway.
 
+<a name="running"></a>
 ### Thunderbird must be running for scheduled messages to be sent
 
 You need to keep Thunderbird running (and your computer turned on!) for
@@ -1701,6 +1702,10 @@ Drafts folder, edit it there to fix whatever was wrong with it, and
 resend it.
 
 ### Messages don't send or send multiple times
+
+#### Remember, Thunderbird must be running!
+
+As documented [above](#running), Send Later can't deliver messages unless your computer is on (not asleep) and connected to the internet and Thunderbird is running, which on macOS means there is at least one Thunderbird window open.
 
 #### Are there messages stuck in your Outbox?
 
