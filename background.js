@@ -2138,6 +2138,11 @@ const SendLater = {
   // Allow other extensions to access local preferences
   onMessageExternalListener(message, sender, sendResponse) {
     switch (message.action) {
+      case "getVersion": {
+        // Return Promise for the version.
+        let manifest = messenger.runtime.getManifest();
+        return Promise.resolve(manifest.version);
+      }
       case "getUUID": {
         // Return Promise for the instanceUUID.
         return SLTools.getPrefs()
