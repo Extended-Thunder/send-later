@@ -4,7 +4,7 @@
     "description": "The name of the add-on, displayed in various places."
   },
   "extensionDescription": {
-    "message": "“Skicka senare”-funktion som låter användaren schemalägga tidpunkten för sändning av ett e-brev.",
+    "message": "Äkta ”Skicka senare”-funktion som låter dig schemalägga när ett e-postmeddelande ska skickas.",
     "description": "A short description of the add-on."
   },
   "advancedOptionsTitle": {
@@ -24,7 +24,7 @@
     "description": ""
   },
   "blockLateMessagesPrefTooltip": {
-    "message": "Skicka inte schemalagda meddelanden som blivit försenade, pga att Thunderbird inte var igång, och nu är utanför inställning för tid och datum",
+    "message": "Skicka inte schemalagda meddelanden som har blivit försenade efter sin schemalagda sändtid, till exempel för att Thunderbird inte kördes vid den tidpunkten.",
     "description": ""
   },
   "checkTimePrefLabel1": {
@@ -48,16 +48,20 @@
     "description": ""
   },
   "enforceRestrictionsPrefLabel": {
-    "message": "Tid- och datuminställning är tvingande för att skicka",
+    "message": "Tillämpa tids- och dagsbegränsningar vid sändning",
     "description": ""
   },
   "enforceRestrictionsPrefTooltip": {
-    "message": "Om Thunderbird inte var igång och ett schemalagt meddelande nu är utanför tid- och datuminställning, avvakta sändning tills tid- och datuminställning överensstämmer igen.",
+    "message": "Om ett meddelande som ska skickas ligger utanför de angivna tids- eller dagsbegränsningarna, till exempel för att Thunderbird inte kördes vid den schemalagda sändtiden, skjuts sändningen upp tills begränsningarna är uppfyllda.",
     "description": ""
   },
   "generalOptionsTitle": {
     "message": "Allmänt",
     "description": "The title of the 'General' section on the options page"
+  },
+  "shortcutsOptionsTitle": {
+    "message": "Kortkommandon",
+    "description": "The title of the 'Shortcuts' section on the options page"
   },
   "logConsoleLevelLabel": {
     "message": "Loggningsnivå för konsol",
@@ -68,7 +72,7 @@
     "description": ""
   },
   "logLevelDebug": {
-    "message": "Felsök",
+    "message": "Felsökning",
     "description": ""
   },
   "logLevelError": {
@@ -84,11 +88,11 @@
     "description": ""
   },
   "logLevelTrace": {
-    "message": "Spår",
+    "message": "Spårning",
     "description": ""
   },
   "logLevelWarn": {
-    "message": "Varna",
+    "message": "Varning",
     "description": ""
   },
   "markReadPrefLabel": {
@@ -96,15 +100,15 @@
     "description": ""
   },
   "quickOptionsLabel1Label": {
-    "message": "Genväg 1",
+    "message": "Kortkommando 1",
     "description": ""
   },
   "quickOptionsLabel2Label": {
-    "message": "Genväg 2",
+    "message": "Kortkommando 2",
     "description": ""
   },
   "quickOptionsLabel3Label": {
-    "message": "Genväg 3",
+    "message": "Kortkommando 3",
     "description": ""
   },
   "quickOptionsValueLabel": {
@@ -136,7 +140,7 @@
     "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "recurOnceLabel": {
-    "message": "ingen",
+    "message": "en gång",
     "description": ""
   },
   "recurWeeklyLabel": {
@@ -144,7 +148,7 @@
     "description": "Appears next to recurLabel to indicate the frequency of recurrence when the multiple is 1, e.g., 'Recur daily' vs. 'Recur every 2 days' (for those, see the every_* strings)."
   },
   "resetPrefsButton": {
-    "message": "Återställ Inställningar",
+    "message": "Återställ inställningar",
     "description": ""
   },
   "saveDefaultsLabel": {
@@ -168,23 +172,31 @@
     "description": ""
   },
   "sendButtonPrefLabel": {
-    "message": "“Skicka” innebär “Skicka senare”",
+    "message": "”Skicka” fungerar som ”Skicka senare”",
     "description": ""
   },
   "sendButtonPrefTooltip": {
-    "message": "Om detta alternativ är aktiverat, så utförs kommandot “Skicka” (antingen via knappen eller genom att trycka ner Ctrl+Retur) precis som “Skicka senare”.",
+    "message": "Låt kommandot ”Skicka” (knappen eller Ctrl+Retur) fungera på samma sätt som ”Skicka senare”.",
     "description": ""
   },
+  "whitelistPrefTooltip": {
+    "message": "Om `$1` eller ”Skicka” fördröjer meddelanden är aktiverat och du anger namnet på en befintlig adressbok här, kommer meddelanden vars samtliga mottagare finns i adressboken att kringgå $2 när du använder knappen eller menykommandot för att skicka meddelandet.",
+    "description": "$1 is replaced with the contents of sendButtonPrefLabel, and $2 is replaced with extensionName."
+  },
+  "whitelistPrefLabel": {
+    "message": "Adressbok för tillåtelselista:",
+    "description": "Appears on the options tab, followed by an input box for the use to specify the name of an address book."
+  },
   "sendDelayPrefLabel1": {
-    "message": "”Skicka” försenar meddelanden genom att",
+    "message": "”Skicka” fördröjer meddelanden med",
     "description": ""
   },
   "sendlater.prompt.cancelonreply.tooltip": {
-    "message": "Invänta svar på tidigare skickade kopior av återkommande meddelanden. Avbryt ett återkommande meddelande och ta bort det från mappen Utkast när ett svar tas emot.",
+    "message": "Övervaka svar på tidigare skickade kopior av återkommande meddelanden. Avbryt det återkommande meddelandet och ta bort det från mappen Utkast när ett svar tas emot.",
     "description": ""
   },
   "sendDelayPrefTooltip": {
-    "message": "Med detta alternativ aktiverat, kommer alla meddelanden som skickas med kommandot “Skicka” (antingen via knappen eller genom att skriva Ctrl-Enter) att fördröjas av det angivna antalet minuter genom att schemalägga dem med Skicka Senare.",
+    "message": "Fördröj alla meddelanden som skickas med kommandot ”Skicka” (knappen eller Ctrl+Retur) med det angivna antalet minuter genom att schemalägga dem med Skicka Senare.",
     "description": ""
   },
   "sendSundayLabel": {
@@ -220,7 +232,7 @@
     "description": ""
   },
   "sendNowTooltip": {
-    "message": "Skicka meddelandet omedelbart oavsett inställningar i “Skicka Senare”.",
+    "message": "Skicka meddelandet omedelbart utan att använda Skicka Senare.",
     "description": ""
   },
   "sendOnlyOnLabel": {
@@ -228,7 +240,7 @@
     "description": ""
   },
   "sendUnsentMessagesPrefLabel": {
-    "message": "Utlös sändning av ej skickade meddelanden från Utkorgen",
+    "message": "Starta sändning av osända meddelanden från Utkorgen",
     "description": ""
   },
   "sendUnsentMessagesPrefTooltip": {
@@ -240,27 +252,31 @@
     "description": ""
   },
   "showColumnPrefTooltip": {
-    "message": "Visning av kolumnen “Skicka Senare” vid granskning av utkastmappar",
+    "message": "Visa kolumnen ”Skicka Senare” när mappar med utkast visas.",
     "description": ""
   },
   "showHeaderPrefLabel": {
-    "message": "Visa huvudet “Skicka Senare”",
+    "message": "Visa huvudfältet ”Skicka Senare”",
     "description": ""
   },
   "showHeaderPrefTooltip": {
-    "message": "Visning av huvudet “X-Send-Later-At”, d.v.s. den tidpunkt då ett utkast har schemalagts att skickas, i meddelandehuvudet vid granskning av ett meddelande.",
+    "message": "Visa huvudfältet ”X-Send-Later-At”, det vill säga den tidpunkt då ett utkast är schemalagt att skickas, i meddelandehuvudet när ett meddelande visas.",
     "description": ""
+  },
+  "showToolbarTextLabel": {
+    "message": "Visa text på knappen i verktygsfältet",
+    "description": "If this setting is enabled, then the toolbar button will say 'Send Later' (or translated equivalent) alongside the icon. If it is disabled, then only the icon will be visible."
   },
   "userGuideLabel": {
     "message": "Användarhandbok",
     "description": ""
   },
   "errorDateInPast": {
-    "message": "Vald tid har passerats",
+    "message": "Den valda tidpunkten har passerat",
     "description": ""
   },
   "DelayFunctionHelp": {
-    "message": "Fördröj bara meddelandet med ett antal minuter. Första argumentet kommer att ange fördröjningstiden.",
+    "message": "Fördröj meddelandet med ett visst antal minuter. Det första argumentet används som fördröjningstid.",
     "description": ""
   },
   "sendlater.prompt.sendlater.label": {
@@ -280,7 +296,7 @@
     "description": "Accesskey corresponding to 'sendNowLabel'. See https://github.com/Extended-Thunder/send-later/blob/main/TRANSLATING.md#accesskey-strings."
   },
   "sendlater.prompt.title.label": {
-    "message": "Skicka detta e-brev senare",
+    "message": "Skicka det här e-postmeddelandet senare",
     "description": ""
   },
   "sendlater.prompt.or.label": {
@@ -288,11 +304,11 @@
     "description": ""
   },
   "sendlater.prompt.textbox.emptytext": {
-    "message": "T.ex. “3:00pm torsdag”, “12/31/2012 15:27”",
+    "message": "t.ex. ”torsdag 15:00”, ”2012-12-31 15:27”",
     "description": ""
   },
   "sendlater.prompt.sendat.label": {
-    "message": "Skicka senare vid den/de tidpunkt(er) som anges ovan",
+    "message": "Skicka senare vid tidpunkten eller tidpunkterna ovan",
     "description": ""
   },
   "sendlater.prompt.functionargs.label": {
@@ -308,19 +324,19 @@
     "description": ""
   },
   "sendlater.button1.label": {
-    "message": "15 min. senare",
+    "message": "om 15 minuter",
     "description": ""
   },
   "sendlater.button2.label": {
-    "message": "30 min. senare",
+    "message": "om 30 minuter",
     "description": ""
   },
   "sendlater.button3.label": {
-    "message": "2 tim. senare",
+    "message": "om 2 timmar",
     "description": ""
   },
   "sendlater.prompt.cancelonreply.label": {
-    "message": "Avbryt upprepande vid svar",
+    "message": "Avbryt upprepning vid svar",
     "description": ""
   },
   "sendlater3header.label": {
@@ -332,39 +348,51 @@
     "description": ""
   },
   "quickoptionname.label": {
-    "message": "Knappetikett",
+    "message": "Knapptext",
     "description": ""
+  },
+  "quickoptionkey.label": {
+    "message": "Tangent (Ctrl+Alt+…)",
+    "description": "Heading for the column in the preferences where the user can specify the key bindings to activate shortcut buttons"
+  },
+  "validKeysTooltip": {
+    "message": "Giltiga kortkommandotangenter (skiftlägeskänsliga!) är A–Z, 0–9, F1–F12, Comma, Period, Home, End, PageUp, PageDown, Space, Insert, Delete, Up, Down, Left och Right.",
+    "description": "The tooltip that pops up to tell the user what the valid keys to bind the quick option shortcuts to. Do not translate the keys, just translate the 'Valid shortcut keys (case-sensitive!) are' part, because the keys have to be in English in the actual shortcut."
   },
   "showsendlaterprogress.caption": {
     "message": "Visa bakgrundsförlopp i statusfältet",
     "description": ""
   },
   "composewindowhotkeys.caption": {
-    "message": "Aktivera komponeringsfönstrets nyckelbindningar för förinställningar",
+    "message": "Aktivera kortkommandon för förval i skrivfönstret",
     "description": ""
   },
   "releasenotes.value": {
-    "message": "Releaseanteckningar",
+    "message": "Versionsinformation",
     "description": ""
   },
   "donatelink.value": {
-    "message": "Donera",
+    "message": "Ge ett bidrag",
     "description": ""
   },
   "activeAccountsOptionsTitle": {
     "message": "Aktiva konton",
     "description": "Subtitle of the 'Advanced' section in the options where the user can mark which accounts Send Later should pay attention to."
   },
+  "activeAccountsOptionsText": {
+    "message": "Konton som du avmarkerar i det här avsnittet ignoreras av Skicka Senare: de kontrolleras inte efter schemalagda utkast och schemalagda utkast i dem skickas inte. Nyskapade konton är aktiva som standard, och om du schemalägger ett nytt meddelande i ett inaktivt konto aktiveras kontot automatiskt igen. Inaktivera konton som Thunderbird inte kan logga in på, till exempel för att inloggningen har inaktiverats eller servern för närvarande är nere.",
+    "description": "This explanation appears below activeAccountsOptionsTitle and above the list of accounts"
+  },
   "advancededitor.title": {
     "message": "Avancerad konfigurationsredigerare",
     "description": ""
   },
   "editorlink.value": {
-    "message": "Dynamisk funktionseditor",
+    "message": "Redigerare för dynamiska funktioner",
     "description": ""
   },
   "editorbutton": {
-    "message": "Öppna dynamisk funktionseditor…",
+    "message": "Öppna redigeraren för dynamiska funktioner…",
     "description": ""
   },
   "editortip": {
@@ -372,11 +400,11 @@
     "description": ""
   },
   "loglevel.config": {
-    "message": "Konfigurera",
+    "message": "Konfiguration",
     "description": ""
   },
   "windowtitle": {
-    "message": "Skicka Senare dynamisk funktionseditor",
+    "message": "Redigerare för dynamiska funktioner i Skicka Senare",
     "description": ""
   },
   "selectfunction": {
@@ -460,7 +488,7 @@
     "description": ""
   },
   "reset.label": {
-    "message": "Ignorera ändringar",
+    "message": "Kassera ändringar",
     "description": ""
   },
   "save.label": {
@@ -480,7 +508,7 @@
     "description": ""
   },
   "sendwithfunction": {
-    "message": "Skicka enligt funktion \"$1\"",
+    "message": "Skicka enligt funktionen ”$1”",
     "description": ""
   },
   "sendspecifyfunction": {
@@ -488,11 +516,11 @@
     "description": ""
   },
   "OptionShortcutAlertTitle": {
-    "message": "Ogiltigt värde för genväg",
+    "message": "Ogiltigt kortkommando",
     "description": ""
   },
   "OptionShortcutAlertText": {
-    "message": "Genvägen $1 har ett ogiltigt värde: “$2”",
+    "message": "Kortkommandot $1 har det ogiltiga värdet ”$2”.",
     "description": ""
   },
   "SendingUnsentError": {
@@ -535,7 +563,7 @@
     "description": "Used in an error message when the phrase '1 month' needs to be displayed."
   },
   "single_year": {
-    "message": "",
+    "message": "år",
     "description": "Used in an error message when the phrase '1 year' needs to be displayed."
   },
   "plural_minutely": {
@@ -559,23 +587,23 @@
     "description": ""
   },
   "every_minutely": {
-    "message": "var $1 minut",
+    "message": "var $1:e minut",
     "description": ""
   },
   "every_daily": {
-    "message": "var $1 dag",
+    "message": "var $1:e dag",
     "description": ""
   },
   "every_weekly": {
-    "message": "var $1 vecka",
+    "message": "var $1:e vecka",
     "description": ""
   },
   "every_monthly": {
-    "message": "var $1 månad",
+    "message": "var $1:e månad",
     "description": ""
   },
   "every_yearly": {
-    "message": "var $1 år",
+    "message": "var $1:e år",
     "description": ""
   },
   "everyempty": {
@@ -583,7 +611,7 @@
     "description": ""
   },
   "everymonthly": {
-    "message": "$1 $2en i månaden",
+    "message": "$1 $2 i månaden",
     "description": ""
   },
   "everymonthly_day0": {
@@ -663,15 +691,15 @@
     "description": "Negative answer for a yes/no question presented in a confirmation dialog"
   },
   "OutboxConfirmMessage": {
-    "message": "Alternativet “Lägg i Utkorgen” placerar omedelbart meddelandet i din utkorg. Det schemalägger INTE meddelandet för sändning vid en specifik tidpunkt. För att göra det, klicka på knappen “Skicka kring” i den gröna rutan efter det att du har angivit en giltig sändningstid. Är du säker på att du vill lägga meddelandet i Utkorgen nu?",
+    "message": "Om du klickar på ”$1” läggs meddelandet omedelbart i Utkorgen. Det schemalägger INTE meddelandet för sändning vid en viss tidpunkt. För att göra det anger du en giltig sändtid och klickar på ”$2”. Är du säker på att du vill lägga meddelandet i Utkorgen nu?",
     "description": "$1 is replaced with your translation of 'Put in Outbox' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "SendNowConfirmMessage": {
-    "message": "Genom att klicka på “Skicka nu” sänds meddelandet omedelbart. Meddelandet schemaläggs INTE till en viss tid. För att schemalägga väljer du en tidpunkt och klickar på “Skicka kring” knappen i den gröna boxen. Är du säker på att du vill skicka meddelandet direkt?",
+    "message": "Om du klickar på ”$1” skickas meddelandet omedelbart. Det schemalägger INTE meddelandet för sändning vid en viss tidpunkt. För att göra det anger du en giltig sändtid och klickar på ”$2”. Är du säker på att du vill skicka meddelandet nu?",
     "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'. NOTE: a previous version of this string said the 'Send at' button was in a green box, but that's no longer true so those words have been removed from the master string and the equivalent words should be removed from the translations."
   },
   "PopupChangedConfirmMessage": {
-    "message": "Det verkar som du klickade “$1” efter att ha ändrat några av värdena i planeringsdialogen. Är du säker på att du tänkt att göra det snarare än att klicka på “$2”-knappen?",
+    "message": "Det verkar som att du klickade på ”$1” efter att ha ändrat några värden i schemaläggningsdialogrutan. Är du säker på att du ville göra det i stället för att klicka på ”$2”?",
     "description": "$1 is replaced with your translation of 'Send Now' and $2 is replaced with your translation of 'Send at'."
   },
   "ConfirmAgain": {
@@ -685,60 +713,84 @@
   "ShowQuitNotificationPreference": {
     "message": "Visa varning innan avslut om det finns väntande meddelanden"
   },
+  "SubfolderPreference": {
+    "message": "Lagra schemalagda meddelanden i en undermapp med namnet:",
+    "description": "In preferences tab, preceded by a checkbox and followed by a text input"
+  },
+  "detachedPopupPreference": {
+    "message": "Frikoppla schemaläggningsdialogrutan från skrivfönstret",
+    "description": "In preferences tab, preceded by a checkbox"
+  },
   "ScheduledMessagesWarningQuitRequested": {
     "message": "Det finns meddelanden som har schemalagts för sändning. Skicka Senare kan endast skicka meddelanden när $1 körs. Är du säker på att du vill avsluta?",
     "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "ScheduledMessagesWarningQuit": {
-    "message": "Skicka Senare kan endast skicka meddelanden när $1 körs. Kom ihåg att starta om programmet innan dina meddelanden har schemalagts att skickas!",
+    "message": "Skicka Senare kan endast skicka meddelanden när $1 körs. Kom ihåg att starta programmet igen innan dina meddelanden är schemalagda att skickas!",
     "description": "$1 is replaced with the localized name for Thunderbird"
   },
   "IncompatibleEncryptionTitle": {
     "message": "Krypteringsinställningar är inkompatibla med $1",
     "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has incompatible encryption or signing enabled. The placeholder is replaced with the extension name."
   },
+  "IncompatibleEncryption-pgp-error-Text": {
+    "message": "$1 kan inte schemalägga meddelanden som är krypterade eller digitalt signerade med PGP, eller vars utkast är PGP-krypterade. Du måste inaktivera detta eller byta till S/MIME innan du schemalägger meddelandet. För kryptering av utkast, se ”Lagra utkast i krypterat format” under ”End-to-end-kryptering” i konto- eller identitetsinställningarna.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has PGP encryption, signing, or draft encryption enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
+  "IncompatibleEncryption-drafty-error-Text": {
+    "message": "Om du vill att $1 ska signera eller kryptera schemalagda meddelanden med S/MIME måste kryptering av utkast vara aktiverad. Se ”Lagra utkast i krypterat format” under ”End-to-end-kryptering” i konto- eller identitetsinställningarna.",
+    "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has S/MIME encryption or signing without enabling draft encryption first. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
+  },
   "EncryptionUnsupportedTitle": {
     "message": "$1 stöder inte kryptering",
     "description": "Title of the error pop-up that appears when the user attempts to schedule a message that has encryption or signing enabled. The placeholder is replaced with the extension name."
   },
   "EncryptionUnsupportedText": {
-    "message": "$1 kan inte schemalägga meddelanden som är krypterade eller digitalt signerade. Du måste inaktivera dessa i ett utkast innan de går att schemaläggas. Du måste också inaktivera “Store draft messages in encrypted format” under “End-To-End Encryption” för konton eller identiteter som du vill schemalägga meddelanden för.",
+    "message": "$1 kan inte schemalägga krypterade eller digitalt signerade meddelanden. Du måste inaktivera detta för ett utkast innan det kan schemaläggas. Du måste också inaktivera ”Lagra utkast i krypterat format” under ”End-to-end-kryptering” för de konton eller identiteter som du vill schemalägga meddelanden för.",
     "description": "Text of the error pop-up that appears when the user attempts to schedule a draft that has encryption or signing enabled. The placeholder is replaced with the extension name. Please get the translations for “Store draft messages in encrypted format” and “End-To-End Encryption” from Thunderbird's account settings displayed in the language you're translating."
   },
   "DSN": {
     "message": "Leveranskvitto",
     "description": "The Thunderbird 'Options' menu command in the compose window for enabling delivery status notification for a message. This needs to match what's in the menu. NOTE: This is *different from* the 'Return Receipt' menu command which appears adjacent to it."
   },
+  "noDsnTitle": {
+    "message": "$1 stöds inte med $2",
+    "description": "The title of the alert that pops up when the user attempts to schedule a message with delivery status notification enabled. $1 is replaced with the string 'DSN' and $2 is replaced with the extension name."
+  },
+  "noDsnText": {
+    "message": "Alternativet $1 är inte kompatibelt med $2. Inaktivera alternativet för det här meddelandet innan du schemalägger det, eller skicka meddelandet utan $2.",
+    "description": "The text of the alert that pops up when the user attempts to schedule a message with delivery status notification enabled. $1 is replaced with the contents of the string 'DSN' and $2 is replaced with the extension name."
+  },
   "incorrectUUID": {
     "message": "Schemalagd av en annan e-postklient",
     "description": "Shown in the Send Later column for messages which were scheduled from a different Thunderbird client."
   },
   "TimeMismatchConfirmTitle": {
-    "message": "Inställning för att skicka överensstämmer ej",
+    "message": "Sändtiden strider mot begränsningarna",
     "description": ""
   },
   "TimeMismatchConfirmBody": {
-    "message": "Angiven tidpunkt för att skicka, $1, överensstämmer inte med angiven tidsinställning. Klicka på Avbryt för att ändra tid för att skicka eller klicka OK för att automatiskt justera tiden till $2.",
+    "message": "Sändtiden $1 ligger inte inom de angivna tidsbegränsningarna. Klicka på Avbryt för att ändra sändtiden eller begränsningarna, eller på OK för att automatiskt justera tiden till $2.",
     "description": ""
   },
   "endTimeWarningTitle": {
-    "message": "Ogiltig inställning för tid",
+    "message": "Ogiltig tidsbegränsning för meddelandet",
     "description": ""
   },
   "endTimeWarningBody": {
-    "message": "Inställning för sluttid kan inte vara tidigare än starttid. Justera eller avaktivera tidsinställning.",
+    "message": "När du anger en tidsbegränsning för ett meddelande kan sluttiden inte vara tidigare än starttiden. Justera tidsbegränsningen eller inaktivera den.",
     "description": ""
   },
   "missingDaysWarningTitle": {
-    "message": "Ogiltig inställning för dag",
+    "message": "Ogiltig dagsbegränsning",
     "description": ""
   },
   "missingDaysWarningBody": {
-    "message": "Du har aktiverat daginställning utan att ange några dagar. Avaktivera daginställning eller ange minst en dag för sändning.",
+    "message": "Du har aktiverat en dagsbegränsning utan att ange några dagar. Inaktivera dagsbegränsningen eller ange minst en sändningsdag.",
     "description": ""
   },
   "invalidUntilWarningTitle": {
-    "message": "Ogiltig tidsbegränsning",
+    "message": "Ogiltig ”till och med”-begränsning",
     "description": ""
   },
   "invalidUntilWarning_inPast": {
@@ -750,7 +802,7 @@
     "description": ""
   },
   "InvalidArgsTitle": {
-    "message": "Ogiltig funktionsargument",
+    "message": "Ogiltiga funktionsargument",
     "description": ""
   },
   "InvalidArgsBody": {
@@ -758,8 +810,12 @@
     "description": ""
   },
   "BlockedLateMessage": {
-    "message": "Meddelandet med ämne “$1” i mappen för Utkast $2 har schemalagts för sändning för mer än $3 minuter sen och sändningen har blockerats. För att skicka meddelandet kan du ändra ditt utkast och antingen skicka direkt eller schemalägga på nytt. Du kan också avaktivera inställning \"Skicka inte meddelanden mer än # minuter sent” för att skicka försenade meddelanden.",
+    "message": "Meddelandet med ämnet ”$1” i utkastmappen $2 var schemalagt att skickas för mer än $3 minuter sedan, så sändningen har blockerats. Redigera utkastet och skicka det manuellt eller schemalägg det på nytt. Du kan också inaktivera inställningen ”Skicka inte meddelanden mer än # minuter sent” för att sluta blockera försenade meddelanden.",
     "description": ""
+  },
+  "BlockedLateMessage2": {
+    "message": "Meddelandet med ämnet ”$1” i utkastmappen $2 var schemalagt att skickas för mer än $3 $4 sedan, så sändningen har blockerats. Redigera utkastet och skicka det manuellt eller schemalägg det på nytt. Du kan också inaktivera inställningen ”Skicka inte meddelanden mer än…” för att sluta blockera vissa försenade meddelanden, men meddelanden som är mer än sex månader försenade blockeras alltid.",
+    "description": "This is an updated version of the BlockedLateMessage string which is intended to replace it. I've left the old string in the database for the time being so translators can use it as a reference / starting point. The 3rd placeholder in THIS string is a number and the fourth is a unit such as 'minutes', 'days', etc. It will be singular if the number is 1 or plural otherwise. The unit is pulled from single_day etc. or plural_daily etc."
   },
   "EditorReadMeCode": {
     "message": "// Välkommen till Skicka Senare-redigeraren!\n//\n// Redigeraren låter dig skapa JavaScript-funktioner som implementerar komplex\n// schemaläggningslogik av meddelanden som kan associeras med genvägsknappar // eller som valts i Skicka Senare -dialogen.\n//\n// Som du kan se ovan, när en schemaläggningsfunktion anropas, kommer den att ges \n// tre argument:\n// * \"specname\" behövs om du vill att denna funktion ska återkomma (se nedan)\n// * \"prev\" är den föregående schemalagda sändningstiden, om detta är ett återkommande\n// anrop\n// * \"args\" är de extra argumenten som returneras av föregående anrop om detta\n// är ett återkommande anrop\n//\n// Din kod måste ange variablerna \"next\", \"nextspec\", och\n// \"nextargs\" enligt följande:\n//\n// * \"next\" är antingen antalet minuter i framtiden eller ett datumobjekt (Date)\n// som anger när meddelandet ska skickas.\n// * \"nextspec\" är en upprepningsspecifikation om detta är avsett att vara ett\n// återkommande meddelande (se\n// https://blog. amens.us/send-later/#dynamic-recurrence). Om du inte anger detta\n// så kommer meddelandet bara att skickas en gång. Obs: om du vill att din\n// funktion ska anropas igen för upprepning, använd:\n// nextspec = \"function \" + specname;\n// * \"nextargs\" är en array av argument som du vill ska överföras till nästa\n// anrop av funktionen som \"args\".\n//\n// Medan du arbetar på din funktion, kan du testa den genom att fylla i värden\n// för \"prev\" och \"args\" i textrutorna nedan och sedan klicka på \"Execute\" för att köra\n// funktionen och se resultaten.\n//\n// Det finns två förkonfigurerade exempelfunktioner, \"BusinessHours\" och\n// \"DaysInARow\", som du kan titta på och leka med för att lära dig mer.\n//\n// Denna \"ReadMeFirst\"-funktion gör bara att meddelandet skickas ungefär nu,\n// via följande rad.\nnext = new Date();",
@@ -790,7 +846,7 @@
     "description": ""
   },
   "DiscardConfirmBody": {
-    "message": "Det finns ej sparade ändringar. Vill du kasta bort dem?",
+    "message": "Det finns osparade ändringar. Vill du kassera dem?",
     "description": ""
   },
   "UntestedSaveTitle": {
@@ -802,11 +858,11 @@
     "description": ""
   },
   "BadSaveTitle": {
-    "message": "Ogiltig funktionsnamn eller kod",
+    "message": "Ogiltigt funktionsnamn eller ogiltig kod",
     "description": ""
   },
   "BadSaveBody": {
-    "message": "Se till att funktionens namn och kod är giltig innan du sparar eller exporterar.",
+    "message": "Kontrollera att funktionsnamnet och koden är giltiga innan du sparar eller exporterar.",
     "description": ""
   },
   "ReplacingFunctionTitle": {
@@ -818,19 +874,19 @@
     "description": ""
   },
   "NoNextValueError": {
-    "message": "Funktion angav inte ett värde för \"nästa\".",
+    "message": "Funktionen angav inget värde för ”next”.",
     "description": ""
   },
   "BadNextValueError": {
-    "message": "\"nästa\" värdet \"$1\" är inte ett tal eller datum",
+    "message": "Värdet ”$1” för ”next” är inte ett tal eller ett Date-objekt",
     "description": ""
   },
   "BadNextArgsError": {
-    "message": "\"nextargs\" värdet \"$1\" är inte en array",
+    "message": "Värdet ”$1” för ”nextargs” är inte en Array",
     "description": ""
   },
   "FunctionDeleteConfirmBody": {
-    "message": "Är du säker på att du vill ta bort denna funktion? Om den är kopplad till någon genvägsknapp kommer den sluta fungera. Om det finns några återkommande meddelanden som använder funktionen kommer dem inte att kunna omplaneras efter nästa gång de skickats.",
+    "message": "Är du säker på att du vill ta bort den här funktionen? Om den är kopplad till några kortkommandoknappar slutar de fungera. Om återkommande meddelanden använder funktionen kommer de inte att kunna schemaläggas på nytt efter nästa sändning.",
     "description": ""
   },
   "SLJFilterLabel": {
@@ -865,12 +921,16 @@
     "message": "KONTROLLERAR",
     "description": ""
   },
+  "LongDescription": {
+    "message": "Obs! Om du vill ge ett engångsbidrag i stället för ett återkommande bidrag kan du göra det via https://paypal.me/JonathanKamens eller https://venmo.com/Jonathan-Kamens. Du kan också konfigurera ett återkommande bidrag i LiberaPay och sedan avsluta det efter den första betalningen.\n\nDet här tillägget ändrar kommandot ”Skicka senare” (Ctrl+Skift+Retur) i skrivfönstret. I stället för att bara kopiera meddelandet till Utkorgen så att det skickas nästa gång du ansluter eller väljer ”Skicka osända meddelanden”, öppnas en dialogruta där du kan ange när meddelandet ska skickas.\n\nDu kan ange ett bestämt datum och klockslag, klicka på ”15 minuter senare”, ”30 minuter senare” eller ”2 timmar senare”, eller skapa egna kortkommandon. Du kan också schemalägga återkommande sändning med enkla regler (var N:e timme, dag osv.) eller anpassningsbara funktioner.\n\n<a href='https://extended-thunder.github.io/send-later/'>Användarhandbok</a> | <a href='https://github.com/Extended-Thunder/send-later/discussions'>Frågor och feedback</a> | <a href='https://github.com/Extended-Thunder/send-later/issues'>Felrapporter</a>\n\nSkicka Senare använder Andrew Plummers <a href='https://sugarjs.com/'>Sugar.js-bibliotek</a> för avancerad tolkning av datumangivelser.",
+    "description": "This text will be displayed on the ATN page, as well as the \"Details\" tab in Thunderbird's extension manager."
+  },
   "DeveloperComments": {
-    "message": "Vänligen <a href='https://extended-thunder.github.io/send-later/#help'> maila mig</a> felrapporter, förslag, etc.",
+    "message": "Kontakta oss gärna via <a href='https://extended-thunder.github.io/send-later/#help'>hjälpsidan</a> med felrapporter och förslag!",
     "description": "This text appears underneath 'Developer Comments' on the add-on home page. Please keep the link intactd when translating!"
   },
   "accelKeyLabel": {
-    "message": "snabbtangent",
+    "message": "Kortkommandotangent",
     "description": "Label for options window to identify accelerator shortcuts"
   },
   "accelCtrlLabel": {
@@ -917,37 +977,77 @@
     "message": "Hoppa över nästa förekomst",
     "description": "Command added to the message list menu for the user to use to skip the next occurrence of one or more selected recurring drafts"
   },
+  "menuClaimMsg": {
+    "message": "Flytta schemalagda meddelanden till den här Thunderbird-installationen",
+    "description": "Command added to the message list menu for the user to use to move scheduled messages from another Thunderbird instance to this one."
+  },
   "resultsTitle": {
-    "message": "Resultat för bearbetade meddelanden",
+    "message": "Resultat av meddelandebearbetning",
     "description": "The title of the pop-up that displays results after the user uses the message list context menu to perform an operation on more than one selected message."
   },
   "resultsAllSuccess": {
-    "message": "Framgångsrikt bearbetat alla valda meddelanden.",
+    "message": "Alla valda meddelanden bearbetades.",
     "description": "Message displayed in the message list context menu results pop-up when multiple messages were selected and all were processed successfully."
   },
   "resultsPartialSuccess": {
-    "message": "Framgångsrikt bearbetat $1 av $2 valda meddelanden.",
+    "message": "$1 av $2 valda meddelanden bearbetades.",
     "description": "Message displayed in the message list context menu results pop-up when multiple messages were selected and some were not processed successfully. The first placeholder is the number of successful messages and the second is the total number of selected messages."
   },
   "cantSkipSingletonTitle": {
-    "message": "Kan inte hoppa över förekomsten av engångsmeddelande",
+    "message": "Det går inte att hoppa över en förekomst av ett icke-återkommande meddelande",
     "description": "The title of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a non-recurring message."
   },
   "cantSkipSingletonText": {
-    "message": "Meddelandet med ämnet “$1” är inte ett återkommande meddelande, så du kan inte hoppa över dess nästa schemalagda händelse.",
+    "message": "Meddelandet med ämnet ”$1” är inte återkommande, så det går inte att hoppa över nästa schemalagda förekomst.",
     "description": "The text of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a non-recurring message. The placeholder is for the message subject."
   },
   "cantSKipPastLastTitle": {
-    "message": "Meddelandet har inga fler upprepningar",
+    "message": "Meddelandet har inga fler förekomster",
     "description": "The title of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a message that has no further occurrences after that one."
   },
   "cantSkipPastLastText": {
-    "message": "Meddelandet med ämnet “$1” har inga fler händelser så du kan inte hoppa över nästa händelse.",
+    "message": "Meddelandet med ämnet ”$1” har inga fler förekomster, så det går inte att hoppa över nästa.",
     "description": "The text of the pop-up that appears when the user attempts to use the message list context menu command to skip the next occurrence of a message that has no further occurrences after that one. The placeholder is for the message subject."
   },
   "SkipConfirmMessage": {
     "message": "Du har angett att du vill hoppa över nästa förekomst av ett av de valda meddelandena. Om du ändrar dig efter att ha gjort detta, måste du manuellt schemalägga meddelandena på nytt. Är du säker på att du vill fortsätta?",
     "description": "The text of the pop-up that warns the user when they activate the message list context menu command to skip the next occurrence of one or more messages. The purpose of this warning is to ensure that the user knows what the command does before using it. There is a checkbox in the pop-up which they can uncheck if they don't want to see the message again. See also 'AreYouSure' and 'ConfirmAgain' strings which occur in the same pop-up."
+  },
+  "RescheduleErrorTitle": {
+    "message": "Fel vid omschemaläggning av meddelande",
+    "description": "Title of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "RescheduleErrorText": {
+    "message": "VARNING: Ett oväntat fel uppstod när nästa förekomst av det schemalagda meddelandet med ämnet ”$1” skulle schemaläggas. Mer information finns i Thunderbirds fellogg. Det tidigare schemalagda utkastet har därför inte tagits bort. Ta bort det eller redigera och schemalägg det på nytt om du vill.",
+    "description": "Text of pop-up that is displayed when Send Later encounters an unexpected error scheduling the next occurrence of a message."
+  },
+  "TelemetryAskTitle": {
+    "message": "Begäran om datainsamling från $1",
+    "description": "Title of the pop-up that asks the user whether we can collect anonymous usage data. The placeholder is replaced with the extension name."
+  },
+  "TelemetryAskText": {
+    "message": "Får vi samla in anonyma uppgifter om hur du använder $1? Uppgifterna visar hur du använder tillägget och information om din miljö. De innehåller ingen identifierande information, inget e-postinnehåll och ingen kontoinformation. Vi använder uppgifterna för att förbättra tillägget, mäta användningen och avgöra vad vi bör prioritera. Vi delar inte uppgifterna med någon. Ditt svar påverkar inte tilläggets funktion. Fullständig information finns i vår $2.",
+    "description": "Text of the pop-up that asks the user whether we can collect anonymous usage data. The second placeholder is replaced with the contents of the string PrivacyPolicy (so we can make it a link."
+  },
+  "PrivacyPolicy": {
+    "message": "integritetspolicy",
+    "description": "Inserted into TelemetryAskText. Also used to link to the privacy policy from the Send Later pop-up in the main Thunderbird window."
+  },
+  "TelemetryAskYes": {
+    "message": "Ja, ni får samla in användningsdata",
+    "description": "Label for the yes button on the telemetry request dialog."
+  },
+  "TelemetryAskNo": {
+    "message": "Nej, samla inte in användningsdata",
+    "description": "Label for the no button on the telemetry request dialog."
+  },
+  "betaThankYouTitle": {
+    "message": "Tack för att du betatestar!",
+    "description": ""
+  },
+  "betaThankYouText": {
+    "message": "Du får för närvarande förhandsversioner av $1. Vi uppskattar din hjälp, men vill inte vara till besvär, så som en försiktighetsåtgärd påminner vi om detta varje gång $1 uppdateras. Om du vill lämna betatestprogrammet kan du hämta och installera den aktuella versionen av $1 från addons.thunderbird.net.",
+    "description": "$1 is replaced with the extension name"
   },
   "selectNone": {
     "message": "(inga)",
@@ -965,8 +1065,56 @@
     "message": "Mapp",
     "description": "Column header in message list in main window pop-up"
   },
+  "noneScheduled": {
+    "message": "Inga schemalagda meddelanden",
+    "description": "Message in main window pop-up when there are no scheduled messages"
+  },
+  "internalLogTitle": {
+    "message": "Intern logg för Skicka Senare",
+    "description": "Title of the tab where the Send Later internal log is displayed when the user requests it"
+  },
+  "internalLogLevelLabel": {
+    "message": "Intern loggnivå:",
+    "description": "Label for the option menu for selecting the internal log level"
+  },
+  "internalLogClearLabel": {
+    "message": "Rensa",
+    "description": "Label for the button to clear the internal log"
+  },
   "internalLogCopyLabel": {
     "message": "Kopiera",
     "description": "Label for the buttom to copy the internal log to the clipboard"
+  },
+  "internalLogLinkLabel": {
+    "message": "Visa intern logg",
+    "description": "Label for the link in the main window pop-up for opening the internal log tab."
+  },
+  "messageTooLargeTitle": {
+    "message": "Meddelandet är för stort",
+    "description": "The title of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large."
+  },
+  "messageTooLargeText": {
+    "message": "På grund av ett fel i Thunderbird kan $1 inte skicka meddelandet med ämnet ”$2” eftersom det är för stort. Det är $3 byte långt, vilket överskrider den konfigurerade gränsen på $4. Om du vill kan du höja gränsen genom att ändra inställningen ”mailnews.message_warning_size” i Thunderbirds konfigurationsredigerare, eller ange 0 för att inaktivera gränsen helt. Observera att en sådan ändring också påverkar om Thunderbird varnar för stora meddelanden som skickas direkt i stället för via $1. För att skicka meddelandet kan du antingen öppna det för redigering och skicka det direkt, eller redigera och schemalägga det på nytt efter att ha minskat storleken eller ändrat Thunderbird-inställningen.",
+    "description": "The (unfortunately very long) text of the error pop-up that appears at message delivery time if a message that Send Later is supposed to deliver is too large and the TB version is 114 or earlier. $1 is the extension name, $2 is the message subject, $3 is its length, and $4 is the length limit. Please don't translate 'mailnews.message_warning_size', that needs to stay in English."
+  },
+  "dynamicCompatibilityTitle": {
+    "message": "Kompatibilitetsvarning för dynamiska funktioner",
+    "description": "The title of the pop-up error that is displayed when the user has dynamic scheduling functions configured in Send Later and they are not currently using a version of Send Later that supports them."
+  },
+  "dynamicCompatibilityMessage": {
+    "message": "<strong>VARNING:</strong> Den version av $1 som du använder stöder inte dynamiska schemaläggningsfunktioner. Om du försöker använda dynamiska funktioner när du schemalägger enskilda eller återkommande meddelanden kan resultatet bli odefinierat och felaktigt. <strong>Detta gäller även dynamiska återkommande meddelanden som du har schemalagt tidigare.</strong><br/>Om du vill fortsätta använda dynamiska funktioner måste du byta till betakanalen, som fortfarande stöder dem.<br/>Ändringen beror på striktare säkerhetskrav från moderatorerna på <a href='https://addons.thunderbird.net/'>addons.thunderbird.net</a>. Mer information finns i <a href='$2'>användarhandboken</a>.<br/>Det här meddelandet visas vid start tills du antingen byter till betakanalen för $1 eller tar bort alla icke-standardiserade dynamiska funktioner i funktionsredigeraren.",
+    "description": "The text of the pop-up error that is displayed when the user has dynamic scheduling functions configured in Send Later and they are not currently using a version of Send Later that supports them. $1 is replaced with extension name and $2 is replaced with the appropriate user guide link."
+  },
+  "in15minutes": {
+    "message": "om 15 minuter",
+    "description": "Default quick button label"
+  },
+  "in30minutes": {
+    "message": "om 30 minuter",
+    "description": "Default quick button label"
+  },
+  "in2hours": {
+    "message": "om 2 timmar",
+    "description": "Default quick button label"
   }
 }
