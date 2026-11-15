@@ -1077,7 +1077,9 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               );
 
             // Add keycode listener for "Alt+Shift+Enter"
-            const tasksKeys = window.document.getElementById("tasksKeys");
+            const tasksKeys =
+              window.document.getElementById("tasksKeys") ||
+              window.document.getElementById("composeKeys");
             if (tasksKeys) {
               const keyElement = window.document.createXULElement("key");
               keyElement.id = "key-alt-shift-enter";
