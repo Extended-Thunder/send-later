@@ -25,15 +25,12 @@ var LegacyColumn = {
   async getRawMessage(hdr) {
     let folder = hdr.folder.QueryInterface(Ci.nsIMsgFolder);
     let messageUri = folder.generateMessageURI(hdr.messageKey);
-    const messenger = Cc["@mozilla.org/messenger;1"].createInstance(
-      Ci.nsIMessenger,
-    );
 
     const streamListener = Cc[
       "@mozilla.org/network/sync-stream-listener;1"
     ].createInstance(Ci.nsISyncStreamListener);
 
-    const service = messenger.messageServiceFromURI(messageUri);
+    const service = MailServices.messageServiceFromURI(messageUri);
 
     await new Promise((resolve, reject) => {
       service.streamMessage(

@@ -1045,10 +1045,10 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           const msgCompFields = window.gMsgCompose.compFields;
           if (msgCompFields && msgCompFields.draftId != "") {
             const messageURI = msgCompFields.draftId.replace(/\?.*/, "");
-            const messenger = Cc["@mozilla.org/messenger;1"].getService(
-              Ci.nsIMessenger,
-            );
-            const msgHdr = messenger.msgHdrFromURI(messageURI);
+            const msgHdr =
+              MailServices.messageServiceFromURI(
+                messageURI,
+              ).messageURIToMsgHdr(messageURI);
             return context.extension.messageManager.convert(msgHdr);
           } else {
             SendLaterFunctions.debug("Window is not an existing draft.");
