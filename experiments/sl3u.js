@@ -390,6 +390,97 @@ const SendLaterFunctions = {
   },
 };
 
+function makeOverrideController(window) {
+  var controller;
+  controller = {
+    window: window,
+    enabled: true,
+
+    commands: {
+      cmd_sendWithCheck: {
+        isEnabled() {
+          return controller.isCommandEnabled("cmd_sendWithCheck_native");
+        },
+        doCommand() {
+          SendLaterFunctions.keyCodeEventTracker.emit("key_send");
+        },
+      },
+    },
+
+    fromNative(aCommand) {
+      var cmd2 = aCommand.replace(/_native$/, "");
+      var native = aCommand != cmd2;
+      return [native, cmd2];
+    },
+
+    supportsCommand(aCommand_in) {
+      const [native, aCommand] = this.fromNative(aCommand_in);
+      if (native) {
+        const oldEnabled = this.enabled;
+        this.enabled = false;
+        try {
+          return this.window.controllers
+            .getControllerForCommand(aCommand)
+            .supportsCommand(aCommand);
+        } catch (ex) {
+          return false;
+        } finally {
+          this.enabled = oldEnabled;
+        }
+      }
+      return this.enabled && aCommand in this.commands;
+    },
+
+    isCommandEnabled(aCommand_in) {
+      const [native, aCommand] = this.fromNative(aCommand_in);
+      if (native) {
+        const oldEnabled = this.enabled;
+        this.enabled = false;
+        try {
+          return this.window.controllers
+            .getControllerForCommand(aCommand)
+            .isCommandEnabled(aCommand);
+        } catch (ex) {
+          return false;
+        } finally {
+          this.enabled = oldEnabled;
+        }
+      }
+      return this.commands[aCommand].isEnabled();
+    },
+
+    doCommand(aCommand_in) {
+      const [native, aCommand] = this.fromNative(aCommand_in);
+      if (native) {
+        const oldEnabled = this.enabled;
+        this.enabled = false;
+        try {
+          window.controllers
+            .getControllerForCommand(aCommand)
+            .doCommand(aCommand);
+          return;
+        } catch (ex) {
+          return;
+        } finally {
+          this.enabled = oldEnabled;
+        }
+      }
+
+      if (!this.supportsCommand(aCommand)) {
+        return;
+      }
+      var cmd = this.commands[aCommand];
+      if (!cmd.isEnabled()) {
+        return;
+      }
+      cmd.doCommand();
+    },
+
+    onEvent() {},
+  };
+  return controller;
+}
+
 var SL3U = class extends ExtensionCommon.ExtensionAPI {
   getAPI(context) {
     let { extension } = context;
@@ -515,9 +606,10 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
         },
 
         async SendMessageWithCheck(tabId) {
-          context.extension.tabManager
-            .get(tabId)
-            .nativeTab.goDoCommand("cmd_sendWithCheck");
+          var cmd = "cmd_sendWithCheck";
+          var window = context.extension.tabManager.get(tabId).nativeTab;
+          var controller = window.controllers.getControllerForCommand(cmd);
+          controller.doCommand(`${cmd}_native`);
         },
 
         async queueSendUnsentMessages() {
@@ -1065,6 +1157,10 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
           }
 
           for (let window of windows) {
+            window.controllers.insertControllerAt(
+              0,
+              makeOverrideController(window),
+            );
             let windowReadyPromise = new Promise((resolve) => {
               if (window.document.readyState == "complete") resolve();
               else window.addEventListener("load", resolve, { once: true });
@@ -1107,7 +1203,6 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
               "key_sendLater",
               "cmd_sendLater",
               "key_send",
-              "cmd_sendWithCheck",
               "cmd_sendButton",
               "cmd_sendNow",
             ].forEach((itemId) => {
