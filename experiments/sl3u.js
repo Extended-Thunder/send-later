@@ -390,6 +390,18 @@ const SendLaterFunctions = {
   },
 };
 
+// See commit 56cc334e3c4185f33d4fe2e6c11105526964e379 at
+// https://github.com/mozilla/releases-comm-central. The key_send shortcut
+// has been converted to use the Shortcuts Manager. Eventually I imagine other
+// keys will be converted as well, but so far this is the only one that has.
+// Therefore to trap Ctrl-Enter I need to intercept cmd_sendWithCheck at the
+// nsIController level. I'm doing that by adding my own controller at the
+// beginning of the controller list so it'll be found before the real
+// cmd_sendWithCheck. But I also need to be able to call the native function,
+// so there's logic her to do that as well if someone passes in
+// cmd_sendWithCheck_native instead of cmd_sendWithCheck, by temporarily
+// disabling this controller so nsIController won't find it, and then calling
+// the real one through the controller interface.
 function makeOverrideController(window) {
   var controller;
   controller = {
