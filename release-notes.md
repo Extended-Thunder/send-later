@@ -23,42 +23,17 @@ you find it useful you will consider supporting it. See the [user guide](index.h
 
 ## CURRENT IMPORTANT KNOWN ISSUES
 
-* [Data loss/corruption with TB 128 through 135.0b1](#issue-corrupt)
 * [Recent TB/OWL versions break Send Later + Exchange](#issue-exchange)
-* [Blank popups under Wayland with TB121+](#issue-wayland)
 * [Scheduling window gets narrower every time you use it](#issue-narrowing)
 * [Scheduling pop-up disappears or "flies off screen"](#issue-popup)
 * [Betterbird has issues and is not currently supported](#issue-betterbird)
 * [Send Later may be incompatible with the "Check and Send" add-on](#issue-checkandsend)
-
-### <a id="issue-corrupt"/>Potential Thunderbird + Send Later Drafts folder corruption
-
-_**TLDR If you are using a Thunderbird version between 128 and 128.8.1, or between 129.0 and 135.0 beta 1, you could lose data.**_ A bug in these versions can corrupt Thunderbird's copy of your Drafts folder in an IMAP account when you schedule a message with Send Later. This may also happen at delivery time when you have a recurring message scheduled.
-
-The impact of this bug is serious and includes data loss. Scheduled messages could be not sent at all, or could be sent multiples times, and unsent scheduled messages could be deleted entirely.
-
-A good (but not perfect) test of whether this bug is impacting you is to schedule five messages with different contents with Send Later and then check all five messages in your Drafts folder and make sure all of them have the correct headers and contents. If they're all correct, you're probably safe, because for people impacted by this issue, it happens consistently enough that scheduling five messages in a row should trigger it.
-
-As a workaround, you can [stay on Thunderbird 115](tb115.html), or configure Thunderbird to store your drafts under Local Folders rather than in your IMAP account, or upgrade to a Thunderbird version without the bug. We have not seen this issue occur with a local Drafts folder.
 
 ### <a id="issue-exchange"/>Recent TB/OWL versions break Send Later + Exchange
 
 Recent versions of Thunderbird and/or the OWL for Exchange add-on break Send Later's ability to send scheduled messages through Exchange accounts.
 
 I am working on the issue but do not yet have a complete solution.
-
-### <a id="issue-wayland"/>Linux, Wayland: Send Later popups are blank for TB121+
-
-If you are using Wayland on Linux with Thunderbird newer than 121.0b5 and older than 128.3.2 or 132.0b5, the Send Later popup in the main Thunderbird window is blank. The scheduling popup in the compose window is also blank, with Send Later 10.5.5 or newer.
-
-If you are experiencing this issue you should upgrade Thunderbird so that you're using at least 128.3.2 or 132.0b5. If you've done that and you're still experiencing this issue, please [let me know](mailto:send-later-support@extended-thunder.org?subject=Send%20Later%20Wayland%20blank%20popups).
-
-If you can't upgrade Thunderbird for some reason, there are other available workarounds:
-
-* [Stay on Thunderbird 115](tb115.html) for the time being.
-* In the [Thunderbird advanced config editor](index.html#thunderbird-config-editor), set the preference `widget.wayland.use-move-to-rect` to false. Note, however, that if you do this then Thunderbird pop-up windows may run off the edge of the screen sometimes and you'll have to reposition your Thunderbird window and reopen the pop-up to be able to see them.
-* Use Xorg instead of Wayland.
-* Enable the "Detach scheduling popup from compose window" option in the Send Later preferences for Send Later 10.5.5+ on TB128+. This will solve the problem for the scheduling popup but not for the main-window popup.
 
 ### <a id="issue-narrowing"/>For some people, the scheduling popup gets narrower every time you schedule a message
 
@@ -81,6 +56,20 @@ The Send Later add-on is not regularly tested with the Thunderbird fork called B
 It has been [reported to us](https://github.com/Extended-Thunder/send-later/issues/668) that there are compatibility issues between the "Check and Send" add-on and Send-Later. We have not yet investigated this issue, so use the two add-ons together at your own risk.
 
 ---
+
+## Release 10.8.x
+
+### Compatibility
+
+The minimum Thunderbird release compatible with Send Later is Thunderbird 133.
+
+### Bug fixes
+
+Thunderbird 159+: Ensure that when a user starts editing a scheduled draft, the scheduled send is canceled at the start of the edit.
+
+Thunderbird 158+: Restore the behavior of Ctrl-Enter (or Command-Enter on macOS) activating Send Later when the "'Send' does 'Send Later'" preference is enabled.
+
+Thunderbird 149+: Restore the functionality of the "Bind Alt-Shift-Enter instead of Ctrl-Shift-Enter" preference.
 
 ## Release 10.7.x
 
