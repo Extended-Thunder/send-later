@@ -3,6 +3,8 @@
   <head>
     <title>__MSG_extensionName__</title>
     <meta charset="utf-8">
+    <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet" href="/ui/theme.css">
     <script src="/utils/i18n.js"></script>
     <style>
       body {
@@ -29,7 +31,7 @@
         background: none!important;
         border: none;
         padding: 0!important;
-        color: #069;
+        color: var(--sl-link);
         text-decoration: underline;
         cursor: pointer;
       }
@@ -38,7 +40,7 @@
         display:none;
         font-size:small;
         font-family:monospace;
-        color: blue;
+        color: var(--sl-link);
         text-decoration: underline;
         cursor: pointer;
       }
@@ -47,7 +49,7 @@
         display:none;
         font-size:small;
         font-family:monospace;
-        border:1px solid #ccc;
+        border: 1px solid var(--sl-border);
         padding:0.5em;
         margin-top:0.5em;
         white-space:normal;

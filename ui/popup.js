@@ -9,12 +9,22 @@ async function setPreferences(changes) {
   await messenger.storage.local.set({ preferences });
 }
 
+function themeColor(color) {
+  // Keep marks legible in both light and dark themes.
+  return (
+    {
+      green: "var(--sl-success, green)",
+      red: "var(--sl-error, red)",
+    }[color] || color
+  );
+}
+
 function stateSetter(enabled) {
   // closure for enabling/disabling UI components
   return async (element) => {
     try {
       if (["SPAN", "DIV", "LABEL"].includes(element.tagName)) {
-        element.style.color = enabled ? "black" : "#888888";
+        element.style.color = enabled ? "" : "var(--sl-muted, #888888)";
       }
       element.disabled = !enabled;
     } catch (ex) {
@@ -823,7 +833,7 @@ const SLPopup = {
     // timeout (1.5 sec). If is already displayed, then restart timeout.
     const checkmark = document.createElement("span");
     checkmark.textContent = String.fromCharCode(0x2714);
-    checkmark.style.color = color;
+    checkmark.style.color = themeColor(color);
     checkmark.className = "success_icon";
 
     const p = element.parentNode;

@@ -4,6 +4,8 @@
   <head>
     <title>__MSG_extensionName__</title>
     <meta charset="utf-8">
+    <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet" href="/ui/theme.css">
     <script src="/utils/i18n.js"></script>
     <style>
       body {
@@ -28,7 +30,7 @@
 
       #functionTestFields {
         margin: 0.75em 0;
-        border:1px solid #ddd;
+        border: 1px solid var(--sl-border);
       }
 
       #functionTestOutput {
@@ -37,7 +39,7 @@
         width:100%;
         line-height:1.6em;
         min-height:2em;
-        background:#eee;
+        background: var(--sl-output-background);
       }
 
       label {
@@ -46,7 +48,7 @@
       }
 
       label:hover {
-        background-color: #EAEFF2;
+        background-color: var(--sl-hover-background);
       }
 
       .option-label {

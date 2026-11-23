@@ -1,0 +1,48 @@
+/*
+ * Shared colors for Send Later's extension pages.
+ *
+ * Extension pages do not inherit the browser's colors by default: without a
+ * color-scheme declaration the canvas is always painted white, even when
+ * Thunderbird is using a dark theme. Declaring "light dark" lets the browser
+ * paint the page canvas, form controls, and scrollbars using the current
+ * theme. The variables below provide matching colors for the few places where
+ * this extension sets its own backgrounds and borders.
+ */
+
+:root {
+  color-scheme: light dark;
+
+  --sl-background: #ffffff;
+  --sl-foreground: #000000;
+  --sl-border: #dddddd;
+  --sl-hover-background: #eaeff2;
+  --sl-output-background: #eeeeee;
+  --sl-link: #006699;
+  --sl-muted: #888888;
+  --sl-success: #008000;
+  --sl-error: #ff0000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sl-background: #1c1b22;
+    --sl-foreground: #fbfbfe;
+    --sl-border: #5b5b66;
+    --sl-hover-background: #2b2a33;
+    --sl-output-background: #2b2a33;
+    --sl-link: #8cb4ff;
+    --sl-muted: #b1b1b6;
+    --sl-success: #7ee787;
+    --sl-error: #ff8a8a;
+  }
+}
+
+html,
+body {
+  background-color: var(--sl-background);
+  color: var(--sl-foreground);
+}
+
+a {
+  color: var(--sl-link);
+}

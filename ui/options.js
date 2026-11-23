@@ -357,6 +357,16 @@ const SLOptions = {
     }
   },
 
+  themeColor(color) {
+    // Keep marks and warning text legible in both light and dark themes.
+    return (
+      {
+        green: "var(--sl-success, green)",
+        red: "var(--sl-error, red)",
+      }[color] || color
+    );
+  },
+
   showCheckMark(element, color) {
     // Appends a green checkmark as element's last sibling. Disappears after a
     // timeout (1.5 sec). If already displayed, then restart timeout.
@@ -365,7 +375,7 @@ const SLOptions = {
     }
     const checkmark = document.createElement("span");
     checkmark.textContent = String.fromCharCode(0x2714);
-    checkmark.style.color = color;
+    checkmark.style.color = SLOptions.themeColor(color);
     checkmark.className = "success_icon";
 
     const p = element.parentNode;
@@ -385,7 +395,7 @@ const SLOptions = {
     }
     const marker = document.createElement("span");
     marker.textContent = String.fromCharCode(0x2718);
-    marker.style.color = color;
+    marker.style.color = SLOptions.themeColor(color);
     marker.className = "success_icon";
 
     const p = element.parentNode;
@@ -573,7 +583,7 @@ const SLOptions = {
       const confirmPrompt = document.createElement("span");
       confirmPrompt.textContent = browser.i18n.getMessage("AreYouSure");
       confirmPrompt.style.fontWeight = "bold";
-      confirmPrompt.style.color = "red";
+      confirmPrompt.style.color = SLOptions.themeColor("red");
       confirmPrompt.style.display = "inline";
       confirmPrompt.style.margin = "0 0.5em";
       confDiv.appendChild(confirmPrompt);
