@@ -260,10 +260,7 @@ const SendLaterFunctions = {
       SendLaterFunctions.error(ex);
     }
 
-    // TB91 changed CopyFileMessage -> copyFileMessage
-    let copyFileMessage =
-      MailServices.copy.copyFileMessage || MailServices.copy.CopyFileMessage;
-    copyFileMessage(
+    MailServices.copy.copyFileMessage(
       sfile1,
       folder,
       null,
