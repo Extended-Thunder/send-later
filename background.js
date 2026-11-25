@@ -2807,6 +2807,90 @@ const SendLater = {
   },
 }; // End SendLater object
 
+async function mainLoopBody(preferences) {
+  // We do this clean at both the beginning and end of the main loop
+  // because at the beginning there may be cleaning needed as a result of
+  // messages that were edited or scheduled in the interim, and at the end
+  // there may be cleaning needed as a result of messages sent and/or
+  // rescheduled during the main loop.
+  await SendLater.cleanDrafts();
+
+  let interval = preferences.checkTimePref || 0;
+  let now = new Date();
+  if (SendLater.loopMinutes && SendLater.previousLoop) {
+    SendLater.loopExcessTimes.push(
+      now - SendLater.previousLoop - SendLater.loopMinutes * 60000,
+    );
+    SendLater.loopExcessTimes = SendLater.loopExcessTimes.slice(-10);
+  }
+  SendLater.loopMinutes = interval;
+
+  if (interval > 0) {
+    SendLater.previousLoop = now;
+    // Possible refresh icon options (↻ \u8635); or (⟳ \u27F3)
+    // or (⌛ \u231B) (e.g. badgeText = "\u27F3")
+    let extName = messenger.i18n.getMessage("extensionName");
+    let isActiveMessage = messenger.i18n.getMessage("CheckingMessage");
+    // We do not await for this here because it takes an indeterminatee
+    // amount of time to run when the Thunderbird window is minimized.
+    // [noawait]
+    let enablePromise = messenger.browserAction.enable();
+    // noawait (indeterminate, see above)
+    let titlePromise = messenger.browserAction.setTitle({
+      title: `${extName} [${isActiveMessage}]`,
+    });
+
+    let throttleDelay = preferences.throttleDelay;
+
+    try {
+      if (preferences.sendDrafts) {
+        let locker = await new Locker();
+        await SLTools.forAllDrafts(
+          (message) => SendLater.possiblySendMessage(message, {}, locker),
+          throttleDelay > 0,
+          // If we are doing a throttle delay then forAllDrafts needs to wait
+          // long enough for it to elapse. The "+ 10" we're adding to the
+          // throttleDelay is to avoid the race condition of the forAllDrafts
+          // timeout finishing just a wee bit before we finish throttling.
+          throttleDelay ? Math.max(5000, throttleDelay + 10) : undefined,
+          preferences,
+        );
+      }
+      let nActive = await countActiveScheduledMessages();
+      // noawait (indeterminate, see above)
+      SendLater.updateStatusIndicator(
+        nActive,
+        Promise.all([enablePromise, titlePromise]),
+      );
+      await SendLater.setQuitNotificationsEnabled(true, preferences, nActive);
+
+      await SendLater.cleanDrafts();
+      setDeferred("mainLoop", 60000 * interval, mainLoop);
+      SLTools.debug(`Next main loop iteration in ${60 * interval} seconds.`);
+    } catch (err) {
+      SLTools.error(err);
+      let nActive = await countActiveScheduledMessages();
+      await SendLater.updateStatusIndicator(nActive);
+      await SendLater.setQuitNotificationsEnabled(true, preferences, nActive);
+
+      setDeferred("mainLoop", 60000, mainLoop);
+      SLTools.debug(`Next main loop iteration in 1 minute.`);
+    }
+  } else {
+    SendLater.previousLoop = null;
+    let extName = messenger.i18n.getMessage("extensionName");
+    let disabledMsg = messenger.i18n.getMessage("DisabledMessage");
+    await messenger.browserAction.disable();
+    await messenger.browserAction.setTitle({
+      title: `${extName} [${disabledMsg}]`,
+    });
+    await messenger.browserAction.setBadgeText({ text: null });
+
+    setDeferred("mainLoop", 60000, mainLoop);
+    SLTools.debug(`Next main loop iteration in 1 minute.`);
+  }
+}
+
 async function mainLoop() {
   SLTools.debug("Entering main loop.");
 
@@ -2816,102 +2900,19 @@ async function mainLoop() {
     SLTools.error(ex);
   }
 
-  try {
-    // We do this clean at both the beginning and end of the main loop
-    // because at the beginning there may be cleaning needed as a result of
-    // messages that were edited or scheduled in the interim, and at the end
-    // there may be cleaning needed as a result of messages sent and/or
-    // rescheduled during the main loop.
-    await SendLater.cleanDrafts();
+  let preferences = await SLTools.getPrefs();
 
-    let preferences = await SLTools.getPrefs();
-    let interval = preferences.checkTimePref || 0;
-    let now = new Date();
-    if (SendLater.loopMinutes && SendLater.previousLoop) {
-      SendLater.loopExcessTimes.push(
-        now - SendLater.previousLoop - SendLater.loopMinutes * 60000,
-      );
-      SendLater.loopExcessTimes = SendLater.loopExcessTimes.slice(-10);
-    }
-    SendLater.loopMinutes = interval;
-
-    if (interval > 0) {
-      SendLater.previousLoop = now;
-      // Possible refresh icon options (↻ \u8635); or (⟳ \u27F3)
-      // or (⌛ \u231B) (e.g. badgeText = "\u27F3")
-      let extName = messenger.i18n.getMessage("extensionName");
-      let isActiveMessage = messenger.i18n.getMessage("CheckingMessage");
-      // We do not await for this here because it takes an indeterminatee
-      // amount of time to run when the Thunderbird window is minimized.
-      // [noawait]
-      let enablePromise = messenger.browserAction.enable();
-      // noawait (indeterminate, see above)
-      let titlePromise = messenger.browserAction.setTitle({
-        title: `${extName} [${isActiveMessage}]`,
-      });
-
-      let throttleDelay = preferences.throttleDelay;
-
-      try {
-        if (preferences.sendDrafts) {
-          let locker = await new Locker();
-          await SLTools.forAllDrafts(
-            (message) => SendLater.possiblySendMessage(message, {}, locker),
-            throttleDelay > 0,
-            // If we are doing a throttle delay then forAllDrafts needs to wait
-            // long enough for it to elapse. The "+ 10" we're adding to the
-            // throttleDelay is to avoid the race condition of the forAllDrafts
-            // timeout finishing just a wee bit before we finish throttling.
-            throttleDelay ? Math.max(5000, throttleDelay + 10) : undefined,
-            preferences,
-          );
-        }
-        let nActive = await countActiveScheduledMessages();
-        // noawait (indeterminate, see above)
-        SendLater.updateStatusIndicator(
-          nActive,
-          Promise.all([enablePromise, titlePromise]),
-        );
-        await SendLater.setQuitNotificationsEnabled(
-          true,
-          preferences,
-          nActive,
-        );
-
-        await SendLater.cleanDrafts();
-        setDeferred("mainLoop", 60000 * interval, mainLoop);
-        SLTools.debug(`Next main loop iteration in ${60 * interval} seconds.`);
-      } catch (err) {
-        SLTools.error(err);
-        let nActive = await countActiveScheduledMessages();
-        await SendLater.updateStatusIndicator(nActive);
-        await SendLater.setQuitNotificationsEnabled(
-          true,
-          preferences,
-          nActive,
-        );
-
-        setDeferred("mainLoop", 60000, mainLoop);
-        SLTools.debug(`Next main loop iteration in 1 minute.`);
-      }
-    } else {
-      SendLater.previousLoop = null;
-      let extName = messenger.i18n.getMessage("extensionName");
-      let disabledMsg = messenger.i18n.getMessage("DisabledMessage");
-      await messenger.browserAction.disable();
-      await messenger.browserAction.setTitle({
-        title: `${extName} [${disabledMsg}]`,
-      });
-      await messenger.browserAction.setBadgeText({ text: null });
+  if (preferences.topLevelCatch) {
+    try {
+      await mainLoopBody(preferences);
+    } catch (ex) {
+      SLTools.error(ex);
 
       setDeferred("mainLoop", 60000, mainLoop);
       SLTools.debug(`Next main loop iteration in 1 minute.`);
     }
-  } catch (ex) {
-    SLTools.error(ex);
-
-    setDeferred("mainLoop", 60000, mainLoop);
-    SLTools.debug(`Next main loop iteration in 1 minute.`);
+  } else {
+    await mainLoopBody(preferences);
   }
 }
 
