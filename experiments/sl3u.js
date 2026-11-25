@@ -32,6 +32,18 @@ var draftsFolderTime = 0;
 
 var draftsIdleTime = 5000;
 
+// TB162+, it's an interactive argument rather than a msgwindow.
+function msgWindowOrInteractive() {
+  try {
+    msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"]
+      .createInstance()
+      .QueryInterface(Ci.nsIMsgWindow);
+    return msgWindow;
+  } catch (ex) {
+    return false;
+  }
+}
+
 function cacheDraftsFolders() {
   if (Date.now() - draftsFolderTime < 60000) return;
   draftsFolderStatus = {};
@@ -249,10 +261,6 @@ const SendLaterFunctions = {
     const sfile1 = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
     sfile1.initWithPath(filePath);
     listener.localFile = sfile1;
-    let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"]
-      .createInstance()
-      .QueryInterface(Ci.nsIMsgWindow);
-
     let flags = 0;
     try {
       flags |= markRead ? Ci.nsMsgMessageFlags.Read : 0;
@@ -268,7 +276,7 @@ const SendLaterFunctions = {
       flags,
       "",
       listener,
-      msgWindow,
+      msgWindowOrInteractive(),
     );
   },
 
@@ -346,11 +354,8 @@ const SendLaterFunctions = {
           0
       ) {
         try {
-          let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"]
-            .createInstance()
-            .QueryInterface(Ci.nsIMsgWindow);
           let fdrunsent = SendLaterFunctions.getUnsentMessagesFolder();
-          fdrunsent.compact(null, msgWindow);
+          fdrunsent.compact(null, msgWindowOrInteractive());
           SendLaterVars.wantToCompactOutbox = false;
           SendLaterFunctions.debug("Compacted Outbox");
         } catch (ex) {
@@ -891,10 +896,7 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
         async updateFolder({ accountId, path }) {
           let uri = SendLaterFunctions.folderPathToURI(accountId, path);
           let folder = MailServices.folderLookup.getFolderForURL(uri);
-          let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"]
-            .createInstance()
-            .QueryInterface(Ci.nsIMsgWindow);
-          folder.updateFolder(msgWindow);
+          folder.updateFolder(msgWindowOrInteractive());
         },
 
         // Wait until the folders aren't being modified.
@@ -936,16 +938,13 @@ var SL3U = class extends ExtensionCommon.ExtensionAPI {
         async expungeOrCompactFolder({ accountId, path }) {
           let uri = SendLaterFunctions.folderPathToURI(accountId, path);
           let folder = MailServices.folderLookup.getFolderForURL(uri);
-          let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"]
-            .createInstance()
-            .QueryInterface(Ci.nsIMsgWindow);
           try {
             folder
               .QueryInterface(Ci.nsIMsgImapMailFolder)
-              .expunge(null, msgWindow);
+              .expunge(null, msgWindowOrInteractive());
           } catch {
             SendLaterFunctions.debug("expunge failed, calling compact");
-            folder.compact(null, msgWindow);
+            folder.compact(null, msgWindowOrInteractive());
           }
         },
 
