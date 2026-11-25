@@ -654,7 +654,15 @@ The following functional preferences are available only in the configuration edi
   most, and bad things will happen if you try to do that. For that, look at
   [scheduling messages with Mail Merge](#mailmerge) and giving the scheduled
   messages staggered send times.
-  
+- **topLevelCatch**, which defaults to `true`, controls whether Send
+  Later catches unexpected exceptions during its main loop. When this
+  is set to false, then the exceptions are not caught, which causes
+  the main loop to abort and Send Later to stop sending scheduled
+  messages until you restart Thunderbird or disable and reenable the
+  extension. You should probably only change this if instructed to do
+  so by Send Later developers while they are helping you debug an
+  issue.
+
 <a name="thunderbird-config-editor"></a>
 ### Thunderbird's Config Editor
 
