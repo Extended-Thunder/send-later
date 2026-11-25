@@ -65,6 +65,8 @@ The minimum Thunderbird release compatible with Send Later is Thunderbird 133.
 
 ### Bug fixes
 
+Thunderbird 162+: Fix incompatibilities between Send Later and Thunderbird 162+ so it works again, i.e., Thunderbird 162 broke Send Later releases prior to 10.8.1.
+
 Thunderbird 159+: Ensure that when a user starts editing a scheduled draft, the scheduled send is canceled at the start of the edit.
 
 Thunderbird 158+: Restore the behavior of Ctrl-Enter (or Command-Enter on macOS) activating Send Later when the "'Send' does 'Send Later'" preference is enabled.
